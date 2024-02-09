@@ -29,7 +29,6 @@ $generic-grid-base-drag-header-second-shadow: 0 1px 3px $datagrid-drag-header-se
 $generic-grid-base-checkbox-icon-size: 16px;
 $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
 
-
 @mixin dx-set-checkbox-border-color-as-background() {
   @if $generic-color-postfix == ".contrast" {
     .dx-selection .dx-checkbox-icon {
@@ -233,7 +232,7 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
         padding-left: $generic-texteditor-icon-container-size;
 
         @at-root #{selector-append(".dx-rtl", &)},
-        .dx-rtl & {
+          .dx-rtl & {
           padding-right: $generic-texteditor-icon-container-size;
         }
       }
@@ -504,7 +503,8 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
     }
 
     td .dx-editor-container .dx-filter-range-content {
-      padding: $generic-grid-base-cell-padding $generic-grid-base-cell-padding $generic-grid-base-cell-padding $generic-grid-base-texteditor-input-padding;
+      padding: $generic-grid-base-cell-padding $generic-grid-base-cell-padding $generic-grid-base-cell-padding
+        $generic-grid-base-texteditor-input-padding;
     }
   }
 
@@ -582,12 +582,19 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
 
     .dx-apply-button {
       @include dx-button-styling-variant(
-                $button-success-bg, $button-success-border-color, $button-success-color,
-                darken($button-success-bg, 10%), $button-success-border-color,
-                darken($button-success-bg, 15%), $button-success-border-color,
-                darken($button-success-bg, 20%), $button-success-border-color, $button-success-color,
-                $button-success-color
-            );
+        $button-success-bg,
+        $button-success-border-color,
+        $button-success-color,
+        darken($button-success-bg, 10%),
+        $button-success-border-color,
+        darken($button-success-bg, 15%),
+        $button-success-border-color,
+        darken($button-success-bg, 20%),
+        $button-success-border-color,
+        $button-success-color,
+        $button-success-color,
+        $button-success-bg-disabled
+      );
     }
   }
 
@@ -861,7 +868,10 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
       }
     }
 
-    &.dx-scrollable-scrollbars-alwaysvisible.dx-scrollable-both .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content {
+    &.dx-scrollable-scrollbars-alwaysvisible.dx-scrollable-both
+      .dx-scrollable-wrapper
+      .dx-scrollable-container
+      .dx-scrollable-content {
       padding-right: 0;
     }
 
@@ -876,7 +886,7 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
           padding-right: $generic-texteditor-invalid-badge-size;
 
           @at-root #{selector-append(".dx-rtl", &)},
-          .dx-rtl & {
+            .dx-rtl & {
             padding-left: $generic-texteditor-invalid-badge-size;
             padding-right: $generic-grid-base-cell-padding;
           }
@@ -962,12 +972,19 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
       margin-left: 1px;
 
       @include dx-button-styling-variant(
-                $button-danger-bg, $button-danger-border-color, $button-danger-color,
-                darken($button-danger-bg, 10%), $button-danger-border-color,
-                darken($button-danger-bg, 15%), $button-danger-border-color,
-                darken($button-danger-bg, 20%), $button-danger-border-color, $button-danger-color,
-                $button-danger-color
-            );
+        $button-danger-bg,
+        $button-danger-border-color,
+        $button-danger-color,
+        darken($button-danger-bg, 10%),
+        $button-danger-border-color,
+        darken($button-danger-bg, 15%),
+        $button-danger-border-color,
+        darken($button-danger-bg, 20%),
+        $button-danger-border-color,
+        $button-danger-color,
+        $button-danger-color,
+        $button-danger-contained-bg-disabled
+      );
 
       > .dx-button-content {
         padding: $generic-grid-base-cell-padding;
@@ -997,7 +1014,6 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
       }
     }
 
-
     .dx-data-row.dx-state-hover {
       &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row):not(.dx-row-focused) {
         & > td:not(.dx-focused) {
@@ -1019,7 +1035,8 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
       }
 
       td .dx-editor-container .dx-filter-range-content {
-        padding: $generic-grid-base-cell-padding $generic-grid-base-texteditor-input-padding $generic-grid-base-cell-padding $generic-grid-base-cell-padding;
+        padding: $generic-grid-base-cell-padding $generic-grid-base-texteditor-input-padding
+          $generic-grid-base-cell-padding $generic-grid-base-cell-padding;
       }
     }
 
@@ -1042,7 +1059,10 @@ $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
         }
       }
 
-      &.dx-scrollable-scrollbars-alwaysvisible.dx-scrollable-both .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content {
+      &.dx-scrollable-scrollbars-alwaysvisible.dx-scrollable-both
+        .dx-scrollable-wrapper
+        .dx-scrollable-container
+        .dx-scrollable-content {
         padding-left: 0;
       }
     }

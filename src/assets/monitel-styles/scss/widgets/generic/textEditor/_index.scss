@@ -14,12 +14,11 @@
 // adduse
 
 $generic-texteditor-border-width: $generic-base-border-width;
-$generic-texteditor-input-padding:
-  $generic-base-inline-borderedwidget-top-padding
-  $generic-base-inline-borderedwidget-horizontal-padding
-  $generic-base-inline-borderedwidget-bottom-padding;
+$generic-texteditor-input-padding: $generic-base-inline-borderedwidget-top-padding
+  $generic-base-inline-borderedwidget-horizontal-padding $generic-base-inline-borderedwidget-bottom-padding;
 
-$generic-texteditor-input-height: round($generic-base-line-height * $generic-base-font-size) + $generic-base-inline-borderedwidget-top-padding + $generic-base-inline-borderedwidget-bottom-padding;
+$generic-texteditor-input-height: round($generic-base-line-height * $generic-base-font-size) +
+  $generic-base-inline-borderedwidget-top-padding + $generic-base-inline-borderedwidget-bottom-padding;
 
 $generic-texteditor-icon-container-size: $generic-base-inline-borderedwidget-inner-size;
 $generic-texteditor-icon-size: $generic-base-icon-size;
@@ -27,7 +26,6 @@ $generic-texteditor-icon-size: $generic-base-icon-size;
 $generic-texteditor-clear-icon-size: $generic-texteditor-icon-size + $generic-texteditor-clear-icon-oversize;
 
 $generic-texteditor-invalid-badge-size: $generic-invalid-badge-size + 2 * $generic-invalid-badge-horizontal-padding;
-
 
 @mixin dx-texteditor-icon() {
   position: absolute;
@@ -52,7 +50,7 @@ $generic-texteditor-invalid-badge-size: $generic-invalid-badge-size + 2 * $gener
   right: $generic-invalid-badge-halfhorizontal-padding;
 
   @at-root #{selector-append(".dx-rtl", &)},
-  .dx-rtl & {
+    .dx-rtl & {
     left: $generic-invalid-badge-halfhorizontal-padding;
     right: auto;
   }
@@ -161,13 +159,16 @@ $generic-texteditor-invalid-badge-size: $generic-invalid-badge-size + 2 * $gener
     color: $texteditor-button-clear-icon-color;
 
     @include dx-texteditor-icon();
-    @include dx-icon-sizing($generic-texteditor-clear-icon-size - $generic-texteditor-clear-icon-oversize, $generic-texteditor-icon-container-size);
+    @include dx-icon-sizing(
+      $generic-texteditor-clear-icon-size - $generic-texteditor-clear-icon-oversize,
+      $generic-texteditor-icon-container-size
+    );
   }
 }
 
 /* B231111 */
 .dx-placeholder {
-  color: $texteditor-placeholder-color;
+  color: #000;
 
   &::before {
     padding: $generic-texteditor-input-padding;

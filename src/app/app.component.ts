@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Item, SelectDataService } from './select-data.service';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-[x: string]: any;
-  title = 'app';
+  data: Item[];
 
-  sayHello() {
-    console.log('Hello ', this.title, '!');
+  constructor(service: SelectDataService) {
+    this.data = service.getItems();
   }
 }
