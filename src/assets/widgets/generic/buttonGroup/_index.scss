@@ -75,10 +75,13 @@
       &.dx-button-normal {
         background-color: $button-normal-bg;
 
-        @include dx-buttongroup-item-states($button-normal-contained-bg-hover, $button-normal-contained-bg-focused);
+        @include dx-buttongroup-item-states(
+          $button-normal-contained-bg-hover,
+          $button-normal-contained-bg-focused
+        );
 
         &.dx-item-selected {
-          background-color: $button-group-normal-contained-selected-bg;
+          background-color: $button-group-normal-selected-bg;
 
           @include dx-buttongroup-item-states(
             $button-group-normal-contained-selected-bg-hover,
@@ -93,22 +96,43 @@
       }
 
       &.dx-button-default {
-        &.dx-item-selected {
-          background-color: $button-group-normal-contained-selected-bg;
+        background-color: $button-group-default-contained-selected-bg;
 
-          &:hover {
-            background-color: $button-group-normal-contained-selected-bg-hover;
-          }
-        }
+        @include dx-buttongroup-item-states(
+          $button-group-default-contained-selected-bg-hover,
+          $button-group-default-contained-selected-bg-focused
+        );
+      }
+
+      &.dx-button-success.dx-item-selected {
+        background-color: $button-group-success-contained-selected-bg;
+
+        @include dx-buttongroup-item-states(
+          $button-group-success-contained-selected-bg-hover,
+          $button-group-success-contained-selected-bg-focused
+        );
+      }
+
+      &.dx-button-danger.dx-item-selected {
+        background-color: $button-group-danger-contained-selected-bg;
+
+        @include dx-buttongroup-item-states(
+          $button-group-danger-contained-selected-bg-hover,
+          $button-group-danger-contained-selected-bg-focused
+        );
       }
 
       &:not(.dx-item-selected) {
-        // background-color: $button-normal-bg;
+        background-color: $button-normal-bg;
 
         &.dx-button-default {
+          background-color: $button-group-default-contained-bg;
           border-color: $button-default-border-color;
 
-          @include dx-buttongroup-item-states($button-default-contained-bg-hover, $button-default-contained-bg-focused);
+          @include dx-buttongroup-item-states(
+            $button-default-contained-bg-hover,
+            $button-default-contained-bg-focused
+          );
 
           &,
           & .dx-icon {
@@ -117,58 +141,90 @@
         }
 
         &.dx-button-success {
+          background-color: $button-group-success-contained-bg;
           border-color: $button-success-border-color;
 
-          @include dx-buttongroup-item-states($button-normal-contained-bg-hover, $button-normal-contained-bg-focused);
+          @include dx-buttongroup-item-states(
+            $button-group-success-contained-bg-hover,
+            $button-group-success-contained-bg-focused
+          );
 
           &,
           & .dx-icon {
-            color: $button-success-color;
+            color: $button-default-color;
           }
         }
 
         &.dx-button-danger {
+          background-color: $button-group-danger-contained-bg;
           border-color: $button-danger-border-color;
 
-          @include dx-buttongroup-item-states($button-normal-contained-bg-hover, $button-normal-contained-bg-focused);
+          @include dx-buttongroup-item-states(
+            $button-group-danger-contained-bg-hover,
+            $button-group-danger-contained-bg-focused
+          );
 
           &,
           & .dx-icon {
-            color: $button-danger-color;
+            color: $button-default-color;
           }
         }
       }
     }
 
     &.dx-button-mode-outlined {
-      @include dx-buttongroup-item-states($button-normal-outlined-bg-hover, $button-normal-outlined-bg-focused);
+      @include dx-buttongroup-item-states(
+        $button-normal-outlined-bg-hover,
+        $button-normal-outlined-bg-focused
+      );
 
       &.dx-button-default {
-        @include dx-buttongroup-item-states($button-default-outlined-bg-hover, $button-default-outlined-bg-focused);
+        @include dx-buttongroup-item-states(
+          $button-default-outlined-bg-hover,
+          $button-default-outlined-bg-focused
+        );
       }
 
       &.dx-button-success {
-        @include dx-buttongroup-item-states($button-success-outlined-bg-hover, $button-success-outlined-bg-focused);
+        @include dx-buttongroup-item-states(
+          $button-success-outlined-bg-hover,
+          $button-success-outlined-bg-focused
+        );
       }
 
       &.dx-button-danger {
-        @include dx-buttongroup-item-states($button-danger-outlined-bg-hover, $button-danger-outlined-bg-focused);
+        @include dx-buttongroup-item-states(
+          $button-danger-outlined-bg-hover,
+          $button-danger-outlined-bg-focused
+        );
       }
     }
 
     &.dx-button-mode-text {
-      @include dx-buttongroup-item-states($button-normal-text-bg-hover, $button-normal-text-bg-focused);
+      @include dx-buttongroup-item-states(
+        $button-normal-text-bg-hover,
+        $button-normal-text-bg-focused
+      );
 
       &.dx-button-default {
-        @include dx-buttongroup-item-states($button-default-text-bg-hover, $button-default-text-bg-focused);
+        @include dx-buttongroup-item-states(
+          $button-default-text-bg-hover,
+          $button-default-text-bg-focused
+        );
       }
 
       &.dx-button-success {
-        @include dx-buttongroup-item-states($button-success-text-bg-hover, $button-success-text-bg-focused);
+        @include dx-buttongroup-item-states(
+          $button-success-text-bg-hover,
+          $button-success-text-bg-focused
+        );
       }
 
       &.dx-button-danger {
-        @include dx-buttongroup-item-states($button-danger-text-bg-hover, $button-danger-text-bg-focused);
+        @include dx-buttongroup-item-states(
+          $button-danger-text-bg-hover,
+          $button-danger-text-bg-focused
+        );
       }
     }
 
