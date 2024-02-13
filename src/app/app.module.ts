@@ -6,13 +6,17 @@ import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme
 import { EditorsComponent } from './components/editors/editors.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { PivotGridComponent } from './components/pivot-grid/pivot-grid.component';
+import { DataGridComponent } from './components/data-grid/data-grid.component';
+import { TreeListComponent } from './components/tree-list/tree-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditorsComponent,
     ButtonsComponent,
-    PivotGridComponent
+    PivotGridComponent,
+    DataGridComponent,
+    TreeListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,4 @@
 import { Component, enableProdMode } from '@angular/core';
-
 import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 
 if (!/localhost/.test(document.location.host)) {
