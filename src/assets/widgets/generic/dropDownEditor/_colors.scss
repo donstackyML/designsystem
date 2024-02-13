@@ -11,7 +11,10 @@
 * $type color
 */
 $dropdowneditor-button-hover-bg: null !default;
-$dropdowneditor-filled-button-hover-bg: color.change($base-accent, $alpha: 0.2) !default;
+$dropdowneditor-filled-button-hover-bg: color.change(
+  $base-accent,
+  $alpha: 0.2
+) !default;
 $dropdowneditor-button-hover-border-color: null !default;
 
 /**
@@ -19,7 +22,10 @@ $dropdowneditor-button-hover-border-color: null !default;
 * $type color
 */
 $dropdowneditor-button-active-bg: null !default;
-$dropdowneditor-filled-button-active-bg: color.change($base-accent, $alpha: 0.3) !default;
+$dropdowneditor-filled-button-active-bg: color.change(
+  $base-accent,
+  $alpha: 0.3
+) !default;
 $dropdowneditor-filled-button-invalid-hover-bg: color.change(
   $texteditor-invalid-focused-border-color,
   $alpha: 0.2
@@ -34,7 +40,7 @@ $dropdowneditor-button-active-border-color: transparent !default;
 * $name 80. Spin icon color
 * $type color
 */
-$dropdowneditor-icon-color: $base-icon-color !default;
+$dropdowneditor-icon-color: null !default;
 
 /**
 * $name 90. Spin active icon color
@@ -44,17 +50,19 @@ $dropdowneditor-icon-active-color: null !default;
 $dropdowneditor-icon-border-radius: null !default;
 
 @if $color == "light" {
+  $dropdowneditor-icon-color: #18181a;
   $dropdowneditor-button-hover-bg: #d8daea;
   $dropdowneditor-button-hover-border-color: transparent !default;
-  $dropdowneditor-button-active-bg: darken($button-normal-bg, 30%) !default;
-  $dropdowneditor-icon-active-color: $base-icon-color !default;
+  $dropdowneditor-button-active-bg: #ecedf3;
+  $dropdowneditor-icon-active-color: #3257dc;
   $dropdowneditor-icon-border-radius: $base-border-radius-small !default;
 }
 
 @if $color == "dark" {
+  $dropdowneditor-icon-color: #ffffff;
   $dropdowneditor-button-hover-bg: #565665;
   $dropdowneditor-button-hover-border-color: transparent !default;
-  $dropdowneditor-button-active-bg: darken($button-normal-bg, 30%) !default;
-  $dropdowneditor-icon-active-color: $base-icon-color !default;
+  $dropdowneditor-button-active-bg: #43444c;
+  $dropdowneditor-icon-active-color: #5d9eff;
   $dropdowneditor-icon-border-radius: $base-border-radius-small !default;
 }
