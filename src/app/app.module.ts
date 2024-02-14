@@ -8,6 +8,7 @@ import { ButtonsComponent } from './components/buttons/buttons.component';
 import { PivotGridComponent } from './components/pivot-grid/pivot-grid.component';
 import { DataGridComponent } from './components/data-grid/data-grid.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
+import { SchedulerComponent } from './components/scheduler/scheduler.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TreeListComponent } from './components/tree-list/tree-list.component';
     ButtonsComponent,
     PivotGridComponent,
     DataGridComponent,
-    TreeListComponent
+    TreeListComponent,
+    SchedulerComponent
   ],
   imports: [
     BrowserModule,
