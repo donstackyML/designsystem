@@ -12,6 +12,7 @@ import { SchedulerComponent } from './components/scheduler/scheduler.component';
 import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
 import { FilterBuilderComponent } from './components/filter-builder/filter-builder.component';
+import { OverlaysComponent } from './components/overlays/overlays.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FilterBuilderComponent } from './components/filter-builder/filter-build
     SchedulerComponent,
     FormComponent,
     ListComponent,
-    FilterBuilderComponent
+    FilterBuilderComponent,
+    OverlaysComponent
   ],
   imports: [
     BrowserModule,

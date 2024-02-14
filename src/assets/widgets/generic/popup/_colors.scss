@@ -11,56 +11,22 @@
 $popup-title-bg: null !default;
 $popup-bottom-bg: null !default;
 $popup-title-color: $base-text-color !default;
-$popup-title-border-color: $base-border-color !default;
+$popup-title-border-color: null !default;
 $popup-bottom-color: $base-text-color !default;
 $popup-border-radius: null !default;
 
+@if $color == "light" {
+  $popup-title-border-color: #dfe0ed;
 
-@if $color == "carmine" {
-  $popup-title-bg: transparent !default;
-  $popup-bottom-bg: $popup-title-bg !default;
+  $popup-title-bg: transparent !default; // Header background title
+  $popup-bottom-bg: #ffffff;
   $popup-border-radius: $base-border-radius-large !default;
-}
-
-@if $color == "contrast" {
-  $popup-title-bg: $base-bg !default;
-  $popup-bottom-bg: $popup-title-bg !default;
-  $popup-border-radius: $base-border-radius + 2px !default;
 }
 
 @if $color == "dark" {
-  $popup-title-bg: transparent !default;
-  $popup-bottom-bg: $popup-title-bg !default;
+  $popup-title-border-color: #3f4044;
+
+  $popup-title-bg: transparent !default; // Header background title
+  $popup-bottom-bg: #2e2e2f;
   $popup-border-radius: $base-border-radius-large !default;
 }
-
-@if $color == "darkmoon" {
-  $popup-title-bg: transparent !default;
-  $popup-bottom-bg: $popup-title-bg !default;
-  $popup-border-radius: $base-border-radius-large !default;
-}
-
-@if $color == "darkviolet" {
-  $popup-title-bg: transparent !default;
-  $popup-bottom-bg: $popup-title-bg !default;
-  $popup-border-radius: $base-border-radius-large !default;
-}
-
-@if $color == "greenmist" {
-  $popup-title-bg: color.change(darken($base-bg, 9%), $alpha: 0.4) !default;
-  $popup-bottom-bg: $popup-title-bg !default;
-  $popup-border-radius: $base-border-radius-large !default;
-}
-
-@if $color == "light" {
-  $popup-title-bg: transparent !default;
-  $popup-bottom-bg: $popup-title-bg !default;
-  $popup-border-radius: $base-border-radius-large !default;
-}
-
-@if $color == "softblue" {
-  $popup-title-bg: transparent !default;
-  $popup-bottom-bg: $popup-title-bg !default;
-  $popup-border-radius: $base-border-radius-large !default;
-}
-
