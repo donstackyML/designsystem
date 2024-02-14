@@ -10,6 +10,7 @@ import { DataGridComponent } from './components/data-grid/data-grid.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { SchedulerComponent } from './components/scheduler/scheduler.component';
 import { FormComponent } from './components/form/form.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormComponent } from './components/form/form.component';
     DataGridComponent,
     TreeListComponent,
     SchedulerComponent,
-    FormComponent
+    FormComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
