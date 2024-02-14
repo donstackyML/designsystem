@@ -9,6 +9,7 @@ import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
 import { FilterBuilderComponent } from './components/filter-builder/filter-builder.component';
 import { OverlaysComponent } from './components/overlays/overlays.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 const routes: Routes = [ 
   { path: 'buttons', component: ButtonsComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'list', component: ListComponent },
   { path: 'filter', component: FilterBuilderComponent },
   { path: 'overlay', component: OverlaysComponent },
+  { path: 'menu', component: MenuComponent },
  ];
 
 @NgModule({
