@@ -5,6 +5,7 @@ import { ButtonsComponent } from './components/buttons/buttons.component';
 import { PivotGridComponent } from './components/pivot-grid/pivot-grid.component';
 import { DataGridComponent } from './components/data-grid/data-grid.component';
 import { SchedulerComponent } from './components/scheduler/scheduler.component';
+import { FormComponent } from './components/form/form.component';
 
 const routes: Routes = [ 
   { path: 'buttons', component: ButtonsComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'pivotgrid', component: PivotGridComponent },
   { path: 'datagrid', component: DataGridComponent },
   { path: 'scheduler', component: SchedulerComponent },
+  { path: 'form', component: FormComponent },
  ];
 
 @NgModule({
