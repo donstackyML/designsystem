@@ -10,7 +10,7 @@ $filterbuilder-bg: $base-bg !default;
 * $name 10. Text color
 * $type color
 */
-$filterbuilder-text-color: null !default;
+$filterbuilder-text-color: #ffffff !default;
 
 /**
 * $name 20. Focused text color
@@ -72,195 +72,117 @@ $filterbuilder-item-value-focus-color: null !default;
 */
 $filterbuilder-menu-icon-color: null !default;
 
-@if $color == "carmine" {
-  $filterbuilder-text-color: $base-text-color !default;
+@if $color == "light" {
   $filterbuilder-text-focus-color: #fff !default;
-  $filterbuilder-plus-icon-color: color.change($base-success, $alpha: 0.3) !default;
-  $filterbuilder-plus-icon-hover-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-plus-icon-focus-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.7) !default;
-  $filterbuilder-remove-icon-color: color.change($base-danger, $alpha: 0.3) !default;
-  $filterbuilder-remove-icon-hover-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-remove-icon-focus-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.7) !default;
-  $filterbuilder-group-operation-color: color.change($base-danger, $alpha: 0.3) !default;
-  $filterbuilder-group-operation-hover-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.2) !default;
-  $filterbuilder-group-operation-focus-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.7) !default;
-  $filterbuilder-item-field-color: color.change($base-accent, $alpha: 0.3) !default;
-  $filterbuilder-item-field-hover-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.2) !default;
-  $filterbuilder-item-field-focus-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.7) !default;
-  $filterbuilder-item-operator-color: color.change($base-success, $alpha: 0.3) !default;
-  $filterbuilder-item-operator-hover-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.2) !default;
-  $filterbuilder-item-operator-focus-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.7) !default;
-  $filterbuilder-item-value-color: color.change($base-border-color, $alpha: 0.5) !default;
+  $filterbuilder-plus-icon-color: #00993d;
+  $filterbuilder-plus-icon-hover-color: color.adjust(
+    $filterbuilder-plus-icon-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-plus-icon-focus-color: color.adjust(
+    $filterbuilder-plus-icon-color,
+    $alpha: 0.7
+  ) !default;
+  $filterbuilder-remove-icon-color: #dd0035;
+  $filterbuilder-remove-icon-hover-color: color.adjust(
+    $filterbuilder-remove-icon-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-remove-icon-focus-color: color.adjust(
+    $filterbuilder-remove-icon-color,
+    $alpha: 0.7
+  ) !default;
+  $filterbuilder-group-operation-color: #d50f3f;
+  $filterbuilder-group-operation-hover-color: color.adjust(
+    $filterbuilder-group-operation-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-group-operation-focus-color: color.adjust(
+    $filterbuilder-group-operation-color,
+    $alpha: 0.7
+  ) !default;
+  $filterbuilder-item-field-color: #3257dc;
+  $filterbuilder-item-field-hover-color: color.adjust(
+    $filterbuilder-item-field-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-item-field-focus-color: color.adjust(
+    $filterbuilder-item-field-color,
+    $alpha: 0.7
+  ) !default;
+  $filterbuilder-item-operator-color: #009b3e;
+  $filterbuilder-item-operator-hover-color: color.adjust(
+    $filterbuilder-item-operator-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-item-operator-focus-color: color.adjust(
+    $filterbuilder-item-operator-color,
+    $alpha: 0.7
+  ) !default;
+  $filterbuilder-item-value-color: #18181a;
   $filterbuilder-item-value-hover-color: $filterbuilder-item-value-color !default;
-  $filterbuilder-item-value-focus-color: color.adjust($filterbuilder-item-value-color, $alpha: 0.7) !default;
-  $filterbuilder-menu-icon-color: $base-icon-color !default;
-}
-
-@if $color == "contrast" {
-  $filterbuilder-plus-icon-color: #008709 !default;
-  $filterbuilder-plus-icon-hover-color: $filterbuilder-plus-icon-color !default;
-  $filterbuilder-plus-icon-focus-color: $filterbuilder-plus-icon-color !default;
-  $filterbuilder-remove-icon-color: #cf00d7 !default;
-  $filterbuilder-remove-icon-hover-color: $filterbuilder-remove-icon-color !default;
-  $filterbuilder-remove-icon-focus-color: $filterbuilder-remove-icon-color !default;
-  $filterbuilder-group-operation-color: #cf00d7 !default;
-  $filterbuilder-group-operation-hover-color: $filterbuilder-group-operation-color !default;
-  $filterbuilder-group-operation-focus-color: $filterbuilder-group-operation-color !default;
-  $filterbuilder-item-field-color: #3806ff !default;
-  $filterbuilder-item-field-hover-color: $filterbuilder-item-field-color !default;
-  $filterbuilder-item-field-focus-color: $filterbuilder-item-field-color !default;
-  $filterbuilder-item-operator-color: #008709 !default;
-  $filterbuilder-item-operator-hover-color: $filterbuilder-item-operator-color !default;
-  $filterbuilder-item-operator-focus-color: $filterbuilder-item-operator-color !default;
-  $filterbuilder-item-value-color: transparent !default;
-  $filterbuilder-item-value-hover-color: $filterbuilder-item-value-color !default;
-  $filterbuilder-item-value-focus-color: $filterbuilder-item-value-color !default;
-  $filterbuilder-text-color: $base-text-color !default;
-  $filterbuilder-text-focus-color: $base-text-color !default;
-  $filterbuilder-menu-icon-color: $base-icon-color !default;
+  $filterbuilder-item-value-focus-color: color.adjust(
+    $filterbuilder-item-value-color,
+    $alpha: 0.7
+  ) !default;
+  $filterbuilder-menu-icon-color: #18181a;
 }
 
 @if $color == "dark" {
-  $filterbuilder-text-color: #000 !default;
   $filterbuilder-text-focus-color: $filterbuilder-text-color !default;
-  $filterbuilder-plus-icon-color: color.change($base-success, $alpha: 0.8) !default;
-  $filterbuilder-plus-icon-hover-color: color.adjust($filterbuilder-plus-icon-color, $alpha: -0.1) !default;
-  $filterbuilder-plus-icon-focus-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-remove-icon-color: color.change($base-danger, $alpha: 0.8) !default;
-  $filterbuilder-remove-icon-hover-color: color.adjust($filterbuilder-remove-icon-color, $alpha: -0.1) !default;
-  $filterbuilder-remove-icon-focus-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-group-operation-color: color.change($base-danger, $alpha: 0.8) !default;
-  $filterbuilder-group-operation-hover-color: color.adjust($filterbuilder-group-operation-color, $alpha: -0.1) !default;
-  $filterbuilder-group-operation-focus-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.2) !default;
-  $filterbuilder-item-field-color: color.change($base-accent, $alpha: 0.8) !default;
-  $filterbuilder-item-field-hover-color: color.adjust($filterbuilder-item-field-color, $alpha: -0.1) !default;
-  $filterbuilder-item-field-focus-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.2) !default;
-  $filterbuilder-item-operator-color: color.change($base-success, $alpha: 0.8) !default;
-  $filterbuilder-item-operator-hover-color: color.adjust($filterbuilder-item-operator-color, $alpha: -0.1) !default;
-  $filterbuilder-item-operator-focus-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.2) !default;
-  $filterbuilder-item-value-color: rgba(204, 204, 204, 0.8) !default;
-  $filterbuilder-item-value-hover-color: color.adjust($filterbuilder-item-value-color, $alpha: -0.1) !default;
-  $filterbuilder-item-value-focus-color: color.adjust($filterbuilder-item-value-color, $alpha: 0.2) !default;
-  $filterbuilder-menu-icon-color: darken($base-icon-color, 33.7%) !default;
+  $filterbuilder-plus-icon-color: #00b955;
+  $filterbuilder-plus-icon-hover-color: color.adjust(
+    $filterbuilder-plus-icon-color,
+    $alpha: -0.1
+  ) !default;
+  $filterbuilder-plus-icon-focus-color: color.adjust(
+    $filterbuilder-plus-icon-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-remove-icon-color: #fa6488;
+  $filterbuilder-remove-icon-hover-color: color.adjust(
+    $filterbuilder-remove-icon-color,
+    $alpha: -0.1
+  ) !default;
+  $filterbuilder-remove-icon-focus-color: color.adjust(
+    $filterbuilder-remove-icon-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-group-operation-color: #bf002e;
+  $filterbuilder-group-operation-hover-color: color.adjust(
+    $filterbuilder-group-operation-color,
+    $alpha: -0.1
+  ) !default;
+  $filterbuilder-group-operation-focus-color: color.adjust(
+    $filterbuilder-group-operation-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-item-field-color: #3565e2;
+  $filterbuilder-item-field-hover-color: color.adjust(
+    $filterbuilder-item-field-color,
+    $alpha: -0.1
+  ) !default;
+  $filterbuilder-item-field-focus-color: color.adjust(
+    $filterbuilder-item-field-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-item-operator-color: #008736;
+  $filterbuilder-item-operator-hover-color: color.adjust(
+    $filterbuilder-item-operator-color,
+    $alpha: -0.1
+  ) !default;
+  $filterbuilder-item-operator-focus-color: color.adjust(
+    $filterbuilder-item-operator-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-item-value-color: #000000;
+  $filterbuilder-item-value-hover-color: color.adjust(
+    $filterbuilder-item-value-color,
+    $alpha: -0.1
+  ) !default;
+  $filterbuilder-item-value-focus-color: color.adjust(
+    $filterbuilder-item-value-color,
+    $alpha: 0.2
+  ) !default;
+  $filterbuilder-menu-icon-color: #ffffff;
 }
-
-@if $color == "darkmoon" {
-  $filterbuilder-text-color: #000 !default;
-  $filterbuilder-text-focus-color: $filterbuilder-text-color !default;
-  $filterbuilder-menu-icon-color: $base-icon-color !default;
-  $filterbuilder-plus-icon-color: color.change($base-success, $alpha: 0.8) !default;
-  $filterbuilder-plus-icon-hover-color: color.adjust($filterbuilder-plus-icon-color, $alpha: -0.1) !default;
-  $filterbuilder-plus-icon-focus-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-remove-icon-color: color.change($base-danger, $alpha: 0.8) !default;
-  $filterbuilder-remove-icon-hover-color: color.adjust($filterbuilder-remove-icon-color, $alpha: -0.1) !default;
-  $filterbuilder-remove-icon-focus-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-group-operation-color: color.change($base-danger, $alpha: 0.8) !default;
-  $filterbuilder-group-operation-hover-color: color.adjust($filterbuilder-group-operation-color, $alpha: -0.1) !default;
-  $filterbuilder-group-operation-focus-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.2) !default;
-  $filterbuilder-item-field-color: color.change($base-accent, $alpha: 0.8) !default;
-  $filterbuilder-item-field-hover-color: color.adjust($filterbuilder-item-field-color, $alpha: -0.1) !default;
-  $filterbuilder-item-field-focus-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.2) !default;
-  $filterbuilder-item-operator-color: color.change($base-success, $alpha: 0.8) !default;
-  $filterbuilder-item-operator-hover-color: color.adjust($filterbuilder-item-operator-color, $alpha: -0.1) !default;
-  $filterbuilder-item-operator-focus-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.2) !default;
-  $filterbuilder-item-value-color: rgba(204, 204, 204, 0.8) !default;
-  $filterbuilder-item-value-hover-color: color.adjust($filterbuilder-item-value-color, $alpha: -0.1) !default;
-  $filterbuilder-item-value-focus-color: color.adjust($filterbuilder-item-value-color, $alpha: 0.2) !default;
-}
-
-@if $color == "darkviolet" {
-  $filterbuilder-text-color: #000 !default;
-  $filterbuilder-text-focus-color: $filterbuilder-text-color !default;
-  $filterbuilder-plus-icon-color: color.change($base-success, $alpha: 0.8) !default;
-  $filterbuilder-plus-icon-hover-color: color.adjust($filterbuilder-plus-icon-color, $alpha: -0.1) !default;
-  $filterbuilder-plus-icon-focus-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-remove-icon-color: color.change($base-danger, $alpha: 0.8) !default;
-  $filterbuilder-remove-icon-hover-color: color.adjust($filterbuilder-remove-icon-color, $alpha: -0.1) !default;
-  $filterbuilder-remove-icon-focus-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-group-operation-color: color.change($base-danger, $alpha: 0.8) !default;
-  $filterbuilder-group-operation-hover-color: color.adjust($filterbuilder-group-operation-color, $alpha: -0.1) !default;
-  $filterbuilder-group-operation-focus-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.2) !default;
-  $filterbuilder-item-field-color: color.change($base-accent, $alpha: 0.8) !default;
-  $filterbuilder-item-field-hover-color: color.adjust($filterbuilder-item-field-color, $alpha: -0.1) !default;
-  $filterbuilder-item-field-focus-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.2) !default;
-  $filterbuilder-item-operator-color: color.change($base-success, $alpha: 0.8) !default;
-  $filterbuilder-item-operator-hover-color: color.adjust($filterbuilder-item-operator-color, $alpha: -0.1) !default;
-  $filterbuilder-item-operator-focus-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.2) !default;
-  $filterbuilder-item-value-color: rgba(204, 204, 204, 0.8) !default;
-  $filterbuilder-item-value-hover-color: color.adjust($filterbuilder-item-value-color, $alpha: -0.1) !default;
-  $filterbuilder-item-value-focus-color: color.adjust($filterbuilder-item-value-color, $alpha: 0.2) !default;
-  $filterbuilder-menu-icon-color: $base-icon-color !default;
-}
-
-@if $color == "greenmist" {
-  $filterbuilder-text-color: $base-text-color !default;
-  $filterbuilder-text-focus-color: #fff !default;
-  $filterbuilder-plus-icon-color: color.change($base-success, $alpha: 0.3) !default;
-  $filterbuilder-plus-icon-hover-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-plus-icon-focus-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.7) !default;
-  $filterbuilder-remove-icon-color: color.change($base-danger, $alpha: 0.3) !default;
-  $filterbuilder-remove-icon-hover-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-remove-icon-focus-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.7) !default;
-  $filterbuilder-group-operation-color: color.change($base-danger, $alpha: 0.3) !default;
-  $filterbuilder-group-operation-hover-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.2) !default;
-  $filterbuilder-group-operation-focus-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.7) !default;
-  $filterbuilder-item-field-color: color.change($base-accent, $alpha: 0.3) !default;
-  $filterbuilder-item-field-hover-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.2) !default;
-  $filterbuilder-item-field-focus-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.7) !default;
-  $filterbuilder-item-operator-color: color.change($base-success, $alpha: 0.3) !default;
-  $filterbuilder-item-operator-hover-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.2) !default;
-  $filterbuilder-item-operator-focus-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.7) !default;
-  $filterbuilder-item-value-color: color.change($base-border-color, $alpha: 0.5) !default;
-  $filterbuilder-item-value-hover-color: $filterbuilder-item-value-color !default;
-  $filterbuilder-item-value-focus-color: color.adjust($filterbuilder-item-value-color, $alpha: 0.7) !default;
-  $filterbuilder-menu-icon-color: $base-icon-color !default;
-}
-
-@if $color == "light" {
-  $filterbuilder-text-color: $base-text-color !default;
-  $filterbuilder-text-focus-color: #fff !default;
-  $filterbuilder-plus-icon-color: color.change($base-success, $alpha: 0.3) !default;
-  $filterbuilder-plus-icon-hover-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-plus-icon-focus-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.7) !default;
-  $filterbuilder-remove-icon-color: color.change($base-danger, $alpha: 0.3) !default;
-  $filterbuilder-remove-icon-hover-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-remove-icon-focus-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.7) !default;
-  $filterbuilder-group-operation-color: color.change($base-danger, $alpha: 0.3) !default;
-  $filterbuilder-group-operation-hover-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.2) !default;
-  $filterbuilder-group-operation-focus-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.7) !default;
-  $filterbuilder-item-field-color: color.change($base-accent, $alpha: 0.3) !default;
-  $filterbuilder-item-field-hover-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.2) !default;
-  $filterbuilder-item-field-focus-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.7) !default;
-  $filterbuilder-item-operator-color: color.change($base-success, $alpha: 0.3) !default;
-  $filterbuilder-item-operator-hover-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.2) !default;
-  $filterbuilder-item-operator-focus-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.7) !default;
-  $filterbuilder-item-value-color: color.change($base-border-color, $alpha: 0.5) !default;
-  $filterbuilder-item-value-hover-color: $filterbuilder-item-value-color !default;
-  $filterbuilder-item-value-focus-color: color.adjust($filterbuilder-item-value-color, $alpha: 0.7) !default;
-  $filterbuilder-menu-icon-color: lighten($base-icon-color, 33.7%) !default;
-}
-
-@if $color == "softblue" {
-  $filterbuilder-text-color: $base-text-color !default;
-  $filterbuilder-text-focus-color: #fff !default;
-  $filterbuilder-plus-icon-color: color.change($base-success, $alpha: 0.3) !default;
-  $filterbuilder-plus-icon-hover-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-plus-icon-focus-color: color.adjust($filterbuilder-plus-icon-color, $alpha: 0.7) !default;
-  $filterbuilder-remove-icon-color: color.change($base-danger, $alpha: 0.3) !default;
-  $filterbuilder-remove-icon-hover-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.2) !default;
-  $filterbuilder-remove-icon-focus-color: color.adjust($filterbuilder-remove-icon-color, $alpha: 0.7) !default;
-  $filterbuilder-group-operation-color: color.change($base-danger, $alpha: 0.3) !default;
-  $filterbuilder-group-operation-hover-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.2) !default;
-  $filterbuilder-group-operation-focus-color: color.adjust($filterbuilder-group-operation-color, $alpha: 0.7) !default;
-  $filterbuilder-item-field-color: color.change($base-accent, $alpha: 0.3) !default;
-  $filterbuilder-item-field-hover-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.2) !default;
-  $filterbuilder-item-field-focus-color: color.adjust($filterbuilder-item-field-color, $alpha: 0.7) !default;
-  $filterbuilder-item-operator-color: color.change($base-success, $alpha: 0.3) !default;
-  $filterbuilder-item-operator-hover-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.2) !default;
-  $filterbuilder-item-operator-focus-color: color.adjust($filterbuilder-item-operator-color, $alpha: 0.7) !default;
-  $filterbuilder-item-value-color: color.change($base-border-color, $alpha: 0.5) !default;
-  $filterbuilder-item-value-hover-color: $filterbuilder-item-value-color !default;
-  $filterbuilder-item-value-focus-color: color.adjust($filterbuilder-item-value-color, $alpha: 0.7) !default;
-  $filterbuilder-menu-icon-color: $base-icon-color !default;
-}
-

@@ -7,6 +7,7 @@ import { DataGridComponent } from './components/data-grid/data-grid.component';
 import { SchedulerComponent } from './components/scheduler/scheduler.component';
 import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
+import { FilterBuilderComponent } from './components/filter-builder/filter-builder.component';
 
 const routes: Routes = [ 
   { path: 'buttons', component: ButtonsComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'scheduler', component: SchedulerComponent },
   { path: 'form', component: FormComponent },
   { path: 'list', component: ListComponent },
+  { path: 'filter', component: FilterBuilderComponent },
  ];
 
 @NgModule({
