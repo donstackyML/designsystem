@@ -1,4 +1,4 @@
-<div id="container">
+<div class="container">
   <dx-menu [adaptivityEnabled]="toggle">
     <dxi-item icon="home"> </dxi-item>
     <dxi-item text="About"> </dxi-item>
@@ -14,4 +14,15 @@
     <dxi-item icon="cart"> </dxi-item>
   </dx-menu>
   <dx-check-box text="Enable adaptivity" (onValueChanged)="onValueChanged($event)"> </dx-check-box>
+</div>
+
+<div class="container">
+  <div class="form">
+    <dx-tree-view id="simple-treeview" [items]="products" [width]="300" (onItemClick)="selectItem($event)"></dx-tree-view>
+    <div id="product-details" *ngIf="currentItem.price">
+      <img [src]="currentItem.image" />
+      <div class="name">{{ currentItem.text }}</div>
+      <div class="price">{{ "$" + currentItem.price }}</div>
+    </div>
+  </div>
 </div>
