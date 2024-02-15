@@ -26,3 +26,14 @@
     </div>
   </div>
 </div>
+
+<div class="container">
+  <dx-accordion [dataSource]="employees" [collapsible]="true" [multiple]="true" [animationDuration]="450" itemTemplate="item" itemTitleTemplate="title">
+    <div *dxTemplate="let data of 'title'">
+      {{ data.FirstName + " " + data.LastName }}
+    </div>
+    <div *dxTemplate="let data of 'item'">
+      {{ data.Position + " from " + data.State }}
+    </div>
+  </dx-accordion>
+</div>

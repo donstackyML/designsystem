@@ -13,7 +13,7 @@ import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
 import { FilterBuilderComponent } from './components/filter-builder/filter-builder.component';
 import { OverlaysComponent } from './components/overlays/overlays.component';
-import { MenuComponent } from './components/menu-treeview/menu.component';
+import { MenuComponent } from './components/menu-treeview-accordion/menu.component';
 
 @NgModule({
   declarations: [
