@@ -4,7 +4,7 @@ import { FormService, Company } from 'src/app/service/form.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
   companies: Company[];
@@ -17,8 +17,8 @@ export class FormComponent {
   width: any;
 
   constructor(service: FormService) {
-    this.labelMode = 'floating';
-    this.labelLocation = 'left';
+    this.labelMode = 'static';
+    this.labelLocation = 'right';
     this.readOnly = false;
     this.showColon = true;
     this.minColWidth = 300;
@@ -27,8 +27,6 @@ export class FormComponent {
   }
 
   getCompanySelectorLabelMode() {
-    return this.labelMode === 'outside'
-      ? 'hidden'
-      : this.labelMode;
+    return this.labelMode === 'outside' ? 'hidden' : this.labelMode;
   }
 }

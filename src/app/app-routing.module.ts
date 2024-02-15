@@ -10,22 +10,24 @@ import { ListComponent } from './components/list/list.component';
 import { FilterBuilderComponent } from './components/filter-builder/filter-builder.component';
 import { OverlaysComponent } from './components/overlays/overlays.component';
 import { MenuComponent } from './components/menu-treeview-accordion/menu.component';
+import { TreeListComponent } from './components/tree-list/tree-list.component';
 
-const routes: Routes = [ 
+const routes: Routes = [
   { path: 'buttons', component: ButtonsComponent },
   { path: 'editors', component: EditorsComponent },
   { path: 'pivotgrid', component: PivotGridComponent },
   { path: 'datagrid', component: DataGridComponent },
+  { path: 'treelist', component: TreeListComponent },
   { path: 'scheduler', component: SchedulerComponent },
   { path: 'form', component: FormComponent },
   { path: 'list', component: ListComponent },
   { path: 'filter', component: FilterBuilderComponent },
   { path: 'overlay', component: OverlaysComponent },
   { path: 'menu', component: MenuComponent },
- ];
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes) ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
