@@ -1,5 +1,23 @@
-<dx-tabs [width]="300">
-  <dxi-item badge="First"> </dxi-item>
-  <dxi-item text="Second" [disabled]="true"> </dxi-item>
-  <dxi-item text="Third" icon="favorites"> </dxi-item>
-</dx-tabs>
+<div class="tabs-demo">
+  <div class="widget-container">
+    <div [ngClass]="widgetWrapperClasses">
+      <dx-tabs
+        #withText
+        [width]="width"
+        [selectedIndex]="0"
+        [scrollByContent]="scrollByContent"
+        [showNavButtons]="showNavButtons"
+        [dataSource]="tabsWithText"
+      ></dx-tabs>
+
+      <dx-tabs
+        #withIconAndText
+        [width]="width"
+        [selectedIndex]="0"
+        [scrollByContent]="scrollByContent"
+        [showNavButtons]="showNavButtons"
+        [dataSource]="tabsWithIconAndText"
+      ></dx-tabs>
+    </div>
+  </div>
+</div>
