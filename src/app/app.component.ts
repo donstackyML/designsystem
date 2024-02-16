@@ -22,6 +22,7 @@ export class AppComponent {
     'filter',
     'overlay',
     'menu',
+    'gallery',
   ];
   isDark: boolean = false;
 

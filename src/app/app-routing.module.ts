@@ -11,6 +11,7 @@ import { FilterBuilderComponent } from './components/filter-builder/filter-build
 import { OverlaysComponent } from './components/overlays/overlays.component';
 import { MenuComponent } from './components/menu-treeview-accordion/menu.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 const routes: Routes = [
   { path: 'buttons', component: ButtonsComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'filter', component: FilterBuilderComponent },
   { path: 'overlay', component: OverlaysComponent },
   { path: 'menu', component: MenuComponent },
+  { path: 'gallery', component: GalleryComponent },
 ];
 
 @NgModule({
