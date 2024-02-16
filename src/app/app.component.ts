@@ -23,6 +23,10 @@ export class AppComponent {
     'overlay',
     'menu',
     'gallery',
+    'tabs',
+    'progress-bar',
+    'tool-bar',
+    'fieldset',
   ];
   isDark: boolean = false;
 

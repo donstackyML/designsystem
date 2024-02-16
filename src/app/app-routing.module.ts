@@ -12,6 +12,10 @@ import { OverlaysComponent } from './components/overlays/overlays.component';
 import { MenuComponent } from './components/menu-treeview-accordion/menu.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { FieldsetComponent } from './components/fieldset/fieldset.component';
+import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 
 const routes: Routes = [
   { path: 'buttons', component: ButtonsComponent },
@@ -26,6 +30,10 @@ const routes: Routes = [
   { path: 'overlay', component: OverlaysComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'gallery', component: GalleryComponent },
+  { path: 'tabs', component: TabsComponent },
+  { path: 'progress-bar', component: ProgressBarComponent },
+  { path: 'tool-bar', component: ToolBarComponent },
+  { path: 'fieldset', component: FieldsetComponent },
 ];
 
 @NgModule({

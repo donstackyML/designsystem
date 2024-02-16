@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
+import {
+  DevExtremeModule,
+  DxDateBoxModule,
+  DxPivotGridModule,
+} from 'devextreme-angular';
 import { EditorsComponent } from './components/editors/editors.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { PivotGridComponent } from './components/pivot-grid/pivot-grid.component';
@@ -16,6 +20,9 @@ import { OverlaysComponent } from './components/overlays/overlays.component';
 import { MenuComponent } from './components/menu-treeview-accordion/menu.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { FieldsetComponent } from './components/fieldset/fieldset.component';
+import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 
 @NgModule({
   declarations: [
@@ -32,16 +39,19 @@ import { TabsComponent } from './components/tabs/tabs.component';
     OverlaysComponent,
     MenuComponent,
     GalleryComponent,
-    TabsComponent
+    TabsComponent,
+    ProgressBarComponent,
+    FieldsetComponent,
+    ToolBarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DevExtremeModule,
     DxDateBoxModule,
-    DxPivotGridModule
+    DxPivotGridModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
