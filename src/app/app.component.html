@@ -1,18 +1,6 @@
-<div [ngClass]="{ dark: isDark }">
-  <header class="header" [ngClass]="{ 'header--dark': isDark }">
+<div [class.dark]="isDark">
+  <header class="header" [class.header--dark]="isDark">
     <div class="flex flex--space container">
-      <!-- <div class="flex">
-        <dx-button [routerLink]="['/buttons']">Buttons</dx-button>
-        <dx-button [routerLink]="['/editors']">Editors</dx-button>
-        <dx-button [routerLink]="['/pivotgrid']">Pivot grid</dx-button>
-        <dx-button [routerLink]="['/datagrid']">Data grid</dx-button>
-        <dx-button [routerLink]="['/scheduler']">Scheduler</dx-button>
-        <dx-button [routerLink]="['/form']">Form</dx-button>
-        <dx-button [routerLink]="['/list']">List</dx-button>
-        <dx-button [routerLink]="['/filter']">Filter</dx-button>
-        <dx-button [routerLink]="['/overlay']">Overlay</dx-button>
-        <dx-button [routerLink]="['/menu']">Menu</dx-button>
-      </div> -->
       <dx-select-box placeholder="Выбор компонента" [dataSource]="components" width="200px" (onValueChanged)="onRouteChanged($event)"></dx-select-box>
       <dx-select-box placeholder="Выбор темы" [dataSource]="themes" width="150px" (onValueChanged)="onThemeChanged($event)"></dx-select-box>
     </div>
@@ -21,14 +9,3 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-<!-- <app-buttons></app-buttons>
-<app-editors></app-editors>
-<app-pivot-grid></app-pivot-grid>
-<app-data-grid></app-data-grid>
-<app-tree-list></app-tree-list>
-<app-scheduler></app-scheduler>
-<app-form></app-form>
-<app-list></app-list>
-<app-filter-builder></app-filter-builder>
-<app-overlays></app-overlays>
-<app-menu></app-menu> -->

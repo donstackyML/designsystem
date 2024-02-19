@@ -17,12 +17,18 @@ import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
 import { FilterBuilderComponent } from './components/filter-builder/filter-builder.component';
 import { OverlaysComponent } from './components/overlays/overlays.component';
-import { MenuComponent } from './components/menu-treeview-accordion/menu.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { FieldsetComponent } from './components/fieldset/fieldset.component';
-import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
+import { ToolBarComponent } from './components/toolbar/tool-bar.component';
+import { BtnGroupComponent } from './components/btn-group/btn-group.component';
+import { TreeViewComponent } from './components/tree-view/tree-view.component';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { SlidersComponent } from './components/sliders/sliders.component';
+import { ScrollViewComponent } from './components/scroll-view/scroll-view.component';
+import { DrawerComponent } from './components/drawer/drawer.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,12 @@ import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
     ProgressBarComponent,
     FieldsetComponent,
     ToolBarComponent,
+    BtnGroupComponent,
+    TreeViewComponent,
+    AccordionComponent,
+    SlidersComponent,
+    ScrollViewComponent,
+    DrawerComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,20 +15,3 @@
   </dx-menu>
   <dx-check-box [ngClass]="{ adaptivity: toggle }" text="Enable adaptivity" (onValueChanged)="onValueChanged($event)" class="adaptivity"> </dx-check-box>
 </div>
-
-<div class="container">
-  <div class="form">
-    <dx-tree-view id="simple-treeview" [items]="products" [width]="300" (onItemClick)="selectItem($event)" expandedExpr="collapsed"></dx-tree-view>
-  </div>
-</div>
-
-<div class="container">
-  <dx-accordion [dataSource]="employees" [collapsible]="true" [multiple]="true" [animationDuration]="450" itemTemplate="item" itemTitleTemplate="title">
-    <div *dxTemplate="let data of 'title'">
-      {{ data.FirstName + " " + data.LastName }}
-    </div>
-    <div *dxTemplate="let data of 'item'">
-      {{ data.Position + " from " + data.State }}
-    </div>
-  </dx-accordion>
-</div>

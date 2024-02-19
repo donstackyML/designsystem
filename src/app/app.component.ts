@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import themes from 'devextreme/ui/themes';
-import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,20 +11,26 @@ export class AppComponent {
   themes: string[] = ['light', 'dark'];
   components: string[] = [
     'buttons',
+    'button-group',
     'editors',
-    'pivotgrid',
-    'datagrid',
-    'treelist',
+    'pivot-grid',
+    'data-grid',
+    'tree-list',
     'scheduler',
     'form',
     'list',
-    'filter',
-    'overlay',
+    'filter-builder',
+    'overlays',
     'menu',
+    'tree-view',
+    'accordion',
     'gallery',
     'tabs',
     'progress-bar',
-    'tool-bar',
+    'sliders',
+    'scroll-view',
+    'toolbar',
+    'drawer',
     'fieldset',
   ];
   isDark: boolean = false;
