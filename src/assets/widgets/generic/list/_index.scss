@@ -18,12 +18,9 @@
 $generic-mobile-list-item-horizontal-padding: 15px;
 
 $generic-list-border: $generic-list-border-width solid $list-border-color;
-$generic-list-item-border: $generic-list-item-border-width solid
-  $list-border-color;
-$generic-list-search-editor-height: round(
-    $generic-base-line-height * $generic-base-font-size
-  ) + $generic-base-inline-borderedwidget-top-padding +
-  $generic-base-inline-borderedwidget-bottom-padding + 2 *
+$generic-list-item-border: $generic-list-item-border-width solid $list-border-color;
+$generic-list-search-editor-height: round($generic-base-line-height * $generic-base-font-size) +
+  $generic-base-inline-borderedwidget-top-padding + $generic-base-inline-borderedwidget-bottom-padding + 2 *
   $generic-base-border-width;
 
 .dx-list-item-chevron {
@@ -137,12 +134,7 @@ $generic-list-search-editor-height: round(
     border: none;
 
     &.dx-list-with-search .dx-scrollable-wrapper {
-      height: calc(
-        100% - #{round(
-            $generic-list-search-editor-height +
-              $generic-list-searchbox-margin-bottom
-          )}
-      );
+      height: calc(100% - #{round($generic-list-search-editor-height + $generic-list-searchbox-margin-bottom)});
     }
 
     .dx-empty-message {
@@ -177,8 +169,7 @@ $generic-list-search-editor-height: round(
 
   .dx-list-group-header {
     font-weight: bold;
-    padding: $generic-list-group-header-vertical-padding
-      $item-horizontal-padding $generic-list-item-vertical-padding
+    padding: $generic-list-group-header-vertical-padding $item-horizontal-padding $generic-list-item-vertical-padding
       $item-horizontal-padding;
     border-top: $generic-list-item-border;
     border-bottom: $list-group-header-border-bottom;
@@ -218,12 +209,9 @@ $generic-list-search-editor-height: round(
         &.dx-state-hover {
           color: $list-item-ghost-color;
           background: $list-item-ghost-bg;
-          border-top: 1px solid
-            color.change($list-item-ghost-border-color, $alpha: 0.5);
-          border-bottom: 1px solid
-            color.change($list-item-ghost-border-color, $alpha: 0.5);
-          box-shadow: 0 0 1px
-              color.change($list-item-ghost-shadow-color, $alpha: 0.1),
+          border-top: 1px solid color.change($list-item-ghost-border-color, $alpha: 0.5);
+          border-bottom: 1px solid color.change($list-item-ghost-border-color, $alpha: 0.5);
+          box-shadow: 0 0 1px color.change($list-item-ghost-shadow-color, $alpha: 0.1),
             0 1px 3px color.change($list-item-ghost-shadow-color, $alpha: 0.2);
         }
       }
@@ -283,10 +271,8 @@ $generic-list-search-editor-height: round(
     }
 
     .dx-icon-toggle-delete {
-      margin: math.div($generic-list-item-vertical-padding, 2)
-        math.div($item-horizontal-padding, 2)
-        math.div($generic-list-item-vertical-padding, 2)
-        $item-horizontal-padding;
+      margin: math.div($generic-list-item-vertical-padding, 2) math.div($item-horizontal-padding, 2)
+        math.div($generic-list-item-vertical-padding, 2) $item-horizontal-padding;
       width: 9px + $generic-list-item-vertical-padding;
       height: 9px + $generic-list-item-vertical-padding;
     }
@@ -300,8 +286,7 @@ $generic-list-search-editor-height: round(
   }
 
   .dx-list-select-all {
-    padding: $generic-list-item-vertical-padding - 1px 0
-      $generic-list-item-vertical-padding - 2px;
+    padding: $generic-list-item-vertical-padding - 1px 0 $generic-list-item-vertical-padding - 2px;
   }
 
   .dx-list-select-all-checkbox {
@@ -317,9 +302,8 @@ $generic-list-search-editor-height: round(
 
   .dx-list-item-after-bag {
     &.dx-list-static-delete-button-container {
-      width: $item-horizontal-padding + $generic-button-icon-size +
-        $generic-list-deletebutton-padding * 2 + $generic-button-border-weight *
-        2;
+      width: $item-horizontal-padding + $generic-button-icon-size + $generic-list-deletebutton-padding * 2 +
+        $generic-button-border-weight * 2;
     }
 
     &.dx-list-reorder-handle-container {
@@ -328,10 +312,7 @@ $generic-list-search-editor-height: round(
 
     .dx-list-reorder-handle {
       @include dx-icon(dragvertical);
-      @include dx-icon-sizing(
-        $generic-base-icon-size,
-        $generic-base-icon-size * 1.6
-      );
+      @include dx-icon-sizing($generic-base-icon-size, $generic-base-icon-size * 1.6);
     }
   }
 
@@ -384,10 +365,8 @@ $generic-list-search-editor-height: round(
 
     .dx-list-item-before-bag {
       .dx-icon-toggle-delete {
-        margin: math.div($generic-list-item-vertical-padding, 2)
-          $item-horizontal-padding
-          math.div($generic-list-item-vertical-padding, 2)
-          math.div($item-horizontal-padding, 2);
+        margin: math.div($generic-list-item-vertical-padding, 2) $item-horizontal-padding
+          math.div($generic-list-item-vertical-padding, 2) math.div($item-horizontal-padding, 2);
       }
 
       .dx-list-select-checkbox,

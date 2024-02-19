@@ -9,7 +9,6 @@
 // adduse
 @use "../splitter";
 
-
 .dx-filemanager {
   border-color: $filemanager-border-color;
 
@@ -44,6 +43,7 @@
   }
 
   .dx-filemanager-toolbar {
+    padding: 6px 10px;
     background: $base-bg;
     min-height: $filemanager-toolbar-height;
 
@@ -135,7 +135,9 @@
   }
 
   .dx-filemanager-thumbnails {
-    &.dx-filemanager-inactive-area .dx-filemanager-thumbnails-view-port .dx-filemanager-thumbnails-item.dx-filemanager-item-selected {
+    &.dx-filemanager-inactive-area
+      .dx-filemanager-thumbnails-view-port
+      .dx-filemanager-thumbnails-item.dx-filemanager-item-selected {
       color: $base-text-color;
       background: $base-bg;
     }
@@ -223,7 +225,9 @@
 .dx-filemanager-view-switcher-popup {
   width: 2 * $filemanager-toolbar-viewmode-padding + $generic-base-icon-size;
 
-  .dx-dropdownbutton-popup-wrapper.dx-dropdownbutton-popup-wrapper .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
+  .dx-dropdownbutton-popup-wrapper.dx-dropdownbutton-popup-wrapper
+    .dx-list:not(.dx-list-select-decorator-enabled)
+    .dx-list-item-content {
     padding-top: $filemanager-toolbar-viewmode-padding - 1px;
     padding-left: $filemanager-toolbar-viewmode-padding - 1px;
     padding-right: $filemanager-toolbar-viewmode-padding;
@@ -252,4 +256,11 @@
   }
 }
 
-@include filemanager-icons-mixin($base-text-color, $base-success, $base-inverted-text-color, $base-danger, $base-inverted-text-color, $filemanager-large-icon-size);
+@include filemanager-icons-mixin(
+  $base-text-color,
+  $base-success,
+  $base-inverted-text-color,
+  $base-danger,
+  $base-inverted-text-color,
+  $filemanager-large-icon-size
+);

@@ -8,12 +8,12 @@
 // adduse
 @use "../scrollable";
 
-
 .dx-form-group-caption {
   font-size: $generic-form-group-caption-font-size;
 }
 
-.dx-form-group-with-caption { // stylelint-disable-line no-duplicate-selectors
+.dx-form-group-with-caption {
+  // stylelint-disable-line no-duplicate-selectors
   & > .dx-form-group-content {
     border-top: 1px solid $form-group-border-color;
     padding-bottom: $generic-form-group-content-padding-bottom;
@@ -28,10 +28,12 @@
   color: $form-field-item-color;
 }
 
-.dx-field-item-required-mark {
-  color: $form-field-required-color;
-}
-
+.dx-field-item-optional .dx-label > span::after,
 .dx-field-item-optional-mark {
   color: $form-field-mark-color;
+}
+
+.dx-field-item-required .dx-label > span::after,
+.dx-field-item-required-mark {
+  color: $form-field-required-color;
 }

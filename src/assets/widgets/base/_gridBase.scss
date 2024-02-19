@@ -2,7 +2,6 @@
 
 // adduse
 
-
 .dx-gridbase-container {
   display: flex;
   flex-direction: column;
@@ -148,7 +147,7 @@
         }
 
         &.dx-header-filter::after {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           bottom: 0;
@@ -532,7 +531,7 @@
     padding: $grid-cell-padding;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       border: 2px solid transparent;
       top: 0;
@@ -565,7 +564,7 @@
     &.dx-editor-inline-block:not(.dx-command-select) {
       &::before {
         display: inline-block;
-        content: '\200b';
+        content: "\200b";
         vertical-align: middle;
         padding-top: $grid-cell-padding;
         padding-bottom: $grid-cell-padding;
@@ -637,18 +636,30 @@
     }
 
     .dx-sort-indicator.dx-sort-index-indicator {
-      max-width: calc(100% - #{round($grid-column-header-indicator-width + $grid-text-content-margin + $grid-sort-index-width)});
+      max-width: calc(
+        100% - #{round($grid-column-header-indicator-width + $grid-text-content-margin + $grid-sort-index-width)}
+      );
 
       &.dx-header-filter-indicator {
-        max-width: calc(100% - #{round($grid-column-header-indicator-width * 2 + $grid-text-content-margin + $grid-sort-index-width)});
+        max-width: calc(
+          100% - #{round($grid-column-header-indicator-width * 2 + $grid-text-content-margin + $grid-sort-index-width)}
+        );
       }
 
       &.dx-text-content-alignment-left.dx-text-content-alignment-right {
-        max-width: calc(100% - #{round($grid-column-header-indicator-width * 2 + $grid-text-content-margin * 2 + $grid-sort-index-width)});
+        max-width: calc(
+          100% - #{round(
+              $grid-column-header-indicator-width * 2 + $grid-text-content-margin * 2 + $grid-sort-index-width
+            )}
+        );
       }
 
       &.dx-header-filter-indicator.dx-text-content-alignment-left.dx-text-content-alignment-right {
-        max-width: calc(100% - #{round($grid-column-header-indicator-width * 4 + $grid-text-content-margin * 2 + $grid-sort-index-width)});
+        max-width: calc(
+          100% - #{round(
+              $grid-column-header-indicator-width * 4 + $grid-text-content-margin * 2 + $grid-sort-index-width
+            )}
+        );
       }
     }
   }
@@ -746,7 +757,7 @@
         top: 2px;
         width: 100%;
         height: 102%;
-        content: '';
+        content: "";
       }
     }
 
@@ -854,8 +865,11 @@
       &:not(.dx-#{$widget-name}-content-fixed) {
         min-height: 100%; /* IE, Edge */
       }
-    }
 
+      &.dx-scrollable-container {
+        width: auto;
+      }
+    }
 
     &:focus {
       outline: 0;

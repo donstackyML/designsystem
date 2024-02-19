@@ -9,6 +9,10 @@
   display: block;
   height: 100%;
   min-height: 0;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .dx-scrollable-native {
@@ -62,6 +66,11 @@
     touch-action: auto;
   }
 
+  &.dx-scrollable-scrollbars-hidden > .dx-scrollable-wrapper > .dx-scrollable-container,
+  &.dx-scrollable-scrollbars-hidden > div > .dx-scrollable-wrapper > .dx-scrollable-container {
+    overflow: hidden;
+  }
+
   &.dx-scrollable-scrollbars-hidden {
     ::-webkit-scrollbar {
       opacity: 0;
@@ -97,7 +106,8 @@
   }
 }
 
-.dx-scrollable-scrollbar-simulated { // stylelint-disable-line no-duplicate-selectors
+.dx-scrollable-scrollbar-simulated {
+  // stylelint-disable-line no-duplicate-selectors
   &,
   .dx-scrollable-container {
     ::-webkit-scrollbar {
@@ -168,6 +178,7 @@
 
 .dx-scrollable-scroll {
   position: relative;
+  box-sizing: border-box;
   background-color: #888; /* NOTE: fallback for rgba non-supporting */
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-transform: translate(0, 0); // stylelint-disable-line property-no-vendor-prefix

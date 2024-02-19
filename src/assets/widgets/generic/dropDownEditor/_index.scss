@@ -11,22 +11,18 @@
 
 // adduse
 
-
 $generic-dropdowneditor-container-button-size: $generic-base-inline-borderedwidget-inner-size;
 $generic-dropdowneditor-button-offset: $generic-base-border-width;
 
-$generic-dropdowneditor-button-size:
-  $generic-dropdowneditor-container-button-size -
+$generic-dropdowneditor-button-size: $generic-dropdowneditor-container-button-size -
   $generic-dropdowneditor-button-offset * 2;
 
-$generic-dropdowneditor-invalid-badge-offset:
-  $generic-dropdowneditor-container-button-size +
+$generic-dropdowneditor-invalid-badge-offset: $generic-dropdowneditor-container-button-size +
   $generic-invalid-badge-halfhorizontal-padding;
 
 $generic-dropdowneditor-invalid-badge-with-clear-offset: $generic-dropdowneditor-container-button-size * 2;
 
 $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size + $generic-invalid-badge-horizontal-padding;
-
 
 @mixin dx-dropdowneditor-button-icon() {
   width: $generic-dropdowneditor-button-size;
@@ -77,6 +73,17 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size + $gener
     &.dx-editor-underlined {
       border: none;
       background: transparent;
+    }
+
+    &.dx-texteditor-with-floating-label,
+    &.dx-texteditor-with-label {
+      .dx-texteditor-label {
+        .dx-label-before,
+        .dx-label,
+        .dx-label-after {
+          border: none;
+        }
+      }
     }
   }
 }
@@ -145,7 +152,7 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size + $gener
     opacity: 1;
 
     @at-root #{selector-append(".dx-editor-filled", &)},
-    .dx-editor-filled & {
+      .dx-editor-filled & {
       background-color: $dropdowneditor-filled-button-active-bg;
     }
   }
@@ -157,7 +164,7 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size + $gener
       right: $generic-dropdowneditor-invalid-badge-offset;
 
       @at-root #{selector-append(".dx-rtl", &)},
-      .dx-rtl & {
+        .dx-rtl & {
         right: auto;
         left: $generic-dropdowneditor-invalid-badge-offset;
       }
@@ -170,7 +177,7 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size + $gener
         right: $generic-dropdowneditor-invalid-badge-with-clear-offset;
 
         @at-root #{selector-append(".dx-rtl", &)},
-        .dx-rtl & {
+          .dx-rtl & {
           right: auto;
           left: $generic-dropdowneditor-invalid-badge-with-clear-offset;
         }

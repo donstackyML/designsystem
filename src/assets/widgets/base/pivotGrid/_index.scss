@@ -8,6 +8,7 @@ $header-filter-color: null !default;
 $header-filter-color-empty: null !default;
 $pivotgrid-area-background: null !default;
 $pivotgrid-common-top-bottom-padding: null !default;
+$pivotgrid-header-top-bottom-padding: null !default;
 $pivotgrid-field-indicators-offset: null !default;
 $pivotgrid-indicators-line-height: null !default;
 $pivotgrid-totalcolor: null !default;
@@ -22,6 +23,8 @@ $pivotgrid-area-column-image: null !default;
 $pivotgrid-area-data-image: null !default;
 $pivotgrid-dimension-image: null !default;
 $pivotgrid-hierarchy-image: null !default;
+$pivotgrid-empty-area-text-padding: null !default;
+$pivotgrid-button-top-padding: null !default;
 
 @use "../mixins" as *;
 @use "../icons" as *;
@@ -139,6 +142,10 @@ $pivotgrid-expand-icon-text-offset: 0;
       margin-right: 10px;
       float: right;
       display: inline-block;
+
+      .dx-button {
+        margin-top: $pivotgrid-button-top-padding;
+      }
 
       .dx-pivotgrid-field-chooser-button {
         margin-right: 4px;
@@ -331,7 +338,6 @@ $pivotgrid-expand-icon-text-offset: 0;
     }
 
     td {
-
       // max-width: 150px;
       min-width: 50px;
       border-right: $pivotgrid-border;
@@ -394,7 +400,8 @@ $pivotgrid-expand-icon-text-offset: 0;
     }
   }
 
-  .dx-expand-icon-container { // stylelint-disable-line no-duplicate-selectors
+  .dx-expand-icon-container {
+    // stylelint-disable-line no-duplicate-selectors
     width: $pivotgrid-icon-size;
   }
 
@@ -447,7 +454,6 @@ $pivotgrid-expand-icon-text-offset: 0;
     margin-left: 5px;
     width: $pivotgrid-icon-size;
   }
-
 
   .dx-popup-content {
     padding: $pivotgrid-common-left-right-padding;
@@ -546,7 +552,6 @@ $pivotgrid-expand-icon-text-offset: 0;
   }
 }
 
-
 .dx-rtl {
   .dx-pivotgrid-fields-container {
     .dx-position-indicator {
@@ -622,6 +627,12 @@ $pivotgrid-expand-icon-text-offset: 0;
     }
 
     .dx-pivotgrid-area-data {
+      &.dx-scrollable-native {
+        .dx-scrollable-content {
+          float: none;
+        }
+      }
+
       tbody td {
         border-left: 0;
         border-right: $pivotgrid-border;
@@ -685,7 +696,6 @@ $pivotgrid-expand-icon-text-offset: 0;
     .dx-pivotgridfieldchooser-container .dx-col {
       display: flex;
     }
-
 
     .dx-pivotgrid-border {
       .dx-area-description-cell,

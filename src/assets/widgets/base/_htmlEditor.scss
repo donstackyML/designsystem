@@ -58,7 +58,7 @@ $transparent-border: 1px solid transparent;
   @if $counter > 0 {
     @include add-counter($counter - 1);
 
-    ol li[data-list=ordered].ql-indent-#{$counter} {
+    ol li[data-list="ordered"].ql-indent-#{$counter} {
       counter-increment: list-#{$counter};
 
       &::before {
@@ -76,8 +76,8 @@ $transparent-border: 1px solid transparent;
   border: $transparent-border;
 
   &:not(.dx-state-disabled) {
-    li[data-list=checked],
-    li[data-list=unchecked] {
+    li[data-list="checked"],
+    li[data-list="unchecked"] {
       cursor: pointer;
     }
   }
@@ -94,7 +94,8 @@ $transparent-border: 1px solid transparent;
   overflow: hidden;
 }
 
-.ql-clipboard { // stylelint-disable-line selector-class-pattern
+.ql-clipboard {
+  // stylelint-disable-line selector-class-pattern
   left: -100000px;
   height: 1px;
   overflow-y: hidden;
@@ -159,7 +160,8 @@ $transparent-border: 1px solid transparent;
     border-collapse: collapse;
   }
 
-  td {
+  td,
+  th {
     border: 1px solid #000;
     padding: 2px 5px;
   }
@@ -179,16 +181,16 @@ $transparent-border: 1px solid transparent;
     padding-left: $list-style-outer-width;
     position: relative;
 
-    &[data-list=bullet]::before {
-      content: '\2022';
+    &[data-list="bullet"]::before {
+      content: "\2022";
     }
 
-    &[data-list=checked]::before {
-      content: '\2611';
+    &[data-list="checked"]::before {
+      content: "\2611";
     }
 
-    &[data-list=unchecked]::before {
-      content: '\2610';
+    &[data-list="unchecked"]::before {
+      content: "\2610";
     }
 
     &::before {
@@ -200,13 +202,15 @@ $transparent-border: 1px solid transparent;
       width: $list-style-width;
     }
 
-    > .ql-ui { // stylelint-disable-line selector-class-pattern
+    > .ql-ui {
+      // stylelint-disable-line selector-class-pattern
       visibility: hidden;
     }
 
-    &[data-list=unchecked],
-    &[data-list=checked] {
-      > .ql-ui { // stylelint-disable-line selector-class-pattern
+    &[data-list="unchecked"],
+    &[data-list="checked"] {
+      > .ql-ui {
+        // stylelint-disable-line selector-class-pattern
         visibility: visible;
       }
     }
@@ -223,7 +227,7 @@ $transparent-border: 1px solid transparent;
     }
   }
 
-  li[data-list=ordered] {
+  li[data-list="ordered"] {
     counter-reset: add-counter-reset($max-indent);
     counter-increment: list-0;
 
@@ -235,21 +239,25 @@ $transparent-border: 1px solid transparent;
   @include add-counter($max-indent);
   @include add-indent-styles($max-indent);
 
-  .dx-rtl & li { // stylelint-disable-line no-duplicate-selectors
+  .dx-rtl & li {
+    // stylelint-disable-line no-duplicate-selectors
     padding-right: $list-style-outer-width;
 
-    &::before { // stylelint-disable-line no-duplicate-selectors
+    &::before {
+      // stylelint-disable-line no-duplicate-selectors
       margin-left: $list-style-margin;
       margin-right: -1 * $list-style-outer-width;
       text-align: left;
     }
   }
 
-  table { // stylelint-disable-line no-duplicate-selectors
+  table {
+    // stylelint-disable-line no-duplicate-selectors
     table-layout: fixed;
     width: 100%;
 
-    td {
+    td,
+    th {
       outline: none;
     }
   }
@@ -257,6 +265,11 @@ $transparent-border: 1px solid transparent;
   // stylelint-disable selector-class-pattern
   .ql-code-block-container {
     font-family: monospace;
+  }
+
+  code,
+  .ql-code-block-container {
+    background-color: rgba(191, 191, 191, 0.15);
   }
 
   .ql-video {
@@ -348,6 +361,14 @@ $transparent-border: 1px solid transparent;
 
 .dx-formdialog-form {
   min-width: 360px;
+}
+
+.dx-overlay-content {
+  &.dx-popup-fullscreen {
+    .dx-formdialog-form {
+      min-width: 240px;
+    }
+  }
 }
 
 .dx-formdialog-field-target .dx-field-item-content {
@@ -523,5 +544,42 @@ $transparent-border: 1px solid transparent;
 
   & > span {
     margin: 0 2px;
+  }
+}
+
+.dx-table-resize-frame {
+  position: absolute;
+  pointer-events: none;
+
+  > div {
+    position: absolute;
+    pointer-events: auto;
+    background-color: transparent;
+  }
+
+  .dx-htmleditor-column-resizer {
+    width: 5px;
+    top: 0;
+    height: 100%;
+    cursor: col-resize;
+  }
+
+  .dx-htmleditor-highlighted-column {
+    width: 3px;
+    top: 0;
+    height: 100%;
+  }
+
+  .dx-htmleditor-row-resizer {
+    height: 5px;
+    left: 0;
+    width: 100%;
+    cursor: row-resize;
+  }
+
+  .dx-htmleditor-highlighted-row {
+    height: 3px;
+    left: 0;
+    width: 100%;
   }
 }

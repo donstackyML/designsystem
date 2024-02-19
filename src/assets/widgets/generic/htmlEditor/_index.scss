@@ -13,12 +13,12 @@
 
 // adduse
 
-
 $generic-html-editor-toolbar-height: $generic-base-inline-widget-height;
 $generic-mobile-html-editor-toolbar-height: $generic-mobile-toolbar-height;
 
 .dx-htmleditor {
   .dx-htmleditor-toolbar-wrapper {
+    padding: 5px;
     position: relative;
 
     &:first-child {
@@ -39,7 +39,7 @@ $generic-mobile-html-editor-toolbar-height: $generic-mobile-toolbar-height;
       right: 1px;
       z-index: 2;
       background-color: color.change($base-bg, $alpha: 0.2);
-      content: '';
+      content: "";
       pointer-events: none;
     }
 
@@ -146,7 +146,8 @@ $generic-mobile-html-editor-toolbar-height: $generic-mobile-toolbar-height;
 }
 
 .dx-htmleditor-content {
-  &.ql-blank::before { // stylelint-disable-line selector-class-pattern
+  &.ql-blank::before {
+    // stylelint-disable-line selector-class-pattern
     color: $texteditor-placeholder-color;
   }
 
@@ -169,7 +170,8 @@ $generic-mobile-html-editor-toolbar-height: $generic-mobile-toolbar-height;
     }
   }
 
-  td {
+  td,
+  th {
     border-color: $htmleditor-table-border-color;
   }
 }
@@ -192,18 +194,34 @@ $generic-mobile-html-editor-toolbar-height: $generic-mobile-toolbar-height;
   .dx-format-active:not(.dx-color-format):not(.dx-background-format) {
     &.dx-button-mode-text,
     &.dx-button-mode-outlined {
-      @include dx-htmleditor-button-states($button-group-normal-selected-bg, $button-group-normal-selected-bg-hover, $button-group-normal-selected-bg-focused);
+      @include dx-htmleditor-button-states(
+        $button-group-normal-selected-bg,
+        $button-group-normal-selected-bg-hover,
+        $button-group-normal-selected-bg-focused
+      );
 
       &.dx-button-success {
-        @include dx-htmleditor-button-states($button-group-success-selected-bg, $button-group-success-selected-bg-hover, $button-group-success-selected-bg-focused);
+        @include dx-htmleditor-button-states(
+          $button-group-success-selected-bg,
+          $button-group-success-selected-bg-hover,
+          $button-group-success-selected-bg-focused
+        );
       }
 
       &.dx-button-default {
-        @include dx-htmleditor-button-states($button-group-default-selected-bg, $button-group-default-selected-bg-hover, $button-group-default-selected-bg-focused);
+        @include dx-htmleditor-button-states(
+          $button-group-default-selected-bg,
+          $button-group-default-selected-bg-hover,
+          $button-group-default-selected-bg-focused
+        );
       }
 
       &.dx-button-danger {
-        @include dx-htmleditor-button-states($button-group-danger-selected-bg, $button-group-danger-selected-bg-hover, $button-group-danger-selected-bg-focused);
+        @include dx-htmleditor-button-states(
+          $button-group-danger-selected-bg,
+          $button-group-danger-selected-bg-hover,
+          $button-group-danger-selected-bg-focused
+        );
       }
 
       &.dx-button-normal,
@@ -228,18 +246,34 @@ $generic-mobile-html-editor-toolbar-height: $generic-mobile-toolbar-height;
     }
 
     &.dx-button-mode-contained {
-      @include dx-htmleditor-button-states($button-normal-bg, $button-normal-contained-bg-hover, $button-normal-contained-bg-focused);
+      @include dx-htmleditor-button-states(
+        $button-normal-bg,
+        $button-normal-contained-bg-hover,
+        $button-normal-contained-bg-focused
+      );
 
       &.dx-button-success {
-        @include dx-htmleditor-button-states($button-success-bg, $button-success-contained-bg-hover, $button-success-contained-bg-focused);
+        @include dx-htmleditor-button-states(
+          $button-success-bg,
+          $button-success-contained-bg-hover,
+          $button-success-contained-bg-focused
+        );
       }
 
       &.dx-button-default {
-        @include dx-htmleditor-button-states($button-default-bg, $button-default-contained-bg-hover, $button-default-contained-bg-focused);
+        @include dx-htmleditor-button-states(
+          $button-default-bg,
+          $button-default-contained-bg-hover,
+          $button-default-contained-bg-focused
+        );
       }
 
       &.dx-button-danger {
-        @include dx-htmleditor-button-states($button-danger-bg, $button-danger-contained-bg-hover, $button-danger-contained-bg-focused);
+        @include dx-htmleditor-button-states(
+          $button-danger-bg,
+          $button-danger-contained-bg-hover,
+          $button-danger-contained-bg-focused
+        );
       }
     }
   }
@@ -305,4 +339,11 @@ $generic-mobile-html-editor-toolbar-height: $generic-mobile-toolbar-height;
 
 .dx-suggestion-list-wrapper {
   @include dx-dropdownlist-list-appearance();
+}
+
+.dx-table-resize-frame {
+  > .dx-draggable-dragging + .dx-htmleditor-highlighted-column,
+  > .dx-draggable-dragging + .dx-htmleditor-highlighted-row {
+    background-color: $htmleditor-cells-separator-bg;
+  }
 }
