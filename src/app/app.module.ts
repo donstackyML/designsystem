@@ -29,6 +29,7 @@ import { AccordionComponent } from './components/accordion/accordion.component';
 import { SlidersComponent } from './components/sliders/sliders.component';
 import { ScrollViewComponent } from './components/scroll-view/scroll-view.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
+import { CustomSelectComponent } from './components/custom-select/custom-select.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { DrawerComponent } from './components/drawer/drawer.component';
     SlidersComponent,
     ScrollViewComponent,
     DrawerComponent,
+    CustomSelectComponent,
   ],
   imports: [
     BrowserModule,

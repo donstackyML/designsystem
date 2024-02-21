@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import themes from 'devextreme/ui/themes';
 import { Router } from '@angular/router';
+import { ItemClickEvent } from 'devextreme/ui/list';
+import themes from 'devextreme/ui/themes';
+import { ComponentRoutesService } from './service/component-routes.service';
 
 @Component({
   selector: 'app-root',
@@ -9,45 +11,40 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   themes: string[] = ['light', 'dark'];
-  components: string[] = [
-    'buttons',
-    'button-group',
-    'editors',
-    'pivot-grid',
-    'data-grid',
-    'tree-list',
-    'scheduler',
-    'form',
-    'list',
-    'filter-builder',
-    'overlays',
-    'menu',
-    'tree-view',
-    'accordion',
-    'gallery',
-    'tabs',
-    'progress-bar',
-    'sliders',
-    'scroll-view',
-    'toolbar',
-    'drawer',
-    'fieldset',
-  ];
-  isDark: boolean = false;
 
-  constructor(public router: Router) {}
+  componentsRoute: string[];
+  componentsName: string[];
+  currentComponent = '';
 
-  onThemeChanged(event: any) {
-    if (event.value === 'light') {
-      themes.current('generic.light');
-      this.isDark = false;
-    } else if (event.value === 'dark') {
+  isDropDownBoxOpened = false;
+  isDark = false;
+
+  dropDownOptions = {
+    contentTemplate: 'popupContent',
+  };
+
+  constructor(public router: Router, service: ComponentRoutesService) {
+    this.componentsName = service.getComponentsName();
+    this.componentsRoute = service.getComponentsRoute();
+  }
+
+  handleThemeChange() {
+    this.isDark = !this.isDark;
+
+    if (this.isDark) {
       themes.current('generic.dark');
-      this.isDark = true;
+    } else {
+      themes.current('generic.light');
     }
   }
 
-  onRouteChanged(event: any) {
-    this.router.navigate([`/${event.value}`]);
+  handleRouteChange(routeIndex: number) {
+    this.router.navigate([`/${this.componentsRoute[routeIndex]}`]);
+  }
+
+  handleComponentChange(event: ItemClickEvent) {
+    this.currentComponent = this.componentsName[event.itemIndex as number];
+    this.isDropDownBoxOpened = false;
+    this.handleRouteChange(event.itemIndex as number);
   }
 }

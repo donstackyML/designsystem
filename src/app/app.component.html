@@ -1,8 +1,24 @@
 <div [class.dark]="isDark">
   <header class="header" [class.header--dark]="isDark">
     <div class="flex flex--space container">
-      <dx-select-box placeholder="Выбор компонента" [dataSource]="components" width="200px" (onValueChanged)="onRouteChanged($event)"></dx-select-box>
-      <dx-select-box placeholder="Выбор темы" [dataSource]="themes" width="150px" (onValueChanged)="onThemeChanged($event)"></dx-select-box>
+      <dx-select-box
+        placeholder="Выбор компонента"
+        [dataSource]="componentsName"
+        [(value)]="currentComponent"
+        [dropDownOptions]="dropDownOptions"
+        [(opened)]="isDropDownBoxOpened"
+        width="200px"
+      >
+        <div *dxTemplate="let data of 'popupContent'">
+          <dx-list [items]="componentsName" showScrollbar="always" selectionMode="single" itemTemplate="list-item" (onItemClick)="handleComponentChange($event)">
+            <div *dxTemplate="let data of 'list-item'">{{ data }}</div></dx-list
+          >
+        </div>
+      </dx-select-box>
+      <div class="switch">
+        <dx-switch switchedOffText="" switchedOnText="" (onValueChanged)="handleThemeChange()"></dx-switch><span class="dx-widget">Dark theme</span>
+      </div>
+      <!-- <dx-select-box placeholder="Выбор темы" [dataSource]="themes" width="150px" (onValueChanged)="handleThemeChange($event)"></dx-select-box> -->
     </div>
   </header>
   <div class="container">
