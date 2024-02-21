@@ -30,6 +30,7 @@ import { SlidersComponent } from './components/sliders/sliders.component';
 import { ScrollViewComponent } from './components/scroll-view/scroll-view.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { CustomSelectComponent } from './components/custom-select/custom-select.component';
+import { AllComponentsComponent } from './components/all-components/all-components.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { CustomSelectComponent } from './components/custom-select/custom-select.
     ScrollViewComponent,
     DrawerComponent,
     CustomSelectComponent,
+    AllComponentsComponent,
   ],
   imports: [
     BrowserModule,

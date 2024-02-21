@@ -22,8 +22,10 @@ import { AccordionComponent } from './components/accordion/accordion.component';
 import { SlidersComponent } from './components/sliders/sliders.component';
 import { ScrollViewComponent } from './components/scroll-view/scroll-view.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
+import { AllComponentsComponent } from './components/all-components/all-components.component';
 
 const routes: Routes = [
+  { path: 'all-components', component: AllComponentsComponent },
   { path: 'buttons', component: ButtonsComponent },
   { path: 'button-group', component: BtnGroupComponent },
   { path: 'editors', component: EditorsComponent },
