@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemClickEvent } from 'devextreme/ui/list';
 import themes from 'devextreme/ui/themes';
@@ -18,6 +18,7 @@ export class AppComponent {
 
   isDropDownBoxOpened = false;
   isDark = false;
+  labelClick = new EventEmitter();
 
   dropDownOptions = {
     contentTemplate: 'popupContent',
@@ -26,16 +27,23 @@ export class AppComponent {
   constructor(public router: Router, service: ComponentRoutesService) {
     this.componentsName = service.getComponentsName();
     this.componentsRoute = service.getComponentsRoute();
+    this.currentComponent = this.componentsName[0];
   }
 
   handleThemeChange() {
     this.isDark = !this.isDark;
+
+    console.log(this.isDark);
 
     if (this.isDark) {
       themes.current('generic.dark');
     } else {
       themes.current('generic.light');
     }
+  }
+
+  emitClick() {
+    this.labelClick.emit();
   }
 
   handleRouteChange(routeIndex: number) {

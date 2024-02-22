@@ -2,7 +2,14 @@
   <h1 class="dx-widget wrapper__title">TreeView</h1>
   <div class="container">
     <div class="form">
-      <dx-tree-view id="simple-treeview" [items]="products" [width]="300" (onItemClick)="selectItem($event)"></dx-tree-view>
+      <dx-tree-view [items]="products" [width]="300" (onItemClick)="selectItem($event)" itemTemplate="productTemplate1">
+        <div *dxTemplate="let product of 'productTemplate1'">{{ product.text }}</div>
+      </dx-tree-view>
+    </div>
+    <div class="form">
+      <dx-tree-view [items]="products" [width]="300" (onItemClick)="selectItem($event)" itemTemplate="productTemplate2">
+        <div *dxTemplate="let product of 'productTemplate2'"><i *ngIf="product.icon" [class]="getClass(product.icon)" class="dx-icon"></i>{{ product.text }}</div>
+      </dx-tree-view>
     </div>
   </div>
 </div>

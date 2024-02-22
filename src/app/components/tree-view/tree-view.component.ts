@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TreeViewService, Product } from 'src/app/service/tree-view.service';
+import { Product, TreeViewService } from 'src/app/service/tree-view.service';
 
 @Component({
   selector: 'app-tree-view',
@@ -10,6 +10,7 @@ import { TreeViewService, Product } from 'src/app/service/tree-view.service';
 export class TreeViewComponent {
   products: Product[];
   currentItem: Product;
+  product = true;
 
   constructor(serviceTree: TreeViewService) {
     this.products = serviceTree.getProducts();
@@ -18,5 +19,9 @@ export class TreeViewComponent {
 
   selectItem(e: any) {
     this.currentItem = e.itemData;
+  }
+
+  getClass(icon: string): string {
+    return `dx-icon-${icon}`;
   }
 }
