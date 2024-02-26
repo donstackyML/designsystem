@@ -163,6 +163,7 @@ const products: Product[] = [
           {
             id: '1_2_1',
             text: 'Video Players',
+            icon: 'folder',
             items: [
               {
                 id: '1_2_1_1',
@@ -183,6 +184,7 @@ const products: Product[] = [
           {
             id: '1_2_2',
             text: 'Televisions',
+            icon: 'folder',
             items: [
               {
                 id: '1_2_2_1',
