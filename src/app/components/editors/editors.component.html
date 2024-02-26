@@ -1,26 +1,42 @@
 <div class="wrapper">
   <h1 class="dx-widget wrapper__title">Editors</h1>
-  <p class="dx-widget">Text Box Outlined</p>
+  <p class="dx-widget">Text Box Filled (labelMode = hidden)</p>
   <div class="flex">
-    <dx-text-box width="200px" mode="text" label="Text box" placeholder="Outlined" labelMode="static"></dx-text-box>
-    <dx-select-box [items]="['Outlined', 'Filled', 'Underlined']" placeholder="Outlined" width="200px" labelMode="static" label="Select box"></dx-select-box>
-    <dx-color-box value="#f05b41" width="200px" labelMode="static" label="Color box"></dx-color-box>
+    <dx-text-box placeholder="Filled" width="200px" stylingMode="filled" labelMode="hidden" label="Text box"></dx-text-box>
+    <dx-select-box
+      [items]="['Outlined', 'Filled', 'Underlined']"
+      placeholder="Filled"
+      width="200px"
+      stylingMode="filled"
+      labelMode="hidden"
+      label="Select box"
+    ></dx-select-box>
+    <dx-color-box value="#f05b41" width="200px" stylingMode="filled" labelMode="hidden" label="Color box"></dx-color-box>
   </div>
   <div class="flex">
-    <dx-number-box [value]="20.5" [showSpinButtons]="true" [showClearButton]="true" width="200px" labelMode="static" label="Number box"></dx-number-box>
+    <dx-number-box
+      [value]="20.5"
+      [showSpinButtons]="true"
+      [showClearButton]="true"
+      width="200px"
+      stylingMode="filled"
+      labelMode="hidden"
+      label="Number box"
+    ></dx-number-box>
     <dx-tag-box
-      placeholder="Outlined"
+      placeholder="Filled"
       width="200px"
       valueExpr="ID"
+      stylingMode="filled"
       [dataSource]="tagBoxData"
       valueExpr="ID"
       displayExpr="Name"
-      labelMode="static"
+      labelMode="hidden"
       label="Tag box"
     ></dx-tag-box>
-    <dx-lookup width="200px" labelMode="static" label="Lookup"></dx-lookup>
+    <dx-lookup width="200px" stylingMode="filled" labelMode="hidden" label="Lookup"></dx-lookup>
   </div>
-  <p class="dx-widget">Text Box Filled</p>
+  <p class="dx-widget">Text Box Filled (labelMode = static)</p>
   <div class="flex">
     <dx-text-box placeholder="Filled" width="200px" stylingMode="filled" labelMode="static" label="Text box"></dx-text-box>
     <dx-select-box
@@ -56,7 +72,63 @@
     ></dx-tag-box>
     <dx-lookup width="200px" stylingMode="filled" labelMode="static" label="Lookup"></dx-lookup>
   </div>
-  <p class="dx-widget">Text Box Underlined</p>
+  <p class="dx-widget">Text Box Filled (labelMode = floating)</p>
+  <div class="flex">
+    <dx-text-box placeholder="Filled" width="200px" stylingMode="filled" labelMode="floating" label="Text box"></dx-text-box>
+    <dx-select-box
+      [items]="['Outlined', 'Filled', 'Underlined']"
+      placeholder="Filled"
+      width="200px"
+      stylingMode="filled"
+      labelMode="floating"
+      label="Select box"
+    ></dx-select-box>
+    <dx-color-box value="#f05b41" width="200px" stylingMode="filled" labelMode="floating" label="Color box"></dx-color-box>
+  </div>
+  <div class="flex">
+    <dx-number-box
+      [value]="20.5"
+      [showSpinButtons]="true"
+      [showClearButton]="true"
+      width="200px"
+      stylingMode="filled"
+      labelMode="floating"
+      label="Number box"
+    ></dx-number-box>
+    <dx-tag-box
+      placeholder="Filled"
+      width="200px"
+      valueExpr="ID"
+      stylingMode="filled"
+      [dataSource]="tagBoxData"
+      valueExpr="ID"
+      displayExpr="Name"
+      labelMode="floating"
+      label="Tag box"
+    ></dx-tag-box>
+    <dx-lookup width="200px" stylingMode="filled" labelMode="floating" label="Lookup"></dx-lookup>
+  </div>
+  <p class="dx-widget">Text Box Outlined (labelMode = static)</p>
+  <div class="flex">
+    <dx-text-box width="200px" mode="text" label="Text box" placeholder="Outlined" labelMode="static"></dx-text-box>
+    <dx-select-box [items]="['Outlined', 'Filled', 'Underlined']" placeholder="Outlined" width="200px" labelMode="static" label="Select box"></dx-select-box>
+    <dx-color-box value="#f05b41" width="200px" labelMode="static" label="Color box"></dx-color-box>
+  </div>
+  <div class="flex">
+    <dx-number-box [value]="20.5" [showSpinButtons]="true" [showClearButton]="true" width="200px" labelMode="static" label="Number box"></dx-number-box>
+    <dx-tag-box
+      placeholder="Outlined"
+      width="200px"
+      valueExpr="ID"
+      [dataSource]="tagBoxData"
+      valueExpr="ID"
+      displayExpr="Name"
+      labelMode="static"
+      label="Tag box"
+    ></dx-tag-box>
+    <dx-lookup width="200px" labelMode="static" label="Lookup"></dx-lookup>
+  </div>
+  <p class="dx-widget">Text Box Underlined (labelMode = static)</p>
   <div class="flex">
     <dx-text-box placeholder="Underlined" width="200px" stylingMode="underlined" labelMode="static" label="Text box"></dx-text-box>
     <dx-select-box

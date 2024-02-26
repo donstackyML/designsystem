@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormService, Company } from 'src/app/service/form.service';
+import { Company, FormService } from 'src/app/service/form.service';
 
 @Component({
   selector: 'app-form',
@@ -15,6 +15,10 @@ export class FormComponent {
   minColWidth: number;
   colCount: number;
   width: any;
+
+  textBoxOptions = {
+    stylingMode: 'filled',
+  };
 
   constructor(service: FormService) {
     this.labelMode = 'static';
