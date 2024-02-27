@@ -10,6 +10,7 @@ export class ToolBarComponent {
   textBoxOptions = {
     placeholder: 'Search...',
     showClearButton: true,
+    stylingMode: 'filled',
   };
 
   searchButtonOptions = {
