@@ -14,10 +14,12 @@
 @use "../dropDownList";
 
 $generic-lookup-field-padding: $generic-base-inline-borderedwidget-top-padding
-  $generic-base-inline-borderedwidget-inner-size $generic-base-inline-borderedwidget-bottom-padding
+  $generic-base-inline-borderedwidget-inner-size
+  $generic-base-inline-borderedwidget-bottom-padding
   $generic-base-inline-borderedwidget-horizontal-padding;
 $generic-lookup-field-padding-rtl: $generic-base-inline-borderedwidget-top-padding
-  $generic-base-inline-borderedwidget-horizontal-padding $generic-base-inline-borderedwidget-bottom-padding
+  $generic-base-inline-borderedwidget-horizontal-padding
+  $generic-base-inline-borderedwidget-bottom-padding
   $generic-base-inline-borderedwidget-inner-size;
 
 .dx-lookup {
@@ -27,6 +29,9 @@ $generic-lookup-field-padding-rtl: $generic-base-inline-borderedwidget-top-paddi
 
   &.dx-editor-underlined {
     background: $texteditor-underlined-bg;
+    border-top: none;
+    border-left: none;
+    border-right: none;
   }
 
   &.dx-texteditor-with-floating-label,
@@ -123,7 +128,9 @@ $generic-lookup-field-padding-rtl: $generic-base-inline-borderedwidget-top-paddi
   @include dx-valid-generic-badge();
 }
 
-.dx-validation-pending.dx-lookup .dx-lookup-field-wrapper .dx-pending-indicator {
+.dx-validation-pending.dx-lookup
+  .dx-lookup-field-wrapper
+  .dx-pending-indicator {
   @include lookup-badge-offset();
   @include dx-pending-indicator-generic();
 }
