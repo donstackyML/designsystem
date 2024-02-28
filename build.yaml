@@ -23,17 +23,17 @@ trigger:
 
       - script: npm install
         displayName: Install
-        workingDirectory: $(Build.Repository.Name)/src
+        workingDirectory: $(Build.Repository.Name)
 
       - script: npm run build
-        displayName: Restore dsyst projects
-        workingDirectory: $(Build.Repository.Name)/src
+        displayName: Restore designsystem projects
+        workingDirectory: $(Build.Repository.Name)
 
       - template: scripts/add-to-archive.yml@build-scripts
         parameters:
-          archiveFile: $(Build.ArtifactStagingDirectory)/publish/addons/dsyst/web/dsyst.zip
-          sourceFolder: $(Build.Repository.Name)/src/dsyst/dist/dsyst
-          sourceRootName: dsyst
+          archiveFile: $(Build.ArtifactStagingDirectory)/publish/addons/designsystem/web/designsystem.zip
+          sourceFolder: $(Build.Repository.Name)/dist
+          sourceRootName: designsystem
 
       - template: scripts/publish-artifact.yml@build-scripts
         parameters:
