@@ -36,9 +36,9 @@ export class AppComponent {
     console.log(this.isDark);
 
     if (this.isDark) {
-      themes.current('monitel.custom.dark');
+      themes.current('generic.dark');
     } else {
-      themes.current('monitel.custom.light');
+      themes.current('generic.light');
     }
   }
 
