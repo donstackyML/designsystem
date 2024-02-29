@@ -20,9 +20,11 @@ $generic-dropdowneditor-button-size: $generic-dropdowneditor-container-button-si
 $generic-dropdowneditor-invalid-badge-offset: $generic-dropdowneditor-container-button-size +
   $generic-invalid-badge-halfhorizontal-padding;
 
-$generic-dropdowneditor-invalid-badge-with-clear-offset: $generic-dropdowneditor-container-button-size * 2;
+$generic-dropdowneditor-invalid-badge-with-clear-offset: $generic-dropdowneditor-container-button-size *
+  2;
 
-$generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size + $generic-invalid-badge-horizontal-padding;
+$generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size +
+  $generic-invalid-badge-horizontal-padding;
 
 @mixin dx-dropdowneditor-button-icon() {
   width: $generic-dropdowneditor-button-size;
@@ -130,14 +132,32 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size + $gener
 }
 
 .dx-dropdowneditor {
-  &.dx-state-hover:not(.dx-custom-button-hovered),
-  &.dx-state-active {
+  &.dx-state-hover:not(.dx-custom-button-hovered) {
     .dx-dropdowneditor-icon {
       background-color: $dropdowneditor-button-hover-bg;
       border-color: $dropdowneditor-button-hover-border-color;
 
       @at-root #{selector-append(".dx-editor-filled", &)} {
         background-color: $dropdowneditor-filled-button-hover-bg;
+      }
+    }
+
+    &.dx-state-focused {
+      .dx-dropdowneditor-icon {
+        @at-root #{selector-append(".dx-editor-filled", &)} {
+          background-color: $dropdowneditor-filled-button-active-hover-bg;
+        }
+      }
+    }
+  }
+
+  &.dx-state-active {
+    .dx-dropdowneditor-icon {
+      background-color: $dropdowneditor-button-hover-bg;
+      border-color: $dropdowneditor-button-hover-border-color;
+
+      @at-root #{selector-append(".dx-editor-filled", &)} {
+        background-color: $dropdowneditor-filled-button-active-hover-bg;
       }
     }
   }

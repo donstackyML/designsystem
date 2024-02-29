@@ -11,7 +11,9 @@
 * $type color
 */
 $dropdowneditor-button-hover-bg: null !default;
-$dropdowneditor-filled-button-hover-bg: color.change($base-accent, $alpha: 0.2) !default;
+$dropdowneditor-filled-button-hover-bg: null !default;
+$dropdowneditor-filled-button-active-hover-bg: null !default;
+// $dropdowneditor-filled-button-hover-bg: color.change($base-accent, $alpha: 0.2) !default;
 $dropdowneditor-button-hover-border-color: null !default;
 
 /**
@@ -19,7 +21,10 @@ $dropdowneditor-button-hover-border-color: null !default;
 * $type color
 */
 $dropdowneditor-button-active-bg: null !default;
-$dropdowneditor-filled-button-active-bg: color.change($base-accent, $alpha: 0.3) !default;
+$dropdowneditor-filled-button-active-bg: color.change(
+  $base-accent,
+  $alpha: 0.3
+) !default;
 $dropdowneditor-filled-button-invalid-hover-bg: color.change(
   $texteditor-invalid-focused-border-color,
   $alpha: 0.2
@@ -50,6 +55,14 @@ $dropdowneditor-icon-border-radius: null !default;
   $dropdowneditor-button-active-bg: #ecedf3;
   $dropdowneditor-icon-active-color: #3257dc;
   $dropdowneditor-icon-border-radius: $base-border-radius-small !default;
+  $dropdowneditor-filled-button-hover-bg: color.change(
+    $base-accent,
+    $alpha: 0.2
+  );
+  $dropdowneditor-filled-button-active-hover-bg: color.change(
+    $base-accent,
+    $alpha: 0.2
+  );
 }
 
 @if $color == "dark" {
@@ -59,4 +72,9 @@ $dropdowneditor-icon-border-radius: null !default;
   $dropdowneditor-button-active-bg: #43444c;
   $dropdowneditor-icon-active-color: #5d9eff;
   $dropdowneditor-icon-border-radius: $base-border-radius-small !default;
+  $dropdowneditor-filled-button-hover-bg: #151515;
+  $dropdowneditor-filled-button-active-hover-bg: color.change(
+    $base-accent,
+    $alpha: 0.2
+  );
 }
