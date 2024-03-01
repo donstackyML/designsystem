@@ -2,6 +2,7 @@
   <header class="header" [class.header--dark]="isDark">
     <div class="flex flex--space container">
       <dx-select-box
+        stylingMode="filled"
         placeholder="Выбор компонента"
         [dataSource]="componentsName"
         [(value)]="currentComponent"
@@ -10,7 +11,14 @@
         width="200px"
       >
         <div *dxTemplate="let data of 'popupContent'">
-          <dx-list [items]="componentsName" showScrollbar="always" selectionMode="single" itemTemplate="list-item" (onItemClick)="handleComponentChange($event)">
+          <dx-list
+            [items]="componentsName"
+            showScrollbar="always"
+            selectionMode="single"
+            itemTemplate="list-item"
+            class="header__list"
+            (onItemClick)="handleComponentChange($event)"
+          >
             <div *dxTemplate="let data of 'list-item'">{{ data }}</div></dx-list
           >
         </div>
