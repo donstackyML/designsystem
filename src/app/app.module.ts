@@ -31,6 +31,11 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
+import { MeButtonChildComponent } from './me-test/me-button-child/me-button-child.component';
+import { MeButtonStaticComponent } from './me-test/me-button-static/me-button-static.component';
+import { MeIconComponent } from './me-test/me-icon/me-icon.component';
+import { MeTestComponent } from './me-test/me-test.component';
+import { ButtonDirective } from './directives/button.directive';
 
 @NgModule({
   declarations: [
@@ -59,6 +64,11 @@ import { TreeViewComponent } from './components/tree-view/tree-view.component';
     DrawerComponent,
     CustomSelectComponent,
     AllComponentsComponent,
+    MeButtonChildComponent,
+    MeTestComponent,
+    MeIconComponent,
+    MeButtonStaticComponent,
+    ButtonDirective,
   ],
   imports: [
     BrowserModule,

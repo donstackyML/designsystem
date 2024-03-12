@@ -33,17 +33,11 @@ export class AppComponent {
   handleThemeChange() {
     this.isDark = !this.isDark;
 
-    console.log(this.isDark);
-
     if (this.isDark) {
       themes.current('generic.dark');
     } else {
       themes.current('generic.light');
     }
-  }
-
-  emitClick() {
-    this.labelClick.emit();
   }
 
   handleRouteChange(routeIndex: number) {

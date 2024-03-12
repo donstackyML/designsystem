@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "app3": {
+    "designsystem": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "me",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -24,6 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/assets/*",
               {
                 "glob": "**/*",
                 "input": "./src/assets/bundles",
@@ -72,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "app3:build:production"
+              "browserTarget": "designsystem:build:production"
             },
             "development": {
-              "browserTarget": "app3:build:development"
+              "browserTarget": "designsystem:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,5 +84,5 @@
       }
     }
   },
-  "defaultProject": "app3"
+  "defaultProject": "designsystem"
 }

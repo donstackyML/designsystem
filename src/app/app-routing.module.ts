@@ -23,10 +23,12 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
+import { MeTestComponent } from './me-test/me-test.component';
 
 const routes: Routes = [
   { path: '', component: AllComponentsComponent },
   { path: 'all-components', component: AllComponentsComponent },
+  { path: 'me-test', component: MeTestComponent },
   { path: 'buttons', component: ButtonsComponent },
   { path: 'button-group', component: BtnGroupComponent },
   { path: 'editors', component: EditorsComponent },
