@@ -23,9 +23,12 @@
 $generic-grid-base-border-hidden: 1px solid transparent;
 $generic-grid-base-row-border: 1px solid transparent;
 $generic-grid-base-border-color: $datagrid-border-color;
-$generic-grid-base-drag-header-border: 1px solid $datagrid-drag-header-border-color;
-$generic-grid-base-drag-header-first-shadow: 0 0 1px $datagrid-drag-header-shadow-color;
-$generic-grid-base-drag-header-second-shadow: 0 1px 3px $datagrid-drag-header-second-shadow-color;
+$generic-grid-base-drag-header-border: 1px solid
+  $datagrid-drag-header-border-color;
+$generic-grid-base-drag-header-first-shadow: 0 0 1px
+  $datagrid-drag-header-shadow-color;
+$generic-grid-base-drag-header-second-shadow: 0 1px 3px
+  $datagrid-drag-header-second-shadow-color;
 $generic-grid-base-checkbox-icon-size: 16px;
 $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
 $grid-masterdetail-padding: 20px;
@@ -179,7 +182,9 @@ $grid-masterdetail-padding: 20px;
       }
     }
 
-    .dx-#{$widget-name}-rowsview .dx-virtual-row > td[style*="text-align: right"]:before {
+    .dx-#{$widget-name}-rowsview
+      .dx-virtual-row
+      > td[style*="text-align: right"]:before {
       background-position-y: 34px;
     }
 
@@ -205,7 +210,8 @@ $grid-masterdetail-padding: 20px;
   .dx-#{$widget-name}-rowsview {
     .dx-texteditor-input {
       padding: $generic-grid-base-cell-padding;
-      min-height: round($generic-base-line-height * $generic-base-font-size) + 2 * $generic-grid-base-cell-padding;
+      min-height: round($generic-base-line-height * $generic-base-font-size) + 2 *
+        $generic-grid-base-cell-padding;
     }
 
     .dx-numberbox,
@@ -293,8 +299,14 @@ $grid-masterdetail-padding: 20px;
         &::before {
           height: $generic-grid-base-checkbox-indeterminate-icon-size;
           width: $generic-grid-base-checkbox-indeterminate-icon-size;
-          margin-top: math.div(-$generic-grid-base-checkbox-indeterminate-icon-size, 2);
-          margin-left: math.div(-$generic-grid-base-checkbox-indeterminate-icon-size, 2);
+          margin-top: math.div(
+            -$generic-grid-base-checkbox-indeterminate-icon-size,
+            2
+          );
+          margin-left: math.div(
+            -$generic-grid-base-checkbox-indeterminate-icon-size,
+            2
+          );
           border-radius: 0;
         }
       }
@@ -358,7 +370,8 @@ $grid-masterdetail-padding: 20px;
   }
 
   .dx-#{$widget-name}-drag-header {
-    box-shadow: $generic-grid-base-drag-header-first-shadow, $generic-grid-base-drag-header-second-shadow;
+    box-shadow: $generic-grid-base-drag-header-first-shadow,
+      $generic-grid-base-drag-header-second-shadow;
     color: $datagrid-columnchooser-item-color;
     font-weight: $datagrid-columnchooser-font-weight;
     padding: $generic-grid-base-cell-padding;
@@ -408,7 +421,9 @@ $grid-masterdetail-padding: 20px;
     }
 
     .dx-data-row.dx-state-hover {
-      &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row):not(.dx-row-focused) {
+      &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(
+          .dx-edit-row
+        ):not(.dx-row-focused) {
         & > td:not(.dx-focused) {
           background-color: $datagrid-hover-bg;
           color: $datagrid-row-hovered-color;
@@ -507,7 +522,8 @@ $grid-masterdetail-padding: 20px;
     }
 
     td .dx-editor-container .dx-filter-range-content {
-      padding: $generic-grid-base-cell-padding $generic-grid-base-cell-padding $generic-grid-base-cell-padding
+      padding: $generic-grid-base-cell-padding $generic-grid-base-cell-padding
+        $generic-grid-base-cell-padding
         $generic-grid-base-texteditor-input-padding;
     }
   }
@@ -596,7 +612,10 @@ $grid-masterdetail-padding: 20px;
         darken($button-success-bg, 20%),
         $button-success-border-color,
         $button-success-color,
-        $button-success-color
+        $button-success-color,
+        $button-success-bg-disabled,
+        $button-success-bg-disabled,
+        transparent
       );
     }
   }
@@ -993,7 +1012,10 @@ $grid-masterdetail-padding: 20px;
         darken($button-danger-bg, 20%),
         $button-danger-border-color,
         $button-danger-color,
-        $button-danger-color
+        $button-danger-color,
+        $button-danger-bg-disabled,
+        $button-danger-bg-disabled,
+        transparent
       );
 
       > .dx-button-content {
@@ -1025,7 +1047,9 @@ $grid-masterdetail-padding: 20px;
     }
 
     .dx-data-row.dx-state-hover {
-      &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row):not(.dx-row-focused) {
+      &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(
+          .dx-edit-row
+        ):not(.dx-row-focused) {
         & > td:not(.dx-focused) {
           &.dx-#{$widget-name}-group-space {
             border-left-color: $datagrid-hover-bg;
@@ -1045,7 +1069,8 @@ $grid-masterdetail-padding: 20px;
       }
 
       td .dx-editor-container .dx-filter-range-content {
-        padding: $generic-grid-base-cell-padding $generic-grid-base-texteditor-input-padding
+        padding: $generic-grid-base-cell-padding
+          $generic-grid-base-texteditor-input-padding
           $generic-grid-base-cell-padding $generic-grid-base-cell-padding;
       }
     }
