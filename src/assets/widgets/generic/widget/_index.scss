@@ -11,21 +11,49 @@
 .dx-widget {
   @include dx-base-typography();
 
-  &.me-btn {
+  &.me-button {
     align-self: center;
     border-radius: 3px;
     font-weight: 500;
 
+    &.me-button-icon-only.me-button-small {
+      & .dx-button-content {
+        padding: 9px;
+      }
+    }
+
+    &.me-button-icon-only.me-button-normal {
+      & .dx-button-content {
+        padding: 11px;
+      }
+    }
+
     & .dx-button-content {
       padding: 6px 16px;
+
+      & .me-button-inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
     }
   }
 
-  &.me-btn-large {
+  &.me-button-large {
     border-radius: 4px;
+
+    &.me-button-icon-only {
+      & .dx-button-content {
+        padding: 13px;
+      }
+    }
 
     & .dx-button-content {
       padding: 10px 16px;
+
+      & .me-button-inner {
+        gap: 12px;
+      }
     }
   }
 }
