@@ -12,7 +12,6 @@
 
 $generic-accordion-disabled-opacity: 0.5;
 
-
 .dx-accordion {
   background-color: $accordion-background-color;
   color: $accordion-color;
@@ -24,6 +23,14 @@ $generic-accordion-disabled-opacity: 0.5;
 
   &:last-child {
     border-bottom: 1px solid $accordion-item-border-color;
+  }
+
+  &:first-child {
+    border-top-color: transparent;
+
+    &.dx-accordion-item-opened {
+      border-top-color: $accordion-item-border-color;
+    }
   }
 
   &.dx-state-active:not(.dx-accordion-item-opened) {
@@ -115,8 +122,18 @@ $generic-accordion-disabled-opacity: 0.5;
 .dx-state-focused {
   &.dx-accordion-item {
     border-color: $accordion-item-focused-border-color;
+
+    &:first-child.dx-accordion-item-opened {
+      border-top-color: $accordion-item-focused-border-color;
+    }
   }
 }
+
+// .dx-state-active {
+//   &.dx-accordion-item {
+//     border-color: transparent;
+//   }
+// }
 
 .dx-accordion-item-body {
   padding: $generic-accordion-body-padding;
