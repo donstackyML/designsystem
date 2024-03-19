@@ -3442,9 +3442,6 @@
 .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected.dx-state-focused {
   background-color: #d8daea;
 }
-.dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected, .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected .dx-icon {
-  color: #18181a;
-}
 .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-default.dx-item-selected {
   background-color: #2544b3;
 }
@@ -8185,6 +8182,9 @@
 * $name 60. Shevron icon color
 * $type color
 */
+/**
+* Custom
+*/
 .dx-calendar {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -8341,9 +8341,6 @@
   right: 32px;
   left: 32px;
 }
-.dx-calendar-navigator .dx-calendar-caption-button.dx-button.dx-state-active {
-  background-color: #d4d4d4;
-}
 .dx-calendar-navigator .dx-calendar-caption-button.dx-button .dx-button-content {
   padding: 2px 15px 4px;
   color: #3257dc;
@@ -8363,10 +8360,28 @@
   z-index: 1;
 }
 
+.dx-calendar-caption-button,
+.dx-calendar-navigator-previous-month,
+.dx-calendar-navigator-next-view {
+  background: none;
+  border: none;
+}
+.dx-calendar-caption-button.dx-state-hover, .dx-calendar-caption-button.dx-state-focused,
+.dx-calendar-navigator-previous-month.dx-state-hover,
+.dx-calendar-navigator-previous-month.dx-state-focused,
+.dx-calendar-navigator-next-view.dx-state-hover,
+.dx-calendar-navigator-next-view.dx-state-focused {
+  background: rgba(60, 101, 248, 0.1215686275);
+}
+.dx-calendar-caption-button.dx-state-active,
+.dx-calendar-navigator-previous-month.dx-state-active,
+.dx-calendar-navigator-next-view.dx-state-active {
+  background: rgba(60, 113, 248, 0.2);
+}
+
 .dx-calendar-navigator-previous-month,
 .dx-calendar-navigator-next-view {
   width: 32px;
-  background: none;
 }
 .dx-calendar-navigator-previous-month.dx-button,
 .dx-calendar-navigator-next-view.dx-button {
@@ -8440,7 +8455,7 @@
   border-radius: 4px;
 }
 .dx-calendar-cell.dx-calendar-today {
-  font-weight: bold;
+  box-shadow: inset 0 0 0 2px #3257dc;
 }
 .dx-calendar-cell.dx-state-hover {
   box-shadow: inset 0 -1px 0 1000px rgba(60, 101, 248, 0.1215686275);
@@ -8463,7 +8478,7 @@
   box-shadow: inset 0 -1px 0 1000px rgba(60, 113, 248, 0.2);
 }
 .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell) {
-  box-shadow: inset 0 0 0 1px #b8bad7;
+  box-shadow: inset 0 0 0 1px #7eb9ff;
 }
 .dx-calendar-cell.dx-calendar-selected-date, .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today {
   color: #fff;
@@ -8471,7 +8486,8 @@
   font-weight: normal;
 }
 .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-contoured-date, .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today.dx-calendar-contoured-date {
-  box-shadow: inset 0 0 0 1px #b8bad7, inset 0 0 0 1000px #3257dc;
+  color: #18181a;
+  box-shadow: inset 0 0 0 2px #7eb9ff, inset 0 0 0 1000px rgba(60, 101, 248, 0.1215686275);
 }
 
 .dx-invalid.dx-calendar {
@@ -24585,18 +24601,6 @@ input.dx-hidden {
 }
 .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-danger.dx-state-focused, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-danger.dx-state-focused {
   background-color: rgba(213, 15, 63, 0.1215686275);
-}
-.dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-normal, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-normal .dx-icon, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-normal, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-normal .dx-icon {
-  color: #18181a;
-}
-.dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-success, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-success .dx-icon, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-success, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-success .dx-icon {
-  color: #009b3e;
-}
-.dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-default, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-default .dx-icon, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-default, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-default .dx-icon {
-  color: #3257dc;
-}
-.dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-danger, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-danger .dx-icon, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-danger, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-danger .dx-icon {
-  color: #d50f3f;
 }
 .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-contained {
   background-color: #ecedf3;

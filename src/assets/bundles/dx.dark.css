@@ -3442,9 +3442,6 @@
 .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected.dx-state-focused {
   background-color: #565665;
 }
-.dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected, .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-normal.dx-item-selected .dx-icon {
-  color: #ffffff;
-}
 .dx-buttongroup-item.dx-button.dx-button-mode-contained.dx-button-default.dx-item-selected {
   background-color: #264fb8;
 }
@@ -8185,6 +8182,9 @@
 * $name 60. Shevron icon color
 * $type color
 */
+/**
+* Custom
+*/
 .dx-calendar {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -8341,12 +8341,9 @@
   right: 32px;
   left: 32px;
 }
-.dx-calendar-navigator .dx-calendar-caption-button.dx-button.dx-state-active {
-  background-color: #59595b;
-}
 .dx-calendar-navigator .dx-calendar-caption-button.dx-button .dx-button-content {
   padding: 2px 15px 4px;
-  color: #3565e2;
+  color: #5d9eff;
 }
 
 .dx-calendar-navigator-previous-month {
@@ -8363,10 +8360,28 @@
   z-index: 1;
 }
 
+.dx-calendar-caption-button,
+.dx-calendar-navigator-previous-month,
+.dx-calendar-navigator-next-view {
+  background: none;
+  border: none;
+}
+.dx-calendar-caption-button.dx-state-hover, .dx-calendar-caption-button.dx-state-focused,
+.dx-calendar-navigator-previous-month.dx-state-hover,
+.dx-calendar-navigator-previous-month.dx-state-focused,
+.dx-calendar-navigator-next-view.dx-state-hover,
+.dx-calendar-navigator-next-view.dx-state-focused {
+  background: rgba(60, 101, 248, 0.2509803922);
+}
+.dx-calendar-caption-button.dx-state-active,
+.dx-calendar-navigator-previous-month.dx-state-active,
+.dx-calendar-navigator-next-view.dx-state-active {
+  background: rgba(60, 101, 248, 0.4);
+}
+
 .dx-calendar-navigator-previous-month,
 .dx-calendar-navigator-next-view {
   width: 32px;
-  background: none;
 }
 .dx-calendar-navigator-previous-month.dx-button,
 .dx-calendar-navigator-next-view.dx-button {
@@ -8387,7 +8402,7 @@
 }
 .dx-calendar-navigator-previous-view.dx-button .dx-icon,
 .dx-calendar-navigator-previous-month.dx-button .dx-icon {
-  color: #3565e2;
+  color: #5d9eff;
 }
 
 .dx-calendar-navigator-next-view,
@@ -8400,7 +8415,7 @@
 }
 .dx-calendar-navigator-next-view.dx-button .dx-icon,
 .dx-calendar-navigator-next-month.dx-button .dx-icon {
-  color: #3565e2;
+  color: #5d9eff;
 }
 
 .dx-calendar-body {
@@ -8440,7 +8455,7 @@
   border-radius: 4px;
 }
 .dx-calendar-cell.dx-calendar-today {
-  font-weight: bold;
+  box-shadow: inset 0 0 0 2px #3565e2;
 }
 .dx-calendar-cell.dx-state-hover {
   box-shadow: inset 0 -1px 0 1000px rgba(60, 101, 248, 0.2509803922);
@@ -8463,7 +8478,7 @@
   box-shadow: inset 0 -1px 0 1000px rgba(60, 113, 248, 0.4);
 }
 .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell) {
-  box-shadow: inset 0 0 0 1px #5c5e64;
+  box-shadow: inset 0 0 0 1px #7eb9ff;
 }
 .dx-calendar-cell.dx-calendar-selected-date, .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today {
   color: #fff;
@@ -8471,7 +8486,8 @@
   font-weight: normal;
 }
 .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-contoured-date, .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today.dx-calendar-contoured-date {
-  box-shadow: inset 0 0 0 1px #5c5e64, inset 0 0 0 1000px #3565e2;
+  color: #ffffff;
+  box-shadow: inset 0 0 0 2px #7eb9ff, inset 0 0 0 1000px rgba(60, 101, 248, 0.2509803922);
 }
 
 .dx-invalid.dx-calendar {
@@ -24585,18 +24601,6 @@ input.dx-hidden {
 }
 .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-danger.dx-state-focused, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-danger.dx-state-focused {
   background-color: rgba(213, 15, 63, 0.2);
-}
-.dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-normal, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-normal .dx-icon, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-normal, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-normal .dx-icon {
-  color: #ffffff;
-}
-.dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-success, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-success .dx-icon, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-success, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-success .dx-icon {
-  color: #008736;
-}
-.dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-default, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-default .dx-icon, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-default, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-default .dx-icon {
-  color: #3565e2;
-}
-.dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-danger, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-text.dx-button-danger .dx-icon, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-danger, .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-outlined.dx-button-danger .dx-icon {
-  color: #bf002e;
 }
 .dx-htmleditor-toolbar .dx-format-active:not(.dx-color-format):not(.dx-background-format).dx-button-mode-contained {
   background-color: #43444c;
