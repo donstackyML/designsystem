@@ -61,6 +61,7 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size +
 }
 
 .dx-dropdowneditor-icon {
+  transition: all ease 0.3s;
   border: $generic-base-border-width solid transparent;
   color: $dropdowneditor-icon-color;
 
@@ -134,18 +135,18 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size +
 .dx-dropdowneditor {
   &.dx-state-hover:not(.dx-custom-button-hovered) {
     .dx-dropdowneditor-icon {
-      background-color: $dropdowneditor-button-hover-bg;
+      background-color: transparent;
       border-color: $dropdowneditor-button-hover-border-color;
 
       @at-root #{selector-append(".dx-editor-filled", &)} {
-        background-color: $dropdowneditor-filled-button-hover-bg;
+        // background-color: $dropdowneditor-filled-button-hover-bg;
       }
     }
 
     &.dx-state-focused {
       .dx-dropdowneditor-icon {
         @at-root #{selector-append(".dx-editor-filled", &)} {
-          background-color: $dropdowneditor-filled-button-active-hover-bg;
+          // background-color: $dropdowneditor-filled-button-active-hover-bg;
         }
       }
     }
@@ -153,29 +154,36 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size +
 
   &.dx-state-active {
     .dx-dropdowneditor-icon {
-      background-color: $dropdowneditor-button-hover-bg;
+      background-color: transparent;
       border-color: $dropdowneditor-button-hover-border-color;
 
       @at-root #{selector-append(".dx-editor-filled", &)} {
-        background-color: $dropdowneditor-filled-button-active-hover-bg;
+        // background-color: $dropdowneditor-filled-button-active-hover-bg;
       }
     }
   }
 }
 
-.dx-dropdowneditor.dx-dropdowneditor-active,
+.dx-dropdowneditor.dx-dropdowneditor-active:not(.dx-datebox),
 .dx-dropdowneditor-button.dx-state-active {
   .dx-dropdowneditor-icon {
-    background-color: $dropdowneditor-button-active-bg;
+    transition: all ease 0.3s;
+    background-color: transparent;
     border-color: $dropdowneditor-button-active-border-color;
     color: $dropdowneditor-icon-active-color;
+    transform: rotate(180deg);
     opacity: 1;
 
     @at-root #{selector-append(".dx-editor-filled", &)},
       .dx-editor-filled & {
-      background-color: $dropdowneditor-filled-button-active-bg;
+      // background-color: $dropdowneditor-filled-button-active-bg;
     }
   }
+}
+
+.dx-dropdowneditor.dx-dropdowneditor-active.dx-datebox .dx-dropdowneditor-icon {
+  opacity: 1;
+  color: $dropdowneditor-icon-active-color;
 }
 
 @mixin texteditor-container-offset() {

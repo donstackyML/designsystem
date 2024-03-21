@@ -36,6 +36,10 @@
     ></dx-tag-box>
     <dx-lookup width="200px" stylingMode="filled" labelMode="hidden" label="Lookup"></dx-lookup>
   </div>
+  <div class="flex">
+    <dx-text-box value="Readonly" [readOnly]="true" width="200px" stylingMode="filled" labelMode="hidden" label="Text box"></dx-text-box>
+    <dx-text-box value="Disabled" [disabled]="true" width="200px" stylingMode="filled" labelMode="hidden" label="Text box"></dx-text-box>
+  </div>
   <p class="dx-widget">Text Box Filled (labelMode = static)</p>
   <div class="flex">
     <dx-text-box placeholder="Filled" width="200px" stylingMode="filled" labelMode="static" label="Text box"></dx-text-box>
@@ -177,12 +181,21 @@
     <dx-check-box [value]="true"></dx-check-box>
     <dx-check-box [value]="undefined"></dx-check-box>
     <dx-check-box [disabled]="true"></dx-check-box>
+    <dx-check-box [value]="true" [disabled]="true"></dx-check-box>
+    <dx-check-box [value]="undefined" [disabled]="true"></dx-check-box>
+    <dx-check-box [readOnly]="true"></dx-check-box>
+    <dx-check-box [value]="true" [readOnly]="true"></dx-check-box>
+    <dx-check-box [value]="undefined" [readOnly]="true"></dx-check-box>
     <dx-switch></dx-switch>
+    <dx-switch [readOnly]="true"></dx-switch>
+    <dx-switch [value]="true" [readOnly]="true"></dx-switch>
     <dx-switch [disabled]="true"></dx-switch>
+    <dx-switch [value]="true" [disabled]="true"></dx-switch>
   </div>
   <p class="dx-widget">Radio group</p>
   <div class="flex">
     <dx-radio-group layout="horizontal" [items]="radioData" [value]="radioData[0]"></dx-radio-group>
+    <dx-radio-group layout="horizontal" [items]="radioData" [value]="radioData[0]" [readOnly]="true"></dx-radio-group>
     <dx-radio-group layout="horizontal" [items]="radioData" [value]="radioData[0]" [disabled]="true"></dx-radio-group>
   </div>
   <p class="dx-widget">Calendar</p>
@@ -194,4 +207,9 @@
     <dx-file-uploader width="250px"></dx-file-uploader>
     <dx-file-uploader selectButtonText="Select File" width="150px"></dx-file-uploader>
   </div>
+  <p class="dx-widget">Textarea</p>
+  <div class="flex">
+    <dx-text-area placeholder="Enter the text" stylingMode="filled"></dx-text-area>
+  </div>
 </div>
+<br /><br /><br /><br />
