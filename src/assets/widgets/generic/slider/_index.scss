@@ -26,8 +26,8 @@ $generic-slider-radius: 2px;
 
   .dx-state-focused {
     &.dx-slider-handle:not(.dx-state-active) {
-      border: 1px solid $slider-handle-border-color;
-      background: $slider-handle-focused-bg;
+      border: 1px solid $slider-handle-focused-border-color;
+      // background: $slider-handle-focused-bg;
     }
   }
 
@@ -74,7 +74,6 @@ $generic-slider-radius: 2px;
   }
 }
 
-
 .dx-slider-handle {
   margin-top: math.div(-$generic-slider-height, 2);
   margin-right: math.div(-$generic-slider-width, 2);
@@ -90,8 +89,17 @@ $generic-slider-radius: 2px;
 .dx-state-disabled.dx-slider {
   opacity: 1;
 
+  & .dx-slider-handle {
+    background-color: $slider-disabled-bg;
+  }
+
+  & .dx-slider-range {
+    background: $slider-disabled-bg;
+    border-color: $slider-disabled-bg;
+  }
+
   .dx-slider-bar {
-    opacity: 0.5;
+    // opacity: 0.5;
   }
 }
 
@@ -120,4 +128,3 @@ $generic-slider-radius: 2px;
 .dx-rtl .dx-slider-handle {
   margin-left: math.div(-($generic-slider-width + 1px), 2);
 }
-
