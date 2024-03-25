@@ -12,25 +12,26 @@
 @use "../scrollable";
 @use "../badge";
 
-@mixin dx-tabs-border-mixin($border-horizontal, $border-vertical) {
+@mixin dx-tabs-border-mixin($border-horizontal, $border-top, $border-bottom) {
   &::after {
     content: "";
     pointer-events: none;
     position: absolute;
-    top: -1px;
-    bottom: -1px;
-    right: -1px;
-    left: -1px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
     border-right: $border-horizontal;
     border-left: $border-horizontal;
-    border-top: $border-vertical;
-    border-bottom: $border-vertical;
+    border-top: $border-top;
+    border-bottom: $border-bottom;
+    border-radius: 4px 4px 0 0;
     z-index: 1;
   }
 }
 
 .dx-tabs {
-  border: $generic-tabs-border;
+  // border: $generic-tabs-border;
 }
 
 .dx-tabs-scrollable {
@@ -38,7 +39,8 @@
   height: calc(100% + 2px);
 
   .dx-tabs-wrapper {
-    border: $generic-tabs-border;
+    border: 1px solid transparent;
+    // border-bottom-color: $tabs-border-color;
 
     .dx-tabs-nav-buttons & {
       border-left: $generic-tabs-transparent-border;
@@ -72,8 +74,18 @@
 
 .dx-tab {
   padding: $generic-tabs-item-padding;
-  background-color: $tabs-tab-bg;
+  background-color: transparent;
   color: $tabs-tab-color;
+  @include dx-tabs-border-mixin(none, none, $generic-tabs-border);
+  border-radius: 4px 4px 0 0;
+
+  &:focus {
+    background-color: $tabs-tab-hover-bg;
+
+    &::after {
+      border-bottom: 1px solid $tabs-hover-border-color;
+    }
+  }
 
   .dx-icon {
     color: $tabs-tab-icon-color;
@@ -84,27 +96,60 @@
     @include dx-icon-margin(math.div($generic-base-icon-size, 2));
   }
 
-  &.dx-state-hover {
+  &.dx-state-hover:not(.dx-tab-selected) {
     background-color: $tabs-tab-hover-bg;
+    border-radius: 4px 4px 0 0;
+
+    &::after {
+      border-bottom: 1px solid $tabs-hover-border-color;
+    }
   }
 
-  &.dx-state-active {
-    background-color: $tabs-tab-active-bg;
-    color: $tabs-tab-selected-color;
-  }
+  &.dx-state-disabled {
+    .dx-icon {
+      color: $tabs-disabled-color;
+    }
 
-  &.dx-state-focused {
-    @include dx-tabs-border-mixin($generic-tab-focus-border, $generic-tab-focus-border);
+    &::after {
+      border-bottom: 1px solid $tabs-disabled-border-color;
+    }
   }
 
   &.dx-tab-selected {
     background-color: $tabs-tab-selected-bg;
     color: $tabs-tab-selected-color;
   }
+
+  &.dx-state-focused {
+    // @include dx-tabs-border-mixin(
+    //   $generic-tab-focus-border,
+    //   $generic-tab-focus-border,
+    //   $generic-tab-focus-border
+    // );
+    background-color: $tabs-tab-hover-bg;
+
+    &::after {
+      border-bottom: 1px solid $tabs-hover-border-color;
+    }
+  }
+
+  &.dx-state-active {
+    background-color: $tabs-tab-active-bg;
+    color: $tabs-tab-selected-color;
+    // @include dx-tabs-border-mixin(none, none, $generic-tabs-border);
+
+    &::after {
+      border-bottom: 1px solid $tabs-hover-border-color;
+    }
+  }
 }
 
 .dx-tab-selected {
-  @include dx-tabs-border-mixin($generic-tabs-border, none);
+  @include dx-tabs-border-mixin(
+    $generic-tabs-border,
+    $generic-tabs-border,
+    none
+  );
 
   .dx-icon {
     color: $tabs-tab-icon-selected-color;
@@ -135,6 +180,7 @@
   }
 
   .dx-tab-content {
-    opacity: 0.3;
+    // opacity: 0.3;
+    color: $tabs-disabled-color;
   }
 }

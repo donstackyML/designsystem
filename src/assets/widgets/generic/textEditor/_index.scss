@@ -108,10 +108,15 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     background-color: $texteditor-hover-filled-bg;
   }
 
-  &.dx-state-focused,
-  &.dx-state-active {
-    background-color: transparent;
+  &.dx-state-focused:not(.dx-state-readonly),
+  &.dx-state-active:not(.dx-state-readonly) {
+    background-color: $texteditor-focused-filled-bg;
     border-color: $texteditor-focused-border-color;
+  }
+
+  &.dx-state-disabled,
+  &.dx-state-readonly {
+    background: $texteditor-readonly-bg;
   }
 }
 

@@ -9,8 +9,11 @@
 
 // adduse
 
-
-$generic-treeview-search-editor-height: round($generic-base-line-height * $generic-base-font-size) + $generic-base-inline-borderedwidget-top-padding + $generic-base-inline-borderedwidget-bottom-padding + 2 * $generic-base-border-width;
+$generic-treeview-search-editor-height: round(
+    $generic-base-line-height * $generic-base-font-size
+  ) + $generic-base-inline-borderedwidget-top-padding +
+  $generic-base-inline-borderedwidget-bottom-padding + 2 *
+  $generic-base-border-width;
 $generic-treeview-toggle-item-visibility-offset: -4px;
 
 .dx-treeview-node-loadindicator {
@@ -22,7 +25,15 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
 
 .dx-treeview {
   &.dx-rtl {
-    @include dx-treeview-make-rtl($generic-treeview-container-with-border-offset, $generic-treeview-node-offset, $generic-treeview-item-with-checkbox-offset, $generic-treeview-checkbox-offset, $generic-select-all-text-offset, $generic-select-all-item-left-padding, $generic-treeview-border-padding);
+    @include dx-treeview-make-rtl(
+      $generic-treeview-container-with-border-offset,
+      $generic-treeview-node-offset,
+      $generic-treeview-item-with-checkbox-offset,
+      $generic-treeview-checkbox-offset,
+      $generic-select-all-text-offset,
+      $generic-select-all-item-left-padding,
+      $generic-treeview-border-padding
+    );
 
     .dx-treeview-toggle-item-visibility {
       right: $generic-treeview-toggle-item-visibility-offset;
@@ -34,13 +45,17 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
   }
 }
 
-
 .dx-treeview-search {
   margin-bottom: $generic-treeview-searchbox-margin-bottom;
 }
 
 .dx-treeview-with-search > .dx-scrollable {
-  height: calc(100% - #{round($generic-treeview-search-editor-height + $generic-treeview-searchbox-margin-bottom)});
+  height: calc(
+    100% - #{round(
+        $generic-treeview-search-editor-height +
+          $generic-treeview-searchbox-margin-bottom
+      )}
+  );
 }
 
 .dx-treeview-border-visible {
@@ -114,7 +129,7 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
   &.dx-state-focused {
     > .dx-treeview-item {
       background-color: $treeview-focused-bg;
-      color: $treeview-focus-color;
+      color: $treeview-color;
     }
   }
 }

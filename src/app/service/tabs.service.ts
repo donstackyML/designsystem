@@ -6,6 +6,8 @@ export interface Tab {
   text?: string;
 
   icon?: string;
+
+  disabled?: boolean;
 }
 
 const tabsWithText: Tab[] = [
@@ -32,33 +34,7 @@ const tabsWithText: Tab[] = [
   {
     id: 5,
     text: 'Search',
-  },
-];
-
-const tabsWithIcon: Tab[] = [
-  {
-    id: 0,
-    icon: 'user',
-  },
-  {
-    id: 1,
-    icon: 'chart',
-  },
-  {
-    id: 2,
-    icon: 'accountbox',
-  },
-  {
-    id: 3,
-    icon: 'ordersbox',
-  },
-  {
-    id: 4,
-    icon: 'bookmark',
-  },
-  {
-    id: 5,
-    icon: 'search',
+    disabled: true,
   },
 ];
 
@@ -92,6 +68,7 @@ const tabsWithIconAndText: Tab[] = [
     id: 5,
     text: 'Search',
     icon: 'search',
+    disabled: true,
   },
 ];
 
@@ -105,9 +82,5 @@ export class TabsService {
 
   getTabsWithIconAndText(): Tab[] {
     return tabsWithIconAndText;
-  }
-
-  getTabsWithIcon(): Tab[] {
-    return tabsWithIcon;
   }
 }
