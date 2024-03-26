@@ -25,6 +25,7 @@ const componentsRoute: string[] = [
   'toolbar',
   'drawer',
   'fieldset',
+  'dropdown-button',
 ];
 
 const componentsName: string[] = [
@@ -52,6 +53,7 @@ const componentsName: string[] = [
   'Toolbar',
   'Drawer',
   'Fieldset',
+  'Dropdown Button',
 ];
 
 @Injectable({

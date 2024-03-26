@@ -24,6 +24,7 @@ import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { MeTestComponent } from './me-test/me-test.component';
+import { DropdownButtonComponent } from './components/dropdown-button/dropdown-button.component';
 
 const routes: Routes = [
   { path: '', component: AllComponentsComponent },
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'toolbar', component: ToolBarComponent },
   { path: 'drawer', component: DrawerComponent },
   { path: 'fieldset', component: FieldsetComponent },
+  { path: 'dropdown-button', component: DropdownButtonComponent },
 ];
 
 @NgModule({

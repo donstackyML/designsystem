@@ -33,6 +33,7 @@ import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { ButtonDirective } from './directives/button.directive';
 import { MeTestComponent } from './me-test/me-test.component';
+import { DropdownButtonComponent } from './components/dropdown-button/dropdown-button.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { MeTestComponent } from './me-test/me-test.component';
     AllComponentsComponent,
     MeTestComponent,
     ButtonDirective,
+    DropdownButtonComponent,
   ],
   imports: [
     BrowserModule,
