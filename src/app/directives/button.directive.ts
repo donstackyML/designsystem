@@ -1,4 +1,5 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { DxButtonComponent } from 'devextreme-angular';
 import { Icon, IconStoreService } from '../service/icon-store.service';
 import { ThemesService } from '../service/themes.service';
 
@@ -34,6 +35,7 @@ export class ButtonDirective implements OnInit {
 
   constructor(
     private element: ElementRef,
+    private component: DxButtonComponent,
     private renderer: Renderer2,
     private themeService: ThemesService,
     private iconStoreService: IconStoreService
@@ -43,9 +45,8 @@ export class ButtonDirective implements OnInit {
 
   ngOnInit(): void {
     this.theme = this.themeService.theme;
-    console.log(this.theme);
 
-    this.element.nativeElement.innerHTML = `
+    this.component.template = `
       <div class="me-button-inner">
         ${this.getIconAsString(
           this.leftIcon,
@@ -70,23 +71,29 @@ export class ButtonDirective implements OnInit {
     if (this.iconOnly) {
       this.renderer.addClass(this.element.nativeElement, `me-button-icon-only`);
     }
+  }
 
+  ngAfterViewInit(): void {
     if (this.leftIconName) {
       this.leftIconPath = this.getIconPath(this.leftIconName);
 
       let leftIcon = this.createIconElement(this.leftIconPath);
-      this.element.nativeElement.firstElementChild.prepend(leftIcon);
+      this.element.nativeElement.firstElementChild.firstElementChild.prepend(
+        leftIcon
+      );
     }
 
     if (this.rightIconName) {
       this.rightIconPath = this.getIconPath(this.rightIconName);
 
       let rightIcon = this.createIconElement(this.rightIconPath);
-      this.element.nativeElement.firstElementChild.append(rightIcon);
+      this.element.nativeElement.firstElementChild.firstElementChild.append(
+        rightIcon
+      );
     }
   }
 
-  ngDoCheck() {
+  ngAfterViewChecked(): void {
     const theme = this.themeService.theme;
 
     const meBtnInner =
@@ -157,8 +164,6 @@ export class ButtonDirective implements OnInit {
   }
 
   getIconPath(iconPath: string) {
-    console.log(this.theme);
-
     return `assets/images/icons/${this.theme}/${iconPath}`;
   }
 }
