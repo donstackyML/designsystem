@@ -57,12 +57,12 @@ $generic-list-search-editor-height: round(
   border-color: transparent;
 
   &.dx-state-hover {
-    background-color: color.change($listsearch-hover-border-color, $alpha: 0.1);
+    background-color: $listsearch-hover-bg;
   }
 
   &.dx-state-focused,
   &.dx-state-active {
-    background-color: transparent;
+    background-color: $listsearch-focused-bg;
     border-color: $listsearch-hover-border-color;
   }
 }
@@ -92,34 +92,34 @@ $generic-list-search-editor-height: round(
     }
 
     &.dx-state-hover:not(.dx-state-focused) {
-      background-color: $list-item-selected-hover-bg;
+      background-color: $list-item-hover-bg;
       color: $list-item-color;
     }
 
     @include toggle-delete-icon($list-item-selected-color);
   }
 
-  &.dx-state-focused {
-    background-color: $list-focused-bg;
-    color: $list-item-focus-color;
+  // &.dx-state-focused {
+  //   background-color: $list-focused-bg;
+  //   color: $list-item-focus-color;
 
-    .dx-icon {
-      color: $list-item-focus-color;
-    }
+  //   .dx-icon {
+  //     color: $list-item-focus-color;
+  //   }
 
-    .dx-list-item-chevron {
-      border-color: $list-chevron-focus-color;
-    }
+  //   .dx-list-item-chevron {
+  //     border-color: $list-chevron-focus-color;
+  //   }
 
-    @include toggle-delete-icon($list-item-focus-color);
-  }
+  //   @include toggle-delete-icon($list-item-focus-color);
+  // }
 
-  &.dx-state-focused.dx-list-item-selected {
-    background-color: $list-item-focused-selected-bg;
-    color: $base-text-color;
-  }
+  // &.dx-state-focused.dx-list-item-selected {
+  //   background-color: $list-item-focused-selected-bg;
+  //   color: $base-text-color;
+  // }
 
-  &.dx-state-active {
+  &.dx-state-focused.dx-state-active {
     background-color: $list-item-active-bg;
     color: $list-item-active-color;
 
@@ -228,18 +228,14 @@ $generic-list-search-editor-height: round(
 
     @include toggle-delete-icon($list-icon-color);
 
-    &.dx-list-item-ghost-reordering {
+    &.dx-item.dx-list-item-ghost-reordering {
       &.dx-state-focused {
         &.dx-state-hover {
           color: $list-item-ghost-color;
           background: $list-item-ghost-bg;
-          border-top: 1px solid
-            color.change($list-item-ghost-border-color, $alpha: 0.5);
-          border-bottom: 1px solid
-            color.change($list-item-ghost-border-color, $alpha: 0.5);
-          box-shadow: 0 0 1px
-              color.change($list-item-ghost-shadow-color, $alpha: 0.1),
-            0 1px 3px color.change($list-item-ghost-shadow-color, $alpha: 0.2);
+          border-top: 1px solid $list-item-ghost-border-color;
+          border-bottom: 1px solid $list-item-ghost-border-color;
+          box-shadow: 0 1px 4px $list-item-ghost-shadow-color;
         }
       }
     }

@@ -66,16 +66,19 @@
 .dx-button-mode-contained {
   @include dx-button-styling-variant(
     $button-normal-bg,
-    $button-normal-border-color,
+    $button-normal-bg,
     $button-normal-color,
     $button-normal-contained-bg-hover,
-    $button-normal-border-color,
+    $button-normal-contained-bg-hover,
     $button-normal-contained-bg-focused,
-    $button-normal-border-color,
+    $button-normal-contained-bg-focused,
     $button-normal-contained-bg-active,
-    $button-normal-border-color,
+    $button-normal-contained-bg-active,
     $button-normal-color,
-    $button-normal-color
+    $button-normal-color,
+    $button-normal-contained-bg-disabled,
+    $button-normal-contained-bg-disabled,
+    $button-normal-contained-border-disabled
   );
 
   &.dx-button-danger {
@@ -90,7 +93,10 @@
       $button-danger-contained-bg-active,
       transparent,
       $button-danger-color,
-      $button-danger-color
+      $button-danger-color,
+      $button-danger-contained-bg-disabled,
+      transparent,
+      $button-danger-contained-border-disabled
     );
   }
 
@@ -106,7 +112,10 @@
       $button-success-contained-bg-active,
       transparent,
       $button-success-color,
-      $button-success-color
+      $button-success-color,
+      $button-success-contained-bg-disabled,
+      transparent,
+      $button-success-contained-text-disabled
     );
   }
 
@@ -122,7 +131,10 @@
       $button-default-contained-bg-active,
       transparent,
       $button-default-color,
-      $button-default-color
+      $button-default-color,
+      $button-default-bg-disabled,
+      $button-default-bg-disabled,
+      $button-default-border-disabled
     );
   }
 }
@@ -139,7 +151,10 @@
     $button-normal-outlined-bg-active,
     $button-normal-border-color,
     $button-normal-color,
-    $button-normal-color
+    $button-normal-color,
+    transparent,
+    $button-normal-contained-border-disabled,
+    $button-normal-contained-border-disabled
   );
 
   &.dx-button-danger {
@@ -154,7 +169,10 @@
       $button-danger-outlined-bg-active,
       $button-danger-border-color,
       $button-danger-border-color,
-      $button-danger-border-color
+      $button-danger-border-color,
+      transparent,
+      $button-danger-border-disabled,
+      $button-danger-border-disabled
     );
   }
 
@@ -170,7 +188,10 @@
       $button-success-outlined-bg-active,
       $button-success-border-color,
       $button-success-border-color,
-      $button-success-border-color
+      $button-success-border-color,
+      transparent,
+      $button-success-outlined-border-disabled,
+      $button-success-outlined-border-disabled
     );
   }
 
@@ -180,13 +201,16 @@
       $button-default-border-color,
       $button-default-border-color,
       $button-default-outlined-bg-hover,
-      $button-default-border-color,
+      $button-default-border-color-hover,
       $button-default-outlined-bg-focused,
-      $button-default-border-color,
+      $button-default-border-color-focused,
       $button-default-outlined-bg-active,
+      $button-default-border-color-focused,
       $button-default-border-color,
       $button-default-border-color,
-      $button-default-border-color
+      transparent,
+      $button-default-outlined-border-disabled,
+      $button-default-outlined-border-disabled
     );
   }
 }
@@ -203,7 +227,10 @@
     $button-normal-text-bg-active,
     transparent,
     $button-normal-color,
-    $button-normal-color
+    $button-normal-color,
+    transparent,
+    transparent,
+    $button-normal-contained-border-disabled
   );
 
   &.dx-button-danger {
@@ -218,7 +245,10 @@
       $button-danger-text-bg-active,
       transparent,
       $button-danger-border-color,
-      $button-danger-border-color
+      $button-danger-border-color,
+      transparent,
+      transparent,
+      $button-danger-border-disabled
     );
   }
 
@@ -234,7 +264,10 @@
       $button-success-text-bg-active,
       transparent,
       $button-success-border-color,
-      $button-success-border-color
+      $button-success-border-color,
+      transparent,
+      transparent,
+      $button-success-text-border-disabled
     );
   }
 
@@ -250,14 +283,17 @@
       $button-default-text-bg-active,
       transparent,
       $button-default-border-color,
-      $button-default-border-color
+      $button-default-border-color,
+      transparent,
+      transparent,
+      $button-default-text-bg-disabled
     );
   }
 }
 
 .dx-button-normal,
 .dx-button-back {
-  @include dx-button-special-hover($button-special-hover);
+  @include dx-button-special-hover(transparent);
 }
 
 .dx-texteditor-buttons-container {
