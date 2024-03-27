@@ -20,6 +20,7 @@ import { FilterBuilderComponent } from './components/filter-builder/filter-build
 import { FormComponent } from './components/form/form.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ListComponent } from './components/list/list.component';
+import { MeButtonComponent } from './components/me-button/me-button.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OverlaysComponent } from './components/overlays/overlays.component';
 import { PivotGridComponent } from './components/pivot-grid/pivot-grid.component';
@@ -32,9 +33,10 @@ import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { ButtonDirective } from './directives/button.directive';
-import { MeTestComponent } from './me-test/me-test.component';
-import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.component';
 import { MeButtonTestDirective } from './directives/me-button-test.directive';
+import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.component';
+import { PopoverDirective } from './directives/popover.directive';
+import { MePopoverComponent } from './components/me-popover/me-popover.component';
 
 @NgModule({
   declarations: [
@@ -63,10 +65,12 @@ import { MeButtonTestDirective } from './directives/me-button-test.directive';
     DrawerComponent,
     CustomSelectComponent,
     AllComponentsComponent,
-    MeTestComponent,
+    MeButtonComponent,
     ButtonDirective,
     MeButtonTestComponent,
     MeButtonTestDirective,
+    PopoverDirective,
+    MePopoverComponent,
   ],
   imports: [
     BrowserModule,

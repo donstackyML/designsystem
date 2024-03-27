@@ -23,34 +23,36 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
-import { MeTestComponent } from './me-test/me-test.component';
+import { MeButtonComponent } from './components/me-button/me-button.component';
+import { MePopoverComponent } from './components/me-popover/me-popover.component';
 
 const routes: Routes = [
   { path: '', component: AllComponentsComponent },
-  { path: 'all-components', component: AllComponentsComponent },
-  { path: 'me-test', component: MeTestComponent },
-  { path: 'buttons', component: ButtonsComponent },
-  { path: 'button-group', component: BtnGroupComponent },
-  { path: 'editors', component: EditorsComponent },
-  { path: 'pivot-grid', component: PivotGridComponent },
-  { path: 'data-grid', component: DataGridComponent },
-  { path: 'tree-list', component: TreeListComponent },
-  { path: 'scheduler', component: SchedulerComponent },
-  { path: 'form', component: FormComponent },
-  { path: 'list', component: ListComponent },
-  { path: 'filter-builder', component: FilterBuilderComponent },
-  { path: 'overlays', component: OverlaysComponent },
-  { path: 'menu', component: MenuComponent },
-  { path: 'tree-view', component: TreeViewComponent },
-  { path: 'accordion', component: AccordionComponent },
-  { path: 'gallery', component: GalleryComponent },
-  { path: 'tabs', component: TabsComponent },
-  { path: 'progress-bar', component: ProgressBarComponent },
-  { path: 'sliders', component: SlidersComponent },
-  { path: 'scroll-view', component: ScrollViewComponent },
-  { path: 'toolbar', component: ToolBarComponent },
-  { path: 'drawer', component: DrawerComponent },
-  { path: 'fieldset', component: FieldsetComponent },
+  // { path: 'all-components', component: AllComponentsComponent },
+  { path: 'me-buttons', component: MeButtonComponent },
+  { path: 'me-popover', component: MePopoverComponent },
+  // { path: 'buttons', component: ButtonsComponent },
+  // { path: 'button-group', component: BtnGroupComponent },
+  // { path: 'editors', component: EditorsComponent },
+  // { path: 'pivot-grid', component: PivotGridComponent },
+  // { path: 'data-grid', component: DataGridComponent },
+  // { path: 'tree-list', component: TreeListComponent },
+  // { path: 'scheduler', component: SchedulerComponent },
+  // { path: 'form', component: FormComponent },
+  // { path: 'list', component: ListComponent },
+  // { path: 'filter-builder', component: FilterBuilderComponent },
+  // { path: 'overlays', component: OverlaysComponent },
+  // { path: 'menu', component: MenuComponent },
+  // { path: 'tree-view', component: TreeViewComponent },
+  // { path: 'accordion', component: AccordionComponent },
+  // { path: 'gallery', component: GalleryComponent },
+  // { path: 'tabs', component: TabsComponent },
+  // { path: 'progress-bar', component: ProgressBarComponent },
+  // { path: 'sliders', component: SlidersComponent },
+  // { path: 'scroll-view', component: ScrollViewComponent },
+  // { path: 'toolbar', component: ToolBarComponent },
+  // { path: 'drawer', component: DrawerComponent },
+  // { path: 'fieldset', component: FieldsetComponent },
 ];
 
 @NgModule({
