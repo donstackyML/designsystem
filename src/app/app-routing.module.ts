@@ -25,6 +25,7 @@ import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { MeTestComponent } from './me-test/me-test.component';
 import { DropdownButtonComponent } from './components/dropdown-button/dropdown-button.component';
+import { TabPanelComponent } from './components/tab-panel/tab-panel.component';
 
 const routes: Routes = [
   { path: '', component: AllComponentsComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'accordion', component: AccordionComponent },
   { path: 'gallery', component: GalleryComponent },
   { path: 'tabs', component: TabsComponent },
+  { path: 'tab-panel', component: TabPanelComponent },
   { path: 'progress-bar', component: ProgressBarComponent },
   { path: 'sliders', component: SlidersComponent },
   { path: 'scroll-view', component: ScrollViewComponent },

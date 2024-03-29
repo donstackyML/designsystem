@@ -4967,6 +4967,19 @@
   color: rgba(24, 24, 26, 0.4);
 }
 
+.dx-tabpanel-tabs .dx-tab.dx-state-hover:not(.dx-tab-selected) {
+  border-bottom-color: #18181a;
+}
+
+.dx-tabpanel-tabs .dx-tab.dx-state-disabled:not(.dx-tab-selected) {
+  border-bottom: 1px solid rgba(24, 24, 26, 0.4);
+}
+
+.dx-tabpanel .dx-tabpanel-tabs .dx-tab.dx-state-focused.dx-tab-selected {
+  border-bottom-color: #18181a;
+  background: rgba(60, 113, 248, 0.2);
+}
+
 /**
 * $name 10. Tab text color
 * $type color
@@ -11079,6 +11092,19 @@
   -webkit-transform: rotate(-45deg) translateZ(0);
 }
 
+.me-popover .dx-popup-content {
+  background-color: #1d1e1f;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.me-popover.dx-popup-wrapper .dx-overlay-content {
+  border: 1px solid #1d1e1f;
+  background: #1d1e1f;
+  box-shadow: none;
+  border-radius: 4px;
+}
+
 .dx-popover-wrapper.dx-position-bottom .dx-popover-arrow::after {
   background: #ffffff;
 }
@@ -11091,11 +11117,11 @@
   padding-left: 15px;
 }
 .dx-popover-wrapper .dx-popover-arrow::after, .dx-popover-wrapper.dx-popover-without-title .dx-popover-arrow::after {
-  background: #ffffff;
+  background: #1d1e1f;
 }
 
 .dx-popover-arrow::after {
-  border: 1px solid #dfe0ed;
+  border: 1px solid #1d1e1f;
 }
 
 .dx-popover-wrapper .dx-rtl.dx-popup-title.dx-toolbar {
@@ -19017,7 +19043,6 @@ input.dx-hidden {
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs {
   display: block;
   border: none;
-  background-color: #ecedf3;
   color: #dfe0ed;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab {
@@ -19025,6 +19050,9 @@ input.dx-hidden {
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab .dx-tab-content {
   color: #18181a;
+}
+.dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab.dx-state-disabled .dx-tab-content {
+  color: rgba(24, 24, 26, 0.4);
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab::after, .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab::before {
   content: none;
@@ -19046,76 +19074,84 @@ input.dx-hidden {
 }
 .dx-tabpanel:not(.dx-empty-collection) .dx-multiview-wrapper {
   border-top: none;
+  box-shadow: 0px -1px #dfe0ed;
+  background: #ffffff;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs {
-  box-shadow: inset 0 -1px #dfe0ed, inset 0 1px, inset -1px 0, inset 1px 0;
+  box-shadow: inset 0 0 #dfe0ed, inset 0 0, inset 0 0, inset 0 0;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tab {
-  box-shadow: inset 0 1px, inset 0 -1px #dfe0ed;
+  border-bottom: 1px solid transparent;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-selected {
-  box-shadow: inset 0 1px #dfe0ed, inset -1px 0 #dfe0ed, inset 1px 0 #dfe0ed;
+  border-top: 1px solid #dfe0ed;
+  border-left: 1px solid #dfe0ed;
+  border-right: 1px solid #dfe0ed;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-selected .dx-tab-content, .dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-active .dx-tab-content {
   color: #18181a;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type {
-  box-shadow: inset 0 -1px #dfe0ed, inset 1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #dfe0ed, inset 0 0, inset 0 0;
 }
 .dx-rtl.dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type, .dx-rtl .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type {
-  box-shadow: inset 0 -1px #dfe0ed, inset -1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #dfe0ed, inset 0 0, inset 0 0;
 }
 
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-stretched .dx-tab:not(.dx-tab-selected):last-of-type {
-  box-shadow: inset 0 -1px #dfe0ed, inset -1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #dfe0ed, inset 0 0, inset 0 0;
 }
 .dx-rtl.dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-stretched .dx-tab:not(.dx-tab-selected):last-of-type, .dx-rtl .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-stretched .dx-tab:not(.dx-tab-selected):last-of-type {
-  box-shadow: inset 0 -1px #dfe0ed, inset 1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #dfe0ed, inset 0 0, inset 0 0;
 }
 
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-nav-button-left {
-  box-shadow: inset 0 -1px #dfe0ed, inset 1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #dfe0ed, inset 0 0, inset 0 0;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-nav-button-right {
-  box-shadow: inset 0 -1px #dfe0ed, inset 0 1px, inset -1px 0;
+  box-shadow: inset 0 0 #dfe0ed, inset 0 0, inset 0 0;
 }
 .dx-tabpanel .dx-multiview-wrapper {
   border-color: #dfe0ed;
+  box-shadow: 0px -1px #dfe0ed;
 }
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs {
-  box-shadow: inset 0 -1px #3257dc, inset 0 1px, inset -1px 0, inset 1px 0;
+  box-shadow: inset 0 0 #3257dc, inset 0 0, inset 0 0, inset 0 0;
 }
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab {
-  box-shadow: inset 0 1px, inset 0 -1px #3257dc;
+  border-bottom: 1px solid transparent;
 }
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab.dx-tab-selected {
-  box-shadow: inset 0 1px #3257dc, inset -1px 0 #3257dc, inset 1px 0 #3257dc;
+  border-top: 1px solid #3257dc;
+  border-left: 1px solid #3257dc;
+  border-right: 1px solid #3257dc;
 }
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab.dx-tab-selected .dx-tab-content, .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab.dx-tab-active .dx-tab-content {
   color: #18181a;
 }
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type {
-  box-shadow: inset 0 -1px #3257dc, inset 1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #3257dc, inset 0 0, inset 0 0;
 }
 .dx-rtl.dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type, .dx-rtl .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type {
-  box-shadow: inset 0 -1px #3257dc, inset -1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #3257dc, inset 0 0, inset 0 0;
 }
 
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-stretched .dx-tab:not(.dx-tab-selected):last-of-type {
-  box-shadow: inset 0 -1px #3257dc, inset -1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #3257dc, inset 0 0, inset 0 0;
 }
 .dx-rtl.dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-stretched .dx-tab:not(.dx-tab-selected):last-of-type, .dx-rtl .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-stretched .dx-tab:not(.dx-tab-selected):last-of-type {
-  box-shadow: inset 0 -1px #3257dc, inset 1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #3257dc, inset 0 0, inset 0 0;
 }
 
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-nav-button-left {
-  box-shadow: inset 0 -1px #3257dc, inset 1px 0, inset 0 1px;
+  box-shadow: inset 0 0 #3257dc, inset 0 0, inset 0 0;
 }
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-nav-button-right {
-  box-shadow: inset 0 -1px #3257dc, inset 0 1px, inset -1px 0;
+  box-shadow: inset 0 0 #3257dc, inset 0 0, inset 0 0;
 }
 .dx-tabpanel.dx-state-focused .dx-multiview-wrapper {
   border-color: #3257dc;
+  box-shadow: 0px -1px #3257dc;
 }
 .dx-tabpanel .dx-multiview-wrapper {
   border: 1px solid #dfe0ed;

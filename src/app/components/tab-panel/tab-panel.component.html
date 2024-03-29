@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <h1 class="wrapper__title dx-widget">Tab Panel (primary)</h1>
+  <dx-tab-panel id="tabPanel" [loop]="true" [animationEnabled]="true" [swipeEnabled]="true">
+    <dxi-item title="Employee" icon="floppy">
+      <div *dxTemplate class="tab-panel__item">
+        <dx-form id="form" [formData]="employeeData">
+          <dxi-item dataField="name">
+            <dxo-label template="name"></dxo-label>
+          </dxi-item>
+          <dxi-item dataField="position">
+            <dxo-label template="position"></dxo-label>
+          </dxi-item>
+          <dxi-item dataField="hireDate"></dxi-item>
+          <dxi-item dataField="officeNumber">
+            <dxo-label template="officeNumber"></dxo-label>
+          </dxi-item>
+          <ng-container *ngFor="let label of labelTemplates">
+            <div *dxTemplate="let data of label.name">
+              <div><i class="dx-icon {{ label.icon }}"></i>{{ data.text }}</div>
+            </div>
+          </ng-container>
+        </dx-form>
+      </div>
+    </dxi-item>
+    <dxi-item title="Notes" icon="comment">
+      <div *dxTemplate class="tab-panel__item">
+        <dx-text-area [(value)]="employeeData.notes" width="200px" height="150px"> </dx-text-area>
+      </div>
+    </dxi-item>
+    <dxi-item title="Role" icon="isnotblank" badge="new" [disabled]="true">
+      <div *dxTemplate class="tab-panel__item">
+        <dx-radio-group [items]="employeeData.roles"> </dx-radio-group>
+      </div>
+    </dxi-item>
+  </dx-tab-panel>
+</div>
