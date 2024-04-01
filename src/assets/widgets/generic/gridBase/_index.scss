@@ -395,7 +395,7 @@ $grid-masterdetail-padding: 20px;
   }
 
   .dx-#{$widget-name}-focus-overlay {
-    border: 1px solid $datagrid-focused-border-color;
+    border: 2px solid $datagrid-focused-border-color;
   }
 
   .dx-#{$widget-name}-table {
@@ -484,7 +484,7 @@ $grid-masterdetail-padding: 20px;
         background-color: transparent;
 
         &::after {
-          border: 1px solid $datagrid-focused-border-color;
+          border: 2px solid $datagrid-focused-border-color;
         }
 
         &.dx-menu-item-expanded {
@@ -551,7 +551,7 @@ $grid-masterdetail-padding: 20px;
         }
 
         &.dx-state-focused::after {
-          border: 1px solid $datagrid-focused-border-color;
+          border: 2px solid $datagrid-focused-border-color;
         }
       }
     }
@@ -721,7 +721,7 @@ $grid-masterdetail-padding: 20px;
         &.dx-cell-modified,
         &.dx-#{$widget-name}-invalid {
           &::after {
-            border: 1px solid $datagrid-row-invalid-faded-border-color;
+            border: 2px solid $datagrid-row-invalid-faded-border-color;
           }
         }
 
@@ -729,7 +729,7 @@ $grid-masterdetail-padding: 20px;
           &.dx-cell-modified,
           &.dx-#{$widget-name}-invalid {
             &::after {
-              border: 1px solid $datagrid-row-invalid-border-color;
+              border: 2px solid $datagrid-row-invalid-border-color;
             }
           }
         }
@@ -767,7 +767,7 @@ $grid-masterdetail-padding: 20px;
       }
 
       .dx-#{$widget-name}-invalid {
-        border: 1px solid $datagrid-row-invalid-faded-border-color;
+        border: 2px solid $datagrid-row-invalid-faded-border-color;
 
         &.dx-adaptive-item-text {
           padding-top: $generic-grid-base-adaptive-text-padding - 1px;
@@ -793,7 +793,7 @@ $grid-masterdetail-padding: 20px;
         outline: none;
       }
 
-      &.dx-data-row {
+      &.dx-data-row:not(.dx-edit-row):not(.dx-sortable-source) {
         & > td:not(.dx-focused),
         & > tr > td:not(.dx-focused),
         & .dx-command-edit:not(.dx-focused) .dx-link {
@@ -811,7 +811,8 @@ $grid-masterdetail-padding: 20px;
         }
 
         & .dx-command-edit .dx-link:focus {
-          background-color: $datagrid-base-background-color;
+          // background-color: $datagrid-base-background-color;
+          // border: 2px solid #7eb9ff;
           color: $datagrid-base-color;
         }
 
