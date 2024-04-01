@@ -395,7 +395,7 @@ $grid-masterdetail-padding: 20px;
   }
 
   .dx-#{$widget-name}-focus-overlay {
-    border: 2px solid $datagrid-focused-border-color;
+    border: 1px solid $datagrid-focused-border-color;
   }
 
   .dx-#{$widget-name}-table {
@@ -484,7 +484,7 @@ $grid-masterdetail-padding: 20px;
         background-color: transparent;
 
         &::after {
-          border: 2px solid $datagrid-focused-border-color;
+          border: 1px solid $datagrid-focused-border-color;
         }
 
         &.dx-menu-item-expanded {
@@ -551,7 +551,7 @@ $grid-masterdetail-padding: 20px;
         }
 
         &.dx-state-focused::after {
-          border: 2px solid $datagrid-focused-border-color;
+          border: 1px solid $datagrid-focused-border-color;
         }
       }
     }
@@ -817,7 +817,7 @@ $grid-masterdetail-padding: 20px;
 
         & > td,
         & > tr:last-child > td {
-          border-bottom: 1px solid $datagrid-focused-border-color;
+          // border-bottom: 1px solid $datagrid-focused-border-color;
         }
 
         &:not(.dx-row-lines) {
@@ -844,7 +844,7 @@ $grid-masterdetail-padding: 20px;
       }
     }
 
-    .dx-selection.dx-row:not(.dx-row-focused),
+    .dx-selection.dx-row,
     .dx-selection.dx-row:not(.dx-row-focused):hover {
       & > td,
       & > tr > td {
@@ -1103,3 +1103,23 @@ $grid-masterdetail-padding: 20px;
     }
   }
 }
+
+.dx-row:not(.dx-row-alt) {
+  & > td,
+  & > tr > td {
+    background: $datagrid-row-bg;
+  }
+}
+
+.dx-row.dx-header-row,
+.dx-row.dx-datagrid-filter-row {
+  & td,
+  .dx-editor-cell .dx-texteditor .dx-texteditor-input,
+  .dx-texteditor-container {
+    background: $datagrid-header-row-bg;
+  }
+}
+
+// .dx-row.dx-selection td {
+//   background: black;
+// }

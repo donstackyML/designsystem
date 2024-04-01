@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Sale, DataGridService } from 'src/app/service/data-grid.service';
+import { Component } from '@angular/core';
+import { DataGridService, Sale } from 'src/app/service/data-grid.service';
 
 @Component({
   selector: 'app-data-grid',
@@ -18,4 +18,17 @@ export class DataGridComponent {
     this.allMode = 'allPages';
     this.checkBoxesMode = 'onClick';
   }
+
+  onReorder = (e: any) => {
+    const visibleRows = e.component.getVisibleRows();
+    const toIndex = this.sales.findIndex(
+      (item) => item.orderId === visibleRows[e.toIndex].data.orderId
+    );
+    const fromIndex = this.sales.findIndex(
+      (item) => item.orderId === e.itemData.orderId
+    );
+
+    this.sales.splice(fromIndex, 1);
+    this.sales.splice(toIndex, 0, e.itemData);
+  };
 }

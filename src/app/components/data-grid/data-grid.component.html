@@ -7,9 +7,13 @@
     [showBorders]="true"
     [allowColumnReordering]="true"
     [rowAlternationEnabled]="true"
+    [rowDragging]="{ allowReordering: true }"
+    [showColumnLines]="true"
+    [showRowLines]="true"
     [hoverStateEnabled]="true"
     [focusedRowEnabled]="true"
   >
+    <dxo-row-dragging [allowReordering]="true" [onReorder]="onReorder" [showDragIcons]="true"></dxo-row-dragging>
     <dxo-column-chooser [enabled]="true" mode="dragAndDrop"> </dxo-column-chooser>
     <dxo-selection [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
     <dxo-paging [pageSize]="10"></dxo-paging>
