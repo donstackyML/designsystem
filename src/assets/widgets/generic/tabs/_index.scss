@@ -126,10 +126,10 @@
     //   $generic-tab-focus-border,
     //   $generic-tab-focus-border
     // );
-    background-color: $tabs-tab-hover-bg;
+    // background-color: $tabs-tab-hover-bg;
 
     &::after {
-      border-bottom: 1px solid $tabs-hover-border-color;
+      // border-bottom: 1px solid $tabs-hover-border-color;
     }
   }
 
@@ -195,6 +195,38 @@
 }
 
 .dx-tabpanel .dx-tabpanel-tabs .dx-tab.dx-state-focused.dx-tab-selected {
-  border-bottom-color: $tabpanel-tabs-hover-border-color;
-  background: $tabs-tab-active-bg;
+  // border-bottom-color: $tabpanel-tabs-hover-border-color;
+  // background: $tabs-tab-active-bg;
+}
+
+.dx-tab.dx-tab-selected {
+  position: relative;
+  // box-shadow: 0px -2px 0px 2px #ffffff, 0px -4px 0px 2px #7eb9ff;
+  // z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    height: calc(100% + 4px);
+    background-color: #7eb9ff;
+    border-color: transparent;
+    border-radius: 6px 6px 0 0;
+    left: -4px;
+    top: -4px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 4px);
+    height: calc(100% + 2px);
+    background-color: #ffffff;
+    border-radius: 4px 4px 0 0;
+    border: none;
+    left: -2px;
+    top: -2px;
+    z-index: -1;
+  }
 }

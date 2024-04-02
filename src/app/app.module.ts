@@ -35,6 +35,7 @@ import { ButtonDirective } from './directives/button.directive';
 import { MeTestComponent } from './me-test/me-test.component';
 import { DropdownButtonComponent } from './components/dropdown-button/dropdown-button.component';
 import { TabPanelComponent } from './components/tab-panel/tab-panel.component';
+import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { TabPanelComponent } from './components/tab-panel/tab-panel.component';
     ButtonDirective,
     DropdownButtonComponent,
     TabPanelComponent,
+    ContextMenuComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,7 @@ import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { MeTestComponent } from './me-test/me-test.component';
 import { DropdownButtonComponent } from './components/dropdown-button/dropdown-button.component';
 import { TabPanelComponent } from './components/tab-panel/tab-panel.component';
+import { ContextMenuComponent } from './components/context-menu/context-menu.component';
 
 const routes: Routes = [
   { path: '', component: AllComponentsComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'filter-builder', component: FilterBuilderComponent },
   { path: 'overlays', component: OverlaysComponent },
   { path: 'menu', component: MenuComponent },
+  { path: 'context-menu', component: ContextMenuComponent },
   { path: 'tree-view', component: TreeViewComponent },
   { path: 'accordion', component: AccordionComponent },
   { path: 'gallery', component: GalleryComponent },
