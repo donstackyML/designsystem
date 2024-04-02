@@ -4838,12 +4838,14 @@
   line-height: normal;
 }
 
+.dx-tabs {
+  position: relative;
+  box-shadow: 0 1px 0px 0px #3f4044;
+}
+
 .dx-tabs-scrollable {
   margin: -1px;
   height: calc(100% + 2px);
-}
-.dx-tabs-scrollable .dx-tabs-wrapper {
-  border: 1px solid transparent;
 }
 .dx-tabs-nav-buttons .dx-tabs-scrollable .dx-tabs-wrapper {
   border-left: 1px solid #43444c;
@@ -4873,22 +4875,10 @@
   padding: 9px;
   background-color: transparent;
   color: #ffffff;
+  position: relative;
+  top: 1px;
   border-radius: 4px 4px 0 0;
-}
-.dx-tab::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
-  border-right: none;
-  border-left: none;
-  border-top: none;
-  border-bottom: 1px solid #3f4044;
-  border-radius: 4px 4px 0 0;
-  z-index: 0;
+  border: 1px solid transparent;
 }
 .dx-tab:focus {
   background-color: rgba(60, 101, 248, 0.2509803922);
@@ -4928,43 +4918,28 @@
 .dx-tab.dx-state-hover:not(.dx-tab-selected) {
   background-color: rgba(60, 101, 248, 0.2509803922);
   border-radius: 4px 4px 0 0;
-}
-.dx-tab.dx-state-hover:not(.dx-tab-selected)::after {
   border-bottom: 1px solid #ffffff;
+}
+.dx-tab.dx-state-disabled {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3019607843);
 }
 .dx-tab.dx-state-disabled .dx-icon {
   color: rgba(255, 255, 255, 0.3019607843);
 }
-.dx-tab.dx-state-disabled::after {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3019607843);
-}
 .dx-tab.dx-tab-selected {
   background-color: #2e2e2f;
   color: #ffffff;
+  border-top-color: #3f4044;
+  border-left-color: #3f4044;
+  border-right-color: #3f4044;
+  border-bottom-color: #2e2e2f;
 }
 .dx-tab.dx-state-active {
   background-color: rgba(60, 101, 248, 0.4);
   color: #ffffff;
-}
-.dx-tab.dx-state-active::after {
   border-bottom: 1px solid #ffffff;
 }
 
-.dx-tab-selected::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
-  border-right: 1px solid #3f4044;
-  border-left: 1px solid #3f4044;
-  border-top: 1px solid #3f4044;
-  border-bottom: none;
-  border-radius: 4px 4px 0 0;
-  z-index: 0;
-}
 .dx-tab-selected .dx-icon {
   color: #ffffff;
 }
@@ -4992,14 +4967,10 @@
   border-bottom-color: #ffffff;
 }
 
-.dx-tabpanel-tabs .dx-tab.dx-state-disabled:not(.dx-tab-selected) {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3019607843);
-}
-
-.dx-tab.dx-tab-selected {
+.dx-tab.dx-state-focused {
   position: relative;
 }
-.dx-tab.dx-tab-selected::before {
+.dx-tab.dx-state-focused::before {
   content: "";
   position: absolute;
   width: calc(100% + 8px);
@@ -5011,7 +4982,7 @@
   top: -4px;
   z-index: -1;
 }
-.dx-tab.dx-tab-selected::after {
+.dx-tab.dx-state-focused::after {
   content: "";
   position: absolute;
   width: calc(100% + 4px);
@@ -19126,6 +19097,7 @@ input.dx-hidden {
   color: #3f4044;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab {
+  top: 0px;
   color: #3f4044;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs .dx-tab .dx-tab-content {
@@ -19160,16 +19132,13 @@ input.dx-hidden {
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs {
   box-shadow: inset 0 0 #3f4044, inset 0 0, inset 0 0, inset 0 0;
 }
-.dx-tabpanel > .dx-tabpanel-tabs .dx-tab {
-  border-bottom: 1px solid transparent;
-}
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-selected {
   border-top: 1px solid #3f4044;
   border-left: 1px solid #3f4044;
   border-right: 1px solid #3f4044;
 }
-.dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-selected .dx-tab-content, .dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-active .dx-tab-content {
-  color: #ffffff;
+.dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-active.dx-item {
+  border-bottom: 1px solid #ffffff;
 }
 .dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type {
   box-shadow: inset 0 0 #3f4044, inset 0 0, inset 0 0;
@@ -19198,16 +19167,13 @@ input.dx-hidden {
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs {
   box-shadow: inset 0 0 #3565e2, inset 0 0, inset 0 0, inset 0 0;
 }
-.dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab {
-  border-bottom: 1px solid transparent;
-}
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab.dx-tab-selected {
   border-top: 1px solid #3565e2;
   border-left: 1px solid #3565e2;
   border-right: 1px solid #3565e2;
 }
-.dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab.dx-tab-selected .dx-tab-content, .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab.dx-tab-active .dx-tab-content {
-  color: #ffffff;
+.dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tab.dx-tab-active.dx-item {
+  border-bottom: 1px solid #ffffff;
 }
 .dx-tabpanel.dx-state-focused > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type {
   box-shadow: inset 0 0 #3565e2, inset 0 0, inset 0 0;

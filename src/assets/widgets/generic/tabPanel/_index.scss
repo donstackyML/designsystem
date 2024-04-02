@@ -23,24 +23,14 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
     }
 
     .dx-tab {
-      // box-shadow: $generic-tabpanel-inset-shadow-top,
-      //   $generic-tabpanel-inset-shadow-bottom $accent-color;
-      border-bottom: 1px solid transparent;
-
       &.dx-tab-selected {
-        // box-shadow: $generic-tabpanel-inset-shadow-top $accent-color,
-        //   $generic-tabpanel-inset-shadow-right $accent-color,
-        //   $generic-tabpanel-inset-shadow-left $accent-color;
         border-top: 1px solid $accent-color;
         border-left: 1px solid $accent-color;
         border-right: 1px solid $accent-color;
       }
 
-      &.dx-tab-selected,
-      &.dx-tab-active {
-        .dx-tab-content {
-          color: $tabs-tab-selected-color;
-        }
+      &.dx-tab-active.dx-item {
+        border-bottom: 1px solid $tabs-hover-border-color;
       }
     }
 
@@ -100,10 +90,10 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
     .dx-tabs {
       display: block;
       border: none;
-      // background-color: $tabs-tab-bg;
       color: $tabs-border-color;
 
       .dx-tab {
+        top: 0px;
         color: $tabs-border-color;
 
         .dx-tab-content {
@@ -111,8 +101,6 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
         }
 
         &.dx-state-disabled {
-          // border-bottom: 1px solid $tabpanel-tabs-disabled-color;
-
           & .dx-tab-content {
             color: $tabpanel-tabs-disabled-color;
           }
@@ -157,10 +145,6 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
 
   &.dx-state-focused {
     @include tabpanel-shadow-mixin($tabs-focused-border-color);
-
-    // &.dx-tab {
-    //   background: black;
-    // }
   }
 
   .dx-multiview-wrapper {
@@ -168,16 +152,8 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
   }
 }
 
-// .dx-tabpanel {
-//   & .dx-state-disabled.dx-tab .dx-tab-content {
-//     color: #18181a66;
-//   }
-// }
-
 .dx-tabpanel .dx-tabpanel-tabs .dx-tab.dx-state-focused {
   position: relative;
-  // box-shadow: 0px -2px 0px 2px #ffffff, 0px -4px 0px 2px #7eb9ff;
-  // z-index: 1;
 
   &::before {
     content: "";

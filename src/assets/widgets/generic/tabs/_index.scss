@@ -12,26 +12,27 @@
 @use "../scrollable";
 @use "../badge";
 
-@mixin dx-tabs-border-mixin($border-horizontal, $border-top, $border-bottom) {
-  &::after {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-    border-right: $border-horizontal;
-    border-left: $border-horizontal;
-    border-top: $border-top;
-    border-bottom: $border-bottom;
-    border-radius: 4px 4px 0 0;
-    z-index: 0;
-  }
-}
+// @mixin dx-tabs-border-mixin($border-horizontal, $border-top, $border-bottom) {
+//   &::after {
+//     content: "";
+//     pointer-events: none;
+//     position: absolute;
+//     top: 0px;
+//     bottom: 0px;
+//     right: 0px;
+//     left: 0px;
+//     border-right: $border-horizontal;
+//     border-left: $border-horizontal;
+//     border-top: $border-top;
+//     border-bottom: $border-bottom;
+//     border-radius: 4px 4px 0 0;
+//     z-index: 0;
+//   }
+// }
 
 .dx-tabs {
-  // border: $generic-tabs-border;
+  position: relative;
+  box-shadow: 0 1px 0px 0px $tabs-border-color;
 }
 
 .dx-tabs-scrollable {
@@ -39,9 +40,6 @@
   height: calc(100% + 2px);
 
   .dx-tabs-wrapper {
-    border: 1px solid transparent;
-    // border-bottom-color: $tabs-border-color;
-
     .dx-tabs-nav-buttons & {
       border-left: $generic-tabs-transparent-border;
       border-right: $generic-tabs-transparent-border;
@@ -76,8 +74,11 @@
   padding: $generic-tabs-item-padding;
   background-color: transparent;
   color: $tabs-tab-color;
-  @include dx-tabs-border-mixin(none, none, $generic-tabs-border);
+  position: relative;
+  top: 1px;
+  // @include dx-tabs-border-mixin(none, none, $generic-tabs-border);
   border-radius: 4px 4px 0 0;
+  border: 1px solid transparent;
 
   &:focus {
     background-color: $tabs-tab-hover-bg;
@@ -99,57 +100,38 @@
   &.dx-state-hover:not(.dx-tab-selected) {
     background-color: $tabs-tab-hover-bg;
     border-radius: 4px 4px 0 0;
-
-    &::after {
-      border-bottom: 1px solid $tabs-hover-border-color;
-    }
+    border-bottom: 1px solid $tabs-hover-border-color;
   }
 
   &.dx-state-disabled {
     .dx-icon {
       color: $tabs-disabled-color;
     }
-
-    &::after {
-      border-bottom: 1px solid $tabs-disabled-border-color;
-    }
+    border-bottom: 1px solid $tabs-disabled-border-color;
   }
 
   &.dx-tab-selected {
     background-color: $tabs-tab-selected-bg;
     color: $tabs-tab-selected-color;
-  }
-
-  &.dx-state-focused {
-    // @include dx-tabs-border-mixin(
-    //   $generic-tab-focus-border,
-    //   $generic-tab-focus-border,
-    //   $generic-tab-focus-border
-    // );
-    // background-color: $tabs-tab-hover-bg;
-
-    &::after {
-      // border-bottom: 1px solid $tabs-hover-border-color;
-    }
+    border-top-color: $tabs-border-color;
+    border-left-color: $tabs-border-color;
+    border-right-color: $tabs-border-color;
+    border-bottom-color: $tabs-tab-selected-bg;
   }
 
   &.dx-state-active {
     background-color: $tabs-tab-active-bg;
     color: $tabs-tab-selected-color;
-    // @include dx-tabs-border-mixin(none, none, $generic-tabs-border);
-
-    &::after {
-      border-bottom: 1px solid $tabs-hover-border-color;
-    }
+    border-bottom: 1px solid $tabs-hover-border-color;
   }
 }
 
 .dx-tab-selected {
-  @include dx-tabs-border-mixin(
-    $generic-tabs-border,
-    $generic-tabs-border,
-    none
-  );
+  // @include dx-tabs-border-mixin(
+  //   $generic-tabs-border,
+  //   $generic-tabs-border,
+  //   none
+  // );
 
   .dx-icon {
     color: $tabs-tab-icon-selected-color;
@@ -180,7 +162,6 @@
   }
 
   .dx-tab-content {
-    // opacity: 0.3;
     color: $tabs-disabled-color;
   }
 }
@@ -189,20 +170,12 @@
   border-bottom-color: $tabpanel-tabs-hover-border-color;
 }
 
-.dx-tabpanel-tabs .dx-tab.dx-state-disabled:not(.dx-tab-selected) {
-  // border-bottom-color: $tabpanel-tabs-hover-border-color;
-  border-bottom: 1px solid $tabpanel-tabs-disabled-color;
-}
+// .dx-tabpanel-tabs .dx-tab.dx-state-disabled:not(.dx-tab-selected) {
+//   border-bottom: 1px solid $tabpanel-tabs-disabled-color;
+// }
 
-.dx-tabpanel .dx-tabpanel-tabs .dx-tab.dx-state-focused.dx-tab-selected {
-  // border-bottom-color: $tabpanel-tabs-hover-border-color;
-  // background: $tabs-tab-active-bg;
-}
-
-.dx-tab.dx-tab-selected {
+.dx-tab.dx-state-focused {
   position: relative;
-  // box-shadow: 0px -2px 0px 2px #ffffff, 0px -4px 0px 2px #7eb9ff;
-  // z-index: 1;
 
   &::before {
     content: "";
