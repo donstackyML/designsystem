@@ -615,6 +615,7 @@ $grid-masterdetail-padding: 20px;
         $button-success-color,
         $button-success-bg-disabled,
         $button-success-bg-disabled,
+        transparent,
         transparent
       );
     }
@@ -721,7 +722,7 @@ $grid-masterdetail-padding: 20px;
         &.dx-cell-modified,
         &.dx-#{$widget-name}-invalid {
           &::after {
-            border: 1px solid $datagrid-row-invalid-faded-border-color;
+            border: 2px solid $datagrid-row-invalid-faded-border-color;
           }
         }
 
@@ -729,7 +730,7 @@ $grid-masterdetail-padding: 20px;
           &.dx-cell-modified,
           &.dx-#{$widget-name}-invalid {
             &::after {
-              border: 1px solid $datagrid-row-invalid-border-color;
+              border: 2px solid $datagrid-row-invalid-border-color;
             }
           }
         }
@@ -767,7 +768,7 @@ $grid-masterdetail-padding: 20px;
       }
 
       .dx-#{$widget-name}-invalid {
-        border: 1px solid $datagrid-row-invalid-faded-border-color;
+        border: 2px solid $datagrid-row-invalid-faded-border-color;
 
         &.dx-adaptive-item-text {
           padding-top: $generic-grid-base-adaptive-text-padding - 1px;
@@ -793,7 +794,7 @@ $grid-masterdetail-padding: 20px;
         outline: none;
       }
 
-      &.dx-data-row {
+      &.dx-data-row:not(.dx-edit-row):not(.dx-sortable-source) {
         & > td:not(.dx-focused),
         & > tr > td:not(.dx-focused),
         & .dx-command-edit:not(.dx-focused) .dx-link {
@@ -811,13 +812,14 @@ $grid-masterdetail-padding: 20px;
         }
 
         & .dx-command-edit .dx-link:focus {
-          background-color: $datagrid-base-background-color;
+          // background-color: $datagrid-base-background-color;
+          // border: 2px solid #7eb9ff;
           color: $datagrid-base-color;
         }
 
         & > td,
         & > tr:last-child > td {
-          border-bottom: 1px solid $datagrid-focused-border-color;
+          // border-bottom: 1px solid $datagrid-focused-border-color;
         }
 
         &:not(.dx-row-lines) {
@@ -844,7 +846,7 @@ $grid-masterdetail-padding: 20px;
       }
     }
 
-    .dx-selection.dx-row:not(.dx-row-focused),
+    .dx-selection.dx-row,
     .dx-selection.dx-row:not(.dx-row-focused):hover {
       & > td,
       & > tr > td {
@@ -1015,6 +1017,7 @@ $grid-masterdetail-padding: 20px;
         $button-danger-color,
         $button-danger-bg-disabled,
         $button-danger-bg-disabled,
+        transparent,
         transparent
       );
 
@@ -1103,3 +1106,23 @@ $grid-masterdetail-padding: 20px;
     }
   }
 }
+
+.dx-row:not(.dx-row-alt) {
+  & > td,
+  & > tr > td {
+    background: $datagrid-row-bg;
+  }
+}
+
+.dx-row.dx-header-row,
+.dx-row.dx-datagrid-filter-row {
+  & td,
+  .dx-editor-cell .dx-texteditor .dx-texteditor-input,
+  .dx-texteditor-container {
+    background: $datagrid-header-row-bg;
+  }
+}
+
+// .dx-row.dx-selection td {
+//   background: black;
+// }

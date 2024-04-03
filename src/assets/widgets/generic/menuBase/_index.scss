@@ -17,9 +17,9 @@ $generic-menu-arrow-image-size: 7px;
 
 $generic-menu-popup-border: 1px solid $menu-popup-border-color;
 
-
 .dx-menu-item {
   color: $menu-color;
+  border-radius: 3px;
 
   &.dx-state-hover {
     color: $menu-item-hovered-color;
@@ -28,7 +28,13 @@ $generic-menu-popup-border: 1px solid $menu-popup-border-color;
 
   &.dx-state-focused {
     background-color: $menu-item-focused-bg;
-    color: $base-inverted-text-color;
+    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #7eb9ff;
+    z-index: 5000;
+
+    .dx-editor-cell & {
+      box-shadow: none;
+    }
+    // color: $base-inverted-text-color;
   }
 
   &.dx-menu-item-has-text {
@@ -57,6 +63,7 @@ $generic-menu-popup-border: 1px solid $menu-popup-border-color;
 .dx-menu-item.dx-state-active,
 .dx-menu-item-expanded {
   outline: none;
+  background-color: $menu-item-active-bg;
 }
 
 .dx-menu-base {
@@ -71,10 +78,13 @@ $generic-menu-popup-border: 1px solid $menu-popup-border-color;
   }
 
   .dx-menu-item-content {
-    padding: $generic-menu-item-padding-reduced $generic-menu-item-padding-base $generic-menu-item-padding-increased;
+    padding: $generic-menu-item-padding-reduced $generic-menu-item-padding-base
+      $generic-menu-item-padding-increased;
 
     .dx-menu-item-text {
-      padding: $generic-menu-item-padding-top-base $generic-menu-padding-big $generic-menu-item-padding-base $generic-menu-item-padding-base + $generic-base-icon-size;
+      padding: $generic-menu-item-padding-top-base $generic-menu-padding-big
+        $generic-menu-item-padding-base $generic-menu-item-padding-base +
+        $generic-base-icon-size;
     }
 
     .dx-menu-item-popout {
@@ -86,7 +96,9 @@ $generic-menu-popup-border: 1px solid $menu-popup-border-color;
   &.dx-rtl {
     .dx-menu-item-content {
       .dx-menu-item-text {
-        padding: $generic-menu-item-padding-top-base $generic-menu-item-padding-base + $generic-base-icon-size $generic-menu-item-padding-base $generic-menu-padding-big;
+        padding: $generic-menu-item-padding-top-base
+          $generic-menu-item-padding-base + $generic-base-icon-size
+          $generic-menu-item-padding-base $generic-menu-padding-big;
       }
 
       .dx-icon {

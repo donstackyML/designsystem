@@ -55,7 +55,8 @@ $generic-editor-custom-button-margin: 1px;
   $icon-color,
   $disable-background-color,
   $disable-border-color,
-  $disable-text-color
+  $disable-text-color,
+  $selected-background-color
 ) {
   background-color: $background-color;
   border-color: $border-color;
@@ -73,6 +74,8 @@ $generic-editor-custom-button-margin: 1px;
   &.dx-state-focused {
     background-color: $focused-background-color;
     border-color: $focused-border-color;
+    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #7eb9ff;
+    z-index: 1;
   }
 
   &.dx-state-active {
@@ -89,6 +92,10 @@ $generic-editor-custom-button-margin: 1px;
     & .dx-icon {
       color: $disable-text-color;
     }
+  }
+
+  &.me-state-selected {
+    background-color: $selected-background-color;
   }
 }
 

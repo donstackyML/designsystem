@@ -1,13 +1,13 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { DxPopoverComponent } from 'devextreme-angular';
-import { MeCommonType, MeSizeType } from '../types/types';
+import { MeCommonType } from '../types/types';
 
 @Directive({
   selector: '[mePopover]',
 })
 export class PopoverDirective {
   @Input() wrapperAttr: MeCommonType = {};
-  @Input() size: MeSizeType = 'medium';
+  // @Input() size: MeSizeType = 'medium';
 
   wrapperClasses: string = '';
 
@@ -18,7 +18,7 @@ export class PopoverDirective {
   ) {}
 
   ngOnInit(): void {
-    this.wrapperClasses = `me-popover ${this.size}`;
+    // this.wrapperClasses = `me-popover ${this.size}`;
 
     this.component.wrapperAttr = {
       ...this.wrapperAttr,

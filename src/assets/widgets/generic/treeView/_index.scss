@@ -76,6 +76,8 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
   margin: 0 0 $generic-treeview-container-with-border-offset 0;
   border-bottom: 1px solid $treeview-border-color;
   padding: $generic-select-all-item-padding;
+  display: flex;
+  align-items: center;
 
   .dx-checkbox-text {
     padding-left: $generic-select-all-text-offset;
@@ -128,7 +130,10 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
 
   &.dx-state-focused {
     > .dx-treeview-item {
+      position: relative;
       background-color: $treeview-focused-bg;
+      box-shadow: inset 0px 0px 0px 2px #7eb9ff, inset 0px 0px 0px 4px #ffffff;
+      z-index: 1;
       color: $treeview-color;
     }
   }
@@ -137,6 +142,7 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
 .dx-treeview-item {
   padding: $generic-treeview-item-padding;
   min-height: $generic-treeview-min-item-height;
+  border-radius: 3px;
 
   .dx-treeview-item-content > .dx-icon {
     @include dx-icon-sizing($generic-base-icon-size);

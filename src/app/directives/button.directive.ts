@@ -1,11 +1,18 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { DxButtonComponent } from 'devextreme-angular';
 import { Icon, IconStoreService } from '../service/icon-store.service';
 import { ThemesService } from '../service/themes.service';
+import { MeButtonSize, MeButtonStyle, MeButtonType } from '../types/types';
 
-type MeBtnSize = 'small' | 'normal' | 'large';
-
-const DEFAULT_ICON_COLOR = '#000000';
+const DEFAULT_ICON_COLOR = '#ffffff';
 const LARGE_ICON_SIZE = '16';
 const LARGE_ICON_ONLY_SIZE = '14';
 const DEFAULT_ICON_SIZE = '12';
@@ -14,8 +21,13 @@ const DEFAULT_ICON_ONLY_SIZE = '10';
 @Directive({
   selector: '[meButton]',
 })
-export class ButtonDirective implements OnInit {
-  @Input() size: MeBtnSize = 'normal';
+export class ButtonDirective
+  implements OnInit, AfterViewInit, AfterViewChecked
+{
+  @Input() size: MeButtonSize = 'medium';
+  @Input() type: MeButtonType = 'normal';
+  @Input() stylingMode: MeButtonStyle = 'contained';
+  @Input() disabled: boolean = false;
   @Input() text: string = '';
   @Input() leftIcon: string = '';
   @Input() rightIcon: string = '';
@@ -25,10 +37,12 @@ export class ButtonDirective implements OnInit {
   @Input() iconSize: string = '';
   @Input() leftIconSize: string = '';
   @Input() rightIconSize: string = '';
-  @Input() iconColor: string = '#fff';
+  @Input() iconColor: string = DEFAULT_ICON_COLOR;
   @Input() leftIconColor: string = '';
   @Input() rightIconColor: string = '';
-  leftIconPath = this.getIconPath(this.leftIconName);
+  @Input() selectionStateEnable: boolean = false;
+  @Input() isSelected: boolean = false;
+  leftIconPath = '';
   rightIconPath = '';
   theme = 'light';
   icons: Icon;
@@ -45,6 +59,14 @@ export class ButtonDirective implements OnInit {
 
   ngOnInit(): void {
     this.theme = this.themeService.theme;
+
+    if (this.stylingMode !== 'contained' || this.type === 'normal') {
+      this.iconColor = `var(--button-${this.type}-icon-color)`;
+    }
+
+    if (this.disabled) {
+      this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
+    }
 
     this.component.template = `
       <div class="me-button-inner">
@@ -68,8 +90,34 @@ export class ButtonDirective implements OnInit {
       `me-button-${this.size}`
     );
 
+    if (this.type === 'warning') {
+      this.renderer.addClass(this.element.nativeElement, `me-button-warning`);
+    }
+
     if (this.iconOnly) {
       this.renderer.addClass(this.element.nativeElement, `me-button-icon-only`);
+    }
+
+    if (this.isSelected) {
+      this.renderer.addClass(this.element.nativeElement, `me-state-selected`);
+    }
+
+    if (this.selectionStateEnable) {
+      this.renderer.listen(this.element.nativeElement, 'click', () => {
+        this.isSelected = !this.isSelected;
+
+        if (this.isSelected) {
+          this.renderer.addClass(
+            this.element.nativeElement,
+            `me-state-selected`
+          );
+        } else {
+          this.renderer.removeClass(
+            this.element.nativeElement,
+            `me-state-selected`
+          );
+        }
+      });
     }
   }
 
@@ -120,10 +168,15 @@ export class ButtonDirective implements OnInit {
     }
   }
 
+  // toggleButtonSelection() {
+  // console.log('Button selected');
+  // this.renderer.addClass(this.element.nativeElement, `me-button-selected`);
+  // }
+
   getIconAsString(icon: string, iconColor: string, iconSize: string) {
     return icon
       ? this.icons[icon]
-          .replaceAll('color', iconColor ? iconColor : DEFAULT_ICON_COLOR)
+          .replaceAll('color', iconColor)
           .replaceAll('iconSize', this.getIconSize(iconSize))
       : '';
   }

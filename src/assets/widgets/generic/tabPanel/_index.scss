@@ -9,40 +9,43 @@
 
 // adduse
 
-$generic-tabpanel-inset-shadow-left: inset $generic-tabs-border-width 0;
-$generic-tabpanel-inset-shadow-top: inset 0 $generic-tabs-border-width;
-$generic-tabpanel-inset-shadow-right: inset (-$generic-tabs-border-width) 0;
-$generic-tabpanel-inset-shadow-bottom: inset 0 (-$generic-tabs-border-width);
+$generic-tabpanel-inset-shadow-left: inset 0 0;
+$generic-tabpanel-inset-shadow-top: inset 0 0;
+$generic-tabpanel-inset-shadow-right: inset 0 0;
+$generic-tabpanel-inset-shadow-bottom: inset 0 0;
 
 @mixin tabpanel-shadow-mixin($accent-color) {
   & > .dx-tabpanel-tabs {
     .dx-tabs {
-      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color, $generic-tabpanel-inset-shadow-top, $generic-tabpanel-inset-shadow-right, $generic-tabpanel-inset-shadow-left;
+      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
+        $generic-tabpanel-inset-shadow-top, $generic-tabpanel-inset-shadow-right,
+        $generic-tabpanel-inset-shadow-left;
     }
 
     .dx-tab {
-      box-shadow: $generic-tabpanel-inset-shadow-top, $generic-tabpanel-inset-shadow-bottom $accent-color;
-
       &.dx-tab-selected {
-        box-shadow: $generic-tabpanel-inset-shadow-top $accent-color, $generic-tabpanel-inset-shadow-right $accent-color, $generic-tabpanel-inset-shadow-left $accent-color;
+        border-top: 1px solid $accent-color;
+        border-left: 1px solid $accent-color;
+        border-right: 1px solid $accent-color;
       }
 
-      &.dx-tab-selected,
-      &.dx-tab-active {
-        .dx-tab-content {
-          color: $tabs-tab-selected-color;
-        }
+      &.dx-tab-active.dx-item {
+        border-bottom: 1px solid $tabs-hover-border-color;
       }
     }
 
     .dx-tabs-expanded {
       .dx-tab:not(.dx-tab-selected) {
         &:first-of-type {
-          box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color, $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
+          box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
+            $generic-tabpanel-inset-shadow-left,
+            $generic-tabpanel-inset-shadow-top;
 
           @at-root #{selector-append(".dx-rtl", &)},
-          .dx-rtl & {
-            box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color, $generic-tabpanel-inset-shadow-right, $generic-tabpanel-inset-shadow-top;
+            .dx-rtl & {
+            box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
+              $generic-tabpanel-inset-shadow-right,
+              $generic-tabpanel-inset-shadow-top;
           }
         }
       }
@@ -51,27 +54,34 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 (-$generic-tabs-border-width);
     .dx-tabs-stretched {
       .dx-tab:not(.dx-tab-selected) {
         &:last-of-type {
-          box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color, $generic-tabpanel-inset-shadow-right, $generic-tabpanel-inset-shadow-top;
+          box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
+            $generic-tabpanel-inset-shadow-right,
+            $generic-tabpanel-inset-shadow-top;
 
           @at-root #{selector-append(".dx-rtl", &)},
-          .dx-rtl & {
-            box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color, $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
+            .dx-rtl & {
+            box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
+              $generic-tabpanel-inset-shadow-left,
+              $generic-tabpanel-inset-shadow-top;
           }
         }
       }
     }
 
     .dx-tabs-nav-button-left {
-      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color, $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
+      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
+        $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
     }
 
     .dx-tabs-nav-button-right {
-      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color, $generic-tabpanel-inset-shadow-top, $generic-tabpanel-inset-shadow-right;
+      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
+        $generic-tabpanel-inset-shadow-top, $generic-tabpanel-inset-shadow-right;
     }
   }
 
   .dx-multiview-wrapper {
     border-color: $accent-color;
+    box-shadow: 0px -1px $accent-color;
   }
 }
 
@@ -80,14 +90,20 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 (-$generic-tabs-border-width);
     .dx-tabs {
       display: block;
       border: none;
-      background-color: $tabs-tab-bg;
       color: $tabs-border-color;
 
       .dx-tab {
+        top: 0px;
         color: $tabs-border-color;
 
         .dx-tab-content {
           color: $tabs-tab-color;
+        }
+
+        &.dx-state-disabled {
+          & .dx-tab-content {
+            color: $tabpanel-tabs-disabled-color;
+          }
         }
 
         &::after,
@@ -111,7 +127,7 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 (-$generic-tabs-border-width);
       height: 100%;
 
       .dx-tabs-wrapper {
-        display: block;
+        display: table;
         border: none;
       }
     }
@@ -120,6 +136,8 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 (-$generic-tabs-border-width);
   &:not(.dx-empty-collection) {
     .dx-multiview-wrapper {
       border-top: none;
+      box-shadow: 0px -1px $tabs-border-color;
+      background: $multiview-wrapper-bg;
     }
   }
 
@@ -131,5 +149,35 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 (-$generic-tabs-border-width);
 
   .dx-multiview-wrapper {
     border: $generic-tabs-border;
+  }
+}
+
+.dx-tabpanel .dx-tabpanel-tabs .dx-tab.dx-state-focused {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    height: calc(100% + 4px);
+    background-color: #7eb9ff;
+    border-color: transparent;
+    border-radius: 6px 6px 0 0;
+    left: -4px;
+    top: -4px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 4px);
+    height: calc(100% + 2px);
+    background-color: #ffffff;
+    border-radius: 4px 4px 0 0;
+    border: none;
+    left: -2px;
+    top: -2px;
+    z-index: -1;
   }
 }

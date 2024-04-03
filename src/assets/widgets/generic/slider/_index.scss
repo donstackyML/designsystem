@@ -103,25 +103,28 @@ $generic-slider-radius: 2px;
   }
 }
 
-.dx-invalid {
+.dx-invalid.dx-slider {
   .dx-slider-handle {
-    background-color: $base-invalid-color;
+    background-color: $slider-invalid-handle-accent-bg;
   }
 
   .dx-slider-range-visible {
-    background-color: $base-invalid-color;
-    border-color: $base-invalid-color;
+    background-color: $slider-invalid-handle-accent-bg;
+    border-color: $slider-invalid-handle-accent-bg;
   }
 
   .dx-slider-bar {
     background-color: color.change($base-invalid-color, $alpha: 0.4);
   }
 
-  .dx-state-hover,
-  .dx-state-focused {
+  .dx-state-hover {
     &.dx-slider-handle:not(.dx-state-active) {
-      background: $slider-invalid-handle-accent-bg;
+      background: $slider-invalid-handle-accent-bg-hover;
     }
+  }
+
+  .dx-state-active.dx-slider-handle {
+    background: $slider-invalid-handle-accent-bg-active;
   }
 }
 
