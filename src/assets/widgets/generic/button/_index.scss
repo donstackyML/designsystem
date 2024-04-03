@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "colors" as *;
 @use "../colors" as *;
+@use "../buttonGroup/colors" as *;
 @use "sizes" as *;
 @use "../sizes" as *;
 @use "../../base/icons" as *;
@@ -18,7 +19,7 @@
     font-size: 13px;
     line-height: 16px;
   }
-  &.me-button-normal > .dx-button-content .dx-button-text {
+  &.me-button-medium > .dx-button-content .dx-button-text {
     font-size: 14px;
     line-height: 20px;
   }
@@ -59,7 +60,7 @@
   @include dx-button-styling();
 
   &.me-button {
-    border-width: 0px;
+    border-width: 1px;
   }
 }
 
@@ -78,7 +79,8 @@
     $button-normal-color,
     $button-normal-contained-bg-disabled,
     $button-normal-contained-bg-disabled,
-    $button-normal-contained-border-disabled
+    $button-normal-contained-border-disabled,
+    $button-group-normal-contained-selected-bg
   );
 
   &.dx-button-danger {
@@ -96,7 +98,8 @@
       $button-danger-color,
       $button-danger-contained-bg-disabled,
       transparent,
-      $button-danger-contained-border-disabled
+      $button-danger-contained-border-disabled,
+      $button-group-danger-contained-selected-bg
     );
   }
 
@@ -115,7 +118,8 @@
       $button-success-color,
       $button-success-contained-bg-disabled,
       transparent,
-      $button-success-contained-text-disabled
+      $button-success-contained-text-disabled,
+      $button-group-success-contained-selected-bg
     );
   }
 
@@ -134,7 +138,28 @@
       $button-default-color,
       $button-default-bg-disabled,
       $button-default-bg-disabled,
-      $button-default-border-disabled
+      $button-default-border-disabled,
+      $button-group-default-contained-selected-bg
+    );
+  }
+
+  &.me-button-warning {
+    @include dx-button-styling-variant(
+      $button-warning-bg,
+      transparent,
+      $button-default-color,
+      $button-warning-contained-bg-hover,
+      transparent,
+      $button-warning-contained-bg-focused,
+      transparent,
+      $button-warning-contained-bg-active,
+      transparent,
+      $button-default-color,
+      $button-default-color,
+      $button-warning-contained-bg-disabled,
+      transparent,
+      $button-warning-contained-text-disabled,
+      $button-group-warning-contained-selected-bg
     );
   }
 }
@@ -154,7 +179,8 @@
     $button-normal-color,
     transparent,
     $button-normal-contained-border-disabled,
-    $button-normal-contained-border-disabled
+    $button-normal-contained-border-disabled,
+    $button-group-normal-selected-bg
   );
 
   &.dx-button-danger {
@@ -172,7 +198,8 @@
       $button-danger-border-color,
       transparent,
       $button-danger-border-disabled,
-      $button-danger-border-disabled
+      $button-danger-border-disabled,
+      $button-group-danger-selected-bg
     );
   }
 
@@ -191,7 +218,8 @@
       $button-success-border-color,
       transparent,
       $button-success-outlined-border-disabled,
-      $button-success-outlined-border-disabled
+      $button-success-outlined-border-disabled,
+      $button-group-success-selected-bg
     );
   }
 
@@ -210,7 +238,28 @@
       $button-default-border-color,
       transparent,
       $button-default-outlined-border-disabled,
-      $button-default-outlined-border-disabled
+      $button-default-outlined-border-disabled,
+      $button-group-default-selected-bg
+    );
+  }
+
+  &.me-button-warning {
+    @include dx-button-styling-variant(
+      transparent,
+      $button-warning-border-color,
+      $button-warning-border-color,
+      $button-warning-outlined-bg-hover,
+      $button-warning-border-color,
+      $button-warning-outlined-bg-focused,
+      $button-warning-border-color,
+      $button-warning-outlined-bg-active,
+      $button-warning-border-color,
+      $button-warning-border-color,
+      $button-warning-border-color,
+      transparent,
+      $button-warning-border-disabled,
+      $button-warning-border-disabled,
+      $button-group-warning-selected-bg
     );
   }
 }
@@ -230,7 +279,8 @@
     $button-normal-color,
     transparent,
     transparent,
-    $button-normal-contained-border-disabled
+    $button-normal-contained-border-disabled,
+    $button-group-normal-selected-bg
   );
 
   &.dx-button-danger {
@@ -248,7 +298,8 @@
       $button-danger-border-color,
       transparent,
       transparent,
-      $button-danger-border-disabled
+      $button-danger-border-disabled,
+      $button-group-danger-selected-bg
     );
   }
 
@@ -267,7 +318,8 @@
       $button-success-border-color,
       transparent,
       transparent,
-      $button-success-text-border-disabled
+      $button-success-text-border-disabled,
+      $button-group-success-selected-bg
     );
   }
 
@@ -286,7 +338,28 @@
       $button-default-border-color,
       transparent,
       transparent,
-      $button-default-text-bg-disabled
+      $button-default-text-bg-disabled,
+      $button-group-default-selected-bg
+    );
+  }
+
+  &.me-button-warning {
+    @include dx-button-styling-variant(
+      transparent,
+      transparent,
+      $button-warning-border-color,
+      $button-warning-outlined-bg-hover,
+      transparent,
+      $button-warning-outlined-bg-focused,
+      transparent,
+      $button-warning-outlined-bg-active,
+      transparent,
+      $button-warning-border-color,
+      $button-warning-border-color,
+      transparent,
+      transparent,
+      $button-warning-border-disabled,
+      $button-group-warning-selected-bg
     );
   }
 }

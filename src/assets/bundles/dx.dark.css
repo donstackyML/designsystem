@@ -95,6 +95,26 @@
   --me-icon-aqua: #00e0c5;
   --me-icon-pink: #fc67ff;
   --me-icon-brown: #d86454;
+  --button-default-icon-color: #5d9eff;
+  --button-normal-icon-color: #ffffff;
+  --button-success-icon-color: #00b955;
+  --button-danger-icon-color: #fa6488;
+  --button-warning-icon-color: #f07300;
+  --button-default-contained-icon-disabled-color: #ffffff80;
+  --button-default-outlined-icon-disabled-color: #27376e;
+  --button-default-text-icon-disabled-color: #4c6fb3;
+  --button-normal-contained-icon-disabled-color: #ffffff4d;
+  --button-normal-outlined-icon-disabled-color: #ffffff4d;
+  --button-normal-text-icon-disabled-color: #ffffff4d;
+  --button-success-contained-icon-disabled-color: #ffffff80;
+  --button-success-outlined-icon-disabled-color: #387450;
+  --button-success-text-icon-disabled-color: #387450;
+  --button-danger-contained-icon-disabled-color: #ffffff80;
+  --button-danger-outlined-icon-disabled-color: #7e4653;
+  --button-danger-text-icon-disabled-color: #7e4653;
+  --button-warning-contained-icon-disabled-color: #ffffff80;
+  --button-warning-outlined-icon-disabled-color: #8f5018;
+  --button-warning-text-icon-disabled-color: #8f5018;
 }
 
 /* flex */
@@ -1977,13 +1997,13 @@
   font-weight: 500;
 }
 .dx-widget.me-button.me-button-icon-only.me-button-small .dx-button-content {
-  padding: 9px;
+  padding: 8px;
 }
-.dx-widget.me-button.me-button-icon-only.me-button-normal .dx-button-content {
-  padding: 11px;
+.dx-widget.me-button.me-button-icon-only.me-button-medium .dx-button-content {
+  padding: 10px;
 }
 .dx-widget.me-button .dx-button-content {
-  padding: 6px 16px;
+  padding: 5px 15px;
 }
 .dx-widget.me-button .dx-button-content .me-button-inner {
   display: flex;
@@ -2736,6 +2756,38 @@
   font-size: 14px;
 }
 
+/**
+* $name 10. Selected item text color
+* $type color
+*/
+/**
+* $name 20. Selected item background color
+* $type color
+*/
+/**
+* $name 10. Selected item text color
+* $type color
+*/
+/**
+* $name 20. Selected item background color
+* $type color
+*/
+/**
+* $name 10. Selected item text color
+* $type color
+*/
+/**
+* $name 20. Selected item background color
+* $type color
+*/
+/**
+* $name 10. Selected item text color
+* $type color
+*/
+/**
+* $name 20. Selected item background color
+* $type color
+*/
 .dx-button-disabled {
   cursor: default;
 }
@@ -2814,7 +2866,7 @@
   font-size: 13px;
   line-height: 16px;
 }
-.me-button.me-button-normal > .dx-button-content .dx-button-text {
+.me-button.me-button-medium > .dx-button-content .dx-button-text {
   font-size: 14px;
   line-height: 20px;
 }
@@ -2964,7 +3016,7 @@
 }
 
 .dx-button.me-button {
-  border-width: 0px;
+  border-width: 1px;
 }
 
 .dx-button-mode-contained {
@@ -2998,6 +3050,9 @@
 .dx-button-mode-contained.dx-state-disabled .dx-icon {
   color: rgba(255, 255, 255, 0.3019607843);
 }
+.dx-button-mode-contained.me-state-selected {
+  background-color: #28292f;
+}
 .dx-button-mode-contained.dx-button-danger {
   background-color: #bf002e;
   border-color: transparent;
@@ -3028,6 +3083,9 @@
 }
 .dx-button-mode-contained.dx-button-danger.dx-state-disabled .dx-icon {
   color: rgba(255, 255, 255, 0.5019607843);
+}
+.dx-button-mode-contained.dx-button-danger.me-state-selected {
+  background-color: #990025;
 }
 .dx-button-mode-contained.dx-button-success {
   background-color: #008736;
@@ -3060,6 +3118,9 @@
 .dx-button-mode-contained.dx-button-success.dx-state-disabled .dx-icon {
   color: rgba(255, 255, 255, 0.5019607843);
 }
+.dx-button-mode-contained.dx-button-success.me-state-selected {
+  background-color: #006f2d;
+}
 .dx-button-mode-contained.dx-button-default {
   background-color: #3565e2;
   border-color: transparent;
@@ -3090,6 +3151,43 @@
 }
 .dx-button-mode-contained.dx-button-default.dx-state-disabled .dx-icon {
   color: rgba(255, 255, 255, 0.5019607843);
+}
+.dx-button-mode-contained.dx-button-default.me-state-selected {
+  background-color: #264fb8;
+}
+.dx-button-mode-contained.me-button-warning {
+  background-color: #d95b00;
+  border-color: transparent;
+  color: #fff;
+}
+.dx-button-mode-contained.me-button-warning .dx-icon {
+  color: #fff;
+}
+.dx-button-mode-contained.me-button-warning.dx-state-hover {
+  background-color: #ff7008;
+  border-color: transparent;
+}
+.dx-button-mode-contained.me-button-warning.dx-state-focused {
+  background-color: #ff7008;
+  border-color: transparent;
+  box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #7eb9ff;
+  z-index: 1;
+}
+.dx-button-mode-contained.me-button-warning.dx-state-active {
+  background-color: #cb5500;
+  border-color: transparent;
+  color: #fff;
+}
+.dx-button-mode-contained.me-button-warning.dx-state-disabled {
+  background-color: #714220;
+  color: rgba(255, 255, 255, 0.5019607843);
+  border-color: transparent;
+}
+.dx-button-mode-contained.me-button-warning.dx-state-disabled .dx-icon {
+  color: rgba(255, 255, 255, 0.5019607843);
+}
+.dx-button-mode-contained.me-button-warning.me-state-selected {
+  background-color: #cb5500;
 }
 
 .dx-button-mode-outlined {
@@ -3123,6 +3221,9 @@
 .dx-button-mode-outlined.dx-state-disabled .dx-icon {
   color: rgba(255, 255, 255, 0.3019607843);
 }
+.dx-button-mode-outlined.me-state-selected {
+  background-color: #28292f;
+}
 .dx-button-mode-outlined.dx-button-danger {
   background-color: transparent;
   border-color: #fa6488;
@@ -3153,6 +3254,9 @@
 }
 .dx-button-mode-outlined.dx-button-danger.dx-state-disabled .dx-icon {
   color: #7e4653;
+}
+.dx-button-mode-outlined.dx-button-danger.me-state-selected {
+  background-color: rgba(171, 0, 42, 0.3019607843);
 }
 .dx-button-mode-outlined.dx-button-success {
   background-color: transparent;
@@ -3185,6 +3289,9 @@
 .dx-button-mode-outlined.dx-button-success.dx-state-disabled .dx-icon {
   color: #387450;
 }
+.dx-button-mode-outlined.dx-button-success.me-state-selected {
+  background-color: rgba(0, 139, 64, 0.3019607843);
+}
 .dx-button-mode-outlined.dx-button-default {
   background-color: transparent;
   border-color: #5d9eff;
@@ -3215,6 +3322,43 @@
 }
 .dx-button-mode-outlined.dx-button-default.dx-state-disabled .dx-icon {
   color: #27376e;
+}
+.dx-button-mode-outlined.dx-button-default.me-state-selected {
+  background-color: rgba(60, 101, 248, 0.4);
+}
+.dx-button-mode-outlined.me-button-warning {
+  background-color: transparent;
+  border-color: #f07300;
+  color: #f07300;
+}
+.dx-button-mode-outlined.me-button-warning .dx-icon {
+  color: #f07300;
+}
+.dx-button-mode-outlined.me-button-warning.dx-state-hover {
+  background-color: rgba(240, 115, 0, 0.2);
+  border-color: #f07300;
+}
+.dx-button-mode-outlined.me-button-warning.dx-state-focused {
+  background-color: rgba(240, 115, 0, 0.2);
+  border-color: #f07300;
+  box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #7eb9ff;
+  z-index: 1;
+}
+.dx-button-mode-outlined.me-button-warning.dx-state-active {
+  background-color: rgba(203, 85, 0, 0.3019607843);
+  border-color: #f07300;
+  color: #f07300;
+}
+.dx-button-mode-outlined.me-button-warning.dx-state-disabled {
+  background-color: transparent;
+  color: #8f5018;
+  border-color: #8f5018;
+}
+.dx-button-mode-outlined.me-button-warning.dx-state-disabled .dx-icon {
+  color: #8f5018;
+}
+.dx-button-mode-outlined.me-button-warning.me-state-selected {
+  background-color: rgba(203, 85, 0, 0.3019607843);
 }
 
 .dx-button-mode-text {
@@ -3248,6 +3392,9 @@
 .dx-button-mode-text.dx-state-disabled .dx-icon {
   color: rgba(255, 255, 255, 0.3019607843);
 }
+.dx-button-mode-text.me-state-selected {
+  background-color: #28292f;
+}
 .dx-button-mode-text.dx-button-danger {
   background-color: transparent;
   border-color: transparent;
@@ -3278,6 +3425,9 @@
 }
 .dx-button-mode-text.dx-button-danger.dx-state-disabled .dx-icon {
   color: #7e4653;
+}
+.dx-button-mode-text.dx-button-danger.me-state-selected {
+  background-color: rgba(171, 0, 42, 0.3019607843);
 }
 .dx-button-mode-text.dx-button-success {
   background-color: transparent;
@@ -3310,6 +3460,9 @@
 .dx-button-mode-text.dx-button-success.dx-state-disabled .dx-icon {
   color: #387450;
 }
+.dx-button-mode-text.dx-button-success.me-state-selected {
+  background-color: rgba(0, 139, 64, 0.3019607843);
+}
 .dx-button-mode-text.dx-button-default {
   background-color: transparent;
   border-color: transparent;
@@ -3341,6 +3494,43 @@
 .dx-button-mode-text.dx-button-default.dx-state-disabled .dx-icon {
   color: #4c6fb3;
 }
+.dx-button-mode-text.dx-button-default.me-state-selected {
+  background-color: rgba(60, 101, 248, 0.4);
+}
+.dx-button-mode-text.me-button-warning {
+  background-color: transparent;
+  border-color: transparent;
+  color: #f07300;
+}
+.dx-button-mode-text.me-button-warning .dx-icon {
+  color: #f07300;
+}
+.dx-button-mode-text.me-button-warning.dx-state-hover {
+  background-color: rgba(240, 115, 0, 0.2);
+  border-color: transparent;
+}
+.dx-button-mode-text.me-button-warning.dx-state-focused {
+  background-color: rgba(240, 115, 0, 0.2);
+  border-color: transparent;
+  box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #7eb9ff;
+  z-index: 1;
+}
+.dx-button-mode-text.me-button-warning.dx-state-active {
+  background-color: rgba(203, 85, 0, 0.3019607843);
+  border-color: transparent;
+  color: #f07300;
+}
+.dx-button-mode-text.me-button-warning.dx-state-disabled {
+  background-color: transparent;
+  color: #8f5018;
+  border-color: transparent;
+}
+.dx-button-mode-text.me-button-warning.dx-state-disabled .dx-icon {
+  color: #8f5018;
+}
+.dx-button-mode-text.me-button-warning.me-state-selected {
+  background-color: rgba(203, 85, 0, 0.3019607843);
+}
 
 .dx-button-normal.dx-state-hover .dx-button-content,
 .dx-button-back.dx-state-hover .dx-button-content {
@@ -3359,38 +3549,6 @@
   padding: 6px 6px 6px;
 }
 
-/**
-* $name 10. Selected item text color
-* $type color
-*/
-/**
-* $name 20. Selected item background color
-* $type color
-*/
-/**
-* $name 10. Selected item text color
-* $type color
-*/
-/**
-* $name 20. Selected item background color
-* $type color
-*/
-/**
-* $name 10. Selected item text color
-* $type color
-*/
-/**
-* $name 20. Selected item background color
-* $type color
-*/
-/**
-* $name 10. Selected item text color
-* $type color
-*/
-/**
-* $name 20. Selected item background color
-* $type color
-*/
 .dx-buttongroup {
   display: inline-block;
 }
@@ -4864,12 +5022,6 @@
 .dx-tabs-nav-button.dx-state-active {
   border: none;
 }
-.dx-tabs-nav-button.dx-state-disabled {
-  opacity: 1;
-}
-.dx-tabs-nav-button.dx-state-disabled .dx-button-content {
-  opacity: 1;
-}
 
 .dx-tab {
   padding: 9px;
@@ -4920,10 +5072,10 @@
   border-radius: 4px 4px 0 0;
   border-bottom: 1px solid #ffffff;
 }
-.dx-tab.dx-state-disabled {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3019607843);
-}
 .dx-tab.dx-state-disabled .dx-icon {
+  color: rgba(255, 255, 255, 0.3019607843);
+}
+.dx-tab.dx-state-disabled .dx-tab-content {
   color: rgba(255, 255, 255, 0.3019607843);
 }
 .dx-tab.dx-tab-selected {
@@ -4954,13 +5106,6 @@
 .dx-tab-text {
   vertical-align: middle;
   line-height: 25px;
-}
-
-.dx-state-disabled.dx-tabs {
-  opacity: 1;
-}
-.dx-state-disabled .dx-tab-content {
-  color: rgba(255, 255, 255, 0.3019607843);
 }
 
 .dx-tabpanel-tabs .dx-tab.dx-state-hover:not(.dx-tab-selected) {
@@ -15342,6 +15487,9 @@ input.dx-hidden {
 .dx-datagrid-header-panel .dx-apply-button.dx-state-disabled .dx-icon {
   color: transparent;
 }
+.dx-datagrid-header-panel .dx-apply-button.me-state-selected {
+  background-color: transparent;
+}
 
 .dx-icon-column-chooser {
   font: 14px/1 DXIcons;
@@ -15719,6 +15867,9 @@ input.dx-hidden {
 }
 .dx-datagrid-revert-tooltip .dx-revert-button.dx-state-disabled .dx-icon {
   color: transparent;
+}
+.dx-datagrid-revert-tooltip .dx-revert-button.me-state-selected {
+  background-color: transparent;
 }
 .dx-datagrid-revert-tooltip .dx-revert-button > .dx-button-content {
   padding: 7px;
@@ -17600,6 +17751,9 @@ input.dx-hidden {
 .dx-treelist-header-panel .dx-apply-button.dx-state-disabled .dx-icon {
   color: transparent;
 }
+.dx-treelist-header-panel .dx-apply-button.me-state-selected {
+  background-color: transparent;
+}
 
 .dx-icon-column-chooser {
   font: 14px/1 DXIcons;
@@ -17977,6 +18131,9 @@ input.dx-hidden {
 }
 .dx-treelist-revert-tooltip .dx-revert-button.dx-state-disabled .dx-icon {
   color: transparent;
+}
+.dx-treelist-revert-tooltip .dx-revert-button.me-state-selected {
+  background-color: transparent;
 }
 .dx-treelist-revert-tooltip .dx-revert-button > .dx-button-content {
   padding: 7px;
