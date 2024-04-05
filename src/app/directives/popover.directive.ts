@@ -9,7 +9,7 @@ export class PopoverDirective {
   @Input() wrapperAttr: MeCommonType = {};
   // @Input() size: MeSizeType = 'medium';
 
-  wrapperClasses: string = '';
+  wrapperClasses: string = 'me-popover';
 
   constructor(
     private element: ElementRef,

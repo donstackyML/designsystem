@@ -5,7 +5,7 @@ import { MeButtonComponent } from './components/me-button/me-button.component';
 import { MePopoverComponent } from './components/me-popover/me-popover.component';
 
 const routes: Routes = [
-  { path: '', component: AllComponentsComponent },
+  { path: '', component: MeButtonComponent },
   { path: 'all-components', component: AllComponentsComponent },
   { path: 'me-buttons', component: MeButtonComponent },
   { path: 'me-popover', component: MePopoverComponent },
