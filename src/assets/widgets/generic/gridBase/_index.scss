@@ -423,8 +423,8 @@ $grid-masterdetail-padding: 20px;
     .dx-data-row.dx-state-hover {
       &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(
           .dx-edit-row
-        ):not(.dx-row-focused) {
-        & > td:not(.dx-focused) {
+        ) {
+        & > td {
           background-color: $datagrid-hover-bg;
           color: $datagrid-row-hovered-color;
 
@@ -798,7 +798,6 @@ $grid-masterdetail-padding: 20px;
         & > td:not(.dx-focused),
         & > tr > td:not(.dx-focused),
         & .dx-command-edit:not(.dx-focused) .dx-link {
-          background-color: $datagrid-row-focused-bg;
           color: $datagrid-row-focused-color;
 
           .dx-texteditor-input {
@@ -862,7 +861,7 @@ $grid-masterdetail-padding: 20px;
           border-right-color: $datagrid-row-selected-border-color;
         }
 
-        &.dx-focused {
+        &.dx-focused:not(.dx-command-drag):not(.dx-command-select) {
           background-color: $datagrid-base-background-color;
           color: $datagrid-base-color;
         }
@@ -1123,6 +1122,10 @@ $grid-masterdetail-padding: 20px;
   }
 }
 
-// .dx-row.dx-selection td {
-//   background: black;
-// }
+.dx-treelist-table .dx-row-focused td {
+  background-color: $datagrid-row-focused-bg;
+}
+
+.dx-treelist-table .dx-state-active td {
+  background-color: $datagrid-row-focused-bg;
+}

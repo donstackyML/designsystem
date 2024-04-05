@@ -24,11 +24,11 @@ const DEFAULT_ICON_ONLY_SIZE = '10';
 export class ButtonDirective
   implements OnInit, AfterViewInit, AfterViewChecked
 {
-  @Input() size: MeButtonSize = 'medium';
+  @Input() disabled: boolean = false;
   @Input() type: MeButtonType = 'normal';
   @Input() stylingMode: MeButtonStyle = 'contained';
-  @Input() disabled: boolean = false;
   @Input() text: string = '';
+  @Input() size: MeButtonSize = 'medium';
   @Input() leftIcon: string = '';
   @Input() rightIcon: string = '';
   @Input() iconOnly: string = '';
@@ -37,7 +37,7 @@ export class ButtonDirective
   @Input() iconSize: string = '';
   @Input() leftIconSize: string = '';
   @Input() rightIconSize: string = '';
-  @Input() iconColor: string = DEFAULT_ICON_COLOR;
+  @Input() iconColor: string = '';
   @Input() leftIconColor: string = '';
   @Input() rightIconColor: string = '';
   @Input() selectionStateEnable: boolean = false;
@@ -60,12 +60,16 @@ export class ButtonDirective
   ngOnInit(): void {
     this.theme = this.themeService.theme;
 
-    if (this.stylingMode !== 'contained' || this.type === 'normal') {
-      this.iconColor = `var(--button-${this.type}-icon-color)`;
-    }
+    if (!this.iconColor) {
+      if (this.stylingMode !== 'contained' || this.type === 'normal') {
+        this.iconColor = `var(--button-${this.type}-icon-color)`;
+      } else {
+        this.iconColor = DEFAULT_ICON_COLOR;
+      }
 
-    if (this.disabled) {
-      this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
+      if (this.disabled) {
+        this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
+      }
     }
 
     this.component.template = `
@@ -167,11 +171,6 @@ export class ButtonDirective
       }
     }
   }
-
-  // toggleButtonSelection() {
-  // console.log('Button selected');
-  // this.renderer.addClass(this.element.nativeElement, `me-button-selected`);
-  // }
 
   getIconAsString(icon: string, iconColor: string, iconSize: string) {
     return icon

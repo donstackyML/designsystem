@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "colors" as *;
 @use "../colors" as *;
+@use "../popup/colors" as *;
 @use "sizes" as *;
 @use "../sizes" as *;
 @use "../overlay/colors" as *;
@@ -24,12 +25,20 @@ $generic-popover-toolbar-padding: 15px;
     box-shadow: none;
     border-radius: 4px;
   }
-}
 
-.dx-popover-wrapper {
   &.dx-position-bottom .dx-popover-arrow::after {
     background: $popover-arrow-bg;
   }
+
+  &.dx-position-bottom .dx-popover-arrow::after {
+    border: 1px solid $popover-bg;
+  }
+}
+
+.dx-popover-wrapper {
+  // &.dx-position-bottom .dx-popover-arrow::after {
+  //   background: $popover-arrow-bg;
+  // }
 
   .dx-popup-title {
     margin: 0;
@@ -43,12 +52,12 @@ $generic-popover-toolbar-padding: 15px;
 
   .dx-popover-arrow::after,
   &.dx-popover-without-title .dx-popover-arrow::after {
-    background: $popover-bg;
+    background: $popover-arrow-bg;
   }
 }
 
 .dx-popover-arrow::after {
-  border: 1px solid $popover-bg;
+  border: 1px solid $overlay-border-color;
 }
 
 .dx-popover-wrapper {
