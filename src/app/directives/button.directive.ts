@@ -172,6 +172,11 @@ export class ButtonDirective
     }
   }
 
+  // @HostListener('keydown.tab')
+  // addFocus = () => {
+  //   this.renderer.addClass(this.element.nativeElement, 'me-state-focused');
+  // };
+
   getIconAsString(icon: string, iconColor: string, iconSize: string) {
     return icon
       ? this.icons[icon]
