@@ -11,3 +11,4 @@ export type MeButtonType =
   | 'danger';
 export type MeButtonStyle = 'contained' | 'outlined' | 'text';
 export type MeFieldStyle = 'outlined' | 'underlined' | 'filled';
+export type MeLabelMode = 'static' | 'floating' | 'top' | 'left';

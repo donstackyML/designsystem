@@ -262,9 +262,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       font-size: 14px;
     }
 
-    & .dx-placeholder {
-      // font-size: 14px;
-      // line-height: 20px;
+    &.me-texteditor-with-label input.dx-texteditor-input {
+      line-height: 25px;
     }
   }
 
@@ -276,9 +275,18 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       line-height: 16px;
     }
 
-    & .dx-placeholder {
-      // font-size: 13px;
-      // line-height: 16px;
+    &.me-texteditor-with-label .dx-placeholder::before {
+      padding: 0px 7px;
+    }
+
+    &.me-texteditor-with-label input.dx-texteditor-input {
+      line-height: 21px;
+    }
+  }
+
+  &-medium {
+    &.me-texteditor-with-label .dx-placeholder::before {
+      padding: 0px 7px;
     }
   }
 
@@ -290,13 +298,16 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       font-size: 16px;
     }
 
-    & .dx-placeholder {
-      // font-size: 16px;
-      // line-height: 20px;
-    }
-
     & .dx-placeholder::before {
       padding: 9px 11px;
+    }
+
+    &.me-texteditor-with-label input.dx-texteditor-input {
+      line-height: 33px;
+    }
+
+    &.me-texteditor-with-label .dx-placeholder::before {
+      padding: 0px 11px;
     }
   }
 }
@@ -316,28 +327,21 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     width: 198px;
   }
 
-  .me-textbox-medium & {
-    & .dx-texteditor-input {
-      // font-size: 14px;
-      // line-height: 20px;
-    }
+  .me-textbox-small.me-texteditor-with-label & {
+    padding: 0px 7px;
   }
 
-  .me-textbox-small & {
-    & .dx-texteditor-input {
-      // font-size: 13px;
-      // line-height: 16px;
-    }
+  .me-textbox-medium.me-texteditor-with-label & {
+    padding: 0px 7px;
   }
 
   .me-textbox-large & {
     padding: 9px 11px;
     width: 238px;
+  }
 
-    & .dx-texteditor-input {
-      // font-size: 16px;
-      // line-height: 20px;
-    }
+  .me-textbox-large.me-texteditor-with-label & {
+    padding: 0px 11px;
   }
 
   .dx-state-disabled & {
@@ -403,6 +407,20 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     }
   }
 
+  &.me-texteditor-with-label .dx-texteditor-label {
+    .dx-label-after,
+    .dx-label-before {
+      min-width: 8px;
+    }
+  }
+
+  &.me-textbox-large.me-texteditor-with-label .dx-texteditor-label {
+    .dx-label-after,
+    .dx-label-before {
+      min-width: 12px;
+    }
+  }
+
   &.dx-texteditor-with-label,
   &.dx-texteditor-with-floating-label {
     position: relative;
@@ -411,8 +429,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     &.dx-lookup .dx-lookup-field {
       padding-top: $generic-base-inline-borderedwidget-top-padding +
         $input-vertical-diff;
-      padding-bottom: $generic-base-inline-borderedwidget-bottom-padding -
-        $input-vertical-diff;
+      // padding-bottom: $generic-base-inline-borderedwidget-bottom-padding -
+      //   $input-vertical-diff;
     }
 
     .dx-texteditor-label {
@@ -421,6 +439,36 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       line-height: $generic-base-line-height;
       top: 0;
       margin-top: 0;
+    }
+
+    &.me-textbox-large .dx-texteditor-label {
+      font-size: 13px;
+    }
+
+    &.me-texteditor-with-label {
+      &.me-textbox-small .dx-texteditor-label {
+        line-height: 16px;
+      }
+
+      &.me-label-floating.me-textbox-small {
+        .dx-texteditor-label {
+          line-height: 22px;
+        }
+
+        &.dx-state-focused .dx-texteditor-label {
+          line-height: 16px;
+        }
+      }
+
+      &.me-label-floating.me-textbox-medium {
+        .dx-texteditor-label {
+          line-height: 23px;
+        }
+
+        &.dx-state-focused .dx-texteditor-label {
+          line-height: 16px;
+        }
+      }
     }
 
     .dx-placeholder::before {
@@ -460,11 +508,16 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 
       .dx-texteditor-label {
         transition: $generic-texteditor-label-transition;
-        font-size: $generic-base-font-size;
+        font-size: 12px;
         height: $generic-base-inline-block-height;
         line-height: $generic-base-line-height;
         top: 50%;
         margin-top: math.div(-$generic-base-inline-block-height, 2);
+      }
+
+      &.me-label-floating.me-textbox-large .dx-texteditor-label {
+        font-size: 13px;
+        line-height: 22px;
       }
 
       &.dx-textarea {
@@ -495,11 +548,11 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       }
 
       .dx-texteditor-label {
-        font-size: $generic-texteditor-label-size;
+        // font-size: $generic-texteditor-label-size;
         top: 0;
         margin-top: 0;
         height: $generic-base-inline-block-height;
-        line-height: $generic-base-line-height;
+        // line-height: $generic-base-line-height;
       }
 
       &.dx-textarea {

@@ -5519,9 +5519,21 @@
   line-height: 20px;
   font-size: 14px;
 }
+.me-textbox-medium.me-texteditor-with-label input.dx-texteditor-input {
+  line-height: 25px;
+}
 .me-textbox-small.dx-widget, .me-textbox-small input, .me-textbox-small textarea {
   font-size: 13px;
   line-height: 16px;
+}
+.me-textbox-small.me-texteditor-with-label .dx-placeholder::before {
+  padding: 0px 7px;
+}
+.me-textbox-small.me-texteditor-with-label input.dx-texteditor-input {
+  line-height: 21px;
+}
+.me-textbox-medium.me-texteditor-with-label .dx-placeholder::before {
+  padding: 0px 7px;
 }
 .me-textbox-large.dx-widget, .me-textbox-large input, .me-textbox-large textarea {
   line-height: 20px;
@@ -5529,6 +5541,12 @@
 }
 .me-textbox-large .dx-placeholder::before {
   padding: 9px 11px;
+}
+.me-textbox-large.me-texteditor-with-label input.dx-texteditor-input {
+  line-height: 33px;
+}
+.me-textbox-large.me-texteditor-with-label .dx-placeholder::before {
+  padding: 0px 11px;
 }
 
 .dx-texteditor-input {
@@ -5543,9 +5561,18 @@
   height: auto;
   width: 198px;
 }
+.me-textbox-small.me-texteditor-with-label .dx-texteditor-input {
+  padding: 0px 7px;
+}
+.me-textbox-medium.me-texteditor-with-label .dx-texteditor-input {
+  padding: 0px 7px;
+}
 .me-textbox-large .dx-texteditor-input {
   padding: 9px 11px;
   width: 238px;
+}
+.me-textbox-large.me-texteditor-with-label .dx-texteditor-input {
+  padding: 0px 11px;
 }
 .dx-state-disabled .dx-texteditor-input {
   color: rgba(255, 255, 255, 0.3019607843);
@@ -5599,12 +5626,19 @@
   box-sizing: border-box;
   min-width: 9px;
 }
+.dx-editor-filled.me-texteditor-with-label .dx-texteditor-label .dx-label-after,
+.dx-editor-filled.me-texteditor-with-label .dx-texteditor-label .dx-label-before {
+  min-width: 8px;
+}
+.dx-editor-filled.me-textbox-large.me-texteditor-with-label .dx-texteditor-label .dx-label-after,
+.dx-editor-filled.me-textbox-large.me-texteditor-with-label .dx-texteditor-label .dx-label-before {
+  min-width: 12px;
+}
 .dx-editor-filled.dx-texteditor-with-label, .dx-editor-filled.dx-texteditor-with-floating-label {
   position: relative;
 }
 .dx-editor-filled.dx-texteditor-with-label .dx-texteditor-input, .dx-editor-filled.dx-texteditor-with-label.dx-lookup .dx-lookup-field, .dx-editor-filled.dx-texteditor-with-floating-label .dx-texteditor-input, .dx-editor-filled.dx-texteditor-with-floating-label.dx-lookup .dx-lookup-field {
   padding-top: 13px;
-  padding-bottom: 2px;
 }
 .dx-editor-filled.dx-texteditor-with-label .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label .dx-texteditor-label {
   font-size: 12px;
@@ -5612,6 +5646,24 @@
   line-height: 1.35715;
   top: 0;
   margin-top: 0;
+}
+.dx-editor-filled.dx-texteditor-with-label.me-textbox-large .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.me-textbox-large .dx-texteditor-label {
+  font-size: 13px;
+}
+.dx-editor-filled.dx-texteditor-with-label.me-texteditor-with-label.me-textbox-small .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.me-texteditor-with-label.me-textbox-small .dx-texteditor-label {
+  line-height: 16px;
+}
+.dx-editor-filled.dx-texteditor-with-label.me-texteditor-with-label.me-label-floating.me-textbox-small .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.me-texteditor-with-label.me-label-floating.me-textbox-small .dx-texteditor-label {
+  line-height: 22px;
+}
+.dx-editor-filled.dx-texteditor-with-label.me-texteditor-with-label.me-label-floating.me-textbox-small.dx-state-focused .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.me-texteditor-with-label.me-label-floating.me-textbox-small.dx-state-focused .dx-texteditor-label {
+  line-height: 16px;
+}
+.dx-editor-filled.dx-texteditor-with-label.me-texteditor-with-label.me-label-floating.me-textbox-medium .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.me-texteditor-with-label.me-label-floating.me-textbox-medium .dx-texteditor-label {
+  line-height: 23px;
+}
+.dx-editor-filled.dx-texteditor-with-label.me-texteditor-with-label.me-label-floating.me-textbox-medium.dx-state-focused .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.me-texteditor-with-label.me-label-floating.me-textbox-medium.dx-state-focused .dx-texteditor-label {
+  line-height: 16px;
 }
 .dx-editor-filled.dx-texteditor-with-label .dx-placeholder::before, .dx-editor-filled.dx-texteditor-with-floating-label .dx-placeholder::before {
   padding-top: 13px;
@@ -5635,11 +5687,15 @@
 }
 .dx-editor-filled.dx-texteditor-with-floating-label.dx-texteditor-empty .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-lookup-empty .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-readonly .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-readonly .dx-texteditor-label {
   transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms, transform 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms, top 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
-  font-size: 14px;
+  font-size: 12px;
   height: 19px;
   line-height: 1.35715;
   top: 50%;
   margin-top: -9.5px;
+}
+.dx-editor-filled.dx-texteditor-with-floating-label.dx-texteditor-empty.me-label-floating.me-textbox-large .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-lookup-empty.me-label-floating.me-textbox-large .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-readonly.me-label-floating.me-textbox-large .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-readonly.me-label-floating.me-textbox-large .dx-texteditor-label {
+  font-size: 13px;
+  line-height: 22px;
 }
 .dx-editor-filled.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-textarea .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-lookup-empty.dx-textarea .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-readonly.dx-textarea .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-readonly.dx-textarea .dx-texteditor-label {
   font-size: 14px;
@@ -5658,11 +5714,9 @@
   font-size: 14px;
 }
 .dx-editor-filled.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-dropdowneditor-active .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-textarea.dx-state-focused .dx-texteditor-label {
-  font-size: 12px;
   top: 0;
   margin-top: 0;
   height: 19px;
-  line-height: 1.35715;
 }
 .dx-editor-filled.dx-texteditor-with-floating-label.dx-state-focused.dx-textarea .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-dropdowneditor-active.dx-textarea .dx-texteditor-label, .dx-editor-filled.dx-texteditor-with-floating-label.dx-textarea.dx-state-focused.dx-textarea .dx-texteditor-label {
   top: 0;
