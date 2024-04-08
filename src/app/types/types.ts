@@ -2,7 +2,7 @@ export type MeCommonType = {
   [key: string]: string;
 };
 
-export type MeButtonSize = 'small' | 'medium' | 'large';
+export type MeSize = 'small' | 'medium' | 'large';
 export type MeButtonType =
   | 'default'
   | 'normal'
@@ -10,3 +10,4 @@ export type MeButtonType =
   | 'warning'
   | 'danger';
 export type MeButtonStyle = 'contained' | 'outlined' | 'text';
+export type MeFieldStyle = 'outlined' | 'underlined' | 'filled';

@@ -21,6 +21,8 @@ import { FormComponent } from './components/form/form.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ListComponent } from './components/list/list.component';
 import { MeButtonComponent } from './components/me-button/me-button.component';
+import { MePopoverComponent } from './components/me-popover/me-popover.component';
+import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OverlaysComponent } from './components/overlays/overlays.component';
 import { PivotGridComponent } from './components/pivot-grid/pivot-grid.component';
@@ -33,10 +35,9 @@ import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { ButtonDirective } from './directives/button.directive';
-import { MeButtonTestDirective } from './directives/me-button-test.directive';
-import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.component';
 import { PopoverDirective } from './directives/popover.directive';
-import { MePopoverComponent } from './components/me-popover/me-popover.component';
+import { MeTextBoxDirective } from './directives/text-box.directive';
+import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.component';
 
 @NgModule({
   declarations: [
@@ -68,9 +69,10 @@ import { MePopoverComponent } from './components/me-popover/me-popover.component
     MeButtonComponent,
     ButtonDirective,
     MeButtonTestComponent,
-    MeButtonTestDirective,
     PopoverDirective,
     MePopoverComponent,
+    MeTextBoxComponent,
+    MeTextBoxDirective,
   ],
   imports: [
     BrowserModule,

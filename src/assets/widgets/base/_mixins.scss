@@ -20,14 +20,35 @@
   background-image: linear-gradient($options);
 }
 
-@mixin gradient-radial-circle2($start-color, $start-position, $middle-color, $middle-position, $end-color, $end-position) {
+@mixin gradient-radial-circle2(
+  $start-color,
+  $start-position,
+  $middle-color,
+  $middle-position,
+  $end-color,
+  $end-position
+) {
   background: $start-color;
-  background: radial-gradient(circle closest-side at center, $start-color $start-position, $middle-color $middle-position, $end-color $end-position);
+  background: radial-gradient(
+    circle closest-side at center,
+    $start-color $start-position,
+    $middle-color $middle-position,
+    $end-color $end-position
+  );
 }
 
-@mixin gradient-radial-circle($start-color, $start-position, $end-color, $end-position) {
+@mixin gradient-radial-circle(
+  $start-color,
+  $start-position,
+  $end-color,
+  $end-position
+) {
   background: $start-color;
-  background: radial-gradient(circle closest-side at center, $start-color $start-position, $end-color $end-position);
+  background: radial-gradient(
+    circle closest-side at center,
+    $start-color $start-position,
+    $end-color $end-position
+  );
 }
 
 /* flex */
@@ -43,7 +64,6 @@
     -webkit-touch-callout: none;
   }
 }
-
 
 @mixin dx-overflow($x: hidden) {
   overflow: $x;
@@ -61,7 +81,7 @@
   &::after {
     height: 100%;
     display: inline-block;
-    content: '';
+    content: "";
     vertical-align: middle;
   }
 }
@@ -119,11 +139,11 @@
   font-family: $font-family;
   line-height: $line-height;
 
-  input,
-  textarea {
-    font-family: $font-family;
-    line-height: $line-height;
-  }
+  // input,
+  // textarea {
+  //   font-family: $font-family;
+  //   line-height: $line-height;
+  // }
 }
 
 @mixin dx-pending-indicator($indicator-size) {

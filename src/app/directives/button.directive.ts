@@ -10,7 +10,7 @@ import {
 import { DxButtonComponent } from 'devextreme-angular';
 import { Icon, IconStoreService } from '../service/icon-store.service';
 import { ThemesService } from '../service/themes.service';
-import { MeButtonSize, MeButtonStyle, MeButtonType } from '../types/types';
+import { MeSize, MeButtonStyle, MeButtonType } from '../types/types';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 const LARGE_ICON_SIZE = '16';
@@ -28,7 +28,7 @@ export class ButtonDirective
   @Input() type: MeButtonType = 'normal';
   @Input() stylingMode: MeButtonStyle = 'contained';
   @Input() text: string = '';
-  @Input() size: MeButtonSize = 'medium';
+  @Input() size: MeSize = 'medium';
   @Input() leftIcon: string = '';
   @Input() rightIcon: string = '';
   @Input() iconOnly: string = '';
@@ -171,11 +171,6 @@ export class ButtonDirective
       }
     }
   }
-
-  // @HostListener('keydown.tab')
-  // addFocus = () => {
-  //   this.renderer.addClass(this.element.nativeElement, 'me-state-focused');
-  // };
 
   getIconAsString(icon: string, iconColor: string, iconSize: string) {
     return icon
