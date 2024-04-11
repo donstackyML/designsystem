@@ -7,8 +7,8 @@
 @use "../list/sizes" as *;
 
 $badge-invalid-bg: $base-invalid-color;
-$generic-dropdownlist-min-height: $generic-base-font-size * $generic-base-line-height + 2 *
-  $generic-list-item-vertical-padding;
+$generic-dropdownlist-min-height: $generic-base-font-size *
+  $generic-base-line-height + 2 * $generic-list-item-vertical-padding;
 
 @mixin dx-base-typography() {
   @include dx-base-typography-mixin(
@@ -41,7 +41,7 @@ $generic-dropdownlist-min-height: $generic-base-font-size * $generic-base-line-h
 
   background-color: $badge-invalid-bg;
   color: $base-inverted-text-color;
-  content: "!";
+  // content: "!";
   border-radius: 50%;
 }
 
@@ -85,13 +85,15 @@ $generic-dropdownlist-min-height: $generic-base-font-size * $generic-base-line-h
       min-height: $generic-dropdownlist-min-height - (3px * 2);
 
       .dx-list-item-content {
-        padding: $generic-list-item-vertical-padding - 3px $generic-list-item-horizontal-padding - 1px;
+        padding: $generic-list-item-vertical-padding - 3px
+          $generic-list-item-horizontal-padding - 1px;
       }
     }
   }
 
   .dx-list-select-all {
-    padding: $generic-list-item-vertical-padding + 2px 0 $generic-list-item-vertical-padding - 2px;
+    padding: $generic-list-item-vertical-padding + 2px 0
+      $generic-list-item-vertical-padding - 2px;
   }
 
   .dx-list-item,

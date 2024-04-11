@@ -452,21 +452,27 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 
       &.me-label-floating.me-textbox-small {
         .dx-texteditor-label {
-          line-height: 22px;
+          line-height: 24px;
         }
 
-        &.dx-state-focused .dx-texteditor-label {
-          line-height: 16px;
-        }
+        // &.dx-state-focused .dx-texteditor-label {
+        //   line-height: 16px;
+        // }
       }
 
       &.me-label-floating.me-textbox-medium {
         .dx-texteditor-label {
-          line-height: 23px;
+          line-height: 22px;
         }
 
-        &.dx-state-focused .dx-texteditor-label {
-          line-height: 16px;
+        // &.dx-state-focused .dx-texteditor-label {
+        //   line-height: 16px;
+        // }
+      }
+
+      &.me-label-floating.me-textbox-large {
+        .dx-texteditor-label {
+          line-height: 21px;
         }
       }
     }
@@ -513,11 +519,38 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         line-height: $generic-base-line-height;
         top: 50%;
         margin-top: math.div(-$generic-base-inline-block-height, 2);
+        transition: 0.3s;
       }
 
-      &.me-label-floating.me-textbox-large .dx-texteditor-label {
-        font-size: 13px;
-        line-height: 22px;
+      &.me-label-floating.me-textbox-small {
+        & .dx-texteditor-label {
+          font-size: 13px;
+        }
+
+        &.dx-state-focused.dx-texteditor-empty .dx-texteditor-label {
+          font-size: 12px;
+        }
+      }
+
+      &.me-label-floating.me-textbox-medium {
+        & .dx-texteditor-label {
+          font-size: 14px;
+        }
+
+        &.dx-state-focused.dx-texteditor-empty .dx-texteditor-label {
+          font-size: 12px;
+        }
+      }
+
+      &.me-label-floating.me-textbox-large {
+        & .dx-texteditor-label {
+          font-size: 16px;
+          line-height: 21px;
+        }
+
+        &.dx-state-focused.dx-texteditor-empty .dx-texteditor-label {
+          font-size: 13px;
+        }
       }
 
       &.dx-textarea {
@@ -1197,4 +1230,48 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 
 .me-textbox.me-state-focus {
   outline: 3px solid #7eb9ff;
+}
+
+.me-flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.me-flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+
+.me-label {
+  font-size: 12px;
+  line-height: 16px;
+
+  &-invalid {
+    color: $texteditor-invalid-focused-border-color;
+  }
+}
+
+.me-label-large {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.me-label-left-small {
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.me-label-left-medium {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.me-label-left-large {
+  font-size: 16px;
+  line-height: 20px;
 }

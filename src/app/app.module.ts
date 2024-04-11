@@ -38,6 +38,7 @@ import { ButtonDirective } from './directives/button.directive';
 import { PopoverDirective } from './directives/popover.directive';
 import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.component';
+import { MeLabelDirective } from './directives/label.directive';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.c
     MePopoverComponent,
     MeTextBoxComponent,
     MeTextBoxDirective,
+    MeLabelDirective,
   ],
   imports: [
     BrowserModule,

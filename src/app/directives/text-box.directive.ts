@@ -6,7 +6,7 @@ import {
   OnInit,
   Renderer2,
 } from '@angular/core';
-import { DxTextBoxComponent } from 'devextreme-angular';
+import { DxTemplateDirective, DxTextBoxComponent } from 'devextreme-angular';
 import { MeFieldStyle, MeLabelMode, MeSize } from '../types/types';
 
 @Directive({
@@ -44,6 +44,8 @@ export class MeTextBoxDirective implements OnInit {
       if (this.labelMode === 'floating')
         this.renderer.addClass(this.element.nativeElement, 'me-label-floating');
     }
+
+    this.component.templates.push(this.size as unknown as DxTemplateDirective);
   }
 
   @HostListener('keyup', ['$event']) addFocus = (event: KeyboardEvent) => {

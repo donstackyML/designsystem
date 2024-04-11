@@ -1,3 +1,5 @@
+@use "../generic/colors" as *;
+
 @mixin dx-base-validation($summary-color, $message-color, $message-bg-color) {
   .dx-validationsummary-item {
     color: $summary-color;
@@ -31,6 +33,27 @@
     font-size: 0.85em;
     line-height: normal;
     word-wrap: break-word;
+    text-align: left;
+
+    .me-textbox & {
+      display: flex;
+      padding: 2px 8px;
+      border-radius: 3px;
+      line-height: 16px;
+      font-size: 12px;
+      color: $error-message-color;
+      background-color: $error-message-bg;
+    }
+
+    .me-textbox.me-textbox-medium & {
+      padding: 4px 8px;
+    }
+
+    .me-textbox.me-textbox-large & {
+      padding: 4px 12px;
+      font-size: 14px;
+      line-height: 20px;
+    }
   }
 }
 
@@ -63,6 +86,6 @@
 @mixin validation-badge-animation() {
   opacity: 0;
   transform: scale(0);
-  animation: dx-valid-badge-frames 0.3s cubic-bezier(1, 0.008, 0.565, 1.65) 0.1s 1 forwards;
+  animation: dx-valid-badge-frames 0.3s cubic-bezier(1, 0.008, 0.565, 1.65) 0.1s
+    1 forwards;
 }
-

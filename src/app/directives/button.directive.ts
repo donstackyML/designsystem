@@ -173,11 +173,16 @@ export class ButtonDirective
   }
 
   getIconAsString(icon: string, iconColor: string, iconSize: string) {
-    return icon
-      ? this.icons[icon]
-          .replaceAll('color', iconColor)
-          .replaceAll('iconSize', this.getIconSize(iconSize))
-      : '';
+    if (!icon) return '';
+    if (this.icons.hasOwnProperty(icon)) {
+      return this.icons[icon]
+        .replaceAll('color', iconColor)
+        .replaceAll('iconSize', this.getIconSize(iconSize));
+    } else {
+      return icon
+        .replaceAll('color', iconColor)
+        .replaceAll('iconSize', this.getIconSize(iconSize));
+    }
   }
 
   getIconSize(iconSize?: string) {
