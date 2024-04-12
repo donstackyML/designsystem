@@ -322,6 +322,10 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 }
 
 .me-texteditor {
+  & .dx-texteditor-input {
+    height: auto;
+  }
+
   & .dx-placeholder::before {
     padding: 5px 7px;
   }
@@ -334,9 +338,9 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       font-size: 14px;
     }
 
-    &.me-texteditor-with-label input.dx-texteditor-input {
-      line-height: 25px;
-    }
+    // &.me-texteditor-with-label input.dx-texteditor-input {
+    //   line-height: 20px;
+    // }
   }
 
   &-small {
@@ -352,7 +356,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     }
 
     &.me-texteditor-with-label input.dx-texteditor-input {
-      line-height: 21px;
+      line-height: 16px;
     }
   }
 
@@ -375,12 +379,12 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     }
 
     &.me-texteditor-with-label input.dx-texteditor-input {
-      line-height: 33px;
+      line-height: 20px;
     }
 
-    &.me-texteditor-with-label .dx-placeholder::before {
-      padding: 0px 11px;
-    }
+    // &.me-texteditor-with-label .dx-placeholder::before {
+    //   padding: 0px 11px;
+    // }
   }
 }
 
@@ -393,33 +397,27 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
   // border-radius: $texteditor-input-border-radius;
   // min-height: $generic-texteditor-input-height;
 
-  .me-texteditor & {
+  // .me-texteditor & {
+  //   padding: 5px 7px;
+  //   height: auto;
+  //   // width: auto;
+  // }
+
+  .me-texteditor-small & {
     padding: 5px 7px;
-    height: auto;
-    // width: auto;
   }
 
-  .me-texteditor & {
+  .me-texteditor-medium & {
     padding: 5px 7px;
-    height: auto;
-    // width: auto;
-  }
-
-  .me-texteditor-small.me-texteditor-with-label & {
-    padding: 0px 7px;
-  }
-
-  .me-texteditor-medium.me-texteditor-with-label & {
-    padding: 0px 7px;
   }
 
   .me-texteditor-large & {
     padding: 9px 11px;
   }
 
-  .me-texteditor-large.me-texteditor-with-label & {
-    padding: 0px 11px;
-  }
+  // .me-texteditor-large.me-texteditor-with-label & {
+  //   padding: 21.5px 11px 4.5px;
+  // }
 
   .dx-state-disabled & {
     color: $texteditor-placeholder-color;
@@ -502,34 +500,67 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
   &.dx-texteditor-with-floating-label {
     position: relative;
 
+    &.me-texteditor-small {
+      .dx-texteditor-input,
+      &.dx-lookup .dx-lookup-field {
+        padding: 16px 7px 2px;
+      }
+    }
+
+    &.me-texteditor-medium {
+      .dx-texteditor-input,
+      &.dx-lookup .dx-lookup-field {
+        padding: 16px 7px 2px;
+      }
+    }
+
+    &.me-texteditor-large {
+      .dx-texteditor-input,
+      &.dx-lookup .dx-lookup-field {
+        padding: 21.5px 11px 4.5px;
+      }
+    }
+
     .dx-texteditor-input,
     &.dx-lookup .dx-lookup-field {
       padding-top: $generic-base-inline-borderedwidget-top-padding +
         $input-vertical-diff;
+
       // padding-bottom: $generic-base-inline-borderedwidget-bottom-padding -
       //   $input-vertical-diff;
     }
 
     .dx-texteditor-label {
       font-size: $generic-texteditor-label-size;
-      height: $generic-base-inline-block-height;
+      height: 16px;
       line-height: $generic-base-line-height;
       top: 0;
       margin-top: 0;
     }
 
-    &.me-texteditor-large .dx-texteditor-label {
+    &.me-texteditor-large.me-texteditor .dx-texteditor-label {
       font-size: 13px;
+      line-height: 16px;
+      margin-top: 4.5px;
+    }
+
+    &.me-texteditor-medium.me-texteditor .dx-texteditor-label {
+      line-height: 16px;
+      margin-top: 1px;
     }
 
     &.me-texteditor-with-label {
       &.me-texteditor-small .dx-texteditor-label {
         line-height: 16px;
+        padding-top: 1px;
       }
 
-      &.me-label-floating.me-texteditor-small {
+      &.me-label-floating.me-texteditor-small.dx-texteditor-empty:not(
+          .dx-state-focused
+        ) {
         .dx-texteditor-label {
-          line-height: 24px;
+          // line-height: 24px;
+          margin-top: -7.5px;
         }
 
         // &.dx-state-focused .dx-texteditor-label {
@@ -537,9 +568,11 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         // }
       }
 
-      &.me-label-floating.me-texteditor-medium {
+      &.me-label-floating.me-texteditor-medium.dx-texteditor-empty:not(
+          .dx-state-focused
+        ) {
         .dx-texteditor-label {
-          line-height: 22px;
+          margin-top: -6.5px;
         }
 
         // &.dx-state-focused .dx-texteditor-label {
@@ -547,9 +580,11 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         // }
       }
 
-      &.me-label-floating.me-texteditor-large {
+      &.me-label-floating.me-texteditor-large.dx-texteditor-empty:not(
+          .dx-state-focused
+        ) {
         .dx-texteditor-label {
-          line-height: 21px;
+          margin-top: -10.5px;
         }
       }
     }
@@ -557,6 +592,19 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     .dx-placeholder::before {
       padding-top: $generic-base-inline-borderedwidget-top-padding +
         $input-vertical-diff;
+    }
+
+    &.me-texteditor-small,
+    &.me-texteditor-medium {
+      .dx-placeholder::before {
+        padding-top: 16px;
+      }
+    }
+
+    &.me-texteditor-large {
+      .dx-placeholder::before {
+        padding: 22.5px 11px 4.5px;
+      }
     }
 
     &.dx-textarea {
@@ -619,7 +667,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         }
       }
 
-      &.me-label-floating.me-texteditor-large {
+      &.me-label-floating.me-texteditor-large:not(.dx-state-focused) {
         & .dx-texteditor-label {
           font-size: 16px;
           line-height: 21px;
@@ -658,11 +706,11 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       }
 
       .dx-texteditor-label {
-        // font-size: $generic-texteditor-label-size;
+        font-size: $generic-texteditor-label-size;
         top: 0;
         margin-top: 0;
         height: $generic-base-inline-block-height;
-        // line-height: $generic-base-line-height;
+        line-height: $generic-base-line-height;
       }
 
       &.dx-textarea {
