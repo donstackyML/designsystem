@@ -59,6 +59,7 @@ $texteditor-label-color: null !default;
 $texteditor-hover-filled-bg: null !default;
 $texteditor-focused-filled-bg: null !default;
 $texteditor-readonly-bg: null !default;
+$texteditor-clear-icon-image-bg: null !default;
 
 @if $color == "light" {
   $texteditor-color: #18181a;
@@ -66,13 +67,14 @@ $texteditor-readonly-bg: null !default;
   $texteditor-filled-bg: #ecedf3;
   $texteditor-bg: #ffffff;
   $texteditor-border-color: #dfe0ed;
-  $texteditor-label-color: $texteditor-placeholder-color;
+  $texteditor-label-color: #808084;
   $texteditor-hover-border-color: #3257dc;
   $texteditor-focused-border-color: #3257dc;
   $texteditor-button-clear-icon-color: #808084;
   $texteditor-hover-filled-bg: #d8daea;
   $texteditor-focused-filled-bg: #3257dc1f;
   $texteditor-readonly-bg: #dedfe6;
+  $texteditor-clear-icon-image-bg: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02IDYuNzk2ODhMMy43OTY4OCA5TDMgOC4yMDMxMkw1LjIwMzEyIDZMMyAzLjc5Njg4TDMuNzk2ODggM0w2IDUuMjAzMTJMOC4yMDMxMiAzTDkgMy43OTY4OEw2Ljc5Njg4IDZMOSA4LjIwMzEyTDguMjAzMTIgOUw2IDYuNzk2ODhaTTMuNjcxODggMTEuNTMxMkM0LjQwMTA0IDExLjg0MzggNS4xNzcwOCAxMiA2IDEyQzYuODMzMzMgMTIgNy42MTE5OCAxMS44NDM4IDguMzM1OTQgMTEuNTMxMkM5LjA1OTkgMTEuMjE4OCA5LjY5NTMxIDEwLjc4OTEgMTAuMjQyMiAxMC4yNDIyQzEwLjc4OTEgOS42OTUzMSAxMS4yMTg4IDkuMDU3MjkgMTEuNTMxMiA4LjMyODEyQzExLjg0MzggNy41OTg5NiAxMiA2LjgyMjkyIDEyIDZDMTIgNS4xNjY2NyAxMS44NDM4IDQuMzg4MDIgMTEuNTMxMiAzLjY2NDA2QzExLjIxODggMi45NDAxIDEwLjc4OTEgMi4zMDQ2OSAxMC4yNDIyIDEuNzU3ODFDOS42OTUzMSAxLjIxMDk0IDkuMDU5OSAwLjc4MTI1IDguMzM1OTQgMC40Njg3NUM3LjYxMTk4IDAuMTU2MjUgNi44MzMzMyAwIDYgMEM1LjE3NzA4IDAgNC40MDEwNCAwLjE1NjI1IDMuNjcxODggMC40Njg3NUMyLjk0MjcxIDAuNzgxMjUgMi4zMDQ2OSAxLjIxMDk0IDEuNzU3ODEgMS43NTc4MUMxLjIxMDk0IDIuMzA0NjkgMC43ODEyNSAyLjk0MDEgMC40Njg3NSAzLjY2NDA2QzAuMTU2MjUgNC4zODgwMiAwIDUuMTY2NjcgMCA2QzAgNi44MjI5MiAwLjE1NjI1IDcuNTk4OTYgMC40Njg3NSA4LjMyODEyQzAuNzgxMjUgOS4wNTcyOSAxLjIxMDk0IDkuNjk1MzEgMS43NTc4MSAxMC4yNDIyQzIuMzA0NjkgMTAuNzg5MSAyLjk0MjcxIDExLjIxODggMy42NzE4OCAxMS41MzEyWiIgZmlsbD0iIzgwODA4NCIvPgo8L3N2Zz4K");
 }
 
 @if $color == "dark" {
@@ -81,11 +83,12 @@ $texteditor-readonly-bg: null !default;
   $texteditor-filled-bg: #43444c;
   $texteditor-bg: #2e2e2f;
   $texteditor-border-color: #3f4044;
-  $texteditor-label-color: $texteditor-placeholder-color;
+  $texteditor-label-color: #a1a1a7;
   $texteditor-hover-border-color: #5d9eff;
   $texteditor-focused-border-color: #5d9eff;
   $texteditor-button-clear-icon-color: #a1a1a7;
   $texteditor-hover-filled-bg: #565665;
   $texteditor-focused-filled-bg: #3565e21f;
   $texteditor-readonly-bg: #202124;
+  $texteditor-clear-icon-image-bg: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02IDYuNzk2ODhMMy43OTY4OCA5TDMgOC4yMDMxMkw1LjIwMzEyIDZMMyAzLjc5Njg4TDMuNzk2ODggM0w2IDUuMjAzMTJMOC4yMDMxMiAzTDkgMy43OTY4OEw2Ljc5Njg4IDZMOSA4LjIwMzEyTDguMjAzMTIgOUw2IDYuNzk2ODhaTTMuNjcxODggMTEuNTMxMkM0LjQwMTA0IDExLjg0MzggNS4xNzcwOCAxMiA2IDEyQzYuODMzMzMgMTIgNy42MTE5OCAxMS44NDM4IDguMzM1OTQgMTEuNTMxMkM5LjA1OTkgMTEuMjE4OCA5LjY5NTMxIDEwLjc4OTEgMTAuMjQyMiAxMC4yNDIyQzEwLjc4OTEgOS42OTUzMSAxMS4yMTg4IDkuMDU3MjkgMTEuNTMxMiA4LjMyODEyQzExLjg0MzggNy41OTg5NiAxMiA2LjgyMjkyIDEyIDZDMTIgNS4xNjY2NyAxMS44NDM4IDQuMzg4MDIgMTEuNTMxMiAzLjY2NDA2QzExLjIxODggMi45NDAxIDEwLjc4OTEgMi4zMDQ2OSAxMC4yNDIyIDEuNzU3ODFDOS42OTUzMSAxLjIxMDk0IDkuMDU5OSAwLjc4MTI1IDguMzM1OTQgMC40Njg3NUM3LjYxMTk4IDAuMTU2MjUgNi44MzMzMyAwIDYgMEM1LjE3NzA4IDAgNC40MDEwNCAwLjE1NjI1IDMuNjcxODggMC40Njg3NUMyLjk0MjcxIDAuNzgxMjUgMi4zMDQ2OSAxLjIxMDk0IDEuNzU3ODEgMS43NTc4MUMxLjIxMDk0IDIuMzA0NjkgMC43ODEyNSAyLjk0MDEgMC40Njg3NSAzLjY2NDA2QzAuMTU2MjUgNC4zODgwMiAwIDUuMTY2NjcgMCA2QzAgNi44MjI5MiAwLjE1NjI1IDcuNTk4OTYgMC40Njg3NSA4LjMyODEyQzAuNzgxMjUgOS4wNTcyOSAxLjIxMDk0IDkuNjk1MzEgMS43NTc4MSAxMC4yNDIyQzIuMzA0NjkgMTAuNzg5MSAyLjk0MjcxIDExLjIxODggMy42NzE4OCAxMS41MzEyWiIgZmlsbD0iI0ExQTFBNyIvPgo8L3N2Zz4K");
 }

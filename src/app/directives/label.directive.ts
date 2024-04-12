@@ -14,7 +14,6 @@ import { MeLabelPosition, MeTextBoxComponent } from '../types/types';
 })
 export class MeLabelDirective {
   @ContentChild(DxTextBoxComponent) textBox?: DxTextBoxComponent;
-  // @ContentChild(HTMLSpanElement) label?: HTMLSpanElement;
   @Input() labelPosition: MeLabelPosition = 'top';
   @Input() width: string = '';
 
@@ -25,7 +24,7 @@ export class MeLabelDirective {
     this.renderer.addClass(this.element.nativeElement, 'me-label');
 
     if (this.width) {
-      this.element.nativeElement.style = `width: ${this.width}`;
+      this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
     }
 
     if (this.labelPosition === 'top') {
@@ -38,8 +37,6 @@ export class MeLabelDirective {
   }
 
   ngAfterContentInit(): void {
-    console.log(this.textBox?.templates);
-    console.log(this.textBox?.isValid);
     const size = this.textBox?.templates as unknown as string[];
 
     if (size?.includes('large') && this.labelPosition === 'top')

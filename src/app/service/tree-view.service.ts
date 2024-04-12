@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-// import icon from '../../assets/bundles/icons/dxicons.ttf';
 
 export interface Product {
   id: string;

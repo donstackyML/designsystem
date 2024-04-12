@@ -183,9 +183,9 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 
   &.dx-state-focused,
   &.dx-state-focused.dx-state-hover {
-    .dx-texteditor-label {
-      color: $texteditor-focused-border-color;
-    }
+    // .dx-texteditor-label {
+    //   color: $texteditor-focused-border-color;
+    // }
 
     &.dx-invalid {
       .dx-texteditor-label {
@@ -220,15 +220,87 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     right: 0;
   }
 
+  &.me-texteditor {
+    & .dx-clear-button-area {
+      width: 20px;
+      min-width: 20px;
+      right: 4px;
+    }
+
+    &:not(.dx-texteditor-empty):not(.dx-state-disabled) .dx-clear-button-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-large .dx-clear-button-area {
+      width: 24px;
+      min-width: 24px;
+      right: 8px;
+    }
+
+    .dx-icon-clear {
+      background-image: $texteditor-clear-icon-image-bg;
+      background-position: 0 0;
+      background-size: contain;
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+
   .dx-icon-clear {
     color: $texteditor-button-clear-icon-color;
 
-    @include dx-texteditor-icon();
-    @include dx-icon-sizing(
-      $generic-texteditor-clear-icon-size -
-        $generic-texteditor-clear-icon-oversize,
-      $generic-texteditor-icon-container-size
-    );
+    // @include dx-texteditor-icon();
+    // @include dx-icon-sizing(
+    //   $generic-texteditor-clear-icon-size -
+    //     $generic-texteditor-clear-icon-oversize,
+    //   $generic-texteditor-icon-container-size
+    // );
+  }
+
+  &.me-texteditor {
+    & .dx-icon-clear {
+      font-size: 12px;
+      width: auto;
+      height: auto;
+      padding: 4px;
+      margin-top: 0;
+      top: 0;
+      width: 12px;
+      height: 12px;
+    }
+
+    &-small {
+      &.me-texteditor-with-label .dx-icon-clear {
+        line-height: 26px;
+      }
+    }
+
+    &-medium {
+      & .dx-icon-clear {
+        line-height: 22px;
+      }
+
+      &.me-texteditor-with-label .dx-icon-clear {
+        line-height: 30px;
+      }
+    }
+
+    &-large {
+      & .dx-icon-clear {
+        font-size: 16px;
+        line-height: 30px;
+        width: 16px;
+        height: 16px;
+      }
+
+      &.me-texteditor-with-label .dx-icon-clear {
+        line-height: 38px;
+      }
+    }
   }
 }
 
@@ -249,7 +321,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
   }
 }
 
-.me-textbox {
+.me-texteditor {
   & .dx-placeholder::before {
     padding: 5px 7px;
   }
@@ -321,26 +393,31 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
   // border-radius: $texteditor-input-border-radius;
   // min-height: $generic-texteditor-input-height;
 
-  .me-textbox & {
+  .me-texteditor & {
     padding: 5px 7px;
     height: auto;
-    width: 198px;
+    // width: auto;
   }
 
-  .me-textbox-small.me-texteditor-with-label & {
+  .me-texteditor & {
+    padding: 5px 7px;
+    height: auto;
+    // width: auto;
+  }
+
+  .me-texteditor-small.me-texteditor-with-label & {
     padding: 0px 7px;
   }
 
-  .me-textbox-medium.me-texteditor-with-label & {
+  .me-texteditor-medium.me-texteditor-with-label & {
     padding: 0px 7px;
   }
 
-  .me-textbox-large & {
+  .me-texteditor-large & {
     padding: 9px 11px;
-    width: 238px;
   }
 
-  .me-textbox-large.me-texteditor-with-label & {
+  .me-texteditor-large.me-texteditor-with-label & {
     padding: 0px 11px;
   }
 
@@ -414,7 +491,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     }
   }
 
-  &.me-textbox-large.me-texteditor-with-label .dx-texteditor-label {
+  &.me-texteditor-large.me-texteditor-with-label .dx-texteditor-label {
     .dx-label-after,
     .dx-label-before {
       min-width: 12px;
@@ -441,16 +518,16 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       margin-top: 0;
     }
 
-    &.me-textbox-large .dx-texteditor-label {
+    &.me-texteditor-large .dx-texteditor-label {
       font-size: 13px;
     }
 
     &.me-texteditor-with-label {
-      &.me-textbox-small .dx-texteditor-label {
+      &.me-texteditor-small .dx-texteditor-label {
         line-height: 16px;
       }
 
-      &.me-label-floating.me-textbox-small {
+      &.me-label-floating.me-texteditor-small {
         .dx-texteditor-label {
           line-height: 24px;
         }
@@ -460,7 +537,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         // }
       }
 
-      &.me-label-floating.me-textbox-medium {
+      &.me-label-floating.me-texteditor-medium {
         .dx-texteditor-label {
           line-height: 22px;
         }
@@ -470,7 +547,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         // }
       }
 
-      &.me-label-floating.me-textbox-large {
+      &.me-label-floating.me-texteditor-large {
         .dx-texteditor-label {
           line-height: 21px;
         }
@@ -522,7 +599,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         transition: 0.3s;
       }
 
-      &.me-label-floating.me-textbox-small {
+      &.me-label-floating.me-texteditor-small {
         & .dx-texteditor-label {
           font-size: 13px;
         }
@@ -532,7 +609,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         }
       }
 
-      &.me-label-floating.me-textbox-medium {
+      &.me-label-floating.me-texteditor-medium {
         & .dx-texteditor-label {
           font-size: 14px;
         }
@@ -542,7 +619,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         }
       }
 
-      &.me-label-floating.me-textbox-large {
+      &.me-label-floating.me-texteditor-large {
         & .dx-texteditor-label {
           font-size: 16px;
           line-height: 21px;
@@ -1224,11 +1301,11 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
   }
 }
 
-// .me-textbox:has(input:focus-visible) {
+// .me-texteditor:has(input:focus-visible) {
 //   outline: 3px solid #7eb9ff;
 // }
 
-.me-textbox.me-state-focus {
+.me-texteditor.me-state-focus {
   outline: 3px solid #7eb9ff;
 }
 

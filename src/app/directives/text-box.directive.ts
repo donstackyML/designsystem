@@ -26,10 +26,10 @@ export class MeTextBoxDirective implements OnInit {
 
   ngOnInit(): void {
     this.component.stylingMode = this.stylingMode;
-    this.renderer.addClass(this.element.nativeElement, 'me-textbox');
+    this.renderer.addClass(this.element.nativeElement, 'me-texteditor');
     this.renderer.addClass(
       this.element.nativeElement,
-      `me-textbox-${this.size}`
+      `me-texteditor-${this.size}`
     );
 
     if (

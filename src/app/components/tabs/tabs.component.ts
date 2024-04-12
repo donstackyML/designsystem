@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-// import { DxTabsComponent } from 'devextreme-angular';
 import { Tab, TabsService } from 'src/app/service/tabs.service';
 
 @Component({

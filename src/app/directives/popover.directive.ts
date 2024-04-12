@@ -7,7 +7,6 @@ import { MeCommonType } from '../types/types';
 })
 export class PopoverDirective {
   @Input() wrapperAttr: MeCommonType = {};
-  // @Input() size: MeSizeType = 'medium';
 
   wrapperClasses: string = 'me-popover';
 
@@ -18,8 +17,6 @@ export class PopoverDirective {
   ) {}
 
   ngOnInit(): void {
-    // this.wrapperClasses = `me-popover ${this.size}`;
-
     this.component.wrapperAttr = {
       ...this.wrapperAttr,
       class: `${this.wrapperAttr['class'] || ''} ${this.wrapperClasses}`,

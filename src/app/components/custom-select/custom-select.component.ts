@@ -25,7 +25,6 @@ export class CustomSelectComponent {
   value = 'name';
 
   chooseElement(event: ItemClickEvent) {
-    console.log(event.itemIndex);
     this.currentIndex = event.itemIndex as number;
   }
 }
