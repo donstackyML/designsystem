@@ -67,9 +67,62 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size +
 
   @include dx-icon(spindown);
   @include dx-dropdowneditor-button-icon();
+
+  .me-texteditor & {
+    width: 10px;
+    background-image: $dropdowneditor-arrow-icon-image-bg;
+    background-size: contain;
+  }
+
+  .me-texteditor.dx-state-disabled & {
+    opacity: 0.4;
+  }
+
+  .me-texteditor-large & {
+    width: 12px;
+  }
+
+  .me-texteditor &::before {
+    content: none;
+  }
 }
 
-.dx-dropdowneditor-input-wrapper {
+.me-texteditor {
+  & .dx-texteditor-container {
+    flex-grow: 1;
+  }
+
+  & .dx-dropdowneditor-button .dx-button-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: none;
+    width: 20px;
+    height: 20px;
+  }
+
+  &-large .dx-dropdowneditor-button .dx-button-content {
+    width: 24px;
+    height: 24px;
+  }
+
+  & .dx-dropdowneditor-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    min-width: 20px;
+    margin-right: 3px;
+  }
+
+  &-large .dx-dropdowneditor-button {
+    width: 24px;
+    height: 24px;
+    margin-right: 7px;
+  }
+}
+
+.me-texteditor .dx-dropdowneditor-input-wrapper {
   .dx-texteditor {
     &.dx-editor-outlined,
     &.dx-editor-filled,
@@ -172,6 +225,7 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size +
     border-color: $dropdowneditor-button-active-border-color;
     color: $dropdowneditor-icon-active-color;
     transform: rotate(180deg);
+    background-image: $dropdowneditor-expand-arrow-icon-image-bg;
     opacity: 1;
 
     @at-root #{selector-append(".dx-editor-filled", &)},
@@ -214,7 +268,7 @@ $generic-dropdowneditor-invalid-badge-size: $generic-invalid-badge-size +
   }
 }
 
-.dx-invalid.dx-dropdowneditor {
+.dx-invalid.dx-dropdowneditor:not(.me-texteditor) {
   @include texteditor-container-offset();
 
   &.dx-editor-filled {

@@ -6,14 +6,19 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { DxTemplateDirective, DxTextBoxComponent } from 'devextreme-angular';
-import { MeLabelPosition, MeTextBoxComponent } from '../types/types';
+import {
+  DxSelectBoxComponent,
+  DxTemplateDirective,
+  DxTextBoxComponent,
+} from 'devextreme-angular';
+import { MeFields, MeLabelPosition, MeTextBoxComponent } from '../types/types';
 
 @Directive({
   selector: '[meLabel]',
 })
 export class MeLabelDirective {
   @ContentChild(DxTextBoxComponent) textBox?: DxTextBoxComponent;
+  @ContentChild(DxSelectBoxComponent) selectBox?: DxSelectBoxComponent;
   @Input() labelPosition: MeLabelPosition = 'top';
   @Input() width: string = '';
 
@@ -37,7 +42,8 @@ export class MeLabelDirective {
   }
 
   ngAfterContentInit(): void {
-    const size = this.textBox?.templates as unknown as string[];
+    let size = this.textBox?.templates as unknown as string[];
+    size ||= this.selectBox?.templates as unknown as string[];
 
     if (size?.includes('large') && this.labelPosition === 'top')
       this.renderer.addClass(this.element.nativeElement, 'me-label-large');
@@ -62,10 +68,13 @@ export class MeLabelDirective {
   }
 
   ngAfterContentChecked(): void {
-    if (!this.textBox?.isValid) {
+    let field: MeFields = this.textBox;
+    field ||= this.selectBox;
+
+    if (!field?.isValid) {
       this.renderer.addClass(this.element.nativeElement, 'me-label-invalid');
     }
-    if (this.textBox?.isValid) {
+    if (field?.isValid) {
       this.renderer.removeClass(this.element.nativeElement, 'me-label-invalid');
     }
   }

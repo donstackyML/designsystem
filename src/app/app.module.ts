@@ -39,6 +39,9 @@ import { PopoverDirective } from './directives/popover.directive';
 import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.component';
 import { MeLabelDirective } from './directives/label.directive';
+import { MeSelectBoxComponent } from './components/me-select-box/me-select-box.component';
+import { MeSelectBoxDirective } from './directives/select-box.directive';
+import { MeFieldDirective } from './directives/field.directive';
 
 @NgModule({
   declarations: [
@@ -75,6 +78,9 @@ import { MeLabelDirective } from './directives/label.directive';
     MeTextBoxComponent,
     MeTextBoxDirective,
     MeLabelDirective,
+    MeSelectBoxComponent,
+    MeSelectBoxDirective,
+    MeFieldDirective,
   ],
   imports: [
     BrowserModule,
