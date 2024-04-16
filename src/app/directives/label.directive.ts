@@ -4,14 +4,9 @@ import {
   ElementRef,
   Input,
   Renderer2,
-  ViewChild,
 } from '@angular/core';
-import {
-  DxSelectBoxComponent,
-  DxTemplateDirective,
-  DxTextBoxComponent,
-} from 'devextreme-angular';
-import { MeFields, MeLabelPosition, MeTextBoxComponent } from '../types/types';
+import { DxSelectBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
+import { MeFields, MeLabelPosition } from '../types/types';
 
 @Directive({
   selector: '[meLabel]',

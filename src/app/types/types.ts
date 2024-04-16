@@ -15,7 +15,7 @@ export type MeButtonStyle = 'contained' | 'outlined' | 'text';
 export type MeFieldStyle = 'outlined' | 'underlined' | 'filled';
 export type MeLabelPosition = 'top' | 'left';
 export type MeLabelMode = 'static' | 'floating';
-export type MeScrollbarShowType = 'always' | 'never';
+export type MeScrollbarShowType = 'always' | 'onHover';
 export type MeFields = DxTextBoxComponent | DxSelectBoxComponent | undefined;
 
 export declare class MeTextBoxComponent {

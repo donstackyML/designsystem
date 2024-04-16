@@ -1,13 +1,6 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxSelectBoxComponent } from 'devextreme-angular';
-import {
-  MeFieldStyle,
-  MeLabelMode,
-  MeSize,
-  MeScrollbarShowType,
-  MeCommonType,
-} from '../types/types';
-import { MeTextBoxDirective } from './text-box.directive';
+import { MeScrollbarShowType, MeCommonType } from '../types/types';
 import { MeFieldDirective } from './field.directive';
 
 @Directive({
