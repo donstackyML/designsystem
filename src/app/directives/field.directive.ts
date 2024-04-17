@@ -6,7 +6,12 @@ import {
   Input,
   Renderer2,
 } from '@angular/core';
-import { MeFieldStyle, MeLabelMode, MeSize } from '../types/types';
+import {
+  MeFieldComponent,
+  MeFieldStyle,
+  MeLabelMode,
+  MeSize,
+} from '../types/types';
 import {
   DxSelectBoxComponent,
   DxTemplateDirective,
@@ -25,7 +30,7 @@ export class MeFieldDirective {
   constructor(
     protected element: ElementRef,
     @Inject(DxTextBoxComponent)
-    protected component: DxTextBoxComponent | DxSelectBoxComponent,
+    protected component: MeFieldComponent,
     protected renderer: Renderer2
   ) {}
 

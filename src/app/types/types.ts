@@ -16,7 +16,7 @@ export type MeFieldStyle = 'outlined' | 'underlined' | 'filled';
 export type MeLabelPosition = 'top' | 'left';
 export type MeLabelMode = 'static' | 'floating';
 export type MeScrollbarShowType = 'always' | 'onHover';
-export type MeFields = DxTextBoxComponent | DxSelectBoxComponent | undefined;
+export type MeFieldComponent = DxTextBoxComponent | DxSelectBoxComponent;
 
 export declare class MeTextBoxComponent {
   size: MeSize;

@@ -1,21 +1,30 @@
 import {
+  AfterContentChecked,
+  AfterContentInit,
   ContentChild,
   Directive,
   ElementRef,
   Input,
+  OnDestroy,
+  OnInit,
   Renderer2,
 } from '@angular/core';
 import { DxSelectBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
-import { MeFields, MeLabelPosition } from '../types/types';
+import { MeFieldComponent, MeLabelPosition } from '../types/types';
 
 @Directive({
   selector: '[meLabel]',
 })
-export class MeLabelDirective {
-  @ContentChild(DxTextBoxComponent) textBox?: DxTextBoxComponent;
-  @ContentChild(DxSelectBoxComponent) selectBox?: DxSelectBoxComponent;
+export class MeLabelDirective
+  implements OnInit, AfterContentInit, AfterContentChecked, OnDestroy
+{
+  @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
+  @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
+  @ContentChild('label') label?: ElementRef<HTMLLabelElement>;
   @Input() labelPosition: MeLabelPosition = 'top';
   @Input() width: string = '';
+  field?: MeFieldComponent;
+  unlistenLabel = () => {};
 
   constructor(private element: ElementRef, private renderer: Renderer2) {}
 
@@ -37,8 +46,18 @@ export class MeLabelDirective {
   }
 
   ngAfterContentInit(): void {
-    let size = this.textBox?.templates as unknown as string[];
-    size ||= this.selectBox?.templates as unknown as string[];
+    this.field = this.textBoxComponent;
+    this.field ||= this.selectBoxComponent;
+
+    if (this.label) {
+      this.unlistenLabel = this.renderer.listen(
+        this.label?.nativeElement,
+        'click',
+        this.onLabelClick
+      );
+    }
+
+    let size = this.field?.templates as unknown as string[];
 
     if (size?.includes('large') && this.labelPosition === 'top')
       this.renderer.addClass(this.element.nativeElement, 'me-label-large');
@@ -63,14 +82,20 @@ export class MeLabelDirective {
   }
 
   ngAfterContentChecked(): void {
-    let field: MeFields = this.textBox;
-    field ||= this.selectBox;
-
-    if (!field?.isValid) {
+    if (!this.field?.isValid) {
       this.renderer.addClass(this.element.nativeElement, 'me-label-invalid');
     }
-    if (field?.isValid) {
+    if (this.field?.isValid) {
       this.renderer.removeClass(this.element.nativeElement, 'me-label-invalid');
     }
   }
+
+  ngOnDestroy(): void {
+    this.unlistenLabel();
+  }
+
+  onLabelClick = () => {
+    console.log('Label click!');
+    this.field?.instance.focus();
+  };
 }
