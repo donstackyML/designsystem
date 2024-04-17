@@ -20,7 +20,7 @@ export class MeLabelDirective
 {
   @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
-  @ContentChild('label') label?: ElementRef<HTMLLabelElement>;
+  @ContentChild('meLabel') label?: ElementRef<HTMLLabelElement>;
   @Input() labelPosition: MeLabelPosition = 'top';
   @Input() width: string = '';
   field?: MeFieldComponent;

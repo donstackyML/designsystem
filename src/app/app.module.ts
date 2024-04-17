@@ -42,6 +42,8 @@ import { MeLabelDirective } from './directives/label.directive';
 import { MeSelectBoxComponent } from './components/me-select-box/me-select-box.component';
 import { MeSelectBoxDirective } from './directives/select-box.directive';
 import { MeFieldDirective } from './directives/field.directive';
+import { MeCheckBoxDirective } from './directives/check-box.directive';
+import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { MeFieldDirective } from './directives/field.directive';
     MeSelectBoxComponent,
     MeSelectBoxDirective,
     MeFieldDirective,
+    MeCheckBoxDirective,
+    MeCheckBoxComponent,
   ],
   imports: [
     BrowserModule,

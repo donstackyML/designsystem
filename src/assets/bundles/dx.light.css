@@ -4382,13 +4382,46 @@
 .dx-state-readonly.dx-checkbox-indeterminate .dx-checkbox-icon::before {
   background-color: #18181a;
 }
-.dx-checkbox-indeterminate.dx-state-disabled .dx-checkbox-icon::before {
-  content: "";
-  width: 14px;
-  height: 2px;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  background-color: rgba(255, 255, 255, 0.7490196078);
+.me-checkbox-medium .dx-checkbox-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.me-checkbox-small .dx-checkbox-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.me-checkbox-large .dx-checkbox-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.me-checkbox .dx-checkbox-icon::before {
+  content: none;
+}
+
+.me-checkbox .dx-checkbox-icon {
+  background-position: 50% 50%;
+  background-size: 12px 12px;
+}
+
+.dx-state-disabled.me-checkbox .dx-checkbox-icon,
+.dx-state-readonly.me-checkbox .dx-checkbox-icon {
+  opacity: 0.75;
+}
+
+.me-checkbox-large .dx-checkbox-icon {
+  background-position: 50% 50%;
+  background-size: 16px 16px;
+}
+
+.me-checkbox.dx-checkbox-checked .dx-checkbox-icon {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzM4XzkwNzQiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiI+CjxyZWN0IHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI0Q5RDlEOSIvPgo8L21hc2s+CjxnIG1hc2s9InVybCgjbWFzazBfMzhfOTA3NCkiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTExLjQ2NTYgMi4zNjA5TDQuMjMyNzkgMTAuMTUwMUwwIDUuNTkxNjdMMS40NjU1OSA0LjIzMDc3TDQuMjMyNzkgNy4yMTA4NEwxMCAxTDExLjQ2NTYgMi4zNjA5WiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K");
+}
+
+.me-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzM4XzkxMzEiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiI+CjxyZWN0IHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI0Q5RDlEOSIvPgo8L21hc2s+CjxnIG1hc2s9InVybCgjbWFzazBfMzhfOTEzMSkiPgo8cGF0aCBkPSJNMSA3VjVIMTFWN0gxWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K");
 }
 
 .dx-checkbox-text {
@@ -4401,20 +4434,29 @@
 }
 
 .dx-state-disabled.dx-checkbox,
-.dx-state-disabled .dx-checkbox {
+.dx-state-disabled .dx-checkbox,
+.dx-state-readonly.dx-checkbox,
+.dx-state-readonly .dx-checkbox {
   opacity: 1;
 }
 .dx-state-disabled.dx-checkbox .dx-checkbox-icon,
-.dx-state-disabled .dx-checkbox .dx-checkbox-icon {
+.dx-state-disabled .dx-checkbox .dx-checkbox-icon,
+.dx-state-readonly.dx-checkbox .dx-checkbox-icon,
+.dx-state-readonly .dx-checkbox .dx-checkbox-icon {
   border: 1px solid #91aaea;
   color: rgba(255, 255, 255, 0.7490196078);
 }
 .dx-state-disabled.dx-checkbox.dx-checkbox-checked .dx-checkbox-icon, .dx-state-disabled.dx-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon,
 .dx-state-disabled .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
-.dx-state-disabled .dx-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon {
+.dx-state-disabled .dx-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon,
+.dx-state-readonly.dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
+.dx-state-readonly.dx-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon,
+.dx-state-readonly .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
+.dx-state-readonly .dx-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon {
   background-color: #91aaea;
 }
-.dx-state-disabled .dx-checkbox-text {
+.dx-state-disabled .dx-checkbox-text,
+.dx-state-readonly .dx-checkbox-text {
   opacity: 0.4;
 }
 
