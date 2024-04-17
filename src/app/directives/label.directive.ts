@@ -9,7 +9,11 @@ import {
   OnInit,
   Renderer2,
 } from '@angular/core';
-import { DxSelectBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
+import {
+  DxCheckBoxComponent,
+  DxSelectBoxComponent,
+  DxTextBoxComponent,
+} from 'devextreme-angular';
 import { MeFieldComponent, MeLabelPosition } from '../types/types';
 
 @Directive({
@@ -20,10 +24,11 @@ export class MeLabelDirective
 {
   @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
+  @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
   @ContentChild('meLabel') label?: ElementRef<HTMLLabelElement>;
-  @Input() labelPosition: MeLabelPosition = 'top';
+  @Input() labelPosition: MeLabelPosition = 'left';
   @Input() width: string = '';
-  field?: MeFieldComponent;
+  field?: MeFieldComponent | DxCheckBoxComponent;
   unlistenLabel = () => {};
 
   constructor(private element: ElementRef, private renderer: Renderer2) {}
@@ -48,6 +53,7 @@ export class MeLabelDirective
   ngAfterContentInit(): void {
     this.field = this.textBoxComponent;
     this.field ||= this.selectBoxComponent;
+    this.field ||= this.checkBoxComponent;
 
     if (this.label) {
       this.unlistenLabel = this.renderer.listen(
@@ -57,7 +63,7 @@ export class MeLabelDirective
       );
     }
 
-    let size = this.field?.templates as unknown as string[];
+    let size = this.field?.elementAttr?.size;
 
     if (size?.includes('large') && this.labelPosition === 'top')
       this.renderer.addClass(this.element.nativeElement, 'me-label-large');

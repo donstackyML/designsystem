@@ -55,7 +55,7 @@ export class MeFieldDirective {
         this.renderer.addClass(this.element.nativeElement, 'me-label-floating');
     }
 
-    this.component.templates.push(this.size as unknown as DxTemplateDirective);
+    this.component.elementAttr['size'] = this.size;
   };
 
   @HostListener('keyup', ['$event']) addFocus = (event: KeyboardEvent) => {
