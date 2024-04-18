@@ -15,6 +15,7 @@ import {
   DxTextBoxComponent,
 } from 'devextreme-angular';
 import { MeFieldComponent, MeLabelPosition } from '../types/types';
+import { MeCheckBoxComponent } from '../components/me-check-box/me-check-box.component';
 
 @Directive({
   selector: '[meLabel]',
@@ -67,6 +68,14 @@ export class MeLabelDirective
 
     if (size?.includes('large') && this.labelPosition === 'top')
       this.renderer.addClass(this.element.nativeElement, 'me-label-large');
+
+    if (this.field instanceof DxCheckBoxComponent) {
+      this.renderer.addClass(this.element.nativeElement, 'me-label-option');
+
+      if (this.field?.disabled) {
+        this.renderer.addClass(this.element.nativeElement, 'me-label-disabled');
+      }
+    }
 
     if (this.labelPosition === 'left') {
       if (size.includes('small'))
