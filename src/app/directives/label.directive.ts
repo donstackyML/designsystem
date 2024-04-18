@@ -14,8 +14,7 @@ import {
   DxSelectBoxComponent,
   DxTextBoxComponent,
 } from 'devextreme-angular';
-import { MeFieldComponent, MeLabelPosition } from '../types/types';
-import { MeCheckBoxComponent } from '../components/me-check-box/me-check-box.component';
+import { MeEditorComponents, MeLabelPosition } from '../types/types';
 
 @Directive({
   selector: '[meLabel]',
@@ -29,7 +28,7 @@ export class MeLabelDirective
   @ContentChild('meLabel') label?: ElementRef<HTMLLabelElement>;
   @Input() labelPosition: MeLabelPosition = 'left';
   @Input() width: string = '';
-  field?: MeFieldComponent | DxCheckBoxComponent;
+  field?: MeEditorComponents;
   unlistenLabel = () => {};
 
   constructor(private element: ElementRef, private renderer: Renderer2) {}
@@ -110,7 +109,6 @@ export class MeLabelDirective
   }
 
   onLabelClick = () => {
-    console.log('Label click!');
     this.field?.instance.focus();
   };
 }

@@ -41,9 +41,10 @@ import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.c
 import { MeLabelDirective } from './directives/label.directive';
 import { MeSelectBoxComponent } from './components/me-select-box/me-select-box.component';
 import { MeSelectBoxDirective } from './directives/select-box.directive';
-import { MeFieldDirective } from './directives/field.directive';
+import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeCheckBoxDirective } from './directives/check-box.directive';
 import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
+import { MeEditorDirective } from './directives/editor.directive';
 
 @NgModule({
   declarations: [
@@ -82,9 +83,10 @@ import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.comp
     MeLabelDirective,
     MeSelectBoxComponent,
     MeSelectBoxDirective,
-    MeFieldDirective,
+    MeTextEditorDirective,
     MeCheckBoxDirective,
     MeCheckBoxComponent,
+    MeEditorDirective,
   ],
   imports: [
     BrowserModule,

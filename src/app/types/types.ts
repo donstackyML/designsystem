@@ -1,4 +1,8 @@
-import { DxSelectBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
+import {
+  DxCheckBoxComponent,
+  DxSelectBoxComponent,
+  DxTextBoxComponent,
+} from 'devextreme-angular';
 
 export type MeCommonType = {
   [key: string]: string;
@@ -16,7 +20,11 @@ export type MeFieldStyle = 'outlined' | 'underlined' | 'filled';
 export type MeLabelPosition = 'top' | 'left';
 export type MeLabelMode = 'static' | 'floating';
 export type MeScrollbarShowType = 'always' | 'onHover';
-export type MeFieldComponent = DxTextBoxComponent | DxSelectBoxComponent;
+export type MeEditorComponents =
+  | DxTextBoxComponent
+  | DxSelectBoxComponent
+  | DxCheckBoxComponent;
+export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 
 export declare class MeTextBoxComponent {
   size: MeSize;
