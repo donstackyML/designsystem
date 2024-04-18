@@ -68,13 +68,13 @@ export class MeLabelDirective
     if (size?.includes('large') && this.labelPosition === 'top')
       this.renderer.addClass(this.element.nativeElement, 'me-label-large');
 
-    if (this.field instanceof DxCheckBoxComponent) {
-      this.renderer.addClass(this.element.nativeElement, 'me-label-option');
+    // if (this.field instanceof DxCheckBoxComponent) {
+    //   this.renderer.addClass(this.element.nativeElement, 'me-label-option');
 
-      if (this.field?.disabled) {
-        this.renderer.addClass(this.element.nativeElement, 'me-label-disabled');
-      }
-    }
+    //   if (this.field?.disabled) {
+    //     this.renderer.addClass(this.element.nativeElement, 'me-label-disabled');
+    //   }
+    // }
 
     if (this.labelPosition === 'left') {
       if (size.includes('small'))

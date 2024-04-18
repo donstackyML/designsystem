@@ -43,13 +43,13 @@ $generic-checkbox-disable-opacity: 0.4;
 
   &.me-state-focus {
     border-radius: 2px;
-    outline: 2px solid #7eb9ff;
+    outline-offset: 2px;
   }
 
   &.dx-state-focused:not(.dx-state-readonly) {
-    // .dx-checkbox-icon {
-    //   border: 1px solid $checkbox-focused-borderd-color;
-    // }
+    .dx-checkbox-icon {
+      // border: 1px solid $checkbox-focused-borderd-color;
+    }
   }
 
   &.dx-state-active:not(.dx-state-readonly) {
@@ -140,9 +140,14 @@ $generic-checkbox-disable-opacity: 0.4;
   background-size: 12px 12px;
 }
 
-.dx-state-disabled.me-editor .dx-checkbox-icon,
-.dx-state-readonly.me-editor .dx-checkbox-icon {
-  opacity: $me-checkbox-opacity;
+.dx-state-disabled.me-editor.dx-checkbox-checked .dx-checkbox-icon,
+.dx-state-readonly.me-editor.dx-checkbox-checked .dx-checkbox-icon {
+  background-image: $checkbox-checked-icon-image-bg-disabled;
+}
+
+.dx-state-disabled.me-editor.dx-checkbox-indeterminate .dx-checkbox-icon,
+.dx-state-readonly.me-editor.dx-checkbox-indeterminate .dx-checkbox-icon {
+  background-image: $checkbox-indeterminate-icon-image-bg-disabled;
 }
 
 .me-editor-large .dx-checkbox-icon {
@@ -162,6 +167,30 @@ $generic-checkbox-disable-opacity: 0.4;
   margin-left: -$generic-checkbox-size;
   padding-left: $generic-checkbox-size + 5px;
 
+  .dx-state-disabled & {
+    color: $me-checkbox-disabled-label;
+  }
+
+  .me-editor-small &,
+  .me-editor-medium & {
+    margin-left: 0;
+    padding-left: 8px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .me-editor-medium & {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .me-editor-large & {
+    margin-left: 0;
+    padding-left: 10px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
   @at-root #{selector-append(".dx-rtl", &)},
     .dx-rtl & {
     margin-right: -$generic-checkbox-size;
@@ -173,7 +202,7 @@ $generic-checkbox-disable-opacity: 0.4;
 .dx-state-readonly {
   &.dx-checkbox,
   .dx-checkbox {
-    opacity: 1;
+    // opacity: 1;
 
     .dx-checkbox-icon {
       // opacity: $generic-checkbox-disable-opacity;
@@ -193,7 +222,7 @@ $generic-checkbox-disable-opacity: 0.4;
   }
 
   .dx-checkbox-text {
-    opacity: $generic-checkbox-disable-opacity;
+    // opacity: $generic-checkbox-disable-opacity;
   }
 }
 
