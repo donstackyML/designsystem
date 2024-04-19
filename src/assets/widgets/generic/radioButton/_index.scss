@@ -16,6 +16,27 @@ $generic-radiobutton-inner-size: $generic-radiobutton-size -
 .dx-radiobutton-icon {
   width: $generic-radiobutton-size;
   height: $generic-radiobutton-size;
+
+  .me-editor & {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .me-editor-small & {
+    width: 16px;
+    height: 16px;
+  }
+
+  .me-editor-medium & {
+    width: 20px;
+    height: 20px;
+  }
+
+  .me-editor-large & {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .dx-radiobutton-icon::before {
@@ -31,6 +52,26 @@ $generic-radiobutton-inner-size: $generic-radiobutton-size -
   .dx-state-disabled & {
     border-color: $radiogroup-disabled-border-color;
   }
+
+  .me-editor & {
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .me-editor-small & {
+    width: 14px;
+    height: 14px;
+  }
+
+  .me-editor-medium & {
+    width: 18px;
+    height: 18px;
+  }
+
+  .me-editor-large & {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .dx-radiobutton-icon-checked .dx-radiobutton-icon-dot {
@@ -45,6 +86,21 @@ $generic-radiobutton-inner-size: $generic-radiobutton-size -
   content: "";
   border-radius: math.div($generic-radiobutton-dot-size, 2);
 
+  .me-editor & {
+    margin: 0;
+    border-radius: 50%;
+  }
+
+  .me-editor-medium & {
+    width: 12px;
+    height: 12px;
+  }
+
+  .me-editor-large & {
+    width: 16px;
+    height: 16px;
+  }
+
   .dx-state-hover & {
     background: $radiogroup-checked-hover-bg;
   }
@@ -53,17 +109,47 @@ $generic-radiobutton-inner-size: $generic-radiobutton-size -
     background: $radiobutton-active-border;
   }
 
-  .dx-state-disabled & {
+  .dx-state-disabled &,
+  .dx-state-readonly & {
     background: $radiogroup-disabled-border-color;
   }
 
-  .dx-state-readonly & {
-    background: $radiobutton-readonly-bg;
-  }
+  // .dx-state-readonly & {
+  //   background: $radiobutton-readonly-bg;
+  // }
 }
 
 .dx-radiobutton {
   line-height: $generic-radiobutton-size;
+  display: flex;
+  align-items: center;
+
+  .me-editor-small & {
+    & .dx-item-content {
+      font-size: 13px;
+      line-height: 20px;
+    }
+  }
+
+  .me-editor-medium & {
+    & .dx-item-content {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  .me-editor-large & {
+    & .dx-item-content {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  .dx-state-disabled & {
+    & .dx-item-content {
+      color: $radiogroup-disabled-color;
+    }
+  }
 
   &.dx-state-readonly {
     .dx-radiobutton-icon::before {

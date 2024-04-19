@@ -1,5 +1,6 @@
 import {
   DxCheckBoxComponent,
+  DxRadioGroupComponent,
   DxSelectBoxComponent,
   DxTextBoxComponent,
 } from 'devextreme-angular';
@@ -23,7 +24,8 @@ export type MeScrollbarShowType = 'always' | 'onHover';
 export type MeEditorComponents =
   | DxTextBoxComponent
   | DxSelectBoxComponent
-  | DxCheckBoxComponent;
+  | DxCheckBoxComponent
+  | DxRadioGroupComponent;
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 
 export declare class MeTextBoxComponent {

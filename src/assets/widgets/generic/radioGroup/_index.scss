@@ -10,9 +10,28 @@
 
 .dx-radio-value-container {
   padding-left: 0;
+
+  .me-editor-small & {
+    padding-right: 8px;
+  }
+
+  .me-editor-medium & {
+    padding-right: 8px;
+  }
+
+  .me-editor-large & {
+    padding-right: 10px;
+  }
 }
 
 .dx-radiogroup {
+  &.me-editor.dx-radiogroup-vertical {
+    .dx-radiobutton:not(:last-of-type) {
+      margin-top: 0px;
+      margin-bottom: 16px;
+    }
+  }
+
   .dx-radiobutton,
   .dx-radiobutton-icon {
     margin: 1px 0;
@@ -20,13 +39,17 @@
 
   &.dx-state-readonly {
     .dx-radiobutton-icon::before {
-      border-color: $radiogroup-readonly-border-color;
+      border-color: $radiogroup-disabled-border-color;
       // background-color: $radiogroup-readonly-bg;
     }
   }
 }
 
 .dx-radiogroup-horizontal {
+  &.me-editor .dx-radiobutton {
+    margin-right: 16px;
+  }
+
   .dx-radiobutton {
     margin-right: 17px;
 

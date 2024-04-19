@@ -8,19 +8,36 @@ import {
 } from '@angular/core';
 import { MeEditorComponents, MeSize } from '../types/types';
 import { DxTextBoxComponent } from 'devextreme-angular';
+import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
 
 @Directive({
   selector: '[meEditor]',
 })
 export class MeEditorDirective {
   @Input() size: MeSize = 'medium';
+  focusSubject: BehaviorSubject<boolean>;
+  focusSubscription: Subscription;
 
   constructor(
     protected element: ElementRef,
     @Inject(DxTextBoxComponent)
     protected component: MeEditorComponents,
     protected renderer: Renderer2
-  ) {}
+  ) {
+    this.focusSubject = new BehaviorSubject<boolean>(false);
+    this.focusSubscription = this.focusSubject
+      .pipe(debounceTime(0))
+      .subscribe((isFocus) => {
+        if (isFocus) {
+          this.renderer.addClass(this.element.nativeElement, 'me-state-focus');
+        } else {
+          this.renderer.removeClass(
+            this.element.nativeElement,
+            'me-state-focus'
+          );
+        }
+      });
+  }
 
   initMeEditor() {
     this.renderer.addClass(this.element.nativeElement, 'me-editor');
@@ -34,11 +51,15 @@ export class MeEditorDirective {
 
   @HostListener('keyup', ['$event']) addFocus = (event: KeyboardEvent) => {
     if (event.key === 'Tab') {
-      this.renderer.addClass(this.element.nativeElement, 'me-state-focus');
+      this.focusSubject.next(true);
     }
   };
 
   @HostListener('focusout') removeFocus = () => {
-    this.renderer.removeClass(this.element.nativeElement, 'me-state-focus');
+    this.focusSubject.next(false);
   };
+
+  ngOnDestroy(): void {
+    this.focusSubscription.unsubscribe();
+  }
 }

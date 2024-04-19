@@ -45,6 +45,8 @@ import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeCheckBoxDirective } from './directives/check-box.directive';
 import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
 import { MeEditorDirective } from './directives/editor.directive';
+import { MeRadioGroupDirective } from './directives/radio-group.directive';
+import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-group.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import { MeEditorDirective } from './directives/editor.directive';
     MeCheckBoxDirective,
     MeCheckBoxComponent,
     MeEditorDirective,
+    MeRadioGroupDirective,
+    MeRadioGroupComponent,
   ],
   imports: [
     BrowserModule,
