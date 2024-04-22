@@ -109,14 +109,13 @@ $generic-radiobutton-inner-size: $generic-radiobutton-size -
     background: $radiobutton-active-border;
   }
 
-  .dx-state-disabled &,
-  .dx-state-readonly & {
+  .dx-state-disabled & {
     background: $radiogroup-disabled-border-color;
   }
 
-  // .dx-state-readonly & {
-  //   background: $radiobutton-readonly-bg;
-  // }
+  .dx-state-readonly & {
+    background: $radiogroup-readonly-border-color;
+  }
 }
 
 .dx-radiobutton {
@@ -171,7 +170,7 @@ $generic-radiobutton-inner-size: $generic-radiobutton-size -
     }
   }
 
-  .dx-radiogroup:not(.dx-state-readonly) &.dx-state-focused {
+  .dx-radiogroup:not(.dx-state-readonly):not(.me-editor) &.dx-state-focused {
     &:not(.dx-state-active) {
       .dx-radiobutton-icon::before {
         border: $generic-radiobutton-border-width solid
