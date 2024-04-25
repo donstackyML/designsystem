@@ -1,5 +1,7 @@
 import {
   DxCheckBoxComponent,
+  DxPopoverComponent,
+  DxPopupComponent,
   DxRadioGroupComponent,
   DxSelectBoxComponent,
   DxTextBoxComponent,
@@ -27,6 +29,7 @@ export type MeEditorComponents =
   | DxCheckBoxComponent
   | DxRadioGroupComponent;
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
+export type MeOverlayComponents = DxPopoverComponent | DxPopupComponent;
 
 export declare class MeTextBoxComponent {
   size: MeSize;

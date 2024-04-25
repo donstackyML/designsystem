@@ -35,7 +35,7 @@ import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { ButtonDirective } from './directives/button.directive';
-import { PopoverDirective } from './directives/popover.directive';
+import { MePopoverDirective } from './directives/popover.directive';
 import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.component';
 import { MeLabelDirective } from './directives/label.directive';
@@ -47,6 +47,9 @@ import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.comp
 import { MeEditorDirective } from './directives/editor.directive';
 import { MeRadioGroupDirective } from './directives/radio-group.directive';
 import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-group.component';
+import { MePopupComponent } from './components/me-popup/me-popup.component';
+import { MePopupDirective } from './directives/popup.directive';
+import { MeOverlayDirective } from './directives/overlay.directive';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,7 @@ import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-grou
     MeButtonComponent,
     ButtonDirective,
     MeButtonTestComponent,
-    PopoverDirective,
+    MePopoverDirective,
     MePopoverComponent,
     MeTextBoxComponent,
     MeTextBoxDirective,
@@ -91,6 +94,9 @@ import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-grou
     MeEditorDirective,
     MeRadioGroupDirective,
     MeRadioGroupComponent,
+    MePopupComponent,
+    MePopupDirective,
+    MeOverlayDirective,
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export type Icon = {
-  [key: string]: string;
-};
-
-const icons: Icon = {
+const icons = {
   arrowback: `<svg width="iconSize" height="iconSize" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M2.875 6.75L7.0625 10.9375L6 12L0 6L6 0L7.0625 1.0625L2.875 5.25H12V6.75H2.875Z" fill="color" />
   </svg>`,
@@ -20,13 +16,42 @@ const icons: Icon = {
   add: `<svg width="iconSize" height="iconSize" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M4.25 5.75H0V4.25H4.25V0H5.75V4.25H10V5.75H5.75V10H4.25V5.75Z" fill="color"/>
   </svg>`,
+  overflow: `<svg xmlns="http://www.w3.org/2000/svg" width="iconSize" height="iconSize" viewBox="0 0 4 16" fill="none">
+  <path d="M2 16C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14C0 13.45 0.195833 12.9792 0.5875 12.5875C0.979167 12.1958 1.45 12 2 12C2.55 12 3.02083 12.1958 3.4125 12.5875C3.80417 12.9792 4 13.45 4 14C4 14.55 3.80417 15.0208 3.4125 15.4125C3.02083 15.8042 2.55 16 2 16ZM2 10C1.45 10 0.979167 9.80417 0.5875 9.4125C0.195833 9.02083 0 8.55 0 8C0 7.45 0.195833 6.97917 0.5875 6.5875C0.979167 6.19583 1.45 6 2 6C2.55 6 3.02083 6.19583 3.4125 6.5875C3.80417 6.97917 4 7.45 4 8C4 8.55 3.80417 9.02083 3.4125 9.4125C3.02083 9.80417 2.55 10 2 10ZM2 4C1.45 4 0.979167 3.80417 0.5875 3.4125C0.195833 3.02083 0 2.55 0 2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0C2.55 0 3.02083 0.195833 3.4125 0.5875C3.80417 0.979167 4 1.45 4 2C4 2.55 3.80417 3.02083 3.4125 3.4125C3.02083 3.80417 2.55 4 2 4Z" fill="color"/>
+  </svg>`,
 };
+const DEFAULT_ICON_ONLY_SIZE = '10';
+const DEFAULT_ICON_COLOR = 'var(--me-icon-default)';
+
+export type MeIcon = typeof icons;
 
 @Injectable({
   providedIn: 'root',
 })
 export class IconStoreService {
-  getIcons() {
+  icons = icons;
+
+  getIcons(customizable: boolean = false) {
+    if (customizable) return icons;
+
     return icons;
+  }
+
+  getIcon(icon: string, iconColor = '', iconSize = DEFAULT_ICON_ONLY_SIZE) {
+    if (!icon) return '';
+
+    if (!iconColor) iconColor = DEFAULT_ICON_COLOR;
+
+    if (this.icons.hasOwnProperty(icon)) {
+      const iconName = icon as keyof MeIcon;
+
+      return this.icons[iconName]
+        .replaceAll('color', iconColor)
+        .replaceAll('iconSize', iconSize);
+    } else {
+      return icon
+        .replaceAll('color', iconColor)
+        .replaceAll('iconSize', iconSize);
+    }
   }
 }

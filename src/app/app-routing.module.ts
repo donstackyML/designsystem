@@ -7,6 +7,7 @@ import { MeTextBoxComponent } from './components/me-text-box/me-text-box.compone
 import { MeSelectBoxComponent } from './components/me-select-box/me-select-box.component';
 import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
 import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-group.component';
+import { MePopupComponent } from './components/me-popup/me-popup.component';
 
 const routes: Routes = [
   { path: '', component: MeButtonComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'me-select-box', component: MeSelectBoxComponent },
   { path: 'me-check-box', component: MeCheckBoxComponent },
   { path: 'me-radio-group', component: MeRadioGroupComponent },
+  { path: 'me-popup', component: MePopupComponent },
   { path: 'me-popover', component: MePopoverComponent },
   // { path: 'buttons', component: ButtonsComponent },
   // { path: 'button-group', component: BtnGroupComponent },

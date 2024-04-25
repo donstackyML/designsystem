@@ -82,6 +82,10 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 .dx-popup-content {
   padding: $generic-popup-content-padding;
 
+  .me-popup-medium & {
+    padding: 16px 20px 0;
+  }
+
   & > .dx-button {
     margin: $generic-popup-button-margin;
   }
@@ -109,7 +113,7 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     }
   }
 
-  .dx-button {
+  .dx-button:not(.me-button) {
     min-width: 100px;
   }
 }
@@ -121,4 +125,96 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
 .dx-dialog-message {
   padding: 0;
+}
+
+// .me-popup .me-popup .dx-closebutton {
+//   padding: 5px;
+
+//   & .dx-button-content {
+//     display: flex;
+//     padding: 5px;
+//     height: auto;
+
+//     & .dx-icon-close {
+//       background-image: $popup-close-icon-image;
+//       background-position: center center;
+//       background-repeat: no-repeat;
+//       background-size: contain;
+//       width: 10px;
+//       height: 10px;
+//     }
+//   }
+// }
+
+.me-popup-medium {
+  & .dx-popup-title.dx-toolbar {
+    padding: 12px 12px 8px 20px;
+
+    & .dx-toolbar-label {
+      line-height: 24px;
+      font-weight: 600;
+
+      & div {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    & .dx-toolbar-after {
+      display: flex;
+      gap: 8px;
+      height: 32px;
+    }
+
+    & .dx-toolbar-before {
+      height: 32px;
+    }
+
+    & .dx-toolbar-items-container {
+      height: 32px;
+    }
+  }
+
+  & .dx-popup-title .dx-button {
+    position: static;
+    padding: 5px;
+
+    & .dx-button-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 20px;
+      width: 20px;
+      padding: 0;
+
+      & .dx-icon-close {
+        background-image: $popup-close-icon-image;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 10px;
+        height: 10px;
+
+        &::before {
+          content: none;
+        }
+      }
+    }
+  }
+
+  & .dx-popup-bottom.dx-toolbar {
+    & .dx-toolbar-items-container {
+      height: 32px;
+    }
+
+    & .dx-toolbar-after,
+    & .dx-toolbar-before {
+      display: flex;
+      gap: 12px;
+    }
+
+    & .dx-toolbar-item {
+      padding: 0;
+    }
+  }
 }

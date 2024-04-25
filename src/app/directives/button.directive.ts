@@ -8,7 +8,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { DxButtonComponent } from 'devextreme-angular';
-import { Icon, IconStoreService } from '../service/icon-store.service';
+import { MeIcon, IconStoreService } from '../service/icon-store.service';
 import { ThemesService } from '../service/themes.service';
 import { MeSize, MeButtonStyle, MeButtonType } from '../types/types';
 
@@ -45,7 +45,7 @@ export class ButtonDirective
   leftIconPath = '';
   rightIconPath = '';
   theme = 'light';
-  icons: Icon;
+  icons: MeIcon;
 
   constructor(
     private element: ElementRef,
@@ -54,7 +54,7 @@ export class ButtonDirective
     private themeService: ThemesService,
     private iconStoreService: IconStoreService
   ) {
-    this.icons = this.iconStoreService.getIcons();
+    this.icons = this.iconStoreService.getIcons(true);
   }
 
   ngOnInit(): void {
@@ -175,7 +175,9 @@ export class ButtonDirective
   getIconAsString(icon: string, iconColor: string, iconSize: string) {
     if (!icon) return '';
     if (this.icons.hasOwnProperty(icon)) {
-      return this.icons[icon]
+      const iconName = icon as keyof MeIcon;
+
+      return this.icons[iconName]
         .replaceAll('color', iconColor)
         .replaceAll('iconSize', this.getIconSize(iconSize));
     } else {
