@@ -18,6 +18,10 @@ $generic-popup-toolbar-height: $generic-base-inline-widget-height;
 $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
 .dx-popup-wrapper {
+  &.me-popup > .dx-overlay-content {
+    border: none;
+  }
+
   & > .dx-overlay-content {
     border: 1px solid $overlay-border-color;
     background: $overlay-content-bg;
@@ -84,6 +88,10 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
   .me-popup-medium & {
     padding: 16px 20px 0;
+  }
+
+  .me-popup-large & {
+    padding: 16px 24px 0;
   }
 
   & > .dx-button {
@@ -205,6 +213,82 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   & .dx-popup-bottom.dx-toolbar {
     & .dx-toolbar-items-container {
       height: 32px;
+    }
+
+    & .dx-toolbar-after,
+    & .dx-toolbar-before {
+      display: flex;
+      gap: 12px;
+    }
+
+    & .dx-toolbar-item {
+      padding: 0;
+    }
+  }
+}
+
+.me-popup-large {
+  & .dx-popup-title.dx-toolbar {
+    padding: 15px 15px 11px 24px;
+
+    & .dx-toolbar-label {
+      font-size: 24px;
+      line-height: 30px;
+      font-weight: 600;
+
+      & div {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    & .dx-toolbar-after {
+      display: flex;
+      gap: 8px;
+      height: 40px;
+    }
+
+    & .dx-toolbar-before {
+      height: 40px;
+    }
+
+    & .dx-toolbar-items-container {
+      height: 40px;
+    }
+  }
+  //////////////
+  & .dx-popup-title .dx-button {
+    position: static;
+    padding: 7px;
+
+    & .dx-button-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 24px;
+      width: 24px;
+      padding: 0;
+
+      & .dx-icon-close {
+        background-image: $popup-close-icon-image;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 14px;
+        height: 14px;
+
+        &::before {
+          content: none;
+        }
+      }
+    }
+  }
+
+  & .dx-popup-bottom.dx-toolbar {
+    padding: 24px;
+
+    & .dx-toolbar-items-container {
+      height: 40px;
     }
 
     & .dx-toolbar-after,
