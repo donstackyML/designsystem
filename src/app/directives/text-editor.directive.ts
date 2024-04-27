@@ -27,7 +27,7 @@ export class MeTextEditorDirective extends MeEditorDirective {
   initMeField = () => {
     this.initMeEditor();
 
-    (this.component as MeTextEditorComponents).stylingMode = this.stylingMode;
+    (<MeTextEditorComponents>this.component).stylingMode = this.stylingMode;
 
     if (
       this.label &&

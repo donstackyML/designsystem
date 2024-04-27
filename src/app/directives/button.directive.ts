@@ -175,7 +175,7 @@ export class ButtonDirective
   getIconAsString(icon: string, iconColor: string, iconSize: string) {
     if (!icon) return '';
     if (this.icons.hasOwnProperty(icon)) {
-      const iconName = icon as keyof MeIcon;
+      const iconName = <keyof MeIcon>icon;
 
       return this.icons[iconName]
         .replaceAll('color', iconColor)

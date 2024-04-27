@@ -30,7 +30,7 @@ export class MeSelectBoxDirective
       this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
     }`;
 
-    (this.component as DxSelectBoxComponent).dropDownOptions = {
+    (<DxSelectBoxComponent>this.component).dropDownOptions = {
       wrapperAttr: {
         ...this.wrapperAttr,
         class: popupWrapperClasses,

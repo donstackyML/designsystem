@@ -64,8 +64,10 @@ export class AppComponent implements OnInit {
   }
 
   handleComponentChange(event: ItemClickEvent) {
-    this.currentComponent = this.componentsName[event.itemIndex as number];
+    const index = <number>event.itemIndex;
+
+    this.currentComponent = this.componentsName[index];
     this.isDropDownBoxOpened = false;
-    this.handleRouteChange(event.itemIndex as number);
+    this.handleRouteChange(index);
   }
 }

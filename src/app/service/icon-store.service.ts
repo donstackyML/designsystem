@@ -43,7 +43,7 @@ export class IconStoreService {
     if (!iconColor) iconColor = DEFAULT_ICON_COLOR;
 
     if (this.icons.hasOwnProperty(icon)) {
-      const iconName = icon as keyof MeIcon;
+      const iconName = <keyof MeIcon>icon;
 
       return this.icons[iconName]
         .replaceAll('color', iconColor)
