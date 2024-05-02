@@ -167,4 +167,27 @@
       </div>
     </dx-popup>
   </div>
+  <h2 class="wrapper__title dx-widget">Popup with icon</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(9)"> </dx-button>
+    <dx-popup mePopup>
+      <dxi-toolbar-item template="icon" location="before"> </dxi-toolbar-item>
+      <dxi-toolbar-item text="Заголовок" location="before"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'icon'">
+        <span meIcon icon="public" iconSize="20"></span>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button meButton text="Принять" type="default"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton text="Отмена" (onClick)="hidePopup(9)"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton text="Добавить"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
 </div>

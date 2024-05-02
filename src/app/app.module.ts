@@ -50,6 +50,7 @@ import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-grou
 import { MePopupComponent } from './components/me-popup/me-popup.component';
 import { MePopupDirective } from './directives/popup.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
+import { MeIconDirective } from './directives/icon.directive';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { MeOverlayDirective } from './directives/overlay.directive';
     MePopupComponent,
     MePopupDirective,
     MeOverlayDirective,
+    MeIconDirective,
   ],
   imports: [
     BrowserModule,

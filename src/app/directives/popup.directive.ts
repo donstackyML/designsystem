@@ -41,11 +41,6 @@ export class MePopupDirective extends MeOverlayDirective {
     this.initMeOverlay(this.size);
     const popup = <DxPopupComponent>this.component;
 
-    // this.renderer.addClass(this.element.nativeElement, 'me-popup');
-    // this.renderer.addClass(this.element.nativeElement, 'me-popup-medium');
-    // this.renderer.addClass(this.element.nativeElement, 'me-scrollbar-visible');
-    // this.renderer.addClass(this.element.nativeElement, 'me-scroll-view');
-
     popup.resizeEnabled = this.resizeEnabled;
 
     popup.maxHeight = this.maxHeight;
@@ -61,16 +56,12 @@ export class MePopupDirective extends MeOverlayDirective {
   }
 
   showPopup() {
-    console.log(this);
-
     if (this.popup) {
       this.popup.instance.show();
     }
   }
 
   hidePopup() {
-    console.log(this);
-
     if (this.popup) {
       this.popup.instance.hide();
     }
