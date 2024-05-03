@@ -17,13 +17,19 @@
 $generic-popup-toolbar-height: $generic-base-inline-widget-height;
 $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
+// .me-sidepage .dx-popup-wrapper .dx-overlay-content {
+//   border-radius: 0;
+// }
+
 .dx-popup-wrapper {
   &.me-popup > .dx-overlay-content {
-    border: none;
+    // border: none;
+    box-shadow: 0 4px 10px $overlay-content-shadow-color;
+    border-radius: 0;
   }
 
   & > .dx-overlay-content {
-    border: 1px solid $overlay-border-color;
+    border: 1px solid transparent;
     background: $overlay-content-bg;
     box-shadow: 0 6px 12px $overlay-content-shadow-color;
     border-radius: $popup-border-radius;
@@ -311,6 +317,33 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
     & .dx-toolbar-item {
       padding: 0;
+    }
+  }
+}
+
+// .dx-popup-normal {
+//   transition: transform 0.3s !important;
+// }
+
+// .me-sidepage-open .dx-popup-normal {
+//   transition: transform 0.3s !important;
+//   transform: translateX(0%) !important;
+// }
+
+.me-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: $overlay-shader-bg;
+}
+
+.me-sidepage {
+  position: relative;
+  transition: transform 0.3s ease;
+
+  .dx-popup-wrapper {
+    &.me-popup > .dx-overlay-content {
+      box-shadow: none;
     }
   }
 }

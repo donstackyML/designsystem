@@ -51,6 +51,8 @@ import { MePopupComponent } from './components/me-popup/me-popup.component';
 import { MePopupDirective } from './directives/popup.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
 import { MeIconDirective } from './directives/icon.directive';
+import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
+import { MeSidepageDirective } from './directives/sidepage.directive';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,8 @@ import { MeIconDirective } from './directives/icon.directive';
     MePopupDirective,
     MeOverlayDirective,
     MeIconDirective,
+    MeSidepageComponent,
+    MeSidepageDirective,
   ],
   imports: [
     BrowserModule,

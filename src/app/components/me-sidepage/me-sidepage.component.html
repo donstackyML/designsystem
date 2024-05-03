@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <h1 class="wrapper__main-title dx-widget">Sidepage</h1>
+  <dx-button text="Toggle drawer" (onClick)="toggleDrawer()"></dx-button>
+</div>
+<dx-popup meSidePage [(isOpen)]="isOpenSidePage" [closeOnOverlayClick]="true" position="right">
+  <dxi-toolbar-item template="closeButton" location="after"></dxi-toolbar-item>
+  <div *dxTemplate="let data of 'closeButton'">
+    <dx-button meButton (onClick)="toggleDrawer()" stylingMode="text" iconOnly="close"></dx-button>
+  </div>
+</dx-popup>

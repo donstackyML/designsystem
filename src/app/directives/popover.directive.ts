@@ -8,6 +8,6 @@ import { MeOverlayDirective } from './overlay.directive';
 })
 export class MePopoverDirective extends MeOverlayDirective {
   ngOnInit(): void {
-    this.initMeOverlay();
+    this.initMeModal();
   }
 }

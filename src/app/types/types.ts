@@ -10,7 +10,6 @@ import {
 export type MeCommonType = {
   [key: string]: string;
 };
-
 export type MeSize = 'small' | 'medium' | 'large';
 export type MeButtonType =
   | 'default'
@@ -30,6 +29,7 @@ export type MeEditorComponents =
   | DxRadioGroupComponent;
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 export type MeOverlayComponents = DxPopoverComponent | DxPopupComponent;
+export type MePosition = 'left' | 'right';
 
 export declare class MeTextBoxComponent {
   size: MeSize;

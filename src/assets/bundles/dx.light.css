@@ -3800,7 +3800,7 @@
   right: 0;
   height: 100%;
 }
-.me-popup .dx-scrollbar-vertical {
+.me-popup .dx-scrollbar-vertical, .me-sidepage .dx-scrollbar-vertical {
   right: -16px;
 }
 .dx-scrollbar-vertical .dx-scrollable-scroll {
@@ -10845,10 +10845,11 @@
 }
 
 .dx-popup-wrapper.me-popup > .dx-overlay-content {
-  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2196078431);
+  border-radius: 0;
 }
 .dx-popup-wrapper > .dx-overlay-content {
-  border: 1px solid #dfe0ed;
+  border: 1px solid transparent;
   background: #ffffff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2196078431);
   border-radius: 6px;
@@ -11206,6 +11207,21 @@
 }
 .me-popup-large .dx-popup-bottom.dx-toolbar .dx-toolbar-item {
   padding: 0;
+}
+
+.me-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.3019607843);
+}
+
+.me-sidepage {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.me-sidepage .dx-popup-wrapper.me-popup > .dx-overlay-content {
+  box-shadow: none;
 }
 
 .dx-dropdownbutton {

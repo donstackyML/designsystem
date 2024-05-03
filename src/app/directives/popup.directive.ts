@@ -38,7 +38,7 @@ export class MePopupDirective extends MeOverlayDirective {
   @ViewChild(DxPopupComponent) popup?: DxPopupComponent;
 
   ngOnInit(): void {
-    this.initMeOverlay(this.size);
+    this.initMeModal(this.size);
     const popup = <DxPopupComponent>this.component;
 
     popup.resizeEnabled = this.resizeEnabled;
