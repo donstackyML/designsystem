@@ -24,7 +24,7 @@ export class MeOverlayDirective {
     protected renderer: Renderer2
   ) {}
 
-  initMeModal(size?: string) {
+  initMeModal(size: string) {
     const sizeClass = size ? `${this.wrapperClasses}-${size}` : '';
 
     this.component.wrapperAttr = {

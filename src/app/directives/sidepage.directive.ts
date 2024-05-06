@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { DxPopupComponent } from 'devextreme-angular';
 import { MeOverlayDirective } from './overlay.directive';
-import { MePosition } from '../types/types';
+import { MePosition, MeSize } from '../types/types';
 
 @Directive({
   selector: '[meSidePage]',
@@ -16,7 +16,7 @@ import { MePosition } from '../types/types';
 export class MeSidepageDirective extends MeOverlayDirective {
   @Input() visible = true;
   @Input() isOpen = false;
-  @Input() width = '20vw';
+  @Input() width = '320px';
   @Input() height = '100vh';
   @Input() position: MePosition = 'left';
   @Input() shading = true;
@@ -26,6 +26,7 @@ export class MeSidepageDirective extends MeOverlayDirective {
   @Input() zIndexOverlay = '1504';
   @Input() dragEnable = false;
   @Input() closeOnOverlayClick = false;
+  @Input() size: MeSize = 'medium';
   @Output()
   isOpenChange = new EventEmitter<boolean>();
   private overlay: HTMLDivElement;
@@ -42,7 +43,7 @@ export class MeSidepageDirective extends MeOverlayDirective {
   }
 
   ngOnInit(): void {
-    this.initMeModal();
+    this.initMeModal(this.size);
     this.initPopup();
     this.initOverlay();
   }
