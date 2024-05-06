@@ -9,10 +9,12 @@ import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.comp
 import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-group.component';
 import { MePopupComponent } from './components/me-popup/me-popup.component';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
+import { TypographyComponent } from './components/typography/typography.component';
 
 const routes: Routes = [
   { path: '', component: MeButtonComponent },
   { path: 'all-components', component: AllComponentsComponent },
+  { path: 'typography', component: TypographyComponent },
   { path: 'me-buttons', component: MeButtonComponent },
   { path: 'me-text-box', component: MeTextBoxComponent },
   { path: 'me-select-box', component: MeSelectBoxComponent },

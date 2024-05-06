@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 const componentsRoute: string[] = [
   // 'all-components',
+  'typography',
   'me-buttons',
   'me-text-box',
   'me-select-box',
@@ -36,6 +37,7 @@ const componentsRoute: string[] = [
 
 const componentsName: string[] = [
   // 'Все компоненты',
+  'typography',
   'meButton',
   'meTextBox',
   'meSelectBox',

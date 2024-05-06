@@ -53,6 +53,7 @@ import { MeOverlayDirective } from './directives/overlay.directive';
 import { MeIconDirective } from './directives/icon.directive';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeSidepageDirective } from './directives/sidepage.directive';
+import { TypographyComponent } from './components/typography/typography.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { MeSidepageDirective } from './directives/sidepage.directive';
     MeIconDirective,
     MeSidepageComponent,
     MeSidepageDirective,
+    TypographyComponent,
   ],
   imports: [
     BrowserModule,
