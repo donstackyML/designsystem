@@ -26,7 +26,7 @@ const icons = {
   <path d="M1.0625 10L0 8.9375L3.9375 5L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L6.0625 5L10 8.9375L8.9375 10L5 6.0625L1.0625 10Z" fill="color"/>
   </svg>`,
 };
-const DEFAULT_ICON_ONLY_SIZE = '10';
+const DEFAULT_ICON_SIZE = '12';
 const DEFAULT_ICON_COLOR = 'var(--me-icon-default)';
 
 export type MeIcon = typeof icons;
@@ -46,7 +46,7 @@ export class IconStoreService {
   getIcon(
     icon: string,
     iconColor = DEFAULT_ICON_COLOR,
-    iconSize = DEFAULT_ICON_ONLY_SIZE
+    iconSize = DEFAULT_ICON_SIZE
   ) {
     if (!icon) return '';
 

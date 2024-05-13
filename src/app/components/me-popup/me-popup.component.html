@@ -172,13 +172,16 @@
     <dx-button text="Open popup" (onClick)="showPopup(9)"> </dx-button>
     <dx-popup mePopup>
       <dxi-toolbar-item template="icon" location="before"> </dxi-toolbar-item>
+
       <dxi-toolbar-item text="Заголовок" location="before"> </dxi-toolbar-item>
       <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
       <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
       <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+
       <div *dxTemplate="let data of 'icon'">
         <span meIcon icon="public" iconSize="20"></span>
       </div>
+
       <div *dxTemplate="let data of 'confirmButton'">
         <dx-button meButton text="Принять" type="default"></dx-button>
       </div>
@@ -189,5 +192,11 @@
         <dx-button meButton text="Добавить"></dx-button>
       </div>
     </dx-popup>
+  </div>
+
+  <div class="flex">
+    <span meIcon [icon]="arrowBackIcon" iconSize="10"></span>
+    <span meIcon [icon]="arrowBackIcon" iconSize="20"></span>
+    <span meIcon [icon]="arrowBackIcon" iconSize="30"></span>
   </div>
 </div>
