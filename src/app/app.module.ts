@@ -54,6 +54,8 @@ import { MeIconDirective } from './directives/icon.directive';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeSidepageDirective } from './directives/sidepage.directive';
 import { TypographyComponent } from './components/typography/typography.component';
+import { ToolbarDirective } from './directives/toolbar.directive';
+import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +107,8 @@ import { TypographyComponent } from './components/typography/typography.componen
     MeSidepageComponent,
     MeSidepageDirective,
     TypographyComponent,
+    ToolbarDirective,
+    MeToolbarComponent,
   ],
   imports: [
     BrowserModule,

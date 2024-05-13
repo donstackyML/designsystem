@@ -10,6 +10,7 @@ import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-grou
 import { MePopupComponent } from './components/me-popup/me-popup.component';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { TypographyComponent } from './components/typography/typography.component';
+import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 
 const routes: Routes = [
   { path: '', component: MeButtonComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'me-popup', component: MePopupComponent },
   { path: 'me-popover', component: MePopoverComponent },
   { path: 'me-sidepage', component: MeSidepageComponent },
+  { path: 'me-toolbar', component: MeToolbarComponent },
   // { path: 'buttons', component: ButtonsComponent },
   // { path: 'button-group', component: BtnGroupComponent },
   // { path: 'editors', component: EditorsComponent },

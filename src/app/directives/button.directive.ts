@@ -13,10 +13,10 @@ import { ThemesService } from '../service/themes.service';
 import { MeSize, MeButtonStyle, MeButtonType } from '../types/types';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
-const LARGE_ICON_SIZE = '16';
-const LARGE_ICON_ONLY_SIZE = '14';
-const DEFAULT_ICON_SIZE = '12';
-const DEFAULT_ICON_ONLY_SIZE = '10';
+const LARGE_ICON_SIZE = '24';
+// const LARGE_ICON_ONLY_SIZE = '14';
+const DEFAULT_ICON_SIZE = '20';
+// const DEFAULT_ICON_ONLY_SIZE = '10';
 
 @Directive({
   selector: '[meButton]',
@@ -100,6 +100,15 @@ export class ButtonDirective
 
     if (this.iconOnly) {
       this.renderer.addClass(this.element.nativeElement, `me-button-icon-only`);
+    }
+
+    if (
+      this.leftIcon ||
+      this.rightIcon ||
+      this.leftIconName ||
+      this.rightIconName
+    ) {
+      this.renderer.addClass(this.element.nativeElement, `me-button-icon`);
     }
 
     if (this.isSelected) {
@@ -192,12 +201,10 @@ export class ButtonDirective
 
     if (iconSize) {
       size = iconSize;
-    } else if (this.size === 'large' && this.iconOnly) {
-      size = LARGE_ICON_ONLY_SIZE;
-    } else if (this.iconOnly) {
-      size = DEFAULT_ICON_ONLY_SIZE;
     } else if (this.size === 'large') {
       size = LARGE_ICON_SIZE;
+    } else {
+      size = DEFAULT_ICON_SIZE;
     }
 
     return size;
