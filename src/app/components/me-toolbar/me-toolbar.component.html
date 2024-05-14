@@ -1,15 +1,167 @@
 <div class="wrapper">
   <h1 class="wrapper__main-title dx-widget">Toolbar</h1>
-  <dx-toolbar [width]="500">
-    <dxi-item>
-      <div *dxTemplate>
-        <dx-button meButton iconOnly="undo"></dx-button>
+  <dx-resizable class="resizable-container" [minWidth]="500" [minHeight]="150" [maxHeight]="370" handles="right" area=".widget-container">
+    <dx-toolbar meToolbar>
+      <dxi-item location="before">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="undo" location="before"></dx-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="redo" location="before"></dx-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locationInMenu="auto" menuItemTemplate="menuSeparatorTemplate">
+        <div *dxTemplate>
+          <div class="me-toolbar-separator"></div>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto">
+        <div *dxTemplate>
+          <dx-drop-down-button
+            width="100%"
+            displayExpr="text"
+            keyExpr="size"
+            itemTemplate="fontSizeTemplate"
+            [items]="fontSizes"
+            [selectedItemKey]="fontSizes[2].size"
+            [useSelectMode]="true"
+            stylingMode="contained"
+          >
+            <div *dxTemplate="let data of 'fontSizeTemplate'">
+              <div [style.fontSize]="data.size + 'px'">{{ data.text }}</div>
+            </div>
+          </dx-drop-down-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto">
+        <div *dxTemplate>
+          <dx-drop-down-button
+            width="100%"
+            icon="indent"
+            displayExpr="text"
+            keyExpr="lineHeight"
+            [items]="lineHeights"
+            [useSelectMode]="true"
+            [selectedItemKey]="lineHeight"
+            stylingMode="contained"
+          ></dx-drop-down-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto">
+        <div *dxTemplate>
+          <dx-select-box meSelectBox placeholder="Font" displayExpr="text" [inputAttr]="{ 'aria-label': 'Font' }" [items]="fontFamilies"></dx-select-box>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locationInMenu="auto" menuItemTemplate="menuSeparatorTemplate">
+        <div *dxTemplate>
+          <div class="me-toolbar-separator"></div>
+        </div>
+      </dxi-item>
+      <dxi-item location="before">
+        <div *dxTemplate>
+          <dx-button-group
+            displayExpr="text"
+            keyExpr="icon"
+            stylingMode="outlined"
+            selectionMode="multiple"
+            [items]="fontStyles"
+            stylingMode="contained"
+          ></dx-button-group>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locationInMenu="auto" menuItemTemplate="menuSeparatorTemplate">
+        <div *dxTemplate>
+          <div class="me-toolbar-separator"></div>
+        </div>
+      </dxi-item>
+      <dxi-item widget="dxButtonGroup" location="before" locateInMenu="auto" menuItemTemplate="menuTextAlignTemplate">
+        <div *dxTemplate>
+          <dx-button-group
+            keyExpr="alignment"
+            stylingMode="outlined"
+            [items]="textAlignItems"
+            [(selectedItemKeys)]="selectedTextAlign"
+            stylingMode="contained"
+          ></dx-button-group>
+        </div>
+      </dxi-item>
+      <dxi-item location="before">
+        <div *dxTemplate>
+          <dx-button-group keyExpr="alignment" stylingMode="outlined" [items]="listTypes" stylingMode="contained"></dx-button-group>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locationInMenu="auto" menuItemTemplate="menuSeparatorTemplate">
+        <div *dxTemplate>
+          <div class="me-toolbar-separator"></div>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto" widget="dxSelectBox">
+        <div *dxTemplate>
+          <dx-select-box displayExpr="text" meSelectBox valueExpr="text" [value]="heading" [items]="headings"></dx-select-box>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locationInMenu="auto" menuItemTemplate="menuSeparatorTemplate">
+        <div *dxTemplate>
+          <div class="me-toolbar-separator"></div>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto" showText="inMenu" widget="dxButton">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="link" text="Link"></dx-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto" showText="inMenu" widget="dxButton">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="add_photo_alternate" text="Add image"></dx-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locationInMenu="auto" menuItemTemplate="menuSeparatorTemplate">
+        <div *dxTemplate>
+          <div class="me-toolbar-separator"></div>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto" widget="dxButton" showText="inMenu">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="ink_eraser" text="Clear formating"></dx-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto" widget="dxButton" showText="inMenu">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="code" text="Code block"></dx-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locateInMenu="auto" widget="dxButton" showText="inMenu">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="format_quote" text="Blockquote"></dx-button>
+        </div>
+      </dxi-item>
+      <dxi-item location="before" locationInMenu="auto" menuItemTemplate="menuSeparatorTemplate">
+        <div *dxTemplate>
+          <div class="me-toolbar-separator"></div>
+        </div>
+      </dxi-item>
+
+      <dxi-item location="after" widget="dxButton" showText="inMenu">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="attach_file" text="Attach"></dx-button>
+        </div>
+      </dxi-item>
+
+      <dxi-item locateInMenu="always" widget="dxButton" showText="inMenu">
+        <div *dxTemplate>
+          <dx-button meButton iconOnly="help" text="About"></dx-button>
+        </div>
+      </dxi-item>
+
+      <div *dxTemplate="let data of 'menuSeparatorTemplate'">
+        <div class="me-toolbar-menu-separator"></div>
       </div>
-    </dxi-item>
-    <dxi-item>
-      <div *dxTemplate>
-        <dx-button meButton iconOnly="redo"></dx-button>
+
+      <div *dxTemplate="let data of 'menuTextAlignTemplate'">
+        <dx-button-group keyExpr="alignment" stylingMode="outlined" [items]="textAlignItemsExtended" [selectedItemKeys]="selectedTextAlign"></dx-button-group>
       </div>
-    </dxi-item>
-  </dx-toolbar>
+    </dx-toolbar>
+  </dx-resizable>
 </div>

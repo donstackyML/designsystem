@@ -1,11 +1,155 @@
 import { Component, OnInit } from '@angular/core';
 
+export interface FontSize {
+  size: number;
+  text: string;
+}
+
+export interface LineHeight {
+  lineHeight: number;
+  text: string;
+}
+
+export interface FontFamily {
+  text: string;
+}
+
+export interface FontStyle {
+  icon: string;
+  hint: string;
+}
+
+export interface TextAlign {
+  icon: string;
+  alignment: string;
+  hint: string;
+}
+
+export interface TextAlignExtended extends TextAlign {
+  text: string;
+}
+
+export interface ListType {
+  icon: string;
+  alignment: string;
+  hint: string;
+}
+
+export interface Heading {
+  text: string;
+}
+
+const fontSizes: FontSize[] = [
+  { size: 10, text: '10px' },
+  { size: 12, text: '12px' },
+  { size: 14, text: '14px' },
+  { size: 16, text: '16px' },
+  { size: 18, text: '18px' },
+];
+
+const lineHeights: LineHeight[] = [
+  { lineHeight: 1, text: '1' },
+  { lineHeight: 1.35, text: '1.35' },
+  { lineHeight: 1.5, text: '1.5' },
+  { lineHeight: 2, text: '2' },
+];
+
+const fontFamilies: FontFamily[] = [
+  { text: 'Arial' },
+  { text: 'Courier New' },
+  { text: 'Georgia' },
+  { text: 'Impact' },
+  { text: 'Lucida Console' },
+  { text: 'Tahoma' },
+  { text: 'Times New Roman' },
+];
+
+const fontStyles: FontStyle[] = [
+  {
+    icon: 'bold',
+    hint: 'Bold',
+  },
+  {
+    icon: 'italic',
+    hint: 'Italic',
+  },
+  {
+    icon: 'underline',
+    hint: 'Underlined',
+  },
+  {
+    icon: 'strike',
+    hint: 'Strikethrough',
+  },
+];
+
+const textAlignsExtended: TextAlignExtended[] = [
+  {
+    icon: 'alignleft',
+    alignment: 'left',
+    hint: 'Align Left',
+    text: 'Align left',
+  },
+  {
+    icon: 'aligncenter',
+    alignment: 'center',
+    hint: 'Center',
+    text: 'Center',
+  },
+  {
+    icon: 'alignright',
+    alignment: 'right',
+    hint: 'Align Right',
+    text: 'Align right',
+  },
+  {
+    icon: 'alignjustify',
+    alignment: 'justify',
+    hint: 'Justify',
+    text: 'Justify',
+  },
+];
+
+const listTypes: ListType[] = [
+  {
+    icon: 'orderedlist',
+    alignment: 'orderedlist',
+    hint: 'Ordered',
+  },
+  {
+    icon: 'bulletlist',
+    alignment: 'bulletlist',
+    hint: 'Bullet',
+  },
+];
+
+const headings: Heading[] = [
+  { text: 'Normal text' },
+  { text: 'Heading 1' },
+  { text: 'Heading 2' },
+  { text: 'Heading 3' },
+  { text: 'Heading 4' },
+  { text: 'Heading 5' },
+];
+
 @Component({
   selector: 'me-toolbar',
   templateUrl: './me-toolbar.component.html',
   styleUrls: ['./me-toolbar.component.css'],
 })
 export class MeToolbarComponent implements OnInit {
+  fontSizes = fontSizes;
+  lineHeights = lineHeights;
+  lineHeight = this.lineHeights[1].lineHeight;
+  fontFamilies = fontFamilies;
+  fontStyles = fontStyles;
+  textAlignItems = this.getTextAlign();
+  textAlignItemsExtended = textAlignsExtended;
+  selectedTextAlign = [this.textAlignItems[0].alignment];
+  listTypes = listTypes;
+  headings = headings;
+  heading = this.headings[0].text;
+
   textBoxOptions = {
     placeholder: 'Search...',
     showClearButton: true,
@@ -19,4 +163,12 @@ export class MeToolbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getTextAlign(): TextAlign[] {
+    return textAlignsExtended.map(({ icon, alignment, hint }) => ({
+      icon,
+      alignment,
+      hint,
+    }));
+  }
 }
