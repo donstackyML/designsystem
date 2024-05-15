@@ -56,6 +56,8 @@ import { MeSidepageDirective } from './directives/sidepage.directive';
 import { TypographyComponent } from './components/typography/typography.component';
 import { MeToolbarDirective } from './directives/toolbar.directive';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
+import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-drop-down-button.component';
+import { MeDropDownButtonDirective } from './directives/drop-down-button.directive';
 
 @NgModule({
   declarations: [
@@ -109,6 +111,8 @@ import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component
     TypographyComponent,
     MeToolbarDirective,
     MeToolbarComponent,
+    MeDropDownButtonComponent,
+    MeDropDownButtonDirective,
   ],
   imports: [
     BrowserModule,
