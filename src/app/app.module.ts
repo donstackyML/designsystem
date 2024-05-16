@@ -58,6 +58,8 @@ import { MeToolbarDirective } from './directives/toolbar.directive';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-drop-down-button.component';
 import { MeDropDownButtonDirective } from './directives/drop-down-button.directive';
+import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
+import { MeButtonGroupDirective } from './directives/button-group.directive';
 
 @NgModule({
   declarations: [
@@ -113,6 +115,8 @@ import { MeDropDownButtonDirective } from './directives/drop-down-button.directi
     MeToolbarComponent,
     MeDropDownButtonComponent,
     MeDropDownButtonDirective,
+    MeButtonGroupComponent,
+    MeButtonGroupDirective,
   ],
   imports: [
     BrowserModule,

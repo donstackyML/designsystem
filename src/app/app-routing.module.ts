@@ -12,6 +12,7 @@ import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.compon
 import { TypographyComponent } from './components/typography/typography.component';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-drop-down-button.component';
+import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
 
 const routes: Routes = [
   { path: '', component: MeButtonComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'me-sidepage', component: MeSidepageComponent },
   { path: 'me-toolbar', component: MeToolbarComponent },
   { path: 'me-drop-down-button', component: MeDropDownButtonComponent },
+  { path: 'me-button-group', component: MeButtonGroupComponent },
   // { path: 'buttons', component: ButtonsComponent },
   // { path: 'button-group', component: BtnGroupComponent },
   // { path: 'editors', component: EditorsComponent },

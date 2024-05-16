@@ -21,9 +21,7 @@ const DEFAULT_ICON_SIZE = '20';
 @Directive({
   selector: '[meButton]',
 })
-export class ButtonDirective
-  implements OnInit, AfterViewInit, AfterViewChecked
-{
+export class ButtonDirective implements OnInit {
   @Input() disabled: boolean = false;
   @Input() type: MeButtonType = 'normal';
   @Input() stylingMode: MeButtonStyle = 'contained';
@@ -79,8 +77,18 @@ export class ButtonDirective
           this.leftIconColor ? this.leftIconColor : this.iconColor,
           this.leftIconSize ? this.leftIconSize : this.iconSize
         )}
+        ${
+          this.leftIconName
+            ? `<img src="${this.getIconPath(<string>this.leftIconName)}"/>`
+            : ''
+        }
         ${this.getIconAsString(this.iconOnly, this.iconColor, this.iconSize)}
         ${this.getText()}
+        ${
+          this.leftIconName
+            ? `<img src="${this.getIconPath(<string>this.leftIconName)}"/>`
+            : ''
+        }
         ${this.getIconAsString(
           this.rightIcon,
           this.rightIconColor ? this.rightIconColor : this.iconColor,
@@ -134,52 +142,52 @@ export class ButtonDirective
     }
   }
 
-  ngAfterViewInit(): void {
-    if (this.leftIconName) {
-      this.leftIconPath = this.getIconPath(this.leftIconName);
+  // ngAfterViewInit(): void {
+  //   if (this.leftIconName) {
+  //     this.leftIconPath = this.getIconPath(this.leftIconName);
 
-      let leftIcon = this.createIconElement(this.leftIconPath);
-      this.element.nativeElement.firstElementChild.firstElementChild.prepend(
-        leftIcon
-      );
-    }
+  //     let leftIcon = this.createIconElement(this.leftIconPath);
+  //     this.element.nativeElement.firstElementChild.firstElementChild.prepend(
+  //       leftIcon
+  //     );
+  //   }
 
-    if (this.rightIconName) {
-      this.rightIconPath = this.getIconPath(this.rightIconName);
+  //   if (this.rightIconName) {
+  //     this.rightIconPath = this.getIconPath(this.rightIconName);
 
-      let rightIcon = this.createIconElement(this.rightIconPath);
-      this.element.nativeElement.firstElementChild.firstElementChild.append(
-        rightIcon
-      );
-    }
-  }
+  //     let rightIcon = this.createIconElement(this.rightIconPath);
+  //     this.element.nativeElement.firstElementChild.firstElementChild.append(
+  //       rightIcon
+  //     );
+  //   }
+  // }
 
-  ngAfterViewChecked(): void {
-    const theme = this.themeService.theme;
+  // ngAfterViewChecked(): void {
+  //   const theme = this.themeService.theme;
 
-    const meBtnInner =
-      this.element.nativeElement.firstElementChild.firstElementChild;
+  //   const meBtnInner =
+  //     this.element.nativeElement.firstElementChild.firstElementChild;
 
-    if (this.theme !== theme) {
-      this.theme = theme;
+  //   if (this.theme !== theme) {
+  //     this.theme = theme;
 
-      if (this.leftIconName) {
-        this.leftIconPath = this.getIconPath(this.leftIconName);
-        const leftIcon = this.createIconElement(this.leftIconPath);
+  //     if (this.leftIconName) {
+  //       this.leftIconPath = this.getIconPath(this.leftIconName);
+  //       const leftIcon = this.createIconElement(this.leftIconPath);
 
-        meBtnInner.firstElementChild.remove();
-        meBtnInner.prepend(leftIcon);
-      }
+  //       meBtnInner.firstElementChild.remove();
+  //       meBtnInner.prepend(leftIcon);
+  //     }
 
-      if (this.rightIconName) {
-        this.rightIconPath = this.getIconPath(this.rightIconName);
-        const rightIcon = this.createIconElement(this.rightIconPath);
+  //     if (this.rightIconName) {
+  //       this.rightIconPath = this.getIconPath(this.rightIconName);
+  //       const rightIcon = this.createIconElement(this.rightIconPath);
 
-        meBtnInner.lastElementChild.remove();
-        meBtnInner.append(rightIcon);
-      }
-    }
-  }
+  //       meBtnInner.lastElementChild.remove();
+  //       meBtnInner.append(rightIcon);
+  //     }
+  //   }
+  // }
 
   getIconAsString(icon: string, iconColor: string, iconSize: string) {
     if (!icon) return '';
