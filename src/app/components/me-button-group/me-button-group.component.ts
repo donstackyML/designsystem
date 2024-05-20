@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MeButtonGroupItem } from 'src/app/directives/button-group.directive';
 
 @Component({
   selector: 'me-button-group',
   templateUrl: './me-button-group.component.html',
   styleUrls: ['./me-button-group.component.css'],
 })
-export class MeButtonGroupComponent implements OnInit {
+export class MeButtonGroupComponent {
   icon = 'arrowback';
   iconRight = 'arrowforward';
   iconFile = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -25,46 +26,189 @@ export class MeButtonGroupComponent implements OnInit {
   </g>
   </svg>`;
 
-  itemData = [
+  itemDataDefault: MeButtonGroupItem[] = [
     {
       text: 'Пункт 1',
       leftIcon: this.icon,
       rightIcon: this.iconRight,
-      type: 'normal' as const,
+      type: 'default',
     },
     {
       text: 'Пункт 2',
       leftIcon: this.icon,
       rightIcon: this.iconRight,
-      type: 'default' as const,
+      type: 'default',
     },
     {
       text: 'Пункт 3',
       leftIcon: this.icon,
       rightIcon: this.iconRight,
-      type: 'danger' as const,
+      type: 'default',
     },
   ];
 
-  itemDataSvgFromFolder = [
+  itemDataNormal: MeButtonGroupItem[] = [
     {
       text: 'Пункт 1',
-      leftIcon: this.iconFile,
-      rightIcon: this.iconFile2,
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'normal',
     },
     {
       text: 'Пункт 2',
-      leftIcon: this.iconFile,
-      rightIcon: this.iconFile2,
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'normal',
     },
     {
       text: 'Пункт 3',
-      leftIcon: this.iconFile,
-      rightIcon: this.iconFile2,
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'normal',
+    },
+  ];
+
+  itemDataSuccess: MeButtonGroupItem[] = [
+    {
+      text: 'Пункт 1',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'success',
+    },
+    {
+      text: 'Пункт 2',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'success',
+    },
+    {
+      text: 'Пункт 3',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'success',
+    },
+  ];
+
+  itemDataWarning: MeButtonGroupItem[] = [
+    {
+      text: 'Пункт 1',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      warningType: true,
+    },
+    {
+      text: 'Пункт 2',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      warningType: true,
+    },
+    {
+      text: 'Пункт 3',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      warningType: true,
+    },
+  ];
+
+  itemDataDanger: MeButtonGroupItem[] = [
+    {
+      text: 'Пункт 1',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'danger',
+    },
+    {
+      text: 'Пункт 2',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'danger',
+    },
+    {
+      text: 'Пункт 3',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'danger',
+    },
+  ];
+
+  itemData: MeButtonGroupItem[] = [
+    {
+      text: 'Пункт 1',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'normal',
+    },
+    {
+      text: 'Пункт 2',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'default',
+    },
+    {
+      text: 'Пункт 3',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'success',
+    },
+    {
+      text: 'Пункт 4',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      warningType: true,
+    },
+    {
+      text: 'Пункт 5',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'danger',
+    },
+  ];
+
+  itemDataOnlyText: MeButtonGroupItem[] = [
+    {
+      text: 'Пункт 1',
+      type: 'normal',
+    },
+    {
+      text: 'Пункт 2',
+      type: 'default',
+    },
+    {
+      text: 'Пункт 3',
+      type: 'success',
+    },
+    {
+      text: 'Пункт 4',
+      warningType: true,
+    },
+    {
+      text: 'Пункт 5',
+      type: 'danger',
+    },
+  ];
+
+  itemDataOnlyIcon: MeButtonGroupItem[] = [
+    {
+      iconOnly: this.icon,
+      type: 'normal',
+    },
+    {
+      iconOnly: 'arrowforward',
+      type: 'default',
+    },
+    {
+      iconOnly: 'cancel',
+      type: 'success',
+    },
+    {
+      iconOnly: 'cached',
+      warningType: true,
+    },
+    {
+      iconOnly: 'add',
+      type: 'danger',
     },
   ];
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

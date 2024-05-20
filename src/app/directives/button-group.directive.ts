@@ -1,15 +1,14 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { DxButtonGroupComponent } from 'devextreme-angular';
 import { MeButtonStyle, MeButtonType, MeSize } from '../types/types';
 import { IconStoreService, MeIcon } from '../service/icon-store.service';
-import { DxiButtonGroupItem } from 'devextreme-angular/ui/nested/base/button-group-item-dxi';
-import { ThemesService } from '../service/themes.service';
+import { dxButtonGroupItem } from 'devextreme/ui/button_group';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 const LARGE_ICON_SIZE = '24';
 const DEFAULT_ICON_SIZE = '20';
 
-export interface MeButtonGroupItem extends Partial<DxiButtonGroupItem> {
+export interface MeButtonGroupItem extends Partial<dxButtonGroupItem> {
   leftIcon?: string;
   leftIconColor?: string;
   iconColor?: string;
@@ -19,6 +18,7 @@ export interface MeButtonGroupItem extends Partial<DxiButtonGroupItem> {
   rightIcon?: string;
   rightIconColor?: string;
   rightIconSize?: string;
+  warningType?: boolean;
 }
 
 @Directive({
@@ -27,93 +27,100 @@ export interface MeButtonGroupItem extends Partial<DxiButtonGroupItem> {
 export class MeButtonGroupDirective {
   @Input() disabled: boolean = false;
   @Input() size: MeSize = 'medium';
-  @Input() items: MeButtonGroupItem[] = [{}];
   @Input() text: string = '';
   @Input() type: MeButtonType = 'normal';
   @Input() stylingMode: MeButtonStyle = 'contained';
+  @Input() set items(value: MeButtonGroupItem[]) {
+    this._items = JSON.parse(JSON.stringify(value));
+  }
+  get items(): MeButtonGroupItem[] {
+    return this._items;
+  }
 
+  private _items: MeButtonGroupItem[] = [];
   icons: MeIcon;
   theme = 'light';
 
   constructor(
-    private element: ElementRef,
     private component: DxButtonGroupComponent,
-    private renderer: Renderer2,
-    private themeService: ThemesService,
     private iconStoreService: IconStoreService
   ) {
     this.icons = this.iconStoreService.getIcons(true);
   }
 
   ngOnInit(): void {
-    this.theme = this.themeService.theme;
+    this.component.items = this.items.map((item, index) => {
+      if (!item.type) item.type = 'normal';
 
-    this.items.map((item, index) => {
-      if (!this.items[index].iconColor) {
-        if (
-          this.stylingMode !== 'contained' ||
-          this.items[index].type === 'normal'
-        ) {
-          this.items[
-            index
-          ].iconColor = `var(--button-${this.items[index].type}-icon-color)`;
+      if (!item.iconColor) {
+        if (this.stylingMode !== 'contained' || item.type === 'normal') {
+          if (item.warningType && this.stylingMode !== 'contained') {
+            item.iconColor = `var(--button-warning-icon-color)`;
+          } else if (item.warningType) {
+            item.iconColor = DEFAULT_ICON_COLOR;
+          } else {
+            item.iconColor = `var(--button-${item.type}-icon-color)`;
+          }
         } else {
-          this.items[index].iconColor = DEFAULT_ICON_COLOR;
+          item.iconColor = DEFAULT_ICON_COLOR;
         }
 
         if (this.disabled) {
-          this.items[
-            index
-          ].iconColor = `var(--button-${this.items[index].type}-${this.stylingMode}-icon-disabled-color)`;
+          item.iconColor = `var(--button-${
+            item.warningType ? 'warning' : item.type
+          }-${this.stylingMode}-icon-disabled-color)`;
         }
       }
 
       item.template = `<div class="me-button-inner">${this.getIconAsString(
-        this.items[index].leftIcon,
-        this.items[index].leftIconColor
-          ? this.items[index].leftIconColor
-          : this.items[index].iconColor,
-        this.items[index].leftIconSize
-          ? this.items[index].leftIconSize
-          : this.items[index].iconSize
+        item.leftIcon,
+        item.leftIconColor ? item.leftIconColor : item.iconColor,
+        item.leftIconSize ? item.leftIconSize : item.iconSize
       )}
-          ${this.getIconAsString(
-            this.items[index].iconOnly,
-            this.items[index].iconColor,
-            this.items[index].iconSize
-          )}
+          ${this.getIconAsString(item.iconOnly, item.iconColor, item.iconSize)}
           ${this.getText(index)}
           ${this.getIconAsString(
-            this.items[index].rightIcon,
-            this.items[index].rightIconColor
-              ? this.items[index].rightIconColor
-              : this.items[index].iconColor,
-            this.items[index].rightIconSize
-              ? this.items[index].rightIconSize
-              : this.items[index].iconSize
+            item.rightIcon,
+            item.rightIconColor ? item.rightIconColor : item.iconColor,
+            item.rightIconSize ? item.rightIconSize : item.iconSize
           )}</div>`;
+
+      if (item.leftIcon || item.rightIcon) {
+        item.elementAttr = {
+          ...item.elementAttr,
+          class: item.elementAttr?.['class']
+            ? item.elementAttr?.['class'] + ' me-button-icon'
+            : 'me-button-icon',
+        };
+      }
+
+      item.elementAttr = {
+        ...item.elementAttr,
+        class: item.elementAttr?.['class']
+          ? item.elementAttr?.['class'] + ` me-button me-button-${this.size}`
+          : `me-button me-button-${this.size}`,
+      };
+
+      if (item.warningType) {
+        item.elementAttr = {
+          ...item.elementAttr,
+          class: item.elementAttr?.['class']
+            ? item.elementAttr?.['class'] + ' me-button-warning'
+            : 'me-button-warning',
+        };
+      }
+
+      if (item.iconOnly) {
+        item.elementAttr = {
+          ...item.elementAttr,
+          class: item.elementAttr?.['class']
+            ? item.elementAttr?.['class'] + ' me-button-icon-only'
+            : 'me-button-icon-only',
+        };
+      }
+
+      return item;
     });
-
-    this.renderer.addClass(this.element.nativeElement, `me-button`);
-    this.renderer.addClass(
-      this.element.nativeElement,
-      `me-button-${this.size}`
-    );
-
-    // if (this.type === 'warning') {
-    //   this.renderer.addClass(this.element.nativeElement, `me-button-warning`);
-    // }
-
-    // if (this.items[index].iconOnly) {
-    //   this.renderer.addClass(this.element.nativeElement, `me-button-icon-only`);
-    // }
-
-    // if (
-    //   this.items[index].leftIcon ||
-    //   this.items[index].rightIcon
-    // ) {
-    //   this.renderer.addClass(this.element.nativeElement, `me-button-icon`);
-    // }
   }
 
   getIconAsString(icon?: string, iconColor = '', iconSize = '') {

@@ -36,6 +36,12 @@
 
     &.dx-button,
     &.dx-state-hover .dx-button-content {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+
+    &.dx-button.me-button-large,
+    &.dx-state-hover .dx-button-content {
       border-top-right-radius: $button-border-radius;
       border-bottom-right-radius: $button-border-radius;
     }
@@ -328,5 +334,18 @@
     &.dx-buttongroup-last-item {
       margin-left: 0;
     }
+  }
+}
+
+.dx-button:not(.dx-button-mode-outlined) {
+  border: none;
+}
+
+.dx-buttongroup .dx-button-mode-contained,
+.dx-buttongroup .dx-button-mode-text {
+  &.dx-button:not(:last-of-type) {
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: $button-group-default-border;
   }
 }
