@@ -6,6 +6,7 @@ import {
   DxSelectBoxComponent,
   DxTextBoxComponent,
 } from 'devextreme-angular';
+import { dxButtonGroupItem } from 'devextreme/ui/button_group';
 
 export type MeCommonType = {
   [key: string]: string;
@@ -30,7 +31,18 @@ export type MeEditorComponents =
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 export type MeOverlayComponents = DxPopoverComponent | DxPopupComponent;
 export type MePosition = 'left' | 'right';
-
 export declare class MeTextBoxComponent {
   size: MeSize;
+}
+export interface MeButtonGroupItem extends Partial<dxButtonGroupItem> {
+  leftIcon?: string;
+  leftIconColor?: string;
+  iconColor?: string;
+  leftIconSize?: string;
+  iconSize?: string;
+  iconOnly?: string;
+  rightIcon?: string;
+  rightIconColor?: string;
+  rightIconSize?: string;
+  warningType?: boolean;
 }

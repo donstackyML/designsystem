@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MeButtonGroupItem } from 'src/app/directives/button-group.directive';
+import { Component } from '@angular/core';
+import { MeButtonGroupItem } from '../../types/types';
 
 @Component({
   selector: 'me-button-group',

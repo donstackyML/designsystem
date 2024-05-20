@@ -163,9 +163,6 @@ export class IconStoreService {
   ) {
     if (!icon) return '';
 
-    console.log(iconColor);
-    console.log(iconSize);
-
     if (this.icons.hasOwnProperty(icon)) {
       const iconName = <keyof MeIcon>icon;
 

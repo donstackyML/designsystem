@@ -60,6 +60,7 @@ import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-d
 import { MeDropDownButtonDirective } from './directives/drop-down-button.directive';
 import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
 import { MeButtonGroupDirective } from './directives/button-group.directive';
+import { MeControlDirective } from './directives/control.directive';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { MeButtonGroupDirective } from './directives/button-group.directive';
     MeDropDownButtonDirective,
     MeButtonGroupComponent,
     MeButtonGroupDirective,
+    MeControlDirective,
   ],
   imports: [
     BrowserModule,
