@@ -2,6 +2,7 @@ import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { MeControlDirective } from './control.directive';
 import { IconStoreService } from '../service/icon-store.service';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
+import { MeCommonType, MeScrollbarShowType } from '../types/types';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -15,6 +16,9 @@ export class MeDropDownButtonDirective
   @Input() icon: string = '';
   @Input() iconColor: string = '';
   @Input() iconSize: string = '';
+  @Input() splitButton: boolean = false;
+  @Input() wrapperAttr: MeCommonType = {};
+  @Input() showScrollbar: MeScrollbarShowType = 'always';
 
   constructor(
     private element: ElementRef,
@@ -57,5 +61,22 @@ export class MeDropDownButtonDirective
     if (this.type === 'default') {
       this.renderer.addClass(this.element.nativeElement, 'dx-button-default');
     }
+
+    if (this.splitButton) {
+      this.renderer.addClass(this.element.nativeElement, 'me-split-button');
+    }
+
+    const popupWrapperClasses = `${
+      this.wrapperAttr['class'] || ''
+    } me-scroll-view me-dropdownlist-${this.size} ${
+      this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+    }`;
+
+    this.component.dropDownOptions = {
+      wrapperAttr: {
+        ...this.wrapperAttr,
+        class: popupWrapperClasses,
+      },
+    };
   }
 }

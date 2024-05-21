@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
 
   dropDownOptions = {
     contentTemplate: 'popupContent',
+    height: '200px',
   };
 
   constructor(
