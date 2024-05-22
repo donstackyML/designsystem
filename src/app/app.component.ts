@@ -42,12 +42,13 @@ export class AppComponent implements OnInit {
       this.isDark = false;
     }
 
-    const index = window.localStorage.getItem(
-      'monitel.designsystem.routeIndex'
+    const index = Number(
+      window.localStorage.getItem('monitel.designsystem.routeIndex')
     );
 
     if (index) {
-      this.currentComponent = this.componentsName[Number(index)];
+      this.handleRouteChange(index);
+      this.currentComponent = this.componentsName[index];
     }
   }
 

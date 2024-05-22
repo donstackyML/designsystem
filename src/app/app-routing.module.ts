@@ -15,7 +15,7 @@ import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-d
 import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
 
 const routes: Routes = [
-  { path: '', component: MeButtonComponent },
+  { path: '', component: TypographyComponent },
   { path: 'all-components', component: AllComponentsComponent },
   { path: 'typography', component: TypographyComponent },
   { path: 'me-buttons', component: MeButtonComponent },
