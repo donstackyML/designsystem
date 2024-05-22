@@ -19,6 +19,7 @@ export class MeDropDownButtonDirective
   @Input() splitButton: boolean = false;
   @Input() wrapperAttr: MeCommonType = {};
   @Input() showScrollbar: MeScrollbarShowType = 'always';
+  @Input() dropDownOptions: MeCommonType = {};
 
   constructor(
     private element: ElementRef,
@@ -31,14 +32,11 @@ export class MeDropDownButtonDirective
 
   ngOnInit(): void {
     if (!this.iconColor) {
-      console.log(this.type);
       if (this.type === 'normal' || this.stylingMode !== 'contained') {
         this.iconColor = `var(--button-${this.type}-icon-color)`;
       } else {
         this.iconColor = DEFAULT_ICON_COLOR;
       }
-
-      console.log(this.iconColor);
 
       if (this.disabled) {
         this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
@@ -68,15 +66,20 @@ export class MeDropDownButtonDirective
 
     const popupWrapperClasses = `${
       this.wrapperAttr['class'] || ''
-    } me-scroll-view me-dropdownlist-${this.size} ${
+    } me-scroll-view me-dropdownlist-${
+      this.size
+    } dx-scrollable-scrollbars-alwaysvisible me-dropdownlist ${
       this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
     }`;
 
     this.component.dropDownOptions = {
+      height: '184px',
+      width: '212px',
       wrapperAttr: {
         ...this.wrapperAttr,
         class: popupWrapperClasses,
       },
+      ...this.dropDownOptions,
     };
   }
 }

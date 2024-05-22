@@ -4,6 +4,9 @@ import { ItemClickEvent } from 'devextreme/ui/list';
 import themes from 'devextreme/ui/themes';
 import { ComponentRoutesService } from './service/component-routes.service';
 import { ThemesService } from './service/themes.service';
+import { ButtonClickEvent } from 'devextreme/ui/drop_down_button';
+import { ChangeEvent } from 'devextreme/ui/text_box';
+import { ValueChangedEvent } from 'devextreme/ui/filter_builder';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +20,8 @@ export class AppComponent implements OnInit {
   componentsName: string[];
   currentComponent = '';
 
-  isDropDownBoxOpened = false;
   isDark = false;
   labelClick = new EventEmitter();
-
-  dropDownOptions = {
-    contentTemplate: 'popupContent',
-    height: '200px',
-  };
 
   constructor(
     public router: Router,
@@ -43,6 +40,14 @@ export class AppComponent implements OnInit {
     } else {
       themes.current('generic.light');
       this.isDark = false;
+    }
+
+    const index = window.localStorage.getItem(
+      'monitel.designsystem.routeIndex'
+    );
+
+    if (index) {
+      this.currentComponent = this.componentsName[Number(index)];
     }
   }
 
@@ -64,11 +69,11 @@ export class AppComponent implements OnInit {
     this.router.navigate([`/${this.componentsRoute[routeIndex]}`]);
   }
 
-  handleComponentChange(event: ItemClickEvent) {
-    const index = <number>event.itemIndex;
+  handleComponentChange(event: ValueChangedEvent) {
+    const index = this.componentsName.indexOf(event.value);
 
-    this.currentComponent = this.componentsName[index];
-    this.isDropDownBoxOpened = false;
+    window.localStorage.setItem('monitel.designsystem.routeIndex', `${index}`);
+
     this.handleRouteChange(index);
   }
 }
