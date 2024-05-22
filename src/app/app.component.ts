@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItemClickEvent } from 'devextreme/ui/list';
 import themes from 'devextreme/ui/themes';
 import { ComponentRoutesService } from './service/component-routes.service';
@@ -7,6 +7,7 @@ import { ThemesService } from './service/themes.service';
 import { ButtonClickEvent } from 'devextreme/ui/drop_down_button';
 import { ChangeEvent } from 'devextreme/ui/text_box';
 import { ValueChangedEvent } from 'devextreme/ui/filter_builder';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -15,22 +16,22 @@ import { ValueChangedEvent } from 'devextreme/ui/filter_builder';
 })
 export class AppComponent implements OnInit {
   themes: string[] = ['light', 'dark'];
-
+  path: string;
   componentsRoute: string[];
   componentsName: string[];
-  currentComponent = '';
-
-  isDark = false;
-  labelClick = new EventEmitter();
+  currentComponent: string;
+  isDark: boolean = false;
 
   constructor(
-    public router: Router,
-    service: ComponentRoutesService,
-    private themeService: ThemesService
+    private router: Router,
+    private service: ComponentRoutesService,
+    private themeService: ThemesService,
+    private location: Location
   ) {
-    this.componentsName = service.getComponentsName();
-    this.componentsRoute = service.getComponentsRoute();
+    this.componentsName = this.service.getComponentsName();
+    this.componentsRoute = this.service.getComponentsRoute();
     this.currentComponent = this.componentsName[0];
+    this.path = this.location.path(true).slice(1);
   }
 
   ngOnInit(): void {
@@ -41,13 +42,14 @@ export class AppComponent implements OnInit {
       themes.current('generic.light');
       this.isDark = false;
     }
+  }
 
-    const index = Number(
-      window.localStorage.getItem('monitel.designsystem.routeIndex')
-    );
+  ngDoCheck(): void {
+    this.path = this.location.path(true).slice(1);
 
-    if (index) {
-      this.handleRouteChange(index);
+    const index = this.componentsRoute.indexOf(this.path);
+
+    if (String(index)) {
       this.currentComponent = this.componentsName[index];
     }
   }

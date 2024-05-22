@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  DxDropDownBoxComponent,
-  DxDropDownButtonComponent,
-} from 'devextreme-angular';
-import { ItemClickEvent } from 'devextreme/ui/box';
+import { DxDropDownButtonComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'me-drop-down-button',
@@ -62,9 +58,4 @@ export class MeDropDownButtonComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  onClick(event: Event) {
-    this.isDropDownOpen = false;
-    console.log(event.target);
-  }
 }

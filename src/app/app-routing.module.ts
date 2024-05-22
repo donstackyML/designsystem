@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'me-toolbar', component: MeToolbarComponent },
   { path: 'me-drop-down-button', component: MeDropDownButtonComponent },
   { path: 'me-button-group', component: MeButtonGroupComponent },
+  { path: '**', component: TypographyComponent },
   // { path: 'buttons', component: ButtonsComponent },
   // { path: 'button-group', component: BtnGroupComponent },
   // { path: 'editors', component: EditorsComponent },
