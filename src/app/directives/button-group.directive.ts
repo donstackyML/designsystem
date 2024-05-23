@@ -45,7 +45,7 @@ export class MeButtonGroupDirective extends MeControlDirective {
         item.leftIconColor ? item.leftIconColor : item.iconColor,
         item.leftIconSize ? item.leftIconSize : item.iconSize
       )}
-          ${this.getIconAsString(item.iconOnly, item.iconColor, item.iconSize)}
+          ${this.getIconAsString(item.icon, item.iconColor, item.iconSize)}
           ${this.getText(index)}
           ${this.getIconAsString(
             item.rightIcon,
@@ -78,7 +78,7 @@ export class MeButtonGroupDirective extends MeControlDirective {
         };
       }
 
-      if (item.iconOnly) {
+      if (item.icon) {
         item.elementAttr = {
           ...item.elementAttr,
           class: item.elementAttr?.['class']

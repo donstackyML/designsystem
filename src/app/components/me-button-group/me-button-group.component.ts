@@ -189,23 +189,23 @@ export class MeButtonGroupComponent {
 
   itemDataOnlyIcon: MeButtonGroupItem[] = [
     {
-      iconOnly: this.icon,
+      icon: this.icon,
       type: 'normal',
     },
     {
-      iconOnly: 'arrowforward',
+      icon: 'arrowforward',
       type: 'default',
     },
     {
-      iconOnly: 'cancel',
+      icon: 'cancel',
       type: 'success',
     },
     {
-      iconOnly: 'cached',
+      icon: 'cached',
       warningType: true,
     },
     {
-      iconOnly: 'add',
+      icon: 'add',
       type: 'danger',
     },
   ];

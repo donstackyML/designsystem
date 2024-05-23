@@ -40,7 +40,7 @@ export interface MeButtonGroupItem extends Partial<dxButtonGroupItem> {
   iconColor?: string;
   leftIconSize?: string;
   iconSize?: string;
-  iconOnly?: string;
+  icon?: string;
   rightIcon?: string;
   rightIconColor?: string;
   rightIconSize?: string;

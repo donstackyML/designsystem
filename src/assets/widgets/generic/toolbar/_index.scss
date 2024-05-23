@@ -141,8 +141,7 @@
 
 .me-toolbar-separator {
   height: 24px;
-  width: 1px;
-  background-color: $toolbar-separator;
+  border-left: 1px solid $toolbar-separator;
   margin: 0 4px;
 }
 
@@ -151,13 +150,42 @@
   border-bottom: 1px solid $toolbar-separator;
 }
 
-.me-toolbar {
-  .dx-button .dx-icon.dx-icon-overflow {
-    &::before {
-      content: none;
+.me-toolbar.dx-toolbar {
+  .dx-toolbar-menu-container {
+    padding-left: 0;
+  }
+
+  .dx-button {
+    .dx-button-content {
+      padding: 6px;
     }
 
-    width: 20px;
-    height: 20px;
+    .dx-icon.dx-icon-overflow {
+      &::before {
+        content: none;
+      }
+
+      background: $toolbar-overflow-icon;
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.me-toolbar.me-toolbar-small {
+  .dx-button {
+    .dx-button-content {
+      padding: 4px;
+    }
+  }
+}
+
+.me-toolbar.me-toolbar-large {
+  .dx-button {
+    .dx-icon.dx-icon-overflow {
+      width: 24px;
+      height: 24px;
+    }
   }
 }

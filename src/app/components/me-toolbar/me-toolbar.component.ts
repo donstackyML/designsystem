@@ -66,44 +66,44 @@ const fontFamilies: FontFamily[] = [
 
 const fontStyles: FontStyle[] = [
   {
-    icon: 'bold',
+    icon: 'format_bold',
     hint: 'Bold',
   },
   {
-    icon: 'italic',
+    icon: 'format_italic',
     hint: 'Italic',
   },
   {
-    icon: 'underline',
+    icon: 'format_underlined',
     hint: 'Underlined',
   },
   {
-    icon: 'strike',
+    icon: 'strikethrough_s',
     hint: 'Strikethrough',
   },
 ];
 
 const textAlignsExtended: TextAlignExtended[] = [
   {
-    icon: 'alignleft',
+    icon: 'format_align_left',
     alignment: 'left',
     hint: 'Align Left',
     text: 'Align left',
   },
   {
-    icon: 'aligncenter',
+    icon: 'format_align_center',
     alignment: 'center',
     hint: 'Center',
     text: 'Center',
   },
   {
-    icon: 'alignright',
+    icon: 'format_align_right',
     alignment: 'right',
     hint: 'Align Right',
     text: 'Align right',
   },
   {
-    icon: 'alignjustify',
+    icon: 'format_align_justify',
     alignment: 'justify',
     hint: 'Justify',
     text: 'Justify',
@@ -112,12 +112,12 @@ const textAlignsExtended: TextAlignExtended[] = [
 
 const listTypes: ListType[] = [
   {
-    icon: 'orderedlist',
+    icon: 'format_list_numbered',
     alignment: 'orderedlist',
     hint: 'Ordered',
   },
   {
-    icon: 'bulletlist',
+    icon: 'format_list_bulleted',
     alignment: 'bulletlist',
     hint: 'Bullet',
   },
