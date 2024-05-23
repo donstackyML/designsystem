@@ -1,5 +1,16 @@
 import { Component } from '@angular/core';
 import notify from 'devextreme/ui/notify';
+import {
+  FontFamily,
+  FontSize,
+  FontStyle,
+  Heading,
+  LineHeight,
+  ListType,
+  ToolbarService,
+  TextAlign,
+  TextAlignExtended,
+} from 'src/app/service/toolbar.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -7,58 +18,48 @@ import notify from 'devextreme/ui/notify';
   styleUrls: ['./tool-bar.component.css'],
 })
 export class ToolBarComponent {
-  textBoxOptions = {
-    placeholder: 'Search...',
-    showClearButton: true,
-    stylingMode: 'filled',
-  };
+  fontSizes: FontSize[] = this.service.getFontSizes();
 
-  searchButtonOptions = {
-    icon: 'search',
-    onClick() {
-      showMessage('Search');
-    },
-  };
+  lineHeights: LineHeight[] = this.service.getLineHeights();
 
-  backButtonOptions = {
-    icon: 'back',
-    onClick() {
-      showMessage('Back');
-    },
-  };
+  lineHeight: number = this.lineHeights[1].lineHeight;
 
-  aboutButtonOptions = {
-    icon: 'info',
-    text: 'About',
-    onClick() {
-      showMessage('About');
-    },
-  };
+  fontFamilies: FontFamily[] = this.service.getFontFamilies();
 
-  profileButtonOptions = {
-    icon: 'user',
-    text: 'Profile',
-    onClick() {
-      showMessage('Profile');
-    },
-  };
+  headings: Heading[] = this.service.getHeadings();
 
-  settingsButtonOptions = {
-    icon: 'preferences',
-    text: 'Settings',
-    onClick() {
-      showMessage('Settings');
-    },
-  };
-}
+  heading = this.headings[0].text;
 
-function showMessage(name: string) {
-  notify(
-    {
-      message: `${name} button has been clicked!`,
-      width: 300,
-    },
-    'info',
-    1000
-  );
+  fontStyles: FontStyle[] = this.service.getFontStyles();
+
+  textAlignItems: TextAlign[] = this.service.getTextAlign();
+
+  textAlignItemsExtended: TextAlignExtended[] =
+    this.service.getTextAlignExtended();
+
+  selectedTextAlign = [this.textAlignItems[0].alignment];
+
+  listTypes: ListType[] = this.service.getListType();
+
+  constructor(private service: ToolbarService) {}
+
+  onTextAlignChanged(e: { itemData: { hint: string } }): void {
+    this.onButtonClick(e.itemData.hint);
+  }
+
+  onButtonClick(name: string) {
+    notify(`The "${name}" button has been clicked`);
+  }
+
+  onSelectionChanged(name: string) {
+    notify(`The "${name}" value has been changed`);
+  }
+
+  onFontFamilyClick() {
+    notify('The "Font Family" value has been changed');
+  }
+
+  onHeadingClick() {
+    notify('The "Heading" value has been changed');
+  }
 }
