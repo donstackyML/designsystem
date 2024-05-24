@@ -2284,6 +2284,9 @@
 .dx-dropdownmenu-popup-wrapper .dx-dropdownmenu-list {
   width: 220px;
 }
+.dx-dropdownmenu-popup-wrapper .dx-dropdownmenu-list.dx-popup-content.dx-list .dx-list-item-content::before {
+  content: none;
+}
 .dx-dropdownmenu-popup-wrapper .dx-dropdownmenu-list .dx-toolbar-menu-section {
   display: flex;
   flex-direction: column;
@@ -11225,7 +11228,7 @@
 .me-toolbar-small .me-toolbar-separator {
   height: 20px;
 }
-.me-toolbar-small .me-toolbar-separator {
+.me-toolbar-medium .me-toolbar-separator {
   height: 24px;
 }
 .me-toolbar-large .me-toolbar-separator {
@@ -11235,31 +11238,57 @@
 .me-toolbar-menu-separator {
   height: 1px;
   border-bottom: 1px solid #535459;
+  margin: 4px 12px;
 }
 
-.me-toolbar.dx-toolbar .dx-toolbar-menu-container {
-  padding-left: 0;
-}
-.me-toolbar.dx-toolbar .dx-button .dx-button-content {
+.me-toolbar-medium.dx-toolbar .dx-toolbar-menu-container .dx-button .dx-button-content {
   padding: 6px;
 }
-.me-toolbar.dx-toolbar .dx-button .dx-icon.dx-icon-overflow {
+
+.me-toolbar.dx-toolbar.dx-widget {
+  background: none;
+}
+.me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container {
+  height: 48px;
+}
+.me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container .dx-toolbar-before {
+  left: 4px;
+}
+.me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container .dx-toolbar-after {
+  right: 4px;
+}
+.me-toolbar.dx-toolbar.dx-widget .dx-toolbar-menu-container {
+  padding-left: 0;
+}
+.me-toolbar.dx-toolbar.dx-widget .dx-button .dx-icon.dx-icon-overflow {
   background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzQzMjJfMTIxNDIiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iI0Q5RDlEOSIvPgo8L21hc2s+CjxnIG1hc2s9InVybCgjbWFzazBfNDMyMl8xMjE0MikiPgo8cGF0aCBkPSJNMTEuOTk0NyAxOS4yQzExLjQ5ODIgMTkuMiAxMS4wNzUgMTkuMDIzMyAxMC43MjUgMTguNjY5N0MxMC4zNzUgMTguMzE2MiAxMC4yIDE3Ljg5MTIgMTAuMiAxNy4zOTQ3QzEwLjIgMTYuODk4MyAxMC4zNzY3IDE2LjQ3NSAxMC43MzAzIDE2LjEyNUMxMS4wODM4IDE1Ljc3NSAxMS41MDg4IDE1LjYgMTIuMDA1MyAxNS42QzEyLjUwMTcgMTUuNiAxMi45MjUgMTUuNzc2OCAxMy4yNzUgMTYuMTMwM0MxMy42MjUgMTYuNDgzOSAxMy44IDE2LjkwODkgMTMuOCAxNy40MDUzQzEzLjggMTcuOTAxOCAxMy42MjMyIDE4LjMyNSAxMy4yNjk3IDE4LjY3NUMxMi45MTYxIDE5LjAyNSAxMi40OTExIDE5LjIgMTEuOTk0NyAxOS4yWk0xMS45OTQ3IDEzLjhDMTEuNDk4MiAxMy44IDExLjA3NSAxMy42MjMzIDEwLjcyNSAxMy4yNjk3QzEwLjM3NSAxMi45MTYyIDEwLjIgMTIuNDkxMiAxMC4yIDExLjk5NDdDMTAuMiAxMS40OTgzIDEwLjM3NjcgMTEuMDc1IDEwLjczMDMgMTAuNzI1QzExLjA4MzggMTAuMzc1IDExLjUwODggMTAuMiAxMi4wMDUzIDEwLjJDMTIuNTAxNyAxMC4yIDEyLjkyNSAxMC4zNzY4IDEzLjI3NSAxMC43MzAzQzEzLjYyNSAxMS4wODM5IDEzLjggMTEuNTA4OSAxMy44IDEyLjAwNTNDMTMuOCAxMi41MDE4IDEzLjYyMzIgMTIuOTI1IDEzLjI2OTcgMTMuMjc1QzEyLjkxNjEgMTMuNjI1IDEyLjQ5MTEgMTMuOCAxMS45OTQ3IDEzLjhaTTExLjk5NDcgOC40MDAwNUMxMS40OTgyIDguNDAwMDUgMTEuMDc1IDguMjIzMjggMTAuNzI1IDcuODY5NzVDMTAuMzc1IDcuNTE2MiAxMC4yIDcuMDkxMiAxMC4yIDYuNTk0NzVDMTAuMiA2LjA5ODI4IDEwLjM3NjcgNS42NzUwNSAxMC43MzAzIDUuMzI1MDVDMTEuMDgzOCA0Ljk3NTA1IDExLjUwODggNC44MDAwNSAxMi4wMDUzIDQuODAwMDVDMTIuNTAxNyA0LjgwMDA1IDEyLjkyNSA0Ljk3NjgxIDEzLjI3NSA1LjMzMDM1QzEzLjYyNSA1LjY4MzkgMTMuOCA2LjEwODkgMTMuOCA2LjYwNTM1QzEzLjggNy4xMDE4MSAxMy42MjMyIDcuNTI1MDUgMTMuMjY5NyA3Ljg3NTA1QzEyLjkxNjEgOC4yMjUwNSAxMi40OTExIDguNDAwMDUgMTEuOTk0NyA4LjQwMDA1WiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K");
   background-size: contain;
   width: 20px;
   height: 20px;
 }
-.me-toolbar.dx-toolbar .dx-button .dx-icon.dx-icon-overflow::before {
+.me-toolbar.dx-toolbar.dx-widget .dx-button .dx-icon.dx-icon-overflow::before {
   content: none;
 }
 
-.me-toolbar.me-toolbar-small .dx-button .dx-button-content {
+.me-toolbar.me-toolbar-small.dx-toolbar .dx-toolbar-items-container {
+  height: 44px;
+}
+.me-toolbar.me-toolbar-small.dx-toolbar .dx-button .dx-button-content {
   padding: 4px;
 }
 
-.me-toolbar.me-toolbar-large .dx-button .dx-icon.dx-icon-overflow {
+.me-toolbar.me-toolbar-large.dx-toolbar .dx-toolbar-items-container {
+  height: 56px;
+}
+.me-toolbar.me-toolbar-large.dx-toolbar .dx-button .dx-icon.dx-icon-overflow {
   width: 24px;
   height: 24px;
+}
+
+.me-toolbar.dx-toolbar.me-toolbar-background {
+  border-radius: 4px;
+  border: 1px solid #3f4044;
+  background-color: #2e2e2f;
 }
 
 /**

@@ -7,6 +7,7 @@ import { MeSize } from '../types/types';
 })
 export class MeToolbarDirective implements OnInit {
   @Input() size: MeSize = 'medium';
+  @Input() background: boolean = false;
 
   constructor(
     private element: ElementRef,
@@ -21,5 +22,12 @@ export class MeToolbarDirective implements OnInit {
       this.element.nativeElement,
       `me-toolbar-${this.size}`
     );
+
+    if (this.background) {
+      this.renderer.addClass(
+        this.element.nativeElement,
+        `me-toolbar-background`
+      );
+    }
   }
 }

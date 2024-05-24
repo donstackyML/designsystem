@@ -147,7 +147,7 @@
     height: 20px;
   }
 
-  .me-toolbar-small & {
+  .me-toolbar-medium & {
     height: 24px;
   }
 
@@ -159,16 +159,41 @@
 .me-toolbar-menu-separator {
   height: 1px;
   border-bottom: 1px solid $toolbar-separator;
+  margin: 4px 12px;
 }
 
-.me-toolbar.dx-toolbar {
+.me-toolbar-medium.dx-toolbar {
+  .dx-toolbar-menu-container {
+    .dx-button {
+      .dx-button-content {
+        padding: 6px;
+      }
+    }
+  }
+}
+
+.me-toolbar.dx-toolbar.dx-widget {
+  background: none;
+
+  .dx-toolbar-items-container {
+    height: 48px;
+
+    .dx-toolbar-before {
+      left: 4px;
+    }
+
+    .dx-toolbar-after {
+      right: 4px;
+    }
+  }
+
   .dx-toolbar-menu-container {
     padding-left: 0;
   }
 
   .dx-button {
     .dx-button-content {
-      padding: 6px;
+      // padding: 6px;
     }
 
     .dx-icon.dx-icon-overflow {
@@ -184,7 +209,11 @@
   }
 }
 
-.me-toolbar.me-toolbar-small {
+.me-toolbar.me-toolbar-small.dx-toolbar {
+  .dx-toolbar-items-container {
+    height: 44px;
+  }
+
   .dx-button {
     .dx-button-content {
       padding: 4px;
@@ -192,11 +221,21 @@
   }
 }
 
-.me-toolbar.me-toolbar-large {
+.me-toolbar.me-toolbar-large.dx-toolbar {
+  .dx-toolbar-items-container {
+    height: 56px;
+  }
+
   .dx-button {
     .dx-icon.dx-icon-overflow {
       width: 24px;
       height: 24px;
     }
   }
+}
+
+.me-toolbar.dx-toolbar.me-toolbar-background {
+  border-radius: 4px;
+  border: 1px solid $toolbar-border;
+  background-color: $toolbar-bg;
 }
