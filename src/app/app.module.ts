@@ -37,7 +37,6 @@ import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { ButtonDirective } from './directives/button.directive';
 import { MePopoverDirective } from './directives/popover.directive';
 import { MeTextBoxDirective } from './directives/text-box.directive';
-import { MeButtonTestComponent } from './me-test/me-button-test/me-button-test.component';
 import { MeLabelDirective } from './directives/label.directive';
 import { MeSelectBoxComponent } from './components/me-select-box/me-select-box.component';
 import { MeSelectBoxDirective } from './directives/select-box.directive';
@@ -61,6 +60,8 @@ import { MeDropDownButtonDirective } from './directives/drop-down-button.directi
 import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
 import { MeButtonGroupDirective } from './directives/button-group.directive';
 import { MeControlDirective } from './directives/control.directive';
+import { MeListComponent } from './components/me-list/me-list.component';
+import { MeListDirective } from './directives/list.directive';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,6 @@ import { MeControlDirective } from './directives/control.directive';
     AllComponentsComponent,
     MeButtonComponent,
     ButtonDirective,
-    MeButtonTestComponent,
     MePopoverDirective,
     MePopoverComponent,
     MeTextBoxComponent,
@@ -119,6 +119,8 @@ import { MeControlDirective } from './directives/control.directive';
     MeButtonGroupComponent,
     MeButtonGroupDirective,
     MeControlDirective,
+    MeListComponent,
+    MeListDirective,
   ],
   imports: [
     BrowserModule,
