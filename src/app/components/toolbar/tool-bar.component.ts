@@ -1,26 +1,174 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import DevExpress from 'devextreme';
-// import { DxDrawerComponent, DxPopupComponent } from 'devextreme-angular';
+import { Component, OnInit } from '@angular/core';
+
+export interface FontSize {
+  size: number;
+  text: string;
+}
+
+export interface LineHeight {
+  lineHeight: number;
+  text: string;
+}
+
+export interface FontFamily {
+  text: string;
+}
+
+export interface FontStyle {
+  icon: string;
+  hint: string;
+}
+
+export interface TextAlign {
+  icon: string;
+  alignment: string;
+  hint: string;
+}
+
+export interface TextAlignExtended extends TextAlign {
+  text: string;
+}
+
+export interface ListType {
+  icon: string;
+  alignment: string;
+  hint: string;
+}
+
+export interface Heading {
+  text: string;
+}
+
+const fontSizes: FontSize[] = [
+  { size: 10, text: '10px' },
+  { size: 12, text: '12px' },
+  { size: 14, text: '14px' },
+  { size: 16, text: '16px' },
+  { size: 18, text: '18px' },
+];
+
+const lineHeights: LineHeight[] = [
+  { lineHeight: 1, text: '1' },
+  { lineHeight: 1.35, text: '1.35' },
+  { lineHeight: 1.5, text: '1.5' },
+  { lineHeight: 2, text: '2' },
+];
+
+const fontFamilies: FontFamily[] = [
+  { text: 'Arial' },
+  { text: 'Courier New' },
+  { text: 'Georgia' },
+  { text: 'Impact' },
+  { text: 'Lucida Console' },
+  { text: 'Tahoma' },
+  { text: 'Times New Roman' },
+];
+
+const fontStyles: FontStyle[] = [
+  {
+    icon: 'format_bold',
+    hint: 'Bold',
+  },
+  {
+    icon: 'format_italic',
+    hint: 'Italic',
+  },
+  {
+    icon: 'format_underlined',
+    hint: 'Underlined',
+  },
+  {
+    icon: 'strikethrough_s',
+    hint: 'Strikethrough',
+  },
+];
+
+const textAlignsExtended: TextAlignExtended[] = [
+  {
+    icon: 'format_align_left',
+    alignment: 'left',
+    hint: 'Align Left',
+    text: 'Align left',
+  },
+  {
+    icon: 'format_align_center',
+    alignment: 'center',
+    hint: 'Center',
+    text: 'Center',
+  },
+  {
+    icon: 'format_align_right',
+    alignment: 'right',
+    hint: 'Align Right',
+    text: 'Align right',
+  },
+  {
+    icon: 'format_align_justify',
+    alignment: 'justify',
+    hint: 'Justify',
+    text: 'Justify',
+  },
+];
+
+const listTypes: ListType[] = [
+  {
+    icon: 'format_list_numbered',
+    alignment: 'orderedlist',
+    hint: 'Ordered',
+  },
+  {
+    icon: 'format_list_bulleted',
+    alignment: 'bulletlist',
+    hint: 'Bullet',
+  },
+];
+
+const headings: Heading[] = [
+  { text: 'Normal text' },
+  { text: 'Heading 1' },
+  { text: 'Heading 2' },
+  { text: 'Heading 3' },
+  { text: 'Heading 4' },
+  { text: 'Heading 5' },
+];
 
 @Component({
   selector: 'app-tool-bar',
   templateUrl: './tool-bar.component.html',
   styleUrls: ['./tool-bar.component.css'],
 })
-export class ToolBarComponent {
-  // @ViewChild(DxPopupComponent) popup?: DxPopupComponent;
-  isOpenSidePage1 = false;
-  isOpenSidePage2 = false;
-  isOpenSidePage3 = false;
-  isOpenSidePage4 = false;
-  isOpenSidePage5 = false;
-  // position: DevExpress.PositionConfig = { my: 'right', at: 'left', of: window };
-  lorem500 =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente iusto et nobis fugit voluptates, obcaecati atque odio debitis perferendis totam magnam sunt praesentium consequuntur, earum, corrupti vitae natus sint autem! Nemo architecto ea necessitatibus possimus itaque ab, quaerat quisquam porro? Reprehenderit eius labore animi eum delectus, enim corrupti consequuntur accusantium, facere officiis deleniti ex perspiciatis, optio facilis quaerat veritatis obcaecati ipsa eaque. Doloribus quisquam ipsa esse mollitia minus nobis est alias unde aliquid repellendus. Eaque fugit nisi quidem facilis, odio voluptas nulla quaerat voluptates nesciunt illo dolore quod esse, maiores doloribus dolorem eum officia. Aspernatur fuga veritatis minus maiores nam eaque amet distinctio eveniet dolorum, aliquid nobis ab ullam iste magni. Sit aliquid architecto optio fuga facilis quibusdam nobis laborum nihil, corporis fugiat ullam placeat, assumenda consequatur officiis dicta harum fugit eos, modi minima? Inventore nisi voluptates ex cupiditate asperiores amet nostrum sunt blanditiis veniam libero error adipisci voluptatem dicta quibusdam magni optio velit neque tempora facere impedit, enim provident quos sit sequi. Modi explicabo harum est. Accusamus obcaecati quaerat facilis earum natus aut blanditiis nam sint, quam similique qui corporis, necessitatibus commodi quibusdam perferendis dignissimos officiis excepturi iure consequatur molestiae deserunt quidem et laborum. Perspiciatis adipisci amet tenetur exercitationem repellat quod, vitae tempora molestiae eos deleniti sint error itaque. Debitis cum veritatis, distinctio at fuga pariatur quia blanditiis magnam aut sapiente accusamus commodi aperiam autem necessitatibus aliquid rerum itaque quam eius obcaecati! Deserunt consequatur expedita ea. Velit, pariatur vitae aperiam nostrum ex architecto culpa, quisquam eius asperiores excepturi optio nihil. Laudantium, fugiat molestiae ut perferendis sapiente adipisci, expedita neque aspernatur totam suscipit deserunt a fugit at quibusdam. Quaerat, amet repellendus quisquam praesentium, aspernatur ea molestias excepturi a, placeat ullam similique odit. Quae delectus voluptates, placeat pariatur vitae velit modi at ratione minima eum consectetur eos? Rerum qui voluptatibus magni est tenetur expedita iure, sit illum reiciendis sapiente consequatur dolorem dolores vero odio neque esse minima similique quaerat error maiores? Earum ex perspiciatis ipsum excepturi reprehenderit repellat optio, voluptatibus aut enim aliquid esse. Veniam aliquam et, cupiditate asperiores quasi quibusdam rem molestias consectetur ad autem deleniti a odio nulla voluptate nesciunt, eum perspiciatis illo mollitia aut temporibus quia optio veritatis vel. Magni eius impedit quae. Eum ut corporis dignissimos adipisci suscipit fugiat voluptas sapiente aut harum odit, temporibus ratione qui incidunt dolores necessitatibus laboriosam, deserunt iste ea provident vel id aperiam nihil, molestiae amet! Expedita pariatur assumenda sapiente laudantium cum! Harum iusto atque natus dolorem similique id iste, temporibus numquam sed libero praesentium officiis, enim facere unde molestias itaque saepe necessitatibus odio sapiente ut? Enim recusandae repudiandae illum voluptas iusto adipisci, aliquid placeat impedit cupiditate non velit et consectetur ducimus doloremque deserunt fuga earum distinctio itaque natus rerum. Amet nihil tempora maxime, aperiam illum veritatis magni, doloribus aspernatur quas pariatur velit facere nam provident consequatur laboriosam magnam reprehenderit doloremque saepe incidunt iste dolor, ab exercitationem. Laboriosam quisquam nam, assumenda sint, sequi nostrum quas necessitatibus dolorem sunt iusto corporis sit similique commodi. Veniam ab veritatis repellat, provident ex eveniet accusantium molestiae.';
+export class ToolBarComponent implements OnInit {
+  fontSizes = fontSizes;
+  lineHeights = lineHeights;
+  lineHeight = this.lineHeights[1].lineHeight;
+  fontFamilies = fontFamilies;
+  fontStyles = fontStyles;
+  textAlignItems = this.getTextAlign();
+  textAlignItemsExtended = textAlignsExtended;
+  selectedTextAlign = [this.textAlignItems[0].alignment];
+  listTypes = listTypes;
+  headings = headings;
+  heading = this.headings[0].text;
 
-  toggleDrawer(id: number) {
-    const element = <any>this;
+  textBoxOptions = {
+    placeholder: 'Search...',
+    showClearButton: true,
+  };
 
-    element[`isOpenSidePage${id}`] = !element[`isOpenSidePage${id}`];
+  searchButtonOptions = {
+    icon: 'search',
+    onClick() {},
+  };
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  getTextAlign(): TextAlign[] {
+    return textAlignsExtended.map(({ icon, alignment, hint }) => ({
+      icon,
+      alignment,
+      hint,
+    }));
   }
 }

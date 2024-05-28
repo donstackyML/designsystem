@@ -66,15 +66,11 @@ export class MeDropDownButtonDirective
 
     const popupWrapperClasses = `${
       this.wrapperAttr['class'] || ''
-    } me-scroll-view me-dropdownlist-${
-      this.size
-    } dx-scrollable-scrollbars-alwaysvisible me-dropdownlist ${
+    } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${
       this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
     }`;
 
     this.component.dropDownOptions = {
-      height: '184px',
-      width: '212px',
       wrapperAttr: {
         ...this.wrapperAttr,
         class: popupWrapperClasses,
