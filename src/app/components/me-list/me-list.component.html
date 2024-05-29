@@ -1,16 +1,22 @@
-<div class="wrapper">
+<div class="list__wrapper">
   <h1 class="wrapper__main-title dx-widget">List</h1>
+  <h2 class="wrapper__title dx-widget">Drag and drop</h2>
+  <dx-list meList [dataSource]="items" displayExpr="name" width="436px"> <dxo-item-dragging [allowReordering]="true"> </dxo-item-dragging></dx-list>
+
+  <h2 class="wrapper__title dx-widget">Групповой список</h2>
   <dx-list
+    meList
     id="list"
-    [dataSource]="items"
+    [dataSource]="itemsGrouped"
     displayExpr="name"
-    selectionMode="single"
+    selectionMode="multiple"
     [grouped]="true"
     [allowItemDeleting]="true"
     [searchEnabled]="true"
-    searchMode="startswith"
+    searchExpr="name"
     [collapsibleGroups]="true"
-    width="25vw"
+    [showSelectionControls]="true"
+    width="436px"
   >
     <dxo-item-dragging [allowReordering]="true"> </dxo-item-dragging
   ></dx-list>

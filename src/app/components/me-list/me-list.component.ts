@@ -16,7 +16,15 @@ interface ListGroup {
   styleUrls: ['./me-list.component.css'],
 })
 export class MeListComponent implements OnInit {
-  public items: ListGroup[] = [
+  public items: Item[] = [
+    { name: 'Apples', count: 10 },
+    { name: 'Oranges', count: 12 },
+    { name: 'Lemons', count: 15 },
+    { name: 'Potatoes', count: 5 },
+    { name: 'Tomatoes', count: 9 },
+    { name: 'Turnips', count: 8 },
+  ];
+  public itemsGrouped: ListGroup[] = [
     {
       key: 'Fruits',
       items: [
