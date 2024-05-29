@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 interface Item {
-  id: number;
-  text: string;
+  name: string;
+  count: number;
 }
 
 interface ListGroup {
@@ -18,27 +18,19 @@ interface ListGroup {
 export class MeListComponent implements OnInit {
   public items: ListGroup[] = [
     {
-      key: 'Заголовок 1',
+      key: 'Fruits',
       items: [
-        { id: 1, text: 'title' },
-        { id: 2, text: 'title' },
-        { id: 3, text: 'title' },
-        { id: 4, text: 'title' },
-        { id: 5, text: 'title' },
-        { id: 6, text: 'title' },
-        { id: 7, text: 'title' },
+        { name: 'Apples', count: 10 },
+        { name: 'Oranges', count: 12 },
+        { name: 'Lemons', count: 15 },
       ],
     },
     {
-      key: 'Заголовок 2',
+      key: 'Vegetables',
       items: [
-        { id: 1, text: 'title' },
-        { id: 2, text: 'title' },
-        { id: 3, text: 'title' },
-        { id: 4, text: 'title' },
-        { id: 5, text: 'title' },
-        { id: 6, text: 'title' },
-        { id: 7, text: 'title' },
+        { name: 'Potatoes', count: 5 },
+        { name: 'Tomatoes', count: 9 },
+        { name: 'Turnips', count: 8 },
       ],
     },
   ];
