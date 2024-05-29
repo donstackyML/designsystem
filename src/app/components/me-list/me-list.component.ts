@@ -7,6 +7,7 @@ interface Item {
 
 interface ListGroup {
   key: string;
+  description: string;
   items: Item[];
 }
 
@@ -27,6 +28,7 @@ export class MeListComponent implements OnInit {
   public itemsGrouped: ListGroup[] = [
     {
       key: 'Fruits',
+      description: 'Fruits are good for you.',
       items: [
         { name: 'Apples', count: 10 },
         { name: 'Oranges', count: 12 },
@@ -35,6 +37,7 @@ export class MeListComponent implements OnInit {
     },
     {
       key: 'Vegetables',
+      description: 'Vegetables are good for you too.',
       items: [
         { name: 'Potatoes', count: 5 },
         { name: 'Tomatoes', count: 9 },

@@ -3,6 +3,17 @@
   <h2 class="wrapper__title dx-widget">Drag and drop</h2>
   <dx-list meList [dataSource]="items" displayExpr="name" width="436px"> <dxo-item-dragging [allowReordering]="true"> </dxo-item-dragging></dx-list>
 
+  <h2 class="wrapper__title dx-widget">Групповой список (статичный)</h2>
+  <dx-list meList id="list" [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" width="436px" groupTemplate="me-group">
+    <div *dxTemplate="let groupObj of 'me-group'">
+      <p class="me-title-header2">{{ groupObj.key }}</p>
+      <p class="me-text-caption">{{ groupObj.description }}</p>
+    </div>
+  </dx-list>
+
+  <h2 class="wrapper__title dx-widget">Групповой список (сворачивающийся)</h2>
+  <dx-list meList id="list" [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" [collapsibleGroups]="true" width="436px"> </dx-list>
+
   <h2 class="wrapper__title dx-widget">Групповой список</h2>
   <dx-list
     meList
