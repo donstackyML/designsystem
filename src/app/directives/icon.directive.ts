@@ -20,7 +20,11 @@ export class MeIconDirective {
   ) {}
 
   ngOnInit(): void {
-    const svg = this.service.getIcon(this.icon, this.color, this.iconSize);
+    const svg = this.service.getIcon({
+      icon: this.icon,
+      color: this.color,
+      size: this.iconSize,
+    });
     this.element.nativeElement.innerHTML = svg;
 
     this.renderer.setStyle(

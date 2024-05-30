@@ -225,6 +225,14 @@ const icons = {
   <path d="M5.4941 18C5.08137 18 4.72917 17.8531 4.4375 17.5594C4.14583 17.2656 4 16.9125 4 16.5V3.5C4 3.0875 4.14687 2.73438 4.44062 2.44063C4.73437 2.14688 5.0875 2 5.5 2H12L16 6V16.5C16 16.9125 15.853 17.2656 15.5591 17.5594C15.2652 17.8531 14.9119 18 14.4992 18H5.4941ZM11 7V3.5H5.5V16.5H14.5V7H11Z" fill="color"/>
   </g>
   </svg>`,
+  check: `<svg xmlns="http://www.w3.org/2000/svg" width="iconSize" height="iconSize" viewBox="0 0 24 24" fill="none">
+  <mask id="mask0_4659_11791" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+  <rect width="24" height="24" fill="#D9D9D9"/>
+  </mask>
+  <g mask="url(#mask0_4659_11791)">
+  <path d="M9.5501 18L3.8501 12.3L5.2751 10.875L9.5501 15.15L18.7251 5.97498L20.1501 7.39998L9.5501 18Z" fill="color"/>
+  </g>
+  </svg>`,
 };
 
 const DEFAULT_ICON_SIZE = '20';
@@ -244,23 +252,17 @@ export class IconStoreService {
     return icons;
   }
 
-  getIcon(
-    icon: string,
-    iconColor = DEFAULT_ICON_COLOR,
-    iconSize = DEFAULT_ICON_SIZE
-  ) {
+  getIcon({ icon = '', color = DEFAULT_ICON_COLOR, size = DEFAULT_ICON_SIZE }) {
     if (!icon) return '';
 
     if (this.icons.hasOwnProperty(icon)) {
       const iconName = <keyof MeIcon>icon;
 
       return this.icons[iconName]
-        .replaceAll('color', iconColor)
-        .replaceAll('iconSize', iconSize);
+        .replaceAll('color', color)
+        .replaceAll('iconSize', size);
     } else {
-      return icon
-        .replaceAll('color', iconColor)
-        .replaceAll('iconSize', iconSize);
+      return icon.replaceAll('color', color).replaceAll('iconSize', size);
     }
   }
 }

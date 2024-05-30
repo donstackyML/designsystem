@@ -50,11 +50,11 @@ export class MeDropDownButtonDirective
       `me-dropdownbutton-${this.size}`
     );
 
-    this.component.icon = this.iconStoreService.getIcon(
-      this.icon,
-      this.iconColor,
-      this.getIconSize(this.iconSize)
-    );
+    this.component.icon = this.iconStoreService.getIcon({
+      icon: this.icon,
+      color: this.iconColor,
+      size: this.getIconSize(this.iconSize),
+    });
 
     if (this.type === 'default') {
       this.renderer.addClass(this.element.nativeElement, 'dx-button-default');

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IconStoreService, MeIcon } from 'src/app/service/icon-store.service';
 
 interface Item {
   name: string;
@@ -25,33 +26,35 @@ export class MeListComponent implements OnInit {
     {
       name: 'Apples',
       count: 10,
-      icon: 'favorites',
+      icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
     },
     {
       name: 'Oranges',
       count: 12,
-      icon: 'favorites',
+      icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
     },
     {
       name: 'Lemons',
       count: 15,
-      icon: 'favorites',
+      icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
     },
     {
       name: 'Potatoes',
       count: 5,
-      icon: 'favorites',
+      icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
     },
     {
       name: 'Tomatoes',
       count: 9,
-      icon: 'favorites',
+      icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
+
       disabled: true,
     },
     {
       name: 'Turnips',
       count: 8,
-      icon: 'favorites',
+      icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
+
       disabled: true,
     },
   ];
@@ -164,7 +167,7 @@ export class MeListComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private iconStore: IconStoreService) {}
 
   ngOnInit(): void {}
 }

@@ -3623,6 +3623,43 @@
   background-color: #cb5500;
 }
 
+.me-list .dx-button-mode-contained.dx-list-static-delete-button {
+  background-color: transparent;
+  border-color: #fa6488;
+  color: #fa6488;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button .dx-icon {
+  color: #fa6488;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button.dx-state-hover {
+  background-color: rgba(213, 15, 63, 0.2);
+  border-color: #fa6488;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button:focus-visible {
+  border-color: #fa6488;
+  outline: 2px solid #7eb9ff;
+  z-index: 1;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button.dx-state-active {
+  background-color: rgba(171, 0, 42, 0.3019607843);
+  border-color: #fa6488;
+  color: #fa6488;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button.dx-state-disabled {
+  background-color: transparent;
+  color: #7e4653;
+  border-color: #7e4653;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button.dx-state-disabled .dx-icon {
+  color: #7e4653;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button.me-state-selected {
+  background-color: rgba(171, 0, 42, 0.3019607843);
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button.dx-buttongroup-item.dx-button.me-button.dx-button-normal.dx-item-selected {
+  background-color: rgba(171, 0, 42, 0.3019607843);
+}
+
 .dx-button-mode-outlined {
   background-color: transparent;
   border-color: #ffffff;
@@ -4146,7 +4183,7 @@
   margin-left: 0;
 }
 
-.dx-button:not(.dx-button-mode-outlined) {
+.dx-button:not(.dx-button-mode-outlined):not(.me-list .dx-button-mode-contained.dx-list-static-delete-button) {
   border: none;
 }
 
@@ -8471,6 +8508,28 @@
 .me-list.dx-list.dx-list-select-decorator-enabled .dx-list-select-all.dx-state-focused .dx-checkbox-icon {
   border-color: #3565e2;
 }
+.me-list.dx-list .dx-list-item-icon {
+  width: 24px;
+  height: 24px;
+}
+.me-list.dx-list .dx-list-item {
+  display: flex;
+  align-items: center;
+}
+.me-list.dx-list .dx-list-item-content {
+  width: auto;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.me-list.dx-list .dx-list-item-content::before {
+  content: none;
+}
+.me-list.dx-list .dx-list-item-icon-container {
+  width: 24px;
+  height: 24px;
+}
 
 .dx-list-item:first-of-type {
   border-top: none;
@@ -8519,7 +8578,7 @@
 }
 
 .me-list .dx-list-item-after-bag.dx-list-reorder-handle-container {
-  width: 36px;
+  width: 34px;
 }
 .me-list .dx-list-item-after-bag .dx-list-reorder-handle {
   width: 20px;
@@ -8550,6 +8609,16 @@
 .me-list .dx-list-group-collapsed .dx-list-group-header::before {
   transform: rotate(180deg);
   transition: all ease 0.3s;
+}
+.me-list .dx-list-item-before-bag .dx-list-select-checkbox,
+.me-list .dx-list-item-before-bag .dx-list-select-radiobutton {
+  margin-left: 8px;
+}
+.me-list .dx-list-select-all-checkbox {
+  margin-left: 8px;
+}
+.me-list .dx-list-item-before-bag.dx-list-select-checkbox-container {
+  width: 28px;
 }
 
 .dx-list-next-button .dx-button .dx-button-content {
@@ -8820,6 +8889,28 @@
 .dx-device-mobile .me-list.dx-list.dx-list-select-decorator-enabled .dx-list-select-all.dx-state-focused .dx-checkbox-icon {
   border-color: #3565e2;
 }
+.dx-device-mobile .me-list.dx-list .dx-list-item-icon {
+  width: 24px;
+  height: 24px;
+}
+.dx-device-mobile .me-list.dx-list .dx-list-item {
+  display: flex;
+  align-items: center;
+}
+.dx-device-mobile .me-list.dx-list .dx-list-item-content {
+  width: auto;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dx-device-mobile .me-list.dx-list .dx-list-item-content::before {
+  content: none;
+}
+.dx-device-mobile .me-list.dx-list .dx-list-item-icon-container {
+  width: 24px;
+  height: 24px;
+}
 .dx-device-mobile .dx-list-item:first-of-type {
   border-top: none;
 }
@@ -8864,7 +8955,7 @@
   padding: 8px;
 }
 .dx-device-mobile .me-list .dx-list-item-after-bag.dx-list-reorder-handle-container {
-  width: 36px;
+  width: 34px;
 }
 .dx-device-mobile .me-list .dx-list-item-after-bag .dx-list-reorder-handle {
   width: 20px;
@@ -8895,6 +8986,16 @@
 .dx-device-mobile .me-list .dx-list-group-collapsed .dx-list-group-header::before {
   transform: rotate(180deg);
   transition: all ease 0.3s;
+}
+.dx-device-mobile .me-list .dx-list-item-before-bag .dx-list-select-checkbox,
+.dx-device-mobile .me-list .dx-list-item-before-bag .dx-list-select-radiobutton {
+  margin-left: 8px;
+}
+.dx-device-mobile .me-list .dx-list-select-all-checkbox {
+  margin-left: 8px;
+}
+.dx-device-mobile .me-list .dx-list-item-before-bag.dx-list-select-checkbox-container {
+  width: 28px;
 }
 .dx-device-mobile .dx-list-next-button .dx-button .dx-button-content {
   padding: 7px 18px 8px;
@@ -9050,6 +9151,22 @@
 .dx-device-mobile .dx-rtl.dx-list .dx-list-switchable-delete-button {
   margin-left: 15px;
   margin-right: 0;
+}
+
+.me-list .dx-button-mode-contained.dx-list-static-delete-button {
+  margin-right: 8px;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button .dx-button-content {
+  padding: 3px;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button .dx-button-content .dx-icon-remove {
+  width: 20px;
+  height: 20px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzQ2NTlfOTc2MiIgc3R5bGU9Im1hc2stdHlwZTphbHBoYSIgbWFza1VuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeD0iMCIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIj4KPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjRDlEOUQ5Ii8+CjwvbWFzaz4KPGcgbWFzaz0idXJsKCNtYXNrMF80NjU5Xzk3NjIpIj4KPHBhdGggZD0iTTYuMDYyNSAxNUw1IDEzLjkzNzVMOC45Mzc1IDEwTDUgNi4wNjI1TDYuMDYyNSA1TDEwIDguOTM3NUwxMy45Mzc1IDVMMTUgNi4wNjI1TDExLjA2MjUgMTBMMTUgMTMuOTM3NUwxMy45Mzc1IDE1TDEwIDExLjA2MjVMNi4wNjI1IDE1WiIgZmlsbD0iI0ZBNjQ4OCIvPgo8L2c+Cjwvc3ZnPgo=");
+  background-size: contain;
+}
+.me-list .dx-button-mode-contained.dx-list-static-delete-button .dx-button-content .dx-icon-remove:before {
+  content: none;
 }
 
 .dx-textarea .dx-texteditor-input-container {
