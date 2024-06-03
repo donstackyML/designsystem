@@ -16,7 +16,6 @@ export class MeToolbarDirective implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.size);
     this.renderer.addClass(this.element.nativeElement, 'me-toolbar');
     this.renderer.addClass(
       this.element.nativeElement,

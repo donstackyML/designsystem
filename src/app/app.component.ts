@@ -8,6 +8,8 @@ import { ButtonClickEvent } from 'devextreme/ui/drop_down_button';
 import { ChangeEvent } from 'devextreme/ui/text_box';
 import { ValueChangedEvent } from 'devextreme/ui/filter_builder';
 import { Location } from '@angular/common';
+import ruMessages from 'devextreme/localization/messages/ru.json';
+import { locale, loadMessages } from 'devextreme/localization';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +34,9 @@ export class AppComponent implements OnInit {
     this.componentsRoute = this.service.getComponentsRoute();
     this.currentComponent = this.componentsName[0];
     this.path = this.location.path(true).slice(1);
+
+    loadMessages(ruMessages);
+    locale(navigator.language);
   }
 
   ngOnInit(): void {

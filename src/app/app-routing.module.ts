@@ -17,6 +17,7 @@ import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { MeListComponent } from './components/me-list/me-list.component';
 import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
+import { ListComponent } from './components/list/list.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'tree-view', component: TreeViewComponent },
   // { path: 'tree-list', component: TreeListComponent },
   // { path: 'toolbar', component: ToolBarComponent },
+  // { path: 'list', component: ListComponent },
   { path: '**', component: TypographyComponent },
   // { path: 'buttons', component: ButtonsComponent },
   // { path: 'button-group', component: BtnGroupComponent },
@@ -45,7 +47,6 @@ const routes: Routes = [
   // { path: 'data-grid', component: DataGridComponent },
   // { path: 'scheduler', component: SchedulerComponent },
   // { path: 'form', component: FormComponent },
-  // { path: 'list', component: ListComponent },
   // { path: 'filter-builder', component: FilterBuilderComponent },
   // { path: 'overlays', component: OverlaysComponent },
   // { path: 'menu', component: MenuComponent },

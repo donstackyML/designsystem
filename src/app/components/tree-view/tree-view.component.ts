@@ -41,11 +41,8 @@ export class TreeViewComponent {
   selectedItems: boolean[];
 
   constructor(private parseService: ParseService, private renderer: Renderer2) {
-    console.log(groupedResultArray);
     this.products = groupedResultArray;
     this.currentItem = this.products[0];
-
-    console.log(this.products.length);
 
     this.selectedItems = [];
   }
@@ -63,7 +60,6 @@ export class TreeViewComponent {
 
   selectItem(e: ItemClickEvent) {
     const currentItem = e.itemElement;
-    console.log(e.itemIndex, this.selectedItems[e.itemIndex]);
 
     if (this.selectedItems[e.itemIndex] !== true) {
       this.renderer.addClass(currentItem, 'me-state-selected');
@@ -72,8 +68,6 @@ export class TreeViewComponent {
       this.renderer.removeClass(currentItem, 'me-state-selected');
       this.selectedItems[e.itemIndex] = false;
     }
-
-    console.log(e.itemIndex, this.selectedItems[e.itemIndex]);
   }
 
   getClass(icon: string): string {
