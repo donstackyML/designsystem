@@ -110,4 +110,30 @@
       </div>
     </div>
   </dx-list>
+
+  <h2 class="wrapper__title dx-widget">itemDeleteMode = context</h2>
+  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" itemDeleteMode="context" width="436px">
+    <div *dxTemplate="let item of 'item'">
+      <div class="me-list-item-content">
+        <img alt="{{ item.name }}" src="{{ item.image }}" />
+        <div>
+          <div class="me-text-body2">{{ item.name }}</div>
+          <div class="me-text-caption">{{ item.description }}</div>
+        </div>
+      </div>
+    </div>
+  </dx-list>
+
+  <h2 class="wrapper__title dx-widget">itemDeleteMode = slideItem</h2>
+  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" itemDeleteMode="slideItem" width="436px">
+    <div *dxTemplate="let item of 'item'">
+      <div class="me-list-item-content">
+        <img alt="{{ item.name }}" src="{{ item.image }}" />
+        <div>
+          <div class="me-text-body2">{{ item.name }}</div>
+          <div class="me-text-caption">{{ item.description }}</div>
+        </div>
+      </div>
+    </div>
+  </dx-list>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ParseService } from 'src/app/service/parse.service';
 import { Product, TreeViewService } from 'src/app/service/tree-view.service';
 import { groupedResultArray, GroupType } from 'src/seelectApp/parseFunction';
@@ -14,6 +14,7 @@ import cdu_op2 from 'src/assets/initial data/Clients_qa-tw3-cdu-op2.oiktest.loca
 import cdu_web1 from 'src/assets/initial data/Clients_qa-tw3-cdu-web1.oiktest.local.json';
 import cdu_web2 from 'src/assets/initial data/Clients_qa-tw3-cdu-web2.oiktest.local.json';
 import host_groups from 'src/assets/initial data/HostGroups_Platform.Win1.json';
+import { ItemClickEvent } from 'devextreme/ui/box';
 
 const allApps = [
   cdu_prl1,
@@ -37,12 +38,16 @@ export class TreeViewComponent {
   products: GroupType[];
   currentItem: GroupType;
   product = true;
+  selectedItems: boolean[];
 
-  constructor(private parseService: ParseService) {
+  constructor(private parseService: ParseService, private renderer: Renderer2) {
     console.log(groupedResultArray);
-    // console.log(dataSource);
     this.products = groupedResultArray;
     this.currentItem = this.products[0];
+
+    console.log(this.products.length);
+
+    this.selectedItems = [];
   }
 
   ngOnInit(): void {
@@ -56,8 +61,19 @@ export class TreeViewComponent {
     this.products = groupedResultArray;
   }
 
-  selectItem(e: any) {
-    this.currentItem = e.itemData;
+  selectItem(e: ItemClickEvent) {
+    const currentItem = e.itemElement;
+    console.log(e.itemIndex, this.selectedItems[e.itemIndex]);
+
+    if (this.selectedItems[e.itemIndex] !== true) {
+      this.renderer.addClass(currentItem, 'me-state-selected');
+      this.selectedItems[e.itemIndex] = true;
+    } else {
+      this.renderer.removeClass(currentItem, 'me-state-selected');
+      this.selectedItems[e.itemIndex] = false;
+    }
+
+    console.log(e.itemIndex, this.selectedItems[e.itemIndex]);
   }
 
   getClass(icon: string): string {
