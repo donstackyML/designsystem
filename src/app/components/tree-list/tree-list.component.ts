@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Employee, TreeListDataService } from 'src/app/service/tree-list-data.service';
+import {
+  Employee,
+  TreeListDataService,
+} from 'src/app/service/tree-list-data.service';
 
 @Component({
   selector: 'app-tree-list',
@@ -13,4 +16,6 @@ export class TreeListComponent {
   constructor(service: TreeListDataService) {
     this.employees = service.getEmployees();
   }
+
+  ngOnInit(): void {}
 }

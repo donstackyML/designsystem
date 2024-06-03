@@ -11,6 +11,7 @@
 @use "../checkBox/colors" as *;
 @use "../../base/list";
 @use "../../base/list/mixins" as *;
+@use "../../generic/typography/index" as *;
 
 // adduse
 @use "../badge";
@@ -69,6 +70,10 @@ $generic-list-search-editor-height: round(
 
 .dx-list-search {
   margin-bottom: $generic-list-searchbox-margin-bottom;
+}
+
+.me-list .dx-list-search {
+  margin-bottom: 16px;
 }
 
 .dx-dropdownmenu-list
@@ -195,7 +200,8 @@ $generic-list-search-editor-height: round(
       }
     }
 
-    &:not(.dx-list-select-decorator-enabled) {
+    &:not(.dx-list-select-decorator-enabled),
+    &.me-list {
       .dx-list-item {
         @include item-states();
       }
@@ -584,4 +590,10 @@ $generic-list-search-editor-height: round(
 
     padding: 3px;
   }
+}
+
+.me-list-item-more {
+  @extend %me-text-body2;
+
+  margin-left: auto;
 }
