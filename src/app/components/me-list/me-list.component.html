@@ -97,4 +97,17 @@
       </div>
     </div>
   </dx-list>
+
+  <h2 class="wrapper__title dx-widget">itemDeleteMode = toggle</h2>
+  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" itemDeleteMode="toggle" width="436px">
+    <div *dxTemplate="let item of 'item'">
+      <div class="me-list-item-content">
+        <img alt="{{ item.name }}" src="{{ item.image }}" />
+        <div>
+          <div class="me-text-body2">{{ item.name }}</div>
+          <div class="me-text-caption">{{ item.description }}</div>
+        </div>
+      </div>
+    </div>
+  </dx-list>
 </div>

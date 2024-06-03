@@ -72,10 +72,6 @@ $generic-list-search-editor-height: round(
   margin-bottom: $generic-list-searchbox-margin-bottom;
 }
 
-.me-list .dx-list-search {
-  margin-bottom: 16px;
-}
-
 .dx-dropdownmenu-list
   .dx-toolbar-menu-section
   .dx-list-item.dx-toolbar-menu-custom.dx-state-hover {
@@ -573,8 +569,26 @@ $generic-list-search-editor-height: round(
   @include dx-list-sizing($generic-mobile-list-item-horizontal-padding);
 }
 
+.me-list.dx-list:not(.dx-list-select-decorator-enabled) {
+  .dx-list-item {
+    &.dx-state-hover {
+      .dx-icon-toggle-delete {
+        background-image: $list-toggle-delete-button;
+      }
+    }
+
+    .dx-icon-toggle-delete {
+      background-image: $list-toggle-delete-button;
+    }
+  }
+
+  .dx-list-item-after-bag.dx-list-static-delete-button-container {
+    width: 44px;
+    padding: 8px;
+  }
+}
 .me-list .dx-button-mode-contained.dx-list-static-delete-button {
-  margin-right: 8px;
+  margin: 0;
 
   & .dx-button-content {
     .dx-icon-remove {
@@ -596,4 +610,28 @@ $generic-list-search-editor-height: round(
   @extend %me-text-body2;
 
   margin-left: auto;
+}
+
+.me-list {
+  .dx-list-search {
+    margin-bottom: 16px;
+  }
+
+  .dx-list-switchable-delete-button-container {
+    .dx-list-switchable-delete-button {
+      margin-right: 8px;
+    }
+
+    .dx-button-text {
+      font-size: 0;
+      width: 20px;
+      height: 20px;
+      background: $list-remove-button;
+      background-size: contain;
+    }
+
+    .dx-button-content {
+      padding: 3px;
+    }
+  }
 }
