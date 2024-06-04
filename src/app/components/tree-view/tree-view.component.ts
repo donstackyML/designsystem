@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, ViewChild } from '@angular/core';
 import { ParseService } from 'src/app/service/parse.service';
 import { Product, TreeViewService } from 'src/app/service/tree-view.service';
 import { groupedResultArray, GroupType } from 'src/seelectApp/parseFunction';
@@ -15,6 +15,7 @@ import cdu_web1 from 'src/assets/initial data/Clients_qa-tw3-cdu-web1.oiktest.lo
 import cdu_web2 from 'src/assets/initial data/Clients_qa-tw3-cdu-web2.oiktest.local.json';
 import host_groups from 'src/assets/initial data/HostGroups_Platform.Win1.json';
 import { ItemClickEvent } from 'devextreme/ui/box';
+import { DxTreeViewComponent } from 'devextreme-angular';
 
 const allApps = [
   cdu_prl1,
@@ -35,16 +36,20 @@ const allApps = [
   providers: [TreeViewService],
 })
 export class TreeViewComponent {
+  @ViewChild(DxTreeViewComponent, { static: false })
+  treeView?: DxTreeViewComponent;
   products: GroupType[];
   currentItem: GroupType;
   product = true;
-  selectedItems: boolean[];
+  isElementMatched: boolean;
+  selectedElement?: HTMLElement;
 
   constructor(private parseService: ParseService, private renderer: Renderer2) {
     this.products = groupedResultArray;
     this.currentItem = this.products[0];
 
-    this.selectedItems = [];
+    this.isElementMatched = false;
+    // this.selectedElement = [];
   }
 
   ngOnInit(): void {
@@ -59,15 +64,21 @@ export class TreeViewComponent {
   }
 
   selectItem(e: ItemClickEvent) {
-    const currentItem = e.itemElement;
+    const currentElement = e.itemElement;
+    const isElementsMatched = this.selectedElement === currentElement;
+    const isElementHasClass =
+      currentElement.classList.contains('me-state-selected');
 
-    if (this.selectedItems[e.itemIndex] !== true) {
-      this.renderer.addClass(currentItem, 'me-state-selected');
-      this.selectedItems[e.itemIndex] = true;
+    if (isElementHasClass && isElementsMatched) {
+      this.renderer.removeClass(this.selectedElement, 'me-state-selected');
     } else {
-      this.renderer.removeClass(currentItem, 'me-state-selected');
-      this.selectedItems[e.itemIndex] = false;
+      if (this.selectedElement)
+        this.renderer.removeClass(this.selectedElement, 'me-state-selected');
+
+      this.renderer.addClass(currentElement, 'me-state-selected');
     }
+
+    this.selectedElement = currentElement;
   }
 
   getClass(icon: string): string {
