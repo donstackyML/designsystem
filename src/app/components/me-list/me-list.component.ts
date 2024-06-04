@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IconStoreService, MeIcon } from 'src/app/service/icon-store.service';
+import { MeIconStoreService } from 'src/app/service/icon-store.service';
 
 interface Item {
   name: string;
@@ -167,7 +167,7 @@ export class MeListComponent implements OnInit {
     },
   ];
 
-  constructor(private iconStore: IconStoreService) {}
+  constructor(private iconStore: MeIconStoreService) {}
 
   ngOnInit(): void {}
 }

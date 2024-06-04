@@ -1,5 +1,4 @@
 import { Directive, Input } from '@angular/core';
-import { IconStoreService, MeIcon } from '../service/icon-store.service';
 import { MeButtonStyle, MeButtonType, MeSize } from '../types/types';
 import { MeButtonGroupItem } from '../types/types';
 
@@ -22,26 +21,6 @@ export class MeControlDirective {
     return this._items;
   }
   protected _items: MeButtonGroupItem[] = [];
-  icons: MeIcon;
-
-  constructor(protected iconStoreService: IconStoreService) {
-    this.icons = this.iconStoreService.getIcons(true);
-  }
-
-  getIconAsString(icon?: string, iconColor = '', iconSize = '') {
-    if (!icon) return '';
-    if (this.icons.hasOwnProperty(icon)) {
-      const iconName = <keyof MeIcon>icon;
-
-      return this.icons[iconName]
-        .replaceAll('color', iconColor)
-        .replaceAll('iconSize', this.getIconSize(iconSize));
-    } else {
-      return icon
-        .replaceAll('color', iconColor)
-        .replaceAll('iconSize', this.getIconSize(iconSize));
-    }
-  }
 
   getIconSize(iconSize?: string) {
     let size = DEFAULT_ICON_SIZE;

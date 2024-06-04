@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService, Product } from 'src/app/service/list.service';
 import DataSource from 'devextreme/data/data_source';
-import { IconStoreService } from 'src/app/service/icon-store.service';
+import { MeIconStoreService } from 'src/app/service/icon-store.service';
 
 interface Item {
   name: string;
@@ -67,7 +67,7 @@ export class ListComponent {
     },
   ];
 
-  constructor(service: ListService, public iconStore: IconStoreService) {
+  constructor(service: ListService, public iconStore: MeIconStoreService) {
     this.products = service.getProducts();
     this.dataSource = new DataSource({
       store: this.products,

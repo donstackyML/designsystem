@@ -1,8 +1,8 @@
-import { Component, Renderer2, ViewChild } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ParseService } from 'src/app/service/parse.service';
-import { Product, TreeViewService } from 'src/app/service/tree-view.service';
-import { groupedResultArray, GroupType } from 'src/seelectApp/parseFunction';
-import { AwsType, Aws, HostGroup } from 'src/app/types/types';
+import { TreeViewService } from 'src/app/service/tree-view.service';
+// import { groupedResultArray, GroupType } from 'src/seelectApp/parseFunction';
+import { AwsType, Aws, HostGroup, GroupType } from 'src/app/types/types';
 
 import cdu_prl1 from 'src/assets/initial data/Clients_ci-tw3-cdu-prl1.oiktest.local.json';
 import cdu_prl2 from 'src/assets/initial data/Clients_ci-tw3-cdu-prl2.oiktest.local.json';
@@ -15,7 +15,6 @@ import cdu_web1 from 'src/assets/initial data/Clients_qa-tw3-cdu-web1.oiktest.lo
 import cdu_web2 from 'src/assets/initial data/Clients_qa-tw3-cdu-web2.oiktest.local.json';
 import host_groups from 'src/assets/initial data/HostGroups_Platform.Win1.json';
 import { ItemClickEvent } from 'devextreme/ui/box';
-import { DxTreeViewComponent } from 'devextreme-angular';
 
 const allApps = [
   cdu_prl1,
@@ -36,20 +35,11 @@ const allApps = [
   providers: [TreeViewService],
 })
 export class TreeViewComponent {
-  @ViewChild(DxTreeViewComponent, { static: false })
-  treeView?: DxTreeViewComponent;
   products: GroupType[];
-  currentItem: GroupType;
-  product = true;
-  isElementMatched: boolean;
   selectedElement?: HTMLElement;
 
   constructor(private parseService: ParseService, private renderer: Renderer2) {
-    this.products = groupedResultArray;
-    this.currentItem = this.products[0];
-
-    this.isElementMatched = false;
-    // this.selectedElement = [];
+    this.products = [];
   }
 
   ngOnInit(): void {

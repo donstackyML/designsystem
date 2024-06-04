@@ -267,17 +267,13 @@ export type MeIcon = typeof icons;
 @Injectable({
   providedIn: 'root',
 })
-export class IconStoreService {
+export class MeIconStoreService {
   icons = icons;
-
-  getIcons(customizable: boolean = false) {
-    if (customizable) return icons;
-
-    return icons;
-  }
 
   getIcon({ icon = '', color = DEFAULT_ICON_COLOR, size = DEFAULT_ICON_SIZE }) {
     if (!icon) return '';
+
+    console.log(size);
 
     if (this.icons.hasOwnProperty(icon)) {
       const iconName = <keyof MeIcon>icon;

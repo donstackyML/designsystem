@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { MeControlDirective } from './control.directive';
-import { IconStoreService } from '../service/icon-store.service';
+import { MeIconStoreService } from '../service/icon-store.service';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { MeCommonType, MeScrollbarShowType } from '../types/types';
 
@@ -25,9 +25,9 @@ export class MeDropDownButtonDirective
     private element: ElementRef,
     private component: DxDropDownButtonComponent,
     private renderer: Renderer2,
-    iconStoreService: IconStoreService
+    private iconStore: MeIconStoreService
   ) {
-    super(iconStoreService);
+    super();
   }
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class MeDropDownButtonDirective
       `me-dropdownbutton-${this.size}`
     );
 
-    this.component.icon = this.iconStoreService.getIcon({
+    this.component.icon = this.iconStore.getIcon({
       icon: this.icon,
       color: this.iconColor,
       size: this.getIconSize(this.iconSize),

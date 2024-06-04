@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AwsType, Aws, GroupType, HostGroup } from '../types/types';
-import { IconStoreService } from './icon-store.service';
+import { MeIconStoreService } from './icon-store.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ParseService {
-  constructor(private iconStore: IconStoreService) {}
+  constructor(private iconStore: MeIconStoreService) {}
 
   parseFunction(arrApp: AwsType[]) {
     return arrApp.reduce((result: any[], awsJSON: AwsType, index) => {
@@ -24,7 +24,6 @@ export class ParseService {
       aws.items?.push({
         text: 'System',
         itemStr: systemUsers,
-        // id: `4_${index + 1}_0`,
       });
 
       const userNameSet = new Set();

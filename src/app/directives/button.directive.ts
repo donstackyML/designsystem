@@ -1,7 +1,6 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxButtonComponent } from 'devextreme-angular';
-import { IconStoreService } from '../service/icon-store.service';
-import { ThemesService } from '../service/themes.service';
+import { MeIconStoreService } from '../service/icon-store.service';
 import { MeControlDirective } from './control.directive';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
@@ -26,9 +25,9 @@ export class ButtonDirective extends MeControlDirective implements OnInit {
     private element: ElementRef,
     private renderer: Renderer2,
     private component: DxButtonComponent,
-    iconStoreService: IconStoreService
+    private iconStore: MeIconStoreService
   ) {
-    super(iconStoreService);
+    super();
   }
 
   ngOnInit(): void {
@@ -46,18 +45,22 @@ export class ButtonDirective extends MeControlDirective implements OnInit {
 
     this.component.template = `
       <div class="me-button-inner">
-        ${this.getIconAsString(
-          this.leftIcon,
-          this.leftIconColor ? this.leftIconColor : this.iconColor,
-          this.leftIconSize ? this.leftIconSize : this.iconSize
-        )}
-        ${this.getIconAsString(this.iconOnly, this.iconColor, this.iconSize)}
+        ${this.iconStore.getIcon({
+          icon: this.leftIcon,
+          color: this.leftIconColor ? this.leftIconColor : this.iconColor,
+          size: this.getIconSize(this.leftIconSize),
+        })}
+        ${this.iconStore.getIcon({
+          icon: this.iconOnly,
+          color: this.iconColor,
+          size: this.getIconSize(this.iconSize),
+        })}
         ${this.getText()}
-        ${this.getIconAsString(
-          this.rightIcon,
-          this.rightIconColor ? this.rightIconColor : this.iconColor,
-          this.rightIconSize ? this.rightIconSize : this.iconSize
-        )}
+        ${this.iconStore.getIcon({
+          icon: this.rightIcon,
+          color: this.rightIconColor ? this.rightIconColor : this.iconColor,
+          size: this.getIconSize(this.rightIconSize),
+        })}
       </div>`;
 
     this.renderer.addClass(this.element.nativeElement, `me-button`);

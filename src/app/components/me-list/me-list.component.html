@@ -5,44 +5,27 @@
   <dx-list meList [dataSource]="items" displayExpr="name" width="436px"> <dxo-item-dragging [allowReordering]="true"> </dxo-item-dragging></dx-list>
 
   <h2 class="wrapper__title dx-widget">Список с множественным выбором, иконками, закрытием и перестановками</h2>
-  <dx-list
-    meList
-    [dataSource]="itemsWithIcons"
-    displayExpr="name"
-    selectionMode="all"
-    [allowItemDeleting]="true"
-    searchExpr="name"
-    [showSelectionControls]="true"
-    width="436px"
-  >
-    <dxo-item-dragging [allowReordering]="true"> </dxo-item-dragging
-  ></dx-list>
+
+  <dx-list meList [dataSource]="itemsWithIcons" displayExpr="name" selectionMode="all" [showSelectionControls]="true" [allowItemDeleting]="true" width="436px">
+    <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
+  </dx-list>
 
   <h2 class="wrapper__title dx-widget">Групповой список (заголовки без описаний)</h2>
-  <dx-list meList id="list" [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" [collapsibleGroups]="true" width="436px"></dx-list>
+  <dx-list meList [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" [collapsibleGroups]="true" width="436px"></dx-list>
 
   <h2 class="wrapper__main-title dx-widget">Кастомный шаблон элементов списка</h2>
   <h2 class="wrapper__title dx-widget">Групповой список (статичный)</h2>
-  <dx-list meList id="list" [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" width="436px" groupTemplate="me-group">
-    <div *dxTemplate="let groupObj of 'me-group'">
-      <p class="me-title-header2">{{ groupObj.key }}</p>
-      <p class="me-text-caption">{{ groupObj.description }}</p>
+
+  <dx-list meList [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" width="436px">
+    <div *dxTemplate="let group of 'group'">
+      <p class="me-title-header2">{{ group.key }}</p>
+      <p class="me-text-caption">{{ group.description }}</p>
     </div>
   </dx-list>
 
   <h2 class="wrapper__title dx-widget">Групповой список (сворачивающийся)</h2>
-  <dx-list
-    meList
-    id="list"
-    [dataSource]="itemsGrouped"
-    displayExpr="name"
-    [grouped]="true"
-    searchExpr="name"
-    [collapsibleGroups]="true"
-    width="436px"
-    groupTemplate="me-group"
-  >
-    <div *dxTemplate="let groupObj of 'me-group'">
+  <dx-list meList [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" [collapsibleGroups]="true" width="436px">
+    <div *dxTemplate="let groupObj of 'group'">
       <p class="me-title-header2">{{ groupObj.key }}</p>
       <p class="me-text-caption">{{ groupObj.description }}</p>
     </div>
@@ -133,6 +116,19 @@
           <div class="me-text-body2">{{ item.name }}</div>
           <div class="me-text-caption">{{ item.description }}</div>
         </div>
+      </div>
+    </div>
+  </dx-list>
+
+  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" width="436px">
+    <div *dxTemplate="let item of 'item'">
+      <div class="me-list-item-content">
+        <img alt="{{ item.name }}" src="{{ item.image }}" />
+        <div>
+          <div class="me-text-body2">{{ item.name }}</div>
+          <div class="me-text-caption">{{ item.description }}</div>
+        </div>
+        <div class="me-list-item-more">More</div>
       </div>
     </div>
   </dx-list>

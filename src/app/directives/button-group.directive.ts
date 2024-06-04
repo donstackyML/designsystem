@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 import { DxButtonGroupComponent } from 'devextreme-angular';
-import { IconStoreService } from '../service/icon-store.service';
+import { MeIconStoreService } from '../service/icon-store.service';
 import { MeControlDirective } from './control.directive';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
@@ -11,9 +11,9 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 export class MeButtonGroupDirective extends MeControlDirective {
   constructor(
     private component: DxButtonGroupComponent,
-    iconStoreService: IconStoreService
+    private iconStore: MeIconStoreService
   ) {
-    super(iconStoreService);
+    super();
   }
 
   ngOnInit(): void {
@@ -40,18 +40,22 @@ export class MeButtonGroupDirective extends MeControlDirective {
         }
       }
 
-      item.template = `<div class="me-button-inner">${this.getIconAsString(
-        item.leftIcon,
-        item.leftIconColor ? item.leftIconColor : item.iconColor,
-        item.leftIconSize ? item.leftIconSize : item.iconSize
-      )}
-          ${this.getIconAsString(item.icon, item.iconColor, item.iconSize)}
+      item.template = `<div class="me-button-inner">${this.iconStore.getIcon({
+        icon: item.leftIcon,
+        color: item.leftIconColor ? item.leftIconColor : item.iconColor,
+        size: this.getIconSize(item.leftIconSize),
+      })}
+          ${this.iconStore.getIcon({
+            icon: item.icon,
+            color: item.iconColor,
+            size: this.getIconSize(item.iconSize),
+          })}
           ${this.getText(index)}
-          ${this.getIconAsString(
-            item.rightIcon,
-            item.rightIconColor ? item.rightIconColor : item.iconColor,
-            item.rightIconSize ? item.rightIconSize : item.iconSize
-          )}</div>`;
+          ${this.iconStore.getIcon({
+            icon: item.rightIcon,
+            color: item.rightIconColor ? item.rightIconColor : item.iconColor,
+            size: this.getIconSize(item.rightIconSize),
+          })}</div>`;
 
       if (item.leftIcon || item.rightIcon) {
         item.elementAttr = {

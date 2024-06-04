@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
-import { IconStoreService } from '../service/icon-store.service';
+import { MeIconStoreService } from '../service/icon-store.service';
 
 const DEFAULT_SIZE = 'auto';
 
@@ -15,7 +15,7 @@ export class MeIconDirective {
 
   constructor(
     private element: ElementRef,
-    private service: IconStoreService,
+    private service: MeIconStoreService,
     private renderer: Renderer2
   ) {}
 
