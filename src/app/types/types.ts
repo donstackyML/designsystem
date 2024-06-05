@@ -4,6 +4,7 @@ import {
   DxPopupComponent,
   DxRadioGroupComponent,
   DxSelectBoxComponent,
+  DxSwitchComponent,
   DxTextBoxComponent,
 } from 'devextreme-angular';
 import { dxButtonGroupItem } from 'devextreme/ui/button_group';
@@ -27,7 +28,8 @@ export type MeEditorComponents =
   | DxTextBoxComponent
   | DxSelectBoxComponent
   | DxCheckBoxComponent
-  | DxRadioGroupComponent;
+  | DxRadioGroupComponent
+  | DxSwitchComponent;
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 export type MeOverlayComponents = DxPopoverComponent | DxPopupComponent;
 export type MePosition = 'left' | 'right';

@@ -13,11 +13,9 @@ import { TypographyComponent } from './components/typography/typography.componen
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-drop-down-button.component';
 import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
-import { ToolBarComponent } from './components/toolbar/tool-bar.component';
 import { MeListComponent } from './components/me-list/me-list.component';
-import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
-import { ListComponent } from './components/list/list.component';
+import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -35,6 +33,7 @@ const routes: Routes = [
   { path: 'me-drop-down-button', component: MeDropDownButtonComponent },
   { path: 'me-button-group', component: MeButtonGroupComponent },
   { path: 'me-list', component: MeListComponent },
+  { path: 'me-switch', component: MeSwitchComponent },
   { path: 'tree-view', component: TreeViewComponent },
   // { path: 'tree-list', component: TreeListComponent },
   // { path: 'toolbar', component: ToolBarComponent },

@@ -18,24 +18,24 @@ $generic-switch-inner-size: $generic-switch-height -
 
   &.dx-state-readonly {
     .dx-switch-container {
-      border-color: $switch-readonly-border-color;
-      background-color: transparent;
+      border-color: $switch-readonly-bg-color;
+      background-color: $switch-off-bg-disabled;
     }
 
     &.dx-switch-on-value {
       .dx-switch-container {
-        background-color: $switch-readonly-border-color;
+        background-color: $switch-readonly-bg-color;
       }
     }
   }
 
   &.dx-state-hover:not(.dx-state-readonly) {
     .dx-switch-handle::before {
-      background-color: $switch-handle-hover-bg;
+      background-color: $switch-handle-off-bg;
     }
 
     .dx-switch-container {
-      background-color: $switch-hover-bg;
+      background-color: $switch-off-hover-bg;
       border-color: $switch-handle-hover-bg;
 
       .dx-switch-on-value & {
@@ -62,7 +62,7 @@ $generic-switch-inner-size: $generic-switch-height -
     }
 
     .dx-switch-handle::before {
-      background-color: $switch-bg;
+      background-color: $switch-handle-off-bg;
     }
 
     &.dx-state-active {
@@ -179,7 +179,7 @@ $generic-switch-inner-size: $generic-switch-height -
 }
 
 .dx-state-disabled .dx-switch-container {
-  border-color: $switch-handle-border-disabled;
+  // border-color: $switch-handle-border-disabled;
 
   & .dx-switch-handle::before {
     background-color: $switch-handle-disabled;
@@ -188,14 +188,14 @@ $generic-switch-inner-size: $generic-switch-height -
 
 .dx-state-disabled.dx-switch-on-value .dx-switch-container {
   border-color: transparent;
-  background-color: $switch-handle-border-disabled;
+  background-color: $switch-bg-disabled;
 
   & .dx-switch-handle::before {
-    background-color: $switch-handle-on-disabled;
+    background-color: $switch-handle-disabled;
   }
 
   .dx-switch-on {
-    color: $switch-handle-on-disabled;
+    color: $switch-handle-disabled;
   }
 }
 
@@ -255,5 +255,88 @@ $generic-switch-inner-size: $generic-switch-height -
 
   .dx-switch-handle::before {
     background-color: $base-invalid-faded-border-color;
+  }
+}
+
+.me-editor {
+  .dx-switch-container {
+    border-radius: 10px;
+    height: 20px;
+    padding: 1px 4px 0 2px;
+    border: none;
+    background: $switch-bg-off;
+  }
+
+  &.dx-switch-on-value .dx-switch-container {
+    background: $switch-bg;
+  }
+
+  &.dx-switch {
+    width: 36px;
+    height: 20px;
+    border-radius: 10px;
+    font-size: 0;
+
+    &.me-editor-small {
+      width: 28px;
+      height: 16px;
+
+      .dx-switch-handle {
+        &::before {
+          width: 12px;
+          height: 12px;
+        }
+      }
+
+      .dx-switch-container {
+        height: 16px;
+        padding: 1px 0px 0 2px;
+      }
+    }
+
+    &.me-editor-large {
+      width: 44px;
+      height: 24px;
+      border-radius: 12px;
+
+      .dx-switch-handle {
+        &::before {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .dx-switch-container {
+        height: 24px;
+        padding: 1px 8px 0 2px;
+        border-radius: 12px;
+      }
+    }
+  }
+
+  .dx-switch-handle {
+    margin-top: 1px;
+
+    &::before {
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.dx-state-disabled.dx-switch-on-value .dx-switch-container {
+    background-color: $switch-bg-disabled;
+  }
+
+  &.dx-state-disabled .dx-switch-container {
+    background-color: $switch-off-bg-disabled;
+  }
+
+  &.dx-state-readonly .dx-switch-handle::before {
+    background-color: $switch-handle-readonly;
+  }
+
+  &.dx-state-readonly.dx-switch-on-value .dx-switch-handle::before {
+    background-color: $switch-handle-disabled;
   }
 }

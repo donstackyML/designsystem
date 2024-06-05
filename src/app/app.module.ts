@@ -62,6 +62,8 @@ import { MeButtonGroupDirective } from './directives/button-group.directive';
 import { MeControlDirective } from './directives/control.directive';
 import { MeListComponent } from './components/me-list/me-list.component';
 import { MeListDirective } from './directives/list.directive';
+import { MeSwitchComponent } from './components/me-switch/me-switch.component';
+import { MeSwitchDirective } from './directives/switch.directive';
 
 @NgModule({
   declarations: [
@@ -121,6 +123,8 @@ import { MeListDirective } from './directives/list.directive';
     MeControlDirective,
     MeListComponent,
     MeListDirective,
+    MeSwitchComponent,
+    MeSwitchDirective,
   ],
   imports: [
     BrowserModule,
