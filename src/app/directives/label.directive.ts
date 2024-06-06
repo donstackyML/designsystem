@@ -12,9 +12,10 @@ import {
 import {
   DxCheckBoxComponent,
   DxSelectBoxComponent,
+  DxSwitchComponent,
   DxTextBoxComponent,
 } from 'devextreme-angular';
-import { MeEditorComponents, MeLabelPosition } from '../types/types';
+import { MeEditorComponents, MeLabelDirection } from '../types/types';
 
 @Directive({
   selector: '[meLabel]',
@@ -25,10 +26,12 @@ export class MeLabelDirective
   @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
   @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
+  @ContentChild(DxSwitchComponent) switchComponent?: DxSwitchComponent;
   @ContentChild('meLabel') label?: ElementRef<HTMLLabelElement>;
-  @Input() labelPosition: MeLabelPosition = 'left';
+  @Input() labelDirection: MeLabelDirection = 'row';
   @Input() width: string = '';
   field?: MeEditorComponents;
+  isSwitch: boolean = false;
   unlistenLabel = () => {};
 
   constructor(private element: ElementRef, private renderer: Renderer2) {}
@@ -41,11 +44,11 @@ export class MeLabelDirective
       this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
     }
 
-    if (this.labelPosition === 'top') {
+    if (this.labelDirection === 'column') {
       this.renderer.addClass(this.element.nativeElement, 'me-flex-column');
     }
 
-    if (this.labelPosition === 'left') {
+    if (this.labelDirection === 'row') {
       this.renderer.addClass(this.element.nativeElement, 'me-flex-row');
     }
   }
@@ -54,6 +57,7 @@ export class MeLabelDirective
     this.field = this.textBoxComponent;
     this.field ||= this.selectBoxComponent;
     this.field ||= this.checkBoxComponent;
+    this.field ||= this.switchComponent;
 
     if (this.label) {
       this.unlistenLabel = this.renderer.listen(
@@ -65,7 +69,7 @@ export class MeLabelDirective
 
     let size = this.field?.elementAttr?.size;
 
-    if (size?.includes('large') && this.labelPosition === 'top')
+    if (size?.includes('large') && this.labelDirection === 'column')
       this.renderer.addClass(this.element.nativeElement, 'me-label-large');
 
     // if (this.field instanceof DxCheckBoxComponent) {
@@ -76,21 +80,21 @@ export class MeLabelDirective
     //   }
     // }
 
-    if (this.labelPosition === 'left') {
+    if (this.labelDirection === 'row') {
       if (size.includes('small'))
         this.renderer.addClass(
           this.element.nativeElement,
-          'me-label-left-small'
+          'me-label-row-small'
         );
       if (size.includes('medium'))
         this.renderer.addClass(
           this.element.nativeElement,
-          'me-label-left-medium'
+          'me-label-row-medium'
         );
       if (size.includes('large'))
         this.renderer.addClass(
           this.element.nativeElement,
-          'me-label-left-large'
+          'me-label-row-large'
         );
     }
   }
@@ -102,6 +106,20 @@ export class MeLabelDirective
     if (this.field?.isValid) {
       this.renderer.removeClass(this.element.nativeElement, 'me-label-invalid');
     }
+
+    this.isSwitch = this.field instanceof DxSwitchComponent;
+
+    if (this.isSwitch) {
+      if (this.field?.disabled) {
+        this.renderer.addClass(this.element.nativeElement, 'me-label-disabled');
+      }
+      if (!this.field?.disabled) {
+        this.renderer.removeClass(
+          this.element.nativeElement,
+          'me-label-disabled'
+        );
+      }
+    }
   }
 
   ngOnDestroy(): void {
@@ -109,6 +127,13 @@ export class MeLabelDirective
   }
 
   onLabelClick = () => {
-    this.field?.instance.focus();
+    if (this.field) {
+      const instance = this.field.instance;
+      instance.focus();
+
+      if (this.isSwitch && !this.field?.disabled && !this.field?.readOnly) {
+        instance.option({ value: !instance.option().value });
+      }
+    }
   };
 }

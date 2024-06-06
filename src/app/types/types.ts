@@ -21,7 +21,7 @@ export type MeButtonType =
   | 'danger';
 export type MeButtonStyle = 'contained' | 'outlined' | 'text';
 export type MeFieldStyle = 'outlined' | 'underlined' | 'filled';
-export type MeLabelPosition = 'top' | 'left';
+export type MeLabelDirection = 'column' | 'row';
 export type MeLabelMode = 'static' | 'floating';
 export type MeScrollbarShowType = 'always' | 'onHover';
 export type MeEditorComponents =
