@@ -1,7 +1,5 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ParseService } from 'src/app/service/parse.service';
-import { TreeViewService } from 'src/app/service/tree-view.service';
-// import { groupedResultArray, GroupType } from 'src/seelectApp/parseFunction';
 import { AwsType, Aws, HostGroup, GroupType } from 'src/app/types/types';
 
 import cdu_prl1 from 'src/assets/initial data/Clients_ci-tw3-cdu-prl1.oiktest.local.json';
@@ -32,7 +30,6 @@ const allApps = [
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
   styleUrls: ['./tree-view.component.css'],
-  providers: [TreeViewService],
 })
 export class TreeViewComponent {
   products: GroupType[];

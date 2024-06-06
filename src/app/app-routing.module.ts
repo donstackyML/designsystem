@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllComponentsComponent } from './components/all-components/all-components.component';
 import { MeButtonComponent } from './components/me-button/me-button.component';
 import { MePopoverComponent } from './components/me-popover/me-popover.component';
 import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
@@ -19,7 +18,6 @@ import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
-  { path: 'all-components', component: AllComponentsComponent },
   { path: 'typography', component: TypographyComponent },
   { path: 'me-buttons', component: MeButtonComponent },
   { path: 'me-text-box', component: MeTextBoxComponent },
@@ -35,28 +33,7 @@ const routes: Routes = [
   { path: 'me-list', component: MeListComponent },
   { path: 'me-switch', component: MeSwitchComponent },
   { path: 'tree-view', component: TreeViewComponent },
-  // { path: 'tree-list', component: TreeListComponent },
-  // { path: 'toolbar', component: ToolBarComponent },
-  // { path: 'list', component: ListComponent },
   { path: '**', component: TypographyComponent },
-  // { path: 'buttons', component: ButtonsComponent },
-  // { path: 'button-group', component: BtnGroupComponent },
-  // { path: 'editors', component: EditorsComponent },
-  // { path: 'pivot-grid', component: PivotGridComponent },
-  // { path: 'data-grid', component: DataGridComponent },
-  // { path: 'scheduler', component: SchedulerComponent },
-  // { path: 'form', component: FormComponent },
-  // { path: 'filter-builder', component: FilterBuilderComponent },
-  // { path: 'overlays', component: OverlaysComponent },
-  // { path: 'menu', component: MenuComponent },
-  // { path: 'accordion', component: AccordionComponent },
-  // { path: 'gallery', component: GalleryComponent },
-  // { path: 'tabs', component: TabsComponent },
-  // { path: 'progress-bar', component: ProgressBarComponent },
-  // { path: 'sliders', component: SlidersComponent },
-  // { path: 'scroll-view', component: ScrollViewComponent },
-  // { path: 'drawer', component: DrawerComponent },
-  // { path: 'fieldset', component: FieldsetComponent },
 ];
 
 @NgModule({
