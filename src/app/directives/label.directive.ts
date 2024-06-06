@@ -27,7 +27,7 @@ export class MeLabelDirective
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
   @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
   @ContentChild(DxSwitchComponent) switchComponent?: DxSwitchComponent;
-  @ContentChild('meLabel') label?: ElementRef<HTMLLabelElement>;
+  // @ContentChild('meLabel') label?: ElementRef<HTMLLabelElement>;
   @Input() labelDirection: MeLabelDirection = 'row';
   @Input() width: string = '';
   field?: MeEditorComponents;
@@ -59,13 +59,11 @@ export class MeLabelDirective
     this.field ||= this.checkBoxComponent;
     this.field ||= this.switchComponent;
 
-    if (this.label) {
-      this.unlistenLabel = this.renderer.listen(
-        this.label?.nativeElement,
-        'click',
-        this.onLabelClick
-      );
-    }
+    this.unlistenLabel = this.renderer.listen(
+      this.element?.nativeElement,
+      'click',
+      this.onLabelClick
+    );
 
     let size = this.field?.elementAttr?.size;
 
@@ -112,11 +110,17 @@ export class MeLabelDirective
     if (this.isSwitch) {
       if (this.field?.disabled) {
         this.renderer.addClass(this.element.nativeElement, 'me-label-disabled');
-      }
-      if (!this.field?.disabled) {
+      } else {
         this.renderer.removeClass(
           this.element.nativeElement,
           'me-label-disabled'
+        );
+      }
+
+      if (!this.field?.disabled && !this.field?.readOnly) {
+        this.renderer.addClass(
+          this.element.nativeElement,
+          'me-label-container'
         );
       }
     }
@@ -126,13 +130,17 @@ export class MeLabelDirective
     this.unlistenLabel();
   }
 
-  onLabelClick = () => {
-    if (this.field) {
-      const instance = this.field.instance;
-      instance.focus();
+  onLabelClick = (e: Event) => {
+    console.log(e.target);
 
-      if (this.isSwitch && !this.field?.disabled && !this.field?.readOnly) {
-        instance.option({ value: !instance.option().value });
+    if ((e.target as HTMLElement).classList.contains('me-label-container')) {
+      if (this.field) {
+        const instance = this.field.instance;
+        instance.focus();
+
+        if (this.isSwitch && !this.field?.disabled && !this.field?.readOnly) {
+          instance.option({ value: !instance.option().value });
+        }
       }
     }
   };
