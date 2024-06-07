@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <h1 class="dx-widget wrapper__main-title">Context menu</h1>
+  <dx-button meButton text="Right click" id="contextButton"></dx-button>
+  <dx-context-menu meContextMenu target="#contextButton" [items]="contextMenuItems" [activeStateEnabled]="true" [selectByClick]="true" selectionMode="single">
+    <div *dxTemplate="let item of 'menu-title'">
+      <div class="me-menu-title">
+        <div meIcon [icon]="item.icon"></div>
+        <div class="me-title-header2">{{ item.text }}</div>
+      </div>
+    </div>
+  </dx-context-menu>
+</div>

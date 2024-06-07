@@ -15,6 +15,7 @@ const componentsRoute: string[] = [
   'me-button-group',
   'me-list',
   'me-switch',
+  'me-context-menu',
   'tree-view',
 ];
 
@@ -33,6 +34,7 @@ const componentsName: string[] = [
   'meButtonGroup',
   'meList',
   'meSwitch',
+  'meContextMenu',
   'TreeView',
 ];
 

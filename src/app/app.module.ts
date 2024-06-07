@@ -41,6 +41,8 @@ import { MeListComponent } from './components/me-list/me-list.component';
 import { MeListDirective } from './directives/list.directive';
 import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 import { MeSwitchDirective } from './directives/switch.directive';
+import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
+import { MeContextMenuDirective } from './directives/context-menu.directive';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { MeSwitchDirective } from './directives/switch.directive';
     MeListDirective,
     MeSwitchComponent,
     MeSwitchDirective,
+    MeContextMenuComponent,
+    MeContextMenuDirective,
   ],
   imports: [
     BrowserModule,
