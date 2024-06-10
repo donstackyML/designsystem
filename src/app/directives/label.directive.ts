@@ -131,8 +131,6 @@ export class MeLabelDirective
   }
 
   onLabelClick = (e: Event) => {
-    console.log(e.target);
-
     if ((e.target as HTMLElement).classList.contains('me-label-container')) {
       if (this.field) {
         const instance = this.field.instance;

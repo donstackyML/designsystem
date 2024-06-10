@@ -111,6 +111,11 @@ export class MeSidepageDirective extends MeOverlayDirective {
         'transform',
         `translateX(${this.translateValue})`
       );
+      // this.renderer.setStyle(
+      //   this.element.nativeElement,
+      //   'box-shadow',
+      //   `0 4px 10px $overlay-content-shadow-color`
+      // );
       this.renderer.addClass(this.element.nativeElement, 'me-sidepage-open');
 
       this.component.width = this.width;
@@ -123,6 +128,7 @@ export class MeSidepageDirective extends MeOverlayDirective {
         'transform',
         'translateX(0%)'
       );
+      // this.renderer.removeStyle(this.element.nativeElement, 'box-shadow');
       this.renderer.removeClass(this.element.nativeElement, 'me-sidepage-open');
 
       if (this.shading) this.renderer.removeStyle(this.overlay, 'display');

@@ -1,4 +1,5 @@
 import { Component, Renderer2 } from '@angular/core';
+import { ItemClickEvent } from 'devextreme/ui/tree_view';
 import { ParseService } from 'src/app/service/parse.service';
 import { AwsType, Aws, HostGroup, GroupType } from 'src/app/types/types';
 
@@ -12,7 +13,6 @@ import cdu_op2 from 'src/assets/initial data/Clients_qa-tw3-cdu-op2.oiktest.loca
 import cdu_web1 from 'src/assets/initial data/Clients_qa-tw3-cdu-web1.oiktest.local.json';
 import cdu_web2 from 'src/assets/initial data/Clients_qa-tw3-cdu-web2.oiktest.local.json';
 import host_groups from 'src/assets/initial data/HostGroups_Platform.Win1.json';
-import { ItemClickEvent } from 'devextreme/ui/box';
 
 const allApps = [
   cdu_prl1,
@@ -52,20 +52,23 @@ export class TreeViewComponent {
 
   selectItem(e: ItemClickEvent) {
     const currentElement = e.itemElement;
-    const isElementsMatched = this.selectedElement === currentElement;
-    const isElementHasClass =
-      currentElement.classList.contains('me-state-selected');
 
-    if (isElementHasClass && isElementsMatched) {
-      this.renderer.removeClass(this.selectedElement, 'me-state-selected');
-    } else {
-      if (this.selectedElement)
+    if (currentElement) {
+      const isElementsMatched = this.selectedElement === currentElement;
+      const isElementHasClass =
+        currentElement.classList.contains('me-state-selected');
+
+      if (isElementHasClass && isElementsMatched) {
         this.renderer.removeClass(this.selectedElement, 'me-state-selected');
+      } else {
+        if (this.selectedElement)
+          this.renderer.removeClass(this.selectedElement, 'me-state-selected');
 
-      this.renderer.addClass(currentElement, 'me-state-selected');
+        this.renderer.addClass(currentElement, 'me-state-selected');
+      }
+
+      this.selectedElement = currentElement;
     }
-
-    this.selectedElement = currentElement;
   }
 
   getClass(icon: string): string {

@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import themes from 'devextreme/ui/themes';
 import { ComponentRoutesService } from './service/component-routes.service';
 import { ThemesService } from './service/themes.service';
-import { ValueChangedEvent } from 'devextreme/ui/filter_builder';
 import { Location } from '@angular/common';
 import ruMessages from 'devextreme/localization/messages/ru.json';
 import { locale, loadMessages } from 'devextreme/localization';
+import { ValueChangedEvent } from 'devextreme/ui/select_box';
 
 @Component({
   selector: 'app-root',
