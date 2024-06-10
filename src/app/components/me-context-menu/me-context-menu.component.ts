@@ -9,31 +9,126 @@ import { MeIconStoreService } from 'src/app/service/icon-store.service';
   styleUrls: ['./me-context-menu.component.css'],
 })
 export class MeContextMenuComponent implements OnInit {
-  itemThirdLevel = {
-    text: 'Пункт',
-    closeMenuOnClick: false,
-    selected: true,
-    icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
-  };
-  itemSecondLevel = {
-    text: 'Пункт',
-    closeMenuOnClick: false,
-    icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
-    items: [this.itemThirdLevel, this.itemThirdLevel, this.itemThirdLevel],
-  };
-  itemFirstLevel = {
-    text: 'Пункт',
-    icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
-    beginGroup: true,
-    closeMenuOnClick: false,
-    items: [
-      this.itemSecondLevel,
-      this.itemSecondLevel,
-      this.itemSecondLevel,
-      this.itemSecondLevel,
-      this.itemSecondLevel,
-    ],
-  };
+  // itemThirdLevel = {
+  //   text: 'Пункт',
+  //   icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  // };
+  // itemSecondLevel = {
+  //   text: 'Пункт',
+  //   icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //   items: [
+  //     {
+  //       text: 'Пункт',
+  //       icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //     },
+  //     {
+  //       text: 'Пункт',
+  //       icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //     },
+  //     {
+  //       text: 'Пункт',
+  //       icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //     },
+  //   ],
+  // };
+  // itemFirstLevel = {
+  //   text: 'Пункт',
+  //   icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //   beginGroup: true,
+  //   items: [
+  //     {
+  //       text: 'Пункт',
+  //       icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //       items: [
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       text: 'Пункт',
+  //       icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //       items: [
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       text: 'Пункт',
+  //       icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //       items: [
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       text: 'Пункт',
+  //       icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //       items: [
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       text: 'Пункт',
+  //       icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //       disabled: true,
+  //       items: [
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //         {
+  //           text: 'Пункт',
+  //           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // };
   contextMenuItems: dxContextMenuItem[] = [
     {
       text: 'Заголовок',
@@ -41,17 +136,495 @@ export class MeContextMenuComponent implements OnInit {
       template: 'menu-title',
       disabled: true,
     },
-    this.itemFirstLevel,
-    this.itemFirstLevel,
-    this.itemFirstLevel,
-    this.itemFirstLevel,
-    this.itemFirstLevel,
+    {
+      text: 'С переполнением',
+      icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+      beginGroup: true,
+      items: [
+        {
+          text: 'Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      text: 'Пункт',
+      icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+      beginGroup: true,
+      items: [
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      text: 'Пункт',
+      icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+      beginGroup: true,
+      items: [
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      text: 'Пункт',
+      icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+      beginGroup: true,
+      items: [
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      text: 'Пункт',
+      icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+      disabled: true,
+      beginGroup: true,
+      items: [
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+        {
+          text: 'Пункт',
+          icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+          items: [
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+            {
+              text: 'Пункт',
+              icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
+            },
+          ],
+        },
+      ],
+    },
   ];
+  // items: Record<any, unknown>[];
 
   constructor(
     private iconService: MeIconStoreService,
     public domSanitizer: DomSanitizer
-  ) {}
+  ) {
+    // this.items = [
+    //   {
+    //     text: 'Share',
+    //     items: [{ text: 'Facebook' }, { text: 'Twitter' }],
+    //   },
+    //   { text: 'Download' },
+    //   { text: 'Comment' },
+    //   { text: 'Favorite' },
+    // ];
+  }
 
   ngOnInit(): void {}
 }

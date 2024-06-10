@@ -7709,6 +7709,7 @@
 
 .me-menu-title {
   padding: 12px 0 4px;
+  gap: 8px;
 }
 
 .me-label {
@@ -10942,6 +10943,7 @@
 }
 
 .me-context-menu.dx-menu-base.dx-context-menu .dx-menu-items-container {
+  display: block;
   padding: 0;
   cursor: default;
 }
@@ -10949,6 +10951,10 @@
   border-radius: 4px;
   box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.2392156863);
   font-size: 0;
+  min-width: 120px;
+  max-width: 360px;
+  width: -moz-max-content;
+  width: max-content;
 }
 .me-context-menu.dx-menu-base.dx-context-menu .dx-menu-separator {
   margin: 4px 12px;
@@ -10958,7 +10964,13 @@
   font-size: 16px;
   cursor: pointer;
 }
+.me-context-menu.dx-menu-base .dx-menu-item.dx-state-hover:active {
+  background-color: #bfc1d0;
+}
 .me-context-menu.dx-menu-base .dx-menu-item.dx-state-disabled {
+  opacity: 0.4;
+}
+.me-context-menu.dx-menu-base .dx-menu-item.dx-state-disabled:has(.me-menu-title) {
   opacity: 1;
 }
 .me-context-menu.dx-menu-base .dx-menu-item.dx-menu-item-has-text .dx-icon {
@@ -10986,6 +10998,7 @@
 }
 .me-context-menu.dx-menu-base .dx-menu-item .dx-menu-item-content .dx-menu-item-text {
   padding: 0;
+  white-space: pre-wrap;
 }
 
 .dx-menu {
