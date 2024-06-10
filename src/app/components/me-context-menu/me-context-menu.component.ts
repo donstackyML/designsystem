@@ -129,6 +129,7 @@ export class MeContextMenuComponent implements OnInit {
   //     },
   //   ],
   // };
+
   contextMenuItems: dxContextMenuItem[] = [
     {
       text: 'Заголовок',
@@ -142,7 +143,7 @@ export class MeContextMenuComponent implements OnInit {
       beginGroup: true,
       items: [
         {
-          text: 'Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением',
+          text: 'Пункт с переполнением Пункт с переполнением Пункт с переполнением Пункт с переполнением',
           icon: this.iconService.getIcon({ icon: 'folder', size: '24' }),
         },
         {
