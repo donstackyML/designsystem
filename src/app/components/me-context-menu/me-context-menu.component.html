@@ -4,7 +4,7 @@
   <dx-context-menu meContextMenu target="#contextButton" [dataSource]="contextMenuItems" [selectByClick]="true" selectionMode="single">
     <div *dxTemplate="let item of 'menu-title'">
       <div class="me-menu-title">
-        <div meIcon [icon]="item.icon"></div>
+        <div *ngIf="item.icon" meIcon [icon]="item.icon"></div>
         <div class="me-title-header2">{{ item.text }}</div>
       </div>
     </div>
