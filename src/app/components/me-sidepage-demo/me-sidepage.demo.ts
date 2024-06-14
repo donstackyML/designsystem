@@ -1,15 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  QueryList,
-  Renderer2,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
-import DevExpress from 'devextreme';
-import { DxPopupComponent } from 'devextreme-angular';
-// import { DxDrawerComponent, DxPopupComponent } from 'devextreme-angular';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'me-sidepage-demo',
