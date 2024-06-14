@@ -14,8 +14,10 @@ export class MeControlDirective {
   @Input() stylingMode: MeButtonStyle = 'contained';
   @Input() size: MeSize = 'medium';
   @Input() text: string = '';
-  @Input() set items(value: MeButtonGroupItem[]) {
-    this._items = JSON.parse(JSON.stringify(value));
+  @Input() set items(originalItems: MeButtonGroupItem[]) {
+    // Копируем массив передаваемый в dx-button-group в свойство items,
+    // чтобы изменить в объектах свойство template и не мутировать при этом исходный массив
+    this._items = structuredClone(originalItems);
   }
   get items(): MeButtonGroupItem[] {
     return this._items;

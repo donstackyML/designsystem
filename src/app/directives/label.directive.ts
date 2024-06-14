@@ -27,7 +27,6 @@ export class MeLabelDirective
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
   @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
   @ContentChild(DxSwitchComponent) switchComponent?: DxSwitchComponent;
-  // @ContentChild('meLabel') label?: ElementRef<HTMLLabelElement>;
   @Input() labelDirection: MeLabelDirection = 'row';
   @Input() width: string = '';
   field?: MeEditorComponents;
@@ -69,14 +68,6 @@ export class MeLabelDirective
 
     if (size?.includes('large') && this.labelDirection === 'column')
       this.renderer.addClass(this.element.nativeElement, 'me-label-large');
-
-    // if (this.field instanceof DxCheckBoxComponent) {
-    //   this.renderer.addClass(this.element.nativeElement, 'me-label-option');
-
-    //   if (this.field?.disabled) {
-    //     this.renderer.addClass(this.element.nativeElement, 'me-label-disabled');
-    //   }
-    // }
 
     if (this.labelDirection === 'row') {
       if (size.includes('small'))

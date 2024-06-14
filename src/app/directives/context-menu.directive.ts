@@ -5,11 +5,9 @@ import { DxContextMenuComponent } from 'devextreme-angular';
   selector: '[meContextMenu]',
 })
 export class MeContextMenuDirective {
-  @Input() cssClass: string;
+  @Input() cssClass: string = '';
 
-  constructor(private component: DxContextMenuComponent) {
-    this.cssClass = '';
-  }
+  constructor(private component: DxContextMenuComponent) {}
 
   ngOnInit(): void {
     this.component.cssClass = `${this.cssClass} me-context-menu`;

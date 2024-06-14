@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { MeButtonComponent } from './components/me-button/me-button.component';
 import { MePopoverComponent } from './components/me-popover/me-popover.component';
 import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
-import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { ButtonDirective } from './directives/button.directive';
 import { MePopoverDirective } from './directives/popover.directive';
 import { MeTextBoxDirective } from './directives/text-box.directive';
@@ -28,7 +27,6 @@ import { MePopupDirective } from './directives/popup.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
 import { MeIconDirective } from './directives/icon.directive';
 import { MeSidepageDemo } from './components/me-sidepage-demo/me-sidepage.demo';
-import { MeSidepageDirective } from './directives/sidepage.directive';
 import { TypographyComponent } from './components/typography/typography.component';
 import { MeToolbarDirective } from './directives/toolbar.directive';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
@@ -48,7 +46,6 @@ import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.compon
 @NgModule({
   declarations: [
     AppComponent,
-    TreeViewComponent,
     MeButtonComponent,
     ButtonDirective,
     MePopoverDirective,
@@ -69,7 +66,6 @@ import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.compon
     MeOverlayDirective,
     MeIconDirective,
     MeSidepageDemo,
-    MeSidepageDirective,
     TypographyComponent,
     MeToolbarDirective,
     MeToolbarComponent,

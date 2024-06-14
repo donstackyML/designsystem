@@ -1,6 +1,5 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
-import { DxPopoverComponent } from 'devextreme-angular';
-import { MeCommonType, MeSize } from '../types/types';
+import { Directive, Input } from '@angular/core';
+import { MeSize } from '../types/types';
 import { MeOverlayDirective } from './overlay.directive';
 
 @Directive({
