@@ -6,10 +6,7 @@ import { DxDropDownButtonComponent } from 'devextreme-angular';
   templateUrl: './me-drop-down-button.component.html',
   styleUrls: ['./me-drop-down-button.component.css'],
 })
-export class MeDropDownButtonComponent implements OnInit {
-  dropDownButton?: DxDropDownButtonComponent['instance'];
-  isDropDownOpen: boolean = false;
-
+export class MeDropDownButtonComponent {
   menuItems = [
     { id: 1, text: 'Пункт' },
     { id: 2, text: 'Пункт' },
@@ -56,6 +53,4 @@ export class MeDropDownButtonComponent implements OnInit {
   ];
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

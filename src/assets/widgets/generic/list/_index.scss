@@ -84,7 +84,8 @@ $generic-list-search-editor-height: round(
 }
 
 @mixin item-states() {
-  &.dx-state-hover {
+  &.dx-state-hover,
+  &:hover {
     background-color: $list-item-hover-bg;
     color: $list-item-hover-color;
 
@@ -103,7 +104,8 @@ $generic-list-search-editor-height: round(
       color: $list-item-selected-color;
     }
 
-    &.dx-state-hover:not(.dx-state-focused) {
+    &.dx-state-hover:not(.dx-state-focused),
+    &:hover:not(.dx-state-focused) {
       background-color: $list-item-hover-bg;
       color: $list-item-color;
     }
@@ -132,7 +134,8 @@ $generic-list-search-editor-height: round(
   //   color: $base-text-color;
   // }
 
-  &.dx-state-focused.dx-state-active {
+  &.dx-state-focused.dx-state-active,
+  &:active {
     background-color: $list-item-active-bg;
     color: $list-item-active-color;
 
@@ -198,7 +201,8 @@ $generic-list-search-editor-height: round(
 
     &:not(.dx-list-select-decorator-enabled),
     &.me-list {
-      .dx-list-item {
+      .dx-list-item,
+      &.dx-list-collapsible-groups .dx-list-group-header {
         @include item-states();
       }
     }
@@ -238,7 +242,11 @@ $generic-list-search-editor-height: round(
 
       border-bottom: none;
       border-top: none;
-      padding: 0 14px 0 8px;
+      padding: 0px 14px 0px 8px;
+
+      &:not(:has(.me-text-caption)) {
+        padding: 8px 14px 8px 8px;
+      }
     }
 
     &.dx-list-select-decorator-enabled {

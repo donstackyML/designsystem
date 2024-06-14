@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 export interface FontSize {
   size: number;
@@ -137,7 +137,7 @@ const headings: Heading[] = [
   templateUrl: './me-toolbar.component.html',
   styleUrls: ['./me-toolbar.component.css'],
 })
-export class MeToolbarComponent implements OnInit {
+export class MeToolbarComponent {
   fontSizes = fontSizes;
   lineHeights = lineHeights;
   lineHeight = this.lineHeights[1].lineHeight;
@@ -161,8 +161,6 @@ export class MeToolbarComponent implements OnInit {
   };
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   getTextAlign(): TextAlign[] {
     return textAlignsExtended.map(({ icon, alignment, hint }) => ({

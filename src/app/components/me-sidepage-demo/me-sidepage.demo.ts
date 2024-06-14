@@ -14,12 +14,6 @@ export class MeSidepageDemo {
 
   constructor() {}
 
-  toggleSidePage(id: number) {
-    const element = <any>this;
-
-    element[`isOpenSidePage${id}`] = !element[`isOpenSidePage${id}`];
-  }
-
   onClickLeft() {
     this.isOpenSidePageLeft = !this.isOpenSidePageLeft;
   }

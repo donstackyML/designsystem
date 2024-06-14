@@ -18,13 +18,13 @@ import { MePosition } from 'src/app/types/types';
   styleUrls: ['./me-sidepage.component.css'],
 })
 export class MeSidepageComponent implements OnInit, OnChanges {
-  @Input() zIndex: string = '1505';
-  @Input() zIndexOverlay: string = '1504';
-  @Input() width: string = '27vw';
+  @Input() hideOnOutsideClick: boolean = false;
   @Input() isSidePageOpen: boolean = false;
   @Input() position: MePosition = 'left';
   @Input() shading: boolean = true;
-  @Input() hideOnOutsideClick: boolean = false;
+  @Input() width: string = '27vw';
+  @Input() zIndex: string = '1505';
+  @Input() zIndexOverlay: string = '1504';
   @Output()
   private isSidePageOpenChange = new EventEmitter<boolean>();
   private overlay?: HTMLDivElement;

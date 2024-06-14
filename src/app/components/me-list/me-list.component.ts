@@ -21,7 +21,7 @@ interface ListGroup {
   templateUrl: './me-list.component.html',
   styleUrls: ['./me-list.component.css'],
 })
-export class MeListComponent implements OnInit {
+export class MeListComponent {
   public itemsWithIcons: Item[] = [
     {
       name: 'Apples',
@@ -168,6 +168,4 @@ export class MeListComponent implements OnInit {
   ];
 
   constructor(private iconStore: MeIconStoreService) {}
-
-  ngOnInit(): void {}
 }

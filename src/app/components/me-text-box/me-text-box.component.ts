@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'me-text-box',
@@ -7,5 +7,4 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeTextBoxComponent {
   errorMessage = 'Do not use digits.';
-  listData = [{ itemProperty: 'someValue' }];
 }

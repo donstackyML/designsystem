@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'me-switch',
   templateUrl: './me-switch.component.html',
-  styleUrls: ['./me-switch.component.css']
+  styleUrls: ['./me-switch.component.css'],
 })
-export class MeSwitchComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class MeSwitchComponent {
+  constructor() {}
 }
