@@ -1,0 +1,40 @@
+# Директива meRadioGroup
+
+Применение директивы **meRadioGroup** к элементу dx-radio-group приводит его размеры к значению size=medium (20) из дизайн-системы и предоставляет доступ к свойству size.
+![image.png](/.attachments/image-568a69bb-98a7-4c10-bb0e-dc3c8c3f74e4.png)
+
+<DIV style="color: #cccccc;background-color: #1f1f1f;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 15px;line-height: 20px;white-space: pre"><BR/><DIV><SPAN style="color: #cccccc">&#160; </SPAN><SPAN style="color: #808080">&lt;</SPAN><SPAN style="color: #569cd6">dx-radio-group</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">meRadioGroup</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">[dataSource]</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #9cdcfe">dataSource</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">layout</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"horizontal"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">[value]</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #9cdcfe">dataSource</SPAN><SPAN style="color: #cccccc">[</SPAN><SPAN style="color: #b5cea8">0</SPAN><SPAN style="color: #cccccc">]</SPAN><SPAN style="color: #ce9178">"</SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; </SPAN><SPAN style="color: #808080">&gt;&lt;/</SPAN><SPAN style="color: #569cd6">dx-radio-group</SPAN><SPAN style="color: #808080">&gt;</SPAN></DIV><BR/></DIV>
+
+## Перечень свойств
+
+| Название свойства         | Описание                      |
+| :------------------------ | :---------------------------- |
+| [size](#size)             | Принимает размер радиокнопки  |
+| [dataSource](#datasource) | Связывает компонент с данными |
+
+## Свойства
+
+### Стандартные свойства компонента dx-radio-group
+
+<h3 id="datasource">dataSource</h3>
+
+> Тип: Store | DataSource | DataSource Configuration | String | Array<CollectionWidgetItem | any> | null
+> Значение по умолчанию: null
+
+Связывает компонент с данными - [подробнее](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxRadioGroup/Configuration/#dataSource)
+
+<br>
+
+[Полный перечень стандартных свойств](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxRadioGroup/)
+
+### Дополнительные свойства при использовании директивы
+
+<h3 id="size">size</h3>
+
+> Тип: MeSize = 'small' | 'medium' | 'large'
+> Значение по умолчанию: 'medium'
+
+Принимает размер радиокнопки.
+![image.png](/.attachments/image-70d298e1-c58d-4d6b-b2a4-484da57807bf.png)
+
+<DIV style="color: #cccccc;background-color: #1f1f1f;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 15px;line-height: 20px;white-space: pre"><BR/><DIV><SPAN style="color: #cccccc">&#160; </SPAN><SPAN style="color: #808080">&lt;</SPAN><SPAN style="color: #569cd6">dx-radio-group</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">meRadioGroup</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">[dataSource]</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #9cdcfe">dataSource</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">layout</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"horizontal"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">size</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"small"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">[value]</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #9cdcfe">dataSource</SPAN><SPAN style="color: #cccccc">[</SPAN><SPAN style="color: #b5cea8">0</SPAN><SPAN style="color: #cccccc">]</SPAN><SPAN style="color: #ce9178">"</SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; </SPAN><SPAN style="color: #808080">&gt;&lt;/</SPAN><SPAN style="color: #569cd6">dx-radio-group</SPAN><SPAN style="color: #808080">&gt;</SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; </SPAN><SPAN style="color: #808080">&lt;</SPAN><SPAN style="color: #569cd6">dx-radio-group</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">meRadioGroup</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">[dataSource]</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #9cdcfe">dataSource</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">layout</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"horizontal"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">size</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"medium"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">[value]</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #9cdcfe">dataSource</SPAN><SPAN style="color: #cccccc">[</SPAN><SPAN style="color: #b5cea8">0</SPAN><SPAN style="color: #cccccc">]</SPAN><SPAN style="color: #ce9178">"</SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; </SPAN><SPAN style="color: #808080">&gt;&lt;/</SPAN><SPAN style="color: #569cd6">dx-radio-group</SPAN><SPAN style="color: #808080">&gt;</SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; </SPAN><SPAN style="color: #808080">&lt;</SPAN><SPAN style="color: #569cd6">dx-radio-group</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">meRadioGroup</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">[dataSource]</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #9cdcfe">dataSource</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">layout</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"horizontal"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">size</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"large"</SPAN><SPAN style="color: #cccccc"> </SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; &#160; </SPAN><SPAN style="color: #9cdcfe">[value]</SPAN><SPAN style="color: #cccccc">=</SPAN><SPAN style="color: #ce9178">"</SPAN><SPAN style="color: #9cdcfe">dataSource</SPAN><SPAN style="color: #cccccc">[</SPAN><SPAN style="color: #b5cea8">0</SPAN><SPAN style="color: #cccccc">]</SPAN><SPAN style="color: #ce9178">"</SPAN></DIV><DIV><SPAN style="color: #cccccc">&#160; </SPAN><SPAN style="color: #808080">&gt;&lt;/</SPAN><SPAN style="color: #569cd6">dx-radio-group</SPAN><SPAN style="color: #808080">&gt;</SPAN></DIV><BR/></DIV>
