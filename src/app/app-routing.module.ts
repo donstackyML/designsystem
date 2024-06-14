@@ -7,7 +7,7 @@ import { MeSelectBoxComponent } from './components/me-select-box/me-select-box.c
 import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
 import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-group.component';
 import { MePopupComponent } from './components/me-popup/me-popup.component';
-import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
+import { MeSidepageDemo } from './components/me-sidepage-demo/me-sidepage.demo';
 import { TypographyComponent } from './components/typography/typography.component';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-drop-down-button.component';
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'me-radio-group', component: MeRadioGroupComponent },
   { path: 'me-popup', component: MePopupComponent },
   { path: 'me-popover', component: MePopoverComponent },
-  { path: 'me-sidepage', component: MeSidepageComponent },
+  { path: 'me-sidepage', component: MeSidepageDemo },
   { path: 'me-toolbar', component: MeToolbarComponent },
   { path: 'me-drop-down-button', component: MeDropDownButtonComponent },
   { path: 'me-button-group', component: MeButtonGroupComponent },

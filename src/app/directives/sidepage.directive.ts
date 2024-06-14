@@ -45,7 +45,7 @@ export class MeSidepageDirective extends MeOverlayDirective {
   ngOnInit(): void {
     this.initMeModal(this.size);
     this.initPopup();
-    this.initOverlay();
+    // this.initOverlay();
   }
 
   ngOnChanges(): void {

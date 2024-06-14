@@ -27,7 +27,7 @@ import { MePopupComponent } from './components/me-popup/me-popup.component';
 import { MePopupDirective } from './directives/popup.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
 import { MeIconDirective } from './directives/icon.directive';
-import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
+import { MeSidepageDemo } from './components/me-sidepage-demo/me-sidepage.demo';
 import { MeSidepageDirective } from './directives/sidepage.directive';
 import { TypographyComponent } from './components/typography/typography.component';
 import { MeToolbarDirective } from './directives/toolbar.directive';
@@ -43,6 +43,7 @@ import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 import { MeSwitchDirective } from './directives/switch.directive';
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
 import { MeContextMenuDirective } from './directives/context-menu.directive';
+import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { MeContextMenuDirective } from './directives/context-menu.directive';
     MePopupDirective,
     MeOverlayDirective,
     MeIconDirective,
-    MeSidepageComponent,
+    MeSidepageDemo,
     MeSidepageDirective,
     TypographyComponent,
     MeToolbarDirective,
@@ -83,6 +84,7 @@ import { MeContextMenuDirective } from './directives/context-menu.directive';
     MeSwitchDirective,
     MeContextMenuComponent,
     MeContextMenuDirective,
+    MeSidepageComponent,
   ],
   imports: [
     BrowserModule,

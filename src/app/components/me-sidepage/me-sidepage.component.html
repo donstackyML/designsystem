@@ -1,126 +1,13 @@
-<!-- <div class="wrapper"> -->
-<h1 class="wrapper__main-title dx-widget">Side page</h1>
-<h2 class="wrapper__title dx-widget">Появление слева</h2>
-<div class="flex">
-  <dx-button text="Open side page" (onClick)="toggleDrawer(1)"></dx-button>
-</div>
-<h2 class="wrapper__title dx-widget">Появление справа</h2>
-<div class="flex">
-  <dx-button text="Open side page" (onClick)="toggleDrawer(2)"></dx-button>
-</div>
-<h2 class="wrapper__title dx-widget">Side page с одной кнопкой</h2>
-<div class="flex">
-  <dx-button text="Open side page" (onClick)="toggleDrawer(3)"></dx-button>
-</div>
-<h2 class="wrapper__title dx-widget">Side page с двумя кнопками</h2>
-<div class="flex">
-  <dx-button text="Open side page" (onClick)="toggleDrawer(4)"></dx-button>
-</div>
-<h2 class="wrapper__title dx-widget">Side page с тремя кнопками</h2>
-<div class="flex">
-  <dx-button text="Open side page" (onClick)="toggleDrawer(5)"></dx-button>
-</div>
-<!-- </div> -->
-<dx-popup meSidePage [(isOpen)]="isOpenSidePage1" [closeOnOverlayClick]="true" position="left">
-  <dxi-toolbar-item template="closeButton" location="after"></dxi-toolbar-item>
-  <div *dxTemplate="let data of 'closeButton'">
-    <dx-button meButton (onClick)="toggleDrawer(1)" stylingMode="text" iconOnly="close"></dx-button>
-  </div>
-</dx-popup>
-
-<dx-popup meSidePage [(isOpen)]="isOpenSidePage2" [closeOnOverlayClick]="true" position="right">
-  <dxi-toolbar-item template="closeButton" location="after"></dxi-toolbar-item>
-  <div *dxTemplate="let data of 'closeButton'">
-    <dx-button meButton (onClick)="toggleDrawer(2)" stylingMode="text" iconOnly="close"></dx-button>
-  </div>
-</dx-popup>
-
-<dx-popup meSidePage [(isOpen)]="isOpenSidePage3" [closeOnOverlayClick]="true" titleTemplate="me-title">
-  <div *dxTemplate="let data of 'me-title'">
-    <dx-toolbar meToolbar>
-      <dxi-item location="before">
-        <span meIcon icon="public" iconSize="20"></span>
-      </dxi-item>
-      <dxi-item location="before">
-        <span class="me-title-header1">Заголовок</span>
-      </dxi-item>
-      <dxi-item location="after">
-        <dx-button meButton iconOnly="close" stylingMode="text" (onClick)="toggleDrawer(3)"></dx-button>
-      </dxi-item>
-    </dx-toolbar>
-    <div class="me-text-body2 me-padding-28">Описание</div>
-  </div>
-  <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
-  <div *dxTemplate="let data of 'content'">
-    <dx-scroll-view width="100%" height="100%">
-      {{ lorem500 }}
+<div #sidepage class="me-sidepage me-scrollbar-visible me-scroll-view" [style.z-index]="zIndex">
+  <!-- <div class="me-sidepage__header"> -->
+  <ng-content select="[sidepage-header]"></ng-content>
+  <!-- </div> -->
+  <div class="me-sidepage-content">
+    <dx-scroll-view>
+      <ng-content select="[sidepage-content]"></ng-content>
     </dx-scroll-view>
   </div>
-  <div *dxTemplate="let data of 'confirmButton'">
-    <dx-button meButton text="Принять" type="default" (onClick)="toggleDrawer(3)"></dx-button>
-  </div>
-</dx-popup>
-
-<dx-popup meSidePage [(isOpen)]="isOpenSidePage4" [closeOnOverlayClick]="true" titleTemplate="me-title">
-  <div *dxTemplate="let data of 'me-title'">
-    <dx-toolbar meToolbar>
-      <dxi-item location="before">
-        <span meIcon icon="public" iconSize="20"></span>
-      </dxi-item>
-      <dxi-item location="before">
-        <span class="me-title-header1">Заголовок</span>
-      </dxi-item>
-      <dxi-item location="after">
-        <dx-button meButton iconOnly="close" stylingMode="text" (onClick)="toggleDrawer(4)"></dx-button>
-      </dxi-item>
-    </dx-toolbar>
-    <div class="me-text-body2 me-padding-28">Описание</div>
-  </div>
-  <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
-  <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
-  <div *dxTemplate="let data of 'content'">
-    <dx-scroll-view width="100%" height="100%">
-      {{ lorem500 }}
-    </dx-scroll-view>
-  </div>
-  <div *dxTemplate="let data of 'confirmButton'">
-    <dx-button meButton text="Принять" type="default"></dx-button>
-  </div>
-  <div *dxTemplate="let data of 'cancelButton'">
-    <dx-button meButton text="Отмена" (onClick)="toggleDrawer(4)"></dx-button>
-  </div>
-</dx-popup>
-
-<dx-popup meSidePage [(isOpen)]="isOpenSidePage5" [closeOnOverlayClick]="true" titleTemplate="me-title">
-  <div *dxTemplate="let data of 'me-title'">
-    <dx-toolbar meToolbar>
-      <dxi-item location="before">
-        <span meIcon icon="public" iconSize="20"></span>
-      </dxi-item>
-      <dxi-item location="before">
-        <span class="me-title-header1">Заголовок</span>
-      </dxi-item>
-      <dxi-item location="after">
-        <dx-button meButton iconOnly="close" stylingMode="text" (onClick)="toggleDrawer(5)"></dx-button>
-      </dxi-item>
-    </dx-toolbar>
-    <div class="me-text-body2 me-left-padding-28">Описание</div>
-  </div>
-  <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
-  <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
-  <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
-  <div *dxTemplate="let data of 'content'">
-    <dx-scroll-view width="100%" height="100%">
-      {{ lorem500 }}
-    </dx-scroll-view>
-  </div>
-  <div *dxTemplate="let data of 'confirmButton'">
-    <dx-button meButton text="Принять" type="default"></dx-button>
-  </div>
-  <div *dxTemplate="let data of 'cancelButton'">
-    <dx-button meButton text="Отмена" (onClick)="toggleDrawer(5)"></dx-button>
-  </div>
-  <div *dxTemplate="let data of 'addButton'">
-    <dx-button meButton text="Добавить"></dx-button>
-  </div>
-</dx-popup>
+  <!-- <div class="me-sidepage__footer"> -->
+  <ng-content select="[sidepage-footer]"></ng-content>
+  <!-- </div> -->
+</div>

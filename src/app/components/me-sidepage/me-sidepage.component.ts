@@ -1,26 +1,125 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import DevExpress from 'devextreme';
-// import { DxDrawerComponent, DxPopupComponent } from 'devextreme-angular';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  Renderer2,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { MePosition } from 'src/app/types/types';
 
 @Component({
   selector: 'me-sidepage',
   templateUrl: './me-sidepage.component.html',
   styleUrls: ['./me-sidepage.component.css'],
 })
-export class MeSidepageComponent {
-  // @ViewChild(DxPopupComponent) popup?: DxPopupComponent;
-  isOpenSidePage1 = false;
-  isOpenSidePage2 = false;
-  isOpenSidePage3 = false;
-  isOpenSidePage4 = false;
-  isOpenSidePage5 = false;
-  // position: DevExpress.PositionConfig = { my: 'right', at: 'left', of: window };
-  lorem500 =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente iusto et nobis fugit voluptates, obcaecati atque odio debitis perferendis totam magnam sunt praesentium consequuntur, earum, corrupti vitae natus sint autem! Nemo architecto ea necessitatibus possimus itaque ab, quaerat quisquam porro? Reprehenderit eius labore animi eum delectus, enim corrupti consequuntur accusantium, facere officiis deleniti ex perspiciatis, optio facilis quaerat veritatis obcaecati ipsa eaque. Doloribus quisquam ipsa esse mollitia minus nobis est alias unde aliquid repellendus. Eaque fugit nisi quidem facilis, odio voluptas nulla quaerat voluptates nesciunt illo dolore quod esse, maiores doloribus dolorem eum officia. Aspernatur fuga veritatis minus maiores nam eaque amet distinctio eveniet dolorum, aliquid nobis ab ullam iste magni. Sit aliquid architecto optio fuga facilis quibusdam nobis laborum nihil, corporis fugiat ullam placeat, assumenda consequatur officiis dicta harum fugit eos, modi minima? Inventore nisi voluptates ex cupiditate asperiores amet nostrum sunt blanditiis veniam libero error adipisci voluptatem dicta quibusdam magni optio velit neque tempora facere impedit, enim provident quos sit sequi. Modi explicabo harum est. Accusamus obcaecati quaerat facilis earum natus aut blanditiis nam sint, quam similique qui corporis, necessitatibus commodi quibusdam perferendis dignissimos officiis excepturi iure consequatur molestiae deserunt quidem et laborum. Perspiciatis adipisci amet tenetur exercitationem repellat quod, vitae tempora molestiae eos deleniti sint error itaque. Debitis cum veritatis, distinctio at fuga pariatur quia blanditiis magnam aut sapiente accusamus commodi aperiam autem necessitatibus aliquid rerum itaque quam eius obcaecati! Deserunt consequatur expedita ea. Velit, pariatur vitae aperiam nostrum ex architecto culpa, quisquam eius asperiores excepturi optio nihil. Laudantium, fugiat molestiae ut perferendis sapiente adipisci, expedita neque aspernatur totam suscipit deserunt a fugit at quibusdam. Quaerat, amet repellendus quisquam praesentium, aspernatur ea molestias excepturi a, placeat ullam similique odit. Quae delectus voluptates, placeat pariatur vitae velit modi at ratione minima eum consectetur eos? Rerum qui voluptatibus magni est tenetur expedita iure, sit illum reiciendis sapiente consequatur dolorem dolores vero odio neque esse minima similique quaerat error maiores? Earum ex perspiciatis ipsum excepturi reprehenderit repellat optio, voluptatibus aut enim aliquid esse. Veniam aliquam et, cupiditate asperiores quasi quibusdam rem molestias consectetur ad autem deleniti a odio nulla voluptate nesciunt, eum perspiciatis illo mollitia aut temporibus quia optio veritatis vel. Magni eius impedit quae. Eum ut corporis dignissimos adipisci suscipit fugiat voluptas sapiente aut harum odit, temporibus ratione qui incidunt dolores necessitatibus laboriosam, deserunt iste ea provident vel id aperiam nihil, molestiae amet! Expedita pariatur assumenda sapiente laudantium cum! Harum iusto atque natus dolorem similique id iste, temporibus numquam sed libero praesentium officiis, enim facere unde molestias itaque saepe necessitatibus odio sapiente ut? Enim recusandae repudiandae illum voluptas iusto adipisci, aliquid placeat impedit cupiditate non velit et consectetur ducimus doloremque deserunt fuga earum distinctio itaque natus rerum. Amet nihil tempora maxime, aperiam illum veritatis magni, doloribus aspernatur quas pariatur velit facere nam provident consequatur laboriosam magnam reprehenderit doloremque saepe incidunt iste dolor, ab exercitationem. Laboriosam quisquam nam, assumenda sint, sequi nostrum quas necessitatibus dolorem sunt iusto corporis sit similique commodi. Veniam ab veritatis repellat, provident ex eveniet accusantium molestiae.';
+export class MeSidepageComponent implements OnInit, OnChanges {
+  @Input() zIndex: string = '1505';
+  @Input() zIndexOverlay: string = '1504';
+  @Input() width: string = '27vw';
+  @Input() isSidePageOpen: boolean = false;
+  @Input() position: MePosition = 'left';
+  @Input() shading: boolean = true;
+  @Input() hideOnOutsideClick: boolean = false;
+  @Output()
+  private isSidePageOpenChange = new EventEmitter<boolean>();
+  private overlay?: HTMLDivElement;
+  private startPosition: string = '-100%';
+  private endPosition: string = '0';
 
-  toggleDrawer(id: number) {
-    const element = <any>this;
+  @ViewChild('sidepage', { static: true })
+  element!: ElementRef<HTMLDivElement>;
 
-    element[`isOpenSidePage${id}`] = !element[`isOpenSidePage${id}`];
+  constructor(private renderer: Renderer2) {}
+
+  ngOnInit(): void {
+    if (this.shading) {
+      this.createShading();
+    }
+
+    this.renderer.setStyle(
+      this.element.nativeElement,
+      'width',
+      `${this.width}`
+    );
+
+    if (this.position === 'right') {
+      this.startPosition = 'calc(100vw)';
+      this.endPosition = 'calc(100vw - 100%)';
+    }
+
+    this.renderer.setStyle(
+      this.element.nativeElement,
+      'transform',
+      `translateX(${this.startPosition})`
+    );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isOpen = changes?.['isSidePageOpen'];
+
+    if (isOpen.currentValue !== isOpen.previousValue && !isOpen.firstChange) {
+      this.toggleSidePage();
+    }
+  }
+
+  onCloseButtonClick() {
+    this.isSidePageOpen = !this.isSidePageOpen;
+  }
+
+  toggleSidePage() {
+    if (this.isSidePageOpen) {
+      this.renderer.setStyle(
+        this.element.nativeElement,
+        'transform',
+        `translateX(${this.endPosition})`
+      );
+
+      this.renderer.addClass(this.element.nativeElement, 'me-sidepage-open');
+
+      if (this.shading)
+        this.renderer.setStyle(this.overlay, 'display', 'block');
+
+      if (this.hideOnOutsideClick) {
+        window.addEventListener('click', this.windowClick.bind(this), true);
+      }
+    } else {
+      this.renderer.setStyle(
+        this.element.nativeElement,
+        'transform',
+        `translateX(${this.startPosition})`
+      );
+
+      this.renderer.removeClass(this.element.nativeElement, 'me-sidepage-open');
+
+      if (this.shading) this.renderer.removeStyle(this.overlay, 'display');
+
+      if (this.hideOnOutsideClick) {
+        window.removeEventListener('click', this.windowClick.bind(this));
+      }
+    }
+  }
+
+  createShading() {
+    this.overlay = this.renderer.createElement('div');
+
+    this.renderer.addClass(this.overlay, 'me-overlay');
+    this.renderer.setStyle(this.overlay, 'z-index', `${this.zIndexOverlay}`);
+
+    this.renderer.appendChild(document.body, this.overlay);
+  }
+
+  windowClick(event: Event) {
+    const withinSidepage = event
+      .composedPath()
+      .includes(this.element.nativeElement);
+
+    if (!withinSidepage) {
+      this.isSidePageOpenChange.emit(false);
+    }
   }
 }

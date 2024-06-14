@@ -1,7 +1,8 @@
 <div class="wrapper">
   <h1 class="dx-widget wrapper__main-title">Context menu</h1>
+
   <dx-button meButton text="Right click" id="contextButton"></dx-button>
-  <dx-context-menu meContextMenu target="#contextButton" [dataSource]="contextMenuItems" [selectByClick]="true" selectionMode="single">
+  <dx-context-menu meContextMenu target="#contextButton" [dataSource]="contextMenuItems">
     <div *dxTemplate="let item of 'menu-title'">
       <div class="me-menu-title">
         <div *ngIf="item.icon" meIcon [icon]="item.icon"></div>

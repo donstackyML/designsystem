@@ -9,7 +9,7 @@ const DEFAULT_SIZE = 'auto';
 export class MeIconDirective {
   @Input() icon = '';
   @Input() color?: string;
-  @Input() iconSize?: string;
+  @Input() size?: string;
   @Input() height = '';
   @Input() width = '';
 
@@ -23,7 +23,7 @@ export class MeIconDirective {
     const svg = this.service.getIcon({
       icon: this.icon,
       color: this.color,
-      size: this.iconSize,
+      size: this.size,
     });
     this.element.nativeElement.innerHTML = svg;
 
