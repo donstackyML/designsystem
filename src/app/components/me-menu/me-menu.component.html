@@ -2,7 +2,16 @@
   <h1 class="wrapper__main-title dx-widget">Menu</h1>
   <h2 class="wrapper__title dx-widget">size = large</h2>
   <h3 class="wrapper__subtitle dx-widget">orientation = horizontal</h3>
-  <dx-menu meMenu [dataSource]="dataSource" displayExpr="name" [activeStateEnabled]="true" [selectByClick]="true" selectionMode="single"></dx-menu>
+  <dx-menu
+    meMenu
+    [dataSource]="dataSource"
+    displayExpr="name"
+    [activeStateEnabled]="true"
+    [selectByClick]="true"
+    selectionMode="single"
+    showFirstSubmenuMode="onHover"
+    [hideSubmenuOnMouseLeave]="true"
+  ></dx-menu>
   <h3 class="wrapper__subtitle dx-widget">orientation = vertical</h3>
   <dx-menu
     meMenu
@@ -12,6 +21,7 @@
     [selectByClick]="true"
     selectionMode="single"
     orientation="vertical"
+    showFirstSubmenuMode="onHover"
   ></dx-menu>
   <h3 class="wrapper__subtitle dx-widget">adaptivityEnabled = true</h3>
   <div class="flex-column">
@@ -24,13 +34,23 @@
         [adaptivityEnabled]="toggleAdaptivityL"
         [selectByClick]="true"
         selectionMode="single"
+        showFirstSubmenuMode="onHover"
       ></dx-menu>
     </div>
     <dx-check-box text="Enable adaptivity" (onValueChanged)="onValueChangedL($event)"></dx-check-box>
   </div>
   <h2 class="wrapper__title dx-widget">size = small</h2>
   <h3 class="wrapper__subtitle dx-widget">orientation = horizontal</h3>
-  <dx-menu meMenu size="small" [dataSource]="dataSourceSmall" displayExpr="name" [activeStateEnabled]="true" [selectByClick]="true" selectionMode="single"></dx-menu>
+  <dx-menu
+    meMenu
+    size="small"
+    [dataSource]="dataSourceSmall"
+    displayExpr="name"
+    showFirstSubmenuMode="onHover"
+    [activeStateEnabled]="true"
+    [selectByClick]="true"
+    selectionMode="single"
+  ></dx-menu>
   <h3 class="wrapper__subtitle dx-widget">orientation = vertical</h3>
   <dx-menu
     meMenu
@@ -41,19 +61,21 @@
     [selectByClick]="true"
     selectionMode="single"
     orientation="vertical"
+    showFirstSubmenuMode="onHover"
   ></dx-menu>
   <h3 class="wrapper__subtitle dx-widget">adaptivityEnabled = true</h3>
   <div class="flex-column">
     <div class="container--small">
       <dx-menu
         meMenu
-        [dataSource]="dataSource"
+        [dataSource]="dataSourceSmall"
         size="small"
         displayExpr="name"
         [activeStateEnabled]="true"
         [adaptivityEnabled]="toggleAdaptivityS"
         [selectByClick]="true"
         selectionMode="single"
+        showFirstSubmenuMode="onHover"
       ></dx-menu>
     </div>
     <dx-check-box text="Enable adaptivity" (onValueChanged)="onValueChangedS($event)"></dx-check-box>

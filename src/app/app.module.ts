@@ -44,6 +44,8 @@ import { MeContextMenuDirective } from './directives/context-menu.directive';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeMenuDirective } from './directives/menu.directive';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
+import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
+import { TreeViewDirective } from './directives/tree-view.directive';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,8 @@ import { MeMenuComponent } from './components/me-menu/me-menu.component';
     MeMenuDirective,
     MeMenuComponent,
     MeMenuComponent,
+    MeTreeViewComponent,
+    TreeViewDirective,
   ],
   imports: [
     BrowserModule,
