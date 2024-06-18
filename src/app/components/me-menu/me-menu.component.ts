@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ValueChangedEvent } from 'devextreme/ui/check_box';
 import { MeIconStoreService } from 'src/app/service/icon-store.service';
 
 @Component({
@@ -7,6 +8,9 @@ import { MeIconStoreService } from 'src/app/service/icon-store.service';
   styleUrls: ['./me-menu.component.css'],
 })
 export class MeMenuComponent {
+  toggleAdaptivityS: boolean = false;
+  toggleAdaptivityL: boolean = false;
+
   dataSource = [
     {
       id: '1',
@@ -656,4 +660,12 @@ export class MeMenuComponent {
   ];
 
   constructor(private iconStore: MeIconStoreService) {}
+
+  onValueChangedS(e: ValueChangedEvent) {
+    this.toggleAdaptivityS = e.value;
+  }
+
+  onValueChangedL(e: ValueChangedEvent) {
+    this.toggleAdaptivityL = e.value;
+  }
 }

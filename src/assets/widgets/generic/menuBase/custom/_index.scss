@@ -1,0 +1,217 @@
+@use "sass:color";
+@use "colors" as *;
+@use "../colors" as *;
+@use "sizes" as *;
+@use "../sizes" as *;
+@use "../menu/colors" as *;
+@use "../common/mixins" as *;
+@use "../../base/icons" as *;
+@use "../../base/mixins" as *;
+@use "../../base/menuBase";
+
+// adduse
+
+$generic-menu-item-padding-increased: $generic-menu-item-padding-base + 2px;
+$generic-menu-item-padding-reduced: $generic-menu-item-padding-base - 2px;
+$generic-menu-arrow-image-size: 7px;
+
+$generic-menu-popup-border: 1px solid $menu-popup-border-color;
+
+.dx-menu-item {
+  color: $menu-color;
+  border-radius: 3px;
+
+  &.dx-state-hover {
+    color: $menu-item-hovered-color;
+    background-color: $menu-item-hover-bg;
+  }
+
+  &.dx-state-focused {
+    // background-color: $menu-item-focused-bg;
+    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #7eb9ff;
+    // outline: 3px solid #7eb9ff;
+    z-index: 5000;
+
+    .dx-editor-cell & {
+      box-shadow: none;
+    }
+    // color: $base-inverted-text-color;
+  }
+
+  &.dx-menu-item-has-text {
+    .dx-icon {
+      margin-right: -$generic-base-icon-size;
+    }
+  }
+}
+
+.dx-menu-item-selected {
+  background-color: $menu-item-selected-bg;
+  color: $menu-item-selected-color;
+
+  &.dx-state-focused {
+    background-color: $menu-item-focused-selected-bg;
+    color: $base-inverted-text-color;
+  }
+}
+
+.dx-menu-item-expanded {
+  color: $menu-item-expanded-color;
+  background-color: $menu-item-hover-bg;
+}
+
+.dx-menu-item.dx-state-focused,
+.dx-menu-item.dx-state-active,
+.dx-menu-item-expanded {
+  outline: none;
+  // background-color: $menu-item-active-bg;
+}
+
+.dx-menu-base {
+  @include dx-base-typography();
+
+  &.dx-state-focused {
+    outline: none;
+  }
+
+  .dx-icon {
+    @include dx-icon-sizing($generic-base-icon-size);
+  }
+
+  .dx-menu-item-content {
+    padding: $generic-menu-item-padding-reduced $generic-menu-item-padding-base
+      $generic-menu-item-padding-increased;
+
+    .dx-menu-item-text {
+      padding: $generic-menu-item-padding-top-base $generic-menu-padding-big
+        $generic-menu-item-padding-base $generic-menu-item-padding-base +
+        $generic-base-icon-size;
+    }
+
+    .dx-menu-item-popout {
+      min-width: $generic-menu-arrow-image-size;
+      min-height: $generic-menu-arrow-image-size;
+    }
+  }
+
+  &.dx-rtl {
+    .dx-menu-item-content {
+      .dx-menu-item-text {
+        padding: $generic-menu-item-padding-top-base
+          $generic-menu-item-padding-base + $generic-base-icon-size
+          $generic-menu-item-padding-base $generic-menu-padding-big;
+      }
+
+      .dx-icon {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .dx-menu-item-popout-container {
+        margin-left: 0;
+        margin-right: auto;
+
+        .dx-menu-item-popout {
+          @include flip-horizontally();
+        }
+      }
+    }
+
+    .dx-menu-item-has-text {
+      .dx-icon {
+        margin-left: -$generic-base-icon-size;
+      }
+    }
+  }
+}
+
+.me-context-menu {
+  &.dx-menu-base {
+    & .dx-submenu {
+      box-shadow: 0px 5px 8px 0px #00000033;
+    }
+
+    & .dx-submenu .dx-submenu {
+      box-shadow: 0px 5px 12px 0px #0000003d;
+    }
+
+    & .dx-submenu .dx-submenu .dx-submenu {
+      box-shadow: 0px 7px 12px 0px #00000052;
+    }
+
+    &.dx-context-menu {
+      .dx-menu-items-container {
+        display: block;
+        padding: 0;
+        cursor: default;
+      }
+
+      .dx-submenu {
+        border-radius: 4px;
+        // box-shadow: 0px 5px 12px 0px #0000003d;
+        // box-shadow: none;
+        font-size: 0;
+        min-width: 120px;
+        max-width: 360px;
+        width: max-content;
+      }
+
+      .dx-menu-separator {
+        margin: 4px 12px;
+      }
+    }
+
+    .dx-menu-item {
+      border-radius: 0;
+      font-size: 16px;
+      cursor: pointer;
+
+      &.dx-state-hover:active {
+        background-color: $menu-item-active-bg;
+      }
+
+      &.dx-state-disabled {
+        &:has(.me-menu-title) {
+          opacity: 1;
+        }
+
+        opacity: 0.4;
+      }
+
+      &.dx-menu-item-has-text .dx-icon {
+        margin-right: 0;
+        width: 24px;
+        height: 24px;
+      }
+
+      .dx-menu-item-content {
+        padding: 4px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .dx-menu-item-popout-container {
+          position: static;
+          width: 24px;
+          height: 24px;
+          margin-left: auto;
+
+          .dx-menu-item-popout {
+            background: $menu-item-popout-icon;
+            background-size: contain;
+
+            &::before {
+              content: none;
+            }
+          }
+        }
+
+        .dx-menu-item-text {
+          padding: 0;
+          white-space: pre-wrap;
+          max-width: 270px;
+        }
+      }
+    }
+  }
+}
