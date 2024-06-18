@@ -1,0 +1,52 @@
+<div class="wrapper">
+  <h1 class="wrapper__main-title dx-widget">Menu</h1>
+  <h2 class="wrapper__title dx-widget">size = large</h2>
+  <h3 class="wrapper__subtitle dx-widget">orientation = horizontal</h3>
+  <dx-menu meMenu [dataSource]="dataSource" displayExpr="name" [activeStateEnabled]="true" [selectByClick]="true" selectionMode="single"></dx-menu>
+  <h3 class="wrapper__subtitle dx-widget">adaptivityEnabled = true</h3>
+  <dx-resizable class="resizable-container flex-column" [minWidth]="500" [width]="1640" [minHeight]="150" [maxHeight]="370" handles="right" area=".widget-container">
+    <dx-menu
+      meMenu
+      [dataSource]="dataSource"
+      width="700px"
+      displayExpr="name"
+      [activeStateEnabled]="true"
+      [adaptivityEnabled]="true"
+      [selectByClick]="true"
+      selectionMode="single"
+    ></dx-menu>
+  </dx-resizable>
+  <h3 class="wrapper__subtitle dx-widget">orientation = vertical</h3>
+  <dx-menu
+    meMenu
+    [dataSource]="dataSource"
+    displayExpr="name"
+    [activeStateEnabled]="true"
+    [selectByClick]="true"
+    selectionMode="single"
+    orientation="vertical"
+  ></dx-menu>
+  <h2 class="wrapper__title dx-widget">size = small</h2>
+  <h3 class="wrapper__subtitle dx-widget">orientation = horizontal</h3>
+  <dx-menu meMenu size="small" [dataSource]="dataSourceSmall" displayExpr="name" [activeStateEnabled]="true" [selectByClick]="true" selectionMode="single"></dx-menu>
+  <h3 class="wrapper__subtitle dx-widget">orientation = vertical</h3>
+  <dx-menu
+    meMenu
+    size="small"
+    [dataSource]="dataSourceSmall"
+    displayExpr="name"
+    [activeStateEnabled]="true"
+    [selectByClick]="true"
+    selectionMode="single"
+    orientation="vertical"
+  ></dx-menu>
+</div>
+<div id="container">
+  <dx-menu [adaptivityEnabled]="true" width="400">
+    <dxi-item icon="home"> </dxi-item>
+    <dxi-item text="About"> </dxi-item>
+    <dxi-item text="Products"> </dxi-item>
+    <dxi-item icon="cart"> </dxi-item>
+  </dx-menu>
+</div>
+<dx-check-box text="Enable adaptivity"> </dx-check-box>

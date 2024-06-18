@@ -16,6 +16,7 @@ const componentsRoute: string[] = [
   'me-list',
   'me-switch',
   'me-context-menu',
+  'me-menu',
 ];
 
 const componentsName: string[] = [
@@ -34,6 +35,7 @@ const componentsName: string[] = [
   'meList',
   'meSwitch',
   'meContextMenu',
+  'meMenu',
 ];
 
 @Injectable({

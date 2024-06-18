@@ -42,6 +42,8 @@ import { MeSwitchDirective } from './directives/switch.directive';
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
 import { MeContextMenuDirective } from './directives/context-menu.directive';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
+import { MeMenuDirective } from './directives/menu.directive';
+import { MeMenuComponent } from './components/me-menu/me-menu.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,9 @@ import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.compon
     MeContextMenuComponent,
     MeContextMenuDirective,
     MeSidepageComponent,
+    MeMenuDirective,
+    MeMenuComponent,
+    MeMenuComponent,
   ],
   imports: [
     BrowserModule,
