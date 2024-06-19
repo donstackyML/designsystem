@@ -4976,7 +4976,8 @@
   background-color: #ffffff;
 }
 .me-editor-medium .dx-checkbox-icon,
-.me-list .dx-checkbox-icon {
+.me-list .dx-checkbox-icon,
+.me-tree-view-small .dx-checkbox-icon {
   width: 20px;
   height: 20px;
 }
@@ -4986,18 +4987,21 @@
   height: 16px;
 }
 
-.me-editor-large .dx-checkbox-icon {
+.me-editor-large .dx-checkbox-icon,
+.me-tree-view-large .dx-checkbox-icon {
   width: 24px;
   height: 24px;
 }
 
 .me-editor .dx-checkbox-icon::before,
-.me-list .dx-checkbox-icon::before {
+.me-list .dx-checkbox-icon::before,
+.me-tree-view .dx-checkbox-icon::before {
   content: none;
 }
 
 .me-editor .dx-checkbox-icon,
-.me-list .dx-checkbox-icon {
+.me-list .dx-checkbox-icon,
+.me-tree-view .dx-checkbox-icon {
   background-position: 50% 50%;
   background-size: 12px 12px;
 }
@@ -5005,29 +5009,36 @@
 .dx-state-disabled.me-editor.dx-checkbox-checked .dx-checkbox-icon,
 .dx-state-readonly.me-editor.dx-checkbox-checked .dx-checkbox-icon,
 .me-list .dx-state-disabled .dx-checkbox-checked .dx-checkbox-icon,
-.me-list .dx-state-readonly .dx-checkbox-checked .dx-checkbox-icon {
+.me-list .dx-state-readonly .dx-checkbox-checked .dx-checkbox-icon,
+.me-tree-view .dx-state-disabled .dx-checkbox-checked .dx-checkbox-icon,
+.me-tree-view .dx-state-readonly .dx-checkbox-checked .dx-checkbox-icon {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMiAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS40NjU2IDEuMzYwOUw0LjIzMjc5IDkuMTUwMDdMMCA0LjU5MTY3TDEuNDY1NTkgMy4yMzA3N0w0LjIzMjc5IDYuMjEwODRMMTAgMEwxMS40NjU2IDEuMzYwOVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K");
 }
 
 .dx-state-disabled.me-editor.dx-checkbox-indeterminate .dx-checkbox-icon,
 .dx-state-readonly.me-editor.dx-checkbox-indeterminate .dx-checkbox-icon,
 .me-list .dx-state-disabled .dx-checkbox-indeterminate .dx-checkbox-icon,
-.me-list .dx-state-readonly .dx-checkbox-indeterminate .dx-checkbox-icon {
+.me-list .dx-state-readonly .dx-checkbox-indeterminate .dx-checkbox-icon,
+.me-tree-view .dx-state-disabled .dx-checkbox-indeterminate .dx-checkbox-icon,
+.me-tree-view .dx-state-readonly .dx-checkbox-indeterminate .dx-checkbox-icon {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzM0ODVfMzY3OTEiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiI+CjxyZWN0IHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI0Q5RDlEOSIvPgo8L21hc2s+CjxnIG1hc2s9InVybCgjbWFzazBfMzQ4NV8zNjc5MSkiPgo8cGF0aCBkPSJNMSA3VjVIMTFWN0gxWiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC41Ii8+CjwvZz4KPC9zdmc+Cg==");
 }
 
-.me-editor-large .dx-checkbox-icon {
+.me-editor-large .dx-checkbox-icon,
+.me-tree-view-large .dx-checkbox-icon {
   background-position: 50% 50%;
   background-size: 16px 16px;
 }
 
 .me-editor.dx-checkbox-checked .dx-checkbox-icon,
-.me-list .dx-checkbox-checked .dx-checkbox-icon {
+.me-list .dx-checkbox-checked .dx-checkbox-icon,
+.me-tree-view .dx-checkbox-checked .dx-checkbox-icon {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzM4XzkwNzQiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiI+CjxyZWN0IHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI0Q5RDlEOSIvPgo8L21hc2s+CjxnIG1hc2s9InVybCgjbWFzazBfMzhfOTA3NCkiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTExLjQ2NTYgMi4zNjA5TDQuMjMyNzkgMTAuMTUwMUwwIDUuNTkxNjdMMS40NjU1OSA0LjIzMDc3TDQuMjMyNzkgNy4yMTA4NEwxMCAxTDExLjQ2NTYgMi4zNjA5WiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K");
 }
 
 .me-editor.dx-checkbox-indeterminate .dx-checkbox-icon,
-.me-list .dx-checkbox-indeterminate .dx-checkbox-icon {
+.me-list .dx-checkbox-indeterminate .dx-checkbox-icon,
+.me-tree-view .dx-checkbox-indeterminate .dx-checkbox-icon {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzM4XzkxMzEiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiI+CjxyZWN0IHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI0Q5RDlEOSIvPgo8L21hc2s+CjxnIG1hc2s9InVybCgjbWFzazBfMzhfOTEzMSkiPgo8cGF0aCBkPSJNMSA3VjVIMTFWN0gxWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K");
 }
 
@@ -10813,6 +10824,100 @@
 
 .dx-treeview .me-state-selected {
   background-color: #2c4483;
+}
+
+.me-tree-view {
+  padding: 4px 8px 8px;
+}
+.me-tree-view .dx-treeview-toggle-item-visibility {
+  width: 24px;
+  height: 24px;
+  top: 8px;
+  left: 0px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swXzUzMDhfODMxOTgiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iI0Q5RDlEOSIvPgo8L21hc2s+CjxnIG1hc2s9InVybCgjbWFzazBfNTMwOF84MzE5OCkiPgo8cGF0aCBkPSJNMTAgMTdWN0wxNSAxMkwxMCAxN1oiIGZpbGw9IndoaXRlIi8+CjwvZz4KPC9zdmc+Cg==");
+  background-size: contain;
+}
+.me-tree-view .dx-treeview-toggle-item-visibility::before {
+  content: none;
+}
+.me-tree-view .dx-treeview-toggle-item-visibility.dx-treeview-toggle-item-visibility-opened {
+  transform: rotate(90deg);
+}
+.me-tree-view .dx-treeview-node {
+  padding-left: 24px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.me-tree-view .dx-treeview-node {
+  margin-top: 4px;
+}
+.me-tree-view .dx-treeview-node .dx-treeview-node-container {
+  padding-left: 8px;
+}
+.me-tree-view .dx-treeview-item-with-checkbox .dx-treeview-item {
+  padding-left: 40px;
+}
+.me-tree-view .dx-treeview-item {
+  padding: 8px;
+  min-height: auto;
+}
+.me-tree-view .dx-treeview-item .dx-treeview-item-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.me-tree-view .dx-treeview-item .dx-treeview-item-content > .dx-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+}
+.me-tree-view .dx-treeview-item .dx-treeview-item-content > span {
+  line-height: 24px;
+}
+.me-tree-view .dx-treeview-item-with-checkbox .dx-checkbox {
+  left: 32px;
+  top: 8px;
+}
+
+.me-tree-view.me-tree-view-small .dx-treeview-toggle-item-visibility {
+  width: 20px;
+  height: 20px;
+  top: 4px;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-node {
+  padding-left: 20px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-node {
+  margin-top: 4px;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-node .dx-treeview-node-container {
+  padding-left: 8px;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-item-with-checkbox .dx-treeview-item {
+  padding-left: 36px;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-item {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-item .dx-treeview-item-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-item .dx-treeview-item-content > .dx-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-item .dx-treeview-item-content > span {
+  line-height: 20px;
+}
+.me-tree-view.me-tree-view-small .dx-treeview-item-with-checkbox .dx-checkbox {
+  left: 28px;
+  top: 4px;
 }
 
 /**
