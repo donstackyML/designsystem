@@ -22,6 +22,7 @@
     selectionMode="single"
     orientation="vertical"
     showFirstSubmenuMode="onHover"
+    [hideSubmenuOnMouseLeave]="true"
   ></dx-menu>
   <h3 class="wrapper__subtitle dx-widget">adaptivityEnabled = true</h3>
   <div class="flex-column">
@@ -35,6 +36,7 @@
         [selectByClick]="true"
         selectionMode="single"
         showFirstSubmenuMode="onHover"
+        [hideSubmenuOnMouseLeave]="true"
       ></dx-menu>
     </div>
     <dx-check-box text="Enable adaptivity" (onValueChanged)="onValueChangedL($event)"></dx-check-box>
@@ -50,6 +52,7 @@
     [activeStateEnabled]="true"
     [selectByClick]="true"
     selectionMode="single"
+    [hideSubmenuOnMouseLeave]="true"
   ></dx-menu>
   <h3 class="wrapper__subtitle dx-widget">orientation = vertical</h3>
   <dx-menu
@@ -62,6 +65,7 @@
     selectionMode="single"
     orientation="vertical"
     showFirstSubmenuMode="onHover"
+    [hideSubmenuOnMouseLeave]="true"
   ></dx-menu>
   <h3 class="wrapper__subtitle dx-widget">adaptivityEnabled = true</h3>
   <div class="flex-column">
@@ -76,8 +80,20 @@
         [selectByClick]="true"
         selectionMode="single"
         showFirstSubmenuMode="onHover"
+        [hideSubmenuOnMouseLeave]="true"
       ></dx-menu>
     </div>
     <dx-check-box text="Enable adaptivity" (onValueChanged)="onValueChangedS($event)"></dx-check-box>
   </div>
+  <h2 class="wrapper__title dx-widget">showSubmenuMode = onClick</h2>
+  <dx-menu
+    meMenu
+    [dataSource]="dataSource"
+    displayExpr="name"
+    [activeStateEnabled]="true"
+    [selectByClick]="true"
+    selectionMode="single"
+    showFirstSubmenuMode="onClick"
+    [hideSubmenuOnMouseLeave]="true"
+  ></dx-menu>
 </div>

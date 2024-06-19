@@ -128,13 +128,13 @@
 }
 
 .me-menu {
-  & > .dx-submenu {
+  &.me-menu-horizontal > .dx-submenu {
     margin-top: 8px;
     margin-bottom: 8px;
   }
 
   .dx-menu-item-expanded {
-    background-color: $menu-item-active-bg;
+    background-color: $menu-item-focused-bg;
   }
 
   &.dx-menu .dx-menu-item-has-text.dx-menu-item-has-icon .dx-icon {
@@ -193,6 +193,10 @@
     &::before {
       content: none;
     }
+  }
+
+  .dx-menu-item-wrapper:has(.dx-state-disabled) {
+    cursor: default;
   }
 }
 

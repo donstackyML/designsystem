@@ -48,3 +48,4 @@ export interface MeButtonGroupItem extends Partial<dxButtonGroupItem> {
   rightIconSize?: string;
   warningType?: boolean;
 }
+export type MeOrientation = 'horizontal' | 'vertical';

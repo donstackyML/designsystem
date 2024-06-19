@@ -16,65 +16,6 @@ export class MeMenuComponent {
       id: '1',
       name: 'Пункт',
       icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
-      items: [
-        {
-          id: '1_1',
-          name: 'Пункт',
-          icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
-          items: [
-            {
-              id: '1_1_1',
-              name: 'Пункт',
-            },
-            {
-              id: '1_1_2',
-              name: 'Пункт',
-            },
-            {
-              id: '1_1_3',
-              name: 'Пункт',
-            },
-          ],
-        },
-        {
-          id: '1_2',
-          name: 'Пункт',
-          icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
-          items: [
-            {
-              id: '1_2_1',
-              name: 'Пункт',
-            },
-            {
-              id: '1_2_2',
-              name: 'Пункт',
-            },
-            {
-              id: '1_2_3',
-              name: 'Пункт',
-            },
-          ],
-        },
-        {
-          id: '1_3',
-          name: 'Пункт',
-          icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
-          items: [
-            {
-              id: '1_3_1',
-              name: 'Пункт',
-            },
-            {
-              id: '1_3_2',
-              name: 'Пункт',
-            },
-            {
-              id: '1_3_3',
-              name: 'Пункт',
-            },
-          ],
-        },
-      ],
     },
     {
       id: '2',
@@ -85,20 +26,6 @@ export class MeMenuComponent {
           id: '2_1',
           name: 'Пункт',
           icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
-          items: [
-            {
-              id: '2_1_1',
-              name: 'Пункт',
-            },
-            {
-              id: '2_1_2',
-              name: 'Пункт',
-            },
-            {
-              id: '2_1_3',
-              name: 'Пункт',
-            },
-          ],
         },
         {
           id: '2_2',
@@ -149,20 +76,6 @@ export class MeMenuComponent {
           id: '3_1',
           name: 'Пункт',
           icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
-          items: [
-            {
-              id: '3_1_1',
-              name: 'Пункт',
-            },
-            {
-              id: '3_1_2',
-              name: 'Пункт',
-            },
-            {
-              id: '3_1_3',
-              name: 'Пункт',
-            },
-          ],
         },
         {
           id: '3_2',
@@ -271,36 +184,22 @@ export class MeMenuComponent {
     },
     {
       id: '5',
-      name: 'Пункт',
+      name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
       icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
       items: [
         {
           id: '5_1',
           name: 'Пункт',
           icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
-          items: [
-            {
-              id: '5_1_1',
-              name: 'Пункт',
-            },
-            {
-              id: '5_1_2',
-              name: 'Пункт',
-            },
-            {
-              id: '5_1_3',
-              name: 'Пункт',
-            },
-          ],
         },
         {
           id: '5_2',
-          name: 'Пункт',
+          name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
           icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
           items: [
             {
               id: '5_2_1',
-              name: 'Пункт',
+              name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
             },
             {
               id: '5_2_2',

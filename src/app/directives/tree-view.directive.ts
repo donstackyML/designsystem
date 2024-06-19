@@ -1,10 +1,16 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[treeView]'
+  selector: '[meTreeView]',
 })
-export class TreeViewDirective {
+export class MeTreeViewDirective {
+  constructor(
+    private element: ElementRef,
+    // private component: dxTreeView,
+    private renderer: Renderer2
+  ) {}
 
-  constructor() { }
-
+  ngOnInit() {
+    this.renderer.addClass(this.element.nativeElement, 'me-tree-view');
+  }
 }

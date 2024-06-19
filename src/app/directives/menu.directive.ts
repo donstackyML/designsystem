@@ -1,6 +1,6 @@
 import { Directive, Input, OnInit } from '@angular/core';
 import { DxMenuComponent } from 'devextreme-angular';
-import { MeSize } from '../types/types';
+import { MeOrientation, MeSize } from '../types/types';
 
 @Directive({
   selector: '[meMenu]',
@@ -8,10 +8,15 @@ import { MeSize } from '../types/types';
 export class MeMenuDirective implements OnInit {
   @Input() cssClass?: string = '';
   @Input() size: MeSize = 'large';
+  @Input() orientation: MeOrientation = 'horizontal';
 
   constructor(private component: DxMenuComponent) {}
 
   ngOnInit(): void {
-    this.component.cssClass = `${this.cssClass}  me-menu-${this.size} me-menu me-context-menu`;
+    let menuClasses = `${this.cssClass}  me-menu-${this.size} me-menu me-context-menu`;
+
+    if (this.orientation === 'horizontal') menuClasses += ' me-menu-horizontal';
+
+    this.component.cssClass = menuClasses;
   }
 }
