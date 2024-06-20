@@ -12,6 +12,10 @@ import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
 
 @Directive({
   selector: '[meEditor]',
+  host: {
+    '(keyup)': 'addFocus($event)',
+    '(focusout)': 'removeFocus()',
+  },
 })
 export class MeEditorDirective {
   @Input() size: MeSize = 'medium';
@@ -49,15 +53,15 @@ export class MeEditorDirective {
     this.component.elementAttr['size'] = this.size;
   }
 
-  @HostListener('keyup', ['$event']) addFocus = (event: KeyboardEvent) => {
+  addFocus(event: KeyboardEvent) {
     if (event.key === 'Tab') {
       this.focusSubject.next(true);
     }
-  };
+  }
 
-  @HostListener('focusout') removeFocus = () => {
+  removeFocus() {
     this.focusSubject.next(false);
-  };
+  }
 
   ngOnDestroy(): void {
     this.focusSubscription.unsubscribe();
