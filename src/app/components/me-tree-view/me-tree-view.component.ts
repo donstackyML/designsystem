@@ -85,6 +85,7 @@ export class MeTreeViewComponent {
       id: '2',
       name: 'Label',
       icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
+      disabled: true,
       items: [
         {
           id: '2_1',

@@ -218,6 +218,10 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
   .dx-treeview-item {
     padding: 8px;
     min-height: auto;
+
+    &.dx-state-active {
+      background: $treeview-item-active-bg;
+    }
   }
 
   .dx-treeview-item .dx-treeview-item-content {
@@ -236,9 +240,25 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
     }
   }
 
-  .dx-treeview-item-with-checkbox .dx-checkbox {
-    left: 32px;
-    top: 8px;
+  .dx-treeview-item-with-checkbox {
+    .dx-checkbox {
+      left: 32px;
+      top: 8px;
+    }
+
+    &.dx-state-selected {
+      .dx-treeview-item {
+        background-color: $treeview-item-selected-bg;
+      }
+    }
+  }
+
+  .dx-treeview-item-without-checkbox.dx-state-selected > .dx-treeview-item {
+    background-color: $treeview-item-selected-bg;
+  }
+
+  .dx-treeview-item.dx-state-disabled {
+    opacity: $treeview-item-disabled-opacity;
   }
 }
 
