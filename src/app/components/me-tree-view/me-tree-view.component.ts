@@ -157,7 +157,7 @@ export class MeTreeViewComponent {
     },
     {
       id: '3',
-      name: 'Label',
+      name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
       icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
       items: [
         {
@@ -206,7 +206,7 @@ export class MeTreeViewComponent {
         },
         {
           id: '3_3',
-          name: 'Label',
+          name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
           icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
           items: [
             {
@@ -221,7 +221,7 @@ export class MeTreeViewComponent {
             },
             {
               id: '3_3_3',
-              name: 'Label',
+              name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
               icon: this.iconStore.getIcon({ icon: 'folder', size: '24' }),
             },
           ],
@@ -379,7 +379,7 @@ export class MeTreeViewComponent {
     },
     {
       id: '3',
-      name: 'Label',
+      name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
       icon: this.iconStore.getIcon({ icon: 'folder', size: '20' }),
       items: [
         {
@@ -428,7 +428,7 @@ export class MeTreeViewComponent {
         },
         {
           id: '3_3',
-          name: 'Label',
+          name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
           icon: this.iconStore.getIcon({ icon: 'folder', size: '20' }),
           items: [
             {
@@ -443,7 +443,7 @@ export class MeTreeViewComponent {
             },
             {
               id: '3_3_3',
-              name: 'Label',
+              name: 'Длинное название пункта показывает ограничение максимальной ширины и выравнивание элементов',
               icon: this.iconStore.getIcon({ icon: 'folder', size: '20' }),
             },
           ],

@@ -257,6 +257,17 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
     background-color: $treeview-item-selected-bg;
   }
 
+  .dx-treeview-item-without-checkbox.dx-state-focused > .dx-treeview-item {
+    box-shadow: none;
+  }
+
+  &:focus-visible .dx-treeview-item-without-checkbox.dx-state-focused,
+  &:focus-visible .dx-treeview-item-with-checkbox.dx-state-focused {
+    & > .dx-treeview-item {
+      box-shadow: inset 0px 0px 0px 2px #7eb9ff;
+    }
+  }
+
   .dx-treeview-item.dx-state-disabled {
     opacity: $treeview-item-disabled-opacity;
   }
