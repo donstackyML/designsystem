@@ -10863,7 +10863,7 @@
 }
 .me-tree-view .dx-treeview-item .dx-treeview-item-content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
 }
 .me-tree-view .dx-treeview-item .dx-treeview-item-content > .dx-icon {
@@ -10873,6 +10873,14 @@
 }
 .me-tree-view .dx-treeview-item .dx-treeview-item-content > span {
   line-height: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.me-tree-view.me-tree-view-word-wrap .dx-treeview-item .dx-treeview-item-content > span {
+  overflow: visible;
+  white-space: pre-wrap;
+  text-overflow: clip;
 }
 .me-tree-view .dx-treeview-item-with-checkbox .dx-checkbox {
   left: 32px;

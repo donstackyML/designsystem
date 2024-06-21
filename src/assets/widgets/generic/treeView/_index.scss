@@ -227,7 +227,7 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
 
   .dx-treeview-item .dx-treeview-item-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
 
     & > .dx-icon {
@@ -238,6 +238,17 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
 
     & > span {
       line-height: 24px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &.me-tree-view-word-wrap .dx-treeview-item .dx-treeview-item-content {
+    & > span {
+      overflow: visible;
+      white-space: pre-wrap;
+      text-overflow: clip;
     }
   }
 
