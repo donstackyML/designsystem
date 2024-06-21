@@ -404,7 +404,9 @@
   color: #ffffff;
 }
 
-.me-title-header1 {
+.me-title-header1,
+.me-list .dx-list-group-header,
+.dx-device-mobile .me-list .dx-list-group-header {
   font-family: "RobotoFallback", "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 600;
@@ -8612,13 +8614,13 @@
 .me-list.dx-list .dx-list-group-header {
   border-bottom: none;
   border-top: none;
-  padding: 0px 14px 0px 8px;
-}
-.me-list.dx-list .dx-list-group-header .me-title-header2 {
-  margin-bottom: 2px;
-}
-.me-list.dx-list .dx-list-group-header:not(:has(.me-text-caption)) {
   padding: 8px 14px 8px 8px;
+}
+.me-list.dx-list .dx-list-group-header .me-text-body2 {
+  margin-top: 4px;
+}
+.me-list.dx-list .dx-list-group-header:not(:has(.me-text-body2)) {
+  padding: 12px 14px 12px 8px;
 }
 .me-list.dx-list.dx-list-select-decorator-enabled .dx-list-item.dx-state-focused .dx-radiobutton-icon::before,
 .me-list.dx-list.dx-list-select-decorator-enabled .dx-list-item.dx-state-focused .dx-checkbox-icon,
@@ -8637,12 +8639,16 @@
 .me-list.dx-list .dx-list-item-content {
   width: auto;
   flex-grow: 1;
+  line-height: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .me-list.dx-list .dx-list-item-content::before {
   content: none;
+}
+.me-list.dx-list .dx-list-item-content .me-text-caption {
+  margin-top: 2px;
 }
 .me-list.dx-list .dx-list-item-icon-container {
   width: 24px;
@@ -8706,13 +8712,6 @@
 .me-list .dx-list-item-after-bag .dx-list-reorder-handle::before {
   content: none;
 }
-.me-list .dx-list-group-header {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-  text-align: left;
-  color: #ffffff;
-}
 .me-list .dx-list-group-header::before {
   width: 20px;
   height: 20px;
@@ -8721,8 +8720,8 @@
   margin-top: 0;
   transition: all ease 0.3s;
 }
-.me-list .dx-list-group-header:has(.me-title-header2)::before {
-  margin-top: 9px;
+.me-list .dx-list-group-header:has(.me-title-header1)::before {
+  margin-top: 14px;
 }
 .me-list .dx-list-group-collapsed .dx-list-group-header::before {
   transform: rotate(180deg);
@@ -8996,13 +8995,13 @@
 .dx-device-mobile .me-list.dx-list .dx-list-group-header {
   border-bottom: none;
   border-top: none;
-  padding: 0px 14px 0px 8px;
-}
-.dx-device-mobile .me-list.dx-list .dx-list-group-header .me-title-header2 {
-  margin-bottom: 2px;
-}
-.dx-device-mobile .me-list.dx-list .dx-list-group-header:not(:has(.me-text-caption)) {
   padding: 8px 14px 8px 8px;
+}
+.dx-device-mobile .me-list.dx-list .dx-list-group-header .me-text-body2 {
+  margin-top: 4px;
+}
+.dx-device-mobile .me-list.dx-list .dx-list-group-header:not(:has(.me-text-body2)) {
+  padding: 12px 14px 12px 8px;
 }
 .dx-device-mobile .me-list.dx-list.dx-list-select-decorator-enabled .dx-list-item.dx-state-focused .dx-radiobutton-icon::before,
 .dx-device-mobile .me-list.dx-list.dx-list-select-decorator-enabled .dx-list-item.dx-state-focused .dx-checkbox-icon,
@@ -9021,12 +9020,16 @@
 .dx-device-mobile .me-list.dx-list .dx-list-item-content {
   width: auto;
   flex-grow: 1;
+  line-height: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .dx-device-mobile .me-list.dx-list .dx-list-item-content::before {
   content: none;
+}
+.dx-device-mobile .me-list.dx-list .dx-list-item-content .me-text-caption {
+  margin-top: 2px;
 }
 .dx-device-mobile .me-list.dx-list .dx-list-item-icon-container {
   width: 24px;
@@ -9086,13 +9089,6 @@
 .dx-device-mobile .me-list .dx-list-item-after-bag .dx-list-reorder-handle::before {
   content: none;
 }
-.dx-device-mobile .me-list .dx-list-group-header {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-  text-align: left;
-  color: #ffffff;
-}
 .dx-device-mobile .me-list .dx-list-group-header::before {
   width: 20px;
   height: 20px;
@@ -9101,8 +9097,8 @@
   margin-top: 0;
   transition: all ease 0.3s;
 }
-.dx-device-mobile .me-list .dx-list-group-header:has(.me-title-header2)::before {
-  margin-top: 9px;
+.dx-device-mobile .me-list .dx-list-group-header:has(.me-title-header1)::before {
+  margin-top: 14px;
 }
 .dx-device-mobile .me-list .dx-list-group-collapsed .dx-list-group-header::before {
   transform: rotate(180deg);
@@ -10847,6 +10843,7 @@
   padding-left: 24px;
   font-size: 16px;
   font-weight: 400;
+  text-align: left;
 }
 .me-tree-view .dx-treeview-node {
   margin-top: 4px;
@@ -11429,6 +11426,12 @@
 }
 .me-menu .dx-menu-item-wrapper:has(.dx-state-disabled) {
   cursor: default;
+}
+.me-menu > .dx-menu-horizontal > .dx-menu-items-container > .dx-menu-item-wrapper > .dx-item > .dx-item-content > .dx-menu-item-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .me-menu-large.dx-menu-base .dx-menu-item .dx-menu-item-content {
