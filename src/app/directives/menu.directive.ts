@@ -16,6 +16,7 @@ export class MeMenuDirective implements OnInit {
     let menuClasses = `${this.cssClass}  me-menu-${this.size} me-menu me-context-menu`;
 
     if (this.orientation === 'horizontal') menuClasses += ' me-menu-horizontal';
+    if (this.orientation === 'vertical') menuClasses += ' me-menu-vertical';
 
     this.component.cssClass = menuClasses;
   }
