@@ -1,24 +1,153 @@
-# DxMonitelComponents
+Библиотека выполнена в виде скомпилированных css-файлов для светлой и темной тем и директив для расширения компонентов DevExtreme отностительно дизайна приложений СК-21.
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Разрабатывалась и тестировалась на версиях Angular 16.2.5, DevExtreme 23.1.5.
 
-## Code scaffolding
+[Демонстрационная страница](https://ck-designsystem.oiktest.local/dx-monitel-themes/).
 
-Run `ng generate component component-name --project dx-monitel-components` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project dx-monitel-components`.
-> Note: Don't forget to add `--project dx-monitel-components` or else it will be added to the default project in your `angular.json` file. 
+Обратная связь — [публичная комната команды разработки дизайн-системы МЭ в Element](#UI:monitel.com).
 
-## Build
+Тестовый релиз. Перечень доступных директив:
 
-Run `ng build dx-monitel-components` to build the project. The build artifacts will be stored in the `dist/` directory.
+- meButton
+- meButtonGroup
+- meTextBox
+- meSelectBox
+- meCheckBox
+- meRadioGroup
+- mePopup
+- meContextMenu
+- meDropDownButton
+- meIcon
+- meLabel
+- meList
+- meMenu
+- meSwitch
+- meToolbar
+- meTreeView
 
-## Publishing
+Перечень доступных компонент
 
-After building your library with `ng build dx-monitel-components`, go to the dist folder `cd dist/dx-monitel-components` and run `npm publish`.
+- meSidePage
 
-## Running unit tests
+Детали кастомизации:
 
-Run `ng test dx-monitel-components` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Изменен шрифт.
+- Изменены цвета используемые в переменных препроцессора тем.
+- Добавлен размерный ряд.
+- Изменены внутренние отступы, шрифты, закругления и т.д.
 
-## Further help
+Базовые темы:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Для светлой: [Generic Light](https://devexpress.github.io/ThemeBuilder/advanced/generic/light/base.common/).
+- Для темной: [Generic Dark](https://devexpress.github.io/ThemeBuilder/advanced/generic/dark/base.common/).
+
+## 🔧 Установка
+
+```
+npm install @monitel/dx-monitel-components
+```
+
+---
+
+## Использование тем
+
+Предварительно необходимо устанавить пакеты devextreme и devextreme-angular
+
+```
+npm install devextreme
+npm install devextreme-angular
+```
+
+Без необходимости переключать темы в runtime
+
+1. Подключить файл стилей для светлой или темной темы (подключать файл стилей DevExtreme не надо!)
+
+```
+// /angular.json
+
+"styles": [
+  ...
+  "node_modules/@monitel/dx-monitel-components/assets/dx.monitel.light.css"
+],
+```
+
+2. Подключить модуль нужной директивы
+
+```
+// /app.module.ts
+import { MeButtonModule } from '@monitel/dx-monitel-components';
+
+@NgModule({
+  ...
+  imports: [..., MeButtonModule],
+  ...
+})
+```
+
+3. При необходимости можно подключить все директивы одним модулем
+
+```
+// /app.module.ts
+import { MeComponentsModule } from '@monitel/dx-monitel-components';
+
+@NgModule({
+  ...
+  imports: [..., MeComponentsModule],
+  ...
+})
+```
+
+4. Использовать компонент DevExtreme и соответствующую директиву
+
+```
+// /app.component.html
+
+<dx-button meButton text="meButton" size="small"></dx-button>
+```
+
+При необходимости переключать темы в runtime
+
+1. Добавить ссылки на файлы с темами в index.html (добавлять файлы стилей dx.monitel.light.css/dx.monitel.dark.css в angular.json не надо)
+
+```
+// /index.html
+
+  <link rel="dx-theme" data-theme="generic.light" href="assets/dx.monitel.light.css" data-active="true" />
+  <link rel="dx-theme" data-theme="generic.dark" href="assets/dx.monitel.dark.css" data-active="false" />
+```
+
+2. Добавить соответствующий код в файл angular.json
+
+```
+// /angular.json
+
+"assets": [
+  "src/favicon.ico",
+  "src/assets",
+  {
+    "glob": "**/*",
+    "input": "./node_modules/@monitel/dx-monitel-components/assets",
+    "output": "assets"
+  }
+],
+```
+
+3. Переключение тем без перезагрузки страницы
+
+```
+// /app.component.ts
+
+  import themes from 'devextreme/ui/themes';
+
+  // Код компонента
+
+  themes.current('generic.dark');
+```
+
+Подробнее о переключении тем [здесь](https://js.devexpress.com/Angular/Documentation/Guide/Themes_and_Styles/Predefined_Themes/#Switch_Between_Themes_at_Runtime)
+
+---
+
+## 🥂 License
+
+[Apache-2.0](./LICENSE.md) as always
