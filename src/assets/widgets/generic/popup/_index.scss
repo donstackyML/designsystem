@@ -176,6 +176,28 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 //   }
 // }
 
+.me-popup {
+  .me-popup-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 4px;
+    gap: 8px;
+
+    & .dx-button.me-button {
+      margin-left: auto;
+      align-self: flex-start;
+      margin-top: -4px;
+    }
+
+    .me-popup-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+}
+
 .me-popup-medium {
   & .dx-toolbar {
     & .dx-toolbar-item {
@@ -183,8 +205,9 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     }
   }
 
-  & .dx-popup-title.dx-toolbar {
-    padding: 12px 12px 8px 20px;
+  & .dx-popup-title.dx-toolbar,
+  & .dx-popup-title {
+    padding: 12px 12px 12px 20px;
 
     & .dx-toolbar-label {
       line-height: 24px;
@@ -262,8 +285,9 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     }
   }
 
-  & .dx-popup-title.dx-toolbar {
-    padding: 15px 15px 11px 24px;
+  & .dx-popup-title.dx-toolbar,
+  & .dx-popup-title {
+    padding: 15px 15px 15px 24px;
 
     & .dx-toolbar-label {
       font-size: 24px;
@@ -293,7 +317,7 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
   & .dx-popup-title .dx-button {
     position: static;
-    padding: 7px;
+    padding: 8px;
 
     & .dx-button-content {
       display: flex;
@@ -333,6 +357,18 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
     & .dx-toolbar-item {
       padding: 0;
+    }
+  }
+
+  .me-popup-header {
+    padding-top: 5px;
+
+    & .dx-button.me-button {
+      margin-top: -5px;
+    }
+
+    svg {
+      margin-top: 2px;
     }
   }
 }
