@@ -248,4 +248,56 @@
       </div>
     </dx-popup>
   </div>
+  <h2 class="wrapper__title dx-widget">Popup dialogue (medium)</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(12)"> </dx-button>
+    <dx-popup mePopup titleTemplate="title" size="medium" [showTitle]="false">
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+          <div class="me-flex-column">
+            <h3 class="me-title-header1">Заголовок</h3>
+            <div class="me-text-body2">Описание</div>
+          </div>
+        </dx-scroll-view>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button meButton size="medium" text="Принять" type="default"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton size="medium" text="Отмена" (onClick)="hidePopup(12)"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton size="medium" text="Добавить"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
+  <h2 class="wrapper__title dx-widget">Popup dialogue (large)</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(13)"> </dx-button>
+    <dx-popup mePopup titleTemplate="title" size="large" [showTitle]="false">
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+          <div class="me-flex-column">
+            <h3 class="me-title-display2">Заголовок</h3>
+            <div class="me-text-body1">Описание</div>
+          </div>
+        </dx-scroll-view>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button meButton size="large" text="Принять" type="default"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton size="large" text="Отмена" (onClick)="hidePopup(13)"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton size="large" text="Добавить"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
 </div>

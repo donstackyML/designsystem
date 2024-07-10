@@ -26,6 +26,7 @@ export class MePopupDirective extends MeOverlayDirective {
   @Input() width: string = POPUP_WIDTH_MEDIUM;
   @Input() size: Exclude<MeSize, 'small'> = 'medium';
   @Input() resizeEnabled: boolean = true;
+  @Input() showTitle: boolean = true;
 
   constructor(
     element: ElementRef,
@@ -45,6 +46,7 @@ export class MePopupDirective extends MeOverlayDirective {
 
     popup.maxHeight = this.maxHeight;
     popup.height = this.height;
+    popup.showTitle = this.showTitle;
 
     if (this.size === 'medium') {
       popup.minHeight = this.minHeight;
@@ -52,6 +54,18 @@ export class MePopupDirective extends MeOverlayDirective {
     } else if (this.size === 'large') {
       popup.minHeight = POPUP_MINHEIGHT_LARGE;
       popup.width = POPUP_WIDTH_LARGE;
+    }
+
+    if (!this.showTitle) {
+      popup.minHeight = 'initial';
+      popup.height = 'auto';
+
+      this.component.wrapperAttr = {
+        ...this.component.wrapperAttr,
+        class: `${
+          this.component.wrapperAttr['class'] || ''
+        } me-popup-without-title`,
+      };
     }
   }
 
