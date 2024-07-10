@@ -1,0 +1,116 @@
+import { Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2, TemplateRef, OnChanges, SimpleChanges, HostListener, ViewContainerRef, ComponentRef } from '@angular/core';
+import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
+
+@Directive({
+  selector: '[meTooltip]'
+})
+export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
+  @Input() tooltipContent: string = '';
+  @Input() tooltipPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
+  @Input() tooltipClass: string = '';
+  @Input() tooltipWidth: number | string = 'auto';
+  @Input() tooltipHeight: number | string = 'auto';
+  @Input() tooltipShowAnimation: any = { type: 'fade', from: 0, to: 1, duration: 300 };
+  @Input() tooltipHideAnimation: any = { type: 'fade', from: 1, to: 0, duration: 300 };
+  @Input() tooltipTemplateRef!: TemplateRef<any>;
+
+  private tooltipComponentRef!: ComponentRef<DxTooltipComponent>;
+
+  constructor(
+    private element: ElementRef,
+    private renderer: Renderer2,
+    private viewContainerRef: ViewContainerRef
+  ) {}
+
+  ngOnInit() {
+    this.initializeTooltip();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.tooltipComponentRef) {
+      const instance = this.tooltipComponentRef.instance;
+      if (changes['tooltipPosition']) {
+        instance.position = this.tooltipPosition;
+      }
+      if (changes['tooltipWidth']) {
+        instance.width = this.tooltipWidth;
+      }
+      if (changes['tooltipHeight']) {
+        instance.height = this.tooltipHeight;
+      }
+      if (changes['tooltipShowAnimation'] || changes['tooltipHideAnimation']) {
+        instance.animation = {
+          show: this.tooltipShowAnimation,
+          hide: this.tooltipHideAnimation
+        };
+      }
+      if (changes['tooltipContent'] || changes['tooltipTemplateRef']) {
+        this.updateTooltipContent();
+      }
+    }
+  }
+
+  ngOnDestroy() {
+    this.destroyTooltip();
+  }
+
+  @HostListener('mouseenter')
+  showTooltip() {
+    if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
+      this.tooltipComponentRef.instance.visible = true;
+    }
+  }
+
+  @HostListener('mouseleave')
+  hideTooltip() {
+    if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
+      this.tooltipComponentRef.instance.visible = false;
+    }
+  }
+
+  private initializeTooltip() {
+    this.tooltipComponentRef = this.viewContainerRef.createComponent(DxTooltipComponent);
+    const instance = this.tooltipComponentRef.instance;
+
+    instance.target = this.element.nativeElement;
+    instance.position = this.tooltipPosition;
+    instance.width = this.tooltipWidth;
+    instance.height = this.tooltipHeight;
+    instance.animation = {
+      show: this.tooltipShowAnimation,
+      hide: this.tooltipHideAnimation
+    };
+
+    this.updateTooltipContent();
+
+    const tooltipElement = this.tooltipComponentRef.location.nativeElement;
+    if (this.tooltipClass) {
+      this.renderer.addClass(tooltipElement, this.tooltipClass);
+    }
+
+    this.renderer.appendChild(this.element.nativeElement, tooltipElement);
+
+    instance.visible = false;
+  }
+
+  private updateTooltipContent() {
+    if (this.tooltipComponentRef) {
+      const instance = this.tooltipComponentRef.instance;
+      if (this.tooltipTemplateRef) {
+        instance.contentTemplate = this.tooltipTemplateRef;
+      } else {
+        instance.contentTemplate = () => {
+          const contentElement = this.renderer.createElement('div');
+          this.renderer.setProperty(contentElement, 'innerHTML', this.tooltipContent);
+          return contentElement;
+        };
+      }
+    }
+  }
+
+  private destroyTooltip() {
+    if (this.tooltipComponentRef) {
+      this.tooltipComponentRef.destroy();
+    }
+  }
+}

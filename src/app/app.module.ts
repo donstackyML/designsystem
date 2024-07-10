@@ -46,6 +46,8 @@ import { MeMenuDirective } from './directives/menu.directive';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
+import {MeTabsDirective} from "./directives/tabs.directive";
+import {MeTabsComponent} from "./components/me-tabs/me-tabs.component";
 
 @NgModule({
   declarations: [
@@ -65,6 +67,7 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeEditorDirective,
     MeRadioGroupDirective,
     MeRadioGroupComponent,
+    MeTabsComponent,
     MePopupComponent,
     MePopupDirective,
     MeOverlayDirective,
@@ -90,6 +93,7 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeMenuComponent,
     MeTreeViewComponent,
     MeTreeViewDirective,
+    MeTabsDirective,
   ],
   imports: [
     BrowserModule,
