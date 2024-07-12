@@ -1,18 +1,20 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  Output,
-  EventEmitter,
-  Optional,
-  AfterViewInit,
-  OnDestroy, Self,
-} from '@angular/core';
 import { DxTabsComponent } from 'devextreme-angular';
 import { Subscription } from 'rxjs';
+
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output,
+  Self,
+  SimpleChanges,
+} from '@angular/core';
 
 export interface Tab {
   id: number;
@@ -32,6 +34,10 @@ export class MeTabsDirective implements OnInit, AfterViewInit, OnChanges, OnDest
   @Input() width: string | number = 'auto';
   @Input() rtlEnabled: boolean = false;
   @Input() customClass: string = '';
+  @Input() focusStateEnabled: boolean = true;
+  @Input() disabled: boolean = false;
+  @Input() position: 'top' | 'bottom' = 'top';
+  @Input() styleMode: 'outside' | 'inside' = 'outside';
 
   @Output() selectedIndexChange = new EventEmitter<number>();
   @Output() onItemClick = new EventEmitter<any>();
@@ -52,7 +58,7 @@ export class MeTabsDirective implements OnInit, AfterViewInit, OnChanges, OnDest
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['size'] || changes['customClass']) {
+    if (changes['size'] || changes['customClass'] || changes['position']) {
       this.applyStyles();
     }
     if (this.dxTabsComponent && this.dxTabsComponent.instance) {
@@ -66,8 +72,21 @@ export class MeTabsDirective implements OnInit, AfterViewInit, OnChanges, OnDest
 
   private applyStyles() {
     const element = this.elementRef.nativeElement;
-    element.classList.remove('me-tabs-small', 'me-tabs-medium', 'me-tabs-large');
-    element.classList.add('me-tabs', `me-tabs-${this.size}`);
+    element.classList.remove(
+      'me-tabs-small',
+      'me-tabs-medium',
+      'me-tabs-large',
+      'me-tabs-top',
+      'me-tabs-bottom',
+      'me-tabs-outside',
+      'me-tabs-inside'
+    );
+    element.classList.add(
+      'me-tabs',
+      `me-tabs-${this.size}`,
+      `me-tabs-${this.position}`,
+      `me-tabs-${this.styleMode}`
+    );
     if (this.customClass) {
       element.classList.add(this.customClass);
     }
@@ -87,6 +106,7 @@ export class MeTabsDirective implements OnInit, AfterViewInit, OnChanges, OnDest
       instance.option('showNavButtons', this.showNavButtons);
       instance.option('width', this.width);
       instance.option('rtlEnabled', this.rtlEnabled);
+      instance.option('focusStateEnabled', this.focusStateEnabled);
     }
   }
 

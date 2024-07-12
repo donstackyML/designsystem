@@ -1,5 +1,6 @@
-import {Component, ViewChild} from '@angular/core';
-import {DxTabsComponent} from "devextreme-angular";
+import { DxTabsComponent } from 'devextreme-angular';
+
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'me-tabs',
@@ -17,29 +18,35 @@ export class MeTabsComponent {
     { text: 'Clients' },
     { text: 'Orders' },
     { text: 'Favorites' },
-    { text: 'Search' }
+    { text: 'Search' },
   ];
 
   tabsWithIcon: any[] = [
     { icon: 'user' },
     { icon: 'chart' },
     { icon: 'bookmark' },
-    { icon: 'search' }
+    { icon: 'search' },
   ];
 
   tabsWithIconAndText: any[] = [
     { text: 'User', icon: 'user' },
     { text: 'Analytics', icon: 'chart' },
     { text: 'Favorites', icon: 'bookmark' },
-    { text: 'Search', icon: 'search' }
+    { text: 'Search', icon: 'search' },
   ];
 
-  scrollByContent :any = false;
+  scrollByContent: any = false;
   rtlEnabled: any = false;
   width = 'auto';
-
+  positions: ['top', 'bottom'] = ['top', 'bottom'];
+  position: 'top' | 'bottom' = this.positions[0];
+  focusStateEnabled: any = false;
 
   onFullWidthChanged(e: any) {
     this.width = e.value ? '100%' : 'auto';
+  }
+
+  onPositionChanged(e: any) {
+    this.position = e.value;
   }
 }
