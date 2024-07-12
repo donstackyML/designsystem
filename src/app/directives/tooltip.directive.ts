@@ -19,7 +19,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 @Directive({
   selector: '[meTooltip]'
 })
-export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
+export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Input() tooltipContent: string = '';
   @Input() tooltipPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
   @Input() tooltipClass: string = '';

@@ -48,7 +48,7 @@ import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.comp
 import { MeTreeViewDirective } from './directives/tree-view.directive';
 import {MeTabsDirective} from "./directives/tabs.directive";
 import {MeTabsComponent} from "./components/me-tabs/me-tabs.component";
-import {MeTooltipDirective} from "./directives/me-tooltip.directive";
+import {TooltipDirective} from "./directives/tooltip.directive";
 import {MeTooltipComponent} from "./components/me-tooltip/me-tooltip.component";
 
 @NgModule({
@@ -97,7 +97,7 @@ import {MeTooltipComponent} from "./components/me-tooltip/me-tooltip.component";
     MeTreeViewComponent,
     MeTreeViewDirective,
     MeTabsDirective,
-    MeTooltipDirective,
+    TooltipDirective,
   ],
   imports: [
     BrowserModule,
