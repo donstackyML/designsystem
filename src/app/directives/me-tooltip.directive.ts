@@ -1,5 +1,20 @@
-import { Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2, TemplateRef, OnChanges, SimpleChanges, HostListener, ViewContainerRef, ComponentRef } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnInit,
+  OnDestroy,
+  Renderer2,
+  TemplateRef,
+  OnChanges,
+  SimpleChanges,
+  HostListener,
+  ViewContainerRef,
+  ComponentRef,
+  SecurityContext, EmbeddedViewRef
+} from '@angular/core';
 import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Directive({
   selector: '[meTooltip]'
@@ -19,7 +34,8 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   constructor(
     private element: ElementRef,
     private renderer: Renderer2,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -93,20 +109,32 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     instance.visible = false;
   }
 
+
   private updateTooltipContent() {
-    if (this.tooltipComponentRef) {
-      const instance = this.tooltipComponentRef.instance;
-      if (this.tooltipTemplateRef) {
-        instance.contentTemplate = this.tooltipTemplateRef;
-      } else {
-        instance.contentTemplate = () => {
-          const contentElement = this.renderer.createElement('div');
-          this.renderer.setProperty(contentElement, 'innerHTML', this.tooltipContent);
-          return contentElement;
-        };
-      }
+  if (this.tooltipComponentRef) {
+    const instance: DxTooltipComponent = this.tooltipComponentRef.instance;
+
+    if (this.tooltipTemplateRef) {
+      instance.contentTemplate = (contentElement: any) => {
+        const viewRef: EmbeddedViewRef<any> = this.tooltipTemplateRef.createEmbeddedView({});
+        contentElement.appendChild(viewRef.rootNodes[0]);
+        return contentElement;
+      };
+    } else if (this.tooltipContent) {
+      instance.contentTemplate = () => {
+        const contentElement = this.renderer.createElement('div');
+
+        let safeContent: string = this.sanitizer.sanitize(SecurityContext.HTML, this.tooltipContent) || '';
+
+        this.renderer.setProperty(contentElement, 'innerHTML', safeContent);
+
+        return contentElement;
+      };
+    } else {
+      instance.contentTemplate = null;
     }
   }
+}
 
   private destroyTooltip() {
     if (this.tooltipComponentRef) {

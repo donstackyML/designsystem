@@ -2,76 +2,87 @@
   <h1 class="wrapper__main-title dx-widget">Tabs</h1>
   <div class="widget-container">
     <div class="widget-wrapper">
-      <dx-tabs
-        #withText
-        meTabs
-        [dataSource]="tabsWithText"
-        [focusStateEnabled]="focusStateEnabled"
-        [position]="position"
-        [rtlEnabled]="rtlEnabled"
-        [scrollByContent]="scrollByContent"
-        [selectedIndex]="0"
-        [size]="'large'"
-        [styleMode]="'inside'"
-        [width]="width"
-      >
-      </dx-tabs>
+      <div>
+        <dx-tabs
+          #withText
+          meTabs
+          [dataSource]="tabsWithText"
+          [focusStateEnabled]="focusStateEnabled"
+          [position]="position"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [selectedIndex]="0"
+          [size]="'large'"
+          [styleMode]="'inside'"
+          [width]="width"
+        >
+        </dx-tabs>
+      </div>
 
-      <dx-tabs
-        #withIconAndText
-        meTabs
-        [dataSource]="tabsWithIconAndText"
-        [focusStateEnabled]="focusStateEnabled"
-        [position]="position"
-        [rtlEnabled]="rtlEnabled"
-        [scrollByContent]="scrollByContent"
-        [selectedIndex]="0"
-        [size]="'large'"
-        [width]="width"
-      >
-      </dx-tabs>
-
-      <dx-tabs
-        #withIconAndText
-        meTabs
-        [dataSource]="tabsWithIconAndText"
-        [width]="width"
-        [selectedIndex]="0"
-        [rtlEnabled]="rtlEnabled"
-        [scrollByContent]="scrollByContent"
-        [position]="position"
-        [focusStateEnabled]="focusStateEnabled"
-        [disabled]="true"
-      >
-      </dx-tabs>
-
-      <dx-tabs
-        #withIconAndText
-        meTabs
-        [dataSource]="tabsWithIconAndText"
-        [width]="width"
-        [selectedIndex]="0"
-        [rtlEnabled]="rtlEnabled"
-        [scrollByContent]="scrollByContent"
-        [position]="position"
-        [focusStateEnabled]="focusStateEnabled"
-        [size]="'small'"
-      >
-      </dx-tabs>
-
-      <dx-tabs
-        #withIcon
-        meTabs
-        [dataSource]="tabsWithIcon"
-        [width]="width"
-        [selectedIndex]="0"
-        [rtlEnabled]="rtlEnabled"
-        [scrollByContent]="scrollByContent"
-        [position]="position"
-        [focusStateEnabled]="focusStateEnabled"
-        [size]="'small'"
-      >
-      </dx-tabs>
+      <div>
+        <dx-tabs
+          #withIconAndText
+          meTabs
+          [dataSource]="tabsWithIconAndText"
+          [focusStateEnabled]="focusStateEnabled"
+          [position]="position"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [selectedIndex]="0"
+          [size]="'large'"
+          [width]="width"
+        >
+        </dx-tabs>
+      </div>
+     
+      <div>
+        <dx-tabs
+          #withIconAndText
+          meTabs
+          [dataSource]="tabsWithIconAndText"
+          [width]="width"
+          [selectedIndex]="0"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [position]="position"
+          [focusStateEnabled]="focusStateEnabled"
+          [disabled]="true"
+        >
+        </dx-tabs>
+      </div>
+     
+      <div>
+        <dx-tabs
+          #withIconAndText
+          meTabs
+          [dataSource]="tabsWithIconAndText"
+          [width]="width"
+          [selectedIndex]="0"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [position]="position"
+          [focusStateEnabled]="focusStateEnabled"
+          [size]="'small'"
+        >
+        </dx-tabs>
+      </div>
+      
+      <div>
+        <dx-tabs
+          #withIcon
+          meTabs
+          [dataSource]="tabsWithIcon"
+          [width]="width"
+          [selectedIndex]="0"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [position]="position"
+          [focusStateEnabled]="focusStateEnabled"
+          [size]="'small'"
+        >
+        </dx-tabs>
+      </div>
+      
     </div>
   </div>
 
@@ -93,9 +104,62 @@
       <label>Focus state enabled</label>
       <dx-check-box [(value)]="focusStateEnabled"></dx-check-box>
     </div>
-    <div class="option-row dx-widget" style="display: flex; align-items: center">
+    <div class="option-row dx-widget">
       <label>Position</label>
       <dx-select-box style="max-width: 100px" [dataSource]="positions" [(value)]="position" (onValueChanged)="onPositionChanged($event)"></dx-select-box>
+    </div>
+  </div>
+
+  <div class="form">
+    <div class="label">Default mode</div>
+    <div>
+      <img
+        id="product1"
+        alt="ExcelRemote IR"
+        src="images/products/17.png"
+        meTooltip
+        tooltipContent="ExcelRemote IR"
+        tooltipPosition="bottom"
+      />
+    </div>
+
+    <div class="label">With template</div>
+    <div>
+      <img
+        id="product2"
+        alt="SuperPlasma 50"
+        src="images/products/3.png"
+        meTooltip
+        [tooltipTemplateRef]="tooltipTemplate"
+        tooltipPosition="right"
+        tooltipWidth="200"
+      />
+      <ng-template #tooltipTemplate>
+        <div>
+          <img
+            alt="SuperPlasma 50"
+            width="150"
+            src="images/products/3.png"
+          />
+          <br />
+          <b>SuperPlasma 50</b><br />
+          2400$
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="label">With animation</div>
+    <div>
+      <img
+        id="product3"
+        alt="Projector PlusHD"
+        src="images/products/15.png"
+        meTooltip
+        tooltipContent="Projector PlusHD"
+        tooltipPosition="top"
+        [tooltipShowAnimation]="{ type: 'slide', from: { top: -100, opacity: 0 }, to: { opacity: 1, top: 0 } }"
+        [tooltipHideAnimation]="{ type: 'pop', from: { scale: 1, opacity: 1 }, to: { opacity: 0, scale: 0.1 } }"
+      />
     </div>
   </div>
 </div>
