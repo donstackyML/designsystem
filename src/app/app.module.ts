@@ -46,6 +46,8 @@ import { MeMenuDirective } from './directives/menu.directive';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
+import {MeAccordionDirective} from "./directives/accordion.directive";
+import {MeAccordionComponent} from "./components/me-accordion/me-accordion.component";
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeCheckBoxComponent,
     MeEditorDirective,
     MeRadioGroupDirective,
+    MeAccordionDirective,
+    MeAccordionComponent,
     MeRadioGroupComponent,
     MePopupComponent,
     MePopupDirective,
