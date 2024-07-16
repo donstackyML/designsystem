@@ -3,49 +3,36 @@
   <div class="tooltip-demo dx-widget">
     <div class="tooltip-group">
       <div class="tooltip-controls">
-        <button class="tooltip-button"
-                meTooltip
-                tooltipContent="Это простой текстовый тултип"
-                tooltipPosition="top">
-          Простой тултип
+        <button class="tooltip-button" meTooltip tooltipContent="Это простой текстовый тултип" tooltipPosition="top">Простой тултип</button>
+
+        <button
+          class="tooltip-button"
+          meTooltip
+          tooltipContent="Тултип с анимацией"
+          tooltipPosition="left"
+          [tooltipShowAnimation]="{ type: 'slide', from: { left: -100, opacity: 0 }, to: { opacity: 1, left: 0 } }"
+          [tooltipHideAnimation]="{ type: 'pop', from: { scale: 1, opacity: 1 }, to: { opacity: 0, scale: 0.1 } }"
+        >
+          Анимированный
         </button>
-        <button class="tooltip-button"
-                meTooltip
-                [tooltipTemplateRef]="htmlTemplate"
-                tooltipPosition="right">
-          HTML-содержимое
-        </button>
-        <button class="tooltip-button"
-                meTooltip
-                tooltipContent="Тултип снизу"
-                tooltipPosition="bottom">
-          Позиционирование
-        </button>
+        <button class="tooltip-button" meTooltip tooltipContent="Тултип снизу" tooltipPosition="bottom">Позиционирование</button>
       </div>
     </div>
 
     <div class="tooltip-group">
       <div class="tooltip-controls">
-        <button class="tooltip-button"
-                meTooltip
-                [tooltipTemplateRef]="interactiveTemplate"
-                tooltipPosition="top"
-                tooltipWidth="200">
+        <button
+          class="tooltip-button"
+          meTooltip
+          [tooltipTemplateRef]="interactiveTemplate"
+          tooltipPosition="right"
+          tooltipMaxWidth="200"
+        >
           Интерактивный тултип
         </button>
-        <button class="tooltip-button"
-                meTooltip
-                tooltipContent="Тултип с анимацией"
-                tooltipPosition="left"
-                [tooltipShowAnimation]="{ type: 'slide', from: { left: -100, opacity: 0 }, to: { opacity: 1, left: 0 } }"
-                [tooltipHideAnimation]="{ type: 'pop', from: { scale: 1, opacity: 1 }, to: { opacity: 0, scale: 0.1 } }">
-          Анимированный
-        </button>
-        <button class="tooltip-button"
-                meTooltip
-                [tooltipTemplateRef]="customStyleTemplate"
-                tooltipPosition="bottom"
-                tooltipClass="custom-tooltip">
+        <button class="tooltip-button" meTooltip [tooltipTemplateRef]="htmlTemplate" tooltipPosition="right" tooltipMaxWidth="300">HTML-содержимое</button>
+
+        <button class="tooltip-button" meTooltip [tooltipTemplateRef]="customStyleTemplate" tooltipPosition="bottom" tooltipClass="custom-tooltip">
           Пользовательские стили
         </button>
       </div>
@@ -54,7 +41,7 @@
 </div>
 
 <ng-template #htmlTemplate>
-  <div>
+  <div class="html-tooltip">
     <h3>HTML в тултипе</h3>
     <p>Тултипы могут содержать <strong>форматированный текст</strong>, <em>списки</em> и другие HTML-элементы:</p>
     <ul>
@@ -68,7 +55,8 @@
   <div class="interactive-tooltip">
     <h3>Интерактивный тултип</h3>
     <p>Тултипы могут содержать интерактивные элементы:</p>
-    <button>Нажми меня</button>
+    <button class="accept-button">Принять</button>
+    <button class="decline-button">Отменить</button>
   </div>
 </ng-template>
 
