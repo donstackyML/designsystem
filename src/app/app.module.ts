@@ -46,6 +46,9 @@ import { MeMenuDirective } from './directives/menu.directive';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
+import {MeCalendarDirective} from "./directives/calendar.directive";
+import {MeCalendarComponent} from "./components/me-calendar/me-calendar.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -69,6 +72,8 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MePopupDirective,
     MeOverlayDirective,
     MeIconDirective,
+    MeCalendarDirective,
+    MeCalendarComponent,
     MeSidepageDemo,
     TypographyComponent,
     MeToolbarDirective,
@@ -97,6 +102,7 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     DevExtremeModule,
     DxDateBoxModule,
     DxPivotGridModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
