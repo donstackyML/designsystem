@@ -16,7 +16,7 @@ export interface Company {
 @Component({
   selector: 'me-accordion',
   templateUrl: './me-accordion.component.html',
-  styleUrls: ['./me-accordion.component.css']
+  styleUrls: ['./me-accordion.component.css'],
 })
 export class MeAccordionComponent implements OnInit {
   @ViewChild('accordion') accordion!: DxAccordionComponent;
@@ -31,7 +31,7 @@ export class MeAccordionComponent implements OnInit {
       Zipcode: 72716,
       Phone: '(800) 555-2797',
       Fax: '(800) 555-2171',
-      Website: 'http://www.nowebsitesupermart.com'
+      Website: 'http://www.nowebsitesupermart.com',
     },
     {
       ID: 2,
@@ -42,7 +42,7 @@ export class MeAccordionComponent implements OnInit {
       Zipcode: 30339,
       Phone: '(800) 595-3232',
       Fax: '(800) 595-3231',
-      Website: 'http://www.nowebsitedepot.com'
+      Website: 'http://www.nowebsitedepot.com',
     },
     {
       ID: 3,
@@ -53,8 +53,19 @@ export class MeAccordionComponent implements OnInit {
       Zipcode: 55403,
       Phone: '(612) 304-6073',
       Fax: '(612) 304-6074',
-      Website: 'http://www.nowebsitemusic.com'
-    }
+      Website: 'http://www.nowebsitemusic.com',
+    },
+    {
+      ID: 4,
+      CompanyName: "Tom's Club",
+      Address: '999 Lake Drive',
+      City: 'Issaquah',
+      State: 'Washington',
+      Zipcode: 98027,
+      Phone: '(800) 955-2292',
+      Fax: '(800) 955-2293',
+      Website: 'http://www.nowebsitetomsclub.dx',
+    },
   ];
 
   // Переменные для хранения значений
@@ -127,7 +138,7 @@ export class MeAccordionComponent implements OnInit {
 
   // Метод для удаления компании
   removeCompany(id: number) {
-    this.companies = this.companies.filter(company => company.ID !== id);
+    this.companies = this.companies.filter((company) => company.ID !== id);
     if (this.accordion) {
       this.accordion.instance.option('dataSource', this.companies);
     }

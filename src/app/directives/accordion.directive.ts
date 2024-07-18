@@ -16,18 +16,19 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-
 @Directive({
-  selector: '[meAccordion]'
+  selector: '[meAccordion]',
 })
-export class MeAccordionDirective implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class MeAccordionDirective
+  implements OnInit, AfterViewInit, OnChanges, OnDestroy
+{
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() dataSource: any[] = []
+  @Input() dataSource: any[] = [];
   @Input() selectedIndex: number = 0;
   @Input() multiple: boolean = false;
   @Input() collapsible: boolean = false;
   @Input() animationDuration: number = 300;
-  @Input() width: string | number = 'auto';
+  @Input() width: string | number = '';
   @Input() rtlEnabled: boolean = false;
   @Input() customClass: string = '';
   @Input() focusStateEnabled: boolean = true;
@@ -42,7 +43,7 @@ export class MeAccordionDirective implements OnInit, AfterViewInit, OnChanges, O
 
   constructor(
     private elementRef: ElementRef,
-    @Self() @Optional() private dxAccordionComponent: DxAccordionComponent,
+    @Self() @Optional() private dxAccordionComponent: DxAccordionComponent
   ) {}
 
   ngOnInit() {
@@ -63,12 +64,16 @@ export class MeAccordionDirective implements OnInit, AfterViewInit, OnChanges, O
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   private applyStyles() {
     const element = this.elementRef.nativeElement;
-    element.classList.remove('me-accordion-small', 'me-accordion-medium', 'me-accordion-large');
+    element.classList.remove(
+      'me-accordion-small',
+      'me-accordion-medium',
+      'me-accordion-large'
+    );
     element.classList.add('me-accordion', `me-accordion-${this.size}`);
     if (this.customClass) {
       element.classList.add(this.customClass);
@@ -88,11 +93,14 @@ export class MeAccordionDirective implements OnInit, AfterViewInit, OnChanges, O
       instance.option('multiple', this.multiple);
       instance.option('collapsible', this.collapsible);
       instance.option('animationDuration', this.animationDuration);
-      instance.option('width', this.width);
       instance.option('rtlEnabled', this.rtlEnabled);
       instance.option('focusStateEnabled', this.focusStateEnabled);
       instance.option('disabled', this.disabled);
       instance.option('noDataText', this.noDataText);
+      instance.option('size', this.size);
+      if (this.width != '') {
+        instance.option('width', this.width);
+      }
     }
   }
 

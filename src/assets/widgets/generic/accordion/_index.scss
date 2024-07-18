@@ -13,25 +13,33 @@
 $generic-accordion-disabled-opacity: 0.5;
 
 .dx-accordion {
+  width: 379px;
   background-color: $accordion-background-color;
   color: $accordion-color;
+  padding: 16px;
 }
 
 .dx-accordion-item {
-  border: 1px solid transparent;
-  border-top-color: $accordion-item-border-color;
+  border-radius: 3px 3px 0 0;
+  border-inline: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid $accordion-item-border-color;
 
-  &:last-child {
-    border-bottom: 1px solid $accordion-item-border-color;
-  }
+  // &:not(:last-child) {
+  //   margin-bottom: 4px;
+  // }
 
-  &:first-child {
-    border-top-color: transparent;
+  // &:last-child {
+  //   border-bottom: 1px solid $accordion-item-border-color;
+  // }
 
-    &.dx-accordion-item-opened {
-      border-top-color: $accordion-item-border-color;
-    }
-  }
+  // &:first-child {
+  //   border-top-color: transparent;
+
+  //   &.dx-accordion-item-opened {
+  //     border-top-color: $accordion-item-border-color;
+  //   }
+  // }
 
   &.dx-state-active:not(.dx-accordion-item-opened) {
     .dx-icon {
@@ -49,6 +57,11 @@ $generic-accordion-disabled-opacity: 0.5;
       background-color: $accordion-item-hover-bg;
     }
 
+    &:not(.dx-accordion-item-opened) {
+      border-radius: 3px;
+      border-color: transparent;
+    }
+
     &:not(:last-child):not(.dx-accordion-item-opened):not(.dx-state-focused) {
       border-bottom-color: $accordion-item-hover-bg;
     }
@@ -56,8 +69,8 @@ $generic-accordion-disabled-opacity: 0.5;
 }
 
 .dx-accordion-item-opened {
-  border-color: $accordion-item-border-color;
-
+  border-radius: 3px;
+  border: 1px solid $accordion-item-border-color;
   &.dx-state-hover {
     & > .dx-accordion-item-title {
       background-color: $accordion-item-title-opened-bg;
@@ -121,7 +134,9 @@ $generic-accordion-disabled-opacity: 0.5;
 
 .dx-state-focused {
   &.dx-accordion-item {
-    border-color: $accordion-item-focused-border-color;
+    border: 1px solid $accordion-item-focused-border-color;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px $accordion-item-focused-border-color;
 
     &:first-child.dx-accordion-item-opened {
       border-top-color: $accordion-item-focused-border-color;
@@ -146,5 +161,56 @@ $generic-accordion-disabled-opacity: 0.5;
       margin-left: 0;
       margin-right: math.div($generic-base-icon-size, 2);
     }
+  }
+}
+
+.me-accordion-small {
+  min-width: 206px;
+
+  .dx-accordion-item-title > * {
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  .dx-accordion-item-body {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+.me-accordion-medium {
+  min-width: 300px;
+
+  .dx-accordion-item-title > * {
+    padding: 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .dx-accordion-item-body {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+.me-accordion-large {
+  min-width: 300px;
+
+  .dx-accordion-item-title > * {
+    padding: 8px 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+
+  .dx-accordion-item-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
   }
 }
