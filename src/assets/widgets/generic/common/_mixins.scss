@@ -1,14 +1,14 @@
-@use "sass:math";
-@use "../colors" as *;
-@use "sizes" as *;
-@use "../sizes" as *;
-@use "../../base/mixins" as *;
-@use "../../base/validation" as *;
-@use "../list/sizes" as *;
+@use 'sass:math';
+@use '../colors' as *;
+@use 'sizes' as *;
+@use '../sizes' as *;
+@use '../../base/mixins' as *;
+@use '../../base/validation' as *;
+@use '../list/sizes' as *;
 
 $badge-invalid-bg: $base-invalid-color;
-$generic-dropdownlist-min-height: $generic-base-font-size *
-  $generic-base-line-height + 2 * $generic-list-item-vertical-padding;
+$generic-dropdownlist-min-height: $generic-base-font-size * $generic-base-line-height + 2 *
+  $generic-list-item-vertical-padding;
 
 @mixin dx-base-typography() {
   @include dx-base-typography-mixin(
@@ -48,9 +48,9 @@ $generic-dropdownlist-min-height: $generic-base-font-size *
 @mixin dx-valid-generic-badge() {
   @include badge-settings();
 
-  font-family: "DXIcons", sans-serif;
+  font-family: 'DXIcons', sans-serif;
   color: $base-success;
-  content: "\f005";
+  content: '\f005';
 
   @include validation-badge-animation();
 }
@@ -115,15 +115,14 @@ $generic-dropdownlist-min-height: $generic-base-font-size *
       min-height: $generic-dropdownlist-min-height - (3px * 2);
 
       .dx-list-item-content {
-        padding: $generic-list-item-vertical-padding - 3px
-          $generic-list-item-horizontal-padding - 1px;
+        padding: $generic-list-item-vertical-padding - 3px $generic-list-item-horizontal-padding -
+          1px;
       }
     }
   }
 
   .dx-list-select-all {
-    padding: $generic-list-item-vertical-padding + 2px 0
-      $generic-list-item-vertical-padding - 2px;
+    padding: $generic-list-item-vertical-padding + 2px 0 $generic-list-item-vertical-padding - 2px;
   }
 
   .dx-list-item,

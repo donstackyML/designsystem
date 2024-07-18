@@ -9,11 +9,7 @@ export class MeSwitchDirective extends MeEditorDirective {
   @Input() switchedOffText: string = '';
   @Input() switchedOnText: string = '';
 
-  constructor(
-    element: ElementRef,
-    component: DxSwitchComponent,
-    renderer: Renderer2
-  ) {
+  constructor(element: ElementRef, component: DxSwitchComponent, renderer: Renderer2) {
     super(element, component, renderer);
   }
 

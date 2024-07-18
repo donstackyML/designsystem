@@ -6,18 +6,11 @@ import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
 @Directive({
   selector: '[meSelectBox]',
 })
-export class MeSelectBoxDirective
-  extends MeTextEditorDirective
-  implements OnInit
-{
+export class MeSelectBoxDirective extends MeTextEditorDirective implements OnInit {
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() wrapperAttr: MeCommonType = {};
 
-  constructor(
-    element: ElementRef,
-    component: DxSelectBoxComponent,
-    renderer: Renderer2
-  ) {
+  constructor(element: ElementRef, component: DxSelectBoxComponent, renderer: Renderer2) {
     super(element, component, renderer);
   }
 

@@ -1,4 +1,4 @@
-@use "./mixins" as *;
+@use './mixins' as *;
 
 // adduse
 .dx-scrollable-scrollbar-simulated {
@@ -20,10 +20,7 @@
   -ms-scroll-snap-type: proximity; // stylelint-disable-line property-no-vendor-prefix
 
   &.dx-scrollable-wrapper > .dx-scrollable-container > .dx-scrollable-scrollbar,
-  > div
-    > .dx-scrollable-wrapper
-    > .dx-scrollable-container
-    > .dx-scrollable-scrollbar {
+  > div > .dx-scrollable-wrapper > .dx-scrollable-container > .dx-scrollable-scrollbar {
     display: none;
   }
 
@@ -40,23 +37,15 @@
 
   &.dx-scrollable-vertical,
   &.dx-scrollable-vertical > .dx-scrollable-wrapper > .dx-scrollable-container,
-  &.dx-scrollable-vertical
-    > div
-    > .dx-scrollable-wrapper
-    > .dx-scrollable-container {
+  &.dx-scrollable-vertical > div > .dx-scrollable-wrapper > .dx-scrollable-container {
     touch-action: pan-y;
     overflow-x: hidden;
     overflow-y: auto;
   }
 
   &.dx-scrollable-horizontal,
-  &.dx-scrollable-horizontal
-    > .dx-scrollable-wrapper
-    > .dx-scrollable-container,
-  &.dx-scrollable-horizontal
-    > div
-    > .dx-scrollable-wrapper
-    > .dx-scrollable-container {
+  &.dx-scrollable-horizontal > .dx-scrollable-wrapper > .dx-scrollable-container,
+  &.dx-scrollable-horizontal > div > .dx-scrollable-wrapper > .dx-scrollable-container {
     touch-action: pan-x;
     float: none;
     overflow-x: auto;
@@ -65,10 +54,7 @@
 
   &.dx-scrollable-both,
   &.dx-scrollable-both > .dx-scrollable-wrapper > .dx-scrollable-container,
-  &.dx-scrollable-both
-    > div
-    > .dx-scrollable-wrapper
-    > .dx-scrollable-container {
+  &.dx-scrollable-both > div > .dx-scrollable-wrapper > .dx-scrollable-container {
     touch-action: pan-y pan-x;
     float: none;
     overflow-x: auto;
@@ -80,13 +66,8 @@
     touch-action: auto;
   }
 
-  &.dx-scrollable-scrollbars-hidden
-    > .dx-scrollable-wrapper
-    > .dx-scrollable-container,
-  &.dx-scrollable-scrollbars-hidden
-    > div
-    > .dx-scrollable-wrapper
-    > .dx-scrollable-container {
+  &.dx-scrollable-scrollbars-hidden > .dx-scrollable-wrapper > .dx-scrollable-container,
+  &.dx-scrollable-scrollbars-hidden > div > .dx-scrollable-wrapper > .dx-scrollable-container {
     overflow: hidden;
   }
 
@@ -212,10 +193,7 @@
   box-sizing: border-box;
   background-color: #888; /* NOTE: fallback for rgba non-supporting */
   background-color: rgba(0, 0, 0, 0.5);
-  -webkit-transform: translate(
-    0,
-    0
-  ); // stylelint-disable-line property-no-vendor-prefix
+  -webkit-transform: translate(0, 0); // stylelint-disable-line property-no-vendor-prefix
   transition: background-color 0s linear;
 
   &.dx-state-invisible {

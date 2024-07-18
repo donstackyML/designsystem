@@ -1,10 +1,10 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, OnInit } from '@angular/core';
 import { DxContextMenuComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meContextMenu]',
 })
-export class MeContextMenuDirective {
+export class MeContextMenuDirective implements OnInit {
   @Input() cssClass: string = '';
 
   constructor(private component: DxContextMenuComponent) {}

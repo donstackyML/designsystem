@@ -1,15 +1,15 @@
-@use "sass:math";
-@use "sass:color";
-@use "colors" as *;
-@use "../colors" as *;
-@use "sizes" as *;
-@use "../sizes" as *;
-@use "../../base/mixins" as *;
-@use "../../base/icons" as *;
-@use "../gridBase" as *;
-@use "../gridBase/colors" as *;
-@use "../gridBase/sizes" as *;
-@use "../../base/treeList" as baseTreeList with (
+@use 'sass:math';
+@use 'sass:color';
+@use 'colors' as *;
+@use '../colors' as *;
+@use 'sizes' as *;
+@use '../sizes' as *;
+@use '../../base/mixins' as *;
+@use '../../base/icons' as *;
+@use '../gridBase' as *;
+@use '../gridBase/colors' as *;
+@use '../gridBase/sizes' as *;
+@use '../../base/treeList' as baseTreeList with (
   $datagrid-border: $datagrid-border,
   $datagrid-drag-header-border-color: $datagrid-drag-header-border-color,
   $datagrid-row-error-bg: $datagrid-row-error-bg,
@@ -21,7 +21,7 @@
   $datagrid-row-error-color: $datagrid-row-error-color,
   $header-filter-color: $header-filter-color,
   $header-filter-color-empty: $header-filter-color-empty,
-  $base-focus-color: $base-focus-color,
+  $base-focus-color: $base-focus-color
 );
 
 // adduse
@@ -29,11 +29,20 @@
 @include grid-base(treelist);
 
 $treelist-empty-space-width: 14px;
-$treelist-select-all-checkbox-margin-top: floor(math.div(round($generic-base-line-height * $generic-base-font-size) - $generic-grid-base-checkbox-icon-size, 2));
+$treelist-select-all-checkbox-margin-top: floor(
+  math.div(
+    round($generic-base-line-height * $generic-base-font-size) -
+      $generic-grid-base-checkbox-icon-size,
+    2
+  )
+);
 $treelist-checkbox-offset-left: $treelist-empty-space-width + $generic-grid-base-cell-padding;
-$treelist-checkbox-offset-left-rtl: $treelist-checkbox-offset-left + $generic-grid-base-checkbox-icon-size;
-$treelist-editor-cell-padding-left: $treelist-checkbox-offset-left-rtl + $generic-grid-base-cell-padding;
-$treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size + $generic-grid-base-cell-padding;
+$treelist-checkbox-offset-left-rtl: $treelist-checkbox-offset-left +
+  $generic-grid-base-checkbox-icon-size;
+$treelist-editor-cell-padding-left: $treelist-checkbox-offset-left-rtl +
+  $generic-grid-base-cell-padding;
+$treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
+  $generic-grid-base-cell-padding;
 
 .dx-treelist-rowsview {
   .dx-treelist-empty-space {

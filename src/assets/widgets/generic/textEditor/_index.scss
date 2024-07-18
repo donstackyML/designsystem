@@ -1,15 +1,15 @@
-@use "sass:math";
-@use "sass:color";
-@use "colors" as *;
-@use "../colors" as *;
-@use "sizes" as *;
-@use "../sizes" as *;
-@use "../../base/icons" as *;
-@use "../common/sizes" as *;
-@use "../common/mixins" as *;
-@use "../button/sizes" as *;
-@use "../button/mixins" as *;
-@use "../../base/textEditor";
+@use 'sass:math';
+@use 'sass:color';
+@use 'colors' as *;
+@use '../colors' as *;
+@use 'sizes' as *;
+@use '../sizes' as *;
+@use '../../base/icons' as *;
+@use '../common/sizes' as *;
+@use '../common/mixins' as *;
+@use '../button/sizes' as *;
+@use '../button/mixins' as *;
+@use '../../base/textEditor';
 
 // adduse
 
@@ -18,9 +18,8 @@ $generic-texteditor-input-padding: $generic-base-inline-borderedwidget-top-paddi
   $generic-base-inline-borderedwidget-horizontal-padding
   $generic-base-inline-borderedwidget-bottom-padding;
 
-$generic-texteditor-input-height: round(
-    $generic-base-line-height * $generic-base-font-size
-  ) + $generic-base-inline-borderedwidget-top-padding +
+$generic-texteditor-input-height: round($generic-base-line-height * $generic-base-font-size) +
+  $generic-base-inline-borderedwidget-top-padding +
   $generic-base-inline-borderedwidget-bottom-padding;
 
 $generic-texteditor-icon-container-size: $generic-base-inline-borderedwidget-inner-size;
@@ -32,20 +31,15 @@ $generic-texteditor-clear-icon-size: $generic-texteditor-icon-size +
 $generic-texteditor-invalid-badge-size: $generic-invalid-badge-size + 2 *
   $generic-invalid-badge-horizontal-padding;
 
-$generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
-    0ms,
-  transform 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms,
-  top 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
+$generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms,
+  transform 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms, top 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
 
 @mixin dx-texteditor-icon() {
   position: absolute;
   top: 50%;
   margin-top: math.div(-$generic-texteditor-icon-container-size, 2);
 
-  @include dx-icon-sizing(
-    $generic-texteditor-icon-size,
-    $generic-texteditor-icon-container-size
-  );
+  @include dx-icon-sizing($generic-texteditor-icon-size, $generic-texteditor-icon-container-size);
 }
 
 @mixin texteditor-input-padding() {
@@ -130,8 +124,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 
   &.dx-editor-underlined {
     background: $texteditor-underlined-bg;
-    border-bottom: $generic-texteditor-border-width solid
-      $texteditor-border-color;
+    border-bottom: $generic-texteditor-border-width solid $texteditor-border-color;
     border-radius: 0;
   }
 
@@ -488,8 +481,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 
     .dx-texteditor-input,
     &.dx-lookup .dx-lookup-field {
-      padding-top: $generic-base-inline-borderedwidget-top-padding +
-        $input-vertical-diff;
+      padding-top: $generic-base-inline-borderedwidget-top-padding + $input-vertical-diff;
     }
 
     .dx-texteditor-label {
@@ -517,25 +509,19 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         padding-top: 1px;
       }
 
-      &.me-label-floating.me-editor-small.dx-texteditor-empty:not(
-          .dx-state-focused
-        ) {
+      &.me-label-floating.me-editor-small.dx-texteditor-empty:not(.dx-state-focused) {
         .dx-texteditor-label {
           margin-top: -7.5px;
         }
       }
 
-      &.me-label-floating.me-editor-medium.dx-texteditor-empty:not(
-          .dx-state-focused
-        ) {
+      &.me-label-floating.me-editor-medium.dx-texteditor-empty:not(.dx-state-focused) {
         .dx-texteditor-label {
           margin-top: -6.5px;
         }
       }
 
-      &.me-label-floating.me-editor-large.dx-texteditor-empty:not(
-          .dx-state-focused
-        ) {
+      &.me-label-floating.me-editor-large.dx-texteditor-empty:not(.dx-state-focused) {
         .dx-texteditor-label {
           margin-top: -10.5px;
         }
@@ -543,8 +529,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     }
 
     .dx-placeholder::before {
-      padding-top: $generic-base-inline-borderedwidget-top-padding +
-        $input-vertical-diff;
+      padding-top: $generic-base-inline-borderedwidget-top-padding + $input-vertical-diff;
     }
 
     &.me-editor-small,
@@ -562,8 +547,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 
     &.dx-textarea {
       .dx-texteditor-container {
-        padding-top: $generic-base-inline-borderedwidget-top-padding +
-          $input-vertical-diff;
+        padding-top: $generic-base-inline-borderedwidget-top-padding + $input-vertical-diff;
       }
 
       .dx-placeholder::before,
@@ -634,8 +618,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
       &.dx-textarea {
         .dx-texteditor-label {
           font-size: $generic-base-font-size;
-          top: $generic-base-inline-borderedwidget-top-padding +
-            $input-vertical-diff;
+          top: $generic-base-inline-borderedwidget-top-padding + $input-vertical-diff;
           margin-top: 0;
           height: $generic-base-inline-block-height;
           line-height: $generic-base-line-height;
@@ -859,10 +842,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
         }
 
         &.dx-invalid {
-          @include dx-state-empty(
-            $texteditor-invalid-focused-border-color,
-            solid
-          );
+          @include dx-state-empty($texteditor-invalid-focused-border-color, solid);
         }
       }
 
@@ -1002,8 +982,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
 
 .dx-editor-underlined {
   $input-vertical-diff: 4px;
-  $input-top-padding: $generic-base-inline-borderedwidget-top-padding +
-    $input-vertical-diff;
+  $input-top-padding: $generic-base-inline-borderedwidget-top-padding + $input-vertical-diff;
   $label-transform: translate(0, 0);
 
   &.dx-texteditor-with-label,
@@ -1025,8 +1004,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1)
     .dx-texteditor-input,
     &.dx-lookup .dx-lookup-field {
       padding-top: $input-top-padding;
-      padding-bottom: $generic-base-inline-borderedwidget-bottom-padding -
-        $input-vertical-diff;
+      padding-bottom: $generic-base-inline-borderedwidget-bottom-padding - $input-vertical-diff;
     }
 
     &.dx-textarea {

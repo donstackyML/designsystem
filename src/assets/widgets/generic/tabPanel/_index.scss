@@ -1,11 +1,11 @@
-@use "sass:color";
-@use "colors" as *;
-@use "../colors" as *;
-@use "sizes" as *;
-@use "../sizes" as *;
-@use "../tabs/sizes" as *;
-@use "../tabs/colors" as *;
-@use "../../base/tabPanel";
+@use 'sass:color';
+@use 'colors' as *;
+@use '../colors' as *;
+@use 'sizes' as *;
+@use '../sizes' as *;
+@use '../tabs/sizes' as *;
+@use '../tabs/colors' as *;
+@use '../../base/tabPanel';
 
 // adduse
 
@@ -38,14 +38,12 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
       .dx-tab:not(.dx-tab-selected) {
         &:first-of-type {
           box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-            $generic-tabpanel-inset-shadow-left,
-            $generic-tabpanel-inset-shadow-top;
+            $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
 
           @at-root #{selector-append(".dx-rtl", &)},
             .dx-rtl & {
             box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-              $generic-tabpanel-inset-shadow-right,
-              $generic-tabpanel-inset-shadow-top;
+              $generic-tabpanel-inset-shadow-right, $generic-tabpanel-inset-shadow-top;
           }
         }
       }
@@ -55,14 +53,12 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
       .dx-tab:not(.dx-tab-selected) {
         &:last-of-type {
           box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-            $generic-tabpanel-inset-shadow-right,
-            $generic-tabpanel-inset-shadow-top;
+            $generic-tabpanel-inset-shadow-right, $generic-tabpanel-inset-shadow-top;
 
           @at-root #{selector-append(".dx-rtl", &)},
             .dx-rtl & {
             box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-              $generic-tabpanel-inset-shadow-left,
-              $generic-tabpanel-inset-shadow-top;
+              $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
           }
         }
       }
@@ -156,7 +152,7 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
   position: relative;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     width: calc(100% + 8px);
     height: calc(100% + 4px);
@@ -169,7 +165,7 @@ $generic-tabpanel-inset-shadow-bottom: inset 0 0;
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     width: calc(100% + 4px);
     height: calc(100% + 2px);

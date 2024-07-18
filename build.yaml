@@ -8,10 +8,10 @@ trigger:
       - refs/tags/no-build
   tags:
     exclude:
-      - "*"
+      - '*'
 
 pool:
-  name: "CK-11-MainBuildPool"
+  name: 'CK-11-MainBuildPool'
   demands:
     - npm
 
@@ -53,8 +53,8 @@ steps:
 
   - script: rm -rfv *
     workingDirectory: $(Build.ArtifactStagingDirectory)
-    displayName: "Очистка после сбоки шаг 1"
+    displayName: 'Очистка после сбоки шаг 1'
 
   - script: rm -rfv *
     workingDirectory: $(Build.Repository.Name)
-    displayName: "Очистка после сбоки шаг 2"
+    displayName: 'Очистка после сбоки шаг 2'

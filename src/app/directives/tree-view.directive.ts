@@ -1,10 +1,10 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { MeSize } from '../types/types';
 
 @Directive({
   selector: '[meTreeView]',
 })
-export class MeTreeViewDirective {
+export class MeTreeViewDirective implements OnInit {
   @Input() size: Exclude<MeSize, 'medium'> = 'large';
   @Input() itemWordWrap: boolean = false;
 
@@ -12,16 +12,10 @@ export class MeTreeViewDirective {
 
   ngOnInit() {
     this.renderer.addClass(this.element.nativeElement, 'me-tree-view');
-    this.renderer.addClass(
-      this.element.nativeElement,
-      `me-tree-view-${this.size}`
-    );
+    this.renderer.addClass(this.element.nativeElement, `me-tree-view-${this.size}`);
 
     if (this.itemWordWrap) {
-      this.renderer.addClass(
-        this.element.nativeElement,
-        'me-tree-view-word-wrap'
-      );
+      this.renderer.addClass(this.element.nativeElement, 'me-tree-view-word-wrap');
     }
   }
 }

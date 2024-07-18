@@ -6,11 +6,7 @@ import { DxRadioGroupComponent } from 'devextreme-angular';
   selector: '[meRadioGroup]',
 })
 export class MeRadioGroupDirective extends MeEditorDirective {
-  constructor(
-    element: ElementRef,
-    component: DxRadioGroupComponent,
-    renderer: Renderer2
-  ) {
+  constructor(element: ElementRef, component: DxRadioGroupComponent, renderer: Renderer2) {
     super(element, component, renderer);
   }
 

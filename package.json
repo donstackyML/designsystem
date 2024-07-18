@@ -6,7 +6,19 @@
     "start": "ng serve",
     "build": "ng build --base-href /dx-monitel-themes/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint --fix designsystem"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged --relative"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -29,8 +41,21 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "16.2.2",
+    "@angular-eslint/builder": "16.2.0",
+    "@angular-eslint/eslint-plugin": "16.2.0",
+    "@angular-eslint/eslint-plugin-template": "16.2.0",
+    "@angular-eslint/schematics": "16.2.0",
+    "@angular-eslint/template-parser": "16.2.0",
     "@angular/cli": "16.2.2",
     "@angular/compiler-cli": "16.2.5",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.8.8",
     "typescript": "^5.1.6"
   }
 }

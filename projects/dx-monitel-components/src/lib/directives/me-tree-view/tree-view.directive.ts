@@ -12,16 +12,10 @@ export class MeTreeViewDirective {
 
   ngOnInit() {
     this.renderer.addClass(this.element.nativeElement, 'me-tree-view');
-    this.renderer.addClass(
-      this.element.nativeElement,
-      `me-tree-view-${this.size}`
-    );
+    this.renderer.addClass(this.element.nativeElement, `me-tree-view-${this.size}`);
 
     if (this.itemWordWrap) {
-      this.renderer.addClass(
-        this.element.nativeElement,
-        'me-tree-view-word-wrap'
-      );
+      this.renderer.addClass(this.element.nativeElement, 'me-tree-view-word-wrap');
     }
   }
 }

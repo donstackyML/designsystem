@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 // adduse
 
@@ -16,7 +16,7 @@ $transparent-border: 1px solid transparent;
 
 @function add-counter-reset($counter, $start: 1) {
   @if $counter > $start {
-    @return add-counter-reset($counter - 1, $start) + " " + list-#{$counter};
+    @return add-counter-reset($counter - 1, $start) + ' ' + list-#{$counter};
   }
 
   @return list-#{$counter};
@@ -58,11 +58,11 @@ $transparent-border: 1px solid transparent;
   @if $counter > 0 {
     @include add-counter($counter - 1);
 
-    ol li[data-list="ordered"].ql-indent-#{$counter} {
+    ol li[data-list='ordered'].ql-indent-#{$counter} {
       counter-increment: list-#{$counter};
 
       &::before {
-        content: counter(list-#{$counter}, nth($list-style, ($counter % 3) + 1)) ". ";
+        content: counter(list-#{$counter}, nth($list-style, ($counter % 3) + 1)) '. ';
       }
     }
 
@@ -76,8 +76,8 @@ $transparent-border: 1px solid transparent;
   border: $transparent-border;
 
   &:not(.dx-state-disabled) {
-    li[data-list="checked"],
-    li[data-list="unchecked"] {
+    li[data-list='checked'],
+    li[data-list='unchecked'] {
       cursor: pointer;
     }
   }
@@ -181,16 +181,16 @@ $transparent-border: 1px solid transparent;
     padding-left: $list-style-outer-width;
     position: relative;
 
-    &[data-list="bullet"]::before {
-      content: "\2022";
+    &[data-list='bullet']::before {
+      content: '\2022';
     }
 
-    &[data-list="checked"]::before {
-      content: "\2611";
+    &[data-list='checked']::before {
+      content: '\2611';
     }
 
-    &[data-list="unchecked"]::before {
-      content: "\2610";
+    &[data-list='unchecked']::before {
+      content: '\2610';
     }
 
     &::before {
@@ -207,8 +207,8 @@ $transparent-border: 1px solid transparent;
       visibility: hidden;
     }
 
-    &[data-list="unchecked"],
-    &[data-list="checked"] {
+    &[data-list='unchecked'],
+    &[data-list='checked'] {
       > .ql-ui {
         // stylelint-disable-line selector-class-pattern
         visibility: visible;
@@ -227,12 +227,12 @@ $transparent-border: 1px solid transparent;
     }
   }
 
-  li[data-list="ordered"] {
+  li[data-list='ordered'] {
     counter-reset: add-counter-reset($max-indent);
     counter-increment: list-0;
 
     &::before {
-      content: counter(list-0, nth($list-style, 1)) ". ";
+      content: counter(list-0, nth($list-style, 1)) '. ';
     }
   }
 
@@ -465,7 +465,7 @@ $transparent-border: 1px solid transparent;
   .dx-resizable-handle-top,
   .dx-resizable-handle-bottom {
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       width: $resize-handle-size;
       height: $resize-handle-size;

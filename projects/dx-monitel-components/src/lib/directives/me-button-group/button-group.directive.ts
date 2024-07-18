@@ -9,10 +9,7 @@ const DEFAULT_ICON_COLOR = '#ffffff';
   selector: '[meButtonGroup]',
 })
 export class MeButtonGroupDirective extends MeControlDirective {
-  constructor(
-    private component: DxButtonGroupComponent,
-    private iconStore: MeIconStoreService
-  ) {
+  constructor(private component: DxButtonGroupComponent, private iconStore: MeIconStoreService) {
     super();
   }
 
@@ -34,9 +31,9 @@ export class MeButtonGroupDirective extends MeControlDirective {
         }
 
         if (this.disabled) {
-          item.iconColor = `var(--button-${
-            item.warningType ? 'warning' : item.type
-          }-${this.stylingMode}-icon-disabled-color)`;
+          item.iconColor = `var(--button-${item.warningType ? 'warning' : item.type}-${
+            this.stylingMode
+          }-icon-disabled-color)`;
         }
       }
 

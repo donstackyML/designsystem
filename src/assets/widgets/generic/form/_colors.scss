@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "../sizes" as *;
-@use "../colors" as *;
+@use 'sass:color';
+@use '../sizes' as *;
+@use '../colors' as *;
 
 // adduse
 
@@ -18,19 +18,16 @@ $form-group-border-color: null !default;
 $form-field-required-color: null !default;
 $form-field-mark-color: null !default;
 
-@if $color == "light" {
+@if $color == 'light' {
   $form-field-item-color: #18181a;
   $form-group-border-color: #dfe0ed;
   $form-field-required-color: darken($base-danger, 10%) !default;
   $form-field-mark-color: lighten($base-text-color, 48.5%) !default;
 }
 
-@if $color == "dark" {
+@if $color == 'dark' {
   $form-field-item-color: #ffffff;
   $form-group-border-color: #3f4044;
-  $form-field-required-color: saturate(
-    darken($form-field-item-color, 39.2%),
-    80%
-  ) !default;
+  $form-field-required-color: saturate(darken($form-field-item-color, 39.2%), 80%) !default;
   $form-field-mark-color: darken($form-field-item-color, 48.5%) !default;
 }

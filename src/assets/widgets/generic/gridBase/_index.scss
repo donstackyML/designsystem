@@ -1,40 +1,37 @@
-@use "sass:math";
-@use "sass:color";
-@use "colors" as *;
-@use "../colors" as *;
-@use "sizes" as *;
-@use "../sizes" as *;
-@use "../../base/icons" as *;
-@use "../dropDownEditor" as *;
-@use "../textEditor" as *;
-@use "../common/mixins" as *;
-@use "../popup/colors" as *;
-@use "../menu/colors" as *;
-@use "../toolbar/colors" as *;
-@use "../button/mixins" as *;
-@use "../button/colors" as *;
-@use "../validation/colors" as *;
+@use 'sass:math';
+@use 'sass:color';
+@use 'colors' as *;
+@use '../colors' as *;
+@use 'sizes' as *;
+@use '../sizes' as *;
+@use '../../base/icons' as *;
+@use '../dropDownEditor' as *;
+@use '../textEditor' as *;
+@use '../common/mixins' as *;
+@use '../popup/colors' as *;
+@use '../menu/colors' as *;
+@use '../toolbar/colors' as *;
+@use '../button/mixins' as *;
+@use '../button/colors' as *;
+@use '../validation/colors' as *;
 
 // adduse
-@use "../scrollable";
-@use "../overlay";
-@use "../pager";
+@use '../scrollable';
+@use '../overlay';
+@use '../pager';
 
 $generic-grid-base-border-hidden: 1px solid transparent;
 $generic-grid-base-row-border: 1px solid transparent;
 $generic-grid-base-border-color: $datagrid-border-color;
-$generic-grid-base-drag-header-border: 1px solid
-  $datagrid-drag-header-border-color;
-$generic-grid-base-drag-header-first-shadow: 0 0 1px
-  $datagrid-drag-header-shadow-color;
-$generic-grid-base-drag-header-second-shadow: 0 1px 3px
-  $datagrid-drag-header-second-shadow-color;
+$generic-grid-base-drag-header-border: 1px solid $datagrid-drag-header-border-color;
+$generic-grid-base-drag-header-first-shadow: 0 0 1px $datagrid-drag-header-shadow-color;
+$generic-grid-base-drag-header-second-shadow: 0 1px 3px $datagrid-drag-header-second-shadow-color;
 $generic-grid-base-checkbox-icon-size: 16px;
 $generic-grid-base-checkbox-indeterminate-icon-size: 6px;
 $grid-masterdetail-padding: 20px;
 
 @mixin dx-set-checkbox-border-color-as-background() {
-  @if $generic-color-postfix == ".contrast" {
+  @if $generic-color-postfix == '.contrast' {
     .dx-selection .dx-checkbox-icon {
       border-color: $datagrid-base-background-color;
     }
@@ -182,9 +179,7 @@ $grid-masterdetail-padding: 20px;
       }
     }
 
-    .dx-#{$widget-name}-rowsview
-      .dx-virtual-row
-      > td[style*="text-align: right"]:before {
+    .dx-#{$widget-name}-rowsview .dx-virtual-row > td[style*='text-align: right']:before {
       background-position-y: 34px;
     }
 
@@ -299,14 +294,8 @@ $grid-masterdetail-padding: 20px;
         &::before {
           height: $generic-grid-base-checkbox-indeterminate-icon-size;
           width: $generic-grid-base-checkbox-indeterminate-icon-size;
-          margin-top: math.div(
-            -$generic-grid-base-checkbox-indeterminate-icon-size,
-            2
-          );
-          margin-left: math.div(
-            -$generic-grid-base-checkbox-indeterminate-icon-size,
-            2
-          );
+          margin-top: math.div(-$generic-grid-base-checkbox-indeterminate-icon-size, 2);
+          margin-left: math.div(-$generic-grid-base-checkbox-indeterminate-icon-size, 2);
           border-radius: 0;
         }
       }
@@ -421,9 +410,7 @@ $grid-masterdetail-padding: 20px;
     }
 
     .dx-data-row.dx-state-hover {
-      &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(
-          .dx-edit-row
-        ) {
+      &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row) {
         & > td {
           background-color: $datagrid-hover-bg;
           color: $datagrid-row-hovered-color;
@@ -523,8 +510,7 @@ $grid-masterdetail-padding: 20px;
 
     td .dx-editor-container .dx-filter-range-content {
       padding: $generic-grid-base-cell-padding $generic-grid-base-cell-padding
-        $generic-grid-base-cell-padding
-        $generic-grid-base-texteditor-input-padding;
+        $generic-grid-base-cell-padding $generic-grid-base-texteditor-input-padding;
     }
   }
 
@@ -1049,9 +1035,9 @@ $grid-masterdetail-padding: 20px;
     }
 
     .dx-data-row.dx-state-hover {
-      &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(
-          .dx-edit-row
-        ):not(.dx-row-focused) {
+      &:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row):not(
+          .dx-row-focused
+        ) {
         & > td:not(.dx-focused) {
           &.dx-#{$widget-name}-group-space {
             border-left-color: $datagrid-hover-bg;
@@ -1071,8 +1057,7 @@ $grid-masterdetail-padding: 20px;
       }
 
       td .dx-editor-container .dx-filter-range-content {
-        padding: $generic-grid-base-cell-padding
-          $generic-grid-base-texteditor-input-padding
+        padding: $generic-grid-base-cell-padding $generic-grid-base-texteditor-input-padding
           $generic-grid-base-cell-padding $generic-grid-base-cell-padding;
       }
     }

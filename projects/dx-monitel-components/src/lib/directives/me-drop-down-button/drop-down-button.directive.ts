@@ -9,10 +9,7 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 @Directive({
   selector: '[meDropDownButton]',
 })
-export class MeDropDownButtonDirective
-  extends MeControlDirective
-  implements OnInit
-{
+export class MeDropDownButtonDirective extends MeControlDirective implements OnInit {
   @Input() icon: string = '';
   @Input() iconColor: string = '';
   @Input() iconSize: string = '';
@@ -25,7 +22,7 @@ export class MeDropDownButtonDirective
     private element: ElementRef,
     private component: DxDropDownButtonComponent,
     private renderer: Renderer2,
-    private iconStore: MeIconStoreService
+    private iconStore: MeIconStoreService,
   ) {
     super();
   }
@@ -45,10 +42,7 @@ export class MeDropDownButtonDirective
 
     this.renderer.addClass(this.element.nativeElement, 'me-dropdownbutton');
 
-    this.renderer.addClass(
-      this.element.nativeElement,
-      `me-dropdownbutton-${this.size}`
-    );
+    this.renderer.addClass(this.element.nativeElement, `me-dropdownbutton-${this.size}`);
 
     this.component.icon = this.iconStore.getIcon({
       icon: this.icon,

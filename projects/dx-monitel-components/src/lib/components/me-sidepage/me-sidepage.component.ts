@@ -44,11 +44,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
       this.createShading();
     }
 
-    this.renderer.setStyle(
-      this.element.nativeElement,
-      'width',
-      `${this.width}`
-    );
+    this.renderer.setStyle(this.element.nativeElement, 'width', `${this.width}`);
 
     if (this.position === 'right') {
       this.startPosition = 'calc(100vw)';
@@ -58,7 +54,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
     this.renderer.setStyle(
       this.element.nativeElement,
       'transform',
-      `translateX(${this.startPosition})`
+      `translateX(${this.startPosition})`,
     );
   }
 
@@ -79,13 +75,12 @@ export class MeSidepageComponent implements OnInit, OnChanges {
       this.renderer.setStyle(
         this.element.nativeElement,
         'transform',
-        `translateX(${this.endPosition})`
+        `translateX(${this.endPosition})`,
       );
 
       this.renderer.addClass(this.element.nativeElement, 'me-sidepage-open');
 
-      if (this.shading)
-        this.renderer.setStyle(this.overlay, 'display', 'block');
+      if (this.shading) this.renderer.setStyle(this.overlay, 'display', 'block');
 
       if (this.hideOnOutsideClick) {
         window.addEventListener('click', this.windowClick.bind(this), true);
@@ -94,7 +89,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
       this.renderer.setStyle(
         this.element.nativeElement,
         'transform',
-        `translateX(${this.startPosition})`
+        `translateX(${this.startPosition})`,
       );
 
       this.renderer.removeClass(this.element.nativeElement, 'me-sidepage-open');
@@ -117,9 +112,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
   }
 
   windowClick(event: Event) {
-    const withinSidepage = event
-      .composedPath()
-      .includes(this.element.nativeElement);
+    const withinSidepage = event.composedPath().includes(this.element.nativeElement);
 
     if (!withinSidepage) {
       this.isSidePageOpenChange.emit(false);

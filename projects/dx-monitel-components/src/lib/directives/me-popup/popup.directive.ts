@@ -1,10 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { DxPopupComponent } from 'devextreme-angular';
 import { MeOverlayDirective } from '../me-overlay/overlay.directive';
 import { MeSize } from '../../types/types';
@@ -27,11 +21,7 @@ export class MePopupDirective extends MeOverlayDirective {
   @Input() size: Exclude<MeSize, 'small'> = 'medium';
   @Input() resizeEnabled: boolean = true;
 
-  constructor(
-    element: ElementRef,
-    component: DxPopupComponent,
-    renderer: Renderer2
-  ) {
+  constructor(element: ElementRef, component: DxPopupComponent, renderer: Renderer2) {
     super(element, component, renderer);
   }
 

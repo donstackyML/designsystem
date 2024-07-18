@@ -1,10 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DxPopupComponent } from 'devextreme-angular';
 import { MeOverlayDirective } from './overlay.directive';
 import { MeSize } from '../types/types';
@@ -19,7 +13,7 @@ const POPUP_HEIGHT = 'auto';
 @Directive({
   selector: '[mePopup]',
 })
-export class MePopupDirective extends MeOverlayDirective {
+export class MePopupDirective extends MeOverlayDirective implements OnInit {
   @Input() minHeight: string = POPUP_MINHEIGHT_MEDIUM;
   @Input() maxHeight: string = POPUP_MAXHEIGHT;
   @Input() height: string = POPUP_HEIGHT;
@@ -27,11 +21,7 @@ export class MePopupDirective extends MeOverlayDirective {
   @Input() size: Exclude<MeSize, 'small'> = 'medium';
   @Input() resizeEnabled: boolean = true;
 
-  constructor(
-    element: ElementRef,
-    component: DxPopupComponent,
-    renderer: Renderer2
-  ) {
+  constructor(element: ElementRef, component: DxPopupComponent, renderer: Renderer2) {
     super(element, component, renderer);
   }
 

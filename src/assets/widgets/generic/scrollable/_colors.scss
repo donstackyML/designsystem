@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "../sizes" as *;
-@use "../colors" as *;
+@use 'sass:color';
+@use '../sizes' as *;
+@use '../colors' as *;
 
 // adduse
 
@@ -23,28 +23,22 @@ $scrollable-scrollbar-active-bg: null !default;
 
 $scrollable-scroll-hover-bg: null !default;
 
-@if $color == "light" {
+@if $color == 'light' {
   $scrollable-scroll-bg: #18181a1f;
   $scrollable-scroll-hover-bg: #18181a3d;
 
   $scrollable-scroll-active-bg: #18181a7a;
   $scrollable-scroll-shadow-color: transparent !default;
   $scrollable-scrollbar-bg: transparent !default;
-  $scrollable-scrollbar-active-bg: color.change(
-    darken($scrollable-bg, 25%),
-    $alpha: 0.2
-  ) !default;
+  $scrollable-scrollbar-active-bg: color.change(darken($scrollable-bg, 25%), $alpha: 0.2) !default;
 }
 
-@if $color == "dark" {
+@if $color == 'dark' {
   $scrollable-scroll-bg: #ffffff1f;
   $scrollable-scroll-hover-bg: #ffffff3d;
 
   $scrollable-scroll-active-bg: #ffffff7a;
   $scrollable-scroll-shadow-color: transparent !default;
   $scrollable-scrollbar-bg: transparent !default;
-  $scrollable-scrollbar-active-bg: color.change(
-    lighten($scrollable-bg, 25%),
-    $alpha: 0.2
-  ) !default;
+  $scrollable-scrollbar-active-bg: color.change(lighten($scrollable-bg, 25%), $alpha: 0.2) !default;
 }

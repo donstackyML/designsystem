@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, OnInit } from '@angular/core';
 import { DxButtonGroupComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../service/icon-store.service';
 import { MeControlDirective } from './control.directive';
@@ -8,11 +8,8 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 @Directive({
   selector: '[meButtonGroup]',
 })
-export class MeButtonGroupDirective extends MeControlDirective {
-  constructor(
-    private component: DxButtonGroupComponent,
-    private iconStore: MeIconStoreService
-  ) {
+export class MeButtonGroupDirective extends MeControlDirective implements OnInit {
+  constructor(private component: DxButtonGroupComponent, private iconStore: MeIconStoreService) {
     super();
   }
 
@@ -34,9 +31,9 @@ export class MeButtonGroupDirective extends MeControlDirective {
         }
 
         if (this.disabled) {
-          item.iconColor = `var(--button-${
-            item.warningType ? 'warning' : item.type
-          }-${this.stylingMode}-icon-disabled-color)`;
+          item.iconColor = `var(--button-${item.warningType ? 'warning' : item.type}-${
+            this.stylingMode
+          }-icon-disabled-color)`;
         }
       }
 

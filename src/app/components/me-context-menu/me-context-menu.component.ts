@@ -7,7 +7,7 @@ import { MeIconStoreService } from 'src/app/service/icon-store.service';
   templateUrl: './me-context-menu.component.html',
   styleUrls: ['./me-context-menu.component.css'],
 })
-export class MeContextMenuComponent implements OnInit {
+export class MeContextMenuComponent {
   contextMenuItems: dxContextMenuItem[] = [
     {
       text: 'Заголовок группы уровень 1',
@@ -1190,6 +1190,4 @@ export class MeContextMenuComponent implements OnInit {
   ];
 
   constructor(private iconService: MeIconStoreService) {}
-
-  ngOnInit(): void {}
 }

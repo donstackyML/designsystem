@@ -1,9 +1,9 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[meList]',
 })
-export class MeListDirective {
+export class MeListDirective implements OnInit {
   constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {

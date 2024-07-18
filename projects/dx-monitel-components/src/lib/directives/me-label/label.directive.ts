@@ -20,9 +20,7 @@ import { MeEditorComponents, MeLabelDirection } from '../../types/types';
 @Directive({
   selector: '[meLabel]',
 })
-export class MeLabelDirective
-  implements OnInit, AfterContentInit, AfterContentChecked, OnDestroy
-{
+export class MeLabelDirective implements OnInit, AfterContentInit, AfterContentChecked, OnDestroy {
   @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
   @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
@@ -61,7 +59,7 @@ export class MeLabelDirective
     this.unlistenLabel = this.renderer.listen(
       this.element?.nativeElement,
       'click',
-      this.onLabelClick
+      this.onLabelClick,
     );
 
     let size = this.field?.elementAttr?.size;
@@ -71,20 +69,11 @@ export class MeLabelDirective
 
     if (this.labelDirection === 'row') {
       if (size.includes('small'))
-        this.renderer.addClass(
-          this.element.nativeElement,
-          'me-label-row-small'
-        );
+        this.renderer.addClass(this.element.nativeElement, 'me-label-row-small');
       if (size.includes('medium'))
-        this.renderer.addClass(
-          this.element.nativeElement,
-          'me-label-row-medium'
-        );
+        this.renderer.addClass(this.element.nativeElement, 'me-label-row-medium');
       if (size.includes('large'))
-        this.renderer.addClass(
-          this.element.nativeElement,
-          'me-label-row-large'
-        );
+        this.renderer.addClass(this.element.nativeElement, 'me-label-row-large');
     }
   }
 
@@ -102,17 +91,11 @@ export class MeLabelDirective
       if (this.field?.disabled) {
         this.renderer.addClass(this.element.nativeElement, 'me-label-disabled');
       } else {
-        this.renderer.removeClass(
-          this.element.nativeElement,
-          'me-label-disabled'
-        );
+        this.renderer.removeClass(this.element.nativeElement, 'me-label-disabled');
       }
 
       if (!this.field?.disabled && !this.field?.readOnly) {
-        this.renderer.addClass(
-          this.element.nativeElement,
-          'me-label-container'
-        );
+        this.renderer.addClass(this.element.nativeElement, 'me-label-container');
       }
     }
   }

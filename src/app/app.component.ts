@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import themes from 'devextreme/ui/themes';
 import { ComponentRoutesService } from './service/component-routes.service';
@@ -13,7 +13,7 @@ import { ValueChangedEvent } from 'devextreme/ui/select_box';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   themes: string[] = ['light', 'dark'];
   path: string;
   componentsRoute: string[];
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private service: ComponentRoutesService,
     private themeService: ThemesService,
-    private location: Location
+    private location: Location,
   ) {
     this.componentsName = this.service.getComponentsName();
     this.componentsRoute = this.service.getComponentsRoute();

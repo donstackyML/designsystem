@@ -25,7 +25,7 @@ export class ButtonDirective extends MeControlDirective implements OnInit {
     private element: ElementRef,
     private renderer: Renderer2,
     private component: DxButtonComponent,
-    private iconStore: MeIconStoreService
+    private iconStore: MeIconStoreService,
   ) {
     super();
   }
@@ -64,10 +64,7 @@ export class ButtonDirective extends MeControlDirective implements OnInit {
       </div>`;
 
     this.renderer.addClass(this.element.nativeElement, `me-button`);
-    this.renderer.addClass(
-      this.element.nativeElement,
-      `me-button-${this.size}`
-    );
+    this.renderer.addClass(this.element.nativeElement, `me-button-${this.size}`);
 
     if (this.type === 'warning') {
       this.renderer.addClass(this.element.nativeElement, `me-button-warning`);
@@ -90,15 +87,9 @@ export class ButtonDirective extends MeControlDirective implements OnInit {
         this.isSelected = !this.isSelected;
 
         if (this.isSelected) {
-          this.renderer.addClass(
-            this.element.nativeElement,
-            `me-state-selected`
-          );
+          this.renderer.addClass(this.element.nativeElement, `me-state-selected`);
         } else {
-          this.renderer.removeClass(
-            this.element.nativeElement,
-            `me-state-selected`
-          );
+          this.renderer.removeClass(this.element.nativeElement, `me-state-selected`);
         }
       });
     }

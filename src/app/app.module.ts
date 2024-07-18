@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {
-  DevExtremeModule,
-  DxDateBoxModule,
-  DxPivotGridModule,
-} from 'devextreme-angular';
+import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MeButtonComponent } from './components/me-button/me-button.component';
@@ -91,13 +87,7 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeTreeViewComponent,
     MeTreeViewDirective,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    DevExtremeModule,
-    DxDateBoxModule,
-    DxPivotGridModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, DevExtremeModule, DxDateBoxModule, DxPivotGridModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -2,21 +2,48 @@
   <h1 class="wrapper__main-title dx-widget">List</h1>
   <h2 class="wrapper__main-title dx-widget">Стандартный шаблон элементов списка</h2>
   <h2 class="wrapper__title dx-widget">Drag and drop</h2>
-  <dx-list meList [dataSource]="items" displayExpr="name" width="436px"> <dxo-item-dragging [allowReordering]="true"> </dxo-item-dragging></dx-list>
+  <dx-list meList [dataSource]="items" displayExpr="name" width="436px">
+    <dxo-item-dragging [allowReordering]="true"> </dxo-item-dragging
+  ></dx-list>
 
-  <h2 class="wrapper__title dx-widget">Список с множественным выбором, иконками, закрытием и перестановками</h2>
+  <h2 class="wrapper__title dx-widget">
+    Список с множественным выбором, иконками, закрытием и перестановками
+  </h2>
 
-  <dx-list meList [dataSource]="itemsWithIcons" displayExpr="name" selectionMode="all" [showSelectionControls]="true" [allowItemDeleting]="true" width="436px">
+  <dx-list
+    meList
+    [dataSource]="itemsWithIcons"
+    displayExpr="name"
+    selectionMode="all"
+    [showSelectionControls]="true"
+    [allowItemDeleting]="true"
+    width="436px"
+  >
     <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
   </dx-list>
 
   <h2 class="wrapper__title dx-widget">Групповой список (заголовки без описаний)</h2>
-  <dx-list meList [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" [collapsibleGroups]="true" width="436px"></dx-list>
+  <dx-list
+    meList
+    [dataSource]="itemsGrouped"
+    displayExpr="name"
+    [grouped]="true"
+    searchExpr="name"
+    [collapsibleGroups]="true"
+    width="436px"
+  ></dx-list>
 
   <h2 class="wrapper__main-title dx-widget">Кастомный шаблон элементов списка</h2>
   <h2 class="wrapper__title dx-widget">Групповой список (статичный)</h2>
 
-  <dx-list meList [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" width="436px">
+  <dx-list
+    meList
+    [dataSource]="itemsGrouped"
+    displayExpr="name"
+    [grouped]="true"
+    searchExpr="name"
+    width="436px"
+  >
     <div *dxTemplate="let group of 'group'">
       <p class="me-title-header1">{{ group.key }}</p>
       <p class="me-text-body2">{{ group.description }}</p>
@@ -24,7 +51,15 @@
   </dx-list>
 
   <h2 class="wrapper__title dx-widget">Групповой список (сворачивающийся)</h2>
-  <dx-list meList [dataSource]="itemsGrouped" displayExpr="name" [grouped]="true" searchExpr="name" [collapsibleGroups]="true" width="436px">
+  <dx-list
+    meList
+    [dataSource]="itemsGrouped"
+    displayExpr="name"
+    [grouped]="true"
+    searchExpr="name"
+    [collapsibleGroups]="true"
+    width="436px"
+  >
     <div *dxTemplate="let groupObj of 'group'">
       <p class="me-title-header1">{{ groupObj.key }}</p>
       <p class="me-text-body2">{{ groupObj.description }}</p>
@@ -32,7 +67,14 @@
   </dx-list>
 
   <h2 class="wrapper__title dx-widget">Cписок c картинками</h2>
-  <dx-list meList [dataSource]="itemsWithImage" displayExpr="name" width="436px" selectionMode="multiple" [showSelectionControls]="true">
+  <dx-list
+    meList
+    [dataSource]="itemsWithImage"
+    displayExpr="name"
+    width="436px"
+    selectionMode="multiple"
+    [showSelectionControls]="true"
+  >
     <div *dxTemplate="let item of 'item'">
       <div class="me-list-item-content">
         <img alt="{{ item.name }}" src="{{ item.image }}" />
@@ -44,7 +86,14 @@
   >
 
   <h2 class="wrapper__title dx-widget">Cписок c картинками и описаниями</h2>
-  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" width="436px" selectionMode="multiple" [showSelectionControls]="true">
+  <dx-list
+    meList
+    [dataSource]="itemsWithImageAndDescription"
+    displayExpr="name"
+    width="436px"
+    selectionMode="multiple"
+    [showSelectionControls]="true"
+  >
     <div *dxTemplate="let item of 'item'">
       <div class="me-list-item-content">
         <img alt="{{ item.name }}" src="{{ item.image }}" />
@@ -82,7 +131,14 @@
   </dx-list>
 
   <h2 class="wrapper__title dx-widget">itemDeleteMode = toggle</h2>
-  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" itemDeleteMode="toggle" width="436px">
+  <dx-list
+    meList
+    [dataSource]="itemsWithImageAndDescription"
+    displayExpr="name"
+    [allowItemDeleting]="true"
+    itemDeleteMode="toggle"
+    width="436px"
+  >
     <div *dxTemplate="let item of 'item'">
       <div class="me-list-item-content">
         <img alt="{{ item.name }}" src="{{ item.image }}" />
@@ -95,7 +151,14 @@
   </dx-list>
 
   <h2 class="wrapper__title dx-widget">itemDeleteMode = context</h2>
-  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" itemDeleteMode="context" width="436px">
+  <dx-list
+    meList
+    [dataSource]="itemsWithImageAndDescription"
+    displayExpr="name"
+    [allowItemDeleting]="true"
+    itemDeleteMode="context"
+    width="436px"
+  >
     <div *dxTemplate="let item of 'item'">
       <div class="me-list-item-content">
         <img alt="{{ item.name }}" src="{{ item.image }}" />
@@ -108,7 +171,14 @@
   </dx-list>
 
   <h2 class="wrapper__title dx-widget">itemDeleteMode = slideItem</h2>
-  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" itemDeleteMode="slideItem" width="436px">
+  <dx-list
+    meList
+    [dataSource]="itemsWithImageAndDescription"
+    displayExpr="name"
+    [allowItemDeleting]="true"
+    itemDeleteMode="slideItem"
+    width="436px"
+  >
     <div *dxTemplate="let item of 'item'">
       <div class="me-list-item-content">
         <img alt="{{ item.name }}" src="{{ item.image }}" />

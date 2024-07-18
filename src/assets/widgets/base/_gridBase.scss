@@ -1,4 +1,4 @@
-@use "./mixins" as *;
+@use './mixins' as *;
 
 // adduse
 
@@ -147,7 +147,7 @@
         }
 
         &.dx-header-filter::after {
-          content: "";
+          content: '';
           position: absolute;
           top: 0;
           bottom: 0;
@@ -300,7 +300,9 @@
   }
 
   .dx-data-row.dx-state-hover {
-    &:not(.dx-selection):not(.dx-row-modified):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row) {
+    &:not(.dx-selection):not(.dx-row-modified):not(.dx-row-inserted):not(.dx-row-removed):not(
+        .dx-edit-row
+      ) {
       & > td:not(.dx-focused) {
         .dx-link {
           color: inherit;
@@ -418,7 +420,7 @@
       }
     }
 
-    [class*="column"] + [class*="column"]:last-child {
+    [class*='column'] + [class*='column']:last-child {
       float: none;
     }
 
@@ -509,7 +511,8 @@
     }
 
     .dx-filter-range-content {
-      padding: $grid-cell-padding $grid-cell-padding $grid-cell-padding $grid-texteditor-input-padding;
+      padding: $grid-cell-padding $grid-cell-padding $grid-cell-padding
+        $grid-texteditor-input-padding;
       overflow: hidden;
       text-overflow: ellipsis;
       cursor: pointer;
@@ -531,7 +534,7 @@
     padding: $grid-cell-padding;
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       border: 2px solid transparent;
       top: 0;
@@ -564,7 +567,7 @@
     &.dx-editor-inline-block:not(.dx-command-select) {
       &::before {
         display: inline-block;
-        content: "\200b";
+        content: '\200b';
         vertical-align: middle;
         padding-top: $grid-cell-padding;
         padding-bottom: $grid-cell-padding;
@@ -612,7 +615,9 @@
 
     .dx-sort-indicator,
     .dx-header-filter-indicator {
-      max-width: calc(100% - #{round($grid-column-header-indicator-width + $grid-text-content-margin)});
+      max-width: calc(
+        100% - #{round($grid-column-header-indicator-width + $grid-text-content-margin)}
+      );
 
       &.dx-text-content-alignment-left {
         margin-right: $grid-text-content-margin;
@@ -623,33 +628,45 @@
       }
 
       &.dx-text-content-alignment-left.dx-text-content-alignment-right {
-        max-width: calc(100% - #{round($grid-column-header-indicator-width * 2 + $grid-text-content-margin * 2)});
+        max-width: calc(
+          100% - #{round($grid-column-header-indicator-width * 2 + $grid-text-content-margin * 2)}
+        );
       }
     }
 
     .dx-sort-indicator.dx-header-filter-indicator {
-      max-width: calc(100% - #{round($grid-column-header-indicator-width * 2 + $grid-text-content-margin)});
+      max-width: calc(
+        100% - #{round($grid-column-header-indicator-width * 2 + $grid-text-content-margin)}
+      );
     }
 
     .dx-sort-indicator.dx-header-filter-indicator.dx-text-content-alignment-left.dx-text-content-alignment-right {
-      max-width: calc(100% - #{round($grid-column-header-indicator-width * 4 + $grid-text-content-margin * 2)});
+      max-width: calc(
+        100% - #{round($grid-column-header-indicator-width * 4 + $grid-text-content-margin * 2)}
+      );
     }
 
     .dx-sort-indicator.dx-sort-index-indicator {
       max-width: calc(
-        100% - #{round($grid-column-header-indicator-width + $grid-text-content-margin + $grid-sort-index-width)}
+        100% - #{round(
+            $grid-column-header-indicator-width + $grid-text-content-margin + $grid-sort-index-width
+          )}
       );
 
       &.dx-header-filter-indicator {
         max-width: calc(
-          100% - #{round($grid-column-header-indicator-width * 2 + $grid-text-content-margin + $grid-sort-index-width)}
+          100% - #{round(
+              $grid-column-header-indicator-width * 2 + $grid-text-content-margin +
+                $grid-sort-index-width
+            )}
         );
       }
 
       &.dx-text-content-alignment-left.dx-text-content-alignment-right {
         max-width: calc(
           100% - #{round(
-              $grid-column-header-indicator-width * 2 + $grid-text-content-margin * 2 + $grid-sort-index-width
+              $grid-column-header-indicator-width * 2 + $grid-text-content-margin * 2 +
+                $grid-sort-index-width
             )}
         );
       }
@@ -657,7 +674,8 @@
       &.dx-header-filter-indicator.dx-text-content-alignment-left.dx-text-content-alignment-right {
         max-width: calc(
           100% - #{round(
-              $grid-column-header-indicator-width * 4 + $grid-text-content-margin * 2 + $grid-sort-index-width
+              $grid-column-header-indicator-width * 4 + $grid-text-content-margin * 2 +
+                $grid-sort-index-width
             )}
         );
       }
@@ -669,7 +687,7 @@
       border-width: 0;
 
       &.dx-state-focused::after {
-        content: " ";
+        content: ' ';
         position: absolute;
         top: -1px;
         bottom: -1px;
@@ -757,7 +775,7 @@
         top: 2px;
         width: 100%;
         height: 102%;
-        content: "";
+        content: '';
       }
     }
 
@@ -1093,7 +1111,8 @@
         }
 
         .dx-filter-range-content {
-          padding: $grid-cell-padding $grid-texteditor-input-padding $grid-cell-padding $grid-cell-padding;
+          padding: $grid-cell-padding $grid-texteditor-input-padding $grid-cell-padding
+            $grid-cell-padding;
         }
       }
     }
