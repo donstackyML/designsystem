@@ -1,12 +1,12 @@
-import { Directive, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import {Directive, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit, OnDestroy} from '@angular/core';
 import { DxCalendarComponent } from 'devextreme-angular';
 import {CalendarZoomLevel, WeekNumberRule, FirstDayOfWeek, ValueChangedEvent} from 'devextreme/ui/calendar';
 import {Subscription} from "rxjs";
 
 @Directive({
-  selector: '[meCalendar]'
+  selector: '[meCalendar]',
 })
-export class MeCalendarDirective implements OnChanges, OnInit {
+export class MeCalendarDirective implements OnChanges, OnInit, OnDestroy {
   @Input() value: Date = new Date();
   @Input() showWeekNumbers: boolean = false;
   @Input() disabled: boolean = false;
@@ -57,19 +57,6 @@ export class MeCalendarDirective implements OnChanges, OnInit {
     }
   }
 
-  getCellCssClass(cell: any): string {
-    let cssClass = '';
-    if (cell.view === 'month') {
-      if (!cell.date) {
-        cssClass = 'week-number';
-      } else {
-        if (this.isWeekend(cell.date)) { cssClass = 'weekend'; }
-        if (this.isHoliday(cell.date)) { cssClass = 'holiday'; }
-      }
-    }
-    return cssClass;
-  }
-
   private setupEventListeners() {
     if (this.dxCalendarComponent) {
       this.subscriptions.push(
@@ -80,57 +67,25 @@ export class MeCalendarDirective implements OnChanges, OnInit {
 
       this.subscriptions.push(
         this.dxCalendarComponent.onOptionChanged.subscribe(e => {
-          if (e.name === 'showWeekNumbers') {
-            this.showWeekNumbersChange.emit(e.value);
-          }
-        })
-      );
-
-      this.subscriptions.push(
-        this.dxCalendarComponent.onOptionChanged.subscribe(e => {
-          if (e.name === 'disabled') {
-            this.disabledChange.emit(e.value);
-          }
-        })
-      );
-
-      this.subscriptions.push(
-        this.dxCalendarComponent.onOptionChanged.subscribe(e => {
-          if (e.name === 'firstDayOfWeek') {
-            this.firstDayOfWeekChange.emit(e.value);
-          }
-        })
-      );
-
-      this.subscriptions.push(
-        this.dxCalendarComponent.onOptionChanged.subscribe(e => {
-          if (e.name === 'zoomLevel') {
-            this.zoomLevelChange.emit(e.value);
-          }
-        })
-      );
-
-      this.subscriptions.push(
-        this.dxCalendarComponent.onOptionChanged.subscribe(e => {
-          if (e.name === 'weekNumberRule') {
-            this.weekNumberRuleChange.emit(e.value);
+          switch (e.name) {
+            case 'showWeekNumbers':
+              this.showWeekNumbersChange.emit(e.value);
+              break;
+            case 'disabled':
+              this.disabledChange.emit(e.value);
+              break;
+            case 'firstDayOfWeek':
+              this.firstDayOfWeekChange.emit(e.value);
+              break;
+            case 'zoomLevel':
+              this.zoomLevelChange.emit(e.value);
+              break;
+            case 'weekNumberRule':
+              this.weekNumberRuleChange.emit(e.value);
+              break;
           }
         })
       );
     }
-  }
-
-
-
-  private isWeekend(date: Date): boolean {
-    const day = date.getDay();
-    return day === 0 || day === 6;
-  }
-
-  private isHoliday(date: Date): boolean {
-    const holidays = [[1, 0], [4, 6], [25, 11]];
-    return holidays.some(([day, month]) =>
-      date.getDate() === day && date.getMonth() === month
-    );
   }
 }

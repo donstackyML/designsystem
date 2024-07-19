@@ -11,7 +11,6 @@ import { MeCalendarDirective } from "../../directives/calendar.directive";
   styleUrls: ['./me-calendar.component.css'],
 })
 export class MeCalendarComponent implements OnInit {
-  @ViewChild('calendar') calendar!: DxCalendarComponent;
   @ViewChild(MeCalendarDirective) meCalendar!: MeCalendarDirective;
 
   calendarForm: FormGroup;
@@ -64,6 +63,27 @@ export class MeCalendarComponent implements OnInit {
   }
 
   getCellCssClass(cell: any): string {
-    return this.meCalendar.getCellCssClass(cell);
+    let cssClass = '';
+    if (cell.view === 'month') {
+      if (!cell.date) {
+        cssClass = 'week-number';
+      } else {
+        if (this.isWeekend(cell.date)) { cssClass = 'weekend'; }
+        if (this.isHoliday(cell.date)) { cssClass = 'holiday'; }
+      }
+    }
+    return cssClass;
+  }
+
+  private isWeekend(date: Date): boolean {
+    const day = date.getDay();
+    return day === 0 || day === 6;
+  }
+
+  private isHoliday(date: Date): boolean {
+    const holidays = [[1, 0], [4, 6], [25, 11]];
+    return holidays.some(([day, month]) =>
+      date.getDate() === day && date.getMonth() === month
+    );
   }
 }

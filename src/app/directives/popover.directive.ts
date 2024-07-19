@@ -1,14 +1,41 @@
-import { Directive, Input } from '@angular/core';
-import { MeSize } from '../types/types';
-import { MeOverlayDirective } from './overlay.directive';
+import { Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2, TemplateRef, OnChanges, SimpleChanges } from '@angular/core';
+import { DxPopoverComponent } from 'devextreme-angular/ui/popover';
 
 @Directive({
-  selector: '[mePopover]',
+  selector: '[mePopover]'
 })
-export class MePopoverDirective extends MeOverlayDirective {
-  @Input() size: MeSize = 'medium';
+export class MePopoverDirective implements OnInit, OnChanges {
+  @Input() customClass: string | undefined;
+  @Input() maxWidth: number | string | undefined;
+  @Input() minWidth: number | string | undefined;
 
-  ngOnInit(): void {
-    this.initMeModal(this.size);
+  constructor(
+    private element: ElementRef,
+    private dxPopover: DxPopoverComponent
+  ) {}
+
+  ngOnInit() {
+    this.applyCustomizations();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.applyCustomizations();
+  }
+
+  private applyCustomizations() {
+    const popoverInstance = this.dxPopover.instance;
+
+    if (this.customClass) {
+      this.element.nativeElement.classList.add(this.customClass);
+    }
+
+    if (this.maxWidth !== undefined) {
+      popoverInstance.option('maxWidth', this.maxWidth);
+    }
+
+    if (this.minWidth !== undefined) {
+      popoverInstance.option('minWidth', this.minWidth);
+    }
+  }
+
 }
