@@ -4,14 +4,9 @@ import { Subscription } from 'rxjs';
 import {
   AfterViewInit,
   Directive,
-  ElementRef,
-  EventEmitter,
   Input,
-  OnChanges,
   OnDestroy,
-  OnInit,
   Optional,
-  Output,
   Self,
   SimpleChanges,
 } from '@angular/core';
@@ -22,107 +17,73 @@ export interface Tab {
   icon?: string;
 }
 
-@Directive({
-  selector: '[meTabs]'
-})
-export class MeTabsDirective implements OnInit, AfterViewInit, OnChanges, OnDestroy {
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() dataSource: Tab[] = [];
-  @Input() selectedIndex: number = 0;
-  @Input() scrollByContent: boolean = true;
-  @Input() showNavButtons: boolean = false;
-  @Input() width: string | number = 'auto';
-  @Input() rtlEnabled: boolean = false;
-  @Input() customClass: string = '';
-  @Input() focusStateEnabled: boolean = true;
-  @Input() disabled: boolean = false;
-  @Input() position: 'top' | 'bottom' = 'top';
-  @Input() styleMode: 'outside' | 'inside' = 'outside';
+enum Sizes {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+}
 
-  @Output() selectedIndexChange = new EventEmitter<number>();
-  @Output() onItemClick = new EventEmitter<any>();
+enum StylingModes {
+  Outside = 'outside',
+  Inside = 'inside',
+}
+
+@Directive({
+  selector: '[meTabs]',
+  host: {
+    '[class.me-tabs]': 'true',
+    '[class.custom-class]': 'customClass',
+    '[class.me-tabs-top]': 'position === "top"',
+    '[class.me-tabs-bottom]': 'position === "bottom"',
+    '[class.me-tabs-small]': 'this.isSizeSmall',
+    '[class.me-tabs-medium]': 'this.isSizeMedium',
+    '[class.me-tabs-large]': 'this.isSizeLarge',
+    '[class.me-tabs-outside]': 'this.isStylingModeOutside',
+    '[class.me-tabs-inside]': 'this.isStylingModeInside',
+  },
+})
+export class MeTabsDirective implements AfterViewInit, OnDestroy {
+  @Input() customClass: string = '';
+  @Input() position: 'top' | 'bottom' = 'top';
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() stylingMode: 'outside' | 'inside' = 'outside';
 
   private subscriptions: Subscription[] = [];
 
-  constructor(
-    private elementRef: ElementRef,
-    @Self() @Optional() private dxTabsComponent: DxTabsComponent,
-  ) {}
+  constructor(@Self() @Optional() private dxTabsComponent: DxTabsComponent) {}
 
-  ngOnInit() {
-    this.applyStyles();
+  private get isSizeSmall(): boolean {
+    return this.size === Sizes.Small;
+  }
+
+  private get isSizeMedium(): boolean {
+    return this.size === Sizes.Medium;
+  }
+
+  private get isSizeLarge(): boolean {
+    return this.size === Sizes.Large;
+  }
+
+  private get isStylingModeOutside(): boolean {
+    return this.stylingMode === StylingModes.Outside;
+  }
+
+  private get isStylingModeInside(): boolean {
+    return this.stylingMode === StylingModes.Inside;
   }
 
   ngAfterViewInit() {
-    this.initializeTabs();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['size'] || changes['customClass'] || changes['position']) {
-      this.applyStyles();
-    }
-    if (this.dxTabsComponent && this.dxTabsComponent.instance) {
-      this.updateTabsProperties();
-    }
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
-  }
-
-  private applyStyles() {
-    const element = this.elementRef.nativeElement;
-    element.classList.remove(
-      'me-tabs-small',
-      'me-tabs-medium',
-      'me-tabs-large',
-      'me-tabs-top',
-      'me-tabs-bottom',
-      'me-tabs-outside',
-      'me-tabs-inside'
-    );
-    element.classList.add(
-      'me-tabs',
-      `me-tabs-${this.size}`,
-      `me-tabs-${this.position}`,
-      `me-tabs-${this.styleMode}`
-    );
-    if (this.customClass) {
-      element.classList.add(this.customClass);
-    }
-  }
-
-  private initializeTabs() {
     this.updateTabsProperties();
-    this.setupEventListeners();
   }
 
   private updateTabsProperties() {
     if (this.dxTabsComponent && this.dxTabsComponent.instance) {
       const instance = this.dxTabsComponent.instance;
-      instance.option('dataSource', this.dataSource);
-      instance.option('selectedIndex', this.selectedIndex);
-      instance.option('scrollByContent', this.scrollByContent);
-      instance.option('showNavButtons', this.showNavButtons);
-      instance.option('width', this.width);
-      instance.option('rtlEnabled', this.rtlEnabled);
-      instance.option('focusStateEnabled', this.focusStateEnabled);
+      instance.option('focusStateEnabled', true);
     }
   }
 
-  private setupEventListeners() {
-    if (this.dxTabsComponent) {
-      this.subscriptions.push(
-        this.dxTabsComponent.onItemClick.subscribe((e) => {
-          this.onItemClick.emit(e);
-        })
-      );
-
-      this.subscriptions.push(
-        this.dxTabsComponent.selectedIndexChange.subscribe((index: number) => {
-          this.selectedIndexChange.emit(index);
-        })
-      );
-    }
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

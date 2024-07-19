@@ -8,10 +8,6 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./me-tabs.component.css'],
 })
 export class MeTabsComponent {
-  @ViewChild('withText') withText!: DxTabsComponent;
-  @ViewChild('withIconAndText') withIconAndText!: DxTabsComponent;
-  @ViewChild('withIcon') withIcon!: DxTabsComponent;
-
   tabsWithText: any[] = [
     { text: 'User' },
     { text: 'Analytics' },
@@ -40,7 +36,6 @@ export class MeTabsComponent {
   width = 'auto';
   positions: ['top', 'bottom'] = ['top', 'bottom'];
   position: 'top' | 'bottom' = this.positions[0];
-  focusStateEnabled: any = false;
 
   onFullWidthChanged(e: any) {
     this.width = e.value ? '100%' : 'auto';
