@@ -4,36 +4,36 @@ import { Subscription } from 'rxjs';
 import {
   AfterViewInit,
   Directive,
-  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Optional,
   Output,
   Self,
   SimpleChanges,
 } from '@angular/core';
 
+enum Sizes {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+}
+
 @Directive({
   selector: '[meAccordion]',
+  host: {
+    '[class.me-accordion-small]': 'isSizeSmall',
+    '[class.me-accordion-medium]': 'isSizeMedium',
+    '[class.me-accordion-large]': 'isSizeLarge',
+    '[class.customClass]': 'customClass',
+  },
 })
 export class MeAccordionDirective
-  implements OnInit, AfterViewInit, OnChanges, OnDestroy
+  implements AfterViewInit, OnChanges, OnDestroy
 {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() dataSource: any[] = [];
-  @Input() selectedIndex: number = 0;
-  @Input() multiple: boolean = false;
-  @Input() collapsible: boolean = false;
-  @Input() animationDuration: number = 300;
-  @Input() width: string | number = '';
-  @Input() rtlEnabled: boolean = false;
   @Input() customClass: string = '';
-  @Input() focusStateEnabled: boolean = true;
-  @Input() disabled: boolean = false;
-  @Input() noDataText: string = 'No data to display';
 
   @Output() onItemClick = new EventEmitter<any>();
   @Output() onSelectionChanged = new EventEmitter<any>();
@@ -42,42 +42,33 @@ export class MeAccordionDirective
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private elementRef: ElementRef,
     @Self() @Optional() private dxAccordionComponent: DxAccordionComponent
   ) {}
-
-  ngOnInit() {
-    this.applyStyles();
-  }
 
   ngAfterViewInit() {
     this.initializeAccordion();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['size'] || changes['customClass']) {
-      this.applyStyles();
-    }
     if (this.dxAccordionComponent && this.dxAccordionComponent.instance) {
       this.updateAccordionProperties();
     }
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  get isSizeSmall() {
+    return this.size === 'small';
   }
 
-  private applyStyles() {
-    const element = this.elementRef.nativeElement;
-    element.classList.remove(
-      'me-accordion-small',
-      'me-accordion-medium',
-      'me-accordion-large'
-    );
-    element.classList.add('me-accordion', `me-accordion-${this.size}`);
-    if (this.customClass) {
-      element.classList.add(this.customClass);
-    }
+  get isSizeMedium() {
+    return this.size === 'medium';
+  }
+
+  get isSizeLarge() {
+    return this.size === 'large';
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   private initializeAccordion() {
@@ -88,19 +79,7 @@ export class MeAccordionDirective
   private updateAccordionProperties() {
     if (this.dxAccordionComponent && this.dxAccordionComponent.instance) {
       const instance = this.dxAccordionComponent.instance;
-      instance.option('dataSource', this.dataSource);
-      instance.option('selectedIndex', this.selectedIndex);
-      instance.option('multiple', this.multiple);
-      instance.option('collapsible', this.collapsible);
-      instance.option('animationDuration', this.animationDuration);
-      instance.option('rtlEnabled', this.rtlEnabled);
-      instance.option('focusStateEnabled', this.focusStateEnabled);
-      instance.option('disabled', this.disabled);
-      instance.option('noDataText', this.noDataText);
       instance.option('size', this.size);
-      if (this.width != '') {
-        instance.option('width', this.width);
-      }
     }
   }
 
