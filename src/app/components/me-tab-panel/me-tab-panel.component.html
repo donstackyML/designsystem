@@ -1,7 +1,10 @@
 <div class="wrapper">
   <h1 class="wrapper__main-title dx-widget">Tab Panel</h1>
+
   <div class="tabpanel-demo">
     <div class="widget-container">
+      <h2 class="widget-title">First Tab Panel</h2>
+
       <dx-tab-panel
         meTabPanel
         [height]="height"
@@ -9,23 +12,54 @@
         [animationEnabled]="animationEnabled"
         [swipeEnabled]="swipeEnabled"
         [dataSource]="dataSource"
-        
       >
+        <dxi-item title="Employee" icon="floppy">
+          asassd
+        </dxi-item>
         <div *dxTemplate="let tabPanelItem of 'item'">
           <div class="tabpanel-item">
             <div
               *ngFor="let task of tabPanelItem.tasks"
               [class]="getTaskItemClasses(task.priority)"
             >
-            <span class="task-item-text">
-              {{ task.text }}
-            </span>
+              <span class="task-item-text">
+                {{ task.text }}
+              </span>
               <span class="task-item-info">
-              {{ task.date }} by {{ task.assignedBy }}
-            </span>
+                {{ task.date }} by {{ task.assignedBy }}
+              </span>
             </div>
           </div>
         </div>
+      </dx-tab-panel>
+    </div>
+
+    <div class="widget-container">
+      <h2 class="widget-title">Second Tab Panel</h2>
+
+      <dx-tab-panel
+        meTabPanel
+        [height]="height"
+        [animationEnabled]="animationEnabled"
+        [swipeEnabled]="swipeEnabled"
+        [selectedIndex]="selectedIndex"
+        [customClass]="'custom-class'"
+      >
+        <dxi-item title="Employee" icon="floppy">
+          <div class="tabpanel-content">
+            <p>Content for Employee tab</p>
+          </div>
+        </dxi-item>
+        <dxi-item title="Notes" icon="comment">
+          <div class="tabpanel-content">
+            <p>Content for Notes tab</p>
+          </div>
+        </dxi-item>
+        <dxi-item title="Role" icon="isnotblank">
+          <div class="tabpanel-content">
+            <p>Content for Role tab</p>
+          </div>
+        </dxi-item>
       </dx-tab-panel>
     </div>
   </div>
