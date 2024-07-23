@@ -1,22 +1,32 @@
-import {Directive, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit, OnDestroy} from '@angular/core';
+import {
+  Directive,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+  SimpleChanges,
+  OnChanges,
+  Renderer2,
+  ElementRef,
+  HostListener,
+} from '@angular/core';
 import { DxCalendarComponent } from 'devextreme-angular';
-import {CalendarZoomLevel, WeekNumberRule, FirstDayOfWeek, ValueChangedEvent} from 'devextreme/ui/calendar';
-import {Subscription} from "rxjs";
+import {
+  CalendarZoomLevel,
+  WeekNumberRule,
+  FirstDayOfWeek,
+  ValueChangedEvent,
+} from 'devextreme/ui/calendar';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[meCalendar]',
+  host: {
+    '[class.me-calendar]': 'true',
+    '[class.me-calendar-show-weeks-numbers]': 'isShowWeekNumbers',
+  },
 })
-export class MeCalendarDirective implements OnChanges, OnInit, OnDestroy {
-  @Input() value: Date = new Date();
-  @Input() showWeekNumbers: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() firstDayOfWeek: FirstDayOfWeek = 0;
-  @Input() zoomLevel: CalendarZoomLevel = 'month';
-  @Input() cellTemplate: string = 'cell';
-  @Input() weekNumberRule: WeekNumberRule = 'auto';
-  @Input() min: Date | undefined;
-  @Input() max: Date | undefined;
-
+export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
   @Output() onDateValueChanged = new EventEmitter<ValueChangedEvent>();
   @Output() showWeekNumbersChange = new EventEmitter<boolean>();
   @Output() disabledChange = new EventEmitter<boolean>();
@@ -26,7 +36,13 @@ export class MeCalendarDirective implements OnChanges, OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private dxCalendarComponent: DxCalendarComponent) {}
+  private isShowWeekNumbers: boolean = true;
+
+  constructor(
+    private dxCalendarComponent: DxCalendarComponent,
+    private renderer: Renderer2,
+    private element: ElementRef
+  ) {}
 
   ngOnInit() {
     this.updateCalendarProperties();
@@ -38,35 +54,27 @@ export class MeCalendarDirective implements OnChanges, OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   private updateCalendarProperties() {
     if (this.dxCalendarComponent && this.dxCalendarComponent.instance) {
       const instance = this.dxCalendarComponent.instance;
-      instance.option('value', this.value);
-      instance.option('showWeekNumbers', this.showWeekNumbers);
-      instance.option('disabled', this.disabled);
-      instance.option('firstDayOfWeek', this.firstDayOfWeek);
-      instance.option('zoomLevel', this.zoomLevel);
-      instance.option('cellTemplate', this.cellTemplate);
-      instance.option('weekNumberRule', this.weekNumberRule);
-      instance.option('cellTemplate', this.cellTemplate);
-      instance.option('min', this.min);
-      instance.option('max', this.max);
+      instance.option('showWeekNumbers', true);
+      instance.option('firstDayOfWeek', 1);
     }
   }
 
   private setupEventListeners() {
     if (this.dxCalendarComponent) {
       this.subscriptions.push(
-        this.dxCalendarComponent.onValueChanged.subscribe(e => {
+        this.dxCalendarComponent.onValueChanged.subscribe((e) => {
           this.onDateValueChanged.emit(e);
         })
       );
 
       this.subscriptions.push(
-        this.dxCalendarComponent.onOptionChanged.subscribe(e => {
+        this.dxCalendarComponent.onOptionChanged.subscribe((e) => {
           switch (e.name) {
             case 'showWeekNumbers':
               this.showWeekNumbersChange.emit(e.value);
@@ -87,5 +95,10 @@ export class MeCalendarDirective implements OnChanges, OnInit, OnDestroy {
         })
       );
     }
+  }
+
+  @HostListener('onOptionChanged', ['$event'])
+  onOptionChanged(e: any) {
+    this.isShowWeekNumbers = e.value;
   }
 }

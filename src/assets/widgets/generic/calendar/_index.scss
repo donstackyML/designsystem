@@ -299,3 +299,124 @@ $generic-calendar-height: $generic-calendar-body-height +
     }
   }
 }
+
+.me-calendar {
+  padding: 2px 8px 8px 8px;
+  border: 1px solid $calendar-border-color;
+  border-radius: 4px;
+  height: 292px;
+  width: 288px;
+  box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.14);
+
+  .dx-button-text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: capitalize;
+  }
+  .dx-icon {
+    font-size: 14px;
+  }
+
+  .dx-calendar-navigator {
+    height: 48px;
+  }
+
+  .dx-calendar-body {
+    padding: 0 8px 8px 8px;
+    top: 45px;
+
+    table {
+      padding-right: 8px;
+    }
+
+    .dx-calendar-cell {
+      height: 24px;
+      word-spacing: 20px;
+    }
+
+    .dx-calendar-views-wrapper {
+      .dx-widget:first-child {
+        .dx-calendar-week-number-cell {
+          background-color: $calendar-weeks-bg;
+          border-radius: 0;
+        }
+        tr:first-child {
+          .dx-calendar-week-number-cell {
+            border-radius: 3px 3px 0 0;
+          }
+        }
+        tr:last-child {
+          .dx-calendar-week-number-cell {
+            border-radius: 0 0 3px 3px;
+          }
+        }
+      }
+    }
+
+    thead {
+      th {
+        padding: 0;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+        text-transform: capitalize;
+        box-shadow: none;
+      }
+
+      tr {
+        height: 24px;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 4px;
+          border-radius: 3px;
+          height: 26px;
+
+          span {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+  .dx-state-disabled {
+    *,
+    .dx-button-content,
+    .dx-icon {
+      color: $calendar-disabled-text-color;
+    }
+
+    .dx-calendar-views-wrapper {
+      .dx-widget:first-child {
+        .dx-calendar-week-number-cell {
+          background-color: $calendar-disabled-weeks-bg-color;
+        }
+      }
+    }
+
+    .dx-calendar-cell {
+      &.dx-calendar-today {
+        box-shadow: none;
+      }
+    }
+    .dx-calendar-cell {
+      &.dx-calendar-selected-date {
+        box-shadow: none;
+        color: $calendar-color;
+      }
+    }
+  }
+}
+
+.me-calendar-show-weeks-numbers {
+  .dx-calendar-navigator {
+    margin-left: 28px;
+    width: 240px;
+  }
+}
