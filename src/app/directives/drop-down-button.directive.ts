@@ -1,8 +1,8 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { MeControlDirective } from './control.directive';
-import { MeIconStoreService } from '../service/icon-store.service';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
+import { MeIconStoreService } from '../service/icon-store.service';
 import { MeCommonType, MeScrollbarShowType } from '../types/types';
+import { MeControlDirective } from './control.directive';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -17,6 +17,7 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
   @Input() wrapperAttr: MeCommonType = {};
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() dropDownOptions: MeCommonType = {};
+  @Input() useItemTextAsTitle: boolean = false;
 
   constructor(
     private element: ElementRef,
@@ -58,11 +59,9 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
       this.renderer.addClass(this.element.nativeElement, 'me-split-button');
     }
 
-    const popupWrapperClasses = `${
-      this.wrapperAttr['class'] || ''
-    } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${
-      this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
-    }`;
+    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''
+      } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+      }`;
 
     this.component.dropDownOptions = {
       wrapperAttr: {
@@ -71,5 +70,7 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
       },
       ...this.dropDownOptions,
     };
+
+    this.component.useItemTextAsTitle = this.useItemTextAsTitle;
   }
 }
