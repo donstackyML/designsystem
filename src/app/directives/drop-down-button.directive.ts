@@ -10,7 +10,7 @@ const DEFAULT_ICON_COLOR = '#ffffff';
   selector: '[meDropDownButton]',
   host: {
     '[class]': 'customClasses',
-  }
+  },
 })
 export class MeDropDownButtonDirective extends MeControlDirective implements OnInit {
   @Input() icon: string = '';
@@ -23,10 +23,7 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
   @Input() useItemTextAsTitle: boolean = false;
   private customClasses: string = `me-dropdownbutton`;
 
-  constructor(
-    private component: DxDropDownButtonComponent,
-    private iconStore: MeIconStoreService,
-  ) {
+  constructor(private component: DxDropDownButtonComponent, private iconStore: MeIconStoreService) {
     super();
   }
 
@@ -53,16 +50,17 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
 
     if (this.type === 'default') {
       this.customClasses += ' dx-button-default';
-
     }
 
     if (this.splitButton) {
       this.customClasses += ' me-split-button';
     }
 
-    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''
-      } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
-      }`;
+    const popupWrapperClasses = `${
+      this.wrapperAttr['class'] || ''
+    } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${
+      this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+    }`;
 
     this.component.dropDownOptions = {
       wrapperAttr: {
