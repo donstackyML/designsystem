@@ -17,6 +17,8 @@ import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
+import {MeToastComponent} from "./components/me-toast/me-toast.component";
+import {MeLoadingIndicatorComponent} from "./components/me-loading-indicator/me-loading-indicator.component";
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -37,6 +39,8 @@ const routes: Routes = [
   { path: 'me-context-menu', component: MeContextMenuComponent },
   { path: 'me-menu', component: MeMenuComponent },
   { path: 'me-tree-view', component: MeTreeViewComponent },
+  { path: 'me-toast', component: MeToastComponent },
+  { path: 'me-loading-indicator', component: MeLoadingIndicatorComponent },
   { path: '**', component: TypographyComponent },
 ];
 

@@ -42,6 +42,10 @@ import { MeMenuDirective } from './directives/menu.directive';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
+import {MeToastDirective} from "./directives/toast.directive";
+import {MeToastComponent} from "./components/me-toast/me-toast.component";
+import {MeLoadIndicatorDirective} from "./directives/load-indicator.directive";
+import {MeLoadingIndicatorComponent} from "./components/me-loading-indicator/me-loading-indicator.component";
 
 @NgModule({
   declarations: [
@@ -86,6 +90,10 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeMenuComponent,
     MeTreeViewComponent,
     MeTreeViewDirective,
+    MeToastDirective,
+    MeToastComponent,
+    MeLoadIndicatorDirective,
+    MeLoadingIndicatorComponent
   ],
   imports: [BrowserModule, AppRoutingModule, DevExtremeModule, DxDateBoxModule, DxPivotGridModule],
   providers: [],
