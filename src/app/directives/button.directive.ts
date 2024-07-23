@@ -9,7 +9,7 @@ const DEFAULT_ICON_COLOR = '#ffffff';
   selector: '[meButton]',
   host: {
     '[class]': 'customClasses',
-  }
+  },
 })
 export class ButtonDirective extends MeControlDirective implements OnInit, OnDestroy {
   @Input() leftIcon: string = '';
@@ -51,21 +51,21 @@ export class ButtonDirective extends MeControlDirective implements OnInit, OnDes
     this.component.template = `
       <div class="me-button-inner">
         ${this.iconStore.getIcon({
-      icon: this.leftIcon,
-      color: this.leftIconColor ? this.leftIconColor : this.iconColor,
-      size: this.getIconSize(this.leftIconSize),
-    })}
+          icon: this.leftIcon,
+          color: this.leftIconColor ? this.leftIconColor : this.iconColor,
+          size: this.getIconSize(this.leftIconSize),
+        })}
         ${this.iconStore.getIcon({
-      icon: this.iconOnly,
-      color: this.iconColor,
-      size: this.getIconSize(this.iconSize),
-    })}
+          icon: this.iconOnly,
+          color: this.iconColor,
+          size: this.getIconSize(this.iconSize),
+        })}
         ${this.getText()}
         ${this.iconStore.getIcon({
-      icon: this.rightIcon,
-      color: this.rightIconColor ? this.rightIconColor : this.iconColor,
-      size: this.getIconSize(this.rightIconSize),
-    })}
+          icon: this.rightIcon,
+          color: this.rightIconColor ? this.rightIconColor : this.iconColor,
+          size: this.getIconSize(this.rightIconSize),
+        })}
       </div>`;
 
     this.customClasses += ` me-button-${this.size}`;
