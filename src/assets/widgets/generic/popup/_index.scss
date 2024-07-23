@@ -38,20 +38,19 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 }
 
 .dx-popup-wrapper {
-  &.me-popup > .dx-overlay-content {
-    // border: none;
+  &.me-popup>.dx-overlay-content {
     box-shadow: 0 4px 10px $overlay-content-shadow-color;
     border-radius: 4px;
   }
 
-  & > .dx-overlay-content {
+  &>.dx-overlay-content {
     border: 1px solid transparent;
     background: $overlay-content-bg;
     box-shadow: 0 6px 12px $overlay-content-shadow-color;
     border-radius: $popup-border-radius;
   }
 
-  & > .dx-popup-fullscreen {
+  &>.dx-popup-fullscreen {
     border-radius: 0;
   }
 }
@@ -65,12 +64,10 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   color: $popup-title-color;
 
   &.dx-toolbar {
-    @include dx-toolbar-sizing(
-      $generic-popup-toolbar-height,
+    @include dx-toolbar-sizing($generic-popup-toolbar-height,
       $generic-popup-toolbartop-padding,
       $generic-popup-toolbar-label-font-size,
-      $generic-popup-toolbar-item-spacing
-    );
+      $generic-popup-toolbar-item-spacing );
 
     box-shadow: none;
 
@@ -116,7 +113,7 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     padding: 16px 24px 0;
   }
 
-  & > .dx-button {
+  &>.dx-button {
     margin: $generic-popup-button-margin;
   }
 }
@@ -126,20 +123,16 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   color: $popup-bottom-color;
 
   &.dx-toolbar {
-    @include dx-toolbar-sizing(
-      $generic-popup-toolbar-height,
+    @include dx-toolbar-sizing($generic-popup-toolbar-height,
       $generic-popup-toolbarbottom-padding,
       $generic-popup-toolbar-label-font-size,
-      $generic-popup-toolbar-item-spacing
-    );
+      $generic-popup-toolbar-item-spacing );
 
     .dx-device-mobile & {
-      @include dx-toolbar-sizing(
-        $generic-popup-toolbar-height,
+      @include dx-toolbar-sizing($generic-popup-toolbar-height,
         $generic-popup-toolbarbottom-padding,
         $generic-popup-toolbar-label-font-size,
-        $generic-popup-toolbar-item-spacing
-      );
+        $generic-popup-toolbar-item-spacing );
     }
   }
 
@@ -156,25 +149,6 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 .dx-dialog-message {
   padding: 0;
 }
-
-// .me-popup .me-popup .dx-closebutton {
-//   padding: 5px;
-
-//   & .dx-button-content {
-//     display: flex;
-//     padding: 5px;
-//     height: auto;
-
-//     & .dx-icon-close {
-//       background-image: $popup-close-icon-image;
-//       background-position: center center;
-//       background-repeat: no-repeat;
-//       background-size: contain;
-//       width: 10px;
-//       height: 10px;
-//     }
-//   }
-// }
 
 .me-popup-medium {
   & .dx-toolbar {
@@ -334,5 +308,21 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     & .dx-toolbar-item {
       padding: 0;
     }
+  }
+}
+
+.me-select-box.dx-popup-wrapper>.dx-overlay-content {
+  border: none;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+
+  & .dx-popup-content {
+    margin: 4px 0;
+    border: 1px solid $popup-title-border-color;
+    background: $overlay-content-bg;
+    box-shadow: 0px 2px 6px 0px #00000024;
+    border-radius: 3px;
+    overflow: hidden;
   }
 }
