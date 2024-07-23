@@ -34,7 +34,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
   @ViewChild('sidepage', { static: true })
   element!: ElementRef<HTMLDivElement>;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
     if (this.shading) {
@@ -80,7 +80,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
       if (this.shading) this.renderer.setStyle(this.overlay, 'display', 'block');
 
       if (this.hideOnOutsideClick) {
-        window.addEventListener('click', this.windowClick.bind(this), true);
+        window.addEventListener('mousedown', this.windowClick.bind(this), true);
       }
     } else {
       this.renderer.setStyle(
@@ -94,7 +94,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
       if (this.shading) this.renderer.removeStyle(this.overlay, 'display');
 
       if (this.hideOnOutsideClick) {
-        window.removeEventListener('click', this.windowClick.bind(this));
+        window.removeEventListener('mousedown', this.windowClick.bind(this));
       }
     }
   }
