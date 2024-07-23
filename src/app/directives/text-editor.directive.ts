@@ -1,15 +1,19 @@
 import { Directive, ElementRef, Inject, Input, Renderer2 } from '@angular/core';
-import { MeTextEditorComponents, MeFieldStyle, MeLabelMode } from '../types/types';
 import { DxTextBoxComponent } from 'devextreme-angular';
+import { MeFieldStyle, MeLabelMode, MeTextEditorComponents } from '../types/types';
 import { MeEditorDirective } from './editor.directive';
 
 @Directive({
   selector: '[meTextEditor]',
+  host: {
+    '[class]': 'customTextEditorClass'
+  }
 })
 export class MeTextEditorDirective extends MeEditorDirective {
   @Input() stylingMode: MeFieldStyle = 'filled';
   @Input() labelMode: MeLabelMode = 'static';
   @Input() label: string = '';
+  private customTextEditorClass: string = '';
 
   constructor(
     element: ElementRef,
@@ -26,10 +30,10 @@ export class MeTextEditorDirective extends MeEditorDirective {
     (<MeTextEditorComponents>this.component).stylingMode = this.stylingMode;
 
     if (this.label && (this.labelMode === 'floating' || this.labelMode === 'static')) {
-      this.renderer.addClass(this.element.nativeElement, 'me-texteditor-with-label');
+      this.customTextEditorClass += ' me-texteditor-with-label';
 
       if (this.labelMode === 'floating')
-        this.renderer.addClass(this.element.nativeElement, 'me-label-floating');
+        this.customTextEditorClass += ' me-label-floating';
     }
   };
 }

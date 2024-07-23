@@ -17,9 +17,11 @@ export class MeSelectBoxDirective extends MeTextEditorDirective implements OnIni
   ngOnInit(): void {
     this.initMeField();
 
-    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''
-      } me-scroll-view me-dropdownlist-${this.size} me-select-box ${this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
-      }`;
+    const popupWrapperClasses = `${
+      this.wrapperAttr['class'] || ''
+    } me-scroll-view me-dropdownlist-${this.size} me-select-box ${
+      this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+    }`;
 
     (<DxSelectBoxComponent>this.component).dropDownOptions = {
       wrapperAttr: {
