@@ -11,7 +11,8 @@ import {
   HostListener,
   ViewContainerRef,
   ComponentRef,
-  SecurityContext, EmbeddedViewRef
+  SecurityContext,
+  EmbeddedViewRef,
 } from '@angular/core';
 import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -20,7 +21,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: '[meTooltip]',
 })
 export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
-  @Input() tooltipContent: string = '';
+  @Input() meTooltip: string = '';
   @Input() tooltipPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
   @Input() tooltipClass: string = '';
   @Input() tooltipWidth: number | string = 'auto';
@@ -75,7 +76,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
       if (changes['tooltipShowAnimation'] || changes['tooltipHideAnimation']) {
         instance.animation = {
           show: this.tooltipShowAnimation,
-          hide: this.tooltipHideAnimation
+          hide: this.tooltipHideAnimation,
         };
       }
       if (changes['tooltipContent'] || changes['tooltipTemplateRef']) {
@@ -116,7 +117,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
 
     instance.animation = {
       show: this.tooltipShowAnimation,
-      hide: this.tooltipHideAnimation
+      hide: this.tooltipHideAnimation,
     };
 
     this.updateTooltipContent();
@@ -142,15 +143,12 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
           contentElement.appendChild(viewRef.rootNodes[0]);
           return contentElement;
         };
-      } else if (this.tooltipContent) {
+      } else if (this.meTooltip) {
         instance.contentTemplate = () => {
           const contentElement = this.renderer.createElement('div');
 
           let safeContent: string =
-            this.sanitizer.sanitize(
-              SecurityContext.HTML,
-              this.tooltipContent
-            ) || '';
+            this.sanitizer.sanitize(SecurityContext.HTML, this.meTooltip) || '';
 
           this.renderer.setProperty(contentElement, 'innerHTML', safeContent);
 

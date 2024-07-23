@@ -3,31 +3,24 @@
   <div class="tooltip-demo dx-widget">
     <div class="tooltip-group">
       <div class="tooltip-controls">
-        <button class="tooltip-button" meTooltip tooltipContent="Это простой текстовый тултип" tooltipPosition="top">Простой тултип</button>
+        <button class="tooltip-button" meTooltip="Это простой текстовый тултип" tooltipPosition="top">Простой тултип</button>
 
         <button
           class="tooltip-button"
-          meTooltip
-          tooltipContent="Тултип с анимацией"
+          meTooltip="Тултип с анимацией"
           tooltipPosition="left"
           [tooltipShowAnimation]="{ type: 'slide', from: { left: -100, opacity: 0 }, to: { opacity: 1, left: 0 } }"
           [tooltipHideAnimation]="{ type: 'pop', from: { scale: 1, opacity: 1 }, to: { opacity: 0, scale: 0.1 } }"
         >
           Анимированный
         </button>
-        <button class="tooltip-button" meTooltip tooltipContent="Тултип снизу" tooltipPosition="bottom">Позиционирование</button>
+        <button class="tooltip-button" meTooltip="Тултип снизу" tooltipPosition="bottom">Позиционирование</button>
       </div>
     </div>
 
     <div class="tooltip-group">
       <div class="tooltip-controls">
-        <button
-          class="tooltip-button"
-          meTooltip
-          [tooltipTemplateRef]="interactiveTemplate"
-          tooltipPosition="right"
-          tooltipMaxWidth="200"
-        >
+        <button class="tooltip-button" meTooltip [tooltipTemplateRef]="interactiveTemplate" tooltipPosition="right" tooltipMaxWidth="200">
           Интерактивный тултип
         </button>
         <button class="tooltip-button" meTooltip [tooltipTemplateRef]="htmlTemplate" tooltipPosition="right" tooltipMaxWidth="300">HTML-содержимое</button>

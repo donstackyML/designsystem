@@ -1,52 +1,8 @@
-import { DxTabsComponent } from 'devextreme-angular';
-
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'me-tooltip',
   templateUrl: './me-tooltip.component.html',
   styleUrls: ['./me-tooltip.component.css'],
 })
-export class MeTooltipComponent {
-  @ViewChild('withText') withText!: DxTabsComponent;
-  @ViewChild('withIconAndText') withIconAndText!: DxTabsComponent;
-  @ViewChild('withIcon') withIcon!: DxTabsComponent;
-
-  tabsWithText: any[] = [
-    { text: 'User' },
-    { text: 'Analytics' },
-    { text: 'Clients' },
-    { text: 'Orders' },
-    { text: 'Favorites' },
-    { text: 'Search' },
-  ];
-
-  tabsWithIcon: any[] = [
-    { icon: 'user' },
-    { icon: 'chart' },
-    { icon: 'bookmark' },
-    { icon: 'search' },
-  ];
-
-  tabsWithIconAndText: any[] = [
-    { text: 'User', icon: 'user' },
-    { text: 'Analytics', icon: 'chart' },
-    { text: 'Favorites', icon: 'bookmark' },
-    { text: 'Search', icon: 'search' },
-  ];
-
-  scrollByContent: any = false;
-  rtlEnabled: any = false;
-  width = 'auto';
-  positions: ['top', 'bottom'] = ['top', 'bottom'];
-  position: 'top' | 'bottom' = this.positions[0];
-  focusStateEnabled: any = false;
-
-  onFullWidthChanged(e: any) {
-    this.width = e.value ? '100%' : 'auto';
-  }
-
-  onPositionChanged(e: any) {
-    this.position = e.value;
-  }
-}
+export class MeTooltipComponent {}
