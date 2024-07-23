@@ -6,8 +6,8 @@ import { MeEditorDirective } from './editor.directive';
 @Directive({
   selector: '[meTextEditor]',
   host: {
-    '[class]': 'customTextEditorClass'
-  }
+    '[class]': 'customTextEditorClass',
+  },
 })
 export class MeTextEditorDirective extends MeEditorDirective {
   @Input() stylingMode: MeFieldStyle = 'filled';
@@ -32,8 +32,7 @@ export class MeTextEditorDirective extends MeEditorDirective {
     if (this.label && (this.labelMode === 'floating' || this.labelMode === 'static')) {
       this.customTextEditorClass += ' me-texteditor-with-label';
 
-      if (this.labelMode === 'floating')
-        this.customTextEditorClass += ' me-label-floating';
+      if (this.labelMode === 'floating') this.customTextEditorClass += ' me-label-floating';
     }
   };
 }
