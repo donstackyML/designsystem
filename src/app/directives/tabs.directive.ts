@@ -1,15 +1,5 @@
-import { DxTabsComponent } from 'devextreme-angular';
-import { Subscription } from 'rxjs';
-
-import {
-  AfterViewInit,
-  Directive,
-  Input,
-  OnDestroy,
-  Optional,
-  Self,
-  SimpleChanges,
-} from '@angular/core';
+import { Directive, Input } from '@angular/core';
+import { MeSize } from '../types/types';
 
 export interface Tab {
   id: number;
@@ -42,15 +32,11 @@ enum StylingModes {
     '[class.me-tabs-inside]': 'this.isStylingModeInside',
   },
 })
-export class MeTabsDirective implements AfterViewInit, OnDestroy {
+export class MeTabsDirective {
   @Input() customClass: string = '';
   @Input() position: 'top' | 'bottom' = 'top';
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() size: MeSize = 'medium';
   @Input() stylingMode: 'outside' | 'inside' = 'outside';
-
-  private subscriptions: Subscription[] = [];
-
-  constructor(@Self() @Optional() private dxTabsComponent: DxTabsComponent) {}
 
   private get isSizeSmall(): boolean {
     return this.size === Sizes.Small;
@@ -72,18 +58,14 @@ export class MeTabsDirective implements AfterViewInit, OnDestroy {
     return this.stylingMode === StylingModes.Inside;
   }
 
-  ngAfterViewInit() {
-    this.updateTabsProperties();
-  }
+  // ngAfterViewInit() {
+  //   this.updateTabsProperties();
+  // }
 
-  private updateTabsProperties() {
-    if (this.dxTabsComponent && this.dxTabsComponent.instance) {
-      const instance = this.dxTabsComponent.instance;
-      instance.option('focusStateEnabled', true);
-    }
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
-  }
+  // private updateTabsProperties() {
+  //   if (this.dxTabsComponent && this.dxTabsComponent.instance) {
+  //     const instance = this.dxTabsComponent.instance;
+  //     instance.option('focusStateEnabled', true);
+  //   }
+  // }
 }
