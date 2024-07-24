@@ -4,6 +4,7 @@ import { DxAccordionComponent } from 'devextreme-angular';
 export interface Company {
   ID: number;
   CompanyName: string;
+  Description: string;
   Address: string;
   City: string;
   State: string;
@@ -25,6 +26,7 @@ export class MeAccordionComponent implements OnInit {
     {
       ID: 1,
       CompanyName: 'Super Mart of the West',
+      Description: 'Описание',
       Address: '702 SW 8th Street',
       City: 'Bentonville',
       State: 'Arkansas',
@@ -36,6 +38,7 @@ export class MeAccordionComponent implements OnInit {
     {
       ID: 2,
       CompanyName: 'Electronics Depot',
+      Description: 'Описание',
       Address: '2455 Paces Ferry Road NW',
       City: 'Atlanta',
       State: 'Georgia',
@@ -47,6 +50,7 @@ export class MeAccordionComponent implements OnInit {
     {
       ID: 3,
       CompanyName: 'K&S Music',
+      Description: 'Описание',
       Address: '1000 Nicllet Mall',
       City: 'Minneapolis',
       State: 'Minnesota',
@@ -58,6 +62,7 @@ export class MeAccordionComponent implements OnInit {
     {
       ID: 4,
       CompanyName: "Tom's Club",
+      Description: 'Описание',
       Address: '999 Lake Drive',
       City: 'Issaquah',
       State: 'Washington',
