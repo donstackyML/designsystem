@@ -4,6 +4,9 @@ import { MeOverlayDirective } from './overlay.directive';
 
 @Directive({
   selector: '[mePopover]',
+  host: {
+    '[class.me-popover]': 'true',
+  },
 })
 export class MePopoverDirective extends MeOverlayDirective implements OnInit {
   @Input() size: MeSize = 'medium';

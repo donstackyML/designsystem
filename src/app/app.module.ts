@@ -48,6 +48,9 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTabPanelDirective } from './directives/tab-panel.directive';
 import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
+import { MeCalendarDirective } from "./directives/calendar.directive";
+import { MeCalendarComponent } from "./components/me-calendar/me-calendar.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -73,6 +76,8 @@ import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.comp
     MePopupDirective,
     MeOverlayDirective,
     MeIconDirective,
+    MeCalendarDirective,
+    MeCalendarComponent,
     MeSidepageDemo,
     MeTabPanelDirective,
     MeTabPanelComponent,
@@ -99,8 +104,15 @@ import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.comp
     MeTabsDirective,
     TooltipDirective,
   ],
-  imports: [BrowserModule, AppRoutingModule, DevExtremeModule, DxDateBoxModule, DxPivotGridModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DevExtremeModule,
+    DxDateBoxModule,
+    DxPivotGridModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

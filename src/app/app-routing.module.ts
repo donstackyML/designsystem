@@ -20,6 +20,7 @@ import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.comp
 import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
+import { MeCalendarComponent } from "./components/me-calendar/me-calendar.component";
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'me-tabs', component: MeTabsComponent },
   { path: 'me-tooltip', component: MeTooltipComponent },
   { path: 'me-tab-panel', component: MeTabPanelComponent },
+  { path: 'me-calendar', component: MeCalendarComponent },
   { path: '**', component: TypographyComponent },
 ];
 
@@ -50,4 +52,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
