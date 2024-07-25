@@ -90,7 +90,7 @@
       "projectType": "library",
       "root": "projects/dx-monitel-components",
       "sourceRoot": "projects/dx-monitel-components/src",
-      "prefix": "lib",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -112,6 +112,42 @@
           "options": {
             "tsConfig": "projects/dx-monitel-components/tsconfig.spec.json",
             "polyfills": ["zone.js", "zone.js/testing"]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/dx-monitel-components/.storybook",
+            "browserTarget": "dx-monitel-components:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/dx-monitel-components"
+            ],
+            "port": 6006,
+            "styles": [
+              "./src/assets/bundles/dx.light.css"
+            ]
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/dx-monitel-components/.storybook",
+            "browserTarget": "dx-monitel-components:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/dx-monitel-components"
+            ],
+            "outputDir": "dist/storybook/dx-monitel-components",
+            "styles": [
+              "./src/assets/bundles/dx.light.css"
+            ]
           }
         }
       }
