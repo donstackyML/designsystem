@@ -1,0 +1,102 @@
+<div class="wrapper">
+  <h1 class="wrapper__main-title dx-widget">Tabs</h1>
+  <div class="widget-container">
+    <div class="widget-wrapper">
+      <div>
+        <dx-tabs
+          #withText
+          meTabs
+          [dataSource]="tabsWithText"
+          [position]="position"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [selectedIndex]="0"
+          [size]="'large'"
+          [stylingMode]="'inside'"
+          [width]="width"
+        >
+        </dx-tabs>
+      </div>
+
+      <div>
+        <dx-tabs
+          #withIconAndText
+          meTabs
+          [dataSource]="tabsWithIconAndText"
+          [position]="position"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [selectedIndex]="0"
+          [size]="'large'"
+          [width]="width"
+        >
+        </dx-tabs>
+      </div>
+
+      <div>
+        <dx-tabs
+          #withIconAndText
+          meTabs
+          [dataSource]="tabsWithIconAndText"
+          [width]="width"
+          [selectedIndex]="0"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [position]="position"
+          [disabled]="true"
+        >
+        </dx-tabs>
+      </div>
+
+      <div>
+        <dx-tabs
+          #withIconAndText
+          meTabs
+          [dataSource]="tabsWithIconAndText"
+          [width]="width"
+          [selectedIndex]="0"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [position]="position"
+          [size]="'small'"
+        >
+        </dx-tabs>
+      </div>
+
+      <div>
+        <dx-tabs
+          #withIcon
+          meTabs
+          [dataSource]="tabsWithIcon"
+          [width]="width"
+          [selectedIndex]="0"
+          [rtlEnabled]="rtlEnabled"
+          [scrollByContent]="scrollByContent"
+          [position]="position"
+          [size]="'small'"
+        >
+        </dx-tabs>
+      </div>
+    </div>
+  </div>
+
+  <div class="options">
+    <h2 class="wrapper__title dx-widget">Опции</h2>
+    <div class="option-row dx-widget">
+      <label>Scroll content</label>
+      <dx-check-box [(value)]="scrollByContent"></dx-check-box>
+    </div>
+    <div class="option-row dx-widget">
+      <label>Full width</label>
+      <dx-check-box [value]="false" (onValueChanged)="onFullWidthChanged($event)"></dx-check-box>
+    </div>
+    <div class="option-row dx-widget">
+      <label>Right-to-left mode</label>
+      <dx-check-box [(value)]="rtlEnabled"></dx-check-box>
+    </div>
+    <div class="option-row dx-widget">
+      <label>Position</label>
+      <dx-select-box style="max-width: 100px" [dataSource]="positions" [(value)]="position" (onValueChanged)="onPositionChanged($event)"></dx-select-box>
+    </div>
+  </div>
+</div>
