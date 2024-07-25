@@ -1,57 +1,22 @@
 import {
-  Directive,
-  Input,
-  OnChanges,
-  AfterViewInit,
-  OnDestroy,
-  Optional,
-  Self,
-  SimpleChanges,
-  Output,
-  EventEmitter
+	Directive,
+	Input,
 } from '@angular/core';
-import { DxLoadIndicatorComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meLoadIndicator]',
   host: {
     '[class.me-load-indicator-small]': 'isSizeSmall',
     '[class.me-load-indicator-medium]': 'isSizeMedium',
-    '[class.me-load-indicator-large]': 'isSizeLarge',
-    '[class.customClass]': 'customClass',
+		'[class.me-load-indicator-large]': 'isSizeLarge',
+		'[class.me-load-indicator-color-default]': 'isColorDefault',
+		'[class.me-load-indicator-color-accent]': 'isColorAccent',
+		'[class.me-load-indicator-color-normal]': 'isColorNormal',
   },
 })
-export class MeLoadIndicatorDirective implements AfterViewInit, OnChanges, OnDestroy {
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() customClass: string = '';
-  @Input() height: number | string | undefined;
-  @Input() width: number | string | undefined;
-  @Input() indicatorSrc?: string;
-  @Input() hint?: string;
-  @Input() elementAttr: any = {};
-  @Input() rtlEnabled: boolean = false;
-  @Input() visible: boolean = true;
-
-  @Output() onContentReady = new EventEmitter<any>();
-  @Output() onDisposing = new EventEmitter<any>();
-  @Output() onInitialized = new EventEmitter<any>();
-  @Output() onOptionChanged = new EventEmitter<any>();
-
-  constructor(@Self() @Optional() private loadIndicator: DxLoadIndicatorComponent) {}
-
-  ngAfterViewInit() {
-    this.updateLoadIndicatorProperties();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.loadIndicator && this.loadIndicator.instance) {
-      this.updateLoadIndicatorProperties();
-    }
-  }
-
-  ngOnDestroy() {
-    // Подписки удалять не нужно, если они выполняются через Angular директивы событий
-  }
+export class MeLoadIndicatorDirective {
+	@Input() size: 'small' | 'medium' | 'large' = 'medium';
+	@Input() color: 'normal' | 'default' | 'accent' = 'default';
 
   get isSizeSmall() {
     return this.size === 'small';
@@ -63,28 +28,17 @@ export class MeLoadIndicatorDirective implements AfterViewInit, OnChanges, OnDes
 
   get isSizeLarge() {
     return this.size === 'large';
-  }
+	}
+	
+	get isColorDefault() {
+		return this.color === 'default';
+	}
 
-  private updateLoadIndicatorProperties() {
-    if (this.loadIndicator && this.loadIndicator.instance) {
-      const instance = this.loadIndicator.instance;
+	get isColorAccent() {
+		return this.color === 'accent';
+	}
 
-      if (this.height !== undefined) {
-        instance.option('height', this.height);
-      }
-      if (this.width !== undefined) {
-        instance.option('width', this.width);
-      }
-      if (this.indicatorSrc) {
-        instance.option('indicatorSrc', this.indicatorSrc);
-      }
-      if (this.hint) {
-        instance.option('hint', this.hint);
-      }
-      instance.option('elementAttr', this.elementAttr);
-      instance.option('rtlEnabled', this.rtlEnabled);
-      instance.option('visible', this.visible);
-
-    }
-  }
+	get isColorNormal() {
+		return this.color === 'normal';
+	}
 }
