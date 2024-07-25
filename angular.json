@@ -83,6 +83,26 @@
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.component.html"]
           }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "designsystem:build",
+            "compodoc": true,
+            "compodocArgs": ["-e", "json", "-d", "."],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "designsystem:build",
+            "compodoc": true,
+            "compodocArgs": ["-e", "json", "-d", "."],
+            "outputDir": "dist/storybook/designsystem"
+          }
         }
       }
     },
@@ -120,16 +140,9 @@
             "configDir": "projects/dx-monitel-components/.storybook",
             "browserTarget": "dx-monitel-components:build",
             "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              "projects/dx-monitel-components"
-            ],
+            "compodocArgs": ["-e", "json", "-d", "projects/dx-monitel-components"],
             "port": 6006,
-            "styles": [
-              "./src/assets/bundles/dx.light.css"
-            ]
+            "styles": ["./src/assets/bundles/dx.light.css"]
           }
         },
         "build-storybook": {
@@ -138,16 +151,9 @@
             "configDir": "projects/dx-monitel-components/.storybook",
             "browserTarget": "dx-monitel-components:build",
             "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              "projects/dx-monitel-components"
-            ],
+            "compodocArgs": ["-e", "json", "-d", "projects/dx-monitel-components"],
             "outputDir": "dist/storybook/dx-monitel-components",
-            "styles": [
-              "./src/assets/bundles/dx.light.css"
-            ]
+            "styles": ["./src/assets/bundles/dx.light.css"]
           }
         }
       }

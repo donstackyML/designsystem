@@ -34,7 +34,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
   @ViewChild('sidepage', { static: true })
   element!: ElementRef<HTMLDivElement>;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
     if (this.shading) {
