@@ -48,7 +48,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     private element: ElementRef,
     private renderer: Renderer2,
     private viewContainerRef: ViewContainerRef,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit() {
@@ -104,8 +104,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   private initializeTooltip() {
-    this.tooltipComponentRef =
-      this.viewContainerRef.createComponent(DxTooltipComponent);
+    this.tooltipComponentRef = this.viewContainerRef.createComponent(DxTooltipComponent);
     const instance = this.tooltipComponentRef.instance;
 
     instance.target = this.element.nativeElement;
@@ -138,8 +137,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
 
       if (this.tooltipTemplateRef) {
         instance.contentTemplate = (contentElement: any) => {
-          const viewRef: EmbeddedViewRef<any> =
-            this.tooltipTemplateRef.createEmbeddedView({});
+          const viewRef: EmbeddedViewRef<any> = this.tooltipTemplateRef.createEmbeddedView({});
           contentElement.appendChild(viewRef.rootNodes[0]);
           return contentElement;
         };

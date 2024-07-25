@@ -42,10 +42,10 @@ import { MeMenuDirective } from './directives/menu.directive';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
-import {MeTabsDirective} from "./directives/tabs.directive";
-import {MeTabsComponent} from "./components/me-tabs/me-tabs.component";
-import {TooltipDirective} from "./directives/tooltip.directive";
-import {MeTooltipComponent} from "./components/me-tooltip/me-tooltip.component";
+import { MeTabsDirective } from './directives/tabs.directive';
+import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
+import { TooltipDirective } from './directives/tooltip.directive';
+import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 
 @NgModule({
   declarations: [

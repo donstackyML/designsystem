@@ -40,8 +40,8 @@ const componentsName: string[] = [
   'meContextMenu',
   'meMenu',
   'meTreeView',
-  'meTabs',
-  'meTooltip',
+  'meTabs (RC)',
+  'meTooltip (RC)',
 ];
 
 @Injectable({
