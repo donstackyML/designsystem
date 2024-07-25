@@ -46,6 +46,8 @@ import { MeTabsDirective } from './directives/tabs.directive';
 import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
+import { MeTabPanelDirective } from "./directives/tab-panel.directive";
+import { MeTabPanelComponent } from "./components/me-tab-panel/me-tab-panel.component";
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component
     MeOverlayDirective,
     MeIconDirective,
     MeSidepageDemo,
+    MeTabPanelDirective,
+    MeTabPanelComponent,
     TypographyComponent,
     MeToolbarDirective,
     MeToolbarComponent,
@@ -99,4 +103,4 @@ import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
