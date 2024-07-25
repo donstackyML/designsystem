@@ -41,7 +41,7 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
   constructor(
     private dxCalendarComponent: DxCalendarComponent,
     private renderer: Renderer2,
-    private element: ElementRef
+    private element: ElementRef,
   ) {}
 
   ngOnInit() {
@@ -70,7 +70,7 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
       this.subscriptions.push(
         this.dxCalendarComponent.onValueChanged.subscribe((e) => {
           this.onDateValueChanged.emit(e);
-        })
+        }),
       );
 
       this.subscriptions.push(
@@ -92,7 +92,7 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
               this.weekNumberRuleChange.emit(e.value);
               break;
           }
-        })
+        }),
       );
     }
   }

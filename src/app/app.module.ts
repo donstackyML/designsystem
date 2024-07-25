@@ -48,9 +48,9 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTabPanelDirective } from './directives/tab-panel.directive';
 import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
-import { MeCalendarDirective } from "./directives/calendar.directive";
-import { MeCalendarComponent } from "./components/me-calendar/me-calendar.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { MeCalendarDirective } from './directives/calendar.directive';
+import { MeCalendarComponent } from './components/me-calendar/me-calendar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -115,4 +115,4 @@ import { ReactiveFormsModule } from "@angular/forms";
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

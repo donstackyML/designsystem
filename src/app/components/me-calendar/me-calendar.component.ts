@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {FirstDayOfWeek, ValueChangedEvent} from "devextreme/ui/calendar";
-import { DxCalendarTypes } from "devextreme-angular/ui/calendar";
-import { DxCalendarComponent } from "devextreme-angular";
-import { MeCalendarDirective } from "../../directives/calendar.directive";
+import { FirstDayOfWeek, ValueChangedEvent } from 'devextreme/ui/calendar';
+import { DxCalendarTypes } from 'devextreme-angular/ui/calendar';
+import { DxCalendarComponent } from 'devextreme-angular';
+import { MeCalendarDirective } from '../../directives/calendar.directive';
 
 @Component({
   selector: 'me-calendar',
@@ -15,9 +15,7 @@ export class MeCalendarComponent implements OnInit {
 
   calendarForm: FormGroup;
 
-  zoomLevels: DxCalendarTypes.CalendarZoomLevel[] = [
-    'month', 'year', 'decade', 'century',
-  ];
+  zoomLevels: DxCalendarTypes.CalendarZoomLevel[] = ['month', 'year', 'decade', 'century'];
 
   weekDays: { id: FirstDayOfWeek; text: string }[] = [
     { id: 0, text: 'Sunday' },
@@ -30,7 +28,10 @@ export class MeCalendarComponent implements OnInit {
   ];
 
   weekNumberRules: DxCalendarTypes.WeekNumberRule[] = [
-    'auto', 'firstDay', 'firstFourDays', 'fullWeek',
+    'auto',
+    'firstDay',
+    'firstFourDays',
+    'fullWeek',
   ];
 
   constructor(private fb: FormBuilder) {
@@ -42,12 +43,12 @@ export class MeCalendarComponent implements OnInit {
       zoomLevel: ['month'],
       cellTemplate: ['cell'],
       weekNumberRule: ['auto'],
-      useCustomTemplate: [false]
+      useCustomTemplate: [false],
     });
   }
 
   ngOnInit() {
-    this.calendarForm.get('useCustomTemplate')?.valueChanges.subscribe(value => {
+    this.calendarForm.get('useCustomTemplate')?.valueChanges.subscribe((value) => {
       this.useCellTemplate(value);
     });
   }
@@ -58,7 +59,7 @@ export class MeCalendarComponent implements OnInit {
 
   useCellTemplate(value: boolean) {
     this.calendarForm.patchValue({
-      cellTemplate: value ? 'custom' : 'cell'
+      cellTemplate: value ? 'custom' : 'cell',
     });
   }
 
@@ -68,8 +69,12 @@ export class MeCalendarComponent implements OnInit {
       if (!cell.date) {
         cssClass = 'week-number';
       } else {
-        if (this.isWeekend(cell.date)) { cssClass = 'weekend'; }
-        if (this.isHoliday(cell.date)) { cssClass = 'holiday'; }
+        if (this.isWeekend(cell.date)) {
+          cssClass = 'weekend';
+        }
+        if (this.isHoliday(cell.date)) {
+          cssClass = 'holiday';
+        }
       }
     }
     return cssClass;
@@ -81,9 +86,11 @@ export class MeCalendarComponent implements OnInit {
   }
 
   private isHoliday(date: Date): boolean {
-    const holidays = [[1, 0], [4, 6], [25, 11]];
-    return holidays.some(([day, month]) =>
-      date.getDate() === day && date.getMonth() === month
-    );
+    const holidays = [
+      [1, 0],
+      [4, 6],
+      [25, 11],
+    ];
+    return holidays.some(([day, month]) => date.getDate() === day && date.getMonth() === month);
   }
 }
