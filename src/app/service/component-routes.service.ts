@@ -22,7 +22,7 @@ const componentsRoute: string[] = [
   'me-tooltip',
   'me-tab-panel',
   'me-calendar',
-  'me-accordion'
+  'me-accordion',
 ];
 
 const componentsName: string[] = [
@@ -47,7 +47,7 @@ const componentsName: string[] = [
   'meTooltip (RC)',
   'meTabPanel (RC)',
   'meCalendar (RC)',
-  'meAccordion (RC)'
+  'meAccordion (RC)',
 ];
 
 @Injectable({

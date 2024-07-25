@@ -21,7 +21,7 @@ import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
 import { MeCalendarComponent } from './components/me-calendar/me-calendar.component';
-import { MeAccordionComponent } from "./components/me-accordion/me-accordion.component";
+import { MeAccordionComponent } from './components/me-accordion/me-accordion.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -54,4 +54,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

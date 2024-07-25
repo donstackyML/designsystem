@@ -18,7 +18,10 @@
       >
         <div *dxTemplate="let company of 'title'">
           <div class="accordion-header">
-            <img class="accordion-header-icon me-title-subheader1" src="../../../assets/images/folder.png" />
+            <img
+              class="accordion-header-icon me-title-subheader1"
+              src="../../../assets/images/folder.png"
+            />
             <div class="accordion-content">
               <span class="accordion-title me-title-subheader1">
                 {{ company.CompanyName }}
@@ -171,15 +174,28 @@
     <div class="options">
       <div class="me-title-display2">Options</div>
       <div class="option">
-        <dx-check-box text="Multiple enabled" [(value)]="isMultiple" (onValueChanged)="onMultipleChanged($event.value)"></dx-check-box>
+        <dx-check-box
+          text="Multiple enabled"
+          [(value)]="isMultiple"
+          (onValueChanged)="onMultipleChanged($event.value)"
+        ></dx-check-box>
       </div>
       <div class="option">
-        <dx-check-box text="Collapsible enabled" [(value)]="isCollapsible" (onValueChanged)="onCollapsibleChanged($event.value)"></dx-check-box>
+        <dx-check-box
+          text="Collapsible enabled"
+          [(value)]="isCollapsible"
+          (onValueChanged)="onCollapsibleChanged($event.value)"
+        ></dx-check-box>
       </div>
       <div class="option">
         <div class="me-title-header2">Animation duration</div>
         <div class="dx-slider-container">
-          <dx-slider [min]="0" [max]="1000" [(value)]="animationDuration" (onValueChanged)="onAnimationDurationChanged($event.value)">
+          <dx-slider
+            [min]="0"
+            [max]="1000"
+            [(value)]="animationDuration"
+            (onValueChanged)="onAnimationDurationChanged($event.value)"
+          >
             <dxo-tooltip [enabled]="true" position="bottom"></dxo-tooltip>
             <dxo-label [visible]="true"></dxo-label>
           </dx-slider>

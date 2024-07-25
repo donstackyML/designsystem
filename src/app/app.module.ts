@@ -51,8 +51,8 @@ import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.comp
 import { MeCalendarDirective } from './directives/calendar.directive';
 import { MeCalendarComponent } from './components/me-calendar/me-calendar.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MeAccordionDirective } from "./directives/accordion.directive";
-import { MeAccordionComponent } from "./components/me-accordion/me-accordion.component";
+import { MeAccordionDirective } from './directives/accordion.directive';
+import { MeAccordionComponent } from './components/me-accordion/me-accordion.component';
 
 @NgModule({
   declarations: [
@@ -119,4 +119,4 @@ import { MeAccordionComponent } from "./components/me-accordion/me-accordion.com
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
