@@ -43,7 +43,7 @@ const componentsName: string[] = [
   'meTreeView',
   'meTabs (RC)',
   'meTooltip (RC)',
-  'meTabPanel',
+  'meTabPanel (RC)',
 ];
 
 @Injectable({
