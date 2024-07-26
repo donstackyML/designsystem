@@ -12,7 +12,7 @@ import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.comp
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
 import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-drop-down-button.component';
 import { MeListComponent } from './components/me-list/me-list.component';
-import { MeLoadingIndicatorComponent } from "./components/me-loading-indicator/me-loading-indicator.component";
+import { MeLoadingIndicatorComponent } from './components/me-loading-indicator/me-loading-indicator.component';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MePopoverComponent } from './components/me-popover/me-popover.component';
 import { MePopupComponent } from './components/me-popup/me-popup.component';
@@ -24,7 +24,7 @@ import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
 import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
 import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
-import { MeToastComponent } from "./components/me-toast/me-toast.component";
+import { MeToastComponent } from './components/me-toast/me-toast.component';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
@@ -41,7 +41,7 @@ import { MeEditorDirective } from './directives/editor.directive';
 import { MeIconDirective } from './directives/icon.directive';
 import { MeLabelDirective } from './directives/label.directive';
 import { MeListDirective } from './directives/list.directive';
-import { MeLoadIndicatorDirective } from "./directives/load-indicator.directive";
+import { MeLoadIndicatorDirective } from './directives/load-indicator.directive';
 import { MeMenuDirective } from './directives/menu.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
 import { MePopoverDirective } from './directives/popover.directive';
@@ -53,7 +53,7 @@ import { MeTabPanelDirective } from './directives/tab-panel.directive';
 import { MeTabsDirective } from './directives/tabs.directive';
 import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
-import { MeToastDirective } from "./directives/toast.directive";
+import { MeToastDirective } from './directives/toast.directive';
 import { MeToolbarDirective } from './directives/toolbar.directive';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
@@ -114,7 +114,7 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeToastDirective,
     MeToastComponent,
     MeLoadIndicatorDirective,
-    MeLoadingIndicatorComponent
+    MeLoadingIndicatorComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,4 +127,4 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,12 @@
 import { Meta, Story, moduleMetadata } from '@storybook/angular';
 import { MeToastComponent } from '../app/components/me-toast/me-toast.component';
-import { DxButtonModule, DxTextBoxModule, DxSelectBoxModule, DxNumberBoxModule, DxToastModule } from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxTextBoxModule,
+  DxSelectBoxModule,
+  DxNumberBoxModule,
+  DxToastModule,
+} from 'devextreme-angular';
 
 export default {
   title: 'Example/MeToastComponent',

@@ -24,7 +24,7 @@ const componentsRoute: string[] = [
   'me-calendar',
   'me-accordion',
   'me-toast',
-  'me-loading-indicator'
+  'me-loading-indicator',
 ];
 
 const componentsName: string[] = [
@@ -51,7 +51,7 @@ const componentsName: string[] = [
   'meCalendar (RC)',
   'meAccordion (RC)',
   'meToast (RC)',
-  'meLoadIndicator (RC)'
+  'meLoadIndicator (RC)',
 ];
 
 @Injectable({

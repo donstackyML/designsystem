@@ -8,7 +8,7 @@ import {
   OnDestroy,
   SimpleChanges,
   Self,
-  Optional
+  Optional,
 } from '@angular/core';
 import { DxToastComponent } from 'devextreme-angular';
 import { Subscription } from 'rxjs';
@@ -20,7 +20,7 @@ import DevExpress from 'devextreme/bundles/dx.all';
   exportAs: 'meToastControl',
   host: {
     '[class.customClass]': 'customClass',
-  }
+  },
 })
 export class MeToastDirective implements AfterViewInit, OnChanges, OnDestroy {
   @Input() customClass: string = '';
@@ -29,7 +29,7 @@ export class MeToastDirective implements AfterViewInit, OnChanges, OnDestroy {
   @Input() position: DevExpress.PositionConfig | string = 'bottom right';
   @Input() animation: { hide?: AnimationConfig; show?: AnimationConfig } = {
     show: { type: 'fade', duration: 400, from: 0, to: 1 },
-    hide: { type: 'fade', duration: 400, from: 1, to: 0 }
+    hide: { type: 'fade', duration: 400, from: 1, to: 0 },
   };
 
   @Output() onShowing = new EventEmitter<any>();
@@ -39,9 +39,7 @@ export class MeToastDirective implements AfterViewInit, OnChanges, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(
-    @Self() @Optional() private dxToastComponent: DxToastComponent
-  ) {}
+  constructor(@Self() @Optional() private dxToastComponent: DxToastComponent) {}
 
   ngAfterViewInit() {
     this.initializeToast();
@@ -94,18 +92,24 @@ export class MeToastDirective implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   private subscribeToEvent(dxEvent: any, emitter: EventEmitter<any>) {
-    this.subscriptions.push(
-      dxEvent.subscribe((e: any) => emitter.emit(e))
-    );
+    this.subscriptions.push(dxEvent.subscribe((e: any) => emitter.emit(e)));
   }
 
-  private getPositionConfig(position: DevExpress.PositionConfig | string): DevExpress.PositionConfig {
+  private getPositionConfig(
+    position: DevExpress.PositionConfig | string,
+  ): DevExpress.PositionConfig {
     if (typeof position === 'string') {
       const [vertical, horizontal] = position.split(' ');
       return {
-        my: { x: this.convertToHorizontalAlignment(horizontal), y: this.convertToVerticalAlignment(vertical) },
-        at: { x: this.convertToHorizontalAlignment(horizontal), y: this.convertToVerticalAlignment(vertical) },
-        of: window
+        my: {
+          x: this.convertToHorizontalAlignment(horizontal),
+          y: this.convertToVerticalAlignment(vertical),
+        },
+        at: {
+          x: this.convertToHorizontalAlignment(horizontal),
+          y: this.convertToVerticalAlignment(vertical),
+        },
+        of: window,
       };
     }
     return position;

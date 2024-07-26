@@ -2,20 +2,11 @@
   <h1 class="wrapper__main-title dx-widget">Toast (RedCollar)</h1>
   <div class="toast-demo">
     <div class="buttons">
-      <dx-button
-        text="Show Toast"
-        (onClick)="showToast(toast)"
-      ></dx-button>
-      <dx-button
-        text="Hide Toast"
-        (onClick)="hideToast(toast)"
-      ></dx-button>
+      <dx-button text="Show Toast" (onClick)="showToast(toast)"></dx-button>
+      <dx-button text="Hide Toast" (onClick)="hideToast(toast)"></dx-button>
     </div>
     <div class="controls">
-      <dx-text-box
-        [(value)]="message"
-        placeholder="Enter message"
-      ></dx-text-box>
+      <dx-text-box [(value)]="message" placeholder="Enter message"></dx-text-box>
       <dx-select-box
         [(value)]="position"
         [items]="positions"
@@ -50,7 +41,7 @@
       <div *dxTemplate="let data of 'content'">
         <div class="flex-box">
           <i [class]="icon + ' icon-style'"></i>
-          <span> &nbsp;{{message}}</span>
+          <span> &nbsp;{{ message }}</span>
         </div>
       </div>
     </dx-toast>
