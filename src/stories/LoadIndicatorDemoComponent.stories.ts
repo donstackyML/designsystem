@@ -10,10 +10,7 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [LoadIndicatorDemoComponent, MeLoadIndicatorDirective],
-      imports: [
-        BrowserModule,
-        DxLoadIndicatorModule
-      ],
+      imports: [BrowserModule, DxLoadIndicatorModule],
     }),
   ],
   argTypes: {
