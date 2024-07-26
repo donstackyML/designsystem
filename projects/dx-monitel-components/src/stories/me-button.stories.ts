@@ -1,5 +1,5 @@
 import { argsToTemplate, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { MeButtonDirective } from '../../public-api';
+import { MeButtonDirective } from '../public-api';
 import { DxButtonComponent } from 'devextreme-angular';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
