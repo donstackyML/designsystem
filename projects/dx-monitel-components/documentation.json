@@ -6,7 +6,159 @@
     "interceptors": [],
     "classes": [],
     "directives": [],
-    "components": [],
+    "components": [
+        {
+            "name": "ToastWrapperComponent",
+            "id": "component-ToastWrapperComponent-534c27e0e0566cb048e2ea59d1dcfc149681bcee9c896b9d80fc70eddc20e6650fed377471313ce147ef5f33a94b5a547c9dcfb944c20359d80b52c23b267807",
+            "file": "src/stories/MeToastComponent.stories.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-toast-wrapper",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div>\n  <dx-toast\n    meToast\n    [message]=\"message\"\n    [displayTime]=\"displayTime\"\n    [position]=\"position\"\n    [animation]=\"animation\"\n    [customClass]=\"customClass\"\n    (onShowing)=\"onShowing($event)\"\n    (onShown)=\"onShown($event)\"\n    (onHiding)=\"onHiding($event)\"\n    (onHidden)=\"onHidden($event)\"\n  ></dx-toast>\n  <button (click)=\"showToast()\">Show Toast</button>\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "animation",
+                    "defaultValue": "{\n    show: { type: 'fade', duration: 400, from: 0, to: 1 },\n    hide: { type: 'fade', duration: 400, from: 1, to: 0 }\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "customClass",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "displayTime",
+                    "defaultValue": "2000",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "message",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "position",
+                    "defaultValue": "'bottom right'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "onHidden",
+                    "defaultValue": "action('onHidden')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 42
+                },
+                {
+                    "name": "onHiding",
+                    "defaultValue": "action('onHiding')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41
+                },
+                {
+                    "name": "onShowing",
+                    "defaultValue": "action('onShowing')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                },
+                {
+                    "name": "onShown",
+                    "defaultValue": "action('onShown')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40
+                },
+                {
+                    "name": "toastComponent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DxToastComponent",
+                    "optional": false,
+                    "description": "",
+                    "line": 28,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "DxToastComponent, {static: false}"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "showToast",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { moduleMetadata, StoryObj, Meta } from '@storybook/angular';\nimport { MeToastDirective } from '../app/directives/toast.directive';\nimport { DxToastComponent, DxToastModule } from 'devextreme-angular';\nimport { action } from '@storybook/addon-actions';\nimport { Component, ViewChild, Input } from '@angular/core';\n\n@Component({\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <div>\n      <dx-toast\n        meToast\n        [message]=\"message\"\n        [displayTime]=\"displayTime\"\n        [position]=\"position\"\n        [animation]=\"animation\"\n        [customClass]=\"customClass\"\n        (onShowing)=\"onShowing($event)\"\n        (onShown)=\"onShown($event)\"\n        (onHiding)=\"onHiding($event)\"\n        (onHidden)=\"onHidden($event)\"\n      ></dx-toast>\n      <button (click)=\"showToast()\">Show Toast</button>\n    </div>\n  `\n})\nclass ToastWrapperComponent {\n  @ViewChild(DxToastComponent, { static: false }) toastComponent!: DxToastComponent;\n\n  @Input() message: string = '';\n  @Input() displayTime: number = 2000;\n  @Input() position: any = 'bottom right';\n  @Input() animation: any = {\n    show: { type: 'fade', duration: 400, from: 0, to: 1 },\n    hide: { type: 'fade', duration: 400, from: 1, to: 0 }\n  };\n  @Input() customClass: string = '';\n\n  onShowing = action('onShowing');\n  onShown = action('onShown');\n  onHiding = action('onHiding');\n  onHidden = action('onHidden');\n\n  showToast() {\n    if (this.toastComponent && this.toastComponent.instance) {\n      this.toastComponent.instance.show();\n    }\n  }\n}\n\nconst meta: Meta<ToastWrapperComponent> = {\n  title: 'Directives/meToast',\n  component: ToastWrapperComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective, ToastWrapperComponent],\n      imports: [DxToastModule],\n    }),\n  ],\n  argTypes: {\n    position: {\n      control: 'select',\n      options: ['top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right'],\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<ToastWrapperComponent>;\n\nexport const Default: Story = {\n  args: {\n    message: 'This is a toast message',\n    displayTime: 2000,\n    position: 'bottom right',\n    animation: {\n      show: { type: 'fade', duration: 400, from: 0, to: 1 },\n      hide: { type: 'fade', duration: 400, from: 1, to: 0 },\n    },\n    customClass: '',\n  },\n};\n\nexport const LongDuration: Story = {\n  args: {\n    ...Default.args,\n    displayTime: 5000,\n    message: 'This toast will be displayed for 5 seconds',\n  },\n};\n\nexport const CustomPosition: Story = {\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n};\n\nexport const CustomAnimation: Story = {\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom animation',\n    animation: {\n      show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },\n      hide: { type: 'pop', duration: 400, to: { scale: 0 } },\n    },\n  },\n};\n\nexport const CustomClass: Story = {\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom CSS class',\n    customClass: 'my-custom-toast',\n  },\n};\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        }
+    ],
     "modules": [],
     "miscellaneous": {
         "variables": [
@@ -41,16 +193,6 @@
                 "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n}"
             },
             {
-                "name": "CustomSize",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    ...Default.args,\n    height: 100,\n    width: 100,\n  },\n}"
-            },
-            {
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -68,7 +210,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'medium',\n    customClass: '',\n    height: undefined,\n    width: undefined,\n    indicatorSrc: undefined,\n    hint: undefined,\n    elementAttr: {},\n    rtlEnabled: false,\n    visible: true,\n  },\n}"
+                "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
             },
             {
                 "name": "Default",
@@ -79,26 +221,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    message: 'This is a toast message',\n    displayTime: 2000,\n    position: 'bottom right',\n    animation: {\n      show: { type: 'fade', duration: 400, from: 0, to: 1 },\n      hide: { type: 'fade', duration: 400, from: 1, to: 0 },\n    },\n    customClass: '',\n  },\n}"
-            },
-            {
-                "name": "Hidden",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    ...Default.args,\n    visible: false,\n  },\n}"
-            },
-            {
-                "name": "Large",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
             },
             {
                 "name": "LongDuration",
@@ -128,7 +250,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<MeLoadIndicatorDirective>",
-                "defaultValue": "{\n  title: 'Directives/meLoadIndicator',\n  component: MeLoadIndicatorDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadIndicatorDirective],\n      imports: [DxLoadIndicatorModule],\n    }),\n  ],\n  render: (args: DxLoadIndicatorModule) => ({\n    props: args,\n    template: `\n      <dx-load-indicator\n        meLoadIndicator\n        [size]=\"size\"\n        [customClass]=\"customClass\"\n        [height]=\"height\"\n        [width]=\"width\"\n        [indicatorSrc]=\"indicatorSrc\"\n        [hint]=\"hint\"\n        [elementAttr]=\"elementAttr\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [visible]=\"visible\"\n        (onContentReady)=\"onContentReady($event)\"\n        (onDisposing)=\"onDisposing($event)\"\n        (onInitialized)=\"onInitialized($event)\"\n        (onOptionChanged)=\"onOptionChanged($event)\"\n      ></dx-load-indicator>\n    `,\n  }),\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    // visible: {\n    //   control: { type: 'boolean' },\n    // },\n    // rtlEnabled: {\n    //   control: { type: 'boolean' },\n    // },\n  },\n}"
+                "defaultValue": "{\n  title: 'Directives/MeLoadIndicator',\n  component: MeLoadIndicatorDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadIndicatorDirective],\n      imports: [DxLoadIndicatorModule],\n    }),\n  ],\n  argTypes: {\n    color: {\n      options: ['normal', 'default', 'accent'],\n      control: { type: 'select' },\n      defaultValue: 'default',\n    },\n    indicatorSrc: {\n      control: 'text',\n    },\n  },\n}"
             },
             {
                 "name": "meta",
@@ -137,8 +259,8 @@
                 "file": "src/stories/MeToastComponent.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<MeToastDirective>",
-                "defaultValue": "{\n  title: 'Directives/meToast',\n  component: MeToastDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective],\n      imports: [DxToastModule],\n    }),\n  ],\n  render: (args: DxToastModule) => ({\n    props: {\n      ...args,\n      onShowing: action('onShowing'),\n      onShown: action('onShown'),\n      onHiding: action('onHiding'),\n      onHidden: action('onHidden'),\n      showToast: function () {\n        this['meToastDirective'].showToast();\n      },\n    },\n    template: `\n      <div>\n        <dx-toast\n          meToast\n          [message]=\"message\"\n          [displayTime]=\"displayTime\"\n          [position]=\"position\"\n          [animation]=\"animation\"\n          [customClass]=\"customClass\"\n          (onShowing)=\"onShowing($event)\"\n          (onShown)=\"onShown($event)\"\n          (onHiding)=\"onHiding($event)\"\n          (onHidden)=\"onHidden($event)\"\n          #meToastDirective=\"meToastControl\"\n        ></dx-toast>\n        <button (click)=\"showToast()\">Show Toast</button>\n      </div>\n    `,\n  }),\n  argTypes: {\n    position: {\n      control: 'select',\n      options: [\n        'top left',\n        'top center',\n        'top right',\n        'bottom left',\n        'bottom center',\n        'bottom right',\n      ],\n    },\n  },\n}"
+                "type": "Meta<ToastWrapperComponent>",
+                "defaultValue": "{\n  title: 'Directives/meToast',\n  component: ToastWrapperComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective, ToastWrapperComponent],\n      imports: [DxToastModule],\n    }),\n  ],\n  argTypes: {\n    position: {\n      control: 'select',\n      options: ['top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right'],\n    },\n  },\n}"
             },
             {
                 "name": "preview",
@@ -151,34 +273,34 @@
                 "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
             },
             {
-                "name": "RTLEnabled",
+                "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
+                "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"'normal'\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"'accent'\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n      <div\n        id=\"image-indicator\"\n        meLoadIndicator\n        [size]=\"'large'\"\n        [indicatorSrc]=\"indicatorSrc\"\n      ></div>\n    `,\n    styles: [`\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: var(--button-normal-bg-color);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `],\n  }),\n}"
             },
             {
-                "name": "Small",
+                "name": "WithAccentColor",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
+                "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'accent',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
             },
             {
-                "name": "WithHint",
+                "name": "WithCustomImage",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    ...Default.args,\n    hint: 'Loading...',\n  },\n}"
+                "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/custom-loader.gif',\n  },\n}"
             }
         ],
         "functions": [],
@@ -198,7 +320,7 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<DxLoadIndicatorModule>",
+                "rawtype": "StoryObj<MeLoadIndicatorDirective>",
                 "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -209,7 +331,7 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MeToastDirective>",
+                "rawtype": "StoryObj<ToastWrapperComponent>",
                 "file": "src/stories/MeToastComponent.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -277,90 +399,8 @@
                     "file": "src/stories/MeToastComponent.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<MeToastDirective>",
-                    "defaultValue": "{\n  title: 'Directives/meToast',\n  component: MeToastDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective],\n      imports: [DxToastModule],\n    }),\n  ],\n  render: (args: DxToastModule) => ({\n    props: {\n      ...args,\n      onShowing: action('onShowing'),\n      onShown: action('onShown'),\n      onHiding: action('onHiding'),\n      onHidden: action('onHidden'),\n      showToast: function () {\n        this['meToastDirective'].showToast();\n      },\n    },\n    template: `\n      <div>\n        <dx-toast\n          meToast\n          [message]=\"message\"\n          [displayTime]=\"displayTime\"\n          [position]=\"position\"\n          [animation]=\"animation\"\n          [customClass]=\"customClass\"\n          (onShowing)=\"onShowing($event)\"\n          (onShown)=\"onShown($event)\"\n          (onHiding)=\"onHiding($event)\"\n          (onHidden)=\"onHidden($event)\"\n          #meToastDirective=\"meToastControl\"\n        ></dx-toast>\n        <button (click)=\"showToast()\">Show Toast</button>\n      </div>\n    `,\n  }),\n  argTypes: {\n    position: {\n      control: 'select',\n      options: [\n        'top left',\n        'top center',\n        'top right',\n        'bottom left',\n        'bottom center',\n        'bottom right',\n      ],\n    },\n  },\n}"
-                }
-            ],
-            "src/stories/LoadIndicatorDemoComponent.stories.ts": [
-                {
-                    "name": "CustomSize",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    height: 100,\n    width: 100,\n  },\n}"
-                },
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'medium',\n    customClass: '',\n    height: undefined,\n    width: undefined,\n    indicatorSrc: undefined,\n    hint: undefined,\n    elementAttr: {},\n    rtlEnabled: false,\n    visible: true,\n  },\n}"
-                },
-                {
-                    "name": "Hidden",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    visible: false,\n  },\n}"
-                },
-                {
-                    "name": "Large",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<MeLoadIndicatorDirective>",
-                    "defaultValue": "{\n  title: 'Directives/meLoadIndicator',\n  component: MeLoadIndicatorDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadIndicatorDirective],\n      imports: [DxLoadIndicatorModule],\n    }),\n  ],\n  render: (args: DxLoadIndicatorModule) => ({\n    props: args,\n    template: `\n      <dx-load-indicator\n        meLoadIndicator\n        [size]=\"size\"\n        [customClass]=\"customClass\"\n        [height]=\"height\"\n        [width]=\"width\"\n        [indicatorSrc]=\"indicatorSrc\"\n        [hint]=\"hint\"\n        [elementAttr]=\"elementAttr\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [visible]=\"visible\"\n        (onContentReady)=\"onContentReady($event)\"\n        (onDisposing)=\"onDisposing($event)\"\n        (onInitialized)=\"onInitialized($event)\"\n        (onOptionChanged)=\"onOptionChanged($event)\"\n      ></dx-load-indicator>\n    `,\n  }),\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    // visible: {\n    //   control: { type: 'boolean' },\n    // },\n    // rtlEnabled: {\n    //   control: { type: 'boolean' },\n    // },\n  },\n}"
-                },
-                {
-                    "name": "RTLEnabled",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
-                },
-                {
-                    "name": "Small",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
-                },
-                {
-                    "name": "WithHint",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    hint: 'Loading...',\n  },\n}"
+                    "type": "Meta<ToastWrapperComponent>",
+                    "defaultValue": "{\n  title: 'Directives/meToast',\n  component: ToastWrapperComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective, ToastWrapperComponent],\n      imports: [DxToastModule],\n    }),\n  ],\n  argTypes: {\n    position: {\n      control: 'select',\n      options: ['top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right'],\n    },\n  },\n}"
                 }
             ],
             "projects/dx-monitel-components/src/stories/me-button.stories.ts": [
@@ -383,6 +423,58 @@
                     "deprecationMessage": "",
                     "type": "Meta<MeButtonDirective>",
                     "defaultValue": "{\n  title: 'Directives/meButton',\n  component: MeButtonDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeButtonDirective, DxButtonComponent],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `<dx-button meButton ${argsToTemplate(args)}></dx-button>`,\n  }),\n}"
+                }
+            ],
+            "src/stories/LoadIndicatorDemoComponent.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MeLoadIndicatorDirective>",
+                    "defaultValue": "{\n  title: 'Directives/MeLoadIndicator',\n  component: MeLoadIndicatorDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadIndicatorDirective],\n      imports: [DxLoadIndicatorModule],\n    }),\n  ],\n  argTypes: {\n    color: {\n      options: ['normal', 'default', 'accent'],\n      control: { type: 'select' },\n      defaultValue: 'default',\n    },\n    indicatorSrc: {\n      control: 'text',\n    },\n  },\n}"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"'normal'\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"'accent'\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n      <div\n        id=\"image-indicator\"\n        meLoadIndicator\n        [size]=\"'large'\"\n        [indicatorSrc]=\"indicatorSrc\"\n      ></div>\n    `,\n    styles: [`\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: var(--button-normal-bg-color);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `],\n  }),\n}"
+                },
+                {
+                    "name": "WithAccentColor",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'accent',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+                },
+                {
+                    "name": "WithCustomImage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/custom-loader.gif',\n  },\n}"
                 }
             ],
             "projects/dx-monitel-components/.storybook/preview.ts": [
@@ -419,7 +511,7 @@
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<DxLoadIndicatorModule>",
+                    "rawtype": "StoryObj<MeLoadIndicatorDirective>",
                     "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -432,7 +524,7 @@
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<MeToastDirective>",
+                    "rawtype": "StoryObj<ToastWrapperComponent>",
                     "file": "src/stories/MeToastComponent.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -482,37 +574,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "CustomSize",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
                 "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Hidden",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/LoadIndicatorDemoComponent.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Large",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -532,7 +594,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "RTLEnabled",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -542,7 +604,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Small",
+                "name": "WithAccentColor",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -552,9 +614,18 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "WithHint",
+                "name": "WithCustomImage",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/MeToastComponent.stories.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ToastWrapperComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {
