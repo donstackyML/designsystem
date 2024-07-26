@@ -1,48 +1,108 @@
-import { Meta, Story, moduleMetadata } from '@storybook/angular';
-import { DxLoadIndicatorModule } from 'devextreme-angular';
-import { BrowserModule } from '@angular/platform-browser';
-import { LoadIndicatorDemoComponent } from '../app/load-indicator-demo/load-indicator-demo.component';
-import { MeLoadIndicatorDirective } from '../app/directives/load-indicator.directive';
+import { moduleMetadata, StoryObj, Meta } from '@storybook/angular';
+import { MeLoadIndicatorDirective } from '../public-api';
+import {  DxLoadIndicatorModule } from 'devextreme-angular';
 
-export default {
-  title: 'Example/LoadIndicatorDemoComponent',
-  component: LoadIndicatorDemoComponent,
+const meta: Meta<MeLoadIndicatorDirective> = {
+  title: 'Directives/meLoadIndicator',
+  component: MeLoadIndicatorDirective,
+  tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      declarations: [LoadIndicatorDemoComponent, MeLoadIndicatorDirective],
-      imports: [
-        BrowserModule,
-        DxLoadIndicatorModule
-      ],
+      declarations: [MeLoadIndicatorDirective],
+      imports: [DxLoadIndicatorModule],
     }),
   ],
+  render: (args: MeLoadIndicatorDirective) => ({
+    props: args,
+    template: `
+      <dx-load-indicator
+        meLoadIndicator
+        [size]="size"
+        [customClass]="customClass"
+        [height]="height"
+        [width]="width"
+        [indicatorSrc]="indicatorSrc"
+        [hint]="hint"
+        [elementAttr]="elementAttr"
+        [rtlEnabled]="rtlEnabled"
+        [visible]="visible"
+        (onContentReady)="onContentReady($event)"
+        (onDisposing)="onDisposing($event)"
+        (onInitialized)="onInitialized($event)"
+        (onOptionChanged)="onOptionChanged($event)"
+      ></dx-load-indicator>
+    `,
+  }),
   argTypes: {
-    size: { control: 'select', options: ['small', 'medium', 'large'] },
-    customClass: { control: 'text' },
-    height: { control: 'text' },
-    width: { control: 'text' },
-    indicatorSrc: { control: 'text' },
-    hint: { control: 'text' },
-    elementAttr: { control: 'object' },
-    rtlEnabled: { control: 'boolean' },
-    visible: { control: 'boolean' },
+    size: {
+      options: ['small', 'medium', 'large'],
+      control: { type: 'select' },
+    },
+    visible: {
+      control: { type: 'boolean' },
+    },
+    rtlEnabled: {
+      control: { type: 'boolean' },
+    },
   },
-} as Meta;
+};
 
-const Template: Story<LoadIndicatorDemoComponent> = (args: LoadIndicatorDemoComponent) => ({
-  component: LoadIndicatorDemoComponent,
-  props: args,
-});
+export default meta;
+type Story = StoryObj<MeLoadIndicatorDirective>;
 
-export const Default = Template.bind({});
-Default.args = {
-  size: 'medium',
-  customClass: '',
-  height: '40px',
-  width: '40px',
-  indicatorSrc: '',
-  hint: '',
-  elementAttr: {},
-  rtlEnabled: false,
-  visible: true,
+export const Default: Story = {
+  args: {
+    size: 'medium',
+    customClass: '',
+    height: undefined,
+    width: undefined,
+    indicatorSrc: undefined,
+    hint: undefined,
+    elementAttr: {},
+    rtlEnabled: false,
+    visible: true,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    ...Default.args,
+    size: 'small',
+  },
+};
+
+export const Large: Story = {
+  args: {
+    ...Default.args,
+    size: 'large',
+  },
+};
+
+export const CustomSize: Story = {
+  args: {
+    ...Default.args,
+    height: 100,
+    width: 100,
+  },
+};
+
+export const WithHint: Story = {
+  args: {
+    ...Default.args,
+    hint: 'Loading...',
+  },
+};
+
+export const Hidden: Story = {
+  args: {
+    ...Default.args,
+    visible: false,
+  },
+};
+
+export const RTLEnabled: Story = {
+  args: {
+    ...Default.args,
+    rtlEnabled: true,
+  },
 };
