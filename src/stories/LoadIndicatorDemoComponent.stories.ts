@@ -2,7 +2,7 @@ import { Meta, Story, moduleMetadata } from '@storybook/angular';
 import { DxLoadIndicatorModule } from 'devextreme-angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoadIndicatorDemoComponent } from '../app/load-indicator-demo/load-indicator-demo.component';
-import { MeLoadIndicatorDirective } from '../app/directives/load-indicator.directive';
+import { MeLoadIndicatorDirective } from '../../../../../src/app/directives/load-indicator.directive';
 
 export default {
   title: 'Example/LoadIndicatorDemoComponent',
@@ -10,7 +10,10 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [LoadIndicatorDemoComponent, MeLoadIndicatorDirective],
-      imports: [BrowserModule, DxLoadIndicatorModule],
+      imports: [
+        BrowserModule,
+        DxLoadIndicatorModule
+      ],
     }),
   ],
   argTypes: {
