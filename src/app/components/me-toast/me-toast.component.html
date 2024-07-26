@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <h1 class="wrapper__main-title dx-widget">Toast (RedCollar)</h1>
+  <div class="toast-demo">
+    <div class="buttons">
+      <dx-button
+        text="Show Toast"
+        (onClick)="showToast(toast)"
+      ></dx-button>
+      <dx-button
+        text="Hide Toast"
+        (onClick)="hideToast(toast)"
+      ></dx-button>
+    </div>
+    <div class="controls">
+      <dx-text-box
+        [(value)]="message"
+        placeholder="Enter message"
+      ></dx-text-box>
+      <dx-select-box
+        [(value)]="position"
+        [items]="positions"
+        placeholder="Select position"
+      ></dx-select-box>
+      <dx-number-box
+        [(value)]="displayTime"
+        [min]="500"
+        [max]="10000"
+        [step]="500"
+        placeholder="Display Time (ms)"
+      ></dx-number-box>
+      <dx-select-box
+        [(value)]="icon"
+        [items]="icons"
+        displayExpr="text"
+        valueExpr="icon"
+        placeholder="Select icon"
+      ></dx-select-box>
+    </div>
+
+    <dx-toast
+      #toast="meToastControl"
+      meToast
+      [displayTime]="displayTime"
+      [position]="position"
+      [animation]="animation"
+      [customClass]="'custom-toast'"
+      [(visible)]="visible"
+      type="custom"
+    >
+      <div *dxTemplate="let data of 'content'">
+        <div class="flex-box">
+          <i [class]="icon + ' icon-style'"></i>
+          <span> &nbsp;{{message}}</span>
+        </div>
+      </div>
+    </dx-toast>
+  </div>
+</div>
