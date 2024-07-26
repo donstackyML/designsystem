@@ -1,6 +1,6 @@
-import { moduleMetadata, StoryObj, Meta } from '@storybook/angular';
-import { MeLoadIndicatorDirective } from '../app/directives/load-indicator.directive';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxLoadIndicatorModule } from 'devextreme-angular';
+import { MeLoadIndicatorDirective } from '../app/directives/load-indicator.directive';
 
 const meta: Meta<MeLoadIndicatorDirective> = {
   title: 'Directives/meLoadIndicator',
@@ -12,7 +12,7 @@ const meta: Meta<MeLoadIndicatorDirective> = {
       imports: [DxLoadIndicatorModule],
     }),
   ],
-  render: (args: MeLoadIndicatorDirective) => ({
+  render: (args: DxLoadIndicatorModule) => ({
     props: args,
     template: `
       <dx-load-indicator
@@ -38,17 +38,17 @@ const meta: Meta<MeLoadIndicatorDirective> = {
       options: ['small', 'medium', 'large'],
       control: { type: 'select' },
     },
-    visible: {
-      control: { type: 'boolean' },
-    },
-    rtlEnabled: {
-      control: { type: 'boolean' },
-    },
+    // visible: {
+    //   control: { type: 'boolean' },
+    // },
+    // rtlEnabled: {
+    //   control: { type: 'boolean' },
+    // },
   },
 };
 
 export default meta;
-type Story = StoryObj<MeLoadIndicatorDirective>;
+type Story = StoryObj<DxLoadIndicatorModule>;
 
 export const Default: Story = {
   args: {

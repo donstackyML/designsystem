@@ -13,7 +13,7 @@ const meta: Meta<MeToastDirective> = {
       imports: [DxToastModule],
     }),
   ],
-  render: (args: MeToastDirective) => ({
+  render: (args: DxToastModule) => ({
     props: {
       ...args,
       onShowing: action('onShowing'),
@@ -46,7 +46,14 @@ const meta: Meta<MeToastDirective> = {
   argTypes: {
     position: {
       control: 'select',
-      options: ['top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right'],
+      options: [
+        'top left',
+        'top center',
+        'top right',
+        'bottom left',
+        'bottom center',
+        'bottom right',
+      ],
     },
   },
 };
@@ -61,7 +68,7 @@ export const Default: Story = {
     position: 'bottom right',
     animation: {
       show: { type: 'fade', duration: 400, from: 0, to: 1 },
-      hide: { type: 'fade', duration: 400, from: 1, to: 0 }
+      hide: { type: 'fade', duration: 400, from: 1, to: 0 },
     },
     customClass: '',
   },
@@ -89,7 +96,7 @@ export const CustomAnimation: Story = {
     message: 'This toast has a custom animation',
     animation: {
       show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },
-      hide: { type: 'pop', duration: 400, to: { scale: 0 } }
+      hide: { type: 'pop', duration: 400, to: { scale: 0 } },
     },
   },
 };
