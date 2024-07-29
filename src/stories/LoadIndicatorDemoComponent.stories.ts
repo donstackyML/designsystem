@@ -1,9 +1,9 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxLoadIndicatorModule } from 'devextreme-angular';
 import { MeLoadIndicatorDirective } from '../app/directives/load-indicator.directive';
 
 const meta: Meta<MeLoadIndicatorDirective> = {
-  title: 'Directives/meLoadIndicator',
+  title: 'Directives/MeLoadIndicator',
   component: MeLoadIndicatorDirective,
   tags: ['autodocs'],
   decorators: [
@@ -12,97 +12,95 @@ const meta: Meta<MeLoadIndicatorDirective> = {
       imports: [DxLoadIndicatorModule],
     }),
   ],
-  render: (args: DxLoadIndicatorModule) => ({
-    props: args,
-    template: `
-      <dx-load-indicator
-        meLoadIndicator
-        [size]="size"
-        [customClass]="customClass"
-        [height]="height"
-        [width]="width"
-        [indicatorSrc]="indicatorSrc"
-        [hint]="hint"
-        [elementAttr]="elementAttr"
-        [rtlEnabled]="rtlEnabled"
-        [visible]="visible"
-        (onContentReady)="onContentReady($event)"
-        (onDisposing)="onDisposing($event)"
-        (onInitialized)="onInitialized($event)"
-        (onOptionChanged)="onOptionChanged($event)"
-      ></dx-load-indicator>
-    `,
-  }),
   argTypes: {
-    size: {
-      options: ['small', 'medium', 'large'],
+    color: {
+      options: ['normal', 'default', 'accent'],
       control: { type: 'select' },
+      defaultValue: 'default',
     },
-    // visible: {
-    //   control: { type: 'boolean' },
-    // },
-    // rtlEnabled: {
-    //   control: { type: 'boolean' },
-    // },
+    indicatorSrc: {
+      control: 'text',
+    },
   },
 };
 
 export default meta;
-type Story = StoryObj<DxLoadIndicatorModule>;
+
+type Story = StoryObj<MeLoadIndicatorDirective>;
+
+const Template: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="indicators">
+        <div
+          id="small-indicator"
+          meLoadIndicator
+          [size]="'small'"
+          [color]="'normal'"
+        ></div>
+        <div
+          id="medium-indicator"
+          meLoadIndicator
+          [size]="'medium'"
+          [color]="color"
+        ></div>
+        <div
+          id="large-indicator"
+          meLoadIndicator
+          [size]="'large'"
+          [color]="'accent'"
+        ></div>
+      </div>
+      <div class="label me-title-header2">Custom image</div>
+      <div
+        id="image-indicator"
+        meLoadIndicator
+        [size]="'large'"
+        [indicatorSrc]="indicatorSrc"
+      ></div>
+    `,
+    styles: [
+      `
+      .indicators {
+        height: 80px;
+        width: 200px;
+        background-color: var(--button-normal-bg-color);
+        display: flex;
+        border: 1px solid #9747ff;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .label {
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+    `,
+    ],
+  }),
+};
 
 export const Default: Story = {
+  ...Template,
   args: {
-    size: 'medium',
-    customClass: '',
-    height: undefined,
-    width: undefined,
-    indicatorSrc: undefined,
-    hint: undefined,
-    elementAttr: {},
-    rtlEnabled: false,
-    visible: true,
+    color: 'default',
+    indicatorSrc: '../../../assets/images/Spider web.gif',
   },
 };
 
-export const Small: Story = {
+export const WithAccentColor: Story = {
+  ...Template,
   args: {
-    ...Default.args,
-    size: 'small',
+    color: 'accent',
+    indicatorSrc: '../../../assets/images/Spider web.gif',
   },
 };
 
-export const Large: Story = {
+export const WithCustomImage: Story = {
+  ...Template,
   args: {
-    ...Default.args,
-    size: 'large',
-  },
-};
-
-export const CustomSize: Story = {
-  args: {
-    ...Default.args,
-    height: 100,
-    width: 100,
-  },
-};
-
-export const WithHint: Story = {
-  args: {
-    ...Default.args,
-    hint: 'Loading...',
-  },
-};
-
-export const Hidden: Story = {
-  args: {
-    ...Default.args,
-    visible: false,
-  },
-};
-
-export const RTLEnabled: Story = {
-  args: {
-    ...Default.args,
-    rtlEnabled: true,
+    color: 'default',
+    indicatorSrc: '../../../assets/images/custom-loader.gif',
   },
 };
