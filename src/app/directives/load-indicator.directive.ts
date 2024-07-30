@@ -51,7 +51,6 @@ export class MeLoadIndicatorDirective implements OnInit, OnChanges {
     return this.color === 'normal';
   }
 
-  // Обновление индикатора при изменении свойства
   ngOnChanges() {
     if (this.dxLoadIndicatorInstance) {
       this.dxLoadIndicatorInstance.option('indicatorSrc', this.indicatorSrc);

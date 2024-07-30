@@ -38,34 +38,23 @@ export class MeTabsDirective {
   @Input() size: MeSize = 'medium';
   @Input() stylingMode: 'outside' | 'inside' = 'outside';
 
-  private get isSizeSmall(): boolean {
+  protected get isSizeSmall(): boolean {
     return this.size === Sizes.Small;
   }
 
-  private get isSizeMedium(): boolean {
+  protected get isSizeMedium(): boolean {
     return this.size === Sizes.Medium;
   }
 
-  private get isSizeLarge(): boolean {
+  protected get isSizeLarge(): boolean {
     return this.size === Sizes.Large;
   }
 
-  private get isStylingModeOutside(): boolean {
+  protected get isStylingModeOutside(): boolean {
     return this.stylingMode === StylingModes.Outside;
   }
 
-  private get isStylingModeInside(): boolean {
+  protected get isStylingModeInside(): boolean {
     return this.stylingMode === StylingModes.Inside;
   }
-
-  // ngAfterViewInit() {
-  //   this.updateTabsProperties();
-  // }
-
-  // private updateTabsProperties() {
-  //   if (this.dxTabsComponent && this.dxTabsComponent.instance) {
-  //     const instance = this.dxTabsComponent.instance;
-  //     instance.option('focusStateEnabled', true);
-  //   }
-  // }
 }
