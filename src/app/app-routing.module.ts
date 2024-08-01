@@ -17,6 +17,13 @@ import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
+import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
+import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
+import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
+import { MeCalendarComponent } from './components/me-calendar/me-calendar.component';
+import { MeAccordionComponent } from './components/me-accordion/me-accordion.component';
+import { MeToastComponent } from './components/me-toast/me-toast.component';
+import { MeLoadingIndicatorComponent } from './components/me-loading-indicator/me-loading-indicator.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -37,6 +44,13 @@ const routes: Routes = [
   { path: 'me-context-menu', component: MeContextMenuComponent },
   { path: 'me-menu', component: MeMenuComponent },
   { path: 'me-tree-view', component: MeTreeViewComponent },
+  { path: 'me-tabs', component: MeTabsComponent },
+  { path: 'me-tooltip', component: MeTooltipComponent },
+  { path: 'me-tab-panel', component: MeTabPanelComponent },
+  { path: 'me-calendar', component: MeCalendarComponent },
+  { path: 'me-accordion', component: MeAccordionComponent },
+  { path: 'me-toast', component: MeToastComponent },
+  { path: 'me-loading-indicator', component: MeLoadingIndicatorComponent },
   { path: '**', component: TypographyComponent },
 ];
 

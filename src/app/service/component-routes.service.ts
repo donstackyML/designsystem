@@ -18,6 +18,13 @@ const componentsRoute: string[] = [
   'me-context-menu',
   'me-menu',
   'me-tree-view',
+  'me-tabs',
+  'me-tooltip',
+  'me-tab-panel',
+  'me-calendar',
+  'me-accordion',
+  'me-toast',
+  'me-loading-indicator',
 ];
 
 const componentsName: string[] = [
@@ -38,6 +45,13 @@ const componentsName: string[] = [
   'meContextMenu',
   'meMenu',
   'meTreeView',
+  'meTabs (RC)',
+  'meTooltip (RC)',
+  'meTabPanel (RC)',
+  'meCalendar (RC)',
+  'meAccordion (RC)',
+  'meToast (RC)',
+  'meLoadIndicator (RC)',
 ];
 
 @Injectable({

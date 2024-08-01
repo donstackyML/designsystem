@@ -18,29 +18,97 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    type: 'default',\r\n    text: 'Button',\r\n    size: 'medium',\r\n    stylingMode: 'outlined',\r\n    isSelected: false,\r\n  },\r\n}",
-        "rawdescription": "Дефолтная кнопка\r\n\r\nDescription, можно описывать story прямиком из stories",
-        "description": "<p>Дефолтная кнопка</p>\n<p>Description, можно описывать story прямиком из stories</p>\n"
+        "defaultValue": "{\r\n  args: {\r\n    type: 'default',\r\n    text: 'Button',\r\n    size: 'medium',\r\n  },\r\n}"
       },
       {
-        "name": "Default",
+        "name": "Large",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    visible: false,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapper',\r\n      // boundary: '',\r\n      // collision: 'fit',\r\n    },\r\n  },\r\n}"
+        "defaultValue": "{\r\n  args: {\r\n    size: 'large',\r\n    label: 'Button',\r\n  },\r\n}"
       },
       {
-        "name": "onShowPopup",
+        "name": "LoggedIn",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "() => {\r\n  console.log('123');\r\n}"
+        "type": "Story",
+        "defaultValue": "{\r\n  args: {\r\n    user: {\r\n      name: 'Jane Doe',\r\n    },\r\n  },\r\n}"
+      },
+      {
+        "name": "LoggedIn",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    const loginButton = canvas.getByRole('button', { name: /Log in/i });\r\n    await expect(loginButton).toBeInTheDocument();\r\n    await userEvent.click(loginButton);\r\n    await expect(loginButton).not.toBeInTheDocument();\r\n\r\n    const logoutButton = canvas.getByRole('button', { name: /Log out/i });\r\n    await expect(logoutButton).toBeInTheDocument();\r\n  },\r\n}"
+      },
+      {
+        "name": "LoggedOut",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "LoggedOut",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "meta",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Meta<ButtonComponent>",
+        "defaultValue": "{\r\n  title: 'Example/Button',\r\n  component: ButtonComponent,\r\n  tags: ['autodocs'],\r\n  argTypes: {\r\n    backgroundColor: {\r\n      control: 'color',\r\n    },\r\n  },\r\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\r\n  args: { onClick: fn() },\r\n}"
+      },
+      {
+        "name": "meta",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Meta<HeaderComponent>",
+        "defaultValue": "{\r\n  title: 'Example/Header',\r\n  component: HeaderComponent,\r\n  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs\r\n  tags: ['autodocs'],\r\n  parameters: {\r\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\r\n    layout: 'fullscreen',\r\n  },\r\n  args: {\r\n    onLogin: fn(),\r\n    onLogout: fn(),\r\n    onCreateAccount: fn(),\r\n  },\r\n}"
+      },
+      {
+        "name": "meta",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Meta<PageComponent>",
+        "defaultValue": "{\r\n  title: 'Example/Page',\r\n  component: PageComponent,\r\n  parameters: {\r\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\r\n    layout: 'fullscreen',\r\n  },\r\n}"
+      },
+      {
+        "name": "meta",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Meta<MeButtonDirective>",
+        "defaultValue": "{\r\n  title: 'Directives/meButton',\r\n  component: MeButtonDirective,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeButtonDirective, DxButtonComponent],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<dx-button meButton ${argsToTemplate(args)}></dx-button>`,\r\n  }),\r\n}"
       },
       {
         "name": "preview",
@@ -50,29 +118,37 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Preview",
-        "defaultValue": "{\r\n  parameters: {\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/i,\r\n      },\r\n    },\r\n    // docs:{\r\n    //   page: DocumentationTemplate\r\n    // }\r\n  },\r\n}"
+        "defaultValue": "{\r\n  parameters: {\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/i,\r\n      },\r\n    },\r\n  },\r\n}"
       },
       {
-        "name": "Scroll",
+        "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      // of: '#myWrapper',\r\n      // boundary: '',\r\n      // collision: 'fit',\r\n    },\r\n  },\r\n}"
+        "defaultValue": "{\r\n  args: {\r\n    primary: true,\r\n    label: 'Button',\r\n  },\r\n}"
       },
       {
-        "name": "Success",
+        "name": "Secondary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    type: 'success',\r\n    text: 'Button Success',\r\n    size: 'medium',\r\n  },\r\n}",
-        "rawdescription": "Кнопка success Description",
-        "description": "<p>Кнопка success Description</p>\n"
+        "defaultValue": "{\r\n  args: {\r\n    label: 'Button',\r\n  },\r\n}"
+      },
+      {
+        "name": "Small",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\r\n  args: {\r\n    size: 'small',\r\n    label: 'Button',\r\n  },\r\n}"
       }
     ],
     "functions": [],
@@ -81,8 +157,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "rawtype": "StoryObj<ButtonComponent>",
+        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -92,8 +168,30 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<DxPopupComponent | MePopupDirective>",
-        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "rawtype": "StoryObj<HeaderComponent>",
+        "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj<PageComponent>",
+        "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj<MeButtonDirective>",
+        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -111,53 +209,133 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    type: 'default',\r\n    text: 'Button',\r\n    size: 'medium',\r\n    stylingMode: 'outlined',\r\n    isSelected: false,\r\n  },\r\n}",
-          "rawdescription": "Дефолтная кнопка\r\n\r\nDescription, можно описывать story прямиком из stories",
-          "description": "<p>Дефолтная кнопка</p>\n<p>Description, можно описывать story прямиком из stories</p>\n"
+          "defaultValue": "{\r\n  args: {\r\n    type: 'default',\r\n    text: 'Button',\r\n    size: 'medium',\r\n  },\r\n}"
         },
         {
-          "name": "Success",
+          "name": "meta",
           "ctype": "miscellaneous",
           "subtype": "variable",
           "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    type: 'success',\r\n    text: 'Button Success',\r\n    size: 'medium',\r\n  },\r\n}",
-          "rawdescription": "Кнопка success Description",
-          "description": "<p>Кнопка success Description</p>\n"
+          "type": "Meta<MeButtonDirective>",
+          "defaultValue": "{\r\n  title: 'Directives/meButton',\r\n  component: MeButtonDirective,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeButtonDirective, DxButtonComponent],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<dx-button meButton ${argsToTemplate(args)}></dx-button>`,\r\n  }),\r\n}"
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts": [
+      "projects/dx-monitel-components/src/stories/button.stories.ts": [
         {
-          "name": "Default",
+          "name": "Large",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    visible: false,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapper',\r\n      // boundary: '',\r\n      // collision: 'fit',\r\n    },\r\n  },\r\n}"
+          "defaultValue": "{\r\n  args: {\r\n    size: 'large',\r\n    label: 'Button',\r\n  },\r\n}"
         },
         {
-          "name": "onShowPopup",
+          "name": "meta",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "() => {\r\n  console.log('123');\r\n}"
+          "type": "Meta<ButtonComponent>",
+          "defaultValue": "{\r\n  title: 'Example/Button',\r\n  component: ButtonComponent,\r\n  tags: ['autodocs'],\r\n  argTypes: {\r\n    backgroundColor: {\r\n      control: 'color',\r\n    },\r\n  },\r\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\r\n  args: { onClick: fn() },\r\n}"
         },
         {
-          "name": "Scroll",
+          "name": "Primary",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      // of: '#myWrapper',\r\n      // boundary: '',\r\n      // collision: 'fit',\r\n    },\r\n  },\r\n}"
+          "defaultValue": "{\r\n  args: {\r\n    primary: true,\r\n    label: 'Button',\r\n  },\r\n}"
+        },
+        {
+          "name": "Secondary",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\r\n  args: {\r\n    label: 'Button',\r\n  },\r\n}"
+        },
+        {
+          "name": "Small",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\r\n  args: {\r\n    size: 'small',\r\n    label: 'Button',\r\n  },\r\n}"
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/header.stories.ts": [
+        {
+          "name": "LoggedIn",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\r\n  args: {\r\n    user: {\r\n      name: 'Jane Doe',\r\n    },\r\n  },\r\n}"
+        },
+        {
+          "name": "LoggedOut",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{}"
+        },
+        {
+          "name": "meta",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Meta<HeaderComponent>",
+          "defaultValue": "{\r\n  title: 'Example/Header',\r\n  component: HeaderComponent,\r\n  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs\r\n  tags: ['autodocs'],\r\n  parameters: {\r\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\r\n    layout: 'fullscreen',\r\n  },\r\n  args: {\r\n    onLogin: fn(),\r\n    onLogout: fn(),\r\n    onCreateAccount: fn(),\r\n  },\r\n}"
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/page.stories.ts": [
+        {
+          "name": "LoggedIn",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    const loginButton = canvas.getByRole('button', { name: /Log in/i });\r\n    await expect(loginButton).toBeInTheDocument();\r\n    await userEvent.click(loginButton);\r\n    await expect(loginButton).not.toBeInTheDocument();\r\n\r\n    const logoutButton = canvas.getByRole('button', { name: /Log out/i });\r\n    await expect(logoutButton).toBeInTheDocument();\r\n  },\r\n}"
+        },
+        {
+          "name": "LoggedOut",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{}"
+        },
+        {
+          "name": "meta",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Meta<PageComponent>",
+          "defaultValue": "{\r\n  title: 'Example/Page',\r\n  component: PageComponent,\r\n  parameters: {\r\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\r\n    layout: 'fullscreen',\r\n  },\r\n}"
         }
       ],
       "projects/dx-monitel-components/.storybook/preview.ts": [
@@ -169,33 +347,59 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Preview",
-          "defaultValue": "{\r\n  parameters: {\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/i,\r\n      },\r\n    },\r\n    // docs:{\r\n    //   page: DocumentationTemplate\r\n    // }\r\n  },\r\n}"
+          "defaultValue": "{\r\n  parameters: {\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/i,\r\n      },\r\n    },\r\n  },\r\n}"
         }
       ]
     },
     "groupedFunctions": {},
     "groupedEnumerations": {},
     "groupedTypeAliases": {
-      "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
+      "projects/dx-monitel-components/src/stories/button.stories.ts": [
         {
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+          "rawtype": "StoryObj<ButtonComponent>",
+          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
           "kind": 183
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts": [
+      "projects/dx-monitel-components/src/stories/header.stories.ts": [
         {
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<DxPopupComponent | MePopupDirective>",
-          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+          "rawtype": "StoryObj<HeaderComponent>",
+          "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/page.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<PageComponent>",
+          "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<MeButtonDirective>",
+          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -206,8 +410,8 @@
   },
   "routes": [],
   "coverage": {
-    "count": 33,
-    "status": "medium",
+    "count": 0,
+    "status": "low",
     "files": [
       {
         "filePath": "projects/dx-monitel-components/.storybook/preview.ts",
@@ -220,27 +424,87 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "Default",
-        "coveragePercent": 100,
-        "coverageCount": "1/1",
-        "status": "very-good"
+        "name": "Large",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "Success",
-        "coveragePercent": 100,
-        "coverageCount": "1/1",
-        "status": "very-good"
+        "name": "meta",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Primary",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Secondary",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Small",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "LoggedIn",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "LoggedOut",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "meta",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -250,21 +514,41 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "filePath": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "onShowPopup",
+        "name": "meta",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "filePath": "projects/dx-monitel-components/src/stories/page.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "Scroll",
+        "name": "LoggedIn",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "LoggedOut",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "meta",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

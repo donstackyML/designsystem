@@ -1,0 +1,93 @@
+<div class="wrapper">
+  <h1 class="wrapper__main-title dx-widget">Calendar (RedCollar)</h1>
+
+  <div class="calendar-demo">
+    <div class="calendar-container" [formGroup]="calendarForm">
+      <dx-calendar
+        meCalendar
+        [value]="calendarForm.get('currentValue')?.value"
+        [showWeekNumbers]="calendarForm.get('showWeekNumbers')?.value"
+        [disabled]="calendarForm.get('disabled')?.value"
+        [firstDayOfWeek]="calendarForm.get('firstDayOfWeek')?.value"
+        [zoomLevel]="calendarForm.get('zoomLevel')?.value"
+        [cellTemplate]="calendarForm.get('cellTemplate')?.value"
+        [weekNumberRule]="calendarForm.get('weekNumberRule')?.value"
+        (onDateValueChanged)="onDateValueChanged($event)"
+      >
+        <span *dxTemplate="let cell of 'custom'" [ngClass]="getCellCssClass(cell)">
+          {{ cell.text }}
+        </span>
+      </dx-calendar>
+    </div>
+    <div class="options">
+      <div class="caption">Настройки</div>
+      <div class="option">
+        <span>Уровень масштабирования</span>
+        <dx-select-box
+          [dataSource]="zoomLevels"
+          [value]="calendarForm.get('zoomLevel')?.value"
+          (onValueChanged)="calendarForm.get('zoomLevel')?.setValue($event.value)"
+          [inputAttr]="{ 'aria-label': 'Уровень масштабирования' }"
+        >
+        </dx-select-box>
+      </div>
+      <div class="option">
+        <span>Выбранная дата</span>
+        <dx-date-box
+          id="selected-date"
+          [value]="calendarForm.get('currentValue')?.value"
+          (onValueChanged)="calendarForm.get('currentValue')?.setValue($event.value)"
+          [inputAttr]="{ 'aria-label': 'Дата' }"
+        >
+        </dx-date-box>
+      </div>
+      <div class="option">
+        <dx-check-box
+          text="Использовать пользовательский шаблон ячейки"
+          [value]="calendarForm.get('useCustomTemplate')?.value"
+          (onValueChanged)="calendarForm.get('useCustomTemplate')?.setValue($event.value)"
+        >
+        </dx-check-box>
+      </div>
+      <div class="option">
+        <dx-check-box
+          [value]="calendarForm.get('disabled')?.value"
+          (onValueChanged)="calendarForm.get('disabled')?.setValue($event.value)"
+          text="Отключить календарь"
+        >
+        </dx-check-box>
+      </div>
+      <div class="caption option">
+        <span>Нумерация недель</span>
+      </div>
+      <div class="option">
+        <dx-check-box
+          text="Показать номера недель"
+          [value]="calendarForm.get('showWeekNumbers')?.value"
+          (onValueChanged)="calendarForm.get('showWeekNumbers')?.setValue($event.value)"
+        >
+        </dx-check-box>
+      </div>
+      <div class="option">
+        <span>Первый день недели</span>
+        <dx-select-box
+          [dataSource]="weekDays"
+          [value]="calendarForm.get('firstDayOfWeek')?.value"
+          (onValueChanged)="calendarForm.get('firstDayOfWeek')?.setValue($event.value)"
+          [inputAttr]="{ 'aria-label': 'Первый день недели' }"
+          valueExpr="id"
+          displayExpr="text"
+        ></dx-select-box>
+      </div>
+      <div class="option">
+        <span>Правило нумерации недель</span>
+        <dx-select-box
+          [dataSource]="weekNumberRules"
+          [value]="calendarForm.get('weekNumberRule')?.value"
+          (onValueChanged)="calendarForm.get('weekNumberRule')?.setValue($event.value)"
+          [inputAttr]="{ 'aria-label': 'Правило нумерации недель' }"
+        ></dx-select-box>
+      </div>
+    </div>
+  </div>
+</div>
