@@ -6,10 +6,210 @@
   "interceptors": [],
   "classes": [],
   "directives": [],
-  "components": [],
+  "components": [
+    {
+      "name": "ToastWrapperComponent",
+      "id": "component-ToastWrapperComponent-4990b563a138aa9325147b46e90944ffe2b0565016946ccaefed472576553846a731b130518c82a7105872470a84d9793b35292fd572910a1401fb37d0f104c6",
+      "file": "src/stories/MeToastComponent.stories.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "storybook-toast-wrapper",
+      "styleUrls": [],
+      "styles": [],
+      "template": "<div>\n  <dx-toast\n    meToast\n    [message]=\"message\"\n    [displayTime]=\"displayTime\"\n    [position]=\"position\"\n    [animation]=\"animation\"\n    [customClass]=\"customClass\"\n    (onShowing)=\"onShowing($event)\"\n    (onShown)=\"onShown($event)\"\n    (onHiding)=\"onHiding($event)\"\n    (onHidden)=\"onHidden($event)\"\n  ></dx-toast>\n  <button (click)=\"showToast()\">Show Toast</button>\n</div>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "animation",
+          "defaultValue": "{\n    show: { type: 'fade', duration: 400, from: 0, to: 1 },\n    hide: { type: 'fade', duration: 400, from: 1, to: 0 },\n  }",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 33,
+          "type": "any",
+          "decorators": []
+        },
+        {
+          "name": "customClass",
+          "defaultValue": "''",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 37,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "displayTime",
+          "defaultValue": "2000",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 31,
+          "type": "number",
+          "decorators": []
+        },
+        {
+          "name": "message",
+          "defaultValue": "''",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 30,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "position",
+          "defaultValue": "'bottom right'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 32,
+          "type": "any",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "onHidden",
+          "defaultValue": "action('onHidden')",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 42
+        },
+        {
+          "name": "onHiding",
+          "defaultValue": "action('onHiding')",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 41
+        },
+        {
+          "name": "onShowing",
+          "defaultValue": "action('onShowing')",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 39
+        },
+        {
+          "name": "onShown",
+          "defaultValue": "action('onShown')",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 40
+        },
+        {
+          "name": "toastComponent",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "DxToastComponent",
+          "optional": false,
+          "description": "",
+          "line": 28,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "DxToastComponent, {static: false}"
+            }
+          ],
+          "modifierKind": [170]
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "showToast",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 44,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": false,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { moduleMetadata, StoryObj, Meta } from '@storybook/angular';\nimport { MeToastDirective } from '../app/directives/toast.directive';\nimport { DxToastComponent, DxToastModule } from 'devextreme-angular';\nimport { action } from '@storybook/addon-actions';\nimport { Component, ViewChild, Input } from '@angular/core';\n\n@Component({\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <div>\n      <dx-toast\n        meToast\n        [message]=\"message\"\n        [displayTime]=\"displayTime\"\n        [position]=\"position\"\n        [animation]=\"animation\"\n        [customClass]=\"customClass\"\n        (onShowing)=\"onShowing($event)\"\n        (onShown)=\"onShown($event)\"\n        (onHiding)=\"onHiding($event)\"\n        (onHidden)=\"onHidden($event)\"\n      ></dx-toast>\n      <button (click)=\"showToast()\">Show Toast</button>\n    </div>\n  `,\n})\nclass ToastWrapperComponent {\n  @ViewChild(DxToastComponent, { static: false }) toastComponent!: DxToastComponent;\n\n  @Input() message: string = '';\n  @Input() displayTime: number = 2000;\n  @Input() position: any = 'bottom right';\n  @Input() animation: any = {\n    show: { type: 'fade', duration: 400, from: 0, to: 1 },\n    hide: { type: 'fade', duration: 400, from: 1, to: 0 },\n  };\n  @Input() customClass: string = '';\n\n  onShowing = action('onShowing');\n  onShown = action('onShown');\n  onHiding = action('onHiding');\n  onHidden = action('onHidden');\n\n  showToast() {\n    if (this.toastComponent && this.toastComponent.instance) {\n      this.toastComponent.instance.show();\n    }\n  }\n}\n\nconst meta: Meta<ToastWrapperComponent> = {\n  title: 'Directives/meToast',\n  component: ToastWrapperComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective, ToastWrapperComponent],\n      imports: [DxToastModule],\n    }),\n  ],\n  argTypes: {\n    position: {\n      control: 'select',\n      options: [\n        'top left',\n        'top center',\n        'top right',\n        'bottom left',\n        'bottom center',\n        'bottom right',\n      ],\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<ToastWrapperComponent>;\n\nexport const Default: Story = {\n  args: {\n    message: 'This is a toast message',\n    displayTime: 2000,\n    position: 'bottom right',\n    animation: {\n      show: { type: 'fade', duration: 400, from: 0, to: 1 },\n      hide: { type: 'fade', duration: 400, from: 1, to: 0 },\n    },\n    customClass: '',\n  },\n};\n\nexport const LongDuration: Story = {\n  args: {\n    ...Default.args,\n    displayTime: 5000,\n    message: 'This toast will be displayed for 5 seconds',\n  },\n};\n\nexport const CustomPosition: Story = {\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n};\n\nexport const CustomAnimation: Story = {\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom animation',\n    animation: {\n      show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },\n      hide: { type: 'pop', duration: 400, to: { scale: 0 } },\n    },\n  },\n};\n\nexport const CustomClass: Story = {\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom CSS class',\n    customClass: 'my-custom-toast',\n  },\n};\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": []
+    }
+  ],
   "modules": [],
   "miscellaneous": {
     "variables": [
+      {
+        "name": "CustomAnimation",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/MeToastComponent.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom animation',\n    animation: {\n      show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },\n      hide: { type: 'pop', duration: 400, to: { scale: 0 } },\n    },\n  },\n}"
+      },
+      {
+        "name": "CustomClass",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/MeToastComponent.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom CSS class',\n    customClass: 'my-custom-toast',\n  },\n}"
+      },
+      {
+        "name": "CustomPosition",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/MeToastComponent.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/MeToastComponent.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    message: 'This is a toast message',\n    displayTime: 2000,\n    position: 'bottom right',\n    animation: {\n      show: { type: 'fade', duration: 400, from: 0, to: 1 },\n      hide: { type: 'fade', duration: 400, from: 1, to: 0 },\n    },\n    customClass: '',\n  },\n}"
+      },
       {
         "name": "Default",
         "ctype": "miscellaneous",
@@ -18,97 +218,59 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    type: 'default',\r\n    text: 'Button',\r\n    size: 'medium',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'outlined',\n    isSelected: false,\n  },\n}",
+        "rawdescription": "Дефолтная кнопка\n\nDescription, можно описывать story прямиком из stories",
+        "description": "<p>Дефолтная кнопка</p>\n<p>Description, можно описывать story прямиком из stories</p>\n"
       },
       {
-        "name": "Large",
+        "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    size: 'large',\r\n    label: 'Button',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    visible: false,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapper',\n      // boundary: '',\n      // collision: 'fit',\n    },\n  },\n}"
       },
       {
-        "name": "LoggedIn",
+        "name": "LongDuration",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "file": "src/stories/MeToastComponent.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    user: {\r\n      name: 'Jane Doe',\r\n    },\r\n  },\r\n}"
-      },
-      {
-        "name": "LoggedIn",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    const loginButton = canvas.getByRole('button', { name: /Log in/i });\r\n    await expect(loginButton).toBeInTheDocument();\r\n    await userEvent.click(loginButton);\r\n    await expect(loginButton).not.toBeInTheDocument();\r\n\r\n    const logoutButton = canvas.getByRole('button', { name: /Log out/i });\r\n    await expect(logoutButton).toBeInTheDocument();\r\n  },\r\n}"
-      },
-      {
-        "name": "LoggedOut",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{}"
-      },
-      {
-        "name": "LoggedOut",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    displayTime: 5000,\n    message: 'This toast will be displayed for 5 seconds',\n  },\n}"
       },
       {
         "name": "meta",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Meta<ButtonComponent>",
-        "defaultValue": "{\r\n  title: 'Example/Button',\r\n  component: ButtonComponent,\r\n  tags: ['autodocs'],\r\n  argTypes: {\r\n    backgroundColor: {\r\n      control: 'color',\r\n    },\r\n  },\r\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\r\n  args: { onClick: fn() },\r\n}"
+        "type": "Meta<MeLoadIndicatorDirective>",
+        "defaultValue": "{\n  title: 'Directives/MeLoadIndicator',\n  component: MeLoadIndicatorDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadIndicatorDirective],\n      imports: [DxLoadIndicatorModule],\n    }),\n  ],\n  argTypes: {\n    color: {\n      options: ['normal', 'default', 'accent'],\n      control: { type: 'select' },\n      defaultValue: 'default',\n    },\n    indicatorSrc: {\n      control: 'text',\n    },\n  },\n}"
       },
       {
         "name": "meta",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "file": "src/stories/MeToastComponent.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Meta<HeaderComponent>",
-        "defaultValue": "{\r\n  title: 'Example/Header',\r\n  component: HeaderComponent,\r\n  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs\r\n  tags: ['autodocs'],\r\n  parameters: {\r\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\r\n    layout: 'fullscreen',\r\n  },\r\n  args: {\r\n    onLogin: fn(),\r\n    onLogout: fn(),\r\n    onCreateAccount: fn(),\r\n  },\r\n}"
+        "type": "Meta<ToastWrapperComponent>",
+        "defaultValue": "{\n  title: 'Directives/meToast',\n  component: ToastWrapperComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective, ToastWrapperComponent],\n      imports: [DxToastModule],\n    }),\n  ],\n  argTypes: {\n    position: {\n      control: 'select',\n      options: [\n        'top left',\n        'top center',\n        'top right',\n        'bottom left',\n        'bottom center',\n        'bottom right',\n      ],\n    },\n  },\n}"
       },
       {
-        "name": "meta",
+        "name": "onShowPopup",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Meta<PageComponent>",
-        "defaultValue": "{\r\n  title: 'Example/Page',\r\n  component: PageComponent,\r\n  parameters: {\r\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\r\n    layout: 'fullscreen',\r\n  },\r\n}"
-      },
-      {
-        "name": "meta",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Meta<MeButtonDirective>",
-        "defaultValue": "{\r\n  title: 'Directives/meButton',\r\n  component: MeButtonDirective,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeButtonDirective, DxButtonComponent],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<dx-button meButton ${argsToTemplate(args)}></dx-button>`,\r\n  }),\r\n}"
+        "type": "",
+        "defaultValue": "() => {\n  console.log('123');\n}"
       },
       {
         "name": "preview",
@@ -118,37 +280,59 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Preview",
-        "defaultValue": "{\r\n  parameters: {\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/i,\r\n      },\r\n    },\r\n  },\r\n}"
+        "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    // docs:{\n    //   page: DocumentationTemplate\n    // }\n  },\n}"
       },
       {
-        "name": "Primary",
+        "name": "Scroll",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    primary: true,\r\n    label: 'Button',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      // of: '#myWrapper',\n      // boundary: '',\n      // collision: 'fit',\n    },\n  },\n}"
       },
       {
-        "name": "Secondary",
+        "name": "Success",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    label: 'Button',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    type: 'success',\n    text: 'Button Success',\n    size: 'medium',\n  },\n}",
+        "rawdescription": "Кнопка success Description",
+        "description": "<p>Кнопка success Description</p>\n"
       },
       {
-        "name": "Small",
+        "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    size: 'small',\r\n    label: 'Button',\r\n  },\r\n}"
+        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"'normal'\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"'accent'\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n      <div\n        id=\"image-indicator\"\n        meLoadIndicator\n        [size]=\"'large'\"\n        [indicatorSrc]=\"indicatorSrc\"\n      ></div>\n    `,\n    styles: [\n      `\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: var(--button-normal-bg-color);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `,\n    ],\n  }),\n}"
+      },
+      {
+        "name": "WithAccentColor",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'accent',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+      },
+      {
+        "name": "WithCustomImage",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/custom-loader.gif',\n  },\n}"
       }
     ],
     "functions": [],
@@ -157,8 +341,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<ButtonComponent>",
-        "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "rawtype": "StoryObj<MeLoadIndicatorDirective>",
+        "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -168,8 +352,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<HeaderComponent>",
-        "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
+        "rawtype": "StoryObj<ToastWrapperComponent>",
+        "file": "src/stories/MeToastComponent.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -179,19 +363,19 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<PageComponent>",
-        "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 183
-      },
-      {
-        "name": "Story",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "StoryObj<MeButtonDirective>",
+        "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj<DxPopupComponent | MePopupDirective>",
+        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -200,6 +384,120 @@
     ],
     "enumerations": [],
     "groupedVariables": {
+      "src/stories/MeToastComponent.stories.ts": [
+        {
+          "name": "CustomAnimation",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/MeToastComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom animation',\n    animation: {\n      show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },\n      hide: { type: 'pop', duration: 400, to: { scale: 0 } },\n    },\n  },\n}"
+        },
+        {
+          "name": "CustomClass",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/MeToastComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom CSS class',\n    customClass: 'my-custom-toast',\n  },\n}"
+        },
+        {
+          "name": "CustomPosition",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/MeToastComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n}"
+        },
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/MeToastComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    message: 'This is a toast message',\n    displayTime: 2000,\n    position: 'bottom right',\n    animation: {\n      show: { type: 'fade', duration: 400, from: 0, to: 1 },\n      hide: { type: 'fade', duration: 400, from: 1, to: 0 },\n    },\n    customClass: '',\n  },\n}"
+        },
+        {
+          "name": "LongDuration",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/MeToastComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    displayTime: 5000,\n    message: 'This toast will be displayed for 5 seconds',\n  },\n}"
+        },
+        {
+          "name": "meta",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/MeToastComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Meta<ToastWrapperComponent>",
+          "defaultValue": "{\n  title: 'Directives/meToast',\n  component: ToastWrapperComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective, ToastWrapperComponent],\n      imports: [DxToastModule],\n    }),\n  ],\n  argTypes: {\n    position: {\n      control: 'select',\n      options: [\n        'top left',\n        'top center',\n        'top right',\n        'bottom left',\n        'bottom center',\n        'bottom right',\n      ],\n    },\n  },\n}"
+        }
+      ],
+      "src/stories/LoadIndicatorDemoComponent.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+        },
+        {
+          "name": "meta",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Meta<MeLoadIndicatorDirective>",
+          "defaultValue": "{\n  title: 'Directives/MeLoadIndicator',\n  component: MeLoadIndicatorDirective,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadIndicatorDirective],\n      imports: [DxLoadIndicatorModule],\n    }),\n  ],\n  argTypes: {\n    color: {\n      options: ['normal', 'default', 'accent'],\n      control: { type: 'select' },\n      defaultValue: 'default',\n    },\n    indicatorSrc: {\n      control: 'text',\n    },\n  },\n}"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"'normal'\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"'accent'\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n      <div\n        id=\"image-indicator\"\n        meLoadIndicator\n        [size]=\"'large'\"\n        [indicatorSrc]=\"indicatorSrc\"\n      ></div>\n    `,\n    styles: [\n      `\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: var(--button-normal-bg-color);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `,\n    ],\n  }),\n}"
+        },
+        {
+          "name": "WithAccentColor",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'accent',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+        },
+        {
+          "name": "WithCustomImage",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/custom-loader.gif',\n  },\n}"
+        }
+      ],
       "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
         {
           "name": "Default",
@@ -209,133 +507,53 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    type: 'default',\r\n    text: 'Button',\r\n    size: 'medium',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'outlined',\n    isSelected: false,\n  },\n}",
+          "rawdescription": "Дефолтная кнопка\n\nDescription, можно описывать story прямиком из stories",
+          "description": "<p>Дефолтная кнопка</p>\n<p>Description, можно описывать story прямиком из stories</p>\n"
         },
         {
-          "name": "meta",
+          "name": "Success",
           "ctype": "miscellaneous",
           "subtype": "variable",
           "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Meta<MeButtonDirective>",
-          "defaultValue": "{\r\n  title: 'Directives/meButton',\r\n  component: MeButtonDirective,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeButtonDirective, DxButtonComponent],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<dx-button meButton ${argsToTemplate(args)}></dx-button>`,\r\n  }),\r\n}"
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    type: 'success',\n    text: 'Button Success',\n    size: 'medium',\n  },\n}",
+          "rawdescription": "Кнопка success Description",
+          "description": "<p>Кнопка success Description</p>\n"
         }
       ],
-      "projects/dx-monitel-components/src/stories/button.stories.ts": [
+      "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts": [
         {
-          "name": "Large",
+          "name": "Default",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    size: 'large',\r\n    label: 'Button',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    visible: false,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapper',\n      // boundary: '',\n      // collision: 'fit',\n    },\n  },\n}"
         },
         {
-          "name": "meta",
+          "name": "onShowPopup",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Meta<ButtonComponent>",
-          "defaultValue": "{\r\n  title: 'Example/Button',\r\n  component: ButtonComponent,\r\n  tags: ['autodocs'],\r\n  argTypes: {\r\n    backgroundColor: {\r\n      control: 'color',\r\n    },\r\n  },\r\n  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args\r\n  args: { onClick: fn() },\r\n}"
+          "type": "",
+          "defaultValue": "() => {\n  console.log('123');\n}"
         },
         {
-          "name": "Primary",
+          "name": "Scroll",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    primary: true,\r\n    label: 'Button',\r\n  },\r\n}"
-        },
-        {
-          "name": "Secondary",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    label: 'Button',\r\n  },\r\n}"
-        },
-        {
-          "name": "Small",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    size: 'small',\r\n    label: 'Button',\r\n  },\r\n}"
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/header.stories.ts": [
-        {
-          "name": "LoggedIn",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    user: {\r\n      name: 'Jane Doe',\r\n    },\r\n  },\r\n}"
-        },
-        {
-          "name": "LoggedOut",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{}"
-        },
-        {
-          "name": "meta",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Meta<HeaderComponent>",
-          "defaultValue": "{\r\n  title: 'Example/Header',\r\n  component: HeaderComponent,\r\n  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs\r\n  tags: ['autodocs'],\r\n  parameters: {\r\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\r\n    layout: 'fullscreen',\r\n  },\r\n  args: {\r\n    onLogin: fn(),\r\n    onLogout: fn(),\r\n    onCreateAccount: fn(),\r\n  },\r\n}"
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/page.stories.ts": [
-        {
-          "name": "LoggedIn",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  play: async ({ canvasElement }) => {\r\n    const canvas = within(canvasElement);\r\n    const loginButton = canvas.getByRole('button', { name: /Log in/i });\r\n    await expect(loginButton).toBeInTheDocument();\r\n    await userEvent.click(loginButton);\r\n    await expect(loginButton).not.toBeInTheDocument();\r\n\r\n    const logoutButton = canvas.getByRole('button', { name: /Log out/i });\r\n    await expect(logoutButton).toBeInTheDocument();\r\n  },\r\n}"
-        },
-        {
-          "name": "LoggedOut",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{}"
-        },
-        {
-          "name": "meta",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Meta<PageComponent>",
-          "defaultValue": "{\r\n  title: 'Example/Page',\r\n  component: PageComponent,\r\n  parameters: {\r\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\r\n    layout: 'fullscreen',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      // of: '#myWrapper',\n      // boundary: '',\n      // collision: 'fit',\n    },\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/.storybook/preview.ts": [
@@ -347,46 +565,33 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Preview",
-          "defaultValue": "{\r\n  parameters: {\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/i,\r\n      },\r\n    },\r\n  },\r\n}"
+          "defaultValue": "{\n  parameters: {\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    // docs:{\n    //   page: DocumentationTemplate\n    // }\n  },\n}"
         }
       ]
     },
     "groupedFunctions": {},
     "groupedEnumerations": {},
     "groupedTypeAliases": {
-      "projects/dx-monitel-components/src/stories/button.stories.ts": [
+      "src/stories/LoadIndicatorDemoComponent.stories.ts": [
         {
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<ButtonComponent>",
-          "file": "projects/dx-monitel-components/src/stories/button.stories.ts",
+          "rawtype": "StoryObj<MeLoadIndicatorDirective>",
+          "file": "src/stories/LoadIndicatorDemoComponent.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
           "kind": 183
         }
       ],
-      "projects/dx-monitel-components/src/stories/header.stories.ts": [
+      "src/stories/MeToastComponent.stories.ts": [
         {
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<HeaderComponent>",
-          "file": "projects/dx-monitel-components/src/stories/header.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/page.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<PageComponent>",
-          "file": "projects/dx-monitel-components/src/stories/page.stories.ts",
+          "rawtype": "StoryObj<ToastWrapperComponent>",
+          "file": "src/stories/MeToastComponent.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -398,8 +603,21 @@
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<MeButtonDirective>",
+          "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<DxPopupComponent | MePopupDirective>",
+          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -410,7 +628,7 @@
   },
   "routes": [],
   "coverage": {
-    "count": 0,
+    "count": 11,
     "status": "low",
     "files": [
       {
@@ -424,87 +642,27 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
+        "filePath": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "Large",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "meta",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Primary",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Secondary",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/button.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Small",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/header.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "LoggedIn",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/header.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "LoggedOut",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/header.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "meta",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
+        "name": "Default",
+        "coveragePercent": 100,
+        "coverageCount": "1/1",
+        "status": "very-good"
       },
       {
         "filePath": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Success",
+        "coveragePercent": 100,
+        "coverageCount": "1/1",
+        "status": "very-good"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -514,7 +672,37 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "filePath": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "onShowPopup",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Scroll",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/LoadIndicatorDemoComponent.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -524,27 +712,96 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "filePath": "src/stories/LoadIndicatorDemoComponent.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "LoggedIn",
+        "name": "Template",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "filePath": "src/stories/LoadIndicatorDemoComponent.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "LoggedOut",
+        "name": "WithAccentColor",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/page.stories.ts",
+        "filePath": "src/stories/LoadIndicatorDemoComponent.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "WithCustomImage",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/MeToastComponent.stories.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "ToastWrapperComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/12",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/MeToastComponent.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "CustomAnimation",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/MeToastComponent.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "CustomClass",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/MeToastComponent.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "CustomPosition",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/MeToastComponent.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/MeToastComponent.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "LongDuration",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/MeToastComponent.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",

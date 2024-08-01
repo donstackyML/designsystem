@@ -68,7 +68,7 @@ export const Default: Story = {
 
 export const Scroll: Story = {
   args: {
-    visible: true,
+    visible: false,
     size: 'medium',
     position: {
       my: 'center',
