@@ -19,7 +19,7 @@ export interface Company {
   templateUrl: './me-accordion.component.html',
   styleUrls: ['./me-accordion.component.css'],
 })
-export class MeAccordionComponent implements OnInit {
+export class MeAccordionComponent {
   @ViewChild('accordion') accordion!: DxAccordionComponent;
 
   companies: Company[] = [
@@ -80,10 +80,6 @@ export class MeAccordionComponent implements OnInit {
   selectedItems: Company[] = [this.companies[0]];
 
   constructor() {}
-
-  ngOnInit() {
-    // Инициализация, если необходимо
-  }
 
   onMultipleChanged(value: boolean) {
     this.isMultiple = value;
