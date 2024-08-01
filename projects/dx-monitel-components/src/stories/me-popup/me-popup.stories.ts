@@ -38,7 +38,7 @@ export default {
   },
   render: (args) => ({
     props: args,
-    template: `<dx-button meButton [text]="'show Popup'"></dx-button>
+    template: `<dx-button meButton [text]="'show Popup'" (onClick)="onShowPopup()"></dx-button>
     <dx-popup mePopup ${argsToTemplate(args)}></dx-popup>`,
     // template: `<div id="myWrapper" style="height: 300px; "><dx-popup mePopup ${argsToTemplate(
     //   args
@@ -46,11 +46,15 @@ export default {
   }),
 } as Meta<DxPopupComponent | MePopupDirective>;
 
+const onShowPopup = () => {
+  console.log('123');
+};
+
 type Story = StoryObj<DxPopupComponent | MePopupDirective>;
 
 export const Default: Story = {
   args: {
-    visible: true,
+    visible: false,
     size: 'medium',
     position: {
       my: 'center',
