@@ -1,5 +1,6 @@
 import {
   argsToTemplate,
+  componentWrapperDecorator,
   moduleMetadata,
   type Meta,
   type StoryObj,
@@ -19,9 +20,9 @@ export default {
         DxButtonComponent,
       ],
     }),
-    // componentWrapperDecorator(
-    //   (story) => `<div id="myWrapper" style="height: 300px">${story}</div>`
-    // ),
+    componentWrapperDecorator(
+      (story) => `<div id="myWrapper" style="height: 300px">${story}</div>`
+    ),
   ],
   argTypes: {
     size: {
@@ -38,23 +39,20 @@ export default {
   },
   render: (args) => ({
     props: args,
-    template: `<dx-button meButton [text]="'show Popup'" (onClick)="onShowPopup()"></dx-button>
-    <dx-popup mePopup ${argsToTemplate(args)}></dx-popup>`,
+    // template: `<dx-button meButton [text]="'show Popup'"></dx-button>
+    // <dx-popup mePopup ${argsToTemplate(args)}></dx-popup>`,
+    template: `<dx-popup mePopup ${argsToTemplate(args)}></dx-popup>`,
     // template: `<div id="myWrapper" style="height: 300px; "><dx-popup mePopup ${argsToTemplate(
     //   args
     // )}></dx-popup></div>`,
   }),
 } as Meta<DxPopupComponent | MePopupDirective>;
 
-const onShowPopup = () => {
-  console.log('123');
-};
-
 type Story = StoryObj<DxPopupComponent | MePopupDirective>;
 
 export const Default: Story = {
   args: {
-    visible: false,
+    visible: true,
     size: 'medium',
     position: {
       my: 'center',
@@ -68,12 +66,12 @@ export const Default: Story = {
 
 export const Scroll: Story = {
   args: {
-    visible: false,
+    visible: true,
     size: 'medium',
     position: {
       my: 'center',
       at: 'center',
-      // of: '#myWrapper',
+      of: '#myWrapper',
       // boundary: '',
       // collision: 'fit',
     },

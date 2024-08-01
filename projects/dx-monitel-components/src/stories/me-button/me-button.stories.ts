@@ -6,7 +6,6 @@ import {
 } from '@storybook/angular';
 import { DxButtonComponent } from 'devextreme-angular';
 import { MeButtonDirective } from '../../public-api';
-// import { MeButtonComponent } from './me-button.component';
 
 export default {
   title: 'Components/meButton',
