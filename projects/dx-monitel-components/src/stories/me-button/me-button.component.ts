@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { DxButtonModule } from 'devextreme-angular';
-import { MeButtonModule } from '../../public-api';
 import { MeButtonStyle, MeButtonType, MeSize } from 'src/app/types/types';
+import { MeButtonModule } from '../../public-api';
 
 @Component({
   selector: 'me-button',

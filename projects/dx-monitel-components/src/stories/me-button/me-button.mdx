@@ -1,0 +1,65 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  Controls,
+  Description,
+  Source,
+} from "@storybook/addon-docs";
+import { DxButtonComponent } from "devextreme-angular";
+import { MeButtonDirective } from "../../public-api";
+import { moduleMetadata } from "@storybook/angular";
+import * as buttonStories from "./me-button.stories";
+import ReadMe from "./README.md?raw";
+import { Markdown, Subtitle, Title, Unstyled } from "@storybook/blocks";
+
+<Meta
+  name="meButton Docs"
+  of={buttonStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeButtonDirective, DxButtonComponent],
+    }),
+  ]}
+/>
+
+{/* <Title/> берет title из title stories */}
+
+<Markdown>{ReadMe}</Markdown>
+line \ new line
+
+## Default button
+
+<Subtitle>Subtitle</Subtitle>
+
+<Description of={buttonStories.Default} />
+
+<Story name="meComponent" of={buttonStories.Default} />
+
+<Source of={buttonStories.Default} type="dynamic" dark />
+<Controls of={buttonStories.Default} />
+
+## Success button on Canvas
+
+<Description of={buttonStories.Success} />
+
+{/* <Story name="meComponento" of={buttonStories.Success}/> */}
+
+<Canvas of={buttonStories.Success} withToolbar />
+<Controls of={buttonStories.Success} />
+Source для отображения компонента, доработать для dynamic
+<Source of={buttonStories.Success} type="dynamic" dark />
+
+<Unstyled>
+  <div className="container">
+    <h2>Unstyled H2</h2>
+    <p>В блоке Unstyled не используются стили storybook</p>
+  </div>
+  <style>
+    {`
+      .container {
+         background-color: aqua;
+        }
+    `}
+  </style>
+</Unstyled>
