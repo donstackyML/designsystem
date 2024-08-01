@@ -15,7 +15,8 @@ export class MeControlDirective {
   @Input() size: MeSize = 'medium';
   @Input() text: string = '';
   @Input({
-    transform: (originalItems: MeButtonGroupItem[]) => structuredClone(originalItems),
+    transform: (originalItems: MeButtonGroupItem[]) =>
+      structuredClone(originalItems),
   })
   items: MeButtonGroupItem[] = [];
 

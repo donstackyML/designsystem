@@ -17,7 +17,9 @@ export class MeIconStoreService {
     if (this.icons.hasOwnProperty(icon)) {
       const iconName = <keyof MeIcon>icon;
 
-      return this.icons[iconName].replaceAll('color', color).replaceAll('iconSize', size);
+      return this.icons[iconName]
+        .replaceAll('color', color)
+        .replaceAll('iconSize', size);
     } else {
       return icon.replaceAll('color', color).replaceAll('iconSize', size);
     }
