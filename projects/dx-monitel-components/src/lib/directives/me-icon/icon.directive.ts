@@ -16,7 +16,7 @@ export class MeIconDirective {
   constructor(
     private element: ElementRef,
     private service: MeIconStoreService,
-    private renderer: Renderer2,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -30,13 +30,13 @@ export class MeIconDirective {
     this.renderer.setStyle(
       this.element.nativeElement,
       'width',
-      `${this.width ? this.width : DEFAULT_SIZE}px`,
+      `${this.width ? this.width : DEFAULT_SIZE}px`
     );
 
     this.renderer.setStyle(
       this.element.nativeElement,
       'height',
-      `${this.height ? this.height : DEFAULT_SIZE}px`,
+      `${this.height ? this.height : DEFAULT_SIZE}px`
     );
 
     this.renderer.addClass(this.element.nativeElement, 'me-flex-centered');

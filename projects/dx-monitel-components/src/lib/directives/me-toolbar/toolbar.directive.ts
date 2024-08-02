@@ -12,10 +12,16 @@ export class MeToolbarDirective implements OnInit {
 
   ngOnInit(): void {
     this.renderer.addClass(this.element.nativeElement, 'me-toolbar');
-    this.renderer.addClass(this.element.nativeElement, `me-toolbar-${this.size}`);
+    this.renderer.addClass(
+      this.element.nativeElement,
+      `me-toolbar-${this.size}`
+    );
 
     if (this.background) {
-      this.renderer.addClass(this.element.nativeElement, `me-toolbar-background`);
+      this.renderer.addClass(
+        this.element.nativeElement,
+        `me-toolbar-background`
+      );
     }
   }
 }
