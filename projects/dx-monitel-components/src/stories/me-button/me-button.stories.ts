@@ -78,7 +78,7 @@ export const Default: Story = {
     type: 'default',
     text: 'Button',
     size: 'medium',
-    stylingMode: 'outlined',
+    stylingMode: 'contained',
     isSelected: false,
   },
 };

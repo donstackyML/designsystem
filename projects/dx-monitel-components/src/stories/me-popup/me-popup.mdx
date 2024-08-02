@@ -29,14 +29,7 @@ import { Markdown, Subtitle, Unstyled } from "@storybook/blocks";
 Применение директивы mePopup к элементу dx-popup приводит его размеры к значению size=medium из дизайн-системы, а также приводит отступы в соответствие
 с дизайн-системой, добавляет свойство size. Стандартное свойство resizeEnabled по умолчанию включено.
 
-{/* <Story of={popupStories.Default} /> */}
-
-<Canvas of={popupStories.Default} />
-
-<Source
-  code={`<dx-popup mePopup [visible]="visible" [size]="size"></dx-popup>`}
-  dark
-/>
+<Story of={popupStories.Default} />
 
 ## Содержание
 
@@ -51,7 +44,7 @@ import { Markdown, Subtitle, Unstyled } from "@storybook/blocks";
 
 Чтобы получить внутри окна скролл из дизайн-системы необходимо обернуть контент в компонент scroll view.
 
-{/* <Story of={popupStories.Scroll} /> */}
+<Story of={popupStories.Scroll} />
 
 <Source code={`
 <dx-popup mePopup>
@@ -68,9 +61,7 @@ import { Markdown, Subtitle, Unstyled } from "@storybook/blocks";
 Для добавления элементов в туллбар необходимо воспользоваться dxi-toolbar-item [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Specify_Toolbar_Items/). Для добавления контента используется свойство contentTemplate [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Customize_the_Content/#Specifying_the_Content_Template).
 В дизайн-системе для размера medium используются кнопки с размером medium, для размера large соответственно кнопки одноименного размера.
 
-{/* <Story /> */}
-
-<Canvas of={popupStories.Scroll} />
+<Story of={popupStories.Toolbar} />
 
 <Source
   code={`<dx-popup mePopup [showTitle]="true" title="Заголовок">
@@ -198,11 +189,11 @@ width = 400px;`}
 
 ## Перечень свойств
 
-<Controls exclude={["visible"]} />
+<Controls include={["size"]} />
 
 В дизайн-системе для размера medium используются кнопки с размером medium, для размера large соответственно кнопки одноименного размера.
 
-{/* <Story /> */}
+<Story of={popupStories.Size} />
 
 <Source
   code={`<dx-popup mePopup [showTitle]="true" title="Заголовок" size="large">
