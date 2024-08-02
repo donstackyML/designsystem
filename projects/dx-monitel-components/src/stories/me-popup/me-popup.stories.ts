@@ -30,15 +30,41 @@ export default {
         defaultValue: { summary: 'medium' },
       },
     },
+    dragEnabled: {
+      table: {
+        disable: true,
+      },
+    },
+    animation: {
+      table: {
+        disable: true,
+      },
+    },
+    focusStateEnabled: {
+      table: {
+        disable: true,
+      },
+    },
+    position: {
+      table: {
+        disable: true,
+      },
+    },
+    container: {
+      table: {
+        disable: true,
+      },
+    },
   },
   args: {
+    title: '',
     dragEnabled: false,
     animation: {},
     focusStateEnabled: false,
   },
   render: (args) => ({
     props: args,
-    template: `<div id="myWrapper" style="height: 300px; position: relative;"><dx-popup mePopup ${argsToTemplate(
+    template: `<div id="myWrapper" style="min-height: 300px; position: relative;"><dx-popup mePopup ${argsToTemplate(
       args
     )}></dx-popup></div>`,
   }),
@@ -87,7 +113,7 @@ export const Scroll: Story = {
     props: args,
     template: `
     <div id="myWrapperScroll" style="height: 300px; position: relative;">
-      <dx-popup mePopup height='100px' ${argsToTemplate(args)}>
+      <dx-popup mePopup height='200px' ${argsToTemplate(args)}>
         <div *dxTemplate="let data of 'content'">
           <dx-scroll-view width="100%" height="100%">
           ${words}
@@ -127,7 +153,7 @@ export const Toolbar: Story = {
     props: args,
     template: `
     <div id="myWrapperTollbar" style="height: 300px; position: relative;">
-      <dx-popup mePopup height='10px' ${argsToTemplate(args)}>
+      <dx-popup mePopup height='200px' ${argsToTemplate(args)}>
         <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
           </dxi-toolbar-item>
         <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
@@ -190,7 +216,7 @@ export const Size: Story = {
     props: args,
     template: `
     <div id="myWrapperSize" style="height: 350px; position: relative;">
-      <dx-popup mePopup height='10px' ${argsToTemplate(args)}>
+      <dx-popup mePopup height='200px' ${argsToTemplate(args)}>
         <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
           </dxi-toolbar-item>
         <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">

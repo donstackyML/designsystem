@@ -233,16 +233,6 @@
         "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapper',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    container: '#myWrapper',\n  },\n}"
       },
       {
-        "name": "Elements",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperE',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    container: '#myWrapperE',\n  },\n  render: (args) => ({\n    props: args,\n    template: `<div id=\"myWrapperE\" style=\"height: 300px; position: relative;\"><dx-popup mePopup ${argsToTemplate(\n      args\n    )}></dx-popup></div>`,\n  }),\n}"
-      },
-      {
         "name": "LongDuration",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -290,7 +280,17 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperS',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    container: '#myWrapperS',\n  },\n  render: (args) => ({\n    props: args,\n    template: `<div id=\"myWrapperS\" style=\"height: 300px; position: relative;\"><dx-popup mePopup ${argsToTemplate(\n      args\n    )}></dx-popup></div>`,\n  }),\n}"
+        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperScroll',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperScroll',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopupDirective, DxScrollViewComponent],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperScroll\" style=\"height: 300px; position: relative;\">\n      <dx-popup mePopup height='100px' ${argsToTemplate(args)}>\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n          ${words}\n          </dx-scroll-view>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+      },
+      {
+        "name": "Size",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'large',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperSize',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperSize',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperSize\" style=\"height: 350px; position: relative;\">\n      <dx-popup mePopup height='10px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n        \n        <div *dxTemplate=\"let data of 'overflowButton'\">\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"18px\" size=\"large\">\n            </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"large\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\" size=\"large\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\" size=\"large\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
       },
       {
         "name": "Success",
@@ -315,6 +315,16 @@
         "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"'normal'\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"'accent'\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n      <div\n        id=\"image-indicator\"\n        meLoadIndicator\n        [size]=\"'large'\"\n        [indicatorSrc]=\"indicatorSrc\"\n      ></div>\n    `,\n    styles: [\n      `\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: var(--button-normal-bg-color);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `,\n    ],\n  }),\n}"
       },
       {
+        "name": "Toolbar",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperTollbar',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperTollbar',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperTollbar\" style=\"height: 300px; position: relative;\">\n      <dx-popup mePopup height='10px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n        \n        <div *dxTemplate=\"let data of 'overflowButton'\">\n        <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\">\n          </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+      },
+      {
         "name": "WithAccentColor",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -333,6 +343,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/custom-loader.gif',\n  },\n}"
+      },
+      {
+        "name": "words",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "string",
+        "defaultValue": "'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum enim, quos qui temporibus repellat architecto, ratione deleniti culpa adipisci beatae perferendis illo eum minima modi libero. Deleniti harum cum accusantium similique obcaecati quae, maxime dignissimos iusto repellat qui temporibus? Culpa quod eius officia pariatur soluta, deleniti tempore atque repellendus, non, eveniet ex repudiandae rerum distinctio autem eligendi consectetur quasi quia impedit ipsum inventore alias! Unde commodi ipsa, excepturi quibusdam nisi, quia vero nemo repudiandae blanditiis repellendus minus porro quasi dolores reiciendis placeat? Itaque commodi enim consectetur, recusandae blanditiis incidunt illum dolor quaerat, eum architecto possimus obcaecati omnis, nulla dignissimos corrupti.'"
       }
     ],
     "functions": [],
@@ -374,7 +394,7 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<DxPopupComponent | MePopupDirective>",
+        "rawtype": "StoryObj<DxPopupModule | MePopupDirective>",
         "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -536,16 +556,6 @@
           "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapper',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    container: '#myWrapper',\n  },\n}"
         },
         {
-          "name": "Elements",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperE',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    container: '#myWrapperE',\n  },\n  render: (args) => ({\n    props: args,\n    template: `<div id=\"myWrapperE\" style=\"height: 300px; position: relative;\"><dx-popup mePopup ${argsToTemplate(\n      args\n    )}></dx-popup></div>`,\n  }),\n}"
-        },
-        {
           "name": "Scroll",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -553,7 +563,37 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperS',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    container: '#myWrapperS',\n  },\n  render: (args) => ({\n    props: args,\n    template: `<div id=\"myWrapperS\" style=\"height: 300px; position: relative;\"><dx-popup mePopup ${argsToTemplate(\n      args\n    )}></dx-popup></div>`,\n  }),\n}"
+          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperScroll',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperScroll',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopupDirective, DxScrollViewComponent],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperScroll\" style=\"height: 300px; position: relative;\">\n      <dx-popup mePopup height='100px' ${argsToTemplate(args)}>\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n          ${words}\n          </dx-scroll-view>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+        },
+        {
+          "name": "Size",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'large',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperSize',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperSize',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperSize\" style=\"height: 350px; position: relative;\">\n      <dx-popup mePopup height='10px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n        \n        <div *dxTemplate=\"let data of 'overflowButton'\">\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"18px\" size=\"large\">\n            </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"large\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\" size=\"large\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\" size=\"large\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+        },
+        {
+          "name": "Toolbar",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperTollbar',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperTollbar',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperTollbar\" style=\"height: 300px; position: relative;\">\n      <dx-popup mePopup height='10px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n        \n        <div *dxTemplate=\"let data of 'overflowButton'\">\n        <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\">\n          </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+        },
+        {
+          "name": "words",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "defaultValue": "'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum enim, quos qui temporibus repellat architecto, ratione deleniti culpa adipisci beatae perferendis illo eum minima modi libero. Deleniti harum cum accusantium similique obcaecati quae, maxime dignissimos iusto repellat qui temporibus? Culpa quod eius officia pariatur soluta, deleniti tempore atque repellendus, non, eveniet ex repudiandae rerum distinctio autem eligendi consectetur quasi quia impedit ipsum inventore alias! Unde commodi ipsa, excepturi quibusdam nisi, quia vero nemo repudiandae blanditiis repellendus minus porro quasi dolores reiciendis placeat? Itaque commodi enim consectetur, recusandae blanditiis incidunt illum dolor quaerat, eum architecto possimus obcaecati omnis, nulla dignissimos corrupti.'"
         }
       ],
       "projects/dx-monitel-components/.storybook/preview.ts": [
@@ -616,7 +656,7 @@
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<DxPopupComponent | MePopupDirective>",
+          "rawtype": "StoryObj<DxPopupModule | MePopupDirective>",
           "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
@@ -628,7 +668,7 @@
   },
   "routes": [],
   "coverage": {
-    "count": 11,
+    "count": 10,
     "status": "low",
     "files": [
       {
@@ -676,7 +716,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "Elements",
+        "name": "Scroll",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -686,7 +726,27 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "Scroll",
+        "name": "Size",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Toolbar",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "words",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

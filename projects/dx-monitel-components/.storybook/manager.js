@@ -3,7 +3,7 @@ import { addons } from "@storybook/manager-api";
 addons.setConfig({
   navSize: 300,
   bottomPanelHeight: 300,
-  rightPanelWidth: 300,
+  rightPanelWidth: 400,
   panelPosition: "right",
   enableShortcuts: true,
   showToolbar: true,
