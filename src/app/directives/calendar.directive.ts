@@ -1,23 +1,12 @@
-import {
-  Directive,
-  Output,
-  EventEmitter,
-  OnInit,
-  OnDestroy,
-  SimpleChanges,
-  OnChanges,
-  Renderer2,
-  ElementRef,
-  HostListener,
-} from '@angular/core';
 import { DxCalendarComponent } from 'devextreme-angular';
 import {
-  CalendarZoomLevel,
-  WeekNumberRule,
-  FirstDayOfWeek,
-  ValueChangedEvent,
+	CalendarZoomLevel, FirstDayOfWeek, ValueChangedEvent, WeekNumberRule
 } from 'devextreme/ui/calendar';
 import { Subscription } from 'rxjs';
+
+import {
+	Directive, EventEmitter, HostListener, OnChanges, OnDestroy, OnInit, Output, SimpleChanges
+} from '@angular/core';
 
 @Directive({
   selector: '[meCalendar]',
@@ -40,8 +29,6 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private dxCalendarComponent: DxCalendarComponent,
-    private renderer: Renderer2,
-    private element: ElementRef,
   ) {}
 
   ngOnInit() {
@@ -98,7 +85,9 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   @HostListener('onOptionChanged', ['$event'])
-  onOptionChanged(e: any) {
-    this.isShowWeekNumbers = e.value;
+	onOptionChanged(e: any) {
+		if (e.name === 'showWeekNumbers') {
+			this.isShowWeekNumbers = e.value;
+		}
   }
 }
