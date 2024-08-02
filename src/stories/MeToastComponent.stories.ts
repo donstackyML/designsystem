@@ -22,7 +22,7 @@ import { Component, ViewChild, Input } from '@angular/core';
       ></dx-toast>
       <button (click)="showToast()">Show Toast</button>
     </div>
-  `
+  `,
 })
 class ToastWrapperComponent {
   @ViewChild(DxToastComponent, { static: false }) toastComponent!: DxToastComponent;
@@ -32,7 +32,7 @@ class ToastWrapperComponent {
   @Input() position: any = 'bottom right';
   @Input() animation: any = {
     show: { type: 'fade', duration: 400, from: 0, to: 1 },
-    hide: { type: 'fade', duration: 400, from: 1, to: 0 }
+    hide: { type: 'fade', duration: 400, from: 1, to: 0 },
   };
   @Input() customClass: string = '';
 
@@ -61,7 +61,14 @@ const meta: Meta<ToastWrapperComponent> = {
   argTypes: {
     position: {
       control: 'select',
-      options: ['top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right'],
+      options: [
+        'top left',
+        'top center',
+        'top right',
+        'bottom left',
+        'bottom center',
+        'bottom right',
+      ],
     },
   },
 };

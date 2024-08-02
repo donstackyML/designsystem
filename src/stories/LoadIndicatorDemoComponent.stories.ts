@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxLoadIndicatorModule } from 'devextreme-angular';
-import { MeLoadIndicatorDirective } from "../app/directives/load-indicator.directive";
+import { MeLoadIndicatorDirective } from '../app/directives/load-indicator.directive';
 
 const meta: Meta<MeLoadIndicatorDirective> = {
   title: 'Directives/MeLoadIndicator',
@@ -60,7 +60,8 @@ const Template: Story = {
         [indicatorSrc]="indicatorSrc"
       ></div>
     `,
-    styles: [`
+    styles: [
+      `
       .indicators {
         height: 80px;
         width: 200px;
@@ -75,7 +76,8 @@ const Template: Story = {
         margin-top: 20px;
         margin-bottom: 10px;
       }
-    `],
+    `,
+    ],
   }),
 };
 

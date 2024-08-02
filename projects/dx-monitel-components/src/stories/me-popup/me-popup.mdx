@@ -1,0 +1,244 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  Controls,
+  Description,
+  Source,
+} from "@storybook/addon-docs";
+import * as popupStories from "./me-popup.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxPopupComponent } from "devextreme-angular";
+import { MePopupDirective } from "../../public-api";
+import { Markdown, Subtitle, Unstyled } from "@storybook/blocks";
+
+<Meta
+  name="mePopup Docs"
+  of={popupStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MePopupDirective, DxPopupComponent],
+    }),
+  ]}
+/>
+
+# Popup
+
+## Директива mePopup
+
+Применение директивы mePopup к элементу dx-popup приводит его размеры к значению size=medium из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство size. Стандартное свойство resizeEnabled по умолчанию включено.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopup/)
+
+<Story of={popupStories.Default} />
+<Controls of={popupStories.Default} />
+<Source of={popupStories.Default} dark />
+
+## Примеры использования:
+
+- [добавление скролла](#добавление-скролла)
+- [добавление элементов и контента в попап](#добавление-элементов-и-контента-в-popup)
+- [отображение и скрытие попапа](#отображение-и-скрытие-попапа)
+- [ширина и высота окна в зависимости от свойства size](#ширина-и-высота-окна-в-зависимости-от-свойства-size)
+- [добавление иконки](#добавление-иконки)
+- [свойства](#перечень-свойств)
+
+## Добавление скролла
+
+Чтобы получить внутри окна скролл из дизайн-системы необходимо обернуть контент в компонент scroll view.
+
+<Story of={popupStories.Scroll} />
+
+<Source code={`
+<dx-popup mePopup>
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+        <!-- Ваш контент -->
+        </dx-scroll-view>
+    </div>
+</dx-popup>
+`} dark language='html'/>
+
+## Добавление элементов и контента в popup
+
+Для добавления элементов в туллбар необходимо воспользоваться dxi-toolbar-item [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Specify_Toolbar_Items/). Для добавления контента используется свойство contentTemplate [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Customize_the_Content/#Specifying_the_Content_Template).
+В дизайн-системе для размера medium используются кнопки с размером medium, для размера large соответственно кнопки одноименного размера.
+
+<Story of={popupStories.Toolbar} />
+
+<Source
+  code={`<dx-popup mePopup [showTitle]="true" title="Заголовок">
+    <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="addButton" toolbar="bottom" location="before">
+      </dxi-toolbar-item>
+    <div *dxTemplate="let data of 'content'">
+      <dx-scroll-view width="100%" height="100%">
+        {{ lorem25 }}
+      </dx-scroll-view>
+    </div>
+    <div *dxTemplate="let data of 'overflowButton'">
+      <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="12px">
+        </dx-button>
+    </div>
+    <div *dxTemplate="let data of 'confirmButton'">
+      <dx-button meButton text="Принять" type="default"></dx-button>
+    </div>
+    <div *dxTemplate="let data of 'cancelButton'">
+      <dx-button meButton text="Отмена" (onClick)="hidePopup()"></dx-button>
+    </div>
+    <div *dxTemplate="let data of 'addButton'">
+      <dx-button meButton text="Добавить"></dx-button>
+    </div>
+</dx-popup>`}
+  dark
+  language="html"
+/>
+
+## Отображение и скрытие попапа
+
+В документации DevExtreme (DX) предлагается связывать свойство visible с кастомным флагом компонента и управлять отображением через этот флаг. При закрытии попапа средствами DX (при клике вне окна или при клике по предоставляемой DX кнопке окно закрывается не переключив флаг), предполагается, что переключение флага в таком случае будет происходить с помощью события onHidden, которое вызывается при закрытии окна.
+
+Однако, если попап имеет кастомную кнопку закрытия (например, кнопка отмены) флаг переключается и по нажатию кнопки и по событию onHidden, чтобы этого избежать приходится сооружать костыли.
+
+Предлагаю вместо кастомного флага находить все попапы на странице с помощью @ViewChildren и закрывать нужный, передавая соответствующий индекс попапа и используя встроенные методы DX show() и hide(). Например:
+
+- определение методов в компоненте
+
+<Source
+  code={`
+export class MeComponent {
+    \`@\`ViewChildren(DxPopupComponent) popupList?: QueryList<DxPopupComponent>;
+
+    showPopup = (popupIndex: number) => {
+        if (this.popupList) {
+        this.popupList.get(popupIndex)?.instance?.show();
+        }
+    };
+
+    hidePopup(popupIndex: number) {
+        if (this.popupList) {
+        this.popupList.get(popupIndex)?.instance?.hide();
+        }
+    }
+
+}
+`}
+dark
+language="js"
+/>
+
+- использование в шаблоне
+
+<Source
+  code={`<dx-button text="Open popup" (onClick)="showPopup(0)"></dx-button>`}
+  dark
+  language="html"
+/>
+
+<Source
+  code={`<div *dxTemplate="let data of 'cancelButton'">
+    <dx-button meButton text="Отмена" (onClick)="hidePopup(4)"></dx-button>
+</div>`}
+  dark
+  language="html"
+/>
+
+## Ширина и высота окна в зависимости от свойства size
+
+Для размера size = medium определены по умолчанию следующие значения:
+
+<Source
+  code={`minHeight = 280px;
+maxHeight = 80vh;
+width = 360px;`}
+  dark
+/>
+
+Для размера size = large определены по умолчанию следующие значения:
+
+<Source
+  code={`minHeight = 320px;
+maxHeight = 80vh;
+width = 400px;`}
+  dark
+/>
+
+## Добавление иконки
+
+Для добавления иконки необходимо определить шаблон с использованием директивы [meIcon](https://cl-tfs2022.monitel.local/CK-11/Development/_wiki/wikis/Development.wiki/3453/meIcon), например так
+
+<Source
+  code={` <div *dxTemplate="let data of 'icon'">
+    <span meIcon icon="public" iconSize="20"></span>
+</div>`}
+  dark
+  language="html"
+/>
+
+Добавить шаблон иконки в тулбар с помощью [dxi-toolbar-item](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopup/Configuration/toolbarItems/)
+
+<Source
+  code={
+    '<dxi-toolbar-item template="icon" location="before"> </dxi-toolbar-item>'
+  }
+  dark
+  language="html"
+/>
+
+## Перечень свойств
+
+<Controls of={popupStories.Size} include={["size"]} />
+
+В дизайн-системе для размера medium используются кнопки с размером medium, для размера large соответственно кнопки одноименного размера.
+
+<Story of={popupStories.Size} />
+
+<Source
+  code={`<dx-popup mePopup [showTitle]="true" title="Заголовок" size="large">
+    <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="addButton" toolbar="bottom" location="before">
+      </dxi-toolbar-item>
+    <div *dxTemplate="let data of 'content'">
+      <dx-scroll-view width="100%" height="100%">
+        {{ lorem500 }}
+      </dx-scroll-view>
+    </div>
+    <div *dxTemplate="let data of 'overflowButton'">
+      <dx-button meButton size="large" iconOnly="overflow" stylingMode="text" 
+        iconSize="16px"></dx-button>
+    </div>
+    <div *dxTemplate="let data of 'confirmButton'">
+      <dx-button meButton size="large" text="Принять" type="default"></dx-button>
+    </div>
+    <div *dxTemplate="let data of 'cancelButton'">
+      <dx-button meButton size="large" text="Отмена" (onClick)="hidePopup()">
+        </dx-button>
+    </div>
+    <div *dxTemplate="let data of 'addButton'">
+      <dx-button meButton size="large" text="Добавить"></dx-button>
+    </div>
+</dx-popup>`}
+  dark
+  language="html"
+/>
+
+{/* ??? */}
+
+<style>
+  {`
+      h2 {
+        border-bottom: none !important;
+    }
+`}
+</style>

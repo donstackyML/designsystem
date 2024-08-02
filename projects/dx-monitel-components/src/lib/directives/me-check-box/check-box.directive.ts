@@ -6,7 +6,11 @@ import { MeEditorDirective } from '../me-editor/editor.directive';
   selector: '[meCheckBox]',
 })
 export class MeCheckBoxDirective extends MeEditorDirective {
-  constructor(element: ElementRef, component: DxCheckBoxComponent, renderer: Renderer2) {
+  constructor(
+    element: ElementRef,
+    component: DxCheckBoxComponent,
+    renderer: Renderer2
+  ) {
     super(element, component, renderer);
   }
 

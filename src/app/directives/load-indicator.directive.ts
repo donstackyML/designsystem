@@ -1,4 +1,4 @@
-import {Directive, Input, ElementRef, Renderer2, OnInit, OnChanges} from '@angular/core';
+import { Directive, Input, ElementRef, Renderer2, OnInit, OnChanges } from '@angular/core';
 import DxLoadIndicator from 'devextreme/ui/load_indicator';
 
 @Directive({
@@ -23,7 +23,7 @@ export class MeLoadIndicatorDirective implements OnInit, OnChanges {
 
   ngOnInit() {
     this.dxLoadIndicatorInstance = new DxLoadIndicator(this.el.nativeElement, {
-      indicatorSrc: this.indicatorSrc
+      indicatorSrc: this.indicatorSrc,
     });
   }
 

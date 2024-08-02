@@ -21,7 +21,7 @@ export class MeOverlayDirective {
     protected element: ElementRef,
     @Inject(DxPopoverComponent)
     protected component: MeOverlayComponents,
-    protected renderer: Renderer2,
+    protected renderer: Renderer2
   ) {}
 
   initMeModal(size: string) {
@@ -29,9 +29,9 @@ export class MeOverlayDirective {
 
     this.component.wrapperAttr = {
       ...this.wrapperAttr,
-      class: `${this.wrapperAttr['class'] || ''} ${this.wrapperClasses} ${sizeClass} ${
-        this.scrollClasses
-      }`,
+      class: `${this.wrapperAttr['class'] || ''} ${
+        this.wrapperClasses
+      } ${sizeClass} ${this.scrollClasses}`,
     };
   }
 }

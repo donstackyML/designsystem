@@ -9,7 +9,9 @@ export class ThemesService {
   private _theme: Themes;
 
   constructor() {
-    this._theme = <Themes>window.localStorage.getItem('monitel.designsystem.theme') || 'light';
+    this._theme =
+      <Themes>window.localStorage.getItem('monitel.designsystem.theme') ||
+      'light';
   }
 
   get theme() {
