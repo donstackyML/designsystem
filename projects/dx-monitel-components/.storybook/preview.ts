@@ -12,9 +12,6 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    // docs:{
-    //   page: DocumentationTemplate
-    // }
   },
 };
 

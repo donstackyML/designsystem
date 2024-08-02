@@ -26,7 +26,7 @@ export default {
       control: 'select',
       options: ['small', 'medium', 'large'],
       table: {
-        type: { summary: 'select' },
+        type: { summary: 'Меняет размер компонента' },
         defaultValue: { summary: 'medium' },
       },
     },
@@ -64,7 +64,7 @@ export default {
   },
   render: (args) => ({
     props: args,
-    template: `<div id="myWrapper" style="min-height: 300px; position: relative;"><dx-popup mePopup ${argsToTemplate(
+    template: `<div id="myWrapper" style="min-height: 350px; position: relative;"><dx-popup mePopup ${argsToTemplate(
       args
     )}></dx-popup></div>`,
   }),
