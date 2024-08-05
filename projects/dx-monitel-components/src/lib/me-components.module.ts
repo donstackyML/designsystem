@@ -21,7 +21,8 @@ import { MePopupModule } from './directives/me-popup/me-popup.module';
 import { MeRadioGroupModule } from './directives/me-radio-group/me-radio-group.module';
 import { MeSelectBoxModule } from './directives/me-select-box/me-select-box.module';
 import { MeSwitchModule } from './directives/me-switch/switch.module';
-import { MeTabsModule } from './directives/me-tab-panel/tab-panel.module';
+import { MeTabPanelModule } from './directives/me-tab-panel/tab-panel.module';
+import { MeTabsModule } from './directives/me-tabs/tabs.module';
 import { MeTextBoxModule } from './directives/me-text-box/me-text-box.module';
 import { MeTextEditorModule } from './directives/me-text-editor/me-text-editor.module';
 import { MeToastModule } from "./directives/me-toast/toast.module";
@@ -60,7 +61,8 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
 		MeToastModule,
     MeToolbarModule,
 		MeTooltipModule,
-    MeTreeViewModule,
+		MeTreeViewModule,
+		MeTabPanelModule
   ],
   exports: [
     MeAccordionModule,
@@ -91,7 +93,8 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
 		MeToastModule,
     MeToolbarModule,
 		MeTooltipModule,
-    MeTreeViewModule,
+		MeTreeViewModule,
+		MeTabPanelModule
   ],
 })
 export class MeComponentsModule {}

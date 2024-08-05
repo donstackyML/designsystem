@@ -7,4 +7,4 @@ import { MeTabPanelDirective } from "./tab-panel.directive";
   imports: [CommonModule],
   exports: [MeTabPanelDirective],
 })
-export class MeTabsModule {}
+export class MeTabPanelModule {}
