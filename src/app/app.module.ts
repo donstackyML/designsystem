@@ -128,5 +128,8 @@ import { MeLoadPanelDirective } from "./directives/load-panel.directive";
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [
+    MeTabsDirective
+  ]
 })
 export class AppModule {}

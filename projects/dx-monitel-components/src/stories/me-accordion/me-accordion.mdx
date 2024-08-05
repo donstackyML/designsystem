@@ -1,0 +1,67 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs";
+import * as AccordionStories from "./me-accordion.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxAccordionModule } from "devextreme-angular";
+import {MeAccordionDirective} from "../../lib/directives/me-accordion/accordion.directive";
+
+
+
+<Meta
+  title="Components/meAccordion Docs"
+  of={AccordionStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeAccordionDirective],
+      imports: [DxAccordionModule],
+    }),
+    ]}
+/>
+
+# Accordion
+
+## Директива meAccordion
+
+Применение директивы meAccordion к элементу dx-accordion приводит его размеры к значениям из дизайн-системы и добавляет дополнительные свойства.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxAccordion/)
+
+<Story of={AccordionStories.Default} />
+<Controls of={AccordionStories.Default} />
+
+## Примеры использования:
+
+### Разные размеры
+
+<Canvas>
+  <Story of={AccordionStories.Small} />
+  <Story of={AccordionStories.Default} />
+  <Story of={AccordionStories.Large} />
+</Canvas>
+
+### Сворачиваемый аккордеон
+
+<Canvas>
+  <Story of={AccordionStories.Collapsible} />
+</Canvas>
+
+### Множественное раскрытие
+
+<Canvas>
+  <Story of={AccordionStories.Multiple} />
+</Canvas>
+
+### Настраиваемая анимация
+
+<Canvas>
+  <Story of={AccordionStories.CustomAnimation} />
+</Canvas>
+
+### Пользовательский класс
+
+<Canvas>
+  <Story of={AccordionStories.CustomClass} />
+</Canvas>
+
+## Перечень свойств
+
+<Controls of={AccordionStories.Default} />

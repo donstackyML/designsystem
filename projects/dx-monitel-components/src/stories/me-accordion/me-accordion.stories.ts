@@ -1,7 +1,8 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { Component, Input } from '@angular/core';
 import { DxAccordionModule, DxCheckBoxModule, DxSliderModule, DxTagBoxModule } from 'devextreme-angular';
-import {MeAccordionDirective} from "../app/directives/accordion.directive";
+import {MeAccordionDirective} from "../../lib/directives/me-accordion/accordion.directive";
+
 
 @Component({
   selector: 'accordion-demo',
@@ -76,7 +77,7 @@ class AccordionDemoComponent {
 }
 
 const meta: Meta<AccordionDemoComponent> = {
-  title: 'Directives/MeAccordion',
+  title: 'Components/meAccordion',
   component: AccordionDemoComponent,
   decorators: [
     moduleMetadata({

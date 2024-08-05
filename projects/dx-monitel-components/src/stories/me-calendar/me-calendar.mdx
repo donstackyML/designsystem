@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs";
+import * as CalendarStories from "./me-calendar.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxCalendarModule } from "devextreme-angular";
+import {MeCalendarDirective} from "../../lib/directives/me-calendar/calendar.directive";
+
+
+<Meta
+  title="Components/meCalendar Docs"
+  of={CalendarStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeCalendarDirective],
+      imports: [DxCalendarModule],
+    }),
+    ]}
+/>
+
+# Calendar
+
+## Директива meCalendar
+
+Применение директивы meCalendar к элементу dx-calendar приводит его к стандартам дизайн-системы и добавляет дополнительные свойства.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxCalendar/)
+
+<Story of={CalendarStories.Default} />
+<Controls of={CalendarStories.Default} />
+
+## Примеры использования:
+
+### С отображением номеров недель
+
+<Canvas>
+  <Story of={CalendarStories.WithWeekNumbers} />
+</Canvas>
+
+### Разные уровни масштабирования
+
+<Canvas>
+  <Story of={CalendarStories.DifferentZoomLevels} />
+</Canvas>
+
+### Пользовательское правило нумерации недель
+
+<Canvas>
+  <Story of={CalendarStories.CustomWeekNumberRule} />
+</Canvas>
+
+### Отключенное состояние
+
+<Canvas>
+  <Story of={CalendarStories.Disabled} />
+</Canvas>
+
+## Перечень свойств
+
+<Controls of={CalendarStories.Default} />

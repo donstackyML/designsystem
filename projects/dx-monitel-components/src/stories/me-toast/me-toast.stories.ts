@@ -1,33 +1,27 @@
-import { moduleMetadata, StoryObj, Meta } from '@storybook/angular';
-import { MeToastDirective } from '../app/directives/toast.directive';
-import { DxToastComponent, DxToastModule } from 'devextreme-angular';
-import { action } from '@storybook/addon-actions';
-import { Component, ViewChild, Input } from '@angular/core';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { Component, Input, ViewChild } from '@angular/core';
+import { DxToastModule, DxToastComponent } from 'devextreme-angular';
+import { MeToastDirective } from "../../lib/directives/me-toast/toast.directive";
 
 @Component({
-  selector: 'storybook-toast-wrapper',
+  selector: 'toast-demo',
   template: `
-    <div>
-      <dx-toast
-        meToast
-        [message]="message"
-        [displayTime]="displayTime"
-        [position]="position"
-        [animation]="animation"
-        [customClass]="customClass"
-        (onShowing)="onShowing($event)"
-        (onShown)="onShown($event)"
-        (onHiding)="onHiding($event)"
-        (onHidden)="onHidden($event)"
-      ></dx-toast>
-      <button (click)="showToast()">Show Toast</button>
-    </div>
-  `,
+    <dx-toast
+      meToast
+      #dxToast
+      [message]="message"
+      [displayTime]="displayTime"
+      [position]="position"
+      [animation]="animation"
+      [customClass]="customClass"
+    ></dx-toast>
+    <button (click)="showToast()">Show Toast</button>
+  `
 })
-class ToastWrapperComponent {
-  @ViewChild(DxToastComponent, { static: false }) toastComponent!: DxToastComponent;
+class ToastDemoComponent {
+  @ViewChild('dxToast', { static: false }) dxToast!: DxToastComponent;
 
-  @Input() message: string = '';
+  @Input() message: string = 'This is a toast message';
   @Input() displayTime: number = 2000;
   @Input() position: any = 'bottom right';
   @Input() animation: any = {
@@ -36,45 +30,35 @@ class ToastWrapperComponent {
   };
   @Input() customClass: string = '';
 
-  onShowing = action('onShowing');
-  onShown = action('onShown');
-  onHiding = action('onHiding');
-  onHidden = action('onHidden');
-
   showToast() {
-    if (this.toastComponent && this.toastComponent.instance) {
-      this.toastComponent.instance.show();
+    if (this.dxToast && this.dxToast.instance) {
+      this.dxToast.instance.show();
     }
   }
 }
 
-const meta: Meta<ToastWrapperComponent> = {
-  title: 'Directives/meToast',
-  component: ToastWrapperComponent,
-  tags: ['autodocs'],
+const meta: Meta<ToastDemoComponent> = {
+  title: 'Components/meToast',
+  component: ToastDemoComponent,
   decorators: [
     moduleMetadata({
-      declarations: [MeToastDirective, ToastWrapperComponent],
+      declarations: [MeToastDirective, ToastDemoComponent],
       imports: [DxToastModule],
     }),
   ],
   argTypes: {
+    message: { control: 'text' },
+    displayTime: { control: 'number' },
     position: {
       control: 'select',
-      options: [
-        'top left',
-        'top center',
-        'top right',
-        'bottom left',
-        'bottom center',
-        'bottom right',
-      ],
+      options: ['top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right'],
     },
+    customClass: { control: 'text' },
   },
 };
 
 export default meta;
-type Story = StoryObj<ToastWrapperComponent>;
+type Story = StoryObj<ToastDemoComponent>;
 
 export const Default: Story = {
   args: {

@@ -1,0 +1,57 @@
+import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs";
+import * as ToastStories from "./me-toast.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxToastModule } from "devextreme-angular";
+import { MeToastDirective } from "../../lib/directives/me-toast/toast.directive";
+
+<Meta
+  title="Components/meToast Docs"
+  of={ToastStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeToastDirective],
+      imports: [DxToastModule],
+    }),
+    ]}
+/>
+
+# Toast
+
+## Директива meToast
+
+Применение директивы meToast к элементу dx-toast приводит его к стандартам дизайн-системы и добавляет дополнительные свойства.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxToast/)
+
+<Story of={ToastStories.Default} />
+<Controls of={ToastStories.Default} />
+
+## Примеры использования:
+
+### Длительное отображение
+
+<Canvas>
+  <Story of={ToastStories.LongDuration} />
+</Canvas>
+
+### Пользовательская позиция
+
+<Canvas>
+  <Story of={ToastStories.CustomPosition} />
+</Canvas>
+
+### Пользовательская анимация
+
+<Canvas>
+  <Story of={ToastStories.CustomAnimation} />
+</Canvas>
+
+### Пользовательский класс
+
+<Canvas>
+  <Story of={ToastStories.CustomClass} />
+</Canvas>
+
+## Перечень свойств
+
+<Controls of={ToastStories.Default} />

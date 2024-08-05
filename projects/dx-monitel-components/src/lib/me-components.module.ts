@@ -21,6 +21,9 @@ import { MeSwitchModule } from './directives/me-switch/switch.module';
 import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
+import { MeAccordionModule } from "./directives/me-accordion/accordion.module";
+import { MeCalendarModule } from "./directives/me-calendar/calendar.module";
+import { MeToastModule} from "./directives/me-toast/toast.module";
 
 @NgModule({
   declarations: [],
@@ -47,6 +50,9 @@ import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.compon
     MeToolbarModule,
     MeTreeViewModule,
     MeSidepageComponent,
+    MeAccordionModule,
+    MeCalendarModule,
+    MeToastModule
   ],
   exports: [
     MeButtonModule,
@@ -71,6 +77,9 @@ import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.compon
     MeToolbarModule,
     MeTreeViewModule,
     MeSidepageComponent,
+    MeAccordionModule,
+    MeCalendarModule,
+    MeToastModule
   ],
 })
 export class MeComponentsModule {}

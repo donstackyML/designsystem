@@ -24,6 +24,9 @@ export { MeSwitchDirective } from './lib/directives/me-switch/switch.directive';
 export { MeToolbarDirective } from './lib/directives/me-toolbar/toolbar.directive';
 export { MeTreeViewDirective } from './lib/directives/me-tree-view/tree-view.directive';
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
+export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';
+export { MeCalendarDirective } from './lib/directives/me-calendar/calendar.directive';
+export { MeTabsDirective } from './lib/directives/me-tabs/tabs.directive';
 
 export { MeButtonModule } from './lib/directives/me-button/me-button.module';
 export { MeCheckBoxModule } from './lib/directives/me-check-box/me-check-box.module';
@@ -46,6 +49,10 @@ export { MeMenuModule } from './lib/directives/me-menu/menu.module';
 export { MeSwitchModule } from './lib/directives/me-switch/switch.module';
 export { MeToolbarModule } from './lib/directives/me-toolbar/me-toolbar.module';
 export { MeTreeViewModule } from './lib/directives/me-tree-view/me-tree-view.module';
+export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';
+export { MeCalendarModule } from './lib/directives/me-calendar/calendar.module';
+export { MeToastModule } from './lib/directives/me-toast/toast.module';
+export { MeTabsModule } from './lib/directives/me-tabs/tabs.module';
 
 export { MeIconStoreService } from './lib/service/icon-store.service';
 export { ThemesService } from './lib/service/themes.service';

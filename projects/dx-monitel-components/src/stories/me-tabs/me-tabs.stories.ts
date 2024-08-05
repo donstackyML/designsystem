@@ -1,6 +1,9 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabsModule } from 'devextreme-angular';
-import {MeTabsDirective, Tab} from "../app/directives/tabs.directive";
+import {MeTabsDirective} from "../../public-api";
+import {Tab} from "../../lib/directives/me-tabs/tabs.directive";
+
+
 interface MeTabsProps {
   customClass: string;
   position: 'top' | 'bottom';
@@ -10,9 +13,9 @@ interface MeTabsProps {
 }
 
 const meta: Meta<MeTabsProps> = {
-  title: 'Directives/MeTabs',
+  title: 'Components/MeTabs',
   component: MeTabsDirective,
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
   decorators: [
     moduleMetadata({
       declarations: [MeTabsDirective],
