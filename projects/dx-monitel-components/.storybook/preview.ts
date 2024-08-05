@@ -1,7 +1,7 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import type { Preview } from '@storybook/angular';
+// import '../../../src/assets/bundles/dx.light.css';
 import docJson from '../documentation.json';
-// import DocumentationTemplate from './DocumentationTemplate.mdx';
 setCompodocJson(docJson);
 
 const preview: Preview = {
@@ -11,6 +11,9 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    styledComponentsThemes: {
+      themes: [,],
     },
   },
 };
