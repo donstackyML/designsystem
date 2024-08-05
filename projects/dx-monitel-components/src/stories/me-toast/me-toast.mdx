@@ -1,57 +1,91 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs";
-import * as ToastStories from "./me-toast.stories";
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as toastStories from "./me-toast.stories";
 import { moduleMetadata } from "@storybook/angular";
-import { DxToastModule } from "devextreme-angular";
-import { MeToastDirective } from "../../lib/directives/me-toast/toast.directive";
+import { DxToastModule } from 'devextreme-angular';
+import { MeToastDirective } from "../../public-api";
 
 <Meta
-  title="Components/meToast Docs"
-  of={ToastStories}
+  title="Components/meToast"
+  of={toastStories}
   decorators={[
     moduleMetadata({
-      declarations: [MeToastDirective],
+      declarations: [MeToastDirective, toastStories.ToastDemoComponent],
       imports: [DxToastModule],
     }),
     ]}
 />
 
-# Toast
+# meToast
 
 ## Директива meToast
 
-Применение директивы meToast к элементу dx-toast приводит его к стандартам дизайн-системы и добавляет дополнительные свойства.
+Директива `meToast` позволяет создавать уведомления с различными параметрами, включая время отображения, позицию и анимацию. Уведомления могут быть стилизованы с помощью CSS классов.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxToast/)
-
-<Story of={ToastStories.Default} />
-<Controls of={ToastStories.Default} />
+<Story of={toastStories.Default} />
+<Controls of={toastStories.Default} />
+<Source of={toastStories.Default} dark />
 
 ## Примеры использования:
 
-### Длительное отображение
+- [Изменение времени отображения](#изменение-времени-отображения)
+- [Изменение позиции уведомления](#изменение-позиции-уведомления)
+- [Настройка анимации](#настройка-анимации)
+- [Применение пользовательского CSS класса](#применение-пользовательского-css-класса)
 
-<Canvas>
-  <Story of={ToastStories.LongDuration} />
-</Canvas>
+## Изменение времени отображения
 
-### Пользовательская позиция
+Для изменения времени отображения используйте параметр `displayTime`.
 
-<Canvas>
-  <Story of={ToastStories.CustomPosition} />
-</Canvas>
+<Story of={toastStories.LongDuration} />
 
-### Пользовательская анимация
+<Source
+  code={`<toast-demo [displayTime]="5000" message="This toast will be displayed for 5 seconds"></toast-demo>`}
+  dark
+  language="html"
+/>
 
-<Canvas>
-  <Story of={ToastStories.CustomAnimation} />
-</Canvas>
+## Изменение позиции уведомления
 
-### Пользовательский класс
+Для изменения позиции уведомления используйте параметр `position` с возможными значениями `top left`, `top center`, `top right`, `bottom left`, `bottom center`, `bottom right`.
 
-<Canvas>
-  <Story of={ToastStories.CustomClass} />
-</Canvas>
+<Story of={toastStories.CustomPosition} />
+
+<Source
+  code={`<toast-demo position="top center" message="This toast is positioned at the top center"></toast-demo>`}
+  dark
+  language="html"
+/>
+
+## Настройка анимации
+
+Для настройки анимации используйте параметр `animation`.
+
+<Story of={toastStories.CustomAnimation} />
+
+<Source
+  code={`<toast-demo
+  [animation]="{
+    show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },
+    hide: { type: 'pop', duration: 400, to: { scale: 0 } }
+  }"
+  message="This toast has a custom animation"
+></toast-demo>`}
+  dark
+  language="html"
+/>
+
+## Применение пользовательского CSS класса
+
+Для применения пользовательского CSS класса используйте параметр `customClass`.
+
+<Story of={toastStories.CustomClass} />
+
+<Source
+  code={`<toast-demo customClass="my-custom-toast" message="This toast has a custom CSS class"></toast-demo>`}
+  dark
+  language="html"
+/>
 
 ## Перечень свойств
 
-<Controls of={ToastStories.Default} />
+<Controls of={toastStories.Default} include={["message", "displayTime", "position", "animation", "customClass"]} />

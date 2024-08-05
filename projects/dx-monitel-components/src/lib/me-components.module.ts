@@ -94,7 +94,8 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeToolbarModule,
 		MeTooltipModule,
 		MeTreeViewModule,
-		MeTabPanelModule
+		MeTabPanelModule,
+    MeCalendarModule
   ],
 })
 export class MeComponentsModule {}

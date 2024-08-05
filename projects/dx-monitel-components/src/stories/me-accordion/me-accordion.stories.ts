@@ -1,64 +1,62 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { DxAccordionModule } from 'devextreme-angular';
+import { MeAccordionDirective } from "../../lib/directives/me-accordion/accordion.directive";
 import { Component, Input } from '@angular/core';
-import { DxAccordionModule, DxCheckBoxModule, DxSliderModule, DxTagBoxModule } from 'devextreme-angular';
-import {MeAccordionDirective} from "../../lib/directives/me-accordion/accordion.directive";
 
+interface Company {
+  CompanyName: string;
+  Description: string;
+  City: string;
+  State: string;
+  Zipcode: string;
+  Address: string;
+  Phone: string;
+  Fax: string;
+  Website: string;
+}
+
+interface MeAccordionProps {
+  size: 'small' | 'medium' | 'large';
+  customClass: string;
+  isCollapsible: boolean;
+  isMultiple: boolean;
+  animationDuration: number;
+  companies: Company[];
+  selectedItems: Company[];
+}
 
 @Component({
   selector: 'accordion-demo',
   template: `
-    <div class="accordion-wrapper" id="accordion">
-      <div class="accordion-container">
-        <dx-accordion
-          #accordion
-          meAccordion
-          [dataSource]="companies"
-          [collapsible]="isCollapsible"
-          [multiple]="isMultiple"
-          [animationDuration]="animationDuration"
-          [selectedItems]="selectedItems"
-          [size]="size"
-          [customClass]="customClass"
-          id="accordion-container"
-        >
-          <div *dxTemplate="let company of 'title'">
-            <div class="accordion-header">
-              <div class="accordion-content">
-                <span class="accordion-title">{{ company.CompanyName }}</span>
-                <span class="accordion-description">{{ company.Description }}</span>
-              </div>
-            </div>
-          </div>
-          <div *dxTemplate="let company of 'item'">
-            <div>
-              <p><b>{{ company.City }}</b> ({{ company.State }})</p>
-              <p>{{ company.Zipcode }} {{ company.Address }}</p>
-            </div>
-            <div>
-              <p>Phone: <b>{{ company.Phone }}</b></p>
-              <p>Fax: <b>{{ company.Fax }}</b></p>
-              <p>Website: <a href="{{ company.Website }}" target="_blank">{{ company.Website }}</a></p>
-            </div>
-          </div>
-        </dx-accordion>
+    <dx-accordion
+      meAccordion
+      [dataSource]="companies"
+      [collapsible]="isCollapsible"
+      [multiple]="isMultiple"
+      [animationDuration]="animationDuration"
+      [selectedItems]="selectedItems"
+      [size]="size"
+      [customClass]="customClass"
+    >
+      <div *dxTemplate="let company of 'title'">
+        <div class="accordion-header">
+          <span class="accordion-title">{{ company.CompanyName }}</span>
+          <span class="accordion-description">{{ company.Description }}</span>
+        </div>
       </div>
-    </div>
-  `,
-  styles: [`
-    .accordion-wrapper {
-      display: flex;
-      justify-content: space-between;
-    }
-    .accordion-container {
-      width: 60%;
-    }
-    .options {
-      width: 35%;
-    }
-    .option {
-      margin-bottom: 20px;
-    }
-  `]
+      <div *dxTemplate="let company of 'item'">
+        <div>
+          <p><b>{{ company.City }}</b> ({{ company.State }})</p>
+          <p>{{ company.Zipcode }} {{ company.Address }}</p>
+        </div>
+        <div>
+          <p>Phone: <b>{{ company.Phone }}</b></p>
+          <p>Fax: <b>{{ company.Fax }}</b></p>
+          <p>Website: <a href="{{ company.Website }}" target="_blank">{{ company.Website }}</a></p>
+        </div>
+      </div>
+    </dx-accordion>
+  `
 })
 class AccordionDemoComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
@@ -66,28 +64,27 @@ class AccordionDemoComponent {
   @Input() isCollapsible: boolean = false;
   @Input() isMultiple: boolean = false;
   @Input() animationDuration: number = 300;
-
-  companies = [
-    { CompanyName: 'Company A', Description: 'Description A', City: 'City A', State: 'State A', Zipcode: '12345', Address: 'Address A', Phone: '123-456-7890', Fax: '098-765-4321', Website: 'http://www.companya.com' },
-    { CompanyName: 'Company B', Description: 'Description B', City: 'City B', State: 'State B', Zipcode: '67890', Address: 'Address B', Phone: '234-567-8901', Fax: '109-876-5432', Website: 'http://www.companyb.com' },
-    { CompanyName: 'Company C', Description: 'Description C', City: 'City C', State: 'State C', Zipcode: '13579', Address: 'Address C', Phone: '345-678-9012', Fax: '210-987-6543', Website: 'http://www.companyc.com' },
-  ];
-
-  selectedItems = [this.companies[0]];
+  @Input() companies: Company[] = [];
+  @Input() selectedItems: Company[] = [];
 }
 
-const meta: Meta<AccordionDemoComponent> = {
-  title: 'Components/meAccordion',
-  component: AccordionDemoComponent,
+const meta: Meta<MeAccordionProps> = {
+  title: 'Components/MeAccordion',
+  component: MeAccordionDirective,
   decorators: [
     moduleMetadata({
       declarations: [MeAccordionDirective, AccordionDemoComponent],
-      imports: [DxAccordionModule, DxCheckBoxModule, DxSliderModule, DxTagBoxModule],
+      imports: [DxAccordionModule],
     }),
   ],
+  render: (args: MeAccordionProps) => ({
+    props: args,
+    template: '<accordion-demo [size]="size" [customClass]="customClass" [isCollapsible]="isCollapsible" [isMultiple]="isMultiple" [animationDuration]="animationDuration" [companies]="companies" [selectedItems]="selectedItems"></accordion-demo>'
+  }),
   argTypes: {
     size: {
-      control: { type: 'select', options: ['small', 'medium', 'large'] },
+      options: ['small', 'medium', 'large'],
+      control: { type: 'select' },
     },
     customClass: { control: 'text' },
     isCollapsible: { control: 'boolean' },
@@ -97,7 +94,13 @@ const meta: Meta<AccordionDemoComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<AccordionDemoComponent>;
+type Story = StoryObj<MeAccordionProps>;
+
+const defaultCompanies: Company[] = [
+  { CompanyName: 'Company A', Description: 'Description A', City: 'City A', State: 'State A', Zipcode: '12345', Address: 'Address A', Phone: '123-456-7890', Fax: '098-765-4321', Website: 'http://www.companya.com' },
+  { CompanyName: 'Company B', Description: 'Description B', City: 'City B', State: 'State B', Zipcode: '67890', Address: 'Address B', Phone: '234-567-8901', Fax: '109-876-5432', Website: 'http://www.companyb.com' },
+  { CompanyName: 'Company C', Description: 'Description C', City: 'City C', State: 'State C', Zipcode: '13579', Address: 'Address C', Phone: '345-678-9012', Fax: '210-987-6543', Website: 'http://www.companyc.com' },
+];
 
 export const Default: Story = {
   args: {
@@ -106,6 +109,8 @@ export const Default: Story = {
     isCollapsible: false,
     isMultiple: false,
     animationDuration: 300,
+    companies: defaultCompanies,
+    selectedItems: [defaultCompanies[0]],
   },
 };
 

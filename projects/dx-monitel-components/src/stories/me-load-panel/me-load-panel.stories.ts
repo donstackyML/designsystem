@@ -1,8 +1,7 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
 import { DxButtonModule, DxLoadPanelModule, DxCheckBoxModule } from 'devextreme-angular';
-import {MeLoadPanelDirective} from "../app/directives/load-panel.directive";
+import { MeLoadPanelDirective } from '../../public-api'
 import { Component, Input } from '@angular/core';
-
 
 @Component({
   selector: 'load-panel-demo',
@@ -74,10 +73,8 @@ export class LoadPanelDemoComponent {
   }
 }
 
-
-
 const meta: Meta<LoadPanelDemoComponent> = {
-  title: 'Directives/MeLoadPanel',
+  title: 'Components/MeLoadPanel',
   component: LoadPanelDemoComponent,
   decorators: [
     moduleMetadata({

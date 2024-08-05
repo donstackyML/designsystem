@@ -1,0 +1,86 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+
+import { moduleMetadata } from "@storybook/angular";
+import { DxTabPanelModule } from 'devextreme-angular';
+import { MeTabPanelDirective } from '../../public-api'
+import * as tabPanelStories from "./me-tab-panel.stories";
+
+<Meta
+  title="Directives/MeTabPanel"
+  of={tabPanelStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeTabPanelDirective],
+      imports: [DxTabPanelModule],
+    }),
+    ]}
+/>
+
+# MeTabPanel
+
+## Директива MeTabPanel
+
+Директива `MeTabPanel` позволяет создавать панели вкладок с различными параметрами, включая высоту, выбранный индекс, анимацию и возможность прокрутки. Директива также позволяет добавлять пользовательские классы CSS для стилизации.
+
+<Story of={tabPanelStories.Default} />
+<Controls of={tabPanelStories.Default} />
+<Source of={tabPanelStories.Default} dark />
+
+## Примеры использования:
+
+- [С пользовательским классом](#с-пользовательским-классом)
+- [Без анимации](#без-анимации)
+- [Без возможности прокрутки](#без-возможности-прокрутки)
+- [С пользовательской высотой](#с-пользовательской-высотой)
+
+## С пользовательским классом
+
+Для добавления пользовательского класса используйте параметр `customClass`.
+
+<Story of={tabPanelStories.WithCustomClass} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel [height]="'300px'" width="400px" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="true" customClass="custom-class"></dx-tab-panel>`}
+  dark
+  language="html"
+/>
+
+## Без анимации
+
+Для отключения анимации используйте параметр `animationEnabled`.
+
+<Story of={tabPanelStories.WithoutAnimation} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel [height]="'300px'" width="400px" [selectedIndex]="0" [animationEnabled]="false" [swipeEnabled]="true"></dx-tab-panel>`}
+  dark
+  language="html"
+/>
+
+## Без возможности прокрутки
+
+Для отключения возможности прокрутки используйте параметр `swipeEnabled`.
+
+<Story of={tabPanelStories.WithoutSwipe} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel [height]="'300px'" width="400px" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false"></dx-tab-panel>`}
+  dark
+  language="html"
+/>
+
+## С пользовательской высотой
+
+Для изменения высоты используйте параметр `height`.
+
+<Story of={tabPanelStories.CustomHeight} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel [height]="'500px'" width="400px" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="true"></dx-tab-panel>`}
+  dark
+  language="html"
+/>
+
+## Перечень свойств
+
+<Controls of={tabPanelStories.Default} include={["customClass", "height", "selectedIndex", "animationEnabled", "swipeEnabled"]} />

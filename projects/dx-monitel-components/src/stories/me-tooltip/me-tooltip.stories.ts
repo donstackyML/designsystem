@@ -1,8 +1,6 @@
-// tooltip.stories.ts
-
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { Component, Input, TemplateRef } from '@angular/core';
-import {TooltipDirective} from "../app/directives/tooltip.directive";
+import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
+import { Component, Input } from '@angular/core';
+import { MeTooltipDirective } from "../../public-api";
 
 @Component({
   selector: 'tooltip-demo',
@@ -211,11 +209,11 @@ class TooltipDemoComponent {
 }
 
 const meta: Meta<TooltipDemoComponent> = {
-  title: 'Directives/Tooltip',
+  title: 'Components/Tooltip',
   component: TooltipDemoComponent,
   decorators: [
     moduleMetadata({
-      declarations: [TooltipDirective, TooltipDemoComponent],
+      declarations: [MeTooltipDirective, TooltipDemoComponent],
     }),
   ],
   argTypes: {

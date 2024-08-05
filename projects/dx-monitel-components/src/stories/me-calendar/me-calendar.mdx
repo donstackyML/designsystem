@@ -1,57 +1,100 @@
-import { Meta, Story, Canvas, Controls } from "@storybook/addon-docs";
+import {
+  Meta,
+  Story,
+  Controls,
+  Source,
+} from "@storybook/addon-docs";
 import * as CalendarStories from "./me-calendar.stories";
 import { moduleMetadata } from "@storybook/angular";
-import { DxCalendarModule } from "devextreme-angular";
-import {MeCalendarDirective} from "../../lib/directives/me-calendar/calendar.directive";
-
+import { MeCalendarDirective } from "../../public-api";
 
 <Meta
-  title="Components/meCalendar Docs"
+  name="meCalendar Docs"
   of={CalendarStories}
   decorators={[
     moduleMetadata({
       declarations: [MeCalendarDirective],
-      imports: [DxCalendarModule],
     }),
-    ]}
+  ]}
 />
 
 # Calendar
 
 ## Директива meCalendar
 
-Применение директивы meCalendar к элементу dx-calendar приводит его к стандартам дизайн-системы и добавляет дополнительные свойства.
-
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxCalendar/)
+Директива `meCalendar` расширяет функциональность стандартного компонента календаря DevExtreme, добавляя дополнительные возможности настройки и обработки событий.
 
 <Story of={CalendarStories.Default} />
 <Controls of={CalendarStories.Default} />
+<Source of={CalendarStories.Default} dark />
 
 ## Примеры использования:
 
-### С отображением номеров недель
+- [Календарь без номеров недель](#календарь-без-номеров-недель)
+- [Отключенный календарь](#отключенный-календарь)
+- [Изменение первого дня недели](#изменение-первого-дня-недели)
+- [Изменение уровня масштабирования](#изменение-уровня-масштабирования)
+- [Настройка правила номера недели](#настройка-правила-номера-недели)
 
-<Canvas>
-  <Story of={CalendarStories.WithWeekNumbers} />
-</Canvas>
+## Календарь без номеров недель
 
-### Разные уровни масштабирования
+Для скрытия номеров недель используйте параметр `showWeekNumbers={false}`.
 
-<Canvas>
-  <Story of={CalendarStories.DifferentZoomLevels} />
-</Canvas>
+<Story of={CalendarStories.WithoutWeekNumbers} />
 
-### Пользовательское правило нумерации недель
+<Source
+  code={`<dx-calendar meCalendar [showWeekNumbers]="false"></dx-calendar>`}
+  dark
+  language='html'
+/>
 
-<Canvas>
-  <Story of={CalendarStories.CustomWeekNumberRule} />
-</Canvas>
+## Отключенный календарь
 
-### Отключенное состояние
+Чтобы отключить календарь, используйте параметр `disabled={true}`.
 
-<Canvas>
-  <Story of={CalendarStories.Disabled} />
-</Canvas>
+<Story of={CalendarStories.Disabled} />
+
+<Source
+  code={`<dx-calendar meCalendar [disabled]="true"></dx-calendar>`}
+  dark
+  language='html'
+/>
+
+## Изменение первого дня недели
+
+Для изменения первого дня недели используйте параметр `firstDayOfWeek`.
+
+<Story of={CalendarStories.CustomFirstDay} />
+
+<Source
+  code={`<dx-calendar meCalendar [firstDayOfWeek]="0"></dx-calendar>`}
+  dark
+  language='html'
+/>
+
+## Изменение уровня масштабирования
+
+Для изменения начального уровня масштабирования используйте параметр `zoomLevel`.
+
+<Story of={CalendarStories.YearZoomLevel} />
+
+<Source
+  code={`<dx-calendar meCalendar zoomLevel="year"></dx-calendar>`}
+  dark
+  language='html'
+/>
+
+## Настройка правила номера недели
+
+Для настройки правила расчета номера недели используйте параметр `weekNumberRule`.
+
+<Story of={CalendarStories.CustomWeekNumberRule} />
+
+<Source
+  code={`<dx-calendar meCalendar weekNumberRule="fullWeek"></dx-calendar>`}
+  dark
+  language='html'
+/>
 
 ## Перечень свойств
 

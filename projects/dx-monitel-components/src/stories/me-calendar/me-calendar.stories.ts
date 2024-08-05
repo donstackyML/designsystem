@@ -1,90 +1,119 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {DxCalendarComponent, DxCalendarModule} from 'devextreme-angular';
-import { MeCalendarDirective } from "../../lib/directives/me-calendar/calendar.directive";
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { DxCalendarModule } from 'devextreme-angular';
+import { MeCalendarDirective } from '../../public-api';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'calendar-demo',
   template: `
     <dx-calendar
       meCalendar
-      [value]="value"
+      [value]="currentValue"
       [showWeekNumbers]="showWeekNumbers"
+      [disabled]="disabled"
       [firstDayOfWeek]="firstDayOfWeek"
       [zoomLevel]="zoomLevel"
       [weekNumberRule]="weekNumberRule"
-      [disabled]="disabled"
-      (onValueChanged)="onValueChanged($event)"
+      (onValueChanged)="onDateValueChanged($event)"
     ></dx-calendar>
   `
 })
-class CalendarDemoComponent implements OnInit, AfterViewInit {
-  @ViewChild('dxCalendar', { static: false }) dxCalendar!: DxCalendarComponent;
-
-  @Input() value: Date = new Date();
+class CalendarDemoComponent {
+  @Input() currentValue: Date = new Date();
   @Input() showWeekNumbers: boolean = true;
+  @Input() disabled: boolean = false;
   @Input() firstDayOfWeek: number = 1;
   @Input() zoomLevel: string = 'month';
   @Input() weekNumberRule: string = 'firstDay';
-  @Input() disabled: boolean = false;
 
-  ngOnInit() {
-    // Инициализация, если необходимо
-  }
-
-  ngAfterViewInit() {
-    // Убедимся, что компонент полностью инициализирован
-    setTimeout(() => {
-      if (this.dxCalendar && this.dxCalendar.instance) {
-        // Здесь можно выполнить дополнительные настройки, если нужно
-      }
-    });
-  }
-
-  onValueChanged(e: any) {
+  onDateValueChanged(e: any) {
     console.log('Date changed:', e.value);
   }
 }
 
-const meta: Meta<CalendarDemoComponent> = {
-  title: 'Components/meCalendar',
-  component: CalendarDemoComponent,
+interface MeCalendarProps {
+  showWeekNumbers: boolean;
+  disabled: boolean;
+  firstDayOfWeek: number;
+  zoomLevel: string;
+  weekNumberRule: string;
+}
+
+const meta: Meta<MeCalendarProps> = {
+  title: 'Components/MeCalendar',
+  component: MeCalendarDirective,
   decorators: [
     moduleMetadata({
       declarations: [MeCalendarDirective, CalendarDemoComponent],
       imports: [DxCalendarModule],
     }),
   ],
+  render: (args: MeCalendarProps) => ({
+    props: args,
+    template: `
+      <calendar-demo
+        [showWeekNumbers]="showWeekNumbers"
+        [disabled]="disabled"
+        [firstDayOfWeek]="firstDayOfWeek"
+        [zoomLevel]="zoomLevel"
+        [weekNumberRule]="weekNumberRule"
+      ></calendar-demo>
+    `,
+  }),
   argTypes: {
-    showWeekNumbers: { control: 'boolean' },
-    firstDayOfWeek: { control: { type: 'range', min: 0, max: 6, step: 1 } },
-    zoomLevel: { control: { type: 'select', options: ['month', 'year', 'decade', 'century'] } },
-    weekNumberRule: { control: { type: 'select', options: ['firstDay', 'firstFourDays', 'fullWeek'] } },
-    disabled: { control: 'boolean' },
+    showWeekNumbers: {
+      control: 'boolean',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    firstDayOfWeek: {
+      control: { type: 'select', options: [0, 1, 2, 3, 4, 5, 6] },
+    },
+    zoomLevel: {
+      control: { type: 'select', options: ['month', 'year', 'decade', 'century'] },
+    },
+    weekNumberRule: {
+      control: { type: 'select', options: ['auto', 'firstDay', 'firstFourDays', 'fullWeek'] },
+    },
   },
 };
 
 export default meta;
-type Story = StoryObj<CalendarDemoComponent>;
+type Story = StoryObj<MeCalendarProps>;
 
 export const Default: Story = {
   args: {
     showWeekNumbers: true,
+    disabled: false,
     firstDayOfWeek: 1,
     zoomLevel: 'month',
     weekNumberRule: 'firstDay',
-    disabled: false,
   },
 };
 
-export const WithWeekNumbers: Story = {
+export const WithoutWeekNumbers: Story = {
   args: {
     ...Default.args,
-    showWeekNumbers: true,
+    showWeekNumbers: false,
   },
 };
 
-export const DifferentZoomLevels: Story = {
+export const Disabled: Story = {
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
+
+export const CustomFirstDay: Story = {
+  args: {
+    ...Default.args,
+    firstDayOfWeek: 0, // Sunday
+  },
+};
+
+export const YearZoomLevel: Story = {
   args: {
     ...Default.args,
     zoomLevel: 'year',
@@ -95,12 +124,5 @@ export const CustomWeekNumberRule: Story = {
   args: {
     ...Default.args,
     weekNumberRule: 'fullWeek',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    ...Default.args,
-    disabled: true,
   },
 };

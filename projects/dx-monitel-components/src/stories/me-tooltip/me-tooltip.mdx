@@ -1,0 +1,92 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as tooltipStories from "./me-tooltip.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { MeTooltipDirective } from "../../public-api";
+
+<Meta
+  title="Directives/Tooltip"
+  of={tooltipStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeTooltipDirective, tooltipStories.TooltipDemoComponent],
+    }),
+  ]}
+/>
+
+# Tooltip
+
+## Директива Tooltip
+
+Директива `Tooltip` позволяет создавать тултипы с различными параметрами, включая позиционирование, анимацию и пользовательские стили. Тултипы могут содержать текст, HTML и интерактивные элементы.
+
+<Story of={tooltipStories.Default} />
+<Controls of={tooltipStories.Default} />
+<Source of={tooltipStories.Default} dark />
+
+## Примеры использования:
+
+- [Кастомные позиции](#кастомные-позиции)
+- [Кастомный контент](#кастомный-контент)
+- [Кастомные анимации](#кастомные-анимации)
+
+## Кастомные позиции
+
+Для изменения позиции тултипа используйте параметр `tooltipPosition`.
+
+<Story of={tooltipStories.CustomPositions} />
+
+<Source
+  code={`<button
+  class="tooltip-button"
+  [meTooltip]="simpleTooltip"
+  [tooltipPosition]="simplePosition"
+>
+  {{ simpleButtonText }}
+</button>`}
+  dark
+  language="html"
+/>
+
+## Кастомный контент
+
+Для изменения контента тултипа используйте параметры `meTooltip` и `tooltipTemplateRef`.
+
+<Story of={tooltipStories.CustomContent} />
+
+<Source
+  code={`<button
+  class="tooltip-button"
+  [meTooltip]="animatedTooltip"
+  [tooltipPosition]="animatedPosition"
+  [tooltipShowAnimation]="showAnimation"
+  [tooltipHideAnimation]="hideAnimation"
+>
+  {{ animatedButtonText }}
+</button>`}
+  dark
+  language="html"
+/>
+
+## Кастомные анимации
+
+Для изменения анимаций тултипа используйте параметры `tooltipShowAnimation` и `tooltipHideAnimation`.
+
+<Story of={tooltipStories.CustomAnimations} />
+
+<Source
+  code={`<button
+  class="tooltip-button"
+  [meTooltip]="positionedTooltip"
+  [tooltipPosition]="positionedPosition"
+  [tooltipShowAnimation]="showAnimation"
+  [tooltipHideAnimation]="hideAnimation"
+>
+  {{ positionedButtonText }}
+</button>`}
+  dark
+  language="html"
+/>
+
+## Перечень свойств
+
+<Controls of={tooltipStories.Default} include={["simpleTooltip", "simplePosition", "simpleButtonText", "animatedTooltip", "animatedPosition", "animatedButtonText", "showAnimation", "hideAnimation", "positionedTooltip", "positionedPosition", "positionedButtonText", "interactivePosition", "interactiveMaxWidth", "interactiveButtonText", "htmlPosition", "htmlMaxWidth", "htmlButtonText", "customStylePosition", "customStyleClass", "customStyleButtonText"]} />

@@ -15,6 +15,8 @@ import { MeToastDirective } from "../../lib/directives/me-toast/toast.directive"
       [animation]="animation"
       [customClass]="customClass"
     ></dx-toast>
+
+    <dx-button text="Show Toast" (onClick)="showToast()"> </dx-button>
     <button (click)="showToast()">Show Toast</button>
   `
 })

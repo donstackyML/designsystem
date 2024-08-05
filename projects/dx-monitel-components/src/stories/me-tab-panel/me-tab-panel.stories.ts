@@ -1,8 +1,6 @@
-// tab-panel.stories.ts
-
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxTabPanelModule } from 'devextreme-angular';
-import { MeTabPanelDirective } from "../app/directives/tab-panel.directive";
+import { MeTabPanelDirective } from "../../public-api";
 import { Component } from '@angular/core';
 
 @Component({
@@ -45,9 +43,8 @@ class TabPanelHostComponent {
 }
 
 const meta: Meta<TabPanelHostComponent> = {
-  title: 'Directives/MeTabPanel',
+  title: 'Components/MeTabPanel',
   component: TabPanelHostComponent,
-  tags: ['autodocs'],
   decorators: [
     moduleMetadata({
       declarations: [MeTabPanelDirective, TabPanelHostComponent],

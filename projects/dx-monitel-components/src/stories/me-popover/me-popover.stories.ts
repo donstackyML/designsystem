@@ -1,17 +1,17 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
-import { MePopoverDirective } from '../app/directives/popover.directive';
-import { Component } from '@angular/core';
+import { MePopoverDirective } from '../../public-api';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'popover-host',
   template: `
     <div class="dx-fieldset form">
       <div class="dx-field">
-        <div class="dx-field-label me-title-subheader1">{{label}}</div>
+        <div class="dx-field-label me-title-subheader1">{{ label }}</div>
         <div class="dx-field-value-static">
           <p>
-            <span id="subject" class="me-text-body2">{{subject}}</span>
+            <span id="subject" class="me-text-body2">{{ subject }}</span>
             (<a class="test-details me-action-link1" id="link">details</a>)
           </p>
           <dx-popover
@@ -32,7 +32,7 @@ import { Component } from '@angular/core';
               <dxo-hide type="fade" [from]="1" [to]="0"></dxo-hide>
             </dxo-animation>
             <div *dxTemplate="let data of 'content'">
-              {{content}}
+              {{ content }}
             </div>
           </dx-popover>
         </div>
@@ -41,25 +41,24 @@ import { Component } from '@angular/core';
   `,
 })
 class PopoverHostComponent {
-  label: string = 'Default mode';
-  subject: string = 'Google AdWords Strategy';
-  showEvent: string = 'mouseenter';
-  hideEvent: string = 'mouseleave';
-  position: string = 'top';
-  width: number = 300;
-  maxWidth: number | undefined;
-  showTitle: boolean = false;
-  title: string = '';
-  shading: boolean = false;
-  shadingColor: string = '';
-  content: string = 'Popover content';
-  animationEnabled: boolean = false;
+  @Input() label: string = 'Default mode';
+  @Input() subject: string = 'Google AdWords Strategy';
+  @Input() showEvent: string = 'mouseenter';
+  @Input() hideEvent: string = 'mouseleave';
+  @Input() position: string = 'top';
+  @Input() width: number = 300;
+  @Input() maxWidth: number | undefined;
+  @Input() showTitle: boolean = false;
+  @Input() title: string = '';
+  @Input() shading: boolean = false;
+  @Input() shadingColor: string = '';
+  @Input() content: string = 'Popover content';
+  @Input() animationEnabled: boolean = false;
 }
 
 const meta: Meta<PopoverHostComponent> = {
-  title: 'Directives/MePopover',
+  title: 'Components/MePopover',
   component: PopoverHostComponent,
-  tags: ['autodocs'],
   decorators: [
     moduleMetadata({
       declarations: [MePopoverDirective, PopoverHostComponent],
@@ -89,9 +88,9 @@ type Story = StoryObj<PopoverHostComponent>;
 export const Default: Story = {
   args: {
     label: 'Default mode',
-    subject: 'Google AdWords Strategy',
-    showEvent: 'mouseenter',
-    hideEvent: 'mouseleave',
+    subject: 'Show Popover',
+    // showEvent: 'mouseenter',
+    // hideEvent: 'mouseleave',
     position: 'top',
     width: 300,
     content: 'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',
