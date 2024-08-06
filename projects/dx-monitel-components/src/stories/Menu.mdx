@@ -1,22 +1,82 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Canvas, Controls, Source, Story } from "@storybook/blocks";
 import * as buttonStories from "./me-button/me-button.stories";
+import * as popupStories from "./me-popup/me-popup.stories";
 
-<Meta title="Меню с текстом" />
+<Meta title="Пример работы со сторибуком" />
 
-<div className="container">
-  <h1>H1</h1>
-  <h2>H2</h2>
-  <p>p</p>
-  <span>span</span>
-</div>
+# Button
 
-<Canvas name="meComponent" of={buttonStories.Default} sourceState="shown" />
-<Controls of={buttonStories.Default} />
+## Директива meButton
+
+Применение директивы meButton к элементу dx-button приводит его размеры к значению size = medium (32) из дизайн-системы и предоставляет доступ к другим свойствам.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxButton/)
+
+{/* <Description of={buttonStories.Default} /> */}
+
+<Story of={buttonStories.LeftRightIcon} />
+
+<Controls of={buttonStories.LeftRightIcon} />
+
+<Source of={buttonStories.LeftRightIcon} type="dynamic" dark />
+
+# Popup
+
+## Директива mePopup
+
+Применение директивы mePopup к элементу dx-popup приводит его размеры к значению size=medium из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство size. Стандартное свойство resizeEnabled по умолчанию включено.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopup/)
+
+<Story of={popupStories.Default} />
+<Controls of={popupStories.Default} />
+<Source of={popupStories.Default} dark />
+
+## Добавление элементов и контента в popup
+
+Для добавления элементов в туллбар необходимо воспользоваться dxi-toolbar-item [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Specify_Toolbar_Items/). Для добавления контента используется свойство contentTemplate [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Customize_the_Content/#Specifying_the_Content_Template).
+В дизайн-системе для размера medium используются кнопки с размером medium, для размера large соответственно кнопки одноименного размера.
+
+<Story of={popupStories.Toolbar} />
+
+<Source
+  code={`<dx-popup mePopup [showTitle]="true" title="Заголовок">
+    <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+    <dxi-toolbar-item template="addButton" toolbar="bottom" location="before">
+      </dxi-toolbar-item>
+    <div *dxTemplate="let data of 'content'">
+      <dx-scroll-view width="100%" height="100%">
+        {{ lorem25 }}
+      </dx-scroll-view>
+    </div>
+    <div *dxTemplate="let data of 'overflowButton'">
+      <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="12px">
+        </dx-button>
+    </div>
+    <div *dxTemplate="let data of 'confirmButton'">
+      <dx-button meButton text="Принять" type="default"></dx-button>
+    </div>
+    <div *dxTemplate="let data of 'cancelButton'">
+      <dx-button meButton text="Отмена" (onClick)="hidePopup()"></dx-button>
+    </div>
+    <div *dxTemplate="let data of 'addButton'">
+      <dx-button meButton text="Добавить"></dx-button>
+    </div>
+</dx-popup>`}
+  dark
+  language="html"
+/>
 
 <style>
   {`
-    .container {
-    // background-color: aqua;
-  }
-  `}
+      h2 {
+        border-bottom: none !important;
+    }
+`}
 </style>

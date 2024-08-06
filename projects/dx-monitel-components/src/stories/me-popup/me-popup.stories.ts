@@ -64,7 +64,7 @@ export default {
   },
   render: (args) => ({
     props: args,
-    template: `<div id="myWrapper" style="min-height: 350px; position: relative;"><dx-popup mePopup ${argsToTemplate(
+    template: `<div id="myWrapper" style="min-height: 350px; position: relative;"><dx-popup mePopup width= '360px' ${argsToTemplate(
       args
     )}></dx-popup></div>`,
   }),
@@ -112,7 +112,7 @@ export const Scroll: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <div id="myWrapperScroll" style="height: 300px; position: relative;">
+    <div id="myWrapperScroll" style="height: 350px; position: relative;">
       <dx-popup mePopup height='200px' ${argsToTemplate(args)}>
         <div *dxTemplate="let data of 'content'">
           <dx-scroll-view width="100%" height="100%">
@@ -152,7 +152,7 @@ export const Toolbar: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <div id="myWrapperTollbar" style="height: 300px; position: relative;">
+    <div id="myWrapperTollbar" style="height: 350px; position: relative;">
       <dx-popup mePopup height='200px' ${argsToTemplate(args)}>
         <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
           </dxi-toolbar-item>

@@ -14,7 +14,7 @@ import ReadMe from "./README.md?raw";
 import { Markdown, Subtitle, Title, Unstyled } from "@storybook/blocks";
 
 <Meta
-  name="meButton Docs"
+  name="Button Documentation"
   of={buttonStories}
   decorators={[
     moduleMetadata({
@@ -23,43 +23,28 @@ import { Markdown, Subtitle, Title, Unstyled } from "@storybook/blocks";
   ]}
 />
 
-{/* <Title/> берет title из title stories */}
+# Button
 
-<Markdown>{ReadMe}</Markdown>
-line \ new line
+## Директива meButton
 
-## Default button
+Применение директивы meButton к элементу dx-button приводит его размеры к значению size = medium (32) из дизайн-системы и предоставляет доступ к другим свойствам.
 
-<Subtitle>Subtitle</Subtitle>
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxButton/)
 
-<Description of={buttonStories.Default} />
+{/* <Description of={buttonStories.Default} /> */}
 
-<Story name="meComponent" of={buttonStories.Default} />
+<Story of={buttonStories.LeftRightIcon} />
 
-<Source of={buttonStories.Default} type="dynamic" dark />
-<Controls of={buttonStories.Default} />
+<Controls of={buttonStories.LeftRightIcon} />
 
-## Success button on Canvas
+<Source of={buttonStories.LeftRightIcon} type="dynamic" dark />
 
-<Description of={buttonStories.Success} />
+{/* <Unstyled> */}
 
-{/* <Story name="meComponento" of={buttonStories.Success}/> */}
-
-<Canvas of={buttonStories.Success} withToolbar />
-<Controls of={buttonStories.Success} />
-Source для отображения компонента, доработать для dynamic
-<Source of={buttonStories.Success} type="dynamic" dark />
-
-<Unstyled>
-  <div className="container">
-    <h2>Unstyled H2</h2>
-    <p>В блоке Unstyled не используются стили storybook</p>
-  </div>
-  <style>
-    {`
-      .container {
-         background-color: aqua;
-        }
-    `}
-  </style>
-</Unstyled>
+<style>
+  {`
+      h2 {
+        border-bottom: none !important;
+    }
+`}
+</style>

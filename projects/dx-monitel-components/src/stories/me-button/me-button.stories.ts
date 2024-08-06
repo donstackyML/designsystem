@@ -9,8 +9,7 @@ import { MeButtonDirective } from '../../public-api';
 
 export default {
   title: 'Components/meButton',
-  // component: MeButtonComponent,
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
   parameters: {
     docs: {
       source: {
@@ -32,12 +31,12 @@ export default {
         defaultValue: { summary: 'default' },
       },
     },
-    isSelected: {
-      control: 'boolean',
-      table: {
-        defaultValue: { summary: false },
-      },
-    },
+    // isSelected: {
+    //   control: 'boolean',
+    //   table: {
+    //     defaultValue: { summary: false },
+    //   },
+    // },
     text: {
       control: 'text',
       table: {
@@ -60,6 +59,22 @@ export default {
         defaultValue: { summary: 'contained' },
       },
     },
+    leftIcon: {
+      control: 'select',
+      options: ['', 'add', 'arrowback', 'arrowforward'],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    rightIcon: {
+      control: 'select',
+      options: ['', 'add', 'arrowback', 'arrowforward'],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
   },
   render: (args) => ({
     props: args,
@@ -69,25 +84,34 @@ export default {
 
 type Story = StoryObj<MeButtonDirective | DxButtonComponent>;
 
-/**Дефолтная кнопка
- *
- * Description, можно описывать story прямиком из stories
- */
 export const Default: Story = {
   args: {
     type: 'default',
     text: 'Button',
     size: 'medium',
     stylingMode: 'contained',
-    isSelected: false,
+    // isSelected: false,
   },
 };
 
-/**Кнопка success Description*/
-export const Success: Story = {
+export const LeftIcon: Story = {
   args: {
-    type: 'success',
-    text: 'Button Success',
+    text: 'Button',
     size: 'medium',
+    stylingMode: 'contained',
+    leftIcon: 'arrowback',
+    iconColor: 'black',
+  },
+};
+
+export const LeftRightIcon: Story = {
+  args: {
+    type: 'normal',
+    text: 'Button',
+    size: 'medium',
+    stylingMode: 'contained',
+    leftIcon: 'arrowback',
+    rightIcon: 'arrowforward',
+    iconColor: 'black',
   },
 };
