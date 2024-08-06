@@ -1,12 +1,12 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Component, Input } from '@angular/core';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
 import { MePopoverDirective } from '../../public-api';
-import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'popover-host',
   template: `
-    <div class="dx-fieldset form">
+    <div class="dx-fieldset">
       <div class="dx-field">
         <div class="dx-field-label me-title-subheader1">{{ label }}</div>
         <div class="dx-field-value-static">
@@ -20,6 +20,7 @@ import { Component, Input } from '@angular/core';
             [showEvent]="showEvent"
             [hideEvent]="hideEvent"
             [position]="position"
+            [size]="size"
             [width]="width"
             [maxWidth]="maxWidth"
             [showTitle]="showTitle"
@@ -43,6 +44,18 @@ import { Component, Input } from '@angular/core';
       </div>
     </div>
   `,
+  styles: [
+    `
+      .dx-field-value-static {
+        margin-top: 50px;
+      }
+      ,
+      .test-details {
+        color: var(--button-default-icon-color);
+        cursor: pointer;
+      }
+    `,
+  ],
 })
 class PopoverHostComponent {
   @Input() label: string = 'Default mode';
@@ -50,6 +63,7 @@ class PopoverHostComponent {
   @Input() showEvent: string = 'mouseenter';
   @Input() hideEvent: string = 'mouseleave';
   @Input() position: string = 'top';
+  @Input() size: string = 'medium';
   @Input() width: number = 300;
   @Input() maxWidth: number | undefined;
   @Input() showTitle: boolean = false;
@@ -78,6 +92,10 @@ const meta: Meta<PopoverHostComponent> = {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
     },
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+    },
     width: { control: 'number' },
     maxWidth: { control: 'number' },
     showTitle: { control: 'boolean' },
@@ -99,6 +117,7 @@ export const Default: Story = {
     // showEvent: 'mouseenter',
     // hideEvent: 'mouseleave',
     position: 'top',
+    size: 'medium',
     width: 300,
     content:
       'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',
@@ -111,6 +130,7 @@ export const WithTitle: Story = {
     label: 'With title',
     subject: 'Rollout of New Website and Marketing Brochures',
     position: 'bottom',
+    size: 'large',
     showTitle: true,
     title: 'Details',
     maxWidth: 400,
@@ -133,6 +153,7 @@ export const WithAnimation: Story = {
 export const WithOverlay: Story = {
   args: {
     ...Default.args,
+    size: 'small',
     label: 'With overlay',
     subject: 'Website Re-Design Plan',
     showEvent: 'click',
