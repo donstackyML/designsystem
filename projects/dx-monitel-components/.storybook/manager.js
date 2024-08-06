@@ -1,4 +1,6 @@
 import { addons } from "@storybook/manager-api";
+import { create } from "@storybook/theming";
+import logo from "../assets/images/logoSK.png";
 
 addons.setConfig({
   navSize: 300,
@@ -21,4 +23,9 @@ addons.setConfig({
     copy: { hidden: false },
     fullscreen: { hidden: false },
   },
+  theme: create({
+    brandTitle: "СК21",
+    brandImage: logo,
+    brandTarget: "_self",
+  }),
 });

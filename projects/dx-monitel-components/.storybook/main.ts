@@ -13,10 +13,16 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-docs',
     '@storybook/addon-backgrounds',
+    '@storybook/manager-api',
   ],
   framework: {
     name: '@storybook/angular',
     options: {},
   },
+  // managerHead: (head) => `
+  //   ${head}
+
+  //   <link rel="shortcut icon" href="https://www.google.com/favicon.ico"/>
+  // `,
 };
 export default config;
