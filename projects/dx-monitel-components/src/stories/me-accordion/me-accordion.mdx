@@ -1,0 +1,109 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as AccordionStories from "./me-accordion.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { MeAccordionDirective } from "../../lib/directives/me-accordion/accordion.directive";
+
+<Meta
+  name="meAccordion Docs"
+  of={AccordionStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeAccordionDirective],
+    }),
+  ]}
+/>
+
+# Accordion
+
+## Директива meAccordion
+
+Директива `meAccordion` применяется к элементу dx-accordion для приведения его размеров в соответствие с дизайн-системой и добавления дополнительных свойств.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxAccordion/)
+
+<Story of={AccordionStories.Default} />
+<Controls of={AccordionStories.Default} />
+<Source of={AccordionStories.Default} dark />
+
+## Примеры использования:
+
+- [Изменение размера аккордеона](#изменение-размера-аккордеона)
+- [Сворачиваемый аккордеон](#сворачиваемый-аккордеон)
+- [Множественное раскрытие](#множественное-раскрытие)
+- [Настройка анимации](#настройка-анимации)
+- [Добавление пользовательского класса](#добавление-пользовательского-класса)
+
+## Изменение размера аккордеона
+
+Для изменения размера аккордеона используйте параметр `size` с возможными значениями `small`, `medium`, или `large`.
+
+<Story of={AccordionStories.Small} />
+
+<Source
+  code={`<dx-accordion meAccordion [size]="'small'"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  dark
+  language='html'
+/>
+
+## Сворачиваемый аккордеон
+
+Чтобы сделать аккордеон сворачиваемым, установите параметр `isCollapsible` в `true`.
+
+<Story of={AccordionStories.Collapsible} />
+
+<Source
+  code={`<dx-accordion meAccordion [isCollapsible]="true"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  dark
+  language='html'
+/>
+
+## Множественное раскрытие
+
+Для возможности одновременного раскрытия нескольких элементов, установите параметр `isMultiple` в `true`.
+
+<Story of={AccordionStories.Multiple} />
+
+<Source
+  code={`<dx-accordion meAccordion [isMultiple]="true"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  dark
+  language='html'
+/>
+
+## Настройка анимации
+
+Вы можете настроить длительность анимации с помощью параметра `animationDuration`.
+
+<Story of={AccordionStories.CustomAnimation} />
+
+<Source
+  code={`<dx-accordion meAccordion [animationDuration]="1000"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  dark
+  language='html'
+/>
+
+## Добавление пользовательского класса
+
+Для добавления пользовательского класса используйте параметр `customClass`.
+
+<Story of={AccordionStories.CustomClass} />
+
+<Source
+  code={`<dx-accordion meAccordion customClass="my-custom-accordion"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  dark
+  language='html'
+/>
+
+## Перечень свойств
+
+<Controls
+  of={AccordionStories.Default}
+  include={[
+    "size",
+    "isCollapsible",
+    "isMultiple",
+    "animationDuration",
+    "customClass",
+  ]}
+/>
+
+<Story of={AccordionStories.Default} />

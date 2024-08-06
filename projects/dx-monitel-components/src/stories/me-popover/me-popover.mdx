@@ -1,0 +1,53 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs/blocks";
+import * as popoverStories from "./me-popover.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxPopoverModule } from "devextreme-angular/ui/popover";
+import { MePopoverDirective } from "../../public-api";
+
+<Meta
+  title="Directives/MePopover"
+  of={popoverStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MePopoverDirective, popoverStories.PopoverHostComponent],
+      imports: [DxPopoverModule],
+    }),
+  ]}
+/>
+
+# MePopover
+
+## Директива MePopover
+
+Директива `MePopover` позволяет создавать всплывающие окна с различными параметрами, включая позиционирование, отображение заголовка и анимацию. Всплывающие окна могут содержать текст и другие элементы.
+
+<Story name="Default" of={popoverStories.Default} />
+<Controls story={popoverStories.Default} />
+<Source story={popoverStories.Default} dark />
+
+## Примеры использования:
+
+### Всплывающее окно с заголовком
+
+Для отображения заголовка используйте параметры `showTitle` и `title`.
+
+<Story name="WithTitle" of={popoverStories.WithTitle} />
+<Source story={popoverStories.WithTitle} dark />
+
+### Всплывающее окно с анимацией
+
+Для включения анимации используйте параметр `animationEnabled`.
+
+<Story name="WithAnimation" of={popoverStories.WithAnimation} />
+<Source story={popoverStories.WithAnimation} dark />
+
+### Всплывающее окно с наложением
+
+Для добавления наложения используйте параметры `shading` и `shadingColor`.
+
+<Story name="WithOverlay" of={popoverStories.WithOverlay} />
+<Source story={popoverStories.WithOverlay} dark />
+
+## Перечень свойств
+
+<Controls story={popoverStories.Default} />

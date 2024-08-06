@@ -65,7 +65,7 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
       this.subscriptions.push(
         this.dxCalendarComponent.onValueChanged.subscribe((e) => {
           this.onDateValueChanged.emit(e);
-        }),
+        })
       );
 
       this.subscriptions.push(
@@ -87,7 +87,7 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
               this.weekNumberRuleChange.emit(e.value);
               break;
           }
-        }),
+        })
       );
     }
   }

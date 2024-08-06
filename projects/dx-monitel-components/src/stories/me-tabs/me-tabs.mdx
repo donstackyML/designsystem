@@ -1,0 +1,75 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as tabsStories from "./me-tabs.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { MeTabsDirective } from "../../public-api";
+
+<Meta
+  name="meTabs Docs"
+  of={tabsStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeTabsDirective],
+    }),
+  ]}
+/>
+
+# Tabs
+
+## Директива meTabs
+
+Директива `meTabs` позволяет создавать вкладки с различными параметрами, включая размер и режим оформления. Вкладки могут быть расположены вверху или внизу компонента.
+
+<Story of={tabsStories.Default} />
+<Controls of={tabsStories.Default} />
+<Source of={tabsStories.Default} dark />
+
+## Примеры использования:
+
+- [Изменение размера вкладок](#изменение-размера-вкладок)
+- [Изменение позиции вкладок](#изменение-позиции-вкладок)
+- [Изменение режима оформления](#изменение-режима-оформления)
+
+## Изменение размера вкладок
+
+Для изменения размера вкладок используйте параметр `size` с возможными значениями `small`, `medium`, или `large`.
+
+<Story of={tabsStories.LargeSize} />
+
+<Source
+  code={`<div meTabs size="large"> <!-- Ваши вкладки здесь --> </div>`}
+  dark
+  language='html'
+/>
+
+## Изменение позиции вкладок
+
+Для изменения позиции вкладок используйте параметр `position` с возможными значениями `top` или `bottom`.
+
+<Story of={tabsStories.BottomPosition} />
+
+<Source
+  code={`<div meTabs position="bottom"> <!-- Ваши вкладки здесь --> </div>`}
+  dark
+  language='html'
+/>
+
+## Изменение режима оформления
+
+Для изменения режима оформления вкладок используйте параметр `stylingMode` с возможными значениями `outside` или `inside`.
+
+<Story of={tabsStories.InsideStylingMode} />
+
+<Source
+  code={`<div meTabs stylingMode="inside"> <!-- Ваши вкладки здесь --> </div>`}
+  dark
+  language='html'
+/>
+
+## Перечень свойств
+
+<Controls
+  of={tabsStories.SmallSize}
+  include={["size", "position", "stylingMode"]}
+/>
+
+<Story of={tabsStories.SmallSize} />

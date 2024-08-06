@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'me-tab-panel',
@@ -24,7 +24,7 @@ export class MeTabPanelComponent {
       ],
     },
   ];
-  height: number = 418;
+  height = '418';
   animationEnabled: boolean = true;
   swipeEnabled: boolean = true;
   selectedIndex: number = 0;

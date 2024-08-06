@@ -1,0 +1,114 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as loadPanelStories from "./me-load-panel.stories";
+import { moduleMetadata } from "@storybook/angular";
+import {
+  DxButtonModule,
+  DxLoadPanelModule,
+  DxCheckBoxModule,
+} from "devextreme-angular";
+import { MeLoadPanelDirective } from "../../public-api";
+
+<Meta
+  title="Components/MeLoadPanel"
+  of={loadPanelStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [
+        MeLoadPanelDirective,
+        loadPanelStories.LoadPanelDemoComponent,
+      ],
+      imports: [DxButtonModule, DxLoadPanelModule, DxCheckBoxModule],
+    }),
+  ]}
+/>
+
+# MeLoadPanel
+
+## Директива MeLoadPanel
+
+Директива `MeLoadPanel` позволяет создавать панели загрузки с различными параметрами, включая размер, отображение индикатора и затенение. Панели могут быть стилизованы с помощью CSS классов.
+
+<Story of={loadPanelStories.Default} />
+<Controls of={loadPanelStories.Default} />
+<Source of={loadPanelStories.Default} dark />
+
+## Примеры использования:
+
+- [Маленькая панель загрузки](#маленькая-панель-загрузки)
+- [Большая панель загрузки](#большая-панель-загрузки)
+- [Панель с пользовательским классом](#панель-с-пользовательским-классом)
+- [Скрытие при клике вне](#скрытие-при-клике-вне)
+
+## Маленькая панель загрузки
+
+Для создания маленькой панели загрузки используйте параметр `size` со значением `small`.
+
+<Story of={loadPanelStories.Small} />
+
+<Source
+  code={`<dx-load-panel
+  meLoadPanel
+  [size]="'small'"
+  shadingColor="rgba(0,0,0,0.4)"
+  [position]="{ of: '#employee' }"
+  [(visible)]="loadingVisible"
+  [showIndicator]="showIndicator"
+  [showPane]="showPane"
+  [shading]="shading"
+  [hideOnOutsideClick]="hideOnOutsideClick"
+  (onShown)="onShown()"
+  (onHidden)="onHidden()"
+></dx-load-panel>`}
+  dark
+  language="html"
+/>
+
+## Большая панель загрузки
+
+Для создания большой панели загрузки используйте параметр `size` со значением `large`.
+
+<Story of={loadPanelStories.Large} />
+
+<Source
+  code={`<dx-load-panel
+  meLoadPanel
+  [size]="'large'"
+  shadingColor="rgba(0,0,0,0.4)"
+  [position]="{ of: '#employee' }"
+  [(visible)]="loadingVisible"
+  [showIndicator]="showIndicator"
+  [showPane]="showPane"
+  [shading]="shading"
+  [hideOnOutsideClick]="hideOnOutsideClick"
+  (onShown)="onShown()"
+  (onHidden)="onHidden()"
+></dx-load-panel>`}
+  dark
+  language="html"
+/>
+
+## Панель с пользовательским классом
+
+Для добавления пользовательского класса используйте параметр `customClass`.
+
+<Story of={loadPanelStories.CustomClass} />
+
+<Source
+  code={`<dx-load-panel
+  meLoadPanel
+  [customClass]="true"
+  shadingColor="rgba(0,0,0,0.4)"
+  [position]="{ of: '#employee' }"
+  [(visible)]="loadingVisible"
+  [showIndicator]="showIndicator"
+  [showPane]="showPane"
+  [shading]="shading"
+  [hideOnOutsideClick]="hideOnOutsideClick"
+  (onShown)="onShown()"
+  (onHidden)="onHidden()"
+></dx-load-panel>`}
+  dark
+  language="html"
+/>
+
+##

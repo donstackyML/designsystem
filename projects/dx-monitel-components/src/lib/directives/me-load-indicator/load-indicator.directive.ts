@@ -1,4 +1,11 @@
-import { Directive, Input, ElementRef, Renderer2, OnInit, OnChanges } from '@angular/core';
+import {
+  Directive,
+  Input,
+  ElementRef,
+  Renderer2,
+  OnInit,
+  OnChanges,
+} from '@angular/core';
 import DxLoadIndicator from 'devextreme/ui/load_indicator';
 
 @Directive({

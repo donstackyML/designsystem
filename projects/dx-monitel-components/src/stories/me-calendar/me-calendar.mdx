@@ -1,0 +1,96 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as CalendarStories from "./me-calendar.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { MeCalendarDirective } from "../../public-api";
+
+<Meta
+  name="meCalendar Docs"
+  of={CalendarStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeCalendarDirective],
+    }),
+  ]}
+/>
+
+# Calendar
+
+## Директива meCalendar
+
+Директива `meCalendar` расширяет функциональность стандартного компонента календаря DevExtreme, добавляя дополнительные возможности настройки и обработки событий.
+
+<Story of={CalendarStories.Default} />
+<Controls of={CalendarStories.Default} />
+<Source of={CalendarStories.Default} dark />
+
+## Примеры использования:
+
+- [Календарь без номеров недель](#календарь-без-номеров-недель)
+- [Отключенный календарь](#отключенный-календарь)
+- [Изменение первого дня недели](#изменение-первого-дня-недели)
+- [Изменение уровня масштабирования](#изменение-уровня-масштабирования)
+- [Настройка правила номера недели](#настройка-правила-номера-недели)
+
+## Календарь без номеров недель
+
+Для скрытия номеров недель используйте параметр `showWeekNumbers={false}`.
+
+<Story of={CalendarStories.WithoutWeekNumbers} />
+
+<Source
+  code={`<dx-calendar meCalendar [showWeekNumbers]="false"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+## Отключенный календарь
+
+Чтобы отключить календарь, используйте параметр `disabled={true}`.
+
+<Story of={CalendarStories.Disabled} />
+
+<Source
+  code={`<dx-calendar meCalendar [disabled]="true"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+## Изменение первого дня недели
+
+Для изменения первого дня недели используйте параметр `firstDayOfWeek`.
+
+<Story of={CalendarStories.CustomFirstDay} />
+
+<Source
+  code={`<dx-calendar meCalendar [firstDayOfWeek]="0"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+## Изменение уровня масштабирования
+
+Для изменения начального уровня масштабирования используйте параметр `zoomLevel`.
+
+<Story of={CalendarStories.YearZoomLevel} />
+
+<Source
+  code={`<dx-calendar meCalendar zoomLevel="year"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+## Настройка правила номера недели
+
+Для настройки правила расчета номера недели используйте параметр `weekNumberRule`.
+
+<Story of={CalendarStories.CustomWeekNumberRule} />
+
+<Source
+  code={`<dx-calendar meCalendar weekNumberRule="fullWeek"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+## Перечень свойств
+
+<Controls of={CalendarStories.Default} />
