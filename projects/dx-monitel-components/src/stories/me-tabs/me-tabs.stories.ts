@@ -1,8 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabsModule } from 'devextreme-angular';
-import {MeTabsDirective} from "../../public-api";
-import {Tab} from "../../lib/directives/me-tabs/tabs.directive";
-
+import { MeTabsDirective } from '../../public-api';
+import { Tab } from '../../lib/directives/me-tabs/tabs.directive';
 
 interface MeTabsProps {
   customClass: string;

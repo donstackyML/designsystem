@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
-import { MeAccordionModule } from "./directives/me-accordion/accordion.module";
+import { MeAccordionModule } from './directives/me-accordion/accordion.module';
 import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
 import { MeButtonModule } from './directives/me-button/me-button.module';
-import { MeCalendarModule } from "./directives/me-calendar/calendar.module";
+import { MeCalendarModule } from './directives/me-calendar/calendar.module';
 import { MeCheckBoxModule } from './directives/me-check-box/me-check-box.module';
 import { MeContextMenuModule } from './directives/me-context-menu/context-menu.module';
 import { MeControlModule } from './directives/me-control/control.module';
@@ -12,7 +12,7 @@ import { MeEditorModule } from './directives/me-editor/me-editor.module';
 import { MeIconModule } from './directives/me-icon/me-icon.module';
 import { MeLabelModule } from './directives/me-label/me-label.module';
 import { MeListModule } from './directives/me-list/list.module';
-import { MeLoadIndicatorModule } from "./directives/me-load-indicator/load-indicator.module";
+import { MeLoadIndicatorModule } from './directives/me-load-indicator/load-indicator.module';
 import { MeLoadPanelModule } from './directives/me-load-panel/load-panel.module';
 import { MeMenuModule } from './directives/me-menu/menu.module';
 import { MeOverlayModule } from './directives/me-overlay/me-overlay.module';
@@ -25,7 +25,7 @@ import { MeTabPanelModule } from './directives/me-tab-panel/tab-panel.module';
 import { MeTabsModule } from './directives/me-tabs/tabs.module';
 import { MeTextBoxModule } from './directives/me-text-box/me-text-box.module';
 import { MeTextEditorModule } from './directives/me-text-editor/me-text-editor.module';
-import { MeToastModule } from "./directives/me-toast/toast.module";
+import { MeToastModule } from './directives/me-toast/toast.module';
 import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
@@ -45,8 +45,8 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeIconModule,
     MeLabelModule,
     MeListModule,
-		MeLoadIndicatorModule,
-		MeLoadPanelModule,
+    MeLoadIndicatorModule,
+    MeLoadPanelModule,
     MeMenuModule,
     MeOverlayModule,
     MePopoverModule,
@@ -55,14 +55,14 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeSelectBoxModule,
     MeSidepageComponent,
     MeSwitchModule,
-		MeTabsModule,
+    MeTabsModule,
     MeTextBoxModule,
     MeTextEditorModule,
-		MeToastModule,
+    MeToastModule,
     MeToolbarModule,
-		MeTooltipModule,
-		MeTreeViewModule,
-		MeTabPanelModule
+    MeTooltipModule,
+    MeTreeViewModule,
+    MeTabPanelModule,
   ],
   exports: [
     MeAccordionModule,
@@ -77,8 +77,8 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeIconModule,
     MeLabelModule,
     MeListModule,
-		MeLoadIndicatorModule,
-		MeLoadPanelModule,
+    MeLoadIndicatorModule,
+    MeLoadPanelModule,
     MeMenuModule,
     MeOverlayModule,
     MePopoverModule,
@@ -87,15 +87,15 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeSelectBoxModule,
     MeSidepageComponent,
     MeSwitchModule,
-		MeTabsModule,
+    MeTabsModule,
     MeTextBoxModule,
     MeTextEditorModule,
-		MeToastModule,
+    MeToastModule,
     MeToolbarModule,
-		MeTooltipModule,
-		MeTreeViewModule,
-		MeTabPanelModule,
-    MeCalendarModule
+    MeTooltipModule,
+    MeTreeViewModule,
+    MeTabPanelModule,
+    MeCalendarModule,
   ],
 })
 export class MeComponentsModule {}

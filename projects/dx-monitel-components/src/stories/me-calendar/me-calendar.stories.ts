@@ -16,7 +16,7 @@ import { Component, Input } from '@angular/core';
       [weekNumberRule]="weekNumberRule"
       (onValueChanged)="onDateValueChanged($event)"
     ></dx-calendar>
-  `
+  `,
 })
 class CalendarDemoComponent {
   @Input() currentValue: Date = new Date();
@@ -71,10 +71,16 @@ const meta: Meta<MeCalendarProps> = {
       control: { type: 'select', options: [0, 1, 2, 3, 4, 5, 6] },
     },
     zoomLevel: {
-      control: { type: 'select', options: ['month', 'year', 'decade', 'century'] },
+      control: {
+        type: 'select',
+        options: ['month', 'year', 'decade', 'century'],
+      },
     },
     weekNumberRule: {
-      control: { type: 'select', options: ['auto', 'firstDay', 'firstFourDays', 'fullWeek'] },
+      control: {
+        type: 'select',
+        options: ['auto', 'firstDay', 'firstFourDays', 'fullWeek'],
+      },
     },
   },
 };

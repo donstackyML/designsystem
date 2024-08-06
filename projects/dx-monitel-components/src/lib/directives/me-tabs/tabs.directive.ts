@@ -1,6 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import {MeSize} from "../../types/types";
-
+import { MeSize } from '../../types/types';
 
 export interface Tab {
   id: number;

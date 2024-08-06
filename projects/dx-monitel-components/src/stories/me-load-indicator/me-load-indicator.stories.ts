@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxLoadIndicatorModule } from 'devextreme-angular';
-import { MeLoadIndicatorDirective } from '../../public-api'
+import { MeLoadIndicatorDirective } from '../../public-api';
 
 const meta: Meta<MeLoadIndicatorDirective> = {
   title: 'Components/MeLoadIndicator',

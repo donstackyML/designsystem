@@ -1,7 +1,7 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { Component, Input, ViewChild } from '@angular/core';
 import { DxToastModule, DxToastComponent } from 'devextreme-angular';
-import { MeToastDirective } from "../../lib/directives/me-toast/toast.directive";
+import { MeToastDirective } from '../../lib/directives/me-toast/toast.directive';
 
 @Component({
   selector: 'toast-demo',
@@ -18,7 +18,7 @@ import { MeToastDirective } from "../../lib/directives/me-toast/toast.directive"
 
     <dx-button text="Show Toast" (onClick)="showToast()"> </dx-button>
     <button (click)="showToast()">Show Toast</button>
-  `
+  `,
 })
 class ToastDemoComponent {
   @ViewChild('dxToast', { static: false }) dxToast!: DxToastComponent;
@@ -53,7 +53,14 @@ const meta: Meta<ToastDemoComponent> = {
     displayTime: { control: 'number' },
     position: {
       control: 'select',
-      options: ['top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right'],
+      options: [
+        'top left',
+        'top center',
+        'top right',
+        'bottom left',
+        'bottom center',
+        'bottom right',
+      ],
     },
     customClass: { control: 'text' },
   },
@@ -96,7 +103,12 @@ export const CustomAnimation: Story = {
     ...Default.args,
     message: 'This toast has a custom animation',
     animation: {
-      show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },
+      show: {
+        type: 'pop',
+        duration: 400,
+        from: { scale: 0 },
+        to: { scale: 1 },
+      },
       hide: { type: 'pop', duration: 400, to: { scale: 0 } },
     },
   },

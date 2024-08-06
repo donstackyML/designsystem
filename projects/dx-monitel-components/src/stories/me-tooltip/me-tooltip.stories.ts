@@ -1,6 +1,6 @@
 import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
 import { Component, Input } from '@angular/core';
-import { MeTooltipDirective } from "../../public-api";
+import { MeTooltipDirective } from '../../public-api';
 
 @Component({
   selector: 'tooltip-demo',
@@ -75,8 +75,8 @@ import { MeTooltipDirective } from "../../public-api";
       <div class="html-tooltip">
         <h3>HTML в тултипе</h3>
         <p>
-          Тултипы могут содержать <strong>форматированный текст</strong>, <em>списки</em> и другие
-          HTML-элементы:
+          Тултипы могут содержать <strong>форматированный текст</strong>,
+          <em>списки</em> и другие HTML-элементы:
         </p>
         <ul>
           <li>Пункт 1</li>
@@ -101,76 +101,78 @@ import { MeTooltipDirective } from "../../public-api";
       </div>
     </ng-template>
   `,
-  styles: [`
-    .tooltip-demo {
-      display: flex;
-      justify-content: space-around;
-      padding: 20px;
-      background-color: #f0f0f0;
-      border-radius: 10px;
-    }
+  styles: [
+    `
+      .tooltip-demo {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+      }
 
-    .tooltip-group {
-      text-align: center;
-      margin-left: 20px;
-    }
+      .tooltip-group {
+        text-align: center;
+        margin-left: 20px;
+      }
 
-    .tooltip-controls {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+      .tooltip-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
 
-    .tooltip-button {
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+      .tooltip-button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
 
-    .interactive-tooltip {
-      box-sizing: border-box;
-      padding: 4px;
-    }
+      .interactive-tooltip {
+        box-sizing: border-box;
+        padding: 4px;
+      }
 
-    .interactive-tooltip * {
-      text-wrap: balance;
-    }
+      .interactive-tooltip * {
+        text-wrap: balance;
+      }
 
-    .interactive-tooltip button {
-      margin-top: 8px;
-      margin-inline: 4px;
-      padding: 4px 8px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
+      .interactive-tooltip button {
+        margin-top: 8px;
+        margin-inline: 4px;
+        padding: 4px 8px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
 
-    .interactive-tooltip .accept-button {
-      background-color: #3257dc;
-      color: white;
-    }
+      .interactive-tooltip .accept-button {
+        background-color: #3257dc;
+        color: white;
+      }
 
-    .interactive-tooltip .decline-button {
-      background-color: #ecedf3;
-      color: #18181a;
-    }
+      .interactive-tooltip .decline-button {
+        background-color: #ecedf3;
+        color: #18181a;
+      }
 
-    .custom-tooltip {
-      background-color: #ff9800;
-      color: white;
-      border: 2px solid #e68a00;
-      border-radius: 10px;
-      padding: 10px;
-    }
+      .custom-tooltip {
+        background-color: #ff9800;
+        color: white;
+        border: 2px solid #e68a00;
+        border-radius: 10px;
+        padding: 10px;
+      }
 
-    .html-tooltip * {
-      text-wrap: balance;
-      text-align: start;
-      margin-top: 4px;
-    }
-  `]
+      .html-tooltip * {
+        text-wrap: balance;
+        text-align: start;
+        margin-top: 4px;
+      }
+    `,
+  ],
 })
 class TooltipDemoComponent {
   @Input() simpleTooltip: string = 'Это простой текстовый тултип';

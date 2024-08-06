@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeTabPanelDirective } from "./tab-panel.directive";
+import { MeTabPanelDirective } from './tab-panel.directive';
 
 @NgModule({
   declarations: [MeTabPanelDirective],

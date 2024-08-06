@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MeLoadPanelDirective } from "./load-panel.directive";
+import { MeLoadPanelDirective } from './load-panel.directive';
 
 @NgModule({
   declarations: [MeLoadPanelDirective],

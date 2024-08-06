@@ -28,7 +28,11 @@ import { Component, Input } from '@angular/core';
             [shadingColor]="shadingColor"
           >
             <dxo-animation *ngIf="animationEnabled">
-              <dxo-show type="pop" [from]="{ scale: 0 }" [to]="{ scale: 1 }"></dxo-show>
+              <dxo-show
+                type="pop"
+                [from]="{ scale: 0 }"
+                [to]="{ scale: 1 }"
+              ></dxo-show>
               <dxo-hide type="fade" [from]="1" [to]="0"></dxo-hide>
             </dxo-animation>
             <div *dxTemplate="let data of 'content'">
@@ -70,7 +74,10 @@ const meta: Meta<PopoverHostComponent> = {
     subject: { control: 'text' },
     showEvent: { control: 'text' },
     hideEvent: { control: 'text' },
-    position: { control: 'select', options: ['top', 'bottom', 'left', 'right'] },
+    position: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+    },
     width: { control: 'number' },
     maxWidth: { control: 'number' },
     showTitle: { control: 'boolean' },
@@ -93,7 +100,8 @@ export const Default: Story = {
     // hideEvent: 'mouseleave',
     position: 'top',
     width: 300,
-    content: 'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',
+    content:
+      'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',
   },
 };
 
@@ -106,7 +114,8 @@ export const WithTitle: Story = {
     showTitle: true,
     title: 'Details',
     maxWidth: 400,
-    content: 'The designs for new brochures and website have been approved. Launch date is set for Feb 28.',
+    content:
+      'The designs for new brochures and website have been approved. Launch date is set for Feb 28.',
   },
 };
 
@@ -116,7 +125,8 @@ export const WithAnimation: Story = {
     label: 'With animation',
     subject: 'Create 2012 Sales Report',
     animationEnabled: true,
-    content: '2012 Sales Report has to be completed so we can determine if major changes are required to sales strategy.',
+    content:
+      '2012 Sales Report has to be completed so we can determine if major changes are required to sales strategy.',
   },
 };
 
@@ -128,6 +138,7 @@ export const WithOverlay: Story = {
     showEvent: 'click',
     shading: true,
     shadingColor: 'rgba(0, 0, 0, 0.5)',
-    content: 'The changes in our brochure designs for 2013 require us to update key areas of our website.',
+    content:
+      'The changes in our brochure designs for 2013 require us to update key areas of our website.',
   },
 };

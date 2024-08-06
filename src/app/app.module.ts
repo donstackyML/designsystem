@@ -57,7 +57,7 @@ import { MeToastDirective } from './directives/toast.directive';
 import { MeToolbarDirective } from './directives/toolbar.directive';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
-import { MeLoadPanelDirective } from "./directives/load-panel.directive";
+import { MeLoadPanelDirective } from './directives/load-panel.directive';
 
 @NgModule({
   declarations: [
@@ -116,7 +116,7 @@ import { MeLoadPanelDirective } from "./directives/load-panel.directive";
     MeToastComponent,
     MeLoadIndicatorDirective,
     MeLoadingIndicatorComponent,
-    MeLoadPanelDirective
+    MeLoadPanelDirective,
   ],
   imports: [
     BrowserModule,
@@ -128,8 +128,6 @@ import { MeLoadPanelDirective } from "./directives/load-panel.directive";
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [
-    MeTabsDirective
-  ]
+  exports: [MeTabsDirective],
 })
 export class AppModule {}

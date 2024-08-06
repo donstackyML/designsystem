@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeCalendarDirective } from "./calendar.directive";
+import { MeCalendarDirective } from './calendar.directive';
 
 @NgModule({
   declarations: [MeCalendarDirective],

@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxTabPanelModule } from 'devextreme-angular';
-import { MeTabPanelDirective } from "../../public-api";
+import { MeTabPanelDirective } from '../../public-api';
 import { Component } from '@angular/core';
 
 @Component({

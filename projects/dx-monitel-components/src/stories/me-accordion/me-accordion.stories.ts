@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxAccordionModule } from 'devextreme-angular';
-import { MeAccordionDirective } from "../../lib/directives/me-accordion/accordion.directive";
+import { MeAccordionDirective } from '../../lib/directives/me-accordion/accordion.directive';
 import { Component, Input } from '@angular/core';
 
 interface Company {
@@ -46,17 +46,28 @@ interface MeAccordionProps {
       </div>
       <div *dxTemplate="let company of 'item'">
         <div>
-          <p><b>{{ company.City }}</b> ({{ company.State }})</p>
+          <p>
+            <b>{{ company.City }}</b> ({{ company.State }})
+          </p>
           <p>{{ company.Zipcode }} {{ company.Address }}</p>
         </div>
         <div>
-          <p>Phone: <b>{{ company.Phone }}</b></p>
-          <p>Fax: <b>{{ company.Fax }}</b></p>
-          <p>Website: <a href="{{ company.Website }}" target="_blank">{{ company.Website }}</a></p>
+          <p>
+            Phone: <b>{{ company.Phone }}</b>
+          </p>
+          <p>
+            Fax: <b>{{ company.Fax }}</b>
+          </p>
+          <p>
+            Website:
+            <a href="{{ company.Website }}" target="_blank">{{
+              company.Website
+            }}</a>
+          </p>
         </div>
       </div>
     </dx-accordion>
-  `
+  `,
 })
 class AccordionDemoComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
@@ -79,7 +90,8 @@ const meta: Meta<MeAccordionProps> = {
   ],
   render: (args: MeAccordionProps) => ({
     props: args,
-    template: '<accordion-demo [size]="size" [customClass]="customClass" [isCollapsible]="isCollapsible" [isMultiple]="isMultiple" [animationDuration]="animationDuration" [companies]="companies" [selectedItems]="selectedItems"></accordion-demo>'
+    template:
+      '<accordion-demo [size]="size" [customClass]="customClass" [isCollapsible]="isCollapsible" [isMultiple]="isMultiple" [animationDuration]="animationDuration" [companies]="companies" [selectedItems]="selectedItems"></accordion-demo>',
   }),
   argTypes: {
     size: {
@@ -89,7 +101,9 @@ const meta: Meta<MeAccordionProps> = {
     customClass: { control: 'text' },
     isCollapsible: { control: 'boolean' },
     isMultiple: { control: 'boolean' },
-    animationDuration: { control: { type: 'range', min: 0, max: 1000, step: 50 } },
+    animationDuration: {
+      control: { type: 'range', min: 0, max: 1000, step: 50 },
+    },
   },
 };
 
@@ -97,9 +111,39 @@ export default meta;
 type Story = StoryObj<MeAccordionProps>;
 
 const defaultCompanies: Company[] = [
-  { CompanyName: 'Company A', Description: 'Description A', City: 'City A', State: 'State A', Zipcode: '12345', Address: 'Address A', Phone: '123-456-7890', Fax: '098-765-4321', Website: 'http://www.companya.com' },
-  { CompanyName: 'Company B', Description: 'Description B', City: 'City B', State: 'State B', Zipcode: '67890', Address: 'Address B', Phone: '234-567-8901', Fax: '109-876-5432', Website: 'http://www.companyb.com' },
-  { CompanyName: 'Company C', Description: 'Description C', City: 'City C', State: 'State C', Zipcode: '13579', Address: 'Address C', Phone: '345-678-9012', Fax: '210-987-6543', Website: 'http://www.companyc.com' },
+  {
+    CompanyName: 'Company A',
+    Description: 'Description A',
+    City: 'City A',
+    State: 'State A',
+    Zipcode: '12345',
+    Address: 'Address A',
+    Phone: '123-456-7890',
+    Fax: '098-765-4321',
+    Website: 'http://www.companya.com',
+  },
+  {
+    CompanyName: 'Company B',
+    Description: 'Description B',
+    City: 'City B',
+    State: 'State B',
+    Zipcode: '67890',
+    Address: 'Address B',
+    Phone: '234-567-8901',
+    Fax: '109-876-5432',
+    Website: 'http://www.companyb.com',
+  },
+  {
+    CompanyName: 'Company C',
+    Description: 'Description C',
+    City: 'City C',
+    State: 'State C',
+    Zipcode: '13579',
+    Address: 'Address C',
+    Phone: '345-678-9012',
+    Fax: '210-987-6543',
+    Website: 'http://www.companyc.com',
+  },
 ];
 
 export const Default: Story = {

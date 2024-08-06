@@ -96,7 +96,7 @@ export class MeToastDirective implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   private getPositionConfig(
-    position: DevExpress.PositionConfig | string,
+    position: DevExpress.PositionConfig | string
   ): DevExpress.PositionConfig {
     if (typeof position === 'string') {
       const [vertical, horizontal] = position.split(' ');
@@ -115,7 +115,9 @@ export class MeToastDirective implements AfterViewInit, OnChanges, OnDestroy {
     return position;
   }
 
-  private convertToHorizontalAlignment(alignment: string): DevExpress.common.HorizontalAlignment {
+  private convertToHorizontalAlignment(
+    alignment: string
+  ): DevExpress.common.HorizontalAlignment {
     switch (alignment) {
       case 'left':
       case 'center':
@@ -126,7 +128,9 @@ export class MeToastDirective implements AfterViewInit, OnChanges, OnDestroy {
     }
   }
 
-  private convertToVerticalAlignment(alignment: string): DevExpress.common.VerticalAlignment {
+  private convertToVerticalAlignment(
+    alignment: string
+  ): DevExpress.common.VerticalAlignment {
     switch (alignment) {
       case 'top':
       case 'center':

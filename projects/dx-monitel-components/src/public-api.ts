@@ -69,4 +69,3 @@ export { ThemesService } from './lib/service/themes.service';
 
 export * from './lib/me-components.module';
 export * from './lib/types/types';
-

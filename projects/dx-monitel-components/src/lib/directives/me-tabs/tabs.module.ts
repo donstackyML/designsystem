@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeTabsDirective } from "./tabs.directive";
+import { MeTabsDirective } from './tabs.directive';
 
 @NgModule({
   declarations: [MeTabsDirective],

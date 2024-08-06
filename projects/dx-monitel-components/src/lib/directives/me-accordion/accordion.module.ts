@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MeAccordionDirective} from "./accordion.directive";
+import { MeAccordionDirective } from './accordion.directive';
 
 @NgModule({
   declarations: [MeAccordionDirective],

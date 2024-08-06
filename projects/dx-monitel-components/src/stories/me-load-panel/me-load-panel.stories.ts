@@ -1,6 +1,10 @@
 import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
-import { DxButtonModule, DxLoadPanelModule, DxCheckBoxModule } from 'devextreme-angular';
-import { MeLoadPanelDirective } from '../../public-api'
+import {
+  DxButtonModule,
+  DxLoadPanelModule,
+  DxCheckBoxModule,
+} from 'devextreme-angular';
+import { MeLoadPanelDirective } from '../../public-api';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -24,21 +28,23 @@ import { Component, Input } from '@angular/core';
       [customClass]="customClass"
     ></dx-load-panel>
   `,
-  styles: [`
-    .header {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    #employee {
-      margin: 20px 0;
-    }
-    .options {
-      margin-top: 20px;
-    }
-    .option {
-      margin-bottom: 10px;
-    }
-  `]
+  styles: [
+    `
+      .header {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      #employee {
+        margin: 20px 0;
+      }
+      .options {
+        margin-top: 20px;
+      }
+      .option {
+        margin-bottom: 10px;
+      }
+    `,
+  ],
 })
 export class LoadPanelDemoComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
