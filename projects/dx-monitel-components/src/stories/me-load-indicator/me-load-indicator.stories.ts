@@ -36,7 +36,7 @@ const Template: Story = {
           id="small-indicator"
           meLoadIndicator
           [size]="'small'"
-          [color]="'normal'"
+          [color]="color"
         ></div>
         <div
           id="medium-indicator"
@@ -48,23 +48,26 @@ const Template: Story = {
           id="large-indicator"
           meLoadIndicator
           [size]="'large'"
-          [color]="'accent'"
+          [color]="color"
         ></div>
       </div>
       <div class="label me-title-header2">Custom image</div>
-      <div
-        id="image-indicator"
-        meLoadIndicator
-        [size]="'large'"
-        [indicatorSrc]="indicatorSrc"
-      ></div>
+
+			<div class="indicators">
+				<div
+					id="image-indicator"
+					meLoadIndicator
+					[size]="'large'"
+					[indicatorSrc]="indicatorSrc"
+				></div>
+			</div>
     `,
     styles: [
       `
       .indicators {
         height: 80px;
         width: 200px;
-        background-color: var(--button-normal-bg-color);
+        background-color: rgb(157, 157, 158);
         display: flex;
         border: 1px solid #9747ff;
         border-radius: 4px;
@@ -84,7 +87,8 @@ export const Default: Story = {
   ...Template,
   args: {
     color: 'default',
-    indicatorSrc: '../../../assets/images/Spider web.gif',
+    indicatorSrc:
+      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',
   },
 };
 
@@ -92,7 +96,8 @@ export const WithAccentColor: Story = {
   ...Template,
   args: {
     color: 'accent',
-    indicatorSrc: '../../../assets/images/Spider web.gif',
+    indicatorSrc:
+      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',
   },
 };
 
@@ -100,6 +105,7 @@ export const WithCustomImage: Story = {
   ...Template,
   args: {
     color: 'default',
-    indicatorSrc: '../../../assets/images/custom-loader.gif',
+    indicatorSrc:
+      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',
   },
 };
