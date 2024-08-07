@@ -13,7 +13,7 @@ import {
 import { MeButtonDirective, MePopupDirective } from '../../public-api';
 
 export default {
-  title: 'Components/mePopup',
+  title: 'Components/Popup',
   // tags: ['autodocs'],
   decorators: [
     moduleMetadata({

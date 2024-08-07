@@ -1,7 +1,7 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Component, Input } from '@angular/core';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
 import { MePopoverDirective } from '../../public-api';
-import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'popover-host',
@@ -61,7 +61,7 @@ class PopoverHostComponent {
 }
 
 const meta: Meta<PopoverHostComponent> = {
-  title: 'Components/MePopover',
+  title: 'Components/Popover(RC)',
   component: PopoverHostComponent,
   decorators: [
     moduleMetadata({

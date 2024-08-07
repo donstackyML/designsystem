@@ -6,6 +6,7 @@ const config: StorybookConfig = {
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
     './../../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
+  staticDirs: ['../assets'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -22,7 +23,8 @@ const config: StorybookConfig = {
   // managerHead: (head) => `
   //   ${head}
 
-  //   <link rel="shortcut icon" href="https://www.google.com/favicon.ico"/>
+  //   <img src="./icons/favicon.ico"/>
+  //   <link rel="shortcut icon" href="./icons/favicon.ico"/>
   // `,
 };
 export default config;

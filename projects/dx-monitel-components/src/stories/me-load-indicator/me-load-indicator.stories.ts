@@ -3,7 +3,7 @@ import { DxLoadIndicatorModule } from 'devextreme-angular';
 import { MeLoadIndicatorDirective } from '../../public-api';
 
 const meta: Meta<MeLoadIndicatorDirective> = {
-  title: 'Components/MeLoadIndicator',
+  title: 'Components/LoadIndicator(RC)',
   component: MeLoadIndicatorDirective,
   decorators: [
     moduleMetadata({

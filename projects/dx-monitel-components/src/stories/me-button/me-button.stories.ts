@@ -8,7 +8,7 @@ import { DxButtonComponent } from 'devextreme-angular';
 import { MeButtonDirective } from '../../public-api';
 
 export default {
-  title: 'Components/meButton',
+  title: 'Components/Button',
   // tags: ['autodocs'],
   parameters: {
     docs: {

@@ -1,7 +1,7 @@
+import { Component } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxTabPanelModule } from 'devextreme-angular';
 import { MeTabPanelDirective } from '../../public-api';
-import { Component } from '@angular/core';
 
 @Component({
   selector: 'tab-panel-host',
@@ -43,7 +43,7 @@ class TabPanelHostComponent {
 }
 
 const meta: Meta<TabPanelHostComponent> = {
-  title: 'Components/MeTabPanel',
+  title: 'Components/TabPanel(RC)',
   component: TabPanelHostComponent,
   decorators: [
     moduleMetadata({

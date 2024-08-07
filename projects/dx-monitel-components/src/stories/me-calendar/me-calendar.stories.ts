@@ -1,7 +1,7 @@
+import { Component, Input } from '@angular/core';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxCalendarModule } from 'devextreme-angular';
 import { MeCalendarDirective } from '../../public-api';
-import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'calendar-demo',
@@ -40,7 +40,7 @@ interface MeCalendarProps {
 }
 
 const meta: Meta<MeCalendarProps> = {
-  title: 'Components/MeCalendar',
+  title: 'Components/Calendar(RC)',
   component: MeCalendarDirective,
   decorators: [
     moduleMetadata({
