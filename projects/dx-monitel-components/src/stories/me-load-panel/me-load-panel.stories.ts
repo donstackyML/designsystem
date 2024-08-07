@@ -1,11 +1,11 @@
-import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
+import { Component, Input } from '@angular/core';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import {
   DxButtonModule,
-  DxLoadPanelModule,
   DxCheckBoxModule,
+  DxLoadPanelModule,
 } from 'devextreme-angular';
 import { MeLoadPanelDirective } from '../../public-api';
-import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'load-panel-demo',
@@ -71,7 +71,7 @@ export class LoadPanelDemoComponent {
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 3000);
+    }, 300000);
   }
 
   onHidden() {
