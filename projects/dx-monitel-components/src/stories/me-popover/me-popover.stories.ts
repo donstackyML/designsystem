@@ -117,7 +117,7 @@ export const Default: Story = {
     // showEvent: 'mouseenter',
     // hideEvent: 'mouseleave',
     position: 'top',
-    size: 'medium',
+    size: 'small',
     width: 300,
     content:
       'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',
@@ -130,7 +130,6 @@ export const WithTitle: Story = {
     label: 'With title',
     subject: 'Rollout of New Website and Marketing Brochures',
     position: 'bottom',
-    size: 'large',
     showTitle: true,
     title: 'Details',
     maxWidth: 400,
@@ -153,7 +152,6 @@ export const WithAnimation: Story = {
 export const WithOverlay: Story = {
   args: {
     ...Default.args,
-    size: 'small',
     label: 'With overlay',
     subject: 'Website Re-Design Plan',
     showEvent: 'click',
