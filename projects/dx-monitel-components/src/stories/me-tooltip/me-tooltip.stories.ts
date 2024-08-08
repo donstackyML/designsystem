@@ -1,5 +1,5 @@
-import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
 import { Component, Input } from '@angular/core';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MeTooltipDirective } from '../../public-api';
 
 @Component({
@@ -211,7 +211,7 @@ class TooltipDemoComponent {
 }
 
 const meta: Meta<TooltipDemoComponent> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip(RC)',
   component: TooltipDemoComponent,
   decorators: [
     moduleMetadata({

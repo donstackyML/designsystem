@@ -1,7 +1,7 @@
+import { Component, Input } from '@angular/core';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxAccordionModule } from 'devextreme-angular';
 import { MeAccordionDirective } from '../../lib/directives/me-accordion/accordion.directive';
-import { Component, Input } from '@angular/core';
 
 interface Company {
   CompanyName: string;
@@ -80,7 +80,7 @@ class AccordionDemoComponent {
 }
 
 const meta: Meta<MeAccordionProps> = {
-  title: 'Components/MeAccordion',
+  title: 'Components/Accordion(RC)',
   component: MeAccordionDirective,
   decorators: [
     moduleMetadata({

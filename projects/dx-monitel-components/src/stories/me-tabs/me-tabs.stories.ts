@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabsModule } from 'devextreme-angular';
-import { MeTabsDirective } from '../../public-api';
 import { Tab } from '../../lib/directives/me-tabs/tabs.directive';
+import { MeTabsDirective } from '../../public-api';
 
 interface MeTabsProps {
   customClass: string;
@@ -12,7 +12,7 @@ interface MeTabsProps {
 }
 
 const meta: Meta<MeTabsProps> = {
-  title: 'Components/MeTabs',
+  title: 'Components/Tabs(RC)',
   component: MeTabsDirective,
   // tags: ['autodocs'],
   decorators: [

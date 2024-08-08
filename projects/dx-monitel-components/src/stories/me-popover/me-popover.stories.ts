@@ -75,7 +75,7 @@ class PopoverHostComponent {
 }
 
 const meta: Meta<PopoverHostComponent> = {
-  title: 'Components/MePopover',
+  title: 'Components/Popover(RC)',
   component: PopoverHostComponent,
   decorators: [
     moduleMetadata({

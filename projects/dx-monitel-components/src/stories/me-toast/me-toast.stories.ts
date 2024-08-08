@@ -1,6 +1,6 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { Component, Input, ViewChild } from '@angular/core';
-import { DxToastModule, DxToastComponent } from 'devextreme-angular';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { DxToastComponent, DxToastModule } from 'devextreme-angular';
 import { MeToastDirective } from '../../lib/directives/me-toast/toast.directive';
 
 @Component({
@@ -40,7 +40,7 @@ class ToastDemoComponent {
 }
 
 const meta: Meta<ToastDemoComponent> = {
-  title: 'Components/meToast',
+  title: 'Components/Toast(RC)',
   component: ToastDemoComponent,
   decorators: [
     moduleMetadata({

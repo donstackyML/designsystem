@@ -80,7 +80,7 @@ export class LoadPanelDemoComponent {
 }
 
 const meta: Meta<LoadPanelDemoComponent> = {
-  title: 'Components/MeLoadPanel',
+  title: 'Components/LoadPanel(RC)',
   component: LoadPanelDemoComponent,
   decorators: [
     moduleMetadata({
