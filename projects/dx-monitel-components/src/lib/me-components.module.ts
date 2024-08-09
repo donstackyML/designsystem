@@ -29,6 +29,7 @@ import { MeToastModule } from './directives/me-toast/toast.module';
 import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
+import {MeFileUploaderModule} from "./directives/me-file-uploader/file-uploader.module";
 
 @NgModule({
   declarations: [],
@@ -63,6 +64,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeTooltipModule,
     MeTreeViewModule,
     MeTabPanelModule,
+    MeFileUploaderModule
   ],
   exports: [
     MeAccordionModule,
@@ -96,6 +98,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeTreeViewModule,
     MeTabPanelModule,
     MeCalendarModule,
+    MeFileUploaderModule
   ],
 })
 export class MeComponentsModule {}
