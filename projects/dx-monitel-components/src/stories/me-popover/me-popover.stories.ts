@@ -17,7 +17,7 @@ interface PopoverProps {
 }
 
 const meta: Meta<PopoverProps> = {
-  title: 'Components/Popover',
+  title: 'Components/Popover(RC)',
   component: MePopoverDirective,
   decorators: [
     moduleMetadata({
