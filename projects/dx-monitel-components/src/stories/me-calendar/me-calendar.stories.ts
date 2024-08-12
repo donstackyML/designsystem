@@ -8,7 +8,7 @@ import { DxCalendarModule } from 'devextreme-angular';
 import { MeCalendarDirective } from '../../public-api';
 
 export default {
-  title: 'Components/Calendar',
+  title: 'Components/Calendar(RC)',
   decorators: [
     moduleMetadata({
       declarations: [MeCalendarDirective],
