@@ -1,91 +1,57 @@
-import { Component, Input } from '@angular/core';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
 import { MePopoverDirective } from '../../public-api';
 
-@Component({
-  selector: 'popover-host',
-  template: `
-    <div class="dx-fieldset">
-      <div class="dx-field">
-        <div class="dx-field-label me-title-subheader1">{{ label }}</div>
-        <div class="dx-field-value-static">
-          <p>
-            <span id="subject" class="me-text-body2">{{ subject }}</span>
-            (<a class="test-details me-action-link1" id="link">details</a>)
-          </p>
-          <dx-popover
-            mePopover
-            target="#link"
-            [showEvent]="showEvent"
-            [hideEvent]="hideEvent"
-            [position]="position"
-            [size]="size"
-            [width]="width"
-            [maxWidth]="maxWidth"
-            [showTitle]="showTitle"
-            [title]="title"
-            [shading]="shading"
-            [shadingColor]="shadingColor"
-          >
-            <dxo-animation *ngIf="animationEnabled">
-              <dxo-show
-                type="pop"
-                [from]="{ scale: 0 }"
-                [to]="{ scale: 1 }"
-              ></dxo-show>
-              <dxo-hide type="fade" [from]="1" [to]="0"></dxo-hide>
-            </dxo-animation>
-            <div *dxTemplate="let data of 'content'">
-              {{ content }}
-            </div>
-          </dx-popover>
-        </div>
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      .dx-field-value-static {
-        margin-top: 50px;
-      }
-      ,
-      .test-details {
-        color: var(--button-default-icon-color);
-        cursor: pointer;
-      }
-    `,
-  ],
-})
-class PopoverHostComponent {
-  @Input() label: string = 'Default mode';
-  @Input() subject: string = 'Google AdWords Strategy';
-  @Input() showEvent: string = 'mouseenter';
-  @Input() hideEvent: string = 'mouseleave';
-  @Input() position: string = 'top';
-  @Input() size: string = 'medium';
-  @Input() width: number = 300;
-  @Input() maxWidth: number | undefined;
-  @Input() showTitle: boolean = false;
-  @Input() title: string = '';
-  @Input() shading: boolean = false;
-  @Input() shadingColor: string = '';
-  @Input() content: string = 'Popover content';
-  @Input() animationEnabled: boolean = false;
+interface PopoverProps {
+  showEvent: string;
+  hideEvent: string;
+  position: string;
+  size: 'small' | 'medium' | 'large';
+  width: number;
+  maxWidth?: number;
+  showTitle: boolean;
+  title: string;
+  shading: boolean;
+  shadingColor: string;
+  content: string;
 }
 
-const meta: Meta<PopoverHostComponent> = {
-  title: 'Components/Popover(RC)',
-  component: PopoverHostComponent,
+const meta: Meta<PopoverProps> = {
+  title: 'Components/Popover',
+  component: MePopoverDirective,
   decorators: [
     moduleMetadata({
-      declarations: [MePopoverDirective, PopoverHostComponent],
+      declarations: [MePopoverDirective],
       imports: [DxPopoverModule],
     }),
   ],
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="padding: 20px;">
+        <a id="popoverTarget">Наведите для показа поповера</a>
+        <dx-popover
+          mePopover
+          target="#popoverTarget"
+          [showEvent]="showEvent"
+          [hideEvent]="hideEvent"
+          [position]="position"
+          [width]="width"
+          [maxWidth]="maxWidth"
+          [showTitle]="showTitle"
+          [title]="title"
+          [shading]="shading"
+          [shadingColor]="shadingColor"
+          [size]="size"
+        >
+          <div *dxTemplate="let data of 'content'">
+            {{ content }}
+          </div>
+        </dx-popover>
+      </div>
+    `,
+  }),
   argTypes: {
-    label: { control: 'text' },
-    subject: { control: 'text' },
     showEvent: { control: 'text' },
     hideEvent: { control: 'text' },
     position: {
@@ -103,61 +69,45 @@ const meta: Meta<PopoverHostComponent> = {
     shading: { control: 'boolean' },
     shadingColor: { control: 'color' },
     content: { control: 'text' },
-    animationEnabled: { control: 'boolean' },
   },
 };
 
 export default meta;
-type Story = StoryObj<PopoverHostComponent>;
+type Story = StoryObj<PopoverProps>;
 
 export const Default: Story = {
   args: {
-    label: 'Default mode',
-    subject: 'Show Popover',
-    // showEvent: 'mouseenter',
-    // hideEvent: 'mouseleave',
+    showEvent: 'mouseenter',
+    hideEvent: 'mouseleave',
     position: 'top',
-    size: 'small',
+    size: 'medium',
     width: 300,
-    content:
-      'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',
+    showTitle: false,
+    title: '',
+    shading: false,
+    shadingColor: '',
+    content: 'Это содержимое поповера по умолчанию.',
   },
 };
 
 export const WithTitle: Story = {
   args: {
     ...Default.args,
-    label: 'With title',
-    subject: 'Rollout of New Website and Marketing Brochures',
     position: 'bottom',
     showTitle: true,
-    title: 'Details',
+    title: 'Заголовок поповера',
     maxWidth: 400,
-    content:
-      'The designs for new brochures and website have been approved. Launch date is set for Feb 28.',
-  },
-};
-
-export const WithAnimation: Story = {
-  args: {
-    ...Default.args,
-    label: 'With animation',
-    subject: 'Create 2012 Sales Report',
-    animationEnabled: true,
-    content:
-      '2012 Sales Report has to be completed so we can determine if major changes are required to sales strategy.',
+    content: 'Это поповер с заголовком и ограничением максимальной ширины.',
   },
 };
 
 export const WithOverlay: Story = {
   args: {
     ...Default.args,
-    label: 'With overlay',
-    subject: 'Website Re-Design Plan',
     showEvent: 'click',
+    hideEvent: 'click',
     shading: true,
     shadingColor: 'rgba(0, 0, 0, 0.5)',
-    content:
-      'The changes in our brochure designs for 2013 require us to update key areas of our website.',
+    content: 'Это поповер с затенением фона.',
   },
 };
