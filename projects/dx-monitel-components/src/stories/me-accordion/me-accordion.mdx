@@ -1,94 +1,155 @@
 import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
 import * as AccordionStories from "./me-accordion.stories";
 import { moduleMetadata } from "@storybook/angular";
-import { MeAccordionDirective } from "../../lib/directives/me-accordion/accordion.directive";
+import { DxAccordionModule } from 'devextreme-angular';
+import { MeAccordionDirective } from "../../public-api";
 
 <Meta
-  name="meAccordion Docs"
-  of={AccordionStories}
+  title="Components/Accordion"
+  component={MeAccordionDirective}
   decorators={[
     moduleMetadata({
       declarations: [MeAccordionDirective],
+      imports: [DxAccordionModule],
     }),
-  ]}
+    ]}
+  of={AccordionStories}
 />
 
 # Accordion
 
 ## Директива meAccordion
 
-Директива `meAccordion` применяется к элементу dx-accordion для приведения его размеров в соответствие с дизайн-системой и добавления дополнительных свойств.
+Директива `meAccordion` расширяет функциональность стандартного компонента аккордеона DevExtreme, добавляя дополнительные возможности настройки и обработки событий.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxAccordion/)
-
-<Story of={AccordionStories.Default} />
+<Story name="Default" of={AccordionStories.Default} />
 <Controls of={AccordionStories.Default} />
 
+<Source of={AccordionStories.Default} dark />
 
 ## Примеры использования:
 
-- [Изменение размера аккордеона](#изменение-размера-аккордеона)
-- [Сворачиваемый аккордеон](#сворачиваемый-аккордеон)
-- [Множественное раскрытие](#множественное-раскрытие)
-- [Настройка анимации](#настройка-анимации)
-- [Добавление пользовательского класса](#добавление-пользовательского-класса)
+### Аккордеон малого размера
 
-## Изменение размера аккордеона
-
-Для изменения размера аккордеона используйте параметр `size` с возможными значениями `small`, `medium`, или `large`.
-
-<Story of={AccordionStories.Small} />
+<Story name="Small" of={AccordionStories.Small} />
 
 <Source
-  code={`<dx-accordion meAccordion [size]="'small'"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  code={`<dx-accordion meAccordion size="small"></dx-accordion>`}
   dark
-  language='html'
+  language="html"
 />
 
-## Сворачиваемый аккордеон
+### Сворачиваемый аккордеон
 
-Чтобы сделать аккордеон сворачиваемым, установите параметр `isCollapsible` в `true`.
-
-<Story of={AccordionStories.Collapsible} />
+<Story name="Collapsible" of={AccordionStories.Collapsible} />
 
 <Source
-  code={`<dx-accordion meAccordion [isCollapsible]="true"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  code={`<dx-accordion meAccordion [collapsible]="true"></dx-accordion>`}
   dark
-  language='html'
+  language="html"
 />
 
-## Множественное раскрытие
+### Аккордеон с множественным выбором
 
-Для возможности одновременного раскрытия нескольких элементов, установите параметр `isMultiple` в `true`.
-
-<Story of={AccordionStories.Multiple} />
+<Story name="Multiple" of={AccordionStories.Multiple} />
 
 <Source
-  code={`<dx-accordion meAccordion [isMultiple]="true"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  code={`<dx-accordion meAccordion [multiple]="true"></dx-accordion>`}
   dark
-  language='html'
+  language="html"
 />
 
-## Настройка анимации
+### Настройка анимации
 
-Вы можете настроить длительность анимации с помощью параметра `animationDuration`.
-
-<Story of={AccordionStories.CustomAnimation} />
+<Story name="CustomAnimation" of={AccordionStories.CustomAnimation} />
 
 <Source
-  code={`<dx-accordion meAccordion [animationDuration]="1000"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  code={`<dx-accordion meAccordion [animationDuration]="1000"></dx-accordion>`}
   dark
-  language='html'
+  language="html"
 />
 
-## Добавление пользовательского класса
+### Использование пользовательского класса
 
-Для добавления пользовательского класса используйте параметр `customClass`.
-
-<Story of={AccordionStories.CustomClass} />
+<Story name="CustomClass" of={AccordionStories.CustomClass} />
 
 <Source
-  code={`<dx-accordion meAccordion customClass="my-custom-accordion"> <!-- Ваш контент здесь --> </dx-accordion>`}
+  code={`<dx-accordion meAccordion customClass="my-custom-accordion"></dx-accordion>`}
   dark
-  language='html'
+  language="html"
 />
+
+## Перечень свойств
+
+<Controls story={AccordionStories.Default} />
+
+## Обработка событий
+
+Аккордеон поддерживает стандартные события DevExtreme. Вот пример обработки событий изменения состояния:
+
+<Source
+  code={`
+<dx-accordion
+  meAccordion
+  (onCollapsibleChanged)="onCollapsibleChanged($event)"
+  (onMultipleChanged)="onMultipleChanged($event)"
+  (onSelectedIndexChanged)="onSelectedIndexChanged($event)"
+></dx-accordion>
+
+    // В вашем компоненте:
+    onCollapsibleChanged(e: any) {
+      console.log('Collapsible changed:', e);
+    }
+
+    onMultipleChanged(e: any) {
+      console.log('Multiple changed:', e);
+    }
+
+    onSelectedIndexChanged(e: any) {
+      console.log('Selected index changed:', e);
+    }
+`}
+  dark
+  language="typescript"
+/>
+
+Это позволяет вам реагировать на изменения состояния аккордеона.
+
+### Аккордеон с кастомным заголовком и иконкой
+
+<Story name="CustomHeader" of={AccordionStories.CustomHeader} />
+
+Вы можете настроить внешний вид заголовков элементов аккордеона, используя шаблоны. Вот пример использования кастомного заголовка с иконкой и описанием:
+
+<Source
+  code={`
+<dx-accordion
+  meAccordion
+  [dataSource]="dataSource"
+  [collapsible]="true"
+  itemTitleTemplate="customTitle"
+>
+  <div *dxTemplate="let item of 'customTitle'">
+    <div style="display: flex; align-items: flex-start;">
+      <i class="dx-icon-{{item.icon}}" style="margin-right: 10px; font-size: 18px; color: #000;"></i>
+      <div>
+        <div style="font-weight: bold; font-size: 16px;">{{item.text}}</div>
+        <div style="font-weight: inherit; color: gray; font-size: 14px;">{{item.description}}</div>
+      </div>
+    </div>
+  </div>
+  <div *dxTemplate="let item of 'item'">
+    <p>Content for {{item.text}}</p>
+  </div>
+</dx-accordion>
+`}
+  dark
+  language="html"
+/>
+
+В этом примере мы создаем кастомный заголовок для каждого элемента аккордеона, который включает:
+- Иконку DevExtreme, соответствующую элементу
+- Заголовок элемента жирным шрифтом
+- Описание элемента серым шрифтом под заголовком
+
+Это демонстрирует, как вы можете создать более сложную и информативную структуру заголовка, соответствующую дизайну на изображении.

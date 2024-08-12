@@ -1,160 +1,80 @@
-import { Component, Input } from '@angular/core';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxAccordionModule } from 'devextreme-angular';
-import { MeAccordionDirective } from '../../lib/directives/me-accordion/accordion.directive';
+import { MeAccordionDirective } from '../../public-api';
 
-interface Company {
-  CompanyName: string;
-  Description: string;
-  City: string;
-  State: string;
-  Zipcode: string;
-  Address: string;
-  Phone: string;
-  Fax: string;
-  Website: string;
-}
-
-interface MeAccordionProps {
-  size: 'small' | 'medium' | 'large';
-  customClass: string;
-  isCollapsible: boolean;
-  isMultiple: boolean;
-  animationDuration: number;
-  companies: Company[];
-  selectedItems: Company[];
-}
-
-@Component({
-  selector: 'accordion-demo',
-  template: `
-    <dx-accordion
-      meAccordion
-      [dataSource]="companies"
-      [collapsible]="isCollapsible"
-      [multiple]="isMultiple"
-      [animationDuration]="animationDuration"
-      [selectedItems]="selectedItems"
-      [size]="size"
-      [customClass]="customClass"
-    >
-      <div *dxTemplate="let company of 'title'">
-        <div class="accordion-header">
-          <span class="accordion-title">{{ company.CompanyName }}</span>
-          <span class="accordion-description">{{ company.Description }}</span>
-        </div>
-      </div>
-      <div *dxTemplate="let company of 'item'">
-        <div>
-          <p>
-            <b>{{ company.City }}</b> ({{ company.State }})
-          </p>
-          <p>{{ company.Zipcode }} {{ company.Address }}</p>
-        </div>
-        <div>
-          <p>
-            Phone: <b>{{ company.Phone }}</b>
-          </p>
-          <p>
-            Fax: <b>{{ company.Fax }}</b>
-          </p>
-          <p>
-            Website:
-            <a href="{{ company.Website }}" target="_blank">{{
-              company.Website
-            }}</a>
-          </p>
-        </div>
-      </div>
-    </dx-accordion>
-  `,
-})
-class AccordionDemoComponent {
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() customClass: string = '';
-  @Input() isCollapsible: boolean = false;
-  @Input() isMultiple: boolean = false;
-  @Input() animationDuration: number = 300;
-  @Input() companies: Company[] = [];
-  @Input() selectedItems: Company[] = [];
-}
-
-const meta: Meta<MeAccordionProps> = {
-  title: 'Components/Accordion(RC)',
-  component: MeAccordionDirective,
+export default {
+  title: 'Components/Accordion',
   decorators: [
     moduleMetadata({
-      declarations: [MeAccordionDirective, AccordionDemoComponent],
+      declarations: [MeAccordionDirective],
       imports: [DxAccordionModule],
     }),
   ],
-  render: (args: MeAccordionProps) => ({
-    props: args,
-    template:
-      '<accordion-demo [size]="size" [customClass]="customClass" [isCollapsible]="isCollapsible" [isMultiple]="isMultiple" [animationDuration]="animationDuration" [companies]="companies" [selectedItems]="selectedItems"></accordion-demo>',
-  }),
   argTypes: {
     size: {
+      control: 'select',
       options: ['small', 'medium', 'large'],
-      control: { type: 'select' },
     },
-    customClass: { control: 'text' },
-    isCollapsible: { control: 'boolean' },
-    isMultiple: { control: 'boolean' },
+    customClass: {
+      control: 'text',
+    },
+    collapsible: {
+      control: 'boolean',
+    },
+    multiple: {
+      control: 'boolean',
+    },
     animationDuration: {
-      control: { type: 'range', min: 0, max: 1000, step: 50 },
+      control: { type: 'number', min: 0, max: 1000, step: 50 },
     },
   },
-};
-
-export default meta;
-type Story = StoryObj<MeAccordionProps>;
-
-const defaultCompanies: Company[] = [
-  {
-    CompanyName: 'Company A',
-    Description: 'Description A',
-    City: 'City A',
-    State: 'State A',
-    Zipcode: '12345',
-    Address: 'Address A',
-    Phone: '123-456-7890',
-    Fax: '098-765-4321',
-    Website: 'http://www.companya.com',
-  },
-  {
-    CompanyName: 'Company B',
-    Description: 'Description B',
-    City: 'City B',
-    State: 'State B',
-    Zipcode: '67890',
-    Address: 'Address B',
-    Phone: '234-567-8901',
-    Fax: '109-876-5432',
-    Website: 'http://www.companyb.com',
-  },
-  {
-    CompanyName: 'Company C',
-    Description: 'Description C',
-    City: 'City C',
-    State: 'State C',
-    Zipcode: '13579',
-    Address: 'Address C',
-    Phone: '345-678-9012',
-    Fax: '210-987-6543',
-    Website: 'http://www.companyc.com',
-  },
-];
-
-export const Default: Story = {
   args: {
     size: 'medium',
     customClass: '',
-    isCollapsible: false,
-    isMultiple: false,
+    collapsible: false,
+    multiple: false,
     animationDuration: 300,
-    companies: defaultCompanies,
-    selectedItems: [defaultCompanies[0]],
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      onCollapsibleChanged: (e: any) => console.log('Collapsible changed:', e),
+      onMultipleChanged: (e: any) => console.log('Multiple changed:', e),
+      onSelectedIndexChanged: (e: any) => console.log('Selected index changed:', e),
+    },
+    template: `
+      <dx-accordion
+        meAccordion
+        [size]="size"
+        [customClass]="customClass"
+        [collapsible]="collapsible"
+        [multiple]="multiple"
+        [animationDuration]="animationDuration"
+        [dataSource]="dataSource"
+        (onCollapsibleChanged)="onCollapsibleChanged($event)"
+        (onMultipleChanged)="onMultipleChanged($event)"
+        (onSelectedIndexChanged)="onSelectedIndexChanged($event)"
+      >
+        <div *dxTemplate="let item of 'title'">
+          <span>{{item.title}}</span>
+        </div>
+        <div *dxTemplate="let item of 'item'">
+          <p>{{item.content}}</p>
+        </div>
+      </dx-accordion>
+    `,
+  }),
+} as Meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {
+  args: {
+    dataSource: [
+      { title: 'Accordion Item 1', content: 'Content for Accordion Item 1' },
+      { title: 'Accordion Item 2', content: 'Content for Accordion Item 2' },
+      { title: 'Accordion Item 3', content: 'Content for Accordion Item 3' },
+    ],
   },
 };
 
@@ -175,14 +95,14 @@ export const Large: Story = {
 export const Collapsible: Story = {
   args: {
     ...Default.args,
-    isCollapsible: true,
+    collapsible: true,
   },
 };
 
 export const Multiple: Story = {
   args: {
     ...Default.args,
-    isMultiple: true,
+    multiple: true,
   },
 };
 
@@ -198,4 +118,39 @@ export const CustomClass: Story = {
     ...Default.args,
     customClass: 'my-custom-accordion',
   },
+};
+
+export const CustomHeader: Story = {
+  args: {
+    ...Default.args,
+    dataSource: [
+      { id: 1, text: 'Accordion Item 1', description: 'Description for Item 1', icon: 'folder' },
+      { id: 2, text: 'Accordion Item 2', description: 'Description for Item 2', icon: 'folder' },
+      { id: 3, text: 'Accordion Item 3', description: 'Description for Item 3', icon: 'folder' },
+    ],
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-accordion
+        meAccordion
+        [dataSource]="dataSource"
+        [collapsible]="true"
+        itemTitleTemplate="customTitle"
+      >
+        <div *dxTemplate="let item of 'customTitle'">
+           <div style="display: flex; align-items: flex-start;">
+              <i class="dx-icon-{{item.icon}}" style="margin-right: 10px; font-size: 18px; color: #000;"></i>
+              <div>
+                <div style="font-weight: bold; font-size: 16px;">{{item.text}}</div>
+                <div style="font-weight: inherit; color: gray; font-size: 14px;">{{item.description}}</div>
+              </div>
+            </div>
+        </div>
+        <div *dxTemplate="let item of 'item'">
+          <p>Content for {{item.text}}</p>
+        </div>
+      </dx-accordion>
+    `
+  }),
 };
