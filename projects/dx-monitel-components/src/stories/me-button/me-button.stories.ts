@@ -89,18 +89,21 @@ export const Default: Story = {
     type: 'default',
     text: 'Button',
     size: 'medium',
-    stylingMode: 'contained',
+
     // isSelected: false,
+    stylingMode: 'contained',
+
+    leftIcon: '',
   },
 };
 
 export const LeftIcon: Story = {
   args: {
+    type: 'normal',
     text: 'Button',
     size: 'medium',
     stylingMode: 'contained',
     leftIcon: 'arrowback',
-    iconColor: 'black',
   },
 };
 
@@ -112,6 +115,5 @@ export const LeftRightIcon: Story = {
     stylingMode: 'contained',
     leftIcon: 'arrowback',
     rightIcon: 'arrowforward',
-    iconColor: 'black',
   },
 };
