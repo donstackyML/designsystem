@@ -1,11 +1,11 @@
 import { addons } from "@storybook/manager-api";
-import { create } from "@storybook/theming";
-import logo from "../assets/images/logoSK.png";
+// import { create } from "@storybook/theming";
+// import logo from "../assets/images/logoSK.png";
 
 addons.setConfig({
   navSize: 300,
   bottomPanelHeight: 300,
-  rightPanelWidth: 400,
+  rightPanelWidth: 600,
   panelPosition: "right",
   enableShortcuts: true,
   showToolbar: true,
@@ -13,7 +13,7 @@ addons.setConfig({
   selectedPanel: undefined,
   initialActive: "sidebar",
   sidebar: {
-    showRoots: false,
+    showRoots: true,
     collapsedRoots: ["other"],
   },
   toolbar: {
@@ -23,9 +23,9 @@ addons.setConfig({
     copy: { hidden: false },
     fullscreen: { hidden: false },
   },
-  theme: create({
-    brandTitle: "СК21",
-    brandImage: logo,
-    brandTarget: "_self",
-  }),
+  // theme: create({
+  //   brandTitle: "СК21",
+  //   brandImage: logo,
+  //   brandTarget: "_self",
+  // }),
 });
