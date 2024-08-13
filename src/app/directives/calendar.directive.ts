@@ -35,7 +35,7 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  private isShowWeekNumbers: boolean = true;
+  protected isShowWeekNumbers: boolean = true;
 
   constructor(private dxCalendarComponent: DxCalendarComponent) {}
 

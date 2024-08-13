@@ -1,16 +1,19 @@
 import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
 import * as CalendarStories from "./me-calendar.stories";
 import { moduleMetadata } from "@storybook/angular";
+import { DxCalendarModule } from "devextreme-angular";
 import { MeCalendarDirective } from "../../public-api";
 
 <Meta
-  name="meCalendar Docs"
-  of={CalendarStories}
+  title="Components/Calendar"
+  component={MeCalendarDirective}
   decorators={[
     moduleMetadata({
       declarations: [MeCalendarDirective],
+      imports: [DxCalendarModule],
     }),
   ]}
+  of={CalendarStories}
 />
 
 # Calendar
@@ -19,23 +22,18 @@ import { MeCalendarDirective } from "../../public-api";
 
 Директива `meCalendar` расширяет функциональность стандартного компонента календаря DevExtreme, добавляя дополнительные возможности настройки и обработки событий.
 
-<Story of={CalendarStories.Default} />
-<Controls of={CalendarStories.Default} />
+<Story name="Default" of={CalendarStories.Default} />
+<Controls story={CalendarStories.Default} />
+
 <Source of={CalendarStories.Default} dark />
 
 ## Примеры использования:
 
-- [Календарь без номеров недель](#календарь-без-номеров-недель)
-- [Отключенный календарь](#отключенный-календарь)
-- [Изменение первого дня недели](#изменение-первого-дня-недели)
-- [Изменение уровня масштабирования](#изменение-уровня-масштабирования)
-- [Настройка правила номера недели](#настройка-правила-номера-недели)
-
-## Календарь без номеров недель
+### Календарь без номеров недель
 
 Для скрытия номеров недель используйте параметр `showWeekNumbers={false}`.
 
-<Story of={CalendarStories.WithoutWeekNumbers} />
+<Story name="WithoutWeekNumbers" of={CalendarStories.WithoutWeekNumbers} />
 
 <Source
   code={`<dx-calendar meCalendar [showWeekNumbers]="false"></dx-calendar>`}
@@ -43,11 +41,11 @@ import { MeCalendarDirective } from "../../public-api";
   language="html"
 />
 
-## Отключенный календарь
+### Отключенный календарь
 
 Чтобы отключить календарь, используйте параметр `disabled={true}`.
 
-<Story of={CalendarStories.Disabled} />
+<Story name="Disabled" of={CalendarStories.Disabled} />
 
 <Source
   code={`<dx-calendar meCalendar [disabled]="true"></dx-calendar>`}
@@ -55,11 +53,11 @@ import { MeCalendarDirective } from "../../public-api";
   language="html"
 />
 
-## Изменение первого дня недели
+### Изменение первого дня недели
 
 Для изменения первого дня недели используйте параметр `firstDayOfWeek`.
 
-<Story of={CalendarStories.CustomFirstDay} />
+<Story name="CustomFirstDay" of={CalendarStories.CustomFirstDay} />
 
 <Source
   code={`<dx-calendar meCalendar [firstDayOfWeek]="0"></dx-calendar>`}
@@ -67,11 +65,11 @@ import { MeCalendarDirective } from "../../public-api";
   language="html"
 />
 
-## Изменение уровня масштабирования
+### Изменение уровня масштабирования
 
 Для изменения начального уровня масштабирования используйте параметр `zoomLevel`.
 
-<Story of={CalendarStories.YearZoomLevel} />
+<Story name="YearZoomLevel" of={CalendarStories.YearZoomLevel} />
 
 <Source
   code={`<dx-calendar meCalendar zoomLevel="year"></dx-calendar>`}
@@ -79,11 +77,11 @@ import { MeCalendarDirective } from "../../public-api";
   language="html"
 />
 
-## Настройка правила номера недели
+### Настройка правила номера недели
 
 Для настройки правила расчета номера недели используйте параметр `weekNumberRule`.
 
-<Story of={CalendarStories.CustomWeekNumberRule} />
+<Story name="CustomWeekNumberRule" of={CalendarStories.CustomWeekNumberRule} />
 
 <Source
   code={`<dx-calendar meCalendar weekNumberRule="fullWeek"></dx-calendar>`}
@@ -93,4 +91,27 @@ import { MeCalendarDirective } from "../../public-api";
 
 ## Перечень свойств
 
-<Controls of={CalendarStories.Default} />
+<Controls story={CalendarStories.Default} />
+
+## Обработка событий
+
+Календарь поддерживает стандартные события DevExtreme. Вот пример обработки события изменения даты:
+
+<Source
+  code={`
+<dx-calendar
+  meCalendar
+  [value]="currentDate"
+  (onValueChanged)="onDateValueChanged($event)"
+></dx-calendar>
+
+// В вашем компоненте:
+onDateValueChanged(e: any) {
+console.log('Выбранная дата:', e.value);
+}
+`}
+dark
+language="typescript"
+/>
+
+Это позволяет вам реагировать на изменения выбранной даты в календаре.
