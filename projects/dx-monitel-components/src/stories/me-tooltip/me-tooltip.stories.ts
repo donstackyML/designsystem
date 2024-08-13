@@ -1,328 +1,142 @@
-import { Component, Input } from '@angular/core';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MeTooltipDirective } from '../../public-api';
 
-@Component({
-  selector: 'tooltip-demo',
-  template: `
-    <div class="tooltip-demo dx-widget">
-      <div class="tooltip-group">
-        <div class="tooltip-controls">
-          <button
-            class="tooltip-button"
-            [meTooltip]="simpleTooltip"
-            [tooltipPosition]="simplePosition"
-          >
-            {{ simpleButtonText }}
-          </button>
-
-          <button
-            class="tooltip-button"
-            [meTooltip]="animatedTooltip"
-            [tooltipPosition]="animatedPosition"
-            [tooltipShowAnimation]="showAnimation"
-            [tooltipHideAnimation]="hideAnimation"
-          >
-            {{ animatedButtonText }}
-          </button>
-
-          <button
-            class="tooltip-button"
-            [meTooltip]="positionedTooltip"
-            [tooltipPosition]="positionedPosition"
-          >
-            {{ positionedButtonText }}
-          </button>
-        </div>
-      </div>
-
-      <div class="tooltip-group">
-        <div class="tooltip-controls">
-          <button
-            class="tooltip-button"
-            [meTooltip]="''"
-            [tooltipTemplateRef]="interactiveTemplate"
-            [tooltipPosition]="interactivePosition"
-            [tooltipMaxWidth]="interactiveMaxWidth"
-          >
-            {{ interactiveButtonText }}
-          </button>
-
-          <button
-            class="tooltip-button"
-            [meTooltip]="''"
-            [tooltipTemplateRef]="htmlTemplate"
-            [tooltipPosition]="htmlPosition"
-            [tooltipMaxWidth]="htmlMaxWidth"
-          >
-            {{ htmlButtonText }}
-          </button>
-
-          <button
-            class="tooltip-button"
-            [meTooltip]="''"
-            [tooltipTemplateRef]="customStyleTemplate"
-            [tooltipPosition]="customStylePosition"
-            [tooltipClass]="customStyleClass"
-          >
-            {{ customStyleButtonText }}
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <ng-template #htmlTemplate>
-      <div class="html-tooltip">
-        <h3>HTML в тултипе</h3>
-        <p>
-          Тултипы могут содержать <strong>форматированный текст</strong>,
-          <em>списки</em> и другие HTML-элементы:
-        </p>
-        <ul>
-          <li>Пункт 1</li>
-          <li>Пункт 2</li>
-        </ul>
-      </div>
-    </ng-template>
-
-    <ng-template #interactiveTemplate>
-      <div class="interactive-tooltip">
-        <h3>Интерактивный тултип</h3>
-        <p>Тултипы могут содержать интерактивные элементы:</p>
-        <button class="accept-button">Принять</button>
-        <button class="decline-button">Отменить</button>
-      </div>
-    </ng-template>
-
-    <ng-template #customStyleTemplate>
-      <div class="custom-tooltip">
-        <h3>Пользовательские стили</h3>
-        <p>Этот тултип имеет особое оформление, заданное через CSS-класс.</p>
-      </div>
-    </ng-template>
-  `,
-  styles: [
-    `
-      .tooltip-demo {
-        display: flex;
-        justify-content: space-around;
-        padding: 20px;
-        background-color: #f0f0f0;
-        border-radius: 10px;
-      }
-
-      .tooltip-group {
-        text-align: center;
-        margin-left: 20px;
-      }
-
-      .tooltip-controls {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .tooltip-button {
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      .interactive-tooltip {
-        box-sizing: border-box;
-        padding: 4px;
-      }
-
-      .interactive-tooltip * {
-        text-wrap: balance;
-      }
-
-      .interactive-tooltip button {
-        margin-top: 8px;
-        margin-inline: 4px;
-        padding: 4px 8px;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-
-      .interactive-tooltip .accept-button {
-        background-color: #3257dc;
-        color: white;
-      }
-
-      .interactive-tooltip .decline-button {
-        background-color: #ecedf3;
-        color: #18181a;
-      }
-
-      .custom-tooltip {
-        background-color: #ff9800;
-        color: white;
-        border: 2px solid #e68a00;
-        border-radius: 10px;
-        padding: 10px;
-      }
-
-      .html-tooltip * {
-        text-wrap: balance;
-        text-align: start;
-        margin-top: 4px;
-      }
-    `,
-  ],
-})
-class TooltipDemoComponent {
-  @Input() simpleTooltip: string = 'Это простой текстовый тултип';
-  @Input() simplePosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
-  @Input() simpleButtonText: string = 'Простой тултип';
-
-  @Input() animatedTooltip: string = 'Тултип с анимацией';
-  @Input() animatedPosition: 'top' | 'bottom' | 'left' | 'right' = 'left';
-  @Input() animatedButtonText: string = 'Анимированный';
-  @Input() showAnimation: any = {
-    type: 'slide',
-    from: { left: -100, opacity: 0 },
-    to: { opacity: 1, left: 0 },
-  };
-  @Input() hideAnimation: any = {
-    type: 'pop',
-    from: { scale: 1, opacity: 1 },
-    to: { opacity: 0, scale: 0.1 },
-  };
-
-  @Input() positionedTooltip: string = 'Тултип снизу';
-  @Input() positionedPosition: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
-  @Input() positionedButtonText: string = 'Позиционирование';
-
-  @Input() interactivePosition: 'top' | 'bottom' | 'left' | 'right' = 'right';
-  @Input() interactiveMaxWidth: string = '200';
-  @Input() interactiveButtonText: string = 'Интерактивный тултип';
-
-  @Input() htmlPosition: 'top' | 'bottom' | 'left' | 'right' = 'right';
-  @Input() htmlMaxWidth: string = '300';
-  @Input() htmlButtonText: string = 'HTML-содержимое';
-
-  @Input() customStylePosition: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
-  @Input() customStyleClass: string = 'custom-tooltip';
-  @Input() customStyleButtonText: string = 'Пользовательские стили';
-}
-
-const meta: Meta<TooltipDemoComponent> = {
-  title: 'Components/Tooltip(RC)',
-  component: TooltipDemoComponent,
+const meta: Meta<MeTooltipDirective> = {
+  title: 'Components/Tooltip',
+  component: MeTooltipDirective,
   decorators: [
     moduleMetadata({
-      declarations: [MeTooltipDirective, TooltipDemoComponent],
+      declarations: [MeTooltipDirective],
     }),
   ],
   argTypes: {
-    simpleTooltip: { control: 'text' },
-    simplePosition: {
-      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },
+    meTooltip: { control: 'text' },
+    tooltipPosition: {
+      control: 'select', options: ['top', 'bottom', 'left', 'right'] ,
     },
-    simpleButtonText: { control: 'text' },
-
-    animatedTooltip: { control: 'text' },
-    animatedPosition: {
-      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },
-    },
-    animatedButtonText: { control: 'text' },
-    showAnimation: { control: 'object' },
-    hideAnimation: { control: 'object' },
-
-    positionedTooltip: { control: 'text' },
-    positionedPosition: {
-      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },
-    },
-    positionedButtonText: { control: 'text' },
-
-    interactivePosition: {
-      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },
-    },
-    interactiveMaxWidth: { control: 'text' },
-    interactiveButtonText: { control: 'text' },
-
-    htmlPosition: {
-      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },
-    },
-    htmlMaxWidth: { control: 'text' },
-    htmlButtonText: { control: 'text' },
-
-    customStylePosition: {
-      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },
-    },
-    customStyleClass: { control: 'text' },
-    customStyleButtonText: { control: 'text' },
+    tooltipClass: { control: 'text' },
+    tooltipWidth: { control: 'text' },
+    tooltipMaxWidth: { control: 'text' },
+    tooltipShowAnimation: { control: 'object' },
+    tooltipHideAnimation: { control: 'object' },
   },
 };
 
 export default meta;
-type Story = StoryObj<TooltipDemoComponent>;
+type Story = StoryObj<MeTooltipDirective>;
 
-export const Default: Story = {
+export const Basic: Story = {
   args: {
-    simpleTooltip: 'Это простой текстовый тултип',
-    simplePosition: 'top',
-    simpleButtonText: 'Простой тултип',
-
-    animatedTooltip: 'Тултип с анимацией',
-    animatedPosition: 'left',
-    animatedButtonText: 'Анимированный',
-
-    positionedTooltip: 'Тултип снизу',
-    positionedPosition: 'bottom',
-    positionedButtonText: 'Позиционирование',
-
-    interactivePosition: 'right',
-    interactiveMaxWidth: '200',
-    interactiveButtonText: 'Интерактивный тултип',
-
-    htmlPosition: 'right',
-    htmlMaxWidth: '300',
-    htmlButtonText: 'HTML-содержимое',
-
-    customStylePosition: 'bottom',
-    customStyleClass: 'custom-tooltip',
-    customStyleButtonText: 'Пользовательские стили',
+    meTooltip: 'Это базовый тултип',
+    tooltipPosition: 'top',
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition">
+        Наведите на меня
+      </button>
+    `,
+  }),
 };
 
-export const CustomPositions: Story = {
+export const Positioning: Story = {
   args: {
-    ...Default.args,
-    simplePosition: 'right',
-    animatedPosition: 'top',
-    positionedPosition: 'left',
-    interactivePosition: 'bottom',
-    htmlPosition: 'left',
-    customStylePosition: 'top',
+    meTooltip: 'Позиционированный тултип',
+    tooltipPosition: 'right',
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition">
+        Тултип {{ tooltipPosition }}
+      </button>
+    `,
+  }),
 };
 
-export const CustomContent: Story = {
+export const HTMLContent: Story = {
   args: {
-    ...Default.args,
-    simpleTooltip: 'Измененный простой тултип',
-    animatedTooltip: 'Новый анимированный тултип',
-    positionedTooltip: 'Позиционированный тултип сверху',
+    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',
+    tooltipPosition: 'bottom',
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition">
+        HTML-тултип
+      </button>
+    `,
+  }),
 };
 
-export const CustomAnimations: Story = {
+export const CustomStyles: Story = {
   args: {
-    ...Default.args,
-    showAnimation: {
+    meTooltip: 'Стилизованный тултип',
+    tooltipPosition: 'left',
+    tooltipClass: 'custom-tooltip',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition" [tooltipClass]="tooltipClass">
+        Кастомный тултип
+      </button>
+    `,
+  }),
+};
+
+export const WithAnimation: Story = {
+  args: {
+    meTooltip: 'Анимированный тултип',
+    tooltipPosition: 'top',
+    tooltipShowAnimation: {
       type: 'pop',
       from: { scale: 0.5, opacity: 0 },
       to: { scale: 1, opacity: 1 },
     },
-    hideAnimation: {
-      type: 'slide',
-      from: { top: 0, opacity: 1 },
-      to: { top: -20, opacity: 0 },
+    tooltipHideAnimation: {
+      type: 'fade',
+      from: { opacity: 1 },
+      to: { opacity: 0 },
     },
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button
+        [meTooltip]="meTooltip"
+        [tooltipPosition]="tooltipPosition"
+        [tooltipShowAnimation]="tooltipShowAnimation"
+        [tooltipHideAnimation]="tooltipHideAnimation"
+      >
+        Анимированный тултип
+      </button>
+    `,
+  }),
+};
+
+export const CustomTemplate: Story = {
+  args: {
+    tooltipPosition: 'right',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button [meTooltip]="tooltipTemplate" [tooltipTemplateRef]="tooltipTemplate" [tooltipPosition]="tooltipPosition">
+        Тултип с кастомным шаблоном
+      </button>
+
+      <ng-template #tooltipTemplate>
+        <div>
+          <h4>Заголовок тултипа</h4>
+          <p>Это пример тултипа с кастомной разметкой.</p>
+          <ul>
+            <li>Пункт 1</li>
+            <li>Пункт 2</li>
+          </ul>
+        </div>
+      </ng-template>
+    `,
+  }),
 };
