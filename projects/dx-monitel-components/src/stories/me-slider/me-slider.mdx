@@ -1,0 +1,38 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as SliderStories from "./me-slider.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxSliderModule } from "devextreme-angular";
+import { MeSliderDirective } from "../../public-api";
+
+<Meta
+  title="Components/Slider(RC)"
+  component={MeSliderDirective}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeSliderDirective],
+      imports: [DxSliderModule],
+    }),
+  ]}
+  of={SliderStories}
+/>
+
+# Slider
+
+## Директива meSlider
+
+Директива `meSlider` изменяет внешний вид стандартного компонента слайдера DevExtreme.
+
+<Story name="Default" of={SliderStories.Default} />
+<Controls of={SliderStories.Default} />
+
+<Source of={SliderStories.Default} dark />
+
+## Примеры использования:
+
+### Слайдер с Label и ToolTip
+
+<Story name="WithLabel" of={SliderStories.WithLabelAndTooltip} />
+
+#### Для этого нужно прописать теги `dxo-label` и `dxo-tooltip` внутри `dx-slider`
+
+<Source of={SliderStories.WithLabelAndTooltip} dark language="html" />

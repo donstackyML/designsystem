@@ -9,6 +9,7 @@ import { MeContextMenuModule } from './directives/me-context-menu/context-menu.m
 import { MeControlModule } from './directives/me-control/control.module';
 import { MeDropDownButtonModule } from './directives/me-drop-down-button/drop-down-button.module';
 import { MeEditorModule } from './directives/me-editor/me-editor.module';
+import { MeFileUploaderModule } from './directives/me-file-uploader/file-uploader.module';
 import { MeIconModule } from './directives/me-icon/me-icon.module';
 import { MeLabelModule } from './directives/me-label/me-label.module';
 import { MeListModule } from './directives/me-list/list.module';
@@ -20,6 +21,7 @@ import { MePopoverModule } from './directives/me-popover/me-popover.module';
 import { MePopupModule } from './directives/me-popup/me-popup.module';
 import { MeRadioGroupModule } from './directives/me-radio-group/me-radio-group.module';
 import { MeSelectBoxModule } from './directives/me-select-box/me-select-box.module';
+import { MeSliderModule } from './directives/me-slider/slider.module';
 import { MeSwitchModule } from './directives/me-switch/switch.module';
 import { MeTabPanelModule } from './directives/me-tab-panel/tab-panel.module';
 import { MeTabsModule } from './directives/me-tabs/tabs.module';
@@ -29,7 +31,6 @@ import { MeToastModule } from './directives/me-toast/toast.module';
 import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
-import {MeFileUploaderModule} from "./directives/me-file-uploader/file-uploader.module";
 
 @NgModule({
   declarations: [],
@@ -64,7 +65,8 @@ import {MeFileUploaderModule} from "./directives/me-file-uploader/file-uploader.
     MeTooltipModule,
     MeTreeViewModule,
     MeTabPanelModule,
-    MeFileUploaderModule
+    MeFileUploaderModule,
+    MeSliderModule,
   ],
   exports: [
     MeAccordionModule,
@@ -98,7 +100,8 @@ import {MeFileUploaderModule} from "./directives/me-file-uploader/file-uploader.
     MeTreeViewModule,
     MeTabPanelModule,
     MeCalendarModule,
-    MeFileUploaderModule
+    MeFileUploaderModule,
+    MeSliderModule,
   ],
 })
 export class MeComponentsModule {}
