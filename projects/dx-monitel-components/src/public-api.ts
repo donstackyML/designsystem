@@ -3,8 +3,6 @@ import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.dir
  * Public API Surface of me-lib
  */
 
-import {MeFileUploaderModule} from "./lib/directives/me-file-uploader/file-uploader.module";
-
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';
 export { MeButtonGroupDirective } from './lib/directives/me-button-group/button-group.directive';
@@ -15,6 +13,7 @@ export { MeContextMenuDirective } from './lib/directives/me-context-menu/context
 export { MeControlDirective } from './lib/directives/me-control/control.directive';
 export { MeDropDownButtonDirective } from './lib/directives/me-drop-down-button/drop-down-button.directive';
 export { MeEditorDirective } from './lib/directives/me-editor/editor.directive';
+export { MeFileUploaderDirective } from './lib/directives/me-file-uploader/file-uploader.directive';
 export { MeIconDirective } from './lib/directives/me-icon/icon.directive';
 export { MeLabelDirective } from './lib/directives/me-label/label.directive';
 export { MeListDirective } from './lib/directives/me-list/list.directive';
@@ -25,6 +24,7 @@ export { MeOverlayDirective } from './lib/directives/me-overlay/overlay.directiv
 export { MePopoverDirective } from './lib/directives/me-popover/popover.directive';
 export { MePopupDirective } from './lib/directives/me-popup/popup.directive';
 export { MeRadioGroupDirective } from './lib/directives/me-radio-group/radio-group.directive';
+export { MeScrollViewDirective } from './lib/directives/me-scroll-view/scroll-view.directive';
 export { MeSelectBoxDirective } from './lib/directives/me-select-box/select-box.directive';
 export { MeSwitchDirective } from './lib/directives/me-switch/switch.directive';
 export { MeTabPanelDirective } from './lib/directives/me-tab-panel/tab-panel.directive';
@@ -34,7 +34,6 @@ export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-edit
 export { MeToolbarDirective } from './lib/directives/me-toolbar/toolbar.directive';
 export { MeTooltipDirective } from './lib/directives/me-tooltip/tooltip.directive';
 export { MeTreeViewDirective } from './lib/directives/me-tree-view/tree-view.directive';
-export { MeFileUploaderDirective } from './lib/directives/me-file-uploader/file-uploader.directive';
 
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';
 export { MeButtonGroupModule } from './lib/directives/me-button-group/button-group.module';
@@ -62,12 +61,12 @@ export { MeToastModule } from './lib/directives/me-toast/toast.module';
 export { MeToolbarModule } from './lib/directives/me-toolbar/me-toolbar.module';
 export { MeTreeViewModule } from './lib/directives/me-tree-view/me-tree-view.module';
 
-export { MeTooltipModule } from './lib/directives/me-tooltip/tooltip.module';
-export { MeLoadPanelModule } from './lib/directives/me-load-panel/load-panel.module';
-export { MeLoadIndicatorModule } from './lib/directives/me-load-indicator/load-indicator.module';
-export { MeTabPanelModule } from './lib/directives/me-tab-panel/tab-panel.module';
 export { MeFileUploaderModule } from './lib/directives/me-file-uploader/file-uploader.module';
-
+export { MeLoadIndicatorModule } from './lib/directives/me-load-indicator/load-indicator.module';
+export { MeLoadPanelModule } from './lib/directives/me-load-panel/load-panel.module';
+export { MeScrollViewModule } from './lib/directives/me-scroll-view/scroll-view.module';
+export { MeTabPanelModule } from './lib/directives/me-tab-panel/tab-panel.module';
+export { MeTooltipModule } from './lib/directives/me-tooltip/tooltip.module';
 
 export { MeIconStoreService } from './lib/service/icon-store.service';
 export { ThemesService } from './lib/service/themes.service';

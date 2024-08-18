@@ -1,0 +1,108 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as ScrollViewStories from "./me-scroll-view.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxScrollViewModule } from "devextreme-angular";
+import { MeScrollViewDirective } from "../../public-api";
+
+<Meta
+  title="Components/ScrollView"
+  component={MeScrollViewDirective}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeScrollViewDirective],
+      imports: [DxScrollViewModule],
+    }),
+  ]}
+  of={ScrollViewStories}
+/>
+
+# ScrollView
+
+## Директива ScrollView
+
+Директива `meScrollView` изменяет внешний вид стандартного компонента ScrollView DevExtreme.
+
+<Story name="Default" of={ScrollViewStories.Default} />
+<Controls of={ScrollViewStories.Default} />
+
+<Source
+  code={`
+  <dx-scroll-view
+    meScrollView
+    [size]="size"
+    [height]="height"
+    [width]="width"
+    [direction]="direction"
+    [showScrollbar]="showScrollbar"
+    [disabled]="disabled"
+    [bounceEnabled]="bounceEnabled"
+  >
+    <div>Content</div>
+  </dx-scroll-view>
+`}
+  dark
+  language="html"
+/>
+
+## Примеры использования:
+
+### Размеры ScrollView
+
+#### Имеются три варианта размеров: `small`, `medium` и `large`.
+
+#### Для выбора варианта используется свойство `size`:
+
+<Source
+  code={`
+	<dx-scroll-view
+    meScrollView
+    [size]="size"
+  >
+    <div>Content</div>
+  </dx-scroll-view>
+	`}
+  dark
+  language="html"
+/>
+
+### Размеры контента
+
+#### Для изменения размеров контента используется свойство `width` и `height`:
+
+<Source
+  code={`
+	<dx-scroll-view
+    meScrollView
+    [width]="width"
+    [height]="height"
+  >
+    <div>Content</div>
+  </dx-scroll-view>
+	`}
+  dark
+  language="html"
+/>
+
+### Отображение скролла
+
+#### Для условия отображения скролла используется свойство `showScrollbar`:
+
+#### `'onHover'`, `'onScroll'`, `'always'`, `'never'`;
+
+#### Для отображения скролла используется свойство `direction`:
+
+#### `'both'`, `'horizontal'`, `'vertical'`:
+
+<Source
+  code={`
+	<dx-scroll-view
+    meScrollView
+    [showScrollbar]="showScrollbar"
+    [direction]="direction"
+  >
+    <div>Content</div>
+  </dx-scroll-view>
+	`}
+  dark
+  language="html"
+/>
