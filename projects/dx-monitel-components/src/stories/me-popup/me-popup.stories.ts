@@ -21,14 +21,33 @@ export default {
       imports: [DxPopupModule],
     }),
   ],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=568-31799&t=AcVCK3Dt91yWxh5R-0',
+    },
+  },
   argTypes: {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
+      description:
+        'В дизайн-системе для размера medium используются кнопки с размером medium, для размера large соответственно кнопки одноименного размера.',
       table: {
-        type: { summary: 'Меняет размер компонента' },
+        type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
       },
+    },
+    visible: {
+      control: 'boolean',
+      description: 'Видимость окна.',
+      table: {
+        type: { summary: 'boolean' },
+      },
+    },
+    title: {
+      control: 'text',
+      description: 'Текст заголовка.',
     },
     dragEnabled: {
       table: {
