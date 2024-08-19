@@ -25,8 +25,8 @@ $generic-progress-bar-border: 1px solid $progressbar-bg;
 
 .dx-progressbar-range {
   position: relative;
-  border: 1px solid $progressbar-range-bg;
-  background-color: $progressbar-range-bg;
+  border: 1px solid $progressbar-bg;
+  background-color: $progressbar-bg;
   margin-top: -1px;
   box-sizing: content-box;
   border-top-left-radius: $generic-progressbar-border-radius;
@@ -87,5 +87,36 @@ $generic-progress-bar-border: 1px solid $progressbar-bg;
 
   100% {
     background-position-x: -900%;
+  }
+}
+
+.me-progress-bar {
+  .dx-trackbar-range.dx-progressbar-range {
+    border-radius: 4px;
+    background-color: $progressbar-bg;
+    border-color: $progressbar-bg;
+    margin-left: -1px;
+  }
+  .dx-trackbar-container.dx-progressbar-container {
+    border-radius: 4px;
+  }
+  .dx-progressbar-status {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+  .dx-trackbar-container.dx-progressbar-container {
+    margin-bottom: 2px;
+    background-color: $progressbar-range-bg;
+    border: 1px solid $progressbar-border-color;
+  }
+  .dx-progressbar-status {
+    height: 16px;
+  }
+
+  &.me-progress-bar-medium {
+    .dx-trackbar-container.dx-progressbar-container {
+      height: 8px;
+    }
   }
 }
