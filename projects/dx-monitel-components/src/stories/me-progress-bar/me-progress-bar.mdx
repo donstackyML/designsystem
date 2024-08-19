@@ -1,0 +1,41 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as ProgressBarStories from "./me-progress-bar.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxProgressBarModule } from "devextreme-angular";
+import { MeProgressBarDirective } from "../../public-api";
+
+<Meta
+  title="Components/ProgressBar"
+  component={MeProgressBarDirective}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeProgressBarDirective],
+      imports: [DxProgressBarModule],
+    }),
+  ]}
+  of={ProgressBarStories}
+/>
+
+# ProgressBar
+
+## Директива meProgressBar
+
+Директива `meProgressBar` расширяет настройки и изменяет внешний вид стандартного компонента ProgressBar DevExtreme, добавляя дополнительные размеры.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/23_1/Guide/UI_Components/ProgressBar/)
+
+<Story name="Default" of={ProgressBarStories.ProgressBar} />
+
+<Controls of={ProgressBarStories.ProgressBar} />
+
+<Source of={ProgressBarStories.ProgressBar} dark />
+
+#### Для изменения размера прогрессбара используйте `size`.
+
+#### Имеются два варианта размера: `small` и `medium`.
+
+<Source
+  code={`<div meProgressBar meProgressBar [size]="'small'"></div>`}
+  dark
+  language="html"
+/>

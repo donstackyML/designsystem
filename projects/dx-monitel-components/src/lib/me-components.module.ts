@@ -19,9 +19,9 @@ import { MeMenuModule } from './directives/me-menu/menu.module';
 import { MeOverlayModule } from './directives/me-overlay/me-overlay.module';
 import { MePopoverModule } from './directives/me-popover/me-popover.module';
 import { MePopupModule } from './directives/me-popup/me-popup.module';
+import { MeProgressBarModule } from './directives/me-progress-bar/progress-bar.module';
 import { MeRadioGroupModule } from './directives/me-radio-group/me-radio-group.module';
 import { MeSelectBoxModule } from './directives/me-select-box/me-select-box.module';
-import { MeSliderModule } from './directives/me-slider/slider.module';
 import { MeSwitchModule } from './directives/me-switch/switch.module';
 import { MeTabPanelModule } from './directives/me-tab-panel/tab-panel.module';
 import { MeTabsModule } from './directives/me-tabs/tabs.module';
@@ -66,7 +66,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeTreeViewModule,
     MeTabPanelModule,
     MeFileUploaderModule,
-    MeSliderModule,
+    MeProgressBarModule,
   ],
   exports: [
     MeAccordionModule,
@@ -101,7 +101,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeTabPanelModule,
     MeCalendarModule,
     MeFileUploaderModule,
-    MeSliderModule,
+    MeProgressBarModule,
   ],
 })
 export class MeComponentsModule {}
