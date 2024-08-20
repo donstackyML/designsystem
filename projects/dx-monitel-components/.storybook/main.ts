@@ -22,6 +22,7 @@ const config: StorybookConfig = {
     // '@storybook/addon-controls',
     '@storybook/addon-mdx-gfm',
     'storybook-dark-mode',
+    '@storybook/addon-designs',
   ],
 
   // managerHead: (head) => `
@@ -33,7 +34,17 @@ const config: StorybookConfig = {
     name: '@storybook/angular',
     options: {},
   },
+  // webpackFinal: async (config) => {
+  //   // Найдите правило, которое обрабатывает CSS-файлы
+  //   const rules = config?.module?.rules || [];
 
-  docs: {},
+  //   // Добавьте правило для обработки CSS-файлов
+  //   rules.push({
+  //     test: /\.css$/,
+  //     use: ['style-loader', 'css-loader'],
+  //   });
+  // },
+
+  // docs: {},
 };
 export default config;
