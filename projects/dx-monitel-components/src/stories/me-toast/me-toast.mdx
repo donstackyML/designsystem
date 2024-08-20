@@ -23,7 +23,20 @@ import { MeToastDirective } from "../../public-api";
 
 <Story of={toastStories.Default} />
 <Controls of={toastStories.Default} />
-<Source of={toastStories.Default} dark />
+<Source
+  code={`<dx-toast 
+  [message]="'This is a toast message'"
+  [displayTime]="2000"
+  [position]="'bottom right'"
+  [animation]="{
+    show: {type: 'fade', duration: 400, from: 0, to: 1},
+    hide: {type: 'fade', duration: 400, from: 1, to: 0}
+    }"
+  [customClass]="''">
+</dx-toast>`}
+  dark
+  language="html"
+/>
 
 ## Примеры использования:
 
@@ -39,7 +52,7 @@ import { MeToastDirective } from "../../public-api";
 <Story of={toastStories.LongDuration} />
 
 <Source
-  code={`<toast-demo [displayTime]="5000" message="This toast will be displayed for 5 seconds"></toast-demo>`}
+  code={`<dx-toast [displayTime]="5000" message="This toast will be displayed for 5 seconds"></dx-toast>`}
   dark
   language="html"
 />
@@ -51,7 +64,7 @@ import { MeToastDirective } from "../../public-api";
 <Story of={toastStories.CustomPosition} />
 
 <Source
-  code={`<toast-demo position="top center" message="This toast is positioned at the top center"></toast-demo>`}
+  code={`<dx-toast position="top center" message="This toast is positioned at the top center"></dx-toast>`}
   dark
   language="html"
 />
@@ -63,13 +76,13 @@ import { MeToastDirective } from "../../public-api";
 <Story of={toastStories.CustomAnimation} />
 
 <Source
-  code={`<toast-demo
+  code={`<dx-toast
   [animation]="{
     show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },
     hide: { type: 'pop', duration: 400, to: { scale: 0 } }
   }"
   message="This toast has a custom animation"
-></toast-demo>`}
+></dx-toast>`}
   dark
   language="html"
 />
@@ -81,7 +94,7 @@ import { MeToastDirective } from "../../public-api";
 <Story of={toastStories.CustomClass} />
 
 <Source
-  code={`<toast-demo customClass="my-custom-toast" message="This toast has a custom CSS class"></toast-demo>`}
+  code={`<dx-toast customClass="my-custom-toast" message="This toast has a custom CSS class"></dx-toast>`}
   dark
   language="html"
 />
