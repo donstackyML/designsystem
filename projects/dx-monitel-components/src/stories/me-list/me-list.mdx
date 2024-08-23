@@ -1,0 +1,157 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as listStories from "./me-list.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+
+<Meta name="List Documentation" of={listStories} />
+
+# List
+
+## Директива meList
+
+Применение директивы <code>meList</code> к элементу <code>dx-list</code> приводит его к отступы,
+цвета и размеры в соответствие с дизайн-системой. Добавление нетипичных для DevExtreme
+элементов производится через переопределение свойств [itemTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/Configuration/#itemTemplate)
+и [groupTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/Configuration/#groupTemplate) .
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/)
+
+<Story of={listStories.Default} />
+<Controls of={listStories.Default} />
+<Source of={listStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1940-52907&t=fAbw6tNSpPWClJ8H-0"
+/>
+
+## Примеры использования:
+
+- [добавление описания в заголовок группы](#добавление-описания-в-заголовок-группы)
+- [добавление описания и картинки в элемент списка](#добавление-описания-и-картинки-в-элемент-списка)
+- [работа с иконками](#работа-с-иконками)
+- [добавление дополнительного контента](#добавление-дополнительного-контента)
+
+## Добавление описания в заголовок группы
+
+Порядок группировки описан в [разделе Grouping](https://js.devexpress.com/Angular/Documentation/Guide/UI_Components/List/Grouping/In_the_Data_Source/) для компонента List.
+Не забудьте указать свойство <code>[grouped]="true"</code>.
+Для корректной работы данные должны быть подготовлены [соответствующим образом](https://js.devexpress.com/Angular/Documentation/Guide/UI_Components/List/Grouping/In_the_Data_Source/).
+
+Классы <code>me-title-header2</code> и <code>me-text-caption</code> находятся в библиотеке и применяют нужные стили для заголовка и описания.
+
+Для кастомизации заголовка и описания нужно добавить кастомный стиль для элементов в заголовке.
+
+На примере ниже установлены <code>margin: 0</code> для тега <code>p</code>
+
+<Story of={listStories.HeaderDescription} />
+
+<Source
+  code={`<dx-list 
+    meList 
+    [dataSource]="itemsGrouped" 
+    displayExpr="name" 
+    [grouped]="true" 
+    searchExpr="name" 
+    width="436px" 
+    >
+    <div *dxTemplate="let group of 'group'">
+      <p class="me-title-header2">{{ group.key }}</p>
+      <p class="me-text-caption">{{ group.description }}</p>
+    </div>
+</dx-list>`}
+  dark
+/>
+
+## Добавление описания и картинки в элемент списка
+
+В свойстве <code>image</code> элемента списка следует хранить путь к картинке.
+
+Класс <code>me-list-item-content</code> определяет структуру элемента и соответствующие отступы.
+
+Классы <code>me-text-body2</code> и <code>me-text-caption</code> добавляют соответствующие стили для заголовка и описания.
+
+<Story of={listStories.ListDescription} />
+
+<Source
+  code={`<dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" width="436px">
+    <div *dxTemplate="let item of 'item'">
+      <div class="me-list-item-content">
+        <img alt="{{ item.name }}" src="{{ item.image }}" />
+        <div>
+          <div class="me-text-body2">{{ item.name }}</div>
+          <div class="me-text-caption">{{ item.description }}</div>
+        </div>
+      </div>
+    </div>
+</dx-list>`}
+  dark
+/>
+
+## Работа с иконками
+
+Для добавления иконок из дизайн-системы необходимо:
+
+1. Подключить сервис с иконками.
+
+<Source
+  code={`constructor(private iconStore: MeIconStoreService) {}`}
+  dark
+  language="js"
+/>
+
+2. Получить нужную иконку в свойстве icon элемента.
+
+<Source
+  code={`public itemsWithIcons: Item[] = [
+    {
+      name: 'Apples',
+      count: 10,
+      icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
+    },
+  // и так далее`}
+  dark
+  language="js"
+/>
+
+Обратите внимание, что в функции <code>getIcon</code> аргументом является объект с опциями, не забывайте фигурные скобки.
+Также можно изменить цвет иконки передав в объекте свойство <code>color</code>.
+
+Если нужной иконки нет в дизайн-системе, можно передать свою иконку строкой.
+
+DevExtreme автоматически вставит иконку, переданную в свойстве <code>icon</code>.
+
+<Story of={listStories.IconList} />
+
+# Добавление дополнительного контента
+
+Класс <code>me-list-item-more</code> добавляет стили для дополнительного контента.
+
+<Story of={listStories.MoreContent} />
+
+<Source
+  code={`  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" width="436px">
+    <div *dxTemplate="let item of 'item'">
+      <div class="me-list-item-content">
+        <img alt="{{ item.name }}" src="{{ item.image }}" />
+        <div>
+          <div class="me-text-body2">{{ item.name }}</div>
+          <div class="me-text-caption">{{ item.description }}</div>
+        </div>
+        <div class="me-list-item-more">More</div>
+      </div>
+    </div>
+</dx-list>`}
+  dark
+/>
+
+<style>
+  {`
+      h2 {
+        border-bottom: none !important;
+    }
+`}
+</style>
