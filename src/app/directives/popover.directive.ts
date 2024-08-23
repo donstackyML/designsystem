@@ -1,6 +1,6 @@
-import { Directive, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, Input, Renderer2 } from '@angular/core';
+
 import { MeSize } from '../types/types';
-import { MeOverlayDirective } from './overlay.directive';
 
 @Directive({
   selector: '[mePopover]',
@@ -8,10 +8,22 @@ import { MeOverlayDirective } from './overlay.directive';
     '[class.me-popover]': 'true',
   },
 })
-export class MePopoverDirective extends MeOverlayDirective implements OnInit {
-  @Input() size: MeSize = 'medium';
+export class MePopoverDirective implements AfterViewInit {
+  @Input() size?: MeSize;
 
-  ngOnInit(): void {
-    this.initMeModal(this.size);
+  private renderer = inject(Renderer2);
+  private element = inject(ElementRef);
+
+  ngAfterViewInit(): void {
+    this.ApplyStyles();
+    this.ApplySize(this.size);
+  }
+
+  ApplyStyles() {
+    this.renderer.addClass(this.element.nativeElement.children[0], 'me-popover');
+  }
+
+  ApplySize(size: MeSize | undefined) {
+    this.renderer.addClass(this.element.nativeElement.children[0], 'me-popover-' + this.size);
   }
 }

@@ -71,7 +71,7 @@ export class LoadPanelDemoComponent {
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 3000);
+    }, 300000);
   }
 
   onHidden() {

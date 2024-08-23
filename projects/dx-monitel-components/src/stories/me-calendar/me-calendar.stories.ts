@@ -36,12 +36,12 @@ export default {
     },
   },
   args: {
-    showWeekNumbers: true,
+    showWeekNumbers: false,
     disabled: false,
     firstDayOfWeek: 1,
     zoomLevel: 'month',
     weekNumberRule: 'firstDay',
-    value: new Date(), // Используем 'value' для текущей даты
+    value: new Date(),
   },
   render: (args) => ({
     props: {
@@ -60,12 +60,18 @@ type Story = StoryObj;
 
 export const Default: Story = {
   args: {
-    visible: true,
+    showWeekNumbers: false,
+    disabled: false,
+    firstDayOfWeek: 1,
+    zoomLevel: 'month',
+    weekNumberRule: 'firstDay',
+    value: new Date(),
   },
 };
 
 export const WithoutWeekNumbers: Story = {
   args: {
+    ...Default.args,
     showWeekNumbers: false,
   },
 };
@@ -80,7 +86,7 @@ export const Disabled: Story = {
 export const CustomFirstDay: Story = {
   args: {
     ...Default.args,
-    firstDayOfWeek: 0, // Sunday
+    firstDayOfWeek: 0,
   },
 };
 

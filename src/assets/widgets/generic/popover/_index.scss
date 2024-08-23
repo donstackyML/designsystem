@@ -12,29 +12,6 @@
 
 $generic-popover-toolbar-padding: 15px;
 
-.me-popover .dx-popup-content {
-  background-color: $popover-bg;
-  color: $popover-color;
-  border-radius: 4px;
-}
-
-.me-popover.dx-popup-wrapper {
-  & .dx-overlay-content {
-    border: 1px solid $popover-bg;
-    background: $popover-bg;
-    box-shadow: none;
-    border-radius: 4px;
-  }
-
-  &.dx-position-bottom .dx-popover-arrow::after {
-    background: $me-popover-arrow-bg;
-  }
-
-  &.dx-position-bottom .dx-popover-arrow::after {
-    border: 1px solid $popover-bg;
-  }
-}
-
 .dx-popover-wrapper {
   // &.dx-position-bottom .dx-popover-arrow::after {
   //   background: $popover-arrow-bg;
@@ -67,5 +44,101 @@ $generic-popover-toolbar-padding: 15px;
       padding-right: $generic-popover-toolbar-padding;
       padding-left: 0;
     }
+  }
+}
+
+.dx-popup-wrapper {
+  & .me-popover {
+    border: 1px solid $popover-bg;
+    background: $popover-bg;
+    box-shadow: none;
+    border-radius: 4px;
+  }
+}
+
+.me-popover {
+  & .dx-popup-title {
+    background-color: $popover-bg;
+    color: $popover-color;
+    border-radius: 4px;
+    border-bottom: none;
+  }
+
+  & .dx-popup-content {
+    background-color: $popover-bg;
+    color: $popover-color;
+    border-radius: 4px;
+  }
+}
+
+.me-popover .dx-popover-wrapper .dx-popover-arrow::after,
+.dx-popover-wrapper.dx-popover-without-title .dx-popover-arrow::after {
+  background: $popover-bg;
+  border: 1px solid $popover-bg;
+}
+
+.dx-popover-wrapper .dx-popover-arrow::after,
+.dx-popover-wrapper.dx-popover-without-title .dx-popover-arrow::after {
+  background: $popover-bg;
+  border: 1px solid $popover-bg;
+}
+
+.me-popover.me-popover-small {
+  padding: 12px;
+
+  & .dx-popup-title {
+    .dx-toolbar-label {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+    }
+    padding: 0 0 2px 0;
+  }
+
+  & .dx-popup-content {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 0;
+  }
+}
+
+.me-popover.me-popover-medium {
+  padding: 12px;
+
+  & .dx-popup-title {
+    .dx-toolbar-label {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+    }
+    padding: 0 0 4px 0;
+  }
+
+  & .dx-popup-content {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0;
+  }
+}
+
+.me-popover.me-popover-large {
+  padding: 12px;
+
+  & .dx-popup-title {
+    .dx-toolbar-label {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 30px;
+    }
+    padding: 0 0 4px 0;
+  }
+
+  & .dx-popup-content {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 0;
   }
 }

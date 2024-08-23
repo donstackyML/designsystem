@@ -1,0 +1,85 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as FileUploaderStories from "./me-file-uploader.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { MeFileUploaderDirective } from "../../lib/directives/me-file-uploader/file-uploader.directive";
+
+<Meta
+  name="FileUploader Docs"
+  of={FileUploaderStories}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeFileUploaderDirective],
+    }),
+  ]}
+/>
+
+# FileUploader
+
+## Директива meFileUploader
+
+Директива `meFileUploader` применяется к элементу dx-file-uploader для управления его состояниями и добавления дополнительных свойств.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxFileUploader/)
+
+<Story of={FileUploaderStories.Default} />
+<Controls of={FileUploaderStories.Default} />
+<Source of={FileUploaderStories.Default} dark />
+
+## Примеры использования:
+
+- [Отключенный файл загрузчика](#отключенный-файл-загрузчика)
+- [Кастомный класс](#кастомный-класс)
+- [Множественные файлы](#множественные-файлы)
+
+## Отключенный файл загрузчика
+
+Чтобы сделать файл загрузчика отключенным, установите параметр `isDisabled` в `true`.
+
+<Story of={FileUploaderStories.Disabled} />
+
+<Source
+  code={`<dx-file-uploader meFileUploader [isDisabled]="true"> <!-- Ваш контент здесь --> </dx-file-uploader>`}
+  dark
+  language='html'
+/>
+
+## Кастомный класс
+
+Для добавления пользовательского класса используйте параметр `customClass`.
+
+<Story of={FileUploaderStories.CustomClass} />
+
+<Source
+  code={`<dx-file-uploader meFileUploader customClass="my-custom-class"> <!-- Ваш контент здесь --> </dx-file-uploader>`}
+  dark
+  language='html'
+/>
+
+## Множественные файлы
+
+Для возможности загрузки нескольких файлов установите параметр `multiple` в `true`.
+
+<Story of={FileUploaderStories.MultipleFiles} />
+
+<Source
+  code={`<dx-file-uploader meFileUploader [multiple]="true"> <!-- Ваш контент здесь --> </dx-file-uploader>`}
+  dark
+  language='html'
+/>
+
+## Перечень свойств
+
+<Controls
+  of={FileUploaderStories.Default}
+  include={[
+    "isDisabled",
+    "customClass",
+    "customStyle",
+    "selectButtonText",
+    "uploadButtonText",
+    "uploadUrl",
+    "multiple",
+  ]}
+/>
+
+<Story of={FileUploaderStories.Default} />

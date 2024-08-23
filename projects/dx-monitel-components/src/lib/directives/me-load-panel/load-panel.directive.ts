@@ -1,27 +1,88 @@
-import { Directive, Input } from '@angular/core';
+import { DxLoadPanelComponent } from 'devextreme-angular';
+
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  inject,
+  Input,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
+} from '@angular/core';
 
 @Directive({
   selector: '[meLoadPanel]',
-  host: {
-    '[class.me-load-panel-small]': 'isSmall',
-    '[class.me-load-panel-medium]': 'isMedium',
-    '[class.me-load-panel-large]': 'isLarge',
-    '[class.me-load-panel-custom]': 'customClass',
-  },
 })
-export class MeLoadPanelDirective {
+export class MeLoadPanelDirective implements OnChanges {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() customClass: boolean = false;
 
-  get isSmall() {
-    return this.size === 'small';
+  private renderer = inject(Renderer2);
+  private element = inject(ElementRef);
+  private loadpanel = inject(DxLoadPanelComponent);
+
+  @HostListener('onContentReady') onContentReady() {
+    this.applyStyles();
   }
 
-  get isMedium() {
-    return this.size === 'medium';
+  ngOnChanges(changes: SimpleChanges): void {
+    this.updateLoadPanelProperties(changes);
   }
 
-  get isLarge() {
-    return this.size === 'large';
+  private applyStyles() {
+    this.renderer.addClass(this.loadpanel.instance.content(), 'me-load-panel');
+    this.renderer.addClass(
+      this.loadpanel.instance.content().children[0].children[0],
+      'me-load-indicator'
+    );
+    this.applyPanelSize();
+    this.applyIndicatorSize();
+  }
+
+  private applyPanelSize() {
+    this.renderer.addClass(
+      this.loadpanel.instance.content(),
+      'me-load-panel-' + this.size
+    );
+  }
+
+  private applyIndicatorSize() {
+    this.renderer.addClass(
+      this.loadpanel.instance.content().children[0].children[0],
+      'me-load-indicator-' + this.size
+    );
+  }
+
+  private changePanelSize(changes?: SimpleChanges) {
+    if (changes?.['size'].previousValue !== undefined) {
+      this.renderer.removeClass(
+        this.loadpanel.instance.content(),
+        'me-load-panel-' + changes?.['size'].previousValue
+      );
+      this.renderer.addClass(
+        this.loadpanel.instance.content(),
+        'me-load-panel-' + this.size
+      );
+    }
+  }
+  private changeIndicatorSize(changes?: SimpleChanges) {
+    if (changes?.['size'].previousValue !== undefined) {
+      this.renderer.removeClass(
+        this.loadpanel.instance.content().children[0].children[0],
+        'me-load-indicator-' + changes?.['size'].previousValue
+      );
+      this.renderer.addClass(
+        this.loadpanel.instance.content().children[0].children[0],
+        'me-load-indicator-' + this.size
+      );
+    }
+  }
+
+  private updateLoadPanelProperties(changes: SimpleChanges) {
+    if (changes['size']) {
+      this.changePanelSize(changes);
+      this.changeIndicatorSize(changes);
+    }
   }
 }

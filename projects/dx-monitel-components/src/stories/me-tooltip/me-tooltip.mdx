@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
 import * as tooltipStories from "./me-tooltip.stories";
 import { moduleMetadata } from "@storybook/angular";
 import { MeTooltipDirective } from "../../public-api";
@@ -8,109 +8,110 @@ import { MeTooltipDirective } from "../../public-api";
   of={tooltipStories}
   decorators={[
     moduleMetadata({
-      declarations: [MeTooltipDirective, tooltipStories.TooltipDemoComponent],
+      declarations: [MeTooltipDirective],
     }),
   ]}
 />
 
 # Tooltip
 
-## Директива Tooltip
+## Директива MeTooltip
 
-Директива `Tooltip` позволяет создавать тултипы с различными параметрами, включая позиционирование, анимацию и пользовательские стили. Тултипы могут содержать текст, HTML и интерактивные элементы.
+Директива `MeTooltip` позволяет создавать информативные всплывающие подсказки для элементов пользовательского интерфейса.
 
-<Story of={tooltipStories.Default} />
-<Controls of={tooltipStories.Default} />
-<Source of={tooltipStories.Default} dark />
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxTooltip/)
+
+<Story of={tooltipStories.Basic} />
+
+<Controls of={tooltipStories.Basic} />
 
 ## Примеры использования:
 
-- [Кастомные позиции](#кастомные-позиции)
-- [Кастомный контент](#кастомный-контент)
-- [Кастомные анимации](#кастомные-анимации)
+- [Позиционирование](#позиционирование)
+- [HTML-содержимое](#html-содержимое)
+- [Кастомные стили](#кастомные-стили)
+- [Анимация](#анимация)
+- [Кастомный шаблон](#кастомный-шаблон)
 
-## Кастомные позиции
+## Позиционирование
 
-Для изменения позиции тултипа используйте параметр `tooltipPosition`.
+Тултип можно расположить в различных позициях относительно целевого элемента.
 
-<Story of={tooltipStories.CustomPositions} />
+<Story of={tooltipStories.Positioning} />
 
 <Source
-  code={`<button
-  class="tooltip-button"
-  [meTooltip]="simpleTooltip"
-  [tooltipPosition]="simplePosition"
->
-  {{ simpleButtonText }}
-</button>`}
+  code={`<button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition">Тултип {{ tooltipPosition }}</button>`}
   dark
   language="html"
 />
 
-## Кастомный контент
+## HTML-содержимое
 
-Для изменения контента тултипа используйте параметры `meTooltip` и `tooltipTemplateRef`.
+Тултипы могут содержать форматированный HTML-текст.
 
-<Story of={tooltipStories.CustomContent} />
+<Story of={tooltipStories.HTMLContent} />
 
+{" "}
 <Source
-  code={`<button
-  class="tooltip-button"
-  [meTooltip]="animatedTooltip"
-  [tooltipPosition]="animatedPosition"
-  [tooltipShowAnimation]="showAnimation"
-  [tooltipHideAnimation]="hideAnimation"
->
-  {{ animatedButtonText }}
-</button>`}
+  code={`<button [meTooltip]="<strong>Жирный текст</strong> и <em>курсив</em>" [tooltipPosition]="tooltipPosition"> HTML-тултип</button>`}
   dark
   language="html"
 />
 
-## Кастомные анимации
+## Кастомные стили
 
-Для изменения анимаций тултипа используйте параметры `tooltipShowAnimation` и `tooltipHideAnimation`.
+Вы можете применить собственные стили к тултипу.
 
-<Story of={tooltipStories.CustomAnimations} />
+<Story of={tooltipStories.CustomStyles} />
 
 <Source
-  code={`<button
-  class="tooltip-button"
-  [meTooltip]="positionedTooltip"
-  [tooltipPosition]="positionedPosition"
-  [tooltipShowAnimation]="showAnimation"
-  [tooltipHideAnimation]="hideAnimation"
->
-  {{ positionedButtonText }}
-</button>`}
+  code={`<button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition" [tooltipClass]="tooltipClass">Кастомный тултип</button>`}
   dark
   language="html"
 />
 
-## Перечень свойств
+## Анимация
 
-<Controls
-  of={tooltipStories.Default}
-  include={[
-    "simpleTooltip",
-    "simplePosition",
-    "simpleButtonText",
-    "animatedTooltip",
-    "animatedPosition",
-    "animatedButtonText",
-    "showAnimation",
-    "hideAnimation",
-    "positionedTooltip",
-    "positionedPosition",
-    "positionedButtonText",
-    "interactivePosition",
-    "interactiveMaxWidth",
-    "interactiveButtonText",
-    "htmlPosition",
-    "htmlMaxWidth",
-    "htmlButtonText",
-    "customStylePosition",
-    "customStyleClass",
-    "customStyleButtonText",
-  ]}
+Тултипы могут иметь анимацию появления и исчезновения.
+
+<Story of={tooltipStories.WithAnimation} />
+
+{" "}
+<Source
+  code={`
+    <button
+      [meTooltip]="meTooltip"
+      [tooltipPosition]="tooltipPosition"
+      [tooltipShowAnimation]="tooltipShowAnimation"
+      [tooltipHideAnimation]="tooltipHideAnimation" >
+     Анимированный тултип
+    </button>
+    `}
+  dark
+  language="html"
+/>
+
+## Кастомный шаблон
+
+Вы можете использовать собственный шаблон для содержимого тултипа.
+
+<Story of={tooltipStories.CustomTemplate} />
+
+<Source
+      code={`
+<button [meTooltip]="tooltipTemplate" [tooltipTemplateRef]="tooltipTemplate" [tooltipPosition]="tooltipPosition">ултип с кастомным шаблоном</button>
+
+<ng-template #tooltipTemplate>
+
+   <div>
+      <h4>Заголовок тултипа</h4>
+      <p>Это пример тултипа с кастомной разметкой.</p>
+      <ul>
+      <li>Пункт 1</li>
+      <li>Пункт 2</li>
+      </ul>
+    </div>
+</ng-template>`}
+dark
+      language="html"
 />

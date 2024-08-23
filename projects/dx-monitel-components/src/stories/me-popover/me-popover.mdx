@@ -1,53 +1,89 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs/blocks";
-import * as popoverStories from "./me-popover.stories";
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as PopoverStories from "./me-popover.stories";
 import { moduleMetadata } from "@storybook/angular";
 import { DxPopoverModule } from "devextreme-angular/ui/popover";
 import { MePopoverDirective } from "../../public-api";
 
 <Meta
-  title="Directives/MePopover"
-  of={popoverStories}
+  title="Components/Popover"
+  component={MePopoverDirective}
   decorators={[
     moduleMetadata({
-      declarations: [MePopoverDirective, popoverStories.PopoverHostComponent],
+      declarations: [MePopoverDirective],
       imports: [DxPopoverModule],
     }),
   ]}
+  of={PopoverStories}
 />
 
-# MePopover
+# Popover
 
-## Директива MePopover
+## Директива mePopover
 
-Директива `MePopover` позволяет создавать всплывающие окна с различными параметрами, включая позиционирование, отображение заголовка и анимацию. Всплывающие окна могут содержать текст и другие элементы.
+Директива `mePopover` добавляет дополнительные возможности к компоненту `dxPopover` из библиотеки DevExtreme, позволяя настраивать события показа/скрытия, позиционирование, размер и другие параметры.
 
-<Story name="Default" of={popoverStories.Default} />
-<Controls story={popoverStories.Default} />
-<Source story={popoverStories.Default} dark />
+<Story name="Default" of={PopoverStories.Default} />
+<Controls of={PopoverStories.Default} />
+<Source of={PopoverStories.Default} dark />
 
 ## Примеры использования:
 
-### Всплывающее окно с заголовком
+### Поповер с заголовком
 
-Для отображения заголовка используйте параметры `showTitle` и `title`.
+<Story name="WithTitle" of={PopoverStories.WithTitle} />
+<Source
+  code={`<dx-popover mePopover [showEvent]="'click'" [hideEvent]="'mouseleave'" [position]="'bottom'" [showTitle]="true" [title]="'Заголовок поповера'" [content]="'Это поповер с заголовком и ограничением максимальной ширины.'"></dx-popover>`}
+  dark
+  language="html"
+/>
 
-<Story name="WithTitle" of={popoverStories.WithTitle} />
-<Source story={popoverStories.WithTitle} dark />
+### Поповер с затемнением фона
 
-### Всплывающее окно с анимацией
-
-Для включения анимации используйте параметр `animationEnabled`.
-
-<Story name="WithAnimation" of={popoverStories.WithAnimation} />
-<Source story={popoverStories.WithAnimation} dark />
-
-### Всплывающее окно с наложением
-
-Для добавления наложения используйте параметры `shading` и `shadingColor`.
-
-<Story name="WithOverlay" of={popoverStories.WithOverlay} />
-<Source story={popoverStories.WithOverlay} dark />
+<Story name="WithOverlay" of={PopoverStories.WithOverlay} />
+<Source
+  code={`<dx-popover mePopover [showEvent]="'click'" [hideEvent]="'click'" [shading]="true" [shadingColor]="'rgba(0, 0, 0, 0.5)'" [content]="'Это поповер с затенением фона.'"></dx-popover>`}
+  dark
+  language="html"
+/>
 
 ## Перечень свойств
 
-<Controls story={popoverStories.Default} />
+<Controls story={PopoverStories.Default} />
+
+## Обработка событий
+
+Пример использования директивы `mePopover` с обработкой событий показа и скрытия:
+
+<Source
+  code={`
+<dx-popover
+  mePopover
+  [showEvent]="'mouseenter'"
+  [hideEvent]="'mouseleave'"
+  [position]="'top'"
+  [width]="300"
+  [showTitle]="false"
+  [shading]="false"
+  [content]="'Это содержимое поповера по умолчанию.'"
+  (onShowing)="onPopoverShowing($event)"
+  (onHiding)="onPopoverHiding($event)"
+>
+</dx-popover>
+
+      // В вашем компоненте:
+      onPopoverShowing(e: any) {
+        console.log('Popover is showing:', e);
+      }
+
+      onPopoverHiding(e: any) {
+        console.log('Popover is hiding:', e);
+      }
+
+`}
+dark
+language="typescript"
+/>
+
+## Дополнительные параметры
+
+<Controls of={PopoverStories.Default} />
