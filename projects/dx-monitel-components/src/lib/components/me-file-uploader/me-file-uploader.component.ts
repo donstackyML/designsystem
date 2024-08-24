@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, forwardR
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DecimalPipe, NgForOf, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
 import { DxButtonModule, DxLoadIndicatorModule, DxProgressBarModule } from "devextreme-angular";
+import {MeIconComponent} from "../me-icon/me-icon.component";
 
 type FileStatus = 'ready' | 'uploading' | 'uploaded' | 'error';
 
@@ -31,7 +32,8 @@ interface FileWrapper {
     NgSwitch,
     DxButtonModule,
     DxProgressBarModule,
-    DecimalPipe
+    DecimalPipe,
+    MeIconComponent
   ],
   styles: [`
     .file-uploader {
@@ -41,66 +43,78 @@ interface FileWrapper {
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
+    }
 
-      &.drag-over {
-        border-color: #1890ff;
-        background-color: #f0f8ff;
-      }
+    .file-uploader.drag-over {
+      border-color: #1890ff;
+      background-color: #f0f8ff;
+    }
 
-      p {
-        margin-bottom: 15px;
-        color: #606060;
-      }
+    .file-uploader p {
+      margin-bottom: 15px;
+      color: #606060;
     }
 
     .file-list {
       margin-top: 20px;
-
-      .file-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #f0f0f0;
-
-        .file-details {
-          display: flex;
-          align-items: center;
-
-          .large-icon {
-            font-size: 24px;
-            margin-right: 10px;
-            color: #1890ff;
-          }
-
-          .file-info {
-            .file-name {
-              font-weight: 500;
-            }
-
-            .file-size {
-              color: #8c8c8c;
-              font-size: 12px;
-              margin-left: 10px;
-            }
-
-            .file-status {
-              display: block;
-              margin-top: 5px;
-              font-size: 12px;
-
-              .error-message {
-                color: #ff4d4f;
-              }
-            }
-          }
-        }
-
-        .file-actions {
-          display: flex;
-        }
-      }
     }
+
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .file-details {
+      display: flex;
+      align-items: center;
+    }
+
+    .file-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .file-name {
+      font-weight: 500;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .file-size {
+      color: #8c8c8c;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    .file-status {
+      display: block;
+      font-size: 12px;
+      color: #ff4d4f;
+    }
+
+    .file-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .file-actions .me-icon-cancel {
+      color: #ff0000; /* Красный цвет для иконки cancel */
+      cursor: pointer;
+    }
+
+    .allowed-extensions {
+      font-size: 12px;
+      color: #606060; /* Серый цвет для текста */
+      margin-top: 5px;
+    }
+
+    .allowed-extensions .extensions {
+      color: #000000; /* Черный цвет для расширений */
+    }
+
+
   `]
 })
 export class MeFileUploaderComponent implements ControlValueAccessor {
@@ -121,6 +135,7 @@ export class MeFileUploaderComponent implements ControlValueAccessor {
 
   files: FileWrapper[] = [];
   dragOver = false;
+  validFileType = true; // Новое свойство для отслеживания валидности типа файла
 
   private onChange = (files: File[]) => {};
   private onTouched = () => {};
@@ -148,10 +163,12 @@ export class MeFileUploaderComponent implements ControlValueAccessor {
   }
 
   handleFiles(fileList: FileList): void {
+    this.validFileType = true; // Сбрасываем валидность перед проверкой новых файлов
     const newFiles = Array.from(fileList).map(file => {
       const extensionError = this.isInvalidFileExtension(file);
       const sizeError = this.isInvalidFileSize(file);
       if (extensionError || sizeError) {
+        this.validFileType = false; // Устанавливаем валидность в false при обнаружении ошибки
         const errorMessage = extensionError || sizeError || 'Unknown error';
         this.invalidFile.emit({ file, error: errorMessage });
         return { file, status: 'error' as const, progress: 0, error: errorMessage };
@@ -170,7 +187,7 @@ export class MeFileUploaderComponent implements ControlValueAccessor {
 
     const extension = file.name.split('.').pop()?.toLowerCase();
     if (!extension || !this.allowedFileExtensions.includes(extension)) {
-      return `File type is not allowed. Allowed extensions: ${this.allowedFileExtensions.join(', ')}`;
+      return `File type is not allowed.`;
     }
     return undefined;
   }
@@ -238,10 +255,12 @@ export class MeFileUploaderComponent implements ControlValueAccessor {
 
       if (!extensionError && !sizeError) {
         this.updateFileStatus(file, 'ready', 0);
+        this.validFileType = true; // Если ошибки исправлены, валидность восстанавливается
       } else {
         const error = extensionError || sizeError || 'Unknown error';
         this.setFileError(file, error);
         this.invalidFile.emit({ file, error });
+        this.validFileType = false; // Валидность остается false при повторении ошибки
       }
     }
   }

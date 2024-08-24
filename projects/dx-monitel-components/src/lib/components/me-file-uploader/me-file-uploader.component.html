@@ -20,30 +20,24 @@
 <div class="file-list" *ngIf="showFileList && files.length > 0">
   <div class="file-item" *ngFor="let fileWrapper of files; let i = index">
     <div class="file-details">
-      <i class="dx-icon-file large-icon"></i>
-      <div class="file-info">
-        <span class="file-name">{{ fileWrapper.file.name }}</span>
-        <span class="file-size">{{ fileWrapper.file.size / 1024 | number: '1.0-2' }} KB</span>
-        <span class="file-status" [ngSwitch]="fileWrapper.status">
-          <span *ngSwitchCase="'error'" class="error-message">{{ fileWrapper.error }}</span>
-          <span *ngSwitchCase="'ready'">Ready to upload</span>
-          <span *ngSwitchCase="'uploaded'">Uploaded</span>
-          <dx-progress-bar *ngSwitchCase="'uploading'" [value]="fileWrapper.progress"></dx-progress-bar>
-        </span>
+      <me-icon icon="insert_drive_file"></me-icon>
+      <div class="file-details">
+        <div class="file-info">
+          <div class="file-name-size">
+            <span class="file-name">{{ fileWrapper.file.name }}</span>
+            <span class="file-size">{{ fileWrapper.file.size / 1024 | number: '1.0-2' }} KB</span>
+          </div>
+          <span class="file-status" *ngIf="fileWrapper.status === 'error'">
+      {{ fileWrapper.error }}
+    </span>
+        </div>
       </div>
     </div>
     <div class="file-actions">
-      <dx-button
-        *ngIf="fileWrapper.status === 'error'"
-        icon="refresh"
-        stylingMode="text"
-        (onClick)="retryFile(fileWrapper.file)">
-      </dx-button>
-      <dx-button
-        icon="close"
-        stylingMode="text"
-        (onClick)="removeFile(i)">
-      </dx-button>
+      <me-icon icon="cancel" class="me-icon-cancel" color="#D50F3F" (click)="removeFile(i)"></me-icon>
     </div>
+  </div>
+  <div class="allowed-extensions" *ngIf="!validFileType">
+    Allowed file extensions: <span class="extensions">{{ allowedFileExtensions.join(', ') }}</span>
   </div>
 </div>
