@@ -1,85 +1,140 @@
 import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
 import * as FileUploaderStories from "./me-file-uploader.stories";
 import { moduleMetadata } from "@storybook/angular";
-import { MeFileUploaderDirective } from "../../lib/directives/me-file-uploader/file-uploader.directive";
+import { MeFileUploaderComponent } from "../../public-api";
 
 <Meta
-  name="FileUploader Docs"
-  of={FileUploaderStories}
+  title="Компоненты/FileUploader"
+  component={MeFileUploaderComponent}
   decorators={[
     moduleMetadata({
-      declarations: [MeFileUploaderDirective],
+      imports: [MeFileUploaderComponent],
     }),
-  ]}
+    ]}
+  of={FileUploaderStories}
 />
 
 # FileUploader
 
-## Директива meFileUploader
+## Компонент MeFileUploader
 
-Директива `meFileUploader` применяется к элементу dx-file-uploader для управления его состояниями и добавления дополнительных свойств.
+Компонент `MeFileUploader` предоставляет возможность загрузки файлов с расширенной функциональностью, включая проверку типов файлов, ограничение размера и поддержку множественной загрузки.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxFileUploader/)
-
-<Story of={FileUploaderStories.Default} />
+<Story name="Default" of={FileUploaderStories.Default} />
 <Controls of={FileUploaderStories.Default} />
+
 <Source of={FileUploaderStories.Default} dark />
 
 ## Примеры использования:
 
-- [Отключенный файл загрузчика](#отключенный-файл-загрузчика)
-- [Кастомный класс](#кастомный-класс)
-- [Множественные файлы](#множественные-файлы)
+### Загрузка одного файла
 
-## Отключенный файл загрузчика
-
-Чтобы сделать файл загрузчика отключенным, установите параметр `isDisabled` в `true`.
-
-<Story of={FileUploaderStories.Disabled} />
+<Story name="SingleFileUpload" of={FileUploaderStories.SingleFileUpload} />
 
 <Source
-  code={`<dx-file-uploader meFileUploader [isDisabled]="true"> <!-- Ваш контент здесь --> </dx-file-uploader>`}
+  code={`<me-file-uploader [multiple]="false" labelText="Выберите один файл"></me-file-uploader>`}
   dark
-  language='html'
+  language="html"
 />
 
-## Кастомный класс
+### Пользовательские типы файлов
 
-Для добавления пользовательского класса используйте параметр `customClass`.
-
-<Story of={FileUploaderStories.CustomClass} />
+<Story name="CustomFileTypes" of={FileUploaderStories.CustomFileTypes} />
 
 <Source
-  code={`<dx-file-uploader meFileUploader customClass="my-custom-class"> <!-- Ваш контент здесь --> </dx-file-uploader>`}
+  code={`<me-file-uploader [allowedFileExtensions]="['doc', 'docx', 'txt']" labelText="Загрузите только документы"></me-file-uploader>`}
   dark
-  language='html'
+  language="html"
 />
 
-## Множественные файлы
+### Загрузка больших файлов
 
-Для возможности загрузки нескольких файлов установите параметр `multiple` в `true`.
-
-<Story of={FileUploaderStories.MultipleFiles} />
+<Story name="LargeFileUpload" of={FileUploaderStories.LargeFileUpload} />
 
 <Source
-  code={`<dx-file-uploader meFileUploader [multiple]="true"> <!-- Ваш контент здесь --> </dx-file-uploader>`}
+  code={`<me-file-uploader [maxFileSize]="100 * 1024 * 1024" [minFileSize]="1 * 1024 * 1024" labelText="Загрузите файлы от 1МБ до 100МБ"></me-file-uploader>`}
   dark
-  language='html'
+  language="html"
+/>
+
+### Скрытие списка файлов
+
+<Story name="HideFileList" of={FileUploaderStories.HideFileList} />
+
+<Source
+  code={`<me-file-uploader [showFileList]="false"></me-file-uploader>`}
+  dark
+  language="html"
+/>
+
+### Пользовательский текст кнопки
+
+<Story name="CustomButtonText" of={FileUploaderStories.CustomButtonText} />
+
+<Source
+  code={`<me-file-uploader selectButtonText="Выбрать файлы"></me-file-uploader>`}
+  dark
+  language="html"
 />
 
 ## Перечень свойств
 
-<Controls
-  of={FileUploaderStories.Default}
-  include={[
-    "isDisabled",
-    "customClass",
-    "customStyle",
-    "selectButtonText",
-    "uploadButtonText",
-    "uploadUrl",
-    "multiple",
-  ]}
+<Controls story={FileUploaderStories.Default} />
+
+## Обработка событий
+
+Компонент FileUploader поддерживает несколько событий для управления процессом загрузки файлов. Вот пример обработки этих событий:
+
+<Source
+  code={`
+<me-file-uploader
+  (fileAdded)="onFileAdded($event)"
+  (fileRemoved)="onFileRemoved($event)"
+  (allFilesRemoved)="onAllFilesRemoved()"
+  (invalidFile)="onInvalidFile($event)"
+></me-file-uploader>
+
+    // В вашем компоненте:
+    onFileAdded(file: File) {
+      console.log('Файл добавлен:', file);
+    }
+
+    onFileRemoved(file: File) {
+      console.log('Файл удален:', file);
+    }
+
+    onAllFilesRemoved() {
+      console.log('Все файлы удалены');
+    }
+
+    onInvalidFile(event: { file: File, error: string }) {
+      console.log('Недопустимый файл:', event);
+    }
+`}
+  dark
+  language="typescript"
 />
 
-<Story of={FileUploaderStories.Default} />
+Это позволяет вам реагировать на различные события, связанные с загрузкой файлов.
+
+### Загрузка файлов с пользовательским интерфейсом
+
+<Story name="CustomLabelText" of={FileUploaderStories.CustomLabelText} />
+
+Вы можете настроить текст метки для загрузки файлов, чтобы предоставить пользователям более подробные инструкции:
+
+<Source
+  code={`
+<me-file-uploader
+  labelText="Перетащите ваши файлы сюда или нажмите кнопку ниже"
+  selectButtonText="Выбрать файлы"
+  [allowedFileExtensions]="['jpg', 'png', 'pdf']"
+  [maxFileSize]="5 * 1024 * 1024"
+  [multiple]="true"
+></me-file-uploader>
+`}
+  dark
+  language="html"
+/>
+
+В этом примере мы создаем загрузчик файлов с настраиваемым текстом метки и кнопки, а также устанавливаем ограничения на типы и размер файлов. Это демонстрирует, как вы можете создать более информативный и удобный интерфейс для загрузки файлов, соответствующий потребностям вашего приложения.

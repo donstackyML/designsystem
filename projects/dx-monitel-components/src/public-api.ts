@@ -3,6 +3,12 @@ import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.dir
  * Public API Surface of me-lib
  */
 
+export {MePaginationComponent} from "./lib/components/me-pagination/me-pagination.component";
+
+export {MeIconModule} from "./lib/directives/me-icon/me-icon.module";
+
+export {MeFileUploaderComponent} from "./lib/components/me-file-uploader/me-file-uploader.component";
+
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';
 export { MeButtonGroupDirective } from './lib/directives/me-button-group/button-group.directive';
@@ -47,7 +53,6 @@ export { MeContextMenuModule } from './lib/directives/me-context-menu/context-me
 export { MeControlModule } from './lib/directives/me-control/control.module';
 export { MeDropDownButtonModule } from './lib/directives/me-drop-down-button/drop-down-button.module';
 export { MeEditorModule } from './lib/directives/me-editor/me-editor.module';
-export { MeIconModule } from './lib/directives/me-icon/me-icon.module';
 export { MeLabelModule } from './lib/directives/me-label/me-label.module';
 export { MeListModule } from './lib/directives/me-list/list.module';
 export { MeMenuModule } from './lib/directives/me-menu/menu.module';

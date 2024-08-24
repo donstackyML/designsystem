@@ -1,0 +1,40 @@
+<div class="me-pagination">
+  <span class="me-pagination__info">Записей: {{ totalItems }}</span>
+
+  <div class="me-pagination__controls">
+    <dx-button
+      stylingMode="text"
+      [disabled]="currentPage === 1"
+      (onClick)="prevPage()"
+      icon="chevronleft"
+    ></dx-button>
+
+    <ng-container *ngFor="let page of pages; trackBy: trackByFn">
+      <ng-container *ngIf="page !== '...'">
+        <dx-button
+          [stylingMode]="page === currentPage ? 'contained' : 'outlined'"
+          [text]="page.toString()"
+          (onClick)="changePage(page)"
+          [type]="page === currentPage ? 'default' : 'normal'"
+        ></dx-button>
+      </ng-container>
+      <span *ngIf="page === '...'" class="me-pagination__ellipsis">...</span>
+    </ng-container>
+
+    <dx-button
+      stylingMode="text"
+      [disabled]="currentPage === totalPages"
+      (onClick)="nextPage()"
+      icon="chevronright"
+    ></dx-button>
+  </div>
+
+  <div class="me-pagination__per-page">
+    <dx-select-box
+      [items]="itemsPerPageOptions"
+      [value]="itemsPerPage"
+      (onValueChanged)="onItemsPerPageChange($event)"
+      [width]="80"
+    ></dx-select-box>
+  </div>
+</div>

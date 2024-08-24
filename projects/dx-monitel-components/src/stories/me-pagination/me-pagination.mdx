@@ -1,0 +1,139 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as PaginationStories from "./me-pagination.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { MePaginationComponent } from "../../public-api";
+
+<Meta
+  title="Компоненты/Pagination"
+  component={MePaginationComponent}
+  decorators={[
+    moduleMetadata({
+      imports: [MePaginationComponent],
+    }),
+    ]}
+  of={PaginationStories}
+/>
+
+# Pagination
+
+## Компонент MePagination
+
+Компонент `MePagination` предоставляет удобный интерфейс для навигации по страницам данных, включая возможность выбора количества элементов на странице и отображение общего количества элементов.
+
+<Story name="Default" of={PaginationStories.Default} />
+<Controls of={PaginationStories.Default} />
+
+<Source of={PaginationStories.Default} dark />
+
+## Примеры использования:
+
+### Много страниц
+
+<Story name="ManyPages" of={PaginationStories.ManyPages} />
+
+<Source
+  code={`<me-pagination [totalItems]="1000" [itemsPerPage]="20" [currentPage]="5" [maxVisiblePages]="7"></me-pagination>`}
+  dark
+  language="html"
+/>
+
+### Мало элементов
+
+<Story name="FewItems" of={PaginationStories.FewItems} />
+
+<Source
+  code={`<me-pagination [totalItems]="30" [itemsPerPage]="10" [currentPage]="1" [maxVisiblePages]="5"></me-pagination>`}
+  dark
+  language="html"
+/>
+
+### Пользовательское количество элементов на странице
+
+<Story name="CustomItemsPerPage" of={PaginationStories.CustomItemsPerPage} />
+
+<Source
+  code={`<me-pagination [totalItems]="500" [itemsPerPage]="50" [currentPage]="1" [maxVisiblePages]="5"></me-pagination>`}
+  dark
+  language="html"
+/>
+
+### Последняя страница
+
+<Story name="LastPage" of={PaginationStories.LastPage} />
+
+<Source
+  code={`<me-pagination [totalItems]="100" [itemsPerPage]="10" [currentPage]="10" [maxVisiblePages]="5"></me-pagination>`}
+  dark
+  language="html"
+/>
+
+### Максимальное количество видимых страниц
+
+<Story name="MaxVisiblePages" of={PaginationStories.MaxVisiblePages} />
+
+<Source
+  code={`<me-pagination [totalItems]="200" [itemsPerPage]="10" [currentPage]="5" [maxVisiblePages]="10"></me-pagination>`}
+  dark
+  language="html"
+/>
+
+## Перечень свойств
+
+<Controls story={PaginationStories.Default} />
+
+## Обработка событий
+
+Компонент Pagination поддерживает события для отслеживания изменений страницы и количества элементов на странице. Вот пример обработки этих событий:
+
+<Source
+  code={`
+<me-pagination
+  [totalItems]="100"
+  [itemsPerPage]="10"
+  [currentPage]="1"
+  [maxVisiblePages]="5"
+  (pageChange)="onPageChange($event)"
+  (itemsPerPageChange)="onItemsPerPageChange($event)"
+></me-pagination>
+
+    // В вашем компоненте:
+    onPageChange(newPage: number) {
+      console.log('Страница изменена:', newPage);
+    }
+
+    onItemsPerPageChange(newItemsPerPage: number) {
+      console.log('Изменено количество элементов на странице:', newItemsPerPage);
+    }
+`}
+  dark
+  language="typescript"
+/>
+
+Это позволяет вам реагировать на изменения страницы и количества элементов на странице для обновления данных или выполнения других действий в вашем приложении.
+
+### Настройка пагинации для таблицы данных
+
+<Story name="CustomItemsPerPage" of={PaginationStories.CustomItemsPerPage} />
+
+Вы можете использовать компонент пагинации вместе с таблицей данных для создания полнофункционального интерфейса навигации:
+
+<Source
+  code={`
+<table>
+  <!-- Ваши данные таблицы -->
+</table>
+
+  <me-pagination
+    [totalItems]="500"
+    [itemsPerPage]="50"
+    [currentPage]="1"
+    [maxVisiblePages]="5"
+    (pageChange)="onPageChange($event)"
+    (itemsPerPageChange)="onItemsPerPageChange($event)"
+  ></me-pagination>
+`}
+  dark
+  language="html"
+/>
+
+В этом примере мы создаем пагинацию для таблицы с 500 элементами, отображая по 50 элементов на странице. При изменении страницы или количества элементов на странице вы можете обновлять данные таблицы соответствующим образом.

@@ -31,6 +31,9 @@ import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
 import { MeFileUploaderModule } from './directives/me-file-uploader/file-uploader.module';
 import { MeScrollViewModule } from './directives/me-scroll-view/scroll-view.module';
+import {MeFileUploaderComponent} from "./components/me-file-uploader/me-file-uploader.component";
+import {MePaginationComponent} from "./components/me-pagination/me-pagination.component";
+
 
 @NgModule({
   declarations: [],
@@ -67,6 +70,9 @@ import { MeScrollViewModule } from './directives/me-scroll-view/scroll-view.modu
     MeTabPanelModule,
     MeFileUploaderModule,
     MeScrollViewModule,
+    MeFileUploaderComponent,
+    MeIconModule,
+    MePaginationComponent
   ],
   exports: [
     MeAccordionModule,
@@ -102,6 +108,9 @@ import { MeScrollViewModule } from './directives/me-scroll-view/scroll-view.modu
     MeCalendarModule,
     MeFileUploaderModule,
     MeScrollViewModule,
+    MeFileUploaderComponent,
+    MeIconModule,
+    MePaginationComponent
   ],
 })
 export class MeComponentsModule {}

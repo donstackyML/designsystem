@@ -1,0 +1,49 @@
+<div class="file-uploader"
+     [class.drag-over]="dragOver"
+     (click)="openFileDialog()"
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)"
+     (drop)="onDrop($event)">
+  <p>{{ labelText }}</p>
+  <dx-button
+    text="{{ selectButtonText }}"
+    stylingMode="contained"
+    type="default">
+  </dx-button>
+  <input #fileInput
+         type="file"
+         [attr.multiple]="multiple ? true : null"
+         (change)="onFileSelected($event)"
+         style="display: none;">
+</div>
+
+<div class="file-list" *ngIf="showFileList && files.length > 0">
+  <div class="file-item" *ngFor="let fileWrapper of files; let i = index">
+    <div class="file-details">
+      <i class="dx-icon-file large-icon"></i>
+      <div class="file-info">
+        <span class="file-name">{{ fileWrapper.file.name }}</span>
+        <span class="file-size">{{ fileWrapper.file.size / 1024 | number: '1.0-2' }} KB</span>
+        <span class="file-status" [ngSwitch]="fileWrapper.status">
+          <span *ngSwitchCase="'error'" class="error-message">{{ fileWrapper.error }}</span>
+          <span *ngSwitchCase="'ready'">Ready to upload</span>
+          <span *ngSwitchCase="'uploaded'">Uploaded</span>
+          <dx-progress-bar *ngSwitchCase="'uploading'" [value]="fileWrapper.progress"></dx-progress-bar>
+        </span>
+      </div>
+    </div>
+    <div class="file-actions">
+      <dx-button
+        icon="close"
+        stylingMode="text"
+        (onClick)="removeFile(i)">
+      </dx-button>
+      <dx-button
+        *ngIf="fileWrapper.status === 'error'"
+        icon="refresh"
+        stylingMode="text"
+        (onClick)="retryFile(fileWrapper.file)">
+      </dx-button>
+    </div>
+  </div>
+</div>
