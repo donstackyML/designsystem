@@ -528,6 +528,16 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "AllIcons",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"display: flex; flex-wrap: wrap;\">\n        ${iconOptions.map(icon => `\n          <div style=\"display: inline-block; margin: 10px; text-align: center; width: 100px;\">\n            <me-icon icon=\"${icon}\" size=\"large\" color=\"#000000\"></me-icon>\n            <p style=\"font-size: 12px; word-wrap: break-word;\">${icon}</p>\n          </div>\n        `).join('')}\n      </div>\n    `,\n  }),\n}"
+            },
+            {
                 "name": "AutoResize",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -635,7 +645,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    color: '#ff5722',\n  },\n}"
+                "defaultValue": "{\n  ...Template,\n  args: {\n    color: '#ff5722',\n  },\n}"
             },
             {
                 "name": "CustomFileTypes",
@@ -685,7 +695,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    icon: 'star',\n  },\n}"
+                "defaultValue": "{\n  ...Template,\n  args: {\n    icon: 'star',\n  },\n}"
             },
             {
                 "name": "CustomItemsPerPage",
@@ -791,7 +801,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -801,11 +811,11 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{}"
+                "defaultValue": "{\n  ...Template,\n  args: {},\n}"
             },
             {
                 "name": "Default",
@@ -831,21 +841,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  ...Template,\n  args: {},\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {},\n}"
             },
             {
                 "name": "Default",
@@ -978,6 +988,16 @@
                 "defaultValue": "{\n  args: {\n    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        HTML-тултип\n      </button>\n    `,\n  }),\n}"
             },
             {
+                "name": "iconOptions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  'home', 'star', 'settings', 'favorite', 'search', 'person', 'info', 'warning',\n  'check_circle', 'close', 'add', 'remove', 'edit', 'delete', 'alarm', 'account_circle',\n  'calendar_today', 'camera', 'chat', 'cloud', 'download', 'email', 'file_copy', 'help',\n  'lock', 'logout', 'menu', 'notifications', 'palette', 'phone', 'print', 'save',\n  'shopping_cart', 'thumb_up', 'visibility', 'wifi', 'zoom_in', 'zoom_out', 'arrow_forward',\n  'arrow_back', 'arrow_upward', 'arrow_downward', 'play_arrow', 'pause', 'stop', 'skip_next',\n  'skip_previous', 'volume_up', 'volume_down', 'mute', 'brightness_high', 'brightness_low',\n  'account_balance', 'add_circle', 'airplanemode_active', 'attach_file', 'backspace', 'battery_alert',\n  'bluetooth', 'book', 'bookmark', 'build', 'business', 'call', 'category', 'check_box',\n  'cleaning_services', 'code', 'computer', 'contacts', 'content_copy', 'dashboard', 'description',\n  'directions', 'directions_car', 'directions_bike', 'done', 'drafts', 'drive_eta', 'eco',\n  'emoji_emotions', 'enhanced_encryption', 'equalizer', 'event', 'explore', 'face', 'fast_forward',\n  'fast_rewind', 'favorite_border', 'file_download', 'filter_list', 'fingerprint', 'fitness_center',\n  'flag', 'folder', 'folder_open', 'format_align_center', 'format_align_justify', 'format_align_left',\n  'format_align_right', 'format_bold', 'format_clear', 'format_color_fill', 'format_color_reset',\n  'format_color_text', 'format_indent_decrease', 'format_indent_increase', 'format_italic',\n  'format_line_spacing', 'format_list_bulleted', 'format_list_numbered', 'format_paint', 'format_quote',\n  'format_shapes', 'format_size', 'format_strikethrough', 'format_textdirection_l_to_r',\n  'format_textdirection_r_to_l', 'format_underlined', 'fullscreen', 'fullscreen_exit', 'functions',\n]"
+            },
+            {
                 "name": "InsideStylingMode",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1015,7 +1035,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'large',\n  },\n}"
+                "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'large',\n  },\n}"
             },
             {
                 "name": "Large",
@@ -1295,7 +1315,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'small',\n  },\n}"
+                "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'small',\n  },\n}"
             },
             {
                 "name": "Small",
@@ -1331,11 +1351,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <me-icon\n        [icon]=\"icon\"\n        [size]=\"size\"\n        [color]=\"color\">\n      </me-icon>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onFileAdded: action('Файл добавлен'),\n      onFileRemoved: action('Файл удален'),\n      onAllFilesRemoved: action('Все файлы удалены'),\n      onInvalidFile: action('Недопустимый файл'),\n    },\n    template: `\n      <me-file-uploader\n        [allowedFileExtensions]=\"allowedFileExtensions\"\n        [maxFileSize]=\"maxFileSize\"\n        [minFileSize]=\"minFileSize\"\n        [multiple]=\"multiple\"\n        [labelText]=\"labelText\"\n        [selectButtonText]=\"selectButtonText\"\n        [showFileList]=\"showFileList\"\n        (fileAdded)=\"onFileAdded($event)\"\n        (fileRemoved)=\"onFileRemoved($event)\"\n        (allFilesRemoved)=\"onAllFilesRemoved()\"\n        (invalidFile)=\"onInvalidFile($event)\"\n      >\n      </me-file-uploader>\n    `,\n  }),\n}"
+                "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onFileAdded: (e: any) => console.log('Файл добавлен', e),\n      onFileRemoved: (e: any) => console.log('Файл удален', e),\n      onAllFilesRemoved: (e: any) => console.log('Все файлы удалены', e),\n      onInvalidFile: (e: any) => console.log('Недопустимый файл', e),\n    },\n    template: `\n      <me-file-uploader\n        [allowedFileExtensions]=\"allowedFileExtensions\"\n        [maxFileSize]=\"maxFileSize\"\n        [minFileSize]=\"minFileSize\"\n        [multiple]=\"multiple\"\n        [labelText]=\"labelText\"\n        [selectButtonText]=\"selectButtonText\"\n        [showFileList]=\"showFileList\"\n        (fileAdded)=\"onFileAdded($event)\"\n        (fileRemoved)=\"onFileRemoved($event)\"\n        (allFilesRemoved)=\"onAllFilesRemoved()\"\n        (invalidFile)=\"onInvalidFile($event)\"\n      >\n      </me-file-uploader>\n    `,\n  }),\n}"
             },
             {
                 "name": "Template",
@@ -1355,7 +1385,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onPageChange: action('Страница изменена'),\n      onItemsPerPageChange: action('Изменено количество элементов на странице'),\n    },\n    template: `\n      <me-pagination\n        [totalItems]=\"totalItems\"\n        [itemsPerPage]=\"itemsPerPage\"\n        [currentPage]=\"currentPage\"\n        [maxVisiblePages]=\"maxVisiblePages\"\n        (pageChange)=\"onPageChange($event)\"\n        (itemsPerPageChange)=\"onItemsPerPageChange($event)\"\n      >\n      </me-pagination>\n    `,\n  }),\n}"
+                "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onPageChange: (e: any) => console.log('Страница изменена', e),\n      onItemsPerPageChange: (e: any) => console.log('Изменено количество элементов на странице', e),\n    },\n    template: `\n      <me-pagination\n        [totalItems]=\"totalItems\"\n        [itemsPerPage]=\"itemsPerPage\"\n        [currentPage]=\"currentPage\"\n        [maxVisiblePages]=\"maxVisiblePages\"\n        (pageChange)=\"onPageChange($event)\"\n        (itemsPerPageChange)=\"onItemsPerPageChange($event)\"\n      >\n      </me-pagination>\n    `,\n  }),\n}"
             },
             {
                 "name": "themeWrapper",
@@ -1586,8 +1616,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MeFileUploaderComponent>",
-                "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+                "rawtype": "StoryObj<MeIconComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1597,8 +1627,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj",
-                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "rawtype": "StoryObj<MeFileUploaderComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1630,8 +1660,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MePaginationComponent>",
-                "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
+                "rawtype": "StoryObj",
+                "file": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1652,8 +1682,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<DxPopupModule | MePopupDirective>",
-                "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
+                "rawtype": "StoryObj<MePaginationComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1663,8 +1693,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj",
-                "file": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
+                "rawtype": "StoryObj<DxPopupModule | MePopupDirective>",
+                "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1750,6 +1780,88 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts": [
+                {
+                    "name": "AllIcons",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"display: flex; flex-wrap: wrap;\">\n        ${iconOptions.map(icon => `\n          <div style=\"display: inline-block; margin: 10px; text-align: center; width: 100px;\">\n            <me-icon icon=\"${icon}\" size=\"large\" color=\"#000000\"></me-icon>\n            <p style=\"font-size: 12px; word-wrap: break-word;\">${icon}</p>\n          </div>\n        `).join('')}\n      </div>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "CustomColor",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    color: '#ff5722',\n  },\n}"
+                },
+                {
+                    "name": "CustomIcon",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    icon: 'star',\n  },\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {},\n}"
+                },
+                {
+                    "name": "iconOptions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  'home', 'star', 'settings', 'favorite', 'search', 'person', 'info', 'warning',\n  'check_circle', 'close', 'add', 'remove', 'edit', 'delete', 'alarm', 'account_circle',\n  'calendar_today', 'camera', 'chat', 'cloud', 'download', 'email', 'file_copy', 'help',\n  'lock', 'logout', 'menu', 'notifications', 'palette', 'phone', 'print', 'save',\n  'shopping_cart', 'thumb_up', 'visibility', 'wifi', 'zoom_in', 'zoom_out', 'arrow_forward',\n  'arrow_back', 'arrow_upward', 'arrow_downward', 'play_arrow', 'pause', 'stop', 'skip_next',\n  'skip_previous', 'volume_up', 'volume_down', 'mute', 'brightness_high', 'brightness_low',\n  'account_balance', 'add_circle', 'airplanemode_active', 'attach_file', 'backspace', 'battery_alert',\n  'bluetooth', 'book', 'bookmark', 'build', 'business', 'call', 'category', 'check_box',\n  'cleaning_services', 'code', 'computer', 'contacts', 'content_copy', 'dashboard', 'description',\n  'directions', 'directions_car', 'directions_bike', 'done', 'drafts', 'drive_eta', 'eco',\n  'emoji_emotions', 'enhanced_encryption', 'equalizer', 'event', 'explore', 'face', 'fast_forward',\n  'fast_rewind', 'favorite_border', 'file_download', 'filter_list', 'fingerprint', 'fitness_center',\n  'flag', 'folder', 'folder_open', 'format_align_center', 'format_align_justify', 'format_align_left',\n  'format_align_right', 'format_bold', 'format_clear', 'format_color_fill', 'format_color_reset',\n  'format_color_text', 'format_indent_decrease', 'format_indent_increase', 'format_italic',\n  'format_line_spacing', 'format_list_bulleted', 'format_list_numbered', 'format_paint', 'format_quote',\n  'format_shapes', 'format_size', 'format_strikethrough', 'format_textdirection_l_to_r',\n  'format_textdirection_r_to_l', 'format_underlined', 'fullscreen', 'fullscreen_exit', 'functions',\n]"
+                },
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'large',\n  },\n}"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'small',\n  },\n}"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <me-icon\n        [icon]=\"icon\"\n        [size]=\"size\"\n        [color]=\"color\">\n      </me-icon>\n    `,\n  }),\n}"
+                }
+            ],
             "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts": [
                 {
                     "name": "AutoResize",
@@ -2199,7 +2311,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onFileAdded: action('Файл добавлен'),\n      onFileRemoved: action('Файл удален'),\n      onAllFilesRemoved: action('Все файлы удалены'),\n      onInvalidFile: action('Недопустимый файл'),\n    },\n    template: `\n      <me-file-uploader\n        [allowedFileExtensions]=\"allowedFileExtensions\"\n        [maxFileSize]=\"maxFileSize\"\n        [minFileSize]=\"minFileSize\"\n        [multiple]=\"multiple\"\n        [labelText]=\"labelText\"\n        [selectButtonText]=\"selectButtonText\"\n        [showFileList]=\"showFileList\"\n        (fileAdded)=\"onFileAdded($event)\"\n        (fileRemoved)=\"onFileRemoved($event)\"\n        (allFilesRemoved)=\"onAllFilesRemoved()\"\n        (invalidFile)=\"onInvalidFile($event)\"\n      >\n      </me-file-uploader>\n    `,\n  }),\n}"
+                    "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onFileAdded: (e: any) => console.log('Файл добавлен', e),\n      onFileRemoved: (e: any) => console.log('Файл удален', e),\n      onAllFilesRemoved: (e: any) => console.log('Все файлы удалены', e),\n      onInvalidFile: (e: any) => console.log('Недопустимый файл', e),\n    },\n    template: `\n      <me-file-uploader\n        [allowedFileExtensions]=\"allowedFileExtensions\"\n        [maxFileSize]=\"maxFileSize\"\n        [minFileSize]=\"minFileSize\"\n        [multiple]=\"multiple\"\n        [labelText]=\"labelText\"\n        [selectButtonText]=\"selectButtonText\"\n        [showFileList]=\"showFileList\"\n        (fileAdded)=\"onFileAdded($event)\"\n        (fileRemoved)=\"onFileRemoved($event)\"\n        (allFilesRemoved)=\"onAllFilesRemoved()\"\n        (invalidFile)=\"onInvalidFile($event)\"\n      >\n      </me-file-uploader>\n    `,\n  }),\n}"
                 }
             ],
             "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts": [
@@ -2262,58 +2374,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
-                }
-            ],
-            "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts": [
-                {
-                    "name": "CustomColor",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    color: '#ff5722',\n  },\n}"
-                },
-                {
-                    "name": "CustomIcon",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    icon: 'star',\n  },\n}"
-                },
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                },
-                {
-                    "name": "Large",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'large',\n  },\n}"
-                },
-                {
-                    "name": "Small",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'small',\n  },\n}"
                 }
             ],
             "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts": [
@@ -2509,7 +2569,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onPageChange: action('Страница изменена'),\n      onItemsPerPageChange: action('Изменено количество элементов на странице'),\n    },\n    template: `\n      <me-pagination\n        [totalItems]=\"totalItems\"\n        [itemsPerPage]=\"itemsPerPage\"\n        [currentPage]=\"currentPage\"\n        [maxVisiblePages]=\"maxVisiblePages\"\n        (pageChange)=\"onPageChange($event)\"\n        (itemsPerPageChange)=\"onItemsPerPageChange($event)\"\n      >\n      </me-pagination>\n    `,\n  }),\n}"
+                    "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onPageChange: (e: any) => console.log('Страница изменена', e),\n      onItemsPerPageChange: (e: any) => console.log('Изменено количество элементов на странице', e),\n    },\n    template: `\n      <me-pagination\n        [totalItems]=\"totalItems\"\n        [itemsPerPage]=\"itemsPerPage\"\n        [currentPage]=\"currentPage\"\n        [maxVisiblePages]=\"maxVisiblePages\"\n        (pageChange)=\"onPageChange($event)\"\n        (itemsPerPageChange)=\"onItemsPerPageChange($event)\"\n      >\n      </me-pagination>\n    `,\n  }),\n}"
                 }
             ],
             "projects/dx-monitel-components/.storybook/preview.ts": [
@@ -2852,6 +2912,19 @@
                     "kind": 183
                 }
             ],
+            "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MeIconComponent>",
+                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts": [
                 {
                     "name": "Story",
@@ -2859,19 +2932,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<MeFileUploaderComponent>",
                     "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj",
-                    "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -2904,13 +2964,13 @@
                     "kind": 183
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts": [
+            "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<MePaginationComponent>",
-                    "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
+                    "rawtype": "StoryObj",
+                    "file": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -2930,6 +2990,19 @@
                     "kind": 183
                 }
             ],
+            "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MePaginationComponent>",
+                    "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts": [
                 {
                     "name": "Story",
@@ -2937,19 +3010,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<DxPopupModule | MePopupDirective>",
                     "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj",
-                    "file": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -3359,6 +3419,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "AllIcons",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "CustomColor",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -3389,6 +3459,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "iconOptions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Large",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -3400,6 +3480,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

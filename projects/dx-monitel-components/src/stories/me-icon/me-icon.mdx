@@ -1,7 +1,19 @@
-import { Meta, Story, Controls, Source } from '@storybook/addon-docs';
-import * as IconStories from './me-icon.stories';
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as IconStories from "./me-icon.stories";
+import { MeIconComponent } from "../../public-api";
+import { moduleMetadata } from "@storybook/angular";
+import { iconOptions } from "./me-icon.stories";
 
-<Meta title="Components/Icon" component={IconStories.Default.component} />
+<Meta
+  title="Компоненты/Icon"
+  component={MeIconComponent}
+  decorators={[
+    moduleMetadata({
+      imports: [MeIconComponent],
+    }),
+    ]}
+  of={IconStories}
+/>
 
 # MeIcon Component
 
@@ -9,17 +21,14 @@ import * as IconStories from './me-icon.stories';
 
 ### Иконка по умолчанию
 
-<Story name="Default" of={IconStories.Small} />
+<Story name="Default" of={IconStories.Default} />
+
 <Controls of={IconStories.Default} />
 
-<Source of={IconStories.Small} dark />
+<Source of={IconStories.Default} dark />
 
-### Маленькая иконка
+### Список всех доступных иконок
 
-<Story name="Small" of={IconStories.Small} />
+Чтобы выбрать иконку, вы можете использовать любой из следующих вариантов:
 
-<Source
-  code={`<me-icon icon="home" size="small"></me-icon>`}
-  dark
-  language="html"
-/>
+<Source of={IconStories.AllIcons} dark />
