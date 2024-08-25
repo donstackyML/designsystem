@@ -34,6 +34,7 @@ import { MeScrollViewModule } from './directives/me-scroll-view/scroll-view.modu
 import {MeFileUploaderComponent} from "./components/me-file-uploader/me-file-uploader.component";
 import {MePaginationComponent} from "./components/me-pagination/me-pagination.component";
 import {MeIconComponent} from "./components/me-icon/me-icon.component";
+import {MeBreadcrumbsComponent} from "./components/me-breadcrumbs/me-breadcrumbs.component";
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {MeIconComponent} from "./components/me-icon/me-icon.component";
     MeFileUploaderComponent,
     MeIconModule,
     MePaginationComponent,
-    MeIconComponent
+    MeIconComponent,
+    MeBreadcrumbsComponent
   ],
   exports: [
     MeAccordionModule,
@@ -113,7 +115,8 @@ import {MeIconComponent} from "./components/me-icon/me-icon.component";
     MeFileUploaderComponent,
     MeIconModule,
     MePaginationComponent,
-    MeIconComponent
+    MeIconComponent,
+    MeBreadcrumbsComponent
   ],
 })
 export class MeComponentsModule {}

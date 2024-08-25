@@ -1,0 +1,110 @@
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DxDropDownButtonModule, DxButtonModule, DxDropDownButtonComponent } from 'devextreme-angular';
+import { MeIconComponent } from "../../../public-api";
+
+interface BreadcrumbItem {
+  label: string;
+  url: string;
+  icon?: string;
+}
+
+@Component({
+  selector: 'me-breadcrumbs',
+  standalone: true,
+  imports: [CommonModule, DxDropDownButtonModule, DxButtonModule, MeIconComponent],
+  template: `
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <dx-drop-down-button #dropDownButton
+                           *ngIf="hiddenItems.length > 0"
+                           [items]="hiddenItems"
+                           (onItemClick)="onHiddenItemClick($event)"
+                           [dropDownOptions]="{ width: 'auto' }"
+                           stylingMode="text"
+                           [width]="36"
+                           [height]="36"
+                           icon="more"
+                           displayExpr="label"
+                           keyExpr="url"
+                           [useSelectMode]="false"
+                           class="breadcrumb-dropdown"
+      >
+        <div *dxTemplate="let item of 'item'">
+          <me-icon *ngIf="item.icon" [icon]="item.icon"></me-icon>
+          <span class="label">{{ item.label }}</span>
+        </div>
+      </dx-drop-down-button>
+      <ng-container *ngFor="let item of visibleItems; let last = last; let i = index">
+        <dx-button
+          *ngIf="!last"
+          [text]="item.label"
+          [icon]="item.icon"
+          stylingMode="text"
+          (onClick)="onItemClick(item)"
+        ></dx-button>
+        <dx-button
+          *ngIf="last"
+          [text]="item.label"
+          [icon]="item.icon"
+          stylingMode="text"
+          [disabled]="true"
+        ></dx-button>
+        <span *ngIf="!last" class="separator">|</span>
+      </ng-container>
+    </nav>
+  `,
+  styles: [`
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .separator {
+      margin: 0 8px;
+      color: #6c757d;
+    }
+    ::ng-deep .dx-button-mode-text {
+      padding: 0;
+    }
+    ::ng-deep .dx-button-mode-text .dx-icon {
+      margin-right: 4px;
+    }
+    ::ng-deep .dx-button-mode-text.dx-button-has-icon .dx-icon {
+      margin-right: 4px;
+    }
+    ::ng-deep .breadcrumb-dropdown .dx-dropdownbutton-action {
+      padding: 0;
+      min-width: auto;
+      border: none;
+      background: none;
+    }
+    ::ng-deep .breadcrumb-dropdown .dx-dropdownbutton-toggle {
+      display: none;
+    }
+    ::ng-deep .breadcrumb-dropdown .dx-button-content {
+      padding: 0;
+    }
+  `]
+})
+export class MeBreadcrumbsComponent {
+  @Input() items: BreadcrumbItem[] = [];
+  @Input() maxVisibleItems: number = 3;
+  @Output() itemClick = new EventEmitter<BreadcrumbItem>();
+
+
+  get visibleItems(): BreadcrumbItem[] {
+    return this.items.slice(-this.maxVisibleItems);
+  }
+
+  get hiddenItems(): BreadcrumbItem[] {
+    return this.items.slice(0, -this.maxVisibleItems);
+  }
+
+  onItemClick(item: BreadcrumbItem): void {
+    this.itemClick.emit(item);
+  }
+
+  onHiddenItemClick(e: any): void {
+    this.itemClick.emit(e.itemData);
+  }
+}
