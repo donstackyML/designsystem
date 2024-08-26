@@ -1,0 +1,52 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as contextmenuStories from "./me-context-menu.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+
+<Meta name="Context Menu Documentation" of={contextmenuStories} />
+
+# Context Menu
+
+## Директива meContextMenu
+
+Применение директивы <code>meContextMenu</code> к элементу <code>dx-context-menu</code> приводит его внешний вид в соответствие с дизайн-системой.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxContextMenu/)
+
+<Story of={contextmenuStories.Default} />
+{/* <Controls of={contextmenuStories.Default} /> */}
+<Source of={contextmenuStories.Default} dark />
+
+## Добавление заголовка в контекстное меню
+
+В DevExtreme для компонента Context Menu заголовок не предусмотрен.
+Предлагается для добавления заголовка стилизовать один из пунктов меню с помощью шаблона <code>menu-title</code>. Например,
+
+<Source
+  code={`
+  contextMenuItems: dxContextMenuItem[] = [
+    {
+      text: 'Заголовок',
+      icon: this.iconService.getIcon({ icon: 'public', size: '24' }),
+      template: 'menu-title',
+      disabled: true,
+    },
+    // ...остальные элементы
+    
+`}
+  dark
+  language="js"
+/>
+
+Обратите внимание, для того чтобы отключить стандартные состояния <code>(hover, active)</code>
+заголовку добавлено свойство <code>disabled</code> со значением <code>true</code>.
+
+Классы <code>me-menu-title</code> и <code>me-title-header2</code> предоставляются библиотекой и
+стилизуют расположение и вид элементов в соответствии с дизайн-системой.
+
+<style>
+  {`
+      h2 {
+        border-bottom: none !important;
+    }
+`}
+</style>

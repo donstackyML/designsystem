@@ -2,180 +2,6 @@
   "pipes": [],
   "interfaces": [
     {
-      "name": "Company",
-      "id": "interface-Company-edace94048a751037d48b1a03abce7a41697a82ba9c9ac2c8566d9dbc840d6330842a011ecab3a6624bf756928a545c733d01f1fbee463a0c70458bbf4c0b3b6",
-      "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-      "deprecated": false,
-      "deprecationMessage": "",
-      "type": "interface",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxAccordionModule } from 'devextreme-angular';\nimport { MeAccordionDirective } from '../../lib/directives/me-accordion/accordion.directive';\n\ninterface Company {\n  CompanyName: string;\n  Description: string;\n  City: string;\n  State: string;\n  Zipcode: string;\n  Address: string;\n  Phone: string;\n  Fax: string;\n  Website: string;\n}\n\ninterface MeAccordionProps {\n  size: 'small' | 'medium' | 'large';\n  customClass: string;\n  isCollapsible: boolean;\n  isMultiple: boolean;\n  animationDuration: number;\n  companies: Company[];\n  selectedItems: Company[];\n}\n\n@Component({\n  selector: 'accordion-demo',\n  template: `\n    <dx-accordion\n      meAccordion\n      [dataSource]=\"companies\"\n      [collapsible]=\"isCollapsible\"\n      [multiple]=\"isMultiple\"\n      [animationDuration]=\"animationDuration\"\n      [selectedItems]=\"selectedItems\"\n      [size]=\"size\"\n      [customClass]=\"customClass\"\n    >\n      <div *dxTemplate=\"let company of 'title'\">\n        <div class=\"accordion-header\">\n          <span class=\"accordion-title\">{{ company.CompanyName }}</span>\n          <span class=\"accordion-description\">{{ company.Description }}</span>\n        </div>\n      </div>\n      <div *dxTemplate=\"let company of 'item'\">\n        <div>\n          <p>\n            <b>{{ company.City }}</b> ({{ company.State }})\n          </p>\n          <p>{{ company.Zipcode }} {{ company.Address }}</p>\n        </div>\n        <div>\n          <p>\n            Phone: <b>{{ company.Phone }}</b>\n          </p>\n          <p>\n            Fax: <b>{{ company.Fax }}</b>\n          </p>\n          <p>\n            Website:\n            <a href=\"{{ company.Website }}\" target=\"_blank\">{{\n              company.Website\n            }}</a>\n          </p>\n        </div>\n      </div>\n    </dx-accordion>\n  `,\n})\nclass AccordionDemoComponent {\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() customClass: string = '';\n  @Input() isCollapsible: boolean = false;\n  @Input() isMultiple: boolean = false;\n  @Input() animationDuration: number = 300;\n  @Input() companies: Company[] = [];\n  @Input() selectedItems: Company[] = [];\n}\n\nconst meta: Meta<MeAccordionProps> = {\n  title: 'Components/Accordion(RC)',\n  component: MeAccordionDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeAccordionDirective, AccordionDemoComponent],\n      imports: [DxAccordionModule],\n    }),\n  ],\n  render: (args: MeAccordionProps) => ({\n    props: args,\n    template:\n      '<accordion-demo [size]=\"size\" [customClass]=\"customClass\" [isCollapsible]=\"isCollapsible\" [isMultiple]=\"isMultiple\" [animationDuration]=\"animationDuration\" [companies]=\"companies\" [selectedItems]=\"selectedItems\"></accordion-demo>',\n  }),\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    customClass: { control: 'text' },\n    isCollapsible: { control: 'boolean' },\n    isMultiple: { control: 'boolean' },\n    animationDuration: {\n      control: { type: 'range', min: 0, max: 1000, step: 50 },\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeAccordionProps>;\n\nconst defaultCompanies: Company[] = [\n  {\n    CompanyName: 'Company A',\n    Description: 'Description A',\n    City: 'City A',\n    State: 'State A',\n    Zipcode: '12345',\n    Address: 'Address A',\n    Phone: '123-456-7890',\n    Fax: '098-765-4321',\n    Website: 'http://www.companya.com',\n  },\n  {\n    CompanyName: 'Company B',\n    Description: 'Description B',\n    City: 'City B',\n    State: 'State B',\n    Zipcode: '67890',\n    Address: 'Address B',\n    Phone: '234-567-8901',\n    Fax: '109-876-5432',\n    Website: 'http://www.companyb.com',\n  },\n  {\n    CompanyName: 'Company C',\n    Description: 'Description C',\n    City: 'City C',\n    State: 'State C',\n    Zipcode: '13579',\n    Address: 'Address C',\n    Phone: '345-678-9012',\n    Fax: '210-987-6543',\n    Website: 'http://www.companyc.com',\n  },\n];\n\nexport const Default: Story = {\n  args: {\n    size: 'medium',\n    customClass: '',\n    isCollapsible: false,\n    isMultiple: false,\n    animationDuration: 300,\n    companies: defaultCompanies,\n    selectedItems: [defaultCompanies[0]],\n  },\n};\n\nexport const Small: Story = {\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n};\n\nexport const Large: Story = {\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n};\n\nexport const Collapsible: Story = {\n  args: {\n    ...Default.args,\n    isCollapsible: true,\n  },\n};\n\nexport const Multiple: Story = {\n  args: {\n    ...Default.args,\n    isMultiple: true,\n  },\n};\n\nexport const CustomAnimation: Story = {\n  args: {\n    ...Default.args,\n    animationDuration: 1000,\n  },\n};\n\nexport const CustomClass: Story = {\n  args: {\n    ...Default.args,\n    customClass: 'my-custom-accordion',\n  },\n};\n",
-      "properties": [
-        {
-          "name": "Address",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 12
-        },
-        {
-          "name": "City",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 9
-        },
-        {
-          "name": "CompanyName",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 7
-        },
-        {
-          "name": "Description",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 8
-        },
-        {
-          "name": "Fax",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 14
-        },
-        {
-          "name": "Phone",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 13
-        },
-        {
-          "name": "State",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 10
-        },
-        {
-          "name": "Website",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 15
-        },
-        {
-          "name": "Zipcode",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 11
-        }
-      ],
-      "indexSignatures": [],
-      "kind": 171,
-      "methods": [],
-      "extends": []
-    },
-    {
-      "name": "MeAccordionProps",
-      "id": "interface-MeAccordionProps-edace94048a751037d48b1a03abce7a41697a82ba9c9ac2c8566d9dbc840d6330842a011ecab3a6624bf756928a545c733d01f1fbee463a0c70458bbf4c0b3b6",
-      "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-      "deprecated": false,
-      "deprecationMessage": "",
-      "type": "interface",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxAccordionModule } from 'devextreme-angular';\nimport { MeAccordionDirective } from '../../lib/directives/me-accordion/accordion.directive';\n\ninterface Company {\n  CompanyName: string;\n  Description: string;\n  City: string;\n  State: string;\n  Zipcode: string;\n  Address: string;\n  Phone: string;\n  Fax: string;\n  Website: string;\n}\n\ninterface MeAccordionProps {\n  size: 'small' | 'medium' | 'large';\n  customClass: string;\n  isCollapsible: boolean;\n  isMultiple: boolean;\n  animationDuration: number;\n  companies: Company[];\n  selectedItems: Company[];\n}\n\n@Component({\n  selector: 'accordion-demo',\n  template: `\n    <dx-accordion\n      meAccordion\n      [dataSource]=\"companies\"\n      [collapsible]=\"isCollapsible\"\n      [multiple]=\"isMultiple\"\n      [animationDuration]=\"animationDuration\"\n      [selectedItems]=\"selectedItems\"\n      [size]=\"size\"\n      [customClass]=\"customClass\"\n    >\n      <div *dxTemplate=\"let company of 'title'\">\n        <div class=\"accordion-header\">\n          <span class=\"accordion-title\">{{ company.CompanyName }}</span>\n          <span class=\"accordion-description\">{{ company.Description }}</span>\n        </div>\n      </div>\n      <div *dxTemplate=\"let company of 'item'\">\n        <div>\n          <p>\n            <b>{{ company.City }}</b> ({{ company.State }})\n          </p>\n          <p>{{ company.Zipcode }} {{ company.Address }}</p>\n        </div>\n        <div>\n          <p>\n            Phone: <b>{{ company.Phone }}</b>\n          </p>\n          <p>\n            Fax: <b>{{ company.Fax }}</b>\n          </p>\n          <p>\n            Website:\n            <a href=\"{{ company.Website }}\" target=\"_blank\">{{\n              company.Website\n            }}</a>\n          </p>\n        </div>\n      </div>\n    </dx-accordion>\n  `,\n})\nclass AccordionDemoComponent {\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() customClass: string = '';\n  @Input() isCollapsible: boolean = false;\n  @Input() isMultiple: boolean = false;\n  @Input() animationDuration: number = 300;\n  @Input() companies: Company[] = [];\n  @Input() selectedItems: Company[] = [];\n}\n\nconst meta: Meta<MeAccordionProps> = {\n  title: 'Components/Accordion(RC)',\n  component: MeAccordionDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeAccordionDirective, AccordionDemoComponent],\n      imports: [DxAccordionModule],\n    }),\n  ],\n  render: (args: MeAccordionProps) => ({\n    props: args,\n    template:\n      '<accordion-demo [size]=\"size\" [customClass]=\"customClass\" [isCollapsible]=\"isCollapsible\" [isMultiple]=\"isMultiple\" [animationDuration]=\"animationDuration\" [companies]=\"companies\" [selectedItems]=\"selectedItems\"></accordion-demo>',\n  }),\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    customClass: { control: 'text' },\n    isCollapsible: { control: 'boolean' },\n    isMultiple: { control: 'boolean' },\n    animationDuration: {\n      control: { type: 'range', min: 0, max: 1000, step: 50 },\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeAccordionProps>;\n\nconst defaultCompanies: Company[] = [\n  {\n    CompanyName: 'Company A',\n    Description: 'Description A',\n    City: 'City A',\n    State: 'State A',\n    Zipcode: '12345',\n    Address: 'Address A',\n    Phone: '123-456-7890',\n    Fax: '098-765-4321',\n    Website: 'http://www.companya.com',\n  },\n  {\n    CompanyName: 'Company B',\n    Description: 'Description B',\n    City: 'City B',\n    State: 'State B',\n    Zipcode: '67890',\n    Address: 'Address B',\n    Phone: '234-567-8901',\n    Fax: '109-876-5432',\n    Website: 'http://www.companyb.com',\n  },\n  {\n    CompanyName: 'Company C',\n    Description: 'Description C',\n    City: 'City C',\n    State: 'State C',\n    Zipcode: '13579',\n    Address: 'Address C',\n    Phone: '345-678-9012',\n    Fax: '210-987-6543',\n    Website: 'http://www.companyc.com',\n  },\n];\n\nexport const Default: Story = {\n  args: {\n    size: 'medium',\n    customClass: '',\n    isCollapsible: false,\n    isMultiple: false,\n    animationDuration: 300,\n    companies: defaultCompanies,\n    selectedItems: [defaultCompanies[0]],\n  },\n};\n\nexport const Small: Story = {\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n};\n\nexport const Large: Story = {\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n};\n\nexport const Collapsible: Story = {\n  args: {\n    ...Default.args,\n    isCollapsible: true,\n  },\n};\n\nexport const Multiple: Story = {\n  args: {\n    ...Default.args,\n    isMultiple: true,\n  },\n};\n\nexport const CustomAnimation: Story = {\n  args: {\n    ...Default.args,\n    animationDuration: 1000,\n  },\n};\n\nexport const CustomClass: Story = {\n  args: {\n    ...Default.args,\n    customClass: 'my-custom-accordion',\n  },\n};\n",
-      "properties": [
-        {
-          "name": "animationDuration",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "optional": false,
-          "description": "",
-          "line": 23
-        },
-        {
-          "name": "companies",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Company[]",
-          "optional": false,
-          "description": "",
-          "line": 24
-        },
-        {
-          "name": "customClass",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 20
-        },
-        {
-          "name": "isCollapsible",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 21
-        },
-        {
-          "name": "isMultiple",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 22
-        },
-        {
-          "name": "selectedItems",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Company[]",
-          "optional": false,
-          "description": "",
-          "line": 25
-        },
-        {
-          "name": "size",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "\"small\" | \"medium\" | \"large\"",
-          "optional": false,
-          "description": "",
-          "line": 19
-        }
-      ],
-      "indexSignatures": [],
-      "kind": 171,
-      "methods": [],
-      "extends": []
-    },
-    {
       "name": "MeTabsProps",
       "id": "interface-MeTabsProps-eb94b23bb7500b0488678b6da565f60c4ae4358ae6eefde188c8ab1bfc75fe4a2187377055b6e453feb639d78cf65bd4f24dd6d95b68a87ea305d4902ea1669a",
       "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
@@ -234,6 +60,120 @@
       "kind": 171,
       "methods": [],
       "extends": []
+    },
+    {
+      "name": "PopoverProps",
+      "id": "interface-PopoverProps-abe78979f5ef8126c0cfcbce458f6c2cc6e4f82f4bffe9398e2a33dc18d62091931000b5aad802291b9eda5ed03f87f20d483cdc6e64da7596057b57811f6da8",
+      "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxPopoverModule } from 'devextreme-angular/ui/popover';\nimport { MePopoverDirective } from '../../public-api';\n\ninterface PopoverProps {\n  showEvent: string;\n  hideEvent: string;\n  position: string;\n  size: 'small' | 'medium' | 'large';\n  width: number;\n  maxWidth?: number;\n  showTitle: boolean;\n  title: string;\n  shading: boolean;\n  shadingColor: string;\n  content: string;\n}\n\nconst meta: Meta<PopoverProps> = {\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<PopoverProps>;\n\nexport const Default: Story = {\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n  },\n};\n\nexport const WithTitle: Story = {\n  args: {\n    ...Default.args,\n    position: 'bottom',\n    showTitle: true,\n    title: 'Заголовок поповера',\n    maxWidth: 400,\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\n  },\n};\n\nexport const WithOverlay: Story = {\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n};\n",
+      "properties": [
+        {
+          "name": "content",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 16
+        },
+        {
+          "name": "hideEvent",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 7
+        },
+        {
+          "name": "maxWidth",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 11
+        },
+        {
+          "name": "position",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 8
+        },
+        {
+          "name": "shading",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": false,
+          "description": "",
+          "line": 14
+        },
+        {
+          "name": "shadingColor",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 15
+        },
+        {
+          "name": "showEvent",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 6
+        },
+        {
+          "name": "showTitle",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": false,
+          "description": "",
+          "line": 12
+        },
+        {
+          "name": "size",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"small\" | \"medium\" | \"large\"",
+          "optional": false,
+          "description": "",
+          "line": 9
+        },
+        {
+          "name": "title",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 13
+        },
+        {
+          "name": "width",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 10
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
     }
   ],
   "injectables": [],
@@ -243,107 +183,8 @@
   "directives": [],
   "components": [
     {
-      "name": "AccordionDemoComponent",
-      "id": "component-AccordionDemoComponent-edace94048a751037d48b1a03abce7a41697a82ba9c9ac2c8566d9dbc840d6330842a011ecab3a6624bf756928a545c733d01f1fbee463a0c70458bbf4c0b3b6",
-      "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "accordion-demo",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<dx-accordion\n  meAccordion\n  [dataSource]=\"companies\"\n  [collapsible]=\"isCollapsible\"\n  [multiple]=\"isMultiple\"\n  [animationDuration]=\"animationDuration\"\n  [selectedItems]=\"selectedItems\"\n  [size]=\"size\"\n  [customClass]=\"customClass\"\n>\n  <div *dxTemplate=\"let company of 'title'\">\n    <div class=\"accordion-header\">\n      <span class=\"accordion-title\">{{ company.CompanyName }}</span>\n      <span class=\"accordion-description\">{{ company.Description }}</span>\n    </div>\n  </div>\n  <div *dxTemplate=\"let company of 'item'\">\n    <div>\n      <p>\n        <b>{{ company.City }}</b> ({{ company.State }})\n      </p>\n      <p>{{ company.Zipcode }} {{ company.Address }}</p>\n    </div>\n    <div>\n      <p>\n        Phone: <b>{{ company.Phone }}</b>\n      </p>\n      <p>\n        Fax: <b>{{ company.Fax }}</b>\n      </p>\n      <p>\n        Website:\n        <a href=\"{{ company.Website }}\" target=\"_blank\">{{\n          company.Website\n        }}</a>\n      </p>\n    </div>\n  </div>\n</dx-accordion>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "animationDuration",
-          "defaultValue": "300",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 77,
-          "type": "number",
-          "decorators": []
-        },
-        {
-          "name": "companies",
-          "defaultValue": "[]",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 78,
-          "type": "Company[]",
-          "decorators": []
-        },
-        {
-          "name": "customClass",
-          "defaultValue": "''",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 74,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "isCollapsible",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 75,
-          "type": "boolean",
-          "decorators": []
-        },
-        {
-          "name": "isMultiple",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 76,
-          "type": "boolean",
-          "decorators": []
-        },
-        {
-          "name": "selectedItems",
-          "defaultValue": "[]",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 79,
-          "type": "Company[]",
-          "decorators": []
-        },
-        {
-          "name": "size",
-          "defaultValue": "'medium'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 73,
-          "type": "\"small\" | \"medium\" | \"large\"",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": false,
-      "imports": [],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxAccordionModule } from 'devextreme-angular';\nimport { MeAccordionDirective } from '../../lib/directives/me-accordion/accordion.directive';\n\ninterface Company {\n  CompanyName: string;\n  Description: string;\n  City: string;\n  State: string;\n  Zipcode: string;\n  Address: string;\n  Phone: string;\n  Fax: string;\n  Website: string;\n}\n\ninterface MeAccordionProps {\n  size: 'small' | 'medium' | 'large';\n  customClass: string;\n  isCollapsible: boolean;\n  isMultiple: boolean;\n  animationDuration: number;\n  companies: Company[];\n  selectedItems: Company[];\n}\n\n@Component({\n  selector: 'accordion-demo',\n  template: `\n    <dx-accordion\n      meAccordion\n      [dataSource]=\"companies\"\n      [collapsible]=\"isCollapsible\"\n      [multiple]=\"isMultiple\"\n      [animationDuration]=\"animationDuration\"\n      [selectedItems]=\"selectedItems\"\n      [size]=\"size\"\n      [customClass]=\"customClass\"\n    >\n      <div *dxTemplate=\"let company of 'title'\">\n        <div class=\"accordion-header\">\n          <span class=\"accordion-title\">{{ company.CompanyName }}</span>\n          <span class=\"accordion-description\">{{ company.Description }}</span>\n        </div>\n      </div>\n      <div *dxTemplate=\"let company of 'item'\">\n        <div>\n          <p>\n            <b>{{ company.City }}</b> ({{ company.State }})\n          </p>\n          <p>{{ company.Zipcode }} {{ company.Address }}</p>\n        </div>\n        <div>\n          <p>\n            Phone: <b>{{ company.Phone }}</b>\n          </p>\n          <p>\n            Fax: <b>{{ company.Fax }}</b>\n          </p>\n          <p>\n            Website:\n            <a href=\"{{ company.Website }}\" target=\"_blank\">{{\n              company.Website\n            }}</a>\n          </p>\n        </div>\n      </div>\n    </dx-accordion>\n  `,\n})\nclass AccordionDemoComponent {\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() customClass: string = '';\n  @Input() isCollapsible: boolean = false;\n  @Input() isMultiple: boolean = false;\n  @Input() animationDuration: number = 300;\n  @Input() companies: Company[] = [];\n  @Input() selectedItems: Company[] = [];\n}\n\nconst meta: Meta<MeAccordionProps> = {\n  title: 'Components/Accordion(RC)',\n  component: MeAccordionDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeAccordionDirective, AccordionDemoComponent],\n      imports: [DxAccordionModule],\n    }),\n  ],\n  render: (args: MeAccordionProps) => ({\n    props: args,\n    template:\n      '<accordion-demo [size]=\"size\" [customClass]=\"customClass\" [isCollapsible]=\"isCollapsible\" [isMultiple]=\"isMultiple\" [animationDuration]=\"animationDuration\" [companies]=\"companies\" [selectedItems]=\"selectedItems\"></accordion-demo>',\n  }),\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    customClass: { control: 'text' },\n    isCollapsible: { control: 'boolean' },\n    isMultiple: { control: 'boolean' },\n    animationDuration: {\n      control: { type: 'range', min: 0, max: 1000, step: 50 },\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeAccordionProps>;\n\nconst defaultCompanies: Company[] = [\n  {\n    CompanyName: 'Company A',\n    Description: 'Description A',\n    City: 'City A',\n    State: 'State A',\n    Zipcode: '12345',\n    Address: 'Address A',\n    Phone: '123-456-7890',\n    Fax: '098-765-4321',\n    Website: 'http://www.companya.com',\n  },\n  {\n    CompanyName: 'Company B',\n    Description: 'Description B',\n    City: 'City B',\n    State: 'State B',\n    Zipcode: '67890',\n    Address: 'Address B',\n    Phone: '234-567-8901',\n    Fax: '109-876-5432',\n    Website: 'http://www.companyb.com',\n  },\n  {\n    CompanyName: 'Company C',\n    Description: 'Description C',\n    City: 'City C',\n    State: 'State C',\n    Zipcode: '13579',\n    Address: 'Address C',\n    Phone: '345-678-9012',\n    Fax: '210-987-6543',\n    Website: 'http://www.companyc.com',\n  },\n];\n\nexport const Default: Story = {\n  args: {\n    size: 'medium',\n    customClass: '',\n    isCollapsible: false,\n    isMultiple: false,\n    animationDuration: 300,\n    companies: defaultCompanies,\n    selectedItems: [defaultCompanies[0]],\n  },\n};\n\nexport const Small: Story = {\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n};\n\nexport const Large: Story = {\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n};\n\nexport const Collapsible: Story = {\n  args: {\n    ...Default.args,\n    isCollapsible: true,\n  },\n};\n\nexport const Multiple: Story = {\n  args: {\n    ...Default.args,\n    isMultiple: true,\n  },\n};\n\nexport const CustomAnimation: Story = {\n  args: {\n    ...Default.args,\n    animationDuration: 1000,\n  },\n};\n\nexport const CustomClass: Story = {\n  args: {\n    ...Default.args,\n    customClass: 'my-custom-accordion',\n  },\n};\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": []
-    },
-    {
       "name": "LoadPanelDemoComponent",
-      "id": "component-LoadPanelDemoComponent-fa3652aeb6b2956cc813e835362631b516d49b61d114e2665e252961fd063ab93a3e13d613ecce32b8de379eec6623be490bba916e945555875d9fc062907338",
+      "id": "component-LoadPanelDemoComponent-40641ccc4f951bf1ff8c9787a7fb79489746ed1fb7681db457c45ea0a03a7852c2b59b47414eefcd238ca91eea1304f97e53424a15c536db8d5b5e1aa50d2568",
       "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -479,162 +320,10 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport {\n  DxButtonModule,\n  DxCheckBoxModule,\n  DxLoadPanelModule,\n} from 'devextreme-angular';\nimport { MeLoadPanelDirective } from '../../public-api';\n\n@Component({\n  selector: 'load-panel-demo',\n  template: `\n    <dx-button text=\"Load Data\" (onClick)=\"showLoadPanel()\"> </dx-button>\n\n    <dx-load-panel\n      #loadPanel\n      meLoadPanel\n      shadingColor=\"rgba(0,0,0,0.4)\"\n      [position]=\"{ of: '#employee' }\"\n      [(visible)]=\"loadingVisible\"\n      [showIndicator]=\"showIndicator\"\n      [showPane]=\"showPane\"\n      [shading]=\"shading\"\n      [hideOnOutsideClick]=\"hideOnOutsideClick\"\n      (onShown)=\"onShown()\"\n      (onHidden)=\"onHidden()\"\n      [size]=\"size\"\n      [customClass]=\"customClass\"\n    ></dx-load-panel>\n  `,\n  styles: [\n    `\n      .header {\n        font-size: 24px;\n        margin-bottom: 20px;\n      }\n      #employee {\n        margin: 20px 0;\n      }\n      .options {\n        margin-top: 20px;\n      }\n      .option {\n        margin-bottom: 10px;\n      }\n    `,\n  ],\n})\nexport class LoadPanelDemoComponent {\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() customClass: boolean = false;\n  @Input() showIndicator: boolean = true;\n  @Input() showPane: boolean = true;\n  @Input() shading: boolean = true;\n  @Input() hideOnOutsideClick: boolean = false;\n\n  loadingVisible = false;\n  employeeInfo = {\n    Birth_Date: '1985-01-15',\n    City: 'Los Angeles',\n    Zipcode: '90001',\n    Address: '1234 Main St',\n    Mobile_Phone: '555-1234',\n    Email: 'john.heart@example.com',\n  };\n\n  showLoadPanel() {\n    this.loadingVisible = true;\n  }\n\n  onShown() {\n    setTimeout(() => {\n      this.loadingVisible = false;\n    }, 3000);\n  }\n\n  onHidden() {\n    // do something when hidden\n  }\n}\n\nconst meta: Meta<LoadPanelDemoComponent> = {\n  title: 'Components/LoadPanel(RC)',\n  component: LoadPanelDemoComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadPanelDirective, LoadPanelDemoComponent],\n      imports: [DxButtonModule, DxLoadPanelModule, DxCheckBoxModule],\n    }),\n  ],\n  argTypes: {\n    size: {\n      control: { type: 'select', options: ['small', 'medium', 'large'] },\n    },\n    customClass: { control: 'boolean' },\n    showIndicator: { control: 'boolean' },\n    showPane: { control: 'boolean' },\n    shading: { control: 'boolean' },\n    hideOnOutsideClick: { control: 'boolean' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<LoadPanelDemoComponent>;\n\nexport const Default: Story = {\n  args: {\n    size: 'medium',\n    customClass: false,\n    showIndicator: true,\n    showPane: true,\n    shading: true,\n    hideOnOutsideClick: false,\n  },\n};\n\nexport const Small: Story = {\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n};\n\nexport const Large: Story = {\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n};\n\nexport const CustomClass: Story = {\n  args: {\n    ...Default.args,\n    customClass: true,\n  },\n};\n\nexport const HideOnOutsideClick: Story = {\n  args: {\n    ...Default.args,\n    hideOnOutsideClick: true,\n  },\n};\n",
+      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport {\n  DxButtonModule,\n  DxCheckBoxModule,\n  DxLoadPanelModule,\n} from 'devextreme-angular';\nimport { MeLoadPanelDirective } from '../../public-api';\n\n@Component({\n  selector: 'load-panel-demo',\n  template: `\n    <dx-button text=\"Load Data\" (onClick)=\"showLoadPanel()\"> </dx-button>\n\n    <dx-load-panel\n      #loadPanel\n      meLoadPanel\n      shadingColor=\"rgba(0,0,0,0.4)\"\n      [position]=\"{ of: '#employee' }\"\n      [(visible)]=\"loadingVisible\"\n      [showIndicator]=\"showIndicator\"\n      [showPane]=\"showPane\"\n      [shading]=\"shading\"\n      [hideOnOutsideClick]=\"hideOnOutsideClick\"\n      (onShown)=\"onShown()\"\n      (onHidden)=\"onHidden()\"\n      [size]=\"size\"\n      [customClass]=\"customClass\"\n    ></dx-load-panel>\n  `,\n  styles: [\n    `\n      .header {\n        font-size: 24px;\n        margin-bottom: 20px;\n      }\n      #employee {\n        margin: 20px 0;\n      }\n      .options {\n        margin-top: 20px;\n      }\n      .option {\n        margin-bottom: 10px;\n      }\n    `,\n  ],\n})\nexport class LoadPanelDemoComponent {\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() customClass: boolean = false;\n  @Input() showIndicator: boolean = true;\n  @Input() showPane: boolean = true;\n  @Input() shading: boolean = true;\n  @Input() hideOnOutsideClick: boolean = false;\n\n  loadingVisible = false;\n  employeeInfo = {\n    Birth_Date: '1985-01-15',\n    City: 'Los Angeles',\n    Zipcode: '90001',\n    Address: '1234 Main St',\n    Mobile_Phone: '555-1234',\n    Email: 'john.heart@example.com',\n  };\n\n  showLoadPanel() {\n    this.loadingVisible = true;\n  }\n\n  onShown() {\n    setTimeout(() => {\n      this.loadingVisible = false;\n    }, 300000);\n  }\n\n  onHidden() {\n    // do something when hidden\n  }\n}\n\nconst meta: Meta<LoadPanelDemoComponent> = {\n  title: 'Components/LoadPanel(RC)',\n  component: LoadPanelDemoComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadPanelDirective, LoadPanelDemoComponent],\n      imports: [DxButtonModule, DxLoadPanelModule, DxCheckBoxModule],\n    }),\n  ],\n  argTypes: {\n    size: {\n      control: { type: 'select', options: ['small', 'medium', 'large'] },\n    },\n    customClass: { control: 'boolean' },\n    showIndicator: { control: 'boolean' },\n    showPane: { control: 'boolean' },\n    shading: { control: 'boolean' },\n    hideOnOutsideClick: { control: 'boolean' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<LoadPanelDemoComponent>;\n\nexport const Default: Story = {\n  args: {\n    size: 'medium',\n    customClass: false,\n    showIndicator: true,\n    showPane: true,\n    shading: true,\n    hideOnOutsideClick: false,\n  },\n};\n\nexport const Small: Story = {\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n};\n\nexport const Large: Story = {\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n};\n\nexport const CustomClass: Story = {\n  args: {\n    ...Default.args,\n    customClass: true,\n  },\n};\n\nexport const HideOnOutsideClick: Story = {\n  args: {\n    ...Default.args,\n    hideOnOutsideClick: true,\n  },\n};\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      .header {\n        font-size: 24px;\n        margin-bottom: 20px;\n      }\n      #employee {\n        margin: 20px 0;\n      }\n      .options {\n        margin-top: 20px;\n      }\n      .option {\n        margin-bottom: 10px;\n      }\n    \n",
-      "extends": []
-    },
-    {
-      "name": "PopoverHostComponent",
-      "id": "component-PopoverHostComponent-7c50c0e0d12651dcb3fb46f2903c6293264d7c4bef720d36fef502726887c3f702127f275d0b4ee913e9952823a146a24cce2ebf3c019f6f67d84310ae838809",
-      "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "popover-host",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<div class=\"dx-fieldset form\">\n  <div class=\"dx-field\">\n    <div class=\"dx-field-label me-title-subheader1\">{{ label }}</div>\n    <div class=\"dx-field-value-static\">\n      <p>\n        <span id=\"subject\" class=\"me-text-body2\">{{ subject }}</span>\n        (<a class=\"test-details me-action-link1\" id=\"link\">details</a>)\n      </p>\n      <dx-popover\n        mePopover\n        target=\"#link\"\n        [showEvent]=\"showEvent\"\n        [hideEvent]=\"hideEvent\"\n        [position]=\"position\"\n        [width]=\"width\"\n        [maxWidth]=\"maxWidth\"\n        [showTitle]=\"showTitle\"\n        [title]=\"title\"\n        [shading]=\"shading\"\n        [shadingColor]=\"shadingColor\"\n      >\n        <dxo-animation *ngIf=\"animationEnabled\">\n          <dxo-show\n            type=\"pop\"\n            [from]=\"{ scale: 0 }\"\n            [to]=\"{ scale: 1 }\"\n          ></dxo-show>\n          <dxo-hide type=\"fade\" [from]=\"1\" [to]=\"0\"></dxo-hide>\n        </dxo-animation>\n        <div *dxTemplate=\"let data of 'content'\">\n          {{ content }}\n        </div>\n      </dx-popover>\n    </div>\n  </div>\n</div>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "animationEnabled",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 60,
-          "type": "boolean",
-          "decorators": []
-        },
-        {
-          "name": "content",
-          "defaultValue": "'Popover content'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 59,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "hideEvent",
-          "defaultValue": "'mouseleave'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 51,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "label",
-          "defaultValue": "'Default mode'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 48,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "maxWidth",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 54,
-          "type": "number | undefined",
-          "decorators": []
-        },
-        {
-          "name": "position",
-          "defaultValue": "'top'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 52,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "shading",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 57,
-          "type": "boolean",
-          "decorators": []
-        },
-        {
-          "name": "shadingColor",
-          "defaultValue": "''",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 58,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "showEvent",
-          "defaultValue": "'mouseenter'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 50,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "showTitle",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 55,
-          "type": "boolean",
-          "decorators": []
-        },
-        {
-          "name": "subject",
-          "defaultValue": "'Google AdWords Strategy'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 49,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "title",
-          "defaultValue": "''",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 56,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "width",
-          "defaultValue": "300",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 53,
-          "type": "number",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": false,
-      "imports": [],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxPopoverModule } from 'devextreme-angular/ui/popover';\nimport { MePopoverDirective } from '../../public-api';\n\n@Component({\n  selector: 'popover-host',\n  template: `\n    <div class=\"dx-fieldset form\">\n      <div class=\"dx-field\">\n        <div class=\"dx-field-label me-title-subheader1\">{{ label }}</div>\n        <div class=\"dx-field-value-static\">\n          <p>\n            <span id=\"subject\" class=\"me-text-body2\">{{ subject }}</span>\n            (<a class=\"test-details me-action-link1\" id=\"link\">details</a>)\n          </p>\n          <dx-popover\n            mePopover\n            target=\"#link\"\n            [showEvent]=\"showEvent\"\n            [hideEvent]=\"hideEvent\"\n            [position]=\"position\"\n            [width]=\"width\"\n            [maxWidth]=\"maxWidth\"\n            [showTitle]=\"showTitle\"\n            [title]=\"title\"\n            [shading]=\"shading\"\n            [shadingColor]=\"shadingColor\"\n          >\n            <dxo-animation *ngIf=\"animationEnabled\">\n              <dxo-show\n                type=\"pop\"\n                [from]=\"{ scale: 0 }\"\n                [to]=\"{ scale: 1 }\"\n              ></dxo-show>\n              <dxo-hide type=\"fade\" [from]=\"1\" [to]=\"0\"></dxo-hide>\n            </dxo-animation>\n            <div *dxTemplate=\"let data of 'content'\">\n              {{ content }}\n            </div>\n          </dx-popover>\n        </div>\n      </div>\n    </div>\n  `,\n})\nclass PopoverHostComponent {\n  @Input() label: string = 'Default mode';\n  @Input() subject: string = 'Google AdWords Strategy';\n  @Input() showEvent: string = 'mouseenter';\n  @Input() hideEvent: string = 'mouseleave';\n  @Input() position: string = 'top';\n  @Input() width: number = 300;\n  @Input() maxWidth: number | undefined;\n  @Input() showTitle: boolean = false;\n  @Input() title: string = '';\n  @Input() shading: boolean = false;\n  @Input() shadingColor: string = '';\n  @Input() content: string = 'Popover content';\n  @Input() animationEnabled: boolean = false;\n}\n\nconst meta: Meta<PopoverHostComponent> = {\n  title: 'Components/Popover(RC)',\n  component: PopoverHostComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective, PopoverHostComponent],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  argTypes: {\n    label: { control: 'text' },\n    subject: { control: 'text' },\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n    animationEnabled: { control: 'boolean' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<PopoverHostComponent>;\n\nexport const Default: Story = {\n  args: {\n    label: 'Default mode',\n    subject: 'Show Popover',\n    // showEvent: 'mouseenter',\n    // hideEvent: 'mouseleave',\n    position: 'top',\n    width: 300,\n    content:\n      'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',\n  },\n};\n\nexport const WithTitle: Story = {\n  args: {\n    ...Default.args,\n    label: 'With title',\n    subject: 'Rollout of New Website and Marketing Brochures',\n    position: 'bottom',\n    showTitle: true,\n    title: 'Details',\n    maxWidth: 400,\n    content:\n      'The designs for new brochures and website have been approved. Launch date is set for Feb 28.',\n  },\n};\n\nexport const WithAnimation: Story = {\n  args: {\n    ...Default.args,\n    label: 'With animation',\n    subject: 'Create 2012 Sales Report',\n    animationEnabled: true,\n    content:\n      '2012 Sales Report has to be completed so we can determine if major changes are required to sales strategy.',\n  },\n};\n\nexport const WithOverlay: Story = {\n  args: {\n    ...Default.args,\n    label: 'With overlay',\n    subject: 'Website Re-Design Plan',\n    showEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content:\n      'The changes in our brochure designs for 2013 require us to update key areas of our website.',\n  },\n};\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
       "extends": []
     },
     {
@@ -921,229 +610,31 @@
       "styleUrlsData": "",
       "stylesData": "",
       "extends": []
-    },
-    {
-      "name": "TooltipDemoComponent",
-      "id": "component-TooltipDemoComponent-1bc177b44232df5fb8d127221024dd7e18665c6c95ba01c99d9c1fa3bd5210c1dc95b40c1ffd197c875e94ce98506920476516acac995717a84ee1fc1b88743d",
-      "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "tooltip-demo",
-      "styleUrls": [],
-      "styles": [
-        "\n      .tooltip-demo {\n        display: flex;\n        justify-content: space-around;\n        padding: 20px;\n        background-color: #f0f0f0;\n        border-radius: 10px;\n      }\n\n      .tooltip-group {\n        text-align: center;\n        margin-left: 20px;\n      }\n\n      .tooltip-controls {\n        display: flex;\n        flex-direction: column;\n        gap: 15px;\n      }\n\n      .tooltip-button {\n        padding: 10px;\n        border: none;\n        border-radius: 5px;\n        cursor: pointer;\n        transition: background-color 0.3s;\n      }\n\n      .interactive-tooltip {\n        box-sizing: border-box;\n        padding: 4px;\n      }\n\n      .interactive-tooltip * {\n        text-wrap: balance;\n      }\n\n      .interactive-tooltip button {\n        margin-top: 8px;\n        margin-inline: 4px;\n        padding: 4px 8px;\n        border: none;\n        border-radius: 3px;\n        cursor: pointer;\n      }\n\n      .interactive-tooltip .accept-button {\n        background-color: #3257dc;\n        color: white;\n      }\n\n      .interactive-tooltip .decline-button {\n        background-color: #ecedf3;\n        color: #18181a;\n      }\n\n      .custom-tooltip {\n        background-color: #ff9800;\n        color: white;\n        border: 2px solid #e68a00;\n        border-radius: 10px;\n        padding: 10px;\n      }\n\n      .html-tooltip * {\n        text-wrap: balance;\n        text-align: start;\n        margin-top: 4px;\n      }\n    "
-      ],
-      "template": "<div class=\"tooltip-demo dx-widget\">\n  <div class=\"tooltip-group\">\n    <div class=\"tooltip-controls\">\n      <button\n        class=\"tooltip-button\"\n        [meTooltip]=\"simpleTooltip\"\n        [tooltipPosition]=\"simplePosition\"\n      >\n        {{ simpleButtonText }}\n      </button>\n\n      <button\n        class=\"tooltip-button\"\n        [meTooltip]=\"animatedTooltip\"\n        [tooltipPosition]=\"animatedPosition\"\n        [tooltipShowAnimation]=\"showAnimation\"\n        [tooltipHideAnimation]=\"hideAnimation\"\n      >\n        {{ animatedButtonText }}\n      </button>\n\n      <button\n        class=\"tooltip-button\"\n        [meTooltip]=\"positionedTooltip\"\n        [tooltipPosition]=\"positionedPosition\"\n      >\n        {{ positionedButtonText }}\n      </button>\n    </div>\n  </div>\n\n  <div class=\"tooltip-group\">\n    <div class=\"tooltip-controls\">\n      <button\n        class=\"tooltip-button\"\n        [meTooltip]=\"''\"\n        [tooltipTemplateRef]=\"interactiveTemplate\"\n        [tooltipPosition]=\"interactivePosition\"\n        [tooltipMaxWidth]=\"interactiveMaxWidth\"\n      >\n        {{ interactiveButtonText }}\n      </button>\n\n      <button\n        class=\"tooltip-button\"\n        [meTooltip]=\"''\"\n        [tooltipTemplateRef]=\"htmlTemplate\"\n        [tooltipPosition]=\"htmlPosition\"\n        [tooltipMaxWidth]=\"htmlMaxWidth\"\n      >\n        {{ htmlButtonText }}\n      </button>\n\n      <button\n        class=\"tooltip-button\"\n        [meTooltip]=\"''\"\n        [tooltipTemplateRef]=\"customStyleTemplate\"\n        [tooltipPosition]=\"customStylePosition\"\n        [tooltipClass]=\"customStyleClass\"\n      >\n        {{ customStyleButtonText }}\n      </button>\n    </div>\n  </div>\n</div>\n\n<ng-template #htmlTemplate>\n  <div class=\"html-tooltip\">\n    <h3>HTML в тултипе</h3>\n    <p>\n      Тултипы могут содержать <strong>форматированный текст</strong>,\n      <em>списки</em> и другие HTML-элементы:\n    </p>\n    <ul>\n      <li>Пункт 1</li>\n      <li>Пункт 2</li>\n    </ul>\n  </div>\n</ng-template>\n\n<ng-template #interactiveTemplate>\n  <div class=\"interactive-tooltip\">\n    <h3>Интерактивный тултип</h3>\n    <p>Тултипы могут содержать интерактивные элементы:</p>\n    <button class=\"accept-button\">Принять</button>\n    <button class=\"decline-button\">Отменить</button>\n  </div>\n</ng-template>\n\n<ng-template #customStyleTemplate>\n  <div class=\"custom-tooltip\">\n    <h3>Пользовательские стили</h3>\n    <p>Этот тултип имеет особое оформление, заданное через CSS-класс.</p>\n  </div>\n</ng-template>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "animatedButtonText",
-          "defaultValue": "'Анимированный'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 184,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "animatedPosition",
-          "defaultValue": "'left'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 183,
-          "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-          "decorators": []
-        },
-        {
-          "name": "animatedTooltip",
-          "defaultValue": "'Тултип с анимацией'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 182,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "customStyleButtonText",
-          "defaultValue": "'Пользовательские стили'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 210,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "customStyleClass",
-          "defaultValue": "'custom-tooltip'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 209,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "customStylePosition",
-          "defaultValue": "'bottom'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 208,
-          "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-          "decorators": []
-        },
-        {
-          "name": "hideAnimation",
-          "defaultValue": "{\n    type: 'pop',\n    from: { scale: 1, opacity: 1 },\n    to: { opacity: 0, scale: 0.1 },\n  }",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 190,
-          "type": "any",
-          "decorators": []
-        },
-        {
-          "name": "htmlButtonText",
-          "defaultValue": "'HTML-содержимое'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 206,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "htmlMaxWidth",
-          "defaultValue": "'300'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 205,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "htmlPosition",
-          "defaultValue": "'right'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 204,
-          "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-          "decorators": []
-        },
-        {
-          "name": "interactiveButtonText",
-          "defaultValue": "'Интерактивный тултип'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 202,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "interactiveMaxWidth",
-          "defaultValue": "'200'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 201,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "interactivePosition",
-          "defaultValue": "'right'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 200,
-          "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-          "decorators": []
-        },
-        {
-          "name": "positionedButtonText",
-          "defaultValue": "'Позиционирование'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 198,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "positionedPosition",
-          "defaultValue": "'bottom'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 197,
-          "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-          "decorators": []
-        },
-        {
-          "name": "positionedTooltip",
-          "defaultValue": "'Тултип снизу'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 196,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "showAnimation",
-          "defaultValue": "{\n    type: 'slide',\n    from: { left: -100, opacity: 0 },\n    to: { opacity: 1, left: 0 },\n  }",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 185,
-          "type": "any",
-          "decorators": []
-        },
-        {
-          "name": "simpleButtonText",
-          "defaultValue": "'Простой тултип'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 180,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "simplePosition",
-          "defaultValue": "'top'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 179,
-          "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-          "decorators": []
-        },
-        {
-          "name": "simpleTooltip",
-          "defaultValue": "'Это простой текстовый тултип'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 178,
-          "type": "string",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": false,
-      "imports": [],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { MeTooltipDirective } from '../../public-api';\n\n@Component({\n  selector: 'tooltip-demo',\n  template: `\n    <div class=\"tooltip-demo dx-widget\">\n      <div class=\"tooltip-group\">\n        <div class=\"tooltip-controls\">\n          <button\n            class=\"tooltip-button\"\n            [meTooltip]=\"simpleTooltip\"\n            [tooltipPosition]=\"simplePosition\"\n          >\n            {{ simpleButtonText }}\n          </button>\n\n          <button\n            class=\"tooltip-button\"\n            [meTooltip]=\"animatedTooltip\"\n            [tooltipPosition]=\"animatedPosition\"\n            [tooltipShowAnimation]=\"showAnimation\"\n            [tooltipHideAnimation]=\"hideAnimation\"\n          >\n            {{ animatedButtonText }}\n          </button>\n\n          <button\n            class=\"tooltip-button\"\n            [meTooltip]=\"positionedTooltip\"\n            [tooltipPosition]=\"positionedPosition\"\n          >\n            {{ positionedButtonText }}\n          </button>\n        </div>\n      </div>\n\n      <div class=\"tooltip-group\">\n        <div class=\"tooltip-controls\">\n          <button\n            class=\"tooltip-button\"\n            [meTooltip]=\"''\"\n            [tooltipTemplateRef]=\"interactiveTemplate\"\n            [tooltipPosition]=\"interactivePosition\"\n            [tooltipMaxWidth]=\"interactiveMaxWidth\"\n          >\n            {{ interactiveButtonText }}\n          </button>\n\n          <button\n            class=\"tooltip-button\"\n            [meTooltip]=\"''\"\n            [tooltipTemplateRef]=\"htmlTemplate\"\n            [tooltipPosition]=\"htmlPosition\"\n            [tooltipMaxWidth]=\"htmlMaxWidth\"\n          >\n            {{ htmlButtonText }}\n          </button>\n\n          <button\n            class=\"tooltip-button\"\n            [meTooltip]=\"''\"\n            [tooltipTemplateRef]=\"customStyleTemplate\"\n            [tooltipPosition]=\"customStylePosition\"\n            [tooltipClass]=\"customStyleClass\"\n          >\n            {{ customStyleButtonText }}\n          </button>\n        </div>\n      </div>\n    </div>\n\n    <ng-template #htmlTemplate>\n      <div class=\"html-tooltip\">\n        <h3>HTML в тултипе</h3>\n        <p>\n          Тултипы могут содержать <strong>форматированный текст</strong>,\n          <em>списки</em> и другие HTML-элементы:\n        </p>\n        <ul>\n          <li>Пункт 1</li>\n          <li>Пункт 2</li>\n        </ul>\n      </div>\n    </ng-template>\n\n    <ng-template #interactiveTemplate>\n      <div class=\"interactive-tooltip\">\n        <h3>Интерактивный тултип</h3>\n        <p>Тултипы могут содержать интерактивные элементы:</p>\n        <button class=\"accept-button\">Принять</button>\n        <button class=\"decline-button\">Отменить</button>\n      </div>\n    </ng-template>\n\n    <ng-template #customStyleTemplate>\n      <div class=\"custom-tooltip\">\n        <h3>Пользовательские стили</h3>\n        <p>Этот тултип имеет особое оформление, заданное через CSS-класс.</p>\n      </div>\n    </ng-template>\n  `,\n  styles: [\n    `\n      .tooltip-demo {\n        display: flex;\n        justify-content: space-around;\n        padding: 20px;\n        background-color: #f0f0f0;\n        border-radius: 10px;\n      }\n\n      .tooltip-group {\n        text-align: center;\n        margin-left: 20px;\n      }\n\n      .tooltip-controls {\n        display: flex;\n        flex-direction: column;\n        gap: 15px;\n      }\n\n      .tooltip-button {\n        padding: 10px;\n        border: none;\n        border-radius: 5px;\n        cursor: pointer;\n        transition: background-color 0.3s;\n      }\n\n      .interactive-tooltip {\n        box-sizing: border-box;\n        padding: 4px;\n      }\n\n      .interactive-tooltip * {\n        text-wrap: balance;\n      }\n\n      .interactive-tooltip button {\n        margin-top: 8px;\n        margin-inline: 4px;\n        padding: 4px 8px;\n        border: none;\n        border-radius: 3px;\n        cursor: pointer;\n      }\n\n      .interactive-tooltip .accept-button {\n        background-color: #3257dc;\n        color: white;\n      }\n\n      .interactive-tooltip .decline-button {\n        background-color: #ecedf3;\n        color: #18181a;\n      }\n\n      .custom-tooltip {\n        background-color: #ff9800;\n        color: white;\n        border: 2px solid #e68a00;\n        border-radius: 10px;\n        padding: 10px;\n      }\n\n      .html-tooltip * {\n        text-wrap: balance;\n        text-align: start;\n        margin-top: 4px;\n      }\n    `,\n  ],\n})\nclass TooltipDemoComponent {\n  @Input() simpleTooltip: string = 'Это простой текстовый тултип';\n  @Input() simplePosition: 'top' | 'bottom' | 'left' | 'right' = 'top';\n  @Input() simpleButtonText: string = 'Простой тултип';\n\n  @Input() animatedTooltip: string = 'Тултип с анимацией';\n  @Input() animatedPosition: 'top' | 'bottom' | 'left' | 'right' = 'left';\n  @Input() animatedButtonText: string = 'Анимированный';\n  @Input() showAnimation: any = {\n    type: 'slide',\n    from: { left: -100, opacity: 0 },\n    to: { opacity: 1, left: 0 },\n  };\n  @Input() hideAnimation: any = {\n    type: 'pop',\n    from: { scale: 1, opacity: 1 },\n    to: { opacity: 0, scale: 0.1 },\n  };\n\n  @Input() positionedTooltip: string = 'Тултип снизу';\n  @Input() positionedPosition: 'top' | 'bottom' | 'left' | 'right' = 'bottom';\n  @Input() positionedButtonText: string = 'Позиционирование';\n\n  @Input() interactivePosition: 'top' | 'bottom' | 'left' | 'right' = 'right';\n  @Input() interactiveMaxWidth: string = '200';\n  @Input() interactiveButtonText: string = 'Интерактивный тултип';\n\n  @Input() htmlPosition: 'top' | 'bottom' | 'left' | 'right' = 'right';\n  @Input() htmlMaxWidth: string = '300';\n  @Input() htmlButtonText: string = 'HTML-содержимое';\n\n  @Input() customStylePosition: 'top' | 'bottom' | 'left' | 'right' = 'bottom';\n  @Input() customStyleClass: string = 'custom-tooltip';\n  @Input() customStyleButtonText: string = 'Пользовательские стили';\n}\n\nconst meta: Meta<TooltipDemoComponent> = {\n  title: 'Components/Tooltip(RC)',\n  component: TooltipDemoComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective, TooltipDemoComponent],\n    }),\n  ],\n  argTypes: {\n    simpleTooltip: { control: 'text' },\n    simplePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    simpleButtonText: { control: 'text' },\n\n    animatedTooltip: { control: 'text' },\n    animatedPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    animatedButtonText: { control: 'text' },\n    showAnimation: { control: 'object' },\n    hideAnimation: { control: 'object' },\n\n    positionedTooltip: { control: 'text' },\n    positionedPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    positionedButtonText: { control: 'text' },\n\n    interactivePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    interactiveMaxWidth: { control: 'text' },\n    interactiveButtonText: { control: 'text' },\n\n    htmlPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    htmlMaxWidth: { control: 'text' },\n    htmlButtonText: { control: 'text' },\n\n    customStylePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    customStyleClass: { control: 'text' },\n    customStyleButtonText: { control: 'text' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<TooltipDemoComponent>;\n\nexport const Default: Story = {\n  args: {\n    simpleTooltip: 'Это простой текстовый тултип',\n    simplePosition: 'top',\n    simpleButtonText: 'Простой тултип',\n\n    animatedTooltip: 'Тултип с анимацией',\n    animatedPosition: 'left',\n    animatedButtonText: 'Анимированный',\n\n    positionedTooltip: 'Тултип снизу',\n    positionedPosition: 'bottom',\n    positionedButtonText: 'Позиционирование',\n\n    interactivePosition: 'right',\n    interactiveMaxWidth: '200',\n    interactiveButtonText: 'Интерактивный тултип',\n\n    htmlPosition: 'right',\n    htmlMaxWidth: '300',\n    htmlButtonText: 'HTML-содержимое',\n\n    customStylePosition: 'bottom',\n    customStyleClass: 'custom-tooltip',\n    customStyleButtonText: 'Пользовательские стили',\n  },\n};\n\nexport const CustomPositions: Story = {\n  args: {\n    ...Default.args,\n    simplePosition: 'right',\n    animatedPosition: 'top',\n    positionedPosition: 'left',\n    interactivePosition: 'bottom',\n    htmlPosition: 'left',\n    customStylePosition: 'top',\n  },\n};\n\nexport const CustomContent: Story = {\n  args: {\n    ...Default.args,\n    simpleTooltip: 'Измененный простой тултип',\n    animatedTooltip: 'Новый анимированный тултип',\n    positionedTooltip: 'Позиционированный тултип сверху',\n  },\n};\n\nexport const CustomAnimations: Story = {\n  args: {\n    ...Default.args,\n    showAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n    },\n    hideAnimation: {\n      type: 'slide',\n      from: { top: 0, opacity: 1 },\n      to: { top: -20, opacity: 0 },\n    },\n  },\n};\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "\n      .tooltip-demo {\n        display: flex;\n        justify-content: space-around;\n        padding: 20px;\n        background-color: #f0f0f0;\n        border-radius: 10px;\n      }\n\n      .tooltip-group {\n        text-align: center;\n        margin-left: 20px;\n      }\n\n      .tooltip-controls {\n        display: flex;\n        flex-direction: column;\n        gap: 15px;\n      }\n\n      .tooltip-button {\n        padding: 10px;\n        border: none;\n        border-radius: 5px;\n        cursor: pointer;\n        transition: background-color 0.3s;\n      }\n\n      .interactive-tooltip {\n        box-sizing: border-box;\n        padding: 4px;\n      }\n\n      .interactive-tooltip * {\n        text-wrap: balance;\n      }\n\n      .interactive-tooltip button {\n        margin-top: 8px;\n        margin-inline: 4px;\n        padding: 4px 8px;\n        border: none;\n        border-radius: 3px;\n        cursor: pointer;\n      }\n\n      .interactive-tooltip .accept-button {\n        background-color: #3257dc;\n        color: white;\n      }\n\n      .interactive-tooltip .decline-button {\n        background-color: #ecedf3;\n        color: #18181a;\n      }\n\n      .custom-tooltip {\n        background-color: #ff9800;\n        color: white;\n        border: 2px solid #e68a00;\n        border-radius: 10px;\n        padding: 10px;\n      }\n\n      .html-tooltip * {\n        text-wrap: balance;\n        text-align: start;\n        margin-top: 4px;\n      }\n    \n",
-      "extends": []
     }
   ],
   "modules": [],
   "miscellaneous": {
     "variables": [
+      {
+        "name": "AutoResize",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    autoResizeEnabled: true,\n    value:\n      'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',\n  },\n}"
+      },
+      {
+        "name": "Basic",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Это базовый тултип',\n    tooltipPosition: 'top',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        Наведите на меня\n      </button>\n    `,\n  }),\n}"
+      },
       {
         "name": "BottomPosition",
         "ctype": "miscellaneous",
@@ -1162,7 +653,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    isCollapsible: true,\n  },\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    collapsible: true,\n  },\n}"
       },
       {
         "name": "CustomAnimation",
@@ -1185,16 +676,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom animation',\n    animation: {\n      show: {\n        type: 'pop',\n        duration: 400,\n        from: { scale: 0 },\n        to: { scale: 1 },\n      },\n      hide: { type: 'pop', duration: 400, to: { scale: 0 } },\n    },\n  },\n}"
       },
       {
-        "name": "CustomAnimations",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    showAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n    },\n    hideAnimation: {\n      type: 'slide',\n      from: { top: 0, opacity: 1 },\n      to: { top: -20, opacity: 0 },\n    },\n  },\n}"
-      },
-      {
         "name": "CustomClass",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1203,6 +684,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    customClass: 'my-custom-accordion',\n  },\n}"
+      },
+      {
+        "name": "CustomClass",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    customClass: 'my-custom-class',\n  },\n}"
       },
       {
         "name": "CustomClass",
@@ -1225,16 +716,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom CSS class',\n    customClass: 'my-custom-toast',\n  },\n}"
       },
       {
-        "name": "CustomContent",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    simpleTooltip: 'Измененный простой тултип',\n    animatedTooltip: 'Новый анимированный тултип',\n    positionedTooltip: 'Позиционированный тултип сверху',\n  },\n}"
-      },
-      {
         "name": "CustomFirstDay",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1242,7 +723,17 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    firstDayOfWeek: 0, // Sunday\n  },\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    firstDayOfWeek: 0,\n  },\n}"
+      },
+      {
+        "name": "CustomHeader",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    dataSource: [\n      {\n        id: 1,\n        text: 'Accordion Item 1',\n        description: 'Description for Item 1',\n        icon: 'folder',\n      },\n      {\n        id: 2,\n        text: 'Accordion Item 2',\n        description: 'Description for Item 2',\n        icon: 'folder',\n      },\n      {\n        id: 3,\n        text: 'Accordion Item 3',\n        description: 'Description for Item 3',\n        icon: 'folder',\n      },\n    ],\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-accordion\n        meAccordion\n        [dataSource]=\"dataSource\"\n        [collapsible]=\"true\"\n        itemTitleTemplate=\"customTitle\"\n      >\n        <div *dxTemplate=\"let item of 'customTitle'\">\n           <div style=\"display: flex; align-items: flex-start;\">\n              <i class=\"dx-icon-{{item.icon}}\" style=\"margin-right: 10px; font-size: 18px; color: #000;\"></i>\n              <div>\n                <div style=\"font-weight: bold; font-size: 16px;\">{{item.text}}</div>\n                <div style=\"font-weight: inherit; color: gray; font-size: 14px;\">{{item.description}}</div>\n              </div>\n            </div>\n        </div>\n        <div *dxTemplate=\"let item of 'item'\">\n          <p>Content for {{item.text}}</p>\n        </div>\n      </dx-accordion>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomHeight",
@@ -1265,14 +756,24 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n}"
       },
       {
-        "name": "CustomPositions",
+        "name": "CustomStyles",
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    simplePosition: 'right',\n    animatedPosition: 'top',\n    positionedPosition: 'left',\n    interactivePosition: 'bottom',\n    htmlPosition: 'left',\n    customStylePosition: 'top',\n  },\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Стилизованный тултип',\n    tooltipPosition: 'left',\n    tooltipClass: 'custom-tooltip',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\" [tooltipClass]=\"tooltipClass\">\n        Кастомный тултип\n      </button>\n    `,\n  }),\n}"
+      },
+      {
+        "name": "CustomTemplate",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"tooltipTemplate\" [tooltipTemplateRef]=\"tooltipTemplate\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomWeekNumberRule",
@@ -1362,7 +863,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    size: 'medium',\n    customClass: '',\n    isCollapsible: false,\n    isMultiple: false,\n    animationDuration: 300,\n    companies: defaultCompanies,\n    selectedItems: [defaultCompanies[0]],\n  },\n}"
+        "defaultValue": "{\n  args: {\n    dataSource: [\n      { title: 'Accordion Item 1', content: 'Content for Accordion Item 1' },\n      { title: 'Accordion Item 2', content: 'Content for Accordion Item 2' },\n      { title: 'Accordion Item 3', content: 'Content for Accordion Item 3' },\n    ],\n  },\n}"
       },
       {
         "name": "Default",
@@ -1392,7 +893,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    visible: true,\n  },\n}"
+        "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n    disabled: false,\n    firstDayOfWeek: 1,\n    zoomLevel: 'month',\n    weekNumberRule: 'firstDay',\n    value: new Date(),\n  },\n}"
       },
       {
         "name": "Default",
@@ -1403,6 +904,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    isDisabled: false,\n  },\n}"
       },
       {
         "name": "Default",
@@ -1432,7 +943,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
       },
       {
         "name": "Default",
@@ -1462,7 +973,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    label: 'Default mode',\n    subject: 'Show Popover',\n    // showEvent: 'mouseenter',\n    // hideEvent: 'mouseleave',\n    position: 'top',\n    width: 300,\n    content:\n      'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',\n  },\n}"
+        "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n  },\n}"
       },
       {
         "name": "Default",
@@ -1488,6 +999,16 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-scroll-view/me-scroll-view.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {},\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1503,6 +1024,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    isSidePageOpen: false,\n    position: 'left',\n    width: '340px',\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    value: 50,\n    min: 0,\n    max: 100,\n    height: '75px',\n    disabled: false,\n    hoverStateEnabled: true,\n    focusStateEnabled: true,\n    isValid: true,\n  },\n}"
       },
       {
         "name": "Default",
@@ -1538,6 +1069,16 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    value:\n      'Prepare 2013 Marketing Plan: We need to double revenues in 2013 and our marketing strategy is going to be key here.',\n    width: '320px',\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-text-box/me-text-box.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1568,31 +1109,11 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    simpleTooltip: 'Это простой текстовый тултип',\n    simplePosition: 'top',\n    simpleButtonText: 'Простой тултип',\n\n    animatedTooltip: 'Тултип с анимацией',\n    animatedPosition: 'left',\n    animatedButtonText: 'Анимированный',\n\n    positionedTooltip: 'Тултип снизу',\n    positionedPosition: 'bottom',\n    positionedButtonText: 'Позиционирование',\n\n    interactivePosition: 'right',\n    interactiveMaxWidth: '200',\n    interactiveButtonText: 'Интерактивный тултип',\n\n    htmlPosition: 'right',\n    htmlMaxWidth: '300',\n    htmlButtonText: 'HTML-содержимое',\n\n    customStylePosition: 'bottom',\n    customStyleClass: 'custom-tooltip',\n    customStyleButtonText: 'Пользовательские стили',\n  },\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-tree-view/me-tree-view.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    dataSource: data,\n    size: 'large',\n  },\n}"
-      },
-      {
-        "name": "defaultCompanies",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Company[]",
-        "defaultValue": "[\n  {\n    CompanyName: 'Company A',\n    Description: 'Description A',\n    City: 'City A',\n    State: 'State A',\n    Zipcode: '12345',\n    Address: 'Address A',\n    Phone: '123-456-7890',\n    Fax: '098-765-4321',\n    Website: 'http://www.companya.com',\n  },\n  {\n    CompanyName: 'Company B',\n    Description: 'Description B',\n    City: 'City B',\n    State: 'State B',\n    Zipcode: '67890',\n    Address: 'Address B',\n    Phone: '234-567-8901',\n    Fax: '109-876-5432',\n    Website: 'http://www.companyb.com',\n  },\n  {\n    CompanyName: 'Company C',\n    Description: 'Description C',\n    City: 'City C',\n    State: 'State C',\n    Zipcode: '13579',\n    Address: 'Address C',\n    Phone: '345-678-9012',\n    Fax: '210-987-6543',\n    Website: 'http://www.companyc.com',\n  },\n]"
       },
       {
         "name": "defaultTabsData",
@@ -1613,6 +1134,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    disabled: true,\n  },\n}"
+      },
+      {
+        "name": "Disabled",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    isDisabled: true,\n  },\n}"
       },
       {
         "name": "fruitsVegetables",
@@ -1643,6 +1174,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    hideOnOutsideClick: true,\n  },\n}"
+      },
+      {
+        "name": "HTMLContent",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        HTML-тултип\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "iconList",
@@ -1735,6 +1276,16 @@
         "defaultValue": "[\n  {\n    name: 'Apples',\n    count: 10,\n    image: './images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n  {\n    name: 'Oranges',\n    count: 12,\n    image: './images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n  {\n    name: 'Lemons',\n    count: 15,\n    image: './images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n]"
       },
       {
+        "name": "LabelModeInside",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    labelMode: 'inside',\n  },\n}"
+      },
+      {
         "name": "Large",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1749,6 +1300,16 @@
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
+      },
+      {
+        "name": "Large",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
@@ -1818,16 +1379,6 @@
         "name": "meta",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Meta<MeAccordionProps>",
-        "defaultValue": "{\n  title: 'Components/Accordion(RC)',\n  component: MeAccordionDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeAccordionDirective, AccordionDemoComponent],\n      imports: [DxAccordionModule],\n    }),\n  ],\n  render: (args: MeAccordionProps) => ({\n    props: args,\n    template:\n      '<accordion-demo [size]=\"size\" [customClass]=\"customClass\" [isCollapsible]=\"isCollapsible\" [isMultiple]=\"isMultiple\" [animationDuration]=\"animationDuration\" [companies]=\"companies\" [selectedItems]=\"selectedItems\"></accordion-demo>',\n  }),\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    customClass: { control: 'text' },\n    isCollapsible: { control: 'boolean' },\n    isMultiple: { control: 'boolean' },\n    animationDuration: {\n      control: { type: 'range', min: 0, max: 1000, step: 50 },\n    },\n  },\n}"
-      },
-      {
-        "name": "meta",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1851,8 +1402,8 @@
         "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Meta<PopoverHostComponent>",
-        "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: PopoverHostComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective, PopoverHostComponent],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  argTypes: {\n    label: { control: 'text' },\n    subject: { control: 'text' },\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n    animationEnabled: { control: 'boolean' },\n  },\n}"
+        "type": "Meta<PopoverProps>",
+        "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n  },\n}"
       },
       {
         "name": "meta",
@@ -1891,8 +1442,8 @@
         "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Meta<TooltipDemoComponent>",
-        "defaultValue": "{\n  title: 'Components/Tooltip(RC)',\n  component: TooltipDemoComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective, TooltipDemoComponent],\n    }),\n  ],\n  argTypes: {\n    simpleTooltip: { control: 'text' },\n    simplePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    simpleButtonText: { control: 'text' },\n\n    animatedTooltip: { control: 'text' },\n    animatedPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    animatedButtonText: { control: 'text' },\n    showAnimation: { control: 'object' },\n    hideAnimation: { control: 'object' },\n\n    positionedTooltip: { control: 'text' },\n    positionedPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    positionedButtonText: { control: 'text' },\n\n    interactivePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    interactiveMaxWidth: { control: 'text' },\n    interactiveButtonText: { control: 'text' },\n\n    htmlPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    htmlMaxWidth: { control: 'text' },\n    htmlButtonText: { control: 'text' },\n\n    customStylePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    customStyleClass: { control: 'text' },\n    customStyleButtonText: { control: 'text' },\n  },\n}"
+        "type": "Meta<MeTooltipDirective>",
+        "defaultValue": "{\n  title: 'Components/Tooltip',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n    }),\n  ],\n  argTypes: {\n    meTooltip: { control: 'text' },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    tooltipClass: { control: 'text' },\n    tooltipWidth: { control: 'text' },\n    tooltipMaxWidth: { control: 'text' },\n    tooltipShowAnimation: { control: 'object' },\n    tooltipHideAnimation: { control: 'object' },\n  },\n}"
       },
       {
         "name": "MoreContent",
@@ -1912,7 +1463,27 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    isMultiple: true,\n  },\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    multiple: true,\n  },\n}"
+      },
+      {
+        "name": "MultipleFiles",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    multiple: true,\n  },\n}"
+      },
+      {
+        "name": "Positioning",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Позиционированный тултип',\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип {{ tooltipPosition }}\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "preview",
@@ -1923,6 +1494,26 @@
         "deprecationMessage": "",
         "type": "Preview",
         "defaultValue": "{\n  parameters: {\n    controls: {\n      // disableSave: true,\n      // expanded: true,\n      // disableSaveFromUI: true,\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    darkMode: {\n      dark: {\n        ...themes.dark,\n        brandImage: './images/Logo1.png',\n      },\n      light: { ...themes.normal, brandImage: './images/logoSK.png' },\n      darkClass: 'lights-out',\n      lightClass: 'lights-on',\n      current: 'light',\n      stylePreview: true,\n      classTarget: 'body',\n    },\n\n    backgrounds: {\n      disable: true,\n    },\n  },\n\n  // tags: ['autodocs', 'autodocs'],\n}"
+      },
+      {
+        "name": "ProgressBar",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {},\n}"
+      },
+      {
+        "name": "ReadOnly",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    readOnly: true,\n    autoResizeEnabled: true,\n  },\n}"
       },
       {
         "name": "Scroll",
@@ -1965,6 +1556,16 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
       },
       {
+        "name": "Small",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
+      },
+      {
         "name": "SmallSize",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1982,7 +1583,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"'normal'\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"'accent'\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n      <div\n        id=\"image-indicator\"\n        meLoadIndicator\n        [size]=\"'large'\"\n        [indicatorSrc]=\"indicatorSrc\"\n      ></div>\n    `,\n    styles: [\n      `\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: var(--button-normal-bg-color);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `,\n    ],\n  }),\n}"
+        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"color\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n\n\t\t\t<div class=\"indicators\">\n\t\t\t\t<div\n\t\t\t\t\tid=\"image-indicator\"\n\t\t\t\t\tmeLoadIndicator\n\t\t\t\t\t[size]=\"'large'\"\n\t\t\t\t\t[indicatorSrc]=\"indicatorSrc\"\n\t\t\t\t></div>\n\t\t\t</div>\n    `,\n    styles: [\n      `\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: rgb(157, 157, 158);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `,\n    ],\n  }),\n}"
       },
       {
         "name": "themeWrapper",
@@ -2012,17 +1613,17 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'accent',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'accent',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
       },
       {
         "name": "WithAnimation",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    label: 'With animation',\n    subject: 'Create 2012 Sales Report',\n    animationEnabled: true,\n    content:\n      '2012 Sales Report has to be completed so we can determine if major changes are required to sales strategy.',\n  },\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "WithCustomClass",
@@ -2052,7 +1653,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/custom-loader.gif',\n  },\n}"
+        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
       },
       {
         "name": "WithIcons",
@@ -2073,6 +1674,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `<label meLabel width=\"90px\"><dx-switch meSwitch ${argsToTemplate(\n      args\n    )}></dx-switch>Switch</label>`,\n  }),\n}"
+      },
+      {
+        "name": "WithLabelAndTooltip",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n\t\t<div class=\"dx-field\">\n\t    <div class=\"dx-field-value\">\n\t      <dx-slider\n\t\t\t\t\tmeSlider\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[(value)]=\"value\"\n\t\t\t\t\t[height]=\"height\"\n\t\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t\t[hoverStateEnabled]=\"hoverStateEnabled\"\n\t\t\t\t\t[focusStateEnabled]=\"focusStateEnabled\"\n\t\t\t\t\t[isValid]=\"isValid\">\n\t\t\t\t\t\t<dxo-label\n\t\t\t\t\t\t\t[visible]=\"true\"\n\t\t\t\t\t\t\tposition=\"top\"\n\t\t\t\t\t\t></dxo-label>\n\t\t\t\t\t\t <dxo-tooltip\n\t          [enabled]=\"true\"\n\t          [format]=\"format\"\n\t          showMode=\"always\"\n\t          position=\"bottom\"\n\t        ></dxo-tooltip>\n\t      </dx-slider>\n\t    </div>\n\t\t</div>\n\t\t`,\n    styles: [\n      `\n\t\t\t\t.dx-field {\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tflex: 1;\n\t\t\t\t}\n\t\t\t\t.dx-field {\n\t\t\t\t\tmargin-bottom: 50px;\n\t\t\t\t}\n\t\t\t\t.dx-field-value {\n\t\t\t\t\twidth: 233px !important;\n\t\t\t\t}\n\t\t\t`,\n    ],\n  }),\n}"
       },
       {
         "name": "WithLabelColumn",
@@ -2142,7 +1753,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n  },\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    showWeekNumbers: false,\n  },\n}"
       },
       {
         "name": "WithOverlay",
@@ -2152,7 +1763,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    label: 'With overlay',\n    subject: 'Website Re-Design Plan',\n    showEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content:\n      'The changes in our brochure designs for 2013 require us to update key areas of our website.',\n  },\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n}"
       },
       {
         "name": "WithTitle",
@@ -2162,7 +1773,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    label: 'With title',\n    subject: 'Rollout of New Website and Marketing Brochures',\n    position: 'bottom',\n    showTitle: true,\n    title: 'Details',\n    maxWidth: 400,\n    content:\n      'The designs for new brochures and website have been approved. Launch date is set for Feb 28.',\n  },\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'bottom',\n    showTitle: true,\n    title: 'Заголовок поповера',\n    maxWidth: 400,\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\n  },\n}"
       },
       {
         "name": "words",
@@ -2220,7 +1831,7 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeAccordionProps>",
+        "rawtype": "StoryObj",
         "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2266,6 +1877,17 @@
         "subtype": "typealias",
         "rawtype": "StoryObj<MeCheckBoxDirective | DxCheckBoxComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj",
+        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -2330,7 +1952,7 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<PopoverHostComponent>",
+        "rawtype": "StoryObj<PopoverProps>",
         "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2352,8 +1974,30 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
+        "rawtype": "StoryObj",
+        "file": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
         "rawtype": "StoryObj<MeRadioGroupDirective | DxRadioGroupComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-radio-group/me-radio-group.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj",
+        "file": "projects/dx-monitel-components/src/stories/me-scroll-view/me-scroll-view.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -2376,6 +2020,17 @@
         "subtype": "typealias",
         "rawtype": "StoryObj<SidePageComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-side-page/me-side-page.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj",
+        "file": "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -2418,6 +2073,17 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
+        "rawtype": "StoryObj",
+        "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
         "rawtype": "StoryObj<MeTextBoxDirective | DxTextBoxComponent | MeLabelDirective>",
         "file": "projects/dx-monitel-components/src/stories/me-text-box/me-text-box.stories.ts",
         "deprecated": false,
@@ -2451,7 +2117,7 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<TooltipDemoComponent>",
+        "rawtype": "StoryObj<MeTooltipDirective>",
         "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2472,6 +2138,140 @@
     ],
     "enumerations": [],
     "groupedVariables": {
+      "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts": [
+        {
+          "name": "AutoResize",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    autoResizeEnabled: true,\n    value:\n      'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',\n  },\n}"
+        },
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    value:\n      'Prepare 2013 Marketing Plan: We need to double revenues in 2013 and our marketing strategy is going to be key here.',\n    width: '320px',\n  },\n}"
+        },
+        {
+          "name": "LabelModeInside",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    labelMode: 'inside',\n  },\n}"
+        },
+        {
+          "name": "Large",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
+        },
+        {
+          "name": "ReadOnly",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    readOnly: true,\n    autoResizeEnabled: true,\n  },\n}"
+        },
+        {
+          "name": "Small",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts": [
+        {
+          "name": "Basic",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Это базовый тултип',\n    tooltipPosition: 'top',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        Наведите на меня\n      </button>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "CustomStyles",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Стилизованный тултип',\n    tooltipPosition: 'left',\n    tooltipClass: 'custom-tooltip',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\" [tooltipClass]=\"tooltipClass\">\n        Кастомный тултип\n      </button>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "CustomTemplate",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"tooltipTemplate\" [tooltipTemplateRef]=\"tooltipTemplate\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "HTMLContent",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        HTML-тултип\n      </button>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "meta",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Meta<MeTooltipDirective>",
+          "defaultValue": "{\n  title: 'Components/Tooltip',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n    }),\n  ],\n  argTypes: {\n    meTooltip: { control: 'text' },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    tooltipClass: { control: 'text' },\n    tooltipWidth: { control: 'text' },\n    tooltipMaxWidth: { control: 'text' },\n    tooltipShowAnimation: { control: 'object' },\n    tooltipHideAnimation: { control: 'object' },\n  },\n}"
+        },
+        {
+          "name": "Positioning",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Позиционированный тултип',\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип {{ tooltipPosition }}\n      </button>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "WithAnimation",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
+        }
+      ],
       "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts": [
         {
           "name": "BottomPosition",
@@ -2573,7 +2373,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    isCollapsible: true,\n  },\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    collapsible: true,\n  },\n}"
         },
         {
           "name": "CustomAnimation",
@@ -2596,6 +2396,16 @@
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    customClass: 'my-custom-accordion',\n  },\n}"
         },
         {
+          "name": "CustomHeader",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    dataSource: [\n      {\n        id: 1,\n        text: 'Accordion Item 1',\n        description: 'Description for Item 1',\n        icon: 'folder',\n      },\n      {\n        id: 2,\n        text: 'Accordion Item 2',\n        description: 'Description for Item 2',\n        icon: 'folder',\n      },\n      {\n        id: 3,\n        text: 'Accordion Item 3',\n        description: 'Description for Item 3',\n        icon: 'folder',\n      },\n    ],\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-accordion\n        meAccordion\n        [dataSource]=\"dataSource\"\n        [collapsible]=\"true\"\n        itemTitleTemplate=\"customTitle\"\n      >\n        <div *dxTemplate=\"let item of 'customTitle'\">\n           <div style=\"display: flex; align-items: flex-start;\">\n              <i class=\"dx-icon-{{item.icon}}\" style=\"margin-right: 10px; font-size: 18px; color: #000;\"></i>\n              <div>\n                <div style=\"font-weight: bold; font-size: 16px;\">{{item.text}}</div>\n                <div style=\"font-weight: inherit; color: gray; font-size: 14px;\">{{item.description}}</div>\n              </div>\n            </div>\n        </div>\n        <div *dxTemplate=\"let item of 'item'\">\n          <p>Content for {{item.text}}</p>\n        </div>\n      </dx-accordion>\n    `,\n  }),\n}"
+        },
+        {
           "name": "Default",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -2603,17 +2413,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    size: 'medium',\n    customClass: '',\n    isCollapsible: false,\n    isMultiple: false,\n    animationDuration: 300,\n    companies: defaultCompanies,\n    selectedItems: [defaultCompanies[0]],\n  },\n}"
-        },
-        {
-          "name": "defaultCompanies",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Company[]",
-          "defaultValue": "[\n  {\n    CompanyName: 'Company A',\n    Description: 'Description A',\n    City: 'City A',\n    State: 'State A',\n    Zipcode: '12345',\n    Address: 'Address A',\n    Phone: '123-456-7890',\n    Fax: '098-765-4321',\n    Website: 'http://www.companya.com',\n  },\n  {\n    CompanyName: 'Company B',\n    Description: 'Description B',\n    City: 'City B',\n    State: 'State B',\n    Zipcode: '67890',\n    Address: 'Address B',\n    Phone: '234-567-8901',\n    Fax: '109-876-5432',\n    Website: 'http://www.companyb.com',\n  },\n  {\n    CompanyName: 'Company C',\n    Description: 'Description C',\n    City: 'City C',\n    State: 'State C',\n    Zipcode: '13579',\n    Address: 'Address C',\n    Phone: '345-678-9012',\n    Fax: '210-987-6543',\n    Website: 'http://www.companyc.com',\n  },\n]"
+          "defaultValue": "{\n  args: {\n    dataSource: [\n      { title: 'Accordion Item 1', content: 'Content for Accordion Item 1' },\n      { title: 'Accordion Item 2', content: 'Content for Accordion Item 2' },\n      { title: 'Accordion Item 3', content: 'Content for Accordion Item 3' },\n    ],\n  },\n}"
         },
         {
           "name": "Large",
@@ -2626,16 +2426,6 @@
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
         },
         {
-          "name": "meta",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Meta<MeAccordionProps>",
-          "defaultValue": "{\n  title: 'Components/Accordion(RC)',\n  component: MeAccordionDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeAccordionDirective, AccordionDemoComponent],\n      imports: [DxAccordionModule],\n    }),\n  ],\n  render: (args: MeAccordionProps) => ({\n    props: args,\n    template:\n      '<accordion-demo [size]=\"size\" [customClass]=\"customClass\" [isCollapsible]=\"isCollapsible\" [isMultiple]=\"isMultiple\" [animationDuration]=\"animationDuration\" [companies]=\"companies\" [selectedItems]=\"selectedItems\"></accordion-demo>',\n  }),\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    customClass: { control: 'text' },\n    isCollapsible: { control: 'boolean' },\n    isMultiple: { control: 'boolean' },\n    animationDuration: {\n      control: { type: 'range', min: 0, max: 1000, step: 50 },\n    },\n  },\n}"
-        },
-        {
           "name": "Multiple",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -2643,7 +2433,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    isMultiple: true,\n  },\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    multiple: true,\n  },\n}"
         },
         {
           "name": "Small",
@@ -2718,56 +2508,46 @@
           "defaultValue": "{\n  title: 'Components/Toast(RC)',\n  component: ToastDemoComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeToastDirective, ToastDemoComponent],\n      imports: [DxToastModule],\n    }),\n  ],\n  argTypes: {\n    message: { control: 'text' },\n    displayTime: { control: 'number' },\n    position: {\n      control: 'select',\n      options: [\n        'top left',\n        'top center',\n        'top right',\n        'bottom left',\n        'bottom center',\n        'bottom right',\n      ],\n    },\n    customClass: { control: 'text' },\n  },\n}"
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts": [
+      "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts": [
         {
-          "name": "CustomAnimations",
+          "name": "CustomClass",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    showAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n    },\n    hideAnimation: {\n      type: 'slide',\n      from: { top: 0, opacity: 1 },\n      to: { top: -20, opacity: 0 },\n    },\n  },\n}"
-        },
-        {
-          "name": "CustomContent",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    simpleTooltip: 'Измененный простой тултип',\n    animatedTooltip: 'Новый анимированный тултип',\n    positionedTooltip: 'Позиционированный тултип сверху',\n  },\n}"
-        },
-        {
-          "name": "CustomPositions",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    simplePosition: 'right',\n    animatedPosition: 'top',\n    positionedPosition: 'left',\n    interactivePosition: 'bottom',\n    htmlPosition: 'left',\n    customStylePosition: 'top',\n  },\n}"
+          "defaultValue": "{\n  args: {\n    customClass: 'my-custom-class',\n  },\n}"
         },
         {
           "name": "Default",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    simpleTooltip: 'Это простой текстовый тултип',\n    simplePosition: 'top',\n    simpleButtonText: 'Простой тултип',\n\n    animatedTooltip: 'Тултип с анимацией',\n    animatedPosition: 'left',\n    animatedButtonText: 'Анимированный',\n\n    positionedTooltip: 'Тултип снизу',\n    positionedPosition: 'bottom',\n    positionedButtonText: 'Позиционирование',\n\n    interactivePosition: 'right',\n    interactiveMaxWidth: '200',\n    interactiveButtonText: 'Интерактивный тултип',\n\n    htmlPosition: 'right',\n    htmlMaxWidth: '300',\n    htmlButtonText: 'HTML-содержимое',\n\n    customStylePosition: 'bottom',\n    customStyleClass: 'custom-tooltip',\n    customStyleButtonText: 'Пользовательские стили',\n  },\n}"
+          "defaultValue": "{\n  args: {\n    isDisabled: false,\n  },\n}"
         },
         {
-          "name": "meta",
+          "name": "Disabled",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Meta<TooltipDemoComponent>",
-          "defaultValue": "{\n  title: 'Components/Tooltip(RC)',\n  component: TooltipDemoComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective, TooltipDemoComponent],\n    }),\n  ],\n  argTypes: {\n    simpleTooltip: { control: 'text' },\n    simplePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    simpleButtonText: { control: 'text' },\n\n    animatedTooltip: { control: 'text' },\n    animatedPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    animatedButtonText: { control: 'text' },\n    showAnimation: { control: 'object' },\n    hideAnimation: { control: 'object' },\n\n    positionedTooltip: { control: 'text' },\n    positionedPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    positionedButtonText: { control: 'text' },\n\n    interactivePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    interactiveMaxWidth: { control: 'text' },\n    interactiveButtonText: { control: 'text' },\n\n    htmlPosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    htmlMaxWidth: { control: 'text' },\n    htmlButtonText: { control: 'text' },\n\n    customStylePosition: {\n      control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },\n    },\n    customStyleClass: { control: 'text' },\n    customStyleButtonText: { control: 'text' },\n  },\n}"
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    isDisabled: true,\n  },\n}"
+        },
+        {
+          "name": "MultipleFiles",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    multiple: true,\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts": [
@@ -2841,7 +2621,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    firstDayOfWeek: 0, // Sunday\n  },\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    firstDayOfWeek: 0,\n  },\n}"
         },
         {
           "name": "CustomWeekNumberRule",
@@ -2861,7 +2641,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    visible: true,\n  },\n}"
+          "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n    disabled: false,\n    firstDayOfWeek: 1,\n    zoomLevel: 'month',\n    weekNumberRule: 'firstDay',\n    value: new Date(),\n  },\n}"
         },
         {
           "name": "Disabled",
@@ -2881,7 +2661,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n  },\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    showWeekNumbers: false,\n  },\n}"
         },
         {
           "name": "YearZoomLevel",
@@ -3335,7 +3115,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
         },
         {
           "name": "meta",
@@ -3355,7 +3135,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"'normal'\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"'accent'\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n      <div\n        id=\"image-indicator\"\n        meLoadIndicator\n        [size]=\"'large'\"\n        [indicatorSrc]=\"indicatorSrc\"\n      ></div>\n    `,\n    styles: [\n      `\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: var(--button-normal-bg-color);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `,\n    ],\n  }),\n}"
+          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"color\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n\n\t\t\t<div class=\"indicators\">\n\t\t\t\t<div\n\t\t\t\t\tid=\"image-indicator\"\n\t\t\t\t\tmeLoadIndicator\n\t\t\t\t\t[size]=\"'large'\"\n\t\t\t\t\t[indicatorSrc]=\"indicatorSrc\"\n\t\t\t\t></div>\n\t\t\t</div>\n    `,\n    styles: [\n      `\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: rgb(157, 157, 158);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `,\n    ],\n  }),\n}"
         },
         {
           "name": "WithAccentColor",
@@ -3365,7 +3145,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'accent',\n    indicatorSrc: '../../../assets/images/Spider web.gif',\n  },\n}"
+          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'accent',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
         },
         {
           "name": "WithCustomImage",
@@ -3375,7 +3155,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc: '../../../assets/images/custom-loader.gif',\n  },\n}"
+          "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts": [
@@ -3387,7 +3167,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    label: 'Default mode',\n    subject: 'Show Popover',\n    // showEvent: 'mouseenter',\n    // hideEvent: 'mouseleave',\n    position: 'top',\n    width: 300,\n    content:\n      'Make final decision on whether we are going to increase our Google AdWord spend based on our 2013 marketing plan.',\n  },\n}"
+          "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n  },\n}"
         },
         {
           "name": "meta",
@@ -3396,18 +3176,8 @@
           "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Meta<PopoverHostComponent>",
-          "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: PopoverHostComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective, PopoverHostComponent],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  argTypes: {\n    label: { control: 'text' },\n    subject: { control: 'text' },\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n    animationEnabled: { control: 'boolean' },\n  },\n}"
-        },
-        {
-          "name": "WithAnimation",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    label: 'With animation',\n    subject: 'Create 2012 Sales Report',\n    animationEnabled: true,\n    content:\n      '2012 Sales Report has to be completed so we can determine if major changes are required to sales strategy.',\n  },\n}"
+          "type": "Meta<PopoverProps>",
+          "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n  },\n}"
         },
         {
           "name": "WithOverlay",
@@ -3417,7 +3187,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    label: 'With overlay',\n    subject: 'Website Re-Design Plan',\n    showEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content:\n      'The changes in our brochure designs for 2013 require us to update key areas of our website.',\n  },\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n}"
         },
         {
           "name": "WithTitle",
@@ -3427,7 +3197,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    label: 'With title',\n    subject: 'Rollout of New Website and Marketing Brochures',\n    position: 'bottom',\n    showTitle: true,\n    title: 'Details',\n    maxWidth: 400,\n    content:\n      'The designs for new brochures and website have been approved. Launch date is set for Feb 28.',\n  },\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'bottom',\n    showTitle: true,\n    title: 'Заголовок поповера',\n    maxWidth: 400,\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts": [
@@ -3482,6 +3252,18 @@
           "defaultValue": "'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum enim, quos qui temporibus repellat architecto, ratione deleniti culpa adipisci beatae perferendis illo eum minima modi libero. Deleniti harum cum accusantium similique obcaecati quae, maxime dignissimos iusto repellat qui temporibus? Culpa quod eius officia pariatur soluta, deleniti tempore atque repellendus, non, eveniet ex repudiandae rerum distinctio autem eligendi consectetur quasi quia impedit ipsum inventore alias! Unde commodi ipsa, excepturi quibusdam nisi, quia vero nemo repudiandae blanditiis repellendus minus porro quasi dolores reiciendis placeat? Itaque commodi enim consectetur, recusandae blanditiis incidunt illum dolor quaerat, eum architecto possimus obcaecati omnis, nulla dignissimos corrupti.'"
         }
       ],
+      "projects/dx-monitel-components/src/stories/me-scroll-view/me-scroll-view.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-scroll-view/me-scroll-view.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {},\n}"
+        }
+      ],
       "projects/dx-monitel-components/src/stories/me-side-page/me-side-page.stories.ts": [
         {
           "name": "Default",
@@ -3492,6 +3274,28 @@
           "deprecationMessage": "",
           "type": "Story",
           "defaultValue": "{\n  args: {\n    isSidePageOpen: false,\n    position: 'left',\n    width: '340px',\n  },\n}"
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    value: 50,\n    min: 0,\n    max: 100,\n    height: '75px',\n    disabled: false,\n    hoverStateEnabled: true,\n    focusStateEnabled: true,\n    isValid: true,\n  },\n}"
+        },
+        {
+          "name": "WithLabelAndTooltip",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n\t\t<div class=\"dx-field\">\n\t    <div class=\"dx-field-value\">\n\t      <dx-slider\n\t\t\t\t\tmeSlider\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[(value)]=\"value\"\n\t\t\t\t\t[height]=\"height\"\n\t\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t\t[hoverStateEnabled]=\"hoverStateEnabled\"\n\t\t\t\t\t[focusStateEnabled]=\"focusStateEnabled\"\n\t\t\t\t\t[isValid]=\"isValid\">\n\t\t\t\t\t\t<dxo-label\n\t\t\t\t\t\t\t[visible]=\"true\"\n\t\t\t\t\t\t\tposition=\"top\"\n\t\t\t\t\t\t></dxo-label>\n\t\t\t\t\t\t <dxo-tooltip\n\t          [enabled]=\"true\"\n\t          [format]=\"format\"\n\t          showMode=\"always\"\n\t          position=\"bottom\"\n\t        ></dxo-tooltip>\n\t      </dx-slider>\n\t    </div>\n\t\t</div>\n\t\t`,\n    styles: [\n      `\n\t\t\t\t.dx-field {\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tflex: 1;\n\t\t\t\t}\n\t\t\t\t.dx-field {\n\t\t\t\t\tmargin-bottom: 50px;\n\t\t\t\t}\n\t\t\t\t.dx-field-value {\n\t\t\t\t\twidth: 233px !important;\n\t\t\t\t}\n\t\t\t`,\n    ],\n  }),\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-switch/me-switch.stories.ts": [
@@ -3559,6 +3363,18 @@
           "type": "Story",
           "defaultValue": "{\n  args: {\n    size: 'medium',\n    background: false,\n  },\n}"
         }
+      ],
+      "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts": [
+        {
+          "name": "ProgressBar",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {},\n}"
+        }
       ]
     },
     "groupedFunctions": {
@@ -3600,7 +3416,7 @@
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<MeAccordionProps>",
+          "rawtype": "StoryObj",
           "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
@@ -3654,6 +3470,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<MeCheckBoxDirective | DxCheckBoxComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj",
+          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -3730,7 +3559,7 @@
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<PopoverHostComponent>",
+          "rawtype": "StoryObj<PopoverProps>",
           "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
@@ -3751,6 +3580,19 @@
           "kind": 183
         }
       ],
+      "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj",
+          "file": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
       "projects/dx-monitel-components/src/stories/me-radio-group/me-radio-group.stories.ts": [
         {
           "name": "Story",
@@ -3758,6 +3600,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<MeRadioGroupDirective | DxRadioGroupComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-radio-group/me-radio-group.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-scroll-view/me-scroll-view.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj",
+          "file": "projects/dx-monitel-components/src/stories/me-scroll-view/me-scroll-view.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -3784,6 +3639,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<SidePageComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-side-page/me-side-page.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj",
+          "file": "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -3823,6 +3691,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<MeTabsProps>",
           "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj",
+          "file": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -3873,7 +3754,7 @@
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<TooltipDemoComponent>",
+          "rawtype": "StoryObj<MeTooltipDirective>",
           "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
@@ -3953,33 +3834,6 @@
       },
       {
         "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "AccordionDemoComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/8",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-        "type": "interface",
-        "linktype": "interface",
-        "name": "Company",
-        "coveragePercent": 0,
-        "coverageCount": "0/10",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-        "type": "interface",
-        "linktype": "interface",
-        "name": "MeAccordionProps",
-        "coveragePercent": 0,
-        "coverageCount": "0/8",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -4013,6 +3867,16 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "CustomHeader",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "Default",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -4023,27 +3887,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "defaultCompanies",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
         "name": "Large",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "meta",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4214,6 +4058,46 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "items",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "CustomClass",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Disabled",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "MultipleFiles",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4469,11 +4353,11 @@
       },
       {
         "filePath": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "PopoverHostComponent",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "PopoverProps",
         "coveragePercent": 0,
-        "coverageCount": "0/14",
+        "coverageCount": "0/12",
         "status": "low"
       },
       {
@@ -4492,16 +4376,6 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "meta",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithAnimation",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4577,6 +4451,16 @@
         "status": "low"
       },
       {
+        "filePath": "projects/dx-monitel-components/src/stories/me-progress-bar/me-progress-bar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "ProgressBar",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
         "filePath": "projects/dx-monitel-components/src/stories/me-radio-group/me-radio-group.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
@@ -4588,6 +4472,16 @@
       },
       {
         "filePath": "projects/dx-monitel-components/src/stories/me-radio-group/me-radio-group.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-scroll-view/me-scroll-view.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -4651,6 +4545,26 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-slider/me-slider.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "WithLabelAndTooltip",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4844,6 +4758,66 @@
         "status": "low"
       },
       {
+        "filePath": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "AutoResize",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "LabelModeInside",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Large",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "ReadOnly",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Small",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
         "filePath": "projects/dx-monitel-components/src/stories/me-text-box/me-text-box.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
@@ -4954,19 +4928,10 @@
       },
       {
         "filePath": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "TooltipDemoComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/21",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "CustomAnimations",
+        "name": "Basic",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4976,7 +4941,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "CustomContent",
+        "name": "CustomStyles",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4986,7 +4951,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "CustomPositions",
+        "name": "CustomTemplate",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4996,7 +4961,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "Default",
+        "name": "HTMLContent",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -5007,6 +4972,26 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "meta",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Positioning",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "WithAnimation",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

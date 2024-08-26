@@ -7,6 +7,46 @@ import { Figma } from "@storybook/addon-designs/blocks";
 # SidePage
 
 <Story of={sidePageStories.Default} />
+<Controls of={sidePageStories.Default} />
+
+<Source
+  code={`
+<me-sidepage [(isSidePageOpen)]="isSidePageOpen" position="left" width="340px">
+    <div sidepage-header class="me-sidepage-header">
+      <div meIcon icon="public" size="24"></div>
+      <div class="me-sidepage-title">
+        <span class="me-title-header1">Заголовок</span>
+        <span class="me-text-body2">Описание</span>
+      </div>
+      <dx-button meButton stylingMode="text" iconOnly="close" (onClick)="onClickHandler()"></dx-button>
+    </div>
+    <div sidepage-content class="me-text-body1">{{ lorem500 }}</div>
+    <div sidepage-footer class="me-sidepage-footer">
+      <dx-button meButton text="Добавить" stylingMode="contained" [style.margin-right]="'auto'"></dx-button>
+      <dx-button meButton text="Прнинять" stylingMode="contained" type="default"></dx-button>
+      <dx-button meButton text="Отменить" stylingMode="contained" (onClick)="onClickHandler()"></dx-button>
+    </div>
+</me-sidepage>
+`}
+  dark
+/>
+
+## Обзор
+
+Свойство <code>isSidePageOpen</code> отвечает за показ <code>sidepage</code> и должно иметь двустороннее связывание со
+свойством родительского компонента, которым планируется упралять появлением <code>sidepage</code>.
+
+Родительский элемент для компонентов, которые требуется поместить в шапке <code>sidepage</code>, должен иметь аттрибут <code>sidepage-header</code>.
+Родительский элемент для компонентов, которые требуется поместить в контентной части <code>sidepage</code>, должен иметь аттрибут <code>sidepage-content</code>
+Родительский элемент для компонентов, которые требуется поместить в футере <code>sidepage</code>, должен иметь аттрибут <code>sidepage-footer</code>.
+
+Классы <code>me-sidepage-header</code>, <code>me-sidepage-title</code>, <code>me-title-header1</code>,
+
+<code>me-text-body2</code>, <code>me-text-body1</code>, <code>
+  me-sidepage-footer
+</code> встроены в библиотеку и позволяют стилизовать элементы <code>
+  idepage
+</code> в соответствии с дизайн-системой.
 
 <style>
   {`
