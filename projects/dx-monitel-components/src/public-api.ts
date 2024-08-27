@@ -1,5 +1,6 @@
 /*
 import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.directive';
+import { MeTreeListModule } from './lib/directives/me-tree-list/me-tree-list.module';
  * Public API Surface of me-lib
  */
 
@@ -23,9 +24,11 @@ export { MeMenuDirective } from './lib/directives/me-menu/menu.directive';
 export { MeOverlayDirective } from './lib/directives/me-overlay/overlay.directive';
 export { MePopoverDirective } from './lib/directives/me-popover/popover.directive';
 export { MePopupDirective } from './lib/directives/me-popup/popup.directive';
+export { MeProgressBarDirective } from './lib/directives/me-progress-bar/progress-bar.directive';
 export { MeRadioGroupDirective } from './lib/directives/me-radio-group/radio-group.directive';
 export { MeScrollViewDirective } from './lib/directives/me-scroll-view/scroll-view.directive';
 export { MeSelectBoxDirective } from './lib/directives/me-select-box/select-box.directive';
+export { MeSliderDirective } from './lib/directives/me-slider/slider.directive';
 export { MeSwitchDirective } from './lib/directives/me-switch/switch.directive';
 export { MeTabPanelDirective } from './lib/directives/me-tab-panel/tab-panel.directive';
 export { MeTabsDirective } from './lib/directives/me-tabs/tabs.directive';
@@ -33,10 +36,8 @@ export { MeTextBoxDirective } from './lib/directives/me-text-box/text-box.direct
 export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-editor.directive';
 export { MeToolbarDirective } from './lib/directives/me-toolbar/toolbar.directive';
 export { MeTooltipDirective } from './lib/directives/me-tooltip/tooltip.directive';
+export { MeTreeListDirective } from './lib/directives/me-tree-list/me-tree-list.directive';
 export { MeTreeViewDirective } from './lib/directives/me-tree-view/tree-view.directive';
-export { MeProgressBarDirective } from './lib/directives/me-progress-bar/progress-bar.directive';
-export { MeSliderDirective} from "./lib/directives/me-slider/slider.directive";
-
 
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';
 export { MeButtonGroupModule } from './lib/directives/me-button-group/button-group.module';
@@ -54,18 +55,17 @@ export { MeMenuModule } from './lib/directives/me-menu/menu.module';
 export { MeOverlayModule } from './lib/directives/me-overlay/me-overlay.module';
 export { MePopoverModule } from './lib/directives/me-popover/me-popover.module';
 export { MePopupModule } from './lib/directives/me-popup/me-popup.module';
+export { MeProgressBarModule } from './lib/directives/me-progress-bar/progress-bar.module';
 export { MeRadioGroupModule } from './lib/directives/me-radio-group/me-radio-group.module';
 export { MeSelectBoxModule } from './lib/directives/me-select-box/me-select-box.module';
+export { MeSliderModule } from './lib/directives/me-slider/slider.module';
 export { MeSwitchModule } from './lib/directives/me-switch/switch.module';
 export { MeTabsModule } from './lib/directives/me-tabs/tabs.module';
 export { MeTextBoxModule } from './lib/directives/me-text-box/me-text-box.module';
 export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-editor.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
 export { MeToolbarModule } from './lib/directives/me-toolbar/me-toolbar.module';
-export { MeProgressBarModule } from './lib/directives/me-progress-bar/progress-bar.module';
-export { MeSliderModule } from './lib/directives/me-slider/slider.module';
-
-
+export { MeTreeListModule } from './lib/directives/me-tree-list/me-tree-list.module';
 
 export { MeFileUploaderModule } from './lib/directives/me-file-uploader/file-uploader.module';
 export { MeLoadIndicatorModule } from './lib/directives/me-load-indicator/load-indicator.module';
