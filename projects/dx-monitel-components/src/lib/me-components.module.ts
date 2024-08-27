@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MeDataGridModule } from '../public-api';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeAccordionModule } from './directives/me-accordion/accordion.module';
 import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
@@ -19,6 +20,7 @@ import { MeOverlayModule } from './directives/me-overlay/me-overlay.module';
 import { MePopoverModule } from './directives/me-popover/me-popover.module';
 import { MePopupModule } from './directives/me-popup/me-popup.module';
 import { MeRadioGroupModule } from './directives/me-radio-group/me-radio-group.module';
+import { MeScrollViewModule } from './directives/me-scroll-view/scroll-view.module';
 import { MeSelectBoxModule } from './directives/me-select-box/me-select-box.module';
 import { MeSwitchModule } from './directives/me-switch/switch.module';
 import { MeTabPanelModule } from './directives/me-tab-panel/tab-panel.module';
@@ -30,7 +32,6 @@ import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
 import { MeFileUploaderModule } from './directives/me-file-uploader/file-uploader.module';
-import { MeScrollViewModule } from './directives/me-scroll-view/scroll-view.module';
 import {MeFileUploaderComponent} from "./components/me-file-uploader/me-file-uploader.component";
 import {MePaginationComponent} from "./components/me-pagination/me-pagination.component";
 import {MeIconComponent} from "./components/me-icon/me-icon.component";
@@ -76,7 +77,8 @@ import {MeBreadcrumbsComponent} from "./components/me-breadcrumbs/me-breadcrumbs
     MeIconModule,
     MePaginationComponent,
     MeIconComponent,
-    MeBreadcrumbsComponent
+    MeBreadcrumbsComponent,
+    MeDataGridModule,
   ],
   exports: [
     MeAccordionModule,
@@ -112,6 +114,7 @@ import {MeBreadcrumbsComponent} from "./components/me-breadcrumbs/me-breadcrumbs
     MeCalendarModule,
     MeFileUploaderModule,
     MeScrollViewModule,
+    MeDataGridModule,
     MeFileUploaderComponent,
     MeIconModule,
     MePaginationComponent,

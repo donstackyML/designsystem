@@ -1,5 +1,7 @@
 /*
 import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.directive';
+import { MeDataGridDirective } from './lib/directives/me-data-grid/data-grid.directive';
+import { MeDataGridModule } from './lib/directives/me-data-grid/data-grid.module';
  * Public API Surface of me-lib
  */
 
@@ -53,6 +55,7 @@ export { MeTooltipDirective } from './lib/directives/me-tooltip/tooltip.directiv
 export { MeTreeViewDirective } from './lib/directives/me-tree-view/tree-view.directive';
 export { MeProgressBarDirective } from './lib/directives/me-progress-bar/progress-bar.directive';
 export { MeSliderDirective } from './lib/directives/me-slider/slider.directive';
+export { MeDataGridDirective } from './lib/directives/me-data-grid/data-grid.directive';
 
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';
 export { MeButtonGroupModule } from './lib/directives/me-button-group/button-group.module';
@@ -79,6 +82,8 @@ export { MeToastModule } from './lib/directives/me-toast/toast.module';
 export { MeToolbarModule } from './lib/directives/me-toolbar/me-toolbar.module';
 export { MeProgressBarModule } from './lib/directives/me-progress-bar/progress-bar.module';
 export { MeSliderModule } from './lib/directives/me-slider/slider.module';
+
+export { MeDataGridModule } from './lib/directives/me-data-grid/data-grid.module';
 
 export { MeFileUploaderModule } from './lib/directives/me-file-uploader/file-uploader.module';
 export { MeLoadIndicatorModule } from './lib/directives/me-load-indicator/load-indicator.module';
