@@ -52,8 +52,7 @@ export { MeToolbarDirective } from './lib/directives/me-toolbar/toolbar.directiv
 export { MeTooltipDirective } from './lib/directives/me-tooltip/tooltip.directive';
 export { MeTreeViewDirective } from './lib/directives/me-tree-view/tree-view.directive';
 export { MeProgressBarDirective } from './lib/directives/me-progress-bar/progress-bar.directive';
-export { MeSliderDirective} from "./lib/directives/me-slider/slider.directive";
-
+export { MeSliderDirective } from './lib/directives/me-slider/slider.directive';
 
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';
 export { MeButtonGroupModule } from './lib/directives/me-button-group/button-group.module';
@@ -80,8 +79,6 @@ export { MeToastModule } from './lib/directives/me-toast/toast.module';
 export { MeToolbarModule } from './lib/directives/me-toolbar/me-toolbar.module';
 export { MeProgressBarModule } from './lib/directives/me-progress-bar/progress-bar.module';
 export { MeSliderModule } from './lib/directives/me-slider/slider.module';
-
-
 
 export { MeFileUploaderModule } from './lib/directives/me-file-uploader/file-uploader.module';
 export { MeLoadIndicatorModule } from './lib/directives/me-load-indicator/load-indicator.module';

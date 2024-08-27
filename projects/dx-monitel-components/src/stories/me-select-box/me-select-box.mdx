@@ -1,0 +1,77 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as selectBoxStories from "./me-select-box.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+
+<Meta name="SelectBox Documentation" of={selectBoxStories} />
+
+# SelectBox
+
+## Директива meSelectBox, meLabel
+
+Применение директивы <code>meSelectBox</code> к элементу <code>dx-select-box</code> приводит его размеры
+к значению <code>size=medium (32)</code> из дизайн-системы, задает по-умолчанию <code>stylingMode=filled</code> и предоставляет доступ к другим свойствам.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/)
+
+<Story of={selectBoxStories.Default} />
+
+<Controls of={selectBoxStories.Default} />
+
+<Source of={selectBoxStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
+/>
+
+{/* ## Примеры использования: */}
+
+{/* - [определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля) */}
+{/* - [положение лейбла сверху](#положение-лейбла-сверху) */}
+{/* - [положение лейбла слева](#положение-лейбла-слева) */}
+
+## Определение положения лейбла снаружи текстового поля
+
+Применение директивы <code>meLabel</code> позволяет определить положение лейбла снаружи текстового поля (сверху или слева).
+
+<code>labelDirection</code> определяет положение лейбла снаружи текстового поля (сверху
+или слева).
+
+### Положение лейбла сверху
+
+<Story of={selectBoxStories.WithLabelColumn} />
+
+<Source
+  code={`<label meLabel labelDirection="column">
+    Label
+    <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
+</label>`}
+  dark
+/>
+
+### Положение лейбла слева
+
+<Story of={selectBoxStories.WithLabelRow} />
+
+<Source
+  code={`<label meLabel labelDirection="row" width="250px">
+    Label
+    <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
+</label>`}
+  dark
+/>
+
+<code>width</code> определяет размер текстового поля вместе с лейблом (используется
+в теге <code>label</code> для расположения <code>labelPosition="left"</code>)
+
+<style>
+  {`
+      h2 {
+        border-bottom: none !important;
+    }
+`}
+</style>

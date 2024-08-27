@@ -10,7 +10,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { CalendarZoomLevel, FirstDayOfWeek, WeekNumberRule } from 'devextreme/ui/calendar';
+import {
+  CalendarZoomLevel,
+  FirstDayOfWeek,
+  WeekNumberRule,
+} from 'devextreme/ui/calendar';
 
 @Directive({
   selector: '[meCalendar]',
@@ -43,14 +47,14 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   private updateCalendarOptions() {
     const instance = this.dxCalendarComponent?.instance;
     if (instance) {
       instance.option('showWeekNumbers', this.showWeekNumbers);
-      instance.option('firstDayOfWeek', this.firstDayOfWeek);  // Используем FirstDayOfWeek
+      instance.option('firstDayOfWeek', this.firstDayOfWeek); // Используем FirstDayOfWeek
     }
   }
 

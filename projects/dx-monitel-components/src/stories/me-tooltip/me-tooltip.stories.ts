@@ -12,7 +12,8 @@ const meta: Meta<MeTooltipDirective> = {
   argTypes: {
     meTooltip: { control: 'text' },
     tooltipPosition: {
-      control: 'select', options: ['top', 'bottom', 'left', 'right'] ,
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
     },
     tooltipClass: { control: 'text' },
     tooltipWidth: { control: 'text' },

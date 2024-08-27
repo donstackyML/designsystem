@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MeFileUploaderDirective} from "./file-uploader.directive";
+import { MeFileUploaderDirective } from './file-uploader.directive';
 
 @NgModule({
   declarations: [MeFileUploaderDirective],

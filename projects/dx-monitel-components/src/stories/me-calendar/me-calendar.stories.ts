@@ -35,7 +35,7 @@ export default {
       options: ['auto', 'firstDay', 'firstFourDays', 'fullWeek'],
     },
   },
-  args : {
+  args: {
     showWeekNumbers: false,
     disabled: false,
     firstDayOfWeek: 1,
@@ -57,7 +57,6 @@ export default {
 } as Meta;
 
 type Story = StoryObj;
-
 
 export const Default: Story = {
   args: {

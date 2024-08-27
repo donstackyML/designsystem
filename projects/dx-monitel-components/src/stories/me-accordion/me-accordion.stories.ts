@@ -40,7 +40,8 @@ export default {
       ...args,
       onCollapsibleChanged: (e: any) => console.log('Collapsible changed:', e),
       onMultipleChanged: (e: any) => console.log('Multiple changed:', e),
-      onSelectedIndexChanged: (e: any) => console.log('Selected index changed:', e),
+      onSelectedIndexChanged: (e: any) =>
+        console.log('Selected index changed:', e),
     },
     template: `
       <dx-accordion
@@ -124,9 +125,24 @@ export const CustomHeader: Story = {
   args: {
     ...Default.args,
     dataSource: [
-      { id: 1, text: 'Accordion Item 1', description: 'Description for Item 1', icon: 'folder' },
-      { id: 2, text: 'Accordion Item 2', description: 'Description for Item 2', icon: 'folder' },
-      { id: 3, text: 'Accordion Item 3', description: 'Description for Item 3', icon: 'folder' },
+      {
+        id: 1,
+        text: 'Accordion Item 1',
+        description: 'Description for Item 1',
+        icon: 'folder',
+      },
+      {
+        id: 2,
+        text: 'Accordion Item 2',
+        description: 'Description for Item 2',
+        icon: 'folder',
+      },
+      {
+        id: 3,
+        text: 'Accordion Item 3',
+        description: 'Description for Item 3',
+        icon: 'folder',
+      },
     ],
   },
   render: (args) => ({
@@ -151,6 +167,6 @@ export const CustomHeader: Story = {
           <p>Content for {{item.text}}</p>
         </div>
       </dx-accordion>
-    `
+    `,
   }),
 };

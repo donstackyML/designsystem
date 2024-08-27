@@ -24,10 +24,7 @@ export class MeFileUploaderDirective implements AfterViewInit {
   @Input() borderRadius: string = UPLOADER_BORDER_RADIUS;
   @Input() textAlign: string = UPLOADER_TEXT_ALIGN;
 
-  constructor(
-    private element: ElementRef,
-    private renderer: Renderer2
-  ) {}
+  constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   @ViewChild(DxFileUploaderComponent) fileUploader?: DxFileUploaderComponent;
 
@@ -36,12 +33,25 @@ export class MeFileUploaderDirective implements AfterViewInit {
   }
 
   private applyStyles() {
-    const fileUploaderElement = this.element.nativeElement.querySelector('.dx-fileuploader');
+    const fileUploaderElement =
+      this.element.nativeElement.querySelector('.dx-fileuploader');
     if (fileUploaderElement) {
-      this.renderer.setStyle(fileUploaderElement, 'border', `2px dashed ${this.borderColor}`);
-      this.renderer.setStyle(fileUploaderElement, 'background-color', this.backgroundColor);
+      this.renderer.setStyle(
+        fileUploaderElement,
+        'border',
+        `2px dashed ${this.borderColor}`
+      );
+      this.renderer.setStyle(
+        fileUploaderElement,
+        'background-color',
+        this.backgroundColor
+      );
       this.renderer.setStyle(fileUploaderElement, 'padding', this.padding);
-      this.renderer.setStyle(fileUploaderElement, 'border-radius', this.borderRadius);
+      this.renderer.setStyle(
+        fileUploaderElement,
+        'border-radius',
+        this.borderRadius
+      );
       this.renderer.setStyle(fileUploaderElement, 'text-align', this.textAlign);
     }
   }

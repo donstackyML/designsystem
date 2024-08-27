@@ -32,7 +32,7 @@ export default {
       control: 'select',
       options: ['small', 'medium', 'large'],
       description:
-        'В дизайн-системе для размера medium используются кнопки с размером medium, для размера large соответственно кнопки одноименного размера.',
+        'В дизайн-системе для размера <code>medium</code> используются кнопки с размером <code>medium</code>, для размера <code>large</code> соответственно кнопки одноименного размера.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
@@ -132,7 +132,7 @@ export const Scroll: Story = {
     props: args,
     template: `
     <div id="myWrapperScroll" style="height: 350px; position: relative;">
-      <dx-popup mePopup height='200px' ${argsToTemplate(args)}>
+      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
         <div *dxTemplate="let data of 'content'">
           <dx-scroll-view width="100%" height="100%">
           ${words}
@@ -172,7 +172,7 @@ export const Toolbar: Story = {
     props: args,
     template: `
     <div id="myWrapperTollbar" style="height: 350px; position: relative;">
-      <dx-popup mePopup height='200px' ${argsToTemplate(args)}>
+      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
         <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
           </dxi-toolbar-item>
         <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
@@ -234,8 +234,8 @@ export const Size: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <div id="myWrapperSize" style="height: 350px; position: relative;">
-      <dx-popup mePopup height='200px' ${argsToTemplate(args)}>
+    <div id="myWrapperSize" style="min-height: 350px; position: relative;">
+      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
         <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
           </dxi-toolbar-item>
         <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">

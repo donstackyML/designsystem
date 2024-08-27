@@ -1,36 +1,16 @@
-import {
-  Meta,
-  Story,
-  Canvas,
-  Controls,
-  Description,
-  Source,
-} from "@storybook/addon-docs";
-import { DxButtonComponent } from "devextreme-angular";
-import { MeButtonDirective } from "../../public-api";
-import { moduleMetadata } from "@storybook/angular";
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
 import * as buttonStories from "./me-button.stories";
-import ReadMe from "./README.md?raw";
-import { Markdown, Subtitle, Title, Unstyled } from "@storybook/blocks";
 import { Figma } from "@storybook/addon-designs/blocks";
-import { Sandpack } from "@codesandbox/sandpack-react";
-import buttonDirective from "!!raw-loader!../../lib/directives/me-button/button.directive";
+// import { Sandpack } from "@codesandbox/sandpack-react";
+// import buttonDirective from "!!raw-loader!../../lib/directives/me-button/button.directive";
 
-<Meta
-  name="Button Documentation"
-  of={buttonStories}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeButtonDirective, DxButtonComponent],
-    }),
-  ]}
-/>
+<Meta name="Button Documentation" of={buttonStories} />
 
 # Button
 
 ## Директива meButton
 
-Применение директивы meButton к элементу dx-button приводит его размеры к значению size = medium (32) из дизайн-системы и предоставляет доступ к другим свойствам.
+Применение директивы <code>meButton</code> к элементу <code>dx-button</code> приводит его размеры к значению <code>size = medium (32)</code> из дизайн-системы и предоставляет доступ к другим свойствам.
 
 [Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxButton/)
 
@@ -107,9 +87,16 @@ import buttonDirective from "!!raw-loader!../../lib/directives/me-button/button.
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1-4&t=VoqpA9EX7TuL7TZI-0"
 />
 
+## Примеры использования:
+
+- [иконка слева](#иконка-слева)
+- [иконка слева и справа](#иконка-слева-и-справа)
+- [иконка без текста](#иконка-без-текста)
+
 ## Иконка слева
 
-leftIcon принимает название иконки из стандартного набора, которая будет вставлена слева от текста
+<code>leftIcon</code> принимает название иконки из стандартного набора, которая будет
+вставлена слева от текста
 
 <Story of={buttonStories.LeftIcon} />
 
@@ -121,7 +108,8 @@ leftIcon принимает название иконки из стандарт�
 
 ## Иконка слева и справа
 
-rightIcon принимает название иконки из стандартного набора, которая будет вставлена справа от текста.
+<code>rightIcon</code> принимает название иконки из стандартного набора, которая
+будет вставлена справа от текста.
 
 <Story of={buttonStories.LeftRightIcon} />
 
@@ -130,6 +118,14 @@ rightIcon принимает название иконки из стандарт
   language="html"
   dark
 />
+
+## Иконка без текста
+
+Принимает иконку для кнопки только с иконкой, без текста
+
+<Story of={buttonStories.IconOnly} />
+
+<Source code={`<dx-button meButton iconOnly="add"></dx-button>`} dark />
 
 {/* <Unstyled> */}
 
