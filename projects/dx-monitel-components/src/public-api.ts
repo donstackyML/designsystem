@@ -1,11 +1,7 @@
-/*
-import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.directive';
-import { MeDataGridDirective } from './lib/directives/me-data-grid/data-grid.directive';
-import { MeDataGridModule } from './lib/directives/me-data-grid/data-grid.module';
- * Public API Surface of me-lib
- */
+export {MeChipsContainerComponent} from "./lib/components/me-chips-container/me-chips-container.component";
 
-import {MeBreadcrumbsComponent} from "./lib/components/me-breadcrumbs/me-breadcrumbs.component";
+export {MeChipComponent} from "./lib/components/me-chips/me-chips.component";
+export {MeSkeletonComponent} from "./lib/components/me-skeleton/me-skeleton.component";
 
 export {MeIconComponent} from "./lib/components/me-icon/me-icon.component";
 
@@ -17,10 +13,6 @@ export {MeFileUploaderComponent} from "./lib/components/me-file-uploader/me-file
 
 
 export {MeBreadcrumbsComponent} from "./lib/components/me-breadcrumbs/me-breadcrumbs.component";
-
-
-
-
 
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';

@@ -1,6 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MeFileUploaderComponent } from "../../public-api";
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/FileUploader',

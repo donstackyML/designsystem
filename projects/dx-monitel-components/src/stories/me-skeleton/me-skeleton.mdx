@@ -1,0 +1,134 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as SkeletonStories from "./me-skeleton.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { MeSkeletonComponent } from "../../public-api";
+
+<Meta
+  title="Компоненты/Skeleton"
+  component={MeSkeletonComponent}
+  decorators={[
+    moduleMetadata({
+      imports: [MeSkeletonComponent],
+    }),
+    ]}
+  of={SkeletonStories}
+/>
+
+# Skeleton
+
+## Компонент MeSkeleton
+
+Компонент `MeSkeleton` предоставляет визуальную заглушку во время загрузки контента или для отображения отсутствующего контента. Это полезно в ситуациях, когда необходимо дать пользователю визуальное представление о будущем контенте, пока он загружается.
+
+<Story name="Default" of={SkeletonStories.Default} />
+<Controls of={SkeletonStories.Default} />
+
+<Source of={SkeletonStories.Default} dark />
+
+## Примеры использования:
+
+### С аватаром
+
+<Story name="WithAvatar" of={SkeletonStories.WithAvatar} />
+
+<Source
+  code={`<me-skeleton [avatar]="{ size: 'large', shape: 'circle' }"></me-skeleton>`}
+  dark
+  language="html"
+/>
+
+### Анимация
+
+<Story name="ActiveAnimation" of={SkeletonStories.ActiveAnimation} />
+
+<Source
+  code={`<me-skeleton [active]="true"></me-skeleton>`}
+  dark
+  language="html"
+/>
+
+### Настраиваемый заголовок и параграфы
+
+<Story name="CustomTitleAndParagraph" of={SkeletonStories.CustomTitleAndParagraph} />
+
+<Source
+  code={`<me-skeleton [title]="{ width: '40%' }" [paragraph]="{ rows: 4, width: ['100%', '90%', '80%', '60%'] }"></me-skeleton>`}
+  dark
+  language="html"
+/>
+
+### Закругленные углы
+
+<Story name="Rounded" of={SkeletonStories.Rounded} />
+
+<Source
+  code={`<me-skeleton [round]="true" [title]="{ width: '50%' }" [paragraph]="{ rows: 3, width: ['100%', '80%', '60%'] }"></me-skeleton>`}
+  dark
+  language="html"
+/>
+
+### Загрузка контента
+
+Когда свойство `loading` равно true, скелетон скрывается, и отображается фактическое содержимое. В этом примере показано, как использовать Skeleton для загрузки контента:
+
+<Story name="Loading" of={SkeletonStories.Loading} />
+
+<Source
+  code={`
+<me-skeleton [loading]="true">
+  <div>
+    <h4>Заголовок после загрузки</h4>
+    <p>Этот текст отображается, когда загрузка завершена.</p>
+  </div>
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+### Комплексная комбинация
+
+Этот пример объединяет несколько возможностей Skeleton: активная анимация, аватар, заголовок, параграфы и закругленные углы. Это демонстрирует, как можно создать сложный Skeleton для отображения более детализированного интерфейса:
+
+  <Story name="ComplexCombination" of={SkeletonStories.ComplexCombination} />
+
+  <Source
+    code={`
+  <me-skeleton
+    [active]="true"
+    [avatar]="{ size: 'large', shape: 'circle' }"
+    [title]="{ width: '50%' }"
+    [paragraph]="{ rows: 4, width: ['100%', '90%', '80%', '70%'] }"
+    [round]="true"
+  ></me-skeleton>
+    `}
+  dark
+  language="html"
+/>
+
+### Сложное состояние загрузки
+
+Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами:
+
+    <Story name="ComplexLoadingState" of={SkeletonStories.ComplexLoadingState} />
+
+    <Source
+      code={`
+  <me-skeleton [loading]="true">
+    <div>
+    <h4>Заголовок после загрузки</h4>
+    <p>Этот текст отображается, когда загрузка завершена.</p>
+    </div>
+    </me-skeleton>
+    `}
+      dark
+      language="html"
+    />
+
+    ## Перечень свойств
+
+    <Controls story={SkeletonStories.Default} />
+
+## Заключение
+
+Компонент `MeSkeleton` предоставляет гибкие возможности для создания заглушек, которые помогают пользователям ориентироваться в приложении во время загрузки контента. Благодаря множеству опций, таких как аватары, заголовки, параграфы, а также возможность активной анимации и закругления углов, Skeleton может быть адаптирован под любые нужды вашего интерфейса.

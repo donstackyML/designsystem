@@ -1,0 +1,22 @@
+<ng-container *ngIf="!loading; else content">
+  <div class="skeleton" [ngClass]="{ 'skeleton-active': active, 'skeleton-round': round }">
+    <ng-container *ngIf="avatar">
+      <div class="skeleton-avatar" [ngClass]="avatarClass" [ngStyle]="avatarStyle"></div>
+    </ng-container>
+    <div class="skeleton-content">
+      <ng-container *ngIf="title">
+        <div class="skeleton-title" [ngStyle]="titleStyle"></div>
+      </ng-container>
+      <ng-container *ngIf="paragraph">
+        <div class="skeleton-paragraph">
+          <div *ngFor="let width of paragraphRows" class="skeleton-row" [ngStyle]="{ 'width': width }"></div>
+        </div>
+      </ng-container>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</ng-container>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

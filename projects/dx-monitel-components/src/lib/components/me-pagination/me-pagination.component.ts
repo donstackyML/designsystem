@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import {DxButtonModule, DxSelectBoxModule} from "devextreme-angular";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'me-pagination',
@@ -11,6 +11,33 @@ import {NgForOf, NgIf} from "@angular/common";
       align-items: center;
       justify-content: space-between;
       font-family: Arial, sans-serif;
+    }
+
+    .me-pagination__size-controls {
+      display: flex;
+      align-items: center;
+      margin-right: 16px;
+    }
+
+    .me-pagination__size-controls.small .dx-button,
+    .me-pagination__size-controls.small .dx-selectbox,
+    .me-pagination__controls.small .dx-button {
+      height: 28px;
+      font-size: 12px;
+    }
+
+    .me-pagination__size-controls.medium .dx-button,
+    .me-pagination__size-controls.medium .dx-selectbox,
+    .me-pagination__controls.medium .dx-button {
+      height: 32px;
+      font-size: 14px;
+    }
+
+    .me-pagination__size-controls.large .dx-button,
+    .me-pagination__size-controls.large .dx-selectbox,
+    .me-pagination__controls.large .dx-button {
+      height: 40px;
+      font-size: 16px;
     }
 
     .me-pagination__info {
@@ -42,6 +69,29 @@ import {NgForOf, NgIf} from "@angular/common";
       border-radius: 4px;
       margin-right: 8px;
     }
+    .dx-button-mode-contained.dx-button-default, .dx-button-default .dx-button-mode-contained {
+      background-color: #C4D8FF;
+      border-color: #C4D8FF;
+      color: #fff;
+    }
+
+    .me-pagination .dx-button.dx-state-active {
+      background-color: #C4D8FF;
+      border-color: #C4D8FF;
+    }
+
+    .me-pagination .dx-button.dx-state-active .dx-button-content .dx-button-text {
+      color: #333;
+    }
+
+    .me-pagination .dx-button-mode-contained.dx-state-active {
+      background-color: #C4D8FF;
+      border-color: #C4D8FF;
+    }
+
+    .me-pagination .dx-button-mode-contained.dx-state-active .dx-button-content .dx-button-text {
+      color: #333;
+    }
 
     .me-pagination .dx-button.dx-button-mode-outlined {
       border-color: #e0e0e0;
@@ -55,16 +105,6 @@ import {NgForOf, NgIf} from "@angular/common";
     .me-pagination .dx-button.dx-state-hover {
       background-color: #e0e0e0;
     }
-
-    .me-pagination .dx-button.dx-state-hover .dx-button-content .dx-button-text {
-      color: #007bff;
-    }
-
-    .me-pagination .dx-button.dx-state-active {
-      background-color: #007bff;
-      border-color: #007bff;
-    }
-
     .me-pagination .dx-button.dx-state-active .dx-button-content .dx-button-text {
       color: white;
     }
@@ -80,22 +120,8 @@ import {NgForOf, NgIf} from "@angular/common";
       line-height: 18px;
     }
 
-    .me-pagination .dx-button-mode-contained {
-      background-color: #007bff;
-      border-color: #007bff;
-    }
-
     .me-pagination .dx-button-mode-contained .dx-button-content .dx-button-text {
       color: white;
-    }
-
-    .me-pagination .dx-button-mode-contained:hover {
-      background-color: #0056b3;
-      border-color: #0056b3;
-    }
-
-    .me-pagination .dx-selectbox .dx-texteditor-input {
-      text-align: center;
     }
 
   `],
@@ -103,7 +129,8 @@ import {NgForOf, NgIf} from "@angular/common";
     DxButtonModule,
     NgForOf,
     NgIf,
-    DxSelectBoxModule
+    DxSelectBoxModule,
+    NgClass
   ],
   standalone: true
 })
@@ -112,12 +139,14 @@ export class MePaginationComponent implements OnChanges {
   @Input() itemsPerPage: number = 10;
   @Input() currentPage: number = 1;
   @Input() maxVisiblePages: number = 7;
+  @Input() useButtons: boolean = false;
+  @Input() itemsPerPageOptions: number[] = [10, 50, 100];
+  @Input() size: 'small' | 'medium' | 'large' = 'medium'; // Объединенный параметр размера
   @Output() pageChange = new EventEmitter<number>();
   @Output() itemsPerPageChange = new EventEmitter<number>();
 
   pages: (number | string)[] = [];
   totalPages: number = 0;
-  itemsPerPageOptions: number[] = [10, 20, 50, 100];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['totalItems'] || changes['itemsPerPage'] || changes['currentPage'] || changes['maxVisiblePages']) {
@@ -180,7 +209,16 @@ export class MePaginationComponent implements OnChanges {
   }
 
   onItemsPerPageChange(e: any): void {
+    console.log(e)
     this.itemsPerPage = e.value;
+    this.currentPage = 1;
+    this.calculatePages();
+    this.itemsPerPageChange.emit(this.itemsPerPage);
+  }
+
+  changeItemsPerPage(size: number): void {
+
+    this.itemsPerPage = size;
     this.currentPage = 1;
     this.calculatePages();
     this.itemsPerPageChange.emit(this.itemsPerPage);

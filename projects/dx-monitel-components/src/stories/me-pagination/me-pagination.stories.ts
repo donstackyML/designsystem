@@ -27,6 +27,19 @@ export default {
       control: { type: 'number', min: 3, max: 10, step: 1 },
       description: 'Максимальное количество видимых кнопок страниц',
     },
+    useButtons: {
+      control: { type: 'boolean' },
+      description: 'Использовать кнопки вместо выпадающего списка для выбора количества элементов на странице',
+    },
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description: 'Размер всех элементов управления',
+    },
+    itemsPerPageOptions: {
+      control: { type: 'object' },
+      description: 'Возможные варианты количества элементов на странице',
+    },
     pageChange: { action: 'pageChanged' },
     itemsPerPageChange: { action: 'itemsPerPageChanged' },
   },
@@ -35,6 +48,9 @@ export default {
     itemsPerPage: 10,
     currentPage: 1,
     maxVisiblePages: 5,
+    useButtons: false,
+    size: 'medium',
+    itemsPerPageOptions: [10, 50, 100],
   },
 } as Meta<MePaginationComponent>;
 
@@ -53,6 +69,9 @@ const Template: Story = {
         [itemsPerPage]="itemsPerPage"
         [currentPage]="currentPage"
         [maxVisiblePages]="maxVisiblePages"
+        [useButtons]="useButtons"
+        [size]="size"
+        [itemsPerPageOptions]="itemsPerPageOptions"
         (pageChange)="onPageChange($event)"
         (itemsPerPageChange)="onItemsPerPageChange($event)"
       >
@@ -93,6 +112,7 @@ export const CustomItemsPerPage: Story = {
     itemsPerPage: 50,
     currentPage: 1,
     maxVisiblePages: 5,
+    useButtons: true, // Используем кнопки для выбора количества элементов на странице
   },
 };
 
@@ -113,5 +133,29 @@ export const MaxVisiblePages: Story = {
     itemsPerPage: 10,
     currentPage: 5,
     maxVisiblePages: 10,
+  },
+};
+
+export const WithLargeButtons: Story = {
+  ...Template,
+  args: {
+    totalItems: 500,
+    itemsPerPage: 50,
+    currentPage: 1,
+    maxVisiblePages: 5,
+    useButtons: true,
+    size: 'large', // Устанавливаем большие кнопки
+  },
+};
+
+export const CustomItemsOptions: Story = {
+  ...Template,
+  args: {
+    totalItems: 400,
+    itemsPerPage: 50,
+    currentPage: 2,
+    maxVisiblePages: 5,
+    useButtons: false,
+    itemsPerPageOptions: [25, 50, 75, 100], // Кастомные опции для выбора количества элементов на странице
   },
 };

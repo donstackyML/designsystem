@@ -1,0 +1,167 @@
+import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
+import * as ChipsStories from "./me-chips.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { MeChipComponent, MeChipsContainerComponent } from "../../public-api";
+
+<Meta
+  title="Компоненты/Chips"
+  component={MeChipsContainerComponent}
+  decorators={[
+    moduleMetadata({
+      imports: [MeChipComponent, MeChipsContainerComponent],
+    }),
+    ]}
+  parameters={{
+    docs: {
+      description: {
+        component: 'Компоненты MeChipsContainer и MeChip с поддержкой удаления чипов и улучшенными стилями. Чипы становятся активными при клике.',
+      },
+    },
+  }}
+  of={ChipsStories}
+/>
+
+# Chips
+
+## Компонент MeChipsContainer
+
+Компонент `MeChipsContainer` управляет коллекцией чипов и поддерживает их удаление и активацию по клику.
+
+<Story name="Default" of={ChipsStories.Default} />
+<Controls of={ChipsStories.Default} />
+<Source of={ChipsStories.Default} dark />
+
+## Примеры использования
+
+### Один чип
+
+<Story name="SingleChip" of={ChipsStories.SingleChip} />
+
+<Source
+  code={`<me-chips-container [chips]="[{ label: 'Одиночный чип', size: 'medium', count: 1 }]"></me-chips-container>`}
+  dark
+  language="html"
+/>
+
+### Множество чипов
+<Story name="ManyChips" of={ChipsStories.ManyChips} />
+<Source
+  code={`<me-chips-container [chips]="[{ label: 'Чип 1', size: 'medium', count: 1 }, { label: 'Чип 2', size: 'medium', count: 2 }, { label: 'Чип 3', size: 'medium', count: 3 }, { label: 'Чип 4', size: 'medium', count: 4 }, { label: 'Чип 5', size: 'medium', count: 5 }, { label: 'Чип 6', size: 'medium', count: 6 }, { label: 'Чип 7', size: 'medium', count: 7 }, { label: 'Чип 8', size: 'medium', count: 8 }, { label: 'Чип 9', size: 'medium', count: 9 }, { label: 'Чип 10', size: 'medium', count: 10 }]"></me-chips-container>`}
+  dark
+  language="html"
+/>
+
+### Чипы с длинным текстом
+
+<Story name="LongChipText" of={ChipsStories.LongChipText} />
+
+<Source
+  code={`<me-chips-container [chips]="[{ label: 'Это очень длинный текст для чипа', size: 'medium', count: 1 }, { label: 'Короткий чип', size: 'medium', count: 2 }, { label: 'Еще один длинный текст для чипа', size: 'medium', count: 3 }]"></me-chips-container>`}
+  dark
+  language="html"
+/>
+
+### Разные размеры чипов
+
+<Canvas>
+  <Story name="DifferentSizes" of={ChipsStories.DifferentSizes} />
+</Canvas>
+
+<Source
+  code={`<me-chips-container [chips]="[{ label: 'Small Chip', size: 'small', count: 1 }, { label: 'Medium Chip', size: 'medium', count: 2 }, { label: 'Large Chip', size: 'large', count: 3 }]"></me-chips-container>`}
+  dark
+  language="html"
+/>
+
+### Смешанное состояние чипов
+
+<Story name="MixedStateChips" of={ChipsStories.MixedStateChips} />
+
+<Source
+  code={`<me-chips-container [chips]="[{ label: 'Small Chip', size: 'small', count: 1 }, { label: 'Medium Chip', size: 'medium', count: 2 }, { label: 'Large Chip', size: 'large', count: 3 }, { label: 'Очень длинный текст для чипа', size: 'large', count: 4 }]"></me-chips-container>`}
+  dark
+  language="html"
+/>
+
+## Перечень свойств MeChipsContainer
+
+<Controls story={ChipsStories.Default} />
+
+## Обработка событий
+
+Компонент `MeChipsContainer` поддерживает событие `chipsChange` для отслеживания изменений в наборе чипов.
+
+<Source
+  code={`
+<me-chips-container
+  [chips]="[{ label: 'Чип 1', size: 'medium', count: 1 }, { label: 'Чип 2', size: 'medium', count: 2 }, { label: 'Чип 3', size: 'medium', count: 3 }]"
+  (chipsChange)="onChipsChange($event)"
+></me-chips-container>
+// В вашем компоненте:
+onChipsChange(newChips: string[]) {
+  console.log('Набор чипов изменился:', newChips);
+}
+`}
+  dark
+  language="typescript"
+/>
+
+## Компонент MeChip
+
+Компонент `MeChip` представляет отдельный чип и поддерживает иконку удаления через `MeIconComponent`.
+
+<Story name="SingleChipComponent" of={ChipsStories.SingleChip} />
+<Controls of={ChipsStories.SingleChip} />
+
+## Примеры использования MeChip
+
+### Отключенный чип
+
+<Story name="DisabledChip" of={ChipsStories.DisabledChips} />
+
+<Source
+  code={`<me-chip label="Отключенный чип" [disabled]="true"></me-chip>`}
+  dark
+  language="html"
+/>
+
+### Неудаляемый чип
+
+<Story name="NonRemovableChip" of={ChipsStories.ChipsWithoutRemoval} />
+
+<Source
+  code={`<me-chip label="Неудаляемый чип" [removable]="false"></me-chip>`}
+  dark
+  language="html"
+/>
+
+## Обработка событий
+
+Компонент `MeChip` поддерживает событие `onRemove` для обработки удаления чипа.
+
+<Source
+  code={`
+<me-chip
+  label="Удаляемый чип"
+  [removable]="true"
+  (onRemove)="onChipRemove()"
+></me-chip>
+
+          // В вашем компоненте:
+          onChipRemove() {
+            console.log('Чип был удален');
+          }
+`}
+  dark
+  language="typescript"
+/>
+
+## Стилизация
+
+Компоненты `MeChip` и `MeChipsContainer` имеют обновленные стили:
+
+- Высота чипа: 32px
+- Скругление углов: 16px
+- Цвета фона и текста соответствуют макету
+- Иконка удаления с использованием `MeIconComponent`
+- Стили для различных состояний (активный, отключенный, сфокусированный)

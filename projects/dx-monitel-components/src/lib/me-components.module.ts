@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MeDataGridModule } from '../public-api';
+import { MeDataGridModule} from '../public-api';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeAccordionModule } from './directives/me-accordion/accordion.module';
 import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
@@ -36,6 +36,9 @@ import {MeFileUploaderComponent} from "./components/me-file-uploader/me-file-upl
 import {MePaginationComponent} from "./components/me-pagination/me-pagination.component";
 import {MeIconComponent} from "./components/me-icon/me-icon.component";
 import {MeBreadcrumbsComponent} from "./components/me-breadcrumbs/me-breadcrumbs.component";
+import {MeSkeletonComponent} from "./components/me-skeleton/me-skeleton.component";
+import {MeChipComponent} from "./components/me-chips/me-chips.component";
+import {MeChipsContainerComponent} from "./components/me-chips-container/me-chips-container.component";
 
 
 @NgModule({
@@ -79,6 +82,9 @@ import {MeBreadcrumbsComponent} from "./components/me-breadcrumbs/me-breadcrumbs
     MeIconComponent,
     MeBreadcrumbsComponent,
     MeDataGridModule,
+    MeSkeletonComponent,
+    MeChipsContainerComponent,
+    MeChipComponent
   ],
   exports: [
     MeAccordionModule,
@@ -119,7 +125,10 @@ import {MeBreadcrumbsComponent} from "./components/me-breadcrumbs/me-breadcrumbs
     MeIconModule,
     MePaginationComponent,
     MeIconComponent,
-    MeBreadcrumbsComponent
+    MeBreadcrumbsComponent,
+    MeSkeletonComponent,
+    MeChipsContainerComponent,
+    MeChipComponent
   ],
 })
 export class MeComponentsModule {}

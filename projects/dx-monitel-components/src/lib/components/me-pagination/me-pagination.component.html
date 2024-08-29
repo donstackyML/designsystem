@@ -1,7 +1,29 @@
 <div class="me-pagination">
-  <span class="me-pagination__info">Записей: {{ totalItems }}</span>
+  <div class="me-pagination__size-controls" [ngClass]="size">
+    <ng-container *ngIf="useButtons; else selectBoxTemplate">
+      <dx-button
+        *ngFor="let size of itemsPerPageOptions"
+        stylingMode="contained"
+        [type]="itemsPerPage === size ? 'default' : 'normal'"
+        [text]="size.toString()"
+        (onClick)="changeItemsPerPage(size)"
+      ></dx-button>
+    </ng-container>
+    <ng-template #selectBoxTemplate>
+      <dx-select-box
+        [items]="itemsPerPageOptions"
+        [value]="itemsPerPage"
+        (onValueChanged)="onItemsPerPageChange($event)"
+        [width]="80"
+        [ngClass]="size"
+      ></dx-select-box>
+    </ng-template>
+  </div>
 
-  <div class="me-pagination__controls">
+  
+
+  <div class="me-pagination__controls" [ngClass]="size">
+    <span class="me-pagination__info">Записей: {{ totalItems }}</span>
     <dx-button
       stylingMode="text"
       [disabled]="currentPage === 1"
@@ -25,16 +47,8 @@
       stylingMode="text"
       [disabled]="currentPage === totalPages"
       (onClick)="nextPage()"
+      [ngClass]="size"
       icon="chevronright"
     ></dx-button>
-  </div>
-
-  <div class="me-pagination__per-page">
-    <dx-select-box
-      [items]="itemsPerPageOptions"
-      [value]="itemsPerPage"
-      (onValueChanged)="onItemsPerPageChange($event)"
-      [width]="80"
-    ></dx-select-box>
   </div>
 </div>

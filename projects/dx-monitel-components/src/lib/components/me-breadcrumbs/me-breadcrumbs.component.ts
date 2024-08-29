@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DxDropDownButtonModule, DxButtonModule, DxDropDownButtonComponent } from 'devextreme-angular';
+import { DxDropDownButtonModule, DxButtonModule } from 'devextreme-angular';
 import { MeIconComponent } from "../../../public-api";
 
 interface BreadcrumbItem {
