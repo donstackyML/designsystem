@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
       align-items: center;
       padding: 0 12px;
       border-radius: 16px;
-      background-color: #ECEDF3; /* Дефолтный цвет */
+      background-color: #ECEDF3;
       color: #333;
       cursor: pointer;
       white-space: nowrap;
@@ -75,21 +75,21 @@ import { CommonModule } from '@angular/common';
     }
 
     .chip-disabled {
-      background-color: #DEDFE6; /* Цвет задизейбленного состояния */
+      background-color: #DEDFE6;
       color: #757575;
       cursor: not-allowed;
     }
 
     .chip-active {
-      background-color: #C4D8FF; /* Цвет активного состояния */
+      background-color: #C4D8FF;
     }
 
     .chip-active:hover {
-      background-color: #C4D8FF; /* Оставляем цвет активного состояния на ховере */
+      background-color: #C4D8FF;
     }
 
     .chip:not(.chip-active):hover {
-      background-color: #D8DAEA; /* Цвет ховера для неактивных чипов */
+      background-color: #D8DAEA;
     }
 
     .chip:hover .chip-remove-button {
