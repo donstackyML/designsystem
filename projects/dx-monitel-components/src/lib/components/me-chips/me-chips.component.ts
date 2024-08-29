@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
       border-radius: 16px;
       background-color: #ECEDF3;
       color: #333;
+      font-family: Roboto,sans-serif;
       cursor: pointer;
       white-space: nowrap;
       overflow: hidden;
