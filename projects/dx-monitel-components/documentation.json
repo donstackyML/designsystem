@@ -585,7 +585,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<MeChipsContainerComponent>",
-                "defaultValue": "{\n  title: 'Components/MeChipsContainer',\n  component: MeChipsContainerComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [MeChipsContainerComponent, MeChipComponent],\n    }),\n  ],\n  argTypes: {\n    chips: {\n      control: 'object',\n      description: 'Массив объектов для отображения в виде чипов. Каждый объект содержит label, size и count.',\n    },\n    chipsChange: { action: 'chipsChange' },\n  },\n  args: {\n    chips: [\n      { label: 'Схемы', size: 'medium', count: 1 },\n      { label: 'Наборы', size: 'medium', count: 1 },\n      { label: 'Прибор', size: 'medium', count: 2 },\n    ],\n  },\n}"
+                "defaultValue": "{\n  title: 'Components/MeChipsContainer',\n  component: MeChipsContainerComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [MeChipsContainerComponent, MeChipComponent],\n    }),\n  ],\n  argTypes: {\n    chips: {\n      control: 'object',\n      description: 'Массив объектов для отображения в виде чипов. Каждый объект содержит label, size, count, и опции для удаления и активности.',\n    },\n    chipsChange: { action: 'chipsChange' },\n  },\n  args: {\n    chips: [\n      { label: 'Схемы', size: 'medium', count: 1 },\n      { label: 'Наборы', size: 'medium', count: 1 },\n      { label: 'Прибор', size: 'medium', count: 2 },\n    ],\n  },\n}"
             },
             {
                 "name": "ChipsContainerTemplate",
@@ -596,6 +596,16 @@
                 "deprecationMessage": "",
                 "type": "ChipsContainerStory",
                 "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onChipsChange: (e: any) => {\n        console.log('Chips changed:', e);\n        action('chipsChange')(e);\n      },\n    },\n    template: `\n      <me-chips-container\n        [chips]=\"chips\"\n        (chipsChange)=\"onChipsChange($event)\"\n      ></me-chips-container>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "ChipsWithoutRemoval",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ChipsContainerStory",
+                "defaultValue": "{\n  ...ChipsContainerTemplate,\n  args: {\n    chips: [\n      { label: 'Чип без удаления', size: 'small', count: 1, removable: false },\n      { label: 'Еще один чип без удаления', size: 'large', count: 2, removable: false }\n    ],\n  },\n}"
             },
             {
                 "name": "Collapsible",
@@ -808,6 +818,16 @@
                 "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n}"
             },
             {
+                "name": "CustomStyleBadge",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    size: '24',\n    color: 'secondary',\n    value: 7,\n    customStyle: { border: '2px solid black' },\n  },\n}"
+            },
+            {
                 "name": "CustomStyles",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -951,6 +971,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    size: '20',\n    color: 'default',\n    value: 5,\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -991,11 +1021,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    dataSource: data,\n  },\n}"
+                "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'medium',\n    showHeader: true,\n    showFooter: true,\n    contentHeight: '300px',\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
             },
             {
                 "name": "Default",
@@ -1011,11 +1051,11 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+                "file": "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    dataSource: data,\n  },\n}"
             },
             {
                 "name": "Default",
@@ -1288,6 +1328,16 @@
                 "defaultValue": "{\n  args: {\n    ...Default.args,\n    disabled: true,\n  },\n}"
             },
             {
+                "name": "DisabledChips",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ChipsContainerStory",
+                "defaultValue": "{\n  ...ChipsContainerTemplate,\n  args: {\n    chips: [\n      { label: 'Отключенный чип', size: 'medium', count: 1, removable: false, disabled: true },\n      { label: 'Еще один отключенный чип', size: 'large', count: 2, removable: false, disabled: true }\n    ],\n  },\n}"
+            },
+            {
                 "name": "FewItems",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1506,6 +1556,26 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
+            },
+            {
+                "name": "LargeBadge",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    size: '24',\n    color: 'success',\n    value: 10,\n  },\n}"
+            },
+            {
+                "name": "LargeCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    size: 'large',\n    contentHeight: '400px',\n  },\n}"
             },
             {
                 "name": "LargeFileUpload",
@@ -1758,6 +1828,26 @@
                 "defaultValue": "{\n  args: {\n    ...Default.args,\n    multiple: true,\n  },\n}"
             },
             {
+                "name": "NoFooter",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    showFooter: false,\n  },\n}"
+            },
+            {
+                "name": "OverflowValue",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    size: '20',\n    color: 'error',\n    value: 100,\n  },\n}"
+            },
+            {
                 "name": "Positioning",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1908,6 +1998,16 @@
                 "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
             },
             {
+                "name": "SmallCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n    contentHeight: '200px',\n  },\n}"
+            },
+            {
                 "name": "SmallSize",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1916,6 +2016,26 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args) => ({\n    props: args,\n  }),\n}"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <me-card\n        [size]=\"size\"\n        [showHeader]=\"showHeader\"\n        [showFooter]=\"showFooter\"\n        [markerColor]=\"markerColor\"\n        [contentHeight]=\"contentHeight\">\n\n        <ng-container card-header-left>\n          <button dxButton meButton iconOnly=\"sync\" [class.large-icon]=\"size === 'large'\"></button>\n          <span>Заголовок</span>\n        </ng-container>\n\n        <ng-container card-header-right>\n          <me-chip [label]=\"'Маркер'\" [size]=\"'large'\" [removable]=\"false\"></me-chip>\n          <button dxButton meButton iconOnly=\"sync\" (onClick)=\"onSyncClick()\" class=\"large-icon\"></button>\n          <button dxButton meButton iconOnly=\"info\" (onClick)=\"onInfoClick()\" class=\"large-icon\"></button>\n          <button dxButton meButton iconOnly=\"more_vert\" (onClick)=\"onMoreClick()\" class=\"large-icon\"></button>\n        </ng-container>\n\n        <div>\n          <!-- Содержимое карточки -->\n        </div>\n\n        <ng-container card-footer>\n          <dx-button meButton text=\"Добавить\" leftIcon=\"add\" stylingMode=\"outlined\" style=\"margin-right: auto;\"></dx-button>\n          <dx-button meButton text=\"Принять\" stylingMode=\"contained\" style=\"margin-right: 8px;\"></dx-button>\n          <dx-button meButton text=\"Отмена\" stylingMode=\"outlined\"></dx-button>\n        </ng-container>\n      </me-card>\n    `\n  }),\n}"
             },
             {
                 "name": "Template",
@@ -2178,6 +2298,16 @@
                 "defaultValue": "{\n  args: {\n    ...Default.args,\n    showWeekNumbers: false,\n  },\n}"
             },
             {
+                "name": "WithOverflow",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n    contentHeight: '200px',\n  },\n}"
+            },
+            {
                 "name": "WithOverlay",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2275,6 +2405,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<MeBadgeComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<MeBreadcrumbsComponent>",
                 "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                 "deprecated": false,
@@ -2319,8 +2460,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MeContextMenuDirective | DxContextMenuModule>",
-                "file": "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts",
+                "rawtype": "StoryObj<MeCardComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2332,6 +2473,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<MeCheckBoxDirective | DxCheckBoxComponent>",
                 "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<MeContextMenuDirective | DxContextMenuModule>",
+                "file": "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3045,7 +3197,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<MeChipsContainerComponent>",
-                    "defaultValue": "{\n  title: 'Components/MeChipsContainer',\n  component: MeChipsContainerComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [MeChipsContainerComponent, MeChipComponent],\n    }),\n  ],\n  argTypes: {\n    chips: {\n      control: 'object',\n      description: 'Массив объектов для отображения в виде чипов. Каждый объект содержит label, size и count.',\n    },\n    chipsChange: { action: 'chipsChange' },\n  },\n  args: {\n    chips: [\n      { label: 'Схемы', size: 'medium', count: 1 },\n      { label: 'Наборы', size: 'medium', count: 1 },\n      { label: 'Прибор', size: 'medium', count: 2 },\n    ],\n  },\n}"
+                    "defaultValue": "{\n  title: 'Components/MeChipsContainer',\n  component: MeChipsContainerComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [MeChipsContainerComponent, MeChipComponent],\n    }),\n  ],\n  argTypes: {\n    chips: {\n      control: 'object',\n      description: 'Массив объектов для отображения в виде чипов. Каждый объект содержит label, size, count, и опции для удаления и активности.',\n    },\n    chipsChange: { action: 'chipsChange' },\n  },\n  args: {\n    chips: [\n      { label: 'Схемы', size: 'medium', count: 1 },\n      { label: 'Наборы', size: 'medium', count: 1 },\n      { label: 'Прибор', size: 'medium', count: 2 },\n    ],\n  },\n}"
                 },
                 {
                     "name": "ChipsContainerTemplate",
@@ -3056,6 +3208,16 @@
                     "deprecationMessage": "",
                     "type": "ChipsContainerStory",
                     "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n      onChipsChange: (e: any) => {\n        console.log('Chips changed:', e);\n        action('chipsChange')(e);\n      },\n    },\n    template: `\n      <me-chips-container\n        [chips]=\"chips\"\n        (chipsChange)=\"onChipsChange($event)\"\n      ></me-chips-container>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "ChipsWithoutRemoval",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChipsContainerStory",
+                    "defaultValue": "{\n  ...ChipsContainerTemplate,\n  args: {\n    chips: [\n      { label: 'Чип без удаления', size: 'small', count: 1, removable: false },\n      { label: 'Еще один чип без удаления', size: 'large', count: 2, removable: false }\n    ],\n  },\n}"
                 },
                 {
                     "name": "Default",
@@ -3076,6 +3238,16 @@
                     "deprecationMessage": "",
                     "type": "ChipsContainerStory",
                     "defaultValue": "{\n  ...ChipsContainerTemplate,\n  args: {\n    chips: [\n      { label: 'Small Chip', size: 'small', count: 1 },\n      { label: 'Medium Chip', size: 'medium', count: 2 },\n      { label: 'Large Chip', size: 'large', count: 3 },\n    ],\n  },\n}"
+                },
+                {
+                    "name": "DisabledChips",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ChipsContainerStory",
+                    "defaultValue": "{\n  ...ChipsContainerTemplate,\n  args: {\n    chips: [\n      { label: 'Отключенный чип', size: 'medium', count: 1, removable: false, disabled: true },\n      { label: 'Еще один отключенный чип', size: 'large', count: 2, removable: false, disabled: true }\n    ],\n  },\n}"
                 },
                 {
                     "name": "LongChipText",
@@ -3716,6 +3888,58 @@
                     "defaultValue": "{\n  ...Template,\n  args: {\n    totalItems: 500,\n    itemsPerPage: 50,\n    currentPage: 1,\n    maxVisiblePages: 5,\n    useButtons: true,\n    size: 'large', // Устанавливаем большие кнопки\n  },\n}"
                 }
             ],
+            "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts": [
+                {
+                    "name": "CustomStyleBadge",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    size: '24',\n    color: 'secondary',\n    value: 7,\n    customStyle: { border: '2px solid black' },\n  },\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    size: '20',\n    color: 'default',\n    value: 5,\n  },\n}"
+                },
+                {
+                    "name": "LargeBadge",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    size: '24',\n    color: 'success',\n    value: 10,\n  },\n}"
+                },
+                {
+                    "name": "OverflowValue",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    size: '20',\n    color: 'error',\n    value: 100,\n  },\n}"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args) => ({\n    props: args,\n  }),\n}"
+                }
+            ],
             "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts": [
                 {
                     "name": "data",
@@ -4084,6 +4308,68 @@
                     "defaultValue": "{\n  args: {\n    type: 'normal',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'contained',\n    leftIcon: 'arrowback',\n    rightIcon: 'arrowforward',\n  },\n}"
                 }
             ],
+            "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'medium',\n    showHeader: true,\n    showFooter: true,\n    contentHeight: '300px',\n  },\n}"
+                },
+                {
+                    "name": "LargeCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    size: 'large',\n    contentHeight: '400px',\n  },\n}"
+                },
+                {
+                    "name": "NoFooter",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    showFooter: false,\n  },\n}"
+                },
+                {
+                    "name": "SmallCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n    contentHeight: '200px',\n  },\n}"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <me-card\n        [size]=\"size\"\n        [showHeader]=\"showHeader\"\n        [showFooter]=\"showFooter\"\n        [markerColor]=\"markerColor\"\n        [contentHeight]=\"contentHeight\">\n\n        <ng-container card-header-left>\n          <button dxButton meButton iconOnly=\"sync\" [class.large-icon]=\"size === 'large'\"></button>\n          <span>Заголовок</span>\n        </ng-container>\n\n        <ng-container card-header-right>\n          <me-chip [label]=\"'Маркер'\" [size]=\"'large'\" [removable]=\"false\"></me-chip>\n          <button dxButton meButton iconOnly=\"sync\" (onClick)=\"onSyncClick()\" class=\"large-icon\"></button>\n          <button dxButton meButton iconOnly=\"info\" (onClick)=\"onInfoClick()\" class=\"large-icon\"></button>\n          <button dxButton meButton iconOnly=\"more_vert\" (onClick)=\"onMoreClick()\" class=\"large-icon\"></button>\n        </ng-container>\n\n        <div>\n          <!-- Содержимое карточки -->\n        </div>\n\n        <ng-container card-footer>\n          <dx-button meButton text=\"Добавить\" leftIcon=\"add\" stylingMode=\"outlined\" style=\"margin-right: auto;\"></dx-button>\n          <dx-button meButton text=\"Принять\" stylingMode=\"contained\" style=\"margin-right: 8px;\"></dx-button>\n          <dx-button meButton text=\"Отмена\" stylingMode=\"outlined\"></dx-button>\n        </ng-container>\n      </me-card>\n    `\n  }),\n}"
+                },
+                {
+                    "name": "WithOverflow",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n    contentHeight: '200px',\n  },\n}"
+                }
+            ],
             "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts": [
                 {
                     "name": "Default",
@@ -4449,6 +4735,19 @@
                     "kind": 183
                 }
             ],
+            "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MeBadgeComponent>",
+                    "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
                 {
                     "name": "Story",
@@ -4501,13 +4800,13 @@
                     "kind": 183
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts": [
+            "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<MeContextMenuDirective | DxContextMenuModule>",
-                    "file": "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts",
+                    "rawtype": "StoryObj<MeCardComponent>",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4521,6 +4820,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<MeCheckBoxDirective | DxCheckBoxComponent>",
                     "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MeContextMenuDirective | DxContextMenuModule>",
+                    "file": "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5003,6 +5315,56 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CustomStyleBadge",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LargeBadge",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OverflowValue",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -5193,6 +5555,66 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LargeCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoFooter",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SmallCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithOverflow",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -5227,6 +5649,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "ChipsWithoutRemoval",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -5238,6 +5670,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "DifferentSizes",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DisabledChips",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

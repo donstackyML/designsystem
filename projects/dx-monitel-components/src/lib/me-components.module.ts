@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MeDataGridModule} from '../public-api';
+import {MeBadgeComponent, MeDataGridModule} from '../public-api';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeAccordionModule } from './directives/me-accordion/accordion.module';
 import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
@@ -39,6 +39,8 @@ import {MeBreadcrumbsComponent} from "./components/me-breadcrumbs/me-breadcrumbs
 import {MeSkeletonComponent} from "./components/me-skeleton/me-skeleton.component";
 import {MeChipComponent} from "./components/me-chips/me-chips.component";
 import {MeChipsContainerComponent} from "./components/me-chips-container/me-chips-container.component";
+import {MeCardComponent} from "./components/me-card/me-card.component";
+
 
 
 @NgModule({
@@ -84,7 +86,9 @@ import {MeChipsContainerComponent} from "./components/me-chips-container/me-chip
     MeDataGridModule,
     MeSkeletonComponent,
     MeChipsContainerComponent,
-    MeChipComponent
+    MeChipComponent,
+    MeBadgeComponent,
+    MeCardComponent
   ],
   exports: [
     MeAccordionModule,
@@ -128,7 +132,9 @@ import {MeChipsContainerComponent} from "./components/me-chips-container/me-chip
     MeBreadcrumbsComponent,
     MeSkeletonComponent,
     MeChipsContainerComponent,
-    MeChipComponent
+    MeChipComponent,
+    MeBadgeComponent,
+    MeCardComponent
   ],
 })
 export class MeComponentsModule {}

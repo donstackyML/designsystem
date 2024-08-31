@@ -40,6 +40,7 @@ interface FileWrapper {
       border: 1px dashed #d3d3d3;
       border-radius: 4px;
       padding: 20px;
+      font-family: 'Roboto', sans-serif;
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -53,6 +54,9 @@ interface FileWrapper {
     .file-uploader p {
       margin-bottom: 15px;
       color: #606060;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
     }
 
     .file-list {
@@ -77,13 +81,14 @@ interface FileWrapper {
     }
 
     .file-name {
-      font-weight: 500;
+      font-weight: 400;
       font-size: 16px;
       margin-bottom: 4px;
     }
 
     .file-size {
       color: #8c8c8c;
+      font-weight: 400;
       font-size: 12px;
       margin-left: 10px;
     }
@@ -91,6 +96,7 @@ interface FileWrapper {
     .file-status {
       display: block;
       font-size: 12px;
+      font-weight: 400;
       color: #ff4d4f;
     }
 
@@ -100,18 +106,22 @@ interface FileWrapper {
     }
 
     .file-actions .me-icon-cancel {
-      color: #ff0000; /* Красный цвет для иконки cancel */
+      color: #ff0000;
       cursor: pointer;
     }
 
     .allowed-extensions {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
       font-size: 12px;
-      color: #606060; /* Серый цвет для текста */
+      color: #606060;
       margin-top: 5px;
     }
 
     .allowed-extensions .extensions {
-      color: #000000; /* Черный цвет для расширений */
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      color: #000000;
     }
 
 

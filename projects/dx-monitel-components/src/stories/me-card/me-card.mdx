@@ -1,0 +1,192 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as MeCardStories from "./me-card.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxButtonModule } from 'devextreme-angular';
+import { CommonModule } from '@angular/common';
+import { MeCardComponent } from "../../public-api";
+import { MeIconComponent, MeChipComponent, MeChipsContainerComponent } from "../../public-api";
+
+<Meta
+  title="Components/MeCard"
+  component={MeCardComponent}
+  decorators={[
+    moduleMetadata({
+      imports: [
+        CommonModule,
+      DxButtonModule,
+      MeCardComponent,
+      MeIconComponent,
+      MeChipComponent,
+      MeChipsContainerComponent
+  ],
+  }),
+    ]}
+  of={MeCardStories}
+/>
+
+# MeCard
+
+## Компонент MeCard
+
+Компонент `MeCard` представляет собой карточку с настраиваемыми размерами, заголовком и подвалом. В этом примере мы демонстрируем несколько вариантов использования компонента, включая различный размер и поведение при переполнении контента.
+
+<Story name="Default" of={MeCardStories.Default} />
+<Controls of={MeCardStories.Default} />
+
+<Source of={MeCardStories.Default} dark />
+
+## Примеры использования:
+
+### Маленькая карточка
+
+<Story name="SmallCard" of={MeCardStories.SmallCard} />
+
+<Source
+  code={`<me-card [size]="'small'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
+  <ng-container card-header-left>
+    <me-icon icon="home" size="medium"></me-icon>
+    <span>Card Title</span>
+  </ng-container>
+  <ng-container card-header-right>
+    <dx-button iconOnly="add" (onClick)="onAddClick()"></dx-button>
+    <dx-button iconOnly="arrowforward" (onClick)="onForwardClick()"></dx-button>
+  </ng-container>
+  <div>
+    <p>Card content goes here. This is a basic card example.</p>
+    <me-chips-container [chips]="[{ label: 'Example Chip', size: 'medium', count: 1 }]"></me-chips-container>
+  </div>
+  <ng-container card-footer>
+    <dx-button text="Cancel" type="normal" stylingMode="outlined" (onClick)="onCancelClick()"></dx-button>
+    <dx-button text="Save" type="success" (onClick)="onSaveClick()"></dx-button>
+  </ng-container>
+</me-card>`}
+  dark
+  language="html"
+/>
+
+### Большая карточка
+
+  <Story name="LargeCard" of={MeCardStories.LargeCard} />
+
+  <Source
+    code={`<me-card [size]="'large'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
+    <ng-container card-header-left>
+    <me-icon icon="home" size="medium"></me-icon>
+    <span>Card Title</span>
+    </ng-container>
+    <ng-container card-header-right>
+    <dx-button iconOnly="add" (onClick)="onAddClick()"></dx-button>
+    <dx-button iconOnly="arrowforward" (onClick)="onForwardClick()"></dx-button>
+    </ng-container>
+    <div>
+    <p>Card content goes here. This is a basic card example.</p>
+    <me-chips-container [chips]="[{ label: 'Example Chip', size: 'medium', count: 1 }]"></me-chips-container>
+  </div>
+  <ng-container card-footer>
+  <dx-button text="Cancel" type="normal" stylingMode="outlined" (onClick)="onCancelClick()"></dx-button>
+    <dx-button text="Save" type="success" (onClick)="onSaveClick()"></dx-button>
+  </ng-container>
+</me-card>`}
+  dark
+  language="html"
+/>
+
+### Карточка без подвала
+
+<Story name="NoFooter" of={MeCardStories.NoFooter} />
+
+<Source
+  code={`<me-card [size]="'medium'" [showHeader]="true" [showFooter]="false" [markerColor]="'#4CAF50'">
+  <ng-container card-header-left>
+    <me-icon icon="home" size="medium"></me-icon>
+    <span>Card Title</span>
+  </ng-container>
+  <ng-container card-header-right>
+    <dx-button iconOnly="add" (onClick)="onAddClick()"></dx-button>
+    <dx-button iconOnly="arrowforward" (onClick)="onForwardClick()"></dx-button>
+  </ng-container>
+  <div>
+    <p>Card content goes here. This is a basic card example.</p>
+    <me-chips-container [chips]="[{ label: 'Example Chip', size: 'medium', count: 1 }]"></me-chips-container>
+  </div>
+</me-card>`}
+  dark
+  language="html"
+/>
+
+### Карточка с переполнением
+
+  <Story name="WithOverflow" of={MeCardStories.WithOverflow} />
+
+  <Source
+    code={`<me-card [size]="'small'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
+    <ng-container card-header-left>
+    <me-icon icon="description" size="medium"></me-icon>
+    <span>Overflow Example</span>
+    </ng-container>
+    <div style="max-height: 200px; overflow-y: auto;">
+    <p>This is an example of a card with overflow content. The content will scroll when it exceeds the maximum height.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>
+    </div>
+    <ng-container card-footer>
+    <dx-button text="Close" type="normal" stylingMode="outlined" (onClick)="onCloseClick()"></dx-button>
+    </ng-container>
+    </me-card>`}
+      dark
+      language="html"
+    />
+
+    ## Перечень свойств
+
+    <Controls story={MeCardStories.Default} />
+
+## Обработка событий
+
+Карточка поддерживает обработку событий, такие как клики по кнопкам. Пример обработки событий в компоненте:
+
+  <Source
+  code={`
+<me-card [size]="'medium'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
+  <ng-container card-header-left>
+    <me-icon icon="home" size="medium"></me-icon>
+    <span>Card Title</span>
+  </ng-container>
+  <ng-container card-header-right>
+    <dx-button iconOnly="add" (onClick)="onAddClick()"></dx-button>
+    <dx-button iconOnly="arrowforward" (onClick)="onForwardClick()"></dx-button>
+  </ng-container>
+  <div>
+    <p>Card content goes here. This is a basic card example.</p>
+    <me-chips-container [chips]="[{ label: 'Example Chip', size: 'medium', count: 1 }]"></me-chips-container>
+  </div>
+  <ng-container card-footer>
+    <dx-button text="Cancel" type="normal" stylingMode="outlined" (onClick)="onCancelClick()"></dx-button>
+    <dx-button text="Save" type="success" (onClick)="onSaveClick()"></dx-button>
+  </ng-container>
+</me-card>
+
+    // В вашем компоненте:
+    onAddClick() {
+      console.log('Add button clicked');
+    }
+
+    onForwardClick() {
+      console.log('Forward button clicked');
+    }
+
+    onCancelClick() {
+      console.log('Cancel button clicked');
+    }
+
+    onSaveClick() {
+      console.log('Save button clicked');
+    }
+
+    onCloseClick() {
+      console.log('Close button clicked');
+    }
+`}
+  dark
+  language="typescript"
+/>

@@ -33,11 +33,11 @@ export class MeIconComponent {
   getSize(): string {
     switch (this.size) {
       case 'small':
-        return '16px';
+        return '14px';
       case 'large':
-        return '48px';
-      default:
         return '24px';
+      default:
+        return '16px';
     }
   }
 }

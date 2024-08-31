@@ -1,0 +1,71 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as BadgeStories from "./me-badge.stories";
+import {MeBadgeComponent} from "../../public-api";
+
+<Meta title="Components/Badge" component={MeBadgeComponent} of={BadgeStories} />
+
+# Badge
+
+Компонент `MeBadge` представляет собой круглый значок, который может отображать числовое значение или быть пустым. Он поддерживает различные размеры и цвета.
+
+<Story name="Default" of={BadgeStories.Default} />
+<Controls of={BadgeStories.Default} />
+
+## Примеры использования
+
+### Стандартный значок
+
+<Story name="Default" of={BadgeStories.Default} />
+
+<Source
+  code={`<me-badge [value]="5"></me-badge>`}
+  dark
+  language="html"
+/>
+
+### Большой значок
+
+<Story name="LargeBadge" of={BadgeStories.LargeBadge} />
+
+<Source
+  code={`<me-badge size="24" color="success" [value]="10"></me-badge>`}
+  dark
+  language="html"
+/>
+
+### Значок с переполнением
+
+При значении больше 99, отображается "99+".
+
+<Story name="OverflowValue" of={BadgeStories.OverflowValue} />
+
+<Source
+  code={`<me-badge color="error" [value]="100"></me-badge>`}
+  dark
+  language="html"
+/>
+
+### Значок с пользовательским стилем
+
+<Story name="CustomStyleBadge" of={BadgeStories.CustomStyleBadge} />
+
+<Source
+  code={`<me-badge size="24" color="secondary" [value]="7" [customStyle]="{ border: '2px solid black' }"></me-badge>`}
+  dark
+  language="html"
+/>
+
+## Свойства
+
+<Controls />
+
+- `size`: Размер значка ('20' или '24')
+- `color`: Цвет значка ('default', 'secondary', 'success', 'attention', 'error')
+- `value`: Числовое значение для отображения (null для пустого значка)
+- `customStyle`: Объект с пользовательскими стилями CSS
+
+## Примечания
+
+- Если значение не задано (null), значок будет пустым.
+- При значении больше 99 отображается "99+".
+- Компонент использует CSS-переменные для цветов, убедитесь, что они определены в вашей теме.
