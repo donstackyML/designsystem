@@ -135,12 +135,6 @@ export class MeSkeletonComponent implements OnInit {
       this.paragraphRows = Array(3).fill('100%');
     }
   }
-
-  /**
-   * Returns the size in pixels based on the input size value.
-   * If the size is a predefined string value, returns the corresponding pixel size.
-   * If the size is a number, returns the value with "px" as the unit.
-   */
   private getSize(size: number | 'large' | 'small' | 'default'): string {
     switch(size) {
       case 'large': return '64px';
