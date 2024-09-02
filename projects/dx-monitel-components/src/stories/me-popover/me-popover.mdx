@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as PopoverStories from "./me-popover.stories";
 import { moduleMetadata } from "@storybook/angular";
 import { DxPopoverModule } from "devextreme-angular/ui/popover";
@@ -22,7 +22,7 @@ import { MePopoverDirective } from "../../public-api";
 
 Директива `mePopover` добавляет дополнительные возможности к компоненту `dxPopover` из библиотеки DevExtreme, позволяя настраивать события показа/скрытия, позиционирование, размер и другие параметры.
 
-<Story name="Default" of={PopoverStories.Default} />
+<Canvas name="Default" of={PopoverStories.Default} />
 <Controls of={PopoverStories.Default} />
 <Source of={PopoverStories.Default} dark />
 
@@ -30,7 +30,7 @@ import { MePopoverDirective } from "../../public-api";
 
 ### Поповер с заголовком
 
-<Story name="WithTitle" of={PopoverStories.WithTitle} />
+<Canvas name="WithTitle" of={PopoverStories.WithTitle} />
 <Source
   code={`<dx-popover mePopover [showEvent]="'click'" [hideEvent]="'mouseleave'" [position]="'bottom'" [showTitle]="true" [title]="'Заголовок поповера'" [content]="'Это поповер с заголовком и ограничением максимальной ширины.'"></dx-popover>`}
   dark
@@ -39,7 +39,7 @@ import { MePopoverDirective } from "../../public-api";
 
 ### Поповер с затемнением фона
 
-<Story name="WithOverlay" of={PopoverStories.WithOverlay} />
+<Canvas name="WithOverlay" of={PopoverStories.WithOverlay} />
 <Source
   code={`<dx-popover mePopover [showEvent]="'click'" [hideEvent]="'click'" [shading]="true" [shadingColor]="'rgba(0, 0, 0, 0.5)'" [content]="'Это поповер с затенением фона.'"></dx-popover>`}
   dark
