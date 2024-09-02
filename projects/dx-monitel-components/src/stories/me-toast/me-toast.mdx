@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as toastStories from "./me-toast.stories";
 import { moduleMetadata } from "@storybook/angular";
 import { DxToastModule } from "devextreme-angular";
@@ -21,7 +21,7 @@ import { MeToastDirective } from "../../public-api";
 
 Директива `meToast` позволяет создавать уведомления с различными параметрами, включая время отображения, позицию и анимацию. Уведомления могут быть стилизованы с помощью CSS классов.
 
-<Story of={toastStories.Default} />
+<Canvas of={toastStories.Default} />
 <Controls of={toastStories.Default} />
 <Source
   code={`<dx-toast 
@@ -49,7 +49,7 @@ import { MeToastDirective } from "../../public-api";
 
 Для изменения времени отображения используйте параметр `displayTime`.
 
-<Story of={toastStories.LongDuration} />
+<Canvas of={toastStories.LongDuration} />
 
 <Source
   code={`<dx-toast [displayTime]="5000" message="This toast will be displayed for 5 seconds"></dx-toast>`}
@@ -61,7 +61,7 @@ import { MeToastDirective } from "../../public-api";
 
 Для изменения позиции уведомления используйте параметр `position` с возможными значениями `top left`, `top center`, `top right`, `bottom left`, `bottom center`, `bottom right`.
 
-<Story of={toastStories.CustomPosition} />
+<Canvas of={toastStories.CustomPosition} />
 
 <Source
   code={`<dx-toast position="top center" message="This toast is positioned at the top center"></dx-toast>`}
@@ -73,7 +73,7 @@ import { MeToastDirective } from "../../public-api";
 
 Для настройки анимации используйте параметр `animation`.
 
-<Story of={toastStories.CustomAnimation} />
+<Canvas of={toastStories.CustomAnimation} />
 
 <Source
   code={`<dx-toast
@@ -91,7 +91,7 @@ import { MeToastDirective } from "../../public-api";
 
 Для применения пользовательского CSS класса используйте параметр `customClass`.
 
-<Story of={toastStories.CustomClass} />
+<Canvas of={toastStories.CustomClass} />
 
 <Source
   code={`<dx-toast customClass="my-custom-toast" message="This toast has a custom CSS class"></dx-toast>`}
