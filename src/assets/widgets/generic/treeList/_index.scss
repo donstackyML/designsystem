@@ -180,3 +180,141 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
     color: $base-accent;
   }
 }
+
+//meTreeList
+
+.me-tree-list {
+  .dx-treelist-container.dx-gridbase-container {
+    padding: 16px;
+    .dx-treelist-header-panel {
+      .dx-toolbar.dx-collection {
+        margin-bottom: 16px;
+        .dx-toolbar-items-container {
+          height: 28px;
+          min-height: 28px;
+          .dx-toolbar-after {
+            .dx-item.dx-toolbar-item.dx-toolbar-button {
+              .dx-item-content.dx-toolbar-item-content {
+                .dx-widget.dx-button.dx-button-has-icon.dx-treelist-toolbar-button.dx-edit-button.dx-treelist-addrow-button {
+                  height: 28px;
+                  width: 28px;
+                  border-radius: 3px;
+                  .dx-button-content {
+                    padding: 0;
+                    align-items: center;
+                    .dx-icon.dx-icon-edit-button-addrow {
+                      height: 22px;
+                    }
+                    .dx-icon.dx-icon-edit-button-addrow::before {
+                      font-size: 13px;
+                      height: 28px;
+                      align-content: center;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .dx-treelist-headers {
+      border-radius: 4px 4px 0 0;
+      border-bottom: none;
+      .dx-treelist-content {
+        border-radius: 3px 3px 0 0;
+        .dx-treelist-table {
+          .dx-row.dx-column-lines.dx-header-row {
+            min-height: 36px;
+            .dx-treelist-action {
+              padding: 8px;
+              align-content: center;
+              .dx-treelist-text-content {
+                font-size: 13px;
+                font-weight: 600;
+                line-height: 16px;
+                color: $base-text-color;
+                margin-right: 4px;
+              }
+            }
+            .dx-command-edit {
+              background-color: $base-bg;
+              padding: 8px;
+            }
+          }
+        }
+      }
+    }
+    .dx-treelist-rowsview {
+      border-radius: 0 0 3px 3px;
+      .dx-treelist-table {
+        .dx-row.dx-data-row.dx-row-lines.dx-column-lines {
+          min-height: 30px;
+          td {
+            padding: 5px 8px;
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 400;
+            align-content: center;
+            & * {
+              padding: 0;
+            }
+            .dx-texteditor-input {
+              padding: 0;
+              min-height: 20px;
+            }
+          }
+          .dx-treelist-text-content {
+            line-height: 19px;
+          }
+          .dx-treelist-icon-container {
+            .dx-treelist-empty-space {
+              margin-right: 4px;
+              width: 20px;
+              span::before {
+                left: 50%;
+                margin-left: -9px;
+                margin-top: -8px;
+              }
+            }
+            .dx-treelist-collapsed {
+              span::before {
+                content: '\f002';
+              }
+            }
+          }
+          .dx-focused {
+            background-color: $tree-list-focused-bg;
+            & * {
+              background-color: transparent;
+            }
+          }
+          .dx-treelist-invalid {
+            &::after {
+              border: 1px solid $tree-list-invalid-border-color;
+            }
+          }
+        }
+      }
+      .dx-overlay-wrapper.dx-invalid-message.dx-treelist-invalid-message {
+        .dx-overlay-content {
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 16px;
+          border-radius: 3px;
+          padding: 2px 8px;
+          top: -1px !important;
+          background-color: $error-message-bg;
+          color: $error-message-color;
+        }
+      }
+      .dx-treelist-focus-overlay {
+        box-shadow: inset 0 0 0 1px $base-accent;
+        border-top: none;
+        border-left: none;
+        border-right: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 /*
 import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.directive';
 import { MeTreeListModule } from './lib/directives/me-tree-list/me-tree-list.module';
+import { MeTextAreaDirective } from './lib/directives/me-text-area/text-area.directive';
+import { MeTextAreaModule } from './lib/directives/me-text-area/text-area.module';
  * Public API Surface of me-lib
  */
 
@@ -32,6 +34,7 @@ export { MeSliderDirective } from './lib/directives/me-slider/slider.directive';
 export { MeSwitchDirective } from './lib/directives/me-switch/switch.directive';
 export { MeTabPanelDirective } from './lib/directives/me-tab-panel/tab-panel.directive';
 export { MeTabsDirective } from './lib/directives/me-tabs/tabs.directive';
+export { MeTextAreaDirective } from './lib/directives/me-text-area/text-area.directive';
 export { MeTextBoxDirective } from './lib/directives/me-text-box/text-box.directive';
 export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-editor.directive';
 export { MeToolbarDirective } from './lib/directives/me-toolbar/toolbar.directive';
@@ -72,6 +75,7 @@ export { MeLoadIndicatorModule } from './lib/directives/me-load-indicator/load-i
 export { MeLoadPanelModule } from './lib/directives/me-load-panel/load-panel.module';
 export { MeScrollViewModule } from './lib/directives/me-scroll-view/scroll-view.module';
 export { MeTabPanelModule } from './lib/directives/me-tab-panel/tab-panel.module';
+export { MeTextAreaModule } from './lib/directives/me-text-area/text-area.module';
 export { MeTooltipModule } from './lib/directives/me-tooltip/tooltip.module';
 
 export { MeIconStoreService } from './lib/service/icon-store.service';
