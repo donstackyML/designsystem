@@ -1,3 +1,5 @@
+export {MeBreadcrumbsComponent} from "./lib/components/me-breadcrumbs/me-breadcrumbs.component";
+
 export { MeCardComponent } from './lib/components/me-card/me-card.component';
 
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
@@ -11,13 +13,9 @@ export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 
-export { MeIconModule } from './lib/directives/me-icon/me-icon.module';
 
 export { MeFileUploaderComponent } from './lib/components/me-file-uploader/me-file-uploader.component';
 
-export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
-
-export {MeBreadcrumbsComponent} from "./lib/components/me-breadcrumbs/me-breadcrumbs.component";
 
 /*
 import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.directive';
