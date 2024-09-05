@@ -50,6 +50,7 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
+
   private updateCalendarOptions() {
     const instance = this.dxCalendarComponent?.instance;
     if (instance) {
