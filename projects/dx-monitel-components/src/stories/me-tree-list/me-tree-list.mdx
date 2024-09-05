@@ -1,0 +1,27 @@
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as TreeListStories from "./me-tree-list.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxTreeListModule } from "devextreme-angular";
+import { MeTreeListDirective } from "../../public-api";
+
+<Meta
+  title="Components/TreeList"
+  component={MeTreeListDirective}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeTreeListDirective],
+      imports: [DxTreeListModule],
+    }),
+  ]}
+  of={TreeListStories}
+/>
+
+# TreeList
+
+## Директива meTreeList
+
+Директива `meTreeList` изменяет внешний вид стандартного компонента treeList DevExtreme.
+
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/23_1/ApiReference/UI_Components/dxTreeList/)
+
+<Story name="Default" of={TreeListStories.TreeList} />

@@ -30,6 +30,7 @@ import { MeTextEditorModule } from './directives/me-text-editor/me-text-editor.m
 import { MeToastModule } from './directives/me-toast/toast.module';
 import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
+import { MeTreeListModule } from './directives/me-tree-list/me-tree-list.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
 import { MeFileUploaderModule } from './directives/me-file-uploader/file-uploader.module';
 import {MeFileUploaderComponent} from "./components/me-file-uploader/me-file-uploader.component";
@@ -88,7 +89,8 @@ import {MeCardComponent} from "./components/me-card/me-card.component";
     MeChipsContainerComponent,
     MeChipComponent,
     MeBadgeComponent,
-    MeCardComponent
+    MeCardComponent,
+    MeTreeListModule,
   ],
   exports: [
     MeAccordionModule,
@@ -134,7 +136,8 @@ import {MeCardComponent} from "./components/me-card/me-card.component";
     MeChipsContainerComponent,
     MeChipComponent,
     MeBadgeComponent,
-    MeCardComponent
+    MeCardComponent,
+    MeTreeListModule,
   ],
 })
 export class MeComponentsModule {}
