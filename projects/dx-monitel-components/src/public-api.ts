@@ -21,6 +21,8 @@ export {MeBreadcrumbsComponent} from "./lib/components/me-breadcrumbs/me-breadcr
 
 /*
 import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.directive';
+import { MeTagBoxDirective } from './lib/directives/me-tag-box/tag-box.directive';
+import { MeTagBoxModule } from './lib/directives/me-tag-box/tag-box.module';
 import { MeTreeListModule } from './lib/directives/me-tree-list/me-tree-list.module';
 import { MeTextAreaDirective } from './lib/directives/me-text-area/text-area.directive';
 import { MeTextAreaModule } from './lib/directives/me-text-area/text-area.module';
@@ -47,13 +49,16 @@ export { MeMenuDirective } from './lib/directives/me-menu/menu.directive';
 export { MeOverlayDirective } from './lib/directives/me-overlay/overlay.directive';
 export { MePopoverDirective } from './lib/directives/me-popover/popover.directive';
 export { MePopupDirective } from './lib/directives/me-popup/popup.directive';
+export { MeProgressBarDirective } from './lib/directives/me-progress-bar/progress-bar.directive';
 export { MeRadioGroupDirective } from './lib/directives/me-radio-group/radio-group.directive';
 export { MeScrollViewDirective } from './lib/directives/me-scroll-view/scroll-view.directive';
 export { MeSelectBoxDirective } from './lib/directives/me-select-box/select-box.directive';
+export { MeSliderDirective } from './lib/directives/me-slider/slider.directive';
 export { MeSwitchDirective } from './lib/directives/me-switch/switch.directive';
 export { MeTabPanelDirective } from './lib/directives/me-tab-panel/tab-panel.directive';
 export { MeTabsDirective } from './lib/directives/me-tabs/tabs.directive';
 export { MeTextAreaDirective } from './lib/directives/me-text-area/text-area.directive';
+export { MeTagBoxDirective } from './lib/directives/me-tag-box/tag-box.directive';
 export { MeTextBoxDirective } from './lib/directives/me-text-box/text-box.directive';
 export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-editor.directive';
 export { MeToolbarDirective } from './lib/directives/me-toolbar/toolbar.directive';
@@ -73,6 +78,7 @@ export { MeContextMenuModule } from './lib/directives/me-context-menu/context-me
 export { MeControlModule } from './lib/directives/me-control/control.module';
 export { MeDropDownButtonModule } from './lib/directives/me-drop-down-button/drop-down-button.module';
 export { MeEditorModule } from './lib/directives/me-editor/me-editor.module';
+export { MeIconModule } from './lib/directives/me-icon/me-icon.module';
 export { MeLabelModule } from './lib/directives/me-label/me-label.module';
 export { MeListModule } from './lib/directives/me-list/list.module';
 export { MeMenuModule } from './lib/directives/me-menu/menu.module';
@@ -85,6 +91,7 @@ export { MeSelectBoxModule } from './lib/directives/me-select-box/me-select-box.
 export { MeSliderModule } from './lib/directives/me-slider/slider.module';
 export { MeSwitchModule } from './lib/directives/me-switch/switch.module';
 export { MeTabsModule } from './lib/directives/me-tabs/tabs.module';
+export { MeTagBoxModule } from './lib/directives/me-tag-box/tag-box.module';
 export { MeTextBoxModule } from './lib/directives/me-text-box/me-text-box.module';
 export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-editor.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';

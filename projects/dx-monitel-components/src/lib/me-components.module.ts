@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {MeBadgeComponent, MeDataGridModule} from '../public-api';
+import { MeTagBoxModule } from '../public-api';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeAccordionModule } from './directives/me-accordion/accordion.module';
 import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
@@ -91,6 +92,7 @@ import {MeCardComponent} from "./components/me-card/me-card.component";
     MeBadgeComponent,
     MeCardComponent,
     MeTreeListModule,
+    MeTagBoxModule,
   ],
   exports: [
     MeAccordionModule,
@@ -138,6 +140,7 @@ import {MeCardComponent} from "./components/me-card/me-card.component";
     MeBadgeComponent,
     MeCardComponent,
     MeTreeListModule,
+    MeTagBoxModule,
   ],
 })
 export class MeComponentsModule {}
