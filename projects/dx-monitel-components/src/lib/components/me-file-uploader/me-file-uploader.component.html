@@ -1,20 +1,14 @@
-<div class="file-uploader"
-     [class.drag-over]="dragOver"
-     (click)="openFileDialog()"
-     (dragover)="onDragOver($event)"
-     (dragleave)="onDragLeave($event)"
-     (drop)="onDrop($event)">
+<div
+  class="file-uploader"
+  [class.drag-over]="dragOver"
+  (click)="openFileDialog()"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+>
   <p>{{ labelText }}</p>
-  <dx-button
-    text="{{ selectButtonText }}"
-    stylingMode="contained"
-    type="default">
-  </dx-button>
-  <input #fileInput
-         type="file"
-         [attr.multiple]="multiple ? true : null"
-         (change)="onFileSelected($event)"
-         style="display: none;">
+  <dx-button text="{{ selectButtonText }}" stylingMode="contained" type="default"> </dx-button>
+  <input #fileInput type="file" [attr.multiple]="multiple ? true : null" (change)="onFileSelected($event)" style="display: none" />
 </div>
 
 <div class="file-list" *ngIf="showFileList && files.length > 0">
@@ -25,11 +19,11 @@
         <div class="file-info">
           <div class="file-name-size">
             <span class="file-name">{{ fileWrapper.file.name }}</span>
-            <span class="file-size">{{ fileWrapper.file.size / 1024 | number: '1.0-2' }} KB</span>
+            <span class="file-size">{{ fileWrapper.file.size / 1024 | number : "1.0-2" }} KB</span>
           </div>
           <span class="file-status" *ngIf="fileWrapper.status === 'error'">
-      {{ fileWrapper.error }}
-    </span>
+            {{ fileWrapper.error }}
+          </span>
         </div>
       </div>
     </div>
@@ -38,6 +32,6 @@
     </div>
   </div>
   <div class="allowed-extensions" *ngIf="!validFileType">
-    Allowed file extensions: <span class="extensions">{{ allowedFileExtensions.join(', ') }}</span>
+    Allowed file extensions: <span class="extensions">{{ allowedFileExtensions.join(", ") }}</span>
   </div>
 </div>

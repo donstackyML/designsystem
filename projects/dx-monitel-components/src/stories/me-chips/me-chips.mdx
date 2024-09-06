@@ -4,17 +4,18 @@ import { moduleMetadata } from "@storybook/angular";
 import { MeChipComponent, MeChipsContainerComponent } from "../../public-api";
 
 <Meta
-  title="Компоненты/Chips"
+  title="Компоненты/Chips(RC)"
   component={MeChipsContainerComponent}
   decorators={[
     moduleMetadata({
       imports: [MeChipComponent, MeChipsContainerComponent],
     }),
-    ]}
+  ]}
   parameters={{
     docs: {
       description: {
-        component: 'Компоненты MeChipsContainer и MeChip с поддержкой удаления чипов и улучшенными стилями. Чипы становятся активными при клике.',
+        component:
+          "Компоненты MeChipsContainer и MeChip с поддержкой удаления чипов и улучшенными стилями. Чипы становятся активными при клике.",
       },
     },
   }}
@@ -44,6 +45,7 @@ import { MeChipComponent, MeChipsContainerComponent } from "../../public-api";
 />
 
 ### Множество чипов
+
 <Story name="ManyChips" of={ChipsStories.ManyChips} />
 <Source
   code={`<me-chips-container [chips]="[{ label: 'Чип 1', size: 'medium', count: 1 }, { label: 'Чип 2', size: 'medium', count: 2 }, { label: 'Чип 3', size: 'medium', count: 3 }, { label: 'Чип 4', size: 'medium', count: 4 }, { label: 'Чип 5', size: 'medium', count: 5 }, { label: 'Чип 6', size: 'medium', count: 6 }, { label: 'Чип 7', size: 'medium', count: 7 }, { label: 'Чип 8', size: 'medium', count: 8 }, { label: 'Чип 9', size: 'medium', count: 9 }, { label: 'Чип 10', size: 'medium', count: 10 }]"></me-chips-container>`}
@@ -151,7 +153,8 @@ onChipsChange(newChips: string[]) {
           onChipRemove() {
             console.log('Чип был удален');
           }
+
 `}
-  dark
-  language="typescript"
+dark
+language="typescript"
 />

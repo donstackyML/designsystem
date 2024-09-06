@@ -10,45 +10,58 @@ import { CommonModule } from '@angular/common';
       <span class="badge-content">{{ displayValue }}</span>
     </div>
   `,
-  styles: [`
-    .badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      color: #ffffff;
-      font-family: 'Roboto Mono', monospace;
-      font-weight: 400;
-      overflow: hidden;
-    }
-    .badge-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-    }
-    .size-20 {
-      width: 20px;
-      height: 20px;
-      font-size: 12px;
-    }
-    .size-24 {
-      width: 24px;
-      height: 24px;
-      font-size: 14px;
-    }
-    .color-default { background-color: var(--me-icon-default); }
-    .color-secondary { background-color: var(--me-icon-secondary); }
-    .color-success { background-color: var(--me-icon-success); }
-    .color-attention { background-color: var(--me-icon-attention); }
-    .color-error { background-color: var(--me-icon-error); }
-  `]
+  styles: [
+    `
+      .badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #ffffff;
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 400;
+        overflow: hidden;
+      }
+      .badge-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+      .size-20 {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+      }
+      .size-24 {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+      }
+      .color-default {
+        background-color: var(--me-icon-default);
+      }
+      .color-secondary {
+        background-color: var(--me-icon-secondary);
+      }
+      .color-success {
+        background-color: var(--me-icon-success);
+      }
+      .color-attention {
+        background-color: var(--me-icon-attention);
+      }
+      .color-error {
+        background-color: var(--me-icon-error);
+      }
+    `,
+  ],
 })
 export class MeBadgeComponent implements OnChanges {
   @Input() size: '20' | '24' = '20';
-  @Input() color: 'default' | 'secondary' | 'success' | 'attention' | 'error' = 'default';
+  @Input() color: 'default' | 'secondary' | 'success' | 'attention' | 'error' =
+    'default';
   @Input() value: number | null = null;
   @Input() customStyle: { [key: string]: string } = {};
 

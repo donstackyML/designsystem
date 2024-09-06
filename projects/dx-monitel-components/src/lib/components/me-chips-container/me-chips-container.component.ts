@@ -25,18 +25,21 @@ export interface MeChip {
         [size]="chip.size"
         [count]="chip.count"
         [active]="i === activeChipIndex"
-      (click)="setActiveChip(i)"
-      (onRemove)="removeChip(i)">
+        (click)="setActiveChip(i)"
+        (onRemove)="removeChip(i)"
+      >
       </me-chip>
     </div>
   `,
-  styles: [`
-    .chips-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-  `]
+  styles: [
+    `
+      .chips-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    `,
+  ],
 })
 export class MeChipsContainerComponent {
   @Input() chips: MeChip[] = [];
@@ -49,7 +52,7 @@ export class MeChipsContainerComponent {
       this.activeChipIndex = index;
       this.chips = this.chips.map((chip, i) => ({
         ...chip,
-        active: i === index
+        active: i === index,
       }));
       this.chipsChange.emit(this.chips);
     }

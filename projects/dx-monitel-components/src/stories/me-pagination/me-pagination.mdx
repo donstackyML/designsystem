@@ -4,13 +4,13 @@ import { moduleMetadata } from "@storybook/angular";
 import { MePaginationComponent } from "../../public-api";
 
 <Meta
-  title="Компоненты/Pagination"
+  title="Компоненты/Pagination(RC)"
   component={MePaginationComponent}
   decorators={[
     moduleMetadata({
       imports: [MePaginationComponent],
     }),
-    ]}
+  ]}
   of={PaginationStories}
 />
 
@@ -104,9 +104,10 @@ import { MePaginationComponent } from "../../public-api";
     onItemsPerPageChange(newItemsPerPage: number) {
       console.log('Изменено количество элементов на странице:', newItemsPerPage);
     }
+
 `}
-  dark
-  language="typescript"
+dark
+language="typescript"
 />
 
 Это позволяет вам реагировать на изменения страницы и количества элементов на странице для обновления данных или выполнения других действий в вашем приложении.
@@ -123,14 +124,15 @@ import { MePaginationComponent } from "../../public-api";
   <!-- Ваши данные таблицы -->
 </table>
 
-  <me-pagination
-    [totalItems]="500"
-    [itemsPerPage]="50"
-    [currentPage]="1"
-    [maxVisiblePages]="5"
-    (pageChange)="onPageChange($event)"
+<me-pagination
+[totalItems]="500"
+[itemsPerPage]="50"
+[currentPage]="1"
+[maxVisiblePages]="5"
+(pageChange)="onPageChange($event)"
     (itemsPerPageChange)="onItemsPerPageChange($event)"
-  ></me-pagination>
+
+> </me-pagination>
 `}
   dark
   language="html"

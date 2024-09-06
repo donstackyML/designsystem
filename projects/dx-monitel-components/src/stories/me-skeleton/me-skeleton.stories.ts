@@ -11,7 +11,8 @@ const meta: Meta<MeSkeletonComponent> = {
     },
     avatar: {
       control: 'object',
-      description: 'Отображает аватар. Может быть объектом с параметрами размера и формы',
+      description:
+        'Отображает аватар. Может быть объектом с параметрами размера и формы',
     },
     loading: {
       control: 'boolean',
@@ -19,11 +20,13 @@ const meta: Meta<MeSkeletonComponent> = {
     },
     paragraph: {
       control: 'object',
-      description: 'Отображает параграфы. Может быть объектом с параметрами количества строк и ширины',
+      description:
+        'Отображает параграфы. Может быть объектом с параметрами количества строк и ширины',
     },
     title: {
       control: 'object',
-      description: 'Отображает заголовок. Может быть объектом с параметром ширины',
+      description:
+        'Отображает заголовок. Может быть объектом с параметром ширины',
     },
     round: {
       control: 'boolean',
@@ -81,7 +84,8 @@ export const Loading: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Когда свойство `loading` равно true, скелетон скрывается, и отображается фактическое содержимое.',
+        story:
+          'Когда свойство `loading` равно true, скелетон скрывается, и отображается фактическое содержимое.',
       },
     },
   },
@@ -93,7 +97,11 @@ export const Loading: Story = {
           <div>
             <me-skeleton [active]="active" [avatar]="avatar" [loading]="loading"
               [paragraph]="paragraph" [title]="title" [round]="round"></me-skeleton>
-            ${loading ? '<p>This is the actual content that would be shown when loading is complete.</p>' : ''}
+            ${
+              loading
+                ? '<p>This is the actual content that would be shown when loading is complete.</p>'
+                : ''
+            }
           </div>
         `,
         props: {
@@ -134,7 +142,8 @@ export const ComplexLoadingState: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами.',
+        story:
+          'Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами.',
       },
     },
   },
@@ -146,12 +155,16 @@ export const ComplexLoadingState: Story = {
           <div>
             <me-skeleton [active]="active" [avatar]="avatar" [loading]="loading"
               [paragraph]="paragraph" [title]="title" [round]="round"></me-skeleton>
-            ${!loading ? `
+            ${
+              !loading
+                ? `
               <div>
                 <h4>Заголовок после загрузки</h4>
                 <p>Этот текст отображается, когда загрузка завершена.</p>
               </div>
-            ` : ''}
+            `
+                : ''
+            }
           </div>
         `,
         props: {

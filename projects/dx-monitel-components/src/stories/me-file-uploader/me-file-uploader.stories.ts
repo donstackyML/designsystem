@@ -1,5 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MeFileUploaderComponent } from "../../public-api";
+import { MeFileUploaderComponent } from '../../public-api';
 
 export default {
   title: 'Components/FileUploader',
@@ -15,7 +15,12 @@ export default {
       description: 'Допустимые расширения файлов',
     },
     maxFileSize: {
-      control: { type: 'number', min: 0, max: 100 * 1024 * 1024, step: 1024 * 1024 },
+      control: {
+        type: 'number',
+        min: 0,
+        max: 100 * 1024 * 1024,
+        step: 1024 * 1024,
+      },
       description: 'Максимальный размер файла в байтах',
     },
     minFileSize: {

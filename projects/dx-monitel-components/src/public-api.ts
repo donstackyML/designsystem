@@ -1,24 +1,21 @@
-export {MeCardComponent} from "./lib/components/me-card/me-card.component";
+export { MeCardComponent } from './lib/components/me-card/me-card.component';
 
+export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 
-export {MeBadgeComponent} from "./lib/components/me-badge/me-badge.component";
+export { MeChipsContainerComponent } from './lib/components/me-chips-container/me-chips-container.component';
 
-export {MeChipsContainerComponent} from "./lib/components/me-chips-container/me-chips-container.component";
+export { MeChipComponent } from './lib/components/me-chips/me-chips.component';
+export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
 
-export {MeChipComponent} from "./lib/components/me-chips/me-chips.component";
-export {MeSkeletonComponent} from "./lib/components/me-skeleton/me-skeleton.component";
+export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 
-export {MeIconComponent} from "./lib/components/me-icon/me-icon.component";
+export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 
-export {MePaginationComponent} from "./lib/components/me-pagination/me-pagination.component";
+export { MeIconModule } from './lib/directives/me-icon/me-icon.module';
 
-export {MeIconModule} from "./lib/directives/me-icon/me-icon.module";
+export { MeFileUploaderComponent } from './lib/components/me-file-uploader/me-file-uploader.component';
 
-export {MeFileUploaderComponent} from "./lib/components/me-file-uploader/me-file-uploader.component";
-
-
-export {MeBreadcrumbsComponent} from "./lib/components/me-breadcrumbs/me-breadcrumbs.component";
-
+export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
 
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';

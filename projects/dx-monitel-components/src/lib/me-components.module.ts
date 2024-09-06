@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {MeBadgeComponent, MeDataGridModule} from '../public-api';
+import { MeBadgeComponent, MeDataGridModule } from '../public-api';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeAccordionModule } from './directives/me-accordion/accordion.module';
 import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
@@ -32,16 +32,14 @@ import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
 import { MeFileUploaderModule } from './directives/me-file-uploader/file-uploader.module';
-import {MeFileUploaderComponent} from "./components/me-file-uploader/me-file-uploader.component";
-import {MePaginationComponent} from "./components/me-pagination/me-pagination.component";
-import {MeIconComponent} from "./components/me-icon/me-icon.component";
-import {MeBreadcrumbsComponent} from "./components/me-breadcrumbs/me-breadcrumbs.component";
-import {MeSkeletonComponent} from "./components/me-skeleton/me-skeleton.component";
-import {MeChipComponent} from "./components/me-chips/me-chips.component";
-import {MeChipsContainerComponent} from "./components/me-chips-container/me-chips-container.component";
-import {MeCardComponent} from "./components/me-card/me-card.component";
-
-
+import { MeFileUploaderComponent } from './components/me-file-uploader/me-file-uploader.component';
+import { MePaginationComponent } from './components/me-pagination/me-pagination.component';
+import { MeIconComponent } from './components/me-icon/me-icon.component';
+import { MeBreadcrumbsComponent } from './components/me-breadcrumbs/me-breadcrumbs.component';
+import { MeSkeletonComponent } from './components/me-skeleton/me-skeleton.component';
+import { MeChipComponent } from './components/me-chips/me-chips.component';
+import { MeChipsContainerComponent } from './components/me-chips-container/me-chips-container.component';
+import { MeCardComponent } from './components/me-card/me-card.component';
 
 @NgModule({
   declarations: [],
@@ -88,7 +86,7 @@ import {MeCardComponent} from "./components/me-card/me-card.component";
     MeChipsContainerComponent,
     MeChipComponent,
     MeBadgeComponent,
-    MeCardComponent
+    MeCardComponent,
   ],
   exports: [
     MeAccordionModule,
@@ -134,7 +132,7 @@ import {MeCardComponent} from "./components/me-card/me-card.component";
     MeChipsContainerComponent,
     MeChipComponent,
     MeBadgeComponent,
-    MeCardComponent
+    MeCardComponent,
   ],
 })
 export class MeComponentsModule {}

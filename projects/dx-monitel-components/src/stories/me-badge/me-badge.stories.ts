@@ -1,6 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import {MeBadgeComponent} from "../../public-api";
-
+import { MeBadgeComponent } from '../../public-api';
 
 export default {
   title: 'Components/Badge',

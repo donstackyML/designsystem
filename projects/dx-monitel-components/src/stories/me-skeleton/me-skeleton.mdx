@@ -4,13 +4,13 @@ import { moduleMetadata } from "@storybook/angular";
 import { MeSkeletonComponent } from "../../public-api";
 
 <Meta
-  title="Компоненты/Skeleton"
+  title="Компоненты/Skeleton(RC)"
   component={MeSkeletonComponent}
   decorators={[
     moduleMetadata({
       imports: [MeSkeletonComponent],
     }),
-    ]}
+  ]}
   of={SkeletonStories}
 />
 
@@ -49,7 +49,10 @@ import { MeSkeletonComponent } from "../../public-api";
 
 ### Настраиваемый заголовок и параграфы
 
-<Story name="CustomTitleAndParagraph" of={SkeletonStories.CustomTitleAndParagraph} />
+<Story
+  name="CustomTitleAndParagraph"
+  of={SkeletonStories.CustomTitleAndParagraph}
+/>
 
 <Source
   code={`<me-skeleton [title]="{ width: '40%' }" [paragraph]="{ rows: 4, width: ['100%', '90%', '80%', '60%'] }"></me-skeleton>`}
@@ -90,10 +93,14 @@ import { MeSkeletonComponent } from "../../public-api";
 
 Этот пример объединяет несколько возможностей Skeleton: активная анимация, аватар, заголовок, параграфы и закругленные углы. Это демонстрирует, как можно создать сложный Skeleton для отображения более детализированного интерфейса:
 
-  <Story name="ComplexCombination" of={SkeletonStories.ComplexCombination} />
+{" "}
 
-  <Source
-    code={`
+<Story name="ComplexCombination" of={SkeletonStories.ComplexCombination} />
+
+{" "}
+
+<Source
+  code={`
   <me-skeleton
     [active]="true"
     [avatar]="{ size: 'large', shape: 'circle' }"
@@ -114,16 +121,18 @@ import { MeSkeletonComponent } from "../../public-api";
 
     <Source
       code={`
-  <me-skeleton [loading]="true">
-    <div>
-    <h4>Заголовок после загрузки</h4>
-    <p>Этот текст отображается, когда загрузка завершена.</p>
-    </div>
-    </me-skeleton>
-    `}
-      dark
-      language="html"
-    />
+
+<me-skeleton [loading]="true">
+
+<div>
+<h4>Заголовок после загрузки</h4>
+<p>Этот текст отображается, когда загрузка завершена.</p>
+</div>
+</me-skeleton>
+`}
+dark
+language="html"
+/>
 
     ## Перечень свойств
 

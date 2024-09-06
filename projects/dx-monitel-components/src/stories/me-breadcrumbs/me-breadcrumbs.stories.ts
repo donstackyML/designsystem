@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MeBreadcrumbsComponent } from "../../public-api";
+import { MeBreadcrumbsComponent } from '../../public-api';
 import { DxButtonModule } from 'devextreme-angular';
-import { MeIconComponent } from "../../public-api";
+import { MeIconComponent } from '../../public-api';
 
 export default {
   title: 'Components/Breadcrumbs',
@@ -23,7 +23,11 @@ const sampleItems = [
   { label: 'Главная', url: '/', icon: 'globe' },
   { label: 'Каталог', url: '/catalog', icon: 'globe' },
   { label: 'Электроника', url: '/catalog/electronics', icon: 'globe' },
-  { label: 'Смартфоны', url: '/catalog/electronics/smartphones', icon: 'globe' },
+  {
+    label: 'Смартфоны',
+    url: '/catalog/electronics/smartphones',
+    icon: 'globe',
+  },
   { label: 'iPhone 12', url: '/catalog/electronics/smartphones/iphone-12' },
 ];
 
@@ -55,8 +59,16 @@ export const ManyItems: Story = {
   args: {
     items: [
       ...sampleItems,
-      { label: 'Характеристики', url: '/catalog/electronics/smartphones/iphone-12/specs', icon: 'globe' },
-      { label: 'Отзывы', url: '/catalog/electronics/smartphones/iphone-12/reviews', icon: 'globe' },
+      {
+        label: 'Характеристики',
+        url: '/catalog/electronics/smartphones/iphone-12/specs',
+        icon: 'globe',
+      },
+      {
+        label: 'Отзывы',
+        url: '/catalog/electronics/smartphones/iphone-12/reviews',
+        icon: 'globe',
+      },
     ],
   },
 };
@@ -66,8 +78,16 @@ export const CustomIcons: Story = {
     items: [
       { label: 'Проекты', url: '/projects', icon: 'globe' },
       { label: 'Разработка', url: '/projects/development', icon: 'globe' },
-      { label: 'Веб-приложения', url: '/projects/development/web', icon: 'globe' },
-      { label: 'E-commerce', url: '/projects/development/web/ecommerce', icon: 'globe' },
+      {
+        label: 'Веб-приложения',
+        url: '/projects/development/web',
+        icon: 'globe',
+      },
+      {
+        label: 'E-commerce',
+        url: '/projects/development/web/ecommerce',
+        icon: 'globe',
+      },
     ],
   },
 };
