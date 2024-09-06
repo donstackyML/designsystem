@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DxDropDownButtonModule, DxButtonModule } from 'devextreme-angular';
-import { MeIconComponent } from '../../../public-api';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
+import { MeIconComponent } from '../me-icon/me-icon.component';
 
 interface BreadcrumbItem {
   label: string;

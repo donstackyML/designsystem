@@ -526,26 +526,6 @@
   "miscellaneous": {
     "variables": [
       {
-        "name": "ActiveAnimation",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    active: true,\r\n  },\r\n}"
-      },
-      {
-        "name": "AllIcons",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <div style=\"display: flex; flex-wrap: wrap;\">\r\n        ${iconOptions.map(icon => `\r\n          <div style=\"display: inline-block; margin: 10px; text-align: center; width: 100px;\">\r\n            <me-icon icon=\"${icon}\" size=\"large\" color=\"#000000\"></me-icon>\r\n            <p style=\"font-size: 12px; word-wrap: break-word;\">${icon}</p>\r\n          </div>\r\n        `).join('')}\r\n      </div>\r\n    `,\r\n  }),\r\n}"
-      },
-      {
         "name": "AutoResize",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -576,36 +556,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'bottom',\n  },\n}"
       },
       {
-        "name": "chipsContainerMeta",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Meta<MeChipsContainerComponent>",
-        "defaultValue": "{\r\n  title: 'Components/MeChipsContainer',\r\n  component: MeChipsContainerComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MeChipsContainerComponent, MeChipComponent],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    chips: {\r\n      control: 'object',\r\n      description: 'Массив объектов для отображения в виде чипов. Каждый объект содержит label, size, count, и опции для удаления и активности.',\r\n    },\r\n    chipsChange: { action: 'chipsChange' },\r\n  },\r\n  args: {\r\n    chips: [\r\n      { label: 'Схемы', size: 'medium', count: 1 },\r\n      { label: 'Наборы', size: 'medium', count: 1 },\r\n      { label: 'Прибор', size: 'medium', count: 2 },\r\n    ],\r\n  },\r\n}"
-      },
-      {
-        "name": "ChipsContainerTemplate",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: {\r\n      ...args,\r\n      onChipsChange: (e: any) => {\r\n        console.log('Chips changed:', e);\r\n        action('chipsChange')(e);\r\n      },\r\n    },\r\n    template: `\r\n      <me-chips-container\r\n        [chips]=\"chips\"\r\n        (chipsChange)=\"onChipsChange($event)\"\r\n      ></me-chips-container>\r\n    `,\r\n  }),\r\n}"
-      },
-      {
-        "name": "ChipsWithoutRemoval",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Чип без удаления', size: 'small', count: 1, removable: false },\r\n      { label: 'Еще один чип без удаления', size: 'large', count: 2, removable: false }\r\n    ],\r\n  },\r\n}"
-      },
-      {
         "name": "Collapsible",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -614,36 +564,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    collapsible: true,\n  },\n}"
-      },
-      {
-        "name": "columnsData",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "[]",
-        "defaultValue": "['CompanyName', 'Phone', 'Fax', 'City', 'State']"
-      },
-      {
-        "name": "ComplexCombination",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    active: true,\r\n    avatar: { size: 'large', shape: 'circle' },\r\n    title: { width: '50%' },\r\n    paragraph: { rows: 4, width: ['100%', '90%', '80%', '70%'] },\r\n    round: true,\r\n  },\r\n}"
-      },
-      {
-        "name": "ComplexLoadingState",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    loading: true,\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами.',\r\n      },\r\n    },\r\n  },\r\n  decorators: [\r\n    (Story, context) => {\r\n      const { loading } = context.args;\r\n      return {\r\n        template: `\r\n          <div>\r\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\r\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\r\n            ${!loading ? `\r\n              <div>\r\n                <h4>Заголовок после загрузки</h4>\r\n                <p>Этот текст отображается, когда загрузка завершена.</p>\r\n              </div>\r\n            ` : ''}\r\n          </div>\r\n        `,\r\n        props: {\r\n          active: context.args.active,\r\n          avatar: context.args.avatar,\r\n          loading: context.args.loading,\r\n          paragraph: context.args.paragraph,\r\n          title: context.args.title,\r\n          round: context.args.round,\r\n        },\r\n      };\r\n    },\r\n  ],\r\n}"
       },
       {
         "name": "CustomAnimation",
@@ -666,16 +586,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom animation',\n    animation: {\n      show: {\n        type: 'pop',\n        duration: 400,\n        from: { scale: 0 },\n        to: { scale: 1 },\n      },\n      hide: { type: 'pop', duration: 400, to: { scale: 0 } },\n    },\n  },\n}"
       },
       {
-        "name": "CustomButtonText",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    selectButtonText: 'Обзор файлов',\r\n  },\r\n}"
-      },
-      {
         "name": "CustomClass",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -684,6 +594,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    customClass: 'my-custom-accordion',\n  },\n}"
+      },
+      {
+        "name": "CustomClass",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    customClass: 'my-custom-class',\n  },\n}"
       },
       {
         "name": "CustomClass",
@@ -704,26 +624,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    message: 'This toast has a custom CSS class',\n    customClass: 'my-custom-toast',\n  },\n}"
-      },
-      {
-        "name": "CustomColor",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    color: '#ff5722',\r\n  },\r\n}"
-      },
-      {
-        "name": "CustomFileTypes",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    allowedFileExtensions: ['doc', 'docx', 'txt'],\r\n    labelText: 'Загрузите только документы',\r\n  },\r\n}"
       },
       {
         "name": "CustomFirstDay",
@@ -756,56 +656,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    height: '500px',\n  },\n}"
       },
       {
-        "name": "CustomIcon",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    icon: 'star',\r\n  },\r\n}"
-      },
-      {
-        "name": "CustomIcons",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    items: [\r\n      { label: 'Проекты', url: '/projects', icon: 'globe' },\r\n      { label: 'Разработка', url: '/projects/development', icon: 'globe' },\r\n      { label: 'Веб-приложения', url: '/projects/development/web', icon: 'globe' },\r\n      { label: 'E-commerce', url: '/projects/development/web/ecommerce', icon: 'globe' },\r\n    ],\r\n  },\r\n}"
-      },
-      {
-        "name": "CustomItemsOptions",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 400,\r\n    itemsPerPage: 50,\r\n    currentPage: 2,\r\n    maxVisiblePages: 5,\r\n    useButtons: false,\r\n    itemsPerPageOptions: [25, 50, 75, 100], // Кастомные опции для выбора количества элементов на странице\r\n  },\r\n}"
-      },
-      {
-        "name": "CustomItemsPerPage",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 500,\r\n    itemsPerPage: 50,\r\n    currentPage: 1,\r\n    maxVisiblePages: 5,\r\n    useButtons: true, // Используем кнопки для выбора количества элементов на странице\r\n  },\r\n}"
-      },
-      {
-        "name": "CustomLabelText",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    labelText: 'Перетащите файлы сюда или нажмите на кнопку ниже',\r\n  },\r\n}"
-      },
-      {
         "name": "CustomPosition",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -814,16 +664,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n}"
-      },
-      {
-        "name": "CustomStyleBadge",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: '24',\r\n    color: 'secondary',\r\n    value: 7,\r\n    customStyle: { border: '2px solid black' },\r\n  },\r\n}"
       },
       {
         "name": "CustomStyles",
@@ -844,16 +684,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"tooltipTemplate\" [tooltipTemplateRef]=\"tooltipTemplate\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
-      },
-      {
-        "name": "CustomTitleAndParagraph",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    title: { width: '40%' },\r\n    paragraph: { rows: 4, width: ['100%', '90%', '80%', '60%'] },\r\n  },\r\n}"
       },
       {
         "name": "CustomWeekNumberRule",
@@ -936,16 +766,6 @@
         "defaultValue": "[\n  {\n    id: '1',\n    text: 'Stores',\n    expanded: true,\n    icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n    items: [\n      {\n        id: '1_1',\n        text: 'Super Mart of the West',\n        expanded: true,\n        icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n        items: [\n          {\n            id: '1_1_1',\n            text: 'Video Players',\n            icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n            items: [\n              {\n                id: '1_1_1_1',\n                text: 'HD Video Player',\n              },\n              {\n                id: '1_1_1_2',\n                text: 'SuperHD Video Player',\n              },\n            ],\n          },\n          {\n            id: '1_1_2',\n            text: 'Televisions',\n            expanded: true,\n            icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n            items: [\n              {\n                id: '1_1_2_1',\n                text: 'SuperLCD 42',\n              },\n              {\n                id: '1_1_2_2',\n                text: 'SuperLED 42',\n              },\n              {\n                id: '1_1_2_3',\n                text: 'SuperLED 50',\n              },\n              {\n                id: '1_1_2_4',\n                text: 'SuperLCD 55',\n              },\n              {\n                id: '1_1_2_5',\n                text: 'SuperLCD 70',\n              },\n            ],\n          },\n          {\n            id: '1_1_4',\n            text: 'Projectors',\n            icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n            items: [\n              {\n                id: '1_1_4_1',\n                text: 'Projector Plus',\n              },\n              {\n                id: '1_1_4_2',\n                text: 'Projector PlusHD',\n              },\n            ],\n          },\n        ],\n      },\n      {\n        id: '1_2',\n        text: 'Braeburn',\n        icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n        items: [\n          {\n            id: '1_2_1',\n            text: 'Video Players',\n            icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n            items: [\n              {\n                id: '1_2_1_1',\n                text: 'HD Video Player',\n              },\n              {\n                id: '1_2_1_2',\n                text: 'SuperHD Video Player',\n              },\n            ],\n          },\n        ],\n      },\n    ],\n  },\n]"
       },
       {
-        "name": "DataGrid",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "StoryObj",
-        "defaultValue": "{}"
-      },
-      {
         "name": "decorators",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -954,16 +774,6 @@
         "deprecationMessage": "",
         "type": "[]",
         "defaultValue": "[themeWrapper]"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: '20',\r\n    color: 'default',\r\n    value: 5,\r\n  },\r\n}"
       },
       {
         "name": "Default",
@@ -979,31 +789,11 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    items: sampleItems,\r\n  },\r\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n\n    // isSelected: false,\n    stylingMode: 'contained',\n\n    leftIcon: '',\n  },\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n    disabled: false,\n    firstDayOfWeek: 1,\n    zoomLevel: 'month',\n    weekNumberRule: 'firstDay',\n    value: new Date(),\n  },\n}"
       },
       {
         "name": "Default",
@@ -1019,11 +809,11 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: 'medium',\r\n    showHeader: true,\r\n    showFooter: true,\r\n    contentHeight: '300px',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n    disabled: false,\n    firstDayOfWeek: 1,\n    zoomLevel: 'month',\n    weekNumberRule: 'firstDay',\n    value: new Date(),\n  },\n}"
       },
       {
         "name": "Default",
@@ -1034,16 +824,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {},\r\n}"
       },
       {
         "name": "Default",
@@ -1073,17 +853,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {},\r\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {},\r\n}"
+        "defaultValue": "{\n  args: {\n    isDisabled: false,\n  },\n}"
       },
       {
         "name": "Default",
@@ -1124,16 +894,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    dataSource: data,\n    size: 'large',\n    orientation: 'horizontal',\n  },\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {},\r\n}"
       },
       {
         "name": "Default",
@@ -1194,16 +954,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    isSidePageOpen: true,\n    position: 'left',\n    width: '340px',\n  },\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {},\r\n}"
       },
       {
         "name": "Default",
@@ -1306,16 +1056,6 @@
         "defaultValue": "[\n  { id: 1, text: 'Tab 1' },\n  { id: 2, text: 'Tab 2' },\n  { id: 3, text: 'Tab 3' },\n]"
       },
       {
-        "name": "DifferentSizes",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Small Chip', size: 'small', count: 1 },\r\n      { label: 'Medium Chip', size: 'medium', count: 2 },\r\n      { label: 'Large Chip', size: 'large', count: 3 },\r\n    ],\r\n  },\r\n}"
-      },
-      {
         "name": "Disabled",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1326,24 +1066,14 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    disabled: true,\n  },\n}"
       },
       {
-        "name": "DisabledChips",
+        "name": "Disabled",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Отключенный чип', size: 'medium', count: 1, removable: false, disabled: true },\r\n      { label: 'Еще один отключенный чип', size: 'large', count: 2, removable: false, disabled: true }\r\n    ],\r\n  },\r\n}"
-      },
-      {
-        "name": "FewItems",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 30,\r\n    itemsPerPage: 10,\r\n    currentPage: 1,\r\n    maxVisiblePages: 5,\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    isDisabled: true,\n  },\n}"
       },
       {
         "name": "fruitsVegetables",
@@ -1364,16 +1094,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    dataSource: fruitsVegetables,\n    grouped: true,\n    displayExpr: 'name',\n    searchExpr: 'name',\n  },\n  render: (args) => ({\n    props: args,\n    template: `<dx-list meList width=\"436px\" ${argsToTemplate(args)}>\n    <div *dxTemplate=\"let group of 'group'\">\n      <p class=\"me-title-header2\" style=\"margin: 0\">{{ group.key }}</p>\n      <p class=\"me-text-caption\" style=\"margin: 0\">{{ group.description }}</p>\n    </div>\n    </dx-list>`,\n  }),\n}"
-      },
-      {
-        "name": "HideFileList",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    showFileList: false,\r\n  },\r\n}"
       },
       {
         "name": "HideOnOutsideClick",
@@ -1424,16 +1144,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    iconOnly: 'add',\n  },\n}"
-      },
-      {
-        "name": "iconOptions",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "[]",
-        "defaultValue": "[\r\n  'home', 'star', 'settings', 'favorite', 'search', 'person', 'info', 'warning',\r\n  'check_circle', 'close', 'add', 'remove', 'edit', 'delete', 'alarm', 'account_circle',\r\n  'calendar_today', 'camera', 'chat', 'cloud', 'download', 'email', 'file_copy', 'help',\r\n  'lock', 'logout', 'menu', 'notifications', 'palette', 'phone', 'print', 'save',\r\n  'shopping_cart', 'thumb_up', 'visibility', 'wifi', 'zoom_in', 'zoom_out', 'arrow_forward',\r\n  'arrow_back', 'arrow_upward', 'arrow_downward', 'play_arrow', 'pause', 'stop', 'skip_next',\r\n  'skip_previous', 'volume_up', 'volume_down', 'mute', 'brightness_high', 'brightness_low',\r\n  'account_balance', 'add_circle', 'airplanemode_active', 'attach_file', 'backspace', 'battery_alert',\r\n  'bluetooth', 'book', 'bookmark', 'build', 'business', 'call', 'category', 'check_box',\r\n  'cleaning_services', 'code', 'computer', 'contacts', 'content_copy', 'dashboard', 'description',\r\n  'directions', 'directions_car', 'directions_bike', 'done', 'drafts', 'drive_eta', 'eco',\r\n  'emoji_emotions', 'enhanced_encryption', 'equalizer', 'event', 'explore', 'face', 'fast_forward',\r\n  'fast_rewind', 'favorite_border', 'file_download', 'filter_list', 'fingerprint', 'fitness_center',\r\n  'flag', 'folder', 'folder_open', 'format_align_center', 'format_align_justify', 'format_align_left',\r\n  'format_align_right', 'format_bold', 'format_clear', 'format_color_fill', 'format_color_reset',\r\n  'format_color_text', 'format_indent_decrease', 'format_indent_increase', 'format_italic',\r\n  'format_line_spacing', 'format_list_bulleted', 'format_list_numbered', 'format_paint', 'format_quote',\r\n  'format_shapes', 'format_size', 'format_strikethrough', 'format_textdirection_l_to_r',\r\n  'format_textdirection_r_to_l', 'format_underlined', 'fullscreen', 'fullscreen_exit', 'functions',\r\n]"
       },
       {
         "name": "iconStore",
@@ -1529,16 +1239,6 @@
         "name": "Large",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: 'large',\r\n  },\r\n}"
-      },
-      {
-        "name": "Large",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1556,36 +1256,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
       },
       {
-        "name": "LargeBadge",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: '24',\r\n    color: 'success',\r\n    value: 10,\r\n  },\r\n}"
-      },
-      {
-        "name": "LargeCard",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'large',\r\n    contentHeight: '400px',\r\n  },\r\n}"
-      },
-      {
-        "name": "LargeFileUpload",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    maxFileSize: 100 * 1024 * 1024, // 100MB\r\n    minFileSize: 1 * 1024 * 1024, // 1MB\r\n    labelText: 'Загрузите большие файлы (1MB - 100MB)',\r\n  },\r\n}"
-      },
-      {
         "name": "LargeSize",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1594,16 +1264,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
-      },
-      {
-        "name": "LastPage",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 100,\r\n    itemsPerPage: 10,\r\n    currentPage: 10,\r\n    maxVisiblePages: 5,\r\n  },\r\n}"
       },
       {
         "name": "LeftIcon",
@@ -1646,26 +1306,6 @@
         "defaultValue": "{\n  args: {\n    dataSource: itemsWithImageAndDescription,\n    displayExpr: 'name',\n  },\n  render: (args) => ({\n    props: args,\n    template: `<dx-list meList width=\"436px\" ${argsToTemplate(args)}>\n    <div *dxTemplate=\"let item of 'item'\">\n      <div class=\"me-list-item-content\">\n        <img alt=\"{{ item.name }}\" src=\"{{ item.image }}\" />\n        <div>\n          <div class=\"me-text-body2\">{{ item.name }}</div>\n          <div class=\"me-text-caption\">{{ item.description }}</div>\n        </div>\n      </div>\n    </div>   \n</dx-list>`,\n  }),\n}"
       },
       {
-        "name": "Loading",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    loading: true,\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Когда свойство `loading` равно true, скелетон скрывается, и отображается фактическое содержимое.',\r\n      },\r\n    },\r\n  },\r\n  decorators: [\r\n    (Story, context) => {\r\n      const { loading } = context.args;\r\n      return {\r\n        template: `\r\n          <div>\r\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\r\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\r\n            ${loading ? '<p>This is the actual content that would be shown when loading is complete.</p>' : ''}\r\n          </div>\r\n        `,\r\n        props: {\r\n          active: context.args.active,\r\n          avatar: context.args.avatar,\r\n          loading: context.args.loading,\r\n          paragraph: context.args.paragraph,\r\n          title: context.args.title,\r\n          round: context.args.round,\r\n        },\r\n      };\r\n    },\r\n  ],\r\n}"
-      },
-      {
-        "name": "LongChipText",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Это очень длинный текст для чипа', size: 'medium', count: 1 },\r\n      { label: 'Короткий чип', size: 'medium', count: 2 },\r\n      { label: 'Еще один длинный текст для чипа', size: 'medium', count: 3 },\r\n    ],\r\n  },\r\n}"
-      },
-      {
         "name": "LongDuration",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1674,46 +1314,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    displayTime: 5000,\n    message: 'This toast will be displayed for 5 seconds',\n  },\n}"
-      },
-      {
-        "name": "ManyChips",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Чип 1', size: 'medium', count: 1 },\r\n      { label: 'Чип 2', size: 'medium', count: 2 },\r\n      { label: 'Чип 3', size: 'medium', count: 3 },\r\n      { label: 'Чип 4', size: 'medium', count: 4 },\r\n      { label: 'Чип 5', size: 'medium', count: 5 },\r\n      { label: 'Чип 6', size: 'medium', count: 6 },\r\n      { label: 'Чип 7', size: 'medium', count: 7 },\r\n      { label: 'Чип 8', size: 'medium', count: 8 },\r\n      { label: 'Чип 9', size: 'medium', count: 9 },\r\n      { label: 'Чип 10', size: 'medium', count: 10 },\r\n    ],\r\n  },\r\n}"
-      },
-      {
-        "name": "ManyItems",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    items: [\r\n      ...sampleItems,\r\n      { label: 'Характеристики', url: '/catalog/electronics/smartphones/iphone-12/specs', icon: 'globe' },\r\n      { label: 'Отзывы', url: '/catalog/electronics/smartphones/iphone-12/reviews', icon: 'globe' },\r\n    ],\r\n  },\r\n}"
-      },
-      {
-        "name": "ManyPages",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 1000,\r\n    itemsPerPage: 20,\r\n    currentPage: 5,\r\n    maxVisiblePages: 7,\r\n  },\r\n}"
-      },
-      {
-        "name": "MaxVisiblePages",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 200,\r\n    itemsPerPage: 10,\r\n    currentPage: 5,\r\n    maxVisiblePages: 10,\r\n  },\r\n}"
       },
       {
         "name": "meta",
@@ -1744,16 +1344,6 @@
         "deprecationMessage": "",
         "type": "Meta<PopoverProps>",
         "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n  },\n}"
-      },
-      {
-        "name": "meta",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Meta<MeSkeletonComponent>",
-        "defaultValue": "{\r\n  title: 'Components/Skeleton',\r\n  component: MeSkeletonComponent,\r\n  argTypes: {\r\n    active: {\r\n      control: 'boolean',\r\n      description: 'Включает анимацию скелета',\r\n    },\r\n    avatar: {\r\n      control: 'object',\r\n      description: 'Отображает аватар. Может быть объектом с параметрами размера и формы',\r\n    },\r\n    loading: {\r\n      control: 'boolean',\r\n      description: 'Отображает содержимое вместо скелета при `true`',\r\n    },\r\n    paragraph: {\r\n      control: 'object',\r\n      description: 'Отображает параграфы. Может быть объектом с параметрами количества строк и ширины',\r\n    },\r\n    title: {\r\n      control: 'object',\r\n      description: 'Отображает заголовок. Может быть объектом с параметром ширины',\r\n    },\r\n    round: {\r\n      control: 'boolean',\r\n      description: 'Скругляет углы заголовка и параграфов',\r\n    },\r\n  },\r\n  args: {\r\n    active: false,\r\n    avatar: false,\r\n    loading: false,\r\n    paragraph: { rows: 3, width: ['100%', '100%', '80%'] },\r\n    title: { width: '60%' },\r\n    round: false,\r\n  },\r\n}"
       },
       {
         "name": "meta",
@@ -1796,16 +1386,6 @@
         "defaultValue": "{\n  title: 'Components/Tooltip',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n    }),\n  ],\n  argTypes: {\n    meTooltip: { control: 'text' },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    tooltipClass: { control: 'text' },\n    tooltipWidth: { control: 'text' },\n    tooltipMaxWidth: { control: 'text' },\n    tooltipShowAnimation: { control: 'object' },\n    tooltipHideAnimation: { control: 'object' },\n  },\n}"
       },
       {
-        "name": "MixedStateChips",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Small Chip', size: 'small', count: 1 },\r\n      { label: 'Medium Chip', size: 'medium', count: 2 },\r\n      { label: 'Large Chip', size: 'large', count: 3 },\r\n      { label: 'Очень длинный текст для чипа', size: 'large', count: 4 },\r\n    ],\r\n  },\r\n}"
-      },
-      {
         "name": "MoreContent",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1826,24 +1406,14 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    multiple: true,\n  },\n}"
       },
       {
-        "name": "NoFooter",
+        "name": "MultipleFiles",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    showFooter: false,\r\n  },\r\n}"
-      },
-      {
-        "name": "OverflowValue",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: '20',\r\n    color: 'error',\r\n    value: 100,\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    multiple: true,\n  },\n}"
       },
       {
         "name": "Positioning",
@@ -1886,26 +1456,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    readOnly: true,\n    autoResizeEnabled: true,\n  },\n}"
       },
       {
-        "name": "Rounded",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    round: true,\r\n    title: { width: '50%' },\r\n    paragraph: { rows: 3, width: ['100%', '80%', '60%'] },\r\n  },\r\n}"
-      },
-      {
-        "name": "sampleItems",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "[]",
-        "defaultValue": "[\r\n  { label: 'Главная', url: '/', icon: 'globe' },\r\n  { label: 'Каталог', url: '/catalog', icon: 'globe' },\r\n  { label: 'Электроника', url: '/catalog/electronics', icon: 'globe' },\r\n  { label: 'Смартфоны', url: '/catalog/electronics/smartphones', icon: 'globe' },\r\n  { label: 'iPhone 12', url: '/catalog/electronics/smartphones/iphone-12' },\r\n]"
-      },
-      {
         "name": "Scroll",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1914,36 +1464,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperScroll',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperScroll',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopupDirective, DxScrollViewComponent],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperScroll\" style=\"height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n          ${words}\n          </dx-scroll-view>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
-      },
-      {
-        "name": "SingleChip",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ChipsContainerStory",
-        "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Одиночный чип', size: 'medium', count: 1 }\r\n    ],\r\n  },\r\n}"
-      },
-      {
-        "name": "SingleFileUpload",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    multiple: false,\r\n    labelText: 'Выберите один файл',\r\n  },\r\n}"
-      },
-      {
-        "name": "SingleItem",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    items: sampleItems.slice(-1),\r\n  },\r\n}"
       },
       {
         "name": "Size",
@@ -1969,16 +1489,6 @@
         "name": "Small",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: 'small',\r\n  },\r\n}"
-      },
-      {
-        "name": "Small",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1996,16 +1506,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
       },
       {
-        "name": "SmallCard",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'small',\r\n    contentHeight: '200px',\r\n  },\r\n}"
-      },
-      {
         "name": "SmallSize",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2019,61 +1519,11 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n  }),\r\n}"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <me-card\r\n        [size]=\"size\"\r\n        [showHeader]=\"showHeader\"\r\n        [showFooter]=\"showFooter\"\r\n        [contentHeight]=\"contentHeight\">\r\n\r\n        <ng-container card-header-left>\r\n          <me-icon icon=\"sync\" [size]=\"size\" color=\"#000000\"></me-icon>\r\n          <span>Заголовок</span>\r\n        </ng-container>\r\n\r\n        <ng-container card-header-right *ngIf=\"size !== 'small'\">\r\n          <me-chip [label]=\"'Маркер'\" [size]=\"'large'\" [removable]=\"false\" [color]=\"'#ffffff'\" [backgroundColor]=\"'#4CAF50'\"></me-chip>\r\n          <me-icon icon=\"sync\" [size]=\"size\" color=\"#000000\" (click)=\"onSyncClick()\"></me-icon>\r\n          <me-icon icon=\"info\" [size]=\"size\" color=\"#000000\" (click)=\"onInfoClick()\"></me-icon>\r\n          <me-icon icon=\"more_vert\" [size]=\"size\" color=\"#000000\" (click)=\"onMoreClick()\"></me-icon>\r\n        </ng-container>\r\n\r\n        <div>\r\n          <!-- Содержимое карточки -->\r\n        </div>\r\n\r\n        <ng-container card-footer>\r\n          <dx-button text=\"Добавить\" type=\"default\" stylingMode=\"text\" style=\"margin-right: auto;\"></dx-button>\r\n          <dx-button text=\"Принять\" type=\"success\" stylingMode=\"contained\" style=\"background-color: #3f51b5; color: white; margin-right: 8px;\"></dx-button>\r\n          <dx-button text=\"Отмена\" type=\"default\" stylingMode=\"outlined\" style=\"border-color: #3f51b5; color: #3f51b5;\"></dx-button>\r\n        </ng-container>\r\n      </me-card>\r\n    `,\r\n    styles: [`\r\n      .small-icon {\r\n        font-size: 24px;\r\n      }\r\n    `]\r\n  }),\r\n}"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: {\r\n      ...args,\r\n      onFileAdded: (e: any) => console.log('Файл добавлен', e),\r\n      onFileRemoved: (e: any) => console.log('Файл удален', e),\r\n      onAllFilesRemoved: (e: any) => console.log('Все файлы удалены', e),\r\n      onInvalidFile: (e: any) => console.log('Недопустимый файл', e),\r\n    },\r\n    template: `\r\n      <me-file-uploader\r\n        [allowedFileExtensions]=\"allowedFileExtensions\"\r\n        [maxFileSize]=\"maxFileSize\"\r\n        [minFileSize]=\"minFileSize\"\r\n        [multiple]=\"multiple\"\r\n        [labelText]=\"labelText\"\r\n        [selectButtonText]=\"selectButtonText\"\r\n        [showFileList]=\"showFileList\"\r\n        (fileAdded)=\"onFileAdded($event)\"\r\n        (fileRemoved)=\"onFileRemoved($event)\"\r\n        (allFilesRemoved)=\"onAllFilesRemoved()\"\r\n        (invalidFile)=\"onInvalidFile($event)\"\r\n      >\r\n      </me-file-uploader>\r\n    `,\r\n  }),\r\n}"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <me-icon\r\n        [icon]=\"icon\"\r\n        [size]=\"size\"\r\n        [color]=\"color\">\r\n      </me-icon>\r\n    `,\r\n  }),\r\n}"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <div class=\"indicators\">\n        <div\n          id=\"small-indicator\"\n          meLoadIndicator\n          [size]=\"'small'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"medium-indicator\"\n          meLoadIndicator\n          [size]=\"'medium'\"\n          [color]=\"color\"\n        ></div>\n        <div\n          id=\"large-indicator\"\n          meLoadIndicator\n          [size]=\"'large'\"\n          [color]=\"color\"\n        ></div>\n      </div>\n      <div class=\"label me-title-header2\">Custom image</div>\n\n\t\t\t<div class=\"indicators\">\n\t\t\t\t<div\n\t\t\t\t\tid=\"image-indicator\"\n\t\t\t\t\tmeLoadIndicator\n\t\t\t\t\t[size]=\"'large'\"\n\t\t\t\t\t[indicatorSrc]=\"indicatorSrc\"\n\t\t\t\t></div>\n\t\t\t</div>\n    `,\n    styles: [\n      `\n      .indicators {\n        height: 80px;\n        width: 200px;\n        background-color: rgb(157, 157, 158);\n        display: flex;\n        border: 1px solid #9747ff;\n        border-radius: 4px;\n        align-items: center;\n        justify-content: space-around;\n      }\n      .label {\n        margin-top: 20px;\n        margin-bottom: 10px;\n      }\n    `,\n    ],\n  }),\n}"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: {\r\n      ...args,\r\n      onPageChange: (e: any) => console.log('Страница изменена', e),\r\n      onItemsPerPageChange: (e: any) => console.log('Изменено количество элементов на странице', e),\r\n    },\r\n    template: `\r\n      <me-pagination\r\n        [totalItems]=\"totalItems\"\r\n        [itemsPerPage]=\"itemsPerPage\"\r\n        [currentPage]=\"currentPage\"\r\n        [maxVisiblePages]=\"maxVisiblePages\"\r\n        [useButtons]=\"useButtons\"\r\n        [size]=\"size\"\r\n        [itemsPerPageOptions]=\"itemsPerPageOptions\"\r\n        (pageChange)=\"onPageChange($event)\"\r\n        (itemsPerPageChange)=\"onItemsPerPageChange($event)\"\r\n      >\r\n      </me-pagination>\r\n    `,\r\n  }),\r\n}"
       },
       {
         "name": "themeWrapper",
@@ -2096,16 +1546,6 @@
         "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperTollbar',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperTollbar',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperTollbar\" style=\"height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n        \n        <div *dxTemplate=\"let data of 'overflowButton'\">\n        <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\">\n          </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
       },
       {
-        "name": "TwoItems",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    items: sampleItems.slice(-2),\r\n  },\r\n}"
-      },
-      {
         "name": "WithAccentColor",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2124,26 +1564,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
-      },
-      {
-        "name": "WithAvatar",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    avatar: { size: 'large', shape: 'circle' },\r\n  },\r\n}"
-      },
-      {
-        "name": "WithCustomAvatarAndTitle",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    avatar: { size: 'small', shape: 'square' },\r\n    title: { width: '30%' },\r\n    paragraph: { rows: 2, width: ['70%', '50%'] },\r\n  },\r\n}"
       },
       {
         "name": "WithCustomClass",
@@ -2246,16 +1666,6 @@
         "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `<label meLabel labelDirection=\"row\" width=\"250px\">Label<dx-text-box meTextBox ${argsToTemplate(\n      args\n    )}></dx-text-box></label>`,\n  }),\n}"
       },
       {
-        "name": "WithLargeButtons",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 500,\r\n    itemsPerPage: 50,\r\n    currentPage: 1,\r\n    maxVisiblePages: 5,\r\n    useButtons: true,\r\n    size: 'large', // Устанавливаем большие кнопки\r\n  },\r\n}"
-      },
-      {
         "name": "WithoutAnimation",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2264,16 +1674,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    animationEnabled: false,\n  },\n}"
-      },
-      {
-        "name": "WithoutIcons",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    items: sampleItems.map(({ label, url }) => ({ label, url })),\r\n  },\r\n}"
       },
       {
         "name": "WithoutSwipe",
@@ -2294,16 +1694,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    showWeekNumbers: false,\n  },\n}"
-      },
-      {
-        "name": "WithOverflow",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'small',\r\n    contentHeight: '200px',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <me-card\r\n        [size]=\"size\"\r\n        [showHeader]=\"showHeader\"\r\n        [showFooter]=\"showFooter\"\r\n        [contentHeight]=\"contentHeight\">\r\n\r\n        <ng-container card-header-left>\r\n          <me-icon icon=\"sync\" [size]=\"size\" color=\"#000000\"></me-icon>\r\n          <span>Overflow Example</span>\r\n        </ng-container>\r\n\r\n        <div>\r\n          <p>This is an example of a card with overflow content. The content will scroll when it exceeds the maximum height.</p>\r\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>\r\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>\r\n        </div>\r\n\r\n        <ng-container card-footer>\r\n          <dx-button text=\"Принять\" type=\"success\" stylingMode=\"contained\" style=\"background-color: #3f51b5; color: white; margin-right: 8px;\"></dx-button>\r\n          <dx-button text=\"Отмена\" type=\"default\" stylingMode=\"outlined\" style=\"border-color: #3f51b5; color: #3f51b5;\"></dx-button>\r\n        </ng-container>\r\n      </me-card>\r\n    `,\r\n  }),\r\n}"
       },
       {
         "name": "WithOverlay",
@@ -2378,44 +1768,11 @@
     ],
     "typealiases": [
       {
-        "name": "ChipsContainerStory",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "StoryObj<MeChipsContainerComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 183
-      },
-      {
-        "name": "Story",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "StoryObj<MeBadgeComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 183
-      },
-      {
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
         "rawtype": "StoryObj",
         "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 183
-      },
-      {
-        "name": "Story",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "StoryObj<MeBreadcrumbsComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -2436,17 +1793,6 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj",
-        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 183
-      },
-      {
-        "name": "Story",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
         "rawtype": "StoryObj<MeButtonGroupDirective | DxButtonGroupComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
         "deprecated": false,
@@ -2458,8 +1804,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeCardComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+        "rawtype": "StoryObj",
+        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -2502,19 +1848,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeFileUploaderComponent>",
+        "rawtype": "StoryObj",
         "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 183
-      },
-      {
-        "name": "Story",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "StoryObj<MeIconComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -2559,17 +1894,6 @@
         "subtype": "typealias",
         "rawtype": "StoryObj<MeMenuDirective | DxMenuComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 183
-      },
-      {
-        "name": "Story",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "StoryObj<MePaginationComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -2647,17 +1971,6 @@
         "subtype": "typealias",
         "rawtype": "StoryObj<MeSidepageComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-side-page/me-side-page.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 183
-      },
-      {
-        "name": "Story",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "StoryObj<MeSkeletonComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -2776,190 +2089,6 @@
     ],
     "enumerations": [],
     "groupedVariables": {
-      "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts": [
-        {
-          "name": "ActiveAnimation",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    active: true,\r\n  },\r\n}"
-        },
-        {
-          "name": "ComplexCombination",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    active: true,\r\n    avatar: { size: 'large', shape: 'circle' },\r\n    title: { width: '50%' },\r\n    paragraph: { rows: 4, width: ['100%', '90%', '80%', '70%'] },\r\n    round: true,\r\n  },\r\n}"
-        },
-        {
-          "name": "ComplexLoadingState",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    loading: true,\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами.',\r\n      },\r\n    },\r\n  },\r\n  decorators: [\r\n    (Story, context) => {\r\n      const { loading } = context.args;\r\n      return {\r\n        template: `\r\n          <div>\r\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\r\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\r\n            ${!loading ? `\r\n              <div>\r\n                <h4>Заголовок после загрузки</h4>\r\n                <p>Этот текст отображается, когда загрузка завершена.</p>\r\n              </div>\r\n            ` : ''}\r\n          </div>\r\n        `,\r\n        props: {\r\n          active: context.args.active,\r\n          avatar: context.args.avatar,\r\n          loading: context.args.loading,\r\n          paragraph: context.args.paragraph,\r\n          title: context.args.title,\r\n          round: context.args.round,\r\n        },\r\n      };\r\n    },\r\n  ],\r\n}"
-        },
-        {
-          "name": "CustomTitleAndParagraph",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    title: { width: '40%' },\r\n    paragraph: { rows: 4, width: ['100%', '90%', '80%', '60%'] },\r\n  },\r\n}"
-        },
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {},\r\n}"
-        },
-        {
-          "name": "Loading",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    loading: true,\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Когда свойство `loading` равно true, скелетон скрывается, и отображается фактическое содержимое.',\r\n      },\r\n    },\r\n  },\r\n  decorators: [\r\n    (Story, context) => {\r\n      const { loading } = context.args;\r\n      return {\r\n        template: `\r\n          <div>\r\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\r\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\r\n            ${loading ? '<p>This is the actual content that would be shown when loading is complete.</p>' : ''}\r\n          </div>\r\n        `,\r\n        props: {\r\n          active: context.args.active,\r\n          avatar: context.args.avatar,\r\n          loading: context.args.loading,\r\n          paragraph: context.args.paragraph,\r\n          title: context.args.title,\r\n          round: context.args.round,\r\n        },\r\n      };\r\n    },\r\n  ],\r\n}"
-        },
-        {
-          "name": "meta",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Meta<MeSkeletonComponent>",
-          "defaultValue": "{\r\n  title: 'Components/Skeleton',\r\n  component: MeSkeletonComponent,\r\n  argTypes: {\r\n    active: {\r\n      control: 'boolean',\r\n      description: 'Включает анимацию скелета',\r\n    },\r\n    avatar: {\r\n      control: 'object',\r\n      description: 'Отображает аватар. Может быть объектом с параметрами размера и формы',\r\n    },\r\n    loading: {\r\n      control: 'boolean',\r\n      description: 'Отображает содержимое вместо скелета при `true`',\r\n    },\r\n    paragraph: {\r\n      control: 'object',\r\n      description: 'Отображает параграфы. Может быть объектом с параметрами количества строк и ширины',\r\n    },\r\n    title: {\r\n      control: 'object',\r\n      description: 'Отображает заголовок. Может быть объектом с параметром ширины',\r\n    },\r\n    round: {\r\n      control: 'boolean',\r\n      description: 'Скругляет углы заголовка и параграфов',\r\n    },\r\n  },\r\n  args: {\r\n    active: false,\r\n    avatar: false,\r\n    loading: false,\r\n    paragraph: { rows: 3, width: ['100%', '100%', '80%'] },\r\n    title: { width: '60%' },\r\n    round: false,\r\n  },\r\n}"
-        },
-        {
-          "name": "Rounded",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    round: true,\r\n    title: { width: '50%' },\r\n    paragraph: { rows: 3, width: ['100%', '80%', '60%'] },\r\n  },\r\n}"
-        },
-        {
-          "name": "WithAvatar",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    avatar: { size: 'large', shape: 'circle' },\r\n  },\r\n}"
-        },
-        {
-          "name": "WithCustomAvatarAndTitle",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    avatar: { size: 'small', shape: 'square' },\r\n    title: { width: '30%' },\r\n    paragraph: { rows: 2, width: ['70%', '50%'] },\r\n  },\r\n}"
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts": [
-        {
-          "name": "AllIcons",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  render: () => ({\r\n    template: `\r\n      <div style=\"display: flex; flex-wrap: wrap;\">\r\n        ${iconOptions.map(icon => `\r\n          <div style=\"display: inline-block; margin: 10px; text-align: center; width: 100px;\">\r\n            <me-icon icon=\"${icon}\" size=\"large\" color=\"#000000\"></me-icon>\r\n            <p style=\"font-size: 12px; word-wrap: break-word;\">${icon}</p>\r\n          </div>\r\n        `).join('')}\r\n      </div>\r\n    `,\r\n  }),\r\n}"
-        },
-        {
-          "name": "CustomColor",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    color: '#ff5722',\r\n  },\r\n}"
-        },
-        {
-          "name": "CustomIcon",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    icon: 'star',\r\n  },\r\n}"
-        },
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {},\r\n}"
-        },
-        {
-          "name": "iconOptions",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "[]",
-          "defaultValue": "[\r\n  'home', 'star', 'settings', 'favorite', 'search', 'person', 'info', 'warning',\r\n  'check_circle', 'close', 'add', 'remove', 'edit', 'delete', 'alarm', 'account_circle',\r\n  'calendar_today', 'camera', 'chat', 'cloud', 'download', 'email', 'file_copy', 'help',\r\n  'lock', 'logout', 'menu', 'notifications', 'palette', 'phone', 'print', 'save',\r\n  'shopping_cart', 'thumb_up', 'visibility', 'wifi', 'zoom_in', 'zoom_out', 'arrow_forward',\r\n  'arrow_back', 'arrow_upward', 'arrow_downward', 'play_arrow', 'pause', 'stop', 'skip_next',\r\n  'skip_previous', 'volume_up', 'volume_down', 'mute', 'brightness_high', 'brightness_low',\r\n  'account_balance', 'add_circle', 'airplanemode_active', 'attach_file', 'backspace', 'battery_alert',\r\n  'bluetooth', 'book', 'bookmark', 'build', 'business', 'call', 'category', 'check_box',\r\n  'cleaning_services', 'code', 'computer', 'contacts', 'content_copy', 'dashboard', 'description',\r\n  'directions', 'directions_car', 'directions_bike', 'done', 'drafts', 'drive_eta', 'eco',\r\n  'emoji_emotions', 'enhanced_encryption', 'equalizer', 'event', 'explore', 'face', 'fast_forward',\r\n  'fast_rewind', 'favorite_border', 'file_download', 'filter_list', 'fingerprint', 'fitness_center',\r\n  'flag', 'folder', 'folder_open', 'format_align_center', 'format_align_justify', 'format_align_left',\r\n  'format_align_right', 'format_bold', 'format_clear', 'format_color_fill', 'format_color_reset',\r\n  'format_color_text', 'format_indent_decrease', 'format_indent_increase', 'format_italic',\r\n  'format_line_spacing', 'format_list_bulleted', 'format_list_numbered', 'format_paint', 'format_quote',\r\n  'format_shapes', 'format_size', 'format_strikethrough', 'format_textdirection_l_to_r',\r\n  'format_textdirection_r_to_l', 'format_underlined', 'fullscreen', 'fullscreen_exit', 'functions',\r\n]"
-        },
-        {
-          "name": "Large",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: 'large',\r\n  },\r\n}"
-        },
-        {
-          "name": "Small",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: 'small',\r\n  },\r\n}"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <me-icon\r\n        [icon]=\"icon\"\r\n        [size]=\"size\"\r\n        [color]=\"color\">\r\n      </me-icon>\r\n    `,\r\n  }),\r\n}"
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts": [
         {
           "name": "AutoResize",
@@ -3186,108 +2315,6 @@
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n    ],\n  },\n}"
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts": [
-        {
-          "name": "chipsContainerMeta",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Meta<MeChipsContainerComponent>",
-          "defaultValue": "{\r\n  title: 'Components/MeChipsContainer',\r\n  component: MeChipsContainerComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MeChipsContainerComponent, MeChipComponent],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    chips: {\r\n      control: 'object',\r\n      description: 'Массив объектов для отображения в виде чипов. Каждый объект содержит label, size, count, и опции для удаления и активности.',\r\n    },\r\n    chipsChange: { action: 'chipsChange' },\r\n  },\r\n  args: {\r\n    chips: [\r\n      { label: 'Схемы', size: 'medium', count: 1 },\r\n      { label: 'Наборы', size: 'medium', count: 1 },\r\n      { label: 'Прибор', size: 'medium', count: 2 },\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "ChipsContainerTemplate",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: {\r\n      ...args,\r\n      onChipsChange: (e: any) => {\r\n        console.log('Chips changed:', e);\r\n        action('chipsChange')(e);\r\n      },\r\n    },\r\n    template: `\r\n      <me-chips-container\r\n        [chips]=\"chips\"\r\n        (chipsChange)=\"onChipsChange($event)\"\r\n      ></me-chips-container>\r\n    `,\r\n  }),\r\n}"
-        },
-        {
-          "name": "ChipsWithoutRemoval",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Чип без удаления', size: 'small', count: 1, removable: false },\r\n      { label: 'Еще один чип без удаления', size: 'large', count: 2, removable: false }\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {},\r\n}"
-        },
-        {
-          "name": "DifferentSizes",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Small Chip', size: 'small', count: 1 },\r\n      { label: 'Medium Chip', size: 'medium', count: 2 },\r\n      { label: 'Large Chip', size: 'large', count: 3 },\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "DisabledChips",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Отключенный чип', size: 'medium', count: 1, removable: false, disabled: true },\r\n      { label: 'Еще один отключенный чип', size: 'large', count: 2, removable: false, disabled: true }\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "LongChipText",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Это очень длинный текст для чипа', size: 'medium', count: 1 },\r\n      { label: 'Короткий чип', size: 'medium', count: 2 },\r\n      { label: 'Еще один длинный текст для чипа', size: 'medium', count: 3 },\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "ManyChips",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Чип 1', size: 'medium', count: 1 },\r\n      { label: 'Чип 2', size: 'medium', count: 2 },\r\n      { label: 'Чип 3', size: 'medium', count: 3 },\r\n      { label: 'Чип 4', size: 'medium', count: 4 },\r\n      { label: 'Чип 5', size: 'medium', count: 5 },\r\n      { label: 'Чип 6', size: 'medium', count: 6 },\r\n      { label: 'Чип 7', size: 'medium', count: 7 },\r\n      { label: 'Чип 8', size: 'medium', count: 8 },\r\n      { label: 'Чип 9', size: 'medium', count: 9 },\r\n      { label: 'Чип 10', size: 'medium', count: 10 },\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "MixedStateChips",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Small Chip', size: 'small', count: 1 },\r\n      { label: 'Medium Chip', size: 'medium', count: 2 },\r\n      { label: 'Large Chip', size: 'large', count: 3 },\r\n      { label: 'Очень длинный текст для чипа', size: 'large', count: 4 },\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "SingleChip",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ChipsContainerStory",
-          "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      { label: 'Одиночный чип', size: 'medium', count: 1 }\r\n    ],\r\n  },\r\n}"
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts": [
         {
           "name": "Collapsible",
@@ -3370,28 +2397,6 @@
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts": [
-        {
-          "name": "columnsData",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "[]",
-          "defaultValue": "['CompanyName', 'Phone', 'Fax', 'City', 'State']"
-        },
-        {
-          "name": "DataGrid",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "StoryObj",
-          "defaultValue": "{}"
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-toast/me-toast.stories.ts": [
         {
           "name": "CustomAnimation",
@@ -3456,34 +2461,14 @@
       ],
       "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts": [
         {
-          "name": "CustomButtonText",
+          "name": "CustomClass",
           "ctype": "miscellaneous",
           "subtype": "variable",
           "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    selectButtonText: 'Обзор файлов',\r\n  },\r\n}"
-        },
-        {
-          "name": "CustomFileTypes",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    allowedFileExtensions: ['doc', 'docx', 'txt'],\r\n    labelText: 'Загрузите только документы',\r\n  },\r\n}"
-        },
-        {
-          "name": "CustomLabelText",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    labelText: 'Перетащите файлы сюда или нажмите на кнопку ниже',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    customClass: 'my-custom-class',\n  },\n}"
         },
         {
           "name": "Default",
@@ -3493,47 +2478,27 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {},\r\n}"
+          "defaultValue": "{\n  args: {\n    isDisabled: false,\n  },\n}"
         },
         {
-          "name": "HideFileList",
+          "name": "Disabled",
           "ctype": "miscellaneous",
           "subtype": "variable",
           "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    showFileList: false,\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    isDisabled: true,\n  },\n}"
         },
         {
-          "name": "LargeFileUpload",
+          "name": "MultipleFiles",
           "ctype": "miscellaneous",
           "subtype": "variable",
           "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    maxFileSize: 100 * 1024 * 1024, // 100MB\r\n    minFileSize: 1 * 1024 * 1024, // 1MB\r\n    labelText: 'Загрузите большие файлы (1MB - 100MB)',\r\n  },\r\n}"
-        },
-        {
-          "name": "SingleFileUpload",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    multiple: false,\r\n    labelText: 'Выберите один файл',\r\n  },\r\n}"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: {\r\n      ...args,\r\n      onFileAdded: (e: any) => console.log('Файл добавлен', e),\r\n      onFileRemoved: (e: any) => console.log('Файл удален', e),\r\n      onAllFilesRemoved: (e: any) => console.log('Все файлы удалены', e),\r\n      onInvalidFile: (e: any) => console.log('Недопустимый файл', e),\r\n    },\r\n    template: `\r\n      <me-file-uploader\r\n        [allowedFileExtensions]=\"allowedFileExtensions\"\r\n        [maxFileSize]=\"maxFileSize\"\r\n        [minFileSize]=\"minFileSize\"\r\n        [multiple]=\"multiple\"\r\n        [labelText]=\"labelText\"\r\n        [selectButtonText]=\"selectButtonText\"\r\n        [showFileList]=\"showFileList\"\r\n        (fileAdded)=\"onFileAdded($event)\"\r\n        (fileRemoved)=\"onFileRemoved($event)\"\r\n        (allFilesRemoved)=\"onAllFilesRemoved()\"\r\n        (invalidFile)=\"onInvalidFile($event)\"\r\n      >\r\n      </me-file-uploader>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    multiple: true,\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts": [
@@ -3720,222 +2685,6 @@
           "deprecationMessage": "",
           "type": "Story",
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    swipeEnabled: false,\n  },\n}"
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
-        {
-          "name": "CustomIcons",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    items: [\r\n      { label: 'Проекты', url: '/projects', icon: 'globe' },\r\n      { label: 'Разработка', url: '/projects/development', icon: 'globe' },\r\n      { label: 'Веб-приложения', url: '/projects/development/web', icon: 'globe' },\r\n      { label: 'E-commerce', url: '/projects/development/web/ecommerce', icon: 'globe' },\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    items: sampleItems,\r\n  },\r\n}"
-        },
-        {
-          "name": "ManyItems",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    items: [\r\n      ...sampleItems,\r\n      { label: 'Характеристики', url: '/catalog/electronics/smartphones/iphone-12/specs', icon: 'globe' },\r\n      { label: 'Отзывы', url: '/catalog/electronics/smartphones/iphone-12/reviews', icon: 'globe' },\r\n    ],\r\n  },\r\n}"
-        },
-        {
-          "name": "sampleItems",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "[]",
-          "defaultValue": "[\r\n  { label: 'Главная', url: '/', icon: 'globe' },\r\n  { label: 'Каталог', url: '/catalog', icon: 'globe' },\r\n  { label: 'Электроника', url: '/catalog/electronics', icon: 'globe' },\r\n  { label: 'Смартфоны', url: '/catalog/electronics/smartphones', icon: 'globe' },\r\n  { label: 'iPhone 12', url: '/catalog/electronics/smartphones/iphone-12' },\r\n]"
-        },
-        {
-          "name": "SingleItem",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    items: sampleItems.slice(-1),\r\n  },\r\n}"
-        },
-        {
-          "name": "TwoItems",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    items: sampleItems.slice(-2),\r\n  },\r\n}"
-        },
-        {
-          "name": "WithoutIcons",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    items: sampleItems.map(({ label, url }) => ({ label, url })),\r\n  },\r\n}"
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts": [
-        {
-          "name": "CustomItemsOptions",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 400,\r\n    itemsPerPage: 50,\r\n    currentPage: 2,\r\n    maxVisiblePages: 5,\r\n    useButtons: false,\r\n    itemsPerPageOptions: [25, 50, 75, 100], // Кастомные опции для выбора количества элементов на странице\r\n  },\r\n}"
-        },
-        {
-          "name": "CustomItemsPerPage",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 500,\r\n    itemsPerPage: 50,\r\n    currentPage: 1,\r\n    maxVisiblePages: 5,\r\n    useButtons: true, // Используем кнопки для выбора количества элементов на странице\r\n  },\r\n}"
-        },
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {},\r\n}"
-        },
-        {
-          "name": "FewItems",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 30,\r\n    itemsPerPage: 10,\r\n    currentPage: 1,\r\n    maxVisiblePages: 5,\r\n  },\r\n}"
-        },
-        {
-          "name": "LastPage",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 100,\r\n    itemsPerPage: 10,\r\n    currentPage: 10,\r\n    maxVisiblePages: 5,\r\n  },\r\n}"
-        },
-        {
-          "name": "ManyPages",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 1000,\r\n    itemsPerPage: 20,\r\n    currentPage: 5,\r\n    maxVisiblePages: 7,\r\n  },\r\n}"
-        },
-        {
-          "name": "MaxVisiblePages",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 200,\r\n    itemsPerPage: 10,\r\n    currentPage: 5,\r\n    maxVisiblePages: 10,\r\n  },\r\n}"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: {\r\n      ...args,\r\n      onPageChange: (e: any) => console.log('Страница изменена', e),\r\n      onItemsPerPageChange: (e: any) => console.log('Изменено количество элементов на странице', e),\r\n    },\r\n    template: `\r\n      <me-pagination\r\n        [totalItems]=\"totalItems\"\r\n        [itemsPerPage]=\"itemsPerPage\"\r\n        [currentPage]=\"currentPage\"\r\n        [maxVisiblePages]=\"maxVisiblePages\"\r\n        [useButtons]=\"useButtons\"\r\n        [size]=\"size\"\r\n        [itemsPerPageOptions]=\"itemsPerPageOptions\"\r\n        (pageChange)=\"onPageChange($event)\"\r\n        (itemsPerPageChange)=\"onItemsPerPageChange($event)\"\r\n      >\r\n      </me-pagination>\r\n    `,\r\n  }),\r\n}"
-        },
-        {
-          "name": "WithLargeButtons",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 500,\r\n    itemsPerPage: 50,\r\n    currentPage: 1,\r\n    maxVisiblePages: 5,\r\n    useButtons: true,\r\n    size: 'large', // Устанавливаем большие кнопки\r\n  },\r\n}"
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts": [
-        {
-          "name": "CustomStyleBadge",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: '24',\r\n    color: 'secondary',\r\n    value: 7,\r\n    customStyle: { border: '2px solid black' },\r\n  },\r\n}"
-        },
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: '20',\r\n    color: 'default',\r\n    value: 5,\r\n  },\r\n}"
-        },
-        {
-          "name": "LargeBadge",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: '24',\r\n    color: 'success',\r\n    value: 10,\r\n  },\r\n}"
-        },
-        {
-          "name": "OverflowValue",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: '20',\r\n    color: 'error',\r\n    value: 100,\r\n  },\r\n}"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n  }),\r\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts": [
@@ -4306,68 +3055,6 @@
           "defaultValue": "{\n  args: {\n    type: 'normal',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'contained',\n    leftIcon: 'arrowback',\n    rightIcon: 'arrowforward',\n  },\n}"
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    size: 'medium',\r\n    showHeader: true,\r\n    showFooter: true,\r\n    contentHeight: '300px',\r\n  },\r\n}"
-        },
-        {
-          "name": "LargeCard",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'large',\r\n    contentHeight: '400px',\r\n  },\r\n}"
-        },
-        {
-          "name": "NoFooter",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    showFooter: false,\r\n  },\r\n}"
-        },
-        {
-          "name": "SmallCard",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'small',\r\n    contentHeight: '200px',\r\n  },\r\n}"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <me-card\r\n        [size]=\"size\"\r\n        [showHeader]=\"showHeader\"\r\n        [showFooter]=\"showFooter\"\r\n        [contentHeight]=\"contentHeight\">\r\n\r\n        <ng-container card-header-left>\r\n          <me-icon icon=\"sync\" [size]=\"size\" color=\"#000000\"></me-icon>\r\n          <span>Заголовок</span>\r\n        </ng-container>\r\n\r\n        <ng-container card-header-right *ngIf=\"size !== 'small'\">\r\n          <me-chip [label]=\"'Маркер'\" [size]=\"'large'\" [removable]=\"false\" [color]=\"'#ffffff'\" [backgroundColor]=\"'#4CAF50'\"></me-chip>\r\n          <me-icon icon=\"sync\" [size]=\"size\" color=\"#000000\" (click)=\"onSyncClick()\"></me-icon>\r\n          <me-icon icon=\"info\" [size]=\"size\" color=\"#000000\" (click)=\"onInfoClick()\"></me-icon>\r\n          <me-icon icon=\"more_vert\" [size]=\"size\" color=\"#000000\" (click)=\"onMoreClick()\"></me-icon>\r\n        </ng-container>\r\n\r\n        <div>\r\n          <!-- Содержимое карточки -->\r\n        </div>\r\n\r\n        <ng-container card-footer>\r\n          <dx-button text=\"Добавить\" type=\"default\" stylingMode=\"text\" style=\"margin-right: auto;\"></dx-button>\r\n          <dx-button text=\"Принять\" type=\"success\" stylingMode=\"contained\" style=\"background-color: #3f51b5; color: white; margin-right: 8px;\"></dx-button>\r\n          <dx-button text=\"Отмена\" type=\"default\" stylingMode=\"outlined\" style=\"border-color: #3f51b5; color: #3f51b5;\"></dx-button>\r\n        </ng-container>\r\n      </me-card>\r\n    `,\r\n    styles: [`\r\n      .small-icon {\r\n        font-size: 24px;\r\n      }\r\n    `]\r\n  }),\r\n}"
-        },
-        {
-          "name": "WithOverflow",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'small',\r\n    contentHeight: '200px',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <me-card\r\n        [size]=\"size\"\r\n        [showHeader]=\"showHeader\"\r\n        [showFooter]=\"showFooter\"\r\n        [contentHeight]=\"contentHeight\">\r\n\r\n        <ng-container card-header-left>\r\n          <me-icon icon=\"sync\" [size]=\"size\" color=\"#000000\"></me-icon>\r\n          <span>Overflow Example</span>\r\n        </ng-container>\r\n\r\n        <div>\r\n          <p>This is an example of a card with overflow content. The content will scroll when it exceeds the maximum height.</p>\r\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>\r\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>\r\n        </div>\r\n\r\n        <ng-container card-footer>\r\n          <dx-button text=\"Принять\" type=\"success\" stylingMode=\"contained\" style=\"background-color: #3f51b5; color: white; margin-right: 8px;\"></dx-button>\r\n          <dx-button text=\"Отмена\" type=\"default\" stylingMode=\"outlined\" style=\"border-color: #3f51b5; color: #3f51b5;\"></dx-button>\r\n        </ng-container>\r\n      </me-card>\r\n    `,\r\n  }),\r\n}"
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts": [
         {
           "name": "Default",
@@ -4707,32 +3394,6 @@
     },
     "groupedEnumerations": {},
     "groupedTypeAliases": {
-      "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts": [
-        {
-          "name": "ChipsContainerStory",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<MeChipsContainerComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<MeBadgeComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts": [
         {
           "name": "Story",
@@ -4740,19 +3401,6 @@
           "subtype": "typealias",
           "rawtype": "StoryObj",
           "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<MeBreadcrumbsComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -4772,19 +3420,6 @@
           "kind": 183
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj",
-          "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts": [
         {
           "name": "Story",
@@ -4798,13 +3433,13 @@
           "kind": 183
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
+      "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts": [
         {
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<MeCardComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+          "rawtype": "StoryObj",
+          "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -4855,21 +3490,8 @@
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<MeFileUploaderComponent>",
+          "rawtype": "StoryObj",
           "file": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<MeIconComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -4922,19 +3544,6 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<MeMenuDirective | DxMenuComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<MePaginationComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -5026,19 +3635,6 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<MeSidepageComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-side-page/me-side-page.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
-      "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<MeSkeletonComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -5313,126 +3909,6 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomStyleBadge",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "LargeBadge",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "OverflowValue",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Template",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomIcons",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "ManyItems",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "sampleItems",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "SingleItem",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TwoItems",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithoutIcons",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
         "filePath": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
@@ -5553,171 +4029,11 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "LargeCard",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "NoFooter",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "SmallCard",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Template",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithOverflow",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
         "filePath": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "chipsContainerMeta",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "ChipsContainerTemplate",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "ChipsWithoutRemoval",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "DifferentSizes",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "DisabledChips",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "LongChipText",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "ManyChips",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "MixedStateChips",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "SingleChip",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -5753,26 +4069,6 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "columnsData",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "DataGrid",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
         "filePath": "projects/dx-monitel-components/src/stories/me-drop-down-button/me-drop-down-button.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
@@ -5797,27 +4093,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "CustomButtonText",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomFileTypes",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomLabelText",
+        "name": "CustomClass",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -5837,7 +4113,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "HideFileList",
+        "name": "Disabled",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -5847,107 +4123,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "LargeFileUpload",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "SingleFileUpload",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-file-uploader/me-file-uploader.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Template",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "AllIcons",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomColor",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomIcon",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "iconOptions",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Large",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Small",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Template",
+        "name": "MultipleFiles",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -6202,96 +4378,6 @@
         "status": "low"
       },
       {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomItemsOptions",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomItemsPerPage",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "FewItems",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "LastPage",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "ManyPages",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "MaxVisiblePages",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Template",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithLargeButtons",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
         "filePath": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
         "type": "interface",
         "linktype": "interface",
@@ -6476,106 +4562,6 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "ActiveAnimation",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "ComplexCombination",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "ComplexLoadingState",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomTitleAndParagraph",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Loading",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "meta",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "Rounded",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithAvatar",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithCustomAvatarAndTitle",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

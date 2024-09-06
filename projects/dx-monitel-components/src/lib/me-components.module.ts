@@ -1,6 +1,18 @@
 import { NgModule } from '@angular/core';
-import { MeBadgeComponent, MeDataGridModule } from '../public-api';
+import {
+  MeBadgeComponent,
+  MeDataGridModule,
+  MeTagBoxModule,
+} from '../public-api';
+import { MeBreadcrumbsComponent } from './components/me-breadcrumbs/me-breadcrumbs.component';
+import { MeCardComponent } from './components/me-card/me-card.component';
+import { MeChipsContainerComponent } from './components/me-chips-container/me-chips-container.component';
+import { MeChipComponent } from './components/me-chips/me-chips.component';
+import { MeFileUploaderComponent } from './components/me-file-uploader/me-file-uploader.component';
+import { MeIconComponent } from './components/me-icon/me-icon.component';
+import { MePaginationComponent } from './components/me-pagination/me-pagination.component';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
+import { MeSkeletonComponent } from './components/me-skeleton/me-skeleton.component';
 import { MeAccordionModule } from './directives/me-accordion/accordion.module';
 import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
 import { MeButtonModule } from './directives/me-button/me-button.module';
@@ -10,6 +22,7 @@ import { MeContextMenuModule } from './directives/me-context-menu/context-menu.m
 import { MeControlModule } from './directives/me-control/control.module';
 import { MeDropDownButtonModule } from './directives/me-drop-down-button/drop-down-button.module';
 import { MeEditorModule } from './directives/me-editor/me-editor.module';
+import { MeFileUploaderModule } from './directives/me-file-uploader/file-uploader.module';
 import { MeIconModule } from './directives/me-icon/me-icon.module';
 import { MeLabelModule } from './directives/me-label/me-label.module';
 import { MeListModule } from './directives/me-list/list.module';
@@ -17,6 +30,7 @@ import { MeLoadIndicatorModule } from './directives/me-load-indicator/load-indic
 import { MeLoadPanelModule } from './directives/me-load-panel/load-panel.module';
 import { MeMenuModule } from './directives/me-menu/menu.module';
 import { MeOverlayModule } from './directives/me-overlay/me-overlay.module';
+import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.module';
 import { MePopoverModule } from './directives/me-popover/me-popover.module';
 import { MePopupModule } from './directives/me-popup/me-popup.module';
 import { MeRadioGroupModule } from './directives/me-radio-group/me-radio-group.module';
@@ -30,16 +44,8 @@ import { MeTextEditorModule } from './directives/me-text-editor/me-text-editor.m
 import { MeToastModule } from './directives/me-toast/toast.module';
 import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
+import { MeTreeListModule } from './directives/me-tree-list/me-tree-list.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
-import { MeFileUploaderModule } from './directives/me-file-uploader/file-uploader.module';
-import { MeFileUploaderComponent } from './components/me-file-uploader/me-file-uploader.component';
-import { MePaginationComponent } from './components/me-pagination/me-pagination.component';
-import { MeIconComponent } from './components/me-icon/me-icon.component';
-import { MeBreadcrumbsComponent } from './components/me-breadcrumbs/me-breadcrumbs.component';
-import { MeSkeletonComponent } from './components/me-skeleton/me-skeleton.component';
-import { MeChipComponent } from './components/me-chips/me-chips.component';
-import { MeChipsContainerComponent } from './components/me-chips-container/me-chips-container.component';
-import { MeCardComponent } from './components/me-card/me-card.component';
 
 @NgModule({
   declarations: [],
@@ -87,6 +93,10 @@ import { MeCardComponent } from './components/me-card/me-card.component';
     MeChipComponent,
     MeBadgeComponent,
     MeCardComponent,
+    MePivotGridModule,
+    MeCardComponent,
+    MeTreeListModule,
+    MeTagBoxModule,
   ],
   exports: [
     MeAccordionModule,
@@ -133,6 +143,10 @@ import { MeCardComponent } from './components/me-card/me-card.component';
     MeChipComponent,
     MeBadgeComponent,
     MeCardComponent,
+    MePivotGridModule,
+    MeCardComponent,
+    MeTreeListModule,
+    MeTagBoxModule,
   ],
 })
 export class MeComponentsModule {}
