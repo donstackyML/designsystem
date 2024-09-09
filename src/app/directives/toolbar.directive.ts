@@ -8,10 +8,7 @@ export class MeToolbarDirective implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() background: boolean = false;
 
-  constructor(
-    private element: ElementRef,
-    private renderer: Renderer2,
-  ) {}
+  constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.renderer.addClass(this.element.nativeElement, 'me-toolbar');

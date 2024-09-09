@@ -14,8 +14,8 @@ export class MeOverlayDirective {
     this.component instanceof DxPopoverComponent
       ? 'me-popover'
       : this.component instanceof DxPopupComponent
-        ? 'me-popup'
-        : '';
+      ? 'me-popup'
+      : '';
 
   constructor(
     protected element: ElementRef,

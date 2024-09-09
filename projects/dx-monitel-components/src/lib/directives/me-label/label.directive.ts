@@ -31,10 +31,7 @@ export class MeLabelDirective implements OnInit, AfterContentInit, AfterContentC
   isSwitch: boolean = false;
   unlistenLabel = () => {};
 
-  constructor(
-    private element: ElementRef,
-    private renderer: Renderer2,
-  ) {}
+  constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.renderer.addClass(this.element.nativeElement, 'dx-widget');

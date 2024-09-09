@@ -9,10 +9,7 @@ const DEFAULT_ICON_COLOR = '#ffffff';
   selector: '[meButtonGroup]',
 })
 export class MeButtonGroupDirective extends MeControlDirective {
-  constructor(
-    private component: DxButtonGroupComponent,
-    private iconStore: MeIconStoreService,
-  ) {
+  constructor(private component: DxButtonGroupComponent, private iconStore: MeIconStoreService) {
     super();
   }
 

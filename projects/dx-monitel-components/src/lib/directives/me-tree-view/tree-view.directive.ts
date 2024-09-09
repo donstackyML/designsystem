@@ -8,10 +8,7 @@ export class MeTreeViewDirective {
   @Input() size: Exclude<MeSize, 'medium'> = 'large';
   @Input() itemWordWrap: boolean = false;
 
-  constructor(
-    private element: ElementRef,
-    private renderer: Renderer2,
-  ) {}
+  constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.renderer.addClass(this.element.nativeElement, 'me-tree-view');
