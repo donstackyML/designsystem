@@ -217,4 +217,181 @@
       </div>
     </dx-popup>
   </div>
+  <h2 class="wrapper__title dx-widget">Popup with description (size = medium)</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(10)"> </dx-button>
+    <dx-popup mePopup titleTemplate="title">
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'title'">
+        <div class="me-popup-header">
+          <div meIcon icon="public" size="24"></div>
+          <div class="me-sidepage-title">
+            <span class="me-title-header1">Заголовок</span>
+            <span class="me-text-body2">Описание</span>
+          </div>
+          <dx-button
+            meButton
+            stylingMode="text"
+            iconOnly="close"
+            (onClick)="hidePopup(10)"
+          ></dx-button>
+        </div>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button meButton text="Принять" type="default"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton text="Отмена" (onClick)="hidePopup(10)"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton text="Добавить"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
+  <h2 class="wrapper__title dx-widget">Popup with description (size = large)</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(11)"> </dx-button>
+    <dx-popup mePopup titleTemplate="title" size="large">
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'title'">
+        <div class="me-popup-header">
+          <div meIcon icon="public" size="24"></div>
+          <div class="me-popup-title">
+            <span class="me-title-display2">Заголовок</span>
+            <span class="me-text-body1">Описание</span>
+          </div>
+          <dx-button
+            meButton
+            size="large"
+            stylingMode="text"
+            iconOnly="close"
+            (onClick)="hidePopup(11)"
+          ></dx-button>
+        </div>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button meButton size="large" text="Принять" type="default"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton size="large" text="Отмена" (onClick)="hidePopup(11)"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton size="large" text="Добавить"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
+  <h2 class="wrapper__title dx-widget">Popup dialogue (medium)</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(12)"> </dx-button>
+    <dx-popup mePopup titleTemplate="title" size="medium" [showTitle]="false">
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+          <div class="me-flex-column">
+            <h3 class="me-title-header1">Заголовок</h3>
+            <div class="me-text-body2">{{ lorem25 }}</div>
+          </div>
+        </dx-scroll-view>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button
+          meButton
+          size="medium"
+          text="Принять"
+          type="default"
+          (onClick)="hidePopup(12)"
+        ></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton size="medium" text="Отклонить" (onClick)="hidePopup(12)"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
+  <h2 class="wrapper__title dx-widget">Popup dialogue (large)</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(13)"> </dx-button>
+    <dx-popup mePopup titleTemplate="title" size="large" [showTitle]="false">
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+          <div class="me-flex-column">
+            <h3 class="me-title-display2">Заголовок</h3>
+            <div class="me-text-body1">{{ lorem25 }}</div>
+          </div>
+        </dx-scroll-view>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button
+          meButton
+          size="large"
+          text="Принять"
+          type="default"
+          (onClick)="hidePopup(13)"
+        ></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton size="large" text="Оклонить" (onClick)="hidePopup(13)"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
+  <h2 class="wrapper__title dx-widget">Попап с переполнением в кнопках (2 строки)</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(14)"> </dx-button>
+    <dx-popup mePopup>
+      <dxi-toolbar-item template="icon" location="before"> </dxi-toolbar-item>
+      <dxi-toolbar-item text="Заголовок" location="before"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'icon'">
+        <span meIcon icon="public"></span>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button meButton text="Принять" type="default"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton text="Отмена" (onClick)="hidePopup(14)"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton text="Кнопка с большим количеством текста"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
+  <h2 class="wrapper__title dx-widget">Попап с переполнением в кнопках (3 строки)</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(15)"> </dx-button>
+    <dx-popup mePopup>
+      <dxi-toolbar-item template="icon" location="before"> </dxi-toolbar-item>
+      <dxi-toolbar-item text="Заголовок" location="before"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'icon'">
+        <span meIcon icon="public"></span>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button meButton text="Кнопка с большим количеством текста" type="default"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton text="Отмена" (onClick)="hidePopup(15)"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton text="Кнопка с большим количеством текста"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
 </div>

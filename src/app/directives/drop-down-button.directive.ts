@@ -23,7 +23,10 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
   @Input() useItemTextAsTitle: boolean = false;
   private customClasses: string = `me-dropdownbutton`;
 
-  constructor(private component: DxDropDownButtonComponent, private iconStore: MeIconStoreService) {
+  constructor(
+    private component: DxDropDownButtonComponent,
+    private iconStore: MeIconStoreService,
+  ) {
     super();
   }
 
