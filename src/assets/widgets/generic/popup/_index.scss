@@ -39,7 +39,6 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
 .dx-popup-wrapper {
   &.me-popup > .dx-overlay-content {
-    // border: none;
     box-shadow: 0 4px 10px $overlay-content-shadow-color;
     border-radius: 4px;
   }
@@ -156,25 +155,6 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 .dx-dialog-message {
   padding: 0;
 }
-
-// .me-popup .me-popup .dx-closebutton {
-//   padding: 5px;
-
-//   & .dx-button-content {
-//     display: flex;
-//     padding: 5px;
-//     height: auto;
-
-//     & .dx-icon-close {
-//       background-image: $popup-close-icon-image;
-//       background-position: center center;
-//       background-repeat: no-repeat;
-//       background-size: contain;
-//       width: 10px;
-//       height: 10px;
-//     }
-//   }
-// }
 
 .me-popup-medium {
   & .dx-toolbar {
@@ -334,5 +314,22 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     & .dx-toolbar-item {
       padding: 0;
     }
+  }
+}
+
+.me-select-box.dx-popup-wrapper > .dx-overlay-content,
+.me-dropdownlist.dx-popup-wrapper > .dx-overlay-content {
+  border: none;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+
+  & .dx-popup-content {
+    margin: 4px 0;
+    border: 1px solid $popup-title-border-color;
+    background: $overlay-content-bg;
+    box-shadow: 0px 2px 6px 0px #00000024;
+    border-radius: 3px;
+    overflow: hidden;
   }
 }
