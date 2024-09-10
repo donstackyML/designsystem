@@ -43,6 +43,8 @@ import { MeChipComponent } from './components/me-chips/me-chips.component';
 import { MeChipsContainerComponent } from './components/me-chips-container/me-chips-container.component';
 import { MeCardComponent } from './components/me-card/me-card.component';
 import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.module';
+import {MeAutocompleteModule} from "./directives/me-autocomplete/me-autocomplete.module";
+import {MeFormModule} from "./directives/me-form/me-form.module";
 
 @NgModule({
   declarations: [],
@@ -94,6 +96,8 @@ import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.modu
     MeCardComponent,
     MeTreeListModule,
     MeTagBoxModule,
+    MeAutocompleteModule,
+    MeFormModule
   ],
   exports: [
     MeAccordionModule,
@@ -144,6 +148,8 @@ import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.modu
     MeCardComponent,
     MeTreeListModule,
     MeTagBoxModule,
+    MeAutocompleteModule,
+    MeFormModule
   ],
 })
 export class MeComponentsModule {}

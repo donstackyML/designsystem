@@ -1,3 +1,7 @@
+export {MeFormDirective} from "./lib/directives/me-form/me-form.directive";
+
+export {MeAutocompleteDirective} from "./lib/directives/me-autocomplete/me-autocomplete.directive";
+
 export {MeBreadcrumbsComponent} from "./lib/components/me-breadcrumbs/me-breadcrumbs.component";
 
 export { MeCardComponent } from './lib/components/me-card/me-card.component';

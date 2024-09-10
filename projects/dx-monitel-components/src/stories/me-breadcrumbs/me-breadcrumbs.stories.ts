@@ -1,14 +1,13 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MeBreadcrumbsComponent } from "../../public-api";
-import { DxButtonModule } from 'devextreme-angular';
-import { MeIconComponent } from "../../public-api";
+import { DxMenuModule } from 'devextreme-angular/ui/menu';
 
 export default {
   title: 'Components/Breadcrumbs',
   component: MeBreadcrumbsComponent,
   decorators: [
     moduleMetadata({
-      imports: [MeBreadcrumbsComponent, DxButtonModule, MeIconComponent],
+      imports: [MeBreadcrumbsComponent, DxMenuModule],
     }),
   ],
   argTypes: {
@@ -20,11 +19,21 @@ export default {
 type Story = StoryObj<MeBreadcrumbsComponent>;
 
 const sampleItems = [
-  { label: 'Главная', url: '/', icon: 'globe' },
-  { label: 'Каталог', url: '/catalog', icon: 'globe' },
-  { label: 'Электроника', url: '/catalog/electronics', icon: 'globe' },
-  { label: 'Смартфоны', url: '/catalog/electronics/smartphones', icon: 'globe' },
-  { label: 'iPhone 12', url: '/catalog/electronics/smartphones/iphone-12' },
+  { text: 'Главная', url: '/', icon: 'home' },
+  { text: 'Каталог', url: '/catalog', icon: 'folder' },
+  {
+    text: 'Электроника',
+    url: '/catalog/electronics',
+    icon: 'product',
+    items: [
+      { text: 'Телефоны', url: '/catalog/electronics/phones' },
+      { text: 'Компьютеры', url: '/catalog/electronics/computers' },
+    ]
+  },
+  { text: 'Смартфоны', url: '/catalog/electronics/smartphones', icon: 'tel' },
+  { text: 'iPhone 12', url: '/catalog/electronics/smartphones/iphone-12' },
+  { text: 'Характеристики', url: '/catalog/electronics/smartphones/iphone-12/specs', icon: 'detailslayout' },
+  { text: 'Отзывы', url: '/catalog/electronics/smartphones/iphone-12/reviews', icon: 'comment' },
 ];
 
 export const Default: Story = {
@@ -33,41 +42,33 @@ export const Default: Story = {
   },
 };
 
-export const WithoutIcons: Story = {
-  args: {
-    items: sampleItems.map(({ label, url }) => ({ label, url })),
-  },
-};
-
-export const SingleItem: Story = {
-  args: {
-    items: sampleItems.slice(-1),
-  },
-};
-
-export const TwoItems: Story = {
-  args: {
-    items: sampleItems.slice(-2),
-  },
-};
-
 export const ManyItems: Story = {
   args: {
     items: [
       ...sampleItems,
-      { label: 'Характеристики', url: '/catalog/electronics/smartphones/iphone-12/specs', icon: 'globe' },
-      { label: 'Отзывы', url: '/catalog/electronics/smartphones/iphone-12/reviews', icon: 'globe' },
+      { text: 'Дополнительно 1', url: '/extra1', icon: 'add' },
+      { text: 'Дополнительно 2', url: '/extra2', icon: 'add' },
+      { text: 'Дополнительно 3', url: '/extra3', icon: 'add' },
     ],
   },
 };
 
-export const CustomIcons: Story = {
+export const WithNestedItems: Story = {
   args: {
     items: [
-      { label: 'Проекты', url: '/projects', icon: 'globe' },
-      { label: 'Разработка', url: '/projects/development', icon: 'globe' },
-      { label: 'Веб-приложения', url: '/projects/development/web', icon: 'globe' },
-      { label: 'E-commerce', url: '/projects/development/web/ecommerce', icon: 'globe' },
+      { text: 'Уровень 1', url: '/level1', icon: 'folder',
+        items: [
+          { text: 'Подуровень 1.1', url: '/level1/sublevel1' },
+          { text: 'Подуровень 1.2', url: '/level1/sublevel2' },
+        ]
+      },
+      { text: 'Уровень 2', url: '/level2', icon: 'folder',
+        items: [
+          { text: 'Подуровень 2.1', url: '/level2/sublevel1' },
+          { text: 'Подуровень 2.2', url: '/level2/sublevel2' },
+        ]
+      },
+      { text: 'Уровень 3', url: '/level3', icon: 'folder' },
     ],
   },
 };

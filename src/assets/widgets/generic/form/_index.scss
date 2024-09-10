@@ -37,3 +37,121 @@
 .dx-field-item-required-mark {
   color: $form-field-required-color;
 }
+
+.me-form {
+  &.me-form-small {
+    --form-group-caption-font-size: 16px;
+    --form-group-content-padding-bottom: 10px;
+    --field-item-vertical-padding: 10px;
+    --field-item-label-font-size: 12px;
+    --texteditor-input-font-size: 13px;
+    --texteditor-input-padding: 18px 14px 2px 14px;
+    --label-top-position: 9px;
+    --label-left-position: 11px;
+    --input-height: 36px;
+  }
+
+  &.me-form-medium {
+    --form-group-caption-font-size: 18px;
+    --form-group-content-padding-bottom: 15px;
+    --field-item-vertical-padding: 12px;
+    --field-item-label-font-size: 13px;
+    --texteditor-input-font-size: 14px;
+    --texteditor-input-padding: 20px 16px 4px 16px;
+    --label-top-position: 10px;
+    --label-left-position: 12px;
+    --input-height: 40px;
+  }
+
+  &.me-form-large {
+    --form-group-caption-font-size: 20px;
+    --form-group-content-padding-bottom: 20px;
+    --field-item-vertical-padding: 16px;
+    --field-item-label-font-size: 14px;
+    --texteditor-input-font-size: 16px;
+    --texteditor-input-padding: 24px 16px 6px 16px;
+    --label-top-position: 12px;
+    --label-left-position: 14px;
+    --input-height: 48px;
+  }
+
+  // Стиль для плавающих лейблов
+  .dx-editor-outlined {
+    &.dx-texteditor-with-label,
+    &.dx-texteditor-with-floating-label {
+      .dx-texteditor-label {
+        .dx-label {
+          span {
+            position: absolute;
+            top: var(--label-top-position);
+            left:var(--label-left-position);
+            font-size: var(--field-item-label-font-size);
+            padding: 0 4px;
+            transition: none;
+          }
+        }
+      }
+
+      &.dx-state-focused.dx-texteditor-with-floating-label {
+        .dx-label span {
+              position: absolute;
+              top: var(--label-top-position);
+              left:var(--label-left-position);
+              font-size: var(--field-item-label-font-size);
+              padding: 0 4px;
+              transition: none;
+            }
+          }
+      &.dx-state-hover.dx-texteditor-with-floating-label {
+        .dx-label span {
+          position: absolute;
+          top: var(--label-top-position);
+          left:var(--label-left-position);
+          font-size: var(--field-item-label-font-size);
+          padding: 0 4px;
+          transition: none;
+        }
+      }
+    }
+
+    &:not(.dx-texteditor-with-floating-label) {
+      .dx-texteditor-input {
+        padding: 12px 16px; // Исходные паддинги для стандартного инпута
+      }
+    }
+
+    .dx-texteditor-input {
+      font-size: var(--texteditor-input-font-size);
+      padding: var(--texteditor-input-padding); // Паддинги для флоатинг лейбла
+      height: var(--input-height);
+    }
+
+    &.dx-state-hover,
+    &.dx-state-active,
+    &.dx-state-focused {
+      .dx-texteditor-input-container {
+        &:after {
+          border-bottom: 1px solid;
+          border-top: 1px solid;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+  .dx-form-group-caption {
+    font-size: var(--form-group-caption-font-size);
+  }
+
+  .dx-form-group-content {
+    padding-bottom: var(--form-group-content-padding-bottom);
+  }
+
+  .dx-field-item {
+    padding-top: var(--field-item-vertical-padding);
+    padding-bottom: var(--field-item-vertical-padding);
+  }
+
+  .dx-field-item-label-text {
+    font-size: var(--field-item-label-font-size);
+  }
+}

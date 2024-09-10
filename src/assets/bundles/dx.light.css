@@ -10816,6 +10816,52 @@
   border-bottom: none;
 }
 
+/**
+* $name 10. Input background color
+* $type color
+*/
+/**
+* $name 20. Input border color
+* $type color
+*/
+/**
+* $name 30. Input text color
+* $type color
+*/
+/**
+* $name 40. Dropdown background color
+* $type color
+*/
+/**
+* $name 50. Dropdown item text color
+* $type color
+*/
+/**
+* $name 60. Dropdown item hover background color
+* $type color
+*/
+.dx-autocomplete.me-autocomplete-small {
+  height: 28px;
+}
+.dx-autocomplete.me-autocomplete-small .dx-texteditor-input {
+  font-size: 13px;
+  padding: 4px 8px;
+}
+.dx-autocomplete.me-autocomplete-medium {
+  height: 36px;
+}
+.dx-autocomplete.me-autocomplete-medium .dx-texteditor-input {
+  font-size: 14px;
+  padding: 6px 12px;
+}
+.dx-autocomplete.me-autocomplete-large {
+  height: 44px;
+}
+.dx-autocomplete.me-autocomplete-large .dx-texteditor-input {
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
 .dx-autocomplete .dx-texteditor-input {
   font-size: 1em;
 }
@@ -10834,6 +10880,46 @@
 }
 .dx-rtl.dx-autocomplete.dx-validation-pending .dx-texteditor-container .dx-pending-indicator, .dx-rtl .dx-autocomplete.dx-validation-pending .dx-texteditor-container .dx-pending-indicator {
   left: 8px;
+}
+
+.dx-autocomplete .dx-texteditor-input {
+  padding-left: 12px;
+  padding-right: 30px;
+}
+.dx-autocomplete .dx-placeholder {
+  padding-left: 15px;
+  left: 0;
+  right: 30px;
+}
+.dx-autocomplete .dx-placeholder::before {
+  padding-left: 0;
+}
+.dx-autocomplete .dx-texteditor-input {
+  padding-right: 30px;
+}
+.dx-autocomplete .dx-clear-button-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 100%;
+  right: 0;
+  top: 0;
+}
+.dx-autocomplete .dx-clear-button-area .dx-icon-clear {
+  line-height: 1;
+  font-size: 12px;
+}
+
+.dx-rtl .dx-autocomplete .dx-texteditor-input,
+.dx-autocomplete.dx-rtl .dx-texteditor-input {
+  padding-right: initial;
+  padding-left: 30px;
+}
+.dx-rtl .dx-autocomplete .dx-clear-button-area,
+.dx-autocomplete.dx-rtl .dx-clear-button-area {
+  right: initial;
+  left: 0;
 }
 
 /**
@@ -27279,6 +27365,90 @@ input.dx-hidden {
 .dx-field-item-required .dx-label > span::after,
 .dx-field-item-required-mark {
   color: #a50c31;
+}
+
+.me-form.me-form-small {
+  --form-group-caption-font-size: 16px;
+  --form-group-content-padding-bottom: 10px;
+  --field-item-vertical-padding: 10px;
+  --field-item-label-font-size: 12px;
+  --texteditor-input-font-size: 13px;
+  --texteditor-input-padding: 18px 14px 2px 14px;
+  --label-top-position: 9px;
+  --label-left-position: 11px;
+  --input-height: 36px;
+}
+.me-form.me-form-medium {
+  --form-group-caption-font-size: 18px;
+  --form-group-content-padding-bottom: 15px;
+  --field-item-vertical-padding: 12px;
+  --field-item-label-font-size: 13px;
+  --texteditor-input-font-size: 14px;
+  --texteditor-input-padding: 20px 16px 4px 16px;
+  --label-top-position: 10px;
+  --label-left-position: 12px;
+  --input-height: 40px;
+}
+.me-form.me-form-large {
+  --form-group-caption-font-size: 20px;
+  --form-group-content-padding-bottom: 20px;
+  --field-item-vertical-padding: 16px;
+  --field-item-label-font-size: 14px;
+  --texteditor-input-font-size: 16px;
+  --texteditor-input-padding: 24px 16px 6px 16px;
+  --label-top-position: 12px;
+  --label-left-position: 14px;
+  --input-height: 48px;
+}
+.me-form .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label span, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label span {
+  position: absolute;
+  top: var(--label-top-position);
+  left: var(--label-left-position);
+  font-size: var(--field-item-label-font-size);
+  padding: 0 4px;
+  transition: none;
+}
+.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-focused.dx-texteditor-with-floating-label .dx-label span, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-focused.dx-texteditor-with-floating-label .dx-label span {
+  position: absolute;
+  top: var(--label-top-position);
+  left: var(--label-left-position);
+  font-size: var(--field-item-label-font-size);
+  padding: 0 4px;
+  transition: none;
+}
+.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover.dx-texteditor-with-floating-label .dx-label span, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover.dx-texteditor-with-floating-label .dx-label span {
+  position: absolute;
+  top: var(--label-top-position);
+  left: var(--label-left-position);
+  font-size: var(--field-item-label-font-size);
+  padding: 0 4px;
+  transition: none;
+}
+.me-form .dx-editor-outlined:not(.dx-texteditor-with-floating-label) .dx-texteditor-input {
+  padding: 12px 16px;
+}
+.me-form .dx-editor-outlined .dx-texteditor-input {
+  font-size: var(--texteditor-input-font-size);
+  padding: var(--texteditor-input-padding);
+  height: var(--input-height);
+}
+.me-form .dx-editor-outlined.dx-state-hover .dx-texteditor-input-container:after, .me-form .dx-editor-outlined.dx-state-active .dx-texteditor-input-container:after, .me-form .dx-editor-outlined.dx-state-focused .dx-texteditor-input-container:after {
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  border-radius: 4px;
+}
+.me-form .dx-form-group-caption {
+  font-size: var(--form-group-caption-font-size);
+}
+.me-form .dx-form-group-content {
+  padding-bottom: var(--form-group-content-padding-bottom);
+}
+.me-form .dx-field-item {
+  padding-top: var(--field-item-vertical-padding);
+  padding-bottom: var(--field-item-vertical-padding);
+}
+.me-form .dx-field-item-label-text {
+  font-size: var(--field-item-label-font-size);
 }
 
 /**

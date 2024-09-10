@@ -1,146 +1,145 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DxDropDownButtonModule, DxButtonModule } from 'devextreme-angular';
-import {MeIconComponent} from "../me-icon/me-icon.component";
-
+import { DxMenuModule } from 'devextreme-angular/ui/menu';
 
 interface BreadcrumbItem {
-  label: string;
-  url: string;
+  text: string;
+  url?: string;
   icon?: string;
+  items?: BreadcrumbItem[];
 }
 
 @Component({
   selector: 'me-breadcrumbs',
   standalone: true,
-  imports: [CommonModule, DxDropDownButtonModule, DxButtonModule, MeIconComponent],
+  imports: [CommonModule, DxMenuModule],
   template: `
-    <nav class="breadcrumbs" aria-label="Breadcrumbs">
-      <ng-container *ngFor="let item of visibleItems; let last = last; let i = index">
-        <dx-button
-          *ngIf="!last"
-          [text]="item.label"
-          [icon]="item.icon"
-          stylingMode="text"
-          (onClick)="onItemClick(item)"
-        ></dx-button>
-        <dx-button
-          *ngIf="last"
-          [text]="item.label"
-          [icon]="item.icon"
-          stylingMode="text"
-          [disabled]="true"
-        ></dx-button>
+    <nav class="breadcrumbs" aria-label="Breadcrumbs" #breadcrumbsContainer>
+      <ng-container *ngFor="let item of items; let last = last; let i = index">
+        <div class="breadcrumb-item" #breadcrumbItem>
+          <dx-menu
+            [dataSource]="[item]"
+            [showFirstSubmenuMode]="{ name: 'onClick', delay: { show: 0, hide: 300 } }"
+            orientation="horizontal"
+            [hideSubmenuOnMouseLeave]="false"
+            (onItemClick)="onItemClick($event)"
+          >
+            <div *dxTemplate="let data of 'item'">
+              <i *ngIf="data.icon" class="dx-icon-{{data.icon}}"></i>
+              <span class="dx-menu-item-text">{{ data.text }}</span>
+              <i *ngIf="data.items?.length" class="dx-icon-chevrondown"></i>
+            </div>
+          </dx-menu>
+        </div>
         <span *ngIf="!last" class="separator">|</span>
       </ng-container>
-      <dx-drop-down-button #dropDownButton
-                           *ngIf="hiddenItems.length > 0"
-                           [items]="hiddenItems"
-                           (onItemClick)="onHiddenItemClick($event)"
-                           [dropDownOptions]="{ width: 'auto', minWidth: 250 }"
-                           stylingMode="text"
-                           icon="more_horiz"
-                           displayExpr="label"
-                           keyExpr="url"
-                           [useSelectMode]="false"
-                           class="breadcrumb-dropdown"
+      <dx-menu
+        *ngIf="hiddenItemsCount > 0"
+        #overflowMenu
+        [dataSource]="[{icon: 'more'}]"
+        [showFirstSubmenuMode]="{ name: 'onClick', delay: { show: 0, hide: 300 } }"
+        orientation="horizontal"
+        [hideSubmenuOnMouseLeave]="false"
+        (onItemClick)="showHiddenItems()"
       >
-        <div *dxTemplate="let item of 'item'">
-          <me-icon *ngIf="item.icon" [icon]="item.icon" size="small"></me-icon>
-          <span class="label">{{ item.label }}</span>
+        <div *dxTemplate="let data of 'item'">
+          <i class="dx-icon-{{data.icon}}"></i>
         </div>
-      </dx-drop-down-button>
+      </dx-menu>
     </nav>
-
   `,
   styles: [`
     .breadcrumbs {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
+      overflow: hidden;
     }
-
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
+    }
     .separator {
       margin: 0 8px;
       color: #6c757d;
     }
-
-    ::ng-deep .dx-button-mode-text {
-      padding: 0;
+    ::ng-deep .dx-menu-base {
+      display: inline-block;
     }
-
-    ::ng-deep .dx-button-mode-text .dx-icon {
-      margin-right: 4px;
+    ::ng-deep .dx-menu-horizontal > .dx-menu-item-wrapper {
+      display: inline-block;
     }
-
-    ::ng-deep .breadcrumb-dropdown .dx-dropdownbutton-action {
-      padding: 0;
-      min-width: auto;
-      border: none;
-      background: none;
-    }
-
-    ::ng-deep .breadcrumb-dropdown .dx-dropdownbutton-toggle {
-      display: none;
-    }
-
-    ::ng-deep .breadcrumb-dropdown .dx-button-content {
-      padding: 0;
-    }
-
-    ::ng-deep .breadcrumb-dropdown .dx-dropdownbutton {
-      width: 36px;
-      height: 36px;
+    ::ng-deep .dx-menu-item-content {
       display: flex;
       align-items: center;
-      justify-content: center;
     }
-
-    ::ng-deep .breadcrumb-dropdown .dx-button-mode-text.dx-dropdownbutton {
-      padding: 8px;
+    ::ng-deep .dx-icon {
+      margin-right: 5px;
     }
-
-    ::ng-deep .breadcrumb-dropdown .dx-icon-more_horiz {
-      font-size: 20px;
+    .dx-menu-item-text {
+      margin: 0 5px;
     }
-
-    ::ng-deep .breadcrumb-dropdown .dx-dropdownbutton-popup-wrapper .dx-item-content {
-      display: flex;
-      align-items: center;
-      padding: 8px;
-    }
-
-    ::ng-deep .breadcrumb-dropdown .dx-dropdownbutton-popup-wrapper {
-      min-width: 150px;
-      right: 0; /* Позиционирование выпадающего списка справа */
-    }
-
-    ::ng-deep .breadcrumb-dropdown .dx-overlay-content.dx-dropdownbutton-popup-content {
-      transform-origin: right top; /* Выпадающий список выходит справа */
-    }
-
-
   `]
 })
-export class MeBreadcrumbsComponent {
+export class MeBreadcrumbsComponent implements AfterViewInit {
   @Input() items: BreadcrumbItem[] = [];
-  @Input() maxVisibleItems: number = 3;
   @Output() itemClick = new EventEmitter<BreadcrumbItem>();
 
+  @ViewChild('breadcrumbsContainer') breadcrumbsContainer!: ElementRef;
 
-  get visibleItems(): BreadcrumbItem[] {
-    return this.items.slice(-this.maxVisibleItems);
+  private observer!: IntersectionObserver;
+  private visibleItems: Set<number> = new Set();
+  hiddenItemsCount = 0;
+
+  constructor(private renderer: Renderer2, private zone: NgZone) {}
+
+  ngAfterViewInit() {
+    this.setupIntersectionObserver();
   }
 
-  get hiddenItems(): BreadcrumbItem[] {
-    return this.items.slice(0, -this.maxVisibleItems);
+  private setupIntersectionObserver() {
+    const options = {
+      root: this.breadcrumbsContainer.nativeElement,
+      threshold: 1
+    };
+
+    this.zone.runOutsideAngular(() => {
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const index = parseInt(entry.target.getAttribute('data-index') || '0', 10);
+          if (entry.isIntersecting) {
+            this.visibleItems.add(index);
+          } else {
+            this.visibleItems.delete(index);
+          }
+        });
+
+        this.zone.run(() => {
+          this.hiddenItemsCount = this.items.length - this.visibleItems.size;
+        });
+      }, options);
+
+      this.breadcrumbsContainer.nativeElement.querySelectorAll('.breadcrumb-item').forEach((item: Element, index: number) => {
+        this.renderer.setAttribute(item, 'data-index', index.toString());
+        this.observer.observe(item);
+      });
+    });
   }
 
-  onItemClick(item: BreadcrumbItem): void {
-    this.itemClick.emit(item);
+  onItemClick(e: any): void {
+    const clickedItem = e.itemData as BreadcrumbItem;
+    if (clickedItem.url) {
+      this.itemClick.emit(clickedItem);
+    }
   }
 
-  onHiddenItemClick(e: any): void {
-    this.itemClick.emit(e.itemData);
+  showHiddenItems() {
+    // Реализация показа скрытых элементов
+    console.log('Показать скрытые элементы');
+  }
+
+  ngOnDestroy() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 }
