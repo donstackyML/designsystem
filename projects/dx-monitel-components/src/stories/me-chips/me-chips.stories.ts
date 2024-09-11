@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
-import { MeChipComponent } from "../../public-api";
-import { MeChipsContainerComponent } from "../../public-api";
+import { MeChipComponent } from '../../public-api';
+import { MeChipsContainerComponent } from '../../public-api';
 
 // Метаинформация для компонента MeChipsContainerComponent
 const chipsContainerMeta: Meta<MeChipsContainerComponent> = {
@@ -15,7 +15,8 @@ const chipsContainerMeta: Meta<MeChipsContainerComponent> = {
   argTypes: {
     chips: {
       control: 'object',
-      description: 'Массив объектов для отображения в виде чипов. Каждый объект содержит label, size, count, и опции для удаления и активности.',
+      description:
+        'Массив объектов для отображения в виде чипов. Каждый объект содержит label, size, count, и опции для удаления и активности.',
     },
     chipsChange: { action: 'chipsChange' },
   },
@@ -58,9 +59,7 @@ export const Default: ChipsContainerStory = {
 export const SingleChip: ChipsContainerStory = {
   ...ChipsContainerTemplate,
   args: {
-    chips: [
-      { label: 'Одиночный чип', size: 'medium', count: 1 }
-    ],
+    chips: [{ label: 'Одиночный чип', size: 'medium', count: 1 }],
   },
 };
 
@@ -68,8 +67,20 @@ export const DisabledChips: ChipsContainerStory = {
   ...ChipsContainerTemplate,
   args: {
     chips: [
-      { label: 'Отключенный чип', size: 'medium', count: 1, removable: false, disabled: true },
-      { label: 'Еще один отключенный чип', size: 'large', count: 2, removable: false, disabled: true }
+      {
+        label: 'Отключенный чип',
+        size: 'medium',
+        count: 1,
+        removable: false,
+        disabled: true,
+      },
+      {
+        label: 'Еще один отключенный чип',
+        size: 'large',
+        count: 2,
+        removable: false,
+        disabled: true,
+      },
     ],
   },
 };
@@ -79,7 +90,12 @@ export const ChipsWithoutRemoval: ChipsContainerStory = {
   args: {
     chips: [
       { label: 'Чип без удаления', size: 'small', count: 1, removable: false },
-      { label: 'Еще один чип без удаления', size: 'large', count: 2, removable: false }
+      {
+        label: 'Еще один чип без удаления',
+        size: 'large',
+        count: 2,
+        removable: false,
+      },
     ],
   },
 };

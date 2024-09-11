@@ -1,26 +1,30 @@
 import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
 import * as MeCardStories from "./me-card.stories";
 import { moduleMetadata } from "@storybook/angular";
-import { DxButtonModule } from 'devextreme-angular';
-import { CommonModule } from '@angular/common';
+import { DxButtonModule } from "devextreme-angular";
+import { CommonModule } from "@angular/common";
 import { MeCardComponent } from "../../public-api";
-import { MeIconComponent, MeChipComponent, MeChipsContainerComponent } from "../../public-api";
+import {
+  MeIconComponent,
+  MeChipComponent,
+  MeChipsContainerComponent,
+} from "../../public-api";
 
 <Meta
-  title="Components/MeCard"
+  title="Components/MeCard(RC)"
   component={MeCardComponent}
   decorators={[
     moduleMetadata({
       imports: [
         CommonModule,
-      DxButtonModule,
-      MeCardComponent,
-      MeIconComponent,
-      MeChipComponent,
-      MeChipsContainerComponent
-  ],
-  }),
-    ]}
+        DxButtonModule,
+        MeCardComponent,
+        MeIconComponent,
+        MeChipComponent,
+        MeChipsContainerComponent,
+      ],
+    }),
+  ]}
   of={MeCardStories}
 />
 
@@ -66,10 +70,14 @@ import { MeIconComponent, MeChipComponent, MeChipsContainerComponent } from "../
 
 ### Большая карточка
 
-  <Story name="LargeCard" of={MeCardStories.LargeCard} />
+{" "}
 
-  <Source
-    code={`<me-card [size]="'large'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
+<Story name="LargeCard" of={MeCardStories.LargeCard} />
+
+{" "}
+
+<Source
+  code={`<me-card [size]="'large'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
     <ng-container card-header-left>
     <me-icon icon="home" size="medium"></me-icon>
     <span>Card Title</span>
@@ -116,10 +124,14 @@ import { MeIconComponent, MeChipComponent, MeChipsContainerComponent } from "../
 
 ### Карточка с переполнением
 
-  <Story name="WithOverflow" of={MeCardStories.WithOverflow} />
+{" "}
 
-  <Source
-    code={`<me-card [size]="'small'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
+<Story name="WithOverflow" of={MeCardStories.WithOverflow} />
+
+{" "}
+
+<Source
+  code={`<me-card [size]="'small'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
     <ng-container card-header-left>
     <me-icon icon="description" size="medium"></me-icon>
     <span>Overflow Example</span>
@@ -133,9 +145,9 @@ import { MeIconComponent, MeChipComponent, MeChipsContainerComponent } from "../
     <dx-button text="Close" type="normal" stylingMode="outlined" (onClick)="onCloseClick()"></dx-button>
     </ng-container>
     </me-card>`}
-      dark
-      language="html"
-    />
+  dark
+  language="html"
+/>
 
     ## Перечень свойств
 
@@ -186,7 +198,8 @@ import { MeIconComponent, MeChipComponent, MeChipsContainerComponent } from "../
     onCloseClick() {
       console.log('Close button clicked');
     }
+
 `}
-  dark
-  language="typescript"
+dark
+language="typescript"
 />

@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MeCardComponent } from "../../public-api";
-import { MeIconComponent } from "../../public-api";
-import { MeChipComponent, MeChipsContainerComponent } from "../../public-api";
+import { MeCardComponent } from '../../public-api';
+import { MeIconComponent } from '../../public-api';
+import { MeChipComponent, MeChipsContainerComponent } from '../../public-api';
 import { DxButtonModule } from 'devextreme-angular';
 import { CommonModule } from '@angular/common';
 
@@ -16,7 +16,7 @@ export default {
         MeCardComponent,
         MeIconComponent,
         MeChipComponent,
-        MeChipsContainerComponent
+        MeChipsContainerComponent,
       ],
     }),
   ],
@@ -24,22 +24,26 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Определяет размер карточки. Возможные значения: small, medium, large.',
+      description:
+        'Определяет размер карточки. Возможные значения: small, medium, large.',
       defaultValue: 'medium',
     },
     showHeader: {
       control: 'boolean',
-      description: 'Показывать ли заголовок карточки. True - отображать, False - скрыть.',
+      description:
+        'Показывать ли заголовок карточки. True - отображать, False - скрыть.',
       defaultValue: true,
     },
     showFooter: {
       control: 'boolean',
-      description: 'Показывать ли нижний колонтитул карточки. True - отображать, False - скрыть.',
+      description:
+        'Показывать ли нижний колонтитул карточки. True - отображать, False - скрыть.',
       defaultValue: true,
     },
     contentHeight: {
       control: 'text',
-      description: 'Максимальная высота содержимого карточки. Можно задать значение в px, %, и т.д.',
+      description:
+        'Максимальная высота содержимого карточки. Можно задать значение в px, %, и т.д.',
       defaultValue: '300px',
     },
   },
@@ -80,11 +84,13 @@ const Template: Story = {
         </ng-container>
       </me-card>
     `,
-    styles: [`
+    styles: [
+      `
       .small-icon {
         font-size: 24px;
       }
-    `]
+    `,
+    ],
   }),
 };
 

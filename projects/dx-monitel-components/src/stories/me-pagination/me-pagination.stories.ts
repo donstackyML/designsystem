@@ -1,5 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MePaginationComponent } from "../../public-api";
+import { MePaginationComponent } from '../../public-api';
 import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
 
 export default {
@@ -29,7 +29,8 @@ export default {
     },
     useButtons: {
       control: { type: 'boolean' },
-      description: 'Использовать кнопки вместо выпадающего списка для выбора количества элементов на странице',
+      description:
+        'Использовать кнопки вместо выпадающего списка для выбора количества элементов на странице',
     },
     size: {
       control: 'select',
@@ -61,7 +62,8 @@ const Template: Story = {
     props: {
       ...args,
       onPageChange: (e: any) => console.log('Страница изменена', e),
-      onItemsPerPageChange: (e: any) => console.log('Изменено количество элементов на странице', e),
+      onItemsPerPageChange: (e: any) =>
+        console.log('Изменено количество элементов на странице', e),
     },
     template: `
       <me-pagination

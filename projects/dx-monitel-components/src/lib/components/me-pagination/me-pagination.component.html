@@ -20,16 +20,9 @@
     </ng-template>
   </div>
 
-  
-
   <div class="me-pagination__controls" [ngClass]="size">
     <span class="me-pagination__info">Записей: {{ totalItems }}</span>
-    <dx-button
-      stylingMode="text"
-      [disabled]="currentPage === 1"
-      (onClick)="prevPage()"
-      icon="chevronleft"
-    ></dx-button>
+    <dx-button stylingMode="text" [disabled]="currentPage === 1" (onClick)="prevPage()" icon="chevronleft"></dx-button>
 
     <ng-container *ngFor="let page of pages; trackBy: trackByFn">
       <ng-container *ngIf="page !== '...'">
@@ -43,12 +36,6 @@
       <span *ngIf="page === '...'" class="me-pagination__ellipsis">...</span>
     </ng-container>
 
-    <dx-button
-      stylingMode="text"
-      [disabled]="currentPage === totalPages"
-      (onClick)="nextPage()"
-      [ngClass]="size"
-      icon="chevronright"
-    ></dx-button>
+    <dx-button stylingMode="text" [disabled]="currentPage === totalPages" (onClick)="nextPage()" [ngClass]="size" icon="chevronright"></dx-button>
   </div>
 </div>
