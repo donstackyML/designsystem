@@ -1,74 +1,84 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MeBreadcrumbsComponent } from "../../public-api";
-import { DxMenuModule } from 'devextreme-angular/ui/menu';
+import { action } from '@storybook/addon-actions';
+import {MeBreadcrumbsComponent} from "../../lib/components/me-breadcrumbs/me-breadcrumbs.component";
 
-export default {
-  title: 'Components/Breadcrumbs',
+const meta: Meta<MeBreadcrumbsComponent> = {
+  title: 'Components/MeBreadcrumbs',
   component: MeBreadcrumbsComponent,
   decorators: [
     moduleMetadata({
-      imports: [MeBreadcrumbsComponent, DxMenuModule],
+      imports: [MeBreadcrumbsComponent],
     }),
   ],
   argTypes: {
-    items: { control: 'object' },
-    itemClick: { action: 'itemClicked' },
+    items: {
+      control: 'object',
+      description: 'Массив элементов хлебных крошек',
+    },
+    itemClick: {
+      action: 'itemClick',
+      description: 'Событие, возникающее при клике на элемент',
+    },
   },
-} as Meta<MeBreadcrumbsComponent>;
+};
 
+export default meta;
 type Story = StoryObj<MeBreadcrumbsComponent>;
-
-const sampleItems = [
-  { text: 'Главная', url: '/', icon: 'home' },
-  { text: 'Каталог', url: '/catalog', icon: 'folder' },
-  {
-    text: 'Электроника',
-    url: '/catalog/electronics',
-    icon: 'product',
-    items: [
-      { text: 'Телефоны', url: '/catalog/electronics/phones' },
-      { text: 'Компьютеры', url: '/catalog/electronics/computers' },
-    ]
-  },
-  { text: 'Смартфоны', url: '/catalog/electronics/smartphones', icon: 'tel' },
-  { text: 'iPhone 12', url: '/catalog/electronics/smartphones/iphone-12' },
-  { text: 'Характеристики', url: '/catalog/electronics/smartphones/iphone-12/specs', icon: 'detailslayout' },
-  { text: 'Отзывы', url: '/catalog/electronics/smartphones/iphone-12/reviews', icon: 'comment' },
-];
 
 export const Default: Story = {
   args: {
-    items: sampleItems,
-  },
-};
-
-export const ManyItems: Story = {
-  args: {
     items: [
-      ...sampleItems,
-      { text: 'Дополнительно 1', url: '/extra1', icon: 'add' },
-      { text: 'Дополнительно 2', url: '/extra2', icon: 'add' },
-      { text: 'Дополнительно 3', url: '/extra3', icon: 'add' },
+      { text: 'Home', url: '/', icon: 'home' },
+      { text: 'Products', url: '/products' },
+      { text: 'Laptops', url: '/products/laptops' },
     ],
   },
+  render: (args) => ({
+    props: {
+      ...args,
+      itemClick: action('itemClick'),
+    },
+  }),
 };
 
-export const WithNestedItems: Story = {
+export const WithSubmenus: Story = {
   args: {
     items: [
-      { text: 'Уровень 1', url: '/level1', icon: 'folder',
+      { text: 'Home', url: '/', icon: 'home' },
+      {
+        text: 'Products',
         items: [
-          { text: 'Подуровень 1.1', url: '/level1/sublevel1' },
-          { text: 'Подуровень 1.2', url: '/level1/sublevel2' },
+          { text: 'Laptops', url: '/products/laptops' },
+          { text: 'Smartphones', url: '/products/smartphones' },
         ]
       },
-      { text: 'Уровень 2', url: '/level2', icon: 'folder',
-        items: [
-          { text: 'Подуровень 2.1', url: '/level2/sublevel1' },
-          { text: 'Подуровень 2.2', url: '/level2/sublevel2' },
-        ]
-      },
-      { text: 'Уровень 3', url: '/level3', icon: 'folder' },
+      { text: 'Laptops', url: '/products/laptops' },
     ],
   },
+  render: (args) => ({
+    props: {
+      ...args,
+      itemClick: action('itemClick'),
+    },
+  }),
+};
+
+export const LongBreadcrumbs: Story = {
+  args: {
+    items: [
+      { text: 'Home', url: '/', icon: 'home' },
+      { text: 'Category', url: '/category' },
+      { text: 'Subcategory', url: '/category/subcategory' },
+      { text: 'Product Type', url: '/category/subcategory/product-type' },
+      { text: 'Brand', url: '/category/subcategory/product-type/brand' },
+      { text: 'Model', url: '/category/subcategory/product-type/brand/model' },
+      { text: 'SKU', url: '/category/subcategory/product-type/brand/model/sku' },
+    ],
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      itemClick: action('itemClick'),
+    },
+  }),
 };

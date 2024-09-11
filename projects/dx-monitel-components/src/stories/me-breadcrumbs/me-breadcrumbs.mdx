@@ -1,185 +1,64 @@
-import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxMenuModule } from "devextreme-angular/ui/menu";
-import { MeBreadcrumbsComponent } from "../../public-api";
-import { MeIconComponent } from "../../public-api";
+import { Meta, Story, ArgsTable } from '@storybook/addon-docs';
 
-<Meta
-  title="Components/Breadcrumbs"
-  component={MeBreadcrumbsComponent}
-  decorators={[
-    moduleMetadata({
-      imports: [DxMenuModule, MeIconComponent],
-    }),
-    ]}
-  of={BreadcrumbsStories}
-/>
+import * as BreadcrumbsStories from './me-breadcrumbs.stories';
+import {MeBreadcrumbsComponent} from "../../public-api";
 
-# Breadcrumbs
+<Meta title="Components/MeBreadcrumbs" component={MeBreadcrumbsComponent} of={BreadcrumbsStories} />
 
-## Компонент MeBreadcrumbs
+# MeBreadcrumbs
 
-Компонент `MeBreadcrumbs` предоставляет навигационную цепочку для отображения текущего положения пользователя в иерархической структуре сайта или приложения. Он поддерживает древовидную структуру данных и адаптивное поведение при ограничении ширины.
+MeBreadcrumbs - это компонент для создания навигационных цепочек ("хлебных крошек") в вашем приложении.
 
-<Canvas name="Default" of={BreadcrumbsStories.Default} />
-<Controls of={BreadcrumbsStories.Default} />
+## Основные возможности
 
-<Source of={BreadcrumbsStories.Default} dark />
+- Отображение иерархии навигации
+- Поддержка иконок для элементов
+- Возможность создания подменю для элементов
+- Адаптивный дизайн с автоматическим скрытием элементов при недостатке места
 
-## Особенности
-
-- Отображение иерархической структуры навигации
-- Поддержка иконок для каждого элемента
-- Адаптивное поведение при ограничении ширины
-- Возможность настройки обрезания элементов слева или справа
-- Поддержка вложенных меню для каждого элемента
-- Возможность переноса элементов на новую строку
-
-## Примеры использования:
+## Примеры использования
 
 ### Базовое использование
 
-<Canvas name="Default" of={BreadcrumbsStories.Default} />
+<Story of={BreadcrumbsStories.Default} />
 
-<Source
-  code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-  (itemClick)="onItemClick($event)"
-></me-breadcrumbs>
-`}
-  dark
-  language="html"
-/>
+### С подменю
 
-### С ограничением ширины и обрезанием слева
+<Story of={BreadcrumbsStories.WithSubmenus} />
 
-<Canvas name="TruncatedFromLeft" of={BreadcrumbsStories.TruncatedFromLeft} />
+### Длинные хлебные крошки
 
-<Source
-  code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-  [maxWidth]="'400px'"
-  [truncateFrom]="'left'"
-  (itemClick)="onItemClick($event)"
-></me-breadcrumbs>
-`}
-  dark
-  language="html"
-/>
+<Story of={BreadcrumbsStories.LongBreadcrumbs} />
 
-### С переносом на новую строку
+## API
 
-<Canvas name="Wrapped" of={BreadcrumbsStories.Wrapped} />
+<ArgsTable of={MeBreadcrumbsComponent} />
 
-<Source
-  code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-  [wrap]="true"
-  (itemClick)="onItemClick($event)"
-></me-breadcrumbs>
-`}
-  dark
-  language="html"
-/>
+### BreadcrumbItem
 
-## Перечень свойств
+Интерфейс `BreadcrumbItem` описывает структуру элемента хлебных крошек:
 
-<Controls story={BreadcrumbsStories.Default} />
+```typescript
+interface BreadcrumbItem {
+  text: string;    // Текст элемента
+  url?: string;    // URL для перехода (опционально)
+  icon?: string;   // Иконка элемента (опционально)
+  items?: BreadcrumbItem[]; // Подэлементы для создания подменю (опционально)
+}
+```
 
-## Работа с древовидными данными
+## События
 
-Компонент поддерживает древовидную структуру данных. Каждый элемент может иметь вложенные элементы, которые отображаются в выпадающем меню:
+- `itemClick`: Событие, возникающее при клике на элемент хлебных крошек. Передает объект `BreadcrumbItem`.
 
-<Source
-  code={`
-const breadcrumbItems = [
-  {
-    label: 'Главная',
-    url: '/',
-    icon: 'globe',
-    items: [
-      { label: 'Подпункт 1', url: '/sub1' },
-      { label: 'Подпункт 2', url: '/sub2' },
-    ]
-  },
-  {
-    label: 'Каталог',
-    url: '/catalog',
-    icon: 'globe',
-    items: [
-      { label: 'Электроника', url: '/catalog/electronics' },
-      { label: 'Одежда', url: '/catalog/clothing' },
-    ]
-  },
-  // ...
-];
-`}
-  dark
-  language="typescript"
-/>
+## Стилизация
 
-## Адаптивное поведение
+Компонент использует DevExtreme Menu для отображения элементов, что позволяет легко кастомизировать внешний вид с помощью CSS. Основные классы для стилизации:
 
-Компонент автоматически адаптируется при ограничении ширины:
-
-- Если указан `maxWidth`, элементы, не помещающиеся в контейнер, скрываются в выпадающем меню.
-- Направление обрезания (слева или справа) определяется параметром `truncateFrom`.
-- При установке `wrap` в `true`, элементы переносятся на новую строку вместо скрытия.
-
-## Обработка событий
-
-Компонент emit'ит событие `itemClick` при клике на элемент хлебных крошек:
-
-<Source
-  code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-  (itemClick)="onItemClick($event)"
-></me-breadcrumbs>
-
-    // В вашем компоненте:
-    onItemClick(item: BreadcrumbItem) {
-      console.log('Clicked item:', item);
-      // Здесь вы можете добавить навигацию или другую логику
-    }
-`}
-  dark
-  language="typescript"
-/>
-
-## Кастомизация
-
-### Использование иконок
-
-Вы можете добавить иконки к элементам хлебных крошек, указав свойство `icon` для каждого элемента:
-
-<Source
-  code={`
-const breadcrumbItems = [
-  { label: 'Главная', url: '/', icon: 'globe' },
-  { label: 'Каталог', url: '/catalog', icon: 'folder' },
-  { label: 'Электроника', url: '/catalog/electronics', icon: 'smartphone' },
-  // ...
-];
-`}
-  dark
-  language="typescript"
-/>
+- `.breadcrumbs`: Контейнер для всех элементов
+- `.breadcrumb-item`: Отдельный элемент хлебных крошек
+- `.separator`: Разделитель между элементами
 
 ## Доступность
 
-- Компонент использует семантический тег `<nav>` с `aria-label="Breadcrumbs"` для улучшения доступности.
-- Убедитесь, что все элементы навигации имеют понятные и описательные метки.
-- При использовании иконок, предоставьте текстовые альтернативы для пользователей, использующих программы чтения с экрана.
-
-## Рекомендации по использованию
-
-1. Используйте хлебные крошки для навигации в иерархических структурах с глубиной более двух уровней.
-2. Убедитесь, что последний элемент в цепочке хлебных крошек соответствует текущей странице или разделу.
-3. При использовании `maxWidth`, выберите значение `truncateFrom`, которое лучше всего подходит для вашего случая использования.
-4. Если ваша навигационная структура имеет много уровней, рассмотрите возможность использования вложенных меню для промежуточных уровней.
-5. Используйте иконки умеренно, чтобы не перегружать интерфейс визуально.
+Компонент использует семантический тег `<nav>` с атрибутом `aria-label="Breadcrumbs"` для улучшения доступности.
