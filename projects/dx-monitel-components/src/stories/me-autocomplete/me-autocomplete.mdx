@@ -1,44 +1,49 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
-import * as AutocompleteStories from './me-autocomplete.stories';
-import {MeAutocompleteDirective} from "../../public-api";
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import * as AutocompleteStories from "./me-autocomplete.stories";
+import { MeAutocompleteDirective } from "../../public-api";
 
-<Meta of={AutocompleteStories} />
+<Meta
+  title="Компоненты/Autocomplete"
+  component={MeAutocompleteDirective}
+  of={AutocompleteStories}
+/>
 
 # Autocomplete
 
 Компонент Autocomplete с кастомными стилями и поведением.
 
-<Canvas of={AutocompleteStories.Default} />
+<Story of={AutocompleteStories.Default} />
 
 ## Свойства
 
-<ArgsTable of={MeAutocompleteDirective} />
+<Controls of={AutocompleteStories.Default} />
 
 ## Размеры
 
 Autocomplete поддерживает три размера: small, medium (по умолчанию) и large.
 
-<Canvas>
-  <Story of={AutocompleteStories.Small} />
-  <Story of={AutocompleteStories.Default} />
-  <Story of={AutocompleteStories.Large} />
-</Canvas>
+<Story of={AutocompleteStories.Small} />
+<Story of={AutocompleteStories.Default} />
+<Story of={AutocompleteStories.Large} />
 
 ## Поведение скроллбара
 
 Скроллбар может быть всегда видимым или появляться только при наведении.
 
-<Canvas>
-  <Story of={AutocompleteStories.Default} />
-  <Story of={AutocompleteStories.ScrollOnHover} />
-</Canvas>
+<Story of={AutocompleteStories.Default} />
+<Story of={AutocompleteStories.ScrollOnHover} />
 
 ## Использование
 
-```html
+<Source
+  code={`
 <dx-autocomplete
   meAutocomplete
   [size]="'medium'"
   [showScrollbar]="'always'"
   [dataSource]="['Apple', 'Banana', 'Orange']"
 ></dx-autocomplete>
+  `}
+  language="html"
+  dark
+/>
