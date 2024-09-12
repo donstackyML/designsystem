@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "FormStoryArgs",
-            "id": "interface-FormStoryArgs-5dfe5444d1c37249c08cb274fe0d4a18eb5ef284ba062740639e562ca33985dd8f41c445c9d743ed14920fae0de4f087c58a99d6db8e5035225d39f458542e55",
+            "id": "interface-FormStoryArgs-08031ec4bf3ed0147343cab41f65e75bafccbece06a8aecdde37b6887036acfc77c296e3e16cde617a42b3138d5283b73e39bc9f69622b08f32419fa29aea74e",
             "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { moduleMetadata, Meta, StoryObj, StoryFn } from '@storybook/angular';\nimport { DxFormModule } from 'devextreme-angular';\nimport { MeFormDirective } from \"../../public-api\";\n\ninterface FormStoryArgs {\n  size: 'small' | 'medium' | 'large';\n  labelMode: 'outside' | 'static' | 'floating' | 'hidden';\n  labelLocation: 'left' | 'top';\n  colCount: 'auto' | 1 | 2 | 3;\n  readOnly: boolean;\n  showColonAfterLabel: boolean;\n}\n\nexport default {\n  title: 'Components/Form',\n  component: MeFormDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxFormModule],\n      declarations: [MeFormDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    labelMode: {\n      control: 'select',\n      options: ['outside', 'static', 'floating', 'hidden'],\n    },\n    labelLocation: {\n      control: 'radio',\n      options: ['left', 'top'],\n    },\n    colCount: {\n      control: 'select',\n      options: ['auto', 1, 2, 3],\n    },\n    readOnly: {\n      control: 'boolean',\n    },\n    showColonAfterLabel: {\n      control: 'boolean',\n    },\n  },\n} as Meta<FormStoryArgs>;\n\ntype Story = StoryObj<FormStoryArgs>;\n\nconst Template: StoryFn<FormStoryArgs> = (args) => ({\n  props: {\n    ...args,\n    formData: {\n      firstName: 'John',\n      lastName: 'Doe',\n      email: 'john.doe@example.com',\n      phone: '+1 (555) 123-4567',\n    },\n  },\n  template: `\n    <dx-form\n      meForm\n      [size]=\"size\"\n      [formData]=\"formData\"\n      [labelMode]=\"labelMode\"\n      [labelLocation]=\"labelLocation\"\n      [colCount]=\"colCount\"\n      [readOnly]=\"readOnly\"\n      [showColonAfterLabel]=\"showColonAfterLabel\"\n    >\n      <dxi-item dataField=\"firstName\"></dxi-item>\n      <dxi-item dataField=\"lastName\"></dxi-item>\n      <dxi-item dataField=\"email\"></dxi-item>\n      <dxi-item dataField=\"phone\"></dxi-item>\n    </dx-form>\n  `,\n});\n\nexport const Default: Story = {\n  render: Template,\n  args: {\n    size: 'medium',\n    labelMode: 'static',\n    labelLocation: 'top',\n    colCount: 2,\n    readOnly: false,\n    showColonAfterLabel: true,\n  },\n};\n\nexport const SmallSize: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n};\n\nexport const MediumSize: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'medium',\n  },\n};\n\nexport const LargeSize: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n};\n\nexport const FloatingLabels: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    labelMode: 'floating',\n  },\n};\n\nexport const LeftLabels: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    labelLocation: 'left',\n  },\n};\n\nexport const SingleColumn: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    colCount: 1,\n  },\n};\n\nexport const ReadOnly: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    readOnly: true,\n  },\n};\n\nexport const WithoutColon: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    showColonAfterLabel: false,\n  },\n};\n\nexport const WithGrouping: Story = {\n  render: Template,\n  args: Default.args,\n};\n\nWithGrouping.decorators = [\n  (Story) => ({\n    template: `\n      <dx-form\n        meForm\n        [size]=\"size\"\n        [formData]=\"formData\"\n        [labelMode]=\"labelMode\"\n        [labelLocation]=\"labelLocation\"\n        [colCount]=\"colCount\"\n        [readOnly]=\"readOnly\"\n        [showColonAfterLabel]=\"showColonAfterLabel\"\n      >\n        <dxi-item itemType=\"group\" caption=\"Personal Information\">\n          <dxi-item dataField=\"firstName\"></dxi-item>\n          <dxi-item dataField=\"lastName\"></dxi-item>\n          <dxi-item dataField=\"email\"></dxi-item>\n          <dxi-item dataField=\"phone\"></dxi-item>\n        </dxi-item>\n        <dxi-item itemType=\"group\" caption=\"Address Information\">\n          <dxi-item dataField=\"address\"></dxi-item>\n          <dxi-item dataField=\"city\"></dxi-item>\n          <dxi-item dataField=\"state\"></dxi-item>\n          <dxi-item dataField=\"zipCode\"></dxi-item>\n        </dxi-item>\n      </dx-form>\n    `,\n  }),\n];\n",
+            "sourceCode": "import { moduleMetadata, Meta, StoryObj, StoryFn } from '@storybook/angular';\nimport { DxFormModule } from 'devextreme-angular';\nimport { MeFormDirective } from \"../../public-api\";\n\ninterface FormStoryArgs {\n  size: 'small' | 'medium' | 'large';\n  labelMode: 'outside' | 'floating' | 'hidden';\n  labelLocation: 'left' | 'top';\n  colCount: 'auto' | 1 | 2 | 3;\n  readOnly: boolean;\n  showColonAfterLabel: boolean;\n}\n\nexport default {\n  title: 'Components/Form(RC)',\n  component: MeFormDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxFormModule],\n      declarations: [MeFormDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    labelMode: {\n      control: 'select',\n      options: ['outside', 'floating', 'hidden'],\n    },\n    labelLocation: {\n      control: 'radio',\n      options: ['left', 'top'],\n    },\n    colCount: {\n      control: 'select',\n      options: ['auto', 1, 2, 3],\n    },\n    readOnly: {\n      control: 'boolean',\n    },\n    showColonAfterLabel: {\n      control: 'boolean',\n    },\n  },\n} as Meta<FormStoryArgs>;\n\ntype Story = StoryObj<FormStoryArgs>;\n\nconst Template: StoryFn<FormStoryArgs> = (args) => ({\n  props: {\n    ...args,\n    formData: {\n      firstName: 'John',\n      lastName: 'Doe',\n      email: 'john.doe@example.com',\n      phone: '+1 (555) 123-4567',\n    },\n  },\n  template: `\n    <dx-form\n      meForm\n      [size]=\"size\"\n      [formData]=\"formData\"\n      [labelMode]=\"labelMode\"\n      [labelLocation]=\"labelLocation\"\n      [colCount]=\"colCount\"\n      [readOnly]=\"readOnly\"\n      [showColonAfterLabel]=\"showColonAfterLabel\"\n    >\n      <dxi-item dataField=\"firstName\"></dxi-item>\n      <dxi-item dataField=\"lastName\"></dxi-item>\n      <dxi-item dataField=\"email\"></dxi-item>\n      <dxi-item dataField=\"phone\"></dxi-item>\n    </dx-form>\n  `,\n});\n\nexport const Default: Story = {\n  render: Template,\n  args: {\n    size: 'medium',\n    labelMode: 'floating',\n    labelLocation: 'top',\n    colCount: 2,\n    readOnly: false,\n    showColonAfterLabel: true,\n  },\n};\n\nexport const SmallSize: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n};\n\nexport const MediumSize: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'medium',\n  },\n};\n\nexport const LargeSize: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n};\n\nexport const FloatingLabels: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    labelMode: 'floating',\n  },\n};\n\nexport const LeftLabels: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    labelLocation: 'left',\n  },\n};\n\nexport const SingleColumn: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    colCount: 1,\n  },\n};\n\nexport const ReadOnly: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    readOnly: true,\n  },\n};\n\nexport const WithoutColon: Story = {\n  render: Template,\n  args: {\n    ...Default.args,\n    showColonAfterLabel: false,\n  },\n};\n",
             "properties": [
                 {
                     "name": "colCount",
@@ -32,7 +32,7 @@
                     "name": "labelMode",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "\"outside\" | \"static\" | \"floating\" | \"hidden\"",
+                    "type": "\"outside\" | \"floating\" | \"hidden\"",
                     "optional": false,
                     "description": "",
                     "line": 7
@@ -1163,7 +1163,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'always',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-autocomplete\n        meAutocomplete\n        [size]=\"size\"\n        [showScrollbar]=\"showScrollbar\"\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\n      ></dx-autocomplete>\n    `,\n  }),\n}"
+                "defaultValue": "{\n  args: {\n    dataSource: ['Option 1', 'Option 2', 'Option 3'],\n  },\n}"
             },
             {
                 "name": "Default",
@@ -1209,16 +1209,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'medium',\n    showHeader: true,\n    showFooter: true,\n    contentHeight: '300px',\n  },\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1234,6 +1224,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n    disabled: false,\n    firstDayOfWeek: 1,\n    zoomLevel: 'month',\n    weekNumberRule: 'firstDay',\n    value: new Date(),\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'medium',\n    showHeader: true,\n    showFooter: true,\n    contentHeight: '300px',\n  },\n}"
             },
             {
                 "name": "Default",
@@ -1279,21 +1279,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  render: Template,\n  args: {\n    size: 'medium',\n    labelMode: 'static',\n    labelLocation: 'top',\n    colCount: 2,\n    readOnly: false,\n    showColonAfterLabel: true,\n  },\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  ...Template,\n  args: {},\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: Template,\n  args: {\n    size: 'medium',\n    labelMode: 'floating',\n    labelLocation: 'top',\n    colCount: 2,\n    readOnly: false,\n    showColonAfterLabel: true,\n  },\n}"
             },
             {
                 "name": "Default",
@@ -1753,7 +1753,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'large',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
+                "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
             },
             {
                 "name": "Large",
@@ -1974,16 +1974,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'medium',\n  },\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<MeAutocompleteDirective>",
-                "defaultValue": "{\n  title: 'Components/Autocomplete',\n  component: MeAutocompleteDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxAutocompleteModule],\n      declarations: [MeAutocompleteDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'radio' },\n    },\n    showScrollbar: {\n      options: ['always', 'onHover'],\n      control: { type: 'radio' },\n    },\n  },\n}"
             },
             {
                 "name": "meta",
@@ -2226,6 +2216,16 @@
                 "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperScroll',\n      // boundary: '',\n      // collision: 'fit',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperScroll',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopupDirective, DxScrollViewComponent],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperScroll\" style=\"height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n          ${words}\n          </dx-scroll-view>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
             },
             {
+                "name": "ScrollNever",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    ...Default.args,\n    showScrollbar: 'never',\n  },\n}"
+            },
+            {
                 "name": "ScrollOnHover",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2233,7 +2233,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'onHover',\n  },\n  render: Default.render,\n}"
+                "defaultValue": "{\n  args: {\n    ...Default.args,\n    showScrollbar: 'onHover',\n  },\n}"
             },
             {
                 "name": "SingleChip",
@@ -2293,7 +2293,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'small',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
+                "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
             },
             {
                 "name": "Small",
@@ -2389,21 +2389,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "StoryFn<FormStoryArgs>",
-                "defaultValue": "(args) => ({\n  props: {\n    ...args,\n    formData: {\n      firstName: 'John',\n      lastName: 'Doe',\n      email: 'john.doe@example.com',\n      phone: '+1 (555) 123-4567',\n    },\n  },\n  template: `\n    <dx-form\n      meForm\n      [size]=\"size\"\n      [formData]=\"formData\"\n      [labelMode]=\"labelMode\"\n      [labelLocation]=\"labelLocation\"\n      [colCount]=\"colCount\"\n      [readOnly]=\"readOnly\"\n      [showColonAfterLabel]=\"showColonAfterLabel\"\n    >\n      <dxi-item dataField=\"firstName\"></dxi-item>\n      <dxi-item dataField=\"lastName\"></dxi-item>\n      <dxi-item dataField=\"email\"></dxi-item>\n      <dxi-item dataField=\"phone\"></dxi-item>\n    </dx-form>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <me-icon\n        [icon]=\"icon\"\n        [size]=\"size\"\n        [color]=\"color\">\n      </me-icon>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "StoryFn<FormStoryArgs>",
+                "defaultValue": "(args) => ({\n  props: {\n    ...args,\n    formData: {\n      firstName: 'John',\n      lastName: 'Doe',\n      email: 'john.doe@example.com',\n      phone: '+1 (555) 123-4567',\n    },\n  },\n  template: `\n    <dx-form\n      meForm\n      [size]=\"size\"\n      [formData]=\"formData\"\n      [labelMode]=\"labelMode\"\n      [labelLocation]=\"labelLocation\"\n      [colCount]=\"colCount\"\n      [readOnly]=\"readOnly\"\n      [showColonAfterLabel]=\"showColonAfterLabel\"\n    >\n      <dxi-item dataField=\"firstName\"></dxi-item>\n      <dxi-item dataField=\"lastName\"></dxi-item>\n      <dxi-item dataField=\"email\"></dxi-item>\n      <dxi-item dataField=\"phone\"></dxi-item>\n    </dx-form>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -2524,16 +2524,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
-            },
-            {
-                "name": "WithGrouping",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  render: Template,\n  args: Default.args,\n}"
             },
             {
                 "name": "WithIcons",
@@ -2773,7 +2763,7 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MeAutocompleteDirective>",
+                "rawtype": "StoryObj",
                 "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -2828,17 +2818,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MeCardComponent>",
-                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<MeCheckBoxDirective | DxCheckBoxComponent>",
                 "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
                 "deprecated": false,
@@ -2852,6 +2831,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj",
                 "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<MeCardComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2894,8 +2884,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<FormStoryArgs>",
-                "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
+                "rawtype": "StoryObj<MeIconComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2905,8 +2895,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MeIconComponent>",
-                "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                "rawtype": "StoryObj<FormStoryArgs>",
+                "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4593,7 +4583,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'always',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-autocomplete\n        meAutocomplete\n        [size]=\"size\"\n        [showScrollbar]=\"showScrollbar\"\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\n      ></dx-autocomplete>\n    `,\n  }),\n}"
+                    "defaultValue": "{\n  args: {\n    dataSource: ['Option 1', 'Option 2', 'Option 3'],\n  },\n}"
                 },
                 {
                     "name": "Large",
@@ -4603,17 +4593,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'large',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
+                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
                 },
                 {
-                    "name": "meta",
+                    "name": "ScrollNever",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<MeAutocompleteDirective>",
-                    "defaultValue": "{\n  title: 'Components/Autocomplete',\n  component: MeAutocompleteDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxAutocompleteModule],\n      declarations: [MeAutocompleteDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'radio' },\n    },\n    showScrollbar: {\n      options: ['always', 'onHover'],\n      control: { type: 'radio' },\n    },\n  },\n}"
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    showScrollbar: 'never',\n  },\n}"
                 },
                 {
                     "name": "ScrollOnHover",
@@ -4623,7 +4613,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'onHover',\n  },\n  render: Default.render,\n}"
+                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    showScrollbar: 'onHover',\n  },\n}"
                 },
                 {
                     "name": "Small",
@@ -4633,7 +4623,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'small',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
+                    "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
                 }
             ],
             "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
@@ -4720,6 +4710,18 @@
                     "defaultValue": "{\n  args: {\n    type: 'normal',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'contained',\n    leftIcon: 'arrowback',\n    rightIcon: 'arrowforward',\n  },\n}"
                 }
             ],
+            "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
+                }
+            ],
             "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
                 {
                     "name": "Default",
@@ -4782,18 +4784,6 @@
                     "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n    contentHeight: '200px',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <me-card\n        [size]=\"size\"\n        [showHeader]=\"showHeader\"\n        [showFooter]=\"showFooter\"\n        [contentHeight]=\"contentHeight\">\n\n        <ng-container card-header-left>\n          <me-icon icon=\"sync\" [size]=\"size\" color=\"#000000\"></me-icon>\n          <span>Overflow Example</span>\n        </ng-container>\n\n        <div>\n          <p>This is an example of a card with overflow content. The content will scroll when it exceeds the maximum height.</p>\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>\n        </div>\n\n        <ng-container card-footer>\n          <dx-button text=\"Принять\" type=\"success\" stylingMode=\"contained\" style=\"background-color: #3f51b5; color: white; margin-right: 8px;\"></dx-button>\n          <dx-button text=\"Отмена\" type=\"default\" stylingMode=\"outlined\" style=\"border-color: #3f51b5; color: #3f51b5;\"></dx-button>\n        </ng-container>\n      </me-card>\n    `,\n  }),\n}"
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
-                }
-            ],
             "projects/dx-monitel-components/src/stories/me-drop-down-button/me-drop-down-button.stories.ts": [
                 {
                     "name": "Default",
@@ -4825,7 +4815,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: Template,\n  args: {\n    size: 'medium',\n    labelMode: 'static',\n    labelLocation: 'top',\n    colCount: 2,\n    readOnly: false,\n    showColonAfterLabel: true,\n  },\n}"
+                    "defaultValue": "{\n  render: Template,\n  args: {\n    size: 'medium',\n    labelMode: 'floating',\n    labelLocation: 'top',\n    colCount: 2,\n    readOnly: false,\n    showColonAfterLabel: true,\n  },\n}"
                 },
                 {
                     "name": "FloatingLabels",
@@ -4906,16 +4896,6 @@
                     "deprecationMessage": "",
                     "type": "StoryFn<FormStoryArgs>",
                     "defaultValue": "(args) => ({\n  props: {\n    ...args,\n    formData: {\n      firstName: 'John',\n      lastName: 'Doe',\n      email: 'john.doe@example.com',\n      phone: '+1 (555) 123-4567',\n    },\n  },\n  template: `\n    <dx-form\n      meForm\n      [size]=\"size\"\n      [formData]=\"formData\"\n      [labelMode]=\"labelMode\"\n      [labelLocation]=\"labelLocation\"\n      [colCount]=\"colCount\"\n      [readOnly]=\"readOnly\"\n      [showColonAfterLabel]=\"showColonAfterLabel\"\n    >\n      <dxi-item dataField=\"firstName\"></dxi-item>\n      <dxi-item dataField=\"lastName\"></dxi-item>\n      <dxi-item dataField=\"email\"></dxi-item>\n      <dxi-item dataField=\"phone\"></dxi-item>\n    </dx-form>\n  `,\n})"
-                },
-                {
-                    "name": "WithGrouping",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  render: Template,\n  args: Default.args,\n}"
                 },
                 {
                     "name": "WithoutColon",
@@ -5310,7 +5290,7 @@
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<MeAutocompleteDirective>",
+                    "rawtype": "StoryObj",
                     "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -5370,19 +5350,6 @@
                     "kind": 183
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<MeCardComponent>",
-                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts": [
                 {
                     "name": "Story",
@@ -5403,6 +5370,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj",
                     "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MeCardComponent>",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5448,19 +5428,6 @@
                     "kind": 183
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<FormStoryArgs>",
-                    "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts": [
                 {
                     "name": "Story",
@@ -5468,6 +5435,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<MeIconComponent>",
                     "file": "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<FormStoryArgs>",
+                    "file": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5935,7 +5915,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "meta",
+                "name": "ScrollNever",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -6585,16 +6565,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/dx-monitel-components/src/stories/me-form/me-form.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "WithGrouping",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

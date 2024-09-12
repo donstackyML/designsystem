@@ -1,44 +1,126 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
-import * as AutocompleteStories from './me-autocomplete.stories';
-import {MeAutocompleteDirective} from "../../public-api";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import * as AutocompleteStories from "./me-autocomplete.stories";
+import { moduleMetadata } from "@storybook/angular";
+import { DxAutocompleteModule } from "devextreme-angular";
+import { MeAutocompleteDirective } from "../../public-api";
 
-<Meta of={AutocompleteStories} />
+<Meta
+  title="Components/Autocomplete"
+  component={MeAutocompleteDirective}
+  decorators={[
+    moduleMetadata({
+      declarations: [MeAutocompleteDirective],
+      imports: [DxAutocompleteModule],
+    }),
+    ]}
+  of={AutocompleteStories}
+/>
 
 # Autocomplete
 
-Компонент Autocomplete с кастомными стилями и поведением.
+## Директива meAutocomplete
 
-<Canvas of={AutocompleteStories.Default} />
+Директива `meAutocomplete` добавляет функциональность для компонента DevExtreme `DxAutocomplete`, позволяя настраивать размер и поведение скроллбара.
 
-## Свойства
+<Canvas name="Default" of={AutocompleteStories.Default} />
+<Controls of={AutocompleteStories.Default} />
 
-<ArgsTable of={MeAutocompleteDirective} />
+<Source of={AutocompleteStories.Default} dark />
 
-## Размеры
+## Примеры использования:
 
-Autocomplete поддерживает три размера: small, medium (по умолчанию) и large.
+### Маленький размер
 
-<Canvas>
-  <Story of={AutocompleteStories.Small} />
-  <Story of={AutocompleteStories.Default} />
-  <Story of={AutocompleteStories.Large} />
-</Canvas>
+<Canvas name="Small" of={AutocompleteStories.Small} />
 
-## Поведение скроллбара
+<Source
+  code={`<dx-autocomplete meAutocomplete size="small"></dx-autocomplete>`}
+  dark
+  language="html"
+/>
 
-Скроллбар может быть всегда видимым или появляться только при наведении.
+### Средний размер с появлением скроллбара при ховере
 
-<Canvas>
-  <Story of={AutocompleteStories.Default} />
-  <Story of={AutocompleteStories.ScrollOnHover} />
-</Canvas>
+<Canvas name="ScrollOnHover" of={AutocompleteStories.ScrollOnHover} />
 
-## Использование
+<Source
+  code={`<dx-autocomplete meAutocomplete size="medium" showScrollbar="onHover"></dx-autocomplete>`}
+  dark
+  language="html"
+/>
 
-```html
+### Без скроллбара
+
+<Canvas name="ScrollNever" of={AutocompleteStories.ScrollNever} />
+
+<Source
+  code={`<dx-autocomplete meAutocomplete size="medium" showScrollbar="never"></dx-autocomplete>`}
+  dark
+  language="html"
+/>
+
+## Перечень свойств
+
+<Controls story={AutocompleteStories.Default} />
+
+## Обработка событий
+
+`meAutocomplete` поддерживает стандартные события компонента `DxAutocomplete`. Вот пример обработки событий изменения значения:
+
+<Source
+  code={`
 <dx-autocomplete
   meAutocomplete
-  [size]="'medium'"
-  [showScrollbar]="'always'"
-  [dataSource]="['Apple', 'Banana', 'Orange']"
+  [(value)]="value"
+  (onValueChanged)="onValueChanged($event)"
 ></dx-autocomplete>
+
+  // В вашем компоненте:
+  onValueChanged(e: any) {
+    console.log('Value changed:', e);
+  }
+`}
+  dark
+  language="typescript"
+/>
+
+### Использование различных размеров
+
+Директива `meAutocomplete` позволяет настраивать различные размеры автокомплита:
+
+- Маленький (`small`)
+- Средний (`medium`)
+- Большой (`large`)
+
+<Source
+  code={`
+<dx-autocomplete meAutocomplete size="small"></dx-autocomplete>
+<dx-autocomplete meAutocomplete size="medium"></dx-autocomplete>
+<dx-autocomplete meAutocomplete size="large"></dx-autocomplete>
+`}
+  dark
+  language="html"
+/>
+
+Это позволяет адаптировать компонент к различным требованиям интерфейса.
+
+### Использование скроллбара
+
+В зависимости от параметра `showScrollbar`, можно задать отображение скроллбара:
+
+- Всегда (`always`)
+- При наведении (`onHover`)
+- Никогда (`never`)
+
+<Source
+  code={`
+<dx-autocomplete meAutocomplete showScrollbar="always"></dx-autocomplete>
+<dx-autocomplete meAutocomplete showScrollbar="onHover"></dx-autocomplete>
+<dx-autocomplete meAutocomplete showScrollbar="never"></dx-autocomplete>
+`}
+  dark
+  language="html"
+/>
+
+Таким образом, `meAutocomplete` предоставляет гибкие настройки для кастомизации поведения скроллбара.
+

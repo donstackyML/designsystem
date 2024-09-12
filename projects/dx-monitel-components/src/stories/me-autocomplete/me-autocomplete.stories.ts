@@ -1,34 +1,25 @@
-import { moduleMetadata, StoryObj, Meta } from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxAutocompleteModule } from 'devextreme-angular';
-import {MeAutocompleteDirective} from "../../lib/directives/me-autocomplete/me-autocomplete.directive";
+import { MeAutocompleteDirective } from '../../public-api';
 
-
-const meta: Meta<MeAutocompleteDirective> = {
-  title: 'Components/Autocomplete',
-  component: MeAutocompleteDirective,
+export default {
+  title: 'Components/MeAutocomplete',
   decorators: [
     moduleMetadata({
-      imports: [DxAutocompleteModule],
       declarations: [MeAutocompleteDirective],
+      imports: [DxAutocompleteModule],
     }),
   ],
   argTypes: {
     size: {
+      control: 'select',
       options: ['small', 'medium', 'large'],
-      control: { type: 'radio' },
     },
     showScrollbar: {
-      options: ['always', 'onHover'],
-      control: { type: 'radio' },
+      control: 'select',
+      options: ['always', 'onHover', 'never'],
     },
   },
-};
-
-export default meta;
-
-type Story = StoryObj<MeAutocompleteDirective>;
-
-export const Default: Story = {
   args: {
     size: 'medium',
     showScrollbar: 'always',
@@ -40,32 +31,45 @@ export const Default: Story = {
         meAutocomplete
         [size]="size"
         [showScrollbar]="showScrollbar"
-        [dataSource]="['Apple', 'Banana', 'Orange']"
+        [dataSource]="dataSource"
+        [placeholder]="'Select an option'"
       ></dx-autocomplete>
     `,
   }),
+} as Meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {
+  args: {
+    dataSource: ['Option 1', 'Option 2', 'Option 3'],
+  },
 };
 
 export const Small: Story = {
   args: {
+    ...Default.args,
     size: 'small',
-    showScrollbar: 'always',
   },
-  render: Default.render,
 };
 
 export const Large: Story = {
   args: {
+    ...Default.args,
     size: 'large',
-    showScrollbar: 'always',
   },
-  render: Default.render,
 };
 
 export const ScrollOnHover: Story = {
   args: {
-    size: 'medium',
+    ...Default.args,
     showScrollbar: 'onHover',
   },
-  render: Default.render,
+};
+
+export const ScrollNever: Story = {
+  args: {
+    ...Default.args,
+    showScrollbar: 'never',
+  },
 };

@@ -4,7 +4,7 @@ import { MeFormDirective } from "../../public-api";
 
 interface FormStoryArgs {
   size: 'small' | 'medium' | 'large';
-  labelMode: 'outside' | 'static' | 'floating' | 'hidden';
+  labelMode: 'outside' | 'floating' | 'hidden';
   labelLocation: 'left' | 'top';
   colCount: 'auto' | 1 | 2 | 3;
   readOnly: boolean;
@@ -12,7 +12,7 @@ interface FormStoryArgs {
 }
 
 export default {
-  title: 'Components/Form',
+  title: 'Components/Form(RC)',
   component: MeFormDirective,
   decorators: [
     moduleMetadata({
@@ -27,7 +27,7 @@ export default {
     },
     labelMode: {
       control: 'select',
-      options: ['outside', 'static', 'floating', 'hidden'],
+      options: ['outside', 'floating', 'hidden'],
     },
     labelLocation: {
       control: 'radio',
@@ -81,7 +81,7 @@ export const Default: Story = {
   render: Template,
   args: {
     size: 'medium',
-    labelMode: 'static',
+    labelMode: 'floating',
     labelLocation: 'top',
     colCount: 2,
     readOnly: false,
@@ -152,38 +152,3 @@ export const WithoutColon: Story = {
     showColonAfterLabel: false,
   },
 };
-
-export const WithGrouping: Story = {
-  render: Template,
-  args: Default.args,
-};
-
-WithGrouping.decorators = [
-  (Story) => ({
-    template: `
-      <dx-form
-        meForm
-        [size]="size"
-        [formData]="formData"
-        [labelMode]="labelMode"
-        [labelLocation]="labelLocation"
-        [colCount]="colCount"
-        [readOnly]="readOnly"
-        [showColonAfterLabel]="showColonAfterLabel"
-      >
-        <dxi-item itemType="group" caption="Personal Information">
-          <dxi-item dataField="firstName"></dxi-item>
-          <dxi-item dataField="lastName"></dxi-item>
-          <dxi-item dataField="email"></dxi-item>
-          <dxi-item dataField="phone"></dxi-item>
-        </dxi-item>
-        <dxi-item itemType="group" caption="Address Information">
-          <dxi-item dataField="address"></dxi-item>
-          <dxi-item dataField="city"></dxi-item>
-          <dxi-item dataField="state"></dxi-item>
-          <dxi-item dataField="zipCode"></dxi-item>
-        </dxi-item>
-      </dx-form>
-    `,
-  }),
-];

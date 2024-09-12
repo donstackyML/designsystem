@@ -1,185 +1,114 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
+import { Meta, Canvas, Story, ArgsTable, Source } from "@storybook/addon-docs";
+import * as BreadcrumbStories from "./me-breadcrumbs.stories";
 import { moduleMetadata } from "@storybook/angular";
-import { DxMenuModule } from "devextreme-angular/ui/menu";
+import { DxMenuModule } from 'devextreme-angular/ui/menu';
 import { MeBreadcrumbsComponent } from "../../public-api";
-import { MeIconComponent } from "../../public-api";
 
 <Meta
   title="Components/Breadcrumbs"
   component={MeBreadcrumbsComponent}
   decorators={[
     moduleMetadata({
-      imports: [DxMenuModule, MeIconComponent],
+      imports: [MeBreadcrumbsComponent, DxMenuModule],
     }),
     ]}
-  of={BreadcrumbsStories}
+  of={BreadcrumbStories}
 />
 
 # Breadcrumbs
 
-## Компонент MeBreadcrumbs
+## Пример
 
-Компонент `MeBreadcrumbs` предоставляет навигационную цепочку для отображения текущего положения пользователя в иерархической структуре сайта или приложения. Он поддерживает древовидную структуру данных и адаптивное поведение при ограничении ширины.
+### Хлебные крошки по умолчанию
 
-<Canvas name="Default" of={BreadcrumbsStories.Default} />
-<Controls of={BreadcrumbsStories.Default} />
-
-<Source of={BreadcrumbsStories.Default} dark />
-
-## Особенности
-
-- Отображение иерархической структуры навигации
-- Поддержка иконок для каждого элемента
-- Адаптивное поведение при ограничении ширины
-- Возможность настройки обрезания элементов слева или справа
-- Поддержка вложенных меню для каждого элемента
-- Возможность переноса элементов на новую строку
-
-## Примеры использования:
-
-### Базовое использование
-
-<Canvas name="Default" of={BreadcrumbsStories.Default} />
+<Canvas name="Default" of={BreadcrumbStories.Default} />
 
 <Source
   code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-  (itemClick)="onItemClick($event)"
-></me-breadcrumbs>
-`}
-  dark
-  language="html"
-/>
-
-### С ограничением ширины и обрезанием слева
-
-<Canvas name="TruncatedFromLeft" of={BreadcrumbsStories.TruncatedFromLeft} />
-
-<Source
-  code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-  [maxWidth]="'400px'"
-  [truncateFrom]="'left'"
-  (itemClick)="onItemClick($event)"
-></me-breadcrumbs>
-`}
-  dark
-  language="html"
-/>
-
-### С переносом на новую строку
-
-<Canvas name="Wrapped" of={BreadcrumbsStories.Wrapped} />
-
-<Source
-  code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-  [wrap]="true"
-  (itemClick)="onItemClick($event)"
-></me-breadcrumbs>
-`}
-  dark
-  language="html"
-/>
-
-## Перечень свойств
-
-<Controls story={BreadcrumbsStories.Default} />
-
-## Работа с древовидными данными
-
-Компонент поддерживает древовидную структуру данных. Каждый элемент может иметь вложенные элементы, которые отображаются в выпадающем меню:
-
-<Source
-  code={`
-const breadcrumbItems = [
+<me-breadcrumbs [items]="[
+  { text: 'Главная', url: '/', icon: 'home' },
+  { text: 'Каталог', url: '/catalog', icon: 'folder' },
   {
-    label: 'Главная',
-    url: '/',
-    icon: 'globe',
+    text: 'Электроника',
+    url: '/catalog/electronics',
+    icon: 'product',
     items: [
-      { label: 'Подпункт 1', url: '/sub1' },
-      { label: 'Подпункт 2', url: '/sub2' },
+      { text: 'Телефоны', url: '/catalog/electronics/phones' },
+      { text: 'Компьютеры', url: '/catalog/electronics/computers' },
     ]
   },
-  {
-    label: 'Каталог',
-    url: '/catalog',
-    icon: 'globe',
-    items: [
-      { label: 'Электроника', url: '/catalog/electronics' },
-      { label: 'Одежда', url: '/catalog/clothing' },
-    ]
-  },
-  // ...
-];
+  { text: 'Смартфоны', url: '/catalog/electronics/smartphones', icon: 'tel' },
+  { text: 'iPhone 12', url: '/catalog/electronics/smartphones/iphone-12' },
+  { text: 'Характеристики', url: '/catalog/electronics/smartphones/iphone-12/specs', icon: 'detailslayout' },
+  { text: 'Отзывы', url: '/catalog/electronics/smartphones/iphone-12/reviews', icon: 'comment' },
+]"></me-breadcrumbs>
 `}
   dark
-  language="typescript"
+  language="html"
 />
 
-## Адаптивное поведение
+### Много элементов
 
-Компонент автоматически адаптируется при ограничении ширины:
+<Canvas name="ManyItems" of={BreadcrumbStories.ManyItems} />
 
-- Если указан `maxWidth`, элементы, не помещающиеся в контейнер, скрываются в выпадающем меню.
-- Направление обрезания (слева или справа) определяется параметром `truncateFrom`.
-- При установке `wrap` в `true`, элементы переносятся на новую строку вместо скрытия.
+<Source
+  code={`
+<me-breadcrumbs [items]="[
+  { text: 'Главная', url: '/', icon: 'home' },
+  { text: 'Каталог', url: '/catalog', icon: 'folder' },
+  { text: 'Электроника', url: '/catalog/electronics', icon: 'product', items: [
+    { text: 'Телефоны', url: '/catalog/electronics/phones' },
+    { text: 'Компьютеры', url: '/catalog/electronics/computers' }
+  ]},
+  { text: 'Смартфоны', url: '/catalog/electronics/smartphones', icon: 'tel' },
+  { text: 'iPhone 12', url: '/catalog/electronics/smartphones/iphone-12' },
+  { text: 'Характеристики', url: '/catalog/electronics/smartphones/iphone-12/specs', icon: 'detailslayout' },
+  { text: 'Отзывы', url: '/catalog/electronics/smartphones/iphone-12/reviews', icon: 'comment' },
+  { text: 'Дополнительно 1', url: '/extra1', icon: 'add' },
+  { text: 'Дополнительно 2', url: '/extra2', icon: 'add' },
+  { text: 'Дополнительно 3', url: '/extra3', icon: 'add' },
+]"></me-breadcrumbs>
+`}
+  dark
+  language="html"
+/>
+
+### Вложенные элементы
+
+<Canvas name="WithNestedItems" of={BreadcrumbStories.WithNestedItems} />
+
+<Source
+  code={`
+<me-breadcrumbs [items]="[
+  { text: 'Уровень 1', url: '/level1', icon: 'folder', items: [
+    { text: 'Подуровень 1.1', url: '/level1/sublevel1' },
+    { text: 'Подуровень 1.2', url: '/level1/sublevel2' }
+  ]},
+  { text: 'Уровень 2', url: '/level2', icon: 'folder', items: [
+    { text: 'Подуровень 2.1', url: '/level2/sublevel1' },
+    { text: 'Подуровень 2.2', url: '/level2/sublevel2' }
+  ]},
+  { text: 'Уровень 3', url: '/level3', icon: 'folder' },
+]"></me-breadcrumbs>
+`}
+  dark
+  language="html"
+/>
 
 ## Обработка событий
 
-Компонент emit'ит событие `itemClick` при клике на элемент хлебных крошек:
+Компонент `MeBreadcrumbsComponent` поддерживает стандартное событие `itemClick`, которое срабатывает при клике на элемент навигации.
 
-<Source
-  code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-  (itemClick)="onItemClick($event)"
-></me-breadcrumbs>
+  <Source
+    code={`
+       <me-breadcrumbs [items]="sampleItems" (itemClick)="onItemClick($event)"></me-breadcrumbs>
 
-    // В вашем компоненте:
-    onItemClick(item: BreadcrumbItem) {
-      console.log('Clicked item:', item);
-      // Здесь вы можете добавить навигацию или другую логику
-    }
+       onItemClick(event: any) {
+        console.log('Item clicked:', event);
 `}
-  dark
-  language="typescript"
+    dark
+    language="typescript"
 />
 
-## Кастомизация
 
-### Использование иконок
 
-Вы можете добавить иконки к элементам хлебных крошек, указав свойство `icon` для каждого элемента:
-
-<Source
-  code={`
-const breadcrumbItems = [
-  { label: 'Главная', url: '/', icon: 'globe' },
-  { label: 'Каталог', url: '/catalog', icon: 'folder' },
-  { label: 'Электроника', url: '/catalog/electronics', icon: 'smartphone' },
-  // ...
-];
-`}
-  dark
-  language="typescript"
-/>
-
-## Доступность
-
-- Компонент использует семантический тег `<nav>` с `aria-label="Breadcrumbs"` для улучшения доступности.
-- Убедитесь, что все элементы навигации имеют понятные и описательные метки.
-- При использовании иконок, предоставьте текстовые альтернативы для пользователей, использующих программы чтения с экрана.
-
-## Рекомендации по использованию
-
-1. Используйте хлебные крошки для навигации в иерархических структурах с глубиной более двух уровней.
-2. Убедитесь, что последний элемент в цепочке хлебных крошек соответствует текущей странице или разделу.
-3. При использовании `maxWidth`, выберите значение `truncateFrom`, которое лучше всего подходит для вашего случая использования.
-4. Если ваша навигационная структура имеет много уровней, рассмотрите возможность использования вложенных меню для промежуточных уровней.
-5. Используйте иконки умеренно, чтобы не перегружать интерфейс визуально.
