@@ -23,9 +23,5 @@ addons.setConfig({
     copy: { hidden: false },
     fullscreen: { hidden: false },
   },
-  // theme: create({
-  //   brandTitle: "СК21",
-  //   brandImage: logo,
-  //   brandTarget: "_self",
-  // }),
+  s,
 });
