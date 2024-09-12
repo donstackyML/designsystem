@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit, ElementRef, ViewChild, Renderer2, NgZone, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DxMenuModule } from 'devextreme-angular/ui/menu';
+import { DxMenuModule, DxButtonModule, DxContextMenuModule } from 'devextreme-angular';
 
 interface BreadcrumbItem {
   text: string;
@@ -12,51 +12,54 @@ interface BreadcrumbItem {
 @Component({
   selector: 'me-breadcrumbs',
   standalone: true,
-  imports: [CommonModule, DxMenuModule],
+  imports: [CommonModule, DxMenuModule, DxButtonModule, DxContextMenuModule],
   template: `
     <nav class="breadcrumbs" aria-label="Breadcrumbs" #breadcrumbsContainer>
-      <ng-container *ngFor="let item of items; let last = last; let i = index">
-        <div class="breadcrumb-item" #breadcrumbItem>
-          <dx-menu
-            [dataSource]="[item]"
-            [showFirstSubmenuMode]="{ name: 'onClick', delay: { show: 0, hide: 300 } }"
-            orientation="horizontal"
-            [hideSubmenuOnMouseLeave]="false"
-            (onItemClick)="onItemClick($event)"
-          >
-            <div *dxTemplate="let data of 'item'">
-              <i *ngIf="data.icon" class="dx-icon-{{data.icon}}"></i>
-              <span class="dx-menu-item-text">{{ data.text }}</span>
-              <i *ngIf="data.items?.length" class="dx-icon-chevrondown"></i>
-            </div>
-          </dx-menu>
-        </div>
+      <dx-button
+        *ngIf="overflowLeft"
+        #leftOverflowButton
+        icon="more"
+        [stylingMode]="'text'"
+        (onClick)="showOverflowMenu('left', $event)"
+      ></dx-button>
+      <ng-container *ngFor="let item of visibleItems; let last = last;">
+        <dx-menu
+          [dataSource]="[item]"
+          [showFirstSubmenuMode]="{ name: 'onClick', delay: { show: 0, hide: 300 } }"
+          orientation="horizontal"
+          [hideSubmenuOnMouseLeave]="false"
+          (onItemClick)="onItemClick($event)"
+        >
+          <div *dxTemplate="let data of 'item'">
+            <i *ngIf="data.icon" class="dx-icon-{{data.icon}}"></i>
+            <span class="dx-menu-item-text">{{ data.text }}</span>
+            <i *ngIf="data.items?.length" class="dx-icon-chevrondown"></i>
+          </div>
+        </dx-menu>
         <span *ngIf="!last" class="separator">|</span>
       </ng-container>
-      <dx-menu
-        *ngIf="hiddenItemsCount > 0"
-        #overflowMenu
-        [dataSource]="[{icon: 'more'}]"
-        [showFirstSubmenuMode]="{ name: 'onClick', delay: { show: 0, hide: 300 } }"
-        orientation="horizontal"
-        [hideSubmenuOnMouseLeave]="false"
-        (onItemClick)="showHiddenItems()"
-      >
-        <div *dxTemplate="let data of 'item'">
-          <i class="dx-icon-{{data.icon}}"></i>
-        </div>
-      </dx-menu>
+      <dx-button
+        *ngIf="overflowRight"
+        #rightOverflowButton
+        icon="more"
+        [stylingMode]="'text'"
+        (onClick)="showOverflowMenu('right', $event)"
+      ></dx-button>
     </nav>
+    <dx-context-menu
+      #overflowMenu
+      [dataSource]="overflowItems"
+      [width]="200"
+      [target]="overflowMenuTarget"
+      (onItemClick)="onOverflowItemClick($event)"
+    >
+    </dx-context-menu>
   `,
   styles: [`
     .breadcrumbs {
       display: flex;
       align-items: center;
       overflow: hidden;
-    }
-    .breadcrumb-item {
-      display: inline-flex;
-      align-items: center;
     }
     .separator {
       margin: 0 8px;
@@ -65,65 +68,155 @@ interface BreadcrumbItem {
     ::ng-deep .dx-menu-base {
       display: inline-block;
     }
-    ::ng-deep .dx-menu-horizontal > .dx-menu-item-wrapper {
-      display: inline-block;
-    }
-    ::ng-deep .dx-menu-item-content {
-      display: flex;
-      align-items: center;
-    }
-    ::ng-deep .dx-icon {
-      margin-right: 5px;
-    }
-    .dx-menu-item-text {
-      margin: 0 5px;
-    }
   `]
 })
-export class MeBreadcrumbsComponent implements AfterViewInit {
+export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges {
   @Input() items: BreadcrumbItem[] = [];
+  @Input() truncateFrom: 'left' | 'right' = 'right';
   @Output() itemClick = new EventEmitter<BreadcrumbItem>();
 
   @ViewChild('breadcrumbsContainer') breadcrumbsContainer!: ElementRef;
+  @ViewChild('overflowMenu') overflowMenu!: any; // DxContextMenuComponent
+  @ViewChild('leftOverflowButton') leftOverflowButton!: ElementRef;
+  @ViewChild('rightOverflowButton') rightOverflowButton!: ElementRef;
 
-  private observer!: IntersectionObserver;
-  private visibleItems: Set<number> = new Set();
-  hiddenItemsCount = 0;
+  visibleItems: BreadcrumbItem[] = [];
+  overflowItems: BreadcrumbItem[] = [];
+  overflowLeft = false;
+  overflowRight = false;
+  overflowMenuTarget: string = '';
+  private resizeObserver!: ResizeObserver;
 
-  constructor(private renderer: Renderer2, private zone: NgZone) {}
+  constructor(
+    private renderer: Renderer2,
+    private zone: NgZone,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['items'] || changes['truncateFrom']) {
+      this.updateItems();
+    }
+  }
 
   ngAfterViewInit() {
-    this.setupIntersectionObserver();
+    this.setupResizeObserver();
+    this.updateItems();
   }
 
-  private setupIntersectionObserver() {
-    const options = {
-      root: this.breadcrumbsContainer.nativeElement,
-      threshold: 1
-    };
-
-    this.zone.runOutsideAngular(() => {
-      this.observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const index = parseInt(entry.target.getAttribute('data-index') || '0', 10);
-          if (entry.isIntersecting) {
-            this.visibleItems.add(index);
-          } else {
-            this.visibleItems.delete(index);
-          }
-        });
-
-        this.zone.run(() => {
-          this.hiddenItemsCount = this.items.length - this.visibleItems.size;
-        });
-      }, options);
-
-      this.breadcrumbsContainer.nativeElement.querySelectorAll('.breadcrumb-item').forEach((item: Element, index: number) => {
-        this.renderer.setAttribute(item, 'data-index', index.toString());
-        this.observer.observe(item);
+  private setupResizeObserver() {
+    this.resizeObserver = new ResizeObserver(() => {
+      console.log('dd')
+      this.zone.run(() => {
+        this.updateVisibleItems();
       });
     });
+    this.resizeObserver.observe(this.breadcrumbsContainer.nativeElement);
   }
+
+  private updateItems() {
+    this.visibleItems = [...this.items];
+    this.updateVisibleItems();
+  }
+
+  private updateVisibleItems() {
+    const containerWidth = this.breadcrumbsContainer.nativeElement.offsetWidth;
+    const itemElements = this.breadcrumbsContainer.nativeElement.querySelectorAll('dx-menu');
+    let totalWidth = 0;
+    let visibleCount = 0;
+
+
+    const overflowButtonWidth = 40;
+
+    for (let i = 0; i < itemElements.length; i++) {
+      const itemWidth = itemElements[i].offsetWidth;
+      if (totalWidth + itemWidth + overflowButtonWidth > containerWidth) {
+        break;
+      }
+      totalWidth += itemWidth;
+      visibleCount++;
+    }
+
+    if (this.truncateFrom === 'left') {
+      this.visibleItems = this.items.slice(-visibleCount);
+      this.overflowItems = this.items.slice(0, this.items.length - visibleCount);
+      this.overflowLeft = visibleCount < this.items.length;
+      this.overflowRight = false;
+    } else {
+      this.visibleItems = this.items.slice(0, visibleCount);
+      this.overflowItems = this.items.slice(visibleCount);
+      this.overflowLeft = false;
+      this.overflowRight = visibleCount < this.items.length;
+    }
+
+    if (visibleCount < this.items.length) {
+      let remainingWidth = containerWidth - totalWidth - overflowButtonWidth; // Оставшееся пространство
+
+      if (this.truncateFrom === 'left') {
+        while (this.overflowItems.length > 0 && remainingWidth > 0) {
+          const nextItem = this.overflowItems.pop()!;
+          const nextItemWidth = this.getItemWidth(nextItem); // метод для получения ширины элемента
+          if (nextItemWidth + overflowButtonWidth <= remainingWidth) {
+            this.visibleItems.unshift(nextItem);
+            remainingWidth -= nextItemWidth;
+          } else {
+            this.overflowItems.push(nextItem); // возвращаем элемент обратно, если не помещается
+            break;
+          }
+        }
+      } else {
+        // Добавляем элементы справа
+        while (this.overflowItems.length > 0 && remainingWidth > 0) {
+          const nextItem = this.overflowItems.shift()!;
+          const nextItemWidth = this.getItemWidth(nextItem); // метод для получения ширины элемента
+          if (nextItemWidth + overflowButtonWidth <= remainingWidth) {
+            this.visibleItems.push(nextItem);
+            remainingWidth -= nextItemWidth;
+          } else {
+            this.overflowItems.unshift(nextItem);
+            break;
+          }
+        }
+      }
+    }
+
+    this.overflowLeft = this.truncateFrom === 'left' && this.overflowItems.length > 0;
+    this.overflowRight = this.truncateFrom === 'right' && this.overflowItems.length > 0;
+
+    this.cdr.detectChanges();
+  }
+
+  private getItemWidth(item: BreadcrumbItem): number {
+    // Создаем временный элемент
+    const tempElement = this.renderer.createElement('div');
+    tempElement.style.visibility = 'hidden';
+
+    // Добавляем иконку, если она есть
+    if (item.icon) {
+      const iconElement = this.renderer.createElement('i');
+      this.renderer.addClass(iconElement, `dx-icon-${item.icon}`);
+      this.renderer.appendChild(tempElement, iconElement);
+    }
+
+    // Добавляем текст
+    const textElement = this.renderer.createElement('span');
+    const textNode = this.renderer.createText(item.text);
+    this.renderer.appendChild(textElement, textNode);
+    this.renderer.appendChild(tempElement, textElement);
+
+    // Добавляем временный элемент в DOM для измерения
+    this.renderer.appendChild(this.breadcrumbsContainer.nativeElement, tempElement);
+    const width = tempElement.offsetWidth;
+
+    // Удаляем временный элемент
+    this.renderer.removeChild(this.breadcrumbsContainer.nativeElement, tempElement);
+
+    // Округляем ширину до ближайшего целого числа
+    return Math.round(width);
+  }
+
+
+
 
   onItemClick(e: any): void {
     const clickedItem = e.itemData as BreadcrumbItem;
@@ -132,14 +225,23 @@ export class MeBreadcrumbsComponent implements AfterViewInit {
     }
   }
 
-  showHiddenItems() {
-    // Реализация показа скрытых элементов
-    console.log('Показать скрытые элементы');
+  showOverflowMenu(position: 'left' | 'right', event: any) {
+    this.overflowMenuTarget = position === 'left' ? this.leftOverflowButton.nativeElement : this.rightOverflowButton.nativeElement;
+    this.overflowMenu.instance.option('target', event.target);
+    this.overflowMenu.instance.show();
+  }
+
+  onOverflowItemClick(e: any): void {
+    const clickedItem = e.itemData as BreadcrumbItem;
+    if (clickedItem.url) {
+      this.itemClick.emit(clickedItem);
+    }
+    this.overflowMenu.instance.hide();
   }
 
   ngOnDestroy() {
-    if (this.observer) {
-      this.observer.disconnect();
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
   }
 }
