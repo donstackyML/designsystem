@@ -32,6 +32,22 @@ export default {
         defaultValue: { summary: 'medium' },
       },
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает чекбокс',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    readOnly: {
+      control: 'boolean',
+      description: 'Отключает чекбокс',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
   },
   args: {
     size: 'medium',
