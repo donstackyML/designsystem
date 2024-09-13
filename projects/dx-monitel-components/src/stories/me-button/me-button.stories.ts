@@ -177,6 +177,10 @@ export default {
         defaultValue: { summary: '' },
       },
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает кнопку.',
+    },
   },
   render: (args) => ({
     props: args,
