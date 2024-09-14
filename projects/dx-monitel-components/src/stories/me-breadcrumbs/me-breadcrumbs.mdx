@@ -1,64 +1,61 @@
-import { Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import {MeBreadcrumbsComponent} from "../../public-api";import { Meta, Story, ArgsTable } from '@storybook/addon-docs';
 
 import * as BreadcrumbsStories from './me-breadcrumbs.stories';
-import {MeBreadcrumbsComponent} from "../../public-api";
 
-<Meta title="Components/MeBreadcrumbs" component={MeBreadcrumbsComponent} of={BreadcrumbsStories} />
+<Meta title="Components/MeBreadcrumbs" component={MeBreadcrumbsComponent} />
 
 # MeBreadcrumbs
 
-MeBreadcrumbs - это компонент для создания навигационных цепочек ("хлебных крошек") в вашем приложении.
+MeBreadcrumbs компонент предоставляет навигационную цепочку для отображения текущего местоположения пользователя в иерархии сайта.
 
 ## Основные возможности
 
 - Отображение иерархии навигации
-- Поддержка иконок для элементов
-- Возможность создания подменю для элементов
-- Адаптивный дизайн с автоматическим скрытием элементов при недостатке места
+- Поддержка иконок для каждого элемента
+- Возможность добавления выпадающих меню
+- Автоматическое сокращение элементов при нехватке места
+- Настраиваемое направление сокращения (слева или справа)
 
-## Примеры использования
+## Пример использования
 
-### Базовое использование
+<Story story={BreadcrumbsStories.Default} />
 
-<Story of={BreadcrumbsStories.Default} />
-
-### С подменю
-
-<Story of={BreadcrumbsStories.WithSubmenus} />
-
-### Длинные хлебные крошки
-
-<Story of={BreadcrumbsStories.LongBreadcrumbs} />
-
-## API
+## Свойства компонента
 
 <ArgsTable of={MeBreadcrumbsComponent} />
 
-### BreadcrumbItem
+## Примеры
 
-Интерфейс `BreadcrumbItem` описывает структуру элемента хлебных крошек:
+### С иконками
 
-```typescript
-interface BreadcrumbItem {
-  text: string;    // Текст элемента
-  url?: string;    // URL для перехода (опционально)
-  icon?: string;   // Иконка элемента (опционально)
-  items?: BreadcrumbItem[]; // Подэлементы для создания подменю (опционально)
-}
-```
+Вы можете добавить иконки к элементам хлебных крошек для улучшения визуального восприятия:
 
-## События
+<Story story={BreadcrumbsStories.WithIcons} />
 
-- `itemClick`: Событие, возникающее при клике на элемент хлебных крошек. Передает объект `BreadcrumbItem`.
+### С выпадающими меню
 
-## Стилизация
+Для добавления дополнительных опций навигации можно использовать выпадающие меню:
 
-Компонент использует DevExtreme Menu для отображения элементов, что позволяет легко кастомизировать внешний вид с помощью CSS. Основные классы для стилизации:
+<Story story={BreadcrumbsStories.WithDropdowns} />
 
-- `.breadcrumbs`: Контейнер для всех элементов
-- `.breadcrumb-item`: Отдельный элемент хлебных крошек
-- `.separator`: Разделитель между элементами
+### Сокращение слева
 
-## Доступность
+По умолчанию, при нехватке места элементы сокращаются справа. Вы можете изменить это поведение, установив `truncateFrom="left"`:
 
-Компонент использует семантический тег `<nav>` с атрибутом `aria-label="Breadcrumbs"` для улучшения доступности.
+<Story story={BreadcrumbsStories.TruncateFromLeft} />
+
+### Длинные хлебные крошки
+
+Компонент автоматически адаптируется к большому количеству элементов:
+
+<Story story={BreadcrumbsStories.LongBreadcrumbs} />
+
+## Обработка событий
+
+Компонент MeBreadcrumbs поддерживает событие `itemClick` для обработки кликов по элементам:
+
+```html
+<me-breadcrumbs
+  [items]="breadcrumbItems"
+  (itemClick)="onBreadcrumbItemClick($event)"
+></me-breadcrumbs>
