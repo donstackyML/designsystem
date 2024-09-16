@@ -1,372 +1,354 @@
-@use 'sass:math';
-@use 'sass:color';
-@use 'colors' as *;
-@use '../colors' as *;
-@use 'sizes' as *;
-@use '../sizes' as *;
-@use '../button/colors' as *;
-@use '../../base/icons' as *;
+@use "colors" as *;
 @use '../../base/tabs';
 
-// adduse
-@use '../scrollable';
-@use '../badge';
-
-// @mixin dx-tabs-border-mixin($border-horizontal, $border-top, $border-bottom) {
-//   &::after {
-//     content: "";
-//     pointer-events: none;
-//     position: absolute;
-//     top: 0px;
-//     bottom: 0px;
-//     right: 0px;
-//     left: 0px;
-//     border-right: $border-horizontal;
-//     border-left: $border-horizontal;
-//     border-top: $border-top;
-//     border-bottom: $border-bottom;
-//     border-radius: 4px 4px 0 0;
-//     z-index: 0;
-//   }
-// }
-
-.me-tabs .dx-tab-selected {
-  font-weight: 500;
-}
-
-.me-tabs .dx-button-content {
-  align-items: center;
-}
-
-.dx-tab:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.me-tabs-bottom.dx-tabs {
-  box-shadow: 0px -1px 0px 0px #dfe0ed;
-
-  .dx-tab {
-    top: -1px;
-  }
-
-  .dx-tab-selected {
-    border-bottom-color: #dfe0ed;
-    border-left-color: #dfe0ed;
-    border-right-color: #dfe0ed;
-    border-top-color: #fff;
-    border-radius: 0 0 4px 4px;
-  }
-
-  .dx-state-hover:not(.dx-tab-selected) {
-    border-radius: 0 0 4px 4px;
-    border-top: 1px solid $tabs-hover-border-color;
-    border-bottom: 0;
-  }
-
-  .dx-state-active {
-    border-radius: 0 0 4px 4px;
-    border-top: 1px solid $tabs-hover-border-color;
-    border-bottom: 0;
-  }
-  .dx-state-focused {
-    position: relative;
-
-    &::before {
-      border-radius: 0 0 6px 6px;
-      top: 0px;
-    }
-
-    &::after {
-      border-radius: 0 0 4px 4px;
-      top: 0px;
-    }
-  }
-}
-
-.me-tabs-bottom.dx-tabs.me-tabs-inside {
-  .dx-tab-selected {
-    box-shadow: 0 0 0 0;
-
-    &:not(.dx-state-focused) {
-      border-left: 0;
-      border-right: 0;
-      border-bottom: 0;
-      box-shadow: 0 -2px 0 0 $tabs-hover-border-color;
-    }
-  }
-
-  .dx-state-focused {
-    .dx-tab-selected {
-      box-shadow: 0 0 0 0 $tabs-hover-border-color;
-    }
-    border: 2px solid #7eb9ff;
-
-    &::before {
-      height: 0%;
-      width: 0%;
-      border-radius: 0;
-      left: 0;
-      top: 0;
-    }
-    &::after {
-      height: 0%;
-      width: 0%;
-      border-radius: 0;
-      left: 0;
-      top: 0;
-    }
-  }
-}
-
-.me-tabs-inside.dx-tabs {
-  .dx-tab-selected {
-    &:not(.dx-state-focused) {
-      border-left: 0;
-      border-right: 0;
-      border-top: 0;
-      box-shadow: 0 2px 0 0 $tabs-hover-border-color;
-    }
-  }
-
-  .dx-state-focused {
-    .dx-tab-selected {
-      box-shadow: 0 0 0 0 $tabs-hover-border-color;
-    }
-    border: 2px solid #7eb9ff;
-
-    &::before {
-      height: 0%;
-      width: 0%;
-      border-radius: 0;
-      left: 0;
-      top: 0;
-    }
-    &::after {
-      height: 0%;
-      width: 0%;
-      border-radius: 0;
-      left: 0;
-      top: 0;
-    }
-  }
-}
+// New color variables
+$tabs-hover-bg: rgba(60, 101, 248, 0.12);
+$tabs-active-bg: rgba(60, 113, 248, 0.2);
 
 .me-tabs-small {
-  height: 28px;
+  height: var(--me-tabs-small-height);
   font-weight: 400;
-  font-size: 13px;
+  font-size: var(--me-tabs-small-font-size);
 
   .dx-tab {
-    padding: 3px 6px;
+    padding: var(--me-tabs-small-tab-padding);
   }
+
   .dx-tab-text {
-    line-height: 16px;
+    line-height: var(--me-tabs-small-line-height);
   }
 
   .dx-tab .dx-icon {
-    margin-right: 4px;
-    font-size: 20px;
+    margin-right: var(--me-tabs-small-icon-margin-right);
+    font-size: var(--me-tabs-small-icon-font-size);
   }
 }
 
 .me-tabs-medium {
-  height: 32px;
+  height: var(--me-tabs-medium-height);
   font-weight: 400;
-  font-size: 14px;
+  font-size: var(--me-tabs-medium-font-size);
 
   .dx-tab {
-    padding: 5px 8px;
+    padding: var(--me-tabs-medium-tab-padding);
   }
+
   .dx-tab-text {
-    line-height: 20px;
+    line-height: var(--me-tabs-medium-line-height);
   }
+
   .dx-tab .dx-icon {
-    font-size: 20px;
+    font-size: var(--me-tabs-medium-icon-font-size);
   }
 }
 
 .me-tabs-large {
-  height: 40px;
+  height: var(--me-tabs-large-height);
   font-weight: 400;
-  font-size: 16px;
+  font-size: var(--me-tabs-large-font-size);
 
   .dx-tab-text {
-    line-height: 20px;
+    line-height: var(--me-tabs-large-line-height);
   }
 
   .dx-tab .dx-icon {
-    font-size: 24px;
+    font-size: var(--me-tabs-large-icon-font-size);
   }
 }
 
 .dx-tabs {
-  position: relative;
-  box-shadow: 0 1px 0px 0px $tabs-border-color;
+  height: auto;
 }
 
-.dx-tabs-scrollable {
-  margin: -$generic-tabs-border-width;
-  height: calc(100% + 2px);
-
-  .dx-tabs-wrapper {
-    .dx-tabs-nav-buttons & {
-      border-left: $generic-tabs-transparent-border;
-      border-right: $generic-tabs-transparent-border;
-    }
-  }
-}
-
-.dx-tabs-nav-button {
-  border: none;
-  background-color: $tabs-tab-bg;
-  border-radius: 0;
-  box-shadow: none;
-
-  .dx-button-content {
-    padding: 0;
-  }
-
-  &.dx-state-active {
-    border: none;
-  }
-
-  // &.dx-state-disabled {
-  //   opacity: 1;
-
-  //   .dx-button-content {
-  //     opacity: $tabs-tab-button-disabled-opacity;
-  //   }
-  // }
-}
-
-.dx-tab {
-  padding: $generic-tabs-item-padding;
-  background-color: transparent;
-  color: $tabs-tab-color;
-  position: relative;
-  top: 1px;
-  // @include dx-tabs-border-mixin(none, none, $generic-tabs-border);
-  border-radius: 4px 4px 0 0;
-  border: 1px solid transparent;
-
-  &:focus {
-    background-color: $tabs-tab-hover-bg;
-
-    &::after {
-      border-bottom: 1px solid $tabs-hover-border-color;
-    }
-  }
-
-  .dx-icon {
-    color: $tabs-tab-icon-color;
-    display: inline-block;
-    vertical-align: middle;
-
-    @include dx-icon-sizing($generic-base-icon-size);
-    @include dx-icon-margin(math.div($generic-base-icon-size, 2));
-  }
-
-  &.dx-state-hover:not(.dx-tab-selected) {
-    background-color: $tabs-tab-hover-bg;
-    border-radius: 4px 4px 0 0;
-    border-bottom: 1px solid $tabs-hover-border-color;
-  }
-
-  &.dx-state-disabled {
-    .dx-icon {
-      color: $tabs-disabled-color;
-    }
-
-    .dx-tab-content {
-      color: $tabs-disabled-color;
-    }
-  }
-
-  &.dx-tab-selected {
-    background-color: $tabs-tab-selected-bg;
-    color: $tabs-tab-selected-color;
-    border-top-color: $tabs-border-color;
-    border-left-color: $tabs-border-color;
-    border-right-color: $tabs-border-color;
-    border-bottom-color: $tabs-tab-selected-bg;
-  }
-
-  &.dx-state-active {
+.dx-tabs-styling-mode-primary {
+  .dx-tab.dx-state-active {
     background-color: $tabs-tab-active-bg;
-    color: $tabs-tab-selected-color;
-    border-bottom: 1px solid $tabs-hover-border-color;
-  }
-}
-
-.dx-tab-selected {
-  // @include dx-tabs-border-mixin(
-  //   $generic-tabs-border,
-  //   $generic-tabs-border,
-  //   none
-  // );
-
-  .dx-icon {
-    color: $tabs-tab-icon-selected-color;
   }
 
-  &:not(.dx-state-focused) {
-    & + & {
-      &::after {
-        border-left: $generic-tabs-transparent-border;
+  &.dx-tab-indicator-position-top .dx-tab::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $tabs-disabled-color;
+  }
 
-        .dx-rtl & {
-          border-left: $generic-tabs-border;
-          border-right: $generic-tabs-transparent-border;
-        }
+  &.dx-tab-indicator-position-bottom .dx-tab::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $tabs-disabled-color;
+  }
+
+  &.dx-tab-indicator-position-bottom,
+  &.dx-tab-indicator-position-top {
+    .dx-tab-selected {
+      &::after,
+      &.dx-state-focused::after {
+        background-color: $tabs-hover-border-color;
+        height: 2px;
+      }
+
+      &.dx-state-hover::after,
+      &.dx-state-active::after {
+        background-color: $tabs-hover-border-color;
+      }
+
+      &.dx-state-disabled::after {
+        background-color: $tabs-hover-border-color;
+      }
+    }
+  }
+
+  &.dx-tab-indicator-position-right .dx-tab::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 1px;
+    background-color: $tabs-disabled-color;
+  }
+
+  &.dx-tab-indicator-position-left .dx-tab::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 2px;
+  }
+
+  &.dx-tab-indicator-position-left,
+  &.dx-tab-indicator-position-right {
+    .dx-tab {
+      &.dx-state-hover::after,
+      &.dx-state-active::after {
+        background-color:$tabs-disabled-border-color;
+      }
+    }
+
+    .dx-tab-selected {
+      &::after,
+      &.dx-state-focused::after,
+      &.dx-state-hover::after,
+      &.dx-state-active::after {
+        background-color: $tabs-hover-border-color;
+        width: 2px;
+      }
+
+      &.dx-state-disabled::after {
+        background-color: $tabs-disabled-border-color;
       }
     }
   }
 }
 
-.dx-tab-text {
-  vertical-align: middle;
-  line-height: $generic-tab-text-line-height;
+.me-tabs-top.dx-tabs-styling-mode-primary.dx-tab-indicator-position-bottom .dx-tab::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: $tabs-disabled-border-color;
 }
 
-.dx-tabpanel-tabs .dx-tab.dx-state-hover:not(.dx-tab-selected) {
-  border-bottom-color: $tabpanel-tabs-hover-border-color;
+.me-tabs-top.dx-tabs-styling-mode-primary.dx-tab-indicator-position-bottom .dx-tab.dx-tab-selected::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: $tabs-hover-border-color;
 }
 
-.dx-tab.dx-state-focused {
-  position: relative;
+.dx-tabs-styling-mode-secondary.me-tabs-bottom.dx-tabs-vertical .dx-tab.dx-tab-selected {
+  border-radius: 4px 0 0 4px;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    width: calc(100% + 8px);
-    height: calc(100% + 4px);
-    background-color: #7eb9ff;
-    border-color: transparent;
-    border-radius: 6px 6px 0 0;
-    left: -4px;
-    top: -4px;
-    z-index: -1;
+.dx-tabs-styling-mode-secondary {
+  &.me-tabs-bottom.dx-tabs-horizontal .dx-tab {
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: $tabs-disabled-border-color;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-radius: 0 0 4px 4px;
+
+    &.dx-tab-selected {
+      border-radius: 0 0 4px 4px;
+      border-width: 1px;
+      border-style: solid;
+      border-top-color: transparent;
+      border-bottom-color: $tabs-disabled-border-color;
+      border-left-color: $tabs-disabled-border-color;
+      border-right-color: $tabs-disabled-border-color;
+    }
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    width: calc(100% + 4px);
-    height: calc(100% + 2px);
-    background-color: #ffffff;
+  &.me-tabs-top .dx-tab {
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: $tabs-disabled-border-color;
+    border-left-color: transparent;
+    border-right-color: transparent;
     border-radius: 4px 4px 0 0;
-    border: none;
-    left: -2px;
-    top: -2px;
-    z-index: -1;
+
+    &.dx-tab-selected {
+      border-radius: 4px 4px 0 0;
+      border-width: 1px;
+      border-style: solid;
+      border-top-color: $tabs-disabled-border-color;
+      border-bottom-color: transparent;
+      border-left-color: $tabs-disabled-border-color;
+      border-right-color: $tabs-disabled-border-color;
+    }
+  }
+
+  &.me-tabs-bottom .dx-tab {
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: $tabs-disabled-border-color;
+    border-radius: 0;
+
+    &.dx-tab-selected {
+      border-radius: 4px 4px 0 0;
+      border-width: 1px;
+      border-style: solid;
+      border-top-color: $tabs-disabled-border-color;
+      border-bottom-color: $tabs-disabled-border-color;
+      border-left-color: $tabs-disabled-border-color;
+      border-right-color: transparent;
+    }
   }
 }
 
-.dx-state-disabled {
-  .dx-tab-text {
-    color: $tabs-disabled-color;
+.dx-tabs-vertical.dx-tabs-styling-mode-secondary.me-tabs-top {
+  .dx-tab {
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: $tabs-disabled-border-color;
+    border-radius: 0;
+
+    &.dx-tab-selected {
+      border-radius: 4px 0 0 4px;
+      border-width: 1px;
+      border-style: solid;
+      border-top-color: $tabs-disabled-border-color;
+      border-bottom-color: $tabs-disabled-border-color;
+      border-left-color: $tabs-disabled-border-color;
+      border-right-color: transparent;
+    }
+
+    &.dx-tab-selected::after,
+    &.dx-state-hover::after,
+    &.dx-state-active::after {
+      background-color: transparent;
+    }
   }
+}
+
+.dx-tab {
+  gap: 4px;
+  padding: 12px 10px;
+  background-color: transparent;
+  color: #242424;
+
+  &.dx-state-hover {
+    background-color: $tabs-hover-bg;
+  }
+
+  &.dx-state-active {
+    background-color: $tabs-active-bg;
+  }
+
+  &.dx-tab-selected {
+    color: #242424;
+
+    .dx-icon {
+      color: $tabs-hover-border-color;
+    }
+
+    .dx-tab-text .dx-tab-text-span {
+      visibility: visible;
+
+      .dx-tab-text-span-pseudo {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &.dx-state-disabled {
+    color: $tabs-disabled-border-color;
+
+    .dx-icon,
+    .dx-tab-text .dx-tab-text-span-pseudo {
+      color: $tabs-disabled-border-color;
+    }
+  }
+
+  .dx-tab-text {
+    column-gap: 8px;
+    row-gap: 4px;
+    line-height: 1.428571;
+
+    .dx-tab-text-span {
+      position: relative;
+      display: block;
+      font-weight: 500;
+      visibility: hidden;
+    }
+
+    .dx-tab-text-span-pseudo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      color: #242424;
+      font-weight: 400;
+      visibility: visible;
+    }
+  }
+
   .dx-icon {
-    color: $tabs-disabled-color;
+    color: #242424;
+    visibility: visible;
+    background-position: 0 0;
+    background-size: 20px 20px;
+    padding: 0;
+    font-size: 20px;
+    text-align: center;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+  }
+
+  .dx-tabs-item-badge {
+    align-self: center;
+    min-width: 20px;
+    min-height: 20px;
   }
 }

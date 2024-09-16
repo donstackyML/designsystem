@@ -1,75 +1,197 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as tabsStories from "./me-tabs.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { MeTabsDirective } from "../../public-api";
+import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
 
-<Meta
-  name="meTabs Docs"
-  of={tabsStories}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeTabsDirective],
-    }),
-  ]}
-/>
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as tabsStories from "../me-tabs/me-tabs.stories";
+
+<Meta title="Компоненты/Tabs" of={tabsStories} />
 
 # Tabs
 
 ## Директива meTabs
 
-Директива `meTabs` позволяет создавать вкладки с различными параметрами, включая размер и режим оформления. Вкладки могут быть расположены вверху или внизу компонента.
+Директива `meTabs`, применяемая к компоненту `<dx-tabs>`, стилизует его в соответствии с дизайн-системой, добавляет дополнительные свойства и предоставляет возможность гибкой настройки внешнего вида вкладок.
+
+[Документация по компоненту DevExtreme Tabs](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxTabs/)
 
 <Canvas of={tabsStories.Default} />
+
 <Controls of={tabsStories.Default} />
-<Source of={tabsStories.Default} dark />
 
-## Примеры использования:
+<Source of={tabsStories.Default} dark language="html" />
 
-- [Изменение размера вкладок](#изменение-размера-вкладок)
-- [Изменение позиции вкладок](#изменение-позиции-вкладок)
-- [Изменение режима оформления](#изменение-режима-оформления)
+## Дизайн
 
-## Изменение размера вкладок
-
-Для изменения размера вкладок используйте параметр `size` с возможными значениями `small`, `medium`, или `large`.
-
-<Canvas of={tabsStories.LargeSize} />
-
-<Source
-  code={`<div meTabs size="large"> <!-- Ваши вкладки здесь --> </div>`}
-  dark
-  language='html'
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/..."
 />
 
-## Изменение позиции вкладок
+## Примеры использования
 
-Для изменения позиции вкладок используйте параметр `position` с возможными значениями `top` или `bottom`.
+- [Вертикальная ориентация](#вертикальная-ориентация)
+- [С кнопками навигации](#с-кнопками-навигации)
+- [Прокрутка содержимого](#прокрутка-содержимого)
+- [Различные позиции иконок](#различные-позиции-иконок)
+- [Вторичный стиль оформления](#вторичный-стиль-оформления)
+- [Свойства](#свойства)
 
-<Canvas of={tabsStories.BottomPosition} />
+## Вертикальная ориентация
+
+Для отображения вкладок в вертикальной ориентации используйте свойство `orientation="vertical"`.
+
+<Canvas of={tabsStories.VerticalOrientation} />
 
 <Source
-  code={`<div meTabs position="bottom"> <!-- Ваши вкладки здесь --> </div>`}
+  code={`
+<dx-tabs
+  meTabs
+  orientation="vertical"
+  [dataSource]="tabsData"
+></dx-tabs>
+`}
   dark
-  language='html'
+  language="html"
 />
 
-## Изменение режима оформления
+## С кнопками навигации
 
-Для изменения режима оформления вкладок используйте параметр `stylingMode` с возможными значениями `outside` или `inside`.
+Чтобы добавить кнопки навигации при наличии большого количества вкладок, используйте свойство `showNavButtons="true"` и задайте фиксированную ширину компонента.
+
+<Canvas of={tabsStories.WithNavButtons} />
+
+<Source
+  code={`
+<dx-tabs
+  meTabs
+  [showNavButtons]="true"
+  width="300px"
+  [dataSource]="tabsData"
+></dx-tabs>
+`}
+  dark
+  language="html"
+/>
+
+## Прокрутка содержимого
+
+Для включения прокрутки вкладок при большом количестве используйте свойство `scrollByContent="true"`.
+
+<Canvas of={tabsStories.ScrollByContent} />
+
+<Source
+  code={`
+<dx-tabs
+  meTabs
+  [scrollByContent]="true"
+  width="300px"
+  [dataSource]="tabsData"
+></dx-tabs>
+`}
+  dark
+  language="html"
+/>
+
+## Различные позиции иконок
+
+Вы можете изменять позицию иконок относительно текста вкладки с помощью свойства `iconPosition`.
+
+<Canvas of={tabsStories.DifferentIconPositions} />
+
+<Source
+  code={`
+<dx-tabs
+  meTabs
+  iconPosition="top"
+  [dataSource]="tabsData"
+></dx-tabs>
+`}
+  dark
+  language="html"
+/>
+
+## Вторичный стиль оформления
+
+Для использования вторичного стиля оформления установите свойство `stylingMode="secondary"`.
 
 <Canvas of={tabsStories.InsideStylingMode} />
 
 <Source
-  code={`<div meTabs stylingMode="inside"> <!-- Ваши вкладки здесь --> </div>`}
+  code={`
+<dx-tabs
+  meTabs
+  stylingMode="secondary"
+  [dataSource]="tabsData"
+></dx-tabs>
+`}
   dark
-  language='html'
+  language="html"
 />
 
-## Перечень свойств
+## Свойства
 
-<Controls
-  of={tabsStories.SmallSize}
-  include={["size", "position", "stylingMode"]}
+<Controls of={tabsStories.Default} include={[
+  "position",
+  "size",
+  "stylingMode",
+  "orientation",
+  "iconPosition",
+  "showNavButtons",
+  "scrollByContent",
+  "width",
+  "customClass"
+]} />
+
+## Пример использования
+
+Ниже приведен пример использования компонента `<dx-tabs>` с директивой `meTabs` и различными свойствами.
+
+<Source
+  code={`
+<dx-tabs
+  meTabs
+  [customClass]="customClass"
+  [position]="position"
+  [size]="size"
+  [stylingMode]="stylingMode"
+  [orientation]="orientation"
+  [iconPosition]="iconPosition"
+  [showNavButtons]="showNavButtons"
+  [scrollByContent]="scrollByContent"
+  [width]="width"
+  [dataSource]="tabsData"
+  [selectedIndex]="0"
+></dx-tabs>
+`}
+  dark
+  language="html"
 />
 
-<Canvas of={tabsStories.SmallSize} />
+## Дополнительная информация
+
+При использовании компонента `<dx-tabs>` с директивой `meTabs` обратите внимание на следующие моменты:
+
+- Свойство `size` может принимать значения `small`, `medium` или `large`, влияя на размер вкладок.
+- Свойство `orientation` определяет ориентацию вкладок: `horizontal` или `vertical`.
+- Свойство `stylingMode` позволяет переключаться между стилями оформления: `primary` и `secondary`.
+- Свойство `iconPosition` задает позицию иконки относительно текста: `top`, `start`, `end`, `bottom`.
+
+## Дизайн-система и Figma
+
+Более подробную информацию о дизайне компонента можно найти в Figma:
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/..."
+/>
+
+<style>
+  {`
+    h2 {
+      border-bottom: none !important;
+    }
+  `}
+</style>
