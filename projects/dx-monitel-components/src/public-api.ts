@@ -1,8 +1,8 @@
-export {MeFormDirective} from "./lib/directives/me-form/me-form.directive";
+export { MeFormDirective } from './lib/directives/me-form/me-form.directive';
 
-export {MeAutocompleteDirective} from "./lib/directives/me-autocomplete/me-autocomplete.directive";
+export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';
 
-export {MeBreadcrumbsComponent} from "./lib/components/me-breadcrumbs/me-breadcrumbs.component";
+export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
 
 export { MeCardComponent } from './lib/components/me-card/me-card.component';
 
@@ -17,9 +17,7 @@ export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 
-
 export { MeFileUploaderComponent } from './lib/components/me-file-uploader/me-file-uploader.component';
-
 
 /*
 import { MeTabPanelDirective } from './../../../src/app/directives/tab-panel.directive';

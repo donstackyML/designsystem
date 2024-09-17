@@ -5,6 +5,6 @@ import { MePivotGridDirective } from './me-pivot-grid.directive';
 @NgModule({
   declarations: [MePivotGridDirective],
   imports: [CommonModule],
-  exports: [MePivotGridModule],
+  exports: [MePivotGridDirective],
 })
 export class MePivotGridModule {}

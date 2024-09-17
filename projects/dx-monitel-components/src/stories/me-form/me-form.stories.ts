@@ -1,6 +1,6 @@
 import { moduleMetadata, Meta, StoryObj, StoryFn } from '@storybook/angular';
 import { DxFormModule } from 'devextreme-angular';
-import { MeFormDirective } from "../../public-api";
+import { MeFormDirective } from '../../public-api';
 
 interface FormStoryArgs {
   size: 'small' | 'medium' | 'large';

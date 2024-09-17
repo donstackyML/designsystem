@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {MeBadgeComponent, MeDataGridModule} from '../public-api';
+import { MeBadgeComponent, MeDataGridModule } from '../public-api';
 import { MeTagBoxModule } from '../public-api';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeAccordionModule } from './directives/me-accordion/accordion.module';
@@ -43,8 +43,8 @@ import { MeChipComponent } from './components/me-chips/me-chips.component';
 import { MeChipsContainerComponent } from './components/me-chips-container/me-chips-container.component';
 import { MeCardComponent } from './components/me-card/me-card.component';
 import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.module';
-import {MeAutocompleteModule} from "./directives/me-autocomplete/me-autocomplete.module";
-import {MeFormModule} from "./directives/me-form/me-form.module";
+import { MeAutocompleteModule } from './directives/me-autocomplete/me-autocomplete.module';
+import { MeFormModule } from './directives/me-form/me-form.module';
 
 @NgModule({
   declarations: [],
@@ -97,7 +97,7 @@ import {MeFormModule} from "./directives/me-form/me-form.module";
     MeTreeListModule,
     MeTagBoxModule,
     MeAutocompleteModule,
-    MeFormModule
+    MeFormModule,
   ],
   exports: [
     MeAccordionModule,
@@ -149,7 +149,7 @@ import {MeFormModule} from "./directives/me-form/me-form.module";
     MeTreeListModule,
     MeTagBoxModule,
     MeAutocompleteModule,
-    MeFormModule
+    MeFormModule,
   ],
 })
 export class MeComponentsModule {}

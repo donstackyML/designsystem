@@ -1,20 +1,24 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabsModule } from 'devextreme-angular';
-import { Tab } from '../../lib/directives/me-tabs/tabs.directive';
 import { MeTabsDirective } from '../../public-api';
+import { Tab } from '../../lib/directives/me-tabs/tabs.directive';
 
 interface MeTabsProps {
   customClass: string;
   position: 'top' | 'bottom';
   size: 'small' | 'medium' | 'large';
-  stylingMode: 'outside' | 'inside';
+  stylingMode: 'primary' | 'secondary';
+  orientation: 'horizontal' | 'vertical';
+  iconPosition: 'top' | 'start' | 'end' | 'bottom';
+  showNavButtons: boolean;
+  scrollByContent: boolean;
+  width: string | number;
   tabsData: Tab[];
 }
 
 const meta: Meta<MeTabsProps> = {
-  title: 'Components/Tabs(RC)',
+  title: 'Components/Tabs',
   component: MeTabsDirective,
-  // tags: ['autodocs'],
   decorators: [
     moduleMetadata({
       declarations: [MeTabsDirective],
@@ -30,6 +34,11 @@ const meta: Meta<MeTabsProps> = {
         [position]="position"
         [size]="size"
         [stylingMode]="stylingMode"
+        [orientation]="orientation"
+        [iconPosition]="iconPosition"
+        [showNavButtons]="showNavButtons"
+        [scrollByContent]="scrollByContent"
+        [width]="width"
         [dataSource]="tabsData"
         [selectedIndex]="0"
       ></dx-tabs>
@@ -38,15 +47,32 @@ const meta: Meta<MeTabsProps> = {
   argTypes: {
     position: {
       options: ['top', 'bottom'],
-      control: { type: 'radio' },
+      control: { type: 'select' },
     },
     size: {
       options: ['small', 'medium', 'large'],
       control: { type: 'select' },
     },
     stylingMode: {
-      options: ['outside', 'inside'],
-      control: { type: 'radio' },
+      options: ['primary', 'secondary'],
+      control: { type: 'select' },
+    },
+    orientation: {
+      options: ['horizontal', 'vertical'],
+      control: { type: 'select' },
+    },
+    iconPosition: {
+      options: ['top', 'start', 'end', 'bottom'],
+      control: { type: 'select' },
+    },
+    showNavButtons: {
+      control: 'boolean',
+    },
+    scrollByContent: {
+      control: 'boolean',
+    },
+    width: {
+      control: 'text',
     },
     customClass: {
       control: 'text',
@@ -58,63 +84,73 @@ export default meta;
 type Story = StoryObj<MeTabsProps>;
 
 const defaultTabsData: Tab[] = [
-  { id: 1, text: 'Tab 1' },
-  { id: 2, text: 'Tab 2' },
-  { id: 3, text: 'Tab 3' },
+  { id: 1, text: 'Tab 1', icon: 'user' },
+  { id: 2, text: 'Tab 2', icon: 'email' },
+  { id: 3, text: 'Tab 3', icon: 'chart' },
 ];
 
 export const Default: Story = {
   args: {
     position: 'top',
     size: 'medium',
-    stylingMode: 'outside',
+    stylingMode: 'primary',
+    orientation: 'horizontal',
+    iconPosition: 'start',
+    showNavButtons: false,
+    scrollByContent: false,
+    width: 'auto',
     customClass: '',
     tabsData: defaultTabsData,
   },
 };
 
-export const BottomPosition: Story = {
+export const VerticalOrientation: Story = {
   args: {
     ...Default.args,
-    position: 'bottom',
+    orientation: 'vertical',
   },
 };
 
-export const SmallSize: Story = {
+export const WithNavButtons: Story = {
   args: {
     ...Default.args,
-    size: 'small',
+    showNavButtons: true,
+    width: '300px',
+    tabsData: [
+      { id: 1, text: 'Tab 1', icon: 'user' },
+      { id: 2, text: 'Tab 2', icon: 'email' },
+      { id: 3, text: 'Tab 3', icon: 'chart' },
+      { id: 4, text: 'Tab 4', icon: 'home' },
+      { id: 5, text: 'Tab 5', icon: 'event' },
+    ],
   },
 };
 
-export const LargeSize: Story = {
+export const ScrollByContent: Story = {
   args: {
     ...Default.args,
-    size: 'large',
+    scrollByContent: true,
+    width: '300px',
+    tabsData: [
+      { id: 1, text: 'Tab 1', icon: 'user' },
+      { id: 2, text: 'Tab 2', icon: 'email' },
+      { id: 3, text: 'Tab 3', icon: 'chart' },
+      { id: 4, text: 'Tab 4', icon: 'home' },
+      { id: 5, text: 'Tab 5', icon: 'event' },
+    ],
+  },
+};
+
+export const DifferentIconPositions: Story = {
+  args: {
+    ...Default.args,
+    iconPosition: 'top',
   },
 };
 
 export const InsideStylingMode: Story = {
   args: {
     ...Default.args,
-    stylingMode: 'inside',
-  },
-};
-
-export const WithCustomClass: Story = {
-  args: {
-    ...Default.args,
-    customClass: 'my-custom-tabs-class',
-  },
-};
-
-export const WithIcons: Story = {
-  args: {
-    ...Default.args,
-    tabsData: [
-      { id: 1, text: 'Tab 1', icon: 'user' },
-      { id: 2, text: 'Tab 2', icon: 'email' },
-      { id: 3, text: 'Tab 3', icon: 'chart' },
-    ],
+    stylingMode: 'secondary',
   },
 };

@@ -1,7 +1,6 @@
 import { moduleMetadata, StoryObj, Meta } from '@storybook/angular';
 import { DxAutocompleteModule } from 'devextreme-angular';
-import {MeAutocompleteDirective} from "../../lib/directives/me-autocomplete/me-autocomplete.directive";
-
+import { MeAutocompleteDirective } from '../../lib/directives/me-autocomplete/me-autocomplete.directive';
 
 const meta: Meta<MeAutocompleteDirective> = {
   title: 'Components/Autocomplete',
