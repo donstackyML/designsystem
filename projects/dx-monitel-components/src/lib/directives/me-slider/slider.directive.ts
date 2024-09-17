@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Directive,
   ElementRef,
   HostListener,
@@ -13,26 +12,9 @@ import {
     '[class.me-slider]': 'true',
   },
 })
-export class MeSliderDirective implements AfterViewInit {
+export class MeSliderDirective {
   private renderer = inject(Renderer2);
   private element = inject(ElementRef);
-
-  createRangeStartPoint() {
-    const startPoint = this.renderer.createElement('div');
-    this.renderer.addClass(startPoint, 'dx-widget');
-    this.renderer.addClass(startPoint, 'dx-slider-handle');
-    this.renderer.addClass(startPoint, 'dx-slider-tooltip-visible-on-hover');
-    this.renderer.addClass(startPoint, 'me-start-point');
-
-    this.renderer.appendChild(
-      this.element.nativeElement.querySelector('.dx-trackbar-container'),
-      startPoint
-    );
-  }
-
-  ngAfterViewInit(): void {
-    this.createRangeStartPoint();
-  }
 
   private addHoverEffect() {
     this.renderer.addClass(
@@ -104,12 +86,10 @@ export class MeSliderDirective implements AfterViewInit {
     }
 
     if (e.name === 'isActive' && e.value === true) {
-      console.log('set', e);
       this.addActiveEffect();
     }
     if (e.name === 'isActive' && e.value !== true) {
       this.removeActiveEffect();
-      console.log('reset', e);
     }
   }
 }
