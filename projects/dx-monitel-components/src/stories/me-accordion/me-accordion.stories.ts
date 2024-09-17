@@ -3,7 +3,7 @@ import { DxAccordionModule } from 'devextreme-angular';
 import { MeAccordionDirective } from '../../public-api';
 
 export default {
-  title: 'Components/Accordion(RC)',
+  title: 'Компоненты/Accordion',
   decorators: [
     moduleMetadata({
       declarations: [MeAccordionDirective],
@@ -15,25 +15,17 @@ export default {
       control: 'select',
       options: ['small', 'medium', 'large'],
     },
-    customClass: {
-      control: 'text',
-    },
     collapsible: {
       control: 'boolean',
     },
     multiple: {
       control: 'boolean',
     },
-    animationDuration: {
-      control: { type: 'number', min: 0, max: 1000, step: 50 },
-    },
   },
   args: {
     size: 'medium',
-    customClass: '',
     collapsible: false,
     multiple: false,
-    animationDuration: 300,
   },
   render: (args) => ({
     props: {
@@ -47,10 +39,8 @@ export default {
       <dx-accordion
         meAccordion
         [size]="size"
-        [customClass]="customClass"
         [collapsible]="collapsible"
         [multiple]="multiple"
-        [animationDuration]="animationDuration"
         [dataSource]="dataSource"
         (onCollapsibleChanged)="onCollapsibleChanged($event)"
         (onMultipleChanged)="onMultipleChanged($event)"
@@ -104,20 +94,6 @@ export const Multiple: Story = {
   args: {
     ...Default.args,
     multiple: true,
-  },
-};
-
-export const CustomAnimation: Story = {
-  args: {
-    ...Default.args,
-    animationDuration: 1000,
-  },
-};
-
-export const CustomClass: Story = {
-  args: {
-    ...Default.args,
-    customClass: 'my-custom-accordion',
   },
 };
 
