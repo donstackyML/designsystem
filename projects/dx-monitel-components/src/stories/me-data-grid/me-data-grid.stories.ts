@@ -2,8 +2,6 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxDataGridModule } from 'devextreme-angular';
 import { MeDataGridDirective } from '../../public-api';
 
-const columnsData = ['CompanyName', 'Phone', 'Fax', 'City', 'State'];
-
 export default {
   title: 'Components/DataGrid(RC)',
   decorators: [
@@ -22,21 +20,9 @@ export default {
       options: ['small', 'medium', 'large'],
       description: 'Размер компонента',
     },
-    height: {
-      control: 'text',
-      description: 'Занимаемая компонентом высота',
-    },
-    hint: {
-      control: 'text',
-      description:
-        'Задает текст для подсказки, которая появляется, когда пользователь приостанавливает работу с компонентом пользовательского интерфейса',
-    },
-    showBorders: {
-      control: 'boolean',
-      description: 'Показывать ли границы ячейки',
-    },
     showPageSizeSelector: {
-      control: 'boolean',
+      control: 'select',
+      options: [true, false],
       description:
         'Относится к Pagination. Показывать ли выбор колличества строк на странице. Тэг `dxo-pager`',
     },
@@ -51,7 +37,8 @@ export default {
         'Относится к Pagination. Разрешенные размеры страницы. Тэг `dxo-paging`',
     },
     showInfo: {
-      control: 'boolean',
+      control: 'select',
+      options: [true, false],
       description:
         'Относится к Pagination. Показывать ли компонент информации о странице. Тэг `dxo-pager`',
     },
@@ -61,7 +48,8 @@ export default {
         'Относится к Pagination. Текст информации о странице. Тэг `dxo-pager`',
     },
     showNavigationButtons: {
-      control: 'boolean',
+      control: 'select',
+      options: [true, false],
       description:
         'Относится к Pagination. Показывать кнопки навигации. Тэг `dxo-pager`',
     },
@@ -886,11 +874,8 @@ export default {
         State: 'State 3',
       },
     ],
-    size: 'small',
-    showBorders: true,
-    hint: 'Hint text',
+    size: 'medium',
     showPageSizeSelector: true,
-    allowedPageSizes: '20',
     displayMode: 'full',
     showInfo: true,
     infoText: 'Записей: {2}',
@@ -905,13 +890,8 @@ export default {
 				id="gridContainer"
 				[(dataSource)]="dataSource"
 				[size]="size"
-				[keyExpr]="'ID'"
 				[allowColumnReordering]="true"
-				[height]="height"
-				[showBorders]="showBorders"
-				[hint]="hint"
 			>
-				<dxi-column *ngFor="let column of columns" [dataField]="column"></dxi-column>
 				<dxo-search-panel [visible]="true"></dxo-search-panel>
 				<dxo-paging [(pageSize)]="pageSize" [showPageSizeSelector]></dxo-paging>
 				<dxo-pager

@@ -1,4 +1,5 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, OnInit, inject } from '@angular/core';
+import { DxDataGridComponent } from 'devextreme-angular';
 import { MeSize } from '../../types/types';
 
 @Directive({
@@ -10,8 +11,19 @@ import { MeSize } from '../../types/types';
     '[class.me-data-grid-large]': 'isSizeLarge',
   },
 })
-export class MeDataGridDirective {
+export class MeDataGridDirective implements OnInit {
   @Input() size: MeSize = 'medium';
+
+  private component = inject(DxDataGridComponent);
+
+  ngOnInit(): void {
+    this.applyInitialSettings();
+  }
+
+  private applyInitialSettings() {
+    this.component.instance.option('showBorders', true);
+    this.component.instance.option('showRowLines', true);
+  }
 
   get isSizeSmall() {
     return this.size === 'small';

@@ -183,6 +183,9 @@
     }
     .dx-datagrid-rowsview {
       margin: 0 1px 16px 1px;
+      &.dx-empty {
+        border-bottom: 1px solid $datagrid-border-color;
+      }
     }
     .dx-datagrid-pager.dx-pager {
       margin: 0;
@@ -282,6 +285,16 @@
   .dx-datagrid-search-panel {
     border-radius: 3px;
     background-color: $data-grid-search-panel-background-color;
+
+    .dx-icon-search {
+      font-family: 'Material Symbols Outlined';
+      &::before {
+        content: '\e8b6';
+      }
+    }
+    .dx-texteditor-input::placeholder {
+      color: transparent;
+    }
     .dx-placeholder::before {
       padding-block: 0;
       line-height: normal;
@@ -332,6 +345,11 @@
         color: $base-text-color;
       }
     }
+    td {
+      .dx-column-indicators {
+        height: 16px;
+      }
+    }
   }
 
   .dx-datagrid-content {
@@ -355,9 +373,27 @@
 
       & > td {
         padding: 5px 8px;
-        border-bottom: 1px solid $base-border-color;
       }
     }
+  }
+
+  .dx-datagrid-borders
+    > .dx-datagrid-rowsview.dx-last-row-border
+    tbody:last-child
+    > .dx-data-row:nth-last-child(2)
+    > td {
+    border-bottom-width: 1px;
+  }
+
+  td {
+    text-align: left !important;
+    .dx-column-indicators {
+      float: right !important;
+    }
+  }
+
+  .dx-gridbase-a11y-status-container {
+    display: none;
   }
 
   //small
@@ -385,7 +421,12 @@
                 .dx-group-panel-item.dx-datagrid-action.dx-datagrid-drag-action {
                   height: 28px;
                   font-size: 13px;
-                  // margin: 2px;
+                }
+                .dx-datagrid-group-panel {
+                  .dx-group-panel-message {
+                    height: 28px;
+                    font-size: 13px;
+                  }
                 }
               }
             }
@@ -393,10 +434,16 @@
               //search
               .dx-datagrid-search-panel {
                 height: 28px;
-                & > *,
-                .dx-icon {
+                & > * {
                   font-size: 13px;
                   font-weight: 400;
+                }
+                .dx-icon {
+                  font-size: 18px;
+                }
+                .dx-placeholder::before,
+                .dx-texteditor-input {
+                  padding-left: 32px;
                 }
               }
             }
@@ -501,7 +548,12 @@
                 .dx-group-panel-item.dx-datagrid-action.dx-datagrid-drag-action {
                   height: 32px;
                   font-size: 14px;
-                  // margin: 2px;
+                }
+                .dx-datagrid-group-panel {
+                  .dx-group-panel-message {
+                    height: 32px;
+                    font-size: 14px;
+                  }
                 }
               }
             }
@@ -509,10 +561,16 @@
               //search
               .dx-datagrid-search-panel {
                 height: 32px;
-                & > *,
-                .dx-icon {
+                & > * {
                   font-size: 14px;
                   font-weight: 400;
+                }
+                .dx-icon {
+                  font-size: 18px;
+                }
+                .dx-placeholder::before,
+                .dx-texteditor-input {
+                  padding-left: 32px;
                 }
               }
             }
@@ -618,7 +676,12 @@
                 .dx-group-panel-item.dx-datagrid-action.dx-datagrid-drag-action {
                   height: 40px;
                   font-size: 16px;
-                  // margin: 2px;
+                }
+                .dx-datagrid-group-panel {
+                  .dx-group-panel-message {
+                    height: 40px;
+                    font-size: 16px;
+                  }
                 }
               }
             }
@@ -626,10 +689,21 @@
               //search
               .dx-datagrid-search-panel {
                 height: 40px;
-                & > *,
-                .dx-icon {
-                  font-size: 16px;
+                & > * {
+                  font-size: 18px;
                   font-weight: 400;
+                }
+                .dx-icon {
+                  font-size: 26px;
+                }
+                .dx-icon-search {
+                  margin-top: -19px;
+                  line-height: 20px;
+                  padding-block: 6px;
+                }
+                .dx-placeholder::before,
+                .dx-texteditor-input {
+                  padding-left: 40px;
                 }
               }
             }

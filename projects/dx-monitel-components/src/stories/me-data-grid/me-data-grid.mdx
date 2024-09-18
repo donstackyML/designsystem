@@ -3,6 +3,7 @@ import * as DataGridStories from "./me-data-grid.stories";
 import { moduleMetadata } from "@storybook/angular";
 import { DxDataGridModule } from "devextreme-angular";
 import { MeDataGridDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
 
 <Meta
   title="Components/DataGrid"
@@ -20,20 +21,55 @@ import { MeDataGridDirective } from "../../public-api";
 
 ## Директива meDataGrid
 
-Директива `meDataGrid` изменяет внешний вид стандартного компонента dataGrid DevExtreme, добавляя дополнительные настройки.
+Применение директивы `meDataGrid` к элементу `dx-data-grid` приводит его размеры к значению `size=medium` из дизайн-системы, а также приводит отступы в соответствие с дизайн-системой, добавляет свойство `size`.
 
 <Story name="Default" of={DataGridStories.DataGrid} />
 <Controls of={DataGridStories.DataGrid} />
 <Source of={DataGridStories.DataGrid} dark />
 
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=568-31799&t=AcVCK3Dt91yWxh5R-0"
+/>
+
 ## Примеры использования:
 
-### Размеры dataGrid
+- [размеры dataGrid](#размеры)
+- [pagination](#pagination)
+- [стиль Pagination](#стиль-пагинатора)
+
+## Размеры
 
 Поддерживает несколько вариаций размеров dataGrid: `small`, `medium` и `large`.
 
+<Source of={DataGridStories.DataGrid} dark />
+
+## Pagination
+
+Для добавления Pagination необходимо использовать `dxo-pager`.
+Для контроля колличества строк в таблице необходимо использовать `dxo-paging`.
+
 <Source
-  code={`<div meDataGrid meDataGrid [size]="size"></div>`}
+  code={`
+<dx-data-grid meDataGrid>
+	<dxo-pager></dxo-pager>
+	<dxo-paging></dxo-paging>
+</dx-data-grid>`}
+  dark
+  language="html"
+/>
+
+## Стиль пагинатора
+
+Для изменения стиля Pagination необходимо использовать свойство `displayMode` в `dxo-pager`. По умолчанию значение `full`.
+
+<Source
+  code={`<dxo-pager displayMode="full"></dxo-pager>
+`}
   dark
   language="html"
 />
