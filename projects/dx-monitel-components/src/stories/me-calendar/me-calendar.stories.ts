@@ -96,10 +96,3 @@ export const YearZoomLevel: Story = {
     zoomLevel: 'year',
   },
 };
-
-export const CustomWeekNumberRule: Story = {
-  args: {
-    ...Default.args,
-    weekNumberRule: 'fullWeek',
-  },
-};
