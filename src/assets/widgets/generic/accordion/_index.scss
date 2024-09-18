@@ -1,12 +1,12 @@
-@use 'sass:math';
-@use 'sass:color';
-@use 'colors' as *;
-@use '../colors' as *;
-@use 'sizes' as *;
-@use '../sizes' as *;
-@use '../../base/icons' as *;
-@use '../typography/sizes' as *;
-@use '../../base/accordion';
+@use "sass:math";
+@use "sass:color";
+@use "colors" as *;
+@use "../colors" as *;
+@use "sizes" as *;
+@use "../sizes" as *;
+@use "../../base/icons" as *;
+@use "../typography/sizes" as *;
+@use "../../base/accordion";
 
 // adduse
 
@@ -23,23 +23,11 @@ $generic-accordion-disabled-opacity: 0.5;
   border-radius: 3px 3px 0 0;
   border-inline: 1px solid transparent;
   border-top: 1px solid transparent;
-  border-bottom: 1px solid $accordion-item-border-color;
+  border-bottom: 1px solid transparent;
 
-  // &:not(:last-child) {
-  //   margin-bottom: 4px;
-  // }
-
-  // &:last-child {
-  //   border-bottom: 1px solid $accordion-item-border-color;
-  // }
-
-  // &:first-child {
-  //   border-top-color: transparent;
-
-  //   &.dx-accordion-item-opened {
-  //     border-top-color: $accordion-item-border-color;
-  //   }
-  // }
+  &:last-child {
+    border-bottom: 1px solid $accordion-item-border-color;
+  }
 
   &.dx-state-active:not(.dx-accordion-item-opened) {
     .dx-icon {
@@ -71,6 +59,7 @@ $generic-accordion-disabled-opacity: 0.5;
 .dx-accordion-item-opened {
   border-radius: 3px;
   border: 1px solid $accordion-item-border-color;
+
   &.dx-state-hover {
     & > .dx-accordion-item-title {
       background-color: $accordion-item-title-opened-bg;
@@ -81,7 +70,7 @@ $generic-accordion-disabled-opacity: 0.5;
     background-color: $accordion-item-title-opened-bg;
 
     &::before {
-      content: '\f014';
+      content: "\f014";
     }
   }
 
@@ -100,30 +89,34 @@ $generic-accordion-disabled-opacity: 0.5;
   font-size: $generic-s-font-size;
 
   &::before {
+    content: "\f016";
+    position: absolute;
+    font-family: DXIcons; // stylelint-disable-line font-family-no-missing-generic-family-keyword, font-family-name-quotes
+    font-size: $generic-base-icon-size;
     font-weight: normal;
     color: $accordion-icon-color;
-    content: '\f016';
-    font-family: DXIcons; // stylelint-disable-line font-family-no-missing-generic-family-keyword
-    font-size: $generic-base-icon-size;
+    line-height: $generic-accordion-arrow-line-height;
     margin-left: math.div($generic-base-icon-size, 2);
     margin-right: 0;
-    line-height: $generic-accordion-arrow-line-height;
+    right: 15px;
   }
 
   .dx-icon {
     @include dx-icon-sizing($generic-base-icon-size);
-
     display: inline-block;
     color: $accordion-icon-color;
   }
 
   .dx-accordion-item-title-caption .dx-icon {
     @include dx-icon-margin($accordion-title-icon-margin);
-
     vertical-align: top;
     position: relative;
     top: $accordion-title-icon-top-offset;
   }
+}
+
+.dx-accordion-item-title-caption {
+  margin-inline-end: $generic-base-icon-size;
 }
 
 .dx-state-disabled {
@@ -133,22 +126,12 @@ $generic-accordion-disabled-opacity: 0.5;
 }
 
 .dx-state-focused {
-  &.dx-accordion-item {
-    border: 1px solid $accordion-item-focused-border-color;
-    border-radius: 3px;
-    box-shadow: 0 0 0 1px $accordion-item-focused-border-color;
-
-    &:first-child.dx-accordion-item-opened {
-      border-top-color: $accordion-item-focused-border-color;
-    }
-  }
+  //&.dx-accordion-item {
+  //  border: 1px solid $accordion-item-focused-border-color;
+  //  border-radius: 3px;
+  //  box-shadow: 0 0 0 1px $accordion-item-focused-border-color;
+  //}
 }
-
-// .dx-state-active {
-//   &.dx-accordion-item {
-//     border-color: transparent;
-//   }
-// }
 
 .dx-accordion-item-body {
   padding: $generic-accordion-body-padding;
@@ -179,6 +162,7 @@ $generic-accordion-disabled-opacity: 0.5;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
+
     p {
       text-align: start;
     }
@@ -222,6 +206,7 @@ $generic-accordion-disabled-opacity: 0.5;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
+
     p {
       text-align: start;
     }

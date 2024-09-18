@@ -1,126 +1,100 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as AccordionStories from "./me-accordion.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxAccordionModule } from "devextreme-angular";
-import { MeAccordionDirective } from "../../public-api";
+import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
+import * as accordionStories from "./me-accordion.stories";
+import {MeAccordionDirective} from "../../public-api";
 
-<Meta
-  title="Components/Accordion"
-  component={MeAccordionDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeAccordionDirective],
-      imports: [DxAccordionModule],
-    }),
-  ]}
-  of={AccordionStories}
-/>
+<Meta title="Components/Accordion(RC)" component={MeAccordionDirective} of={accordionStories} />
 
 # Accordion
 
 ## Директива meAccordion
 
-Директива `meAccordion` расширяет функциональность стандартного компонента аккордеона DevExtreme, добавляя дополнительные возможности настройки и обработки событий.
+Директива `meAccordion`, применяемая к компоненту `<dx-accordion>`, стилизует его в соответствии с дизайн-системой, добавляет дополнительные свойства и предоставляет возможность гибкой настройки внешнего вида аккордеона.
 
-<Canvas name="Default" of={AccordionStories.Default} />
-<Controls of={AccordionStories.Default} />
+[Документация по компоненту DevExtreme Accordion](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxAccordion/)
 
-<Source of={AccordionStories.Default} dark />
+<Source of={accordionStories.Default} dark language="html" />
 
-## Примеры использования:
+## Примеры использования
 
-### Аккордеон малого размера
+- [Маленький размер](#маленький-размер)
+- [Большой размер](#большой-размер)
+- [Свойство Collapsible](#свойство-collapsible)
+- [Множественный выбор](#множественный-выбор)
+- [Пользовательский заголовок](#пользовательский-заголовок)
+- [Свойства](#свойства)
 
-<Canvas name="Small" of={AccordionStories.Small} />
+## Маленький размер
 
-<Source
-  code={`<dx-accordion meAccordion size="small"></dx-accordion>`}
-  dark
-  language="html"
-/>
+Чтобы изменить размер аккордеона на маленький, используйте свойство `size="small"`.
 
-### Сворачиваемый аккордеон
-
-<Canvas name="Collapsible" of={AccordionStories.Collapsible} />
-
-<Source
-  code={`<dx-accordion meAccordion [collapsible]="true"></dx-accordion>`}
-  dark
-  language="html"
-/>
-
-### Аккордеон с множественным выбором
-
-<Canvas name="Multiple" of={AccordionStories.Multiple} />
-
-<Source
-  code={`<dx-accordion meAccordion [multiple]="true"></dx-accordion>`}
-  dark
-  language="html"
-/>
-
-### Настройка анимации
-
-<Canvas name="CustomAnimation" of={AccordionStories.CustomAnimation} />
-
-<Source
-  code={`<dx-accordion meAccordion [animationDuration]="1000"></dx-accordion>`}
-  dark
-  language="html"
-/>
-
-### Использование пользовательского класса
-
-<Canvas name="CustomClass" of={AccordionStories.CustomClass} />
-
-<Source
-  code={`<dx-accordion meAccordion customClass="my-custom-accordion"></dx-accordion>`}
-  dark
-  language="html"
-/>
-
-## Перечень свойств
-
-<Controls story={AccordionStories.Default} />
-
-## Обработка событий
-
-Аккордеон поддерживает стандартные события DevExtreme. Вот пример обработки событий изменения состояния:
 
 <Source
   code={`
 <dx-accordion
   meAccordion
-  (onCollapsibleChanged)="onCollapsibleChanged($event)"
-  (onMultipleChanged)="onMultipleChanged($event)"
-  (onSelectedIndexChanged)="onSelectedIndexChanged($event)"
+  size="small"
+  [dataSource]="dataSource"
 ></dx-accordion>
-
-    // В вашем компоненте:
-    onCollapsibleChanged(e: any) {
-      console.log('Collapsible changed:', e);
-    }
-
-    onMultipleChanged(e: any) {
-      console.log('Multiple changed:', e);
-    }
-
-    onSelectedIndexChanged(e: any) {
-      console.log('Selected index changed:', e);
-    }
-
 `}
-dark
-language="typescript"
+  dark
+  language="html"
 />
 
-Это позволяет вам реагировать на изменения состояния аккордеона.
+## Большой размер
 
-### Аккордеон с кастомным заголовком и иконкой
+Для увеличения размера аккордеона используйте свойство `size="large"`.
 
-<Canvas name="CustomHeader" of={AccordionStories.CustomHeader} />
 
-Вы можете настроить внешний вид заголовков элементов аккордеона, используя шаблоны. Вот пример использования кастомного заголовка с иконкой и описанием:
+<Source
+  code={`
+<dx-accordion
+  meAccordion
+  size="large"
+  [dataSource]="dataSource"
+></dx-accordion>
+`}
+  dark
+  language="html"
+/>
+
+## Свойство Collapsible
+
+Чтобы позволить сворачивание всех панелей аккордеона, установите свойство `collapsible="true"`.
+
+
+<Source
+  code={`
+<dx-accordion
+  meAccordion
+  [collapsible]="true"
+  [dataSource]="dataSource"
+></dx-accordion>
+`}
+  dark
+  language="html"
+/>
+
+## Множественный выбор
+
+Для разрешения одновременного открытия нескольких панелей аккордеона установите свойство `multiple="true"`.
+
+
+<Source
+  code={`
+<dx-accordion
+  meAccordion
+  [multiple]="true"
+  [dataSource]="dataSource"
+></dx-accordion>
+`}
+  dark
+  language="html"
+/>
+
+## Пользовательский заголовок
+
+Вы можете настроить заголовок панели аккордеона, используя свойство `itemTitleTemplate`.
+
 
 <Source
   code={`
@@ -148,10 +122,47 @@ language="typescript"
   language="html"
 />
 
-В этом примере мы создаем кастомный заголовок для каждого элемента аккордеона, который включает:
+## Свойства
 
-- Иконку DevExtreme, соответствующую элементу
-- Заголовок элемента жирным шрифтом
-- Описание элемента серым шрифтом под заголовком
+  <Controls of={accordionStories.Default} include={[
+    "size",
+    "collapsible",
+    "multiple",
+  ]} />
 
-Это демонстрирует, как вы можете создать более сложную и информативную структуру заголовка, соответствующую дизайну на изображении.
+## Пример использования
+
+Ниже приведен пример использования компонента `<dx-accordion>` с директивой `meAccordion` и различными свойствами.
+
+    <Source
+    code={`
+<dx-accordion
+  meAccordion
+  [size]="size"
+  [collapsible]="collapsible"
+  [multiple]="multiple"
+  [dataSource]="dataSource"
+>
+  <div *dxTemplate="let item of 'title'">
+    <span>{{item.title}}</span>
+  </div>
+  <div *dxTemplate="let item of 'item'">
+    <p>{{item.content}}</p>
+  </div>
+</dx-accordion>
+`}
+  dark
+  language="html"
+/>
+
+## Дополнительная информация
+
+При использовании компонента `<dx-accordion>` с директивой `meAccordion` обратите внимание на следующие моменты:
+
+    - Свойство `size` может принимать значения `small`, `medium` или `large`, влияя на размер аккордеона.
+    - Свойство `collapsible` определяет, можно ли свернуть все панели аккордеона.
+    - Свойство `multiple` позволяет одновременно открывать несколько панелей аккордеона.
+
+    ## Дизайн-система и Figma
+
+    Более подробную информацию о дизайне компонента можно найти в Figma:
