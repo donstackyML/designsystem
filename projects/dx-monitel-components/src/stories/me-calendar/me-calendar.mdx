@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
 import * as CalendarStories from "./me-calendar.stories";
 import { moduleMetadata } from "@storybook/angular";
 import { DxCalendarModule } from "devextreme-angular";
@@ -12,7 +12,7 @@ import { MeCalendarDirective } from "../../public-api";
       declarations: [MeCalendarDirective],
       imports: [DxCalendarModule],
     }),
-  ]}
+    ]}
   of={CalendarStories}
 />
 
@@ -22,18 +22,29 @@ import { MeCalendarDirective } from "../../public-api";
 
 Директива `meCalendar` расширяет функциональность стандартного компонента календаря DevExtreme, добавляя дополнительные возможности настройки и обработки событий.
 
-<Canvas name="Default" of={CalendarStories.Default} />
+<Story name="Default" of={CalendarStories.Default} />
 <Controls of={CalendarStories.Default} />
 
 <Source of={CalendarStories.Default} dark />
 
-## Примеры использования:
+## Содержание
+
+- [Примеры использования](#примеры-использования)
+- [Календарь без номеров недель](#календарь-без-номеров-недель)
+- [Отключенный календарь](#отключенный-календарь)
+- [Изменение первого дня недели](#изменение-первого-дня-недели)
+- [Изменение уровня масштабирования](#изменение-уровня-масштабирования)
+- [Настройка правила номера недели](#настройка-правила-номера-недели)
+- [Перечень свойств](#перечень-свойств)
+- [Обработка событий](#обработка-событий)
+
+## Примеры использования
 
 ### Календарь без номеров недель
 
 Для скрытия номеров недель используйте параметр `showWeekNumbers={false}`.
 
-<Canvas name="WithoutWeekNumbers" of={CalendarStories.WithoutWeekNumbers} />
+<Story name="WithoutWeekNumbers" of={CalendarStories.WithoutWeekNumbers} />
 
 <Source
   code={`<dx-calendar meCalendar [showWeekNumbers]="false"></dx-calendar>`}
@@ -45,7 +56,7 @@ import { MeCalendarDirective } from "../../public-api";
 
 Чтобы отключить календарь, используйте параметр `disabled={true}`.
 
-<Canvas name="Disabled" of={CalendarStories.Disabled} />
+<Story name="Disabled" of={CalendarStories.Disabled} />
 
 <Source
   code={`<dx-calendar meCalendar [disabled]="true"></dx-calendar>`}
@@ -57,7 +68,7 @@ import { MeCalendarDirective } from "../../public-api";
 
 Для изменения первого дня недели используйте параметр `firstDayOfWeek`.
 
-<Canvas name="CustomFirstDay" of={CalendarStories.CustomFirstDay} />
+<Story name="CustomFirstDay" of={CalendarStories.CustomFirstDay} />
 
 <Source
   code={`<dx-calendar meCalendar [firstDayOfWeek]="0"></dx-calendar>`}
@@ -69,7 +80,7 @@ import { MeCalendarDirective } from "../../public-api";
 
 Для изменения начального уровня масштабирования используйте параметр `zoomLevel`.
 
-<Canvas name="YearZoomLevel" of={CalendarStories.YearZoomLevel} />
+<Story name="YearZoomLevel" of={CalendarStories.YearZoomLevel} />
 
 <Source
   code={`<dx-calendar meCalendar zoomLevel="year"></dx-calendar>`}
@@ -81,7 +92,7 @@ import { MeCalendarDirective } from "../../public-api";
 
 Для настройки правила расчета номера недели используйте параметр `weekNumberRule`.
 
-<Canvas name="CustomWeekNumberRule" of={CalendarStories.CustomWeekNumberRule} />
+<Story name="CustomWeekNumberRule" of={CalendarStories.CustomWeekNumberRule} />
 
 <Source
   code={`<dx-calendar meCalendar weekNumberRule="fullWeek"></dx-calendar>`}
@@ -91,7 +102,7 @@ import { MeCalendarDirective } from "../../public-api";
 
 ## Перечень свойств
 
-<Controls story={CalendarStories.Default} />
+<Controls of={CalendarStories.Default} />
 
 ## Обработка событий
 
@@ -105,13 +116,13 @@ import { MeCalendarDirective } from "../../public-api";
   (onValueChanged)="onDateValueChanged($event)"
 ></dx-calendar>
 
-// В вашем компоненте:
-onDateValueChanged(e: any) {
-console.log('Выбранная дата:', e.value);
-}
+  // В вашем компоненте:
+  onDateValueChanged(e: any) {
+    console.log('Выбранная дата:', e.value);
+  }
 `}
-dark
-language="typescript"
+  dark
+  language="typescript"
 />
 
 Это позволяет вам реагировать на изменения выбранной даты в календаре.
