@@ -2,51 +2,54 @@
 
 // adduse
 
+
 .dx-calendar {
   @include user-select(none);
 
   position: relative;
-  display: block;
+  display: flex;
+  direction: ltr;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid transparent;
 
-  &.dx-calendar-with-footer {
-    .dx-calendar-footer {
-      position: absolute;
-      bottom: 0;
-    }
+  &.dx-rtl {
+    direction: rtl;
   }
 }
 
 .dx-calendar-views-wrapper {
-  width: 100%;
-  height: 100%;
   position: relative;
+  display: flex;
+  flex: auto;
+  outline: none;
 }
 
 .dx-calendar-navigator {
-  position: relative;
-  text-align: center;
-  width: 100%;
-
-  .dx-button {
-    position: absolute;
-    display: inline-block;
-
-    &.dx-calendar-disabled-navigator-link {
-      visibility: hidden;
-    }
-  }
+  display: flex;
+  justify-content: space-between;
 
   .dx-calendar-caption-button {
-    text-decoration: none;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .dx-button {
+    .dx-button-text {
+      text-transform: none;
+    }
+
+    &.dx-state-active,
+    &.dx-state-hover {
+      z-index: 1;
+    }
   }
 }
 
 .dx-calendar-body {
   overflow: hidden;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  display: flex;
+  flex: 1 1 auto;
 
   .dx-widget {
     position: absolute;
@@ -57,58 +60,82 @@
   table {
     width: 100%;
     height: 100%;
-    position: absolute;
-    direction: ltr;
     table-layout: fixed;
+    border-spacing: 0;
+    line-height: normal;
   }
 
-  td {
-    cursor: pointer;
-    box-sizing: content-box;
+  td,
+  th {
+    padding: 0;
   }
 
   thead th {
+    font-weight: 500;
+    font-size: 10px;
+
     @include dx-overflow();
   }
 }
 
-.dx-calendar-cell {
-  white-space: normal;
+
+.dx-calendar-week-number-cell.dx-calendar-week-selection {
+  cursor: pointer;
 }
 
-.dx-calendar-contoured-date {
-  outline-offset: -1px;
-}
+.dx-calendar-week-number-cell {
+  position: relative;
 
-.dx-rtl {
-  &.dx-calendar {
-    .dx-calendar-body {
-      table {
-        left: 0;
-      }
-
-      .dx-widget {
-        direction: ltr;
-      }
-    }
+  span {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 2em;
+    inset: 0;
   }
 }
 
-.dx-state-disabled {
-  .dx-calendar,
-  &.dx-calendar {
-    .dx-calendar-navigator-previous-month,
-    .dx-calendar-navigator-next-month {
-      cursor: default;
+.dx-calendar-cell {
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.dx-calendar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dx-calendar-multiview {
+  .dx-calendar-caption-button {
+    .dx-button-content {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dx-button-text {
+      width: 50%;
     }
   }
 
   .dx-calendar-body {
+    .dx-widget {
+      width: 50%;
+    }
+
     table {
-      th,
-      td {
-        cursor: default;
-      }
+      padding: 0 10px;
     }
   }
 }
