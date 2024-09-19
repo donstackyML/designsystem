@@ -1,8 +1,12 @@
 import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
 import * as accordionStories from "./me-accordion.stories";
-import {MeAccordionDirective} from "../../public-api";
+import { MeAccordionDirective } from "../../public-api";
 
-<Meta title="Components/Accordion(RC)" component={MeAccordionDirective} of={accordionStories} />
+<Meta
+  title="Components/Accordion(RC)"
+  component={MeAccordionDirective}
+  of={accordionStories}
+/>
 
 # Accordion
 
@@ -27,7 +31,6 @@ import {MeAccordionDirective} from "../../public-api";
 
 Чтобы изменить размер аккордеона на маленький, используйте свойство `size="small"`.
 
-
 <Source
   code={`
 <dx-accordion
@@ -43,7 +46,6 @@ import {MeAccordionDirective} from "../../public-api";
 ## Большой размер
 
 Для увеличения размера аккордеона используйте свойство `size="large"`.
-
 
 <Source
   code={`
@@ -61,7 +63,6 @@ import {MeAccordionDirective} from "../../public-api";
 
 Чтобы позволить сворачивание всех панелей аккордеона, установите свойство `collapsible="true"`.
 
-
 <Source
   code={`
 <dx-accordion
@@ -78,7 +79,6 @@ import {MeAccordionDirective} from "../../public-api";
 
 Для разрешения одновременного открытия нескольких панелей аккордеона установите свойство `multiple="true"`.
 
-
 <Source
   code={`
 <dx-accordion
@@ -94,7 +94,6 @@ import {MeAccordionDirective} from "../../public-api";
 ## Пользовательский заголовок
 
 Вы можете настроить заголовок панели аккордеона, используя свойство `itemTitleTemplate`.
-
 
 <Source
   code={`
@@ -124,11 +123,11 @@ import {MeAccordionDirective} from "../../public-api";
 
 ## Свойства
 
-  <Controls of={accordionStories.Default} include={[
-    "size",
-    "collapsible",
-    "multiple",
-  ]} />
+{" "}
+<Controls
+  of={accordionStories.Default}
+  include={["size", "collapsible", "multiple"]}
+/>
 
 ## Пример использования
 
@@ -136,13 +135,16 @@ import {MeAccordionDirective} from "../../public-api";
 
     <Source
     code={`
+
 <dx-accordion
-  meAccordion
-  [size]="size"
-  [collapsible]="collapsible"
-  [multiple]="multiple"
-  [dataSource]="dataSource"
+meAccordion
+[size]="size"
+[collapsible]="collapsible"
+[multiple]="multiple"
+[dataSource]="dataSource"
+
 >
+
   <div *dxTemplate="let item of 'title'">
     <span>{{item.title}}</span>
   </div>

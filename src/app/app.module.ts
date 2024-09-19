@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
+import {
+  MeAccordionModule,
+  MeButtonGroupModule,
+  MeTabsModule,
+} from '../../projects/dx-monitel-components/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MeAccordionComponent } from './components/me-accordion/me-accordion.component';
@@ -29,8 +34,6 @@ import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
-import { MeAccordionDirective } from './directives/accordion.directive';
-import { MeButtonGroupDirective } from './directives/button-group.directive';
 import { ButtonDirective } from './directives/button.directive';
 import { MeCalendarDirective } from './directives/calendar.directive';
 import { MeCheckBoxDirective } from './directives/check-box.directive';
@@ -42,6 +45,7 @@ import { MeIconDirective } from './directives/icon.directive';
 import { MeLabelDirective } from './directives/label.directive';
 import { MeListDirective } from './directives/list.directive';
 import { MeLoadIndicatorDirective } from './directives/load-indicator.directive';
+import { MeLoadPanelDirective } from './directives/load-panel.directive';
 import { MeMenuDirective } from './directives/menu.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
 import { MePopoverDirective } from './directives/popover.directive';
@@ -50,14 +54,12 @@ import { MeRadioGroupDirective } from './directives/radio-group.directive';
 import { MeSelectBoxDirective } from './directives/select-box.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 import { MeTabPanelDirective } from './directives/tab-panel.directive';
-import { MeTabsDirective } from './directives/tabs.directive';
 import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
 import { MeToolbarDirective } from './directives/toolbar.directive';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
-import { MeLoadPanelDirective } from './directives/load-panel.directive';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,6 @@ import { MeLoadPanelDirective } from './directives/load-panel.directive';
     MeCheckBoxComponent,
     MeEditorDirective,
     MeRadioGroupDirective,
-    MeAccordionDirective,
     MeAccordionComponent,
     MeRadioGroupComponent,
     MeTabsComponent,
@@ -96,7 +97,6 @@ import { MeLoadPanelDirective } from './directives/load-panel.directive';
     MeDropDownButtonComponent,
     MeDropDownButtonDirective,
     MeButtonGroupComponent,
-    MeButtonGroupDirective,
     MeControlDirective,
     MeListComponent,
     MeListDirective,
@@ -110,7 +110,6 @@ import { MeLoadPanelDirective } from './directives/load-panel.directive';
     MeMenuComponent,
     MeTreeViewComponent,
     MeTreeViewDirective,
-    MeTabsDirective,
     TooltipDirective,
     MeToastDirective,
     MeToastComponent,
@@ -125,9 +124,12 @@ import { MeLoadPanelDirective } from './directives/load-panel.directive';
     DxDateBoxModule,
     DxPivotGridModule,
     ReactiveFormsModule,
+    MeTabsModule,
+    MeAccordionModule,
+    MeButtonGroupModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [MeTabsDirective, MeToolbarDirective],
+  exports: [MeToolbarDirective],
 })
 export class AppModule {}
