@@ -72,12 +72,12 @@
     },
     {
       "name": "MeTabPanelProps",
-      "id": "interface-MeTabPanelProps-50ac90ebae24b17bdfac90f0a1cd0f1599375a142b63d6891897a487c548dcb721910a756df1ffdc64fef5ae57a56e7b499535916649ee7b7cfeecab69186632",
+      "id": "interface-MeTabPanelProps-3a62341c89a1258dda1952c49d20943691310567509b69abde7c13c7bb871494a2ad9316c69b71c329f0cd106942e9fb71cc1c6fec58708011a4c2624441ab4e",
       "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\r\nimport { DxTabPanelModule } from 'devextreme-angular';\r\nimport { MeTabPanelDirective } from \"../../public-api\";\r\n\r\ninterface TabItem {\r\n  id: number;\r\n  title: string;\r\n  content: string;\r\n  icon?: string;\r\n}\r\n\r\ninterface MeTabPanelProps {\r\n  customClass: string;\r\n  selectedIndex: number;\r\n  animationEnabled: boolean;\r\n  swipeEnabled: boolean;\r\n  position: 'top' | 'bottom';\r\n  size: 'small' | 'medium' | 'large';\r\n  stylingMode: 'inside' | 'outside';\r\n  orientation: 'horizontal' | 'vertical';\r\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\r\n  showNavButtons: boolean;\r\n  scrollByContent: boolean;\r\n  rtlEnabled: boolean;\r\n  width: string | number;\r\n  tabPanelData: TabItem[];\r\n}\r\n\r\nconst meta: Meta<MeTabPanelProps> = {\r\n  title: 'Components/TabPanel',\r\n  component: MeTabPanelDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTabPanelDirective],\r\n      imports: [DxTabPanelModule],\r\n    }),\r\n  ],\r\n  render: (args: MeTabPanelProps) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-tab-panel\r\n        meTabPanel\r\n        [customClass]=\"customClass\"\r\n        [selectedIndex]=\"selectedIndex\"\r\n        [animationEnabled]=\"animationEnabled\"\r\n        [swipeEnabled]=\"swipeEnabled\"\r\n        [dataSource]=\"tabPanelData\"\r\n        [height]=\"300\"\r\n        [orientation]=\"orientation\"\r\n        [stylingMode]=\"stylingMode\"\r\n        [iconPosition]=\"iconPosition\"\r\n        [showNavButtons]=\"showNavButtons\"\r\n        [scrollByContent]=\"scrollByContent\"\r\n        [rtlEnabled]=\"rtlEnabled\"\r\n        [width]=\"width\"\r\n      >\r\n      </dx-tab-panel>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    customClass: { control: 'text' },\r\n    selectedIndex: { control: 'number' },\r\n    animationEnabled: { control: 'boolean' },\r\n    swipeEnabled: { control: 'boolean' },\r\n    position: {\r\n      options: ['top', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    size: {\r\n      options: ['small', 'medium', 'large'],\r\n      control: { type: 'select' },\r\n    },\r\n    stylingMode: {\r\n      options: ['inside', 'outside'],\r\n      control: { type: 'select' },\r\n    },\r\n    orientation: {\r\n      options: ['horizontal', 'vertical'],\r\n      control: { type: 'select' },\r\n    },\r\n    iconPosition: {\r\n      options: ['top', 'start', 'end', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    showNavButtons: { control: 'boolean' },\r\n    scrollByContent: { control: 'boolean' },\r\n    rtlEnabled: { control: 'boolean' },\r\n    width: { control: 'text' },\r\n  },\r\n};\r\n\r\nexport default meta;\r\ntype Story = StoryObj<MeTabPanelProps>;\r\n\r\nconst defaultTabPanelData: TabItem[] = [\r\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\r\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\r\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\r\n];\r\n\r\nexport const Default: Story = {\r\n  args: {\r\n    customClass: '',\r\n    selectedIndex: 0,\r\n    animationEnabled: true,\r\n    swipeEnabled: true,\r\n    position: 'top',\r\n    size: 'medium',\r\n    stylingMode: 'inside',\r\n    orientation: 'horizontal',\r\n    iconPosition: 'start',\r\n    showNavButtons: false,\r\n    scrollByContent: false,\r\n    rtlEnabled: false,\r\n    width: 'auto',\r\n    tabPanelData: defaultTabPanelData,\r\n  },\r\n};\r\n\r\nexport const VerticalOrientation: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    orientation: 'vertical',\r\n  },\r\n};\r\n\r\nexport const WithNavButtons: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    showNavButtons: true,\r\n    width: '300px',\r\n    tabPanelData: [\r\n      ...defaultTabPanelData,\r\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\r\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n};\r\n\r\nexport const OutsideStylingMode: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    stylingMode: 'outside',\r\n  },\r\n};\r\n\r\nexport const DifferentIconPositions: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    iconPosition: 'top',\r\n  },\r\n};\r\n\r\nexport const RightToLeft: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    rtlEnabled: true,\r\n  },\r\n};\r\n",
+      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxTabPanelModule } from 'devextreme-angular';\nimport { MeTabPanelDirective } from '../../public-api';\n\ninterface TabItem {\n  id: number;\n  title: string;\n  content: string;\n  icon?: string;\n}\n\ninterface MeTabPanelProps {\n  customClass: string;\n  selectedIndex: number;\n  animationEnabled: boolean;\n  swipeEnabled: boolean;\n  position: 'top' | 'bottom';\n  size: 'small' | 'medium' | 'large';\n  stylingMode: 'inside' | 'outside';\n  orientation: 'horizontal' | 'vertical';\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\n  showNavButtons: boolean;\n  scrollByContent: boolean;\n  rtlEnabled: boolean;\n  width: string | number;\n  tabPanelData: TabItem[];\n}\n\nconst meta: Meta<MeTabPanelProps> = {\n  title: 'Components/TabPanel',\n  component: MeTabPanelDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  render: (args: MeTabPanelProps) => ({\n    props: args,\n    template: `\n      <dx-tab-panel\n        meTabPanel\n        [customClass]=\"customClass\"\n        [selectedIndex]=\"selectedIndex\"\n        [animationEnabled]=\"animationEnabled\"\n        [swipeEnabled]=\"swipeEnabled\"\n        [dataSource]=\"tabPanelData\"\n        [height]=\"300\"\n        [orientation]=\"orientation\"\n        [stylingMode]=\"stylingMode\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [width]=\"width\"\n      >\n      </dx-tab-panel>\n    `,\n  }),\n  argTypes: {\n    customClass: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: { control: 'boolean' },\n    scrollByContent: { control: 'boolean' },\n    rtlEnabled: { control: 'boolean' },\n    width: { control: 'text' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeTabPanelProps>;\n\nconst defaultTabPanelData: TabItem[] = [\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\n];\n\nexport const Default: Story = {\n  args: {\n    customClass: '',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    rtlEnabled: false,\n    width: 'auto',\n    tabPanelData: defaultTabPanelData,\n  },\n};\n\nexport const VerticalOrientation: Story = {\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n};\n\nexport const WithNavButtons: Story = {\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabPanelData: [\n      ...defaultTabPanelData,\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const OutsideStylingMode: Story = {\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n};\n\nexport const DifferentIconPositions: Story = {\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n};\n\nexport const RightToLeft: Story = {\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n};\n",
       "properties": [
         {
           "name": "animationEnabled",
@@ -213,12 +213,12 @@
     },
     {
       "name": "MeTabsProps",
-      "id": "interface-MeTabsProps-3007a9a297973c96f2fb8470383e0def58070855ad5c84d99e6f7d1b2cef57af3946b6ed37b78894cc37fe2012e9863aed348ec9dc2e5e37326d8c6ff542b3e1",
+      "id": "interface-MeTabsProps-41c79899769707a1869bc79aa7e5c6e52af01823fccc95e7ce95a5457395805c5907523713484af80c9df0f19f1da2f8143bd888bb1a1601ec8d06c808b1371f",
       "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\r\nimport { DxTabsModule } from 'devextreme-angular';\r\nimport { MeTabsDirective } from '../../public-api';\r\nimport { Tab } from '../../lib/directives/me-tabs/tabs.directive';\r\n\r\ninterface MeTabsProps {\r\n  customClass: string;\r\n  position: 'top' | 'bottom';\r\n  size: 'small' | 'medium' | 'large';\r\n  stylingMode: 'inside' | 'outside';\r\n  orientation: 'horizontal' | 'vertical';\r\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\r\n  showNavButtons: boolean;\r\n  scrollByContent: boolean;\r\n  width: string | number;\r\n  tabsData: Tab[];\r\n  rtlEnabled: boolean;\r\n}\r\n\r\nconst meta: Meta<MeTabsProps> = {\r\n  title: 'Components/Tabs',\r\n  component: MeTabsDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTabsDirective],\r\n      imports: [DxTabsModule],\r\n    }),\r\n  ],\r\n  render: (args: MeTabsProps) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-tabs\r\n        meTabs\r\n        [position]=\"position\"\r\n        [size]=\"size\"\r\n        [stylingMode]=\"stylingMode\"\r\n        [orientation]=\"orientation\"\r\n        [iconPosition]=\"iconPosition\"\r\n        [showNavButtons]=\"showNavButtons\"\r\n        [scrollByContent]=\"scrollByContent\"\r\n        [width]=\"width\"\r\n        [dataSource]=\"tabsData\"\r\n        [selectedIndex]=\"0\"\r\n        [rtlEnabled]=\"false\"\r\n      ></dx-tabs>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    position: {\r\n      options: ['top', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    size: {\r\n      options: ['small', 'medium', 'large'],\r\n      control: { type: 'select' },\r\n    },\r\n    stylingMode: {\r\n      options: ['inside', 'outside'],\r\n      control: { type: 'select' },\r\n    },\r\n    orientation: {\r\n      options: ['horizontal', 'vertical'],\r\n      control: { type: 'select' },\r\n    },\r\n    iconPosition: {\r\n      options: ['top', 'start', 'end', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    showNavButtons: {\r\n      control: 'boolean',\r\n    },\r\n    scrollByContent: {\r\n      control: 'boolean',\r\n    },\r\n    width: {\r\n      control: 'text',\r\n    },\r\n    rtlEnabled: {\r\n      control: 'boolean',\r\n    },\r\n  },\r\n};\r\n\r\nexport default meta;\r\ntype Story = StoryObj<MeTabsProps>;\r\n\r\nconst defaultTabsData: Tab[] = [\r\n  { id: 1, text: 'Tab 1', icon: 'user' },\r\n  { id: 2, text: 'Tab 2', icon: 'email' },\r\n  { id: 3, text: 'Tab 3', icon: 'chart' },\r\n];\r\n\r\nexport const Default: Story = {\r\n  args: {\r\n    position: 'top',\r\n    size: 'medium',\r\n    stylingMode: 'inside',\r\n    orientation: 'horizontal',\r\n    iconPosition: 'start',\r\n    showNavButtons: false,\r\n    scrollByContent: false,\r\n    width: 'auto',\r\n    customClass: '',\r\n    tabsData: defaultTabsData,\r\n  },\r\n};\r\n\r\nexport const VerticalOrientation: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    orientation: 'vertical',\r\n  },\r\n};\r\n\r\nexport const WithNavButtons: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    showNavButtons: true,\r\n    width: '300px',\r\n    tabsData: [\r\n      { id: 1, text: 'Tab 1', icon: 'user' },\r\n      { id: 2, text: 'Tab 2', icon: 'email' },\r\n      { id: 3, text: 'Tab 3', icon: 'chart' },\r\n      { id: 4, text: 'Tab 4', icon: 'home' },\r\n      { id: 5, text: 'Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n};\r\n\r\nexport const ScrollByContent: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    scrollByContent: true,\r\n    width: '300px',\r\n    tabsData: [\r\n      { id: 1, text: 'Tab 1', icon: 'user' },\r\n      { id: 2, text: 'Tab 2', icon: 'email' },\r\n      { id: 3, text: 'Tab 3', icon: 'chart' },\r\n      { id: 4, text: 'Tab 4', icon: 'home' },\r\n      { id: 5, text: 'Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n};\r\n\r\nexport const DifferentIconPositions: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    iconPosition: 'top',\r\n  },\r\n};\r\n\r\nexport const OutsideStylingMode: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    stylingMode: 'outside',\r\n  },\r\n};\r\n\r\nexport const RightToLeft: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    rtlEnabled: true,\r\n  },\r\n};\r\n",
+      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxTabsModule } from 'devextreme-angular';\nimport { MeTabsDirective } from '../../public-api';\nimport { Tab } from '../../lib/directives/me-tabs/tabs.directive';\n\ninterface MeTabsProps {\n  customClass: string;\n  position: 'top' | 'bottom';\n  size: 'small' | 'medium' | 'large';\n  stylingMode: 'inside' | 'outside';\n  orientation: 'horizontal' | 'vertical';\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\n  showNavButtons: boolean;\n  scrollByContent: boolean;\n  width: string | number;\n  tabsData: Tab[];\n  rtlEnabled: boolean;\n}\n\nconst meta: Meta<MeTabsProps> = {\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n        [rtlEnabled]=\"false\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    rtlEnabled: {\n      control: 'boolean',\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeTabsProps>;\n\nconst defaultTabsData: Tab[] = [\n  { id: 1, text: 'Tab 1', icon: 'user' },\n  { id: 2, text: 'Tab 2', icon: 'email' },\n  { id: 3, text: 'Tab 3', icon: 'chart' },\n];\n\nexport const Default: Story = {\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n};\n\nexport const VerticalOrientation: Story = {\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n};\n\nexport const WithNavButtons: Story = {\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const ScrollByContent: Story = {\n  args: {\n    ...Default.args,\n    scrollByContent: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const DifferentIconPositions: Story = {\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n};\n\nexport const OutsideStylingMode: Story = {\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n};\n\nexport const RightToLeft: Story = {\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n};\n",
       "properties": [
         {
           "name": "customClass",
@@ -327,12 +327,12 @@
     },
     {
       "name": "PopoverProps",
-      "id": "interface-PopoverProps-1878065fdb6ae53fb40321bedc3766f0ef78af4109c74eb7d7cbbe265668610e7bdbaef019acf9bb9c12b08d3e20274b957b3787e669fbf533d540ee3f7d97aa",
+      "id": "interface-PopoverProps-3444dee35fef6e8a5e7d4980e5758a9a79a339ee30c2891b47d3a9956d9ec7823b91d0c7308f17d5e90fda783d04a87f3785aea51894b16dab138ae189b55921",
       "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\r\nimport { DxPopoverModule } from 'devextreme-angular/ui/popover';\r\nimport { MePopoverDirective } from '../../public-api';\r\n\r\ninterface PopoverProps {\r\n  showEvent: string;\r\n  hideEvent: string;\r\n  position: string;\r\n  size: 'small' | 'medium' | 'large';\r\n  width: number;\r\n  maxWidth?: number;\r\n  showTitle: boolean;\r\n  title: string;\r\n  shading: boolean;\r\n  shadingColor: string;\r\n  content: string;\r\n  animation: any;\r\n}\r\n\r\nconst meta: Meta<PopoverProps> = {\r\n  title: 'Components/Popover(RC)',\r\n  component: MePopoverDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MePopoverDirective],\r\n      imports: [DxPopoverModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <div style=\"padding: 20px;\">\r\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\r\n        <dx-popover\r\n          mePopover\r\n          target=\"#popoverTarget\"\r\n          [showEvent]=\"showEvent\"\r\n          [hideEvent]=\"hideEvent\"\r\n          [position]=\"position\"\r\n          [width]=\"width\"\r\n          [maxWidth]=\"maxWidth\"\r\n          [showTitle]=\"showTitle\"\r\n          [title]=\"title\"\r\n          [shading]=\"shading\"\r\n          [shadingColor]=\"shadingColor\"\r\n          [size]=\"size\"\r\n          [animation]=\"animation\"\r\n        >\r\n          <div *dxTemplate=\"let data of 'content'\">\r\n            {{ content }}\r\n          </div>\r\n        </dx-popover>\r\n      </div>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    showEvent: {\r\n      control: 'select',\r\n      options: ['mouseenter', 'click', 'focus'],\r\n      description: 'Событие, при котором поповер будет показываться.'\r\n    },\r\n    hideEvent: {\r\n      control: 'select',\r\n      options: ['mouseleave', 'click', 'blur'],\r\n      description: 'Событие, при котором поповер будет скрываться.'\r\n    },\r\n    position: {\r\n      control: 'select',\r\n      options: ['top', 'bottom', 'left', 'right'],\r\n      description: 'Позиция поповера относительно целевого элемента.'\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['small', 'medium', 'large'],\r\n      description: 'Размер поповера.'\r\n    },\r\n    width: {\r\n      control: 'number',\r\n      description: 'Ширина поповера в пикселях.'\r\n    },\r\n    maxWidth: {\r\n      control: 'number',\r\n      description: 'Максимальная ширина поповера в пикселях.'\r\n    },\r\n    showTitle: {\r\n      control: 'boolean',\r\n      description: 'Показывать ли заголовок поповера.'\r\n    },\r\n    title: {\r\n      control: 'text',\r\n      description: 'Текст заголовка поповера.'\r\n    },\r\n    shading: {\r\n      control: 'boolean',\r\n      description: 'Включить затенение фона при показе поповера.'\r\n    },\r\n    shadingColor: {\r\n      control: 'color',\r\n      description: 'Цвет затенения фона.'\r\n    },\r\n    content: {\r\n      control: 'text',\r\n      description: 'Содержимое поповера.'\r\n    },\r\n    animation: {\r\n      control: 'object',\r\n      description: 'Настройки анимации появления и исчезновения поповера.'\r\n    },\r\n  },\r\n};\r\n\r\nexport default meta;\r\ntype Story = StoryObj<PopoverProps>;\r\n\r\nexport const Default: Story = {\r\n  args: {\r\n    showEvent: 'mouseenter',\r\n    hideEvent: 'mouseleave',\r\n    position: 'top',\r\n    size: 'medium',\r\n    width: 300,\r\n    showTitle: false,\r\n    title: '',\r\n    shading: false,\r\n    shadingColor: '',\r\n    content: 'Это содержимое поповера по умолчанию.',\r\n    animation: {\r\n      show: { type: 'fade', duration: 0 },\r\n      hide: { type: 'fade', duration: 0 }\r\n    }\r\n  },\r\n};\r\n\r\nexport const WithTitle: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    position: 'bottom',\r\n    showTitle: true,\r\n    title: 'Заголовок поповера',\r\n    maxWidth: 400,\r\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\r\n  },\r\n};\r\n\r\nexport const WithOverlay: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    showEvent: 'click',\r\n    hideEvent: 'click',\r\n    shading: true,\r\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\r\n    content: 'Это поповер с затенением фона.',\r\n  },\r\n};\r\n",
+      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxPopoverModule } from 'devextreme-angular/ui/popover';\nimport { MePopoverDirective } from '../../public-api';\n\ninterface PopoverProps {\n  showEvent: string;\n  hideEvent: string;\n  position: string;\n  size: 'small' | 'medium' | 'large';\n  width: number;\n  maxWidth?: number;\n  showTitle: boolean;\n  title: string;\n  shading: boolean;\n  shadingColor: string;\n  content: string;\n  animation: any;\n}\n\nconst meta: Meta<PopoverProps> = {\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n          [animation]=\"animation\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: {\n      control: 'select',\n      options: ['mouseenter', 'click', 'focus'],\n      description: 'Событие, при котором поповер будет показываться.',\n    },\n    hideEvent: {\n      control: 'select',\n      options: ['mouseleave', 'click', 'blur'],\n      description: 'Событие, при котором поповер будет скрываться.',\n    },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция поповера относительно целевого элемента.',\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n      description: 'Размер поповера.',\n    },\n    width: {\n      control: 'number',\n      description: 'Ширина поповера в пикселях.',\n    },\n    maxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина поповера в пикселях.',\n    },\n    showTitle: {\n      control: 'boolean',\n      description: 'Показывать ли заголовок поповера.',\n    },\n    title: {\n      control: 'text',\n      description: 'Текст заголовка поповера.',\n    },\n    shading: {\n      control: 'boolean',\n      description: 'Включить затенение фона при показе поповера.',\n    },\n    shadingColor: {\n      control: 'color',\n      description: 'Цвет затенения фона.',\n    },\n    content: {\n      control: 'text',\n      description: 'Содержимое поповера.',\n    },\n    animation: {\n      control: 'object',\n      description: 'Настройки анимации появления и исчезновения поповера.',\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<PopoverProps>;\n\nexport const Default: Story = {\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n    animation: {\n      show: { type: 'fade', duration: 0 },\n      hide: { type: 'fade', duration: 0 },\n    },\n  },\n};\n\nexport const WithTitle: Story = {\n  args: {\n    ...Default.args,\n    position: 'bottom',\n    showTitle: true,\n    title: 'Заголовок поповера',\n    maxWidth: 400,\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\n  },\n};\n\nexport const WithOverlay: Story = {\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n};\n",
       "properties": [
         {
           "name": "animation",
@@ -450,12 +450,12 @@
     },
     {
       "name": "TabItem",
-      "id": "interface-TabItem-50ac90ebae24b17bdfac90f0a1cd0f1599375a142b63d6891897a487c548dcb721910a756df1ffdc64fef5ae57a56e7b499535916649ee7b7cfeecab69186632",
+      "id": "interface-TabItem-3a62341c89a1258dda1952c49d20943691310567509b69abde7c13c7bb871494a2ad9316c69b71c329f0cd106942e9fb71cc1c6fec58708011a4c2624441ab4e",
       "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\r\nimport { DxTabPanelModule } from 'devextreme-angular';\r\nimport { MeTabPanelDirective } from \"../../public-api\";\r\n\r\ninterface TabItem {\r\n  id: number;\r\n  title: string;\r\n  content: string;\r\n  icon?: string;\r\n}\r\n\r\ninterface MeTabPanelProps {\r\n  customClass: string;\r\n  selectedIndex: number;\r\n  animationEnabled: boolean;\r\n  swipeEnabled: boolean;\r\n  position: 'top' | 'bottom';\r\n  size: 'small' | 'medium' | 'large';\r\n  stylingMode: 'inside' | 'outside';\r\n  orientation: 'horizontal' | 'vertical';\r\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\r\n  showNavButtons: boolean;\r\n  scrollByContent: boolean;\r\n  rtlEnabled: boolean;\r\n  width: string | number;\r\n  tabPanelData: TabItem[];\r\n}\r\n\r\nconst meta: Meta<MeTabPanelProps> = {\r\n  title: 'Components/TabPanel',\r\n  component: MeTabPanelDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTabPanelDirective],\r\n      imports: [DxTabPanelModule],\r\n    }),\r\n  ],\r\n  render: (args: MeTabPanelProps) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-tab-panel\r\n        meTabPanel\r\n        [customClass]=\"customClass\"\r\n        [selectedIndex]=\"selectedIndex\"\r\n        [animationEnabled]=\"animationEnabled\"\r\n        [swipeEnabled]=\"swipeEnabled\"\r\n        [dataSource]=\"tabPanelData\"\r\n        [height]=\"300\"\r\n        [orientation]=\"orientation\"\r\n        [stylingMode]=\"stylingMode\"\r\n        [iconPosition]=\"iconPosition\"\r\n        [showNavButtons]=\"showNavButtons\"\r\n        [scrollByContent]=\"scrollByContent\"\r\n        [rtlEnabled]=\"rtlEnabled\"\r\n        [width]=\"width\"\r\n      >\r\n      </dx-tab-panel>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    customClass: { control: 'text' },\r\n    selectedIndex: { control: 'number' },\r\n    animationEnabled: { control: 'boolean' },\r\n    swipeEnabled: { control: 'boolean' },\r\n    position: {\r\n      options: ['top', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    size: {\r\n      options: ['small', 'medium', 'large'],\r\n      control: { type: 'select' },\r\n    },\r\n    stylingMode: {\r\n      options: ['inside', 'outside'],\r\n      control: { type: 'select' },\r\n    },\r\n    orientation: {\r\n      options: ['horizontal', 'vertical'],\r\n      control: { type: 'select' },\r\n    },\r\n    iconPosition: {\r\n      options: ['top', 'start', 'end', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    showNavButtons: { control: 'boolean' },\r\n    scrollByContent: { control: 'boolean' },\r\n    rtlEnabled: { control: 'boolean' },\r\n    width: { control: 'text' },\r\n  },\r\n};\r\n\r\nexport default meta;\r\ntype Story = StoryObj<MeTabPanelProps>;\r\n\r\nconst defaultTabPanelData: TabItem[] = [\r\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\r\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\r\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\r\n];\r\n\r\nexport const Default: Story = {\r\n  args: {\r\n    customClass: '',\r\n    selectedIndex: 0,\r\n    animationEnabled: true,\r\n    swipeEnabled: true,\r\n    position: 'top',\r\n    size: 'medium',\r\n    stylingMode: 'inside',\r\n    orientation: 'horizontal',\r\n    iconPosition: 'start',\r\n    showNavButtons: false,\r\n    scrollByContent: false,\r\n    rtlEnabled: false,\r\n    width: 'auto',\r\n    tabPanelData: defaultTabPanelData,\r\n  },\r\n};\r\n\r\nexport const VerticalOrientation: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    orientation: 'vertical',\r\n  },\r\n};\r\n\r\nexport const WithNavButtons: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    showNavButtons: true,\r\n    width: '300px',\r\n    tabPanelData: [\r\n      ...defaultTabPanelData,\r\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\r\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n};\r\n\r\nexport const OutsideStylingMode: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    stylingMode: 'outside',\r\n  },\r\n};\r\n\r\nexport const DifferentIconPositions: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    iconPosition: 'top',\r\n  },\r\n};\r\n\r\nexport const RightToLeft: Story = {\r\n  args: {\r\n    ...Default.args,\r\n    rtlEnabled: true,\r\n  },\r\n};\r\n",
+      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxTabPanelModule } from 'devextreme-angular';\nimport { MeTabPanelDirective } from '../../public-api';\n\ninterface TabItem {\n  id: number;\n  title: string;\n  content: string;\n  icon?: string;\n}\n\ninterface MeTabPanelProps {\n  customClass: string;\n  selectedIndex: number;\n  animationEnabled: boolean;\n  swipeEnabled: boolean;\n  position: 'top' | 'bottom';\n  size: 'small' | 'medium' | 'large';\n  stylingMode: 'inside' | 'outside';\n  orientation: 'horizontal' | 'vertical';\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\n  showNavButtons: boolean;\n  scrollByContent: boolean;\n  rtlEnabled: boolean;\n  width: string | number;\n  tabPanelData: TabItem[];\n}\n\nconst meta: Meta<MeTabPanelProps> = {\n  title: 'Components/TabPanel',\n  component: MeTabPanelDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  render: (args: MeTabPanelProps) => ({\n    props: args,\n    template: `\n      <dx-tab-panel\n        meTabPanel\n        [customClass]=\"customClass\"\n        [selectedIndex]=\"selectedIndex\"\n        [animationEnabled]=\"animationEnabled\"\n        [swipeEnabled]=\"swipeEnabled\"\n        [dataSource]=\"tabPanelData\"\n        [height]=\"300\"\n        [orientation]=\"orientation\"\n        [stylingMode]=\"stylingMode\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [width]=\"width\"\n      >\n      </dx-tab-panel>\n    `,\n  }),\n  argTypes: {\n    customClass: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: { control: 'boolean' },\n    scrollByContent: { control: 'boolean' },\n    rtlEnabled: { control: 'boolean' },\n    width: { control: 'text' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeTabPanelProps>;\n\nconst defaultTabPanelData: TabItem[] = [\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\n];\n\nexport const Default: Story = {\n  args: {\n    customClass: '',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    rtlEnabled: false,\n    width: 'auto',\n    tabPanelData: defaultTabPanelData,\n  },\n};\n\nexport const VerticalOrientation: Story = {\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n};\n\nexport const WithNavButtons: Story = {\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabPanelData: [\n      ...defaultTabPanelData,\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const OutsideStylingMode: Story = {\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n};\n\nexport const DifferentIconPositions: Story = {\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n};\n\nexport const RightToLeft: Story = {\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n};\n",
       "properties": [
         {
           "name": "content",
@@ -928,7 +928,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Это базовый тултип',\r\n    tooltipPosition: 'top',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\"\r\n              [tooltipPosition]=\"tooltipPosition\">\r\n        Наведите на меня\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Это базовый тултип',\n    tooltipPosition: 'top',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\">\n        Наведите на меня\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "chipsContainerMeta",
@@ -968,7 +968,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    collapsible: true,\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    collapsible: true,\n  },\n}"
       },
       {
         "name": "ComplexCombination",
@@ -998,7 +998,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Этот тултип отображается в определенном контейнере',\r\n    tooltipPosition: 'bottom'\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <div id=\"tooltipContainer\" style=\"position: relative; height: 100px; border: 1px solid #ccc; padding: 10px;\">\r\n        <button [meTooltip]=\"meTooltip\"\r\n                [tooltipPosition]=\"tooltipPosition\">\r\n          Тултип в контейнере\r\n        </button>\r\n      </div>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Этот тултип отображается в определенном контейнере',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <div id=\"tooltipContainer\" style=\"position: relative; height: 100px; border: 1px solid #ccc; padding: 10px;\">\n        <button [meTooltip]=\"meTooltip\"\n                [tooltipPosition]=\"tooltipPosition\">\n          Тултип в контейнере\n        </button>\n      </div>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomAnimation",
@@ -1078,7 +1078,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    size: 'medium',\r\n    dataSource: [\r\n      {\r\n        id: 1,\r\n        text: 'Заголовок 1',\r\n        description: 'Описание',\r\n        icon: 'folder',\r\n      },\r\n      {\r\n        id: 2,\r\n        text: 'Заголовок 2',\r\n        description: 'Описание',\r\n        icon: 'folder',\r\n      },\r\n      {\r\n        id: 3,\r\n        text: 'Заголовокк 3',\r\n        description: 'Описание',\r\n        icon: 'folder',\r\n      },\r\n    ],\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-accordion\r\n        meAccordion\r\n        [size]=\"size\"\r\n        [dataSource]=\"dataSource\"\r\n        [collapsible]=\"true\"\r\n        itemTitleTemplate=\"customTitle\"\r\n      >\r\n        <div *dxTemplate=\"let item of 'customTitle'\">\r\n          <div class=\"custom-header-container\">\r\n            <me-icon\r\n              class=\"custom-header-icon\"\r\n              [icon]=\"item.icon\"\r\n              [size]=\"size\"\r\n              [color]=\"item.iconColor || '#000000'\"\r\n            ></me-icon>\r\n            <div>\r\n              <div class=\"custom-header-title\">{{ item.text }}</div>\r\n              <div class=\"custom-header-description\">{{ item.description }}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div *dxTemplate=\"let item of 'item'\">\r\n          <p>Содержимое для {{ item.text }}</p>\r\n        </div>\r\n      </dx-accordion>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'medium',\n    dataSource: [\n      {\n        id: 1,\n        text: 'Заголовок 1',\n        description: 'Описание',\n        icon: 'folder',\n      },\n      {\n        id: 2,\n        text: 'Заголовок 2',\n        description: 'Описание',\n        icon: 'folder',\n      },\n      {\n        id: 3,\n        text: 'Заголовокк 3',\n        description: 'Описание',\n        icon: 'folder',\n      },\n    ],\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-accordion\n        meAccordion\n        [size]=\"size\"\n        [dataSource]=\"dataSource\"\n        [collapsible]=\"true\"\n        itemTitleTemplate=\"customTitle\"\n      >\n        <div *dxTemplate=\"let item of 'customTitle'\">\n          <div class=\"custom-header-container\">\n            <me-icon\n              class=\"custom-header-icon\"\n              [icon]=\"item.icon\"\n              [size]=\"size\"\n              [color]=\"item.iconColor || '#000000'\"\n            ></me-icon>\n            <div>\n              <div class=\"custom-header-title\">{{ item.text }}</div>\n              <div class=\"custom-header-description\">{{ item.description }}</div>\n            </div>\n          </div>\n        </div>\n        <div *dxTemplate=\"let item of 'item'\">\n          <p>Содержимое для {{ item.text }}</p>\n        </div>\n      </dx-accordion>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomIcon",
@@ -1138,7 +1138,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Этот тултип имеет фиксированные размеры',\r\n    tooltipPosition: 'bottom',\r\n    tooltipWidth: 200,\r\n    tooltipHeight: 100,\r\n    tooltipMaxWidth: 300,\r\n    tooltipMaxHeight: 150,\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\"\r\n              [tooltipPosition]=\"tooltipPosition\"\r\n              [tooltipWidth]=\"tooltipWidth\"\r\n              [tooltipHeight]=\"tooltipHeight\"\r\n              [tooltipMaxWidth]=\"tooltipMaxWidth\"\r\n              [tooltipMaxHeight]=\"tooltipMaxHeight\">\r\n        Тултип с фиксированными размерами\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Этот тултип имеет фиксированные размеры',\n    tooltipPosition: 'bottom',\n    tooltipWidth: 200,\n    tooltipHeight: 100,\n    tooltipMaxWidth: 300,\n    tooltipMaxHeight: 150,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipWidth]=\"tooltipWidth\"\n              [tooltipHeight]=\"tooltipHeight\"\n              [tooltipMaxWidth]=\"tooltipMaxWidth\"\n              [tooltipMaxHeight]=\"tooltipMaxHeight\">\n        Тултип с фиксированными размерами\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomStyleBadge",
@@ -1158,7 +1158,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Стилизованный тултип',\r\n    tooltipPosition: 'left',\r\n    tooltipClass: 'custom-tooltip',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\"\r\n              [tooltipPosition]=\"tooltipPosition\"\r\n              [tooltipClass]=\"tooltipClass\">\r\n        Кастомный тултип\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Стилизованный тултип',\n    tooltipPosition: 'left',\n    tooltipClass: 'custom-tooltip',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipClass]=\"tooltipClass\">\n        Кастомный тултип\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomTemplate",
@@ -1168,7 +1168,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    tooltipPosition: 'right',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"''\"\r\n              [tooltipPosition]=\"tooltipPosition\"\r\n              [tooltipTemplateRef]=\"tooltipTemplate\">\r\n        Тултип с кастомным шаблоном\r\n      </button>\r\n\r\n      <ng-template #tooltipTemplate>\r\n        <div>\r\n          <h4>Заголовок тултипа</h4>\r\n          <p>Это пример тултипа с кастомной разметкой.</p>\r\n          <ul>\r\n            <li>Пункт 1</li>\r\n            <li>Пункт 2</li>\r\n          </ul>\r\n        </div>\r\n      </ng-template>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"''\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipTemplateRef]=\"tooltipTemplate\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomTitleAndParagraph",
@@ -1278,7 +1278,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    dataSource: [\r\n      {\r\n        title: 'Заголовок 1',\r\n        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\r\n        icon: 'folder',\r\n      },\r\n      {\r\n        title: 'Заголовок 2',\r\n        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\r\n        icon: 'folder',\r\n      },\r\n      {\r\n        title: 'Заголовок 3',\r\n        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\r\n        icon: 'folder',\r\n      },\r\n    ],\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    dataSource: [\n      {\n        title: 'Заголовок 1',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n      {\n        title: 'Заголовок 2',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n      {\n        title: 'Заголовок 3',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n    ],\n  },\n}"
       },
       {
         "name": "Default",
@@ -1334,21 +1334,21 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n    disabled: false,\n    firstDayOfWeek: 1,\n    zoomLevel: 'month',\n    weekNumberRule: 'firstDay',\n    value: new Date(),\n  },\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  ...Template,\n  args: {\n    size: 'medium',\n    showHeader: true,\n    showFooter: true,\n    contentHeight: '300px',\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n    disabled: false,\n    firstDayOfWeek: 1,\n    zoomLevel: 'month',\n    weekNumberRule: 'firstDay',\n    value: new Date(),\n  },\n}"
       },
       {
         "name": "Default",
@@ -1434,21 +1434,21 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    size: 'medium',\n    customClass: false,\n    showIndicator: true,\n    showPane: true,\n    shading: true,\n    hideOnOutsideClick: false,\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  ...Template,\n  args: {\n    color: 'default',\n    indicatorSrc:\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\n  },\n}"
       },
       {
         "name": "Default",
@@ -1478,7 +1478,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    showEvent: 'mouseenter',\r\n    hideEvent: 'mouseleave',\r\n    position: 'top',\r\n    size: 'medium',\r\n    width: 300,\r\n    showTitle: false,\r\n    title: '',\r\n    shading: false,\r\n    shadingColor: '',\r\n    content: 'Это содержимое поповера по умолчанию.',\r\n    animation: {\r\n      show: { type: 'fade', duration: 0 },\r\n      hide: { type: 'fade', duration: 0 }\r\n    }\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n    animation: {\n      show: { type: 'fade', duration: 0 },\n      hide: { type: 'fade', duration: 0 },\n    },\n  },\n}"
       },
       {
         "name": "Default",
@@ -1568,7 +1568,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    customClass: '',\r\n    selectedIndex: 0,\r\n    animationEnabled: true,\r\n    swipeEnabled: true,\r\n    position: 'top',\r\n    size: 'medium',\r\n    stylingMode: 'inside',\r\n    orientation: 'horizontal',\r\n    iconPosition: 'start',\r\n    showNavButtons: false,\r\n    scrollByContent: false,\r\n    rtlEnabled: false,\r\n    width: 'auto',\r\n    tabPanelData: defaultTabPanelData,\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    customClass: '',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    rtlEnabled: false,\n    width: 'auto',\n    tabPanelData: defaultTabPanelData,\n  },\n}"
       },
       {
         "name": "Default",
@@ -1578,7 +1578,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    position: 'top',\r\n    size: 'medium',\r\n    stylingMode: 'inside',\r\n    orientation: 'horizontal',\r\n    iconPosition: 'start',\r\n    showNavButtons: false,\r\n    scrollByContent: false,\r\n    width: 'auto',\r\n    customClass: '',\r\n    tabsData: defaultTabsData,\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n}"
       },
       {
         "name": "Default",
@@ -1638,7 +1638,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "TabItem[]",
-        "defaultValue": "[\r\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\r\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\r\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\r\n]"
+        "defaultValue": "[\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\n]"
       },
       {
         "name": "defaultTabsData",
@@ -1648,7 +1648,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Tab[]",
-        "defaultValue": "[\r\n  { id: 1, text: 'Tab 1', icon: 'user' },\r\n  { id: 2, text: 'Tab 2', icon: 'email' },\r\n  { id: 3, text: 'Tab 3', icon: 'chart' },\r\n]"
+        "defaultValue": "[\n  { id: 1, text: 'Tab 1', icon: 'user' },\n  { id: 2, text: 'Tab 2', icon: 'email' },\n  { id: 3, text: 'Tab 3', icon: 'chart' },\n]"
       },
       {
         "name": "DifferentIconPositions",
@@ -1658,7 +1658,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    iconPosition: 'top',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n}"
       },
       {
         "name": "DifferentIconPositions",
@@ -1668,7 +1668,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    iconPosition: 'top',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n}"
       },
       {
         "name": "DifferentSizes",
@@ -1768,7 +1768,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',\r\n    tooltipPosition: 'bottom',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\r\n        HTML-тултип\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        HTML-тултип\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "iconList",
@@ -1888,7 +1888,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    size: 'large',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
       },
       {
         "name": "Large",
@@ -2134,16 +2134,6 @@
         "name": "meta",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Meta<MeLoadIndicatorDirective>",
-        "defaultValue": "{\n  title: 'Components/LoadIndicator(RC)',\n  component: MeLoadIndicatorDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadIndicatorDirective],\n      imports: [DxLoadIndicatorModule],\n    }),\n  ],\n  argTypes: {\n    color: {\n      options: ['normal', 'default', 'accent'],\n      control: { type: 'select' },\n      defaultValue: 'default',\n    },\n    indicatorSrc: {\n      control: 'text',\n    },\n  },\n}"
-      },
-      {
-        "name": "meta",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2154,11 +2144,21 @@
         "name": "meta",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Meta<MeLoadIndicatorDirective>",
+        "defaultValue": "{\n  title: 'Components/LoadIndicator(RC)',\n  component: MeLoadIndicatorDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeLoadIndicatorDirective],\n      imports: [DxLoadIndicatorModule],\n    }),\n  ],\n  argTypes: {\n    color: {\n      options: ['normal', 'default', 'accent'],\n      control: { type: 'select' },\n      defaultValue: 'default',\n    },\n    indicatorSrc: {\n      control: 'text',\n    },\n  },\n}"
+      },
+      {
+        "name": "meta",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Meta<PopoverProps>",
-        "defaultValue": "{\r\n  title: 'Components/Popover(RC)',\r\n  component: MePopoverDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MePopoverDirective],\r\n      imports: [DxPopoverModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <div style=\"padding: 20px;\">\r\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\r\n        <dx-popover\r\n          mePopover\r\n          target=\"#popoverTarget\"\r\n          [showEvent]=\"showEvent\"\r\n          [hideEvent]=\"hideEvent\"\r\n          [position]=\"position\"\r\n          [width]=\"width\"\r\n          [maxWidth]=\"maxWidth\"\r\n          [showTitle]=\"showTitle\"\r\n          [title]=\"title\"\r\n          [shading]=\"shading\"\r\n          [shadingColor]=\"shadingColor\"\r\n          [size]=\"size\"\r\n          [animation]=\"animation\"\r\n        >\r\n          <div *dxTemplate=\"let data of 'content'\">\r\n            {{ content }}\r\n          </div>\r\n        </dx-popover>\r\n      </div>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    showEvent: {\r\n      control: 'select',\r\n      options: ['mouseenter', 'click', 'focus'],\r\n      description: 'Событие, при котором поповер будет показываться.'\r\n    },\r\n    hideEvent: {\r\n      control: 'select',\r\n      options: ['mouseleave', 'click', 'blur'],\r\n      description: 'Событие, при котором поповер будет скрываться.'\r\n    },\r\n    position: {\r\n      control: 'select',\r\n      options: ['top', 'bottom', 'left', 'right'],\r\n      description: 'Позиция поповера относительно целевого элемента.'\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['small', 'medium', 'large'],\r\n      description: 'Размер поповера.'\r\n    },\r\n    width: {\r\n      control: 'number',\r\n      description: 'Ширина поповера в пикселях.'\r\n    },\r\n    maxWidth: {\r\n      control: 'number',\r\n      description: 'Максимальная ширина поповера в пикселях.'\r\n    },\r\n    showTitle: {\r\n      control: 'boolean',\r\n      description: 'Показывать ли заголовок поповера.'\r\n    },\r\n    title: {\r\n      control: 'text',\r\n      description: 'Текст заголовка поповера.'\r\n    },\r\n    shading: {\r\n      control: 'boolean',\r\n      description: 'Включить затенение фона при показе поповера.'\r\n    },\r\n    shadingColor: {\r\n      control: 'color',\r\n      description: 'Цвет затенения фона.'\r\n    },\r\n    content: {\r\n      control: 'text',\r\n      description: 'Содержимое поповера.'\r\n    },\r\n    animation: {\r\n      control: 'object',\r\n      description: 'Настройки анимации появления и исчезновения поповера.'\r\n    },\r\n  },\r\n}"
+        "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n          [animation]=\"animation\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: {\n      control: 'select',\n      options: ['mouseenter', 'click', 'focus'],\n      description: 'Событие, при котором поповер будет показываться.',\n    },\n    hideEvent: {\n      control: 'select',\n      options: ['mouseleave', 'click', 'blur'],\n      description: 'Событие, при котором поповер будет скрываться.',\n    },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция поповера относительно целевого элемента.',\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n      description: 'Размер поповера.',\n    },\n    width: {\n      control: 'number',\n      description: 'Ширина поповера в пикселях.',\n    },\n    maxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина поповера в пикселях.',\n    },\n    showTitle: {\n      control: 'boolean',\n      description: 'Показывать ли заголовок поповера.',\n    },\n    title: {\n      control: 'text',\n      description: 'Текст заголовка поповера.',\n    },\n    shading: {\n      control: 'boolean',\n      description: 'Включить затенение фона при показе поповера.',\n    },\n    shadingColor: {\n      control: 'color',\n      description: 'Цвет затенения фона.',\n    },\n    content: {\n      control: 'text',\n      description: 'Содержимое поповера.',\n    },\n    animation: {\n      control: 'object',\n      description: 'Настройки анимации появления и исчезновения поповера.',\n    },\n  },\n}"
       },
       {
         "name": "meta",
@@ -2178,7 +2178,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Meta<MeTabPanelProps>",
-        "defaultValue": "{\r\n  title: 'Components/TabPanel',\r\n  component: MeTabPanelDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTabPanelDirective],\r\n      imports: [DxTabPanelModule],\r\n    }),\r\n  ],\r\n  render: (args: MeTabPanelProps) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-tab-panel\r\n        meTabPanel\r\n        [customClass]=\"customClass\"\r\n        [selectedIndex]=\"selectedIndex\"\r\n        [animationEnabled]=\"animationEnabled\"\r\n        [swipeEnabled]=\"swipeEnabled\"\r\n        [dataSource]=\"tabPanelData\"\r\n        [height]=\"300\"\r\n        [orientation]=\"orientation\"\r\n        [stylingMode]=\"stylingMode\"\r\n        [iconPosition]=\"iconPosition\"\r\n        [showNavButtons]=\"showNavButtons\"\r\n        [scrollByContent]=\"scrollByContent\"\r\n        [rtlEnabled]=\"rtlEnabled\"\r\n        [width]=\"width\"\r\n      >\r\n      </dx-tab-panel>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    customClass: { control: 'text' },\r\n    selectedIndex: { control: 'number' },\r\n    animationEnabled: { control: 'boolean' },\r\n    swipeEnabled: { control: 'boolean' },\r\n    position: {\r\n      options: ['top', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    size: {\r\n      options: ['small', 'medium', 'large'],\r\n      control: { type: 'select' },\r\n    },\r\n    stylingMode: {\r\n      options: ['inside', 'outside'],\r\n      control: { type: 'select' },\r\n    },\r\n    orientation: {\r\n      options: ['horizontal', 'vertical'],\r\n      control: { type: 'select' },\r\n    },\r\n    iconPosition: {\r\n      options: ['top', 'start', 'end', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    showNavButtons: { control: 'boolean' },\r\n    scrollByContent: { control: 'boolean' },\r\n    rtlEnabled: { control: 'boolean' },\r\n    width: { control: 'text' },\r\n  },\r\n}"
+        "defaultValue": "{\n  title: 'Components/TabPanel',\n  component: MeTabPanelDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  render: (args: MeTabPanelProps) => ({\n    props: args,\n    template: `\n      <dx-tab-panel\n        meTabPanel\n        [customClass]=\"customClass\"\n        [selectedIndex]=\"selectedIndex\"\n        [animationEnabled]=\"animationEnabled\"\n        [swipeEnabled]=\"swipeEnabled\"\n        [dataSource]=\"tabPanelData\"\n        [height]=\"300\"\n        [orientation]=\"orientation\"\n        [stylingMode]=\"stylingMode\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [width]=\"width\"\n      >\n      </dx-tab-panel>\n    `,\n  }),\n  argTypes: {\n    customClass: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: { control: 'boolean' },\n    scrollByContent: { control: 'boolean' },\n    rtlEnabled: { control: 'boolean' },\n    width: { control: 'text' },\n  },\n}"
       },
       {
         "name": "meta",
@@ -2188,7 +2188,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Meta<MeTabsProps>",
-        "defaultValue": "{\r\n  title: 'Components/Tabs',\r\n  component: MeTabsDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTabsDirective],\r\n      imports: [DxTabsModule],\r\n    }),\r\n  ],\r\n  render: (args: MeTabsProps) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-tabs\r\n        meTabs\r\n        [position]=\"position\"\r\n        [size]=\"size\"\r\n        [stylingMode]=\"stylingMode\"\r\n        [orientation]=\"orientation\"\r\n        [iconPosition]=\"iconPosition\"\r\n        [showNavButtons]=\"showNavButtons\"\r\n        [scrollByContent]=\"scrollByContent\"\r\n        [width]=\"width\"\r\n        [dataSource]=\"tabsData\"\r\n        [selectedIndex]=\"0\"\r\n        [rtlEnabled]=\"false\"\r\n      ></dx-tabs>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    position: {\r\n      options: ['top', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    size: {\r\n      options: ['small', 'medium', 'large'],\r\n      control: { type: 'select' },\r\n    },\r\n    stylingMode: {\r\n      options: ['inside', 'outside'],\r\n      control: { type: 'select' },\r\n    },\r\n    orientation: {\r\n      options: ['horizontal', 'vertical'],\r\n      control: { type: 'select' },\r\n    },\r\n    iconPosition: {\r\n      options: ['top', 'start', 'end', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    showNavButtons: {\r\n      control: 'boolean',\r\n    },\r\n    scrollByContent: {\r\n      control: 'boolean',\r\n    },\r\n    width: {\r\n      control: 'text',\r\n    },\r\n    rtlEnabled: {\r\n      control: 'boolean',\r\n    },\r\n  },\r\n}"
+        "defaultValue": "{\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n        [rtlEnabled]=\"false\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    rtlEnabled: {\n      control: 'boolean',\n    },\n  },\n}"
       },
       {
         "name": "meta",
@@ -2208,7 +2208,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Meta<MeTooltipDirective>",
-        "defaultValue": "{\r\n  title: 'Components/Tooltip(RC)',\r\n  component: MeTooltipDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTooltipDirective],\r\n      imports: [DxTooltipModule, CommonModule],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    meTooltip: { control: 'text', description: 'Текст или HTML-контент тултипа' },\r\n    tooltipPosition: {\r\n      control: 'select',\r\n      options: ['top', 'bottom', 'left', 'right'],\r\n      description: 'Позиция тултипа относительно целевого элемента',\r\n    },\r\n    tooltipClass: { control: 'text', description: 'Пользовательский CSS-класс для тултипа' },\r\n    tooltipWidth: { control: 'number', description: 'Ширина тултипа' },\r\n    tooltipMaxWidth: { control: 'number', description: 'Максимальная ширина тултипа' },\r\n    tooltipHeight: { control: 'number', description: 'Высота тултипа' },\r\n    tooltipMaxHeight: { control: 'number', description: 'Максимальная высота тултипа' },\r\n    tooltipShowAnimation: { control: 'object', description: 'Настройки анимации появления тултипа' },\r\n    tooltipHideAnimation: { control: 'object', description: 'Настройки анимации скрытия тултипа' },\r\n  },\r\n}"
+        "defaultValue": "{\n  title: 'Components/Tooltip(RC)',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n      imports: [DxTooltipModule, CommonModule],\n    }),\n  ],\n  argTypes: {\n    meTooltip: {\n      control: 'text',\n      description: 'Текст или HTML-контент тултипа',\n    },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция тултипа относительно целевого элемента',\n    },\n    tooltipClass: {\n      control: 'text',\n      description: 'Пользовательский CSS-класс для тултипа',\n    },\n    tooltipWidth: { control: 'number', description: 'Ширина тултипа' },\n    tooltipMaxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина тултипа',\n    },\n    tooltipHeight: { control: 'number', description: 'Высота тултипа' },\n    tooltipMaxHeight: {\n      control: 'number',\n      description: 'Максимальная высота тултипа',\n    },\n    tooltipShowAnimation: {\n      control: 'object',\n      description: 'Настройки анимации появления тултипа',\n    },\n    tooltipHideAnimation: {\n      control: 'object',\n      description: 'Настройки анимации скрытия тултипа',\n    },\n  },\n}"
       },
       {
         "name": "MeTagBox",
@@ -2248,7 +2248,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    multiple: true,\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    multiple: true,\n  },\n}"
       },
       {
         "name": "NoFooter",
@@ -2268,7 +2268,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    stylingMode: 'outside',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n}"
       },
       {
         "name": "OutsideStylingMode",
@@ -2278,7 +2278,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    stylingMode: 'outside',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n}"
       },
       {
         "name": "OverflowValue",
@@ -2308,7 +2308,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Позиционированный тултип',\r\n    tooltipPosition: 'right',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\"\r\n              [tooltipPosition]=\"tooltipPosition\">\r\n        Тултип {{ tooltipPosition }}\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Позиционированный тултип',\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\">\n        Тултип {{ tooltipPosition }}\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "preview",
@@ -2358,7 +2358,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    rtlEnabled: true,\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
       },
       {
         "name": "RightToLeft",
@@ -2368,7 +2368,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    rtlEnabled: true,\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
       },
       {
         "name": "Rounded",
@@ -2408,7 +2408,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    scrollByContent: true,\r\n    width: '300px',\r\n    tabsData: [\r\n      { id: 1, text: 'Tab 1', icon: 'user' },\r\n      { id: 2, text: 'Tab 2', icon: 'email' },\r\n      { id: 3, text: 'Tab 3', icon: 'chart' },\r\n      { id: 4, text: 'Tab 4', icon: 'home' },\r\n      { id: 5, text: 'Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    scrollByContent: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n}"
       },
       {
         "name": "ScrollOnHover",
@@ -2468,7 +2468,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    size: 'small',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
       },
       {
         "name": "Small",
@@ -2678,7 +2678,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    orientation: 'vertical',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n}"
       },
       {
         "name": "VerticalOrientation",
@@ -2688,7 +2688,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    orientation: 'vertical',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n}"
       },
       {
         "name": "WithAccentColor",
@@ -2708,7 +2708,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Анимированный тултип',\r\n    tooltipPosition: 'top',\r\n    tooltipShowAnimation: {\r\n      type: 'pop',\r\n      from: { scale: 0.5, opacity: 0 },\r\n      to: { scale: 1, opacity: 1 },\r\n      duration: 300,\r\n    },\r\n    tooltipHideAnimation: {\r\n      type: 'fade',\r\n      from: { opacity: 1 },\r\n      to: { opacity: 0 },\r\n      duration: 200,\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button\r\n        [meTooltip]=\"meTooltip\"\r\n        [tooltipPosition]=\"tooltipPosition\"\r\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\r\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\r\n      >\r\n        Анимированный тултип\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n      duration: 300,\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n      duration: 200,\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "WithAvatar",
@@ -2858,7 +2858,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    showNavButtons: true,\r\n    width: '300px',\r\n    tabPanelData: [\r\n      ...defaultTabPanelData,\r\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\r\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabPanelData: [\n      ...defaultTabPanelData,\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\n    ],\n  },\n}"
       },
       {
         "name": "WithNavButtons",
@@ -2868,7 +2868,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    showNavButtons: true,\r\n    width: '300px',\r\n    tabsData: [\r\n      { id: 1, text: 'Tab 1', icon: 'user' },\r\n      { id: 2, text: 'Tab 2', icon: 'email' },\r\n      { id: 3, text: 'Tab 3', icon: 'chart' },\r\n      { id: 4, text: 'Tab 4', icon: 'home' },\r\n      { id: 5, text: 'Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n}"
       },
       {
         "name": "WithoutColon",
@@ -2908,7 +2908,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    showEvent: 'click',\r\n    hideEvent: 'click',\r\n    shading: true,\r\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\r\n    content: 'Это поповер с затенением фона.',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n}"
       },
       {
         "name": "WithTitle",
@@ -2918,7 +2918,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    position: 'bottom',\r\n    showTitle: true,\r\n    title: 'Заголовок поповера',\r\n    maxWidth: 400,\r\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\r\n  },\r\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'bottom',\n    showTitle: true,\n    title: 'Заголовок поповера',\n    maxWidth: 400,\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\n  },\n}"
       },
       {
         "name": "words",
@@ -3053,8 +3053,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj",
-        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+        "rawtype": "StoryObj<MeCardComponent>",
+        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -3064,8 +3064,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeCardComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+        "rawtype": "StoryObj",
+        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -3152,8 +3152,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeLoadIndicatorDirective>",
-        "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
+        "rawtype": "StoryObj<LoadPanelDemoComponent>",
+        "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -3163,8 +3163,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<LoadPanelDemoComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
+        "rawtype": "StoryObj<MeLoadIndicatorDirective>",
+        "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -3648,7 +3648,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Это базовый тултип',\r\n    tooltipPosition: 'top',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\"\r\n              [tooltipPosition]=\"tooltipPosition\">\r\n        Наведите на меня\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Это базовый тултип',\n    tooltipPosition: 'top',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\">\n        Наведите на меня\n      </button>\n    `,\n  }),\n}"
         },
         {
           "name": "ContainerTooltip",
@@ -3658,7 +3658,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Этот тултип отображается в определенном контейнере',\r\n    tooltipPosition: 'bottom'\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <div id=\"tooltipContainer\" style=\"position: relative; height: 100px; border: 1px solid #ccc; padding: 10px;\">\r\n        <button [meTooltip]=\"meTooltip\"\r\n                [tooltipPosition]=\"tooltipPosition\">\r\n          Тултип в контейнере\r\n        </button>\r\n      </div>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Этот тултип отображается в определенном контейнере',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <div id=\"tooltipContainer\" style=\"position: relative; height: 100px; border: 1px solid #ccc; padding: 10px;\">\n        <button [meTooltip]=\"meTooltip\"\n                [tooltipPosition]=\"tooltipPosition\">\n          Тултип в контейнере\n        </button>\n      </div>\n    `,\n  }),\n}"
         },
         {
           "name": "CustomSizedTooltip",
@@ -3668,7 +3668,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Этот тултип имеет фиксированные размеры',\r\n    tooltipPosition: 'bottom',\r\n    tooltipWidth: 200,\r\n    tooltipHeight: 100,\r\n    tooltipMaxWidth: 300,\r\n    tooltipMaxHeight: 150,\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\"\r\n              [tooltipPosition]=\"tooltipPosition\"\r\n              [tooltipWidth]=\"tooltipWidth\"\r\n              [tooltipHeight]=\"tooltipHeight\"\r\n              [tooltipMaxWidth]=\"tooltipMaxWidth\"\r\n              [tooltipMaxHeight]=\"tooltipMaxHeight\">\r\n        Тултип с фиксированными размерами\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Этот тултип имеет фиксированные размеры',\n    tooltipPosition: 'bottom',\n    tooltipWidth: 200,\n    tooltipHeight: 100,\n    tooltipMaxWidth: 300,\n    tooltipMaxHeight: 150,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipWidth]=\"tooltipWidth\"\n              [tooltipHeight]=\"tooltipHeight\"\n              [tooltipMaxWidth]=\"tooltipMaxWidth\"\n              [tooltipMaxHeight]=\"tooltipMaxHeight\">\n        Тултип с фиксированными размерами\n      </button>\n    `,\n  }),\n}"
         },
         {
           "name": "CustomStyles",
@@ -3678,7 +3678,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Стилизованный тултип',\r\n    tooltipPosition: 'left',\r\n    tooltipClass: 'custom-tooltip',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\"\r\n              [tooltipPosition]=\"tooltipPosition\"\r\n              [tooltipClass]=\"tooltipClass\">\r\n        Кастомный тултип\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Стилизованный тултип',\n    tooltipPosition: 'left',\n    tooltipClass: 'custom-tooltip',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipClass]=\"tooltipClass\">\n        Кастомный тултип\n      </button>\n    `,\n  }),\n}"
         },
         {
           "name": "CustomTemplate",
@@ -3688,7 +3688,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    tooltipPosition: 'right',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"''\"\r\n              [tooltipPosition]=\"tooltipPosition\"\r\n              [tooltipTemplateRef]=\"tooltipTemplate\">\r\n        Тултип с кастомным шаблоном\r\n      </button>\r\n\r\n      <ng-template #tooltipTemplate>\r\n        <div>\r\n          <h4>Заголовок тултипа</h4>\r\n          <p>Это пример тултипа с кастомной разметкой.</p>\r\n          <ul>\r\n            <li>Пункт 1</li>\r\n            <li>Пункт 2</li>\r\n          </ul>\r\n        </div>\r\n      </ng-template>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"''\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipTemplateRef]=\"tooltipTemplate\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
         },
         {
           "name": "HTMLContent",
@@ -3698,7 +3698,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',\r\n    tooltipPosition: 'bottom',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\r\n        HTML-тултип\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        HTML-тултип\n      </button>\n    `,\n  }),\n}"
         },
         {
           "name": "meta",
@@ -3708,7 +3708,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Meta<MeTooltipDirective>",
-          "defaultValue": "{\r\n  title: 'Components/Tooltip(RC)',\r\n  component: MeTooltipDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTooltipDirective],\r\n      imports: [DxTooltipModule, CommonModule],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    meTooltip: { control: 'text', description: 'Текст или HTML-контент тултипа' },\r\n    tooltipPosition: {\r\n      control: 'select',\r\n      options: ['top', 'bottom', 'left', 'right'],\r\n      description: 'Позиция тултипа относительно целевого элемента',\r\n    },\r\n    tooltipClass: { control: 'text', description: 'Пользовательский CSS-класс для тултипа' },\r\n    tooltipWidth: { control: 'number', description: 'Ширина тултипа' },\r\n    tooltipMaxWidth: { control: 'number', description: 'Максимальная ширина тултипа' },\r\n    tooltipHeight: { control: 'number', description: 'Высота тултипа' },\r\n    tooltipMaxHeight: { control: 'number', description: 'Максимальная высота тултипа' },\r\n    tooltipShowAnimation: { control: 'object', description: 'Настройки анимации появления тултипа' },\r\n    tooltipHideAnimation: { control: 'object', description: 'Настройки анимации скрытия тултипа' },\r\n  },\r\n}"
+          "defaultValue": "{\n  title: 'Components/Tooltip(RC)',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n      imports: [DxTooltipModule, CommonModule],\n    }),\n  ],\n  argTypes: {\n    meTooltip: {\n      control: 'text',\n      description: 'Текст или HTML-контент тултипа',\n    },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция тултипа относительно целевого элемента',\n    },\n    tooltipClass: {\n      control: 'text',\n      description: 'Пользовательский CSS-класс для тултипа',\n    },\n    tooltipWidth: { control: 'number', description: 'Ширина тултипа' },\n    tooltipMaxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина тултипа',\n    },\n    tooltipHeight: { control: 'number', description: 'Высота тултипа' },\n    tooltipMaxHeight: {\n      control: 'number',\n      description: 'Максимальная высота тултипа',\n    },\n    tooltipShowAnimation: {\n      control: 'object',\n      description: 'Настройки анимации появления тултипа',\n    },\n    tooltipHideAnimation: {\n      control: 'object',\n      description: 'Настройки анимации скрытия тултипа',\n    },\n  },\n}"
         },
         {
           "name": "Positioning",
@@ -3718,7 +3718,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Позиционированный тултип',\r\n    tooltipPosition: 'right',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\"\r\n              [tooltipPosition]=\"tooltipPosition\">\r\n        Тултип {{ tooltipPosition }}\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Позиционированный тултип',\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\">\n        Тултип {{ tooltipPosition }}\n      </button>\n    `,\n  }),\n}"
         },
         {
           "name": "WithAnimation",
@@ -3728,7 +3728,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    meTooltip: 'Анимированный тултип',\r\n    tooltipPosition: 'top',\r\n    tooltipShowAnimation: {\r\n      type: 'pop',\r\n      from: { scale: 0.5, opacity: 0 },\r\n      to: { scale: 1, opacity: 1 },\r\n      duration: 300,\r\n    },\r\n    tooltipHideAnimation: {\r\n      type: 'fade',\r\n      from: { opacity: 1 },\r\n      to: { opacity: 0 },\r\n      duration: 200,\r\n    },\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button\r\n        [meTooltip]=\"meTooltip\"\r\n        [tooltipPosition]=\"tooltipPosition\"\r\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\r\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\r\n      >\r\n        Анимированный тултип\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n      duration: 300,\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n      duration: 200,\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts": [
@@ -3842,7 +3842,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    collapsible: true,\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    collapsible: true,\n  },\n}"
         },
         {
           "name": "CustomHeader",
@@ -3852,7 +3852,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    size: 'medium',\r\n    dataSource: [\r\n      {\r\n        id: 1,\r\n        text: 'Заголовок 1',\r\n        description: 'Описание',\r\n        icon: 'folder',\r\n      },\r\n      {\r\n        id: 2,\r\n        text: 'Заголовок 2',\r\n        description: 'Описание',\r\n        icon: 'folder',\r\n      },\r\n      {\r\n        id: 3,\r\n        text: 'Заголовокк 3',\r\n        description: 'Описание',\r\n        icon: 'folder',\r\n      },\r\n    ],\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-accordion\r\n        meAccordion\r\n        [size]=\"size\"\r\n        [dataSource]=\"dataSource\"\r\n        [collapsible]=\"true\"\r\n        itemTitleTemplate=\"customTitle\"\r\n      >\r\n        <div *dxTemplate=\"let item of 'customTitle'\">\r\n          <div class=\"custom-header-container\">\r\n            <me-icon\r\n              class=\"custom-header-icon\"\r\n              [icon]=\"item.icon\"\r\n              [size]=\"size\"\r\n              [color]=\"item.iconColor || '#000000'\"\r\n            ></me-icon>\r\n            <div>\r\n              <div class=\"custom-header-title\">{{ item.text }}</div>\r\n              <div class=\"custom-header-description\">{{ item.description }}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div *dxTemplate=\"let item of 'item'\">\r\n          <p>Содержимое для {{ item.text }}</p>\r\n        </div>\r\n      </dx-accordion>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'medium',\n    dataSource: [\n      {\n        id: 1,\n        text: 'Заголовок 1',\n        description: 'Описание',\n        icon: 'folder',\n      },\n      {\n        id: 2,\n        text: 'Заголовок 2',\n        description: 'Описание',\n        icon: 'folder',\n      },\n      {\n        id: 3,\n        text: 'Заголовокк 3',\n        description: 'Описание',\n        icon: 'folder',\n      },\n    ],\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-accordion\n        meAccordion\n        [size]=\"size\"\n        [dataSource]=\"dataSource\"\n        [collapsible]=\"true\"\n        itemTitleTemplate=\"customTitle\"\n      >\n        <div *dxTemplate=\"let item of 'customTitle'\">\n          <div class=\"custom-header-container\">\n            <me-icon\n              class=\"custom-header-icon\"\n              [icon]=\"item.icon\"\n              [size]=\"size\"\n              [color]=\"item.iconColor || '#000000'\"\n            ></me-icon>\n            <div>\n              <div class=\"custom-header-title\">{{ item.text }}</div>\n              <div class=\"custom-header-description\">{{ item.description }}</div>\n            </div>\n          </div>\n        </div>\n        <div *dxTemplate=\"let item of 'item'\">\n          <p>Содержимое для {{ item.text }}</p>\n        </div>\n      </dx-accordion>\n    `,\n  }),\n}"
         },
         {
           "name": "Default",
@@ -3862,7 +3862,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    dataSource: [\r\n      {\r\n        title: 'Заголовок 1',\r\n        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\r\n        icon: 'folder',\r\n      },\r\n      {\r\n        title: 'Заголовок 2',\r\n        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\r\n        icon: 'folder',\r\n      },\r\n      {\r\n        title: 'Заголовок 3',\r\n        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\r\n        icon: 'folder',\r\n      },\r\n    ],\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    dataSource: [\n      {\n        title: 'Заголовок 1',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n      {\n        title: 'Заголовок 2',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n      {\n        title: 'Заголовок 3',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n    ],\n  },\n}"
         },
         {
           "name": "Large",
@@ -3872,7 +3872,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    size: 'large',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
         },
         {
           "name": "Multiple",
@@ -3882,7 +3882,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    multiple: true,\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    multiple: true,\n  },\n}"
         },
         {
           "name": "Small",
@@ -3892,7 +3892,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    size: 'small',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-toast/me-toast.stories.ts": [
@@ -5070,7 +5070,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    showEvent: 'mouseenter',\r\n    hideEvent: 'mouseleave',\r\n    position: 'top',\r\n    size: 'medium',\r\n    width: 300,\r\n    showTitle: false,\r\n    title: '',\r\n    shading: false,\r\n    shadingColor: '',\r\n    content: 'Это содержимое поповера по умолчанию.',\r\n    animation: {\r\n      show: { type: 'fade', duration: 0 },\r\n      hide: { type: 'fade', duration: 0 }\r\n    }\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n    animation: {\n      show: { type: 'fade', duration: 0 },\n      hide: { type: 'fade', duration: 0 },\n    },\n  },\n}"
         },
         {
           "name": "meta",
@@ -5080,7 +5080,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Meta<PopoverProps>",
-          "defaultValue": "{\r\n  title: 'Components/Popover(RC)',\r\n  component: MePopoverDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MePopoverDirective],\r\n      imports: [DxPopoverModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <div style=\"padding: 20px;\">\r\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\r\n        <dx-popover\r\n          mePopover\r\n          target=\"#popoverTarget\"\r\n          [showEvent]=\"showEvent\"\r\n          [hideEvent]=\"hideEvent\"\r\n          [position]=\"position\"\r\n          [width]=\"width\"\r\n          [maxWidth]=\"maxWidth\"\r\n          [showTitle]=\"showTitle\"\r\n          [title]=\"title\"\r\n          [shading]=\"shading\"\r\n          [shadingColor]=\"shadingColor\"\r\n          [size]=\"size\"\r\n          [animation]=\"animation\"\r\n        >\r\n          <div *dxTemplate=\"let data of 'content'\">\r\n            {{ content }}\r\n          </div>\r\n        </dx-popover>\r\n      </div>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    showEvent: {\r\n      control: 'select',\r\n      options: ['mouseenter', 'click', 'focus'],\r\n      description: 'Событие, при котором поповер будет показываться.'\r\n    },\r\n    hideEvent: {\r\n      control: 'select',\r\n      options: ['mouseleave', 'click', 'blur'],\r\n      description: 'Событие, при котором поповер будет скрываться.'\r\n    },\r\n    position: {\r\n      control: 'select',\r\n      options: ['top', 'bottom', 'left', 'right'],\r\n      description: 'Позиция поповера относительно целевого элемента.'\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['small', 'medium', 'large'],\r\n      description: 'Размер поповера.'\r\n    },\r\n    width: {\r\n      control: 'number',\r\n      description: 'Ширина поповера в пикселях.'\r\n    },\r\n    maxWidth: {\r\n      control: 'number',\r\n      description: 'Максимальная ширина поповера в пикселях.'\r\n    },\r\n    showTitle: {\r\n      control: 'boolean',\r\n      description: 'Показывать ли заголовок поповера.'\r\n    },\r\n    title: {\r\n      control: 'text',\r\n      description: 'Текст заголовка поповера.'\r\n    },\r\n    shading: {\r\n      control: 'boolean',\r\n      description: 'Включить затенение фона при показе поповера.'\r\n    },\r\n    shadingColor: {\r\n      control: 'color',\r\n      description: 'Цвет затенения фона.'\r\n    },\r\n    content: {\r\n      control: 'text',\r\n      description: 'Содержимое поповера.'\r\n    },\r\n    animation: {\r\n      control: 'object',\r\n      description: 'Настройки анимации появления и исчезновения поповера.'\r\n    },\r\n  },\r\n}"
+          "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n          [animation]=\"animation\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: {\n      control: 'select',\n      options: ['mouseenter', 'click', 'focus'],\n      description: 'Событие, при котором поповер будет показываться.',\n    },\n    hideEvent: {\n      control: 'select',\n      options: ['mouseleave', 'click', 'blur'],\n      description: 'Событие, при котором поповер будет скрываться.',\n    },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция поповера относительно целевого элемента.',\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n      description: 'Размер поповера.',\n    },\n    width: {\n      control: 'number',\n      description: 'Ширина поповера в пикселях.',\n    },\n    maxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина поповера в пикселях.',\n    },\n    showTitle: {\n      control: 'boolean',\n      description: 'Показывать ли заголовок поповера.',\n    },\n    title: {\n      control: 'text',\n      description: 'Текст заголовка поповера.',\n    },\n    shading: {\n      control: 'boolean',\n      description: 'Включить затенение фона при показе поповера.',\n    },\n    shadingColor: {\n      control: 'color',\n      description: 'Цвет затенения фона.',\n    },\n    content: {\n      control: 'text',\n      description: 'Содержимое поповера.',\n    },\n    animation: {\n      control: 'object',\n      description: 'Настройки анимации появления и исчезновения поповера.',\n    },\n  },\n}"
         },
         {
           "name": "WithOverlay",
@@ -5090,7 +5090,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    showEvent: 'click',\r\n    hideEvent: 'click',\r\n    shading: true,\r\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\r\n    content: 'Это поповер с затенением фона.',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n}"
         },
         {
           "name": "WithTitle",
@@ -5100,7 +5100,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    position: 'bottom',\r\n    showTitle: true,\r\n    title: 'Заголовок поповера',\r\n    maxWidth: 400,\r\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'bottom',\n    showTitle: true,\n    title: 'Заголовок поповера',\n    maxWidth: 400,\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts": [
@@ -5232,7 +5232,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    customClass: '',\r\n    selectedIndex: 0,\r\n    animationEnabled: true,\r\n    swipeEnabled: true,\r\n    position: 'top',\r\n    size: 'medium',\r\n    stylingMode: 'inside',\r\n    orientation: 'horizontal',\r\n    iconPosition: 'start',\r\n    showNavButtons: false,\r\n    scrollByContent: false,\r\n    rtlEnabled: false,\r\n    width: 'auto',\r\n    tabPanelData: defaultTabPanelData,\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    customClass: '',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    rtlEnabled: false,\n    width: 'auto',\n    tabPanelData: defaultTabPanelData,\n  },\n}"
         },
         {
           "name": "defaultTabPanelData",
@@ -5242,7 +5242,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "TabItem[]",
-          "defaultValue": "[\r\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\r\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\r\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\r\n]"
+          "defaultValue": "[\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\n]"
         },
         {
           "name": "DifferentIconPositions",
@@ -5252,7 +5252,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    iconPosition: 'top',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n}"
         },
         {
           "name": "meta",
@@ -5262,7 +5262,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Meta<MeTabPanelProps>",
-          "defaultValue": "{\r\n  title: 'Components/TabPanel',\r\n  component: MeTabPanelDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTabPanelDirective],\r\n      imports: [DxTabPanelModule],\r\n    }),\r\n  ],\r\n  render: (args: MeTabPanelProps) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-tab-panel\r\n        meTabPanel\r\n        [customClass]=\"customClass\"\r\n        [selectedIndex]=\"selectedIndex\"\r\n        [animationEnabled]=\"animationEnabled\"\r\n        [swipeEnabled]=\"swipeEnabled\"\r\n        [dataSource]=\"tabPanelData\"\r\n        [height]=\"300\"\r\n        [orientation]=\"orientation\"\r\n        [stylingMode]=\"stylingMode\"\r\n        [iconPosition]=\"iconPosition\"\r\n        [showNavButtons]=\"showNavButtons\"\r\n        [scrollByContent]=\"scrollByContent\"\r\n        [rtlEnabled]=\"rtlEnabled\"\r\n        [width]=\"width\"\r\n      >\r\n      </dx-tab-panel>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    customClass: { control: 'text' },\r\n    selectedIndex: { control: 'number' },\r\n    animationEnabled: { control: 'boolean' },\r\n    swipeEnabled: { control: 'boolean' },\r\n    position: {\r\n      options: ['top', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    size: {\r\n      options: ['small', 'medium', 'large'],\r\n      control: { type: 'select' },\r\n    },\r\n    stylingMode: {\r\n      options: ['inside', 'outside'],\r\n      control: { type: 'select' },\r\n    },\r\n    orientation: {\r\n      options: ['horizontal', 'vertical'],\r\n      control: { type: 'select' },\r\n    },\r\n    iconPosition: {\r\n      options: ['top', 'start', 'end', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    showNavButtons: { control: 'boolean' },\r\n    scrollByContent: { control: 'boolean' },\r\n    rtlEnabled: { control: 'boolean' },\r\n    width: { control: 'text' },\r\n  },\r\n}"
+          "defaultValue": "{\n  title: 'Components/TabPanel',\n  component: MeTabPanelDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  render: (args: MeTabPanelProps) => ({\n    props: args,\n    template: `\n      <dx-tab-panel\n        meTabPanel\n        [customClass]=\"customClass\"\n        [selectedIndex]=\"selectedIndex\"\n        [animationEnabled]=\"animationEnabled\"\n        [swipeEnabled]=\"swipeEnabled\"\n        [dataSource]=\"tabPanelData\"\n        [height]=\"300\"\n        [orientation]=\"orientation\"\n        [stylingMode]=\"stylingMode\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [width]=\"width\"\n      >\n      </dx-tab-panel>\n    `,\n  }),\n  argTypes: {\n    customClass: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: { control: 'boolean' },\n    scrollByContent: { control: 'boolean' },\n    rtlEnabled: { control: 'boolean' },\n    width: { control: 'text' },\n  },\n}"
         },
         {
           "name": "OutsideStylingMode",
@@ -5272,7 +5272,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    stylingMode: 'outside',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n}"
         },
         {
           "name": "RightToLeft",
@@ -5282,7 +5282,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    rtlEnabled: true,\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
         },
         {
           "name": "VerticalOrientation",
@@ -5292,7 +5292,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    orientation: 'vertical',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n}"
         },
         {
           "name": "WithNavButtons",
@@ -5302,7 +5302,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    showNavButtons: true,\r\n    width: '300px',\r\n    tabPanelData: [\r\n      ...defaultTabPanelData,\r\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\r\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabPanelData: [\n      ...defaultTabPanelData,\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\n    ],\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts": [
@@ -5314,7 +5314,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    position: 'top',\r\n    size: 'medium',\r\n    stylingMode: 'inside',\r\n    orientation: 'horizontal',\r\n    iconPosition: 'start',\r\n    showNavButtons: false,\r\n    scrollByContent: false,\r\n    width: 'auto',\r\n    customClass: '',\r\n    tabsData: defaultTabsData,\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n}"
         },
         {
           "name": "defaultTabsData",
@@ -5324,7 +5324,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Tab[]",
-          "defaultValue": "[\r\n  { id: 1, text: 'Tab 1', icon: 'user' },\r\n  { id: 2, text: 'Tab 2', icon: 'email' },\r\n  { id: 3, text: 'Tab 3', icon: 'chart' },\r\n]"
+          "defaultValue": "[\n  { id: 1, text: 'Tab 1', icon: 'user' },\n  { id: 2, text: 'Tab 2', icon: 'email' },\n  { id: 3, text: 'Tab 3', icon: 'chart' },\n]"
         },
         {
           "name": "DifferentIconPositions",
@@ -5334,7 +5334,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    iconPosition: 'top',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n}"
         },
         {
           "name": "meta",
@@ -5344,7 +5344,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Meta<MeTabsProps>",
-          "defaultValue": "{\r\n  title: 'Components/Tabs',\r\n  component: MeTabsDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeTabsDirective],\r\n      imports: [DxTabsModule],\r\n    }),\r\n  ],\r\n  render: (args: MeTabsProps) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-tabs\r\n        meTabs\r\n        [position]=\"position\"\r\n        [size]=\"size\"\r\n        [stylingMode]=\"stylingMode\"\r\n        [orientation]=\"orientation\"\r\n        [iconPosition]=\"iconPosition\"\r\n        [showNavButtons]=\"showNavButtons\"\r\n        [scrollByContent]=\"scrollByContent\"\r\n        [width]=\"width\"\r\n        [dataSource]=\"tabsData\"\r\n        [selectedIndex]=\"0\"\r\n        [rtlEnabled]=\"false\"\r\n      ></dx-tabs>\r\n    `,\r\n  }),\r\n  argTypes: {\r\n    position: {\r\n      options: ['top', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    size: {\r\n      options: ['small', 'medium', 'large'],\r\n      control: { type: 'select' },\r\n    },\r\n    stylingMode: {\r\n      options: ['inside', 'outside'],\r\n      control: { type: 'select' },\r\n    },\r\n    orientation: {\r\n      options: ['horizontal', 'vertical'],\r\n      control: { type: 'select' },\r\n    },\r\n    iconPosition: {\r\n      options: ['top', 'start', 'end', 'bottom'],\r\n      control: { type: 'select' },\r\n    },\r\n    showNavButtons: {\r\n      control: 'boolean',\r\n    },\r\n    scrollByContent: {\r\n      control: 'boolean',\r\n    },\r\n    width: {\r\n      control: 'text',\r\n    },\r\n    rtlEnabled: {\r\n      control: 'boolean',\r\n    },\r\n  },\r\n}"
+          "defaultValue": "{\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n        [rtlEnabled]=\"false\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    rtlEnabled: {\n      control: 'boolean',\n    },\n  },\n}"
         },
         {
           "name": "OutsideStylingMode",
@@ -5354,7 +5354,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    stylingMode: 'outside',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n}"
         },
         {
           "name": "RightToLeft",
@@ -5364,7 +5364,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    rtlEnabled: true,\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
         },
         {
           "name": "ScrollByContent",
@@ -5374,7 +5374,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    scrollByContent: true,\r\n    width: '300px',\r\n    tabsData: [\r\n      { id: 1, text: 'Tab 1', icon: 'user' },\r\n      { id: 2, text: 'Tab 2', icon: 'email' },\r\n      { id: 3, text: 'Tab 3', icon: 'chart' },\r\n      { id: 4, text: 'Tab 4', icon: 'home' },\r\n      { id: 5, text: 'Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    scrollByContent: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n}"
         },
         {
           "name": "VerticalOrientation",
@@ -5384,7 +5384,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    orientation: 'vertical',\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n}"
         },
         {
           "name": "WithNavButtons",
@@ -5394,7 +5394,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    showNavButtons: true,\r\n    width: '300px',\r\n    tabsData: [\r\n      { id: 1, text: 'Tab 1', icon: 'user' },\r\n      { id: 2, text: 'Tab 2', icon: 'email' },\r\n      { id: 3, text: 'Tab 3', icon: 'chart' },\r\n      { id: 4, text: 'Tab 4', icon: 'home' },\r\n      { id: 5, text: 'Tab 5', icon: 'event' },\r\n    ],\r\n  },\r\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-text-box/me-text-box.stories.ts": [
@@ -5655,19 +5655,6 @@
           "kind": 183
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj",
-          "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
         {
           "name": "Story",
@@ -5675,6 +5662,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<MeCardComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj",
+          "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -5772,19 +5772,6 @@
           "kind": 183
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<MeLoadIndicatorDirective>",
-          "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts": [
         {
           "name": "Story",
@@ -5792,6 +5779,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<LoadPanelDemoComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-load-panel/me-load-panel.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<MeLoadIndicatorDirective>",
+          "file": "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",

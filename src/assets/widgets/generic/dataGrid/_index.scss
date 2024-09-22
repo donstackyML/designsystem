@@ -235,7 +235,10 @@
       padding: 0;
 
       &:not(.dx-selection, .dx-button-disable):hover {
-        background-color: $button-default-outlined-bg-hover;
+        background-color: $base-hover-bg;
+      }
+      &:not(.dx-selection, .dx-button-disable):active {
+        background-color: $button-default-contained-bg-active;
       }
     }
 
@@ -249,6 +252,12 @@
         .dx-selectbox.dx-textbox.dx-texteditor.dx-dropdowneditor {
           background-color: $data-grid-search-panel-background-color;
           border: none;
+          &:hover {
+            background-color: $base-hover-bg;
+          }
+          &:active {
+            background-color: $button-default-contained-bg-active;
+          }
         }
         .dx-texteditor-container {
           align-items: center;
@@ -262,6 +271,10 @@
           .dx-texteditor-input {
             padding-block: 0px;
             padding-left: 0px;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
       }
