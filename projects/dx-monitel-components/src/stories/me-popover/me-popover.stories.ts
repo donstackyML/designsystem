@@ -14,6 +14,7 @@ interface PopoverProps {
   shading: boolean;
   shadingColor: string;
   content: string;
+  animation: any;
 }
 
 const meta: Meta<PopoverProps> = {
@@ -43,6 +44,7 @@ const meta: Meta<PopoverProps> = {
           [shading]="shading"
           [shadingColor]="shadingColor"
           [size]="size"
+          [animation]="animation"
         >
           <div *dxTemplate="let data of 'content'">
             {{ content }}
@@ -52,23 +54,58 @@ const meta: Meta<PopoverProps> = {
     `,
   }),
   argTypes: {
-    showEvent: { control: 'text' },
-    hideEvent: { control: 'text' },
+    showEvent: {
+      control: 'select',
+      options: ['mouseenter', 'click', 'focus'],
+      description: 'Событие, при котором поповер будет показываться.'
+    },
+    hideEvent: {
+      control: 'select',
+      options: ['mouseleave', 'click', 'blur'],
+      description: 'Событие, при котором поповер будет скрываться.'
+    },
     position: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
+      description: 'Позиция поповера относительно целевого элемента.'
     },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
+      description: 'Размер поповера.'
     },
-    width: { control: 'number' },
-    maxWidth: { control: 'number' },
-    showTitle: { control: 'boolean' },
-    title: { control: 'text' },
-    shading: { control: 'boolean' },
-    shadingColor: { control: 'color' },
-    content: { control: 'text' },
+    width: {
+      control: 'number',
+      description: 'Ширина поповера в пикселях.'
+    },
+    maxWidth: {
+      control: 'number',
+      description: 'Максимальная ширина поповера в пикселях.'
+    },
+    showTitle: {
+      control: 'boolean',
+      description: 'Показывать ли заголовок поповера.'
+    },
+    title: {
+      control: 'text',
+      description: 'Текст заголовка поповера.'
+    },
+    shading: {
+      control: 'boolean',
+      description: 'Включить затенение фона при показе поповера.'
+    },
+    shadingColor: {
+      control: 'color',
+      description: 'Цвет затенения фона.'
+    },
+    content: {
+      control: 'text',
+      description: 'Содержимое поповера.'
+    },
+    animation: {
+      control: 'object',
+      description: 'Настройки анимации появления и исчезновения поповера.'
+    },
   },
 };
 
@@ -87,6 +124,10 @@ export const Default: Story = {
     shading: false,
     shadingColor: '',
     content: 'Это содержимое поповера по умолчанию.',
+    animation: {
+      show: { type: 'fade', duration: 0 },
+      hide: { type: 'fade', duration: 0 }
+    }
   },
 };
 

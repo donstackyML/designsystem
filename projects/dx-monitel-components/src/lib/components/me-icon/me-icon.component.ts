@@ -29,9 +29,10 @@ export class MeIconComponent {
   getSize(): string {
     switch (this.size) {
       case 'small':
-        return '14px';
+        return '16px';
+      case 'medium':
       case 'large':
-        return '24px';
+        return '20px';
       default:
         return '16px';
     }
