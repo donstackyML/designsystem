@@ -57,54 +57,54 @@ const meta: Meta<PopoverProps> = {
     showEvent: {
       control: 'select',
       options: ['mouseenter', 'click', 'focus'],
-      description: 'Событие, при котором поповер будет показываться.'
+      description: 'Событие, при котором поповер будет показываться.',
     },
     hideEvent: {
       control: 'select',
       options: ['mouseleave', 'click', 'blur'],
-      description: 'Событие, при котором поповер будет скрываться.'
+      description: 'Событие, при котором поповер будет скрываться.',
     },
     position: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
-      description: 'Позиция поповера относительно целевого элемента.'
+      description: 'Позиция поповера относительно целевого элемента.',
     },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Размер поповера.'
+      description: 'Размер поповера.',
     },
     width: {
       control: 'number',
-      description: 'Ширина поповера в пикселях.'
+      description: 'Ширина поповера в пикселях.',
     },
     maxWidth: {
       control: 'number',
-      description: 'Максимальная ширина поповера в пикселях.'
+      description: 'Максимальная ширина поповера в пикселях.',
     },
     showTitle: {
       control: 'boolean',
-      description: 'Показывать ли заголовок поповера.'
+      description: 'Показывать ли заголовок поповера.',
     },
     title: {
       control: 'text',
-      description: 'Текст заголовка поповера.'
+      description: 'Текст заголовка поповера.',
     },
     shading: {
       control: 'boolean',
-      description: 'Включить затенение фона при показе поповера.'
+      description: 'Включить затенение фона при показе поповера.',
     },
     shadingColor: {
       control: 'color',
-      description: 'Цвет затенения фона.'
+      description: 'Цвет затенения фона.',
     },
     content: {
       control: 'text',
-      description: 'Содержимое поповера.'
+      description: 'Содержимое поповера.',
     },
     animation: {
       control: 'object',
-      description: 'Настройки анимации появления и исчезновения поповера.'
+      description: 'Настройки анимации появления и исчезновения поповера.',
     },
   },
 };
@@ -126,8 +126,8 @@ export const Default: Story = {
     content: 'Это содержимое поповера по умолчанию.',
     animation: {
       show: { type: 'fade', duration: 0 },
-      hide: { type: 'fade', duration: 0 }
-    }
+      hide: { type: 'fade', duration: 0 },
+    },
   },
 };
 

@@ -29,7 +29,7 @@ export default {
   },
   render: (args) => ({
     props: {
-      ...args
+      ...args,
     },
     template: `
       <dx-accordion
@@ -65,17 +65,20 @@ export const Default: Story = {
     dataSource: [
       {
         title: 'Заголовок 1',
-        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
+        content:
+          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
         icon: 'folder',
       },
       {
         title: 'Заголовок 2',
-        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
+        content:
+          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
         icon: 'folder',
       },
       {
         title: 'Заголовок 3',
-        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
+        content:
+          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
         icon: 'folder',
       },
     ],

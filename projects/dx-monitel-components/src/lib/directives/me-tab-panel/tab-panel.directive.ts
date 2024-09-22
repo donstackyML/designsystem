@@ -1,5 +1,5 @@
 import { Directive, Input, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import {DxTabPanelComponent, DxTabsComponent} from 'devextreme-angular';
+import { DxTabPanelComponent, DxTabsComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meTabPanel]',

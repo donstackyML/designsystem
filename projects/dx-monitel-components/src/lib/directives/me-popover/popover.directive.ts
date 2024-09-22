@@ -58,16 +58,30 @@ export class MePopoverDirective implements AfterViewInit, OnChanges {
     if (changes) {
       for (const propName in changes) {
         if (changes.hasOwnProperty(propName)) {
-          this.updateClass(propName, changes[propName].currentValue, changes[propName].previousValue);
+          this.updateClass(
+            propName,
+            changes[propName].currentValue,
+            changes[propName].previousValue
+          );
         }
       }
     }
   }
 
-  private updateClass(propName: string, currentValue: any, previousValue: any): void {
+  private updateClass(
+    propName: string,
+    currentValue: any,
+    previousValue: any
+  ): void {
     if (previousValue !== undefined) {
-      this.renderer.removeClass(this.element.nativeElement, `me-popover-${propName}-${previousValue}`);
+      this.renderer.removeClass(
+        this.element.nativeElement,
+        `me-popover-${propName}-${previousValue}`
+      );
     }
-    this.renderer.addClass(this.element.nativeElement, `me-popover-${propName}-${currentValue}`);
+    this.renderer.addClass(
+      this.element.nativeElement,
+      `me-popover-${propName}-${currentValue}`
+    );
   }
 }

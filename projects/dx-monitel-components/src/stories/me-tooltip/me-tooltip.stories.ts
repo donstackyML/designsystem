@@ -13,19 +13,37 @@ const meta: Meta<MeTooltipDirective> = {
     }),
   ],
   argTypes: {
-    meTooltip: { control: 'text', description: 'Текст или HTML-контент тултипа' },
+    meTooltip: {
+      control: 'text',
+      description: 'Текст или HTML-контент тултипа',
+    },
     tooltipPosition: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
       description: 'Позиция тултипа относительно целевого элемента',
     },
-    tooltipClass: { control: 'text', description: 'Пользовательский CSS-класс для тултипа' },
+    tooltipClass: {
+      control: 'text',
+      description: 'Пользовательский CSS-класс для тултипа',
+    },
     tooltipWidth: { control: 'number', description: 'Ширина тултипа' },
-    tooltipMaxWidth: { control: 'number', description: 'Максимальная ширина тултипа' },
+    tooltipMaxWidth: {
+      control: 'number',
+      description: 'Максимальная ширина тултипа',
+    },
     tooltipHeight: { control: 'number', description: 'Высота тултипа' },
-    tooltipMaxHeight: { control: 'number', description: 'Максимальная высота тултипа' },
-    tooltipShowAnimation: { control: 'object', description: 'Настройки анимации появления тултипа' },
-    tooltipHideAnimation: { control: 'object', description: 'Настройки анимации скрытия тултипа' },
+    tooltipMaxHeight: {
+      control: 'number',
+      description: 'Максимальная высота тултипа',
+    },
+    tooltipShowAnimation: {
+      control: 'object',
+      description: 'Настройки анимации появления тултипа',
+    },
+    tooltipHideAnimation: {
+      control: 'object',
+      description: 'Настройки анимации скрытия тултипа',
+    },
   },
 };
 
@@ -183,7 +201,7 @@ export const CustomSizedTooltip: Story = {
 export const ContainerTooltip: Story = {
   args: {
     meTooltip: 'Этот тултип отображается в определенном контейнере',
-    tooltipPosition: 'bottom'
+    tooltipPosition: 'bottom',
   },
   render: (args) => ({
     props: args,

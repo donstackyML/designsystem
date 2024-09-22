@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabPanelModule } from 'devextreme-angular';
-import { MeTabPanelDirective } from "../../public-api";
+import { MeTabPanelDirective } from '../../public-api';
 
 interface TabItem {
   id: number;
