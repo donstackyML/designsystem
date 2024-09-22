@@ -1,25 +1,31 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MeTooltipDirective } from '../../public-api';
+import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
+import { CommonModule } from '@angular/common';
 
 const meta: Meta<MeTooltipDirective> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip(RC)',
   component: MeTooltipDirective,
   decorators: [
     moduleMetadata({
       declarations: [MeTooltipDirective],
+      imports: [DxTooltipModule, CommonModule],
     }),
   ],
   argTypes: {
-    meTooltip: { control: 'text' },
+    meTooltip: { control: 'text', description: 'Текст или HTML-контент тултипа' },
     tooltipPosition: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
+      description: 'Позиция тултипа относительно целевого элемента',
     },
-    tooltipClass: { control: 'text' },
-    tooltipWidth: { control: 'text' },
-    tooltipMaxWidth: { control: 'text' },
-    tooltipShowAnimation: { control: 'object' },
-    tooltipHideAnimation: { control: 'object' },
+    tooltipClass: { control: 'text', description: 'Пользовательский CSS-класс для тултипа' },
+    tooltipWidth: { control: 'number', description: 'Ширина тултипа' },
+    tooltipMaxWidth: { control: 'number', description: 'Максимальная ширина тултипа' },
+    tooltipHeight: { control: 'number', description: 'Высота тултипа' },
+    tooltipMaxHeight: { control: 'number', description: 'Максимальная высота тултипа' },
+    tooltipShowAnimation: { control: 'object', description: 'Настройки анимации появления тултипа' },
+    tooltipHideAnimation: { control: 'object', description: 'Настройки анимации скрытия тултипа' },
   },
 };
 
@@ -34,7 +40,8 @@ export const Basic: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition">
+      <button [meTooltip]="meTooltip"
+              [tooltipPosition]="tooltipPosition">
         Наведите на меня
       </button>
     `,
@@ -49,7 +56,8 @@ export const Positioning: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition">
+      <button [meTooltip]="meTooltip"
+              [tooltipPosition]="tooltipPosition">
         Тултип {{ tooltipPosition }}
       </button>
     `,
@@ -80,7 +88,9 @@ export const CustomStyles: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition" [tooltipClass]="tooltipClass">
+      <button [meTooltip]="meTooltip"
+              [tooltipPosition]="tooltipPosition"
+              [tooltipClass]="tooltipClass">
         Кастомный тултип
       </button>
     `,
@@ -95,11 +105,13 @@ export const WithAnimation: Story = {
       type: 'pop',
       from: { scale: 0.5, opacity: 0 },
       to: { scale: 1, opacity: 1 },
+      duration: 300,
     },
     tooltipHideAnimation: {
       type: 'fade',
       from: { opacity: 1 },
       to: { opacity: 0 },
+      duration: 200,
     },
   },
   render: (args) => ({
@@ -124,7 +136,9 @@ export const CustomTemplate: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="tooltipTemplate" [tooltipTemplateRef]="tooltipTemplate" [tooltipPosition]="tooltipPosition">
+      <button [meTooltip]="''"
+              [tooltipPosition]="tooltipPosition"
+              [tooltipTemplateRef]="tooltipTemplate">
         Тултип с кастомным шаблоном
       </button>
 
@@ -138,6 +152,48 @@ export const CustomTemplate: Story = {
           </ul>
         </div>
       </ng-template>
+    `,
+  }),
+};
+
+export const CustomSizedTooltip: Story = {
+  args: {
+    meTooltip: 'Этот тултип имеет фиксированные размеры',
+    tooltipPosition: 'bottom',
+    tooltipWidth: 200,
+    tooltipHeight: 100,
+    tooltipMaxWidth: 300,
+    tooltipMaxHeight: 150,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button [meTooltip]="meTooltip"
+              [tooltipPosition]="tooltipPosition"
+              [tooltipWidth]="tooltipWidth"
+              [tooltipHeight]="tooltipHeight"
+              [tooltipMaxWidth]="tooltipMaxWidth"
+              [tooltipMaxHeight]="tooltipMaxHeight">
+        Тултип с фиксированными размерами
+      </button>
+    `,
+  }),
+};
+
+export const ContainerTooltip: Story = {
+  args: {
+    meTooltip: 'Этот тултип отображается в определенном контейнере',
+    tooltipPosition: 'bottom'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div id="tooltipContainer" style="position: relative; height: 100px; border: 1px solid #ccc; padding: 10px;">
+        <button [meTooltip]="meTooltip"
+                [tooltipPosition]="tooltipPosition">
+          Тултип в контейнере
+        </button>
+      </div>
     `,
   }),
 };

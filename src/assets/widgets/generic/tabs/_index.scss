@@ -26,7 +26,8 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 
 .me-tabs-medium {
   height: var(--me-tabs-medium-height);
-  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   font-size: var(--me-tabs-medium-font-size);
 
   .dx-tab {
@@ -42,9 +43,11 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 }
 
+/* Большие вкладки */
 .me-tabs-large {
   height: var(--me-tabs-large-height);
-  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   font-size: var(--me-tabs-large-font-size);
 
   .dx-tab-text {
@@ -178,6 +181,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 
 .dx-tabs-styling-mode-secondary.me-tabs-bottom.dx-tabs-vertical .dx-tab.dx-tab-selected {
   border-radius: 4px 0 0 4px;
+  margin-top: -1px;
 }
 
 .dx-tabs-styling-mode-secondary {
@@ -202,6 +206,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 
   &.me-tabs-top .dx-tab {
+    margin-left: -1px;
     border-width: 1px;
     border-style: solid;
     border-top-color: transparent;
@@ -222,6 +227,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 
   &.me-tabs-bottom .dx-tab {
+    margin-left: -1px;
     border-width: 1px;
     border-style: solid;
     border-top-color: transparent;
@@ -242,6 +248,17 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 }
 
+.dx-tabs-vertical.dx-tabs-styling-mode-secondary {
+  .dx-tab {
+    margin-top: -1px;
+  }
+  &.dx-tab-selected {
+    background-color: $tabs-tab-selected-bg;
+    color: #ffffff;
+  }
+}
+
+
 .dx-tabs-vertical.dx-tabs-styling-mode-secondary.me-tabs-top {
   .dx-tab {
     border-width: 1px;
@@ -251,6 +268,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     border-left-color: transparent;
     border-right-color: $tabs-disabled-border-color;
     border-radius: 0;
+    margin-left: -1px;
 
     &.dx-tab-selected {
       border-radius: 4px 0 0 4px;
@@ -275,9 +293,11 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   padding: 12px 10px;
   background-color: transparent;
   color: #242424;
+  border-radius: 4px;
 
   &.dx-state-hover {
     background-color: $tabs-hover-bg;
+    border-radius: 3px;
   }
 
   &.dx-state-active {
@@ -352,4 +372,43 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     min-width: 20px;
     min-height: 20px;
   }
+}
+
+.dx-tabs-nav-button-left {
+  border: none;
+  border-radius: 0;
+  background-color: rgba(236, 237, 243, 1);
+  .dx-button-content {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.dx-tabs-styling-mode-secondary.me-tabs-top :first-child.dx-tab.dx-tab-selected {
+  margin-left: 1px;
+}
+
+
+.dx-tabs-nav-button-right {
+  border: none;
+  border-radius: 0;
+  background-color: rgba(236, 237, 243, 1);
+  .dx-button-content {
+    display: flex;
+    align-items: center;
+  }
+}
+// New styles for keyboard navigation
+.dx-tab:focus-visible {
+  outline: none; // Removing default outline
+  border: 2px solid $tabs-focused-border-color;
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px rgba($tabs-focused-border-color, 0.5);
+}
+
+// Ensure the focus style doesn't affect mouse clicks
+.dx-tab:focus:not(:focus-visible) {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }

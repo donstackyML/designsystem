@@ -1,5 +1,4 @@
 import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
-
 import { Figma } from "@storybook/addon-designs/blocks";
 import * as tabsStories from "../me-tabs/me-tabs.stories";
 
@@ -34,7 +33,8 @@ import * as tabsStories from "../me-tabs/me-tabs.stories";
 - [С кнопками навигации](#с-кнопками-навигации)
 - [Прокрутка содержимого](#прокрутка-содержимого)
 - [Различные позиции иконок](#различные-позиции-иконок)
-- [Вторичный стиль оформления](#вторичный-стиль-оформления)
+- [Стиль оформления "Outside"](#стиль-оформления-outside)
+- [Поддержка языков с письмом справа налево](#поддержка-языков-с-письмом-справа-налево)
 - [Свойства](#свойства)
 
 ## Вертикальная ориентация
@@ -47,7 +47,7 @@ import * as tabsStories from "../me-tabs/me-tabs.stories";
   code={`
 <dx-tabs
   meTabs
-  orientation="vertical"
+  [orientation]="vertical"
   [dataSource]="tabsData"
 ></dx-tabs>
 `}
@@ -103,7 +103,7 @@ import * as tabsStories from "../me-tabs/me-tabs.stories";
   code={`
 <dx-tabs
   meTabs
-  iconPosition="top"
+  [iconPosition]="top"
   [dataSource]="tabsData"
 ></dx-tabs>
 `}
@@ -111,17 +111,35 @@ import * as tabsStories from "../me-tabs/me-tabs.stories";
   language="html"
 />
 
-## Вторичный стиль оформления
+## Стиль оформления "Outside"
 
-Для использования вторичного стиля оформления установите свойство `stylingMode="secondary"`.
+Для использования стиля оформления "outside" установите свойство `stylingMode="outside"`.
 
-<Canvas of={tabsStories.InsideStylingMode} />
+<Canvas of={tabsStories.OutsideStylingMode} />
 
 <Source
   code={`
 <dx-tabs
   meTabs
-  stylingMode="secondary"
+  [stylingMode]="outside"
+  [dataSource]="tabsData"
+></dx-tabs>
+`}
+  dark
+  language="html"
+/>
+
+## Поддержка языков с письмом справа налево
+
+Свойство `rtlEnabled` позволяет включить поддержку отображения компонента для языков с письмом справа налево.
+
+<Canvas of={tabsStories.RightToLeft} />
+
+<Source
+  code={`
+<dx-tabs
+  meTabs
+  [rtlEnabled]="true"
   [dataSource]="tabsData"
 ></dx-tabs>
 `}
@@ -141,28 +159,29 @@ import * as tabsStories from "../me-tabs/me-tabs.stories";
     "iconPosition",
     "showNavButtons",
     "scrollByContent",
+    "rtlEnabled",
     "width",
     "customClass",
   ]}
 />
 
-## Пример использования
+### rtlEnabled
 
-Ниже приведен пример использования компонента `<dx-tabs>` с директивой `meTabs` и различными свойствами.
+Задает поддержку отображения элемента управления для языков с написанием справа налево.
 
-<Source
-  code={`
+- Тип: `boolean`
+- Значение по умолчанию: `false`
+
+**Описание:**
+
+Когда свойство `rtlEnabled` установлено в `true`, компоненты DevExtreme отображают свой контент в направлении, соответствующем языкам с письмом справа налево (Right-To-Left). Это влияет на расположение текста, иконок и других элементов интерфейса.
+
+**Пример использования:**
+
+```html
 <dx-tabs
   meTabs
-  [customClass]="customClass"
-  [position]="position"
-  [size]="size"
-  [stylingMode]="stylingMode"
-  [orientation]="orientation"
-  [iconPosition]="iconPosition"
-  [showNavButtons]="showNavButtons"
-  [scrollByContent]="scrollByContent"
-  [width]="width"
+  [rtlEnabled]="true"
   [dataSource]="tabsData"
   [selectedIndex]="0"
 ></dx-tabs>

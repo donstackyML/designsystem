@@ -1,203 +1,103 @@
-@use 'sass:color';
-@use 'colors' as *;
-@use '../colors' as *;
-@use 'sizes' as *;
-@use '../sizes' as *;
-@use '../tabs/sizes' as *;
-@use '../tabs/colors' as *;
-@use '../../base/tabPanel';
-
-// adduse
-
-$generic-tabpanel-inset-shadow-left: inset 0 0;
-$generic-tabpanel-inset-shadow-top: inset 0 0;
-$generic-tabpanel-inset-shadow-right: inset 0 0;
-$generic-tabpanel-inset-shadow-bottom: inset 0 0;
-
-@mixin tabpanel-shadow-mixin($accent-color) {
-  & > .dx-tabpanel-tabs {
-    .dx-tabs {
-      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-        $generic-tabpanel-inset-shadow-top, $generic-tabpanel-inset-shadow-right,
-        $generic-tabpanel-inset-shadow-left;
-    }
-
-    .dx-tab {
-      &.dx-tab-selected {
-        border-top: 1px solid $accent-color;
-        border-left: 1px solid $accent-color;
-        border-right: 1px solid $accent-color;
-      }
-
-      &.dx-tab-active.dx-item {
-        border-bottom: 1px solid $tabs-hover-border-color;
-      }
-    }
-
-    .dx-tabs-expanded {
-      .dx-tab:not(.dx-tab-selected) {
-        &:first-of-type {
-          box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-            $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
-
-          @at-root #{selector-append(".dx-rtl", &)},
-            .dx-rtl & {
-            box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-              $generic-tabpanel-inset-shadow-right, $generic-tabpanel-inset-shadow-top;
-          }
-        }
-      }
-    }
-
-    .dx-tabs-stretched {
-      .dx-tab:not(.dx-tab-selected) {
-        &:last-of-type {
-          box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-            $generic-tabpanel-inset-shadow-right, $generic-tabpanel-inset-shadow-top;
-
-          @at-root #{selector-append(".dx-rtl", &)},
-            .dx-rtl & {
-            box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-              $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
-          }
-        }
-      }
-    }
-
-    .dx-tabs-nav-button-left {
-      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-        $generic-tabpanel-inset-shadow-left, $generic-tabpanel-inset-shadow-top;
-    }
-
-    .dx-tabs-nav-button-right {
-      box-shadow: $generic-tabpanel-inset-shadow-bottom $accent-color,
-        $generic-tabpanel-inset-shadow-top, $generic-tabpanel-inset-shadow-right;
-    }
-  }
-
-  .dx-multiview-wrapper {
-    border-color: $accent-color;
-    box-shadow: 0px -1px $accent-color;
-  }
-}
-
-.dx-tabpanel {
-  > .dx-tabpanel-tabs {
-    .dx-tabs {
-      display: block;
-      border: none;
-      color: $tabs-border-color;
-
-      .dx-tab {
-        top: 0px;
-        color: $tabs-border-color;
-
-        .dx-tab-content {
-          color: $tabs-tab-color;
-        }
-
-        &.dx-state-disabled {
-          & .dx-tab-content {
-            color: $tabpanel-tabs-disabled-color;
-          }
-        }
-
-        &::after,
-        &::before {
-          content: none;
-        }
-      }
-
-      .dx-tabs-nav-button {
-        color: $tabs-border-color;
-      }
-    }
-
-    .dx-tab {
-      width: 140px;
-    }
-
-    .dx-tabs-scrollable {
-      margin-top: 0;
-      margin-bottom: 0;
-      height: 100%;
-
-      .dx-tabs-wrapper {
-        display: table;
-        border: none;
-      }
-    }
-  }
-
-  &:not(.dx-empty-collection) {
-    .dx-multiview-wrapper {
-      border-top: none;
-      box-shadow: 0px -1px $tabs-border-color;
-      background: $multiview-wrapper-bg;
-    }
-  }
-
-  @include tabpanel-shadow-mixin($tabs-border-color);
-
-  &.dx-state-focused {
-    @include tabpanel-shadow-mixin($tabs-focused-border-color);
-  }
-
-  .dx-multiview-wrapper {
-    border: $generic-tabs-border;
-  }
-}
-
-.dx-tabpanel .dx-tabpanel-tabs .dx-tab.dx-state-focused {
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: calc(100% + 8px);
-    height: calc(100% + 4px);
-    background-color: #7eb9ff;
-    border-color: transparent;
-    border-radius: 6px 6px 0 0;
-    left: -4px;
-    top: -4px;
-    z-index: -1;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: calc(100% + 4px);
-    height: calc(100% + 2px);
-    background-color: #ffffff;
-    border-radius: 4px 4px 0 0;
-    border: none;
-    left: -2px;
-    top: -2px;
-    z-index: -1;
-  }
-}
-
-.me-tabs-panel {
-  .dx-tabpanel-tabs {
-    .dx-tabs-scrollable {
-      margin: 0;
-    }
-
-    .dx-item.dx-tab {
-      padding: 4px 8px;
-      width: auto;
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 16px;
-    }
-  }
-
-  .dx-multiview-wrapper {
-    border-radius: 0 0 3px 3px;
-
-    .dx-multiview-item-container {
-      padding: 20px 16px;
-    }
-  }
-}
+//@use 'sass:color';
+//@use '../sizes' as *;
+//@use '../colors' as *;
+//@use '../button/colors' as *;
+//
+//// Variables
+//$tabs-tab-color: $base-text-color !default;
+//$tabs-tab-selected-color: $base-text-color !default;
+//$tabs-tab-bg: #ecedf3 !default;
+//$tabs-tab-selected-bg: $base-bg !default;
+//$tabs-tab-icon-color: $tabs-tab-color !default;
+//$tabs-tab-icon-selected-color: $tabs-tab-selected-color !default;
+//$tabs-focused-border-color: #3257dc !default;
+//$tabs-tab-hover-bg: #3c65f81f !default;
+//$tabs-tab-active-bg: #3c71f833 !default;
+//$tabs-hover-border-color: #18181a !default;
+//$tabs-disabled-border-color: rgba(223, 224, 237, 1) !default;
+//$tabs-disabled-color: #18181a66 !default;
+//
+//.me-tabs-panel {
+//  &.dx-tabpanel {
+//    display: flex;
+//    flex-direction: column;
+//
+//    .dx-tabpanel-tabs {
+//      background-color: transparent;
+//      border-bottom: none;
+//
+//      .dx-tabs {
+//        background-color: transparent;
+//        border: none;
+//
+//        .dx-tab {
+//          border-bottom: none;
+//          border-radius: 4px 4px 0 0;
+//          margin-right: 2px;
+//          padding: 10px 15px;
+//          color: $tabs-tab-color;
+//          font-weight: 500;
+//
+//          &.dx-tab-selected {
+//            background-color: $tabs-tab-selected-bg;
+//            border-bottom: 1px solid $tabs-tab-selected-bg;
+//            color: $tabs-tab-selected-color;
+//            position: relative;
+//            z-index: 1;
+//
+//            &::after {
+//              content: '';
+//              position: absolute;
+//              bottom: -2px;
+//              left: 0;
+//              right: 0;
+//              height: 2px;
+//              background-color: transparent;
+//            }
+//          }
+//
+//          &:hover:not(.dx-tab-selected) {
+//            background-color: $tabs-tab-hover-bg;
+//          }
+//
+//          &.dx-state-focused {
+//            box-shadow: 0 0 0 2px $tabs-focused-border-color;
+//          }
+//
+//          .dx-tab-text {
+//            font-size: var(--me-tabs-medium-font-size);
+//            line-height: var(--me-tabs-medium-line-height);
+//          }
+//
+//          .dx-icon {
+//            font-size: var(--me-tabs-medium-icon-font-size);
+//            color: $tabs-tab-icon-color;
+//            margin-right: 8px;
+//          }
+//        }
+//      }
+//    }
+//
+//    .dx-tabpanel-container {
+//      border: 1px solid $tabs-disabled-border-color;
+//      border-radius: 0 4px 4px 4px;
+//      background-color: $tabs-tab-selected-bg;
+//      padding: 15px;
+//    }
+//  }
+//
+//  // Стили для навигационных кнопок
+//  .dx-tabs-nav-button {
+//    background-color: transparent;
+//    border: none;
+//    color: $tabs-tab-color;
+//
+//    &:hover {
+//      background-color: $tabs-tab-hover-bg;
+//    }
+//
+//    &.dx-state-disabled {
+//      opacity: 0.5;
+//    }
+//  }
+//}

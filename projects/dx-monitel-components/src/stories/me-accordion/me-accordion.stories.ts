@@ -1,13 +1,13 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxAccordionModule } from 'devextreme-angular';
-import { MeAccordionDirective } from '../../public-api';
+import { MeAccordionDirective, MeIconComponent } from '../../public-api';
 
 export default {
   title: 'Компоненты/Accordion',
   decorators: [
     moduleMetadata({
       declarations: [MeAccordionDirective],
-      imports: [DxAccordionModule],
+      imports: [DxAccordionModule, MeIconComponent],
     }),
   ],
   argTypes: {
@@ -29,11 +29,7 @@ export default {
   },
   render: (args) => ({
     props: {
-      ...args,
-      onCollapsibleChanged: (e: any) => console.log('Collapsible changed:', e),
-      onMultipleChanged: (e: any) => console.log('Multiple changed:', e),
-      onSelectedIndexChanged: (e: any) =>
-        console.log('Selected index changed:', e),
+      ...args
     },
     template: `
       <dx-accordion
@@ -42,15 +38,20 @@ export default {
         [collapsible]="collapsible"
         [multiple]="multiple"
         [dataSource]="dataSource"
-        (onCollapsibleChanged)="onCollapsibleChanged($event)"
-        (onMultipleChanged)="onMultipleChanged($event)"
-        (onSelectedIndexChanged)="onSelectedIndexChanged($event)"
       >
         <div *dxTemplate="let item of 'title'">
-          <span>{{item.title}}</span>
+          <div class="custom-header-container">
+            <me-icon
+              class="custom-header-icon"
+              [icon]="item.icon"
+              [size]="size"
+              [color]="item.iconColor || '#000000'"
+            ></me-icon>
+            <span class="custom-header-title">{{ item.title }}</span>
+          </div>
         </div>
         <div *dxTemplate="let item of 'item'">
-          <p>{{item.content}}</p>
+          <p>{{ item.content }}</p>
         </div>
       </dx-accordion>
     `,
@@ -62,9 +63,21 @@ type Story = StoryObj;
 export const Default: Story = {
   args: {
     dataSource: [
-      { title: 'Accordion Item 1', content: 'Content for Accordion Item 1' },
-      { title: 'Accordion Item 2', content: 'Content for Accordion Item 2' },
-      { title: 'Accordion Item 3', content: 'Content for Accordion Item 3' },
+      {
+        title: 'Заголовок 1',
+        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
+        icon: 'folder',
+      },
+      {
+        title: 'Заголовок 2',
+        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
+        icon: 'folder',
+      },
+      {
+        title: 'Заголовок 3',
+        content: 'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
+        icon: 'folder',
+      },
     ],
   },
 };
@@ -100,23 +113,24 @@ export const Multiple: Story = {
 export const CustomHeader: Story = {
   args: {
     ...Default.args,
+    size: 'medium',
     dataSource: [
       {
         id: 1,
-        text: 'Accordion Item 1',
-        description: 'Description for Item 1',
+        text: 'Заголовок 1',
+        description: 'Описание',
         icon: 'folder',
       },
       {
         id: 2,
-        text: 'Accordion Item 2',
-        description: 'Description for Item 2',
+        text: 'Заголовок 2',
+        description: 'Описание',
         icon: 'folder',
       },
       {
         id: 3,
-        text: 'Accordion Item 3',
-        description: 'Description for Item 3',
+        text: 'Заголовокк 3',
+        description: 'Описание',
         icon: 'folder',
       },
     ],
@@ -126,21 +140,27 @@ export const CustomHeader: Story = {
     template: `
       <dx-accordion
         meAccordion
+        [size]="size"
         [dataSource]="dataSource"
         [collapsible]="true"
         itemTitleTemplate="customTitle"
       >
         <div *dxTemplate="let item of 'customTitle'">
-           <div style="display: flex; align-items: flex-start;">
-              <i class="dx-icon-{{item.icon}}" style="margin-right: 10px; font-size: 18px; color: #000;"></i>
-              <div>
-                <div style="font-weight: bold; font-size: 16px;">{{item.text}}</div>
-                <div style="font-weight: inherit; color: gray; font-size: 14px;">{{item.description}}</div>
-              </div>
+          <div class="custom-header-container">
+            <me-icon
+              class="custom-header-icon"
+              [icon]="item.icon"
+              [size]="size"
+              [color]="item.iconColor || '#000000'"
+            ></me-icon>
+            <div>
+              <div class="custom-header-title">{{ item.text }}</div>
+              <div class="custom-header-description">{{ item.description }}</div>
             </div>
+          </div>
         </div>
         <div *dxTemplate="let item of 'item'">
-          <p>Content for {{item.text}}</p>
+          <p>Содержимое для {{ item.text }}</p>
         </div>
       </dx-accordion>
     `,
