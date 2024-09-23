@@ -1,9 +1,10 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTreeListModule } from 'devextreme-angular';
-import { MeTreeListDirective } from '../../public-api';
+import { MeIconComponent, MeTreeListDirective } from '../../public-api';
 
 export default {
   title: 'Components/TreeList(RC)',
+  component: MeIconComponent,
   decorators: [
     moduleMetadata({
       declarations: [MeTreeListDirective],
@@ -12,29 +13,20 @@ export default {
   ],
   argTypes: {
     activeStateEnabled: {
-      control: 'boolean',
+      control: 'select',
+      options: [true, false],
     },
     allowColumnReordering: {
-      control: 'boolean',
+      control: 'select',
+      options: [true, false],
     },
     allowColumnResizing: {
-      control: 'boolean',
+      control: 'select',
+      options: [true, false],
     },
-    autoExpandAll: {
-      control: 'boolean',
-      description: 'Автооткрытие всех узлов',
-    },
-    cellHintEnabled: {
-      control: 'boolean',
-      description: 'Всплывающие подсказки в ячейках с усеченным содержимым',
-    },
-    columnAutoWidth: {
-      control: 'boolean',
-    },
-    wordWrapEnabled: {
-      control: 'boolean',
-      description:
-        'Указывает, следует ли переносить текст, который не помещается в столбец',
+    showRowLines: {
+      control: 'select',
+      options: [true, false],
     },
   },
 
@@ -464,38 +456,26 @@ export default {
     activeStateEnabled: true,
     allowColumnReordering: true,
     allowColumnResizing: true,
-    autoExpandAll: false,
-    cellHintEnabled: true,
-    columnAutoWidth: true,
-    wordWrapEnabled: false,
+    showRowLines: true,
   },
   render: (args) => ({
     props: args,
     template: `
 			<dx-tree-list
 				meTreeList
-				id="employees"
 				[(dataSource)]="dataSource"
 				keyExpr="ID"
 				parentIdExpr="Head_ID"
-				[showRowLines]="true"
-				[showBorders]="true"
-				[columnAutoWidth]="true"
+				[showRowLines]="showRowLines"
 				[expandedRowKeys]="[1, 2, 3, 4, 5]"
-				(onEditorPreparing)="editorPreparing($event)"
-				(onInitNewRow)="initNewRow($event)"
 				[activeStateEnabled]="activeStateEnabled"
 				[allowColumnReordering]="allowColumnReordering"
 				[allowColumnResizing]="allowColumnResizing"
-				[autoExpandAll]="autoExpandAll"
-				[cellHintEnabled]="cellHintEnabled"
-				[columnAutoWidth]="columnAutoWidth"
-				[wordWrapEnabled]="wordWrapEnabled"
   		>
     <dxo-editing
       mode="row"
       [allowUpdating]="true"
-      [allowDeleting]="allowDeleting"
+      [allowDeleting]="true"
       [allowAdding]="true"
     >
     </dxo-editing>
@@ -513,8 +493,12 @@ export default {
       <dxi-validation-rule type="required"></dxi-validation-rule>
     </dxi-column>
     <dxi-column type="buttons">
-      <dxi-button name="edit"></dxi-button>
-      <dxi-button name="delete"></dxi-button>
+      <dxi-button name="edit" icon="edit"></dxi-button>
+      <dxi-button name="delete" icon="trash"></dxi-button>
+      <dxi-button name="save" icon="save"></dxi-button>
+      <dxi-button name="cancel" icon="undo"></dxi-button>
+
+      <dxi-button name="undelete" icon="undelete"></dxi-button>
     </dxi-column>
   </dx-tree-list>
 		`,
@@ -522,3 +506,71 @@ export default {
 } as Meta;
 
 export const TreeList: StoryObj = {};
+
+export const TreeListColumns: StoryObj = {
+  render: (args) => ({
+    props: args,
+    template: `<dx-tree-list
+  meTreeList
+  [dataSource]="[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]"
+	keyExpr="ID"
+>
+<dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+<dxi-column dataField="Title" caption="Position"></dxi-column>
+</dx-tree-list>`,
+  }),
+};
+
+export const TreeListButtons: StoryObj = {
+  render: (args) => ({
+    props: args,
+    template: `
+<dx-tree-list
+meTreeList
+[dataSource]="[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]"
+keyExpr="ID"
+>
+    <dxo-editing
+      mode="row"
+      [allowUpdating]="true"
+      [allowDeleting]="true"
+      [allowAdding]="true"
+    >
+    </dxo-editing>
+	<dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+	<dxi-column dataField="Title" caption="Position"></dxi-column>
+	<dxi-column type="buttons">
+		<dxi-button name="edit" icon="edit"></dxi-button>
+		<dxi-button name="save" icon="save"></dxi-button>
+		<dxi-button name="cancel" icon="undo"></dxi-button>
+</dxi-column>
+</dx-tree-list>`,
+  }),
+};
+
+export const TreeListValidation: StoryObj = {
+  render: (args) => ({
+    props: args,
+    template: `
+<dx-tree-list
+meTreeList
+[dataSource]="[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]"
+keyExpr="ID"
+>
+    <dxo-editing
+      mode="row"
+      [allowUpdating]="true"
+      [allowDeleting]="true"
+      [allowAdding]="true"
+    >
+    </dxo-editing>
+	<dxi-column dataField="Full_Name" caption="Name"><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
+	<dxi-column dataField="Title" caption="Position"><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
+	<dxi-column type="buttons">
+		<dxi-button name="edit" icon="edit"></dxi-button>
+		<dxi-button name="save" icon="save"></dxi-button>
+		<dxi-button name="cancel" icon="undo"></dxi-button>
+</dxi-column>
+</dx-tree-list>`,
+  }),
+};

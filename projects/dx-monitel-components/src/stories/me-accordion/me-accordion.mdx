@@ -1,7 +1,13 @@
 import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
 import * as accordionStories from "./me-accordion.stories";
 import { MeAccordionDirective } from "../../public-api";
+import { MeAccordionDirective } from "../../public-api";
 
+<Meta
+  title="Components/Accordion(RC)"
+  component={MeAccordionDirective}
+  of={accordionStories}
+/>
 <Meta
   title="Components/Accordion(RC)"
   component={MeAccordionDirective}
@@ -124,6 +130,7 @@ import { MeAccordionDirective } from "../../public-api";
 ## Свойства
 
 {" "}
+
 <Controls
   of={accordionStories.Default}
   include={["size", "collapsible", "multiple"]}
@@ -137,6 +144,12 @@ import { MeAccordionDirective } from "../../public-api";
     code={`
 
 <dx-accordion
+meAccordion
+[size]="size"
+[collapsible]="collapsible"
+[multiple]="multiple"
+[dataSource]="dataSource"
+
 meAccordion
 [size]="size"
 [collapsible]="collapsible"

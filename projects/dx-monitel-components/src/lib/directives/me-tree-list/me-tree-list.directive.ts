@@ -1,10 +1,4 @@
-import {
-  Directive,
-  HostListener,
-  OnChanges,
-  SimpleChanges,
-  inject,
-} from '@angular/core';
+import { Directive, inject } from '@angular/core';
 import { DxTreeListComponent } from 'devextreme-angular';
 
 @Directive({
@@ -13,15 +7,15 @@ import { DxTreeListComponent } from 'devextreme-angular';
     '[class.me-tree-list]': 'true',
   },
 })
-export class MeTreeListDirective implements OnChanges {
+export class MeTreeListDirective {
   private component = inject(DxTreeListComponent);
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    console.log(this.component);
+  ngOnInit(): void {
+    this.applyInitialSettings();
   }
 
-  @HostListener('onToolbarPreparing', ['$event']) onToolbarPreparing(e: any) {
-    console.log(e);
+  private applyInitialSettings() {
+    this.component.instance.option('showBorders', true);
+    this.component.instance.option('showRowLines', true);
   }
 }

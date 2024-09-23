@@ -1,95 +1,84 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
+import * as TabPanelStories from "./me-tab-panel.stories";
 
-import { moduleMetadata } from "@storybook/angular";
-import { DxTabPanelModule } from "devextreme-angular";
-import { MeTabPanelDirective } from "../../public-api";
-import * as tabPanelStories from "./me-tab-panel.stories";
+<Meta title="Components/TabPanel" of={TabPanelStories} />
 
-<Meta
-  title="Directives/MeTabPanel"
-  of={tabPanelStories}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeTabPanelDirective],
-      imports: [DxTabPanelModule],
-    }),
-  ]}
-/>
+# TabPanel
 
-# MeTabPanel
+Компонент TabPanel представляет собой контейнер для отображения содержимого во вкладках.
 
-## Директива MeTabPanel
+<Canvas of={TabPanelStories.Default} />
 
-Директива `MeTabPanel` позволяет создавать панели вкладок с различными параметрами, включая высоту, выбранный индекс, анимацию и возможность прокрутки. Директива также позволяет добавлять пользовательские классы CSS для стилизации.
+## Свойства
 
-<Canvas of={tabPanelStories.Default} />
-<Controls of={tabPanelStories.Default} />
-<Source of={tabPanelStories.Default} dark />
+<Controls />
 
-## Примеры использования:
+## Использование
 
-- [С пользовательским классом](#с-пользовательским-классом)
-- [Без анимации](#без-анимации)
-- [Без возможности прокрутки](#без-возможности-прокрутки)
-- [С пользовательской высотой](#с-пользовательской-высотой)
-
-## С пользовательским классом
-
-Для добавления пользовательского класса используйте параметр `customClass`.
-
-<Canvas of={tabPanelStories.WithCustomClass} />
+Для использования TabPanel в вашем приложении, примените директиву `meTabPanel` к компоненту `dx-tab-panel`:
 
 <Source
-  code={`<dx-tab-panel meTabPanel [height]="'300px'" width="400px" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="true" customClass="custom-class"></dx-tab-panel>`}
-  dark
   language="html"
+  dark
+  code={`
+<dx-tab-panel
+  meTabPanel
+  [customClass]="customClass"
+  [selectedIndex]="selectedIndex"
+  [animationEnabled]="animationEnabled"
+  [swipeEnabled]="swipeEnabled"
+  [dataSource]="tabPanelData"
+  [orientation]="orientation"
+  [stylingMode]="stylingMode"
+  [iconPosition]="iconPosition"
+  [showNavButtons]="showNavButtons"
+  [scrollByContent]="scrollByContent"
+  [rtlEnabled]="rtlEnabled"
+  [width]="width"
+>
+</dx-tab-panel>
+  `}
 />
 
-## Без анимации
+## Примеры
 
-Для отключения анимации используйте параметр `animationEnabled`.
+### Вертикальная ориентация
 
-<Canvas of={tabPanelStories.WithoutAnimation} />
+<Canvas of={TabPanelStories.VerticalOrientation} />
 
-<Source
-  code={`<dx-tab-panel meTabPanel [height]="'300px'" width="400px" [selectedIndex]="0" [animationEnabled]="false" [swipeEnabled]="true"></dx-tab-panel>`}
-  dark
-  language="html"
-/>
+### С кнопками навигации
 
-## Без возможности прокрутки
+<Canvas of={TabPanelStories.WithNavButtons} />
 
-Для отключения возможности прокрутки используйте параметр `swipeEnabled`.
+### Стиль оформления "Outside"
 
-<Canvas of={tabPanelStories.WithoutSwipe} />
+<Canvas of={TabPanelStories.OutsideStylingMode} />
 
-<Source
-  code={`<dx-tab-panel meTabPanel [height]="'300px'" width="400px" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="false"></dx-tab-panel>`}
-  dark
-  language="html"
-/>
+### Различные позиции иконок
 
-## С пользовательской высотой
+<Canvas of={TabPanelStories.DifferentIconPositions} />
 
-Для изменения высоты используйте параметр `height`.
+### Поддержка языков с письмом справа налево
 
-<Canvas of={tabPanelStories.CustomHeight} />
+<Canvas of={TabPanelStories.RightToLeft} />
 
-<Source
-  code={`<dx-tab-panel meTabPanel [height]="'500px'" width="400px" [selectedIndex]="0" [animationEnabled]="true" [swipeEnabled]="true"></dx-tab-panel>`}
-  dark
-  language="html"
-/>
-
-## Перечень свойств
+## API
 
 <Controls
-  of={tabPanelStories.Default}
+  of={TabPanelStories.Default}
   include={[
     "customClass",
-    "height",
     "selectedIndex",
     "animationEnabled",
     "swipeEnabled",
+    "position",
+    "size",
+    "stylingMode",
+    "orientation",
+    "iconPosition",
+    "showNavButtons",
+    "scrollByContent",
+    "rtlEnabled",
+    "width",
   ]}
 />

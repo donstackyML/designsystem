@@ -3,6 +3,7 @@ import * as TreeListStories from "./me-tree-list.stories";
 import { moduleMetadata } from "@storybook/angular";
 import { DxTreeListModule } from "devextreme-angular";
 import { MeTreeListDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
 
 <Meta
   title="Components/TreeList"
@@ -20,8 +21,59 @@ import { MeTreeListDirective } from "../../public-api";
 
 ## Директива meTreeList
 
-Директива `meTreeList` изменяет внешний вид стандартного компонента treeList DevExtreme.
+Применение директивы `meTreeList` к элементу `dx-tree-list` изменяет внешний вид стандартного компонента treeList DevExtreme в соответствие с дизайн системой.
 
 [Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/23_1/ApiReference/UI_Components/dxTreeList/)
 
 <Story name="Default" of={TreeListStories.TreeList} />
+<Controls of={TreeListStories.TreeList} exclude={["dataSource"]} />
+<Source of={TreeListStories.TreeList} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/RKYvr3REXwOglog9PMcZLF/Components-(Copy)?node-id=4431-163676&node-type=frame&t=4m2SISUYumG3whUY-0"
+/>
+
+## Примеры использования:
+
+- [Колонки](#добавление-колонки)
+- [Кнопки](#кнопки-в-treelist)
+- [Валидация](#валидация-данных)
+
+## Добавление колонки
+
+Для добавления новых колонок необходимо использовать свойство `dxi-column`, указывая свойство `dataField` и название колонки в `caption`.
+
+<Source
+  code={`
+    <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+`}
+  dark
+  language="html"
+/>
+<Story of={TreeListStories.TreeListColumns} />
+
+## Кнопки в TreeList
+
+Для добавления кнопок необходимо добавить колонку к кнопками `dxi-column` и указать аттрибут `type=buttons`. А дочерним элементом уставить сами кнопки `dxi-button`. Аттрибутом `name` указываем тип кнопки: `add` | `cancel` | `delete` | `edit` | `save` | `undelete`. Так же использовать `dxo-editing` с разрешениями для редактирования.
+
+<Story of={TreeListStories.TreeListButtons} />
+<Source of={TreeListStories.TreeListButtons} dark />
+
+## Валидация данных
+
+Для валидации данных необходимо использовать `dxi-validation-rule` и указать тип валидации.
+
+<Source
+  code={`
+<dxi-column dataField="Full_Name" caption="Name">
+  <dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>`}
+  dark
+  language="html"
+/>
+<Story of={TreeListStories.TreeListValidation} />

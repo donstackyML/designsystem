@@ -126,11 +126,11 @@ $generic-accordion-disabled-opacity: 0.5;
 }
 
 .dx-state-focused {
-  //&.dx-accordion-item {
-  //  border: 1px solid $accordion-item-focused-border-color;
-  //  border-radius: 3px;
-  //  box-shadow: 0 0 0 1px $accordion-item-focused-border-color;
-  //}
+  &.dx-accordion-item {
+    border: 1px solid $accordion-item-focused-border-color;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px $accordion-item-focused-border-color;
+  }
 }
 
 .dx-accordion-item-body {
@@ -147,24 +147,63 @@ $generic-accordion-disabled-opacity: 0.5;
   }
 }
 
+/* Общие стили для заголовка */
+.dx-accordion-item-title .custom-header-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.dx-accordion-item-title .custom-header-icon {
+  margin-right: var(--accordion-icon-margin-right);
+  color: var(--accordion-icon-color);
+  position: relative;
+}
+
+.dx-accordion-item-title .custom-header-title {
+  font-family: var(--accordion-font-family);
+  font-weight: bold;
+}
+
+.dx-accordion-item-title .custom-header-description {
+  font-family: var(--accordion-font-family);
+  color: var(--accordion-description-color);
+}
+
 .me-accordion-small {
   min-width: 206px;
 
+  .custom-header-icon {
+    font-size: var(--accordion-icon-size-small);
+  }
+
+  .custom-header-title {
+    font-size: var(--accordion-title-font-size-small);
+    line-height: var(--accordion-title-line-height-small);
+  }
+
+  .custom-header-description {
+    font-weight: var(--accordion-description-font-weight-small);
+    font-size: var(--accordion-description-font-size-small);
+    line-height: var(--accordion-description-line-height-small);
+  }
+
   .dx-accordion-item-title > * {
     padding: 8px 0;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
+    font-family: var(--accordion-title-font-family);
+    font-weight: var(--accordion-title-font-weight-small);
+    font-size: var(--accordion-title-font-size-small);
+    line-height: var(--accordion-title-line-height-small);
   }
 
   .dx-accordion-item-body {
     padding: 0 12px 12px 12px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
 
     p {
       text-align: start;
+      font-family: var(--accordion-body-font-family);
+      font-weight: var(--accordion-body-font-weight-small);
+      font-size: var(--accordion-body-font-size-small);
+      line-height: var(--accordion-body-line-height-small);
     }
   }
 }
@@ -172,21 +211,37 @@ $generic-accordion-disabled-opacity: 0.5;
 .me-accordion-medium {
   min-width: 300px;
 
+  .custom-header-icon {
+    font-size: var(--accordion-icon-size-medium);
+    top: 1px;
+  }
+
+  .custom-header-description {
+    font-weight: var(--accordion-description-font-weight-medium);
+    font-size: var(--accordion-description-font-size-medium);
+    line-height: var(--accordion-description-line-height-medium);
+  }
+
+  .custom-header-icon {
+    font-size: var(--accordion-icon-size-medium);
+  }
   .dx-accordion-item-title > * {
     padding: 8px 0;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
+    font-family: var(--accordion-title-font-family);
+    font-weight: var(--accordion-title-font-weight-medium);
+    font-size: var(--accordion-title-font-size-medium);
+    line-height: var(--accordion-title-line-height-medium);
   }
 
   .dx-accordion-item-body {
     padding: 0 12px 12px 12px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
 
     p {
       text-align: start;
+      font-family: var(--accordion-body-font-family);
+      font-weight: var(--accordion-body-font-weight-medium);
+      font-size: var(--accordion-body-font-size-medium);
+      line-height: var(--accordion-body-line-height-medium);
     }
   }
 }
@@ -194,21 +249,41 @@ $generic-accordion-disabled-opacity: 0.5;
 .me-accordion-large {
   min-width: 300px;
 
+  .custom-header-icon {
+    font-size: var(--accordion-icon-size-medium);
+    top: 3px;
+  }
+
+  .custom-header-description {
+    font-weight: var(--accordion-description-font-weight-large);
+    font-size: var(--accordion-description-font-size-large);
+    line-height: var(--accordion-description-line-height-large);
+  }
+  .custom-header-icon {
+    font-size: var(--accordion-icon-size-medium);
+  }
+
+  .custom-header-icon {
+    font-size: var(--accordion-icon-size-medium);
+  }
+
   .dx-accordion-item-title > * {
     padding: 8px 0;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 30px;
+    font-family: var(--accordion-title-font-family);
+    font-weight: var(--accordion-title-font-weight-large);
+    font-size: var(--accordion-title-font-size-large);
+    line-height: var(--accordion-title-line-height-large);
   }
 
   .dx-accordion-item-body {
     padding: 0 16px 16px 16px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
 
     p {
       text-align: start;
+      font-family: var(--accordion-body-font-family);
+      font-weight: var(--accordion-body-font-weight-large);
+      font-size: var(--accordion-body-font-size-large);
+      line-height: var(--accordion-body-line-height-large);
     }
   }
 }
