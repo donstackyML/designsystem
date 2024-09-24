@@ -20,9 +20,6 @@ export default {
     max: {
       control: 'number',
     },
-    height: {
-      control: 'text',
-    },
     disabled: {
       control: 'boolean',
     },
@@ -41,7 +38,6 @@ export default {
     value: 50,
     min: 0,
     max: 100,
-    height: '75px',
     disabled: false,
     hoverStateEnabled: true,
     focusStateEnabled: true,
@@ -57,7 +53,6 @@ export default {
 								[min]="min"
 								[max]="max"
 								[(value)]="value"
-								[height]="height"
 								[disabled]="disabled"
 								[hoverStateEnabled]="hoverStateEnabled"
 								[focusStateEnabled]="focusStateEnabled"

@@ -136,11 +136,12 @@
 
   .dx-datagrid {
     padding: 16px;
+
+    //header-panel
     .dx-datagrid-header-panel {
       min-height: 28px;
       margin: 0 0 16px 0;
       padding: 0;
-
       .dx-toolbar {
         margin: 0;
         .dx-toolbar-items-container {
@@ -166,12 +167,13 @@
                 }
                 .dx-sort-up {
                   &::before {
-                    content: var(--me-icon-straight);
+                    content: var(--me-icon-sort-up);
                   }
                 }
                 .dx-sort-down {
                   &::before {
-                    // content: '\eb95';
+                    content: var(--me-icon-sort-up);
+                    transform: rotate(180deg);
                   }
                 }
               }
@@ -199,6 +201,28 @@
     }
     .dx-datagrid-headers {
       margin: 1px 1px 0 1px;
+      .dx-column-indicators {
+        .dx-sort {
+          &::before {
+            font-family: 'Material Symbols Outlined';
+            height: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+          }
+        }
+        .dx-sort-up {
+          &::before {
+            content: var(--me-icon-sort-up);
+          }
+        }
+        .dx-sort-down {
+          &::before {
+            content: var(--me-icon-sort-up);
+            transform: rotate(180deg);
+          }
+        }
+      }
     }
     .dx-datagrid-rowsview {
       margin: 0 1px 16px 1px;
@@ -238,7 +262,7 @@
         background-color: $base-hover-bg;
       }
       &:not(.dx-selection, .dx-button-disable):active {
-        background-color: $button-default-contained-bg-active;
+        // background-color: $button-default-contained-bg-active;
       }
     }
 
@@ -256,7 +280,7 @@
             background-color: $base-hover-bg;
           }
           &:active {
-            background-color: $button-default-contained-bg-active;
+            // background-color: $button-default-contained-bg-active;
           }
         }
         .dx-texteditor-container {
@@ -335,7 +359,7 @@
     .dx-icon-search {
       font-family: 'Material Symbols Outlined';
       &::before {
-        content: '\e8b6';
+        content: var(--me-icon-search);
       }
     }
     .dx-texteditor-input::placeholder {
@@ -413,7 +437,7 @@
           color: $base-icon-color;
         }
         .dx-datagrid-group-closed::before {
-          content: '\f002';
+          content: var(--me-icon-group-closed);
         }
       }
 
