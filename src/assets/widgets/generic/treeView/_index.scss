@@ -127,8 +127,6 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
 
   &.dx-state-focused {
     > .dx-treeview-item {
-      position: relative;
-      // background-color: $treeview-focused-bg;
       box-shadow: inset 0px 0px 0px 2px #7eb9ff, inset 0px 0px 0px 4px #ffffff;
       z-index: 1;
       color: $treeview-color;
@@ -174,70 +172,48 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
 }
 
 .me-tree-view {
-  padding: 4px 8px 8px;
+  display: flex;
+  padding: 8px;
+  gap: 4px;
 
-  .dx-treeview-toggle-item-visibility {
-    width: 24px;
-    height: 24px;
-    top: 8px;
-    left: 0px;
+  .dx-scrollable {
+    width: -webkit-fill-available;
 
-    background: $treeview-toggle-item-visibility;
-    background-size: contain;
-
-    &::before {
-      content: none;
-    }
-
-    &.dx-treeview-toggle-item-visibility-opened {
-      transform: rotate(90deg);
-    }
-  }
-
-  .dx-treeview-node {
-    padding-left: 24px;
-    font-size: 16px;
-    font-weight: 400;
-    text-align: left;
-
-    & {
+    li.dx-treeview-node {
+      padding-left: 0;
+      text-align: left;
       margin-top: 4px;
-    }
 
-    & .dx-treeview-node-container {
-      padding-left: 8px;
-    }
-  }
+      .dx-item.dx-treeview-item {
+        min-height: auto;
 
-  .dx-treeview-item-with-checkbox .dx-treeview-item {
-    padding-left: 40px;
-  }
+        .dx-treeview-toggle-item-visibility {
+          left: 8px;
+          background: none;
+          font-family: var(--me-icon-family);
+          &::before {
+            content: var(--me-icon-arrow-right);
+          }
+          &.dx-treeview-toggle-item-visibility-opened {
+            transform: rotate(90deg);
+          }
+        }
+        .dx-item-content.dx-treeview-item-content {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
 
-  .dx-treeview-item {
-    padding: 8px;
-    min-height: auto;
+          .dx-icon {
+            margin: 0;
+          }
 
-    &.dx-state-active {
-      background: $treeview-item-active-bg;
-    }
-  }
-
-  .dx-treeview-item .dx-treeview-item-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-
-    & > .dx-icon {
-      width: 24px;
-      height: 24px;
-      margin: 0;
-    }
-
-    & > span {
-      line-height: 24px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+          span {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+      }
     }
   }
 
@@ -250,11 +226,6 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
   }
 
   .dx-treeview-item-with-checkbox {
-    .dx-checkbox {
-      left: 32px;
-      top: 8px;
-    }
-
     &.dx-state-selected {
       & > .dx-treeview-item {
         background-color: $treeview-item-selected-bg;
@@ -277,59 +248,109 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
     }
   }
 
-  .dx-treeview-item.dx-state-disabled {
-    opacity: $treeview-item-disabled-opacity;
+  .dx-state-active {
+    background-color: $treeview-item-active-bg;
+  }
+  &.dx-state-disabled * {
+    color: $treeview-disabled-color !important;
+    fill: $treeview-disabled-color !important;
+  }
+  &:not(.dx-state-disabled) * {
+    fill: $base-icon-color !important;
+  }
+}
+
+.me-tree-view.me-tree-view-large {
+  li ul {
+    margin-left: 32px;
+  }
+  .dx-scrollable {
+    li.dx-treeview-node {
+      font-size: 16px;
+      font-weight: var(--me-regular-font-weight);
+      .dx-item.dx-treeview-item {
+        padding: 8px;
+        .dx-treeview-toggle-item-visibility {
+          height: 24px;
+          width: 24px;
+          font-size: 20px;
+          top: 8px;
+        }
+        .dx-item-content.dx-treeview-item-content {
+          margin-left: 32px;
+          .dx-icon {
+            width: 24px;
+            height: 24px;
+          }
+          span {
+            font-size: 16px;
+            font-weight: var(--me-regular-font-weight);
+            line-height: 24px;
+          }
+        }
+      }
+      &.dx-treeview-item-with-checkbox {
+        .dx-checkbox {
+          height: 24px;
+          width: 24px;
+          top: 8px;
+          left: auto;
+          margin-left: 32px;
+        }
+        .dx-item.dx-treeview-item {
+          .dx-item-content.dx-treeview-item-content {
+            margin-left: 64px;
+          }
+        }
+      }
+    }
   }
 }
 
 .me-tree-view.me-tree-view-small {
-  .dx-treeview-toggle-item-visibility {
-    width: 20px;
-    height: 20px;
-    top: 4px;
+  li ul {
+    margin-left: 28px;
   }
+  .dx-scrollable {
+    li.dx-treeview-node {
+      font-size: 14px;
+      font-weight: 400;
+      .dx-item.dx-treeview-item {
+        padding: 4px 8px;
+        .dx-treeview-toggle-item-visibility {
+          height: 20px;
+          width: 20px;
+          font-size: 18px;
+          top: 4px;
+        }
 
-  .dx-treeview-node {
-    padding-left: 20px;
-    font-size: 14px;
-    font-weight: 400;
-
-    & {
-      margin-top: 4px;
+        .dx-item-content.dx-treeview-item-content {
+          margin-left: 28px;
+          .dx-icon {
+            width: 20px;
+            height: 20px;
+          }
+          span {
+            font-size: 14px;
+            font-weight: var(--me-regular-font-weight);
+            line-height: 20px;
+          }
+        }
+      }
+      &.dx-treeview-item-with-checkbox {
+        .dx-checkbox {
+          height: 20px;
+          width: 20px;
+          top: 4px;
+          left: auto;
+          margin-left: 28px;
+        }
+        .dx-item.dx-treeview-item {
+          .dx-item-content.dx-treeview-item-content {
+            margin-left: 56px;
+          }
+        }
+      }
     }
-
-    & .dx-treeview-node-container {
-      padding-left: 8px;
-    }
-  }
-
-  .dx-treeview-item-with-checkbox .dx-treeview-item {
-    padding-left: 36px;
-  }
-
-  .dx-treeview-item {
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .dx-treeview-item .dx-treeview-item-content {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    & > .dx-icon {
-      width: 20px;
-      height: 20px;
-      margin: 0;
-    }
-
-    & > span {
-      line-height: 20px;
-    }
-  }
-
-  .dx-treeview-item-with-checkbox .dx-checkbox {
-    left: 28px;
-    top: 4px;
   }
 }

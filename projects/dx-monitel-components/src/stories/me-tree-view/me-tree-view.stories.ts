@@ -123,12 +123,57 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'large'],
-      description: 'Принимает размер <code>TreeView</code> и его элементов.',
+      description: 'Принимает размер `TreeView` и его элементов.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'large' },
       },
     },
+    activeStateEnabled: {
+      control: 'select',
+      options: [true, false],
+      description: 'Определяет состояние при нажатии на элементы `TreeView`.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    disabled: {
+      control: 'select',
+      options: [true, false],
+      description: 'Отключает `TreeView` и его элементы.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    showCheckBoxesMode: {
+      control: 'select',
+      options: ['normal', 'selectAll', 'none'],
+      description:
+        'Определяет режим отображения чекбоксов `TreeView` и его элементов.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'normal' },
+      },
+    },
+    focusStateEnabled: {
+      control: 'select',
+      options: [true, false],
+      description: 'Определяет состояние `focused` `TreeView` и его элементов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+  },
+  args: {
+    dataSource: data,
+    size: 'large',
+    activeStateEnabled: true,
+    disabled: false,
+    showCheckBoxesMode: 'normal',
+    focusStateEnabled: false,
   },
   render: (args) => ({
     props: args,
@@ -140,9 +185,4 @@ export default {
 
 type Story = StoryObj<MeTreeViewDirective | DxTreeViewComponent>;
 
-export const Default: Story = {
-  args: {
-    dataSource: data,
-    size: 'large',
-  },
-};
+export const Default: Story = {};
