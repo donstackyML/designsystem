@@ -3,7 +3,7 @@ import { DxAccordionModule } from 'devextreme-angular';
 import { MeAccordionDirective, MeIconComponent } from '../../public-api';
 
 export default {
-  title: 'Components/Accordion',
+  title: 'Компоненты/Accordion',
   decorators: [
     moduleMetadata({
       declarations: [MeAccordionDirective],
