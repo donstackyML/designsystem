@@ -28,12 +28,56 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Примеры использования:
 
+- [добавление заголовка](#добавление-заголовка)
+- [добавление иконки, описания и кнопки more](#добавление-иконки-описания-и-кнопки-more)
 - [добавление скролла](#добавление-скролла)
+- [добавление кнопки в подвал](#добавление-кнопки-в-подвал)
+- [добавление двух кнопок в подвал](#добавление-двух-кнопок-в-подвал)
 - [добавление элементов и контента в попап](#добавление-элементов-и-контента-в-popup)
 - [отображение и скрытие попапа](#отображение-и-скрытие-попапа)
 - [ширина и высота окна в зависимости от свойства size](#ширина-и-высота-окна-в-зависимости-от-свойства-size)
 - [добавление иконки](#добавление-иконки)
-- [свойства](#перечень-свойств)
+- [ширина и высота в зависимости от size](#ширина-и-высота-окна-в-зависимости-от-свойства-size)
+
+## Добавление заголовка
+
+Добавление заголовка осуществляется в поле <code>title</code> компонента, поле <code>showTitle</code> должно быть <code>true</code>
+(можно его не прописывать, т.к. оно по умолчанию <code>true</code>)
+
+<Canvas of={popupStories.Title} />
+
+<Source code={`
+<dx-popup mePopup [showTitle]="true" title="Заголовок">
+  <!-- Ваш контент -->
+</dx-popup>
+`} dark language='html'/>
+
+## Добавление иконки, описания и кнопки more
+
+Чтобы добавить иконку, описание и кнопку more нужно сделать кастомный темплейт с использованием <code>dxTemplate</code>, также добавить параметр <code>titleTemplate="title"</code>.
+В темплейте использовать классы <code>me-popup-header</code>, для отображения заголовка с описанием под ним использовать класс <code>me-sidepage-title</code>
+
+<Canvas of={popupStories.IconDescription} />
+
+<Source
+  code={`
+<dx-popup mePopup titleTemplate="title" >
+  <div *dxTemplate="let data of 'title'">
+    <div class="me-popup-header">
+      <div meIcon icon="public" size="24"></div>
+      <div class="me-sidepage-title">
+        <span class="me-title-header1">Заголовок</span>
+        <span class="me-text-body2">Описание</span>
+      </div>
+        <dx-button meButton size="large" iconOnly="overflow" stylingMode="text"></dx-button>
+        <dx-button meButton stylingMode="text" iconOnly="close"></dx-button>
+    </div>
+  </div>
+</dx-popup>
+`}
+  dark
+  language="html"
+/>
 
 ## Добавление скролла
 
@@ -50,6 +94,50 @@ import { Figma } from "@storybook/addon-designs/blocks";
     </div>
 </dx-popup>
 `} dark language='html'/>
+
+## Добавление кнопки в подвал
+
+Для добавления элементов в туллбар необходимо воспользоваться <code>dxi-toolbar-item</code> [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Specify_Toolbar_Items/). Для добавления контента используется свойство <code>contentTemplate</code> [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Customize_the_Content/#Specifying_the_Content_Template).
+
+Ниже приведен пример добавления кнопки в подвал.
+
+<Canvas of={popupStories.Button} />
+
+<Source
+  code={`
+<dx-popup mePopup title="Заголовок">
+  <dxi-toolbar-item template="addButton" toolbar="bottom" location="center"> </dxi-toolbar-item>
+  <div *dxTemplate="let data of 'addButton'">
+    <dx-button meButton text="Добавить"></dx-button>
+  </div>
+</dx-popup>`}
+  language="html"
+  dark
+/>
+
+## Добавление двух кнопок в подвал
+
+Для добавления элементов в туллбар необходимо воспользоваться <code>dxi-toolbar-item</code> [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Specify_Toolbar_Items/). Для добавления контента используется свойство <code>contentTemplate</code> [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Customize_the_Content/#Specifying_the_Content_Template).
+
+Ниже приведен пример добавления двух кнопок в подвал.
+
+<Canvas of={popupStories.Buttons} />
+
+<Source
+  code={`
+<dx-popup mePopup title="Заголовок">
+     <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"></dxi-toolbar-item>
+     <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"></dxi-toolbar-item>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton type="default" text="Добавить"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton text="Отмена"></dx-button>
+      </div>
+</dx-popup>`}
+  laguage="html"
+  dark
+/>
 
 ## Добавление элементов и контента в popup
 
@@ -182,9 +270,7 @@ width = 400px;`}
   language="html"
 />
 
-## Перечень свойств
-
-<Controls of={popupStories.Size} include={["size"]} />
+## Ширина и высота окна в зависимости от свойства size
 
 В дизайн-системе для размера <code>medium</code> используются кнопки с размером <code>medium</code>, для размера <code>large</code> соответственно кнопки одноименного размера.
 
