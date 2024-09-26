@@ -1,9 +1,10 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxDataGridModule } from 'devextreme-angular';
-import { MeDataGridDirective } from '../../public-api';
+import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
 
 export default {
   title: 'Components/DataGrid(RC)',
+  component: MeBadgeComponent,
   decorators: [
     moduleMetadata({
       declarations: [MeDataGridDirective],
@@ -902,9 +903,29 @@ export default {
 					[showNavigationButtons]="showNavigationButtons"
 					></dxo-pager>
 				<dxo-group-panel [visible]="true"></dxo-group-panel>
-			</dx-data-grid>
-		`,
+			</dx-data-grid>`,
   }),
 } as Meta;
 
 export const DataGrid: StoryObj = {};
+
+export const WithCounter: StoryObj = {
+  render: (args) => ({
+    props: args,
+    template: `<dx-data-grid
+  meDataGrid
+  [dataSource]="dataSource"
+>
+  <dxo-paging [(pageSize)]="pageSize" [showPageSizeSelector]></dxo-paging>
+  <dxi-column dataField="CompanyName"></dxi-column>
+  <dxi-column dataField="Fax"></dxi-column>
+  <dxi-column dataField="Phone"></dxi-column>
+  <dxi-column
+  dataField="ID"
+  cellTemplate="cellTemplate"></dxi-column>
+  <div *dxTemplate="let cell of 'cellTemplate'">
+    <me-badge [value]="[cell.data.ID]"></me-badge>
+  </div>
+</dx-data-grid>`,
+  }),
+};

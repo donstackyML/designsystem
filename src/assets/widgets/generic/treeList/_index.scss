@@ -186,6 +186,10 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 .me-tree-list {
   .dx-treelist-container.dx-gridbase-container {
     padding: 16px;
+    td:not(.dx-command-edit.dx-command-edit-with-icons) {
+      text-align: left !important;
+    }
+    //header panel
     .dx-treelist-header-panel {
       .dx-toolbar.dx-collection {
         margin-bottom: 16px;
@@ -218,6 +222,7 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
         }
       }
     }
+    //table header
     .dx-treelist-headers {
       border-radius: 4px 4px 0 0;
       border-bottom: none;
@@ -236,6 +241,29 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
                 color: $base-text-color;
                 margin-right: 4px;
               }
+              .dx-column-indicators {
+                display: flex;
+                .dx-sort {
+                  &::before {
+                    font-family: 'Material Symbols Outlined';
+                    height: 15px;
+                    display: flex;
+                    align-items: center;
+                    font-size: 20px;
+                  }
+                }
+                .dx-sort-up {
+                  &::before {
+                    content: var(--me-icon-sort-up);
+                  }
+                }
+                .dx-sort-down {
+                  &::before {
+                    content: var(--me-icon-sort-up);
+                    transform: rotate(180deg);
+                  }
+                }
+              }
             }
             .dx-command-edit {
               background-color: $base-bg;
@@ -245,6 +273,7 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
         }
       }
     }
+    //table rows
     .dx-treelist-rowsview {
       border-radius: 0 0 3px 3px;
       .dx-treelist-table {
@@ -253,15 +282,34 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
           td {
             padding: 5px 8px;
             font-size: 13px;
-            line-height: 16px;
+            line-height: normal;
             font-weight: 400;
             align-content: center;
+            min-height: 30px;
             & * {
               padding: 0;
             }
             .dx-texteditor-input {
               padding: 0;
               min-height: 20px;
+              font-size: 13px;
+              font-family: 'Roboto';
+              text-align: left !important;
+            }
+            .dx-datebox {
+              .dx-texteditor-buttons-container {
+                .dx-button-content {
+                  .dx-dropdowneditor-icon {
+                    line-height: 16px;
+                    font-size: 18px;
+                    font-family: 'Material Symbols Outlined';
+                    color: $base-accent;
+                    &::before {
+                      content: '\e935';
+                    }
+                  }
+                }
+              }
             }
           }
           .dx-treelist-text-content {
@@ -281,6 +329,40 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
               span::before {
                 content: '\f002';
               }
+            }
+          }
+          //edit-button icons
+          .dx-command-edit {
+            color: $base-accent;
+            .dx-link {
+              font-family: 'Material Symbols Outlined';
+            }
+            .dx-link-edit {
+              &::before {
+                content: '\e3c9';
+              }
+            }
+            .dx-link-delete {
+              &::before {
+                content: '\e872';
+              }
+            }
+            .dx-link-save {
+              &::before {
+                content: '\e161';
+              }
+            }
+            .dx-link-cancel {
+              &::before {
+                content: '\e166';
+              }
+            }
+            .dx-link-icon.dx-link {
+              line-height: 16px;
+              height: 18px;
+              font-size: 18px;
+              display: inline-flex;
+              align-items: center;
             }
           }
           .dx-focused {
@@ -316,5 +398,8 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
         border-bottom: 1px solid transparent;
       }
     }
+  }
+  .dx-gridbase-a11y-status-container {
+    display: none;
   }
 }

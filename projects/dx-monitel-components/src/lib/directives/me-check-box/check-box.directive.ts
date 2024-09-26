@@ -6,9 +6,13 @@ import { MeEditorDirective } from '../me-editor/editor.directive';
   selector: '[meCheckBox]',
 })
 export class MeCheckBoxDirective extends MeEditorDirective {
-  override element = inject(ElementRef);
-  override component = inject(DxCheckBoxComponent);
-  override renderer = inject(Renderer2);
+  constructor(
+    element: ElementRef,
+    component: DxCheckBoxComponent,
+    renderer: Renderer2
+  ) {
+    super(element, component, renderer);
+  }
 
   ngOnInit(): void {
     this.initMeEditor();

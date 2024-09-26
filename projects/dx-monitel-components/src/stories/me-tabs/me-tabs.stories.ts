@@ -7,13 +7,14 @@ interface MeTabsProps {
   customClass: string;
   position: 'top' | 'bottom';
   size: 'small' | 'medium' | 'large';
-  stylingMode: 'primary' | 'secondary';
+  stylingMode: 'inside' | 'outside';
   orientation: 'horizontal' | 'vertical';
   iconPosition: 'top' | 'start' | 'end' | 'bottom';
   showNavButtons: boolean;
   scrollByContent: boolean;
   width: string | number;
   tabsData: Tab[];
+  rtlEnabled: boolean;
 }
 
 const meta: Meta<MeTabsProps> = {
@@ -30,7 +31,6 @@ const meta: Meta<MeTabsProps> = {
     template: `
       <dx-tabs
         meTabs
-        [customClass]="customClass"
         [position]="position"
         [size]="size"
         [stylingMode]="stylingMode"
@@ -41,6 +41,7 @@ const meta: Meta<MeTabsProps> = {
         [width]="width"
         [dataSource]="tabsData"
         [selectedIndex]="0"
+        [rtlEnabled]="false"
       ></dx-tabs>
     `,
   }),
@@ -54,7 +55,7 @@ const meta: Meta<MeTabsProps> = {
       control: { type: 'select' },
     },
     stylingMode: {
-      options: ['primary', 'secondary'],
+      options: ['inside', 'outside'],
       control: { type: 'select' },
     },
     orientation: {
@@ -74,8 +75,8 @@ const meta: Meta<MeTabsProps> = {
     width: {
       control: 'text',
     },
-    customClass: {
-      control: 'text',
+    rtlEnabled: {
+      control: 'boolean',
     },
   },
 };
@@ -93,7 +94,7 @@ export const Default: Story = {
   args: {
     position: 'top',
     size: 'medium',
-    stylingMode: 'primary',
+    stylingMode: 'inside',
     orientation: 'horizontal',
     iconPosition: 'start',
     showNavButtons: false,
@@ -148,9 +149,16 @@ export const DifferentIconPositions: Story = {
   },
 };
 
-export const InsideStylingMode: Story = {
+export const OutsideStylingMode: Story = {
   args: {
     ...Default.args,
-    stylingMode: 'secondary',
+    stylingMode: 'outside',
+  },
+};
+
+export const RightToLeft: Story = {
+  args: {
+    ...Default.args,
+    rtlEnabled: true,
   },
 };

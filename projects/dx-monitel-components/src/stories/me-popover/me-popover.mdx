@@ -1,89 +1,50 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Meta, Story, Controls } from "@storybook/addon-docs";
 import * as PopoverStories from "./me-popover.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxPopoverModule } from "devextreme-angular/ui/popover";
-import { MePopoverDirective } from "../../public-api";
 
-<Meta
-  title="Components/Popover"
-  component={MePopoverDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MePopoverDirective],
-      imports: [DxPopoverModule],
-    }),
-  ]}
-  of={PopoverStories}
-/>
+<Meta title="Components/Popover(RC)" of={PopoverStories} />
 
 # Popover
 
-## Директива mePopover
+Компонент `MePopoverDirective` предоставляет возможность создания всплывающих подсказок и диалогов.
 
-Директива `mePopover` добавляет дополнительные возможности к компоненту `dxPopover` из библиотеки DevExtreme, позволяя настраивать события показа/скрытия, позиционирование, размер и другие параметры.
+<Story of={PopoverStories.Default} />
 
-<Canvas name="Default" of={PopoverStories.Default} />
-<Controls of={PopoverStories.Default} />
-<Source of={PopoverStories.Default} dark />
+## Пример использования
 
-## Примеры использования:
-
-### Поповер с заголовком
-
-<Canvas name="WithTitle" of={PopoverStories.WithTitle} />
-<Source
-  code={`<dx-popover mePopover [showEvent]="'click'" [hideEvent]="'mouseleave'" [position]="'bottom'" [showTitle]="true" [title]="'Заголовок поповера'" [content]="'Это поповер с заголовком и ограничением максимальной ширины.'"></dx-popover>`}
-  dark
-  language="html"
-/>
-
-### Поповер с затемнением фона
-
-<Canvas name="WithOverlay" of={PopoverStories.WithOverlay} />
-<Source
-  code={`<dx-popover mePopover [showEvent]="'click'" [hideEvent]="'click'" [shading]="true" [shadingColor]="'rgba(0, 0, 0, 0.5)'" [content]="'Это поповер с затенением фона.'"></dx-popover>`}
-  dark
-  language="html"
-/>
-
-## Перечень свойств
-
-<Controls story={PopoverStories.Default} />
-
-## Обработка событий
-
-Пример использования директивы `mePopover` с обработкой событий показа и скрытия:
-
-<Source
-  code={`
+```html
 <dx-popover
   mePopover
-  [showEvent]="'mouseenter'"
-  [hideEvent]="'mouseleave'"
-  [position]="'top'"
-  [width]="300"
-  [showTitle]="false"
-  [shading]="false"
-  [content]="'Это содержимое поповера по умолчанию.'"
-  (onShowing)="onPopoverShowing($event)"
-  (onHiding)="onPopoverHiding($event)"
+  target="#popoverTarget"
+  [showEvent]="showEvent"
+  [hideEvent]="hideEvent"
+  [position]="position"
+  [width]="width"
+  [maxWidth]="maxWidth"
+  [showTitle]="showTitle"
+  [title]="title"
+  [shading]="shading"
+  [shadingColor]="shadingColor"
+  [size]="size"
 >
+  <div *dxTemplate="let data of 'content'">{{ content }}</div>
 </dx-popover>
+```
 
-      // В вашем компоненте:
-      onPopoverShowing(e: any) {
-        console.log('Popover is showing:', e);
-      }
-
-      onPopoverHiding(e: any) {
-        console.log('Popover is hiding:', e);
-      }
-
-`}
-dark
-language="typescript"
-/>
-
-## Дополнительные параметры
+## Свойства
 
 <Controls of={PopoverStories.Default} />
+
+## Примеры
+
+## С заголовком
+
+<Story of={PopoverStories.WithTitle} />
+
+## С затенением фона
+
+<Story of={PopoverStories.WithOverlay} />
+
+## Дополнительная информация
+
+Свойства showEvent и hideEvent определяют, при каких действиях поповер будет показываться и скрываться.
+Свойство position задает расположение поповера относительно целевого элемента.

@@ -136,11 +136,12 @@
 
   .dx-datagrid {
     padding: 16px;
+
+    //header-panel
     .dx-datagrid-header-panel {
       min-height: 28px;
       margin: 0 0 16px 0;
       padding: 0;
-
       .dx-toolbar {
         margin: 0;
         .dx-toolbar-items-container {
@@ -154,6 +155,26 @@
                   color: $base-icon-color;
                   width: 100%;
                   text-align: center;
+                }
+                .dx-sort {
+                  &::before {
+                    font-family: 'Material Symbols Outlined';
+                    height: 15px;
+                    display: flex;
+                    align-items: center;
+                    font-size: 20px;
+                  }
+                }
+                .dx-sort-up {
+                  &::before {
+                    content: var(--me-icon-sort-up);
+                  }
+                }
+                .dx-sort-down {
+                  &::before {
+                    content: var(--me-icon-sort-up);
+                    transform: rotate(180deg);
+                  }
                 }
               }
             }
@@ -180,6 +201,28 @@
     }
     .dx-datagrid-headers {
       margin: 1px 1px 0 1px;
+      .dx-column-indicators {
+        .dx-sort {
+          &::before {
+            font-family: 'Material Symbols Outlined';
+            height: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+          }
+        }
+        .dx-sort-up {
+          &::before {
+            content: var(--me-icon-sort-up);
+          }
+        }
+        .dx-sort-down {
+          &::before {
+            content: var(--me-icon-sort-up);
+            transform: rotate(180deg);
+          }
+        }
+      }
     }
     .dx-datagrid-rowsview {
       margin: 0 1px 16px 1px;
@@ -214,6 +257,13 @@
     .dx-navigate-button {
       margin: 2px;
       padding: 0;
+
+      &:not(.dx-selection, .dx-button-disable):hover {
+        background-color: $base-hover-bg;
+      }
+      &:not(.dx-selection, .dx-button-disable):active {
+        // background-color: $button-default-contained-bg-active;
+      }
     }
 
     .dx-info {
@@ -226,10 +276,30 @@
         .dx-selectbox.dx-textbox.dx-texteditor.dx-dropdowneditor {
           background-color: $data-grid-search-panel-background-color;
           border: none;
+          &:hover {
+            background-color: $base-hover-bg;
+          }
+          &:active {
+            // background-color: $button-default-contained-bg-active;
+          }
         }
-        .dx-texteditor-input {
-          padding-block: 0px;
-          padding-left: 12px;
+        .dx-texteditor-container {
+          align-items: center;
+          padding: 0 12px;
+          gap: 4px;
+
+          .dx-texteditor-buttons-container {
+            width: 20px;
+            height: 20px;
+          }
+          .dx-texteditor-input {
+            padding-block: 0px;
+            padding-left: 0px;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
         }
       }
       .dx-pages {
@@ -289,7 +359,7 @@
     .dx-icon-search {
       font-family: 'Material Symbols Outlined';
       &::before {
-        content: '\e8b6';
+        content: var(--me-icon-search);
       }
     }
     .dx-texteditor-input::placeholder {
@@ -367,7 +437,7 @@
           color: $base-icon-color;
         }
         .dx-datagrid-group-closed::before {
-          content: '\f002';
+          content: var(--me-icon-group-closed);
         }
       }
 
@@ -394,6 +464,11 @@
 
   .dx-gridbase-a11y-status-container {
     display: none;
+  }
+
+  .dx-dropdowneditor.dx-dropdowneditor-active:not(.dx-datebox) .dx-dropdowneditor-icon {
+    background-image: none;
+    color: $base-icon-color;
   }
 
   //small
@@ -741,6 +816,19 @@
               width: 83px;
               font-size: 16px;
               font-weight: 500;
+
+              .dx-texteditor-container {
+                padding: 0 16px;
+                gap: 8px;
+                .dx-texteditor-buttons-container {
+                  width: 24px;
+                  height: 24px;
+                }
+              }
+
+              .dx-dropdowneditor-icon {
+                font-size: 22px;
+              }
             }
           }
           .dx-pages {
