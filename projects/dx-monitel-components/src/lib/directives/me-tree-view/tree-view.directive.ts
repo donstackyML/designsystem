@@ -1,27 +1,24 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meTreeView]',
+  host: {
+    '[class.me-tree-view]': 'true',
+    '[class.me-tree-view-small]': 'isSizeSmall()',
+    '[class.me-tree-view-large]': 'isSizeLarge()',
+    '[class.me-tree-view-word-wrap]': 'itemWordWrap',
+  },
 })
 export class MeTreeViewDirective {
   @Input() size: Exclude<MeSize, 'medium'> = 'large';
   @Input() itemWordWrap: boolean = false;
 
-  constructor(private element: ElementRef, private renderer: Renderer2) {}
+  isSizeSmall() {
+    return this.size === 'small';
+  }
 
-  ngOnInit() {
-    this.renderer.addClass(this.element.nativeElement, 'me-tree-view');
-    this.renderer.addClass(
-      this.element.nativeElement,
-      `me-tree-view-${this.size}`
-    );
-
-    if (this.itemWordWrap) {
-      this.renderer.addClass(
-        this.element.nativeElement,
-        'me-tree-view-word-wrap'
-      );
-    }
+  isSizeLarge() {
+    return this.size === 'large';
   }
 }
