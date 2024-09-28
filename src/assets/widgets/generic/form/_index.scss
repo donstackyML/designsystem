@@ -39,6 +39,7 @@
 }
 
 .me-form {
+  font-family: var(--font-family), sans-serif;
   &.me-form-small {
     --form-group-caption-font-size: 16px;
     --form-group-content-padding-bottom: 10px;
@@ -81,48 +82,49 @@
     &.dx-texteditor-with-floating-label {
       .dx-texteditor-label {
         .dx-label {
-          span {
-            position: absolute;
-            top: var(--label-top-position);
-            left: var(--label-left-position);
-            font-size: var(--field-item-label-font-size);
-            padding: 0 4px;
-            transition: none;
-          }
+          position: absolute;
+          top: var(--label-top-position);
+          left:var(--label-left-position);
+          font-size: var(--field-item-label-font-size);
+          padding: 0 4px;
+          transition: none;
+          border-bottom-color: transparent;
         }
       }
 
       &.dx-state-focused.dx-texteditor-with-floating-label {
-        .dx-label span {
+        .dx-label {
           position: absolute;
           top: var(--label-top-position);
-          left: var(--label-left-position);
+          left:var(--label-left-position);
           font-size: var(--field-item-label-font-size);
           padding: 0 4px;
           transition: none;
+          border-bottom-color: transparent;
         }
       }
       &.dx-state-hover.dx-texteditor-with-floating-label {
-        .dx-label span {
+        .dx-label {
           position: absolute;
           top: var(--label-top-position);
-          left: var(--label-left-position);
+          left:var(--label-left-position);
           font-size: var(--field-item-label-font-size);
           padding: 0 4px;
           transition: none;
+          border-bottom-color: transparent;
         }
       }
     }
 
     &:not(.dx-texteditor-with-floating-label) {
       .dx-texteditor-input {
-        padding: 12px 16px; // Исходные паддинги для стандартного инпута
+        padding: 12px 16px;
       }
     }
 
     .dx-texteditor-input {
       font-size: var(--texteditor-input-font-size);
-      padding: var(--texteditor-input-padding); // Паддинги для флоатинг лейбла
+      padding: var(--texteditor-input-padding);
       height: var(--input-height);
     }
 

@@ -12,7 +12,7 @@ interface FormStoryArgs {
 }
 
 export default {
-  title: 'Components/Form',
+  title: 'Components/Form(RC)',
   component: MeFormDirective,
   decorators: [
     moduleMetadata({
@@ -27,7 +27,7 @@ export default {
     },
     labelMode: {
       control: 'select',
-      options: ['outside', 'static', 'floating', 'hidden'],
+      options: ['outside', 'floating', 'hidden'],
     },
     labelLocation: {
       control: 'radio',
@@ -81,7 +81,7 @@ export const Default: Story = {
   render: Template,
   args: {
     size: 'medium',
-    labelMode: 'static',
+    labelMode: 'floating',
     labelLocation: 'top',
     colCount: 2,
     readOnly: false,

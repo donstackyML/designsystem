@@ -1,29 +1,28 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import {
-  DxMenuModule,
-  DxButtonModule,
-  DxContextMenuModule,
-} from 'devextreme-angular';
+import { DxMenuModule, DxButtonModule, DxContextMenuModule } from 'devextreme-angular';
 import { MeBreadcrumbsComponent } from '../../lib/components/me-breadcrumbs/me-breadcrumbs.component';
+import { MeIconStoreService } from "../../lib/service/icon-store.service";
+
+const iconStore = new MeIconStoreService();
 
 const meta: Meta<MeBreadcrumbsComponent> = {
-  title: 'Components/MeBreadcrumbs',
+  title: 'Components/MeBreadcrumbs(RC)',
   component: MeBreadcrumbsComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        MeBreadcrumbsComponent,
-        DxMenuModule,
-        DxButtonModule,
-        DxContextMenuModule,
-      ],
+      imports: [MeBreadcrumbsComponent, DxMenuModule, DxButtonModule, DxContextMenuModule],
+      providers: [MeIconStoreService],
     }),
   ],
   argTypes: {
     items: { control: 'object' },
     truncateFrom: {
-      control: 'radio',
+      control: 'select', // Изменено с 'radio' на 'select'
       options: ['left', 'right'],
+    },
+    size: {
+      control: 'select', // Изменено с 'radio' на 'select'
+      options: ['small', 'large'],
     },
     itemClick: { action: 'itemClicked' },
   },
@@ -32,42 +31,97 @@ const meta: Meta<MeBreadcrumbsComponent> = {
 export default meta;
 type Story = StoryObj<MeBreadcrumbsComponent>;
 
-export const Default: Story = {
+const defaultItems = [
+  { text: 'Home', url: '/', icon: 'home' },
+  { text: 'Products', url: '/products', icon: 'product' },
+  { text: 'Laptops', url: '/products/laptops', icon: 'laptop' },
+];
+
+// Обновленная история с иконками и выпадающим меню в одном из элементов
+export const WithIconsAndDropdowns: Story = {
   args: {
     items: [
-      { text: 'Home', url: '/' },
-      { text: 'Products', url: '/products' },
-      { text: 'Laptops', url: '/products/laptops' },
+      {
+        text: 'Home',
+        url: '/',
+        icon: iconStore.getIcon({ icon: 'home', size: 'small' }),
+      },
+      {
+        text: 'Products',
+        icon: iconStore.getIcon({ icon: 'folder', size: 'small' }),
+        // Добавляем выпадающее меню к этому элементу
+        items: [
+          {
+            text: 'Laptops',
+            url: '/products/laptops',
+            icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }),
+          },
+          {
+            text: 'Tablets',
+            url: '/products/tablets',
+            icon: iconStore.getIcon({ icon: 'tablet', size: 'small' }),
+          },
+          {
+            text: 'Accessories',
+            url: '/products/accessories',
+            icon: iconStore.getIcon({ icon: 'accessories', size: 'small' }),
+          },
+        ],
+      },
+      {
+        text: 'Laptops',
+        url: '/products/laptops',
+        icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }),
+      },
+      {
+        text: 'Gaming Laptops',
+        url: '/products/laptops/gaming',
+        icon: iconStore.getIcon({ icon: 'gaming', size: 'small' }),
+      },
     ],
     truncateFrom: 'right',
+    size: 'small',
   },
 };
 
-export const WithIcons: Story = {
+export const Default: Story = {
   args: {
-    items: [
-      { text: 'Home', url: '/', icon: 'home' },
-      { text: 'Products', url: '/products', icon: 'product' },
-      { text: 'Laptops', url: '/products/laptops', icon: 'laptop' },
-    ],
+    items: defaultItems.map(item => ({
+      ...item,
+      icon: iconStore.getIcon({ icon: item.icon, size: 'small' })
+    })),
     truncateFrom: 'right',
+    size: 'small',
   },
 };
 
 export const WithDropdowns: Story = {
   args: {
     items: [
-      { text: 'Home', url: '/' },
+      { text: 'Home', url: '/', icon: iconStore.getIcon({ icon: 'home', size: 'small' }) },
       {
         text: 'Products',
+        icon: iconStore.getIcon({ icon: 'folder', size: 'small' }),
         items: [
-          { text: 'Laptops', url: '/products/laptops' },
-          { text: 'Tablets', url: '/products/tablets' },
+          { text: 'Laptops', url: '/products/laptops', icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }) },
+          { text: 'Tablets', url: '/products/tablets', icon: iconStore.getIcon({ icon: 'tablet', size: 'small' }) },
         ],
       },
-      { text: 'Laptops', url: '/products/laptops' },
+      { text: 'Laptops', url: '/products/laptops', icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }) },
     ],
     truncateFrom: 'right',
+    size: 'small',
+  },
+};
+
+export const LargeSizeBreadcrumbs: Story = {
+  args: {
+    items: defaultItems.map(item => ({
+      ...item,
+      icon: iconStore.getIcon({ icon: item.icon, size: 'large' })
+    })),
+    truncateFrom: 'right',
+    size: 'large',
   },
 };
 
@@ -96,5 +150,17 @@ export const LongBreadcrumbs: Story = {
       { text: 'Product', url: '/cat1/cat2/cat3/cat4/cat5/product' },
     ],
     truncateFrom: 'right',
+  },
+};
+
+export const WithIcons: Story = {
+  args: {
+    items: [
+      { text: 'Dashboard', url: '/dashboard', icon: iconStore.getIcon({ icon: 'dashboard', size: 'small' }) },
+      { text: 'Reports', url: '/reports', icon: iconStore.getIcon({ icon: 'reports', size: 'small' }) },
+      { text: 'Annual Report', url: '/reports/annual', icon: iconStore.getIcon({ icon: 'annual', size: 'small' }) },
+    ],
+    truncateFrom: 'right',
+    size: 'small',
   },
 };
