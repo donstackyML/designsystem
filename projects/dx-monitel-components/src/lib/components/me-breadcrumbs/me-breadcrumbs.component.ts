@@ -146,7 +146,7 @@ interface BreadcrumbItem {
     }
 
     .breadcrumb-menu {
-      .dx-menu-item.dx-menu-item-expanded {
+      .dx-menu-item.dx-menu-item-expanded,.dx-context-menu-container-border {
         background-color: transparent;
         border: none !important;
         box-shadow: none;
