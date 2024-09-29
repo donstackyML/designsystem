@@ -1308,16 +1308,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'always',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-autocomplete\n        meAutocomplete\n        [size]=\"size\"\n        [showScrollbar]=\"showScrollbar\"\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\n      ></dx-autocomplete>\n    `,\n  }),\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1328,31 +1318,11 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n\n    // isSelected: false,\n    stylingMode: 'contained',\n\n    leftIcon: '',\n  },\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    items: defaultItems.map(item => ({\n      ...item,\n      icon: iconStore.getIcon({ icon: item.icon, size: 'small' })\n    })),\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    items: data,\n    size: 'medium',\n    stylingMode: 'contained',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    items: defaultItems.map(item => ({\n      ...item,\n      icon: item.icon, // Используем соответствующие иконки\n    })),\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
             },
             {
                 "name": "Default",
@@ -1368,11 +1338,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+                "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    items: data,\n    size: 'medium',\n    stylingMode: 'contained',\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n\n    // isSelected: false,\n    stylingMode: 'contained',\n\n    leftIcon: '',\n  },\n}"
             },
             {
                 "name": "Default",
@@ -1388,11 +1368,31 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "ChipsContainerStory",
                 "defaultValue": "{\n  ...ChipsContainerTemplate,\n  args: {},\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'always',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-autocomplete\n        meAutocomplete\n        [size]=\"size\"\n        [showScrollbar]=\"showScrollbar\"\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\n      ></dx-autocomplete>\n    `,\n  }),\n}"
             },
             {
                 "name": "Default",
@@ -1662,7 +1662,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\n  { text: 'Home', url: '/', icon: 'home' },\n  { text: 'Products', url: '/products', icon: 'product' },\n  { text: 'Laptops', url: '/products/laptops', icon: 'laptop' },\n]"
+                "defaultValue": "[\n  { text: 'Home', url: '/', icon: 'home' },\n  { text: 'Products', url: '/products', icon: 'shopping_cart' },\n  { text: 'Laptops', url: '/products/laptops', icon: 'laptop_mac' },\n]"
             },
             {
                 "name": "defaultTabPanelData",
@@ -2052,7 +2052,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    items: defaultItems.map(item => ({\n      ...item,\n      icon: iconStore.getIcon({ icon: item.icon, size: 'large' })\n    })),\n    truncateFrom: 'right',\n    size: 'large',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    items: defaultItems.map(item => ({\n      ...item,\n      icon: item.icon, // Используем соответствующие иконки\n    })),\n    truncateFrom: 'right',\n    size: 'large',\n  },\n}"
             },
             {
                 "name": "LastPage",
@@ -2132,7 +2132,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/' },\n      { text: 'Category 1', url: '/cat1' },\n      { text: 'Category 2', url: '/cat1/cat2' },\n      { text: 'Category 3', url: '/cat1/cat2/cat3' },\n      { text: 'Category 4', url: '/cat1/cat2/cat3/cat4' },\n      { text: 'Category 5', url: '/cat1/cat2/cat3/cat4/cat5' },\n      { text: 'Product', url: '/cat1/cat2/cat3/cat4/cat5/product' },\n    ],\n    truncateFrom: 'right',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: 'home' },\n      { text: 'Category 1', url: '/cat1', icon: 'category' },\n      { text: 'Category 2', url: '/cat1/cat2', icon: 'category' },\n      { text: 'Category 3', url: '/cat1/cat2/cat3', icon: 'category' },\n      { text: 'Category 4', url: '/cat1/cat2/cat3/cat4', icon: 'category' },\n      { text: 'Category 5', url: '/cat1/cat2/cat3/cat4/cat5', icon: 'category' },\n      { text: 'Product', url: '/cat1/cat2/cat3/cat4/cat5/product', icon: 'store' },\n    ],\n    truncateFrom: 'right',\n  },\n}"
             },
             {
                 "name": "LongChipText",
@@ -2208,21 +2208,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<MeAutocompleteDirective>",
-                "defaultValue": "{\n  title: 'Components/Autocomplete',\n  component: MeAutocompleteDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxAutocompleteModule],\n      declarations: [MeAutocompleteDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'radio' },\n    },\n    showScrollbar: {\n      options: ['always', 'onHover'],\n      control: { type: 'radio' },\n    },\n  },\n}"
+                "type": "Meta<MeBreadcrumbsComponent>",
+                "defaultValue": "{\n  title: 'Components/MeBreadcrumbs(RC)',\n  component: MeBreadcrumbsComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [MeBreadcrumbsComponent, DxMenuModule, DxButtonModule, DxContextMenuModule, MeIconComponent],\n      providers: [MeIconStoreService],\n    }),\n  ],\n  argTypes: {\n    items: { control: 'object' },\n    truncateFrom: {\n      control: 'select',\n      options: ['left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'large'],\n    },\n    itemClick: { action: 'itemClicked' },\n  },\n}"
             },
             {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+                "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<MeBreadcrumbsComponent>",
-                "defaultValue": "{\n  title: 'Components/MeBreadcrumbs(RC)',\n  component: MeBreadcrumbsComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [MeBreadcrumbsComponent, DxMenuModule, DxButtonModule, DxContextMenuModule],\n      providers: [MeIconStoreService],\n    }),\n  ],\n  argTypes: {\n    items: { control: 'object' },\n    truncateFrom: {\n      control: 'select', // Изменено с 'radio' на 'select'\n      options: ['left', 'right'],\n    },\n    size: {\n      control: 'select', // Изменено с 'radio' на 'select'\n      options: ['small', 'large'],\n    },\n    itemClick: { action: 'itemClicked' },\n  },\n}"
+                "type": "Meta<MeAutocompleteDirective>",
+                "defaultValue": "{\n  title: 'Components/Autocomplete',\n  component: MeAutocompleteDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxAutocompleteModule],\n      declarations: [MeAutocompleteDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'radio' },\n    },\n    showScrollbar: {\n      options: ['always', 'onHover'],\n      control: { type: 'radio' },\n    },\n  },\n}"
             },
             {
                 "name": "meta",
@@ -2772,7 +2772,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/' },\n      { text: 'Products', url: '/products' },\n      { text: 'Electronics', url: '/products/electronics' },\n      { text: 'Computers', url: '/products/electronics/computers' },\n      { text: 'Laptops', url: '/products/electronics/computers/laptops' },\n    ],\n    truncateFrom: 'left',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: 'home' },\n      { text: 'Products', url: '/products', icon: 'shopping_cart' },\n      { text: 'Electronics', url: '/products/electronics', icon: 'devices' },\n      { text: 'Computers', url: '/products/electronics/computers', icon: 'computer' },\n      { text: 'Laptops', url: '/products/electronics/computers/laptops', icon: 'laptop_mac' },\n    ],\n    truncateFrom: 'left',\n  },\n}"
             },
             {
                 "name": "VerticalOrientation",
@@ -2862,7 +2862,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: iconStore.getIcon({ icon: 'home', size: 'small' }) },\n      {\n        text: 'Products',\n        icon: iconStore.getIcon({ icon: 'folder', size: 'small' }),\n        items: [\n          { text: 'Laptops', url: '/products/laptops', icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }) },\n          { text: 'Tablets', url: '/products/tablets', icon: iconStore.getIcon({ icon: 'tablet', size: 'small' }) },\n        ],\n      },\n      { text: 'Laptops', url: '/products/laptops', icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }) },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: 'home' },\n      {\n        text: 'Products',\n        icon: 'shopping_cart',\n        items: [\n          { text: 'Laptops', url: '/products/laptops', icon: 'laptop_mac' },\n          { text: 'Tablets', url: '/products/tablets', icon: 'tablet_mac' },\n        ],\n      },\n      { text: 'Laptops', url: '/products/laptops', icon: 'laptop_mac' },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
             },
             {
                 "name": "WithGrouping",
@@ -2882,7 +2882,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Dashboard', url: '/dashboard', icon: iconStore.getIcon({ icon: 'dashboard', size: 'small' }) },\n      { text: 'Reports', url: '/reports', icon: iconStore.getIcon({ icon: 'reports', size: 'small' }) },\n      { text: 'Annual Report', url: '/reports/annual', icon: iconStore.getIcon({ icon: 'annual', size: 'small' }) },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Dashboard', url: '/dashboard', icon: 'dashboard' },\n      { text: 'Reports', url: '/reports', icon: 'bar_chart' },\n      { text: 'Annual Report', url: '/reports/annual', icon: 'insert_chart' },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
             },
             {
                 "name": "WithIconsAndDropdowns",
@@ -2892,7 +2892,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    items: [\n      {\n        text: 'Home',\n        url: '/',\n        icon: iconStore.getIcon({ icon: 'home', size: 'small' }),\n      },\n      {\n        text: 'Products',\n        icon: iconStore.getIcon({ icon: 'folder', size: 'small' }),\n        // Добавляем выпадающее меню к этому элементу\n        items: [\n          {\n            text: 'Laptops',\n            url: '/products/laptops',\n            icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }),\n          },\n          {\n            text: 'Tablets',\n            url: '/products/tablets',\n            icon: iconStore.getIcon({ icon: 'tablet', size: 'small' }),\n          },\n          {\n            text: 'Accessories',\n            url: '/products/accessories',\n            icon: iconStore.getIcon({ icon: 'accessories', size: 'small' }),\n          },\n        ],\n      },\n      {\n        text: 'Laptops',\n        url: '/products/laptops',\n        icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }),\n      },\n      {\n        text: 'Gaming Laptops',\n        url: '/products/laptops/gaming',\n        icon: iconStore.getIcon({ icon: 'gaming', size: 'small' }),\n      },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    items: [\n      {\n        text: 'Home',\n        url: '/',\n        icon: 'home',\n      },\n      {\n        text: 'Products',\n        icon: 'shopping_cart',\n        // Добавляем выпадающее меню к этому элементу\n        items: [\n          {\n            text: 'Laptops',\n            url: '/products/laptops',\n            icon: 'laptop_mac',\n          },\n          {\n            text: 'Tablets',\n            url: '/products/tablets',\n            icon: 'tablet_mac',\n          },\n          {\n            text: 'Accessories',\n            url: '/products/accessories',\n            icon: 'headset',\n          },\n        ],\n      },\n      {\n        text: 'Laptops',\n        url: '/products/laptops',\n        icon: 'laptop_mac',\n      },\n      {\n        text: 'Gaming Laptops',\n        url: '/products/laptops/gaming',\n        icon: 'sports_esports',\n      },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
             },
             {
                 "name": "WithLabel",
@@ -3112,30 +3112,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MeAutocompleteDirective>",
-                "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<MeBadgeComponent>",
                 "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
-                "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3156,6 +3134,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj",
+                "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<MeButtonGroupDirective | DxButtonGroupComponent>",
                 "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
                 "deprecated": false,
@@ -3167,8 +3156,19 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj",
-                "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+                "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<MeCardComponent>",
+                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3189,8 +3189,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MeCardComponent>",
-                "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                "rawtype": "StoryObj<MeAutocompleteDirective>",
+                "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4881,56 +4881,106 @@
                     "defaultValue": "(Story: () => any) => {\n  const isDark = useDarkMode();\n\n  switchTheme(isDark);\n  return Story();\n}"
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts": [
+            "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'always',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-autocomplete\n        meAutocomplete\n        [size]=\"size\"\n        [showScrollbar]=\"showScrollbar\"\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\n      ></dx-autocomplete>\n    `,\n  }),\n}"
+                    "defaultValue": "{\n  args: {\n    items: defaultItems.map(item => ({\n      ...item,\n      icon: item.icon, // Используем соответствующие иконки\n    })),\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
                 },
                 {
-                    "name": "Large",
+                    "name": "defaultItems",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  { text: 'Home', url: '/', icon: 'home' },\n  { text: 'Products', url: '/products', icon: 'shopping_cart' },\n  { text: 'Laptops', url: '/products/laptops', icon: 'laptop_mac' },\n]"
+                },
+                {
+                    "name": "iconStore",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new MeIconStoreService()"
+                },
+                {
+                    "name": "LargeSizeBreadcrumbs",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'large',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
+                    "defaultValue": "{\n  args: {\n    items: defaultItems.map(item => ({\n      ...item,\n      icon: item.icon, // Используем соответствующие иконки\n    })),\n    truncateFrom: 'right',\n    size: 'large',\n  },\n}"
+                },
+                {
+                    "name": "LongBreadcrumbs",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: 'home' },\n      { text: 'Category 1', url: '/cat1', icon: 'category' },\n      { text: 'Category 2', url: '/cat1/cat2', icon: 'category' },\n      { text: 'Category 3', url: '/cat1/cat2/cat3', icon: 'category' },\n      { text: 'Category 4', url: '/cat1/cat2/cat3/cat4', icon: 'category' },\n      { text: 'Category 5', url: '/cat1/cat2/cat3/cat4/cat5', icon: 'category' },\n      { text: 'Product', url: '/cat1/cat2/cat3/cat4/cat5/product', icon: 'store' },\n    ],\n    truncateFrom: 'right',\n  },\n}"
                 },
                 {
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<MeAutocompleteDirective>",
-                    "defaultValue": "{\n  title: 'Components/Autocomplete',\n  component: MeAutocompleteDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxAutocompleteModule],\n      declarations: [MeAutocompleteDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'radio' },\n    },\n    showScrollbar: {\n      options: ['always', 'onHover'],\n      control: { type: 'radio' },\n    },\n  },\n}"
+                    "type": "Meta<MeBreadcrumbsComponent>",
+                    "defaultValue": "{\n  title: 'Components/MeBreadcrumbs(RC)',\n  component: MeBreadcrumbsComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [MeBreadcrumbsComponent, DxMenuModule, DxButtonModule, DxContextMenuModule, MeIconComponent],\n      providers: [MeIconStoreService],\n    }),\n  ],\n  argTypes: {\n    items: { control: 'object' },\n    truncateFrom: {\n      control: 'select',\n      options: ['left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'large'],\n    },\n    itemClick: { action: 'itemClicked' },\n  },\n}"
                 },
                 {
-                    "name": "ScrollOnHover",
+                    "name": "TruncateFromLeft",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'onHover',\n  },\n  render: Default.render,\n}"
+                    "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: 'home' },\n      { text: 'Products', url: '/products', icon: 'shopping_cart' },\n      { text: 'Electronics', url: '/products/electronics', icon: 'devices' },\n      { text: 'Computers', url: '/products/electronics/computers', icon: 'computer' },\n      { text: 'Laptops', url: '/products/electronics/computers/laptops', icon: 'laptop_mac' },\n    ],\n    truncateFrom: 'left',\n  },\n}"
                 },
                 {
-                    "name": "Small",
+                    "name": "WithDropdowns",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    size: 'small',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
+                    "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: 'home' },\n      {\n        text: 'Products',\n        icon: 'shopping_cart',\n        items: [\n          { text: 'Laptops', url: '/products/laptops', icon: 'laptop_mac' },\n          { text: 'Tablets', url: '/products/tablets', icon: 'tablet_mac' },\n        ],\n      },\n      { text: 'Laptops', url: '/products/laptops', icon: 'laptop_mac' },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
+                },
+                {
+                    "name": "WithIcons",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Dashboard', url: '/dashboard', icon: 'dashboard' },\n      { text: 'Reports', url: '/reports', icon: 'bar_chart' },\n      { text: 'Annual Report', url: '/reports/annual', icon: 'insert_chart' },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
+                },
+                {
+                    "name": "WithIconsAndDropdowns",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    items: [\n      {\n        text: 'Home',\n        url: '/',\n        icon: 'home',\n      },\n      {\n        text: 'Products',\n        icon: 'shopping_cart',\n        // Добавляем выпадающее меню к этому элементу\n        items: [\n          {\n            text: 'Laptops',\n            url: '/products/laptops',\n            icon: 'laptop_mac',\n          },\n          {\n            text: 'Tablets',\n            url: '/products/tablets',\n            icon: 'tablet_mac',\n          },\n          {\n            text: 'Accessories',\n            url: '/products/accessories',\n            icon: 'headset',\n          },\n        ],\n      },\n      {\n        text: 'Laptops',\n        url: '/products/laptops',\n        icon: 'laptop_mac',\n      },\n      {\n        text: 'Gaming Laptops',\n        url: '/products/laptops/gaming',\n        icon: 'sports_esports',\n      },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
                 }
             ],
             "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
@@ -4973,120 +5023,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\n  args: {\n    type: 'normal',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'contained',\n    leftIcon: 'arrowback',\n    rightIcon: 'arrowforward',\n  },\n}"
-                }
-            ],
-            "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    items: defaultItems.map(item => ({\n      ...item,\n      icon: iconStore.getIcon({ icon: item.icon, size: 'small' })\n    })),\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
-                },
-                {
-                    "name": "defaultItems",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "[]",
-                    "defaultValue": "[\n  { text: 'Home', url: '/', icon: 'home' },\n  { text: 'Products', url: '/products', icon: 'product' },\n  { text: 'Laptops', url: '/products/laptops', icon: 'laptop' },\n]"
-                },
-                {
-                    "name": "iconStore",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "new MeIconStoreService()"
-                },
-                {
-                    "name": "LargeSizeBreadcrumbs",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    items: defaultItems.map(item => ({\n      ...item,\n      icon: iconStore.getIcon({ icon: item.icon, size: 'large' })\n    })),\n    truncateFrom: 'right',\n    size: 'large',\n  },\n}"
-                },
-                {
-                    "name": "LongBreadcrumbs",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/' },\n      { text: 'Category 1', url: '/cat1' },\n      { text: 'Category 2', url: '/cat1/cat2' },\n      { text: 'Category 3', url: '/cat1/cat2/cat3' },\n      { text: 'Category 4', url: '/cat1/cat2/cat3/cat4' },\n      { text: 'Category 5', url: '/cat1/cat2/cat3/cat4/cat5' },\n      { text: 'Product', url: '/cat1/cat2/cat3/cat4/cat5/product' },\n    ],\n    truncateFrom: 'right',\n  },\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<MeBreadcrumbsComponent>",
-                    "defaultValue": "{\n  title: 'Components/MeBreadcrumbs(RC)',\n  component: MeBreadcrumbsComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [MeBreadcrumbsComponent, DxMenuModule, DxButtonModule, DxContextMenuModule],\n      providers: [MeIconStoreService],\n    }),\n  ],\n  argTypes: {\n    items: { control: 'object' },\n    truncateFrom: {\n      control: 'select', // Изменено с 'radio' на 'select'\n      options: ['left', 'right'],\n    },\n    size: {\n      control: 'select', // Изменено с 'radio' на 'select'\n      options: ['small', 'large'],\n    },\n    itemClick: { action: 'itemClicked' },\n  },\n}"
-                },
-                {
-                    "name": "TruncateFromLeft",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/' },\n      { text: 'Products', url: '/products' },\n      { text: 'Electronics', url: '/products/electronics' },\n      { text: 'Computers', url: '/products/electronics/computers' },\n      { text: 'Laptops', url: '/products/electronics/computers/laptops' },\n    ],\n    truncateFrom: 'left',\n  },\n}"
-                },
-                {
-                    "name": "WithDropdowns",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: iconStore.getIcon({ icon: 'home', size: 'small' }) },\n      {\n        text: 'Products',\n        icon: iconStore.getIcon({ icon: 'folder', size: 'small' }),\n        items: [\n          { text: 'Laptops', url: '/products/laptops', icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }) },\n          { text: 'Tablets', url: '/products/tablets', icon: iconStore.getIcon({ icon: 'tablet', size: 'small' }) },\n        ],\n      },\n      { text: 'Laptops', url: '/products/laptops', icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }) },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
-                },
-                {
-                    "name": "WithIcons",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Dashboard', url: '/dashboard', icon: iconStore.getIcon({ icon: 'dashboard', size: 'small' }) },\n      { text: 'Reports', url: '/reports', icon: iconStore.getIcon({ icon: 'reports', size: 'small' }) },\n      { text: 'Annual Report', url: '/reports/annual', icon: iconStore.getIcon({ icon: 'annual', size: 'small' }) },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
-                },
-                {
-                    "name": "WithIconsAndDropdowns",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    items: [\n      {\n        text: 'Home',\n        url: '/',\n        icon: iconStore.getIcon({ icon: 'home', size: 'small' }),\n      },\n      {\n        text: 'Products',\n        icon: iconStore.getIcon({ icon: 'folder', size: 'small' }),\n        // Добавляем выпадающее меню к этому элементу\n        items: [\n          {\n            text: 'Laptops',\n            url: '/products/laptops',\n            icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }),\n          },\n          {\n            text: 'Tablets',\n            url: '/products/tablets',\n            icon: iconStore.getIcon({ icon: 'tablet', size: 'small' }),\n          },\n          {\n            text: 'Accessories',\n            url: '/products/accessories',\n            icon: iconStore.getIcon({ icon: 'accessories', size: 'small' }),\n          },\n        ],\n      },\n      {\n        text: 'Laptops',\n        url: '/products/laptops',\n        icon: iconStore.getIcon({ icon: 'laptop', size: 'small' }),\n      },\n      {\n        text: 'Gaming Laptops',\n        url: '/products/laptops/gaming',\n        icon: iconStore.getIcon({ icon: 'gaming', size: 'small' }),\n      },\n    ],\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
-                }
-            ],
-            "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
                 }
             ],
             "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
@@ -5149,6 +5085,70 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n    contentHeight: '200px',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <me-card\n        [size]=\"size\"\n        [showHeader]=\"showHeader\"\n        [showFooter]=\"showFooter\"\n        [contentHeight]=\"contentHeight\">\n\n        <ng-container card-header-left>\n          <me-icon icon=\"sync\" [size]=\"size\" color=\"#000000\"></me-icon>\n          <span>Overflow Example</span>\n        </ng-container>\n\n        <div>\n          <p>This is an example of a card with overflow content. The content will scroll when it exceeds the maximum height.</p>\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>\n        </div>\n\n        <ng-container card-footer>\n          <dx-button text=\"Принять\" type=\"success\" stylingMode=\"contained\" style=\"background-color: #3f51b5; color: white; margin-right: 8px;\"></dx-button>\n          <dx-button text=\"Отмена\" type=\"default\" stylingMode=\"outlined\" style=\"border-color: #3f51b5; color: #3f51b5;\"></dx-button>\n        </ng-container>\n      </me-card>\n    `,\n  }),\n}"
+                }
+            ],
+            "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-check-box/me-check-box.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    text: '',\n  },\n}"
+                }
+            ],
+            "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'always',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-autocomplete\n        meAutocomplete\n        [size]=\"size\"\n        [showScrollbar]=\"showScrollbar\"\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\n      ></dx-autocomplete>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    size: 'large',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MeAutocompleteDirective>",
+                    "defaultValue": "{\n  title: 'Components/Autocomplete',\n  component: MeAutocompleteDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxAutocompleteModule],\n      declarations: [MeAutocompleteDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'radio' },\n    },\n    showScrollbar: {\n      options: ['always', 'onHover'],\n      control: { type: 'radio' },\n    },\n  },\n}"
+                },
+                {
+                    "name": "ScrollOnHover",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'onHover',\n  },\n  render: Default.render,\n}"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    size: 'small',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
                 }
             ],
             "projects/dx-monitel-components/src/stories/me-drop-down-button/me-drop-down-button.stories.ts": [
@@ -5814,19 +5814,6 @@
                     "kind": 183
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<MeAutocompleteDirective>",
-                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts": [
                 {
                     "name": "Story",
@@ -5834,19 +5821,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<MeBadgeComponent>",
                     "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
-                    "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5866,6 +5840,19 @@
                     "kind": 183
                 }
             ],
+            "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj",
+                    "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts": [
                 {
                     "name": "Story",
@@ -5879,13 +5866,26 @@
                     "kind": 183
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts": [
+            "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj",
-                    "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+                    "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
+                    "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MeCardComponent>",
+                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5905,13 +5905,13 @@
                     "kind": 183
                 }
             ],
-            "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
+            "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<MeCardComponent>",
-                    "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
+                    "rawtype": "StoryObj<MeAutocompleteDirective>",
+                    "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",

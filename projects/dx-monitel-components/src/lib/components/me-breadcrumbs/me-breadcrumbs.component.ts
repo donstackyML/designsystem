@@ -20,6 +20,7 @@ import {
   DxContextMenuModule,
   DxContextMenuComponent,
 } from 'devextreme-angular';
+import { MeIconComponent } from '../me-icon/me-icon.component';
 
 interface BreadcrumbItem {
   text: string;
@@ -31,15 +32,16 @@ interface BreadcrumbItem {
 @Component({
   selector: 'me-breadcrumbs',
   standalone: true,
-  imports: [CommonModule, DxMenuModule, DxButtonModule, DxContextMenuModule],
+  imports: [CommonModule, DxMenuModule, DxButtonModule, DxContextMenuModule, MeIconComponent],
   template: `
     <nav class="breadcrumbs" [ngClass]="size" aria-label="Breadcrumbs" #breadcrumbsContainer>
       <dx-button
         *ngIf="overflowLeft"
-        icon="more"
         stylingMode="text"
         (onClick)="showOverflowMenu('left', $event)"
-      ></dx-button>
+      >
+        <me-icon icon="more_horiz" [size]="size"></me-icon>
+      </dx-button>
 
       <ng-container *ngFor="let item of visibleItems; let isLast = last">
         <dx-menu
@@ -54,8 +56,13 @@ interface BreadcrumbItem {
           class="breadcrumb-menu"
           [ngClass]="size"
         >
-          <div *dxTemplate="let data of 'item'">
-            <i *ngIf="data.icon" class="dx-icon-{{ data.icon }}"></i>
+          <div *dxTemplate="let data of 'item'" class="menu-item" [ngClass]="size">
+            <me-icon
+              *ngIf="data.icon"
+              [icon]="data.icon"
+              [size]="size"
+              color="inherit"
+            ></me-icon>
             <span class="dx-menu-item-text">{{ data.text }}</span>
             <i *ngIf="data.items?.length" class="dx-icon-spindown"></i>
           </div>
@@ -65,10 +72,11 @@ interface BreadcrumbItem {
 
       <dx-button
         *ngIf="overflowRight"
-        icon="more"
         stylingMode="text"
         (onClick)="showOverflowMenu('right', $event)"
-      ></dx-button>
+      >
+        <me-icon icon="more_horiz" [size]="size"></me-icon>
+      </dx-button>
     </nav>
     <dx-context-menu
       class="context-menu"
@@ -78,18 +86,57 @@ interface BreadcrumbItem {
       [position]="contextMenuPosition"
       (onPositioning)="onContextMenuPositioning($event)"
       (onItemClick)="onOverflowItemClick($event)"
-      [itemTemplate]="'itemTemplate'"
     >
-      <div *dxTemplate="let data of 'itemTemplate'">
+      <div *dxTemplate="let data of 'item'" class="context-menu-item" [ngClass]="size">
+        <me-icon
+          *ngIf="data.icon"
+          [icon]="data.icon"
+          [size]="size"
+          color="inherit"
+        ></me-icon>
         <span>{{ data.text }}</span>
+        <i *ngIf="data.items?.length" class="dx-icon-spindown"></i>
       </div>
     </dx-context-menu>
+
   `,
   styles: [`
+    .dx-button {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.dx-state-hover {
+        background-color: rgba(216, 218, 234, 1) !important;
+      }
+
+      &.dx-state-active {
+        background-color: rgba(191, 193, 208, 1) !important;
+      }
+
+      &.dx-state-disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+
+      &:active {
+        background-color: #e0e0e0;
+      }
+    }
+
     .breadcrumbs {
       display: flex;
       align-items: center;
       overflow: hidden;
+
+      .dx-button .dx-button-content {
+        padding: 0;
+      }
 
       .dx-menu-item-content .dx-menu-item-text {
         padding: 3px 10px 5px 10px;
@@ -101,16 +148,19 @@ interface BreadcrumbItem {
             font-size: 20px;
           }
         }
+
         .dx-menu-item-text {
           font-size: 13px;
         }
-        .dx-button-has-icon .dx-icon  {
+
+        .dx-button-has-icon .dx-icon {
           font-size: 20px !important;
         }
 
-        dx-button-has-icon .dx-button-content {
+        .dx-button-has-icon .dx-button-content {
           padding: 5px;
         }
+
         .dx-icon-spindown {
           font-size: 20px;
         }
@@ -122,36 +172,24 @@ interface BreadcrumbItem {
             font-size: 24px;
           }
         }
+
         .dx-menu-item-text {
           font-size: 14px;
         }
-        .dx-button-has-icon .dx-icon  {
+
+        .dx-button-has-icon .dx-icon {
           font-size: 24px !important;
         }
+
         .dx-icon-spindown {
           font-size: 24px;
         }
       }
     }
 
-    .dx-button {
-
-      &.dx-state-hover {
-        background-color: rgba(216, 218, 234, 1) !important;
-      }
-
-      &.dx-state-active {
-        background-color: rgba(191, 193, 208, 1) !important;
-      }
-    }
-
     .breadcrumb-menu {
-      .dx-menu-item.dx-menu-item-expanded,.dx-context-menu-container-border {
-        background-color: transparent;
-        border: none !important;
-        box-shadow: none;
-      }
       display: inline-block;
+
       .dx-menu-item-content {
         display: flex;
         align-items: center;
@@ -173,6 +211,13 @@ interface BreadcrumbItem {
           pointer-events: none;
         }
       }
+
+      .dx-menu-item.dx-menu-item-expanded,
+      .dx-context-menu-container-border {
+        background-color: transparent;
+        border: none !important;
+        box-shadow: none;
+      }
     }
 
     .separator {
@@ -193,21 +238,78 @@ interface BreadcrumbItem {
       }
     }
 
-    .dx-button {
-      padding: 0;
+    .context-menu-item {
       display: flex;
-      justify-content: center;
       align-items: center;
+      gap: 5px;
+      padding: 5px 10px; /* Отступы по умолчанию */
 
-      &:hover {
-        background-color: #f0f0f0;
+      i {
+        font-size: 20px !important; /* Размер иконок по умолчанию */
       }
-      &:active {
-        background-color: #e0e0e0;
+
+      span {
+        font-size: 13px; /* Размер текста по умолчанию */
       }
-      &.dx-state-disabled {
-        opacity: 0.5;
-        pointer-events: none;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      i {
+        font-size: 20px !important; /* Размер иконок по умолчанию */
+      }
+
+      span {
+        font-size: 13px; /* Размер текста по умолчанию */
+      }
+    }
+
+    .context-menu-item.small {
+      padding: 5px 10px;
+
+      i {
+        font-size: 20px;
+      }
+
+      span {
+        font-size: 13px;
+      }
+    }
+
+    .menu-item.small {
+
+      i {
+        font-size: 20px;
+      }
+
+      span {
+        font-size: 13px;
+      }
+    }
+
+
+    .context-menu-item.large {
+      padding: 10px 15px;
+
+      i {
+        font-size: 24px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+    }
+
+    .menu-item.large {
+
+      i {
+        font-size: 24px;
+      }
+
+      span {
+        font-size: 14px;
       }
     }
   `],

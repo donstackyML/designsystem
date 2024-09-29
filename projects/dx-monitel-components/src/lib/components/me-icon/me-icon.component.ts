@@ -29,12 +29,12 @@ export class MeIconComponent {
   getSize(): string {
     switch (this.size) {
       case 'small':
-        return '16px';
+        return '20px';
       case 'medium':
       case 'large':
-        return '20px';
+        return '24px';
       default:
-        return '16px';
+        return '20px';
     }
   }
 }
