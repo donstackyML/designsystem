@@ -135,7 +135,7 @@ interface BreadcrumbItem {
       overflow: hidden;
 
       .dx-button .dx-button-content {
-        padding: 0;
+        padding: 0 10px;
       }
 
       .dx-menu-item-content .dx-menu-item-text {
