@@ -24,7 +24,6 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [MePopupDirective, MePopupComponent],
-      declarations: [MePopupDirective, MePopupComponent],
       imports: [DxPopupModule],
     }),
   ],
@@ -37,7 +36,6 @@ export default {
   argTypes: {
     size: {
       control: 'select',
-      options: ['medium', 'large'],
       options: ['medium', 'large'],
       description:
         'В дизайн-системе для размера <code>medium</code> используются кнопки с размером <code>medium</code>, для размера <code>large</code> соответственно кнопки одноименного размера.',
@@ -52,58 +50,11 @@ export default {
       table: {
         type: { summary: 'boolean' },
         default: { summary: false },
-        default: { summary: false },
       },
     },
     title: {
       control: 'text',
       description: 'Текст заголовка.',
-    },
-    minHeight: {
-      control: 'text',
-      description: 'Минимальная высота окна',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '280' },
-      },
-    },
-    maxHeight: {
-      control: 'text',
-      description: 'Максимальная высота окна',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '80vh' },
-      },
-    },
-    minWidth: {
-      control: 'text',
-      description: 'Минимальная ширина окна',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    maxWidth: {
-      control: 'text',
-      description: 'Максимальная ширина окна',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    height: {
-      control: 'text',
-      description: 'Высота окна',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'auto' },
-      },
-    },
-    width: {
-      control: 'text',
-      description: 'Ширина окна',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '360' },
-      },
     },
     minHeight: {
       control: 'text',
@@ -218,83 +169,10 @@ export default {
     showTitle: {
       control: 'boolean',
       description: 'Показать/убрать заголовок',
-      control: 'boolean',
-      description: 'Включить/отключить перетаскивание окна',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
       },
-    },
-    resizeEnabled: {
-      control: 'boolean',
-      description: 'Включить/отключить изменение размеров окна',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Включить/отключить компонент',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
-    fullScreen: {
-      control: 'boolean',
-      description: 'Включить/отключить окно на весь экран',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
-    hideOnOutsideClick: {
-      control: 'boolean',
-      description: 'Включить/отключить изменение размеров окна',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
-    shading: {
-      control: 'boolean',
-      description: 'Включить/отключить затемнение экрана под всплывающим окном',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
-    shadingColor: {
-      control: 'text',
-      description: 'Цвет затемнения экрана под всплывающим окном',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'rgba(0, 0, 0, 0.3019607843)' },
-      },
-    },
-    showCloseButton: {
-      control: 'boolean',
-      description: 'Показать/убрать кнопку для закрытия всплывающего окна',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
-    showTitle: {
-      control: 'boolean',
-      description: 'Показать/убрать заголовок',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
-    position: {
-      control: 'object',
-      description:
-        'Управляет положением всплывающего окна и может принимать объект с настройками или строковые значения',
     },
     position: {
       control: 'object',
@@ -319,10 +197,6 @@ export default {
   },
   args: {
     title: '',
-    dragEnabled: true,
-    resizeEnabled: true,
-    shading: true,
-    shadingColor: 'rgba(0, 0, 0, 0.3019607843)',
     dragEnabled: true,
     resizeEnabled: true,
     shading: true,
