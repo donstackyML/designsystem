@@ -26,12 +26,12 @@ export class MeIconStoreService {
   }
 
   getGoogleFontIcon({
-                      icon = '',
-                      color = DEFAULT_ICON_COLOR,
-                      size = DEFAULT_ICON_SIZE,
-                      additionalClass = '',
-                      ariaLabel = '',
-                    }) {
+    icon = '',
+    color = DEFAULT_ICON_COLOR,
+    size = DEFAULT_ICON_SIZE,
+    additionalClass = '',
+    ariaLabel = '',
+  }) {
     if (!icon) return '';
 
     return `<i class="material-icons ${additionalClass}" style="font-size: ${size}px; color: ${color};" aria-label="${ariaLabel}">${icon}</i>`;

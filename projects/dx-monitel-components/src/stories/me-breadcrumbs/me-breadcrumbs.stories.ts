@@ -1,8 +1,12 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxMenuModule, DxButtonModule, DxContextMenuModule } from 'devextreme-angular';
+import {
+  DxMenuModule,
+  DxButtonModule,
+  DxContextMenuModule,
+} from 'devextreme-angular';
 import { MeBreadcrumbsComponent } from '../../lib/components/me-breadcrumbs/me-breadcrumbs.component';
-import { MeIconStoreService } from "../../lib/service/icon-store.service";
-import { MeIconComponent } from "../../public-api";
+import { MeIconStoreService } from '../../lib/service/icon-store.service';
+import { MeIconComponent } from '../../public-api';
 
 const iconStore = new MeIconStoreService();
 
@@ -11,7 +15,13 @@ const meta: Meta<MeBreadcrumbsComponent> = {
   component: MeBreadcrumbsComponent,
   decorators: [
     moduleMetadata({
-      imports: [MeBreadcrumbsComponent, DxMenuModule, DxButtonModule, DxContextMenuModule, MeIconComponent],
+      imports: [
+        MeBreadcrumbsComponent,
+        DxMenuModule,
+        DxButtonModule,
+        DxContextMenuModule,
+        MeIconComponent,
+      ],
       providers: [MeIconStoreService],
     }),
   ],
@@ -87,7 +97,7 @@ export const WithIconsAndDropdowns: Story = {
 
 export const Default: Story = {
   args: {
-    items: defaultItems.map(item => ({
+    items: defaultItems.map((item) => ({
       ...item,
       icon: item.icon, // Используем соответствующие иконки
     })),
@@ -117,7 +127,7 @@ export const WithDropdowns: Story = {
 
 export const LargeSizeBreadcrumbs: Story = {
   args: {
-    items: defaultItems.map(item => ({
+    items: defaultItems.map((item) => ({
       ...item,
       icon: item.icon, // Используем соответствующие иконки
     })),
@@ -132,8 +142,16 @@ export const TruncateFromLeft: Story = {
       { text: 'Home', url: '/', icon: 'home' },
       { text: 'Products', url: '/products', icon: 'shopping_cart' },
       { text: 'Electronics', url: '/products/electronics', icon: 'devices' },
-      { text: 'Computers', url: '/products/electronics/computers', icon: 'computer' },
-      { text: 'Laptops', url: '/products/electronics/computers/laptops', icon: 'laptop_mac' },
+      {
+        text: 'Computers',
+        url: '/products/electronics/computers',
+        icon: 'computer',
+      },
+      {
+        text: 'Laptops',
+        url: '/products/electronics/computers/laptops',
+        icon: 'laptop_mac',
+      },
     ],
     truncateFrom: 'left',
   },
@@ -147,8 +165,16 @@ export const LongBreadcrumbs: Story = {
       { text: 'Category 2', url: '/cat1/cat2', icon: 'category' },
       { text: 'Category 3', url: '/cat1/cat2/cat3', icon: 'category' },
       { text: 'Category 4', url: '/cat1/cat2/cat3/cat4', icon: 'category' },
-      { text: 'Category 5', url: '/cat1/cat2/cat3/cat4/cat5', icon: 'category' },
-      { text: 'Product', url: '/cat1/cat2/cat3/cat4/cat5/product', icon: 'store' },
+      {
+        text: 'Category 5',
+        url: '/cat1/cat2/cat3/cat4/cat5',
+        icon: 'category',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'store',
+      },
     ],
     truncateFrom: 'right',
   },

@@ -30,7 +30,6 @@ export class MeMenuDirective {
 
   @HostListener('onSubmenuShown', ['$event']) onSubmenuShown(e: any) {
     this.applySubmenuStyles(e);
-    console.log(e.submenu.$contentDelimiter[0]);
   }
 
   private applySubmenuStyles(e: any) {

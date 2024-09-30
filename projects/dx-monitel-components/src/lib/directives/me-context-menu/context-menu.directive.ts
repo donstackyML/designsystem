@@ -1,15 +1,19 @@
-import { Directive, Input } from '@angular/core';
-import { DxContextMenuComponent } from 'devextreme-angular';
+import { Directive, HostListener, Renderer2, inject } from '@angular/core';
 
 @Directive({
   selector: '[meContextMenu]',
+  host: {
+    '[class.me-context-menu]': 'true',
+  },
 })
 export class MeContextMenuDirective {
-  @Input() cssClass: string = '';
-
-  constructor(private component: DxContextMenuComponent) {}
-
-  ngOnInit(): void {
-    this.component.cssClass = `${this.cssClass} me-context-menu`;
+  private renderer = inject(Renderer2);
+  @HostListener('onItemRendered', ['$event'])
+  ononItemRendered(event: any) {
+    this.renderer.addClass(
+      event.itemElement.parentElement.parentElement.parentElement,
+      'me-context-menu-submenu'
+    );
+    console.log(event.itemElement.parentElement.parentElement.parentElement);
   }
 }
