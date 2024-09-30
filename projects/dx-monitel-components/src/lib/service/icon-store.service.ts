@@ -24,6 +24,18 @@ export class MeIconStoreService {
       return icon.replaceAll('color', color).replaceAll('iconSize', size);
     }
   }
+
+  getGoogleFontIcon({
+    icon = '',
+    color = DEFAULT_ICON_COLOR,
+    size = DEFAULT_ICON_SIZE,
+    additionalClass = '',
+    ariaLabel = '',
+  }) {
+    if (!icon) return '';
+
+    return `<i class="material-icons ${additionalClass}" style="font-size: ${size}px; color: ${color};" aria-label="${ariaLabel}">${icon}</i>`;
+  }
 }
 
 const icons = {
