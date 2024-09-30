@@ -6,18 +6,24 @@ import {
 } from '@storybook/angular';
 import {
   DxButtonComponent,
+  DxButtonModule,
   DxPopupModule,
   DxScrollViewComponent,
   DxTemplateModule,
 } from 'devextreme-angular';
-import { MeButtonDirective, MePopupDirective } from '../../public-api';
+import { MePopupComponent } from 'src/app/components/me-popup/me-popup.component';
+import {
+  MeButtonDirective,
+  MeIconDirective,
+  MePopupDirective,
+} from '../../public-api';
 
 export default {
   title: 'Components/Popup',
   // tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective],
+      declarations: [MePopupDirective, MePopupComponent],
       imports: [DxPopupModule],
     }),
   ],
@@ -30,7 +36,7 @@ export default {
   argTypes: {
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['medium', 'large'],
       description:
         'В дизайн-системе для размера <code>medium</code> используются кнопки с размером <code>medium</code>, для размера <code>large</code> соответственно кнопки одноименного размера.',
       table: {
@@ -43,16 +49,135 @@ export default {
       description: 'Видимость окна.',
       table: {
         type: { summary: 'boolean' },
+        default: { summary: false },
       },
     },
     title: {
       control: 'text',
       description: 'Текст заголовка.',
     },
-    dragEnabled: {
+    minHeight: {
+      control: 'text',
+      description: 'Минимальная высота окна',
       table: {
-        disable: true,
+        type: { summary: 'string' },
+        defaultValue: { summary: '280' },
       },
+    },
+    maxHeight: {
+      control: 'text',
+      description: 'Максимальная высота окна',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '80vh' },
+      },
+    },
+    minWidth: {
+      control: 'text',
+      description: 'Минимальная ширина окна',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    maxWidth: {
+      control: 'text',
+      description: 'Максимальная ширина окна',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    height: {
+      control: 'text',
+      description: 'Высота окна',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    width: {
+      control: 'text',
+      description: 'Ширина окна',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '360' },
+      },
+    },
+    dragEnabled: {
+      control: 'boolean',
+      description: 'Включить/отключить перетаскивание окна',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    resizeEnabled: {
+      control: 'boolean',
+      description: 'Включить/отключить изменение размеров окна',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Включить/отключить компонент',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    fullScreen: {
+      control: 'boolean',
+      description: 'Включить/отключить окно на весь экран',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    hideOnOutsideClick: {
+      control: 'boolean',
+      description: 'Включить/отключить изменение размеров окна',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    shading: {
+      control: 'boolean',
+      description: 'Включить/отключить затемнение экрана под всплывающим окном',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    shadingColor: {
+      control: 'text',
+      description: 'Цвет затемнения экрана под всплывающим окном',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'rgba(0, 0, 0, 0.3019607843)' },
+      },
+    },
+    showCloseButton: {
+      control: 'boolean',
+      description: 'Показать/убрать кнопку для закрытия всплывающего окна',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    showTitle: {
+      control: 'boolean',
+      description: 'Показать/убрать заголовок',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    position: {
+      control: 'object',
+      description:
+        'Управляет положением всплывающего окна и может принимать объект с настройками или строковые значения',
     },
     animation: {
       table: {
@@ -60,11 +185,6 @@ export default {
       },
     },
     focusStateEnabled: {
-      table: {
-        disable: true,
-      },
-    },
-    position: {
       table: {
         disable: true,
       },
@@ -77,13 +197,16 @@ export default {
   },
   args: {
     title: '',
-    dragEnabled: false,
+    dragEnabled: true,
+    resizeEnabled: true,
+    shading: true,
+    shadingColor: 'rgba(0, 0, 0, 0.3019607843)',
     animation: {},
     focusStateEnabled: false,
   },
   render: (args) => ({
     props: args,
-    template: `<div id="myWrapper" style="min-height: 350px; position: relative;"><dx-popup mePopup width= '360px' ${argsToTemplate(
+    template: `<div id="myWrapper" style="min-height: 350px; position: relative;"><dx-popup mePopup ${argsToTemplate(
       args
     )}></dx-popup></div>`,
   }),
@@ -99,11 +222,241 @@ export const Default: Story = {
       my: 'center',
       at: 'center',
       of: '#myWrapper',
-      // boundary: '',
-      // collision: 'fit',
     },
     container: '#myWrapper',
   },
+};
+
+export const Title: Story = {
+  args: {
+    visible: true,
+    size: 'medium',
+    position: {
+      my: 'center',
+      at: 'center',
+      of: '#myWrapperTitle',
+    },
+    container: '#myWrapperTitle',
+    title: 'Заголовок',
+  },
+  render: (args) => ({
+    props: args,
+    template: `<div id="myWrapperTitle" style="min-height: 350px; position: relative;"><dx-popup mePopup ${argsToTemplate(
+      args
+    )}></dx-popup></div>`,
+  }),
+};
+
+export const IconDescription: Story = {
+  args: {
+    visible: true,
+    size: 'medium',
+    position: {
+      my: 'center',
+      at: 'center',
+      of: '#myWrapperIcon',
+    },
+    container: '#myWrapperIcon',
+    title: 'Заголовок',
+    titleTemplate: 'title',
+  },
+  decorators: [
+    moduleMetadata({
+      declarations: [
+        MePopupDirective,
+        MeButtonDirective,
+        MeIconDirective,
+        MePopupComponent,
+      ],
+      imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `<div id="myWrapperIcon" style="min-height: 350px; position: relative;">
+    <dx-popup mePopup ${argsToTemplate(args)}>
+     <div *dxTemplate="let data of 'title'">
+        <div class="me-popup-header">
+          <div meIcon icon="public" size="24"></div>
+          <div class="me-sidepage-title">
+            <span class="me-title-header1">Заголовок</span>
+            <span class="me-text-body2">Описание</span>
+          </div>
+            <dx-button meButton size="large" iconOnly="overflow" stylingMode="text"></dx-button>
+            <dx-button
+              meButton
+              stylingMode="text"
+              iconOnly="close"
+            ></dx-button>
+        </div>
+      </div>
+    </dx-popup></div>`,
+  }),
+};
+
+export const Button: Story = {
+  args: {
+    visible: true,
+    size: 'medium',
+    position: {
+      my: 'center',
+      at: 'center',
+      of: '#myWrapperButton',
+    },
+    container: '#myWrapperButton',
+    title: 'Заголовок',
+  },
+  decorators: [
+    moduleMetadata({
+      declarations: [MePopupDirective, MeButtonDirective, MePopupComponent],
+      imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `<div id="myWrapperButton" style="min-height: 350px; position: relative;">
+    <dx-popup mePopup ${argsToTemplate(args)}>
+     <dxi-toolbar-item template="addButton" toolbar="bottom" location="center"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton text="Добавить"></dx-button>
+      </div>
+    </dx-popup></div>`,
+  }),
+};
+
+export const Buttons: Story = {
+  args: {
+    visible: true,
+    size: 'medium',
+    position: {
+      my: 'center',
+      at: 'center',
+      of: '#myWrapperButtons',
+    },
+    container: '#myWrapperButtons',
+    title: 'Заголовок',
+  },
+  decorators: [
+    moduleMetadata({
+      declarations: [MePopupDirective, MeButtonDirective, MePopupComponent],
+      imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `<div id="myWrapperButtons" style="min-height: 350px; position: relative;">
+    <dx-popup mePopup ${argsToTemplate(args)}>
+     <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"></dxi-toolbar-item>
+     <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"></dxi-toolbar-item>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton type="default" text="Добавить"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+          <dx-button meButton text="Отмена"></dx-button>
+        </div>
+    </dx-popup></div>`,
+  }),
+};
+
+const lorem25 =
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita id ad quasi? Suscipit natus corrupti enim impedit? Cum aliquid, qui eligendi eveniet sunt molestias aperiam?';
+export const Dialog: Story = {
+  args: {
+    visible: true,
+    size: 'medium',
+    showTitle: false,
+    position: {
+      my: 'center',
+      at: 'center',
+      of: '#myWrapperDialog',
+    },
+    container: '#myWrapperDialog',
+    title: 'Заголовок',
+  },
+  decorators: [
+    moduleMetadata({
+      declarations: [MePopupDirective, MeButtonDirective, MePopupComponent],
+      imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `<div id="myWrapperDialog" style="min-height: 350px; position: relative;">
+      <dx-popup mePopup titleTemplate="title"
+       ${argsToTemplate(args)}>
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+          <div class="me-flex-column" style="align-items: center;">
+            <h3 class="me-title-header1" style="margin: 0;">Заголовок</h3>
+            <div class="me-text-body2">${lorem25}}</div>
+          </div>
+        </dx-scroll-view>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button
+          meButton
+          size="medium"
+          text="Принять"
+          type="default"
+          (onClick)="hidePopup(12)"
+        ></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton size="medium" text="Отклонить" (onClick)="hidePopup(12)"></dx-button>
+      </div>
+    </dx-popup></div>`,
+  }),
+};
+
+export const DialogLarge: Story = {
+  args: {
+    visible: true,
+    size: 'large',
+    showTitle: false,
+    position: {
+      my: 'center',
+      at: 'center',
+      of: '#myWrapperDialogLarge',
+    },
+    container: '#myWrapperDialogLarge',
+    title: 'Заголовок',
+  },
+  decorators: [
+    moduleMetadata({
+      declarations: [MePopupDirective, MeButtonDirective, MePopupComponent],
+      imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `<div id="myWrapperDialogLarge" style="min-height: 350px; position: relative;">
+      <dx-popup mePopup titleTemplate="title"
+       ${argsToTemplate(args)}>
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom"> </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+          <div class="me-flex-column" style="align-items: center;">
+            <h3 class="me-title-header1" style="margin: 0;">Заголовок</h3>
+            <div class="me-text-body2">${lorem25}}</div>
+          </div>
+        </dx-scroll-view>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button
+          meButton
+          size="large"
+          text="Принять"
+          type="default"
+        ></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton size="large" text="Отклонить"></dx-button>
+      </div>
+    </dx-popup></div>`,
+  }),
 };
 
 const words =
@@ -116,8 +469,6 @@ export const Scroll: Story = {
       my: 'center',
       at: 'center',
       of: '#myWrapperScroll',
-      // boundary: '',
-      // collision: 'fit',
     },
     title: 'Заголовок',
     container: '#myWrapperScroll',
@@ -151,8 +502,6 @@ export const Toolbar: Story = {
       my: 'center',
       at: 'center',
       of: '#myWrapperTollbar',
-      // boundary: '',
-      // collision: 'fit',
     },
     title: 'Заголовок',
     container: '#myWrapperTollbar',
@@ -214,8 +563,6 @@ export const Size: Story = {
       my: 'center',
       at: 'center',
       of: '#myWrapperSize',
-      // boundary: '',
-      // collision: 'fit',
     },
     title: 'Заголовок',
     container: '#myWrapperSize',

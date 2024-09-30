@@ -1,63 +1,187 @@
 import { MeBreadcrumbsComponent } from "../../public-api";
-import { Meta, Story, ArgsTable } from "@storybook/addon-docs";
-
+import {Meta, Controls, Source, Canvas} from "@storybook/addon-docs";
 import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
 
-<Meta title="Components/MeBreadcrumbs" component={MeBreadcrumbsComponent} />
+<Meta
+  title="Components/MeBreadcrumbs"
+  component={MeBreadcrumbsComponent}
+  of={BreadcrumbsStories}
+/>
 
 # MeBreadcrumbs
 
-MeBreadcrumbs компонент предоставляет навигационную цепочку для отображения текущего местоположения пользователя в иерархии сайта.
+## Компонент MeBreadcrumbs
 
-## Основные возможности
+Компонент `MeBreadcrumbs` предоставляет навигационную цепочку для отображения текущего местоположения пользователя в иерархии сайта. Он улучшает пользовательский опыт, позволяя легко ориентироваться по структуре приложения.
 
-- Отображение иерархии навигации
-- Поддержка иконок для каждого элемента
-- Возможность добавления выпадающих меню
-- Автоматическое сокращение элементов при нехватке места
-- Настраиваемое направление сокращения (слева или справа)
+[Документация по компоненту MeBreadcrumbs](https://your-documentation-link.com/me-breadcrumbs)
 
-## Пример использования
+<Source of={BreadcrumbsStories.Default} dark language="html" />
 
-<Story story={BreadcrumbsStories.Default} />
+## Примеры использования
 
-## Свойства компонента
+- [Основной пример](#основной-пример)
+- [С иконками](#с-иконками)
+- [С выпадающими меню](#с-выпадающими-меню)
+- [Большой размер](#большой-размер)
+- [Сокращение слева](#сокращение-слева)
+- [Длинные хлебные крошки](#длинные-хлебные-крошки)
+- [Обработка событий](#обработка-событий)
+- [Свойства](#свойства)
 
-<ArgsTable of={MeBreadcrumbsComponent} />
+## Основной пример
 
-## Примеры
+Компонент `MeBreadcrumbs` в базовой конфигурации:
 
-### С иконками
 
-Вы можете добавить иконки к элементам хлебных крошек для улучшения визуального восприятия:
+<Canvas of={BreadcrumbsStories.Default} />
 
-<Story story={BreadcrumbsStories.WithIcons} />
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="breadcrumbItems"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
 
-### С выпадающими меню
+## С иконками
+
+Добавление иконок к элементам хлебных крошек для улучшения визуального восприятия:
+
+<Canvas of={BreadcrumbsStories.WithIcons} />
+
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="breadcrumbItemsWithIcons"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
+
+## С выпадающими меню
 
 Для добавления дополнительных опций навигации можно использовать выпадающие меню:
 
-<Story story={BreadcrumbsStories.WithDropdowns} />
+<Canvas of={BreadcrumbsStories.WithIconsAndDropdowns} />
 
-### Сокращение слева
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="breadcrumbItemsWithDropdowns"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
+
+## Большой размер
+
+Компонент поддерживает различные размеры. Пример с большим размером:
+
+<Canvas of={BreadcrumbsStories.LongBreadcrumbs} />
+
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="breadcrumbItems"
+  size="large"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
+
+## Сокращение слева
 
 По умолчанию, при нехватке места элементы сокращаются справа. Вы можете изменить это поведение, установив `truncateFrom="left"`:
 
-<Story story={BreadcrumbsStories.TruncateFromLeft} />
+<Canvas of={BreadcrumbsStories.TruncateFromLeft} />
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="breadcrumbItems"
+  truncateFrom="left"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
 
-### Длинные хлебные крошки
+## Длинные хлебные крошки
 
 Компонент автоматически адаптируется к большому количеству элементов:
 
-<Story story={BreadcrumbsStories.LongBreadcrumbs} />
+<Canvas of={BreadcrumbsStories.LargeSizeBreadcrumbs} />
+
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="longBreadcrumbItems"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
 
 ## Обработка событий
 
-Компонент MeBreadcrumbs поддерживает событие `itemClick` для обработки кликов по элементам:
+Компонент `MeBreadcrumbs` поддерживает событие `itemClick` для обработки кликов по элементам:
 
-```html
+<Source
+  code={`
 <me-breadcrumbs
   [items]="breadcrumbItems"
   (itemClick)="onBreadcrumbItemClick($event)"
 ></me-breadcrumbs>
-```
+  `}
+  dark
+  language="html"
+/>
+
+## Свойства
+
+<Controls
+  of={BreadcrumbsStories.Default}
+  include={[
+    "items",
+    "size",
+    "truncateFrom",
+    "showIcons",
+    "enableDropdowns",
+  ]}
+/>
+
+## Пример использования
+
+Ниже приведен пример использования компонента `<me-breadcrumbs>` с различными свойствами:
+
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="breadcrumbItems"
+  [size]="medium"
+  truncateFrom="right"
+  (itemClick)="handleItemClick($event)"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
+
+## Дополнительная информация
+
+При использовании компонента `MeBreadcrumbs` обратите внимание на следующие моменты:
+
+- Свойство `size` может принимать значения `small`, `medium` или `large`, влияя на размер хлебных крошек.
+- Свойство `truncateFrom` определяет, с какой стороны будут сокращаться элементы при нехватке места (`left` или `right`).
+
+## Дизайн-система и Figma
+
+Более подробную информацию о дизайне компонента можно найти в Figma:
+
+[Ссылка на Figma](https://www.figma.com/file/your-design-system-link)
+

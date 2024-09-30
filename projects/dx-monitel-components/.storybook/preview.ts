@@ -50,9 +50,9 @@ const preview: Preview = {
     darkMode: {
       dark: {
         ...themes.dark,
-        brandImage: './images/Logo1.png',
+        brandImage: './bundles/images/Logo1.png',
       },
-      light: { ...themes.normal, brandImage: './images/logoSK.png' },
+      light: { ...themes.normal, brandImage: './bundles/images/logoSK.png' },
       darkClass: 'lights-out',
       lightClass: 'lights-on',
       current: 'light',

@@ -336,3 +336,73 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     }
   }
 }
+
+.me-popup {
+  .me-popup-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 4px;
+    gap: 8px;
+
+    & .dx-button.me-button {
+      margin-left: auto;
+      align-self: flex-start;
+      margin-top: -4px;
+    }
+
+    .me-popup-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
+  & .dx-toolbar-after,
+  & .dx-toolbar-before,
+  & .dx-toolbar-center {
+    gap: 12px;
+  }
+
+  & .dx-popup-bottom.dx-toolbar {
+    & .dx-toolbar-center {
+      justify-content: center;
+    }
+
+    & .dx-toolbar-items-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      height: auto;
+      gap: 12px 12px;
+
+      & .dx-toolbar-after,
+      & .dx-toolbar-before,
+      & .dx-toolbar-center {
+        flex-wrap: wrap;
+        position: static;
+        padding: 0;
+        max-width: 100%;
+        display: flex;
+      }
+
+      & .dx-toolbar-center {
+        margin: 0 !important;
+      }
+
+      & .dx-toolbar-item {
+        max-width: 100%;
+
+        & .me-button-inner {
+          max-width: 100%;
+
+          & .dx-button-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}

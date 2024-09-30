@@ -71,154 +71,13 @@
       "extends": []
     },
     {
-      "name": "MeTabPanelProps",
-      "id": "interface-MeTabPanelProps-3a62341c89a1258dda1952c49d20943691310567509b69abde7c13c7bb871494a2ad9316c69b71c329f0cd106942e9fb71cc1c6fec58708011a4c2624441ab4e",
-      "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-      "deprecated": false,
-      "deprecationMessage": "",
-      "type": "interface",
-      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxTabPanelModule } from 'devextreme-angular';\nimport { MeTabPanelDirective } from '../../public-api';\n\ninterface TabItem {\n  id: number;\n  title: string;\n  content: string;\n  icon?: string;\n}\n\ninterface MeTabPanelProps {\n  customClass: string;\n  selectedIndex: number;\n  animationEnabled: boolean;\n  swipeEnabled: boolean;\n  position: 'top' | 'bottom';\n  size: 'small' | 'medium' | 'large';\n  stylingMode: 'inside' | 'outside';\n  orientation: 'horizontal' | 'vertical';\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\n  showNavButtons: boolean;\n  scrollByContent: boolean;\n  rtlEnabled: boolean;\n  width: string | number;\n  tabPanelData: TabItem[];\n}\n\nconst meta: Meta<MeTabPanelProps> = {\n  title: 'Components/TabPanel',\n  component: MeTabPanelDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  render: (args: MeTabPanelProps) => ({\n    props: args,\n    template: `\n      <dx-tab-panel\n        meTabPanel\n        [customClass]=\"customClass\"\n        [selectedIndex]=\"selectedIndex\"\n        [animationEnabled]=\"animationEnabled\"\n        [swipeEnabled]=\"swipeEnabled\"\n        [dataSource]=\"tabPanelData\"\n        [height]=\"300\"\n        [orientation]=\"orientation\"\n        [stylingMode]=\"stylingMode\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [width]=\"width\"\n      >\n      </dx-tab-panel>\n    `,\n  }),\n  argTypes: {\n    customClass: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: { control: 'boolean' },\n    scrollByContent: { control: 'boolean' },\n    rtlEnabled: { control: 'boolean' },\n    width: { control: 'text' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeTabPanelProps>;\n\nconst defaultTabPanelData: TabItem[] = [\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\n];\n\nexport const Default: Story = {\n  args: {\n    customClass: '',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    rtlEnabled: false,\n    width: 'auto',\n    tabPanelData: defaultTabPanelData,\n  },\n};\n\nexport const VerticalOrientation: Story = {\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n};\n\nexport const WithNavButtons: Story = {\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabPanelData: [\n      ...defaultTabPanelData,\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const OutsideStylingMode: Story = {\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n};\n\nexport const DifferentIconPositions: Story = {\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n};\n\nexport const RightToLeft: Story = {\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n};\n",
-      "properties": [
-        {
-          "name": "animationEnabled",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 15
-        },
-        {
-          "name": "customClass",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 13
-        },
-        {
-          "name": "iconPosition",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "\"top\" | \"start\" | \"end\" | \"bottom\"",
-          "optional": false,
-          "description": "",
-          "line": 21
-        },
-        {
-          "name": "orientation",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "\"horizontal\" | \"vertical\"",
-          "optional": false,
-          "description": "",
-          "line": 20
-        },
-        {
-          "name": "position",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "\"top\" | \"bottom\"",
-          "optional": false,
-          "description": "",
-          "line": 17
-        },
-        {
-          "name": "rtlEnabled",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 24
-        },
-        {
-          "name": "scrollByContent",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 23
-        },
-        {
-          "name": "selectedIndex",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "optional": false,
-          "description": "",
-          "line": 14
-        },
-        {
-          "name": "showNavButtons",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 22
-        },
-        {
-          "name": "size",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "\"small\" | \"medium\" | \"large\"",
-          "optional": false,
-          "description": "",
-          "line": 18
-        },
-        {
-          "name": "stylingMode",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "\"inside\" | \"outside\"",
-          "optional": false,
-          "description": "",
-          "line": 19
-        },
-        {
-          "name": "swipeEnabled",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 16
-        },
-        {
-          "name": "tabPanelData",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "TabItem[]",
-          "optional": false,
-          "description": "",
-          "line": 26
-        },
-        {
-          "name": "width",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string | number",
-          "optional": false,
-          "description": "",
-          "line": 25
-        }
-      ],
-      "indexSignatures": [],
-      "kind": 171,
-      "methods": [],
-      "extends": []
-    },
-    {
       "name": "MeTabsProps",
-      "id": "interface-MeTabsProps-41c79899769707a1869bc79aa7e5c6e52af01823fccc95e7ce95a5457395805c5907523713484af80c9df0f19f1da2f8143bd888bb1a1601ec8d06c808b1371f",
+      "id": "interface-MeTabsProps-d5985a7c245701412bad37fb8e7358551a795b5c8bf400fa8b6fccb529d9311d3174f872f835795c93badb9b1ac1ea1e33d7a9ccd89866852ca6f04b2845b745",
       "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxTabsModule } from 'devextreme-angular';\nimport { MeTabsDirective } from '../../public-api';\nimport { Tab } from '../../lib/directives/me-tabs/tabs.directive';\n\ninterface MeTabsProps {\n  customClass: string;\n  position: 'top' | 'bottom';\n  size: 'small' | 'medium' | 'large';\n  stylingMode: 'inside' | 'outside';\n  orientation: 'horizontal' | 'vertical';\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\n  showNavButtons: boolean;\n  scrollByContent: boolean;\n  width: string | number;\n  tabsData: Tab[];\n  rtlEnabled: boolean;\n}\n\nconst meta: Meta<MeTabsProps> = {\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n        [rtlEnabled]=\"false\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    rtlEnabled: {\n      control: 'boolean',\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeTabsProps>;\n\nconst defaultTabsData: Tab[] = [\n  { id: 1, text: 'Tab 1', icon: 'user' },\n  { id: 2, text: 'Tab 2', icon: 'email' },\n  { id: 3, text: 'Tab 3', icon: 'chart' },\n];\n\nexport const Default: Story = {\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n};\n\nexport const VerticalOrientation: Story = {\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n};\n\nexport const WithNavButtons: Story = {\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const ScrollByContent: Story = {\n  args: {\n    ...Default.args,\n    scrollByContent: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const DifferentIconPositions: Story = {\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n};\n\nexport const OutsideStylingMode: Story = {\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n};\n\nexport const RightToLeft: Story = {\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n};\n",
+      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxTabsModule } from 'devextreme-angular';\nimport { MeTabsDirective } from '../../public-api';\nimport { Tab } from '../../lib/directives/me-tabs/tabs.directive';\n\ninterface MeTabsProps {\n  customClass: string;\n  position: 'top' | 'bottom';\n  size: 'small' | 'medium' | 'large';\n  stylingMode: 'primary' | 'secondary';\n  orientation: 'horizontal' | 'vertical';\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\n  showNavButtons: boolean;\n  scrollByContent: boolean;\n  width: string | number;\n  tabsData: Tab[];\n}\n\nconst meta: Meta<MeTabsProps> = {\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [customClass]=\"customClass\"\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['primary', 'secondary'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    customClass: {\n      control: 'text',\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeTabsProps>;\n\nconst defaultTabsData: Tab[] = [\n  { id: 1, text: 'Tab 1', icon: 'user' },\n  { id: 2, text: 'Tab 2', icon: 'email' },\n  { id: 3, text: 'Tab 3', icon: 'chart' },\n];\n\nexport const Default: Story = {\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'primary',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n};\n\nexport const VerticalOrientation: Story = {\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n};\n\nexport const WithNavButtons: Story = {\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const ScrollByContent: Story = {\n  args: {\n    ...Default.args,\n    scrollByContent: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const DifferentIconPositions: Story = {\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n};\n\nexport const InsideStylingMode: Story = {\n  args: {\n    ...Default.args,\n    stylingMode: 'secondary',\n  },\n};\n",
       "properties": [
         {
           "name": "customClass",
@@ -257,15 +116,6 @@
           "line": 8
         },
         {
-          "name": "rtlEnabled",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 17
-        },
-        {
           "name": "scrollByContent",
           "deprecated": false,
           "deprecationMessage": "",
@@ -296,7 +146,7 @@
           "name": "stylingMode",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "\"inside\" | \"outside\"",
+          "type": "\"primary\" | \"secondary\"",
           "optional": false,
           "description": "",
           "line": 10
@@ -327,22 +177,13 @@
     },
     {
       "name": "PopoverProps",
-      "id": "interface-PopoverProps-3444dee35fef6e8a5e7d4980e5758a9a79a339ee30c2891b47d3a9956d9ec7823b91d0c7308f17d5e90fda783d04a87f3785aea51894b16dab138ae189b55921",
+      "id": "interface-PopoverProps-abe78979f5ef8126c0cfcbce458f6c2cc6e4f82f4bffe9398e2a33dc18d62091931000b5aad802291b9eda5ed03f87f20d483cdc6e64da7596057b57811f6da8",
       "file": "projects/dx-monitel-components/src/stories/me-popover/me-popover.stories.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxPopoverModule } from 'devextreme-angular/ui/popover';\nimport { MePopoverDirective } from '../../public-api';\n\ninterface PopoverProps {\n  showEvent: string;\n  hideEvent: string;\n  position: string;\n  size: 'small' | 'medium' | 'large';\n  width: number;\n  maxWidth?: number;\n  showTitle: boolean;\n  title: string;\n  shading: boolean;\n  shadingColor: string;\n  content: string;\n  animation: any;\n}\n\nconst meta: Meta<PopoverProps> = {\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n          [animation]=\"animation\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: {\n      control: 'select',\n      options: ['mouseenter', 'click', 'focus'],\n      description: 'Событие, при котором поповер будет показываться.',\n    },\n    hideEvent: {\n      control: 'select',\n      options: ['mouseleave', 'click', 'blur'],\n      description: 'Событие, при котором поповер будет скрываться.',\n    },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция поповера относительно целевого элемента.',\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n      description: 'Размер поповера.',\n    },\n    width: {\n      control: 'number',\n      description: 'Ширина поповера в пикселях.',\n    },\n    maxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина поповера в пикселях.',\n    },\n    showTitle: {\n      control: 'boolean',\n      description: 'Показывать ли заголовок поповера.',\n    },\n    title: {\n      control: 'text',\n      description: 'Текст заголовка поповера.',\n    },\n    shading: {\n      control: 'boolean',\n      description: 'Включить затенение фона при показе поповера.',\n    },\n    shadingColor: {\n      control: 'color',\n      description: 'Цвет затенения фона.',\n    },\n    content: {\n      control: 'text',\n      description: 'Содержимое поповера.',\n    },\n    animation: {\n      control: 'object',\n      description: 'Настройки анимации появления и исчезновения поповера.',\n    },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<PopoverProps>;\n\nexport const Default: Story = {\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n    animation: {\n      show: { type: 'fade', duration: 0 },\n      hide: { type: 'fade', duration: 0 },\n    },\n  },\n};\n\nexport const WithTitle: Story = {\n  args: {\n    ...Default.args,\n    position: 'bottom',\n    showTitle: true,\n    title: 'Заголовок поповера',\n    maxWidth: 400,\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\n  },\n};\n\nexport const WithOverlay: Story = {\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n};\n",
+      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxPopoverModule } from 'devextreme-angular/ui/popover';\nimport { MePopoverDirective } from '../../public-api';\n\ninterface PopoverProps {\n  showEvent: string;\n  hideEvent: string;\n  position: string;\n  size: 'small' | 'medium' | 'large';\n  width: number;\n  maxWidth?: number;\n  showTitle: boolean;\n  title: string;\n  shading: boolean;\n  shadingColor: string;\n  content: string;\n}\n\nconst meta: Meta<PopoverProps> = {\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<PopoverProps>;\n\nexport const Default: Story = {\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n  },\n};\n\nexport const WithTitle: Story = {\n  args: {\n    ...Default.args,\n    position: 'bottom',\n    showTitle: true,\n    title: 'Заголовок поповера',\n    maxWidth: 400,\n    content: 'Это поповер с заголовком и ограничением максимальной ширины.',\n  },\n};\n\nexport const WithOverlay: Story = {\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n};\n",
       "properties": [
-        {
-          "name": "animation",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "any",
-          "optional": false,
-          "description": "",
-          "line": 17
-        },
         {
           "name": "content",
           "deprecated": false,
@@ -441,57 +282,6 @@
           "optional": false,
           "description": "",
           "line": 10
-        }
-      ],
-      "indexSignatures": [],
-      "kind": 171,
-      "methods": [],
-      "extends": []
-    },
-    {
-      "name": "TabItem",
-      "id": "interface-TabItem-3a62341c89a1258dda1952c49d20943691310567509b69abde7c13c7bb871494a2ad9316c69b71c329f0cd106942e9fb71cc1c6fec58708011a4c2624441ab4e",
-      "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-      "deprecated": false,
-      "deprecationMessage": "",
-      "type": "interface",
-      "sourceCode": "import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';\nimport { DxTabPanelModule } from 'devextreme-angular';\nimport { MeTabPanelDirective } from '../../public-api';\n\ninterface TabItem {\n  id: number;\n  title: string;\n  content: string;\n  icon?: string;\n}\n\ninterface MeTabPanelProps {\n  customClass: string;\n  selectedIndex: number;\n  animationEnabled: boolean;\n  swipeEnabled: boolean;\n  position: 'top' | 'bottom';\n  size: 'small' | 'medium' | 'large';\n  stylingMode: 'inside' | 'outside';\n  orientation: 'horizontal' | 'vertical';\n  iconPosition: 'top' | 'start' | 'end' | 'bottom';\n  showNavButtons: boolean;\n  scrollByContent: boolean;\n  rtlEnabled: boolean;\n  width: string | number;\n  tabPanelData: TabItem[];\n}\n\nconst meta: Meta<MeTabPanelProps> = {\n  title: 'Components/TabPanel',\n  component: MeTabPanelDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  render: (args: MeTabPanelProps) => ({\n    props: args,\n    template: `\n      <dx-tab-panel\n        meTabPanel\n        [customClass]=\"customClass\"\n        [selectedIndex]=\"selectedIndex\"\n        [animationEnabled]=\"animationEnabled\"\n        [swipeEnabled]=\"swipeEnabled\"\n        [dataSource]=\"tabPanelData\"\n        [height]=\"300\"\n        [orientation]=\"orientation\"\n        [stylingMode]=\"stylingMode\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [width]=\"width\"\n      >\n      </dx-tab-panel>\n    `,\n  }),\n  argTypes: {\n    customClass: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: { control: 'boolean' },\n    scrollByContent: { control: 'boolean' },\n    rtlEnabled: { control: 'boolean' },\n    width: { control: 'text' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<MeTabPanelProps>;\n\nconst defaultTabPanelData: TabItem[] = [\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\n];\n\nexport const Default: Story = {\n  args: {\n    customClass: '',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    rtlEnabled: false,\n    width: 'auto',\n    tabPanelData: defaultTabPanelData,\n  },\n};\n\nexport const VerticalOrientation: Story = {\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n};\n\nexport const WithNavButtons: Story = {\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabPanelData: [\n      ...defaultTabPanelData,\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\n    ],\n  },\n};\n\nexport const OutsideStylingMode: Story = {\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n};\n\nexport const DifferentIconPositions: Story = {\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n};\n\nexport const RightToLeft: Story = {\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n};\n",
-      "properties": [
-        {
-          "name": "content",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 8
-        },
-        {
-          "name": "icon",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": true,
-          "description": "",
-          "line": 9
-        },
-        {
-          "name": "id",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "optional": false,
-          "description": "",
-          "line": 6
-        },
-        {
-          "name": "title",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "optional": false,
-          "description": "",
-          "line": 7
         }
       ],
       "indexSignatures": [],
@@ -778,6 +568,92 @@
       "extends": []
     },
     {
+      "name": "TabPanelHostComponent",
+      "id": "component-TabPanelHostComponent-22087fd49165f3c4fe531645c7d8a57bf951d0d806c627cc4f861d40b38c2be56dcfabc26dec40276ad43a53051bdeb66bc20827b98a4aa2181dffe67a4f85fa",
+      "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "tab-panel-host",
+      "styleUrls": [],
+      "styles": [],
+      "template": "<dx-tab-panel\n  meTabPanel\n  [height]=\"height\"\n  width=\"400px\"\n  [selectedIndex]=\"selectedIndex\"\n  [animationEnabled]=\"animationEnabled\"\n  [swipeEnabled]=\"swipeEnabled\"\n  [customClass]=\"customClass\"\n  [hoverStateEnabled]=\"true\"\n>\n  <dxi-item title=\"Employee\" icon=\"floppy\">\n    <div class=\"tabpanel-content\">\n      <p>Content for Employee tab</p>\n    </div>\n  </dxi-item>\n  <dxi-item title=\"Notes\" icon=\"comment\">\n    <div class=\"tabpanel-content\">\n      <p>Content for Notes tab</p>\n    </div>\n  </dxi-item>\n  <dxi-item title=\"Role\" icon=\"isnotblank\">\n    <div class=\"tabpanel-content\">\n      <p>Content for Role tab</p>\n    </div>\n  </dxi-item>\n</dx-tab-panel>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "animationEnabled",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": false,
+          "description": "",
+          "line": 40
+        },
+        {
+          "name": "customClass",
+          "defaultValue": "''",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 42
+        },
+        {
+          "name": "height",
+          "defaultValue": "'300px'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 38
+        },
+        {
+          "name": "selectedIndex",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 39
+        },
+        {
+          "name": "swipeEnabled",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": false,
+          "description": "",
+          "line": 41
+        }
+      ],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": false,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { Component } from '@angular/core';\nimport { Meta, moduleMetadata, StoryObj } from '@storybook/angular';\nimport { DxTabPanelModule } from 'devextreme-angular';\nimport { MeTabPanelDirective } from '../../public-api';\n\n@Component({\n  selector: 'tab-panel-host',\n  template: `\n    <dx-tab-panel\n      meTabPanel\n      [height]=\"height\"\n      width=\"400px\"\n      [selectedIndex]=\"selectedIndex\"\n      [animationEnabled]=\"animationEnabled\"\n      [swipeEnabled]=\"swipeEnabled\"\n      [customClass]=\"customClass\"\n      [hoverStateEnabled]=\"true\"\n    >\n      <dxi-item title=\"Employee\" icon=\"floppy\">\n        <div class=\"tabpanel-content\">\n          <p>Content for Employee tab</p>\n        </div>\n      </dxi-item>\n      <dxi-item title=\"Notes\" icon=\"comment\">\n        <div class=\"tabpanel-content\">\n          <p>Content for Notes tab</p>\n        </div>\n      </dxi-item>\n      <dxi-item title=\"Role\" icon=\"isnotblank\">\n        <div class=\"tabpanel-content\">\n          <p>Content for Role tab</p>\n        </div>\n      </dxi-item>\n    </dx-tab-panel>\n  `,\n})\nclass TabPanelHostComponent {\n  height: string = '300px';\n  selectedIndex: number = 0;\n  animationEnabled: boolean = true;\n  swipeEnabled: boolean = true;\n  customClass: string = '';\n}\n\nconst meta: Meta<TabPanelHostComponent> = {\n  title: 'Components/TabPanel(RC)',\n  component: TabPanelHostComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective, TabPanelHostComponent],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  argTypes: {\n    customClass: { control: 'text' },\n    height: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<TabPanelHostComponent>;\n\nexport const Default: Story = {\n  args: {\n    height: '300px',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    customClass: '',\n  },\n};\n\nexport const WithCustomClass: Story = {\n  args: {\n    ...Default.args,\n    customClass: 'custom-class',\n  },\n};\n\nexport const WithoutAnimation: Story = {\n  args: {\n    ...Default.args,\n    animationEnabled: false,\n  },\n};\n\nexport const WithoutSwipe: Story = {\n  args: {\n    ...Default.args,\n    swipeEnabled: false,\n  },\n};\n\nexport const CustomHeight: Story = {\n  args: {\n    ...Default.args,\n    height: '500px',\n  },\n};\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": []
+    },
+    {
       "name": "ToastDemoComponent",
       "id": "component-ToastDemoComponent-732bef9fe213eb58802fe817fbaf78deb0591e87871ac87b9cbeabaa25225211d0ee1841fe01154c84fc620a7e85ce09b6e81ddb72fb448241edf667dbf7f588",
       "file": "projects/dx-monitel-components/src/stories/me-toast/me-toast.stories.ts",
@@ -911,16 +787,6 @@
         "defaultValue": "{\n  render: () => ({\n    template: `\n      <div style=\"display: flex; flex-wrap: wrap;\">\n        ${iconOptions\n          .map(\n            (icon) => `\n          <div style=\"display: inline-block; margin: 10px; text-align: center; width: 100px;\">\n            <me-icon icon=\"${icon}\" size=\"large\" color=\"#000000\"></me-icon>\n            <p style=\"font-size: 12px; word-wrap: break-word;\">${icon}</p>\n          </div>\n        `\n          )\n          .join('')}\n      </div>\n    `,\n  }),\n}"
       },
       {
-        "name": "argsIcon",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "iconStore.getIcon({ icon: 'folder', size: 'size' })"
-      },
-      {
         "name": "AutoResize",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -938,7 +804,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    meTooltip: 'Это базовый тултип',\n    tooltipPosition: 'top',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\">\n        Наведите на меня\n      </button>\n    `,\n  }),\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Это базовый тултип',\n    tooltipPosition: 'top',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        Наведите на меня\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "chipsContainerMeta",
@@ -1001,14 +867,14 @@
         "defaultValue": "{\n  args: {\n    loading: true,\n  },\n  parameters: {\n    docs: {\n      description: {\n        story:\n          'Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами.',\n      },\n    },\n  },\n  decorators: [\n    (Story, context) => {\n      const { loading } = context.args;\n      return {\n        template: `\n          <div>\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\n            ${\n              !loading\n                ? `\n              <div>\n                <h4>Заголовок после загрузки</h4>\n                <p>Этот текст отображается, когда загрузка завершена.</p>\n              </div>\n            `\n                : ''\n            }\n          </div>\n        `,\n        props: {\n          active: context.args.active,\n          avatar: context.args.avatar,\n          loading: context.args.loading,\n          paragraph: context.args.paragraph,\n          title: context.args.title,\n          round: context.args.round,\n        },\n      };\n    },\n  ],\n}"
       },
       {
-        "name": "ContainerTooltip",
+        "name": "CustomAnimation",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
+        "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    meTooltip: 'Этот тултип отображается в определенном контейнере',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <div id=\"tooltipContainer\" style=\"position: relative; height: 100px; border: 1px solid #ccc; padding: 10px;\">\n        <button [meTooltip]=\"meTooltip\"\n                [tooltipPosition]=\"tooltipPosition\">\n          Тултип в контейнере\n        </button>\n      </div>\n    `,\n  }),\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    animationDuration: 1000,\n  },\n}"
       },
       {
         "name": "CustomAnimation",
@@ -1029,6 +895,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  ...Template,\n  args: {\n    selectButtonText: 'Обзор файлов',\n  },\n}"
+      },
+      {
+        "name": "CustomClass",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    customClass: 'my-custom-accordion',\n  },\n}"
       },
       {
         "name": "CustomClass",
@@ -1088,7 +964,17 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'medium',\n    dataSource: [\n      {\n        id: 1,\n        text: 'Заголовок 1',\n        description: 'Описание',\n        icon: 'folder',\n      },\n      {\n        id: 2,\n        text: 'Заголовок 2',\n        description: 'Описание',\n        icon: 'folder',\n      },\n      {\n        id: 3,\n        text: 'Заголовокк 3',\n        description: 'Описание',\n        icon: 'folder',\n      },\n    ],\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-accordion\n        meAccordion\n        [size]=\"size\"\n        [dataSource]=\"dataSource\"\n        [collapsible]=\"true\"\n        itemTitleTemplate=\"customTitle\"\n      >\n        <div *dxTemplate=\"let item of 'customTitle'\">\n          <div class=\"custom-header-container\">\n            <me-icon\n              class=\"custom-header-icon\"\n              [icon]=\"item.icon\"\n              [size]=\"size\"\n              [color]=\"item.iconColor || '#000000'\"\n            ></me-icon>\n            <div>\n              <div class=\"custom-header-title\">{{ item.text }}</div>\n              <div class=\"custom-header-description\">{{ item.description }}</div>\n            </div>\n          </div>\n        </div>\n        <div *dxTemplate=\"let item of 'item'\">\n          <p>Содержимое для {{ item.text }}</p>\n        </div>\n      </dx-accordion>\n    `,\n  }),\n}"
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    dataSource: [\n      {\n        id: 1,\n        text: 'Accordion Item 1',\n        description: 'Description for Item 1',\n        icon: 'folder',\n      },\n      {\n        id: 2,\n        text: 'Accordion Item 2',\n        description: 'Description for Item 2',\n        icon: 'folder',\n      },\n      {\n        id: 3,\n        text: 'Accordion Item 3',\n        description: 'Description for Item 3',\n        icon: 'folder',\n      },\n    ],\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-accordion\n        meAccordion\n        [dataSource]=\"dataSource\"\n        [collapsible]=\"true\"\n        itemTitleTemplate=\"customTitle\"\n      >\n        <div *dxTemplate=\"let item of 'customTitle'\">\n           <div style=\"display: flex; align-items: flex-start;\">\n              <i class=\"dx-icon-{{item.icon}}\" style=\"margin-right: 10px; font-size: 18px; color: #000;\"></i>\n              <div>\n                <div style=\"font-weight: bold; font-size: 16px;\">{{item.text}}</div>\n                <div style=\"font-weight: inherit; color: gray; font-size: 14px;\">{{item.description}}</div>\n              </div>\n            </div>\n        </div>\n        <div *dxTemplate=\"let item of 'item'\">\n          <p>Content for {{item.text}}</p>\n        </div>\n      </dx-accordion>\n    `,\n  }),\n}"
+      },
+      {
+        "name": "CustomHeight",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    height: '500px',\n  },\n}"
       },
       {
         "name": "CustomIcon",
@@ -1141,16 +1027,6 @@
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    position: 'top center',\n    message: 'This toast is positioned at the top center',\n  },\n}"
       },
       {
-        "name": "CustomSizedTooltip",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    meTooltip: 'Этот тултип имеет фиксированные размеры',\n    tooltipPosition: 'bottom',\n    tooltipWidth: 200,\n    tooltipHeight: 100,\n    tooltipMaxWidth: 300,\n    tooltipMaxHeight: 150,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipWidth]=\"tooltipWidth\"\n              [tooltipHeight]=\"tooltipHeight\"\n              [tooltipMaxWidth]=\"tooltipMaxWidth\"\n              [tooltipMaxHeight]=\"tooltipMaxHeight\">\n        Тултип с фиксированными размерами\n      </button>\n    `,\n  }),\n}"
-      },
-      {
         "name": "CustomStyleBadge",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1168,7 +1044,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    meTooltip: 'Стилизованный тултип',\n    tooltipPosition: 'left',\n    tooltipClass: 'custom-tooltip',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipClass]=\"tooltipClass\">\n        Кастомный тултип\n      </button>\n    `,\n  }),\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Стилизованный тултип',\n    tooltipPosition: 'left',\n    tooltipClass: 'custom-tooltip',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\" [tooltipClass]=\"tooltipClass\">\n        Кастомный тултип\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomTemplate",
@@ -1178,7 +1054,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"''\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipTemplateRef]=\"tooltipTemplate\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
+        "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"tooltipTemplate\" [tooltipTemplateRef]=\"tooltipTemplate\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
       },
       {
         "name": "CustomTitleAndParagraph",
@@ -1189,6 +1065,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    title: { width: '40%' },\n    paragraph: { rows: 4, width: ['100%', '90%', '80%', '60%'] },\n  },\n}"
+      },
+      {
+        "name": "CustomWeekNumberRule",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    weekNumberRule: 'fullWeek',\n  },\n}"
       },
       {
         "name": "data",
@@ -1228,7 +1114,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "[]",
-        "defaultValue": "[\n  {\n    icon: argsIcon,\n    text: 'Electronics',\n    items: [\n      {\n        icon: argsIcon,\n        text: 'Computers',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Desktops',\n          },\n          {\n            icon: argsIcon,\n            text: 'Laptops',\n          },\n          {\n            icon: argsIcon,\n            text: 'Tablets',\n          },\n          {\n            icon: argsIcon,\n            text: 'Monitors',\n          },\n          {\n            icon: argsIcon,\n            text: 'Printers',\n          },\n          {\n            icon: argsIcon,\n            text: 'Scanners',\n          },\n          {\n            icon: argsIcon,\n            text: 'Servers',\n          },\n          {\n            icon: argsIcon,\n            text: 'Network Devices',\n          },\n          {\n            icon: argsIcon,\n            text: 'Warranties',\n          },\n          {\n            icon: argsIcon,\n            text: 'Projectors & Screens',\n          },\n          {\n            icon: argsIcon,\n            text: 'Computer Accessories',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Cell Phones',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Home & Office Phones',\n          },\n          {\n            icon: argsIcon,\n            text: 'Smart Phones & PDAs',\n          },\n          {\n            icon: argsIcon,\n            text: 'Senior Cell Phones',\n          },\n          {\n            icon: argsIcon,\n            text: 'Mobile Broadband Devices',\n          },\n          {\n            icon: argsIcon,\n            text: 'Cell Phone Accessories',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Camera & Photo',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Action Cameras',\n          },\n          {\n            icon: argsIcon,\n            text: 'Camcorders',\n          },\n          {\n            icon: argsIcon,\n            text: 'Digital Cameras',\n          },\n          {\n            icon: argsIcon,\n            text: 'Digital Picture Frames',\n          },\n          {\n            icon: argsIcon,\n            text: 'Film Cameras',\n          },\n          {\n            icon: argsIcon,\n            text: 'Professional Video Cameras',\n          },\n          {\n            icon: argsIcon,\n            text: 'Flashes',\n          },\n          {\n            icon: argsIcon,\n            text: 'Lenses',\n          },\n          {\n            icon: argsIcon,\n            text: 'Photo Printers',\n          },\n          {\n            icon: argsIcon,\n            text: 'Film & Slide Scanners',\n          },\n          {\n            icon: argsIcon,\n            text: 'Slide Projectors',\n          },\n          {\n            icon: argsIcon,\n            text: 'Slide Viewers',\n          },\n          {\n            icon: argsIcon,\n            text: 'Tripods & Monopods',\n          },\n          {\n            icon: argsIcon,\n            text: 'Underwater Video & Photography',\n          },\n          {\n            icon: argsIcon,\n            text: 'Camera Accessories',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Audio',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Boomboxes',\n          },\n          {\n            icon: argsIcon,\n            text: 'DVD & CD Player Bags',\n          },\n          {\n            icon: argsIcon,\n            text: 'Hi-Fi & Home Audio Accessories',\n          },\n          {\n            icon: argsIcon,\n            text: 'Media Streaming Devices',\n          },\n          {\n            icon: argsIcon,\n            text: 'MP3 & Digital Media Players',\n          },\n          {\n            icon: argsIcon,\n            text: 'MP3 Player Accessories',\n          },\n          {\n            icon: argsIcon,\n            text: 'Personal Cassette Players',\n          },\n          {\n            icon: argsIcon,\n            text: 'Personal CD Players',\n          },\n          {\n            icon: argsIcon,\n            text: 'Compact Stereos',\n          },\n          {\n            icon: argsIcon,\n            text: 'Speakers',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Home Appliances',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Air Conditioners',\n          },\n          {\n            icon: argsIcon,\n            text: 'Coffee Machines',\n          },\n          {\n            icon: argsIcon,\n            text: 'Fans',\n          },\n          {\n            icon: argsIcon,\n            text: 'Lamps',\n          },\n          {\n            icon: argsIcon,\n            text: 'Microwaves',\n          },\n          {\n            icon: argsIcon,\n            text: 'Refrigerators',\n          },\n          {\n            icon: argsIcon,\n            text: 'Washers & Dryers',\n          },\n          {\n            icon: argsIcon,\n            text: ' Water Heaters',\n          },\n          {\n            icon: argsIcon,\n            text: 'Vacuum',\n          },\n          {\n            icon: argsIcon,\n            text: 'Steaming & Ironing',\n          },\n        ],\n      },\n    ],\n  },\n\n  {\n    icon: argsIcon,\n    text: 'Entertainment',\n    items: [\n      {\n        icon: argsIcon,\n        text: 'Films & Music',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'TV Shows',\n          },\n          {\n            icon: argsIcon,\n            text: 'DVD',\n          },\n          {\n            icon: argsIcon,\n            text: 'Blu-ray',\n          },\n          {\n            icon: argsIcon,\n            text: 'CD',\n          },\n          {\n            icon: argsIcon,\n            text: 'SACD',\n          },\n          {\n            icon: argsIcon,\n            text: 'Vinyl',\n          },\n          {\n            icon: argsIcon,\n            text: 'Cassette',\n          },\n          {\n            icon: argsIcon,\n            text: 'Musical Instruments',\n          },\n          {\n            icon: argsIcon,\n            text: 'DJ Equipment',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Games & Toys',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'PC Games',\n          },\n          {\n            icon: argsIcon,\n            text: 'Virtual Reality',\n          },\n          {\n            icon: argsIcon,\n            text: 'Boxed Games',\n          },\n          {\n            icon: argsIcon,\n            text: 'Download Games',\n          },\n          {\n            icon: argsIcon,\n            text: 'Handheld Game Systems',\n          },\n          {\n            icon: argsIcon,\n            text: 'Legacy Systems',\n          },\n          {\n            icon: argsIcon,\n            text: 'Cards',\n          },\n        ],\n      },\n    ],\n  },\n\n  {\n    icon: argsIcon,\n    text: 'Healthcare & Living',\n    items: [\n      {\n        icon: argsIcon,\n        text: 'Sports & Outdoors',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Camping',\n          },\n          {\n            icon: argsIcon,\n            text: 'Fitness',\n          },\n          {\n            icon: argsIcon,\n            text: 'Football',\n          },\n          {\n            icon: argsIcon,\n            text: 'Cycling',\n          },\n          {\n            icon: argsIcon,\n            text: 'Running',\n          },\n          {\n            icon: argsIcon,\n            text: 'Sport Electronics',\n          },\n          {\n            icon: argsIcon,\n            text: 'Sport Apparel',\n          },\n          {\n            icon: argsIcon,\n            text: 'Trainers & Tennis Shoes',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Beauty',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Bath & Shower',\n          },\n          {\n            icon: argsIcon,\n            text: 'Skin Care',\n          },\n          {\n            icon: argsIcon,\n            text: 'Hair Care',\n          },\n          {\n            icon: argsIcon,\n            text: 'Nail Care',\n          },\n          {\n            icon: argsIcon,\n            text: 'Make-up',\n          },\n          {\n            icon: argsIcon,\n            text: 'Fragrance',\n          },\n          {\n            icon: argsIcon,\n            text: 'Salon & SPA Equipment',\n          },\n          {\n            icon: argsIcon,\n            text: 'Tools & Accessories',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Fashion',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Clothing',\n          },\n          {\n            icon: argsIcon,\n            text: 'Jewellery',\n          },\n          {\n            icon: argsIcon,\n            text: 'Shoes',\n          },\n          {\n            icon: argsIcon,\n            text: 'Handbags & Shoulder Bags',\n          },\n          {\n            icon: argsIcon,\n            text: 'Watches',\n          },\n          {\n            icon: argsIcon,\n            text: 'Accessories',\n          },\n        ],\n      },\n    ],\n  },\n]"
+        "defaultValue": "[\n  {\n    text: 'Video Players',\n    icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n  },\n  {\n    text: 'Televisions',\n    icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n  },\n  {\n    text: 'Monitors',\n    icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n    items: [\n      {\n        text: 'DesktopLCD 19',\n      },\n      {\n        text: 'DesktopLCD 21',\n      },\n      {\n        text: 'DesktopLED 21',\n      },\n    ],\n  },\n]"
       },
       {
         "name": "data",
@@ -1288,7 +1174,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    dataSource: [\n      {\n        title: 'Заголовок 1',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n      {\n        title: 'Заголовок 2',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n      {\n        title: 'Заголовок 3',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n    ],\n  },\n}"
+        "defaultValue": "{\n  args: {\n    dataSource: [\n      { title: 'Accordion Item 1', content: 'Content for Accordion Item 1' },\n      { title: 'Accordion Item 2', content: 'Content for Accordion Item 2' },\n      { title: 'Accordion Item 3', content: 'Content for Accordion Item 3' },\n    ],\n  },\n}"
       },
       {
         "name": "Default",
@@ -1314,21 +1200,21 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n\n    // isSelected: false,\n    stylingMode: 'contained',\n\n    leftIcon: '',\n  },\n}"
-      },
-      {
-        "name": "Default",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/' },\n      { text: 'Products', url: '/products' },\n      { text: 'Laptops', url: '/products/laptops' },\n    ],\n    truncateFrom: 'right',\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n\n    // isSelected: false,\n    stylingMode: 'contained',\n\n    leftIcon: '',\n  },\n}"
       },
       {
         "name": "Default",
@@ -1468,7 +1354,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{}"
+        "defaultValue": "{\n  args: {\n    dataSource: data,\n    size: 'large',\n    orientation: 'horizontal',\n  },\n}"
       },
       {
         "name": "Default",
@@ -1488,7 +1374,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n    animation: {\n      show: { type: 'fade', duration: 0 },\n      hide: { type: 'fade', duration: 0 },\n    },\n  },\n}"
+        "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n  },\n}"
       },
       {
         "name": "Default",
@@ -1578,7 +1464,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    customClass: '',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    rtlEnabled: false,\n    width: 'auto',\n    tabPanelData: defaultTabPanelData,\n  },\n}"
+        "defaultValue": "{\n  args: {\n    height: '300px',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    customClass: '',\n  },\n}"
       },
       {
         "name": "Default",
@@ -1588,7 +1474,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n}"
+        "defaultValue": "{\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'primary',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n}"
       },
       {
         "name": "Default",
@@ -1638,17 +1524,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{}"
-      },
-      {
-        "name": "defaultTabPanelData",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "TabItem[]",
-        "defaultValue": "[\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\n]"
+        "defaultValue": "{\n  args: {\n    dataSource: data,\n    size: 'large',\n  },\n}"
       },
       {
         "name": "defaultTabsData",
@@ -1659,16 +1535,6 @@
         "deprecationMessage": "",
         "type": "Tab[]",
         "defaultValue": "[\n  { id: 1, text: 'Tab 1', icon: 'user' },\n  { id: 2, text: 'Tab 2', icon: 'email' },\n  { id: 3, text: 'Tab 3', icon: 'chart' },\n]"
-      },
-      {
-        "name": "DifferentIconPositions",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n}"
       },
       {
         "name": "DifferentIconPositions",
@@ -1859,6 +1725,16 @@
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "new MeIconStoreService()"
+      },
+      {
+        "name": "InsideStylingMode",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'secondary',\n  },\n}"
       },
       {
         "name": "items",
@@ -2168,7 +2044,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Meta<PopoverProps>",
-        "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n          [animation]=\"animation\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: {\n      control: 'select',\n      options: ['mouseenter', 'click', 'focus'],\n      description: 'Событие, при котором поповер будет показываться.',\n    },\n    hideEvent: {\n      control: 'select',\n      options: ['mouseleave', 'click', 'blur'],\n      description: 'Событие, при котором поповер будет скрываться.',\n    },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция поповера относительно целевого элемента.',\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n      description: 'Размер поповера.',\n    },\n    width: {\n      control: 'number',\n      description: 'Ширина поповера в пикселях.',\n    },\n    maxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина поповера в пикселях.',\n    },\n    showTitle: {\n      control: 'boolean',\n      description: 'Показывать ли заголовок поповера.',\n    },\n    title: {\n      control: 'text',\n      description: 'Текст заголовка поповера.',\n    },\n    shading: {\n      control: 'boolean',\n      description: 'Включить затенение фона при показе поповера.',\n    },\n    shadingColor: {\n      control: 'color',\n      description: 'Цвет затенения фона.',\n    },\n    content: {\n      control: 'text',\n      description: 'Содержимое поповера.',\n    },\n    animation: {\n      control: 'object',\n      description: 'Настройки анимации появления и исчезновения поповера.',\n    },\n  },\n}"
+        "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n  },\n}"
       },
       {
         "name": "meta",
@@ -2187,8 +2063,8 @@
         "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Meta<MeTabPanelProps>",
-        "defaultValue": "{\n  title: 'Components/TabPanel',\n  component: MeTabPanelDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  render: (args: MeTabPanelProps) => ({\n    props: args,\n    template: `\n      <dx-tab-panel\n        meTabPanel\n        [customClass]=\"customClass\"\n        [selectedIndex]=\"selectedIndex\"\n        [animationEnabled]=\"animationEnabled\"\n        [swipeEnabled]=\"swipeEnabled\"\n        [dataSource]=\"tabPanelData\"\n        [height]=\"300\"\n        [orientation]=\"orientation\"\n        [stylingMode]=\"stylingMode\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [width]=\"width\"\n      >\n      </dx-tab-panel>\n    `,\n  }),\n  argTypes: {\n    customClass: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: { control: 'boolean' },\n    scrollByContent: { control: 'boolean' },\n    rtlEnabled: { control: 'boolean' },\n    width: { control: 'text' },\n  },\n}"
+        "type": "Meta<TabPanelHostComponent>",
+        "defaultValue": "{\n  title: 'Components/TabPanel(RC)',\n  component: TabPanelHostComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective, TabPanelHostComponent],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  argTypes: {\n    customClass: { control: 'text' },\n    height: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n  },\n}"
       },
       {
         "name": "meta",
@@ -2198,7 +2074,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Meta<MeTabsProps>",
-        "defaultValue": "{\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n        [rtlEnabled]=\"false\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    rtlEnabled: {\n      control: 'boolean',\n    },\n  },\n}"
+        "defaultValue": "{\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [customClass]=\"customClass\"\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['primary', 'secondary'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    customClass: {\n      control: 'text',\n    },\n  },\n}"
       },
       {
         "name": "meta",
@@ -2218,7 +2094,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Meta<MeTooltipDirective>",
-        "defaultValue": "{\n  title: 'Components/Tooltip(RC)',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n      imports: [DxTooltipModule, CommonModule],\n    }),\n  ],\n  argTypes: {\n    meTooltip: {\n      control: 'text',\n      description: 'Текст или HTML-контент тултипа',\n    },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция тултипа относительно целевого элемента',\n    },\n    tooltipClass: {\n      control: 'text',\n      description: 'Пользовательский CSS-класс для тултипа',\n    },\n    tooltipWidth: { control: 'number', description: 'Ширина тултипа' },\n    tooltipMaxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина тултипа',\n    },\n    tooltipHeight: { control: 'number', description: 'Высота тултипа' },\n    tooltipMaxHeight: {\n      control: 'number',\n      description: 'Максимальная высота тултипа',\n    },\n    tooltipShowAnimation: {\n      control: 'object',\n      description: 'Настройки анимации появления тултипа',\n    },\n    tooltipHideAnimation: {\n      control: 'object',\n      description: 'Настройки анимации скрытия тултипа',\n    },\n  },\n}"
+        "defaultValue": "{\n  title: 'Components/Tooltip',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n    }),\n  ],\n  argTypes: {\n    meTooltip: { control: 'text' },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    tooltipClass: { control: 'text' },\n    tooltipWidth: { control: 'text' },\n    tooltipMaxWidth: { control: 'text' },\n    tooltipShowAnimation: { control: 'object' },\n    tooltipHideAnimation: { control: 'object' },\n  },\n}"
       },
       {
         "name": "MeTagBox",
@@ -2271,26 +2147,6 @@
         "defaultValue": "{\n  ...Template,\n  args: {\n    ...Default.args,\n    showFooter: false,\n  },\n}"
       },
       {
-        "name": "OutsideStylingMode",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n}"
-      },
-      {
-        "name": "OutsideStylingMode",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n}"
-      },
-      {
         "name": "OverflowValue",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2318,7 +2174,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    meTooltip: 'Позиционированный тултип',\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\">\n        Тултип {{ tooltipPosition }}\n      </button>\n    `,\n  }),\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Позиционированный тултип',\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип {{ tooltipPosition }}\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "preview",
@@ -2359,26 +2215,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    readOnly: true,\n    autoResizeEnabled: true,\n  },\n}"
-      },
-      {
-        "name": "RightToLeft",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
-      },
-      {
-        "name": "RightToLeft",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
       },
       {
         "name": "Rounded",
@@ -2641,36 +2477,6 @@
         "defaultValue": "{}"
       },
       {
-        "name": "TreeListButtons",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "StoryObj",
-        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n<dx-tree-list\nmeTreeList\n[dataSource]=\"[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]\"\nkeyExpr=\"ID\"\n>\n    <dxo-editing\n      mode=\"row\"\n      [allowUpdating]=\"true\"\n      [allowDeleting]=\"true\"\n      [allowAdding]=\"true\"\n    >\n    </dxo-editing>\n\t<dxi-column dataField=\"Full_Name\" caption=\"Name\"></dxi-column>\n\t<dxi-column dataField=\"Title\" caption=\"Position\"></dxi-column>\n\t<dxi-column type=\"buttons\">\n\t\t<dxi-button name=\"edit\" icon=\"edit\"></dxi-button>\n\t\t<dxi-button name=\"save\" icon=\"save\"></dxi-button>\n\t\t<dxi-button name=\"cancel\" icon=\"undo\"></dxi-button>\n</dxi-column>\n</dx-tree-list>`,\n  }),\n}"
-      },
-      {
-        "name": "TreeListColumns",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "StoryObj",
-        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `<dx-tree-list\n  meTreeList\n  [dataSource]=\"[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]\"\n\tkeyExpr=\"ID\"\n>\n<dxi-column dataField=\"Full_Name\" caption=\"Name\"></dxi-column>\n<dxi-column dataField=\"Title\" caption=\"Position\"></dxi-column>\n</dx-tree-list>`,\n  }),\n}"
-      },
-      {
-        "name": "TreeListValidation",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "StoryObj",
-        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n<dx-tree-list\nmeTreeList\n[dataSource]=\"[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]\"\nkeyExpr=\"ID\"\n>\n    <dxo-editing\n      mode=\"row\"\n      [allowUpdating]=\"true\"\n      [allowDeleting]=\"true\"\n      [allowAdding]=\"true\"\n    >\n    </dxo-editing>\n\t<dxi-column dataField=\"Full_Name\" caption=\"Name\"><dxi-validation-rule type=\"required\"></dxi-validation-rule></dxi-column>\n\t<dxi-column dataField=\"Title\" caption=\"Position\"><dxi-validation-rule type=\"required\"></dxi-validation-rule></dxi-column>\n\t<dxi-column type=\"buttons\">\n\t\t<dxi-button name=\"edit\" icon=\"edit\"></dxi-button>\n\t\t<dxi-button name=\"save\" icon=\"save\"></dxi-button>\n\t\t<dxi-button name=\"cancel\" icon=\"undo\"></dxi-button>\n</dxi-column>\n</dx-tree-list>`,\n  }),\n}"
-      },
-      {
         "name": "TruncateFromLeft",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2679,16 +2485,6 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/' },\n      { text: 'Products', url: '/products' },\n      { text: 'Electronics', url: '/products/electronics' },\n      { text: 'Computers', url: '/products/electronics/computers' },\n      { text: 'Laptops', url: '/products/electronics/computers/laptops' },\n    ],\n    truncateFrom: 'left',\n  },\n}"
-      },
-      {
-        "name": "VerticalOrientation",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n}"
       },
       {
         "name": "VerticalOrientation",
@@ -2718,7 +2514,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n      duration: 300,\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n      duration: 200,\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
+        "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
       },
       {
         "name": "WithAvatar",
@@ -2731,16 +2527,6 @@
         "defaultValue": "{\n  args: {\n    avatar: { size: 'large', shape: 'circle' },\n  },\n}"
       },
       {
-        "name": "WithCounter",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "StoryObj",
-        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `<dx-data-grid\n  meDataGrid\n  [dataSource]=\"dataSource\"\n>\n  <dxo-paging [(pageSize)]=\"pageSize\" [showPageSizeSelector]></dxo-paging>\n  <dxi-column dataField=\"CompanyName\"></dxi-column>\n  <dxi-column dataField=\"Fax\"></dxi-column>\n  <dxi-column dataField=\"Phone\"></dxi-column>\n  <dxi-column\n  dataField=\"ID\"\n  cellTemplate=\"cellTemplate\"></dxi-column>\n  <div *dxTemplate=\"let cell of 'cellTemplate'\">\n    <me-badge [value]=\"[cell.data.ID]\"></me-badge>\n  </div>\n</dx-data-grid>`,\n  }),\n}"
-      },
-      {
         "name": "WithCustomAvatarAndTitle",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2749,6 +2535,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    avatar: { size: 'small', shape: 'square' },\n    title: { width: '30%' },\n    paragraph: { rows: 2, width: ['70%', '50%'] },\n  },\n}"
+      },
+      {
+        "name": "WithCustomClass",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    customClass: 'custom-class',\n  },\n}"
       },
       {
         "name": "WithCustomImage",
@@ -2864,21 +2660,21 @@
         "name": "WithNavButtons",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabPanelData: [\n      ...defaultTabPanelData,\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\n    ],\n  },\n}"
-      },
-      {
-        "name": "WithNavButtons",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabsData: [\n      { id: 1, text: 'Tab 1', icon: 'user' },\n      { id: 2, text: 'Tab 2', icon: 'email' },\n      { id: 3, text: 'Tab 3', icon: 'chart' },\n      { id: 4, text: 'Tab 4', icon: 'home' },\n      { id: 5, text: 'Tab 5', icon: 'event' },\n    ],\n  },\n}"
+      },
+      {
+        "name": "WithoutAnimation",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    animationEnabled: false,\n  },\n}"
       },
       {
         "name": "WithoutColon",
@@ -2889,6 +2685,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    showColonAfterLabel: false,\n  },\n}"
+      },
+      {
+        "name": "WithoutSwipe",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    swipeEnabled: false,\n  },\n}"
       },
       {
         "name": "WithoutWeekNumbers",
@@ -3030,8 +2836,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+        "rawtype": "StoryObj<MeBreadcrumbsComponent>",
+        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -3041,8 +2847,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeBreadcrumbsComponent>",
-        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+        "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
+        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -3316,7 +3122,7 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeTabPanelProps>",
+        "rawtype": "StoryObj<TabPanelHostComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3587,48 +3393,6 @@
           "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <me-icon\n        [icon]=\"icon\"\n        [size]=\"size\"\n        [color]=\"color\">\n      </me-icon>\n    `,\n  }),\n}"
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts": [
-        {
-          "name": "argsIcon",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "iconStore.getIcon({ icon: 'folder', size: 'size' })"
-        },
-        {
-          "name": "data",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "[]",
-          "defaultValue": "[\n  {\n    icon: argsIcon,\n    text: 'Electronics',\n    items: [\n      {\n        icon: argsIcon,\n        text: 'Computers',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Desktops',\n          },\n          {\n            icon: argsIcon,\n            text: 'Laptops',\n          },\n          {\n            icon: argsIcon,\n            text: 'Tablets',\n          },\n          {\n            icon: argsIcon,\n            text: 'Monitors',\n          },\n          {\n            icon: argsIcon,\n            text: 'Printers',\n          },\n          {\n            icon: argsIcon,\n            text: 'Scanners',\n          },\n          {\n            icon: argsIcon,\n            text: 'Servers',\n          },\n          {\n            icon: argsIcon,\n            text: 'Network Devices',\n          },\n          {\n            icon: argsIcon,\n            text: 'Warranties',\n          },\n          {\n            icon: argsIcon,\n            text: 'Projectors & Screens',\n          },\n          {\n            icon: argsIcon,\n            text: 'Computer Accessories',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Cell Phones',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Home & Office Phones',\n          },\n          {\n            icon: argsIcon,\n            text: 'Smart Phones & PDAs',\n          },\n          {\n            icon: argsIcon,\n            text: 'Senior Cell Phones',\n          },\n          {\n            icon: argsIcon,\n            text: 'Mobile Broadband Devices',\n          },\n          {\n            icon: argsIcon,\n            text: 'Cell Phone Accessories',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Camera & Photo',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Action Cameras',\n          },\n          {\n            icon: argsIcon,\n            text: 'Camcorders',\n          },\n          {\n            icon: argsIcon,\n            text: 'Digital Cameras',\n          },\n          {\n            icon: argsIcon,\n            text: 'Digital Picture Frames',\n          },\n          {\n            icon: argsIcon,\n            text: 'Film Cameras',\n          },\n          {\n            icon: argsIcon,\n            text: 'Professional Video Cameras',\n          },\n          {\n            icon: argsIcon,\n            text: 'Flashes',\n          },\n          {\n            icon: argsIcon,\n            text: 'Lenses',\n          },\n          {\n            icon: argsIcon,\n            text: 'Photo Printers',\n          },\n          {\n            icon: argsIcon,\n            text: 'Film & Slide Scanners',\n          },\n          {\n            icon: argsIcon,\n            text: 'Slide Projectors',\n          },\n          {\n            icon: argsIcon,\n            text: 'Slide Viewers',\n          },\n          {\n            icon: argsIcon,\n            text: 'Tripods & Monopods',\n          },\n          {\n            icon: argsIcon,\n            text: 'Underwater Video & Photography',\n          },\n          {\n            icon: argsIcon,\n            text: 'Camera Accessories',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Audio',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Boomboxes',\n          },\n          {\n            icon: argsIcon,\n            text: 'DVD & CD Player Bags',\n          },\n          {\n            icon: argsIcon,\n            text: 'Hi-Fi & Home Audio Accessories',\n          },\n          {\n            icon: argsIcon,\n            text: 'Media Streaming Devices',\n          },\n          {\n            icon: argsIcon,\n            text: 'MP3 & Digital Media Players',\n          },\n          {\n            icon: argsIcon,\n            text: 'MP3 Player Accessories',\n          },\n          {\n            icon: argsIcon,\n            text: 'Personal Cassette Players',\n          },\n          {\n            icon: argsIcon,\n            text: 'Personal CD Players',\n          },\n          {\n            icon: argsIcon,\n            text: 'Compact Stereos',\n          },\n          {\n            icon: argsIcon,\n            text: 'Speakers',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Home Appliances',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Air Conditioners',\n          },\n          {\n            icon: argsIcon,\n            text: 'Coffee Machines',\n          },\n          {\n            icon: argsIcon,\n            text: 'Fans',\n          },\n          {\n            icon: argsIcon,\n            text: 'Lamps',\n          },\n          {\n            icon: argsIcon,\n            text: 'Microwaves',\n          },\n          {\n            icon: argsIcon,\n            text: 'Refrigerators',\n          },\n          {\n            icon: argsIcon,\n            text: 'Washers & Dryers',\n          },\n          {\n            icon: argsIcon,\n            text: ' Water Heaters',\n          },\n          {\n            icon: argsIcon,\n            text: 'Vacuum',\n          },\n          {\n            icon: argsIcon,\n            text: 'Steaming & Ironing',\n          },\n        ],\n      },\n    ],\n  },\n\n  {\n    icon: argsIcon,\n    text: 'Entertainment',\n    items: [\n      {\n        icon: argsIcon,\n        text: 'Films & Music',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'TV Shows',\n          },\n          {\n            icon: argsIcon,\n            text: 'DVD',\n          },\n          {\n            icon: argsIcon,\n            text: 'Blu-ray',\n          },\n          {\n            icon: argsIcon,\n            text: 'CD',\n          },\n          {\n            icon: argsIcon,\n            text: 'SACD',\n          },\n          {\n            icon: argsIcon,\n            text: 'Vinyl',\n          },\n          {\n            icon: argsIcon,\n            text: 'Cassette',\n          },\n          {\n            icon: argsIcon,\n            text: 'Musical Instruments',\n          },\n          {\n            icon: argsIcon,\n            text: 'DJ Equipment',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Games & Toys',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'PC Games',\n          },\n          {\n            icon: argsIcon,\n            text: 'Virtual Reality',\n          },\n          {\n            icon: argsIcon,\n            text: 'Boxed Games',\n          },\n          {\n            icon: argsIcon,\n            text: 'Download Games',\n          },\n          {\n            icon: argsIcon,\n            text: 'Handheld Game Systems',\n          },\n          {\n            icon: argsIcon,\n            text: 'Legacy Systems',\n          },\n          {\n            icon: argsIcon,\n            text: 'Cards',\n          },\n        ],\n      },\n    ],\n  },\n\n  {\n    icon: argsIcon,\n    text: 'Healthcare & Living',\n    items: [\n      {\n        icon: argsIcon,\n        text: 'Sports & Outdoors',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Camping',\n          },\n          {\n            icon: argsIcon,\n            text: 'Fitness',\n          },\n          {\n            icon: argsIcon,\n            text: 'Football',\n          },\n          {\n            icon: argsIcon,\n            text: 'Cycling',\n          },\n          {\n            icon: argsIcon,\n            text: 'Running',\n          },\n          {\n            icon: argsIcon,\n            text: 'Sport Electronics',\n          },\n          {\n            icon: argsIcon,\n            text: 'Sport Apparel',\n          },\n          {\n            icon: argsIcon,\n            text: 'Trainers & Tennis Shoes',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Beauty',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Bath & Shower',\n          },\n          {\n            icon: argsIcon,\n            text: 'Skin Care',\n          },\n          {\n            icon: argsIcon,\n            text: 'Hair Care',\n          },\n          {\n            icon: argsIcon,\n            text: 'Nail Care',\n          },\n          {\n            icon: argsIcon,\n            text: 'Make-up',\n          },\n          {\n            icon: argsIcon,\n            text: 'Fragrance',\n          },\n          {\n            icon: argsIcon,\n            text: 'Salon & SPA Equipment',\n          },\n          {\n            icon: argsIcon,\n            text: 'Tools & Accessories',\n          },\n        ],\n      },\n      {\n        icon: argsIcon,\n        text: 'Fashion',\n        items: [\n          {\n            icon: argsIcon,\n            text: 'Clothing',\n          },\n          {\n            icon: argsIcon,\n            text: 'Jewellery',\n          },\n          {\n            icon: argsIcon,\n            text: 'Shoes',\n          },\n          {\n            icon: argsIcon,\n            text: 'Handbags & Shoulder Bags',\n          },\n          {\n            icon: argsIcon,\n            text: 'Watches',\n          },\n          {\n            icon: argsIcon,\n            text: 'Accessories',\n          },\n        ],\n      },\n    ],\n  },\n]"
-        },
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{}"
-        },
-        {
-          "name": "iconStore",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "new MeIconStoreService()"
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-text-area/me-text-area.stories.ts": [
         {
           "name": "AutoResize",
@@ -3700,27 +3464,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    meTooltip: 'Это базовый тултип',\n    tooltipPosition: 'top',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\">\n        Наведите на меня\n      </button>\n    `,\n  }),\n}"
-        },
-        {
-          "name": "ContainerTooltip",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    meTooltip: 'Этот тултип отображается в определенном контейнере',\n    tooltipPosition: 'bottom',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <div id=\"tooltipContainer\" style=\"position: relative; height: 100px; border: 1px solid #ccc; padding: 10px;\">\n        <button [meTooltip]=\"meTooltip\"\n                [tooltipPosition]=\"tooltipPosition\">\n          Тултип в контейнере\n        </button>\n      </div>\n    `,\n  }),\n}"
-        },
-        {
-          "name": "CustomSizedTooltip",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    meTooltip: 'Этот тултип имеет фиксированные размеры',\n    tooltipPosition: 'bottom',\n    tooltipWidth: 200,\n    tooltipHeight: 100,\n    tooltipMaxWidth: 300,\n    tooltipMaxHeight: 150,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipWidth]=\"tooltipWidth\"\n              [tooltipHeight]=\"tooltipHeight\"\n              [tooltipMaxWidth]=\"tooltipMaxWidth\"\n              [tooltipMaxHeight]=\"tooltipMaxHeight\">\n        Тултип с фиксированными размерами\n      </button>\n    `,\n  }),\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Это базовый тултип',\n    tooltipPosition: 'top',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        Наведите на меня\n      </button>\n    `,\n  }),\n}"
         },
         {
           "name": "CustomStyles",
@@ -3730,7 +3474,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    meTooltip: 'Стилизованный тултип',\n    tooltipPosition: 'left',\n    tooltipClass: 'custom-tooltip',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipClass]=\"tooltipClass\">\n        Кастомный тултип\n      </button>\n    `,\n  }),\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Стилизованный тултип',\n    tooltipPosition: 'left',\n    tooltipClass: 'custom-tooltip',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\" [tooltipClass]=\"tooltipClass\">\n        Кастомный тултип\n      </button>\n    `,\n  }),\n}"
         },
         {
           "name": "CustomTemplate",
@@ -3740,7 +3484,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"''\"\n              [tooltipPosition]=\"tooltipPosition\"\n              [tooltipTemplateRef]=\"tooltipTemplate\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
+          "defaultValue": "{\n  args: {\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"tooltipTemplate\" [tooltipTemplateRef]=\"tooltipTemplate\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип с кастомным шаблоном\n      </button>\n\n      <ng-template #tooltipTemplate>\n        <div>\n          <h4>Заголовок тултипа</h4>\n          <p>Это пример тултипа с кастомной разметкой.</p>\n          <ul>\n            <li>Пункт 1</li>\n            <li>Пункт 2</li>\n          </ul>\n        </div>\n      </ng-template>\n    `,\n  }),\n}"
         },
         {
           "name": "HTMLContent",
@@ -3760,7 +3504,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Meta<MeTooltipDirective>",
-          "defaultValue": "{\n  title: 'Components/Tooltip(RC)',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n      imports: [DxTooltipModule, CommonModule],\n    }),\n  ],\n  argTypes: {\n    meTooltip: {\n      control: 'text',\n      description: 'Текст или HTML-контент тултипа',\n    },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция тултипа относительно целевого элемента',\n    },\n    tooltipClass: {\n      control: 'text',\n      description: 'Пользовательский CSS-класс для тултипа',\n    },\n    tooltipWidth: { control: 'number', description: 'Ширина тултипа' },\n    tooltipMaxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина тултипа',\n    },\n    tooltipHeight: { control: 'number', description: 'Высота тултипа' },\n    tooltipMaxHeight: {\n      control: 'number',\n      description: 'Максимальная высота тултипа',\n    },\n    tooltipShowAnimation: {\n      control: 'object',\n      description: 'Настройки анимации появления тултипа',\n    },\n    tooltipHideAnimation: {\n      control: 'object',\n      description: 'Настройки анимации скрытия тултипа',\n    },\n  },\n}"
+          "defaultValue": "{\n  title: 'Components/Tooltip',\n  component: MeTooltipDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTooltipDirective],\n    }),\n  ],\n  argTypes: {\n    meTooltip: { control: 'text' },\n    tooltipPosition: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    tooltipClass: { control: 'text' },\n    tooltipWidth: { control: 'text' },\n    tooltipMaxWidth: { control: 'text' },\n    tooltipShowAnimation: { control: 'object' },\n    tooltipHideAnimation: { control: 'object' },\n  },\n}"
         },
         {
           "name": "Positioning",
@@ -3770,7 +3514,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    meTooltip: 'Позиционированный тултип',\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\"\n              [tooltipPosition]=\"tooltipPosition\">\n        Тултип {{ tooltipPosition }}\n      </button>\n    `,\n  }),\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Позиционированный тултип',\n    tooltipPosition: 'right',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\n        Тултип {{ tooltipPosition }}\n      </button>\n    `,\n  }),\n}"
         },
         {
           "name": "WithAnimation",
@@ -3780,7 +3524,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n      duration: 300,\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n      duration: 200,\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
+          "defaultValue": "{\n  args: {\n    meTooltip: 'Анимированный тултип',\n    tooltipPosition: 'top',\n    tooltipShowAnimation: {\n      type: 'pop',\n      from: { scale: 0.5, opacity: 0 },\n      to: { scale: 1, opacity: 1 },\n    },\n    tooltipHideAnimation: {\n      type: 'fade',\n      from: { opacity: 1 },\n      to: { opacity: 0 },\n    },\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <button\n        [meTooltip]=\"meTooltip\"\n        [tooltipPosition]=\"tooltipPosition\"\n        [tooltipShowAnimation]=\"tooltipShowAnimation\"\n        [tooltipHideAnimation]=\"tooltipHideAnimation\"\n      >\n        Анимированный тултип\n      </button>\n    `,\n  }),\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-chips/me-chips.stories.ts": [
@@ -3897,6 +3641,26 @@
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    collapsible: true,\n  },\n}"
         },
         {
+          "name": "CustomAnimation",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    animationDuration: 1000,\n  },\n}"
+        },
+        {
+          "name": "CustomClass",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    customClass: 'my-custom-accordion',\n  },\n}"
+        },
+        {
           "name": "CustomHeader",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -3904,7 +3668,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    size: 'medium',\n    dataSource: [\n      {\n        id: 1,\n        text: 'Заголовок 1',\n        description: 'Описание',\n        icon: 'folder',\n      },\n      {\n        id: 2,\n        text: 'Заголовок 2',\n        description: 'Описание',\n        icon: 'folder',\n      },\n      {\n        id: 3,\n        text: 'Заголовокк 3',\n        description: 'Описание',\n        icon: 'folder',\n      },\n    ],\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-accordion\n        meAccordion\n        [size]=\"size\"\n        [dataSource]=\"dataSource\"\n        [collapsible]=\"true\"\n        itemTitleTemplate=\"customTitle\"\n      >\n        <div *dxTemplate=\"let item of 'customTitle'\">\n          <div class=\"custom-header-container\">\n            <me-icon\n              class=\"custom-header-icon\"\n              [icon]=\"item.icon\"\n              [size]=\"size\"\n              [color]=\"item.iconColor || '#000000'\"\n            ></me-icon>\n            <div>\n              <div class=\"custom-header-title\">{{ item.text }}</div>\n              <div class=\"custom-header-description\">{{ item.description }}</div>\n            </div>\n          </div>\n        </div>\n        <div *dxTemplate=\"let item of 'item'\">\n          <p>Содержимое для {{ item.text }}</p>\n        </div>\n      </dx-accordion>\n    `,\n  }),\n}"
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    dataSource: [\n      {\n        id: 1,\n        text: 'Accordion Item 1',\n        description: 'Description for Item 1',\n        icon: 'folder',\n      },\n      {\n        id: 2,\n        text: 'Accordion Item 2',\n        description: 'Description for Item 2',\n        icon: 'folder',\n      },\n      {\n        id: 3,\n        text: 'Accordion Item 3',\n        description: 'Description for Item 3',\n        icon: 'folder',\n      },\n    ],\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-accordion\n        meAccordion\n        [dataSource]=\"dataSource\"\n        [collapsible]=\"true\"\n        itemTitleTemplate=\"customTitle\"\n      >\n        <div *dxTemplate=\"let item of 'customTitle'\">\n           <div style=\"display: flex; align-items: flex-start;\">\n              <i class=\"dx-icon-{{item.icon}}\" style=\"margin-right: 10px; font-size: 18px; color: #000;\"></i>\n              <div>\n                <div style=\"font-weight: bold; font-size: 16px;\">{{item.text}}</div>\n                <div style=\"font-weight: inherit; color: gray; font-size: 14px;\">{{item.description}}</div>\n              </div>\n            </div>\n        </div>\n        <div *dxTemplate=\"let item of 'item'\">\n          <p>Content for {{item.text}}</p>\n        </div>\n      </dx-accordion>\n    `,\n  }),\n}"
         },
         {
           "name": "Default",
@@ -3914,7 +3678,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    dataSource: [\n      {\n        title: 'Заголовок 1',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n      {\n        title: 'Заголовок 2',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n      {\n        title: 'Заголовок 3',\n        content:\n          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',\n        icon: 'folder',\n      },\n    ],\n  },\n}"
+          "defaultValue": "{\n  args: {\n    dataSource: [\n      { title: 'Accordion Item 1', content: 'Content for Accordion Item 1' },\n      { title: 'Accordion Item 2', content: 'Content for Accordion Item 2' },\n      { title: 'Accordion Item 3', content: 'Content for Accordion Item 3' },\n    ],\n  },\n}"
         },
         {
           "name": "Large",
@@ -4165,6 +3929,16 @@
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    firstDayOfWeek: 0,\n  },\n}"
         },
         {
+          "name": "CustomWeekNumberRule",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    weekNumberRule: 'fullWeek',\n  },\n}"
+        },
+        {
           "name": "Default",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -4203,6 +3977,68 @@
           "deprecationMessage": "",
           "type": "Story",
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    zoomLevel: 'year',\n  },\n}"
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts": [
+        {
+          "name": "CustomHeight",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    height: '500px',\n  },\n}"
+        },
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    height: '300px',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    customClass: '',\n  },\n}"
+        },
+        {
+          "name": "meta",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Meta<TabPanelHostComponent>",
+          "defaultValue": "{\n  title: 'Components/TabPanel(RC)',\n  component: TabPanelHostComponent,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective, TabPanelHostComponent],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  argTypes: {\n    customClass: { control: 'text' },\n    height: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n  },\n}"
+        },
+        {
+          "name": "WithCustomClass",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    customClass: 'custom-class',\n  },\n}"
+        },
+        {
+          "name": "WithoutAnimation",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    animationEnabled: false,\n  },\n}"
+        },
+        {
+          "name": "WithoutSwipe",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    swipeEnabled: false,\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts": [
@@ -4505,6 +4341,38 @@
           "defaultValue": "{\n  args: {\n    dataSource: itemsWithImageAndDescription,\n    displayExpr: 'name',\n  },\n  render: (args) => ({\n    props: args,\n    template: `<dx-list meList width=\"436px\" ${argsToTemplate(args)}>\n    <div *dxTemplate=\"let item of 'item'\">\n      <div class=\"me-list-item-content\">\n        <img alt=\"{{ item.name }}\" src=\"{{ item.image }}\" />\n        <div>\n          <div class=\"me-text-body2\">{{ item.name }}</div>\n          <div class=\"me-text-caption\">{{ item.description }}</div>\n        </div>\n        <div class=\"me-list-item-more\">More</div>\n      </div>\n    </div>\n</dx-list>`,\n  }),\n}"
         }
       ],
+      "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts": [
+        {
+          "name": "data",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "[]",
+          "defaultValue": "[\n  {\n    text: 'Video Players',\n    icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n  },\n  {\n    text: 'Televisions',\n    icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n  },\n  {\n    text: 'Monitors',\n    icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),\n    items: [\n      {\n        text: 'DesktopLCD 19',\n      },\n      {\n        text: 'DesktopLCD 21',\n      },\n      {\n        text: 'DesktopLED 21',\n      },\n    ],\n  },\n]"
+        },
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: data,\n    size: 'large',\n    orientation: 'horizontal',\n  },\n}"
+        },
+        {
+          "name": "iconStore",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "new MeIconStoreService()"
+        }
+      ],
       "projects/dx-monitel-components/src/stories/me-radio-group/me-radio-group.stories.ts": [
         {
           "name": "data",
@@ -4588,7 +4456,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{}"
+          "defaultValue": "{\n  args: {\n    dataSource: data,\n    size: 'large',\n  },\n}"
         },
         {
           "name": "iconStore",
@@ -4611,16 +4479,6 @@
           "deprecationMessage": "",
           "type": "StoryObj",
           "defaultValue": "{}"
-        },
-        {
-          "name": "WithCounter",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "StoryObj",
-          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `<dx-data-grid\n  meDataGrid\n  [dataSource]=\"dataSource\"\n>\n  <dxo-paging [(pageSize)]=\"pageSize\" [showPageSizeSelector]></dxo-paging>\n  <dxi-column dataField=\"CompanyName\"></dxi-column>\n  <dxi-column dataField=\"Fax\"></dxi-column>\n  <dxi-column dataField=\"Phone\"></dxi-column>\n  <dxi-column\n  dataField=\"ID\"\n  cellTemplate=\"cellTemplate\"></dxi-column>\n  <div *dxTemplate=\"let cell of 'cellTemplate'\">\n    <me-badge [value]=\"[cell.data.ID]\"></me-badge>\n  </div>\n</dx-data-grid>`,\n  }),\n}"
         }
       ],
       "projects/dx-monitel-components/.storybook/preview.ts": [
@@ -4717,48 +4575,6 @@
           "defaultValue": "{\n  args: {\n    size: 'small',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n\n    // isSelected: false,\n    stylingMode: 'contained',\n\n    leftIcon: '',\n  },\n}"
-        },
-        {
-          "name": "IconOnly",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    iconOnly: 'add',\n  },\n}"
-        },
-        {
-          "name": "LeftIcon",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    type: 'normal',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'contained',\n    leftIcon: 'arrowback',\n  },\n}"
-        },
-        {
-          "name": "LeftRightIcon",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    type: 'normal',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'contained',\n    leftIcon: 'arrowback',\n    rightIcon: 'arrowforward',\n  },\n}"
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
         {
           "name": "Default",
@@ -4819,6 +4635,48 @@
           "deprecationMessage": "",
           "type": "Story",
           "defaultValue": "{\n  args: {\n    items: [\n      { text: 'Home', url: '/', icon: 'home' },\n      { text: 'Products', url: '/products', icon: 'product' },\n      { text: 'Laptops', url: '/products/laptops', icon: 'laptop' },\n    ],\n    truncateFrom: 'right',\n  },\n}"
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    type: 'default',\n    text: 'Button',\n    size: 'medium',\n\n    // isSelected: false,\n    stylingMode: 'contained',\n\n    leftIcon: '',\n  },\n}"
+        },
+        {
+          "name": "IconOnly",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    iconOnly: 'add',\n  },\n}"
+        },
+        {
+          "name": "LeftIcon",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    type: 'normal',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'contained',\n    leftIcon: 'arrowback',\n  },\n}"
+        },
+        {
+          "name": "LeftRightIcon",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    type: 'normal',\n    text: 'Button',\n    size: 'medium',\n    stylingMode: 'contained',\n    leftIcon: 'arrowback',\n    rightIcon: 'arrowforward',\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
@@ -5090,7 +4948,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n    animation: {\n      show: { type: 'fade', duration: 0 },\n      hide: { type: 'fade', duration: 0 },\n    },\n  },\n}"
+          "defaultValue": "{\n  args: {\n    showEvent: 'mouseenter',\n    hideEvent: 'mouseleave',\n    position: 'top',\n    size: 'medium',\n    width: 300,\n    showTitle: false,\n    title: '',\n    shading: false,\n    shadingColor: '',\n    content: 'Это содержимое поповера по умолчанию.',\n  },\n}"
         },
         {
           "name": "meta",
@@ -5100,7 +4958,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Meta<PopoverProps>",
-          "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n          [animation]=\"animation\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: {\n      control: 'select',\n      options: ['mouseenter', 'click', 'focus'],\n      description: 'Событие, при котором поповер будет показываться.',\n    },\n    hideEvent: {\n      control: 'select',\n      options: ['mouseleave', 'click', 'blur'],\n      description: 'Событие, при котором поповер будет скрываться.',\n    },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n      description: 'Позиция поповера относительно целевого элемента.',\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n      description: 'Размер поповера.',\n    },\n    width: {\n      control: 'number',\n      description: 'Ширина поповера в пикселях.',\n    },\n    maxWidth: {\n      control: 'number',\n      description: 'Максимальная ширина поповера в пикселях.',\n    },\n    showTitle: {\n      control: 'boolean',\n      description: 'Показывать ли заголовок поповера.',\n    },\n    title: {\n      control: 'text',\n      description: 'Текст заголовка поповера.',\n    },\n    shading: {\n      control: 'boolean',\n      description: 'Включить затенение фона при показе поповера.',\n    },\n    shadingColor: {\n      control: 'color',\n      description: 'Цвет затенения фона.',\n    },\n    content: {\n      control: 'text',\n      description: 'Содержимое поповера.',\n    },\n    animation: {\n      control: 'object',\n      description: 'Настройки анимации появления и исчезновения поповера.',\n    },\n  },\n}"
+          "defaultValue": "{\n  title: 'Components/Popover(RC)',\n  component: MePopoverDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MePopoverDirective],\n      imports: [DxPopoverModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n      <div style=\"padding: 20px;\">\n        <a id=\"popoverTarget\">Наведите для показа поповера</a>\n        <dx-popover\n          mePopover\n          target=\"#popoverTarget\"\n          [showEvent]=\"showEvent\"\n          [hideEvent]=\"hideEvent\"\n          [position]=\"position\"\n          [width]=\"width\"\n          [maxWidth]=\"maxWidth\"\n          [showTitle]=\"showTitle\"\n          [title]=\"title\"\n          [shading]=\"shading\"\n          [shadingColor]=\"shadingColor\"\n          [size]=\"size\"\n        >\n          <div *dxTemplate=\"let data of 'content'\">\n            {{ content }}\n          </div>\n        </dx-popover>\n      </div>\n    `,\n  }),\n  argTypes: {\n    showEvent: { control: 'text' },\n    hideEvent: { control: 'text' },\n    position: {\n      control: 'select',\n      options: ['top', 'bottom', 'left', 'right'],\n    },\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'],\n    },\n    width: { control: 'number' },\n    maxWidth: { control: 'number' },\n    showTitle: { control: 'boolean' },\n    title: { control: 'text' },\n    shading: { control: 'boolean' },\n    shadingColor: { control: 'color' },\n    content: { control: 'text' },\n  },\n}"
         },
         {
           "name": "WithOverlay",
@@ -5243,88 +5101,6 @@
           "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `<label meLabel width=\"90px\"><dx-switch meSwitch ${argsToTemplate(\n      args\n    )}></dx-switch>Switch</label>`,\n  }),\n}"
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts": [
-        {
-          "name": "Default",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    customClass: '',\n    selectedIndex: 0,\n    animationEnabled: true,\n    swipeEnabled: true,\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    rtlEnabled: false,\n    width: 'auto',\n    tabPanelData: defaultTabPanelData,\n  },\n}"
-        },
-        {
-          "name": "defaultTabPanelData",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "TabItem[]",
-          "defaultValue": "[\n  { id: 1, title: 'Tab 1', content: 'Content of Tab 1', icon: 'user' },\n  { id: 2, title: 'Tab 2', content: 'Content of Tab 2', icon: 'email' },\n  { id: 3, title: 'Tab 3', content: 'Content of Tab 3', icon: 'chart' },\n]"
-        },
-        {
-          "name": "DifferentIconPositions",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n}"
-        },
-        {
-          "name": "meta",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Meta<MeTabPanelProps>",
-          "defaultValue": "{\n  title: 'Components/TabPanel',\n  component: MeTabPanelDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabPanelDirective],\n      imports: [DxTabPanelModule],\n    }),\n  ],\n  render: (args: MeTabPanelProps) => ({\n    props: args,\n    template: `\n      <dx-tab-panel\n        meTabPanel\n        [customClass]=\"customClass\"\n        [selectedIndex]=\"selectedIndex\"\n        [animationEnabled]=\"animationEnabled\"\n        [swipeEnabled]=\"swipeEnabled\"\n        [dataSource]=\"tabPanelData\"\n        [height]=\"300\"\n        [orientation]=\"orientation\"\n        [stylingMode]=\"stylingMode\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [rtlEnabled]=\"rtlEnabled\"\n        [width]=\"width\"\n      >\n      </dx-tab-panel>\n    `,\n  }),\n  argTypes: {\n    customClass: { control: 'text' },\n    selectedIndex: { control: 'number' },\n    animationEnabled: { control: 'boolean' },\n    swipeEnabled: { control: 'boolean' },\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: { control: 'boolean' },\n    scrollByContent: { control: 'boolean' },\n    rtlEnabled: { control: 'boolean' },\n    width: { control: 'text' },\n  },\n}"
-        },
-        {
-          "name": "OutsideStylingMode",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n}"
-        },
-        {
-          "name": "RightToLeft",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
-        },
-        {
-          "name": "VerticalOrientation",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    orientation: 'vertical',\n  },\n}"
-        },
-        {
-          "name": "WithNavButtons",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    showNavButtons: true,\n    width: '300px',\n    tabPanelData: [\n      ...defaultTabPanelData,\n      { id: 4, title: 'Tab 4', content: 'Content of Tab 4', icon: 'home' },\n      { id: 5, title: 'Tab 5', content: 'Content of Tab 5', icon: 'event' },\n    ],\n  },\n}"
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts": [
         {
           "name": "Default",
@@ -5334,7 +5110,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'inside',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n}"
+          "defaultValue": "{\n  args: {\n    position: 'top',\n    size: 'medium',\n    stylingMode: 'primary',\n    orientation: 'horizontal',\n    iconPosition: 'start',\n    showNavButtons: false,\n    scrollByContent: false,\n    width: 'auto',\n    customClass: '',\n    tabsData: defaultTabsData,\n  },\n}"
         },
         {
           "name": "defaultTabsData",
@@ -5357,6 +5133,16 @@
           "defaultValue": "{\n  args: {\n    ...Default.args,\n    iconPosition: 'top',\n  },\n}"
         },
         {
+          "name": "InsideStylingMode",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'secondary',\n  },\n}"
+        },
+        {
           "name": "meta",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -5364,27 +5150,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Meta<MeTabsProps>",
-          "defaultValue": "{\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n        [rtlEnabled]=\"false\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['inside', 'outside'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    rtlEnabled: {\n      control: 'boolean',\n    },\n  },\n}"
-        },
-        {
-          "name": "OutsideStylingMode",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    stylingMode: 'outside',\n  },\n}"
-        },
-        {
-          "name": "RightToLeft",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story",
-          "defaultValue": "{\n  args: {\n    ...Default.args,\n    rtlEnabled: true,\n  },\n}"
+          "defaultValue": "{\n  title: 'Components/Tabs',\n  component: MeTabsDirective,\n  decorators: [\n    moduleMetadata({\n      declarations: [MeTabsDirective],\n      imports: [DxTabsModule],\n    }),\n  ],\n  render: (args: MeTabsProps) => ({\n    props: args,\n    template: `\n      <dx-tabs\n        meTabs\n        [customClass]=\"customClass\"\n        [position]=\"position\"\n        [size]=\"size\"\n        [stylingMode]=\"stylingMode\"\n        [orientation]=\"orientation\"\n        [iconPosition]=\"iconPosition\"\n        [showNavButtons]=\"showNavButtons\"\n        [scrollByContent]=\"scrollByContent\"\n        [width]=\"width\"\n        [dataSource]=\"tabsData\"\n        [selectedIndex]=\"0\"\n      ></dx-tabs>\n    `,\n  }),\n  argTypes: {\n    position: {\n      options: ['top', 'bottom'],\n      control: { type: 'select' },\n    },\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'select' },\n    },\n    stylingMode: {\n      options: ['primary', 'secondary'],\n      control: { type: 'select' },\n    },\n    orientation: {\n      options: ['horizontal', 'vertical'],\n      control: { type: 'select' },\n    },\n    iconPosition: {\n      options: ['top', 'start', 'end', 'bottom'],\n      control: { type: 'select' },\n    },\n    showNavButtons: {\n      control: 'boolean',\n    },\n    scrollByContent: {\n      control: 'boolean',\n    },\n    width: {\n      control: 'text',\n    },\n    customClass: {\n      control: 'text',\n    },\n  },\n}"
         },
         {
           "name": "ScrollByContent",
@@ -5517,36 +5283,6 @@
           "deprecationMessage": "",
           "type": "StoryObj",
           "defaultValue": "{}"
-        },
-        {
-          "name": "TreeListButtons",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "StoryObj",
-          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n<dx-tree-list\nmeTreeList\n[dataSource]=\"[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]\"\nkeyExpr=\"ID\"\n>\n    <dxo-editing\n      mode=\"row\"\n      [allowUpdating]=\"true\"\n      [allowDeleting]=\"true\"\n      [allowAdding]=\"true\"\n    >\n    </dxo-editing>\n\t<dxi-column dataField=\"Full_Name\" caption=\"Name\"></dxi-column>\n\t<dxi-column dataField=\"Title\" caption=\"Position\"></dxi-column>\n\t<dxi-column type=\"buttons\">\n\t\t<dxi-button name=\"edit\" icon=\"edit\"></dxi-button>\n\t\t<dxi-button name=\"save\" icon=\"save\"></dxi-button>\n\t\t<dxi-button name=\"cancel\" icon=\"undo\"></dxi-button>\n</dxi-column>\n</dx-tree-list>`,\n  }),\n}"
-        },
-        {
-          "name": "TreeListColumns",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "StoryObj",
-          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `<dx-tree-list\n  meTreeList\n  [dataSource]=\"[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]\"\n\tkeyExpr=\"ID\"\n>\n<dxi-column dataField=\"Full_Name\" caption=\"Name\"></dxi-column>\n<dxi-column dataField=\"Title\" caption=\"Position\"></dxi-column>\n</dx-tree-list>`,\n  }),\n}"
-        },
-        {
-          "name": "TreeListValidation",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "StoryObj",
-          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n<dx-tree-list\nmeTreeList\n[dataSource]=\"[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]\"\nkeyExpr=\"ID\"\n>\n    <dxo-editing\n      mode=\"row\"\n      [allowUpdating]=\"true\"\n      [allowDeleting]=\"true\"\n      [allowAdding]=\"true\"\n    >\n    </dxo-editing>\n\t<dxi-column dataField=\"Full_Name\" caption=\"Name\"><dxi-validation-rule type=\"required\"></dxi-validation-rule></dxi-column>\n\t<dxi-column dataField=\"Title\" caption=\"Position\"><dxi-validation-rule type=\"required\"></dxi-validation-rule></dxi-column>\n\t<dxi-column type=\"buttons\">\n\t\t<dxi-button name=\"edit\" icon=\"edit\"></dxi-button>\n\t\t<dxi-button name=\"save\" icon=\"save\"></dxi-button>\n\t\t<dxi-button name=\"cancel\" icon=\"undo\"></dxi-button>\n</dxi-column>\n</dx-tree-list>`,\n  }),\n}"
         }
       ]
     },
@@ -5636,19 +5372,6 @@
           "kind": 183
         }
       ],
-      "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
-        {
-          "name": "Story",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
-          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 183
-        }
-      ],
       "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
         {
           "name": "Story",
@@ -5656,6 +5379,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<MeBreadcrumbsComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
+          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -5979,7 +5715,7 @@
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<MeTabPanelProps>",
+          "rawtype": "StoryObj<TabPanelHostComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
@@ -6141,6 +5877,26 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Collapsible",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "CustomAnimation",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-accordion/me-accordion.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "CustomClass",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -6430,6 +6186,16 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "CustomWeekNumberRule",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "Default",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -6671,16 +6437,6 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "DataGrid",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-data-grid/me-data-grid.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithCounter",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -7208,16 +6964,6 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "argsIcon",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-menu/me-menu.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
         "name": "data",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -7359,7 +7105,7 @@
         "linktype": "interface",
         "name": "PopoverProps",
         "coveragePercent": 0,
-        "coverageCount": "0/13",
+        "coverageCount": "0/12",
         "status": "low"
       },
       {
@@ -7693,20 +7439,21 @@
       },
       {
         "filePath": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "type": "interface",
-        "linktype": "interface",
-        "name": "MeTabPanelProps",
+        "type": "component",
+        "linktype": "component",
+        "name": "TabPanelHostComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/15",
+        "coverageCount": "0/6",
         "status": "low"
       },
       {
         "filePath": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "type": "interface",
-        "linktype": "interface",
-        "name": "TabItem",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "CustomHeight",
         "coveragePercent": 0,
-        "coverageCount": "0/5",
+        "coverageCount": "0/1",
         "status": "low"
       },
       {
@@ -7715,26 +7462,6 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Default",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "defaultTabPanelData",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "DifferentIconPositions",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -7754,7 +7481,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "OutsideStylingMode",
+        "name": "WithCustomClass",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -7764,7 +7491,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "RightToLeft",
+        "name": "WithoutAnimation",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -7774,17 +7501,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "VerticalOrientation",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithNavButtons",
+        "name": "WithoutSwipe",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -7795,7 +7512,7 @@
         "linktype": "interface",
         "name": "MeTabsProps",
         "coveragePercent": 0,
-        "coverageCount": "0/12",
+        "coverageCount": "0/11",
         "status": "low"
       },
       {
@@ -7833,27 +7550,17 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "InsideStylingMode",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "meta",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "OutsideStylingMode",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tabs/me-tabs.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "RightToLeft",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -8082,26 +7789,6 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "ContainerTooltip",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "CustomSizedTooltip",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tooltip/me-tooltip.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
         "name": "CustomStyles",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -8163,36 +7850,6 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "TreeList",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TreeListButtons",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TreeListColumns",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-tree-list/me-tree-list.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TreeListValidation",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
