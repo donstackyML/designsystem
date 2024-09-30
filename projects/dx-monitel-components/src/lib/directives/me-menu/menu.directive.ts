@@ -1,23 +1,51 @@
-import { Directive, Input, OnInit } from '@angular/core';
-import { DxMenuComponent } from 'devextreme-angular';
-import { MeOrientation, MeSize } from '../../types/types';
+import {
+  Directive,
+  HostListener,
+  Input,
+  Renderer2,
+  inject,
+} from '@angular/core';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meMenu]',
+  host: {
+    '[class.me-menu]': 'true',
+    '[class.me-menu-small]': 'isSizeSmall()',
+    '[class.me-menu-large]': 'isSizeLarge()',
+  },
 })
-export class MeMenuDirective implements OnInit {
-  @Input() cssClass?: string = '';
+export class MeMenuDirective {
   @Input() size: MeSize = 'large';
-  @Input() orientation: MeOrientation = 'horizontal';
 
-  constructor(private component: DxMenuComponent) {}
+  private renderer = inject(Renderer2);
 
-  ngOnInit(): void {
-    let menuClasses = `${this.cssClass}  me-menu-${this.size} me-menu me-context-menu`;
+  isSizeSmall() {
+    return this.size === 'small';
+  }
 
-    if (this.orientation === 'horizontal') menuClasses += ' me-menu-horizontal';
-    if (this.orientation === 'vertical') menuClasses += ' me-menu-vertical';
+  isSizeLarge() {
+    return this.size === 'large';
+  }
 
-    this.component.cssClass = menuClasses;
+  @HostListener('onSubmenuShown', ['$event']) onSubmenuShown(e: any) {
+    this.applySubmenuStyles(e);
+    console.log(e.submenu.$contentDelimiter[0]);
+  }
+
+  private applySubmenuStyles(e: any) {
+    this.renderer.addClass(e.submenuContainer, 'me-menu-submenu');
+    this.renderer.setAttribute(
+      e.submenu.$contentDelimiter[0],
+      'style',
+      'display: none;'
+    );
+    this.submenuSize(e);
+  }
+
+  private submenuSize(e: any) {
+    this.renderer.removeClass(e.submenuContainer, 'me-menu-submenu-small');
+    this.renderer.removeClass(e.submenuContainer, 'me-menu-submenu-large');
+    this.renderer.addClass(e.submenuContainer, 'me-menu-submenu-' + this.size);
   }
 }
