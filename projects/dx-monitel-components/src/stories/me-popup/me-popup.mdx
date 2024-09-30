@@ -299,6 +299,23 @@ language="js"
   language="html"
 />
 
+Так же при использовании одного попапа можно использовать instance.show()
+
+<Source code={`
+  @ViewChild(DxPopupComponent, { static: false }) popup:
+    | DxPopupComponent
+    | undefined;
+
+onShow() {
+this.popup?.instance.show();
+}
+
+onClose() {
+this.popup?.instance.hide();
+}
+
+`} dark language="js"/>
+
 ## Ширина и высота окна в зависимости от свойства size
 
 Для размера <code>size = medium</code> определены по умолчанию следующие значения:
