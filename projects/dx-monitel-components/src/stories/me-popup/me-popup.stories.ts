@@ -38,7 +38,7 @@ export default {
       control: 'select',
       options: ['medium', 'large'],
       description:
-        'В дизайн-системе для размера <code>medium</code> используются кнопки с размером <code>medium</code>, для размера <code>large</code> соответственно кнопки одноименного размера.',
+        'В дизайн-системе размерностям компонента соответствую размерностям включенным в него элементам и прочим параметрам, таким как отступы. Так для размера окна medium используются кнопки меньшего размера, чем для размера large.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
@@ -49,24 +49,28 @@ export default {
       description: 'Видимость окна.',
       table: {
         type: { summary: 'boolean' },
-        default: { summary: false },
+        defaultValue: { summary: false },
       },
     },
     title: {
       control: 'text',
       description: 'Текст заголовка.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     minHeight: {
       control: 'text',
-      description: 'Минимальная высота окна',
+      description: 'Минимальная высота окна.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '280' },
+        defaultValue: { summary: '280px' },
       },
     },
     maxHeight: {
       control: 'text',
-      description: 'Максимальная высота окна',
+      description: 'Максимальная высота окна.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '80vh' },
@@ -74,21 +78,23 @@ export default {
     },
     minWidth: {
       control: 'text',
-      description: 'Минимальная ширина окна',
+      description: 'Минимальная ширина окна.',
       table: {
         type: { summary: 'string' },
+        defaultValue: { summary: '360px' },
       },
     },
     maxWidth: {
       control: 'text',
-      description: 'Максимальная ширина окна',
+      description: 'Максимальная ширина окна.',
       table: {
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
     height: {
       control: 'text',
-      description: 'Высота окна',
+      description: 'Высота окна.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'auto' },
@@ -96,15 +102,15 @@ export default {
     },
     width: {
       control: 'text',
-      description: 'Ширина окна',
+      description: 'Ширина окна.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '360' },
+        defaultValue: { summary: '360px' },
       },
     },
     dragEnabled: {
       control: 'boolean',
-      description: 'Включить/отключить перетаскивание окна',
+      description: 'Включить/отключить перетаскивание окна.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
@@ -112,7 +118,7 @@ export default {
     },
     resizeEnabled: {
       control: 'boolean',
-      description: 'Включить/отключить изменение размеров окна',
+      description: 'Включить/отключить изменение размеров окна.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
@@ -120,7 +126,7 @@ export default {
     },
     disabled: {
       control: 'boolean',
-      description: 'Включить/отключить компонент',
+      description: 'Включить/отключить компонент.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
@@ -128,7 +134,7 @@ export default {
     },
     fullScreen: {
       control: 'boolean',
-      description: 'Включить/отключить окно на весь экран',
+      description: 'Включить/отключить окно на весь экран.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
@@ -136,7 +142,7 @@ export default {
     },
     hideOnOutsideClick: {
       control: 'boolean',
-      description: 'Включить/отключить изменение размеров окна',
+      description: 'Включить/отключить скрытие окна по клику вне него.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
@@ -144,23 +150,16 @@ export default {
     },
     shading: {
       control: 'boolean',
-      description: 'Включить/отключить затемнение экрана под всплывающим окном',
+      description:
+        'Включить/отключить затемнение экрана под всплывающим окном.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
       },
     },
-    shadingColor: {
-      control: 'text',
-      description: 'Цвет затемнения экрана под всплывающим окном',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'rgba(0, 0, 0, 0.3019607843)' },
-      },
-    },
     showCloseButton: {
       control: 'boolean',
-      description: 'Показать/убрать кнопку для закрытия всплывающего окна',
+      description: 'Показать/скрыть кнопку для закрытия всплывающего окна.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
@@ -168,7 +167,7 @@ export default {
     },
     showTitle: {
       control: 'boolean',
-      description: 'Показать/убрать заголовок',
+      description: 'Показать/скрыть заголовок.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
@@ -177,7 +176,15 @@ export default {
     position: {
       control: 'object',
       description:
-        'Управляет положением всплывающего окна и может принимать объект с настройками или строковые значения',
+        'Управляет положением всплывающего окна и может принимать объект с настройками или строковые значения.',
+      table: {
+        defaultValue: {
+          summary: `{
+            my: 'center',
+            at: 'center',
+          }`,
+        },
+      },
     },
     animation: {
       table: {
@@ -197,16 +204,28 @@ export default {
   },
   args: {
     title: '',
+    fullScreen: false,
+    size: 'medium',
+    visible: true,
     dragEnabled: true,
     resizeEnabled: true,
     shading: true,
-    shadingColor: 'rgba(0, 0, 0, 0.3019607843)',
     animation: {},
     focusStateEnabled: false,
+    minHeight: '280px',
+    maxHeight: '80vh',
+    minWidth: '225px',
+    maxWidth: '',
+    height: '280px',
+    width: '360px',
+    disabled: false,
+    hideOnOutsideClick: false,
+    showCloseButton: true,
+    showTitle: true,
   },
   render: (args) => ({
     props: args,
-    template: `<div id="myWrapper" style="min-height: 350px; position: relative;"><dx-popup mePopup ${argsToTemplate(
+    template: `<div id="myWrapper" style="min-height: 350px; position: relative; box-sizing: border-box;"><dx-popup mePopup ${argsToTemplate(
       args
     )}></dx-popup></div>`,
   }),
@@ -610,6 +629,67 @@ export const Size: Story = {
         </div>
         <div *dxTemplate="let data of 'addButton'">
           <dx-button meButton text="Добавить" size="large"></dx-button>
+        </div>
+      </dx-popup>
+    </div>`,
+  }),
+};
+
+export const SizeMedium: Story = {
+  args: {
+    visible: true,
+    size: 'medium',
+    position: {
+      my: 'center',
+      at: 'center',
+      of: '#myWrapperSizemedium',
+    },
+    title: 'Заголовок',
+    container: '#myWrapperSizemedium',
+  },
+  decorators: [
+    moduleMetadata({
+      declarations: [
+        MePopupDirective,
+        DxScrollViewComponent,
+        DxButtonComponent,
+        MeButtonDirective,
+      ],
+      imports: [DxPopupModule, DxTemplateModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `
+    <div id="myWrapperSizemedium" style="min-height: 350px; position: relative;">
+      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
+        <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
+          </dxi-toolbar-item>
+        <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+          </dxi-toolbar-item>
+        <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+          </dxi-toolbar-item>
+        <dxi-toolbar-item template="addButton" toolbar="bottom" location="before">
+          </dxi-toolbar-item>
+
+        <div *dxTemplate="let data of 'content'">
+          <dx-scroll-view width="100%" height="100%">
+            ${words}
+          </dx-scroll-view>
+        </div>
+        
+        <div *dxTemplate="let data of 'overflowButton'">
+          <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="12px" size="medium">
+            </dx-button>
+        </div>
+        <div *dxTemplate="let data of 'confirmButton'">
+          <dx-button meButton text="Принять" type="default" size="medium"></dx-button>
+        </div>
+        <div *dxTemplate="let data of 'cancelButton'">
+          <dx-button meButton text="Отмена" size="medium"></dx-button>
+        </div>
+        <div *dxTemplate="let data of 'addButton'">
+          <dx-button meButton text="Добавить" size="medium"></dx-button>
         </div>
       </dx-popup>
     </div>`,
