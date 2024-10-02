@@ -14,11 +14,11 @@ export class MeTreeViewDirective {
   @Input() size: Exclude<MeSize, 'medium'> = 'large';
   @Input() itemWordWrap: boolean = false;
 
-  isSizeSmall() {
+  get isSizeSmall() {
     return this.size === 'small';
   }
 
-  isSizeLarge() {
+  get isSizeLarge() {
     return this.size === 'large';
   }
 }
