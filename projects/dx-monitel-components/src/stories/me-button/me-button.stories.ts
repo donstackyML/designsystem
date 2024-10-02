@@ -195,7 +195,7 @@ export const Default: Story = {
     type: 'default',
     text: 'Button',
     size: 'medium',
-
+    // width: 100,
     // isSelected: false,
     stylingMode: 'contained',
 

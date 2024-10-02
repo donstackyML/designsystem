@@ -11,7 +11,25 @@ import { Figma } from "@storybook/addon-designs/blocks";
 Применение директивы mePopup к элементу <code>dx-popup</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
 с дизайн-системой, добавляет свойство <code>size</code>. Стандартное свойство <code>resizeEnabled</code> по умолчанию включено.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopup/)
+Документация на сайте разработчика Devextreme:
+
+{/* - [API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopup/) */}
+
+{/* - [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Popup/Overview/Light/) */}
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopup/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Popup/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={popupStories.Default} />
 <Controls of={popupStories.Default} />
@@ -22,29 +40,27 @@ import { Figma } from "@storybook/addon-designs/blocks";
 <Figma
   height="50%"
   collapsable
-  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=568-31799&t=AcVCK3Dt91yWxh5R-0"
 />
 
-## Примеры использования:
+## Примеры использования
 
-- [добавление заголовка](#добавление-заголовка)
-- [добавление иконки, описания и кнопки more](#добавление-иконки-описания-и-кнопки-more)
-- [добавление скролла](#добавление-скролла)
-- [добавление кнопки в подвал](#добавление-кнопки-в-подвал)
-- [добавление двух кнопок в подвал](#добавление-двух-кнопок-в-подвал)
-- [добавление элементов и контента в попап](#добавление-элементов-и-контента-в-popup)
-- [попап в формате диалогового окна (средний размер)](#попап-в-фомате-диалогового-окна-средний-размер)
-- [попап в формате диалогового окна (большой размер)](#попап-в-фомате-диалогового-окна-большой-размер)
-- [отображение и скрытие попапа](#отображение-и-скрытие-попапа)
-- [ширина и высота окна в зависимости от свойства size](#ширина-и-высота-окна-в-зависимости-от-свойства-size)
-- [добавление иконки](#добавление-иконки)
-- [ширина и высота в зависимости от size](#ширина-и-высота-окна-в-зависимости-от-свойства-size)
+- [Добавление заголовка](#добавление-заголовка)
+- [Добавление иконки, описания и кнопки more](#добавление-иконки-описания-и-кнопки-more)
+- [Добавление скролла](#добавление-скролла)
+- [Добавление кнопки в подвал](#добавление-кнопки-в-подвал)
+- [Добавление двух кнопок в подвал](#добавление-двух-кнопок-в-подвал)
+- [Добавление элементов и контента в попап](#добавление-элементов-и-контента-в-popup)
+- [Попап в формате диалогового окна (средний размер)](#попап-в-фомате-диалогового-окна-средний-размер)
+- [Попап в формате диалогового окна (большой размер)](#попап-в-фомате-диалогового-окна-большой-размер)
+- [Отображение и скрытие попапа](#отображение-и-скрытие-попапа)
+- [Добавление иконки](#добавление-иконки)
+- [Ширина и высота окна в зависимости от свойства size](#ширина-и-высота-окна-в-зависимости-от-свойства-size)
 
 ## Добавление заголовка
 
 Добавление заголовка осуществляется в поле <code>title</code> компонента, поле <code>showTitle</code> должно быть <code>true</code>
-(можно его не прописывать, т.к. оно по умолчанию <code>true</code>)
+(можно его не прописывать, т.к. оно по умолчанию <code>true</code>).
 
 <Canvas of={popupStories.Title} />
 
@@ -57,7 +73,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
 ## Добавление иконки, описания и кнопки more
 
 Чтобы добавить иконку, описание и кнопку more нужно сделать кастомный темплейт с использованием <code>dxTemplate</code>, также добавить параметр <code>titleTemplate="title"</code>.
-В темплейте использовать классы <code>me-popup-header</code>, для отображения заголовка с описанием под ним использовать класс <code>me-sidepage-title</code>
+В темплейте использовать классы <code>me-popup-header</code>, для отображения заголовка с описанием под ним использовать класс <code>me-sidepage-title</code>.
 
 <Canvas of={popupStories.IconDescription} />
 
@@ -258,7 +274,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 Предлагаю вместо кастомного флага находить все попапы на странице с помощью <code>@ViewChildren</code> и закрывать нужный, передавая соответствующий индекс попапа и используя встроенные методы DX <code>show()</code> и <code>hide()</code>. Например:
 
-- определение методов в компоненте
+### Определение методов в компоненте
 
 <Source
   code={`
@@ -283,7 +299,7 @@ dark
 language="js"
 />
 
-- использование в шаблоне
+### Использование в шаблоне
 
 <Source
   code={`<dx-button text="Open popup" (onClick)="showPopup(0)"></dx-button>`}
@@ -299,7 +315,7 @@ language="js"
   language="html"
 />
 
-Так же при использовании одного попапа можно использовать instance.show()
+Так же при использовании одного попапа можно использовать <code>instance.show()</code>.
 
 <Source code={`
   @ViewChild(DxPopupComponent, { static: false }) popup:
@@ -316,29 +332,9 @@ this.popup?.instance.hide();
 
 `} dark language="js"/>
 
-## Ширина и высота окна в зависимости от свойства size
-
-Для размера <code>size = medium</code> определены по умолчанию следующие значения:
-
-<Source
-  code={`minHeight = 280px;
-maxHeight = 80vh;
-width = 360px;`}
-  dark
-/>
-
-Для размера <code>size = large</code> определены по умолчанию следующие значения:
-
-<Source
-  code={`minHeight = 320px;
-maxHeight = 80vh;
-width = 400px;`}
-  dark
-/>
-
 ## Добавление иконки
 
-Для добавления иконки необходимо определить шаблон с использованием директивы [meIcon](https://cl-tfs2022.monitel.local/CK-11/Development/_wiki/wikis/Development.wiki/3453/meIcon), например так
+Для добавления иконки необходимо определить шаблон с использованием директивы [meIcon](https://cl-tfs2022.monitel.local/CK-11/Development/_wiki/wikis/Development.wiki/3453/meIcon), например так:
 
 <Source
   code={` <div *dxTemplate="let data of 'icon'">
@@ -348,7 +344,7 @@ width = 400px;`}
   language="html"
 />
 
-Добавить шаблон иконки в тулбар с помощью [dxi-toolbar-item](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopup/Configuration/toolbarItems/)
+Добавить шаблон иконки в тулбар с помощью [dxi-toolbar-item](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopup/Configuration/toolbarItems/).
 
 <Source
   code={
@@ -361,6 +357,26 @@ width = 400px;`}
 ## Ширина и высота окна в зависимости от свойства size
 
 В дизайн-системе для размера <code>medium</code> используются кнопки с размером <code>medium</code>, для размера <code>large</code> соответственно кнопки одноименного размера.
+
+Для размера <code>size = medium</code> определены по умолчанию следующие значения:
+
+<Source
+  code={`minHeight = 280px;
+maxHeight = 80vh;
+width = 360px;`}
+  dark
+/>
+
+<Canvas of={popupStories.SizeMedium} />
+
+Для размера <code>size = large</code> определены по умолчанию следующие значения:
+
+<Source
+  code={`minHeight = 320px;
+maxHeight = 80vh;
+width = 400px;`}
+  dark
+/>
 
 <Canvas of={popupStories.Size} />
 
@@ -400,8 +416,16 @@ width = 400px;`}
 
 <style>
   {`
-      h2 {
+    h2 {
         border-bottom: none !important;
+    }
+
+    a {
+      display: inline-block !important;
+    }
+
+    a p {
+      color: #029CFD !important;
     }
 `}
 </style>
