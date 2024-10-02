@@ -13,7 +13,6 @@ import { Figma } from "@storybook/addon-designs/blocks";
 [Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxContextMenu/)
 
 <Canvas of={contextmenuStories.Default} />
-{/* <Controls of={contextmenuStories.Default} /> */}
 <Source of={contextmenuStories.Default} dark />
 
 ## Добавление заголовка в контекстное меню
@@ -27,8 +26,8 @@ import { Figma } from "@storybook/addon-designs/blocks";
     {
       text: 'Заголовок',
       icon: this.iconService.getIcon({ icon: 'public', size: '24' }),
-      template: 'menu-title',
       disabled: true,
+      beginGroup: true
     },
     // ...остальные элементы
     
@@ -38,15 +37,4 @@ import { Figma } from "@storybook/addon-designs/blocks";
 />
 
 Обратите внимание, для того чтобы отключить стандартные состояния <code>(hover, active)</code>
-заголовку добавлено свойство <code>disabled</code> со значением <code>true</code>.
-
-Классы <code>me-menu-title</code> и <code>me-title-header2</code> предоставляются библиотекой и
-стилизуют расположение и вид элементов в соответствии с дизайн-системой.
-
-<style>
-  {`
-      h2 {
-        border-bottom: none !important;
-    }
-`}
-</style>
+заголовку добавлено свойство <code>disabled</code> со значением <code>true</code>. Для добавления разделителя групп используйте `beginGroup: true`.
