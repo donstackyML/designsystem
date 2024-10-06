@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgStyle } from '@angular/common';
 
 export interface SkeletonAvatar {
@@ -20,76 +20,62 @@ export interface SkeletonParagraph {
   standalone: true,
   templateUrl: './me-skeleton.component.html',
   imports: [NgIf, NgClass, NgStyle, NgForOf],
-  styles: [
-    `
-      .skeleton {
-        display: flex;
-        width: 100%;
-      }
-
-      .skeleton-content {
-        flex: 1;
-      }
-
-      .skeleton-active .skeleton-avatar,
-      .skeleton-active .skeleton-title,
-      .skeleton-active .skeleton-row {
-        background: var(--skeleton-animation-bg);
-        background-size: 200% 100%;
-        animation: shimmer 1.5s infinite linear;
-      }
-
-      .skeleton-avatar {
-        flex-shrink: 0;
-        background-color: var(--skeleton-avatar-bg);
-        margin-right: 16px;
-      }
-
-      .skeleton-avatar-circle {
-        border-radius: 50%;
-      }
-
-      .skeleton-avatar-square {
-        border-radius: 4px;
-      }
-
-      .skeleton-title {
-        height: 16px;
-        background-color: var(--skeleton-title-bg);
-        margin-bottom: 16px;
-        width: 100%;
-      }
-
-      .skeleton-paragraph .skeleton-row {
-        height: 16px;
-        background-color: var(--skeleton-paragraph-bg);
-        margin-bottom: 12px;
-        width: 100%;
-      }
-
-      .skeleton-round .skeleton-title,
-      .skeleton-round .skeleton-row {
-        border-radius: 4px;
-      }
-
-      @keyframes shimmer {
-        0% {
-          background-position: -200% 0;
-        }
-        100% {
-          background-position: 200% 0;
-        }
-      }
-    `,
-  ],
 })
-export class MeSkeletonComponent implements OnInit {
-  @Input() active: boolean = false;
-  @Input() avatar: SkeletonAvatar | boolean = false;
-  @Input() loading: boolean = false;
-  @Input() paragraph: SkeletonParagraph | boolean = true;
-  @Input() title: SkeletonTitle | boolean = true;
-  @Input() round: boolean = false;
+export class MeSkeletonComponent implements OnInit, OnChanges {
+  private _active: boolean = false;
+  private _avatar: SkeletonAvatar | boolean = false;
+  private _loading: boolean = false;
+  private _paragraph: SkeletonParagraph | boolean = true;
+  private _title: SkeletonTitle | boolean = true;
+  private _round: boolean = false;
+
+  @Input() set active(value: boolean) {
+    this._active = value;
+    this.updateConfig();
+  }
+  get active(): boolean {
+    return this._active;
+  }
+
+  @Input() set avatar(value: SkeletonAvatar | boolean) {
+    this._avatar = value;
+    this.updateConfig();
+  }
+  get avatar(): SkeletonAvatar | boolean {
+    return this._avatar;
+  }
+
+  @Input() set loading(value: boolean) {
+    this._loading = value;
+    this.updateConfig();
+  }
+  get loading(): boolean {
+    return this._loading;
+  }
+
+  @Input() set paragraph(value: SkeletonParagraph | boolean) {
+    this._paragraph = value;
+    this.updateConfig();
+  }
+  get paragraph(): SkeletonParagraph | boolean {
+    return this._paragraph;
+  }
+
+  @Input() set title(value: SkeletonTitle | boolean) {
+    this._title = value;
+    this.updateConfig();
+  }
+  get title(): SkeletonTitle | boolean {
+    return this._title;
+  }
+
+  @Input() set round(value: boolean) {
+    this._round = value;
+    this.updateConfig();
+  }
+  get round(): boolean {
+    return this._round;
+  }
 
   avatarClass: string = '';
   avatarStyle: { [key: string]: string } = {};
@@ -97,6 +83,16 @@ export class MeSkeletonComponent implements OnInit {
   paragraphRows: Array<string> = [];
 
   ngOnInit() {
+    this.updateConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes) {
+      this.updateConfig();
+    }
+  }
+
+  private updateConfig(): void {
     this.setupAvatar();
     this.setupTitle();
     this.setupParagraph();
@@ -113,6 +109,9 @@ export class MeSkeletonComponent implements OnInit {
           height: this.getSize(this.avatar.size),
         };
       }
+    } else {
+      this.avatarClass = '';
+      this.avatarStyle = {};
     }
   }
 
@@ -124,6 +123,8 @@ export class MeSkeletonComponent implements OnInit {
             ? `${this.title.width}px`
             : this.title.width,
       };
+    } else {
+      this.titleStyle = {};
     }
   }
 
@@ -145,8 +146,11 @@ export class MeSkeletonComponent implements OnInit {
       }
     } else if (this.paragraph === true) {
       this.paragraphRows = Array(3).fill('100%');
+    } else {
+      this.paragraphRows = [];
     }
   }
+
   private getSize(size: number | 'large' | 'small' | 'default'): string {
     switch (size) {
       case 'large':

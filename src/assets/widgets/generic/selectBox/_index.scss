@@ -7,8 +7,6 @@
 
 // adduse
 
-@use '../dropDownList';
-
 .dx-selectbox-popup-wrapper {
   .dx-overlay-content {
     box-shadow: 0 6px 12px $base-dropdown-shadow-color;
@@ -17,4 +15,50 @@
   .dx-list {
     background-color: $selectbox-list-bg;
   }
+}
+
+.dx-selectbox {
+  .dx-texteditor-input {
+    color: $controls-content-in-controls-main-default;
+    font-family: $select-box-font-family;
+    font-size: $select-box-font-size;
+    line-height: $select-box-line-height;
+  }
+
+  &.dx-dropdowneditor-active {
+    .dx-dropdowneditor-icon {
+      background-color: $controls-bg-accent-accent-bg-default;
+    }
+  }
+
+  .dx-dropdowneditor-input-wrapper {
+    border-radius: $select-box-border-radius;
+    background: $background-accent-in-the-content;
+  }
+
+  &.dx-state-hover {
+    .dx-dropdowneditor-input-wrapper {
+      //border-color: $controls-content-in-controls-accent-default;
+    }
+  }
+
+  &.dx-state-focused {
+    .dx-dropdowneditor-input-wrapper {
+      //border-color: $controls-content-in-controls-accent-default;
+      //box-shadow: 0 0 0 3px rgba($controls-content-in-controls-accent-default, 0.3);
+    }
+  }
+
+  &.dx-state-disabled {
+    .dx-texteditor-input {
+      color: $controls-content-in-controls-main-disabled;
+    }
+  }
+}
+
+.dx-popup-wrapper .dx-overlay-content.dx-popup-normal {
+  border-radius: $select-box-border-radius;
+  border: 1px solid $dividers-borders-long;
+  background: $background-accent-in-the-content;
+  box-shadow: $select-box-box-shadow;
 }

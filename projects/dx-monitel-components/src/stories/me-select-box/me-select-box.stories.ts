@@ -9,6 +9,7 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 import { MeLabelDirective, MeSelectBoxDirective } from '../../public-api';
 
 const data = ['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50'];
+const largeData = Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`);
 
 export default {
   title: 'Components/SelectBox',
@@ -22,59 +23,41 @@ export default {
     }),
   ],
   argTypes: {
-    label: {
+    dataSource: {
+      control: 'object',
+      description: 'Задает или получает массив данных, отображаемых компонентом.',
+    },
+    placeholder: {
       control: 'text',
-      description:
-        'Указывает текстовую строку, используемую для аннотации значения поля ввода.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
+      description: 'Задает текст, отображаемый, когда компонент не имеет значения.',
     },
-    labelMode: {
-      control: 'select',
-      options: ['', 'static', 'floating'],
-      description: 'Определяет положение лейбла текстового поля.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
+    searchEnabled: {
+      control: 'boolean',
+      description: 'Определяет, разрешен ли поиск в списке элементов.',
     },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Принимает размер текстового поля.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'medium' },
-      },
+    disabled: {
+      control: 'boolean',
+      description: 'Определяет, отключен ли компонент.',
     },
-    showScrollbar: {
-      control: 'select',
-      options: ['always', 'onHover'],
-      description:
-        'Определяет отображение скролла - при наведении или постоянно. По умолчанию скролл отображается при переполнении контента постоянно.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'always' },
-      },
+    readOnly: {
+      control: 'boolean',
+      description: 'Определяет, доступен ли компонент только для чтения.',
+    },
+    width: {
+      control: 'text',
+      description: 'Задает ширину компонента.',
     },
   },
   args: {
-    size: 'medium',
-    showScrollbar: 'always',
+    stylingMode: 'outlined',
   },
   render: (args) => ({
     props: args,
-    template: `<dx-select-box meSelectBox ${argsToTemplate(
-      args
-    )}></dx-select-box>`,
+    template: `<dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>`,
   }),
 } as Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
-type Story = StoryObj<
-  MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective
->;
+type Story = StoryObj<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
 export const Default: Story = {
   args: {
@@ -82,26 +65,45 @@ export const Default: Story = {
   },
 };
 
-export const WithLabelColumn: Story = {
+export const WithDataSource: Story = {
   args: {
-    dataSource: data,
+    dataSource: ['Option 1', 'Option 2', 'Option 3'],
   },
-  render: (args) => ({
-    props: args,
-    template: `<label meLabel labelDirection="column">Label<dx-select-box meSelectBox ${argsToTemplate(
-      args
-    )}></dx-select-box></label>`,
-  }),
 };
 
-export const WithLabelRow: Story = {
+export const WithPlaceholder: Story = {
   args: {
     dataSource: data,
+    placeholder: 'Выберите опцию',
   },
-  render: (args) => ({
-    props: args,
-    template: `<label meLabel labelDirection="row" width="250px">Label<dx-select-box meSelectBox ${argsToTemplate(
-      args
-    )}></dx-select-box></label>`,
-  }),
+};
+
+export const WithSearchEnabled: Story = {
+  args: {
+    dataSource: largeData,
+    searchEnabled: true,
+    placeholder: 'Поиск...',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    dataSource: data,
+    disabled: true,
+  },
+};
+
+export const ReadOnly: Story = {
+  args: {
+    dataSource: data,
+    value: 'HD Video Player',
+    readOnly: true,
+  },
+};
+
+export const CustomWidth: Story = {
+  args: {
+    dataSource: data,
+    width: '300px',
+  },
 };

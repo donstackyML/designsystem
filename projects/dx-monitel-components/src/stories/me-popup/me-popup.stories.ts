@@ -555,7 +555,7 @@ export const Toolbar: Story = {
             ${words}
           </dx-scroll-view>
         </div>
-        
+
         <div *dxTemplate="let data of 'overflowButton'">
         <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="12px">
           </dx-button>
@@ -616,7 +616,7 @@ export const Size: Story = {
             ${words}
           </dx-scroll-view>
         </div>
-        
+
         <div *dxTemplate="let data of 'overflowButton'">
           <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="18px" size="large">
             </dx-button>
@@ -677,7 +677,7 @@ export const SizeMedium: Story = {
             ${words}
           </dx-scroll-view>
         </div>
-        
+
         <div *dxTemplate="let data of 'overflowButton'">
           <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="12px" size="medium">
             </dx-button>

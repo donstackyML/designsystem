@@ -32,20 +32,9 @@ interface BreadcrumbItem {
 @Component({
   selector: 'me-breadcrumbs',
   standalone: true,
-  imports: [
-    CommonModule,
-    DxMenuModule,
-    DxButtonModule,
-    DxContextMenuModule,
-    MeIconComponent,
-  ],
+  imports: [CommonModule, DxMenuModule, DxButtonModule, DxContextMenuModule, MeIconComponent],
   template: `
-    <nav
-      class="breadcrumbs"
-      [ngClass]="size"
-      aria-label="Breadcrumbs"
-      #breadcrumbsContainer
-    >
+    <nav class="breadcrumbs" [ngClass]="size" aria-label="Breadcrumbs" #breadcrumbsContainer>
       <dx-button
         *ngIf="overflowLeft"
         stylingMode="text"
@@ -67,11 +56,7 @@ interface BreadcrumbItem {
           class="breadcrumb-menu"
           [ngClass]="size"
         >
-          <div
-            *dxTemplate="let data of 'item'"
-            class="menu-item"
-            [ngClass]="size"
-          >
+          <div *dxTemplate="let data of 'item'" class="menu-item" [ngClass]="size">
             <me-icon
               *ngIf="data.icon"
               [icon]="data.icon"
@@ -97,16 +82,11 @@ interface BreadcrumbItem {
       class="context-menu"
       #overflowMenu
       [dataSource]="overflowItems"
-      [width]="200"
       [position]="contextMenuPosition"
       (onPositioning)="onContextMenuPositioning($event)"
       (onItemClick)="onOverflowItemClick($event)"
     >
-      <div
-        *dxTemplate="let data of 'item'"
-        class="context-menu-item"
-        [ngClass]="size"
-      >
+      <div *dxTemplate="let data of 'item'" class="context-menu-item" [ngClass]="size">
         <me-icon
           *ngIf="data.icon"
           [icon]="data.icon"
@@ -117,224 +97,11 @@ interface BreadcrumbItem {
         <i *ngIf="data.items?.length" class="dx-icon-spindown"></i>
       </div>
     </dx-context-menu>
+
   `,
-  styles: [
-    `
-      .dx-button {
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &.dx-state-hover {
-          background-color: rgba(216, 218, 234, 1) !important;
-        }
-
-        &.dx-state-active {
-          background-color: rgba(191, 193, 208, 1) !important;
-        }
-
-        &.dx-state-disabled {
-          opacity: 0.5;
-          pointer-events: none;
-        }
-
-        &:hover {
-          background-color: #f0f0f0;
-        }
-
-        &:active {
-          background-color: #e0e0e0;
-        }
-      }
-
-      .breadcrumbs {
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-
-        .dx-button .dx-button-content {
-          padding: 0 10px;
-        }
-
-        .dx-menu-item-content .dx-menu-item-text {
-          padding: 3px 10px 5px 10px;
-        }
-
-        &.small {
-          .dx-menu-item-content {
-            i {
-              font-size: 20px;
-            }
-          }
-
-          .dx-menu-item-text {
-            font-size: 13px;
-          }
-
-          .dx-button-has-icon .dx-icon {
-            font-size: 20px !important;
-          }
-
-          .dx-button-has-icon .dx-button-content {
-            padding: 5px;
-          }
-
-          .dx-icon-spindown {
-            font-size: 20px;
-          }
-        }
-
-        &.large {
-          .dx-menu-item-content {
-            i {
-              font-size: 24px;
-            }
-          }
-
-          .dx-menu-item-text {
-            font-size: 14px;
-          }
-
-          .dx-button-has-icon .dx-icon {
-            font-size: 24px !important;
-          }
-
-          .dx-icon-spindown {
-            font-size: 24px;
-          }
-        }
-      }
-
-      .breadcrumb-menu {
-        display: inline-block;
-
-        .dx-menu-item-content {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          padding: 0 5px;
-        }
-
-        .dx-menu-item {
-          &.dx-state-hover {
-            background-color: rgba(216, 218, 234, 1);
-          }
-
-          &.dx-state-active {
-            background-color: rgba(191, 193, 208, 1);
-          }
-
-          &.dx-state-disabled {
-            opacity: 0.5;
-            pointer-events: none;
-          }
-        }
-
-        .dx-menu-item.dx-menu-item-expanded,
-        .dx-context-menu-container-border {
-          background-color: transparent;
-          border: none !important;
-          box-shadow: none;
-        }
-      }
-
-      .separator {
-        position: relative;
-        width: 20px;
-        height: 20px;
-        margin: 0 4px;
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 1px;
-          height: 20px;
-          border-right: 1px solid rgba(213, 214, 223, 1);
-        }
-      }
-
-      .context-menu-item {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 5px 10px; /* Отступы по умолчанию */
-
-        i {
-          font-size: 20px !important; /* Размер иконок по умолчанию */
-        }
-
-        span {
-          font-size: 13px; /* Размер текста по умолчанию */
-        }
-      }
-
-      .menu-item {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        i {
-          font-size: 20px !important; /* Размер иконок по умолчанию */
-        }
-
-        span {
-          font-size: 13px; /* Размер текста по умолчанию */
-        }
-      }
-
-      .context-menu-item.small {
-        padding: 5px 10px;
-
-        i {
-          font-size: 20px;
-        }
-
-        span {
-          font-size: 13px;
-        }
-      }
-
-      .menu-item.small {
-        i {
-          font-size: 20px;
-        }
-
-        span {
-          font-size: 13px;
-        }
-      }
-
-      .context-menu-item.large {
-        padding: 10px 15px;
-
-        i {
-          font-size: 24px;
-        }
-
-        span {
-          font-size: 14px;
-        }
-      }
-
-      .menu-item.large {
-        i {
-          font-size: 24px;
-        }
-
-        span {
-          font-size: 14px;
-        }
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MeBreadcrumbsComponent
-  implements AfterViewInit, OnChanges, OnDestroy
-{
+export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() items: BreadcrumbItem[] = [];
   @Input() truncateFrom: 'left' | 'right' = 'right';
   @Input() size: 'small' | 'large' = 'small';
@@ -366,17 +133,14 @@ export class MeBreadcrumbsComponent
     this.updateItems();
 
     this.overflowMenu.instance.option('cssClass', 'breadcrumbs-overflow-menu');
-    this.overflowMenu.instance.option(
-      'items',
-      this.overflowItems.map((item) => ({
-        ...item,
-        template: (itemData: any, itemIndex: number, itemElement: any) => {
-          const content = document.createElement('span');
-          content.textContent = itemData.text;
-          itemElement.appendChild(content);
-        },
-      }))
-    );
+    this.overflowMenu.instance.option('items', this.overflowItems.map(item => ({
+      ...item,
+      template: (itemData: any, itemIndex: number, itemElement: any) => {
+        const content = document.createElement('span');
+        content.textContent = itemData.text;
+        itemElement.appendChild(content);
+      }
+    })));
   }
 
   private setupResizeObserver() {
@@ -491,7 +255,7 @@ export class MeBreadcrumbsComponent
   contextMenuPosition: any = {
     my: 'top left',
     at: 'bottom left',
-    offset: { x: 0, y: 5 },
+    offset: { x: 0, y: 5 }
   };
 
   showOverflowMenu(position: 'left' | 'right', event: any) {
@@ -501,7 +265,7 @@ export class MeBreadcrumbsComponent
         my: position === 'left' ? 'top left' : 'top right',
         at: position === 'left' ? 'bottom left' : 'bottom right',
         of: this.overflowMenuTarget,
-        offset: { x: 0, y: 5 },
+        offset: { x: 0, y: 5 }
       };
       this.overflowMenu.instance.option('position', this.contextMenuPosition);
       this.overflowMenu.instance.show();
