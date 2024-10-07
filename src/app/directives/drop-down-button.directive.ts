@@ -1,13 +1,16 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { MeControlDirective } from './control.directive';
-import { MeIconStoreService } from '../service/icon-store.service';
+import { Directive, Input, OnInit } from '@angular/core';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
+import { MeIconStoreService } from '../service/icon-store.service';
 import { MeCommonType, MeScrollbarShowType } from '../types/types';
+import { MeControlDirective } from './control.directive';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
 @Directive({
   selector: '[meDropDownButton]',
+  host: {
+    '[class]': 'customClasses',
+  },
 })
 export class MeDropDownButtonDirective extends MeControlDirective implements OnInit {
   @Input() icon: string = '';
@@ -17,13 +20,10 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
   @Input() wrapperAttr: MeCommonType = {};
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() dropDownOptions: MeCommonType = {};
+  @Input() useItemTextAsTitle: boolean = false;
+  private customClasses: string = `me-dropdownbutton`;
 
-  constructor(
-    private element: ElementRef,
-    private component: DxDropDownButtonComponent,
-    private renderer: Renderer2,
-    private iconStore: MeIconStoreService,
-  ) {
+  constructor(private component: DxDropDownButtonComponent, private iconStore: MeIconStoreService) {
     super();
   }
 
@@ -40,9 +40,7 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
       }
     }
 
-    this.renderer.addClass(this.element.nativeElement, 'me-dropdownbutton');
-
-    this.renderer.addClass(this.element.nativeElement, `me-dropdownbutton-${this.size}`);
+    this.customClasses += ` me-dropdownbutton-${this.size}`;
 
     this.component.icon = this.iconStore.getIcon({
       icon: this.icon,
@@ -51,11 +49,11 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
     });
 
     if (this.type === 'default') {
-      this.renderer.addClass(this.element.nativeElement, 'dx-button-default');
+      this.customClasses += ' dx-button-default';
     }
 
     if (this.splitButton) {
-      this.renderer.addClass(this.element.nativeElement, 'me-split-button');
+      this.customClasses += ' me-split-button';
     }
 
     const popupWrapperClasses = `${
@@ -71,5 +69,7 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
       },
       ...this.dropDownOptions,
     };
+
+    this.component.useItemTextAsTitle = this.useItemTextAsTitle;
   }
 }

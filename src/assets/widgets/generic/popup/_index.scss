@@ -39,7 +39,6 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
 .dx-popup-wrapper {
   &.me-popup > .dx-overlay-content {
-    // border: none;
     box-shadow: 0 4px 10px $overlay-content-shadow-color;
     border-radius: 4px;
   }
@@ -176,6 +175,76 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 //   }
 // }
 
+.me-popup {
+  .me-popup-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 4px 0;
+    gap: 8px;
+
+    & .dx-button.me-button {
+      margin-left: auto;
+      align-self: flex-start;
+      margin-top: -4px;
+    }
+
+    .me-popup-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
+  & .dx-toolbar-after,
+  & .dx-toolbar-before,
+  & .dx-toolbar-center {
+    gap: 12px;
+  }
+
+  & .dx-popup-bottom.dx-toolbar {
+    & .dx-toolbar-center {
+      justify-content: center;
+    }
+
+    & .dx-toolbar-items-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      height: auto;
+      gap: 12px 12px;
+
+      & .dx-toolbar-after,
+      & .dx-toolbar-before,
+      & .dx-toolbar-center {
+        flex-wrap: wrap;
+        position: static;
+        padding: 0;
+        max-width: 100%;
+        display: flex;
+      }
+
+      & .dx-toolbar-center {
+        margin: 0 !important;
+      }
+
+      & .dx-toolbar-item {
+        max-width: 100%;
+
+        & .me-button-inner {
+          max-width: 100%;
+
+          & .dx-button-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+
 .me-popup-medium {
   & .dx-toolbar {
     & .dx-toolbar-item {
@@ -183,8 +252,13 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     }
   }
 
-  & .dx-popup-title.dx-toolbar {
-    padding: 12px 12px 8px 20px;
+  & .dx-popup-title.dx-toolbar,
+  & .dx-popup-title {
+    padding: 12px 12px 12px 20px;
+
+    &.dx-has-close-button {
+      padding-bottom: 8px;
+    }
 
     & .dx-toolbar-label {
       line-height: 24px;
@@ -239,19 +313,13 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   }
 
   & .dx-popup-bottom.dx-toolbar {
-    & .dx-toolbar-items-container {
-      height: 32px;
-    }
-
-    & .dx-toolbar-after,
-    & .dx-toolbar-before {
-      display: flex;
-      gap: 12px;
-    }
-
     & .dx-toolbar-item {
       padding: 0;
     }
+  }
+
+  &.me-popup-without-title .dx-popup-content {
+    padding: 20px 20px 8px;
   }
 }
 
@@ -262,8 +330,13 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     }
   }
 
-  & .dx-popup-title.dx-toolbar {
-    padding: 15px 15px 11px 24px;
+  & .dx-popup-title.dx-toolbar,
+  & .dx-popup-title {
+    padding: 15px 15px 15px 24px;
+
+    &.dx-has-close-button {
+      padding-bottom: 11px;
+    }
 
     & .dx-toolbar-label {
       font-size: 24px;
@@ -293,7 +366,7 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 
   & .dx-popup-title .dx-button {
     position: static;
-    padding: 7px;
+    padding: 8px;
 
     & .dx-button-content {
       display: flex;
@@ -325,16 +398,50 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
       height: 40px;
     }
 
-    & .dx-toolbar-after,
-    & .dx-toolbar-before {
-      display: flex;
-      gap: 12px;
-    }
-
     & .dx-toolbar-item {
       padding: 0;
     }
   }
+
+  .me-popup-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    & .dx-button.me-button {
+      margin-top: -5px;
+    }
+
+    svg {
+      margin-top: 2px;
+    }
+  }
+
+  &.me-popup-without-title .dx-popup-content {
+    padding: 24px 24px 8px;
+  }
+}
+
+.me-select-box.dx-popup-wrapper > .dx-overlay-content,
+.me-dropdownlist.dx-popup-wrapper > .dx-overlay-content {
+  border: none;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+
+  & .dx-popup-content {
+    margin: 4px 0;
+    border: 1px solid $popup-title-border-color;
+    background: $overlay-content-bg;
+    box-shadow: 0px 2px 6px 0px #00000024;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+}
+
+.me-popup-button-group {
+  display: flex;
+  margin-left: auto;
+  gap: 8px;
 }
 
 .me-popup {

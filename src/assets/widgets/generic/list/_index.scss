@@ -108,26 +108,26 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
     @include toggle-delete-icon($list-item-selected-color);
   }
 
-  &.dx-state-focused {
-    // background-color: $list-focused-bg;
-    // box-shadow: inset 0px 0px 0px 2px #7eb9ff, inset 0px 0px 0px 4px #ffffff;
-    // color: $list-item-focus-color;
+  &.dx-state-focused:not(.me-list .dx-list-item) {
+    background-color: $list-focused-bg;
+    box-shadow: inset 0px 0px 0px 2px #7eb9ff, inset 0px 0px 0px 4px #ffffff;
+    color: $list-item-focus-color;
 
     .dx-icon {
-      // color: $list-item-focus-color;
+      color: $list-item-focus-color;
     }
 
     .dx-list-item-chevron {
-      // border-color: $list-chevron-focus-color;
+      border-color: $list-chevron-focus-color;
     }
 
-    // @include toggle-delete-icon($list-item-focus-color);
+    @include toggle-delete-icon($list-item-focus-color);
   }
 
-  // &.dx-state-focused.dx-list-item-selected {
-  //   background-color: $list-item-focused-selected-bg;
-  //   color: $base-text-color;
-  // }
+  &.dx-state-focused.dx-list-item-selected {
+    background-color: $list-item-focused-selected-bg;
+    color: $base-text-color;
+  }
 
   &.dx-state-focused.dx-state-active,
   &:active {
@@ -226,6 +226,7 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
     .dx-list-group {
       margin-top: 16px;
     }
+
     .dx-list-group-header {
       .me-text-body2 {
         margin-top: 4px;
@@ -347,6 +348,7 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
       &.dx-list-reorder-handle-container {
         width: 32px;
         padding-inline: 6px;
+
         .dx-list-reorder-handle {
           width: 20px;
           height: 20px;
@@ -357,16 +359,20 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
           }
         }
       }
+
       &.dx-list-static-delete-button-container {
         width: 28px;
         height: 28px;
+
         .dx-widget.dx-button.dx-list-static-delete-button {
           width: 28px;
           height: 28px;
           margin-right: 0;
           border-radius: 3px;
+
           .dx-button-content {
             align-items: center;
+
             .dx-icon.dx-icon-remove {
               font-size: 13px;
               line-height: 20px;
@@ -610,10 +616,13 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
     padding: 0;
     margin: 0;
     border: 0;
+
     .dx-texteditor-container {
       padding-inline: 8px;
+
       .dx-texteditor-input-container {
         gap: 4px;
+
         div:not(.dx-icon.dx-icon-search .dx-texteditor-input) {
           color: transparent;
         }
@@ -622,6 +631,7 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
           padding-block: 8px;
           padding-inline: 0;
           width: 20px;
+
           &::before {
             height: 20px;
             width: 20px;
@@ -635,8 +645,10 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
           line-height: 20px;
         }
       }
+
       .dx-texteditor-buttons-container {
         align-self: center;
+
         .dx-clear-button-area {
           .dx-icon.dx-icon-clear {
             display: block;
@@ -655,16 +667,19 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
         &.dx-state-hover {
           width: 8px;
           background-color: transparent;
+
           .dx-scrollable-scroll {
             width: 8px;
           }
         }
+
         .dx-scrollable-scroll {
           .dx-scrollable-scroll-content {
             border-radius: 10px;
           }
         }
       }
+
       //content
       .dx-scrollable-content {
         .dx-scrollview-content {
@@ -676,20 +691,24 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
               }
             }
           }
+
           .dx-list-items {
             .dx-list-group {
               margin-top: 0;
             }
+
             .dx-list-group-header {
               padding: 8px;
               font-size: 16px;
               line-height: 20px;
               font-weight: var(--me-bold-font-weight);
+
               &:before {
                 margin-top: 0;
                 margin-right: 6px;
               }
             }
+
             .dx-item.dx-list-item {
               padding: 8px;
               gap: 8px;
@@ -699,11 +718,13 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
               .dx-list-item-before-bag {
                 &.dx-list-toggle-delete-switch-container {
                   width: auto;
+
                   .dx-icon.dx-icon-toggle-delete {
                     margin: 0;
                   }
                 }
               }
+
               .dx-item-content.dx-list-item-content {
                 padding: 0;
                 font-size: 14px;
@@ -717,6 +738,7 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
               }
             }
           }
+
           .dx-list-select-all {
             display: flex;
             align-items: center;
@@ -724,9 +746,11 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
             gap: 8px;
             border-top: 0;
             border-bottom: 1px solid var(--Dividers-Borders-Long);
+
             .dx-widget.dx-checkbox.dx-select-all-checkbox {
               width: 28px;
             }
+
             .dx-list-select-all-label {
               padding: 0;
               font-size: 14px;
@@ -755,5 +779,12 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
     .dx-button-content {
       padding: 3px;
     }
+  }
+}
+
+.me-list .dx-button-mode-contained {
+  &.dx-list-static-delete-button,
+  &.dx-list-switchable-delete-button {
+    border: 1px solid $base-danger;
   }
 }
