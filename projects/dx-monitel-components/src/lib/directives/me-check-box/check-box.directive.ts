@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, inject } from '@angular/core';
+import { Directive, ElementRef, Renderer2 } from '@angular/core';
 import { DxCheckBoxComponent } from 'devextreme-angular';
 import { MeEditorDirective } from '../me-editor/editor.directive';
 

@@ -48,6 +48,14 @@ export default {
         defaultValue: { summary: false },
       },
     },
+    isValid: {
+      control: 'boolean',
+      description: 'Валидность чекбокса',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
   },
   args: {
     size: 'medium',
@@ -65,5 +73,8 @@ type Story = StoryObj<MeCheckBoxDirective | DxCheckBoxComponent>;
 export const Default: Story = {
   args: {
     text: '',
+    disabled: false,
+    readOnly: false,
+    isValid: true,
   },
 };
