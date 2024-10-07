@@ -12,6 +12,7 @@
   --me-icon-chevron-left: "";
   --me-icon-chevron-up: "";
   --me-icon-arrow-drop-down: "";
+  --me-icon-lock: "";
 }
 
 :root {
@@ -8358,6 +8359,189 @@
   margin: 0;
 }
 
+.me-textbox.dx-texteditor.dx-textbox {
+  border-radius: 3px;
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-state-hover {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid) {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+  border-color: var(--Controls-Content-In-Controls-Accent-Default);
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid) .dx-label span {
+  color: var(--Controls-Content-In-Controls-Accent-Default);
+}
+.me-textbox.dx-texteditor.dx-textbox:focus-within {
+  outline: 2px solid #7eb9ff;
+  outline-offset: 2px;
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-invalid .dx-label span {
+  color: var(--Controls-Content-In-Controls-Danger-Default);
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-invalid .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
+  color: var(--Controls-Content-In-Controls-Danger-Default);
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container {
+  padding-inline: 8px;
+  gap: 16px;
+  align-items: center;
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container *,
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container *::before {
+  padding: 0;
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  font-weight: var(--me-regular-font-weight);
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::-moz-placeholder {
+  color: transparent;
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::placeholder {
+  color: transparent;
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+  font-weight: var(--me-regular-font-weight);
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container {
+  height: 20px;
+  width: 20px;
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  margin: 0;
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
+  width: 12px;
+  height: 12px;
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area {
+  width: 20px;
+  height: 20px;
+  -moz-text-align-last: center;
+       text-align-last: center;
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
+  font-size: 19px;
+  line-height: 20px;
+  font-family: var(--me-icon-family);
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key::before {
+  content: var(--me-icon-lock);
+}
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-label .dx-label span {
+  font-size: 12px;
+  font-weight: var(--me-regular-font-weight);
+  line-height: 16px;
+  text-align: left;
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label {
+  margin-top: 20px;
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label .dx-texteditor-label {
+  height: 16px;
+  margin-top: 0;
+  top: -20px;
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label {
+  margin-top: 20px;
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label .dx-texteditor-label {
+  padding: 0;
+  align-items: center;
+  height: 16px;
+  margin-top: -8.5px !important;
+}
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label {
+  top: -48%;
+  left: -9px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 17px 3px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container {
+  padding-block: 4px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  font-size: 13px;
+  line-height: 16px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+  font-size: 13px;
+  line-height: 16px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 17px 3px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container {
+  padding-block: 6px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  font-size: 14px;
+  line-height: 20px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+  font-size: 14px;
+  line-height: 20px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large {
+  border-radius: 4px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 22px 5px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container {
+  padding-inline: 12px;
+  padding-block: 8px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  font-size: 16px;
+  line-height: 20px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+  font-size: 16px;
+  line-height: 20px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container {
+  height: 24px;
+  width: 24px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  width: 24px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
+  width: 16px;
+  height: 16px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area {
+  width: 24px;
+  height: 24px;
+  -moz-text-align-last: center;
+       text-align-last: center;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
+  font-size: 23px;
+  line-height: 24px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-label .dx-label span {
+  font-size: 14px;
+  line-height: 20px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-label-outside {
+  margin-top: 24px;
+}
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-label-outside .dx-texteditor-label {
+  height: 20px;
+  top: -24px;
+}
+
 /**
 * $name 20. Dropdown button hovered state background color
 * $type color
@@ -10015,9 +10199,13 @@
   -moz-text-align-last: center;
        text-align-last: center;
 }
-.me-text-area.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container > * > .dx-icon {
+.me-text-area.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container > * > .dx-icon.dx-icon-key {
   font-size: 12px;
   line-height: 22px;
+  font-family: var(--me-icon-family);
+}
+.me-text-area.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container > * > .dx-icon.dx-icon-key::before {
+  content: var(--me-icon-lock);
 }
 .me-text-area.dx-state-readonly .dx-texteditor-input {
   padding-right: 34px;

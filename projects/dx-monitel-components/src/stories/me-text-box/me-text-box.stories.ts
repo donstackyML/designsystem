@@ -15,6 +15,22 @@ export default {
     }),
   ],
   argTypes: {
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Определяет состояние компонента.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    isValid: {
+      control: { type: 'boolean' },
+      description: 'Определяет валидность компонента.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
     label: {
       control: 'text',
       description:
@@ -26,11 +42,41 @@ export default {
     },
     labelMode: {
       control: 'select',
-      options: ['static', 'floating'],
+      options: ['static', 'floating', 'hidden', 'outside'],
       description: 'Определяет положение лейбла текстового поля.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: { summary: 'static' },
+      },
+    },
+    mode: {
+      control: 'select',
+      options: ['text', 'password', 'email', 'search', 'tel', 'url'],
+      description: 'Определяет поведение текстового поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'text' },
+      },
+    },
+    placeholder: {
+      control: 'text',
+      description:
+        'Определяет подсказку, которая отображается в текстовом поле.',
+    },
+    readOnly: {
+      control: { type: 'boolean' },
+      description: 'Определяет состояние только для чтения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    showClearButton: {
+      control: { type: 'boolean' },
+      description: 'Показ кнопки очистки.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
     },
     size: {
@@ -45,10 +91,20 @@ export default {
   },
   args: {
     size: 'medium',
+    mode: 'text',
+    // stylingMode: 'filled',
+    labelMode: 'hidden',
+    label: 'Label',
+    placeholder: 'Placeholder',
+    readOnly: false,
+    disabled: false,
+    isValid: true,
+    showClearButton: true,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>`,
+    template: `<dx-text-box meTextBox ${argsToTemplate(args)}>
+		</dx-text-box>`,
   }),
 } as Meta<MeTextBoxDirective | DxTextBoxComponent | MeLabelDirective>;
 
@@ -57,9 +113,7 @@ type Story = StoryObj<
 >;
 
 export const Default: Story = {
-  args: {
-    label: '',
-  },
+  args: {},
 };
 
 export const WithLabelColumn: Story = {
