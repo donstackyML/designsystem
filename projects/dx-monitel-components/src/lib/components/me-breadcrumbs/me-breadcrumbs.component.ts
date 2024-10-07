@@ -32,9 +32,20 @@ interface BreadcrumbItem {
 @Component({
   selector: 'me-breadcrumbs',
   standalone: true,
-  imports: [CommonModule, DxMenuModule, DxButtonModule, DxContextMenuModule, MeIconComponent],
+  imports: [
+    CommonModule,
+    DxMenuModule,
+    DxButtonModule,
+    DxContextMenuModule,
+    MeIconComponent,
+  ],
   template: `
-    <nav class="breadcrumbs" [ngClass]="size" aria-label="Breadcrumbs" #breadcrumbsContainer>
+    <nav
+      class="breadcrumbs"
+      [ngClass]="size"
+      aria-label="Breadcrumbs"
+      #breadcrumbsContainer
+    >
       <dx-button
         *ngIf="overflowLeft"
         stylingMode="text"
@@ -56,7 +67,11 @@ interface BreadcrumbItem {
           class="breadcrumb-menu"
           [ngClass]="size"
         >
-          <div *dxTemplate="let data of 'item'" class="menu-item" [ngClass]="size">
+          <div
+            *dxTemplate="let data of 'item'"
+            class="menu-item"
+            [ngClass]="size"
+          >
             <me-icon
               *ngIf="data.icon"
               [icon]="data.icon"
@@ -86,7 +101,11 @@ interface BreadcrumbItem {
       (onPositioning)="onContextMenuPositioning($event)"
       (onItemClick)="onOverflowItemClick($event)"
     >
-      <div *dxTemplate="let data of 'item'" class="context-menu-item" [ngClass]="size">
+      <div
+        *dxTemplate="let data of 'item'"
+        class="context-menu-item"
+        [ngClass]="size"
+      >
         <me-icon
           *ngIf="data.icon"
           [icon]="data.icon"
@@ -97,11 +116,12 @@ interface BreadcrumbItem {
         <i *ngIf="data.items?.length" class="dx-icon-spindown"></i>
       </div>
     </dx-context-menu>
-
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class MeBreadcrumbsComponent
+  implements AfterViewInit, OnChanges, OnDestroy
+{
   @Input() items: BreadcrumbItem[] = [];
   @Input() truncateFrom: 'left' | 'right' = 'right';
   @Input() size: 'small' | 'large' = 'small';
@@ -133,14 +153,17 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     this.updateItems();
 
     this.overflowMenu.instance.option('cssClass', 'breadcrumbs-overflow-menu');
-    this.overflowMenu.instance.option('items', this.overflowItems.map(item => ({
-      ...item,
-      template: (itemData: any, itemIndex: number, itemElement: any) => {
-        const content = document.createElement('span');
-        content.textContent = itemData.text;
-        itemElement.appendChild(content);
-      }
-    })));
+    this.overflowMenu.instance.option(
+      'items',
+      this.overflowItems.map((item) => ({
+        ...item,
+        template: (itemData: any, itemIndex: number, itemElement: any) => {
+          const content = document.createElement('span');
+          content.textContent = itemData.text;
+          itemElement.appendChild(content);
+        },
+      }))
+    );
   }
 
   private setupResizeObserver() {
@@ -255,7 +278,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   contextMenuPosition: any = {
     my: 'top left',
     at: 'bottom left',
-    offset: { x: 0, y: 5 }
+    offset: { x: 0, y: 5 },
   };
 
   showOverflowMenu(position: 'left' | 'right', event: any) {
@@ -265,7 +288,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
         my: position === 'left' ? 'top left' : 'top right',
         at: position === 'left' ? 'bottom left' : 'bottom right',
         of: this.overflowMenuTarget,
-        offset: { x: 0, y: 5 }
+        offset: { x: 0, y: 5 },
       };
       this.overflowMenu.instance.option('position', this.contextMenuPosition);
       this.overflowMenu.instance.show();

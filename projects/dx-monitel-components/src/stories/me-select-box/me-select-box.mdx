@@ -13,18 +13,22 @@ import { Figma } from "@storybook/addon-designs/blocks";
 Документация на сайте разработчика Devextreme:
 
 <div>
-  <a href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/" target="_blank">
+  <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/"
+    target="_blank"
+  >
     API
   </a>
 </div>
 
 <div>
-  <a href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/SelectBox/Overview/" target="_blank">
+  <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/SelectBox/Overview/"
+    target="_blank"
+  >
     Демо
   </a>
 </div>
-
-
 
 <Canvas of={selectBoxStories.Default} />
 <Controls of={selectBoxStories.Default} />
@@ -40,15 +44,15 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Свойства компонента
 
-| Свойство | Тип | Описание |
-|----------|-----|----------|
-| dataSource | any | Задает или получает массив данных, отображаемых компонентом. |
-| placeholder | string | Задает текст, отображаемый, когда компонент не имеет значения. |
-| searchEnabled | boolean | Определяет, разрешен ли поиск в списке элементов. |
-| disabled | boolean | Определяет, отключен ли компонент. |
-| readOnly | boolean | Определяет, доступен ли компонент только для чтения. |
-| stylingMode | string | Задает режим стилизации компонента. |
-| width | number \| string | Задает ширину компонента. |
+| Свойство      | Тип              | Описание                                                       |
+| ------------- | ---------------- | -------------------------------------------------------------- |
+| dataSource    | any              | Задает или получает массив данных, отображаемых компонентом.   |
+| placeholder   | string           | Задает текст, отображаемый, когда компонент не имеет значения. |
+| searchEnabled | boolean          | Определяет, разрешен ли поиск в списке элементов.              |
+| disabled      | boolean          | Определяет, отключен ли компонент.                             |
+| readOnly      | boolean          | Определяет, доступен ли компонент только для чтения.           |
+| stylingMode   | string           | Задает режим стилизации компонента.                            |
+| width         | number \| string | Задает ширину компонента.                                      |
 
 ## Примеры использования
 
@@ -56,74 +60,98 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 <Canvas of={selectBoxStories.Default} />
 
-<Source code={`
+<Source
+  code={`
 <dx-select-box
   meSelectBox
   [dataSource]="['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50']"
 ></dx-select-box>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Использование с плейсхолдером
 
 <Canvas of={selectBoxStories.WithPlaceholder} />
 
-<Source code={`
+<Source
+  code={`
 <dx-select-box
   meSelectBox
   [dataSource]="dataSource"
   placeholder="Выберите опцию"
 ></dx-select-box>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Включение поиска
 
 <Canvas of={selectBoxStories.WithSearchEnabled} />
 
-<Source code={`
+<Source
+  code={`
 <dx-select-box
   meSelectBox
   [dataSource]="largeDataSource"
   [searchEnabled]="true"
   placeholder="Поиск..."
 ></dx-select-box>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Отключенное состояние
 
 <Canvas of={selectBoxStories.Disabled} />
 
-<Source code={`
+<Source
+  code={`
 <dx-select-box
   meSelectBox
   [dataSource]="dataSource"
   [disabled]="true"
 ></dx-select-box>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Режим только для чтения
 
 <Canvas of={selectBoxStories.ReadOnly} />
 
-<Source code={`
+<Source
+  code={`
 <dx-select-box
   meSelectBox
   [dataSource]="dataSource"
   value="HD Video Player"
   [readOnly]="true"
 ></dx-select-box>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Пользовательская ширина
 
 <Canvas of={selectBoxStories.CustomWidth} />
 
-<Source code={`
+<Source
+  code={`
 <dx-select-box
   meSelectBox
   [dataSource]="dataSource"
   width="300px"
 ></dx-select-box>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 <style>
   {`
