@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use '../sizes' as *;
-@use '../colors' as *;
+@use "sass:color";
+@use "../sizes" as *;
+@use "../colors" as *;
 
 // adduse
 
@@ -9,11 +9,36 @@
 * $type color
 */
 $selectbox-list-bg: null !default;
+$controls-content-in-controls-main-default: null !default;
+$controls-content-in-controls-main-disabled: null !default;
+$controls-content-in-controls-accent-default: null !default;
+$controls-bg-accent-accent-bg-default: null !default;
+$dividers-borders-long: null !default;
+$background-accent-in-the-content: null !default;
+$select-box-border-radius: $base-border-radius !default;
+$select-box-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.14) !default;
 
-@if $color == 'light' {
-  $selectbox-list-bg: #ffffff;
+@if $color == "light" {
+  $selectbox-list-bg: #FFFFFF;
+  $controls-content-in-controls-main-default: #18181A;
+  $controls-content-in-controls-main-disabled: rgba(24, 24, 26, 0.4);
+  $controls-content-in-controls-accent-default: rgba(50, 87, 220, 1);
+  $controls-bg-accent-accent-bg-default: rgba(50, 87, 220, 1);
+  $dividers-borders-long: #DFE0ED;
+  $background-accent-in-the-content: #FFF;
 }
 
-@if $color == 'dark' {
-  $selectbox-list-bg: #2e2e2f;
+@if $color == "dark" {
+  $selectbox-list-bg: #2E2E2F;
+  $controls-content-in-controls-main-default: #FFFFFF;
+  $controls-content-in-controls-main-disabled: rgba(255, 255, 255, 0.4);
+  $controls-content-in-controls-accent-default: rgba(93, 158, 255, 1);
+  $controls-bg-accent-accent-bg-default: rgba(93, 158, 255, 1);
+  $dividers-borders-long: #3F4044;
+  $background-accent-in-the-content: #282829;
 }
+
+// Добавим переменные для типографики и размеров
+$select-box-font-family: $base-font-family !default;
+$select-box-font-size: $generic-base-font-size !default;
+$select-box-line-height: $generic-base-line-height !default;

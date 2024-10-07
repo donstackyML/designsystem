@@ -15,7 +15,7 @@ export class ButtonDirective extends MeControlDirective implements OnInit {
   @Input() iconSize: string = '';
   @Input() leftIconSize: string = '';
   @Input() rightIconSize: string = '';
-  @Input() iconColor: string = '';
+  @Input() iconColor: string = '#18181A';
   @Input() leftIconColor: string = '';
   @Input() rightIconColor: string = '';
   @Input() selectionStateEnable: boolean = false;

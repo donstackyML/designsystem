@@ -2,15 +2,13 @@ import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as toolbarStories from "./me-toolbar.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
 
-<Meta name="Toolbar Documentation" of={toolbarStories} />
+<Meta title="Toolbar Documentation" of={toolbarStories} />
 
 # Toolbar
 
 ## Директива meToolbar
 
-Применение директивы <code>meToolbar</code> к элементу <code>dx-toolbar</code> приводит его размеры к значению <code>size=medium</code>
-из дизайн-системы и предоставляет доступ к другим свойствам. Изменение размеров элементов тулбара происходит путем добавления
-соответствующих директив и установки нужных размеров.
+Применение директивы <code>meToolbar</code> к элементу <code>dx-toolbar</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы и предоставляет доступ к другим свойствам. Изменение размеров элементов тулбара происходит путем добавления соответствующих директив и установки нужных размеров.
 
 <Canvas of={toolbarStories.Default} />
 <Controls of={toolbarStories.Default} />
@@ -20,15 +18,176 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 <Figma
   height="50%"
-  collapsable
-  defaultCollapsed
+  collapsible
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=784-12263&t=1RhAsYBAzb8jZPoX-0"
 />
 
-<style>
-  {`
-      h2 {
-        border-bottom: none !important;
-    }
+## Примеры использования
+
+- [Добавление кнопок с иконками](#добавление-кнопок-с-иконками)
+- [Добавление выпадающих кнопок](#добавление-выпадающих-кнопок)
+- [Изменение размера Toolbar](#изменение-размера-toolbar)
+- [Добавление разделителей](#добавление-разделителей)
+- [Использование кнопок с директивой meButton](#использование-кнопок-с-директивой-mebutton)
+- [Добавление иконок из набора](#добавление-иконок-из-набора)
+
+## Добавление кнопок с иконками
+
+Для добавления кнопок с иконками необходимо использовать компонент <code>dx-button</code> с директивой <code>meButton</code> и задать свойство <code>iconOnly</code> с названием иконки.
+
+<Canvas of={toolbarStories.IconButtons} />
+
+<Source
+  code={`
+<dx-toolbar meToolbar [size]="size">
+  <dxi-item location="before">
+    <div *dxTemplate>
+      <dx-button meButton iconOnly="undo" [size]="size" iconColor="#18181a"></dx-button>
+    </div>
+  </dxi-item>
+  <dxi-item location="before">
+    <div *dxTemplate>
+      <dx-button meButton iconOnly="redo" [size]="size" iconColor="#18181a"></dx-button>
+    </div>
+  </dxi-item>
+  <!-- Другие элементы -->
+</dx-toolbar>
 `}
-</style>
+  language="html"
+  dark
+/>
+
+## Добавление выпадающих кнопок
+
+Для добавления выпадающих кнопок используйте компонент <code>dx-drop-down-button</code> с директивой <code>meDropDownButton</code>.
+
+<Canvas of={toolbarStories.DropDownButtons} />
+
+<Source
+      code={`
+    <dx-toolbar meToolbar [size]="size">
+    <dxi-item location="before" locateInMenu="auto">
+    <div *dxTemplate>
+    <dx-drop-down-button
+    meDropDownButton
+    [size]="size"
+    text="1.35"
+    width="100%"
+    displayExpr="text"
+    keyExpr="value"
+    [items]="lineHeights"
+    stylingMode="contained"
+    ></dx-drop-down-button>
+    </div>
+    </dxi-item>
+      <!-- Другие элементы -->
+    </dx-toolbar>
+    `}
+      language="html"
+      dark
+    />
+
+    ## Изменение размера Toolbar
+
+    Размер Toolbar можно изменить с помощью свойства <code>size</code>, доступного в директиве <code>meToolbar</code>. Доступны размеры <code>small</code>, <code>medium</code>, <code>large</code>.
+
+    <Canvas of={toolbarStories.SizeLarge} />
+
+<Source
+  code={`
+<dx-toolbar meToolbar size="large">
+  <!-- Ваши элементы -->
+</dx-toolbar>
+`}
+  language="html"
+  dark
+/>
+
+## Добавление разделителей
+
+Для добавления разделителей используйте класс <code>me-toolbar-separator</code> внутри элемента <code>dxi-item</code>.
+
+<Canvas of={toolbarStories.Separators} />
+
+<Source
+  code={`
+<dx-toolbar meToolbar [size]="size">
+  <dxi-item location="before">
+    <div *dxTemplate>
+      <div class="me-toolbar-separator"></div>
+    </div>
+  </dxi-item>
+  <!-- Другие элементы -->
+</dx-toolbar>
+`}
+  language="html"
+  dark
+/>
+
+## Использование кнопок с директивой meButton
+
+Все кнопки внутри Toolbar должны использовать директиву <code>meButton</code> для соответствия дизайн-системе.
+
+    <Canvas of={toolbarStories.MeButtonUsage} />
+
+    <Source
+      code={`
+    <dx-toolbar meToolbar [size]="size">
+    <dxi-item location="before">
+    <div *dxTemplate>
+    <dx-button meButton iconOnly="add" [size]="size" iconColor="#18181a"></dx-button>
+    </div>
+    </dxi-item>
+      <!-- Другие элементы -->
+    </dx-toolbar>
+    `}
+      language="html"
+      dark
+    />
+
+    ## Добавление иконок из набора
+
+    Вы можете использовать иконки из набора, предоставленного в вашем проекте. Для этого укажите название иконки в свойстве <code>iconOnly</code> компонента <code>dx-button</code> с директивой <code>meButton</code>.
+
+    <Canvas of={toolbarStories.CustomIcons} />
+
+    <Source
+    code={`
+    <dx-toolbar meToolbar [size]="size">
+    <dxi-item location="before">
+    <div *dxTemplate>
+    <dx-button meButton iconOnly="format_bold" [size]="size" iconColor="#18181a"></dx-button>
+    </div>
+    </dxi-item>
+    <dxi-item location="before">
+    <div *dxTemplate>
+    <dx-button meButton iconOnly="format_italic" [size]="size" iconColor="#18181a"></dx-button>
+      </div>
+    </dxi-item>
+    <dxi-item location="before">
+    <div *dxTemplate>
+    <dx-button meButton iconOnly="format_underlined" [size]="size" iconColor="#18181a"></dx-button>
+      </div>
+    </dxi-item>
+      <!-- Другие элементы -->
+    </dx-toolbar>
+    `}
+      language="html"
+      dark
+    />
+
+    <style>
+    {`
+    h2 {
+    border-bottom: none !important;
+    }
+
+    a {
+    display: inline-block !important;
+    }
+
+    a p {
+    color: #029CFD !important;
+    }
+    `}
+    </style>
