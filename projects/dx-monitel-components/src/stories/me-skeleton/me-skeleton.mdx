@@ -10,7 +10,7 @@ import { MeSkeletonComponent } from "../../public-api";
     moduleMetadata({
       imports: [MeSkeletonComponent], // Изменено с declarations на imports
     }),
-    ]}
+  ]}
   of={SkeletonStories}
 />
 
@@ -27,54 +27,75 @@ import { MeSkeletonComponent } from "../../public-api";
 ### С аватаром
 
 <Canvas of={SkeletonStories.WithAvatar} />
-<Source code={`
+<Source
+  code={`
 <me-skeleton [avatar]="{ size: 'large', shape: 'circle' }"></me-skeleton>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Анимация
 
 <Canvas of={SkeletonStories.ActiveAnimation} />
-<Source code={`
+<Source
+  code={`
 <me-skeleton [active]="true"></me-skeleton>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Настраиваемый заголовок и параграфы
 
 <Canvas of={SkeletonStories.CustomTitleAndParagraph} />
-<Source code={`
+<Source
+  code={`
 <me-skeleton
   [title]="{ width: '40%' }"
   [paragraph]="{ rows: 4, width: ['100%', '90%', '80%', '60%'] }">
 </me-skeleton>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Закругленные углы
 
 <Canvas of={SkeletonStories.Rounded} />
-<Source code={`
+<Source
+  code={`
 <me-skeleton
   [round]="true"
   [title]="{ width: '50%' }"
   [paragraph]="{ rows: 3, width: ['100%', '80%', '60%'] }">
 </me-skeleton>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Загрузка контента
 
 <Canvas of={SkeletonStories.Loading} />
-<Source code={`
+<Source
+  code={`
 <me-skeleton [loading]="true">
   <div>
     <h4>Заголовок после загрузки</h4>
     <p>Этот текст отображается, когда загрузка завершена.</p>
   </div>
 </me-skeleton>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ### Комплексная комбинация
 
 <Canvas of={SkeletonStories.ComplexCombination} />
-<Source code={`
+<Source
+  code={`
 <me-skeleton
   [active]="true"
   [avatar]="{ size: 'large', shape: 'circle' }"
@@ -82,17 +103,20 @@ import { MeSkeletonComponent } from "../../public-api";
   [paragraph]="{ rows: 4, width: ['100%', '90%', '80%', '70%'] }"
   [round]="true">
 </me-skeleton>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>
 
 ## Свойства компонента
 
-| Свойство | Тип | Описание |
-|----------|-----|----------|
-| active | boolean | Включает анимацию скелета |
-| avatar | object | Отображает аватар. Может быть объектом с параметрами размера и формы |
-| loading | boolean | Отображает содержимое вместо скелета при `true` |
-| paragraph | object | Отображает параграфы. Может быть объектом с параметрами количества строк и ширины |
-| title | object | Отображает заголовок. Может быть объектом с параметром ширины |
-| round | boolean | Скругляет углы заголовка и параграфов |
+| Свойство  | Тип     | Описание                                                                          |
+| --------- | ------- | --------------------------------------------------------------------------------- |
+| active    | boolean | Включает анимацию скелета                                                         |
+| avatar    | object  | Отображает аватар. Может быть объектом с параметрами размера и формы              |
+| loading   | boolean | Отображает содержимое вместо скелета при `true`                                   |
+| paragraph | object  | Отображает параграфы. Может быть объектом с параметрами количества строк и ширины |
+| title     | object  | Отображает заголовок. Может быть объектом с параметром ширины                     |
+| round     | boolean | Скругляет углы заголовка и параграфов                                             |
 
 <Controls of={SkeletonStories.Default} />

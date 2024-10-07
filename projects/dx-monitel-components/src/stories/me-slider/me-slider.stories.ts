@@ -57,7 +57,8 @@ export default {
 								[hoverStateEnabled]="hoverStateEnabled"
 								[focusStateEnabled]="focusStateEnabled"
 								[isValid]="isValid"
-								></dx-slider>
+								>
+								</dx-slider>
 						</div>
 					</div>
 `,

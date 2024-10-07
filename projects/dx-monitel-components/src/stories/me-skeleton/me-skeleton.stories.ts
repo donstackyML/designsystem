@@ -21,7 +21,8 @@ export default {
     },
     avatar: {
       control: 'object',
-      description: 'Отображает аватар. Может быть объектом с параметрами размера и формы',
+      description:
+        'Отображает аватар. Может быть объектом с параметрами размера и формы',
     },
     loading: {
       control: 'boolean',
@@ -29,11 +30,13 @@ export default {
     },
     paragraph: {
       control: 'object',
-      description: 'Отображает параграфы. Может быть объектом с параметрами количества строк и ширины',
+      description:
+        'Отображает параграфы. Может быть объектом с параметрами количества строк и ширины',
     },
     title: {
       control: 'object',
-      description: 'Отображает заголовок. Может быть объектом с параметром ширины',
+      description:
+        'Отображает заголовок. Может быть объектом с параметром ширины',
     },
     round: {
       control: 'boolean',
@@ -96,7 +99,11 @@ export const Loading: Story = {
     template: `
       <div>
         <me-skeleton ${argsToTemplate(args)}></me-skeleton>
-        ${args.loading ? '<p>This is the actual content that would be shown when loading is complete.</p>' : ''}
+        ${
+          args.loading
+            ? '<p>This is the actual content that would be shown when loading is complete.</p>'
+            : ''
+        }
       </div>
     `,
   }),
