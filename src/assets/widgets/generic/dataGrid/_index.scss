@@ -137,6 +137,10 @@
   .dx-datagrid {
     padding: 16px;
 
+    .dx-datagrid-columns-separator {
+      background: var(--Controls-BG-Accent-Accent-BG-Default);
+    }
+
     //header-panel
     .dx-datagrid-header-panel {
       min-height: 28px;
@@ -244,8 +248,9 @@
       text-align: center;
       align-content: center;
       border: 0px;
-      color: $base-text-color;
-      background-color: $data-grid-page-selector-color;
+      color: var(--Controls-Content-In-Controls-Main-Default);
+
+      background: var(--Controls-BG-Secondary-Elements-BG-Default);
 
       &.dx-selection {
         background-color: $data-grid-selection-color;
@@ -261,9 +266,6 @@
       &:not(.dx-selection, .dx-button-disable):hover {
         background-color: $base-hover-bg;
       }
-      &:not(.dx-selection, .dx-button-disable):active {
-        // background-color: $button-default-contained-bg-active;
-      }
     }
 
     .dx-info {
@@ -274,13 +276,9 @@
       .dx-page-sizes {
         border-radius: 3px;
         .dx-selectbox.dx-textbox.dx-texteditor.dx-dropdowneditor {
-          background-color: $data-grid-search-panel-background-color;
           border: none;
           &:hover {
             background-color: $base-hover-bg;
-          }
-          &:active {
-            // background-color: $button-default-contained-bg-active;
           }
         }
         .dx-texteditor-container {
@@ -399,7 +397,7 @@
   //header sell
   .dx-datagrid-headers {
     .dx-datagrid-action.dx-datagrid-drag-action {
-      background-color: $data-grid-header-background-color;
+      background: var(--Background-Canvas);
       padding: 8px;
 
       &:hover {
@@ -874,4 +872,10 @@
   text-align: center;
   align-content: center;
   line-height: 0;
+  font-weight: var(--me-bold-font-weight);
+  font-size: 13px;
+  color: $base-text-color;
+  box-shadow: 0px 1px 4px 0px #0006143d;
+  border-top: 1px solid var(--Dividers-Borders-Long);
+  background: var(--Background-Canvas);
 }

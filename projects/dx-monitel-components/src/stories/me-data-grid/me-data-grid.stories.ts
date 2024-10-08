@@ -924,7 +924,7 @@ export const WithCounter: StoryObj = {
   dataField="ID"
   cellTemplate="cellTemplate"></dxi-column>
   <div *dxTemplate="let cell of 'cellTemplate'">
-    <me-badge [value]="[cell.data.ID]"></me-badge>
+    <me-badge color="secondary" [value]="[cell.data.ID]"></me-badge>
   </div>
 </dx-data-grid>`,
   }),
