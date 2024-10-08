@@ -38,7 +38,7 @@ steps:
       script: |
         npm config set https-proxy https://proxy-ext.sandbox.local:8080
         npm install
-      workingDirectory: $(Build.ArtifactStagingDirectory)
+      workingDirectory: $(Build.SourcesDirectory)
 
   - script: npm run build-storybook
     displayName: Restore dx-custom-themes projects
