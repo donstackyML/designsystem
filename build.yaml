@@ -31,9 +31,14 @@ steps:
   - checkout: self
   # - checkout: build-scripts
 
-  - script: npm install
+  - task: Bash@3
     displayName: Install
-    # workingDirectory: $(Build.Repository.Name)
+    inputs:
+      targetType: 'inline'
+      script: |
+        npm config set https-proxy https://proxy-ext.sandbox.local:8080
+        npm install
+      workingDirectory: $(Build.SourcesDirectory)
 
   - script: npm run build-storybook
     displayName: Restore dx-custom-themes projects

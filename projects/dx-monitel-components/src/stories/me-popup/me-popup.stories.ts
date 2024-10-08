@@ -338,9 +338,9 @@ export const Button: Story = {
     props: args,
     template: `<div id="myWrapperButton" style="min-height: 350px; position: relative;">
     <dx-popup mePopup ${argsToTemplate(args)}>
-     <dxi-toolbar-item template="addButton" toolbar="bottom" location="center"> </dxi-toolbar-item>
+     <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'addButton'">
-        <dx-button meButton text="Добавить" width="100%"></dx-button>
+        <dx-button meButton text="Добавить" type="default" width="100%"></dx-button>
       </div>
     </dx-popup></div>`,
   }),
