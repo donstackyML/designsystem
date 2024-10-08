@@ -387,6 +387,8 @@ export const Dialog: Story = {
     visible: true,
     size: 'medium',
     showTitle: false,
+    minHeight: 'auto',
+    height: 'auto',
     position: {
       my: 'center',
       at: 'center',
@@ -410,7 +412,7 @@ export const Dialog: Story = {
       <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
-          <div class="me-flex-column" style="align-items: center;">
+          <div class="me-flex-column">
             <h3 class="me-title-header1" style="margin: 0;">Заголовок</h3>
             <div class="me-text-body2">${lorem25}</div>
           </div>
@@ -436,6 +438,8 @@ export const DialogLarge: Story = {
     visible: true,
     size: 'large',
     showTitle: false,
+    minHeight: 'auto',
+    height: 'auto',
     position: {
       my: 'center',
       at: 'center',
@@ -459,7 +463,7 @@ export const DialogLarge: Story = {
       <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
-          <div class="me-flex-column" style="align-items: center;">
+          <div class="me-flex-column">
             <h3 class="me-title-header1" style="margin: 0;">Заголовок</h3>
             <div class="me-text-body2">${lorem25}</div>
           </div>
@@ -497,7 +501,7 @@ export const Scroll: Story = {
   decorators: [
     moduleMetadata({
       declarations: [MePopupDirective, DxScrollViewComponent],
-      imports: [DxPopupModule, DxTemplateModule],
+      imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
   render: (args) => ({
@@ -505,10 +509,18 @@ export const Scroll: Story = {
     template: `
     <div id="myWrapperScroll" style="height: 350px; position: relative;">
       <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"></dxi-toolbar-item>
+     <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"></dxi-toolbar-item>
         <div *dxTemplate="let data of 'content'">
           <dx-scroll-view width="100%" height="100%">
           ${words}
           </dx-scroll-view>
+        </div>
+        <div *dxTemplate="let data of 'addButton'">
+          <dx-button meButton type="default" text="Добавить"></dx-button>
+        </div>
+        <div *dxTemplate="let data of 'cancelButton'">
+          <dx-button meButton text="Отмена"></dx-button>
         </div>
       </dx-popup>
     </div>`,
