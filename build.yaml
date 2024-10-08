@@ -11,7 +11,7 @@ trigger:
       - '*'
 
 pool:
-  name: 'CK-11-MainBuildPool'
+  name: 'tfs-ext-pool-1'
   demands:
     - npm
 
@@ -35,13 +35,13 @@ steps:
     displayName: Install
     workingDirectory: $(Build.Repository.Name)
 
-  - script: npm run build
+  - script: npm run build-storybook
     displayName: Restore dx-custom-themes projects
     workingDirectory: $(Build.Repository.Name)
 
   - template: scripts/add-to-archive.yml@build-scripts
     parameters:
-      archiveFile: $(Build.ArtifactStagingDirectory)/publish/addons/designsystem/web/dx-custom-themes.zip
+      archiveFile: $(Build.ArtifactStagingDirectory)/publish/addons/designsystem/web/storybook/dx-monitel-components/24.zip
       sourceFolder: $(Build.Repository.Name)/dist
       sourceRootName: dx-custom-themes
 
