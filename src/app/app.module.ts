@@ -4,8 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
 import {
   MeAccordionModule,
+  MeBadgeComponent,
+  MeBreadcrumbsComponent,
   MeButtonGroupModule,
+  MeButtonModule,
+  MeCardComponent,
+  MeChipComponent,
+  MeChipsContainerComponent,
+  MeDataGridModule,
+  MeFileUploaderModule,
+  MeIconComponent,
+  MeLoadPanelModule,
+  MePaginationComponent,
+  MePivotGridModule,
+  MePopupModule,
+  MeProgressBarModule,
+  MeScrollViewModule,
+  MeSkeletonComponent,
+  MeSliderModule,
   MeTabsModule,
+  MeTagBoxModule,
+  MeTextAreaModule,
+  MeTreeListModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +36,7 @@ import { MeCalendarComponent } from './components/me-calendar/me-calendar.compon
 import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
 import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-drop-down-button.component';
+import { MeIconResearchComponent } from './components/me-icon-research/me-icon-research.component';
 import { MeListComponent } from './components/me-list/me-list.component';
 import { MeLoadingIndicatorComponent } from './components/me-loading-indicator/me-loading-indicator.component';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
@@ -34,7 +55,6 @@ import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
-import { ButtonDirective } from './directives/button.directive';
 import { MeCalendarDirective } from './directives/calendar.directive';
 import { MeCheckBoxDirective } from './directives/check-box.directive';
 import { MeContextMenuDirective } from './directives/context-menu.directive';
@@ -49,7 +69,6 @@ import { MeLoadPanelDirective } from './directives/load-panel.directive';
 import { MeMenuDirective } from './directives/menu.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
 import { MePopoverDirective } from './directives/popover.directive';
-import { MePopupDirective } from './directives/popup.directive';
 import { MeRadioGroupDirective } from './directives/radio-group.directive';
 import { MeSelectBoxDirective } from './directives/select-box.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
@@ -60,13 +79,11 @@ import { MeToastDirective } from './directives/toast.directive';
 import { MeToolbarDirective } from './directives/toolbar.directive';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
-import { MeIconResearchComponent } from './components/me-icon-research/me-icon-research.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MeButtonComponent,
-    ButtonDirective,
     MePopoverDirective,
     MePopoverComponent,
     MeTextBoxComponent,
@@ -84,7 +101,6 @@ import { MeIconResearchComponent } from './components/me-icon-research/me-icon-r
     MeTabsComponent,
     MePopupComponent,
     MeTooltipComponent,
-    MePopupDirective,
     MeOverlayDirective,
     MeIconDirective,
     MeCalendarDirective,
@@ -126,9 +142,30 @@ import { MeIconResearchComponent } from './components/me-icon-research/me-icon-r
     DxDateBoxModule,
     DxPivotGridModule,
     ReactiveFormsModule,
+    MeBadgeComponent,
+    MeBreadcrumbsComponent,
+    MeCardComponent,
+    MeIconComponent,
+    MeChipComponent,
+    MeChipsContainerComponent,
+    MeDataGridModule,
+    MeFileUploaderModule,
+    MeLoadPanelModule,
+    MePaginationComponent,
+    MePivotGridModule,
+    MeProgressBarModule,
+    MeScrollViewModule,
+    MeSkeletonComponent,
+    MeSliderModule,
+    MeTagBoxModule,
+    MeTextAreaModule,
+    MeTreeListModule,
+    MeLoadPanelModule,
     MeTabsModule,
     MeAccordionModule,
     MeButtonGroupModule,
+    MeButtonModule,
+    MePopupModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

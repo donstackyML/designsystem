@@ -6,11 +6,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DxPopupComponent } from 'devextreme-angular';
-import { MeOverlayDirective } from '../me-overlay/overlay.directive';
 import { MeSize } from '../../types/types';
+import { MeOverlayDirective } from '../me-overlay/overlay.directive';
 
 const POPUP_WIDTH_MEDIUM = '360';
-const POPUP_MINHEIGHT_MEDIUM = '280';
+const POPUP_MINHEIGHT_MEDIUM = 'auto';
 const POPUP_WIDTH_LARGE = '400';
 const POPUP_MINHEIGHT_LARGE = '320';
 const POPUP_MAXHEIGHT = '80vh';
@@ -47,7 +47,7 @@ export class MePopupDirective extends MeOverlayDirective {
     popup.height = this.height;
 
     if (this.size === 'medium') {
-      popup.minHeight = this.minHeight;
+      // popup.minHeight = this.minHeight;
       popup.width = this.width;
     } else if (this.size === 'large') {
       popup.minHeight = POPUP_MINHEIGHT_LARGE;
