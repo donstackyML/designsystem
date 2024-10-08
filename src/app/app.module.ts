@@ -60,6 +60,7 @@ import { MeToastDirective } from './directives/toast.directive';
 import { MeToolbarDirective } from './directives/toolbar.directive';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
+import { MeIconResearchComponent } from './components/me-icon-research/me-icon-research.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeLoadIndicatorDirective,
     MeLoadingIndicatorComponent,
     MeLoadPanelDirective,
+    MeIconResearchComponent,
   ],
   imports: [
     BrowserModule,
