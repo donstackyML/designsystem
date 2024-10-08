@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { DxButtonComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../service/icon-store.service';
 import { MeControlDirective } from './control.directive';
@@ -7,19 +7,24 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 
 @Directive({
   selector: '[meButton]',
+  host: {
+    '[class]': 'customClasses',
+  },
 })
-export class ButtonDirective extends MeControlDirective implements OnInit {
+export class ButtonDirective extends MeControlDirective implements OnInit, OnDestroy {
   @Input() leftIcon: string = '';
   @Input() rightIcon: string = '';
   @Input() iconOnly: string = '';
   @Input() iconSize: string = '';
   @Input() leftIconSize: string = '';
   @Input() rightIconSize: string = '';
-  @Input() iconColor: string = '';
+  @Input() iconColor: string = '#18181A';
   @Input() leftIconColor: string = '';
   @Input() rightIconColor: string = '';
   @Input() selectionStateEnable: boolean = false;
   @Input() isSelected: boolean = false;
+  private customClasses = 'me-button';
+  private unlistenClickFn?: () => void;
 
   constructor(
     private element: ElementRef,
@@ -63,27 +68,26 @@ export class ButtonDirective extends MeControlDirective implements OnInit {
         })}
       </div>`;
 
-    this.renderer.addClass(this.element.nativeElement, `me-button`);
-    this.renderer.addClass(this.element.nativeElement, `me-button-${this.size}`);
+    this.customClasses += ` me-button-${this.size}`;
 
     if (this.type === 'warning') {
-      this.renderer.addClass(this.element.nativeElement, `me-button-warning`);
+      this.customClasses += ` me-button-warning`;
     }
 
     if (this.iconOnly) {
-      this.renderer.addClass(this.element.nativeElement, `me-button-icon-only`);
+      this.customClasses += ` me-button-icon-only`;
     }
 
     if (this.leftIcon || this.rightIcon) {
-      this.renderer.addClass(this.element.nativeElement, `me-button-icon`);
+      this.customClasses += ` me-button-icon`;
     }
 
     if (this.isSelected) {
-      this.renderer.addClass(this.element.nativeElement, `me-state-selected`);
+      this.customClasses += ` me-state-selected`;
     }
 
     if (this.selectionStateEnable) {
-      this.renderer.listen(this.element.nativeElement, 'click', () => {
+      this.unlistenClickFn = this.renderer.listen(this.element.nativeElement, 'click', () => {
         this.isSelected = !this.isSelected;
 
         if (this.isSelected) {
@@ -92,6 +96,12 @@ export class ButtonDirective extends MeControlDirective implements OnInit {
           this.renderer.removeClass(this.element.nativeElement, `me-state-selected`);
         }
       });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.unlistenClickFn) {
+      this.unlistenClickFn();
     }
   }
 

@@ -498,6 +498,39 @@
       "kind": 171,
       "methods": [],
       "extends": []
+    },
+    {
+      "name": "ToolbarArgs",
+      "id": "interface-ToolbarArgs-b379ab4352adef875e04dfb28da0c32d20fcfda5e254b77fda1a5f3c6deeba414fe3f6245cd8731fae8b82a57cbf7205823cc12e8e9cd9cdc930ce9adc49f431",
+      "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import {\n  argsToTemplate,\n  moduleMetadata,\n  Meta,\n  StoryObj,\n} from '@storybook/angular';\nimport {\n  DxToolbarModule,\n  DxButtonModule,\n  DxDropDownButtonModule,\n  DxTemplateModule,\n} from 'devextreme-angular';\nimport {\n  MeToolbarDirective,\n  MeButtonDirective,\n  MeDropDownButtonDirective,\n  MeIconStoreService,\n} from '../../public-api';\n\n// 1. Определяем интерфейс для аргументов\ninterface ToolbarArgs {\n  size: 'small' | 'medium' | 'large';\n  background: boolean;\n}\n\n// 2. Определяем метаданные с использованием интерфейса\nconst meta: Meta<ToolbarArgs> = {\n  title: 'Components/Toolbar',\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MeToolbarDirective,\n        MeButtonDirective,\n        MeDropDownButtonDirective,\n      ],\n      imports: [\n        DxToolbarModule,\n        DxButtonModule,\n        DxDropDownButtonModule,\n        DxTemplateModule,\n      ],\n      providers: [MeIconStoreService], // Добавьте провайдер для сервиса иконок\n    }),\n  ],\n  argTypes: {\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'] as const,\n      description:\n        'Меняет размер самого <code>toolbar</code> и размер кнопки <code>overflow</code> при переполнении.',\n      table: {\n        type: { summary: `'small' | 'medium' | 'large'` },\n        defaultValue: { summary: 'medium' },\n      },\n    },\n    background: {\n      control: 'boolean',\n      description:\n        'При установке значения true добавляет фон, бордер и скругления.',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n  },\n  args: {\n    size: 'medium',\n    background: false,\n  },\n};\n\nexport default meta;\n\n// 3. Определяем тип Story\ntype Story = StoryObj<ToolbarArgs>;\n\n// 4. Определяем истории\n\n// История по умолчанию\nexport const Default: Story = {\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n      lineHeights: [\n        { text: '1.0', value: 1.0 },\n        { text: '1.15', value: 1.15 },\n        { text: '1.5', value: 1.5 },\n        { text: '2.0', value: 2.0 },\n      ],\n      fontFamilies: [\n        { text: 'Arial', value: 'Arial' },\n        { text: 'Courier New', value: 'Courier New' },\n        { text: 'Georgia', value: 'Georgia' },\n        { text: 'Times New Roman', value: 'Times New Roman' },\n      ],\n      headings: [\n        { text: 'Normal Text', value: 'p' },\n        { text: 'Heading 1', value: 'h1' },\n        { text: 'Heading 2', value: 'h2' },\n        { text: 'Heading 3', value: 'h3' },\n      ],\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"undo\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"redo\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              iconColor=\"#18181a\"\n              [size]=\"size\"\n              text=\"1.35\"\n              width=\"100%\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"lineHeights\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              iconColor=\"#18181a\"\n              width=\"100%\"\n              text=\"Font\"\n              [useSelectMode]=\"false\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"fontFamilies\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              iconColor=\"#18181a\"\n              width=\"100%\"\n              text=\"Normal Text\"\n              [useSelectMode]=\"false\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"headings\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"link\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"add_photo_alternate\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"after\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"attach_file\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item locateInMenu=\"always\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"help\" text=\"About\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n};\n\n// История для кнопок с иконками\nexport const IconButtons: Story = {\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"save\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"delete\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n};\n\n// История для выпадающих кнопок\nexport const DropDownButtons: Story = {\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n      items: [\n        { text: 'Option 1', value: 1 },\n        { text: 'Option 2', value: 2 },\n      ],\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              text=\"Options\"\n              [items]=\"items\"\n              iconColor=\"#18181a\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n};\n\n// История для изменения размера Toolbar на large\nexport const SizeLarge: Story = {\n  args: {\n    size: 'large',\n  },\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"undo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <!-- Добавьте другие элементы по необходимости -->\n      </dx-toolbar>\n    `,\n  }),\n};\n\n// История для добавления разделителей\nexport const Separators: Story = {\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"undo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"rendo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n};\n\n// История для использования кнопок с директивой meButton\nexport const MeButtonUsage: Story = {\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"folder\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"arrowback\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n};\n\n// История для добавления иконок из набора\nexport const CustomIcons: Story = {\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_bold\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_italic\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_underlined\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n};\n",
+      "properties": [
+        {
+          "name": "background",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": false,
+          "description": "",
+          "line": 23
+        },
+        {
+          "name": "size",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"small\" | \"medium\" | \"large\"",
+          "optional": false,
+          "description": "",
+          "line": 22
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
     }
   ],
   "injectables": [],
@@ -1011,6 +1044,7 @@
         "defaultValue": "{\r\n  args: {\r\n    active: true,\r\n    avatar: { size: 'large', shape: 'circle' },\r\n    title: { width: '50%' },\r\n    paragraph: { rows: 4, width: ['100%', '90%', '80%', '70%'] },\r\n    round: true,\r\n  },\r\n}"
       },
       {
+<<<<<<< HEAD
         "name": "ComplexLoadingState",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1021,6 +1055,8 @@
         "defaultValue": "{\r\n  args: {\r\n    loading: true,\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story:\r\n          'Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами.',\r\n      },\r\n    },\r\n  },\r\n  decorators: [\r\n    (Story, context) => {\r\n      const { loading } = context.args;\r\n      return {\r\n        template: `\r\n          <div>\r\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\r\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\r\n            ${\r\n              !loading\r\n                ? `\r\n              <div>\r\n                <h4>Заголовок после загрузки</h4>\r\n                <p>Этот текст отображается, когда загрузка завершена.</p>\r\n              </div>\r\n            `\r\n                : ''\r\n            }\r\n          </div>\r\n        `,\r\n        props: {\r\n          active: context.args.active,\r\n          avatar: context.args.avatar,\r\n          loading: context.args.loading,\r\n          paragraph: context.args.paragraph,\r\n          title: context.args.title,\r\n          round: context.args.round,\r\n        },\r\n      };\r\n    },\r\n  ],\r\n}"
       },
       {
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         "name": "ContainerTooltip",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1121,6 +1157,16 @@
         "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    icon: 'star',\r\n  },\r\n}"
       },
       {
+        "name": "CustomIcons",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_bold\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_italic\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_underlined\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+      },
+      {
         "name": "CustomItemsOptions",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1211,6 +1257,16 @@
         "defaultValue": "{\r\n  args: {\r\n    title: { width: '40%' },\r\n    paragraph: { rows: 4, width: ['100%', '90%', '80%', '60%'] },\r\n  },\r\n}"
       },
       {
+        "name": "CustomWidth",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    dataSource: data,\n    width: '300px',\n  },\n}"
+      },
+      {
         "name": "data",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1238,7 +1294,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "[]",
+<<<<<<< HEAD
         "defaultValue": "[\r\n  'Prepare 2013 Financial',\r\n  'Prepare 3013 Marketing',\r\n  'Update Personnel Files',\r\n  'Review Health ',\r\n]"
+=======
+        "defaultValue": "[\n  'Prepare 2013 Financial',\n  'Prepare 3013 Marketing',\n  'Update Personnel Files',\n  'Review Health ',\n  'Prepare 2013 Marketing Plan',\n]"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "data",
@@ -1291,6 +1351,16 @@
         "defaultValue": "{}"
       },
       {
+        "name": "dataWithHeaders",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-list/me-list.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "[]",
+        "defaultValue": "[\n  {\n    key: 'Header 1',\n    text: 'Header 1',\n    items: [\n      'Prepare 2013 Financial',\n      'Prepare 3013 Marketing',\n      'Update Personnel Files',\n      'Review Health ',\n      'Prepare 2013 Marketing Plan',\n    ],\n  },\n  {\n    key: 'Header 2',\n    text: 'Header 2',\n    items: [\n      'Prepare 2013 Financial',\n      'Prepare 3013 Marketing',\n      'Update Personnel Files',\n      'Review Health ',\n      'Prepare 2013 Marketing Plan',\n    ],\n  },\n]"
+      },
+      {
         "name": "decorators",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1314,11 +1384,19 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
+<<<<<<< HEAD
         "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\r\n  args: {\r\n    size: 'medium',\r\n    showScrollbar: 'always',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <dx-autocomplete\r\n        meAutocomplete\r\n        [size]=\"size\"\r\n        [showScrollbar]=\"showScrollbar\"\r\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\r\n      ></dx-autocomplete>\r\n    `,\r\n  }),\r\n}"
+=======
+        "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  ...Template,\n  args: {\n    size: '20',\n    color: 'default',\n    value: 5,\n  },\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "Default",
@@ -1328,7 +1406,21 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    items: defaultItems.map((item) => ({\r\n      ...item,\r\n      icon: item.icon, // Используем соответствующие иконки\r\n    })),\r\n    truncateFrom: 'right',\r\n    size: 'small',\r\n  },\r\n}"
+=======
+        "defaultValue": "{\n  args: {\n    items: defaultItems.map((item) => ({\n      ...item,\n      icon: item.icon, // Используем соответствующие иконки\n    })),\n    truncateFrom: 'right',\n    size: 'small',\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'always',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-autocomplete\n        meAutocomplete\n        [size]=\"size\"\n        [showScrollbar]=\"showScrollbar\"\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\n      ></dx-autocomplete>\n    `,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "Default",
@@ -1369,6 +1461,26 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\r\n  args: {\r\n    showWeekNumbers: false,\r\n    disabled: false,\r\n    firstDayOfWeek: 1,\r\n    zoomLevel: 'month',\r\n    weekNumberRule: 'firstDay',\r\n    value: new Date(),\r\n  },\r\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    showWeekNumbers: false,\n    disabled: false,\n    firstDayOfWeek: 1,\n    zoomLevel: 'month',\n    weekNumberRule: 'firstDay',\n    value: new Date(),\n  },\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    items: data,\n    size: 'medium',\n    stylingMode: 'contained',\n  },\n}"
       },
       {
         "name": "Default",
@@ -1418,7 +1530,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    text: 'Button',\r\n    displayExpr: 'name',\r\n    items: items,\r\n    size: 'medium',\r\n  },\r\n}"
+=======
+        "defaultValue": "{}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "Default",
@@ -1628,7 +1744,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    label: '',\r\n  },\r\n}"
+=======
+        "defaultValue": "{\n  args: {},\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "Default",
@@ -1648,7 +1768,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    size: 'medium',\r\n    background: false,\r\n  },\r\n}"
+=======
+        "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n      lineHeights: [\n        { text: '1.0', value: 1.0 },\n        { text: '1.15', value: 1.15 },\n        { text: '1.5', value: 1.5 },\n        { text: '2.0', value: 2.0 },\n      ],\n      fontFamilies: [\n        { text: 'Arial', value: 'Arial' },\n        { text: 'Courier New', value: 'Courier New' },\n        { text: 'Georgia', value: 'Georgia' },\n        { text: 'Times New Roman', value: 'Times New Roman' },\n      ],\n      headings: [\n        { text: 'Normal Text', value: 'p' },\n        { text: 'Heading 1', value: 'h1' },\n        { text: 'Heading 2', value: 'h2' },\n        { text: 'Heading 3', value: 'h3' },\n      ],\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"undo\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"redo\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              iconColor=\"#18181a\"\n              [size]=\"size\"\n              text=\"1.35\"\n              width=\"100%\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"lineHeights\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              iconColor=\"#18181a\"\n              width=\"100%\"\n              text=\"Font\"\n              [useSelectMode]=\"false\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"fontFamilies\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              iconColor=\"#18181a\"\n              width=\"100%\"\n              text=\"Normal Text\"\n              [useSelectMode]=\"false\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"headings\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"link\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"add_photo_alternate\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"after\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"attach_file\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item locateInMenu=\"always\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"help\" text=\"About\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "Default",
@@ -1751,6 +1875,16 @@
         "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    disabled: true,\r\n  },\r\n}"
       },
       {
+        "name": "Disabled",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    dataSource: data,\n    disabled: true,\n  },\n}"
+      },
+      {
         "name": "DisabledChips",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1759,6 +1893,16 @@
         "deprecationMessage": "",
         "type": "ChipsContainerStory",
         "defaultValue": "{\r\n  ...ChipsContainerTemplate,\r\n  args: {\r\n    chips: [\r\n      {\r\n        label: 'Отключенный чип',\r\n        size: 'medium',\r\n        count: 1,\r\n        removable: false,\r\n        disabled: true,\r\n      },\r\n      {\r\n        label: 'Еще один отключенный чип',\r\n        size: 'large',\r\n        count: 2,\r\n        removable: false,\r\n        disabled: true,\r\n      },\r\n    ],\r\n  },\r\n}"
+      },
+      {
+        "name": "DropDownButtons",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n      items: [\n        { text: 'Option 1', value: 1 },\n        { text: 'Option 2', value: 2 },\n      ],\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              text=\"Options\"\n              [items]=\"items\"\n              iconColor=\"#18181a\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
       },
       {
         "name": "FewItems",
@@ -1778,7 +1922,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    labelMode: 'floating',\r\n  },\r\n}"
+        "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    labelMode: 'floating',\n  },\n}"
       },
       {
         "name": "fruitsVegetables",
@@ -1789,6 +1933,16 @@
         "deprecationMessage": "",
         "type": "[]",
         "defaultValue": "[\r\n  {\r\n    key: 'Fruits',\r\n    description: 'fruits desc',\r\n    items: [\r\n      { name: 'Apples', count: 10 },\r\n      { name: 'Oranges', count: 12 },\r\n      { name: 'Lemons', count: 15 },\r\n    ],\r\n  },\r\n  {\r\n    key: 'Vegetables',\r\n    description: 'vegetables desc',\r\n    items: [\r\n      { name: 'Potatoes', count: 5 },\r\n      { name: 'Tomatoes', count: 9 },\r\n      { name: 'Turnips', count: 8 },\r\n    ],\r\n  },\r\n]"
+      },
+      {
+        "name": "GroupedWithSearch",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-list/me-list.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    dataSource: dataWithHeaders,\n    searchEnabled: true,\n    collapsibleGroups: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n\t\t<dx-list meList width=\"436px\" height=\"300px\" grouped=\"true\" ${argsToTemplate(\n      args\n    )}>\n        <dxo-item-dragging [allowReordering]=\"true\"></dxo-item-dragging> \n\t\t\t\t    <div *dxTemplate=\"let item of 'data'\">\n      <div>{{ item.key }}</div>\n    </div>  \n    </dx-list>`,\n  }),\n}"
       },
       {
         "name": "HeaderDescription",
@@ -1829,6 +1983,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\r\n  args: {\r\n    meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',\r\n    tooltipPosition: 'bottom',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <button [meTooltip]=\"meTooltip\" [tooltipPosition]=\"tooltipPosition\">\r\n        HTML-тултип\r\n      </button>\r\n    `,\r\n  }),\r\n}"
+      },
+      {
+        "name": "IconButtons",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"save\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"delete\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
       },
       {
         "name": "IconDescription",
@@ -1948,7 +2112,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "[]",
+<<<<<<< HEAD
         "defaultValue": "[\r\n  {\r\n    name: 'Apples',\r\n    count: 10,\r\n    image: './images/image.png',\r\n    icon: 'favorites',\r\n    description: 'Vegetables are good for you too.',\r\n  },\r\n  {\r\n    name: 'Oranges',\r\n    count: 12,\r\n    image: './images/image.png',\r\n    icon: 'favorites',\r\n    description: 'Vegetables are good for you too.',\r\n  },\r\n  {\r\n    name: 'Lemons',\r\n    count: 15,\r\n    image: './images/image.png',\r\n    icon: 'favorites',\r\n    description: 'Vegetables are good for you too.',\r\n  },\r\n]"
+=======
+        "defaultValue": "[\n  {\n    name: 'Apples',\n    count: 10,\n    image: '../../../assets/images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n  {\n    name: 'Oranges',\n    count: 12,\n    image: '../../../assets/images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n  {\n    name: 'Lemons',\n    count: 15,\n    image: '../../../assets/images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n]"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "LabelModeInside",
@@ -2031,6 +2199,16 @@
         "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'large',\r\n    contentHeight: '400px',\r\n  },\r\n}"
       },
       {
+        "name": "largeData",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`)"
+      },
+      {
         "name": "LargeFileUpload",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2048,7 +2226,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'large',\r\n  },\r\n}"
+=======
+        "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "LargeSizeBreadcrumbs",
@@ -2058,7 +2240,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    items: defaultItems.map((item) => ({\r\n      ...item,\r\n      icon: item.icon, // Используем соответствующие иконки\r\n    })),\r\n    truncateFrom: 'right',\r\n    size: 'large',\r\n  },\r\n}"
+=======
+        "defaultValue": "{\n  args: {\n    items: defaultItems.map((item) => ({\n      ...item,\n      icon: item.icon, // Используем соответствующие иконки\n    })),\n    truncateFrom: 'right',\n    size: 'large',\n  },\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "LastPage",
@@ -2088,7 +2274,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    labelLocation: 'left',\r\n  },\r\n}"
+        "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    labelLocation: 'left',\n  },\n}"
       },
       {
         "name": "LeftRightIcon",
@@ -2118,7 +2304,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    dataSource: itemsWithImageAndDescription,\r\n    displayExpr: 'name',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<dx-list meList width=\"436px\" ${argsToTemplate(args)}>\r\n    <div *dxTemplate=\"let item of 'item'\">\r\n      <div class=\"me-list-item-content\">\r\n        <img alt=\"{{ item.name }}\" src=\"{{ item.image }}\" />\r\n        <div>\r\n          <div class=\"me-text-body2\">{{ item.name }}</div>\r\n          <div class=\"me-text-caption\">{{ item.description }}</div>\r\n        </div>\r\n      </div>\r\n    </div>   \r\n</dx-list>`,\r\n  }),\r\n}"
+=======
+        "defaultValue": "{\n  args: {\n    dataSource: itemsWithImageAndDescription,\n    displayExpr: 'name',\n    allowItemDeleting: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n\t\t<dx-list meList width=\"436px\" ${argsToTemplate(args)}>\n\t\t<dxo-item-dragging [allowReordering]=\"true\"></dxo-item-dragging>\n    <div *dxTemplate=\"let item of 'item'\">\n      <div class=\"me-list-item-content\">\n        <img alt=\"{{ item.name }}\" src=\"{{ item.image }}\" />\n        <div>\n          <div class=\"me-text-body2\">{{ item.name }}</div>\n          <div class=\"me-text-caption\">{{ item.description }}</div>\n        </div>\n      </div>\n    </div>   \n</dx-list>\n`,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "Loading",
@@ -2128,7 +2318,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    loading: true,\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story:\r\n          'Когда свойство `loading` равно true, скелетон скрывается, и отображается фактическое содержимое.',\r\n      },\r\n    },\r\n  },\r\n  decorators: [\r\n    (Story, context) => {\r\n      const { loading } = context.args;\r\n      return {\r\n        template: `\r\n          <div>\r\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\r\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\r\n            ${\r\n              loading\r\n                ? '<p>This is the actual content that would be shown when loading is complete.</p>'\r\n                : ''\r\n            }\r\n          </div>\r\n        `,\r\n        props: {\r\n          active: context.args.active,\r\n          avatar: context.args.avatar,\r\n          loading: context.args.loading,\r\n          paragraph: context.args.paragraph,\r\n          title: context.args.title,\r\n          round: context.args.round,\r\n        },\r\n      };\r\n    },\r\n  ],\r\n}"
+=======
+        "defaultValue": "{\n  args: {\n    loading: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <div>\n        <me-skeleton ${argsToTemplate(args)}></me-skeleton>\n        ${\n          args.loading\n            ? '<p>This is the actual content that would be shown when loading is complete.</p>'\n            : ''\n        }\n      </div>\n    `,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "LongBreadcrumbs",
@@ -2201,6 +2395,16 @@
         "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    totalItems: 200,\r\n    itemsPerPage: 10,\r\n    currentPage: 5,\r\n    maxVisiblePages: 10,\r\n  },\r\n}"
       },
       {
+        "name": "MeButtonUsage",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"folder\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"arrowback\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+      },
+      {
         "name": "MediumSize",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2208,6 +2412,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'medium',\r\n  },\r\n}"
       },
       {
@@ -2219,6 +2424,9 @@
         "deprecationMessage": "",
         "type": "Meta<MeAutocompleteDirective>",
         "defaultValue": "{\r\n  title: 'Components/Autocomplete',\r\n  component: MeAutocompleteDirective,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DxAutocompleteModule],\r\n      declarations: [MeAutocompleteDirective],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    size: {\r\n      options: ['small', 'medium', 'large'],\r\n      control: { type: 'radio' },\r\n    },\r\n    showScrollbar: {\r\n      options: ['always', 'onHover'],\r\n      control: { type: 'radio' },\r\n    },\r\n  },\r\n}"
+=======
+        "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'medium',\n  },\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "meta",
@@ -2229,6 +2437,16 @@
         "deprecationMessage": "",
         "type": "Meta<MeBreadcrumbsComponent>",
         "defaultValue": "{\r\n  title: 'Components/MeBreadcrumbs(RC)',\r\n  component: MeBreadcrumbsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        MeBreadcrumbsComponent,\r\n        DxMenuModule,\r\n        DxButtonModule,\r\n        DxContextMenuModule,\r\n        MeIconComponent,\r\n      ],\r\n      providers: [MeIconStoreService],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    items: { control: 'object' },\r\n    truncateFrom: {\r\n      control: 'select',\r\n      options: ['left', 'right'],\r\n    },\r\n    size: {\r\n      control: 'select',\r\n      options: ['small', 'large'],\r\n    },\r\n    itemClick: { action: 'itemClicked' },\r\n  },\r\n}"
+      },
+      {
+        "name": "meta",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Meta<MeAutocompleteDirective>",
+        "defaultValue": "{\n  title: 'Components/Autocomplete',\n  component: MeAutocompleteDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxAutocompleteModule],\n      declarations: [MeAutocompleteDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'radio' },\n    },\n    showScrollbar: {\n      options: ['always', 'onHover'],\n      control: { type: 'radio' },\n    },\n  },\n}"
       },
       {
         "name": "meta",
@@ -2264,6 +2482,7 @@
         "name": "meta",
         "ctype": "miscellaneous",
         "subtype": "variable",
+<<<<<<< HEAD
         "file": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2274,6 +2493,8 @@
         "name": "meta",
         "ctype": "miscellaneous",
         "subtype": "variable",
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         "file": "projects/dx-monitel-components/src/stories/me-tab-panel/me-tab-panel.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2299,6 +2520,16 @@
         "deprecationMessage": "",
         "type": "Meta<ToastDemoComponent>",
         "defaultValue": "{\r\n  title: 'Components/Toast(RC)',\r\n  component: ToastDemoComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [MeToastDirective, ToastDemoComponent],\r\n      imports: [DxToastModule],\r\n    }),\r\n  ],\r\n  argTypes: {\r\n    message: { control: 'text' },\r\n    displayTime: { control: 'number' },\r\n    position: {\r\n      control: 'select',\r\n      options: [\r\n        'top left',\r\n        'top center',\r\n        'top right',\r\n        'bottom left',\r\n        'bottom center',\r\n        'bottom right',\r\n      ],\r\n    },\r\n    customClass: { control: 'text' },\r\n  },\r\n}"
+      },
+      {
+        "name": "meta",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Meta<ToolbarArgs>",
+        "defaultValue": "{\n  title: 'Components/Toolbar',\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MeToolbarDirective,\n        MeButtonDirective,\n        MeDropDownButtonDirective,\n      ],\n      imports: [\n        DxToolbarModule,\n        DxButtonModule,\n        DxDropDownButtonModule,\n        DxTemplateModule,\n      ],\n      providers: [MeIconStoreService], // Добавьте провайдер для сервиса иконок\n    }),\n  ],\n  argTypes: {\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'] as const,\n      description:\n        'Меняет размер самого <code>toolbar</code> и размер кнопки <code>overflow</code> при переполнении.',\n      table: {\n        type: { summary: `'small' | 'medium' | 'large'` },\n        defaultValue: { summary: 'medium' },\n      },\n    },\n    background: {\n      control: 'boolean',\n      description:\n        'При установке значения true добавляет фон, бордер и скругления.',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n  },\n  args: {\n    size: 'medium',\n    background: false,\n  },\n}"
       },
       {
         "name": "meta",
@@ -2438,7 +2669,17 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    readOnly: true,\r\n  },\r\n}"
+        "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    readOnly: true,\n  },\n}"
+      },
+      {
+        "name": "ReadOnly",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    dataSource: data,\n    value: 'HD Video Player',\n    readOnly: true,\n  },\n}"
       },
       {
         "name": "ReadOnly",
@@ -2531,6 +2772,26 @@
         "defaultValue": "{\r\n  args: {\r\n    dataSource: [\r\n      {\r\n        text: 'Share',\r\n        icon: 'globe',\r\n        items: [{ text: 'Facebook', selected: true }, { text: 'Twitter' }],\r\n      },\r\n      { text: 'Download', icon: 'download' },\r\n      { text: 'Add Comment', icon: 'add' },\r\n      { text: 'Add to Favorite', icon: 'favorite', selected: true },\r\n    ],\r\n  },\r\n\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n<dx-button meButton text=\"Right click\" id=\"contextButton\"></dx-button>\r\n<dx-context-menu\r\nmeContextMenu\r\n  [dataSource]=\"dataSource\"\r\n  target=\"#contextButton\"\r\n>\r\n  <div *dxTemplate=\"let itemData of 'item'\">\r\n    <div class=\"item-template-container\">\r\n      <span\r\n        class=\"material-symbols-outlined\"\r\n\t\t\t\tinnerHTML=\"{{ itemData.icon }}\"\r\n      ></span>\r\n      <span class=\"dx-menu-item-text\">{{ itemData.text }}</span>\r\n      <span *ngIf=\"itemData.items\" style=\"margin-left: auto\" class=\"material-symbols-outlined\">chevron_right</span>\r\n    </div>\r\n  </div>\r\n</dx-context-menu>`,\r\n  }),\r\n}"
       },
       {
+        "name": "SelectedItems",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-context-menu/me-context-menu.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    dataSource: [\n      {\n        text: 'Share',\n        icon: 'globe',\n        items: [{ text: 'Facebook', selected: true }, { text: 'Twitter' }],\n      },\n      { text: 'Download', icon: 'download' },\n      { text: 'Add Comment', icon: 'add' },\n      { text: 'Add to Favorite', icon: 'favorite', selected: true },\n    ],\n  },\n\n  render: (args) => ({\n    props: args,\n    template: `\n<dx-button meButton text=\"Right click\" id=\"contextButton\"></dx-button>\n<dx-context-menu\nmeContextMenu\n  [dataSource]=\"dataSource\"\n  target=\"#contextButton\"\n>\n  <div *dxTemplate=\"let itemData of 'item'\">\n    <div class=\"item-template-container\">\n      <span\n        class=\"material-symbols-outlined\"\n\t\t\t\tinnerHTML=\"{{ itemData.icon }}\"\n      ></span>\n      <span class=\"dx-menu-item-text\">{{ itemData.text }}</span>\n      <span *ngIf=\"itemData.items\" style=\"margin-left: auto\" class=\"material-symbols-outlined\">chevron_right</span>\n    </div>\n  </div>\n</dx-context-menu>`,\n  }),\n}"
+      },
+      {
+        "name": "Separators",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"undo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"rendo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+      },
+      {
         "name": "SingleChip",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2548,7 +2809,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    colCount: 1,\r\n  },\r\n}"
+        "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    colCount: 1,\n  },\n}"
       },
       {
         "name": "SingleFileUpload",
@@ -2568,7 +2829,21 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'large',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapperSize',\r\n    },\r\n    title: 'Заголовок',\r\n    container: '#myWrapperSize',\r\n  },\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [\r\n        MePopupDirective,\r\n        DxScrollViewComponent,\r\n        DxButtonComponent,\r\n        MeButtonDirective,\r\n      ],\r\n      imports: [DxPopupModule, DxTemplateModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <div id=\"myWrapperSize\" style=\"min-height: 350px; position: relative;\">\r\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\r\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\r\n          </dxi-toolbar-item>\r\n\r\n        <div *dxTemplate=\"let data of 'content'\">\r\n          <dx-scroll-view width=\"100%\" height=\"100%\">\r\n            ${words}\r\n          </dx-scroll-view>\r\n        </div>\r\n        \r\n        <div *dxTemplate=\"let data of 'overflowButton'\">\r\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"18px\" size=\"large\">\r\n            </dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'confirmButton'\">\r\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"large\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'cancelButton'\">\r\n          <dx-button meButton text=\"Отмена\" size=\"large\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'addButton'\">\r\n          <dx-button meButton text=\"Добавить\" size=\"large\"></dx-button>\r\n        </div>\r\n      </dx-popup>\r\n    </div>`,\r\n  }),\r\n}"
+=======
+        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'large',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperSize',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperSize',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperSize\" style=\"min-height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n\n        <div *dxTemplate=\"let data of 'overflowButton'\">\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"18px\" size=\"large\">\n            </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"large\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\" size=\"large\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\" size=\"large\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+      },
+      {
+        "name": "SizeLarge",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    size: 'large',\n  },\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"undo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <!-- Добавьте другие элементы по необходимости -->\n      </dx-toolbar>\n    `,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "SizeMedium",
@@ -2578,7 +2853,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapperSizemedium',\r\n    },\r\n    title: 'Заголовок',\r\n    container: '#myWrapperSizemedium',\r\n  },\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [\r\n        MePopupDirective,\r\n        DxScrollViewComponent,\r\n        DxButtonComponent,\r\n        MeButtonDirective,\r\n      ],\r\n      imports: [DxPopupModule, DxTemplateModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <div id=\"myWrapperSizemedium\" style=\"min-height: 350px; position: relative;\">\r\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\r\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\r\n          </dxi-toolbar-item>\r\n\r\n        <div *dxTemplate=\"let data of 'content'\">\r\n          <dx-scroll-view width=\"100%\" height=\"100%\">\r\n            ${words}\r\n          </dx-scroll-view>\r\n        </div>\r\n        \r\n        <div *dxTemplate=\"let data of 'overflowButton'\">\r\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\" size=\"medium\">\r\n            </dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'confirmButton'\">\r\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"medium\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'cancelButton'\">\r\n          <dx-button meButton text=\"Отмена\" size=\"medium\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'addButton'\">\r\n          <dx-button meButton text=\"Добавить\" size=\"medium\"></dx-button>\r\n        </div>\r\n      </dx-popup>\r\n    </div>`,\r\n  }),\r\n}"
+=======
+        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperSizemedium',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperSizemedium',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperSizemedium\" style=\"min-height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n\n        <div *dxTemplate=\"let data of 'overflowButton'\">\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\" size=\"medium\">\n            </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"medium\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\" size=\"medium\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\" size=\"medium\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "Small",
@@ -2648,7 +2927,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'small',\r\n  },\r\n}"
+        "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
       },
       {
         "name": "Template",
@@ -2688,7 +2967,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "StoryFn<FormStoryArgs>",
-        "defaultValue": "(args) => ({\r\n  props: {\r\n    ...args,\r\n    formData: {\r\n      firstName: 'John',\r\n      lastName: 'Doe',\r\n      email: 'john.doe@example.com',\r\n      phone: '+1 (555) 123-4567',\r\n    },\r\n  },\r\n  template: `\r\n    <dx-form\r\n      meForm\r\n      [size]=\"size\"\r\n      [formData]=\"formData\"\r\n      [labelMode]=\"labelMode\"\r\n      [labelLocation]=\"labelLocation\"\r\n      [colCount]=\"colCount\"\r\n      [readOnly]=\"readOnly\"\r\n      [showColonAfterLabel]=\"showColonAfterLabel\"\r\n    >\r\n      <dxi-item dataField=\"firstName\"></dxi-item>\r\n      <dxi-item dataField=\"lastName\"></dxi-item>\r\n      <dxi-item dataField=\"email\"></dxi-item>\r\n      <dxi-item dataField=\"phone\"></dxi-item>\r\n    </dx-form>\r\n  `,\r\n})"
+        "defaultValue": "(args) => ({\n  props: {\n    ...args,\n    formData: {\n      firstName: 'John',\n      lastName: 'Doe',\n      email: 'john.doe@example.com',\n      phone: '+1 (555) 123-4567',\n    },\n  },\n  template: `\n    <dx-form\n      meForm\n      [size]=\"size\"\n      [formData]=\"formData\"\n      [labelMode]=\"labelMode\"\n      [labelLocation]=\"labelLocation\"\n      [colCount]=\"colCount\"\n      [readOnly]=\"readOnly\"\n      [showColonAfterLabel]=\"showColonAfterLabel\"\n    >\n      <dxi-item dataField=\"firstName\"></dxi-item>\n      <dxi-item dataField=\"lastName\"></dxi-item>\n      <dxi-item dataField=\"email\"></dxi-item>\n      <dxi-item dataField=\"phone\"></dxi-item>\n    </dx-form>\n  `,\n})"
       },
       {
         "name": "Template",
@@ -2728,17 +3007,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "(Story: () => any) => {\r\n  const isDark = useDarkMode();\r\n\r\n  switchTheme(isDark);\r\n  return Story();\r\n}"
-      },
-      {
-        "name": "Title",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "projects/dx-monitel-components/src/stories/me-popup/me-popup.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story",
-        "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapperTitle',\r\n    },\r\n    container: '#myWrapperTitle',\r\n    title: 'Заголовок',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<div id=\"myWrapperTitle\" style=\"min-height: 350px; position: relative;\"><dx-popup mePopup ${argsToTemplate(\r\n      args\r\n    )}></dx-popup></div>`,\r\n  }),\r\n}"
+        "defaultValue": "(Story: () => any) => {\n  const isDark = useDarkMode();\n\n  switchTheme(isDark);\n  return Story();\n}"
       },
       {
         "name": "Toolbar",
@@ -2748,7 +3017,11 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapperTollbar',\r\n    },\r\n    title: 'Заголовок',\r\n    container: '#myWrapperTollbar',\r\n  },\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [\r\n        MePopupDirective,\r\n        DxScrollViewComponent,\r\n        DxButtonComponent,\r\n        MeButtonDirective,\r\n      ],\r\n      imports: [DxPopupModule, DxTemplateModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <div id=\"myWrapperTollbar\" style=\"height: 350px; position: relative;\">\r\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\r\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\r\n          </dxi-toolbar-item>\r\n\r\n        <div *dxTemplate=\"let data of 'content'\">\r\n          <dx-scroll-view width=\"100%\" height=\"100%\">\r\n            ${words}\r\n          </dx-scroll-view>\r\n        </div>\r\n        \r\n        <div *dxTemplate=\"let data of 'overflowButton'\">\r\n        <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\">\r\n          </dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'confirmButton'\">\r\n          <dx-button meButton text=\"Принять\" type=\"default\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'cancelButton'\">\r\n          <dx-button meButton text=\"Отмена\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'addButton'\">\r\n          <dx-button meButton text=\"Добавить\"></dx-button>\r\n        </div>\r\n      </dx-popup>\r\n    </div>`,\r\n  }),\r\n}"
+=======
+        "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperTollbar',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperTollbar',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperTollbar\" style=\"height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n\n        <div *dxTemplate=\"let data of 'overflowButton'\">\n        <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\">\n          </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "TreeList",
@@ -2861,6 +3134,7 @@
         "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<dx-data-grid\r\n  meDataGrid\r\n  [dataSource]=\"dataSource\"\r\n>\r\n  <dxo-paging [(pageSize)]=\"pageSize\" [showPageSizeSelector]></dxo-paging>\r\n  <dxi-column dataField=\"CompanyName\"></dxi-column>\r\n  <dxi-column dataField=\"Fax\"></dxi-column>\r\n  <dxi-column dataField=\"Phone\"></dxi-column>\r\n  <dxi-column\r\n  dataField=\"ID\"\r\n  cellTemplate=\"cellTemplate\"></dxi-column>\r\n  <div *dxTemplate=\"let cell of 'cellTemplate'\">\r\n    <me-badge [value]=\"[cell.data.ID]\"></me-badge>\r\n  </div>\r\n</dx-data-grid>`,\r\n  }),\r\n}"
       },
       {
+<<<<<<< HEAD
         "name": "WithCustomAvatarAndTitle",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2871,6 +3145,8 @@
         "defaultValue": "{\r\n  args: {\r\n    avatar: { size: 'small', shape: 'square' },\r\n    title: { width: '30%' },\r\n    paragraph: { rows: 2, width: ['70%', '50%'] },\r\n  },\r\n}"
       },
       {
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         "name": "WithCustomImage",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -2879,6 +3155,16 @@
         "deprecationMessage": "",
         "type": "Story",
         "defaultValue": "{\r\n  ...Template,\r\n  args: {\r\n    color: 'default',\r\n    indicatorSrc:\r\n      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',\r\n  },\r\n}"
+      },
+      {
+        "name": "WithDataSource",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    dataSource: ['Option 1', 'Option 2', 'Option 3'],\n  },\n}"
       },
       {
         "name": "WithDropdowns",
@@ -2898,7 +3184,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  render: Template,\r\n  args: Default.args,\r\n}"
+        "defaultValue": "{\n  render: Template,\n  args: Default.args,\n}"
       },
       {
         "name": "WithIcons",
@@ -2944,6 +3230,7 @@
         "name": "WithLabelColumn",
         "ctype": "miscellaneous",
         "subtype": "variable",
+<<<<<<< HEAD
         "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2954,6 +3241,8 @@
         "name": "WithLabelColumn",
         "ctype": "miscellaneous",
         "subtype": "variable",
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         "file": "projects/dx-monitel-components/src/stories/me-text-box/me-text-box.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2964,6 +3253,7 @@
         "name": "WithLabelRow",
         "ctype": "miscellaneous",
         "subtype": "variable",
+<<<<<<< HEAD
         "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2974,6 +3264,8 @@
         "name": "WithLabelRow",
         "ctype": "miscellaneous",
         "subtype": "variable",
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         "file": "projects/dx-monitel-components/src/stories/me-text-box/me-text-box.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3048,7 +3340,31 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
+<<<<<<< HEAD
         "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    showEvent: 'click',\r\n    hideEvent: 'click',\r\n    shading: true,\r\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\r\n    content: 'Это поповер с затенением фона.',\r\n  },\r\n}"
+=======
+        "defaultValue": "{\n  args: {\n    ...Default.args,\n    showEvent: 'click',\n    hideEvent: 'click',\n    shading: true,\n    shadingColor: 'rgba(0, 0, 0, 0.5)',\n    content: 'Это поповер с затенением фона.',\n  },\n}"
+      },
+      {
+        "name": "WithPlaceholder",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    dataSource: data,\n    placeholder: 'Выберите опцию',\n  },\n}"
+      },
+      {
+        "name": "WithSearchEnabled",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  args: {\n    dataSource: largeData,\n    searchEnabled: true,\n    placeholder: 'Поиск...',\n  },\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       },
       {
         "name": "WithTitle",
@@ -3138,6 +3454,7 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
+<<<<<<< HEAD
         "rawtype": "StoryObj<MeAutocompleteDirective>",
         "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
         "deprecated": false,
@@ -3171,6 +3488,8 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         "rawtype": "StoryObj<MeBadgeComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts",
         "deprecated": false,
@@ -3182,8 +3501,42 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
+<<<<<<< HEAD
         "rawtype": "StoryObj<MeButtonGroupDirective | DxButtonGroupComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
+=======
+        "rawtype": "StoryObj<MeBreadcrumbsComponent>",
+        "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+<<<<<<< HEAD
+        "rawtype": "StoryObj",
+        "file": "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts",
+=======
+        "rawtype": "StoryObj<MeAutocompleteDirective>",
+        "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+<<<<<<< HEAD
+=======
+        "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
+        "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -3204,6 +3557,18 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
+        "rawtype": "StoryObj<MeButtonGroupDirective | DxButtonGroupComponent>",
+        "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         "rawtype": "StoryObj<MeCardComponent>",
         "file": "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts",
         "deprecated": false,
@@ -3501,7 +3866,7 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "StoryObj<MeToolbarDirective | DxToolbarComponent>",
+        "rawtype": "StoryObj<ToolbarArgs>",
         "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3555,6 +3920,7 @@
           "defaultValue": "{\r\n  args: {\r\n    active: true,\r\n    avatar: { size: 'large', shape: 'circle' },\r\n    title: { width: '50%' },\r\n    paragraph: { rows: 4, width: ['100%', '90%', '80%', '70%'] },\r\n    round: true,\r\n  },\r\n}"
         },
         {
+<<<<<<< HEAD
           "name": "ComplexLoadingState",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -3565,6 +3931,8 @@
           "defaultValue": "{\r\n  args: {\r\n    loading: true,\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story:\r\n          'Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами.',\r\n      },\r\n    },\r\n  },\r\n  decorators: [\r\n    (Story, context) => {\r\n      const { loading } = context.args;\r\n      return {\r\n        template: `\r\n          <div>\r\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\r\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\r\n            ${\r\n              !loading\r\n                ? `\r\n              <div>\r\n                <h4>Заголовок после загрузки</h4>\r\n                <p>Этот текст отображается, когда загрузка завершена.</p>\r\n              </div>\r\n            `\r\n                : ''\r\n            }\r\n          </div>\r\n        `,\r\n        props: {\r\n          active: context.args.active,\r\n          avatar: context.args.avatar,\r\n          loading: context.args.loading,\r\n          paragraph: context.args.paragraph,\r\n          title: context.args.title,\r\n          round: context.args.round,\r\n        },\r\n      };\r\n    },\r\n  ],\r\n}"
         },
         {
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
           "name": "CustomTitleAndParagraph",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -3592,6 +3960,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    loading: true,\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story:\r\n          'Когда свойство `loading` равно true, скелетон скрывается, и отображается фактическое содержимое.',\r\n      },\r\n    },\r\n  },\r\n  decorators: [\r\n    (Story, context) => {\r\n      const { loading } = context.args;\r\n      return {\r\n        template: `\r\n          <div>\r\n            <me-skeleton [active]=\"active\" [avatar]=\"avatar\" [loading]=\"loading\"\r\n              [paragraph]=\"paragraph\" [title]=\"title\" [round]=\"round\"></me-skeleton>\r\n            ${\r\n              loading\r\n                ? '<p>This is the actual content that would be shown when loading is complete.</p>'\r\n                : ''\r\n            }\r\n          </div>\r\n        `,\r\n        props: {\r\n          active: context.args.active,\r\n          avatar: context.args.avatar,\r\n          loading: context.args.loading,\r\n          paragraph: context.args.paragraph,\r\n          title: context.args.title,\r\n          round: context.args.round,\r\n        },\r\n      };\r\n    },\r\n  ],\r\n}"
         },
         {
@@ -3603,6 +3972,9 @@
           "deprecationMessage": "",
           "type": "Meta<MeSkeletonComponent>",
           "defaultValue": "{\r\n  title: 'Components/Skeleton',\r\n  component: MeSkeletonComponent,\r\n  argTypes: {\r\n    active: {\r\n      control: 'boolean',\r\n      description: 'Включает анимацию скелета',\r\n    },\r\n    avatar: {\r\n      control: 'object',\r\n      description:\r\n        'Отображает аватар. Может быть объектом с параметрами размера и формы',\r\n    },\r\n    loading: {\r\n      control: 'boolean',\r\n      description: 'Отображает содержимое вместо скелета при `true`',\r\n    },\r\n    paragraph: {\r\n      control: 'object',\r\n      description:\r\n        'Отображает параграфы. Может быть объектом с параметрами количества строк и ширины',\r\n    },\r\n    title: {\r\n      control: 'object',\r\n      description:\r\n        'Отображает заголовок. Может быть объектом с параметром ширины',\r\n    },\r\n    round: {\r\n      control: 'boolean',\r\n      description: 'Скругляет углы заголовка и параграфов',\r\n    },\r\n  },\r\n  args: {\r\n    active: false,\r\n    avatar: false,\r\n    loading: false,\r\n    paragraph: { rows: 3, width: ['100%', '100%', '80%'] },\r\n    title: { width: '60%' },\r\n    round: false,\r\n  },\r\n}"
+=======
+          "defaultValue": "{\n  args: {\n    loading: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <div>\n        <me-skeleton ${argsToTemplate(args)}></me-skeleton>\n        ${\n          args.loading\n            ? '<p>This is the actual content that would be shown when loading is complete.</p>'\n            : ''\n        }\n      </div>\n    `,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "Rounded",
@@ -3622,6 +3994,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    avatar: { size: 'large', shape: 'circle' },\r\n  },\r\n}"
         },
         {
@@ -3633,6 +4006,9 @@
           "deprecationMessage": "",
           "type": "Story",
           "defaultValue": "{\r\n  args: {\r\n    avatar: { size: 'small', shape: 'square' },\r\n    title: { width: '30%' },\r\n    paragraph: { rows: 2, width: ['70%', '50%'] },\r\n  },\r\n}"
+=======
+          "defaultValue": "{\n  args: {\n    avatar: { size: 'large', shape: 'circle' },\n  },\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         }
       ],
       "projects/dx-monitel-components/src/stories/me-icon/me-icon.stories.ts": [
@@ -4002,7 +4378,11 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'large',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapperSize',\r\n    },\r\n    title: 'Заголовок',\r\n    container: '#myWrapperSize',\r\n  },\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [\r\n        MePopupDirective,\r\n        DxScrollViewComponent,\r\n        DxButtonComponent,\r\n        MeButtonDirective,\r\n      ],\r\n      imports: [DxPopupModule, DxTemplateModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <div id=\"myWrapperSize\" style=\"min-height: 350px; position: relative;\">\r\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\r\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\r\n          </dxi-toolbar-item>\r\n\r\n        <div *dxTemplate=\"let data of 'content'\">\r\n          <dx-scroll-view width=\"100%\" height=\"100%\">\r\n            ${words}\r\n          </dx-scroll-view>\r\n        </div>\r\n        \r\n        <div *dxTemplate=\"let data of 'overflowButton'\">\r\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"18px\" size=\"large\">\r\n            </dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'confirmButton'\">\r\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"large\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'cancelButton'\">\r\n          <dx-button meButton text=\"Отмена\" size=\"large\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'addButton'\">\r\n          <dx-button meButton text=\"Добавить\" size=\"large\"></dx-button>\r\n        </div>\r\n      </dx-popup>\r\n    </div>`,\r\n  }),\r\n}"
+=======
+          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'large',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperSize',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperSize',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperSize\" style=\"min-height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n\n        <div *dxTemplate=\"let data of 'overflowButton'\">\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"18px\" size=\"large\">\n            </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"large\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\" size=\"large\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\" size=\"large\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "SizeMedium",
@@ -4012,7 +4392,11 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapperSizemedium',\r\n    },\r\n    title: 'Заголовок',\r\n    container: '#myWrapperSizemedium',\r\n  },\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [\r\n        MePopupDirective,\r\n        DxScrollViewComponent,\r\n        DxButtonComponent,\r\n        MeButtonDirective,\r\n      ],\r\n      imports: [DxPopupModule, DxTemplateModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <div id=\"myWrapperSizemedium\" style=\"min-height: 350px; position: relative;\">\r\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\r\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\r\n          </dxi-toolbar-item>\r\n\r\n        <div *dxTemplate=\"let data of 'content'\">\r\n          <dx-scroll-view width=\"100%\" height=\"100%\">\r\n            ${words}\r\n          </dx-scroll-view>\r\n        </div>\r\n        \r\n        <div *dxTemplate=\"let data of 'overflowButton'\">\r\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\" size=\"medium\">\r\n            </dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'confirmButton'\">\r\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"medium\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'cancelButton'\">\r\n          <dx-button meButton text=\"Отмена\" size=\"medium\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'addButton'\">\r\n          <dx-button meButton text=\"Добавить\" size=\"medium\"></dx-button>\r\n        </div>\r\n      </dx-popup>\r\n    </div>`,\r\n  }),\r\n}"
+=======
+          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperSizemedium',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperSizemedium',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperSizemedium\" style=\"min-height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n\n        <div *dxTemplate=\"let data of 'overflowButton'\">\n          <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\" size=\"medium\">\n            </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\" size=\"medium\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\" size=\"medium\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\" size=\"medium\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "Title",
@@ -4032,7 +4416,11 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n    size: 'medium',\r\n    position: {\r\n      my: 'center',\r\n      at: 'center',\r\n      of: '#myWrapperTollbar',\r\n    },\r\n    title: 'Заголовок',\r\n    container: '#myWrapperTollbar',\r\n  },\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [\r\n        MePopupDirective,\r\n        DxScrollViewComponent,\r\n        DxButtonComponent,\r\n        MeButtonDirective,\r\n      ],\r\n      imports: [DxPopupModule, DxTemplateModule],\r\n    }),\r\n  ],\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <div id=\"myWrapperTollbar\" style=\"height: 350px; position: relative;\">\r\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\r\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\r\n          </dxi-toolbar-item>\r\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\r\n          </dxi-toolbar-item>\r\n\r\n        <div *dxTemplate=\"let data of 'content'\">\r\n          <dx-scroll-view width=\"100%\" height=\"100%\">\r\n            ${words}\r\n          </dx-scroll-view>\r\n        </div>\r\n        \r\n        <div *dxTemplate=\"let data of 'overflowButton'\">\r\n        <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\">\r\n          </dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'confirmButton'\">\r\n          <dx-button meButton text=\"Принять\" type=\"default\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'cancelButton'\">\r\n          <dx-button meButton text=\"Отмена\"></dx-button>\r\n        </div>\r\n        <div *dxTemplate=\"let data of 'addButton'\">\r\n          <dx-button meButton text=\"Добавить\"></dx-button>\r\n        </div>\r\n      </dx-popup>\r\n    </div>`,\r\n  }),\r\n}"
+=======
+          "defaultValue": "{\n  args: {\n    visible: true,\n    size: 'medium',\n    position: {\n      my: 'center',\n      at: 'center',\n      of: '#myWrapperTollbar',\n    },\n    title: 'Заголовок',\n    container: '#myWrapperTollbar',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MePopupDirective,\n        DxScrollViewComponent,\n        DxButtonComponent,\n        MeButtonDirective,\n      ],\n      imports: [DxPopupModule, DxTemplateModule],\n    }),\n  ],\n  render: (args) => ({\n    props: args,\n    template: `\n    <div id=\"myWrapperTollbar\" style=\"height: 350px; position: relative;\">\n      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>\n        <dxi-toolbar-item template=\"overflowButton\" toolbar=\"top\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"confirmButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"cancelButton\" toolbar=\"bottom\" location=\"after\">\n          </dxi-toolbar-item>\n        <dxi-toolbar-item template=\"addButton\" toolbar=\"bottom\" location=\"before\">\n          </dxi-toolbar-item>\n\n        <div *dxTemplate=\"let data of 'content'\">\n          <dx-scroll-view width=\"100%\" height=\"100%\">\n            ${words}\n          </dx-scroll-view>\n        </div>\n\n        <div *dxTemplate=\"let data of 'overflowButton'\">\n        <dx-button meButton iconOnly=\"overflow\" stylingMode=\"text\" iconSize=\"12px\">\n          </dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'confirmButton'\">\n          <dx-button meButton text=\"Принять\" type=\"default\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'cancelButton'\">\n          <dx-button meButton text=\"Отмена\"></dx-button>\n        </div>\n        <div *dxTemplate=\"let data of 'addButton'\">\n          <dx-button meButton text=\"Добавить\"></dx-button>\n        </div>\n      </dx-popup>\n    </div>`,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "words",
@@ -4467,6 +4855,88 @@
           "defaultValue": "{\r\n  args: {\r\n    ...Default.args,\r\n    zoomLevel: 'year',\r\n  },\r\n}"
         }
       ],
+      "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts": [
+        {
+          "name": "CustomIcons",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_bold\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_italic\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"format_underlined\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n      lineHeights: [\n        { text: '1.0', value: 1.0 },\n        { text: '1.15', value: 1.15 },\n        { text: '1.5', value: 1.5 },\n        { text: '2.0', value: 2.0 },\n      ],\n      fontFamilies: [\n        { text: 'Arial', value: 'Arial' },\n        { text: 'Courier New', value: 'Courier New' },\n        { text: 'Georgia', value: 'Georgia' },\n        { text: 'Times New Roman', value: 'Times New Roman' },\n      ],\n      headings: [\n        { text: 'Normal Text', value: 'p' },\n        { text: 'Heading 1', value: 'h1' },\n        { text: 'Heading 2', value: 'h2' },\n        { text: 'Heading 3', value: 'h3' },\n      ],\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"undo\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"redo\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              iconColor=\"#18181a\"\n              [size]=\"size\"\n              text=\"1.35\"\n              width=\"100%\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"lineHeights\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              iconColor=\"#18181a\"\n              width=\"100%\"\n              text=\"Font\"\n              [useSelectMode]=\"false\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"fontFamilies\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              iconColor=\"#18181a\"\n              width=\"100%\"\n              text=\"Normal Text\"\n              [useSelectMode]=\"false\"\n              displayExpr=\"text\"\n              keyExpr=\"value\"\n              [items]=\"headings\"\n              stylingMode=\"contained\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"link\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"before\" locateInMenu=\"auto\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"add_photo_alternate\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item location=\"after\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"attach_file\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n\n        <dxi-item locateInMenu=\"always\">\n          <div *dxTemplate>\n            <dx-button meButton iconColor=\"#18181a\" iconOnly=\"help\" text=\"About\" [size]=\"size\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "DropDownButtons",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n      items: [\n        { text: 'Option 1', value: 1 },\n        { text: 'Option 2', value: 2 },\n      ],\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-drop-down-button\n              meDropDownButton\n              [size]=\"size\"\n              text=\"Options\"\n              [items]=\"items\"\n              iconColor=\"#18181a\"\n            ></dx-drop-down-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "IconButtons",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"save\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"delete\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "MeButtonUsage",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"folder\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"arrowback\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "meta",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Meta<ToolbarArgs>",
+          "defaultValue": "{\n  title: 'Components/Toolbar',\n  decorators: [\n    moduleMetadata({\n      declarations: [\n        MeToolbarDirective,\n        MeButtonDirective,\n        MeDropDownButtonDirective,\n      ],\n      imports: [\n        DxToolbarModule,\n        DxButtonModule,\n        DxDropDownButtonModule,\n        DxTemplateModule,\n      ],\n      providers: [MeIconStoreService], // Добавьте провайдер для сервиса иконок\n    }),\n  ],\n  argTypes: {\n    size: {\n      control: 'select',\n      options: ['small', 'medium', 'large'] as const,\n      description:\n        'Меняет размер самого <code>toolbar</code> и размер кнопки <code>overflow</code> при переполнении.',\n      table: {\n        type: { summary: `'small' | 'medium' | 'large'` },\n        defaultValue: { summary: 'medium' },\n      },\n    },\n    background: {\n      control: 'boolean',\n      description:\n        'При установке значения true добавляет фон, бордер и скругления.',\n      table: {\n        type: { summary: 'boolean' },\n        defaultValue: { summary: 'false' },\n      },\n    },\n  },\n  args: {\n    size: 'medium',\n    background: false,\n  },\n}"
+        },
+        {
+          "name": "Separators",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"undo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <div class=\"me-toolbar-separator\"></div>\n          </div>\n        </dxi-item>\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"rendo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n      </dx-toolbar>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "SizeLarge",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    size: 'large',\n  },\n  render: (args: ToolbarArgs) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <dx-toolbar meToolbar [size]=\"size\" [background]=\"background\">\n        <dxi-item location=\"before\">\n          <div *dxTemplate>\n            <dx-button meButton iconOnly=\"undo\" [size]=\"size\" iconColor=\"#18181a\"></dx-button>\n          </div>\n        </dxi-item>\n        <!-- Добавьте другие элементы по необходимости -->\n      </dx-toolbar>\n    `,\n  }),\n}"
+        }
+      ],
       "projects/dx-monitel-components/src/stories/me-pagination/me-pagination.stories.ts": [
         {
           "name": "CustomItemsOptions",
@@ -4611,6 +5081,98 @@
           "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n  }),\r\n}"
         }
       ],
+      "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts": [
+        {
+          "name": "CustomWidth",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: data,\n    width: '300px',\n  },\n}"
+        },
+        {
+          "name": "data",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "[]",
+          "defaultValue": "['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50']"
+        },
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: data,\n  },\n}"
+        },
+        {
+          "name": "Disabled",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: data,\n    disabled: true,\n  },\n}"
+        },
+        {
+          "name": "largeData",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`)"
+        },
+        {
+          "name": "ReadOnly",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: data,\n    value: 'HD Video Player',\n    readOnly: true,\n  },\n}"
+        },
+        {
+          "name": "WithDataSource",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: ['Option 1', 'Option 2', 'Option 3'],\n  },\n}"
+        },
+        {
+          "name": "WithPlaceholder",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: data,\n    placeholder: 'Выберите опцию',\n  },\n}"
+        },
+        {
+          "name": "WithSearchEnabled",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: largeData,\n    searchEnabled: true,\n    placeholder: 'Поиск...',\n  },\n}"
+        }
+      ],
       "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts": [
         {
           "name": "data",
@@ -4672,7 +5234,11 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    dataSource: [\r\n      {\r\n        text: 'Share',\r\n        icon: 'globe',\r\n        items: [{ text: 'Facebook', selected: true }, { text: 'Twitter' }],\r\n      },\r\n      { text: 'Download', icon: 'download' },\r\n      { text: 'Add Comment', icon: 'add' },\r\n      { text: 'Add to Favorite', icon: 'favorite', selected: true },\r\n    ],\r\n  },\r\n\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n<dx-button meButton text=\"Right click\" id=\"contextButton\"></dx-button>\r\n<dx-context-menu\r\nmeContextMenu\r\n  [dataSource]=\"dataSource\"\r\n  target=\"#contextButton\"\r\n>\r\n  <div *dxTemplate=\"let itemData of 'item'\">\r\n    <div class=\"item-template-container\">\r\n      <span\r\n        class=\"material-symbols-outlined\"\r\n\t\t\t\tinnerHTML=\"{{ itemData.icon }}\"\r\n      ></span>\r\n      <span class=\"dx-menu-item-text\">{{ itemData.text }}</span>\r\n      <span *ngIf=\"itemData.items\" style=\"margin-left: auto\" class=\"material-symbols-outlined\">chevron_right</span>\r\n    </div>\r\n  </div>\r\n</dx-context-menu>`,\r\n  }),\r\n}"
+=======
+          "defaultValue": "{\n  args: {\n    dataSource: [\n      {\n        text: 'Share',\n        icon: 'globe',\n        items: [{ text: 'Facebook', selected: true }, { text: 'Twitter' }],\n      },\n      { text: 'Download', icon: 'download' },\n      { text: 'Add Comment', icon: 'add' },\n      { text: 'Add to Favorite', icon: 'favorite', selected: true },\n    ],\n  },\n\n  render: (args) => ({\n    props: args,\n    template: `\n<dx-button meButton text=\"Right click\" id=\"contextButton\"></dx-button>\n<dx-context-menu\nmeContextMenu\n  [dataSource]=\"dataSource\"\n  target=\"#contextButton\"\n>\n  <div *dxTemplate=\"let itemData of 'item'\">\n    <div class=\"item-template-container\">\n      <span\n        class=\"material-symbols-outlined\"\n\t\t\t\tinnerHTML=\"{{ itemData.icon }}\"\n      ></span>\n      <span class=\"dx-menu-item-text\">{{ itemData.text }}</span>\n      <span *ngIf=\"itemData.items\" style=\"margin-left: auto\" class=\"material-symbols-outlined\">chevron_right</span>\n    </div>\n  </div>\n</dx-context-menu>`,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         }
       ],
       "projects/dx-monitel-components/src/stories/me-list/me-list.stories.ts": [
@@ -4684,7 +5250,21 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "[]",
+<<<<<<< HEAD
           "defaultValue": "[\r\n  'Prepare 2013 Financial',\r\n  'Prepare 3013 Marketing',\r\n  'Update Personnel Files',\r\n  'Review Health ',\r\n]"
+=======
+          "defaultValue": "[\n  'Prepare 2013 Financial',\n  'Prepare 3013 Marketing',\n  'Update Personnel Files',\n  'Review Health ',\n  'Prepare 2013 Marketing Plan',\n]"
+        },
+        {
+          "name": "dataWithHeaders",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-list/me-list.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "[]",
+          "defaultValue": "[\n  {\n    key: 'Header 1',\n    text: 'Header 1',\n    items: [\n      'Prepare 2013 Financial',\n      'Prepare 3013 Marketing',\n      'Update Personnel Files',\n      'Review Health ',\n      'Prepare 2013 Marketing Plan',\n    ],\n  },\n  {\n    key: 'Header 2',\n    text: 'Header 2',\n    items: [\n      'Prepare 2013 Financial',\n      'Prepare 3013 Marketing',\n      'Update Personnel Files',\n      'Review Health ',\n      'Prepare 2013 Marketing Plan',\n    ],\n  },\n]"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "Default",
@@ -4705,6 +5285,16 @@
           "deprecationMessage": "",
           "type": "[]",
           "defaultValue": "[\r\n  {\r\n    key: 'Fruits',\r\n    description: 'fruits desc',\r\n    items: [\r\n      { name: 'Apples', count: 10 },\r\n      { name: 'Oranges', count: 12 },\r\n      { name: 'Lemons', count: 15 },\r\n    ],\r\n  },\r\n  {\r\n    key: 'Vegetables',\r\n    description: 'vegetables desc',\r\n    items: [\r\n      { name: 'Potatoes', count: 5 },\r\n      { name: 'Tomatoes', count: 9 },\r\n      { name: 'Turnips', count: 8 },\r\n    ],\r\n  },\r\n]"
+        },
+        {
+          "name": "GroupedWithSearch",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-list/me-list.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    dataSource: dataWithHeaders,\n    searchEnabled: true,\n    collapsibleGroups: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n\t\t<dx-list meList width=\"436px\" height=\"300px\" grouped=\"true\" ${argsToTemplate(\n      args\n    )}>\n        <dxo-item-dragging [allowReordering]=\"true\"></dxo-item-dragging> \n\t\t\t\t    <div *dxTemplate=\"let item of 'data'\">\n      <div>{{ item.key }}</div>\n    </div>  \n    </dx-list>`,\n  }),\n}"
         },
         {
           "name": "HeaderDescription",
@@ -4754,7 +5344,11 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "[]",
+<<<<<<< HEAD
           "defaultValue": "[\r\n  {\r\n    name: 'Apples',\r\n    count: 10,\r\n    image: './images/image.png',\r\n    icon: 'favorites',\r\n    description: 'Vegetables are good for you too.',\r\n  },\r\n  {\r\n    name: 'Oranges',\r\n    count: 12,\r\n    image: './images/image.png',\r\n    icon: 'favorites',\r\n    description: 'Vegetables are good for you too.',\r\n  },\r\n  {\r\n    name: 'Lemons',\r\n    count: 15,\r\n    image: './images/image.png',\r\n    icon: 'favorites',\r\n    description: 'Vegetables are good for you too.',\r\n  },\r\n]"
+=======
+          "defaultValue": "[\n  {\n    name: 'Apples',\n    count: 10,\n    image: '../../../assets/images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n  {\n    name: 'Oranges',\n    count: 12,\n    image: '../../../assets/images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n  {\n    name: 'Lemons',\n    count: 15,\n    image: '../../../assets/images/image.png',\n    icon: 'favorites',\n    description: 'Vegetables are good for you too.',\n  },\n]"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "ListDescription",
@@ -4764,7 +5358,11 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    dataSource: itemsWithImageAndDescription,\r\n    displayExpr: 'name',\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<dx-list meList width=\"436px\" ${argsToTemplate(args)}>\r\n    <div *dxTemplate=\"let item of 'item'\">\r\n      <div class=\"me-list-item-content\">\r\n        <img alt=\"{{ item.name }}\" src=\"{{ item.image }}\" />\r\n        <div>\r\n          <div class=\"me-text-body2\">{{ item.name }}</div>\r\n          <div class=\"me-text-caption\">{{ item.description }}</div>\r\n        </div>\r\n      </div>\r\n    </div>   \r\n</dx-list>`,\r\n  }),\r\n}"
+=======
+          "defaultValue": "{\n  args: {\n    dataSource: itemsWithImageAndDescription,\n    displayExpr: 'name',\n    allowItemDeleting: true,\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n\t\t<dx-list meList width=\"436px\" ${argsToTemplate(args)}>\n\t\t<dxo-item-dragging [allowReordering]=\"true\"></dxo-item-dragging>\n    <div *dxTemplate=\"let item of 'item'\">\n      <div class=\"me-list-item-content\">\n        <img alt=\"{{ item.name }}\" src=\"{{ item.image }}\" />\n        <div>\n          <div class=\"me-text-body2\">{{ item.name }}</div>\n          <div class=\"me-text-caption\">{{ item.description }}</div>\n        </div>\n      </div>\n    </div>   \n</dx-list>\n`,\n  }),\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "MoreContent",
@@ -4799,6 +5397,7 @@
           "defaultValue": "{\r\n  args: {\r\n    layout: 'horizontal',\r\n  },\r\n}"
         }
       ],
+<<<<<<< HEAD
       "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts": [
         {
           "name": "data",
@@ -4841,6 +5440,8 @@
           "defaultValue": "{\r\n  args: {\r\n    dataSource: data,\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<label meLabel labelDirection=\"row\" width=\"250px\">Label<dx-select-box meSelectBox ${argsToTemplate(\r\n      args\r\n    )}></dx-select-box></label>`,\r\n  }),\r\n}"
         }
       ],
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       "projects/dx-monitel-components/src/stories/me-tree-view/me-tree-view.stories.ts": [
         {
           "name": "data",
@@ -4934,6 +5535,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
+<<<<<<< HEAD
           "defaultValue": "(Story: () => any) => {\r\n  const isDark = useDarkMode();\r\n\r\n  switchTheme(isDark);\r\n  return Story();\r\n}"
         }
       ],
@@ -4987,6 +5589,9 @@
           "deprecationMessage": "",
           "type": "Story",
           "defaultValue": "{\r\n  args: {\r\n    size: 'small',\r\n    showScrollbar: 'always',\r\n  },\r\n  render: Default.render,\r\n}"
+=======
+          "defaultValue": "(Story: () => any) => {\n  const isDark = useDarkMode();\n\n  switchTheme(isDark);\n  return Story();\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         }
       ],
       "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
@@ -5089,6 +5694,58 @@
           "deprecationMessage": "",
           "type": "Story",
           "defaultValue": "{\r\n  args: {\r\n    items: [\r\n      {\r\n        text: 'Home',\r\n        url: '/',\r\n        icon: 'home',\r\n      },\r\n      {\r\n        text: 'Products',\r\n        icon: 'shopping_cart',\r\n        // Добавляем выпадающее меню к этому элементу\r\n        items: [\r\n          {\r\n            text: 'Laptops',\r\n            url: '/products/laptops',\r\n            icon: 'laptop_mac',\r\n          },\r\n          {\r\n            text: 'Tablets',\r\n            url: '/products/tablets',\r\n            icon: 'tablet_mac',\r\n          },\r\n          {\r\n            text: 'Accessories',\r\n            url: '/products/accessories',\r\n            icon: 'headset',\r\n          },\r\n        ],\r\n      },\r\n      {\r\n        text: 'Laptops',\r\n        url: '/products/laptops',\r\n        icon: 'laptop_mac',\r\n      },\r\n      {\r\n        text: 'Gaming Laptops',\r\n        url: '/products/laptops/gaming',\r\n        icon: 'sports_esports',\r\n      },\r\n    ],\r\n    truncateFrom: 'right',\r\n    size: 'small',\r\n  },\r\n}"
+        }
+      ],
+      "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'always',\n  },\n  render: (args) => ({\n    props: args,\n    template: `\n      <dx-autocomplete\n        meAutocomplete\n        [size]=\"size\"\n        [showScrollbar]=\"showScrollbar\"\n        [dataSource]=\"['Apple', 'Banana', 'Orange']\"\n      ></dx-autocomplete>\n    `,\n  }),\n}"
+        },
+        {
+          "name": "Large",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    size: 'large',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
+        },
+        {
+          "name": "meta",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Meta<MeAutocompleteDirective>",
+          "defaultValue": "{\n  title: 'Components/Autocomplete',\n  component: MeAutocompleteDirective,\n  decorators: [\n    moduleMetadata({\n      imports: [DxAutocompleteModule],\n      declarations: [MeAutocompleteDirective],\n    }),\n  ],\n  argTypes: {\n    size: {\n      options: ['small', 'medium', 'large'],\n      control: { type: 'radio' },\n    },\n    showScrollbar: {\n      options: ['always', 'onHover'],\n      control: { type: 'radio' },\n    },\n  },\n}"
+        },
+        {
+          "name": "ScrollOnHover",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    size: 'medium',\n    showScrollbar: 'onHover',\n  },\n  render: Default.render,\n}"
+        },
+        {
+          "name": "Small",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  args: {\n    size: 'small',\n    showScrollbar: 'always',\n  },\n  render: Default.render,\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
@@ -5216,7 +5873,11 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    text: 'Button',\r\n    displayExpr: 'name',\r\n    items: items,\r\n    size: 'medium',\r\n  },\r\n}"
+=======
+          "defaultValue": "{}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "items",
@@ -5248,7 +5909,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    labelMode: 'floating',\r\n  },\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    labelMode: 'floating',\n  },\n}"
         },
         {
           "name": "LargeSize",
@@ -5258,7 +5919,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'large',\r\n  },\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'large',\n  },\n}"
         },
         {
           "name": "LeftLabels",
@@ -5268,7 +5929,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    labelLocation: 'left',\r\n  },\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    labelLocation: 'left',\n  },\n}"
         },
         {
           "name": "MediumSize",
@@ -5278,7 +5939,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'medium',\r\n  },\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'medium',\n  },\n}"
         },
         {
           "name": "ReadOnly",
@@ -5288,7 +5949,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    readOnly: true,\r\n  },\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    readOnly: true,\n  },\n}"
         },
         {
           "name": "SingleColumn",
@@ -5298,7 +5959,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    colCount: 1,\r\n  },\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    colCount: 1,\n  },\n}"
         },
         {
           "name": "SmallSize",
@@ -5308,7 +5969,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    size: 'small',\r\n  },\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    size: 'small',\n  },\n}"
         },
         {
           "name": "Template",
@@ -5318,7 +5979,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "StoryFn<FormStoryArgs>",
-          "defaultValue": "(args) => ({\r\n  props: {\r\n    ...args,\r\n    formData: {\r\n      firstName: 'John',\r\n      lastName: 'Doe',\r\n      email: 'john.doe@example.com',\r\n      phone: '+1 (555) 123-4567',\r\n    },\r\n  },\r\n  template: `\r\n    <dx-form\r\n      meForm\r\n      [size]=\"size\"\r\n      [formData]=\"formData\"\r\n      [labelMode]=\"labelMode\"\r\n      [labelLocation]=\"labelLocation\"\r\n      [colCount]=\"colCount\"\r\n      [readOnly]=\"readOnly\"\r\n      [showColonAfterLabel]=\"showColonAfterLabel\"\r\n    >\r\n      <dxi-item dataField=\"firstName\"></dxi-item>\r\n      <dxi-item dataField=\"lastName\"></dxi-item>\r\n      <dxi-item dataField=\"email\"></dxi-item>\r\n      <dxi-item dataField=\"phone\"></dxi-item>\r\n    </dx-form>\r\n  `,\r\n})"
+          "defaultValue": "(args) => ({\n  props: {\n    ...args,\n    formData: {\n      firstName: 'John',\n      lastName: 'Doe',\n      email: 'john.doe@example.com',\n      phone: '+1 (555) 123-4567',\n    },\n  },\n  template: `\n    <dx-form\n      meForm\n      [size]=\"size\"\n      [formData]=\"formData\"\n      [labelMode]=\"labelMode\"\n      [labelLocation]=\"labelLocation\"\n      [colCount]=\"colCount\"\n      [readOnly]=\"readOnly\"\n      [showColonAfterLabel]=\"showColonAfterLabel\"\n    >\n      <dxi-item dataField=\"firstName\"></dxi-item>\n      <dxi-item dataField=\"lastName\"></dxi-item>\n      <dxi-item dataField=\"email\"></dxi-item>\n      <dxi-item dataField=\"phone\"></dxi-item>\n    </dx-form>\n  `,\n})"
         },
         {
           "name": "WithGrouping",
@@ -5328,7 +5989,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: Default.args,\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: Default.args,\n}"
         },
         {
           "name": "WithoutColon",
@@ -5338,7 +5999,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: Template,\r\n  args: {\r\n    ...Default.args,\r\n    showColonAfterLabel: false,\r\n  },\r\n}"
+          "defaultValue": "{\n  render: Template,\n  args: {\n    ...Default.args,\n    showColonAfterLabel: false,\n  },\n}"
         }
       ],
       "projects/dx-monitel-components/src/stories/me-load-indicator/me-load-indicator.stories.ts": [
@@ -5686,7 +6347,11 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
+<<<<<<< HEAD
           "defaultValue": "{\r\n  args: {\r\n    label: '',\r\n  },\r\n}"
+=======
+          "defaultValue": "{\n  args: {},\n}"
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         },
         {
           "name": "WithLabelColumn",
@@ -5709,6 +6374,7 @@
           "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `<label meLabel labelDirection=\"row\" width=\"250px\">Label<dx-text-box meTextBox ${argsToTemplate(\r\n      args\r\n    )}></dx-text-box></label>`,\r\n  }),\r\n}"
         }
       ],
+<<<<<<< HEAD
       "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts": [
         {
           "name": "Default",
@@ -5721,6 +6387,8 @@
           "defaultValue": "{\r\n  args: {\r\n    size: 'medium',\r\n    background: false,\r\n  },\r\n}"
         }
       ],
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       "projects/dx-monitel-components/src/stories/me-tag-box/me-tag-box.stories.ts": [
         {
           "name": "MeTagBox",
@@ -5870,6 +6538,7 @@
           "kind": 183
         }
       ],
+<<<<<<< HEAD
       "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts": [
         {
           "name": "Story",
@@ -5909,6 +6578,8 @@
           "kind": 183
         }
       ],
+=======
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       "projects/dx-monitel-components/src/stories/me-badge/me-badge.stories.ts": [
         {
           "name": "Story",
@@ -5922,13 +6593,54 @@
           "kind": 183
         }
       ],
+<<<<<<< HEAD
       "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts": [
+=======
+      "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts": [
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
         {
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
+<<<<<<< HEAD
           "rawtype": "StoryObj<MeButtonGroupDirective | DxButtonGroupComponent>",
           "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
+=======
+          "rawtype": "StoryObj<MeBreadcrumbsComponent>",
+          "file": "projects/dx-monitel-components/src/stories/me-breadcrumbs/me-breadcrumbs.stories.ts",
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+<<<<<<< HEAD
+      "projects/dx-monitel-components/src/stories/me-calendar/me-calendar.stories.ts": [
+=======
+      "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts": [
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<MeAutocompleteDirective>",
+          "file": "projects/dx-monitel-components/src/stories/me-autocomplete/me-autocomplete.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+<<<<<<< HEAD
+=======
+      "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<MeButtonDirective | DxButtonComponent>",
+          "file": "projects/dx-monitel-components/src/stories/me-button/me-button.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -5948,6 +6660,20 @@
           "kind": 183
         }
       ],
+      "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<MeButtonGroupDirective | DxButtonGroupComponent>",
+          "file": "projects/dx-monitel-components/src/stories/me-button-group/me-button-group.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+>>>>>>> 3f785c44680a1286147bf644cdaaa57c88d7e477
       "projects/dx-monitel-components/src/stories/me-card/me-card.stories.ts": [
         {
           "name": "Story",
@@ -6304,7 +7030,7 @@
           "name": "Story",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "StoryObj<MeToolbarDirective | DxToolbarComponent>",
+          "rawtype": "StoryObj<ToolbarArgs>",
           "file": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
@@ -7309,6 +8035,16 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "dataWithHeaders",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-list/me-list.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "Default",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -7320,6 +8056,16 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "fruitsVegetables",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-list/me-list.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "GroupedWithSearch",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -7887,6 +8633,16 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "CustomWidth",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "data",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -7907,7 +8663,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "WithLabelColumn",
+        "name": "Disabled",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -7917,7 +8673,47 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "WithLabelRow",
+        "name": "largeData",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "ReadOnly",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "WithDataSource",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "WithPlaceholder",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-select-box/me-select-box.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "WithSearchEnabled",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -7966,16 +8762,6 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "ComplexLoadingState",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
         "name": "CustomTitleAndParagraph",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -8006,16 +8792,6 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "meta",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
         "name": "Rounded",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -8027,16 +8803,6 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "WithAvatar",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "projects/dx-monitel-components/src/stories/me-skeleton/me-skeleton.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "WithCustomAvatarAndTitle",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -8449,10 +9215,89 @@
       },
       {
         "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "ToolbarArgs",
+        "coveragePercent": 0,
+        "coverageCount": "0/3",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "CustomIcons",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "DropDownButtons",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "IconButtons",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "MeButtonUsage",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "meta",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Separators",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/dx-monitel-components/src/stories/me-toolbar/me-toolbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "SizeLarge",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

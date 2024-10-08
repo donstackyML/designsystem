@@ -1,9 +1,19 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import {
+  argsToTemplate,
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
+
 import { MeSkeletonComponent } from '../../public-api';
 
-const meta: Meta<MeSkeletonComponent> = {
+export default {
   title: 'Components/Skeleton',
-  component: MeSkeletonComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [MeSkeletonComponent],
+    }),
+  ],
   argTypes: {
     active: {
       control: 'boolean',
@@ -41,9 +51,12 @@ const meta: Meta<MeSkeletonComponent> = {
     title: { width: '60%' },
     round: false,
   },
-};
+  render: (args) => ({
+    props: args,
+    template: `<me-skeleton ${argsToTemplate(args)}></me-skeleton>`,
+  }),
+} as Meta<MeSkeletonComponent>;
 
-export default meta;
 type Story = StoryObj<MeSkeletonComponent>;
 
 export const Default: Story = {
@@ -81,40 +94,19 @@ export const Loading: Story = {
   args: {
     loading: true,
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Когда свойство `loading` равно true, скелетон скрывается, и отображается фактическое содержимое.',
-      },
-    },
-  },
-  decorators: [
-    (Story, context) => {
-      const { loading } = context.args;
-      return {
-        template: `
-          <div>
-            <me-skeleton [active]="active" [avatar]="avatar" [loading]="loading"
-              [paragraph]="paragraph" [title]="title" [round]="round"></me-skeleton>
-            ${
-              loading
-                ? '<p>This is the actual content that would be shown when loading is complete.</p>'
-                : ''
-            }
-          </div>
-        `,
-        props: {
-          active: context.args.active,
-          avatar: context.args.avatar,
-          loading: context.args.loading,
-          paragraph: context.args.paragraph,
-          title: context.args.title,
-          round: context.args.round,
-        },
-      };
-    },
-  ],
+  render: (args) => ({
+    props: args,
+    template: `
+      <div>
+        <me-skeleton ${argsToTemplate(args)}></me-skeleton>
+        ${
+          args.loading
+            ? '<p>This is the actual content that would be shown when loading is complete.</p>'
+            : ''
+        }
+      </div>
+    `,
+  }),
 };
 
 export const ComplexCombination: Story = {
@@ -125,57 +117,4 @@ export const ComplexCombination: Story = {
     paragraph: { rows: 4, width: ['100%', '90%', '80%', '70%'] },
     round: true,
   },
-};
-
-export const WithCustomAvatarAndTitle: Story = {
-  args: {
-    avatar: { size: 'small', shape: 'square' },
-    title: { width: '30%' },
-    paragraph: { rows: 2, width: ['70%', '50%'] },
-  },
-};
-
-export const ComplexLoadingState: Story = {
-  args: {
-    loading: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Эта история показывает, как скелет может выглядеть при загрузке сложного контента с аватаром, заголовком и несколькими параграфами.',
-      },
-    },
-  },
-  decorators: [
-    (Story, context) => {
-      const { loading } = context.args;
-      return {
-        template: `
-          <div>
-            <me-skeleton [active]="active" [avatar]="avatar" [loading]="loading"
-              [paragraph]="paragraph" [title]="title" [round]="round"></me-skeleton>
-            ${
-              !loading
-                ? `
-              <div>
-                <h4>Заголовок после загрузки</h4>
-                <p>Этот текст отображается, когда загрузка завершена.</p>
-              </div>
-            `
-                : ''
-            }
-          </div>
-        `,
-        props: {
-          active: context.args.active,
-          avatar: context.args.avatar,
-          loading: context.args.loading,
-          paragraph: context.args.paragraph,
-          title: context.args.title,
-          round: context.args.round,
-        },
-      };
-    },
-  ],
 };

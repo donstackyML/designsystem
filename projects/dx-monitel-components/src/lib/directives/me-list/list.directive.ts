@@ -1,12 +1,17 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, HostListener, inject } from '@angular/core';
+import { DxListComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meList]',
+  host: {
+    '[class.me-list]': 'true',
+  },
 })
 export class MeListDirective {
-  constructor(private element: ElementRef, private renderer: Renderer2) {}
-
-  ngOnInit(): void {
-    this.renderer.addClass(this.element.nativeElement, 'me-list');
+  private component = inject(DxListComponent);
+  @HostListener('onContentReady', ['$event'])
+  onContentReady(e: Event) {
+    console.log(e);
+    console.log(this.component);
   }
 }

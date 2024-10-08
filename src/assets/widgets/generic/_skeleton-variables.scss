@@ -1,0 +1,84 @@
+@use 'sass:color';
+@use './colors' as *;
+
+// Переменные для скелетона
+$skeleton-bg: null !default;
+$skeleton-avatar-bg: null !default;
+$skeleton-title-bg: null !default;
+$skeleton-paragraph-bg: null !default;
+$skeleton-animation-bg: null !default;
+
+@if $color == 'light' {
+  $skeleton-bg: #f5f6fb;
+  $skeleton-avatar-bg: #e4e6ec;
+  $skeleton-title-bg: #e4e6ec;
+  $skeleton-paragraph-bg: #e4e6ec;
+  $skeleton-animation-bg: linear-gradient(90deg, #f5f6fb 25%, #e4e6ec 50%, #f5f6fb 75%);
+}
+
+@if $color == 'dark' {
+  $skeleton-bg: #1d1e21;
+  $skeleton-avatar-bg: #353639;
+  $skeleton-title-bg: #353639;
+  $skeleton-paragraph-bg: #353639;
+  $skeleton-animation-bg: linear-gradient(90deg, #1d1e21 25%, #353639 50%, #1d1e21 75%);
+}
+
+.skeleton {
+  display: flex;
+  width: 100%;
+}
+
+.skeleton-content {
+  flex: 1;
+}
+
+.skeleton-active .skeleton-avatar,
+.skeleton-active .skeleton-title,
+.skeleton-active .skeleton-row {
+  background: $skeleton-animation-bg;
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-avatar {
+  flex-shrink: 0;
+  background-color: $skeleton-avatar-bg;
+  margin-right: 16px;
+}
+
+.skeleton-avatar-circle {
+  border-radius: 50%;
+}
+
+.skeleton-avatar-square {
+  border-radius: 4px;
+}
+
+.skeleton-title {
+  height: 16px;
+  background-color: $skeleton-title-bg;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.skeleton-paragraph .skeleton-row {
+  height: 16px;
+  background-color: $skeleton-paragraph-bg;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.skeleton-round .skeleton-title,
+.skeleton-round .skeleton-row {
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

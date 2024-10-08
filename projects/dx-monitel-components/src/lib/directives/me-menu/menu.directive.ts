@@ -20,11 +20,11 @@ export class MeMenuDirective {
 
   private renderer = inject(Renderer2);
 
-  isSizeSmall() {
+  get isSizeSmall() {
     return this.size === 'small';
   }
 
-  isSizeLarge() {
+  get isSizeLarge() {
     return this.size === 'large';
   }
 

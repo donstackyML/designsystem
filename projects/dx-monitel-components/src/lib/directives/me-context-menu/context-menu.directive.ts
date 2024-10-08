@@ -14,6 +14,5 @@ export class MeContextMenuDirective {
       event.itemElement.parentElement.parentElement.parentElement,
       'me-context-menu-submenu'
     );
-    console.log(event.itemElement.parentElement.parentElement.parentElement);
   }
 }

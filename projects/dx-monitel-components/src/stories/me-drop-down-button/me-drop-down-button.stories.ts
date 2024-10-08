@@ -36,7 +36,7 @@ export default {
   argTypes: {
     icon: {
       control: 'select',
-      options: ['', 'add', 'arrowback'],
+      options: ['', 'add', 'arrowleft'],
       description:
         'Принимает название иконки из стандартного набора (или иконку, переданную строкой), которая будет вставлена слева от текста.',
       table: {
@@ -44,24 +44,6 @@ export default {
         defaultValue: { summary: '' },
       },
     },
-    iconColor: {
-      control: 'color',
-      description: 'Принимает цвет иконки',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    // iconSize: {
-    //   control: 'select',
-    //   options: ['', '20', '24'],
-    //   description:
-    //     'Принимает размер иконки без единиц измерения (по умолчанию пиксели), 20 - для кнопок size small и medium, 24 - для кнопок size large',
-    //   table: {
-    //     type: { summary: 'string' },
-    //     defaultValue: { summary: '' },
-    //   },
-    // },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
@@ -69,24 +51,6 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
-      },
-    },
-    splitButton: {
-      control: 'boolean',
-      description: 'При присвоении значения true разделяет кнопку на две.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    showScrollbar: {
-      control: 'select',
-      options: ['always', 'onHover'],
-      description:
-        'Определяет показывать скроллбар всегда или только при наведении.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'always' },
       },
     },
     stylingMode: {
@@ -98,6 +62,40 @@ export default {
         defaultValue: { summary: 'outlined' },
       },
     },
+    type: {
+      control: 'select',
+      options: ['default', 'normal', 'success', 'danger'],
+      description: 'Определяет тип кнопки.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    splitButton: {
+      control: 'boolean',
+      description: 'При присвоении значения true разделяет кнопку на две.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    // showScrollbar: {
+    //   control: 'select',
+    //   options: ['always', 'onHover'],
+    //   description:
+    //     'Определяет показывать скроллбар всегда или только при наведении.',
+    //   table: {
+    //     type: { summary: 'string' },
+    //     defaultValue: { summary: 'always' },
+    //   },
+    // },
+    // iconColor: {
+    //   control: 'color',
+    //   description: 'Принимает цвет иконки',
+    //   table: {
+    //     type: { summary: 'string' },
+    //     defaultValue: { summary: '' },
+    //   },
+    // },
     items: {
       description: 'Принимает данные для выпадающего списка',
     },
@@ -106,6 +104,17 @@ export default {
         disable: true,
       },
     },
+  },
+  args: {
+    icon: 'add',
+    text: 'Button',
+    displayExpr: 'name',
+    items: items,
+    size: 'medium',
+    splitButton: true,
+    type: 'default',
+    stylingMode: 'outlined',
+    // showScrollbar: 'always',
   },
   render: (args) => ({
     props: args,
@@ -117,11 +126,4 @@ export default {
 
 type Story = StoryObj<DxDropDownButtonComponent | MeDropDownButtonDirective>;
 
-export const Default: Story = {
-  args: {
-    text: 'Button',
-    displayExpr: 'name',
-    items: items,
-    size: 'medium',
-  },
-};
+export const Default: Story = {};

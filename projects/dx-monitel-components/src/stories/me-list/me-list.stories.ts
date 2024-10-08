@@ -16,6 +16,32 @@ const data = [
   'Prepare 3013 Marketing',
   'Update Personnel Files',
   'Review Health ',
+  'Prepare 2013 Marketing Plan',
+];
+
+const dataWithHeaders = [
+  {
+    key: 'Header 1',
+    text: 'Header 1',
+    items: [
+      'Prepare 2013 Financial',
+      'Prepare 3013 Marketing',
+      'Update Personnel Files',
+      'Review Health ',
+      'Prepare 2013 Marketing Plan',
+    ],
+  },
+  {
+    key: 'Header 2',
+    text: 'Header 2',
+    items: [
+      'Prepare 2013 Financial',
+      'Prepare 3013 Marketing',
+      'Update Personnel Files',
+      'Review Health ',
+      'Prepare 2013 Marketing Plan',
+    ],
+  },
 ];
 
 const fruitsVegetables = [
@@ -43,21 +69,21 @@ const itemsWithImageAndDescription = [
   {
     name: 'Apples',
     count: 10,
-    image: './images/image.png',
+    image: '../../../assets/images/image.png',
     icon: 'favorites',
     description: 'Vegetables are good for you too.',
   },
   {
     name: 'Oranges',
     count: 12,
-    image: './images/image.png',
+    image: '../../../assets/images/image.png',
     icon: 'favorites',
     description: 'Vegetables are good for you too.',
   },
   {
     name: 'Lemons',
     count: 15,
-    image: './images/image.png',
+    image: '../../../assets/images/image.png',
     icon: 'favorites',
     description: 'Vegetables are good for you too.',
   },
@@ -93,6 +119,43 @@ export default {
     dataSource: {
       description: 'Данные для отображения',
     },
+    searchEnabled: {
+      description: 'Разрешить поиск',
+      control: 'select',
+      options: [true, false],
+    },
+    allowItemDeleting: {
+      description: 'Разрешить удаление элементов',
+      control: 'select',
+      options: [true, false],
+    },
+    itemDeleteMode: {
+      description: 'Режим удаления элементов',
+      control: 'select',
+      options: [
+        'context',
+        'slideButton',
+        'slideItem',
+        'static',
+        'swipe',
+        'toggle',
+      ],
+    },
+    disabled: {
+      description: 'Отключить компонент',
+      control: 'select',
+      options: [true, false],
+    },
+    grouped: {
+      discription: 'Группировать элементы',
+      control: 'select',
+      options: [true, false],
+    },
+    collapsibleGroups: {
+      description: 'Сворачивать группы',
+      control: 'select',
+      options: [true, false],
+    },
     selectionMode: {
       table: {
         disable: true,
@@ -103,15 +166,12 @@ export default {
         disable: true,
       },
     },
-    allowItemDeleting: {
-      table: {
-        disable: true,
-      },
-    },
   },
   render: (args) => ({
     props: args,
-    template: `<dx-list meList width="436px" ${argsToTemplate(args)}>
+    template: `<dx-list meList width="436px" height="300px" ${argsToTemplate(
+      args
+    )}>
         <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>   
     </dx-list>`,
   }),
@@ -126,6 +186,26 @@ export const Default: Story = {
     showSelectionControls: true,
     allowItemDeleting: true,
   },
+};
+
+export const GroupedWithSearch: Story = {
+  args: {
+    dataSource: dataWithHeaders,
+    searchEnabled: true,
+    collapsibleGroups: true,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<dx-list meList width="436px" height="300px" grouped="true" ${argsToTemplate(
+      args
+    )}>
+        <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging> 
+				    <div *dxTemplate="let item of 'data'">
+      <div>{{ item.key }}</div>
+    </div>  
+    </dx-list>`,
+  }),
 };
 
 export const HeaderDescription: Story = {
@@ -150,10 +230,13 @@ export const ListDescription: Story = {
   args: {
     dataSource: itemsWithImageAndDescription,
     displayExpr: 'name',
+    allowItemDeleting: true,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-list meList width="436px" ${argsToTemplate(args)}>
+    template: `
+		<dx-list meList width="436px" ${argsToTemplate(args)}>
+		<dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
     <div *dxTemplate="let item of 'item'">
       <div class="me-list-item-content">
         <img alt="{{ item.name }}" src="{{ item.image }}" />
@@ -163,7 +246,8 @@ export const ListDescription: Story = {
         </div>
       </div>
     </div>   
-</dx-list>`,
+</dx-list>
+`,
   }),
 };
 
