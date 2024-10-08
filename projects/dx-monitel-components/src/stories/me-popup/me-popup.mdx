@@ -272,53 +272,12 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 Однако, если попап имеет кастомную кнопку закрытия (например, кнопка отмены) флаг переключается и по нажатию кнопки и по событию <code>onHidden</code>, чтобы этого избежать приходится сооружать костыли.
 
-Предлагаю вместо кастомного флага находить все попапы на странице с помощью <code>@ViewChildren</code> и закрывать нужный, передавая соответствующий индекс попапа и используя встроенные методы DX <code>show()</code> и <code>hide()</code>. Например:
+Предлагается вместо кастомного флага находить попап помеченный шаблонной переменной с помощью <code>@ViewChild</code> и закрывать нужный используя встроенные методы DX <code>show()</code> и <code>hide()</code>. Например:
 
 ### Определение методов в компоненте
 
-<Source
-  code={`
-export class MeComponent {
-    \`@\`ViewChildren(DxPopupComponent) popupList?: QueryList<DxPopupComponent>;
-
-    showPopup = (popupIndex: number) => {
-        if (this.popupList) {
-        this.popupList.get(popupIndex)?.instance?.show();
-        }
-    };
-
-    hidePopup(popupIndex: number) {
-        if (this.popupList) {
-        this.popupList.get(popupIndex)?.instance?.hide();
-        }
-    }
-
-}
-`}
-dark
-language="js"
-/>
-
-### Использование в шаблоне
-
-<Source
-  code={`<dx-button text="Open popup" (onClick)="showPopup(0)"></dx-button>`}
-  dark
-  language="html"
-/>
-
-<Source
-  code={`<div *dxTemplate="let data of 'cancelButton'">
-    <dx-button meButton text="Отмена" (onClick)="hidePopup(4)"></dx-button>
-</div>`}
-  dark
-  language="html"
-/>
-
-Так же при использовании одного попапа можно использовать <code>instance.show()</code>.
-
 <Source code={`
-  @ViewChild(DxPopupComponent, { static: false }) popup:
+  @ViewChild('popup') popup:
     | DxPopupComponent
     | undefined;
 
@@ -331,6 +290,22 @@ this.popup?.instance.hide();
 }
 
 `} dark language="js"/>
+
+### Использование в шаблоне
+
+<Source
+  code={`<dx-button text="Open popup" (onClick)="showPopup()"></dx-button>`}
+  dark
+  language="html"
+/>
+
+<Source
+  code={`<div *dxTemplate="let data of 'cancelButton'">
+    <dx-button meButton text="Отмена" (onClick)="hidePopup()"></dx-button>
+</div>`}
+  dark
+  language="html"
+/>
 
 ## Добавление иконки
 

@@ -337,7 +337,7 @@ export const Button: Story = {
     <dx-popup mePopup ${argsToTemplate(args)}>
      <dxi-toolbar-item template="addButton" toolbar="bottom" location="center"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'addButton'">
-        <dx-button meButton text="Добавить"></dx-button>
+        <dx-button meButton text="Добавить" width="100%"></dx-button>
       </div>
     </dx-popup></div>`,
   }),
@@ -409,7 +409,7 @@ export const Dialog: Story = {
         <dx-scroll-view width="100%" height="100%">
           <div class="me-flex-column" style="align-items: center;">
             <h3 class="me-title-header1" style="margin: 0;">Заголовок</h3>
-            <div class="me-text-body2">${lorem25}}</div>
+            <div class="me-text-body2">${lorem25}</div>
           </div>
         </dx-scroll-view>
       </div>
@@ -459,7 +459,7 @@ export const DialogLarge: Story = {
         <dx-scroll-view width="100%" height="100%">
           <div class="me-flex-column" style="align-items: center;">
             <h3 class="me-title-header1" style="margin: 0;">Заголовок</h3>
-            <div class="me-text-body2">${lorem25}}</div>
+            <div class="me-text-body2">${lorem25}</div>
           </div>
         </dx-scroll-view>
       </div>
@@ -557,7 +557,7 @@ export const Toolbar: Story = {
         </div>
 
         <div *dxTemplate="let data of 'overflowButton'">
-        <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="12px">
+        <dx-button meButton iconOnly="overflow" stylingMode="text">
           </dx-button>
         </div>
         <div *dxTemplate="let data of 'confirmButton'">

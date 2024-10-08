@@ -133,19 +133,13 @@ $generic-slider-radius: 2px;
 }
 
 //me-slider
-.me-slider {
-  .me-start-point {
-    left: -6px;
-    transform: translateY(5%);
-  }
-
+.me-slider.dx-slider.dx-widget {
   .dx-state-hover {
     &.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
       background: $slider-handle-hover-bg;
       border-color: $slider-handle-hover-bg;
     }
   }
-
   .dx-state-active {
     &.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
       background: $slider-handle-active-bg;
@@ -164,15 +158,36 @@ $generic-slider-radius: 2px;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
+    margin-inline: 25px;
+  }
+
+  .dx-trackbar-container.dx-slider-bar {
+    margin-inline: 25px;
   }
 
   .dx-overlay-content {
+    background: transparent;
+    padding-top: 10px;
+    border: none;
+    display: flex;
+    top: -10px !important;
+    justify-content: center;
     .dx-popup-content.dx-popup-content-scrollable {
-      padding: 12px 17px;
+      background: var(--Background-Alert);
+      padding: 12px 12px;
       align-content: center;
       font-size: 12px;
       font-weight: 400;
       line-height: 16px;
+      border-radius: 4px;
+    }
+    .dx-popover-arrow {
+      background: var(--Background-Alert);
+      position: absolute;
+      inset: 4px auto auto auto !important;
+      transform: rotate(45deg);
+      width: 12px;
+      height: 12px;
     }
   }
 
