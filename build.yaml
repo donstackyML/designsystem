@@ -22,10 +22,14 @@ pool:
 #       name: Development/Build.Scripts
 #       ref: refs/heads/release/v2
 
-# variables:
+variables:
 #   - template: scripts/default-variables.yml@build-scripts
 #   - group: Build.Common
 #   - group: Build.Master
+ - name: https_proxy
+   value: http://proxy-ext.sandbox.local:8080/
+ - name: HTTPS_PROXY
+   value: http://proxy-ext.sandbox.local:8080/
 
 steps:
   - checkout: self
