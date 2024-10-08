@@ -24,6 +24,7 @@ import { MeCalendarComponent } from './components/me-calendar/me-calendar.compon
 import { MeAccordionComponent } from './components/me-accordion/me-accordion.component';
 import { MeToastComponent } from './components/me-toast/me-toast.component';
 import { MeLoadingIndicatorComponent } from './components/me-loading-indicator/me-loading-indicator.component';
+import { MeIconResearchComponent } from './components/me-icon-research/me-icon-research.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'me-accordion', component: MeAccordionComponent },
   { path: 'me-toast', component: MeToastComponent },
   { path: 'me-loading-indicator', component: MeLoadingIndicatorComponent },
+  { path: 'me-icon-research', component: MeIconResearchComponent },
   { path: '**', component: TypographyComponent },
 ];
 
