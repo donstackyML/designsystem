@@ -10,9 +10,8 @@ import { MeSize } from '../../types/types';
 import { MeOverlayDirective } from '../me-overlay/overlay.directive';
 
 const POPUP_WIDTH_MEDIUM = '360';
-const POPUP_MINHEIGHT_MEDIUM = 'auto';
 const POPUP_WIDTH_LARGE = '400';
-const POPUP_MINHEIGHT_LARGE = '320';
+const POPUP_MINHEIGHT = 'auto';
 const POPUP_MAXHEIGHT = '80vh';
 const POPUP_HEIGHT = 'auto';
 
@@ -20,7 +19,7 @@ const POPUP_HEIGHT = 'auto';
   selector: '[mePopup]',
 })
 export class MePopupDirective extends MeOverlayDirective {
-  @Input() minHeight: string = POPUP_MINHEIGHT_MEDIUM;
+  @Input() minHeight: string = POPUP_MINHEIGHT;
   @Input() maxHeight: string = POPUP_MAXHEIGHT;
   @Input() height: string = POPUP_HEIGHT;
   @Input() width: string = POPUP_WIDTH_MEDIUM;
@@ -50,7 +49,6 @@ export class MePopupDirective extends MeOverlayDirective {
       // popup.minHeight = this.minHeight;
       popup.width = this.width;
     } else if (this.size === 'large') {
-      popup.minHeight = POPUP_MINHEIGHT_LARGE;
       popup.width = POPUP_WIDTH_LARGE;
     }
   }
