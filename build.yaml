@@ -26,6 +26,10 @@ pool:
 #   - template: scripts/default-variables.yml@build-scripts
 #   - group: Build.Common
 #   - group: Build.Master
+#  - name: https_proxy
+#    value: http://proxy-ext.sandbox.local:8080/
+#  - name: HTTPS_PROXY
+#    value: http://proxy-ext.sandbox.local:8080/
 
 steps:
   - checkout: self
@@ -33,6 +37,9 @@ steps:
 
   - script: npm install
     displayName: Install
+    env:
+      https_proxy: http://proxy-ext.sandbox.local:8080/
+      # HTTPS_PROXY: http://proxy-ext.sandbox.local:8080/
     # workingDirectory: $(Build.Repository.Name)
 
   - script: npm run build-storybook
