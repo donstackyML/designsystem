@@ -17,7 +17,7 @@ export type MeButtonType = 'default' | 'normal' | 'success' | 'warning' | 'dange
 export type MeButtonStyle = 'contained' | 'outlined' | 'text';
 export type MeFieldStyle = 'outlined' | 'underlined' | 'filled';
 export type MeLabelDirection = 'column' | 'row';
-export type MeLabelMode = 'static' | 'floating';
+export type MeLabelMode = 'static' | 'floating' | 'outside';
 export type MeScrollbarShowType = 'always' | 'onHover';
 export type MeEditorComponents =
   | DxTextBoxComponent
