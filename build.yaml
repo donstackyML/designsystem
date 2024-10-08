@@ -15,41 +15,41 @@ pool:
   demands:
     - npm
 
-resources:
-  repositories:
-    - repository: build-scripts
-      type: git
-      name: Development/Build.Scripts
-      ref: refs/heads/release/v2
+# resources:
+#   repositories:
+#     - repository: build-scripts
+#       type: git
+#       name: Development/Build.Scripts
+#       ref: refs/heads/release/v2
 
 variables:
-  - template: scripts/default-variables.yml@build-scripts
+  # - template: scripts/default-variables.yml@build-scripts
   - group: Build.Common
   - group: Build.Master
 
 steps:
   - checkout: self
-  - checkout: build-scripts
+  # - checkout: build-scripts
 
   - script: npm install
     displayName: Install
-    workingDirectory: $(Build.Repository.Name)
+    # workingDirectory: $(Build.Repository.Name)
 
   - script: npm run build-storybook
     displayName: Restore dx-custom-themes projects
-    workingDirectory: $(Build.Repository.Name)
+    # workingDirectory: $(Build.Repository.Name)
 
-  - template: scripts/add-to-archive.yml@build-scripts
-    parameters:
-      archiveFile: $(Build.ArtifactStagingDirectory)/publish/addons/designsystem/web/storybook/dx-monitel-components/24.zip
-      sourceFolder: $(Build.Repository.Name)/dist
-      sourceRootName: dx-custom-themes
+  # - template: scripts/add-to-archive.yml@build-scripts
+  #   parameters:
+  #     archiveFile: $(Build.ArtifactStagingDirectory)/publish/addons/designsystem/web/storybook/dx-monitel-components/24.zip
+  #     sourceFolder: $(Build.Repository.Name)/dist
+  #     sourceRootName: dx-custom-themes
 
-  - template: scripts/publish-artifact.yml@build-scripts
-    parameters:
-      sourceArtifactFolder: $(Build.ArtifactStagingDirectory)/publish
+  # - template: scripts/publish-artifact.yml@build-scripts
+  #   parameters:
+  #     sourceArtifactFolder: $(Build.ArtifactStagingDirectory)/publish
 
-  - template: scripts/publish-build-to-ck-build.yml@build-scripts
+  # - template: scripts/publish-build-to-ck-build.yml@build-scripts
 
   - script: rm -rfv *
     workingDirectory: $(Build.ArtifactStagingDirectory)
