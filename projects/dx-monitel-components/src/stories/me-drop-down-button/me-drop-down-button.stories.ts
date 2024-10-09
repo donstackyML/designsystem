@@ -10,19 +10,19 @@ import { MeDropDownButtonDirective } from '../../public-api';
 const items = [
   {
     id: 1,
-    name: 'Left',
+    name: 'Фиксированный диапазон времени',
   },
   {
     id: 4,
-    name: 'Right',
+    name: 'Абсолютное время',
   },
   {
     id: 2,
-    name: 'Center',
+    name: 'Относительное время, обн 10 сек.',
   },
   {
     id: 3,
-    name: 'Justify',
+    name: 'Пункт',
   },
 ];
 
