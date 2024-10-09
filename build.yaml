@@ -34,3 +34,15 @@ steps:
       script: |
         npm run build-storybook
       workingDirectory: $(Build.SourcesDirectory)
+
+  - task: CopyFilesOverSSH@0
+    displayName: Copy ../dist/storybook/dx-monitel-components to /var/www/html/dx-monitel-components
+    inputs:
+      sshEndpoint: ssh_web-storybook.sandbox.local
+      sourceFolder: "$(Build.SourcesDirectory)/dist/storybook/dx-monitel-components"
+      contents: '**'
+      targetFolder: "/var/www/html/24"
+      cleanTargetFolder: true
+      cleanHiddenFilesInTarget: true
+      readyTimeout: '20000'
+      #flattenFolders: false # boolean. Flatten folders. Default: false.
