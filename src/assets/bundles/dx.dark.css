@@ -11127,13 +11127,17 @@
   width: 240px;
 }
 
+.dx-overlay-wrapper .dx-overlay-content.dx-popup-normal .dx-popup-content:has(.dx-calendar) {
+  margin: 0;
+}
 .dx-overlay-wrapper .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-calendar {
   padding: 2px 8px 8px 8px;
-  border: 1px solid #3f4044;
+  border: none;
   border-radius: 4px;
   height: 292px;
   width: 288px;
   box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.14);
+  margin: 0;
 }
 .dx-overlay-wrapper .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-calendar .dx-calendar-body {
   top: 52px;
@@ -23017,6 +23021,9 @@ input.dx-hidden {
   color: #3565e2;
 }
 
+.me-tree-list .dx-row > td {
+  padding: 8px;
+}
 .me-tree-list .dx-treelist-container.dx-gridbase-container {
   padding: 16px;
 }
@@ -23058,7 +23065,6 @@ input.dx-hidden {
   min-height: 36px;
 }
 .me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-column-lines.dx-header-row .dx-treelist-action {
-  padding: 8px;
   align-content: center;
 }
 .me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-column-lines.dx-header-row .dx-treelist-action .dx-treelist-text-content {
@@ -23085,6 +23091,12 @@ input.dx-hidden {
   content: var(--me-icon-sort-up);
   transform: rotate(180deg);
 }
+.me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-column-lines.dx-header-row .dx-treelist-action .dx-checkbox-indeterminate .dx-checkbox-icon::before {
+  height: 2px;
+  width: 10px;
+  margin-top: -1px;
+  margin-left: -5px;
+}
 .me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-column-lines.dx-header-row .dx-command-edit {
   background-color: #2e2e2f;
   padding: 8px;
@@ -23103,8 +23115,8 @@ input.dx-hidden {
   align-content: center;
   min-height: 30px;
 }
-.me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-rowsview .dx-treelist-table .dx-row.dx-data-row.dx-row-lines.dx-column-lines td * {
-  padding: 0;
+.me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-rowsview .dx-treelist-table .dx-row.dx-data-row.dx-row-lines.dx-column-lines td .dx-texteditor {
+  background: transparent;
 }
 .me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-rowsview .dx-treelist-table .dx-row.dx-data-row.dx-row-lines.dx-column-lines td .dx-texteditor-input {
   padding: 0;
@@ -23112,12 +23124,13 @@ input.dx-hidden {
   font-size: 13px;
   font-family: "Roboto";
   text-align: left !important;
+  background: transparent;
 }
 .me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-rowsview .dx-treelist-table .dx-row.dx-data-row.dx-row-lines.dx-column-lines td .dx-datebox .dx-texteditor-buttons-container .dx-button-content .dx-dropdowneditor-icon {
   line-height: 16px;
   font-size: 18px;
   font-family: "Material Symbols Outlined";
-  color: #3565e2;
+  color: var(--Controls-Content-In-Controls-Accent-Default);
 }
 .me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-rowsview .dx-treelist-table .dx-row.dx-data-row.dx-row-lines.dx-column-lines td .dx-datebox .dx-texteditor-buttons-container .dx-button-content .dx-dropdowneditor-icon::before {
   content: "\e935";
@@ -23161,6 +23174,7 @@ input.dx-hidden {
   font-size: 18px;
   display: inline-flex;
   align-items: center;
+  color: var(--Controls-Content-In-Controls-Accent-Default);
 }
 .me-tree-list .dx-treelist-container.dx-gridbase-container .dx-treelist-rowsview .dx-treelist-table .dx-row.dx-data-row.dx-row-lines.dx-column-lines .dx-focused {
   background-color: rgba(53, 101, 226, 0.1215686275);
