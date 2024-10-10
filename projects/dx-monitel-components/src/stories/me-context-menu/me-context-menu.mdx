@@ -12,8 +12,22 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 [Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxContextMenu/)
 
+[Ссылка на Demo компонента DevExtreme](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ContextMenu/Basics/MaterialBlueLight/)
+
 <Canvas of={contextmenuStories.Default} />
+<Controls of={contextmenuStories.Default} />
 <Source of={contextmenuStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=745-25563&node-type=canvas&t=1Amx2NO5kVyJu99X-0"
+/>
+
+## Примеры использования
 
 ## Добавление заголовка в контекстное меню
 
@@ -37,4 +51,16 @@ import { Figma } from "@storybook/addon-designs/blocks";
 />
 
 Обратите внимание, для того чтобы отключить стандартные состояния <code>(hover, active)</code>
-заголовку добавлено свойство <code>disabled</code> со значением <code>true</code>. Для добавления разделителя групп используйте `beginGroup: true`.
+заголовку добавлено свойство <code>disabled</code> со значением <code>true</code>. Для добавления разделителя групп используйте `beginGroup: true`
+
+## Состояние `selected`
+
+Состояние `selected` в контекстном меню устанавливается атрибутом <code>selected: true</code> в `dataSource`.
+
+<Source
+  code={`
+          { text: 'Add to Favorite', selected: true }
+`}
+  dark
+  language="js"
+/>
