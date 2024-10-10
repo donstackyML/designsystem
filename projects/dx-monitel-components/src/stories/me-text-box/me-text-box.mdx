@@ -28,11 +28,11 @@ import { Figma } from "@storybook/addon-designs/blocks";
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1263&t=gC6C40DcbGAFZEUK-0"
 />
 
-{/* ## Примеры использования: */}
+## Примеры использования:
 
-{/* - [определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля) */}
-{/* - [положение лейбла сверху](#положение-лейбла-сверху) */}
-{/* - [положение лейбла слева](#положение-лейбла-слева) */}
+- [определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля)
+- [положение лейбла сверху](#положение-лейбла-сверху)
+- [положение лейбла слева](#положение-лейбла-слева)
 
 ## Определение положения лейбла снаружи текстового поля
 
@@ -43,27 +43,19 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ### Положение лейбла сверху
 
+Для положения `label` сверху используйте тэг <code>label</code> с директивой <code>meLabel</code> и установите параметр <code>labelDirection="column"</code>. Также установите необходимые стили выравнивания как <code>align-items: flex-start</code>.
+
 <Canvas of={textBoxStories.WithLabelColumn} />
 
-<Source
-  code={`<label meLabel labelDirection="column">
-    Label
-    <dx-text-box meTextBox></dx-text-box>
-</label>`}
-  dark
-/>
+<Source of={textBoxStories.WithLabelColumn} dark />
 
 ### Положение лейбла слева
 
+Для положения `label` слева установите параметр <code>labelDirection="row"</code>.
+
 <Canvas of={textBoxStories.WithLabelRow} />
 
-<Source
-  code={`<label meLabel labelDirection="row" width="300px">
-    Label
-    <dx-text-box meTextBox></dx-text-box>
-</label>`}
-  dark
-/>
+<Source of={textBoxStories.WithLabelRow} dark />
 
 <code>width</code> определяет размер текстового поля вместе с лейблом (используется
 в теге <code>label</code> для расположения <code>labelPosition="left"</code>)
@@ -75,3 +67,5 @@ import { Figma } from "@storybook/addon-designs/blocks";
     }
 `}
 </style>
+
+`Description` добавляется самостоятельно разработчиком, так как `DevExtreme` не поддерживает данный элемент.
