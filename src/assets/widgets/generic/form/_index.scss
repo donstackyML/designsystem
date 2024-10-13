@@ -1,159 +1,234 @@
 @use 'sass:color';
-@use 'colors' as *;
-@use '../colors' as *;
 @use 'sizes' as *;
-@use '../sizes' as *;
+@use 'colors' as *;
 @use '../../base/form';
 
-// adduse
-@use '../scrollable';
-
-.dx-form-group-caption {
-  font-size: $generic-form-group-caption-font-size;
-}
-
-.dx-form-group-with-caption {
-  // stylelint-disable-line no-duplicate-selectors
-  & > .dx-form-group-content {
-    border-top: 1px solid $form-group-border-color;
-    padding-bottom: $generic-form-group-content-padding-bottom;
-  }
-}
-
-.dx-field-item-label-text {
-  color: $form-field-item-color;
-}
-
-.dx-field-item-help-text {
-  color: $form-field-item-color;
-}
-
-.dx-field-item-optional .dx-label > span::after,
-.dx-field-item-optional-mark {
-  color: $form-field-mark-color;
-}
-
-.dx-field-item-required .dx-label > span::after,
-.dx-field-item-required-mark {
-  color: $form-field-required-color;
-}
-
+// Стили для формы
 .me-form {
-  font-family: var(--font-family), sans-serif;
+  font-family: var(--font-family, Arial, sans-serif);
+
+  // Маленькая форма
   &.me-form-small {
-    --form-group-caption-font-size: 16px;
-    --form-group-content-padding-bottom: 10px;
-    --field-item-vertical-padding: 10px;
-    --field-item-label-font-size: 12px;
-    --texteditor-input-font-size: 13px;
-    --texteditor-input-padding: 18px 14px 2px 14px;
     --label-top-position: 9px;
     --label-left-position: 11px;
-    --input-height: 36px;
+    --selectbox-font-size: 13px;
+    --selectbox-padding: 12px 14px;
+    --selectbox-height: 36px;
+    --field-item-label-font-size: 12px;
   }
 
+  // Средняя форма
   &.me-form-medium {
-    --form-group-caption-font-size: 18px;
-    --form-group-content-padding-bottom: 15px;
-    --field-item-vertical-padding: 12px;
-    --field-item-label-font-size: 13px;
-    --texteditor-input-font-size: 14px;
-    --texteditor-input-padding: 20px 16px 4px 16px;
     --label-top-position: 10px;
     --label-left-position: 12px;
-    --input-height: 40px;
+    --selectbox-font-size: 14px;
+    --selectbox-padding: 14px 16px;
+    --selectbox-height: 40px;
+    --field-item-label-font-size: 13px;
   }
 
+  // Большая форма
   &.me-form-large {
-    --form-group-caption-font-size: 20px;
-    --form-group-content-padding-bottom: 20px;
-    --field-item-vertical-padding: 16px;
-    --field-item-label-font-size: 14px;
-    --texteditor-input-font-size: 16px;
-    --texteditor-input-padding: 24px 16px 6px 16px;
     --label-top-position: 12px;
     --label-left-position: 14px;
-    --input-height: 48px;
+    --selectbox-font-size: 16px;
+    --selectbox-padding: 16px 18px;
+    --selectbox-height: 48px;
+    --field-item-label-font-size: 14px;
   }
 
-  // Стиль для плавающих лейблов
-  .dx-editor-outlined {
-    &.dx-texteditor-with-label,
-    &.dx-texteditor-with-floating-label {
-      .dx-texteditor-label {
-        .dx-label {
-          position: absolute;
-          top: var(--label-top-position);
-          left: var(--label-left-position);
-          font-size: var(--field-item-label-font-size);
-          padding: 0 4px;
-          transition: none;
-          border-bottom-color: transparent;
-        }
+  // Стили для полей ввода
+  .dx-textbox, .dx-selectbox {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    //padding: var(--selectbox-padding);
+    font-size: var(--selectbox-font-size);
+    height: var(--selectbox-height);
+    position: relative;
+
+    &:focus-visible {
+      outline: 2px solid #7eb9ff;
+      outline-offset: 2px;
+    }
+
+    &.dx-state-hover {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+    }
+
+    &.dx-state-focused:not(.dx-invalid) {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+      border-color: var(--Controls-Content-In-Controls-Accent-Default);
+    }
+
+    &.dx-invalid {
+      .dx-label span {
+        color: var(--Controls-Content-In-Controls-Danger-Default);
       }
 
-      &.dx-state-focused.dx-texteditor-with-floating-label {
-        .dx-label {
-          position: absolute;
-          top: var(--label-top-position);
-          left: var(--label-left-position);
-          font-size: var(--field-item-label-font-size);
-          padding: 0 4px;
-          transition: none;
-          border-bottom-color: transparent;
-        }
-      }
-      &.dx-state-hover.dx-texteditor-with-floating-label {
-        .dx-label {
-          position: absolute;
-          top: var(--label-top-position);
-          left: var(--label-left-position);
-          font-size: var(--field-item-label-font-size);
-          padding: 0 4px;
-          transition: none;
-          border-bottom-color: transparent;
-        }
+      .dx-texteditor-input {
+        border-color: var(--Controls-Content-In-Controls-Danger-Default);
       }
     }
 
-    &:not(.dx-texteditor-with-floating-label) {
+    &.dx-state-disabled {
       .dx-texteditor-input {
-        padding: 12px 16px;
+        color: var(--Controls-Content-In-Controls-Main-Disabled);
       }
     }
 
     .dx-texteditor-input {
-      font-size: var(--texteditor-input-font-size);
-      padding: var(--texteditor-input-padding);
-      height: var(--input-height);
+      font-size: var(--selectbox-font-size);
+      padding: var(--selectbox-padding);
+      height: var(--selectbox-height);
+      width: 100%;
+
+      &::placeholder {
+        color: transparent;
+      }
     }
 
-    &.dx-state-hover,
-    &.dx-state-active,
-    &.dx-state-focused {
-      .dx-texteditor-input-container {
-        &:after {
-          border-bottom: 1px solid;
-          border-top: 1px solid;
-          border-radius: 4px;
-        }
+    // Стили для кнопок внутри SelectBox
+    .dx-dropdowneditor-button {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+
+      .dx-icon {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .dx-label {
+      span {
+        font-size: var(--field-item-label-font-size);
+        font-weight: var(--me-regular-font-weight);
+        line-height: 16px;
+        text-align: left;
       }
     }
   }
-  .dx-form-group-caption {
-    font-size: var(--form-group-caption-font-size);
-  }
 
-  .dx-form-group-content {
-    padding-bottom: var(--form-group-content-padding-bottom);
-  }
-
-  .dx-field-item {
-    padding-top: var(--field-item-vertical-padding);
-    padding-bottom: var(--field-item-vertical-padding);
-  }
-
-  .dx-field-item-label-text {
+  // Стили для меток внутри полей
+  .dx-texteditor-label {
     font-size: var(--field-item-label-font-size);
+    //padding: 0 4px;
+    transition: none;
+  }
+
+  // Стили для меток при фокусе и ховере
+  .dx-editor-outlined {
+    &.dx-label {
+      font-size: var(--field-item-label-font-size);
+      top: var(--label-top-position);
+    }
+    &.dx-texteditor-with-label,
+    &.dx-texteditor-with-floating-label {
+      .dx-texteditor-label .dx-label {
+        font-size: var(--field-item-label-font-size);
+        padding: 0 4px;
+        transition: none;
+      }
+
+      &.dx-state-focused .dx-label {
+        font-size: var(--field-item-label-font-size);
+        top: var(--label-top-position); /* Начальная позиция */
+        left: var(--label-left-position);
+      }
+
+      &.dx-state-hover .dx-label {
+        font-size: var(--field-item-label-font-size);
+        top: var(--label-top-position); /* Начальная позиция */
+        left: var(--label-left-position);
+      }
+    }
+  }
+
+  .dx-dropdowneditor-input-wrapper {
+    display: inline-block !important;
+  }
+
+  // Отступы между элементами формы
+  .dx-field-item {
+    margin-bottom: 16px;
+  }
+
+  // Валидационные сообщения
+  .dx-validation-message {
+    color: var(--error-color, red);
+    font-size: 12px;
+  }
+
+  // Валидация обязательных полей
+  .dx-field-item-required {
+    .dx-label {
+      &::after {
+        content: '*';
+        color: var(--required-color, red);
+      }
+    }
+  }
+
+  .dx-editor-outlined {
+    .dx-label {
+      position: absolute;
+      top: var(--label-top-position); /* Начальная позиция */
+      left: var(--label-left-position);
+      transition: all 0.3s ease; /* Плавный переход */
+      font-size: var(--field-item-label-font-size);
+      color: var(--label-color, #757575); /* Цвет лейбла */
+      border-color: transparent !important;
+    }
+
+    .dx-selectbox.dx-texteditor-with-floating-label .dx-label {
+
+      margin-top: 0 !important;
+      height: auto;
+    }
+
+    .dx-editor-outlined .dx-texteditor-input:focus ~ .dx-label,
+    .dx-editor-outlined .dx-texteditor-input:hover ~ .dx-label,
+    .dx-editor-outlined .dx-texteditor-input:not(:placeholder-shown) ~ .dx-label {
+      margin-top: 0 !important;
+    }
+
+    .dx-texteditor-input {
+      padding-bottom: calc(var(--selectbox-padding) + 10px) !important; /* Дополнительное пространство для лейбла */
+      box-sizing: border-box;
+      //font-size: var(--selectbox-font-size);
+      //height: var(--selectbox-height);
+    }
+
+    .me-form .dx-textbox .dx-texteditor-input,
+    .me-form .dx-selectbox .dx-texteditor-input {
+      font-size: var(--selectbox-font-size);
+      padding-left: 12px; /* Оставляем стандартный padding слева */
+      padding-right: 12px;
+      padding-bottom: 10px; /* Фиксируем нижний padding */
+      height: var(--selectbox-height); /* Высота поля */
+      width: 100%;
+    }
+
+    .me-form-small .dx-textbox .dx-texteditor-input,
+    .me-form-small .dx-selectbox .dx-texteditor-input {
+      padding-top: 18px; /* Верхний padding для маленькой формы */
+    }
+
+    .me-form-medium .dx-textbox .dx-texteditor-input,
+    .me-form-medium .dx-selectbox .dx-texteditor-input {
+      padding-top: 20px; /* Верхний padding для средней формы */
+    }
+
+    .me-form-large .dx-textbox .dx-texteditor-input,
+    .me-form-large .dx-selectbox .dx-texteditor-input {
+      padding-top: 22px; /* Верхний padding для большой формы */
+    }
   }
 }
+
+
