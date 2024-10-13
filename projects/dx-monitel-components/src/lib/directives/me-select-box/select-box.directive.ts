@@ -1,4 +1,11 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2, HostBinding } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  HostBinding,
+} from '@angular/core';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 import { MeScrollbarShowType, MeCommonType } from '../../types/types';
 import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
@@ -44,8 +51,14 @@ export class MeSelectBoxDirective
     };
 
     // Set default styling mode and label mode
-    (<DxSelectBoxComponent>this.component).instance.option('stylingMode', 'outlined');
-    (<DxSelectBoxComponent>this.component).instance.option('labelMode', 'hidden');
+    (<DxSelectBoxComponent>this.component).instance.option(
+      'stylingMode',
+      'outlined'
+    );
+    (<DxSelectBoxComponent>this.component).instance.option(
+      'labelMode',
+      'hidden'
+    );
   }
 
   @HostBinding('class.me-selectbox-small')

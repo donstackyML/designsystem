@@ -1,6 +1,5 @@
-import { Directive, Input, OnInit} from '@angular/core';
-import {DxTabPanelComponent} from 'devextreme-angular';
-
+import { Directive, Input, OnInit } from '@angular/core';
+import { DxTabPanelComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meTabPanel]',
@@ -23,7 +22,7 @@ export class MeTabPanelDirective implements OnInit {
   @Input() position: 'top' | 'bottom' = 'top';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() stylingMode: 'inside' | 'outside' = 'outside';
-  @Input() tabsPosition: 'top' | 'bottom' | 'left'|  'right'= 'top';
+  @Input() tabsPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
   @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
   @Input() width: string | number = 'auto';
 

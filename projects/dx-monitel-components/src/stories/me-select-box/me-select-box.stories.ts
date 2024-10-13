@@ -25,11 +25,13 @@ export default {
   argTypes: {
     dataSource: {
       control: 'object',
-      description: 'Задает или получает массив данных, отображаемых компонентом.',
+      description:
+        'Задает или получает массив данных, отображаемых компонентом.',
     },
     placeholder: {
       control: 'text',
-      description: 'Задает текст, отображаемый, когда компонент не имеет значения.',
+      description:
+        'Задает текст, отображаемый, когда компонент не имеет значения.',
     },
     searchEnabled: {
       control: 'boolean',
@@ -83,11 +85,15 @@ export default {
   },
   render: (args) => ({
     props: args,
-    template: `<dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>`,
+    template: `<dx-select-box meSelectBox ${argsToTemplate(
+      args
+    )}></dx-select-box>`,
   }),
 } as Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
-type Story = StoryObj<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
+type Story = StoryObj<
+  MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective
+>;
 
 export const Default: Story = {
   args: {
