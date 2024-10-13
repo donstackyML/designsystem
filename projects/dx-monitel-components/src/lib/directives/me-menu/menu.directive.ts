@@ -11,8 +11,8 @@ import { MeSize } from '../../types/types';
   selector: '[meMenu]',
   host: {
     '[class.me-menu]': 'true',
-    '[class.me-menu-small]': 'isSizeSmall()',
-    '[class.me-menu-large]': 'isSizeLarge()',
+    '[class.me-menu-small]': 'isSizeSmall',
+    '[class.me-menu-large]': 'isSizeLarge',
   },
 })
 export class MeMenuDirective {
