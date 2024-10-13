@@ -1,64 +1,262 @@
 @use 'sass:color';
-@use 'colors' as *;
-@use '../colors' as *;
-@use 'sizes' as *;
 @use '../sizes' as *;
+@use '../colors' as *;
 @use '../../base/selectBox';
 
-// adduse
+// Добавляем переменные для типографики и размеров
+$select-box-font-family: $base-font-family !default;
+$select-box-font-size: $generic-base-font-size !default;
+$select-box-line-height: $generic-base-line-height !default;
 
-.dx-selectbox-popup-wrapper {
-  .dx-overlay-content {
-    box-shadow: 0 6px 12px $base-dropdown-shadow-color;
-  }
+// Определение цветовых переменных
+$selectbox-list-bg: null !default;
+$controls-content-in-controls-main-default: null !default;
+$controls-content-in-controls-main-disabled: null !default;
+$controls-content-in-controls-accent-default: null !default;
+$controls-bg-accent-accent-bg-default: null !default;
+$dividers-borders-long: null !default;
+$background-accent-in-the-content: null !default;
+$select-box-border-radius: $base-border-radius !default;
+$select-box-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.14) !default;
+$controls-content-in-controls-danger-default: #ff4d4f !default;
 
-  .dx-list {
-    background-color: $selectbox-list-bg;
-  }
+// Цветовые переменные для светлой темы
+$light-selectbox-list-bg: #ffffff;
+$light-controls-content-in-controls-main-default: #18181a;
+$light-controls-content-in-controls-main-disabled: rgba(24, 24, 26, 0.4);
+$light-controls-content-in-controls-accent-default: rgba(50, 87, 220, 1);
+$light-controls-bg-accent-accent-bg-default: rgba(50, 87, 220, 1);
+$light-dividers-borders-long: #dfe0ed;
+$light-background-accent-in-the-content: #fff;
+
+// Цветовые переменные для темной темы
+$dark-selectbox-list-bg: #2e2e2f;
+$dark-controls-content-in-controls-main-default: #ffffff;
+$dark-controls-content-in-controls-main-disabled: rgba(255, 255, 255, 0.4);
+$dark-controls-content-in-controls-accent-default: rgba(93, 158, 255, 1);
+$dark-controls-bg-accent-accent-bg-default: rgba(93, 158, 255, 1);
+$dark-dividers-borders-long: #3f4044;
+$dark-background-accent-in-the-content: #282829;
+
+// Применение темы в зависимости от выбранного цвета
+@if $color == 'light' {
+  $selectbox-list-bg: $light-selectbox-list-bg;
+  $controls-content-in-controls-main-default: $light-controls-content-in-controls-main-default;
+  $controls-content-in-controls-main-disabled: $light-controls-content-in-controls-main-disabled;
+  $controls-content-in-controls-accent-default: $light-controls-content-in-controls-accent-default;
+  $controls-bg-accent-accent-bg-default: $light-controls-bg-accent-accent-bg-default;
+  $dividers-borders-long: $light-dividers-borders-long;
+  $background-accent-in-the-content: $light-background-accent-in-the-content;
 }
 
+@if $color == 'dark' {
+  $selectbox-list-bg: $dark-selectbox-list-bg;
+  $controls-content-in-controls-main-default: $dark-controls-content-in-controls-main-default;
+  $controls-content-in-controls-main-disabled: $dark-controls-content-in-controls-main-disabled;
+  $controls-content-in-controls-accent-default: $dark-controls-content-in-controls-accent-default;
+  $controls-bg-accent-accent-bg-default: $dark-controls-bg-accent-accent-bg-default;
+  $dividers-borders-long: $dark-dividers-borders-long;
+  $background-accent-in-the-content: $dark-background-accent-in-the-content;
+}
+
+// Общие стили для SelectBox
 .dx-selectbox {
-  .dx-texteditor-input {
-    color: $controls-content-in-controls-main-default;
-    font-family: $select-box-font-family;
-    font-size: $select-box-font-size;
-    line-height: $select-box-line-height;
-  }
-
-  &.dx-dropdowneditor-active {
-    .dx-dropdowneditor-icon {
-      background-color: $controls-bg-accent-accent-bg-default;
-    }
-  }
-
-  .dx-dropdowneditor-input-wrapper {
-    border-radius: $select-box-border-radius;
-    background: $background-accent-in-the-content;
-  }
+  border-radius: 3px;
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
 
   &.dx-state-hover {
-    .dx-dropdowneditor-input-wrapper {
-      //border-color: $controls-content-in-controls-accent-default;
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #7eb9ff;
+    outline-offset: 2px;
+  }
+
+  &.dx-state-focused:not(.dx-invalid) {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+    border-color: var(--Controls-Content-In-Controls-Accent-Default);
+
+    .dx-label span {
+      color: var(--Controls-Content-In-Controls-Accent-Default);
     }
   }
 
-  &.dx-state-focused {
-    .dx-dropdowneditor-input-wrapper {
-      //border-color: $controls-content-in-controls-accent-default;
-      //box-shadow: 0 0 0 3px rgba($controls-content-in-controls-accent-default, 0.3);
+  &:focus-within {
+    outline: 2px solid #7eb9ff;
+  }
+
+  &.dx-invalid {
+    .dx-label span {
+      color: var(--Controls-Content-In-Controls-Danger-Default);
+    }
+
+    .dx-texteditor-input {
+      border-color: var(--Controls-Content-In-Controls-Danger-Default);
     }
   }
 
   &.dx-state-disabled {
     .dx-texteditor-input {
-      color: $controls-content-in-controls-main-disabled;
+      color: var(--Controls-Content-In-Controls-Main-Disabled);
     }
   }
-}
 
-.dx-popup-wrapper .dx-overlay-content.dx-popup-normal {
-  border-radius: $select-box-border-radius;
-  border: 1px solid $dividers-borders-long;
-  background: $background-accent-in-the-content;
-  box-shadow: $select-box-box-shadow;
+  .dx-texteditor-input {
+    padding-inline: 8px;
+    gap: 16px;
+    font-weight: var(--me-regular-font-weight);
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  .dx-dropdowneditor-input-wrapper {
+    padding: 8px;
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+    border-radius: 3px;
+
+    &.dx-state-hover {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+    }
+
+    &.dx-state-focused {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+      border-color: var(--Controls-Content-In-Controls-Accent-Default);
+    }
+
+    &.dx-invalid {
+      border-color: var(--Controls-Content-In-Controls-Danger-Default);
+    }
+
+    &.dx-state-disabled {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+    }
+  }
+
+  .dx-label span {
+    font-size: 12px;
+    font-weight: var(--me-regular-font-weight);
+    line-height: 16px;
+    text-align: left;
+  }
+
+  // Размеры для SelectBox
+  &.me-selectbox-small {
+    height: 36px;
+    .dx-texteditor-input {
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+
+  &.me-selectbox-medium {
+    height: 40px;
+    .dx-texteditor-input {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &.me-selectbox-large {
+    height: 48px;
+    .dx-texteditor-input {
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  .dx-selectbox .dx-texteditor-input {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .dx-texteditor-input-container {
+    align-items: center;
+  }
+
+  .dx-selectbox.me-selectbox-small .dx-texteditor-input {
+    font-size: 13px;
+    height: 36px;
+  }
+
+  .dx-selectbox.me-selectbox-medium .dx-texteditor-input {
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .dx-selectbox.me-selectbox-large .dx-texteditor-input {
+    font-size: 16px;
+    height: 48px;
+  }
+
+  // Стили для выпадающего списка
+  .dx-selectbox-popup-wrapper {
+    .dx-overlay-content {
+      border-radius: 4px;
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+      box-shadow: var(--select-box-box-shadow);
+    }
+
+    .dx-list {
+      background-color: var(--selectbox-list-bg);
+      border: 1px solid var(--Controls-BG-Secondary-Elements-BG-Hover);
+    }
+  }
+
+  // Кнопки
+  .dx-clear-button-area {
+    margin: 0;
+    .dx-icon.dx-icon-clear {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .dx-lock-button-area {
+    width: 20px;
+    height: 20px;
+    text-align-last: center;
+
+    .dx-icon.dx-icon-key {
+      font-size: 19px;
+      line-height: 20px;
+      font-family: var(--me-icon-family);
+      color: var(--Controls-Content-In-Controls-Main-Default);
+
+      &::before {
+        content: var(--me-icon-lock);
+      }
+    }
+  }
+
+  // Стили для Label
+  &.dx-texteditor-label-outside {
+    margin-top: 20px;
+
+    .dx-label {
+      height: 16px;
+      margin-top: 0;
+      top: -20px;
+      color: var(--Controls-Content-In-Controls-Main-Default);
+    }
+  }
+
+  &.dx-texteditor-with-floating-label {
+    margin-top: 20px;
+
+    .dx-label {
+      padding: 0;
+      align-items: center;
+      height: 16px;
+      margin-top: -8.5px !important;
+    }
+
+    &.dx-state-focused .dx-label {
+      top: -48%;
+      left: -9px;
+    }
+  }
 }

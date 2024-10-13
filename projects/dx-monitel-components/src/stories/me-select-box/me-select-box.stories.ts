@@ -25,13 +25,11 @@ export default {
   argTypes: {
     dataSource: {
       control: 'object',
-      description:
-        'Задает или получает массив данных, отображаемых компонентом.',
+      description: 'Задает или получает массив данных, отображаемых компонентом.',
     },
     placeholder: {
       control: 'text',
-      description:
-        'Задает текст, отображаемый, когда компонент не имеет значения.',
+      description: 'Задает текст, отображаемый, когда компонент не имеет значения.',
     },
     searchEnabled: {
       control: 'boolean',
@@ -49,21 +47,47 @@ export default {
       control: 'text',
       description: 'Задает ширину компонента.',
     },
+    label: {
+      control: 'text',
+      description: 'Задает текст метки для компонента.',
+    },
+    labelMode: {
+      control: { type: 'select' },
+      options: ['static', 'floating', 'hidden'],
+      description: 'Определяет режим отображения метки.',
+    },
+    size: {
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
+      description: 'Задает размер компонента.',
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Определяет, является ли текущее значение допустимым.',
+    },
+    showClearButton: {
+      control: 'boolean',
+      description: 'Показывает или скрывает кнопку очистки.',
+    },
   },
   args: {
     stylingMode: 'outlined',
+    size: 'medium',
+    labelMode: 'static',
+    label: '',
+    placeholder: '',
+    disabled: false,
+    readOnly: false,
+    isValid: true,
+    showClearButton: false,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-select-box meSelectBox ${argsToTemplate(
-      args
-    )}></dx-select-box>`,
+    template: `<dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>`,
   }),
 } as Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
-type Story = StoryObj<
-  MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective
->;
+type Story = StoryObj<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
 export const Default: Story = {
   args: {
@@ -111,5 +135,82 @@ export const CustomWidth: Story = {
   args: {
     dataSource: data,
     width: '300px',
+  },
+};
+
+export const WithLabel: Story = {
+  args: {
+    dataSource: data,
+    label: 'Выберите продукт',
+    labelMode: 'static',
+  },
+};
+
+export const WithFloatingLabel: Story = {
+  args: {
+    dataSource: data,
+    label: 'Выберите продукт',
+    labelMode: 'floating',
+  },
+};
+
+export const Invalid: Story = {
+  args: {
+    dataSource: data,
+    isValid: false,
+  },
+};
+
+export const WithClearButton: Story = {
+  args: {
+    dataSource: data,
+    showClearButton: true,
+    value: 'HD Video Player',
+  },
+};
+
+export const SmallSize: Story = {
+  args: {
+    dataSource: data,
+    size: 'small',
+  },
+};
+
+export const LargeSize: Story = {
+  args: {
+    dataSource: data,
+    size: 'large',
+  },
+};
+
+export const WithLabelColumn: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <label meLabel labelDirection="column">
+        {{ label }}
+        <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+      </label>
+    `,
+  }),
+  args: {
+    dataSource: data,
+    label: 'Выберите продукт',
+  },
+};
+
+export const WithLabelRow: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <label meLabel labelDirection="row" width="250px">
+        {{ label }}
+        <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+      </label>
+    `,
+  }),
+  args: {
+    dataSource: data,
+    label: 'Выберите продукт',
   },
 };

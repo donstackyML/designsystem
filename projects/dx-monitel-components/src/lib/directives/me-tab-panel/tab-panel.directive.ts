@@ -1,14 +1,13 @@
-import { Directive, Input, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import { DxTabPanelComponent, DxTabsComponent } from 'devextreme-angular';
+import { Directive, Input, OnInit} from '@angular/core';
+import {DxTabPanelComponent} from 'devextreme-angular';
+
 
 @Directive({
   selector: '[meTabPanel]',
   host: {
-    '[class.me-tabs]': 'true',
+    '[class.me-tabs-panel]': 'true',
     '[class.me-tabs-top]': 'position === "top"',
     '[class.me-tabs-bottom]': 'position === "bottom"',
-    '[class.me-tabs-horizontal]': 'orientation === "horizontal"',
-    '[class.me-tabs-vertical]': 'orientation === "vertical"',
     '[class.me-tabs-small]': 'size === "small"',
     '[class.me-tabs-medium]': 'size === "medium"',
     '[class.me-tabs-large]': 'size === "large"',
@@ -21,18 +20,17 @@ import { DxTabPanelComponent, DxTabsComponent } from 'devextreme-angular';
   },
 })
 export class MeTabPanelDirective implements OnInit {
-  @Input() customClass: string = '';
   @Input() position: 'top' | 'bottom' = 'top';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() stylingMode: 'inside' | 'outside' = 'inside';
-  @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Input() stylingMode: 'inside' | 'outside' = 'outside';
+  @Input() tabsPosition: 'top' | 'bottom' | 'left'|  'right'= 'top';
   @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
   @Input() width: string | number = 'auto';
 
-  constructor(private tabs: DxTabsComponent) {}
+  constructor(private tabs: DxTabPanelComponent) {}
 
   ngOnInit() {
-    this.tabs.orientation = this.orientation;
+    this.tabs.tabsPosition = this.tabsPosition;
     this.tabs.iconPosition = this.iconPosition;
     this.tabs.width = this.width;
   }

@@ -72,7 +72,6 @@ import { MePopoverDirective } from './directives/popover.directive';
 import { MeRadioGroupDirective } from './directives/radio-group.directive';
 import { MeSelectBoxDirective } from './directives/select-box.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
-import { MeTabPanelDirective } from './directives/tab-panel.directive';
 import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
@@ -106,7 +105,6 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeCalendarDirective,
     MeCalendarComponent,
     MeSidepageDemo,
-    MeTabPanelDirective,
     MeTabPanelComponent,
     TypographyComponent,
     MeToolbarDirective,
@@ -169,6 +167,5 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [MeToolbarDirective],
 })
 export class AppModule {}
