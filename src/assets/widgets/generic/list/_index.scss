@@ -715,12 +715,33 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
               border-top: 0;
               border-bottom: 1px solid var(--Dividers-Borders-Long);
 
+              &.dx-list-slide-menu-wrapper {
+                .dx-list-slide-menu-content {
+                  display: flex;
+                  gap: 8px;
+                  align-items: center;
+                }
+              }
+
               .dx-list-item-before-bag {
                 &.dx-list-toggle-delete-switch-container {
                   width: auto;
 
                   .dx-icon.dx-icon-toggle-delete {
                     margin: 0;
+                    height: 20px;
+                    width: 20px;
+                    background-image: none;
+                    background: var(--Controls-BG-Accent-Accent-BG-Default);
+                    border-radius: 50%;
+                    font-family: var(--me-icon-family);
+                    font-size: 20px;
+                    font-style: normal;
+                    align-content: center;
+                    &::before {
+                      content: var(--me-icon-remove);
+                      color: var(--Controls-Content-In-Controls-On-BG-Default);
+                    }
                   }
                 }
               }
@@ -730,11 +751,6 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
                 font-size: 14px;
                 font-weight: var(--me-regular-font-weight);
                 line-height: 20px;
-              }
-
-              .dx-list-switchable-delete-button-container {
-                .dx-widget.dx-button.dx-list-switchable-delete-button {
-                }
               }
             }
           }

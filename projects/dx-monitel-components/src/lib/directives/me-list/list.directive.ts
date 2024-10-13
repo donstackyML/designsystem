@@ -1,5 +1,4 @@
-import { Directive, HostListener, inject } from '@angular/core';
-import { DxListComponent } from 'devextreme-angular';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[meList]',
@@ -7,11 +6,4 @@ import { DxListComponent } from 'devextreme-angular';
     '[class.me-list]': 'true',
   },
 })
-export class MeListDirective {
-  private component = inject(DxListComponent);
-  @HostListener('onContentReady', ['$event'])
-  onContentReady(e: Event) {
-    console.log(e);
-    console.log(this.component);
-  }
-}
+export class MeListDirective {}
