@@ -13257,9 +13257,10 @@
   color: transparent;
 }
 .dx-selectbox .dx-dropdowneditor-input-wrapper {
-  padding: 8px;
   background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
   border-radius: 3px;
+  height: 100%;
+  width: 100%;
 }
 .dx-selectbox .dx-dropdowneditor-input-wrapper.dx-state-hover {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
@@ -28963,12 +28964,8 @@ input.dx-hidden {
   width: 100%;
   box-sizing: border-box;
   border-radius: 4px;
-  padding: var(--selectbox-padding);
   font-size: var(--selectbox-font-size);
   height: var(--selectbox-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: relative;
 }
 .me-form .dx-textbox:focus-visible, .me-form .dx-selectbox:focus-visible {
@@ -28995,6 +28992,7 @@ input.dx-hidden {
   font-size: var(--selectbox-font-size);
   padding: var(--selectbox-padding);
   height: var(--selectbox-height);
+  width: 100%;
 }
 .me-form .dx-textbox .dx-texteditor-input::placeholder, .me-form .dx-selectbox .dx-texteditor-input::placeholder {
   color: transparent;
@@ -29019,32 +29017,30 @@ input.dx-hidden {
   text-align: left;
 }
 .me-form .dx-texteditor-label {
-  position: absolute;
-  top: var(--label-top-position);
-  left: var(--label-left-position);
   font-size: var(--field-item-label-font-size);
-  padding: 0 4px;
   transition: none;
 }
-.me-form .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label {
-  position: absolute;
+.me-form .dx-editor-outlined.dx-label {
+  font-size: var(--field-item-label-font-size);
   top: var(--label-top-position);
-  left: var(--label-left-position);
+}
+.me-form .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label {
   font-size: var(--field-item-label-font-size);
   padding: 0 4px;
   transition: none;
 }
 .me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-focused .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-focused .dx-label {
-  position: absolute;
-  top: var(--label-top-position);
-  left: var(--label-left-position);
   font-size: var(--field-item-label-font-size);
+  top: var(--label-top-position); /* Начальная позиция */
+  left: var(--label-left-position);
 }
 .me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover .dx-label {
-  position: absolute;
-  top: var(--label-top-position);
-  left: var(--label-left-position);
   font-size: var(--field-item-label-font-size);
+  top: var(--label-top-position); /* Начальная позиция */
+  left: var(--label-left-position);
+}
+.me-form .dx-dropdowneditor-input-wrapper {
+  display: inline-block !important;
 }
 .me-form .dx-field-item {
   margin-bottom: 16px;
@@ -29056,6 +29052,49 @@ input.dx-hidden {
 .me-form .dx-field-item-required .dx-label::after {
   content: "*";
   color: var(--required-color, red);
+}
+.me-form .dx-editor-outlined .dx-label {
+  position: absolute;
+  top: var(--label-top-position); /* Начальная позиция */
+  left: var(--label-left-position);
+  transition: all 0.3s ease; /* Плавный переход */
+  font-size: var(--field-item-label-font-size);
+  color: var(--label-color, #757575); /* Цвет лейбла */
+  border-color: transparent !important;
+}
+.me-form .dx-editor-outlined .dx-selectbox.dx-texteditor-with-floating-label .dx-label {
+  margin-top: 0 !important;
+  height: auto;
+}
+.me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:focus ~ .dx-label,
+.me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:hover ~ .dx-label,
+.me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:not(:placeholder-shown) ~ .dx-label {
+  margin-top: 0 !important;
+}
+.me-form .dx-editor-outlined .dx-texteditor-input {
+  padding-bottom: calc(var(--selectbox-padding) + 10px) !important; /* Дополнительное пространство для лейбла */
+  box-sizing: border-box;
+}
+.me-form .dx-editor-outlined .me-form .dx-textbox .dx-texteditor-input,
+.me-form .dx-editor-outlined .me-form .dx-selectbox .dx-texteditor-input {
+  font-size: var(--selectbox-font-size);
+  padding-left: 12px; /* Оставляем стандартный padding слева */
+  padding-right: 12px;
+  padding-bottom: 10px; /* Фиксируем нижний padding */
+  height: var(--selectbox-height); /* Высота поля */
+  width: 100%;
+}
+.me-form .dx-editor-outlined .me-form-small .dx-textbox .dx-texteditor-input,
+.me-form .dx-editor-outlined .me-form-small .dx-selectbox .dx-texteditor-input {
+  padding-top: 18px; /* Верхний padding для маленькой формы */
+}
+.me-form .dx-editor-outlined .me-form-medium .dx-textbox .dx-texteditor-input,
+.me-form .dx-editor-outlined .me-form-medium .dx-selectbox .dx-texteditor-input {
+  padding-top: 20px; /* Верхний padding для средней формы */
+}
+.me-form .dx-editor-outlined .me-form-large .dx-textbox .dx-texteditor-input,
+.me-form .dx-editor-outlined .me-form-large .dx-selectbox .dx-texteditor-input {
+  padding-top: 22px; /* Верхний padding для большой формы */
 }
 
 /**

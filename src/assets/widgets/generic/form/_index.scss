@@ -42,12 +42,9 @@
     width: 100%;
     box-sizing: border-box;
     border-radius: 4px;
-    padding: var(--selectbox-padding);
+    //padding: var(--selectbox-padding);
     font-size: var(--selectbox-font-size);
     height: var(--selectbox-height);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     position: relative;
 
     &:focus-visible {
@@ -84,6 +81,7 @@
       font-size: var(--selectbox-font-size);
       padding: var(--selectbox-padding);
       height: var(--selectbox-height);
+      width: 100%;
 
       &::placeholder {
         color: transparent;
@@ -118,41 +116,41 @@
 
   // Стили для меток внутри полей
   .dx-texteditor-label {
-    position: absolute;
-    top: var(--label-top-position);
-    left: var(--label-left-position);
     font-size: var(--field-item-label-font-size);
-    padding: 0 4px;
+    //padding: 0 4px;
     transition: none;
   }
 
   // Стили для меток при фокусе и ховере
   .dx-editor-outlined {
+    &.dx-label {
+      font-size: var(--field-item-label-font-size);
+      top: var(--label-top-position);
+    }
     &.dx-texteditor-with-label,
     &.dx-texteditor-with-floating-label {
       .dx-texteditor-label .dx-label {
-        position: absolute;
-        top: var(--label-top-position);
-        left: var(--label-left-position);
         font-size: var(--field-item-label-font-size);
         padding: 0 4px;
         transition: none;
       }
 
       &.dx-state-focused .dx-label {
-        position: absolute;
-        top: var(--label-top-position);
-        left: var(--label-left-position);
         font-size: var(--field-item-label-font-size);
+        top: var(--label-top-position); /* Начальная позиция */
+        left: var(--label-left-position);
       }
 
       &.dx-state-hover .dx-label {
-        position: absolute;
-        top: var(--label-top-position);
-        left: var(--label-left-position);
         font-size: var(--field-item-label-font-size);
+        top: var(--label-top-position); /* Начальная позиция */
+        left: var(--label-left-position);
       }
     }
+  }
+
+  .dx-dropdowneditor-input-wrapper {
+    display: inline-block !important;
   }
 
   // Отступы между элементами формы
@@ -175,4 +173,62 @@
       }
     }
   }
+
+  .dx-editor-outlined {
+    .dx-label {
+      position: absolute;
+      top: var(--label-top-position); /* Начальная позиция */
+      left: var(--label-left-position);
+      transition: all 0.3s ease; /* Плавный переход */
+      font-size: var(--field-item-label-font-size);
+      color: var(--label-color, #757575); /* Цвет лейбла */
+      border-color: transparent !important;
+    }
+
+    .dx-selectbox.dx-texteditor-with-floating-label .dx-label {
+
+      margin-top: 0 !important;
+      height: auto;
+    }
+
+    .dx-editor-outlined .dx-texteditor-input:focus ~ .dx-label,
+    .dx-editor-outlined .dx-texteditor-input:hover ~ .dx-label,
+    .dx-editor-outlined .dx-texteditor-input:not(:placeholder-shown) ~ .dx-label {
+      margin-top: 0 !important;
+    }
+
+    .dx-texteditor-input {
+      padding-bottom: calc(var(--selectbox-padding) + 10px) !important; /* Дополнительное пространство для лейбла */
+      box-sizing: border-box;
+      //font-size: var(--selectbox-font-size);
+      //height: var(--selectbox-height);
+    }
+
+    .me-form .dx-textbox .dx-texteditor-input,
+    .me-form .dx-selectbox .dx-texteditor-input {
+      font-size: var(--selectbox-font-size);
+      padding-left: 12px; /* Оставляем стандартный padding слева */
+      padding-right: 12px;
+      padding-bottom: 10px; /* Фиксируем нижний padding */
+      height: var(--selectbox-height); /* Высота поля */
+      width: 100%;
+    }
+
+    .me-form-small .dx-textbox .dx-texteditor-input,
+    .me-form-small .dx-selectbox .dx-texteditor-input {
+      padding-top: 18px; /* Верхний padding для маленькой формы */
+    }
+
+    .me-form-medium .dx-textbox .dx-texteditor-input,
+    .me-form-medium .dx-selectbox .dx-texteditor-input {
+      padding-top: 20px; /* Верхний padding для средней формы */
+    }
+
+    .me-form-large .dx-textbox .dx-texteditor-input,
+    .me-form-large .dx-selectbox .dx-texteditor-input {
+      padding-top: 22px; /* Верхний padding для большой формы */
+    }
+  }
 }
+
+
