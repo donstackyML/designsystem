@@ -151,6 +151,7 @@
     }
   }
   .dx-texteditor-label {
+    align-items: center;
     .dx-label {
       span {
         font-size: 12px;
@@ -161,12 +162,32 @@
     }
   }
 
-  &.dx-texteditor-label-outside.dx-texteditor-with-label {
+  &.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small,
+  &.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium {
     margin-top: 20px;
+    &.dx-searchbox {
+      .dx-texteditor-label {
+        padding: 0;
+      }
+    }
     .dx-texteditor-label {
       height: 16px;
       margin-top: 0;
       top: -20px;
+      color: var(--Controls-Content-In-Controls-Main-Default);
+    }
+  }
+  &.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large {
+    margin-top: 20px;
+    &.dx-searchbox {
+      .dx-texteditor-label {
+        padding: 0;
+      }
+    }
+    .dx-texteditor-label {
+      height: 20px;
+      margin-top: 0;
+      top: -24px;
       color: var(--Controls-Content-In-Controls-Main-Default);
     }
   }
@@ -179,10 +200,21 @@
       height: 16px;
       margin-top: -8.5px !important;
     }
-    &.dx-state-focused {
+    &.dx-state-focused,
+    &:not(.dx-texteditor-empty) {
       .dx-texteditor-label {
         top: -48%;
         left: -9px;
+      }
+    }
+  }
+
+  &.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label.dx-state-focused,
+  &.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) {
+    .dx-texteditor-label {
+      padding: 0;
+      .dx-label-before {
+        width: 0 !important;
       }
     }
   }
@@ -207,6 +239,21 @@
         }
       }
     }
+    &.dx-searchbox {
+      .dx-icon.dx-icon-search {
+        align-content: center;
+        width: 20px;
+        line-height: 14px;
+        font-size: 14px;
+      }
+      .dx-texteditor-input,
+      .dx-placeholder {
+        padding: 0 0 0 24px;
+      }
+      .dx-texteditor-label {
+        padding: 0 0 0 12px;
+      }
+    }
   }
   &.me-textbox-medium {
     &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
@@ -225,6 +272,21 @@
           font-size: 14px;
           line-height: 20px;
         }
+      }
+    }
+    &.dx-searchbox {
+      .dx-icon.dx-icon-search {
+        align-content: center;
+        width: 20px;
+        line-height: 14px;
+        font-size: 14px;
+      }
+      .dx-texteditor-input,
+      .dx-placeholder {
+        padding: 0 0 0 24px;
+      }
+      .dx-texteditor-label {
+        padding: 0 0 0 12px;
       }
     }
   }
@@ -282,6 +344,21 @@
       .dx-texteditor-label {
         height: 20px;
         top: -24px;
+      }
+    }
+    &.dx-searchbox {
+      .dx-icon.dx-icon-search {
+        align-content: center;
+        width: 24px;
+        line-height: 18px;
+        font-size: 18px;
+      }
+      .dx-texteditor-input,
+      .dx-placeholder {
+        padding: 0 0 0 28px;
+      }
+      .dx-texteditor-label {
+        padding: 0 0 0 16px;
       }
     }
   }

@@ -480,6 +480,8 @@ export default {
     >
     </dxo-editing>
 
+		<dxo-selection mode="multiple"></dxo-selection>
+
     <dxi-column dataField="Full_Name">
       <dxi-validation-rule type="required"></dxi-validation-rule>
     </dxi-column>

@@ -5,14 +5,14 @@ import { MeSize } from '../../types/types';
   selector: '[meTreeView]',
   host: {
     '[class.me-tree-view]': 'true',
-    '[class.me-tree-view-small]': 'isSizeSmall()',
-    '[class.me-tree-view-large]': 'isSizeLarge()',
-    '[class.me-tree-view-word-wrap]': 'itemWordWrap',
+    '[class.me-tree-view-small]': 'isSizeSmall',
+    '[class.me-tree-view-large]': 'isSizeLarge',
+    // '[class.me-tree-view-word-wrap]': 'itemWordWrap',
   },
 })
 export class MeTreeViewDirective {
   @Input() size: Exclude<MeSize, 'medium'> = 'large';
-  @Input() itemWordWrap: boolean = false;
+  // @Input() itemWordWrap: boolean = false;
 
   get isSizeSmall() {
     return this.size === 'small';

@@ -1298,7 +1298,10 @@ export const SelectedItems: Story = {
       {
         text: 'Share',
         icon: 'globe',
-        items: [{ text: 'Facebook', selected: true }, { text: 'Twitter' }],
+        items: [
+          { icon: 'menu_book', text: 'Facebook', selected: true },
+          { icon: 'raven', text: 'Twitter' },
+        ],
       },
       { text: 'Download', icon: 'download' },
       { text: 'Add Comment', icon: 'add' },

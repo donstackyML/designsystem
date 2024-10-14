@@ -1,5 +1,11 @@
 import { moduleMetadata, Meta, StoryObj, StoryFn } from '@storybook/angular';
-import { DxFormModule } from 'devextreme-angular';
+import {
+  DxFormModule,
+  DxSelectBoxModule,
+  DxTextBoxModule,
+  DxCheckBoxModule,
+  DxDateBoxModule,
+} from 'devextreme-angular';
 import { MeFormDirective } from '../../public-api';
 
 interface FormStoryArgs {
@@ -16,7 +22,13 @@ export default {
   component: MeFormDirective,
   decorators: [
     moduleMetadata({
-      imports: [DxFormModule],
+      imports: [
+        DxFormModule,
+        DxSelectBoxModule,
+        DxTextBoxModule,
+        DxCheckBoxModule,
+        DxDateBoxModule,
+      ],
       declarations: [MeFormDirective],
     }),
   ],
@@ -56,7 +68,14 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
       lastName: 'Doe',
       email: 'john.doe@example.com',
       phone: '+1 (555) 123-4567',
+      gender: 'male',
+      birthDate: new Date(1990, 0, 1),
+      occupation: '',
+      isSubscribed: false,
+      country: 'USA',
     },
+    genderOptions: ['male', 'female', 'other'],
+    countryOptions: ['USA', 'Canada', 'UK', 'Australia', 'Germany'],
   },
   template: `
     <dx-form
@@ -69,10 +88,15 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
       [readOnly]="readOnly"
       [showColonAfterLabel]="showColonAfterLabel"
     >
-      <dxi-item dataField="firstName"></dxi-item>
-      <dxi-item dataField="lastName"></dxi-item>
-      <dxi-item dataField="email"></dxi-item>
-      <dxi-item dataField="phone"></dxi-item>
+      <dxi-item dataField="firstName" editorType="dxTextBox"></dxi-item>
+      <dxi-item dataField="lastName" editorType="dxTextBox"></dxi-item>
+      <dxi-item dataField="email" editorType="dxTextBox"></dxi-item>
+      <dxi-item dataField="phone" editorType="dxTextBox"></dxi-item>
+      <dxi-item dataField="gender" editorType="dxSelectBox" [editorOptions]="{items: genderOptions}"></dxi-item>
+      <dxi-item dataField="birthDate" editorType="dxDateBox"></dxi-item>
+      <dxi-item dataField="occupation" editorType="dxTextBox"></dxi-item>
+      <dxi-item dataField="isSubscribed" editorType="dxCheckBox" [label]="{text: 'Subscribe to newsletter'}"></dxi-item>
+      <dxi-item dataField="country" editorType="dxSelectBox" [editorOptions]="{items: countryOptions}"></dxi-item>
     </dx-form>
   `,
 });
@@ -172,18 +196,27 @@ WithGrouping.decorators = [
         [showColonAfterLabel]="showColonAfterLabel"
       >
         <dxi-item itemType="group" caption="Personal Information">
-          <dxi-item dataField="firstName"></dxi-item>
-          <dxi-item dataField="lastName"></dxi-item>
-          <dxi-item dataField="email"></dxi-item>
-          <dxi-item dataField="phone"></dxi-item>
+          <dxi-item dataField="firstName" editorType="dxTextBox"></dxi-item>
+          <dxi-item dataField="lastName" editorType="dxTextBox"></dxi-item>
+          <dxi-item dataField="email" editorType="dxTextBox"></dxi-item>
+          <dxi-item dataField="phone" editorType="dxTextBox"></dxi-item>
+          <dxi-item dataField="gender" editorType="dxSelectBox" [editorOptions]="{items: genderOptions}"></dxi-item>
+          <dxi-item dataField="birthDate" editorType="dxDateBox"></dxi-item>
         </dxi-item>
-        <dxi-item itemType="group" caption="Address Information">
-          <dxi-item dataField="address"></dxi-item>
-          <dxi-item dataField="city"></dxi-item>
-          <dxi-item dataField="state"></dxi-item>
-          <dxi-item dataField="zipCode"></dxi-item>
+        <dxi-item itemType="group" caption="Additional Information">
+          <dxi-item dataField="occupation" editorType="dxTextBox"></dxi-item>
+          <dxi-item dataField="isSubscribed" editorType="dxCheckBox" [label]="{text: 'Subscribe to newsletter'}"></dxi-item>
+          <dxi-item dataField="country" editorType="dxSelectBox" [editorOptions]="{items: countryOptions}"></dxi-item>
         </dxi-item>
       </dx-form>
     `,
   }),
 ];
+
+export const VariousInputTypes: Story = {
+  render: Template,
+  args: {
+    ...Default.args,
+    colCount: 2,
+  },
+};

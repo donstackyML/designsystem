@@ -184,6 +184,9 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 //meTreeList
 
 .me-tree-list {
+  .dx-row > td {
+    padding: 8px;
+  }
   .dx-treelist-container.dx-gridbase-container {
     padding: 16px;
     td:not(.dx-command-edit.dx-command-edit-with-icons) {
@@ -232,7 +235,6 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
           .dx-row.dx-column-lines.dx-header-row {
             min-height: 36px;
             .dx-treelist-action {
-              padding: 8px;
               align-content: center;
               .dx-treelist-text-content {
                 font-size: 13px;
@@ -264,6 +266,16 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
                   }
                 }
               }
+              .dx-checkbox-indeterminate {
+                .dx-checkbox-icon {
+                  &::before {
+                    height: 2px;
+                    width: 10px;
+                    margin-top: -1px;
+                    margin-left: -5px;
+                  }
+                }
+              }
             }
             .dx-command-edit {
               background-color: $base-bg;
@@ -286,8 +298,9 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
             font-weight: 400;
             align-content: center;
             min-height: 30px;
-            & * {
-              padding: 0;
+
+            .dx-texteditor {
+              background: transparent;
             }
             .dx-texteditor-input {
               padding: 0;
@@ -295,6 +308,7 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
               font-size: 13px;
               font-family: 'Roboto';
               text-align: left !important;
+              background: transparent;
             }
             .dx-datebox {
               .dx-texteditor-buttons-container {
@@ -303,7 +317,7 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
                     line-height: 16px;
                     font-size: 18px;
                     font-family: 'Material Symbols Outlined';
-                    color: $base-accent;
+                    color: var(--Controls-Content-In-Controls-Accent-Default);
                     &::before {
                       content: '\e935';
                     }
@@ -363,6 +377,7 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
               font-size: 18px;
               display: inline-flex;
               align-items: center;
+              color: var(--Controls-Content-In-Controls-Accent-Default);
             }
           }
           .dx-focused {

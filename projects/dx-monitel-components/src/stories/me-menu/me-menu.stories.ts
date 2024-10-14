@@ -24,6 +24,24 @@ const data = [
           {
             icon: argsIcon,
             text: 'Desktops',
+            items: [
+              {
+                icon: argsIcon,
+                text: 'All Desktops',
+              },
+              {
+                icon: argsIcon,
+                text: 'All Desktops',
+              },
+              {
+                icon: argsIcon,
+                text: 'All Desktops',
+              },
+              {
+                icon: argsIcon,
+                text: 'All Desktops',
+              },
+            ],
           },
           {
             icon: argsIcon,

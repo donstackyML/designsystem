@@ -2,10 +2,7 @@ trigger:
   batch: true
   branches:
     include:
-      - master
-      - Releases/*
-    exclude:
-      - refs/tags/no-build
+      - add-story-v24
   tags:
     exclude:
       - '*'
@@ -15,53 +12,34 @@ pool:
   demands:
     - npm
 
-# resources:
-#   repositories:
-#     - repository: build-scripts
-#       type: git
-#       name: Development/Build.Scripts
-#       ref: refs/heads/release/v2
-
-# variables:
-#   - template: scripts/default-variables.yml@build-scripts
-#   - group: Build.Common
-#   - group: Build.Master
-#  - name: https_proxy
-#    value: http://proxy-ext.sandbox.local:8080/
-#  - name: HTTPS_PROXY
-#    value: http://proxy-ext.sandbox.local:8080/
-
 steps:
   - checkout: self
-  # - checkout: build-scripts
 
-  - script: npm install
+  - task: Bash@3
     displayName: Install
-    env:
-      https_proxy: http://proxy-ext.sandbox.local:8080/
-      # HTTPS_PROXY: http://proxy-ext.sandbox.local:8080/
-    # workingDirectory: $(Build.Repository.Name)
+    inputs:
+      targetType: 'inline'
+      script: |
+        npm config set https-proxy http://proxy-ext.sandbox.local:8080
+        npm install
+      workingDirectory: $(Build.SourcesDirectory)
 
-  - script: npm run build-storybook
+  - task: Bash@3
     displayName: Restore dx-custom-themes projects
-    # workingDirectory: $(Build.Repository.Name)
+    inputs:
+      targetType: 'inline'
+      script: |
+        npm run build-storybook
+      workingDirectory: $(Build.SourcesDirectory)
 
-  # - template: scripts/add-to-archive.yml@build-scripts
-  #   parameters:
-  #     archiveFile: $(Build.ArtifactStagingDirectory)/publish/addons/designsystem/web/storybook/dx-monitel-components/24.zip
-  #     sourceFolder: $(Build.Repository.Name)/dist
-  #     sourceRootName: dx-custom-themes
-
-  # - template: scripts/publish-artifact.yml@build-scripts
-  #   parameters:
-  #     sourceArtifactFolder: $(Build.ArtifactStagingDirectory)/publish
-
-  # - template: scripts/publish-build-to-ck-build.yml@build-scripts
-
-  - script: rm -rfv *
-    workingDirectory: $(Build.ArtifactStagingDirectory)
-    displayName: 'Очистка после сбоки шаг 1'
-
-  - script: rm -rfv *
-    workingDirectory: $(Build.Repository.Name)
-    displayName: 'Очистка после сбоки шаг 2'
+  - task: CopyFilesOverSSH@0
+    displayName: Copy ../dist/storybook/dx-monitel-components to /var/www/html/24
+    inputs:
+      sshEndpoint: ssh_web-storybook.sandbox.local
+      sourceFolder: "$(Build.SourcesDirectory)/dist/storybook/dx-monitel-components"
+      contents: '**'
+      targetFolder: "/var/www/html/24"
+      cleanTargetFolder: true
+      cleanHiddenFilesInTarget: true
+      readyTimeout: '20000'
+      #flattenFolders: false # boolean. Flatten folders. Default: false.

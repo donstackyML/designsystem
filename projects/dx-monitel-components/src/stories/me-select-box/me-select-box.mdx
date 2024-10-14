@@ -6,32 +6,16 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 # SelectBox
 
-## Директива meSelectBox
+## Директивы meSelectBox, meLabel
 
-Применение директивы meSelectBox к элементу <code>dx-select-box</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие с дизайн-системой, добавляет свойство <code>size</code>.
+Применение директивы <code>meSelectBox</code> к элементу <code>dx-select-box</code> приводит его размеры к значению <code>size=medium (32)</code> из дизайн-системы, задает по умолчанию <code>stylingMode=outlined</code> и предоставляет доступ к другим свойствам.
 
-Документация на сайте разработчика Devextreme:
-
-<div>
-  <a
-    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/"
-    target="_blank"
-  >
-    API
-  </a>
-</div>
-
-<div>
-  <a
-    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/SelectBox/Overview/"
-    target="_blank"
-  >
-    Демо
-  </a>
-</div>
+[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/)
 
 <Canvas of={selectBoxStories.Default} />
+
 <Controls of={selectBoxStories.Default} />
+
 <Source of={selectBoxStories.Default} dark />
 
 ## Дизайн
@@ -39,20 +23,26 @@ import { Figma } from "@storybook/addon-designs/blocks";
 <Figma
   height="50%"
   collapsable
+  defaultCollapsed
   url="https://www.figma.com/file/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
 />
 
 ## Свойства компонента
 
-| Свойство      | Тип              | Описание                                                       |
-| ------------- | ---------------- | -------------------------------------------------------------- |
-| dataSource    | any              | Задает или получает массив данных, отображаемых компонентом.   |
-| placeholder   | string           | Задает текст, отображаемый, когда компонент не имеет значения. |
-| searchEnabled | boolean          | Определяет, разрешен ли поиск в списке элементов.              |
-| disabled      | boolean          | Определяет, отключен ли компонент.                             |
-| readOnly      | boolean          | Определяет, доступен ли компонент только для чтения.           |
-| stylingMode   | string           | Задает режим стилизации компонента.                            |
-| width         | number \| string | Задает ширину компонента.                                      |
+| Свойство        | Тип              | Описание                                                       |
+| --------------- | ---------------- | -------------------------------------------------------------- |
+| dataSource      | any              | Задает или получает массив данных, отображаемых компонентом.   |
+| placeholder     | string           | Задает текст, отображаемый, когда компонент не имеет значения. |
+| searchEnabled   | boolean          | Определяет, разрешен ли поиск в списке элементов.              |
+| disabled        | boolean          | Определяет, отключен ли компонент.                             |
+| readOnly        | boolean          | Определяет, доступен ли компонент только для чтения.           |
+| stylingMode     | string           | Задает режим стилизации компонента.                            |
+| width           | number \| string | Задает ширину компонента.                                      |
+| label           | string           | Задает текст метки для компонента.                             |
+| labelMode       | string           | Определяет режим отображения метки.                            |
+| size            | string           | Задает размер компонента.                                      |
+| isValid         | boolean          | Определяет, является ли текущее значение допустимым.           |
+| showClearButton | boolean          | Показывает или скрывает кнопку очистки.                        |
 
 ## Примеры использования
 
@@ -153,18 +143,60 @@ import { Figma } from "@storybook/addon-designs/blocks";
   language="html"
 />
 
-<style>
-  {`
-    h2 {
-        border-bottom: none !important;
-    }
+## Определение положения лейбла снаружи SelectBox
 
-      a {
-        display: inline-block !important;
-      }
+Применение директивы <code>meLabel</code> позволяет определить положение лейбла снаружи SelectBox (сверху или слева).
 
-      a p {
-        color: #029CFD !important;
-      }
+<code>labelDirection</code> определяет положение лейбла снаружи SelectBox (сверху
+или слева).
+
+### Положение лейбла сверху
+
+<Canvas of={selectBoxStories.WithLabelColumn} />
+
+<Source
+  code={`
+<label meLabel labelDirection="column">
+  Выберите продукт
+  <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
+</label>
 `}
+  dark
+  language="html"
+/>
+
+### Положение лейбла слева
+
+    <Canvas of={selectBoxStories.WithLabelRow} />
+
+    <Source
+      code={`
+    <label meLabel labelDirection="row" width="250px">
+    Выберите продукт
+    <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
+    </label>
+    `}
+      dark
+      language="html"
+    />
+
+    <code>width</code> определяет размер SelectBox вместе с лейблом (используется в теге <code>label</code> для расположения <code>labelDirection="row"</code>)
+
+    <style>
+
+{`
+h2 {
+border-bottom: none !important;
+}
+
+        a {
+          display: inline-block !important;
+        }
+
+        a p {
+          color: #029CFD !important;
+        }
+
+`}
+
 </style>

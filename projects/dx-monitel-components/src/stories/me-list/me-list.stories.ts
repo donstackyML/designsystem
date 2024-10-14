@@ -12,11 +12,61 @@ const iconStore = new MeIconStoreService();
 // iconStore.getIcon({ icon: 'folder', size: 'size' }),
 
 const data = [
-  'Prepare 2013 Financial',
-  'Prepare 3013 Marketing',
-  'Update Personnel Files',
-  'Review Health ',
-  'Prepare 2013 Marketing Plan',
+  {
+    key: 'Prepare 2013 Financial',
+    text: 'Prepare 2013 Financial',
+    items: [
+      'Prepare 2013 Financial',
+      'Prepare 3013 Marketing',
+      'Update Personnel Files',
+      'Review Health ',
+      'Prepare 2013 Marketing Plan',
+    ],
+  },
+  {
+    key: 'Prepare 3013 Marketing',
+    text: 'Prepare 3013 Marketing',
+    items: [
+      'Prepare 2013 Financial',
+      'Prepare 3013 Marketing',
+      'Update Personnel Files',
+      'Review Health ',
+      'Prepare 2013 Marketing Plan',
+    ],
+  },
+  {
+    key: 'Update Personnel Files',
+    text: 'Update Personnel Files',
+    items: [
+      'Prepare 2013 Financial',
+      'Prepare 3013 Marketing',
+      'Update Personnel Files',
+      'Review Health ',
+      'Prepare 2013 Marketing Plan',
+    ],
+  },
+  {
+    key: 'Review Health',
+    text: 'Review Health',
+    items: [
+      'Prepare 2013 Financial',
+      'Prepare 3013 Marketing',
+      'Update Personnel Files',
+      'Review Health ',
+      'Prepare 2013 Marketing Plan',
+    ],
+  },
+  {
+    key: 'Prepare 2013 Marketing Plan',
+    text: 'Prepare 2013 Marketing Plan',
+    items: [
+      'Prepare 2013 Financial',
+      'Prepare 3013 Marketing',
+      'Update Personnel Files',
+      'Review Health ',
+      'Prepare 2013 Marketing Plan',
+    ],
+  },
 ];
 
 const dataWithHeaders = [

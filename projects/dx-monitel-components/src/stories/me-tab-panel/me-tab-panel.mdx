@@ -1,13 +1,13 @@
-import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
-import * as TabPanelStories from "./me-tab-panel.stories";
+import { Meta, Canvas, Controls, Source } from "@storybook/addon-docs";
+import * as tabPanelStories from "./me-tab-panel.stories";
 
-<Meta title="Components/TabPanel" of={TabPanelStories} />
+<Meta title="Components/TabPanel" of={tabPanelStories} />
 
 # TabPanel
 
 Компонент TabPanel представляет собой контейнер для отображения содержимого во вкладках.
 
-<Canvas of={TabPanelStories.Default} />
+<Canvas of={tabPanelStories.Default} />
 
 ## Свойства
 
@@ -23,62 +23,50 @@ import * as TabPanelStories from "./me-tab-panel.stories";
   code={`
 <dx-tab-panel
   meTabPanel
-  [customClass]="customClass"
-  [selectedIndex]="selectedIndex"
-  [animationEnabled]="animationEnabled"
-  [swipeEnabled]="swipeEnabled"
-  [dataSource]="tabPanelData"
-  [orientation]="orientation"
-  [stylingMode]="stylingMode"
+  [dataSource]="dataSource"
+  [height]="height"
   [iconPosition]="iconPosition"
-  [showNavButtons]="showNavButtons"
-  [scrollByContent]="scrollByContent"
-  [rtlEnabled]="rtlEnabled"
+  [selectedIndex]="selectedIndex"
   [width]="width"
+  [size]="size"
 >
+  <div *dxTemplate="let item of 'item'">
+    <div class="tabpanel-content">
+      <p>{{item.content}}</p>
+    </div>
+  </div>
 </dx-tab-panel>
   `}
 />
 
 ## Примеры
 
-### Вертикальная ориентация
+### Вертикальное расположение вкладок
 
-<Canvas of={TabPanelStories.VerticalOrientation} />
+{" "}
 
-### С кнопками навигации
-
-<Canvas of={TabPanelStories.WithNavButtons} />
-
-### Стиль оформления "Outside"
-
-<Canvas of={TabPanelStories.OutsideStylingMode} />
+<Canvas of={tabPanelStories.VerticalTabs} />
 
 ### Различные позиции иконок
 
-<Canvas of={TabPanelStories.DifferentIconPositions} />
+{" "}
 
-### Поддержка языков с письмом справа налево
-
-<Canvas of={TabPanelStories.RightToLeft} />
+<Canvas of={tabPanelStories.DifferentIconPositions} />
 
 ## API
 
+{" "}
+
 <Controls
-  of={TabPanelStories.Default}
+  of={tabPanelStories.Default}
   include={[
-    "customClass",
-    "selectedIndex",
-    "animationEnabled",
-    "swipeEnabled",
-    "position",
-    "size",
-    "stylingMode",
-    "orientation",
+    "dataSource",
+    "height",
+    "hoverStateEnabled",
     "iconPosition",
-    "showNavButtons",
-    "scrollByContent",
-    "rtlEnabled",
+    "selectedIndex",
+    "swipeEnabled",
+    "size",
     "width",
   ]}
 />

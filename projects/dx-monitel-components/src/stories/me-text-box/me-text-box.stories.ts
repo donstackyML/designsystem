@@ -92,9 +92,8 @@ export default {
   args: {
     size: 'medium',
     mode: 'text',
-    // stylingMode: 'filled',
     labelMode: 'hidden',
-    label: 'Label',
+    label: 'Label*',
     placeholder: 'Placeholder',
     readOnly: false,
     disabled: false,
@@ -119,9 +118,13 @@ export const Default: Story = {
 export const WithLabelColumn: Story = {
   render: (args) => ({
     props: args,
-    template: `<label meLabel labelDirection="column">Label<dx-text-box meTextBox ${argsToTemplate(
-      args
-    )}></dx-text-box></label>`,
+    template: `
+		<label meLabel
+		labelDirection="column"
+		style="align-items: flex-start;"
+		>Label
+		<dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>
+		</label>`,
   }),
 };
 

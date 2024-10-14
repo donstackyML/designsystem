@@ -1,103 +1,42 @@
-//@use 'sass:color';
-//@use '../sizes' as *;
-//@use '../colors' as *;
-//@use '../button/colors' as *;
-//
-//// Variables
-//$tabs-tab-color: $base-text-color !default;
-//$tabs-tab-selected-color: $base-text-color !default;
-//$tabs-tab-bg: #ecedf3 !default;
-//$tabs-tab-selected-bg: $base-bg !default;
-//$tabs-tab-icon-color: $tabs-tab-color !default;
-//$tabs-tab-icon-selected-color: $tabs-tab-selected-color !default;
-//$tabs-focused-border-color: #3257dc !default;
-//$tabs-tab-hover-bg: #3c65f81f !default;
-//$tabs-tab-active-bg: #3c71f833 !default;
-//$tabs-hover-border-color: #18181a !default;
-//$tabs-disabled-border-color: rgba(223, 224, 237, 1) !default;
-//$tabs-disabled-color: #18181a66 !default;
-//
-//.me-tabs-panel {
-//  &.dx-tabpanel {
-//    display: flex;
-//    flex-direction: column;
-//
-//    .dx-tabpanel-tabs {
-//      background-color: transparent;
-//      border-bottom: none;
-//
-//      .dx-tabs {
-//        background-color: transparent;
-//        border: none;
-//
-//        .dx-tab {
-//          border-bottom: none;
-//          border-radius: 4px 4px 0 0;
-//          margin-right: 2px;
-//          padding: 10px 15px;
-//          color: $tabs-tab-color;
-//          font-weight: 500;
-//
-//          &.dx-tab-selected {
-//            background-color: $tabs-tab-selected-bg;
-//            border-bottom: 1px solid $tabs-tab-selected-bg;
-//            color: $tabs-tab-selected-color;
-//            position: relative;
-//            z-index: 1;
-//
-//            &::after {
-//              content: '';
-//              position: absolute;
-//              bottom: -2px;
-//              left: 0;
-//              right: 0;
-//              height: 2px;
-//              background-color: transparent;
-//            }
-//          }
-//
-//          &:hover:not(.dx-tab-selected) {
-//            background-color: $tabs-tab-hover-bg;
-//          }
-//
-//          &.dx-state-focused {
-//            box-shadow: 0 0 0 2px $tabs-focused-border-color;
-//          }
-//
-//          .dx-tab-text {
-//            font-size: var(--me-tabs-medium-font-size);
-//            line-height: var(--me-tabs-medium-line-height);
-//          }
-//
-//          .dx-icon {
-//            font-size: var(--me-tabs-medium-icon-font-size);
-//            color: $tabs-tab-icon-color;
-//            margin-right: 8px;
-//          }
-//        }
-//      }
-//    }
-//
-//    .dx-tabpanel-container {
-//      border: 1px solid $tabs-disabled-border-color;
-//      border-radius: 0 4px 4px 4px;
-//      background-color: $tabs-tab-selected-bg;
-//      padding: 15px;
-//    }
-//  }
-//
-//  // Стили для навигационных кнопок
-//  .dx-tabs-nav-button {
-//    background-color: transparent;
-//    border: none;
-//    color: $tabs-tab-color;
-//
-//    &:hover {
-//      background-color: $tabs-tab-hover-bg;
-//    }
-//
-//    &.dx-state-disabled {
-//      opacity: 0.5;
-//    }
-//  }
-//}
+@use 'sass:color';
+@use '../sizes' as *;
+@use '../colors' as *;
+@use '../button/colors' as *;
+
+// Переменные для цвета вкладок
+$tabs-tab-color: $base-text-color !default;
+$tabs-tab-selected-color: $base-text-color !default;
+$tabs-tab-bg: #ecedf3 !default; // Фон для неактивных вкладок
+$tabs-tab-selected-bg: $base-bg !default; // Фон для активной вкладки
+$tabs-tab-icon-color: $tabs-tab-color !default;
+$tabs-tab-icon-selected-color: $tabs-tab-selected-color !default;
+$tabs-focused-border-color: #3257dc !default; // Цвет рамки фокуса
+$tabs-tab-hover-bg: #3c65f81f !default; // Легкий синий фон при hover
+$tabs-tab-active-bg: #3c71f833 !default; // Активный фон вкладки
+$tabs-hover-border-color: #18181a !default;
+$tabs-disabled-border-color: rgba(223, 224, 237, 1) !default;
+$tabs-disabled-color: #18181a66 !default;
+$tabpanel-tabs-hover-border-color: #18181a !default;
+$tabpanel-tabs-disabled-color: #18181a66 !default;
+
+.me-tabs-panel {
+  .dx-tabs-styling-mode-primary.dx-tab-indicator-position-bottom .dx-tab::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: transparent;
+  }
+  .dx-tabpanel-container {
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: $tabs-disabled-border-color;
+    border-left-color: $tabs-disabled-border-color;
+    border-right-color: $tabs-disabled-border-color;
+    border-radius: 0 0 4px 4px;
+    padding: 20px;
+  }
+}

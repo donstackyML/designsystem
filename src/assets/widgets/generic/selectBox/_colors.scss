@@ -5,9 +5,8 @@
 // adduse
 
 /**
-* $name 10. Item background color
-* $type color
-*/
+ * Определение цветовых переменных
+ */
 $selectbox-list-bg: null !default;
 $controls-content-in-controls-main-default: null !default;
 $controls-content-in-controls-main-disabled: null !default;
@@ -17,25 +16,51 @@ $dividers-borders-long: null !default;
 $background-accent-in-the-content: null !default;
 $select-box-border-radius: $base-border-radius !default;
 $select-box-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.14) !default;
+$controls-content-in-controls-danger-default: #ff4d4f !default;
 
+/**
+ * Цветовые переменные для светлой темы
+ */
+$light-selectbox-list-bg: #ffffff;
+$light-controls-content-in-controls-main-default: #18181a;
+$light-controls-content-in-controls-main-disabled: rgba(24, 24, 26, 0.4);
+$light-controls-content-in-controls-accent-default: rgba(50, 87, 220, 1);
+$light-controls-bg-accent-accent-bg-default: rgba(50, 87, 220, 1);
+$light-dividers-borders-long: #dfe0ed;
+$light-background-accent-in-the-content: #fff;
+
+/**
+ * Цветовые переменные для темной темы
+ */
+$dark-selectbox-list-bg: #2e2e2f;
+$dark-controls-content-in-controls-main-default: #ffffff;
+$dark-controls-content-in-controls-main-disabled: rgba(255, 255, 255, 0.4);
+$dark-controls-content-in-controls-accent-default: rgba(93, 158, 255, 1);
+$dark-controls-bg-accent-accent-bg-default: rgba(93, 158, 255, 1);
+$dark-dividers-borders-long: #3f4044;
+$dark-background-accent-in-the-content: #282829;
+
+/**
+ * Применение темы в зависимости от выбранного цвета
+ */
 @if $color == 'light' {
-  $selectbox-list-bg: #ffffff;
-  $controls-content-in-controls-main-default: #18181a;
-  $controls-content-in-controls-main-disabled: rgba(24, 24, 26, 0.4);
-  $controls-content-in-controls-accent-default: rgba(50, 87, 220, 1);
-  $controls-bg-accent-accent-bg-default: rgba(50, 87, 220, 1);
-  $dividers-borders-long: #dfe0ed;
-  $background-accent-in-the-content: #fff;
+  $selectbox-list-bg: $light-selectbox-list-bg;
+  $controls-content-in-controls-main-default: $light-controls-content-in-controls-main-default;
+  $controls-content-in-controls-main-disabled: $light-controls-content-in-controls-main-disabled;
+  $controls-content-in-controls-accent-default: $light-controls-content-in-controls-accent-default;
+  $controls-bg-accent-accent-bg-default: $light-controls-bg-accent-accent-bg-default;
+  $dividers-borders-long: $light-dividers-borders-long;
+  $background-accent-in-the-content: $light-background-accent-in-the-content;
 }
 
 @if $color == 'dark' {
-  $selectbox-list-bg: #2e2e2f;
-  $controls-content-in-controls-main-default: #ffffff;
-  $controls-content-in-controls-main-disabled: rgba(255, 255, 255, 0.4);
-  $controls-content-in-controls-accent-default: rgba(93, 158, 255, 1);
-  $controls-bg-accent-accent-bg-default: rgba(93, 158, 255, 1);
-  $dividers-borders-long: #3f4044;
-  $background-accent-in-the-content: #282829;
+  $selectbox-list-bg: $dark-selectbox-list-bg;
+  $controls-content-in-controls-main-default: $dark-controls-content-in-controls-main-default;
+  $controls-content-in-controls-main-disabled: $dark-controls-content-in-controls-main-disabled;
+  $controls-content-in-controls-accent-default: $dark-controls-content-in-controls-accent-default;
+  $controls-bg-accent-accent-bg-default: $dark-controls-bg-accent-accent-bg-default;
+  $dividers-borders-long: $dark-dividers-borders-long;
+  $background-accent-in-the-content: $dark-background-accent-in-the-content;
 }
 
 // Добавим переменные для типографики и размеров
