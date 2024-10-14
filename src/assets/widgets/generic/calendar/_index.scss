@@ -325,18 +325,28 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
 
   .dx-calendar-navigator {
     height: 48px;
+    gap: 8px;
+    display: flex;
+    padding-block: 8px;
+
+    .dx-calendar-navigator-next-view,
+    .dx-calendar-navigator-previous-view {
+      margin: 0;
+      .dx-button-content {
+        .dx-icon {
+          margin: 0;
+        }
+      }
+    }
 
     .dx-button-text {
       display: flex;
       align-items: center;
     }
   }
+
   .dx-icon {
     font-size: 14px;
-  }
-
-  .dx-calendar-navigator {
-    height: 48px;
   }
 
   .dx-calendar-body {
@@ -357,6 +367,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
         .dx-calendar-week-number-cell {
           background-color: $calendar-weeks-bg;
           border-radius: 0;
+          box-shadow: 0px -4px 0 0 $calendar-weeks-bg;
         }
         tr:first-child {
           .dx-calendar-week-number-cell {
@@ -366,6 +377,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
         tr:last-child {
           .dx-calendar-week-number-cell {
             border-radius: 0 0 3px 3px;
+            box-shadow: 0px 4px 0 0 $calendar-weeks-bg;
           }
         }
       }
@@ -410,8 +422,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
   }
   .dx-state-disabled {
     *,
-    .dx-button-content,
-    .dx-icon {
+    .dx-button-content .dx-icon {
       color: $calendar-disabled-text-color;
     }
 
@@ -436,19 +447,18 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
     }
   }
 
-  .dx-calendar-week-number-cell {
-    position: relative;
-    width: 2em;
+  &.dx-state-disabled {
+    .dx-button-content {
+      .dx-icon,
+      .dx-button-text {
+        color: var(--Controls-Content-In-Controls-Main-Disabled);
+      }
+    }
+  }
 
-    .dx-calendar-week-number-cell span {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 2em;
-      inset: 0;
-      inset-inline-start: 0;
+  .dx-calendar-week-number-cell {
+    span {
+      width: 100%;
     }
   }
 
@@ -479,12 +489,11 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
       }
       .dx-calendar {
         padding: 2px 8px 8px 8px;
-        border: none;
+        border: 1px solid $calendar-border-color;
         border-radius: 4px;
         height: 292px;
         width: 288px;
         box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.14);
-        margin: 0;
 
         .dx-calendar-body {
           top: $generic-calendar-body-top;
@@ -506,18 +515,28 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
 
         .dx-calendar-navigator {
           height: 48px;
+          gap: 8px;
+          display: flex;
+          padding-block: 8px;
+
+          .dx-calendar-navigator-next-view,
+          .dx-calendar-navigator-previous-view {
+            margin: 0;
+            .dx-button-content {
+              .dx-icon {
+                margin: 0;
+              }
+            }
+          }
 
           .dx-button-text {
             display: flex;
             align-items: center;
           }
         }
+
         .dx-icon {
           font-size: 14px;
-        }
-
-        .dx-calendar-navigator {
-          height: 48px;
         }
 
         .dx-calendar-body {
@@ -538,6 +557,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
               .dx-calendar-week-number-cell {
                 background-color: $calendar-weeks-bg;
                 border-radius: 0;
+                box-shadow: 0px -4px 0 0 $calendar-weeks-bg;
               }
               tr:first-child {
                 .dx-calendar-week-number-cell {
@@ -547,6 +567,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
               tr:last-child {
                 .dx-calendar-week-number-cell {
                   border-radius: 0 0 3px 3px;
+                  box-shadow: 0px 4px 0 0 $calendar-weeks-bg;
                 }
               }
             }
@@ -591,8 +612,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
         }
         .dx-state-disabled {
           *,
-          .dx-button-content,
-          .dx-icon {
+          .dx-button-content .dx-icon {
             color: $calendar-disabled-text-color;
           }
 
@@ -617,19 +637,18 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
           }
         }
 
-        .dx-calendar-week-number-cell {
-          position: relative;
-          width: 2em;
+        &.dx-state-disabled {
+          .dx-button-content {
+            .dx-icon,
+            .dx-button-text {
+              color: var(--Controls-Content-In-Controls-Main-Disabled);
+            }
+          }
+        }
 
-          .dx-calendar-week-number-cell span {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            width: 2em;
-            inset: 0;
-            inset-inline-start: 0;
+        .dx-calendar-week-number-cell {
+          span {
+            width: 100%;
           }
         }
 
