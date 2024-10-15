@@ -1,5 +1,6 @@
-import { Directive, Input } from '@angular/core';
+import {Directive, ElementRef, Input} from '@angular/core';
 import { MeSize } from '../../types/types';
+import {FocusManagerService} from "../../service/keyboard-navigation.service";
 
 @Directive({
   selector: '[meAccordion]',
@@ -10,9 +11,17 @@ import { MeSize } from '../../types/types';
     '[class.customClass]': 'customClass',
   },
 })
+
 export class MeAccordionDirective {
   @Input() size: MeSize = 'medium';
   @Input() customClass: string = '';
+
+  constructor(private elementRef: ElementRef,
+              private focusManager: FocusManagerService) {
+    this.focusManager.monitorFocus(this.elementRef)
+      .subscribe();
+  }
+
 
   get isSizeSmall() {
     return this.size === 'small';
