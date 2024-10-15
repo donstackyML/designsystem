@@ -12,94 +12,71 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 <Canvas of={toolbarStories.Default} />
 <Controls of={toolbarStories.Default} />
-<Source of={toolbarStories.Default} dark />
+{/* <Source of={toolbarStories.Default} dark /> */}
 
 ## Дизайн
 
 <Figma
   height="50%"
   collapsible
+  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=784-12263&t=1RhAsYBAzb8jZPoX-0"
 />
 
 ## Примеры использования
 
-- [Добавление кнопок с иконками](#добавление-кнопок-с-иконками)
-- [Добавление выпадающих кнопок](#добавление-выпадающих-кнопок)
-- [Изменение размера Toolbar](#изменение-размера-toolbar)
+- [Добавление элементов](#добавление-элементов)
 - [Добавление разделителей](#добавление-разделителей)
-- [Использование кнопок с директивой meButton](#использование-кнопок-с-директивой-mebutton)
-- [Добавление иконок из набора](#добавление-иконок-из-набора)
+- [Изменение размера Toolbar](#изменение-размера-toolbar)
+- [Изменение MultiLine](#изменение-multiline)
 
-## Добавление кнопок с иконками
+## Добавление элементов
 
-Для добавления кнопок с иконками необходимо использовать компонент <code>dx-button</code> с директивой <code>meButton</code> и задать свойство <code>iconOnly</code> с названием иконки.
+### Добавление элементов с помощью `dx-items`
 
-<Canvas of={toolbarStories.IconButtons} />
+Для добавления элементов в `toolBar` необходимо использовать нужный вам компонент с директивой, обернув его в `<div *dxTemplate>` и `dxi-item`.
 
 <Source
   code={`
-<dx-toolbar meToolbar [size]="size">
+<dx-toolbar meToolbar>
   <dxi-item location="before">
     <div *dxTemplate>
-      <dx-button meButton iconOnly="undo" [size]="size" iconColor="#18181a"></dx-button>
+      <dx-button meButton iconOnly="icon"></dx-button>
     </div>
   </dxi-item>
-  <dxi-item location="before">
-    <div *dxTemplate>
-      <dx-button meButton iconOnly="redo" [size]="size" iconColor="#18181a"></dx-button>
-    </div>
-  </dxi-item>
-  <!-- Другие элементы -->
 </dx-toolbar>
 `}
   language="html"
   dark
 />
 
-## Добавление выпадающих кнопок
+### Добавление элементов с помощью `dataSource`
 
-Для добавления выпадающих кнопок используйте компонент <code>dx-drop-down-button</code> с директивой <code>meDropDownButton</code>.
-
-<Canvas of={toolbarStories.DropDownButtons} />
-
-<Source
-      code={`
-    <dx-toolbar meToolbar [size]="size">
-    <dxi-item location="before" locateInMenu="auto">
-    <div *dxTemplate>
-    <dx-drop-down-button
-    meDropDownButton
-    [size]="size"
-    text="1.35"
-    width="100%"
-    displayExpr="text"
-    keyExpr="value"
-    [items]="lineHeights"
-    stylingMode="contained"
-    ></dx-drop-down-button>
-    </div>
-    </dxi-item>
-      <!-- Другие элементы -->
-    </dx-toolbar>
-    `}
-      language="html"
-      dark
-    />
-
-    ## Изменение размера Toolbar
-
-    Размер Toolbar можно изменить с помощью свойства <code>size</code>, доступного в директиве <code>meToolbar</code>. Доступны размеры <code>small</code>, <code>medium</code>, <code>large</code>.
-
-    <Canvas of={toolbarStories.SizeLarge} />
+Для добавления элементов с помощью `dataSource` необходимо в `dx-toolBar` передать данные через `dataSource` типа массив с объектами, где `widget`- это необходимый компонент, `options`- настройки компонента из API.
 
 <Source
   code={`
-<dx-toolbar meToolbar size="large">
-  <!-- Ваши элементы -->
-</dx-toolbar>
+const data = [
+  {
+    widget: 'dxButton',
+    options: {
+      icon: 'add',
+    },
+  },
+  {
+    widget: 'dxButtonGroup',
+    options: {
+      items: [
+        { lineHeight: 1, text: '1' },
+        { lineHeight: 1.35, text: '1.35' },
+        { lineHeight: 1.5, text: '1.5' },
+        { lineHeight: 2, text: '2' },
+      ],
+    },
+  },
+]
 `}
-  language="html"
+  language="js"
   dark
 />
 
@@ -107,87 +84,60 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 Для добавления разделителей используйте класс <code>me-toolbar-separator</code> внутри элемента <code>dxi-item</code>.
 
-<Canvas of={toolbarStories.Separators} />
-
 <Source
   code={`
-<dx-toolbar meToolbar [size]="size">
-  <dxi-item location="before">
-    <div *dxTemplate>
-      <div class="me-toolbar-separator"></div>
-    </div>
-  </dxi-item>
-  <!-- Другие элементы -->
-</dx-toolbar>
-`}
+		<dx-toolbar meToolbar [size]="size">
+			<dxi-item location="before">
+				<div *dxTemplate>
+					<div class="me-toolbar-separator"></div>
+				</div>
+			</dxi-item>
+		</dx-toolbar>
+	`}
   language="html"
   dark
 />
 
-## Использование кнопок с директивой meButton
+## Изменение размера Toolbar
 
-Все кнопки внутри Toolbar должны использовать директиву <code>meButton</code> для соответствия дизайн-системе.
+Размер Toolbar можно изменить с помощью свойства <code>size</code>, доступного в директиве <code>meToolbar</code>. Доступны размеры <code>small</code>, <code>medium</code>, <code>large</code>.
 
-    <Canvas of={toolbarStories.MeButtonUsage} />
+<Source
+  code={`
+		<dx-toolbar meToolbar size="size">
+			<!-- Ваши элементы -->
+		</dx-toolbar>
+	`}
+  language="html"
+  dark
+/>
 
-    <Source
-      code={`
-    <dx-toolbar meToolbar [size]="size">
-    <dxi-item location="before">
-    <div *dxTemplate>
-    <dx-button meButton iconOnly="add" [size]="size" iconColor="#18181a"></dx-button>
-    </div>
-    </dxi-item>
-      <!-- Другие элементы -->
-    </dx-toolbar>
-    `}
-      language="html"
-      dark
-    />
+## Изменение MultiLine
 
-    ## Добавление иконок из набора
+Для изменения отображения компонента с переносом на новую строку, используйте параметр `multiline="true".
 
-    Вы можете использовать иконки из набора, предоставленного в вашем проекте. Для этого укажите название иконки в свойстве <code>iconOnly</code> компонента <code>dx-button</code> с директивой <code>meButton</code>.
+<Source
+  code={`
+		<dx-toolbar meToolbar multiline="true"></dx-toolbar>
+	`}
+  language="html"
+  dark
+/>
 
-    <Canvas of={toolbarStories.CustomIcons} />
+## Отображение в выпадающем меню
 
-    <Source
-    code={`
-    <dx-toolbar meToolbar [size]="size">
-    <dxi-item location="before">
-    <div *dxTemplate>
-    <dx-button meButton iconOnly="format_bold" [size]="size" iconColor="#18181a"></dx-button>
-    </div>
-    </dxi-item>
-    <dxi-item location="before">
-    <div *dxTemplate>
-    <dx-button meButton iconOnly="format_italic" [size]="size" iconColor="#18181a"></dx-button>
-      </div>
-    </dxi-item>
-    <dxi-item location="before">
-    <div *dxTemplate>
-    <dx-button meButton iconOnly="format_underlined" [size]="size" iconColor="#18181a"></dx-button>
-      </div>
-    </dxi-item>
-      <!-- Другие элементы -->
-    </dx-toolbar>
-    `}
-      language="html"
-      dark
-    />
+При `multiline="false"` элементы, которые не поместились, можно увидеть в выпадающем меню. Для того, чтобы дополнительно отображался текст, необходимо указать сам текст в компоненте `text="lorem ipsum"` и в `dx-item` указать `showText` когда будет отображаться `always`- всегда или `inMenu`- тоолько в выпадающем меню. `widget` указывает, в каком виде булет отобрадаться элемент в `toolBar`.
 
-    <style>
-    {`
-    h2 {
-    border-bottom: none !important;
-    }
-
-    a {
-    display: inline-block !important;
-    }
-
-    a p {
-    color: #029CFD !important;
-    }
-    `}
-    </style>
+<Source
+  code={`
+		<dx-toolbar meToolbar>
+			<dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
+				<div *dxTemplate>
+					<dx-button meButton text="lorem ipsum" iconOnly="icon"></dx-button>
+				</div>
+			</dxi-item>
+		</dx-toolbar>
+	`}
+  language="html"
+  dark
+/>
