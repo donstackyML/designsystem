@@ -2,84 +2,143 @@ import { Meta, Source } from "@storybook/blocks";
 
 <Meta title="Documentation/Работа с svg-пиктограммами" />
 
-# Темизация svg-пиктограмм
+# Работа с svg-пиктограммами
 
-## Варианты вставки svg-пиктограмм:
+## Для разработчиков (подключение и использование библиотеки иконок):
 
-1. Вставка из стандартного набора иконок. Необходимо передать наименование иконки в соответствующее поле.
+[1. Подключение](#icon-install)
+
+[2. Использование иконок в разметке](#icon-in-markup)
+
+[3. Использование иконок в компонентах DevExtreme](#icon-in-dx)
+
+[4. API](#api)
+
+<h3 id="icon-install">Подключение библиотеки иконок и их регистрация</h3>
+
+1. Установить пакет иконок [@monitel/me-icon](https://cl-tfs2022.monitel.local/CK-11/Development/_artifacts/feed/Integration/Npm/@monitel%2Fme-icons/overview) и [@monitel/me-icon-registry](https://cl-tfs2022.monitel.local/CK-11/Development/_artifacts/feed/Integration/Npm/@monitel%2Fme-icons-registry/overview)
 
 <Source
-  code={`<dx-button meButton leftIcon="arrowback"></dx-button>`}
-  language="html"
+  code={`npm install @monitel/me-icon
+npm install @monitel/me-icon-registry`}
+  language="bash"
   dark
 />
 
-2. Вставка svg-пиктограммы строкой. Необходимо передать код иконки или переменную с кодом в соответствующее поле, например:
+2. Импортировать модуль <b>MeIconsModule</b> в приложение
 
 <Source
-  code={`const cancelIcon = 
-    \`<svg width="iconSize" height="iconSize" viewBox="0 0 16 16" ...>
-      <path d="M5.0625 12L8 9.0625L10.9375 ..." fill="color"/>
-    </svg>\`;`}
+  code={`import { MeIconsModule } from '@monitel/me-icons-registry';
+ 
+ @NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    ...
+    MeIconsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+
+export class AppModule { }`}
   language="js"
   dark
 />
 
-Чтобы была возможность изменять размер и цвет иконки, необходимо в свойства <code>width</code> и <code>height</code> тега svg передать строку "iconSize",
-а в свойство <code>fill</code> тега <code>path</code> строку "color".
+3. Инжектировать сервис для регистрации иконок и зарегистрировать необходимые в рамках компонента иконки
 
 <Source
-  code={`<dx-button meButton leftIcon="cancelIcon"></dx-button>`}
-  language="html"
+  code={`import { meIcon24Add, meIcon24Close, meIcon24Edit } from '@monitel/me-icons';
+import { MeIconsRegistry } from '@monitel/me-icons-registry';
+
+export class AppComponent {
+  constructor(private meIconRegistry: MeIconsRegistry) {
+    meIconRegistry.registerIcons([meIcon24Add, meIcon24Close, meIcon24Edit]);
+  }
+}`}
+  language="js"
   dark
 />
 
-3. Вставка svg-пиктограмм, расположеных в папке <code>assets/images/icons/light</code> и в папке <code>assets/images/icons/dark</code>.
-   Иконка для темной и светлой темы должна иметь одинаковое название. Это название передается в соответствующее свойство.
+<h3 id="icon-in-markup">Использование иконок в разметке</h3>
 
 <Source
-  code={`<dx-button meButton rightIconName="cached.svg"></dx-button>`}
-  language="html"
+  code={`<me-icon name="24_add"></me-icon>
+<me-icon name="24_close" color="var(--Icon-Secondary)"></me-icon>
+<me-icon name="24_edit" color="var(--Icon-Blue)"></me-icon>`}
+  language="js"
   dark
 />
 
-<b>
-  Для каждого из вариантов вставки пиктограмм предусмотрена автоматическая смена
-  цвета иконки при смене темы.
-</b>
+<h3 id="icon-in-dx">Использование иконок в компонентах DevExtreme</h3>
 
-1. Для вставки из стандартного набора иконок:
+При необходимости передать иконку в компонент DevExtreme, сначала получаем её в свойство компонента
 
-   - при неуказанном значении цвета иконки, svg-пиктограмма принимает стандартные для компонента цвета из дизайн-системы и автоматически перекрашивается при изменении темы
-   - при необходимости применить другой цвет, необходимо выбрать переменную из списка стандартных цветов, которые будут автоматически меняться при смене темы
-     <b>
-       Если установить кастомное значение цвета, при переключении темы будет
-       применяться только это значение!
-     </b>
+<Source
+  code={`constructor(private meIconRegistry: MeIconsRegistry) {
+  ...
+  this.add_24 = this.iconRegistry.getIcon('24_add', 'var(--Icon-Error)');
+}`}
+  language="js"
+  dark
+/>
 
-2. Для вставки svg-пиктограммы строкой:
+Затем байндим свойство класса к аттрибуту icon компонента DevExtreme
 
-   - при неуказанном значении цвета иконки, svg-пиктограмма принимает стандартные для компонента цвета из дизайн-системы и автоматически перекрашивается при изменении темы
-   - при необходимости применить другой цвет, необходимо выбрать переменную из списка стандартных цветов, которые будут автоматически меняться при смене темы
-     <b>
-       Если установить кастомное значение цвета, при переключении темы будет
-       применяться только это значение!
-     </b>
+<Source
+  code={`<dx-button meButton [leftIcon]="add_24" text="Добавить"></dx-button>
+`}
+  language="js"
+  dark
+/>
 
-3. Для вставки пиктограммы из assets.
+<h3 id="api">API</h3>
 
-   Этот вариант предусмотрен для тех случаев, когда стандартные иконки или цвета не покрывают требований проекта.
-   В этом случае необходимо подготовить две иконки, отдельно иконка для светлой темы, отдельно для темной.
+#### Сервис `MeIconsRegistry` имеет два метода:
 
-   Готовые иконки поместить в папки:
+1. <b>registerIcons(icons: MeIcon[]) => void</b> - принимает массив иконок из состава
+   библиотеки, которые необходимо зарегистрировать для использования в компоненте
 
-   - <code>assets/images/icons/light</code> - иконку для светлой темы
-   - <code>assets/images/icons/dark</code> - иконку для темной темы{" "}
+<Source
+  code={`import { meIcon24Add, meIcon24Close, meIcon24Edit } from '@monitel/me-icons';
 
-   В этом случае при переключении темы, будет изменяться путь к иконке и соответственно меняться цвет
-   иконки или ей вид. <b>Название иконок должно быть одинаковым.</b>
-   Попытка передать в свойство принимающее цвет иконки какое-либо другое значение
-   ни к какому результату не приведет.
+export class AppComponent {
+  constructor(private meIconRegistry: MeIconsRegistry) {
+    meIconRegistry.registerIcons([meIcon24Add, meIcon24Close, meIcon24Edit]);
+  }
+}`}
+  language="js"
+  dark
+/>
+
+2. <b>getIcon(iconName: meIcons, color?: string) => string | undefined</b> - принимает
+   имя иконки и опционально цвет (по умолчанию <b>--Icon-Default</b>),
+   возвращает иконку в виде строки или undefined если иконка не зарегистрирована
+
+<Source
+  code={`constructor(private meIconRegistry: MeIconsRegistry) {
+  ...
+  this.add_24 = this.iconRegistry.getIcon('24_add', 'var(--Icon-Cyan-Position)');
+}`}
+  language="js"
+  dark
+/>
+
+#### Компонент <b>`<me-icon>`</b> принимает два входных значения:
+
+1. <b>name: meIcons</b> - наименование иконки
+
+<Source code={`<me-icon name="24_add"></me-icon>`} language="js" dark />
+
+2. <b>color: string</b> - цвет иконки, по умолчанию <b>--Icon-Default</b>
+
+<Source
+  code={`<me-icon name="24_close" color="var(--Icon-Secondary)"></me-icon>`}
+  language="js"
+  dark
+/>
 
 <style>
   {`
