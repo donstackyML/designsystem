@@ -110,6 +110,7 @@ export { MeTooltipModule } from './lib/directives/me-tooltip/tooltip.module';
 
 export { MeIconStoreService } from './lib/service/icon-store.service';
 export { ThemesService } from './lib/service/themes.service';
+export { FocusManagerService } from './lib/service/keyboard-navigation.service';
 
 export * from './lib/me-components.module';
 export * from './lib/types/types';

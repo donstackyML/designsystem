@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MeBadgeComponent, MeDataGridModule } from '../public-api';
+import {MeBadgeComponent, MeDataGridModule} from '../public-api';
 import { MeTagBoxModule } from '../public-api';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeAccordionModule } from './directives/me-accordion/accordion.module';
@@ -45,10 +45,12 @@ import { MeCardComponent } from './components/me-card/me-card.component';
 import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.module';
 import { MeAutocompleteModule } from './directives/me-autocomplete/me-autocomplete.module';
 import { MeFormModule } from './directives/me-form/me-form.module';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
   declarations: [],
   imports: [
+    A11yModule,
     MeAccordionModule,
     MeButtonModule,
     MeButtonGroupModule,
