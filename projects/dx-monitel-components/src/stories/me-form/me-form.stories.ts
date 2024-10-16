@@ -6,7 +6,12 @@ import {
   DxCheckBoxModule,
   DxDateBoxModule,
 } from 'devextreme-angular';
-import { MeFormDirective } from '../../public-api';
+import {
+  MeFormDirective,
+  MeTextBoxDirective,
+  MeSelectBoxDirective,
+  MeCheckBoxDirective,
+} from '../../public-api';
 
 interface FormStoryArgs {
   size: 'small' | 'medium' | 'large';
@@ -29,7 +34,12 @@ export default {
         DxCheckBoxModule,
         DxDateBoxModule,
       ],
-      declarations: [MeFormDirective],
+      declarations: [
+        MeFormDirective,
+        MeTextBoxDirective,
+        MeSelectBoxDirective,
+        MeCheckBoxDirective
+      ],
     }),
   ],
   argTypes: {
@@ -88,15 +98,63 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
       [readOnly]="readOnly"
       [showColonAfterLabel]="showColonAfterLabel"
     >
-      <dxi-item dataField="firstName" editorType="dxTextBox"></dxi-item>
-      <dxi-item dataField="lastName" editorType="dxTextBox"></dxi-item>
-      <dxi-item dataField="email" editorType="dxTextBox"></dxi-item>
-      <dxi-item dataField="phone" editorType="dxTextBox"></dxi-item>
-      <dxi-item dataField="gender" editorType="dxSelectBox" [editorOptions]="{items: genderOptions}"></dxi-item>
-      <dxi-item dataField="birthDate" editorType="dxDateBox"></dxi-item>
-      <dxi-item dataField="occupation" editorType="dxTextBox"></dxi-item>
-      <dxi-item dataField="isSubscribed" editorType="dxCheckBox" [label]="{text: 'Subscribe to newsletter'}"></dxi-item>
-      <dxi-item dataField="country" editorType="dxSelectBox" [editorOptions]="{items: countryOptions}"></dxi-item>
+      <dxi-item dataField="firstName">
+        <dxi-validation-rule type="required" message="First Name is required"></dxi-validation-rule>
+        <dxo-label text="First Name"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="lastName">
+        <dxi-validation-rule type="required" message="Last Name is required"></dxi-validation-rule>
+        <dxo-label text="Last Name"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="email">
+        <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
+        <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>
+        <dxo-label text="Email"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.email" [size]="size"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="phone">
+        <dxo-label text="Phone"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.phone" [size]="size"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="gender">
+        <dxo-label text="Gender"></dxo-label>
+        <div *dxTemplate>
+          <dx-select-box meSelectBox [(value)]="formData.gender" [items]="genderOptions" [size]="size"></dx-select-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="birthDate">
+        <dxo-label text="Birth Date"></dxo-label>
+        <div *dxTemplate>
+          <dx-date-box meDateBox [(value)]="formData.birthDate" [size]="size"></dx-date-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="occupation">
+        <dxo-label text="Occupation"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.occupation" [size]="size"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="isSubscribed">
+        <div *dxTemplate>
+          <dx-check-box meCheckBox [(value)]="formData.isSubscribed" text="Subscribe to newsletter" [size]="size"></dx-check-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="country">
+        <dxo-label text="Country"></dxo-label>
+        <div *dxTemplate>
+          <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size"></dx-select-box>
+        </div>
+      </dxi-item>
     </dx-form>
   `,
 });
@@ -196,17 +254,53 @@ WithGrouping.decorators = [
         [showColonAfterLabel]="showColonAfterLabel"
       >
         <dxi-item itemType="group" caption="Personal Information">
-          <dxi-item dataField="firstName" editorType="dxTextBox"></dxi-item>
-          <dxi-item dataField="lastName" editorType="dxTextBox"></dxi-item>
-          <dxi-item dataField="email" editorType="dxTextBox"></dxi-item>
-          <dxi-item dataField="phone" editorType="dxTextBox"></dxi-item>
-          <dxi-item dataField="gender" editorType="dxSelectBox" [editorOptions]="{items: genderOptions}"></dxi-item>
-          <dxi-item dataField="birthDate" editorType="dxDateBox"></dxi-item>
+          <dxi-item dataField="firstName">
+            <div *dxTemplate>
+              <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size"></dx-text-box>
+            </div>
+          </dxi-item>
+          <dxi-item dataField="lastName">
+            <div *dxTemplate>
+              <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size"></dx-text-box>
+            </div>
+          </dxi-item>
+          <dxi-item dataField="email">
+            <div *dxTemplate>
+              <dx-text-box meTextBox [(value)]="formData.email" [size]="size"></dx-text-box>
+            </div>
+          </dxi-item>
+          <dxi-item dataField="phone">
+            <div *dxTemplate>
+              <dx-text-box meTextBox [(value)]="formData.phone" [size]="size"></dx-text-box>
+            </div>
+          </dxi-item>
+          <dxi-item dataField="gender">
+            <div *dxTemplate>
+              <dx-select-box meSelectBox [(value)]="formData.gender" [items]="genderOptions" [size]="size"></dx-select-box>
+            </div>
+          </dxi-item>
+          <dxi-item dataField="birthDate">
+            <div *dxTemplate>
+              <dx-date-box meDateBox [(value)]="formData.birthDate" [size]="size"></dx-date-box>
+            </div>
+          </dxi-item>
         </dxi-item>
         <dxi-item itemType="group" caption="Additional Information">
-          <dxi-item dataField="occupation" editorType="dxTextBox"></dxi-item>
-          <dxi-item dataField="isSubscribed" editorType="dxCheckBox" [label]="{text: 'Subscribe to newsletter'}"></dxi-item>
-          <dxi-item dataField="country" editorType="dxSelectBox" [editorOptions]="{items: countryOptions}"></dxi-item>
+          <dxi-item dataField="occupation">
+            <div *dxTemplate>
+              <dx-text-box meTextBox [(value)]="formData.occupation" [size]="size"></dx-text-box>
+            </div>
+          </dxi-item>
+          <dxi-item dataField="isSubscribed">
+            <div *dxTemplate>
+              <dx-check-box meCheckBox [(value)]="formData.isSubscribed" text="Subscribe to newsletter" [size]="size"></dx-check-box>
+            </div>
+          </dxi-item>
+          <dxi-item dataField="country">
+            <div *dxTemplate>
+              <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size"></dx-select-box>
+            </div>
+          </dxi-item>
         </dxi-item>
       </dx-form>
     `,
