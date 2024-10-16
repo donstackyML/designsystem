@@ -53,11 +53,6 @@ export default {
       control: 'text',
       description: 'Задает текст метки для компонента.',
     },
-    labelMode: {
-      control: { type: 'select' },
-      options: ['static', 'floating', 'hidden'],
-      description: 'Определяет режим отображения метки.',
-    },
     size: {
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
@@ -73,52 +68,28 @@ export default {
     },
   },
   args: {
-    stylingMode: 'outlined',
+    stylingMode: 'filled',
     size: 'medium',
-    labelMode: 'static',
-    label: '',
-    placeholder: '',
-    disabled: false,
+    labelMode: 'hidden',
+    label: 'Label*',
+    placeholder: 'Placeholder',
     readOnly: false,
+    disabled: false,
     isValid: true,
-    showClearButton: false,
+    showClearButton: true,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-select-box meSelectBox ${argsToTemplate(
-      args
-    )}></dx-select-box>`,
+    template: `<dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>`,
   }),
 } as Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
-type Story = StoryObj<
-  MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective
+type Story = StoryObj<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective
 >;
 
 export const Default: Story = {
   args: {
     dataSource: data,
-  },
-};
-
-export const WithDataSource: Story = {
-  args: {
-    dataSource: ['Option 1', 'Option 2', 'Option 3'],
-  },
-};
-
-export const WithPlaceholder: Story = {
-  args: {
-    dataSource: data,
-    placeholder: 'Выберите опцию',
-  },
-};
-
-export const WithSearchEnabled: Story = {
-  args: {
-    dataSource: largeData,
-    searchEnabled: true,
-    placeholder: 'Поиск...',
   },
 };
 
@@ -134,29 +105,6 @@ export const ReadOnly: Story = {
     dataSource: data,
     value: 'HD Video Player',
     readOnly: true,
-  },
-};
-
-export const CustomWidth: Story = {
-  args: {
-    dataSource: data,
-    width: '300px',
-  },
-};
-
-export const WithLabel: Story = {
-  args: {
-    dataSource: data,
-    label: 'Выберите продукт',
-    labelMode: 'static',
-  },
-};
-
-export const WithFloatingLabel: Story = {
-  args: {
-    dataSource: data,
-    label: 'Выберите продукт',
-    labelMode: 'floating',
   },
 };
 
@@ -193,15 +141,16 @@ export const WithLabelColumn: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <label meLabel labelDirection="column">
-        {{ label }}
-        <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+      <label meLabel
+      labelDirection="column"
+      style="align-items: flex-start;"
+      >Label
+      <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
       </label>
     `,
   }),
   args: {
     dataSource: data,
-    label: 'Выберите продукт',
   },
 };
 
@@ -209,14 +158,12 @@ export const WithLabelRow: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <label meLabel labelDirection="row" width="250px">
-        {{ label }}
-        <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+      <label meLabel labelDirection="row" width="250px">Label
+      <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
       </label>
     `,
   }),
   args: {
     dataSource: data,
-    label: 'Выберите продукт',
   },
 };
