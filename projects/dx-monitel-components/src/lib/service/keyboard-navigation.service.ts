@@ -4,23 +4,24 @@ import { Subject, Observable, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FocusManagerService implements OnDestroy {
   private focusedElements = new Map<ElementRef, Subscription>();
   private destroy$ = new Subject<void>();
 
-  constructor(
-    private focusMonitor: FocusMonitor,
-    private ngZone: NgZone
-  ) {}
+  constructor(private focusMonitor: FocusMonitor, private ngZone: NgZone) {}
 
-  monitorFocus(element: ElementRef<HTMLElement>, className: string = 'me-keyboard-focused'): Observable<FocusOrigin> {
+  monitorFocus(
+    element: ElementRef<HTMLElement>,
+    className: string = 'me-keyboard-focused'
+  ): Observable<FocusOrigin> {
     if (this.focusedElements.has(element)) {
       return this.focusMonitor.monitor(element);
     }
 
-    const subscription = this.focusMonitor.monitor(element)
+    const subscription = this.focusMonitor
+      .monitor(element)
       .pipe(takeUntil(this.destroy$))
       .subscribe((origin: FocusOrigin) => {
         this.ngZone.run(() => {
@@ -48,7 +49,11 @@ export class FocusManagerService implements OnDestroy {
     }
   }
 
-  focusVia(element: ElementRef<HTMLElement>, origin: FocusOrigin, options?: FocusOptions): void {
+  focusVia(
+    element: ElementRef<HTMLElement>,
+    origin: FocusOrigin,
+    options?: FocusOptions
+  ): void {
     this.focusMonitor.focusVia(element, origin, options);
   }
 
@@ -64,7 +69,7 @@ export class FocusManagerService implements OnDestroy {
       target.blur();
       target.classList.remove('keyboard-focused');
     });
-  }
+  };
 
   ngOnDestroy(): void {
     this.destroy$.next();

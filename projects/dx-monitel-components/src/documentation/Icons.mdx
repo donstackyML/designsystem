@@ -14,13 +14,15 @@ import { Meta, Source } from "@storybook/blocks";
 
 [4. API](#api)
 
+[5. Изменение размера иконки](#color)
+
 <h3 id="icon-install">Подключение библиотеки иконок и их регистрация</h3>
 
 1. Установить пакет иконок [@monitel/me-icon](https://cl-tfs2022.monitel.local/CK-11/Development/_artifacts/feed/Integration/Npm/@monitel%2Fme-icons/overview) и [@monitel/me-icon-registry](https://cl-tfs2022.monitel.local/CK-11/Development/_artifacts/feed/Integration/Npm/@monitel%2Fme-icons-registry/overview)
 
 <Source
-  code={`npm install @monitel/me-icon
-npm install @monitel/me-icon-registry`}
+  code={`npm install @monitel/me-icons
+npm install @monitel/me-icons-registry`}
   language="bash"
   dark
 />
@@ -79,7 +81,7 @@ export class AppComponent {
 <Source
   code={`constructor(private meIconRegistry: MeIconsRegistry) {
   ...
-  this.add_24 = this.iconRegistry.getIcon('24_add', 'var(--Icon-Error)');
+  this.add_24 = meIconRegistry.getIcon('24_add', 'var(--Icon-Error)');
 }`}
   language="js"
   dark
@@ -120,7 +122,7 @@ export class AppComponent {
 <Source
   code={`constructor(private meIconRegistry: MeIconsRegistry) {
   ...
-  this.add_24 = this.iconRegistry.getIcon('24_add', 'var(--Icon-Cyan-Position)');
+  this.add_24 = meIconRegistry.getIcon('24_add', 'var(--Icon-Cyan-Position)');
 }`}
   language="js"
   dark
@@ -139,6 +141,10 @@ export class AppComponent {
   language="js"
   dark
 />
+
+<h3 id="color">Изменение размера иконки</h3>
+
+Предполагается, что в библиотеке используются иконки строго заданного размера. Если необходимо изменить размер, рекомендуется использовать стилизацию в CSS файле.
 
 <style>
   {`
