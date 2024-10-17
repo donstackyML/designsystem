@@ -137,7 +137,16 @@ $generic-checkbox-disable-opacity: 0.4;
 .me-tree-view .dx-checkbox-icon {
   background-position: 50% 50%;
   background-size: 12px 12px;
-  background-color: transparent;
+}
+
+.me-editor,
+.me-list,
+.me-tree-view {
+  &:not(.dx-checkbox-checked, :has(.dx-checkbox-checked)) {
+    .dx-checkbox-icon {
+      background-color: transparent;
+    }
+  }
 }
 
 .dx-state-disabled.me-editor.dx-checkbox-checked .dx-checkbox-icon,
