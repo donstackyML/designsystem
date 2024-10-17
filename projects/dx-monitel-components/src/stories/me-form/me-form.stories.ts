@@ -38,7 +38,7 @@ export default {
         MeFormDirective,
         MeTextBoxDirective,
         MeSelectBoxDirective,
-        MeCheckBoxDirective
+        MeCheckBoxDirective,
       ],
     }),
   ],
