@@ -15678,11 +15678,11 @@
   margin-left: -7.5px;
 }
 
-.me-slider.dx-slider.dx-widget .dx-state-hover.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+.me-slider.dx-slider.dx-widget:has(.dx-state-hover):not(.dx-invalid) .dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
   background: #4970ff;
   border-color: #4970ff;
 }
-.me-slider.dx-slider.dx-widget .dx-state-active.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+.me-slider.dx-slider.dx-widget:has(.dx-state-active):not(.dx-invalid) .dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
   background: #2544b3;
   border-color: #2544b3;
 }
@@ -15706,7 +15706,6 @@
   padding-top: 10px;
   border: none;
   display: flex;
-  top: -10px !important;
   justify-content: center;
 }
 .me-slider.dx-slider.dx-widget .dx-overlay-content .dx-popup-content.dx-popup-content-scrollable {
@@ -15726,23 +15725,29 @@
   width: 12px;
   height: 12px;
 }
-.me-slider.dx-slider.dx-widget.dx-invalid .dx-state-active.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+.me-slider.dx-slider.dx-widget.dx-invalid .dx-trackbar-range.dx-slider-range.dx-slider-range-visible:has(.dx-state-active) {
   background: #b80631;
   border-color: #b80631;
 }
-.me-slider.dx-slider.dx-widget.dx-invalid .dx-trackbar-container.dx-slider-bar {
-  background: #dfe0ed;
-}
-.me-slider.dx-slider.dx-widget.dx-invalid .dx-state-hover.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+.me-slider.dx-slider.dx-widget.dx-invalid .dx-trackbar-range.dx-slider-range.dx-slider-range-visible:has(.dx-state-hover) {
   background: #e93d66;
   border-color: #e93d66;
+}
+.me-slider.dx-slider.dx-widget.dx-invalid .dx-trackbar-container.dx-slider-bar {
+  background: #dfe0ed;
 }
 .me-slider.dx-slider.dx-widget.dx-state-disabled.dx-invalid .dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
   background: #91aaea;
   border-color: #91aaea;
 }
+.me-slider.dx-slider.dx-widget.dx-state-disabled.dx-invalid .dx-slider-label {
+  color: #91aaea;
+}
 .me-slider.dx-slider.dx-widget.dx-state-disabled.dx-invalid .dx-slider-handle {
   background-color: #91aaea;
+}
+.me-slider.dx-slider.dx-widget.dx-state-disabled .dx-slider-label {
+  color: #91aaea;
 }
 
 .dx-rangeslider-start-handle {

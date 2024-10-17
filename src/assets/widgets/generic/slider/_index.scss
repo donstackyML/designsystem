@@ -134,14 +134,14 @@ $generic-slider-radius: 2px;
 
 //me-slider
 .me-slider.dx-slider.dx-widget {
-  .dx-state-hover {
-    &.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+  &:has(.dx-state-hover):not(.dx-invalid) {
+    .dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
       background: $slider-handle-hover-bg;
       border-color: $slider-handle-hover-bg;
     }
   }
-  .dx-state-active {
-    &.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+  &:has(.dx-state-active):not(.dx-invalid) {
+    .dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
       background: $slider-handle-active-bg;
       border-color: $slider-handle-active-bg;
     }
@@ -170,7 +170,6 @@ $generic-slider-radius: 2px;
     padding-top: 10px;
     border: none;
     display: flex;
-    top: -10px !important;
     justify-content: center;
     .dx-popup-content.dx-popup-content-scrollable {
       background: var(--Background-Alert);
@@ -192,20 +191,19 @@ $generic-slider-radius: 2px;
   }
 
   &.dx-invalid {
-    .dx-state-active {
-      &.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+    .dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+      &:has(.dx-state-active) {
         background: $slider-invalid-handle-accent-bg-active;
         border-color: $slider-invalid-handle-accent-bg-active;
       }
-    }
-    .dx-trackbar-container.dx-slider-bar {
-      background: $slider-bar-bg;
-    }
-    .dx-state-hover {
-      &.dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
+      &:has(.dx-state-hover) {
         background: $slider-invalid-handle-accent-bg-hover;
         border-color: $slider-invalid-handle-accent-bg-hover;
       }
+    }
+
+    .dx-trackbar-container.dx-slider-bar {
+      background: $slider-bar-bg;
     }
   }
 
@@ -214,8 +212,17 @@ $generic-slider-radius: 2px;
       background: $slider-disabled-bg;
       border-color: $slider-disabled-bg;
     }
+    .dx-slider-label {
+      color: $slider-disabled-bg;
+    }
     .dx-slider-handle {
       background-color: $slider-disabled-bg;
+    }
+  }
+
+  &.dx-state-disabled {
+    .dx-slider-label {
+      color: $slider-disabled-bg;
     }
   }
 }
