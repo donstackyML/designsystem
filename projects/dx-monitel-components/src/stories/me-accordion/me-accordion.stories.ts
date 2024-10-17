@@ -85,34 +85,6 @@ export const Default: Story = {
   },
 };
 
-export const Small: Story = {
-  args: {
-    ...Default.args,
-    size: 'small',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    ...Default.args,
-    size: 'large',
-  },
-};
-
-export const Collapsible: Story = {
-  args: {
-    ...Default.args,
-    collapsible: true,
-  },
-};
-
-export const Multiple: Story = {
-  args: {
-    ...Default.args,
-    multiple: true,
-  },
-};
-
 export const CustomHeader: Story = {
   args: {
     ...Default.args,
@@ -132,7 +104,7 @@ export const CustomHeader: Story = {
       },
       {
         id: 3,
-        text: 'Заголовокк 3',
+        text: 'Заголовок 3',
         description: 'Описание',
         icon: 'folder',
       },
@@ -154,16 +126,15 @@ export const CustomHeader: Story = {
               class="custom-header-icon"
               [icon]="item.icon"
               [size]="size"
-              [color]="item.iconColor || '#000000'"
             ></me-icon>
-            <div>
+            <div class="custom-header-content">
               <div class="custom-header-title">{{ item.text }}</div>
               <div class="custom-header-description">{{ item.description }}</div>
             </div>
           </div>
         </div>
         <div *dxTemplate="let item of 'item'">
-          <p>Содержимое для {{ item.text }}</p>
+          <p>Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis</p>
         </div>
       </dx-accordion>
     `,

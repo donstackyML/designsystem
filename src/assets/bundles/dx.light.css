@@ -50,42 +50,7 @@
 :root {
   /* Общие шрифты */
   --accordion-font-family: "Roboto", sans-serif;
-  /* Иконки */
-  --accordion-icon-color: #000000;
-  --accordion-icon-margin-right: 10px;
-  /* Размеры иконок */
-  --accordion-icon-size-small: 16px;
-  --accordion-icon-size-medium: 20px;
-  --accordion-icon-size-large: 20px;
-  /* Описание заголовка */
-  --accordion-description-color: rgba(128, 128, 132, 1);
-  /* Маленький размер */
-  --accordion-title-font-weight-small: 600;
-  --accordion-title-font-size-small: 14px;
-  --accordion-title-line-height-small: 20px;
-  --accordion-description-font-weight-small: 400;
-  --accordion-description-font-size-small: 12px;
-  --accordion-description-line-height-small: 16px;
-  /* Средний размер */
-  --accordion-title-font-weight-medium: 600;
-  --accordion-title-font-size-medium: 20px;
-  --accordion-title-line-height-medium: 24px;
-  --accordion-description-font-weight-medium: 400;
-  --accordion-description-font-size-medium: 14px;
-  --accordion-description-line-height-medium: 20px;
-  /* Большой размер */
-  --accordion-title-font-weight-large: 600;
-  --accordion-title-font-size-large: 24px;
-  --accordion-title-line-height-large: 30px;
-  --accordion-description-font-weight-large: 400;
-  --accordion-description-font-size-large: 16px;
-  --accordion-description-line-height-large: 24px;
-}
-
-:root {
-  /* Общие шрифты */
   --font-family: "Roboto", sans-serif;
-  --accordion-font-family: "Roboto", sans-serif;
   /* Иконки */
   --accordion-icon-color: #000000;
   --accordion-icon-margin-right: 10px;
@@ -102,6 +67,9 @@
   --accordion-description-font-weight-small: 400;
   --accordion-description-font-size-small: 12px;
   --accordion-description-line-height-small: 16px;
+  --accordion-body-font-weight-small: 400;
+  --accordion-body-font-size-small: 14px;
+  --accordion-body-line-height-small: 20px;
   /* Средний размер */
   --accordion-title-font-weight-medium: 600;
   --accordion-title-font-size-medium: 20px;
@@ -109,6 +77,9 @@
   --accordion-description-font-weight-medium: 400;
   --accordion-description-font-size-medium: 14px;
   --accordion-description-line-height-medium: 20px;
+  --accordion-body-font-weight-medium: 400;
+  --accordion-body-font-size-medium: 14px;
+  --accordion-body-line-height-medium: 20px;
   /* Большой размер */
   --accordion-title-font-weight-large: 600;
   --accordion-title-font-size-large: 24px;
@@ -116,41 +87,12 @@
   --accordion-description-font-weight-large: 400;
   --accordion-description-font-size-large: 16px;
   --accordion-description-line-height-large: 24px;
+  --accordion-body-font-weight-large: 400;
+  --accordion-body-font-size-large: 16px;
+  --accordion-body-line-height-large: 24px;
 }
 
 :root {
-  /* Общие шрифты */
-  --accordion-font-family: "Roboto", sans-serif;
-  /* Иконки */
-  --accordion-icon-color: #000000;
-  --accordion-icon-margin-right: 10px;
-  /* Размеры иконок */
-  --accordion-icon-size-small: 16px;
-  --accordion-icon-size-medium: 20px;
-  --accordion-icon-size-large: 20px;
-  /* Описание заголовка */
-  --accordion-description-color: rgba(128, 128, 132, 1);
-  /* Маленький размер */
-  --accordion-title-font-weight-small: 600;
-  --accordion-title-font-size-small: 14px;
-  --accordion-title-line-height-small: 20px;
-  --accordion-description-font-weight-small: 400;
-  --accordion-description-font-size-small: 12px;
-  --accordion-description-line-height-small: 16px;
-  /* Средний размер */
-  --accordion-title-font-weight-medium: 600;
-  --accordion-title-font-size-medium: 20px;
-  --accordion-title-line-height-medium: 24px;
-  --accordion-description-font-weight-medium: 400;
-  --accordion-description-font-size-medium: 14px;
-  --accordion-description-line-height-medium: 20px;
-  /* Большой размер */
-  --accordion-title-font-weight-large: 600;
-  --accordion-title-font-size-large: 24px;
-  --accordion-title-line-height-large: 30px;
-  --accordion-description-font-weight-large: 400;
-  --accordion-description-font-size-large: 16px;
-  --accordion-description-line-height-large: 24px;
   /* Select Box Styles */
   --controls-content-in-controls-main-default: #18181a;
   --controls-content-in-controls-main-disabled: rgba(24, 24, 26, 0.4);
@@ -3589,19 +3531,6 @@
   line-height: normal;
 }
 
-.me-button.me-button-small .dx-button-content .dx-button-text {
-  font-size: 13px;
-  line-height: 16px;
-}
-.me-button.me-button-medium .dx-button-content .dx-button-text {
-  font-size: 14px;
-  line-height: 20px;
-}
-.me-button.me-button-large .dx-button-content .dx-button-text {
-  font-size: 16px;
-  line-height: 20px;
-}
-
 .dx-button a {
   text-decoration: none;
 }
@@ -4356,6 +4285,36 @@
 }
 .me-button.me-button-icon.me-button-large .dx-button-content:not(:has(.dx-button-text)) {
   padding: 8px;
+}
+.me-button.me-button-small .dx-button-content {
+  padding: 4px 12px;
+}
+.me-button.me-button-small .dx-button-content .dx-button-text {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: var(--me-medium-font-weight);
+  height: 20px;
+  align-content: center;
+}
+.me-button.me-button-medium .dx-button-content {
+  padding: 6px 12px;
+}
+.me-button.me-button-medium .dx-button-content .dx-button-text {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--me-medium-font-weight);
+  height: 20px;
+  align-content: center;
+}
+.me-button.me-button-large .dx-button-content {
+  padding: 8px 12px;
+}
+.me-button.me-button-large .dx-button-content .dx-button-text {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: var(--me-medium-font-weight);
+  height: 24px;
+  align-content: center;
 }
 
 .dx-buttongroup {
@@ -5349,6 +5308,7 @@
 .me-tree-view .dx-checkbox-icon {
   background-position: 50% 50%;
   background-size: 12px 12px;
+  background-color: transparent;
 }
 
 .dx-state-disabled.me-editor.dx-checkbox-checked .dx-checkbox-icon,
@@ -6719,12 +6679,6 @@
   background: #ecedf3;
   border: 1px solid transparent;
   border-radius: 3px;
-}
-.dx-texteditor.dx-editor-filled.me-editor {
-  width: 200px;
-}
-.dx-texteditor.dx-editor-filled.me-editor-large {
-  width: 250px;
 }
 .dx-texteditor.dx-editor-filled.dx-state-disabled {
   background: #dedfe6;
@@ -14349,7 +14303,7 @@
   padding: 0 8px 0 0;
 }
 .me-popup-medium .dx-popup-title.dx-toolbar, .me-popup-medium .dx-popup-title {
-  padding: 12px 12px 12px 20px;
+  padding: 16px 12px 12px 20px;
 }
 .me-popup-medium .dx-popup-title.dx-toolbar.dx-has-close-button, .me-popup-medium .dx-popup-title.dx-has-close-button {
   padding-bottom: 8px;
@@ -14407,7 +14361,7 @@
   padding: 0 8px 0 0;
 }
 .me-popup-large .dx-popup-title.dx-toolbar, .me-popup-large .dx-popup-title {
-  padding: 15px 15px 15px 24px;
+  padding: 20px 15px 16px 24px;
 }
 .me-popup-large .dx-popup-title.dx-toolbar.dx-has-close-button, .me-popup-large .dx-popup-title.dx-has-close-button {
   padding-bottom: 11px;
@@ -16986,12 +16940,6 @@
   opacity: 0.5;
 }
 
-.me-keyboard-focused .dx-state-focused.dx-accordion-item {
-  border: 1px solid #7eb9ff;
-  border-radius: 3px;
-  box-shadow: 0 0 0 1px #7eb9ff;
-}
-
 .dx-accordion-item-body {
   padding: 8px 12px 22px;
   font-size: 14px;
@@ -17009,7 +16957,6 @@
 }
 
 .dx-accordion-item-title .custom-header-icon {
-  margin-right: var(--accordion-icon-margin-right);
   color: var(--accordion-icon-color);
   position: relative;
 }
@@ -17027,21 +16974,45 @@
 .me-accordion-small {
   min-width: 206px;
 }
-.me-accordion-small .custom-header-icon {
-  font-size: var(--accordion-icon-size-small);
+.me-accordion-small .custom-header-container {
+  gap: 4px;
 }
-.me-accordion-small .custom-header-title {
+.me-accordion-small .custom-header-container .custom-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.me-accordion-small .custom-header-container .custom-header-icon {
+  height: 20px;
+  width: 20px;
+}
+.me-accordion-small .custom-header-container .custom-header-icon span {
+  font-size: 18px;
+}
+.me-accordion-small .custom-header-container .custom-header-title {
   font-size: var(--accordion-title-font-size-small);
   line-height: var(--accordion-title-line-height-small);
 }
-.me-accordion-small .custom-header-description {
+.me-accordion-small .custom-header-container .custom-header-description {
   font-weight: var(--accordion-description-font-weight-small);
   font-size: var(--accordion-description-font-size-small);
   line-height: var(--accordion-description-line-height-small);
 }
+.me-accordion-small .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-title {
+  padding: 8px 12px;
+  align-items: flex-start;
+}
+.me-accordion-small .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-title::before {
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  line-height: 20px;
+}
+.me-accordion-small .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
+  padding: 0 12px 12px 12px;
+}
 .me-accordion-small .dx-accordion-item-title > * {
-  padding: 8px 0;
-  font-family: var(--accordion-title-font-family);
+  font-family: var(--accordion-font-family);
   font-weight: var(--accordion-title-font-weight-small);
   font-size: var(--accordion-title-font-size-small);
   line-height: var(--accordion-title-line-height-small);
@@ -17050,8 +17021,9 @@
   padding: 0 12px 12px 12px;
 }
 .me-accordion-small .dx-accordion-item-body p {
+  margin: 0;
   text-align: start;
-  font-family: var(--accordion-body-font-family);
+  font-family: var(--accordion-font-family);
   font-weight: var(--accordion-body-font-weight-small);
   font-size: var(--accordion-body-font-size-small);
   line-height: var(--accordion-body-line-height-small);
@@ -17060,21 +17032,45 @@
 .me-accordion-medium {
   min-width: 300px;
 }
-.me-accordion-medium .custom-header-icon {
-  font-size: var(--accordion-icon-size-medium);
-  top: 1px;
+.me-accordion-medium .custom-header-container {
+  gap: 6px;
 }
-.me-accordion-medium .custom-header-description {
+.me-accordion-medium .custom-header-container .custom-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.me-accordion-medium .custom-header-container .custom-header-icon {
+  height: 24px;
+  width: 24px;
+}
+.me-accordion-medium .custom-header-container .custom-header-icon span {
+  font-size: 24px;
+}
+.me-accordion-medium .custom-header-container .custom-header-title {
+  font-size: var(--accordion-title-font-size-medium);
+  line-height: var(--accordion-title-line-height-medium);
+}
+.me-accordion-medium .custom-header-container .custom-header-description {
   font-weight: var(--accordion-description-font-weight-medium);
   font-size: var(--accordion-description-font-size-medium);
   line-height: var(--accordion-description-line-height-medium);
 }
-.me-accordion-medium .custom-header-icon {
-  font-size: var(--accordion-icon-size-medium);
+.me-accordion-medium .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-title {
+  padding: 8px 12px;
+  align-items: flex-start;
+}
+.me-accordion-medium .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-title::before {
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  line-height: 24px;
+}
+.me-accordion-medium .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
+  padding: 0 12px 16px 12px;
 }
 .me-accordion-medium .dx-accordion-item-title > * {
-  padding: 8px 0;
-  font-family: var(--accordion-title-font-family);
+  font-family: var(--accordion-font-family);
   font-weight: var(--accordion-title-font-weight-medium);
   font-size: var(--accordion-title-font-size-medium);
   line-height: var(--accordion-title-line-height-medium);
@@ -17083,8 +17079,9 @@
   padding: 0 12px 12px 12px;
 }
 .me-accordion-medium .dx-accordion-item-body p {
+  margin: 0;
   text-align: start;
-  font-family: var(--accordion-body-font-family);
+  font-family: var(--accordion-font-family);
   font-weight: var(--accordion-body-font-weight-medium);
   font-size: var(--accordion-body-font-size-medium);
   line-height: var(--accordion-body-line-height-medium);
@@ -17093,24 +17090,46 @@
 .me-accordion-large {
   min-width: 300px;
 }
-.me-accordion-large .custom-header-icon {
-  font-size: var(--accordion-icon-size-medium);
+.me-accordion-large .custom-header-container {
+  gap: 8px;
+}
+.me-accordion-large .custom-header-container .custom-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.me-accordion-large .custom-header-container .custom-header-icon {
+  height: 24px;
+  width: 24px;
   top: 3px;
 }
-.me-accordion-large .custom-header-description {
+.me-accordion-large .custom-header-container .custom-header-icon span {
+  font-size: 24px;
+}
+.me-accordion-large .custom-header-container .custom-header-title {
+  font-size: var(--accordion-title-font-size-large);
+  line-height: var(--accordion-title-line-height-large);
+}
+.me-accordion-large .custom-header-container .custom-header-description {
   font-weight: var(--accordion-description-font-weight-large);
   font-size: var(--accordion-description-font-size-large);
   line-height: var(--accordion-description-line-height-large);
 }
-.me-accordion-large .custom-header-icon {
-  font-size: var(--accordion-icon-size-medium);
+.me-accordion-large .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-title {
+  padding: 16px 16px;
+  align-items: flex-start;
 }
-.me-accordion-large .custom-header-icon {
-  font-size: var(--accordion-icon-size-medium);
+.me-accordion-large .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-title::before {
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  line-height: 24px;
+}
+.me-accordion-large .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
+  padding: 0 16px 16px 16px;
 }
 .me-accordion-large .dx-accordion-item-title > * {
-  padding: 8px 0;
-  font-family: var(--accordion-title-font-family);
+  font-family: var(--accordion-font-family);
   font-weight: var(--accordion-title-font-weight-large);
   font-size: var(--accordion-title-font-size-large);
   line-height: var(--accordion-title-line-height-large);
@@ -17119,11 +17138,24 @@
   padding: 0 16px 16px 16px;
 }
 .me-accordion-large .dx-accordion-item-body p {
+  margin: 0;
   text-align: start;
-  font-family: var(--accordion-body-font-family);
+  font-family: var(--accordion-font-family);
   font-weight: var(--accordion-body-font-weight-large);
   font-size: var(--accordion-body-font-size-large);
   line-height: var(--accordion-body-line-height-large);
+}
+
+.me-keyboard-focused .dx-state-focused.dx-accordion-item {
+  border: 1px solid #7eb9ff;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px #7eb9ff;
+}
+
+.me-accordion-small .custom-header-icon span,
+.me-accordion-medium .custom-header-icon span,
+.me-accordion-large .custom-header-icon span {
+  color: var(--Icon-Default) !important;
 }
 
 .dx-slideoutview {
@@ -28925,6 +28957,9 @@ input.dx-hidden {
 .me-form {
   font-family: var(--font-family, Arial, sans-serif);
 }
+.me-form .dx-layout-manager .dx-label-h-align.dx-flex-layout:not(.dx-field-item-label-align) {
+  align-items: center;
+}
 .me-form.me-form-small {
   --label-top-position: 9px;
   --label-left-position: 11px;
@@ -29042,6 +29077,7 @@ input.dx-hidden {
 }
 .me-form .dx-dropdowneditor-input-wrapper {
   display: inline-block !important;
+  width: 100%;
 }
 .me-form .dx-field-item {
   margin-bottom: 16px;
@@ -32566,7 +32602,7 @@ input.dx-hidden {
   font-size: 20px;
 }
 .breadcrumbs.small .dx-menu-horizontal .menu-item {
-  padding: 3px 4px;
+  padding: 4px 12px;
 }
 .breadcrumbs.small .dx-menu-item-content .dx-menu-item-text {
   padding: 3px 4px;
@@ -32579,6 +32615,7 @@ input.dx-hidden {
 }
 .breadcrumbs.small .dx-button-content {
   padding: 4px !important;
+  gap: 4px;
 }
 .breadcrumbs.small .dx-icon-spindown {
   font-size: 20px;
@@ -32587,7 +32624,7 @@ input.dx-hidden {
   font-size: 24px;
 }
 .breadcrumbs.large .dx-menu-horizontal .menu-item {
-  padding: 2px 8px;
+  padding: 8px 12px;
 }
 .breadcrumbs.large .dx-menu-item-content .dx-menu-item-text {
   padding: 2px 8px;
@@ -32600,6 +32637,7 @@ input.dx-hidden {
 }
 .breadcrumbs.large .dx-button-content {
   padding: 4px !important;
+  gap: 3px;
 }
 .breadcrumbs.large .dx-icon-spindown {
   font-size: 24px;

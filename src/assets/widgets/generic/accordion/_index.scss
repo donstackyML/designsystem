@@ -125,14 +125,6 @@ $generic-accordion-disabled-opacity: 0.5;
   }
 }
 
-.me-keyboard-focused .dx-state-focused {
-  &.dx-accordion-item {
-    border: 1px solid $accordion-item-focused-border-color;
-    border-radius: 3px;
-    box-shadow: 0 0 0 1px $accordion-item-focused-border-color;
-  }
-}
-
 .dx-accordion-item-body {
   padding: $generic-accordion-body-padding;
   font-size: $generic-base-font-size;
@@ -154,7 +146,8 @@ $generic-accordion-disabled-opacity: 0.5;
 }
 
 .dx-accordion-item-title .custom-header-icon {
-  margin-right: var(--accordion-icon-margin-right);
+  // margin-right: var(--accordion-icon-margin-right);
+
   color: var(--accordion-icon-color);
   position: relative;
 }
@@ -172,24 +165,53 @@ $generic-accordion-disabled-opacity: 0.5;
 .me-accordion-small {
   min-width: 206px;
 
-  .custom-header-icon {
-    font-size: var(--accordion-icon-size-small);
+  .custom-header-container {
+    gap: 4px;
+
+    .custom-header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .custom-header-icon {
+      height: 20px;
+      width: 20px;
+      span {
+        font-size: 18px;
+      }
+    }
+    .custom-header-title {
+      font-size: var(--accordion-title-font-size-small);
+      line-height: var(--accordion-title-line-height-small);
+    }
+    .custom-header-description {
+      font-weight: var(--accordion-description-font-weight-small);
+      font-size: var(--accordion-description-font-size-small);
+      line-height: var(--accordion-description-line-height-small);
+    }
   }
 
-  .custom-header-title {
-    font-size: var(--accordion-title-font-size-small);
-    line-height: var(--accordion-title-line-height-small);
-  }
+  /////////
+  .dx-item.dx-accordion-item {
+    .dx-template-wrapper.dx-item-content.dx-accordion-item-title {
+      padding: 8px 12px;
+      align-items: flex-start;
 
-  .custom-header-description {
-    font-weight: var(--accordion-description-font-weight-small);
-    font-size: var(--accordion-description-font-size-small);
-    line-height: var(--accordion-description-line-height-small);
+      &::before {
+        height: 20px;
+        width: 20px;
+        text-align: center;
+        line-height: 20px;
+      }
+    }
+    .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
+      padding: 0 12px 12px 12px;
+    }
   }
 
   .dx-accordion-item-title > * {
-    padding: 8px 0;
-    font-family: var(--accordion-title-font-family);
+    font-family: var(--accordion-font-family);
     font-weight: var(--accordion-title-font-weight-small);
     font-size: var(--accordion-title-font-size-small);
     line-height: var(--accordion-title-line-height-small);
@@ -199,8 +221,9 @@ $generic-accordion-disabled-opacity: 0.5;
     padding: 0 12px 12px 12px;
 
     p {
+      margin: 0;
       text-align: start;
-      font-family: var(--accordion-body-font-family);
+      font-family: var(--accordion-font-family);
       font-weight: var(--accordion-body-font-weight-small);
       font-size: var(--accordion-body-font-size-small);
       line-height: var(--accordion-body-line-height-small);
@@ -211,23 +234,52 @@ $generic-accordion-disabled-opacity: 0.5;
 .me-accordion-medium {
   min-width: 300px;
 
-  .custom-header-icon {
-    font-size: var(--accordion-icon-size-medium);
-    top: 1px;
+  .custom-header-container {
+    gap: 6px;
+
+    .custom-header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .custom-header-icon {
+      height: 24px;
+      width: 24px;
+      span {
+        font-size: 24px;
+      }
+    }
+    .custom-header-title {
+      font-size: var(--accordion-title-font-size-medium);
+      line-height: var(--accordion-title-line-height-medium);
+    }
+    .custom-header-description {
+      font-weight: var(--accordion-description-font-weight-medium);
+      font-size: var(--accordion-description-font-size-medium);
+      line-height: var(--accordion-description-line-height-medium);
+    }
   }
 
-  .custom-header-description {
-    font-weight: var(--accordion-description-font-weight-medium);
-    font-size: var(--accordion-description-font-size-medium);
-    line-height: var(--accordion-description-line-height-medium);
+  ////////
+  .dx-item.dx-accordion-item {
+    .dx-template-wrapper.dx-item-content.dx-accordion-item-title {
+      padding: 8px 12px;
+      align-items: flex-start;
+
+      &::before {
+        height: 24px;
+        width: 24px;
+        text-align: center;
+        line-height: 24px;
+      }
+    }
+    .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
+      padding: 0 12px 16px 12px;
+    }
   }
 
-  .custom-header-icon {
-    font-size: var(--accordion-icon-size-medium);
-  }
   .dx-accordion-item-title > * {
-    padding: 8px 0;
-    font-family: var(--accordion-title-font-family);
+    font-family: var(--accordion-font-family);
     font-weight: var(--accordion-title-font-weight-medium);
     font-size: var(--accordion-title-font-size-medium);
     line-height: var(--accordion-title-line-height-medium);
@@ -237,8 +289,9 @@ $generic-accordion-disabled-opacity: 0.5;
     padding: 0 12px 12px 12px;
 
     p {
+      margin: 0;
       text-align: start;
-      font-family: var(--accordion-body-font-family);
+      font-family: var(--accordion-font-family);
       font-weight: var(--accordion-body-font-weight-medium);
       font-size: var(--accordion-body-font-size-medium);
       line-height: var(--accordion-body-line-height-medium);
@@ -249,27 +302,53 @@ $generic-accordion-disabled-opacity: 0.5;
 .me-accordion-large {
   min-width: 300px;
 
-  .custom-header-icon {
-    font-size: var(--accordion-icon-size-medium);
-    top: 3px;
+  .custom-header-container {
+    gap: 8px;
+
+    .custom-header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .custom-header-icon {
+      height: 24px;
+      width: 24px;
+      top: 3px;
+      span {
+        font-size: 24px;
+      }
+    }
+    .custom-header-title {
+      font-size: var(--accordion-title-font-size-large);
+      line-height: var(--accordion-title-line-height-large);
+    }
+    .custom-header-description {
+      font-weight: var(--accordion-description-font-weight-large);
+      font-size: var(--accordion-description-font-size-large);
+      line-height: var(--accordion-description-line-height-large);
+    }
   }
 
-  .custom-header-description {
-    font-weight: var(--accordion-description-font-weight-large);
-    font-size: var(--accordion-description-font-size-large);
-    line-height: var(--accordion-description-line-height-large);
-  }
-  .custom-header-icon {
-    font-size: var(--accordion-icon-size-medium);
-  }
+  //////////
+  .dx-item.dx-accordion-item {
+    .dx-template-wrapper.dx-item-content.dx-accordion-item-title {
+      padding: 16px 16px;
+      align-items: flex-start;
 
-  .custom-header-icon {
-    font-size: var(--accordion-icon-size-medium);
+      &::before {
+        height: 24px;
+        width: 24px;
+        text-align: center;
+        line-height: 24px;
+      }
+    }
+    .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
+      padding: 0 16px 16px 16px;
+    }
   }
 
   .dx-accordion-item-title > * {
-    padding: 8px 0;
-    font-family: var(--accordion-title-font-family);
+    font-family: var(--accordion-font-family);
     font-weight: var(--accordion-title-font-weight-large);
     font-size: var(--accordion-title-font-size-large);
     line-height: var(--accordion-title-line-height-large);
@@ -279,11 +358,30 @@ $generic-accordion-disabled-opacity: 0.5;
     padding: 0 16px 16px 16px;
 
     p {
+      margin: 0;
       text-align: start;
-      font-family: var(--accordion-body-font-family);
+      font-family: var(--accordion-font-family);
       font-weight: var(--accordion-body-font-weight-large);
       font-size: var(--accordion-body-font-size-large);
       line-height: var(--accordion-body-line-height-large);
+    }
+  }
+}
+
+.me-keyboard-focused .dx-state-focused {
+  &.dx-accordion-item {
+    border: 1px solid $accordion-item-focused-border-color;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px $accordion-item-focused-border-color;
+  }
+}
+
+.me-accordion-small,
+.me-accordion-medium,
+.me-accordion-large {
+  .custom-header-icon {
+    span {
+      color: var(--Icon-Default) !important;
     }
   }
 }
