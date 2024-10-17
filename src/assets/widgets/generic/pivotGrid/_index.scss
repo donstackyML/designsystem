@@ -199,9 +199,22 @@
       content: var(--me-icon-filter-alt);
     }
   }
+  .dx-checkbox-indeterminate {
+    .dx-checkbox-icon {
+      &::before {
+        height: 3px;
+        width: 12px;
+        margin-top: -1px;
+        margin-left: -6px;
+      }
+    }
+  }
 }
 
 .dx-scrollable-container {
+  .dx-state-hover {
+    background-color: transparent;
+  }
   .dx-scrollable-scrollbar.dx-scrollbar-vertical {
     width: auto;
     padding: 0;
@@ -209,10 +222,15 @@
     .dx-scrollable-scroll {
       width: 8px;
       border-radius: 10px;
-
-      .dx-scrollable-scroll-content {
-        border-radius: 10px;
-      }
+    }
+  }
+  .dx-scrollable-scroll-content {
+    border-radius: 10px;
+  }
+  .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-state-hover {
+    height: 8px;
+    .dx-scrollable-scroll {
+      height: 8px;
     }
   }
 }

@@ -13376,7 +13376,14 @@
 .me-selectbox.dx-selectbox .dx-texteditor-container .dx-texteditor-buttons-container {
   height: 20px;
   width: 20px;
-  color: var(--Controls-Content-In-Controls-Main-Disabled);
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+.me-selectbox.dx-selectbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  margin: 0;
+}
+.me-selectbox.dx-selectbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
+  width: 12px;
+  height: 12px;
 }
 .me-selectbox.dx-selectbox .dx-texteditor-label {
   align-items: center;
@@ -13387,12 +13394,44 @@
   line-height: 16px;
   text-align: left;
 }
+.me-selectbox.dx-selectbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-selectbox-small, .me-selectbox.dx-selectbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-selectbox-medium {
+  margin-top: 20px;
+}
+.me-selectbox.dx-selectbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-selectbox-small .dx-texteditor-label, .me-selectbox.dx-selectbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-selectbox-medium .dx-texteditor-label {
+  height: 16px;
+  margin-top: 0;
+  top: -20px;
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+.me-selectbox.dx-selectbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-selectbox-large {
+  margin-top: 24px;
+}
+.me-selectbox.dx-selectbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-selectbox-large .dx-texteditor-label {
+  height: 20px;
+  margin-top: 0;
+  top: -24px;
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+.me-selectbox.dx-selectbox.dx-texteditor-with-floating-label {
+  margin-top: 20px;
+}
+.me-selectbox.dx-selectbox.dx-texteditor-with-floating-label .dx-texteditor-label {
+  padding: 0;
+  align-items: center;
+  height: 16px;
+  margin-top: -8.5px !important;
+}
+.me-selectbox.dx-selectbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label, .me-selectbox.dx-selectbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label {
+  top: -48%;
+  left: -9px;
+}
 .me-selectbox.dx-selectbox.me-selectbox-small .dx-texteditor-container {
   padding-block: 4px;
 }
 .me-selectbox.dx-selectbox.me-selectbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
 .me-selectbox.dx-selectbox.me-selectbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   font-size: 13px;
+  line-height: 16px;
 }
 .me-selectbox.dx-selectbox.me-selectbox-medium .dx-texteditor-container {
   padding-block: 6px;
@@ -13400,6 +13439,7 @@
 .me-selectbox.dx-selectbox.me-selectbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
 .me-selectbox.dx-selectbox.me-selectbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   font-size: 14px;
+  line-height: 20px;
 }
 .me-selectbox.dx-selectbox.me-selectbox-large {
   border-radius: 4px;
@@ -13411,13 +13451,22 @@
 .me-selectbox.dx-selectbox.me-selectbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
 .me-selectbox.dx-selectbox.me-selectbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   font-size: 16px;
+  line-height: 20px;
 }
 .me-selectbox.dx-selectbox.me-selectbox-large .dx-texteditor-container .dx-texteditor-buttons-container {
-  display: flex;
-  align-items: center;
+  height: 24px;
+  width: 24px;
+}
+.me-selectbox.dx-selectbox.me-selectbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  width: 24px;
+}
+.me-selectbox.dx-selectbox.me-selectbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
+  width: 16px;
+  height: 16px;
 }
 .me-selectbox.dx-selectbox.me-selectbox-large .dx-texteditor-label .dx-label span {
   font-size: 14px;
+  line-height: 20px;
 }
 
 /**
@@ -24469,7 +24518,16 @@ input.dx-hidden {
 .dx-overlay-wrapper .dx-icon-filter::before {
   content: var(--me-icon-filter-alt);
 }
+.dx-overlay-wrapper .dx-checkbox-indeterminate .dx-checkbox-icon::before {
+  height: 3px;
+  width: 12px;
+  margin-top: -1px;
+  margin-left: -6px;
+}
 
+.dx-scrollable-container .dx-state-hover {
+  background-color: transparent;
+}
 .dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical {
   width: auto;
   padding: 0;
@@ -24479,8 +24537,14 @@ input.dx-hidden {
   width: 8px;
   border-radius: 10px;
 }
-.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll .dx-scrollable-scroll-content {
+.dx-scrollable-container .dx-scrollable-scroll-content {
   border-radius: 10px;
+}
+.dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-state-hover {
+  height: 8px;
+}
+.dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-state-hover .dx-scrollable-scroll {
+  height: 8px;
 }
 
 .dx-context-menu.dx-overlay-content {
@@ -24689,12 +24753,15 @@ input.dx-hidden {
 }
 .me-tabs-panel .dx-tabpanel-container {
   border-style: solid;
+  border-width: 1px;
   border-top-color: transparent;
   border-bottom-color: rgb(223, 224, 237);
   border-left-color: rgb(223, 224, 237);
   border-right-color: rgb(223, 224, 237);
   border-radius: 0 0 4px 4px;
   padding: 20px;
+  margin-left: 1px;
+  margin-top: -2px;
 }
 
 /**
