@@ -136,3 +136,12 @@ export const WithLabelRow: Story = {
     )}></dx-text-box></label>`,
   }),
 };
+
+export const WithTelMask: Story = {
+  render: (args) => ({
+    props: args,
+    template: `<label meLabel labelDirection="row" width="250px">Phone<dx-text-box mask="+7 (000) 000-0000" meTextBox ${argsToTemplate(
+      args
+    )}></dx-text-box></label>`,
+  }),
+};
