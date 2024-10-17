@@ -55,31 +55,38 @@
   }
 }
 
-.me-textbox.dx-texteditor.dx-textbox {
+.me-textbox.dx-texteditor.dx-textbox,
+.me-form .dx-texteditor.dx-textbox {
   border-radius: 3px;
   background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+
   &.dx-state-hover {
     background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
   }
+
   &.dx-state-focused:not(.dx-invalid) {
     background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
     border-color: var(--Controls-Content-In-Controls-Accent-Default);
+
     .dx-label {
       span {
         color: var(--Controls-Content-In-Controls-Accent-Default);
       }
     }
   }
+
   &:focus-within {
     outline: 2px solid #7eb9ff;
     outline-offset: 2px;
   }
+
   &.dx-invalid {
     .dx-label {
       span {
         color: var(--Controls-Content-In-Controls-Danger-Default);
       }
     }
+
     .dx-texteditor-container {
       .dx-texteditor-buttons-container {
         .dx-lock-button-area {
@@ -90,6 +97,7 @@
       }
     }
   }
+
   &.dx-state-disabled {
     .dx-texteditor-container {
       .dx-texteditor-buttons-container {
@@ -101,26 +109,32 @@
       }
     }
   }
+
   .dx-texteditor-container {
     padding-inline: 8px;
     gap: 16px;
     align-items: center;
+
     .dx-texteditor-input-container {
       *,
       *::before {
         padding: 0;
       }
+
       .dx-texteditor-input {
         font-weight: var(--me-regular-font-weight);
+
         &::placeholder {
           color: transparent;
         }
       }
+
       .dx-placeholder {
         font-weight: var(--me-regular-font-weight);
         color: var(--Controls-Content-In-Controls-Main-Disabled);
       }
     }
+
     //кнопки
     .dx-texteditor-buttons-container {
       height: 20px;
@@ -129,20 +143,24 @@
 
       .dx-clear-button-area {
         margin: 0;
+
         .dx-icon.dx-icon-clear {
           width: 12px;
           height: 12px;
         }
       }
+
       .dx-lock-button-area {
         width: 20px;
         height: 20px;
         text-align-last: center;
+
         .dx-icon.dx-icon-key {
           font-size: 19px;
           line-height: 20px;
           font-family: var(--me-icon-family);
           color: var(--Controls-Content-In-Controls-Main-Default);
+
           &::before {
             content: var(--me-icon-lock);
           }
@@ -150,8 +168,10 @@
       }
     }
   }
+
   .dx-texteditor-label {
     align-items: center;
+
     .dx-label {
       span {
         font-size: 12px;
@@ -165,11 +185,13 @@
   &.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small,
   &.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium {
     margin-top: 20px;
+
     &.dx-searchbox {
       .dx-texteditor-label {
         padding: 0;
       }
     }
+
     .dx-texteditor-label {
       height: 16px;
       margin-top: 0;
@@ -177,13 +199,16 @@
       color: var(--Controls-Content-In-Controls-Main-Default);
     }
   }
+
   &.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large {
     margin-top: 20px;
+
     &.dx-searchbox {
       .dx-texteditor-label {
         padding: 0;
       }
     }
+
     .dx-texteditor-label {
       height: 20px;
       margin-top: 0;
@@ -194,12 +219,14 @@
 
   &.dx-texteditor-with-floating-label {
     margin-top: 20px;
+
     .dx-texteditor-label {
       padding: 0;
       align-items: center;
       height: 16px;
       margin-top: -8.5px !important;
     }
+
     &.dx-state-focused,
     &:not(.dx-texteditor-empty) {
       .dx-texteditor-label {
@@ -213,6 +240,7 @@
   &.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) {
     .dx-texteditor-label {
       padding: 0;
+
       .dx-label-before {
         width: 0 !important;
       }
@@ -226,19 +254,23 @@
         padding-block: 17px 3px;
       }
     }
+
     .dx-texteditor-container {
       padding-block: 4px;
+
       .dx-texteditor-input-container {
         .dx-texteditor-input {
           font-size: 13px;
           line-height: 16px;
         }
+
         .dx-placeholder {
           font-size: 13px;
           line-height: 16px;
         }
       }
     }
+
     &.dx-searchbox {
       .dx-icon.dx-icon-search {
         align-content: center;
@@ -246,34 +278,41 @@
         line-height: 14px;
         font-size: 14px;
       }
+
       .dx-texteditor-input,
       .dx-placeholder {
         padding: 0 0 0 24px;
       }
+
       .dx-texteditor-label {
         padding: 0 0 0 12px;
       }
     }
   }
+
   &.me-textbox-medium {
     &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
       .dx-texteditor-container {
         padding-block: 17px 3px;
       }
     }
+
     .dx-texteditor-container {
       padding-block: 6px;
+
       .dx-texteditor-input-container {
         .dx-texteditor-input {
           font-size: 14px;
           line-height: 20px;
         }
+
         .dx-placeholder {
           font-size: 14px;
           line-height: 20px;
         }
       }
     }
+
     &.dx-searchbox {
       .dx-icon.dx-icon-search {
         align-content: center;
@@ -281,49 +320,61 @@
         line-height: 14px;
         font-size: 14px;
       }
+
       .dx-texteditor-input,
       .dx-placeholder {
         padding: 0 0 0 24px;
       }
+
       .dx-texteditor-label {
         padding: 0 0 0 12px;
       }
     }
   }
+
   &.me-textbox-large {
     border-radius: 4px;
+
     &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
       .dx-texteditor-container {
         padding-block: 22px 5px;
       }
     }
+
     .dx-texteditor-container {
       padding-inline: 12px;
       padding-block: 8px;
+
       .dx-texteditor-input-container {
         .dx-texteditor-input {
           font-size: 16px;
           line-height: 20px;
         }
+
         .dx-placeholder {
           font-size: 16px;
           line-height: 20px;
         }
       }
+
       .dx-texteditor-buttons-container {
         height: 24px;
         width: 24px;
+
         .dx-clear-button-area {
           width: 24px;
+
           .dx-icon.dx-icon-clear {
             width: 16px;
             height: 16px;
           }
         }
+
         .dx-lock-button-area {
           width: 24px;
           height: 24px;
           text-align-last: center;
+
           .dx-icon.dx-icon-key {
             font-size: 23px;
             line-height: 24px;
@@ -331,6 +382,7 @@
         }
       }
     }
+
     .dx-texteditor-label {
       .dx-label {
         span {
@@ -339,13 +391,16 @@
         }
       }
     }
+
     &.dx-texteditor-label-outside {
       margin-top: 24px;
+
       .dx-texteditor-label {
         height: 20px;
         top: -24px;
       }
     }
+
     &.dx-searchbox {
       .dx-icon.dx-icon-search {
         align-content: center;
@@ -353,10 +408,12 @@
         line-height: 18px;
         font-size: 18px;
       }
+
       .dx-texteditor-input,
       .dx-placeholder {
         padding: 0 0 0 28px;
       }
+
       .dx-texteditor-label {
         padding: 0 0 0 16px;
       }

@@ -16,7 +16,7 @@ import { Meta, Source } from "@storybook/blocks";
 
 [5. Изменение размера иконки](#color)
 
-<h3 id="icon-install">Подключение библиотеки иконок и их регистрация</h3>
+<h3 id="icon-install">Подключение библиотеки иконок</h3>
 
 1. Установить пакет иконок [@monitel/me-icon](https://cl-tfs2022.monitel.local/CK-11/Development/_artifacts/feed/Integration/Npm/@monitel%2Fme-icons/overview) и [@monitel/me-icon-registry](https://cl-tfs2022.monitel.local/CK-11/Development/_artifacts/feed/Integration/Npm/@monitel%2Fme-icons-registry/overview)
 
@@ -49,15 +49,37 @@ export class AppModule { }`}
   dark
 />
 
-3. Инжектировать сервис для регистрации иконок и зарегистрировать необходимые в рамках компонента иконки
+<h4>Регистрация иконок (быстрый способ)</h4>
+
+В случае, если необходимо использовать большое количество иконок и нет желания регистрировать иконки по отдельности, можно зарегистрировать все иконки одновременно.
+
+<b>Внимание!</b> Такой подход приведет к тому, что все иконки библиотеки окажутся
+в результирующем бандле.
 
 <Source
-  code={`import { meIcon24Add, meIcon24Close, meIcon24Edit } from '@monitel/me-icons';
+  code={`import { meIconSet } from '@monitel/me-icons';
 import { MeIconsRegistry } from '@monitel/me-icons-registry';
 
 export class AppComponent {
   constructor(private meIconRegistry: MeIconsRegistry) {
-    meIconRegistry.registerIcons([meIcon24Add, meIcon24Close, meIcon24Edit]);
+    meIconRegistry.registerIcons(meIconSet);
+  }
+}`}
+  language="js"
+  dark
+/>
+
+<h4>Регистрация иконок (оптимизированный способ)</h4>
+
+Регистрация иконок по отдельности позволит добавить в результирующий бандл только нужные иконки.
+
+<Source
+  code={`import { me24Add, me24Close, me24Edit } from '@monitel/me-icons';
+import { MeIconsRegistry } from '@monitel/me-icons-registry';
+
+export class AppComponent {
+  constructor(private meIconRegistry: MeIconsRegistry) {
+    meIconRegistry.registerIcons([me24Add, me24Close, me24Edit]);
   }
 }`}
   language="js"
@@ -66,10 +88,12 @@ export class AppComponent {
 
 <h3 id="icon-in-markup">Использование иконок в разметке</h3>
 
+Обратите внимание, что в аттрибут <b>name</b> передается строка.
+
 <Source
-  code={`<me-icon name="24_add"></me-icon>
-<me-icon name="24_close" color="var(--Icon-Secondary)"></me-icon>
-<me-icon name="24_edit" color="var(--Icon-Blue)"></me-icon>`}
+  code={`<me-icon name="me24Add"></me-icon>
+<me-icon name="me24Close" color="var(--Icon-Secondary)"></me-icon>
+<me-icon name="me24Edit" color="var(--Icon-Blue)"></me-icon>`}
   language="js"
   dark
 />
@@ -81,7 +105,7 @@ export class AppComponent {
 <Source
   code={`constructor(private meIconRegistry: MeIconsRegistry) {
   ...
-  this.add_24 = meIconRegistry.getIcon('24_add', 'var(--Icon-Error)');
+  this.add = meIconRegistry.getIcon(me24Add, 'var(--Icon-Error)');
 }`}
   language="js"
   dark
@@ -90,7 +114,7 @@ export class AppComponent {
 Затем байндим свойство класса к аттрибуту icon компонента DevExtreme
 
 <Source
-  code={`<dx-button meButton [leftIcon]="add_24" text="Добавить"></dx-button>
+  code={`<dx-button meButton [leftIcon]="add" text="Добавить"></dx-button>
 `}
   language="js"
   dark
@@ -104,25 +128,25 @@ export class AppComponent {
    библиотеки, которые необходимо зарегистрировать для использования в компоненте
 
 <Source
-  code={`import { meIcon24Add, meIcon24Close, meIcon24Edit } from '@monitel/me-icons';
+  code={`import { me24Add, me24Close, me24Edit } from '@monitel/me-icons';
 
 export class AppComponent {
   constructor(private meIconRegistry: MeIconsRegistry) {
-    meIconRegistry.registerIcons([meIcon24Add, meIcon24Close, meIcon24Edit]);
+    meIconRegistry.registerIcons([me24Add, me24Close, me24Edit]);
   }
 }`}
   language="js"
   dark
 />
 
-2. <b>getIcon(iconName: meIcons, color?: string) => string | undefined</b> - принимает
+2. <b>getIcon(iconName: MeIcon, color?: string) => string | undefined</b> - принимает
    имя иконки и опционально цвет (по умолчанию <b>--Icon-Default</b>),
    возвращает иконку в виде строки или undefined если иконка не зарегистрирована
 
 <Source
   code={`constructor(private meIconRegistry: MeIconsRegistry) {
   ...
-  this.add_24 = meIconRegistry.getIcon('24_add', 'var(--Icon-Cyan-Position)');
+  this.add_24 = meIconRegistry.getIcon('me24Add', 'var(--Icon-Cyan-Position)');
 }`}
   language="js"
   dark
@@ -132,12 +156,12 @@ export class AppComponent {
 
 1. <b>name: meIcons</b> - наименование иконки
 
-<Source code={`<me-icon name="24_add"></me-icon>`} language="js" dark />
+<Source code={`<me-icon name="me24Add"></me-icon>`} language="js" dark />
 
 2. <b>color: string</b> - цвет иконки, по умолчанию <b>--Icon-Default</b>
 
 <Source
-  code={`<me-icon name="24_close" color="var(--Icon-Secondary)"></me-icon>`}
+  code={`<me-icon name="me24Close" color="var(--Icon-Secondary)"></me-icon>`}
   language="js"
   dark
 />
