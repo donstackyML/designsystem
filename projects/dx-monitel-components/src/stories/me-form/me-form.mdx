@@ -16,44 +16,16 @@ import * as FormStories from "./me-form.stories";
 <Story of={FormStories.SmallSize} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'small'"
-  [formData]="formData"
-  labelMode="static"
-  labelLocation="top"
-  [colCount]="2"
->
-  <dxi-item dataField="firstName"></dxi-item>
-  <dxi-item dataField="lastName"></dxi-item>
-  <dxi-item dataField="email"></dxi-item>
-  <dxi-item dataField="phone"></dxi-item>
-</dx-form>
-  `}
+  of={FormStories.SmallSize}
   language="html"
 />
 
 ### Средний размер
 
-<Story of={FormStories.MediumSize} />
+<Story of={FormStories.Default} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'medium'"
-  [formData]="formData"
-  [labelMode]="floating"
-  labelLocation="top"
-  [colCount]="2"
->
-  <dxi-item dataField="firstName"></dxi-item>
-  <dxi-item dataField="lastName"></dxi-item>
-  <dxi-item dataField="email"></dxi-item>
-  <dxi-item dataField="phone"></dxi-item>
-</dx-form>
-  `}
+  of={FormStories.Default}
   language="html"
 />
 
@@ -62,21 +34,7 @@ import * as FormStories from "./me-form.stories";
 <Story of={FormStories.LargeSize} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'large'"
-  [formData]="formData"
-  [labelMode]="floating"
-  labelLocation="top"
-  [colCount]="2"
->
-  <dxi-item dataField="firstName"></dxi-item>
-  <dxi-item dataField="lastName"></dxi-item>
-  <dxi-item dataField="email"></dxi-item>
-  <dxi-item dataField="phone"></dxi-item>
-</dx-form>
-  `}
+  of={FormStories.LargeSize}
   language="html"
 />
 
@@ -85,21 +43,7 @@ import * as FormStories from "./me-form.stories";
 <Story of={FormStories.FloatingLabels} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'medium'"
-  [formData]="formData"
-  [labelMode]="floating"
-  labelLocation="top"
-  [colCount]="2"
->
-  <dxi-item dataField="firstName"></dxi-item>
-  <dxi-item dataField="lastName"></dxi-item>
-  <dxi-item dataField="email"></dxi-item>
-  <dxi-item dataField="phone"></dxi-item>
-</dx-form>
-  `}
+  of={FormStories.FloatingLabels}
   language="html"
 />
 
@@ -108,21 +52,7 @@ import * as FormStories from "./me-form.stories";
 <Story of={FormStories.LeftLabels} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'medium'"
-  [formData]="formData"
-  [labelMode]="floating"
-  [labelLocation]="left"
-  [colCount]="2"
->
-  <dxi-item dataField="firstName"></dxi-item>
-  <dxi-item dataField="lastName"></dxi-item>
-  <dxi-item dataField="email"></dxi-item>
-  <dxi-item dataField="phone"></dxi-item>
-</dx-form>
-  `}
+  of={FormStories.LeftLabels}
   language="html"
 />
 
@@ -131,21 +61,7 @@ import * as FormStories from "./me-form.stories";
 <Story of={FormStories.SingleColumn} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'medium'"
-  [formData]="formData"
-  [labelMode]="floating"
-  [labelLocation]="top"
-  [colCount]="1"
->
-  <dxi-item dataField="firstName"></dxi-item>
-  <dxi-item dataField="lastName"></dxi-item>
-  <dxi-item dataField="email"></dxi-item>
-  <dxi-item dataField="phone"></dxi-item>
-</dx-form>
-  `}
+  of={FormStories.SingleColumn}
   language="html"
 />
 
@@ -154,22 +70,16 @@ import * as FormStories from "./me-form.stories";
 <Story of={FormStories.ReadOnly} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'medium'"
-  [formData]="formData"
-  [labelMode]="floating"
-  [labelLocation]="top"
-  [colCount]="2"
-  [readOnly]="true"
->
-  <dxi-item dataField="firstName"></dxi-item>
-  <dxi-item dataField="lastName"></dxi-item>
-  <dxi-item dataField="email"></dxi-item>
-  <dxi-item dataField="phone"></dxi-item>
-</dx-form>
-  `}
+  of={FormStories.ReadOnly}
+  language="html"
+/>
+
+### Отключено
+
+<Story of={FormStories.Disabled} />
+
+<Source
+  of={FormStories.Disabled}
   language="html"
 />
 
@@ -178,22 +88,7 @@ import * as FormStories from "./me-form.stories";
 <Story of={FormStories.WithoutColon} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'medium'"
-  [formData]="formData"
-  [labelMode]="floating"
-  [labelLocation]="top"
-  [colCount]="2"
-  [showColonAfterLabel]="false"
->
-  <dxi-item dataField="firstName"></dxi-item>
-  <dxi-item dataField="lastName"></dxi-item>
-  <dxi-item dataField="email"></dxi-item>
-  <dxi-item dataField="phone"></dxi-item>
-</dx-form>
-  `}
+  of={FormStories.WithoutColon}
   language="html"
 />
 
@@ -202,29 +97,7 @@ import * as FormStories from "./me-form.stories";
 <Story of={FormStories.WithGrouping} />
 
 <Source
-  code={`
-<dx-form
-  meForm
-  [size]="'medium'"
-  [formData]="formData"
-  [labelMode]="floating"
-  [labelLocation]="top"
-  [colCount]="2"
->
-  <dxi-item itemType="group" caption="Personal Information">
-    <dxi-item dataField="firstName"></dxi-item>
-    <dxi-item dataField="lastName"></dxi-item>
-    <dxi-item dataField="email"></dxi-item>
-    <dxi-item dataField="phone"></dxi-item>
-  </dxi-item>
-  <dxi-item itemType="group" caption="Address Information">
-    <dxi-item dataField="address"></dxi-item>
-    <dxi-item dataField="city"></dxi-item>
-    <dxi-item dataField="state"></dxi-item>
-    <dxi-item dataField="zipCode"></dxi-item>
-  </dxi-item>
-</dx-form>
-  `}
+  of={FormStories.WithGrouping}
   language="html"
 />
 
@@ -238,7 +111,8 @@ import * as FormStories from "./me-form.stories";
 - `labelMode`: Определяет, как отображаются метки полей (снаружи, статично, плавающие или скрытые).
 - `labelLocation`: Устанавливает расположение меток (слева или сверху от полей).
 - `colCount`: Задает количество колонок в форме.
-- `readOnly`: Делает форму доступной только для чтения.
+- `readOnly`: Делает поля формы доступными только для чтения.
+- `disabled`: Отключает все поля формы.
 - `showColonAfterLabel`: Показывает или скрывает двоеточие после меток полей.
 
 ## Использование
@@ -247,6 +121,7 @@ import * as FormStories from "./me-form.stories";
 
 ```typescript
 import { MeFormDirective } from "path-to-me-form-directive";
+import { NgModule } from '@angular/core';
 
 @NgModule({
   // ...
@@ -254,4 +129,3 @@ import { MeFormDirective } from "path-to-me-form-directive";
   // ...
 })
 export class YourModule {}
-```

@@ -19,6 +19,7 @@ interface FormStoryArgs {
   labelLocation: 'left' | 'top';
   colCount: 'auto' | 1 | 2 | 3;
   readOnly: boolean;
+  disabled: boolean;
   showColonAfterLabel: boolean;
 }
 
@@ -62,6 +63,9 @@ export default {
     readOnly: {
       control: 'boolean',
     },
+    disabled: {
+      control: 'boolean',
+    },
     showColonAfterLabel: {
       control: 'boolean',
     },
@@ -95,21 +99,20 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
       [labelMode]="labelMode"
       [labelLocation]="labelLocation"
       [colCount]="colCount"
-      [readOnly]="readOnly"
       [showColonAfterLabel]="showColonAfterLabel"
     >
       <dxi-item dataField="firstName">
         <dxi-validation-rule type="required" message="First Name is required"></dxi-validation-rule>
         <dxo-label text="First Name"></dxo-label>
         <div *dxTemplate>
-          <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size"></dx-text-box>
+          <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
         </div>
       </dxi-item>
       <dxi-item dataField="lastName">
         <dxi-validation-rule type="required" message="Last Name is required"></dxi-validation-rule>
         <dxo-label text="Last Name"></dxo-label>
         <div *dxTemplate>
-          <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size"></dx-text-box>
+          <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
         </div>
       </dxi-item>
       <dxi-item dataField="email">
@@ -117,42 +120,42 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
         <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>
         <dxo-label text="Email"></dxo-label>
         <div *dxTemplate>
-          <dx-text-box meTextBox [(value)]="formData.email" [size]="size"></dx-text-box>
+          <dx-text-box meTextBox [(value)]="formData.email" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
         </div>
       </dxi-item>
       <dxi-item dataField="phone">
         <dxo-label text="Phone"></dxo-label>
         <div *dxTemplate>
-          <dx-text-box meTextBox [(value)]="formData.phone" [size]="size"></dx-text-box>
+          <dx-text-box meTextBox [(value)]="formData.phone" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
         </div>
       </dxi-item>
       <dxi-item dataField="gender">
         <dxo-label text="Gender"></dxo-label>
         <div *dxTemplate>
-          <dx-select-box meSelectBox [(value)]="formData.gender" [items]="genderOptions" [size]="size"></dx-select-box>
+          <dx-select-box meSelectBox [(value)]="formData.gender" [items]="genderOptions" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-select-box>
         </div>
       </dxi-item>
       <dxi-item dataField="birthDate">
         <dxo-label text="Birth Date"></dxo-label>
         <div *dxTemplate>
-          <dx-date-box meDateBox [(value)]="formData.birthDate" [size]="size"></dx-date-box>
+          <dx-date-box meDateBox [(value)]="formData.birthDate" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-date-box>
         </div>
       </dxi-item>
       <dxi-item dataField="occupation">
         <dxo-label text="Occupation"></dxo-label>
         <div *dxTemplate>
-          <dx-text-box meTextBox [(value)]="formData.occupation" [size]="size"></dx-text-box>
+          <dx-text-box meTextBox [(value)]="formData.occupation" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
         </div>
       </dxi-item>
       <dxi-item dataField="isSubscribed">
         <div *dxTemplate>
-          <dx-check-box meCheckBox [(value)]="formData.isSubscribed" text="Subscribe to newsletter" [size]="size"></dx-check-box>
+          <dx-check-box meCheckBox [(value)]="formData.isSubscribed" text="Subscribe to newsletter" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-check-box>
         </div>
       </dxi-item>
       <dxi-item dataField="country">
         <dxo-label text="Country"></dxo-label>
         <div *dxTemplate>
-          <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size"></dx-select-box>
+          <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-select-box>
         </div>
       </dxi-item>
     </dx-form>
@@ -167,6 +170,7 @@ export const Default: Story = {
     labelLocation: 'top',
     colCount: 2,
     readOnly: false,
+    disabled: false,
     showColonAfterLabel: true,
   },
 };
@@ -176,14 +180,6 @@ export const SmallSize: Story = {
   args: {
     ...Default.args,
     size: 'small',
-  },
-};
-
-export const MediumSize: Story = {
-  render: Template,
-  args: {
-    ...Default.args,
-    size: 'medium',
   },
 };
 
@@ -207,6 +203,7 @@ export const LeftLabels: Story = {
   render: Template,
   args: {
     ...Default.args,
+    labelMode: 'outside',
     labelLocation: 'left',
   },
 };
@@ -224,6 +221,14 @@ export const ReadOnly: Story = {
   args: {
     ...Default.args,
     readOnly: true,
+  },
+};
+
+export const Disabled: Story = {
+  render: Template,
+  args: {
+    ...Default.args,
+    disabled: true,
   },
 };
 
@@ -250,55 +255,54 @@ WithGrouping.decorators = [
         [labelMode]="labelMode"
         [labelLocation]="labelLocation"
         [colCount]="colCount"
-        [readOnly]="readOnly"
         [showColonAfterLabel]="showColonAfterLabel"
       >
         <dxi-item itemType="group" caption="Personal Information">
           <dxi-item dataField="firstName">
             <div *dxTemplate>
-              <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size"></dx-text-box>
+              <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
             </div>
           </dxi-item>
           <dxi-item dataField="lastName">
             <div *dxTemplate>
-              <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size"></dx-text-box>
+              <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
             </div>
           </dxi-item>
           <dxi-item dataField="email">
             <div *dxTemplate>
-              <dx-text-box meTextBox [(value)]="formData.email" [size]="size"></dx-text-box>
+              <dx-text-box meTextBox [(value)]="formData.email" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
             </div>
           </dxi-item>
           <dxi-item dataField="phone">
             <div *dxTemplate>
-              <dx-text-box meTextBox [(value)]="formData.phone" [size]="size"></dx-text-box>
+              <dx-text-box meTextBox [(value)]="formData.phone" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
             </div>
           </dxi-item>
           <dxi-item dataField="gender">
             <div *dxTemplate>
-              <dx-select-box meSelectBox [(value)]="formData.gender" [items]="genderOptions" [size]="size"></dx-select-box>
+              <dx-select-box meSelectBox [(value)]="formData.gender" [items]="genderOptions" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-select-box>
             </div>
           </dxi-item>
           <dxi-item dataField="birthDate">
             <div *dxTemplate>
-              <dx-date-box meDateBox [(value)]="formData.birthDate" [size]="size"></dx-date-box>
+              <dx-date-box meDateBox [(value)]="formData.birthDate" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-date-box>
             </div>
           </dxi-item>
         </dxi-item>
         <dxi-item itemType="group" caption="Additional Information">
           <dxi-item dataField="occupation">
             <div *dxTemplate>
-              <dx-text-box meTextBox [(value)]="formData.occupation" [size]="size"></dx-text-box>
+              <dx-text-box meTextBox [(value)]="formData.occupation" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
             </div>
           </dxi-item>
           <dxi-item dataField="isSubscribed">
             <div *dxTemplate>
-              <dx-check-box meCheckBox [(value)]="formData.isSubscribed" text="Subscribe to newsletter" [size]="size"></dx-check-box>
+              <dx-check-box meCheckBox [(value)]="formData.isSubscribed" text="Subscribe to newsletter" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-check-box>
             </div>
           </dxi-item>
           <dxi-item dataField="country">
             <div *dxTemplate>
-              <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size"></dx-select-box>
+              <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-select-box>
             </div>
           </dxi-item>
         </dxi-item>
@@ -306,11 +310,3 @@ WithGrouping.decorators = [
     `,
   }),
 ];
-
-export const VariousInputTypes: Story = {
-  render: Template,
-  args: {
-    ...Default.args,
-    colCount: 2,
-  },
-};
