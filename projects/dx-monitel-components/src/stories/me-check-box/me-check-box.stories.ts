@@ -97,7 +97,7 @@ export const WithLabelAndIcon: Story = {
 		<label meLabel labelDirection="row" width="300px">
     Label
     <dx-check-box meCheckBox ${argsToTemplate(args)}></dx-check-box>
-		<me-icon icon="account_circle" size="medium"></me-icon>
+		<me-icon icon="account_circle" size="medium" color="var(--Controls-Content-In-Controls-Main-Default)"></me-icon>
 		<span>Text</span>
 </label>
 		
