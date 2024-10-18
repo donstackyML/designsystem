@@ -15,6 +15,7 @@
   --me-icon-remove: "";
   --me-icon-search: "";
   --me-icon-sort-up: "";
+  --me-icon-more-vert: "";
 }
 
 :root {
@@ -13948,21 +13949,25 @@
   margin: 4px 12px;
 }
 
-.me-toolbar-medium.dx-toolbar .dx-toolbar-menu-container .dx-button .dx-button-content {
-  padding: 6px;
-}
-
 .me-toolbar.dx-toolbar.dx-widget {
   background: none;
-}
-.me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container {
-  height: 48px;
 }
 .me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container .dx-toolbar-before {
   left: 4px;
 }
+.me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container .dx-toolbar-center {
+  border-spacing: inherit;
+}
 .me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container .dx-toolbar-after {
   right: 4px;
+}
+.me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container .dx-toolbar-after .dx-button-content .dx-icon.dx-icon-overflow {
+  background: none;
+  align-content: center;
+  font-family: var(--me-icon-family);
+}
+.me-toolbar.dx-toolbar.dx-widget .dx-toolbar-items-container .dx-toolbar-after .dx-button-content .dx-icon.dx-icon-overflow::before {
+  content: var(--me-icon-more-vert);
 }
 .me-toolbar.dx-toolbar.dx-widget .dx-toolbar-menu-container {
   padding-left: 0;
@@ -13977,19 +13982,27 @@
   content: none;
 }
 
-.me-toolbar.me-toolbar-small.dx-toolbar .dx-toolbar-items-container {
+.me-toolbar.me-toolbar-small.dx-toolbar:not(.dx-toolbar-multiline) .dx-toolbar-items-container {
   height: 44px;
 }
 .me-toolbar.me-toolbar-small.dx-toolbar .dx-button .dx-button-content {
   padding: 4px;
 }
 
-.me-toolbar.me-toolbar-large.dx-toolbar .dx-toolbar-items-container {
+.me-toolbar-medium.dx-toolbar:not(.dx-toolbar-multiline) .dx-toolbar-items-container {
+  height: 48px;
+}
+.me-toolbar-medium.dx-toolbar .dx-toolbar-menu-container .dx-button .dx-button-content {
+  padding: 6px;
+}
+
+.me-toolbar.me-toolbar-large.dx-toolbar:not(.dx-toolbar-multiline) .dx-toolbar-items-container {
   height: 56px;
 }
 .me-toolbar.me-toolbar-large.dx-toolbar .dx-button .dx-icon.dx-icon-overflow {
   width: 24px;
   height: 24px;
+  font-size: 22px;
 }
 
 .me-toolbar.dx-toolbar.me-toolbar-background {
@@ -14047,7 +14060,7 @@
   padding: 0;
 }
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdownmenu-popup-wrapper.dx-dropdownmenu-popup .dx-overlay-content .dx-popup-content.dx-popup-content-scrollable.dx-dropdownmenu-list.dx-list.dx-widget.dx-collection .dx-scrollview-content {
-  padding: 8px;
+  padding: 8px 0;
   display: flex;
   flex-direction: column;
 }
