@@ -200,7 +200,9 @@
   --Icon-Default: #18181a;
   --Background-Canvas: #ecedf4;
   --Icon-Secondary: #808084;
-  --Text-Secondary: #808084;
+  --Text-Gray: #808084;
+  --Text-Gray-Light: #c7c7ca;
+  --Text-Gray-Dark: #717175;
   --Dividers-Borders-Long: #dfe0ed;
   --Background-Accent-in-the-content: #ffffff;
   --Background-Error: #ffe0e2;
@@ -8384,249 +8386,321 @@
   margin: 0;
 }
 
-.me-textbox.dx-texteditor.dx-textbox {
+.me-textbox.dx-texteditor.dx-textbox,
+.me-form .dx-texteditor.dx-textbox {
   border-radius: 3px;
   background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-state-hover {
+.me-textbox.dx-texteditor.dx-textbox.dx-state-hover,
+.me-form .dx-texteditor.dx-textbox.dx-state-hover {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid) {
+.me-textbox.dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid),
+.me-form .dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid) {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
   border-color: var(--Controls-Content-In-Controls-Accent-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid) .dx-label span {
+.me-textbox.dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid) .dx-label span,
+.me-form .dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid) .dx-label span {
   color: var(--Controls-Content-In-Controls-Accent-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox:focus-within {
+.me-textbox.dx-texteditor.dx-textbox:focus-within,
+.me-form .dx-texteditor.dx-textbox:focus-within {
   outline: 2px solid #7eb9ff;
   outline-offset: 2px;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-invalid .dx-label span {
+.me-textbox.dx-texteditor.dx-textbox.dx-invalid .dx-label span,
+.me-form .dx-texteditor.dx-textbox.dx-invalid .dx-label span {
   color: var(--Controls-Content-In-Controls-Danger-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-invalid .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
+.me-textbox.dx-texteditor.dx-textbox.dx-invalid .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key,
+.me-form .dx-texteditor.dx-textbox.dx-invalid .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
   color: var(--Controls-Content-In-Controls-Danger-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
+.me-textbox.dx-texteditor.dx-textbox.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key,
+.me-form .dx-texteditor.dx-textbox.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
   color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container {
   padding-inline: 8px;
   gap: 16px;
   align-items: center;
 }
 .me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container *,
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container *::before {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container *::before,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container *,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container *::before {
   padding: 0;
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
   font-weight: var(--me-regular-font-weight);
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::-moz-placeholder {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::-moz-placeholder, .me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::-moz-placeholder {
   color: transparent;
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::placeholder {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::placeholder,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::placeholder {
   color: transparent;
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   font-weight: var(--me-regular-font-weight);
   color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container {
   height: 20px;
   width: 20px;
   color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
   margin: 0;
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
   width: 12px;
   height: 12px;
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area {
   width: 20px;
   height: 20px;
   -moz-text-align-last: center;
        text-align-last: center;
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
   font-size: 19px;
   line-height: 20px;
   font-family: var(--me-icon-family);
   color: var(--Controls-Content-In-Controls-Main-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key::before {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key::before,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key::before {
   content: var(--me-icon-lock);
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-label {
   align-items: center;
 }
-.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-label .dx-label span {
+.me-textbox.dx-texteditor.dx-textbox .dx-texteditor-label .dx-label span,
+.me-form .dx-texteditor.dx-textbox .dx-texteditor-label .dx-label span {
   font-size: 12px;
   font-weight: var(--me-regular-font-weight);
   line-height: 16px;
   text-align: left;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small, .me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small, .me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium {
   margin-top: 20px;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small.dx-searchbox .dx-texteditor-label, .me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium.dx-searchbox .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small.dx-searchbox .dx-texteditor-label, .me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium.dx-searchbox .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small.dx-searchbox .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium.dx-searchbox .dx-texteditor-label {
   padding: 0;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small .dx-texteditor-label, .me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small .dx-texteditor-label, .me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-small .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-medium .dx-texteditor-label {
   height: 16px;
   margin-top: 0;
   top: -20px;
   color: var(--Controls-Content-In-Controls-Main-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large {
   margin-top: 20px;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large.dx-searchbox .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large.dx-searchbox .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large.dx-searchbox .dx-texteditor-label {
   padding: 0;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-label-outside.dx-texteditor-with-label.me-textbox-large .dx-texteditor-label {
   height: 20px;
   margin-top: 0;
   top: -24px;
   color: var(--Controls-Content-In-Controls-Main-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-with-floating-label {
   margin-top: 20px;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-with-floating-label .dx-texteditor-label {
   padding: 0;
   align-items: center;
   height: 16px;
   margin-top: -8.5px !important;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label, .me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label, .me-textbox.dx-texteditor.dx-textbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label {
   top: -48%;
   left: -9px;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label, .me-textbox.dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label, .me-textbox.dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label {
   padding: 0;
 }
-.me-textbox.dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label .dx-label-before, .me-textbox.dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label .dx-label-before {
+.me-textbox.dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label .dx-label-before, .me-textbox.dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label .dx-label-before,
+.me-form .dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label .dx-label-before,
+.me-form .dx-texteditor.dx-textbox.dx-editor-filled.dx-searchbox.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label .dx-label-before {
   width: 0 !important;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container,
+.me-form .dx-texteditor.dx-textbox.me-textbox-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
   padding-block: 17px 3px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container,
+.me-form .dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container {
   padding-block: 4px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
+.me-form .dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
   font-size: 13px;
   line-height: 16px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder,
+.me-form .dx-texteditor.dx-textbox.me-textbox-small .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   font-size: 13px;
   line-height: 16px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-icon.dx-icon-search {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-icon.dx-icon-search,
+.me-form .dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-icon.dx-icon-search {
   align-content: center;
   width: 20px;
   line-height: 14px;
   font-size: 14px;
 }
 .me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-texteditor-input,
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-placeholder {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-placeholder,
+.me-form .dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-texteditor-input,
+.me-form .dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-placeholder {
   padding: 0 0 0 24px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.me-textbox-small.dx-searchbox .dx-texteditor-label {
   padding: 0 0 0 12px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container,
+.me-form .dx-texteditor.dx-textbox.me-textbox-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
   padding-block: 17px 3px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container,
+.me-form .dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container {
   padding-block: 6px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
+.me-form .dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
   font-size: 14px;
   line-height: 20px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder,
+.me-form .dx-texteditor.dx-textbox.me-textbox-medium .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   font-size: 14px;
   line-height: 20px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-icon.dx-icon-search {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-icon.dx-icon-search,
+.me-form .dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-icon.dx-icon-search {
   align-content: center;
   width: 20px;
   line-height: 14px;
   font-size: 14px;
 }
 .me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-texteditor-input,
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-placeholder {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-placeholder,
+.me-form .dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-texteditor-input,
+.me-form .dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-placeholder {
   padding: 0 0 0 24px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.me-textbox-medium.dx-searchbox .dx-texteditor-label {
   padding: 0 0 0 12px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large {
   border-radius: 4px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
   padding-block: 22px 5px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container {
   padding-inline: 12px;
   padding-block: 8px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
   font-size: 16px;
   line-height: 20px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   font-size: 16px;
   line-height: 20px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container {
   height: 24px;
   width: 24px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
   width: 24px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
   width: 16px;
   height: 16px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area {
   width: 24px;
   height: 24px;
   -moz-text-align-last: center;
        text-align-last: center;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-lock-button-area .dx-icon.dx-icon-key {
   font-size: 23px;
   line-height: 24px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-label .dx-label span {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-label .dx-label span,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large .dx-texteditor-label .dx-label span {
   font-size: 14px;
   line-height: 20px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-label-outside {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-label-outside,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-label-outside {
   margin-top: 24px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-label-outside .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-label-outside .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large.dx-texteditor-label-outside .dx-texteditor-label {
   height: 20px;
   top: -24px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-icon.dx-icon-search {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-icon.dx-icon-search,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-icon.dx-icon-search {
   align-content: center;
   width: 24px;
   line-height: 18px;
   font-size: 18px;
 }
 .me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-texteditor-input,
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-placeholder {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-placeholder,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-texteditor-input,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-placeholder {
   padding: 0 0 0 28px;
 }
-.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-texteditor-label {
+.me-textbox.dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-texteditor-label,
+.me-form .dx-texteditor.dx-textbox.me-textbox-large.dx-searchbox .dx-texteditor-label {
   padding: 0 0 0 16px;
 }
 
