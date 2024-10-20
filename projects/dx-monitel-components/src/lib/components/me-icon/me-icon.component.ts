@@ -27,7 +27,7 @@ import { NgStyle } from '@angular/common';
 export class MeIconComponent {
   @Input() icon: string = 'home';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() color: string = '#000000';
+  @Input() color!: string;
 
   getSize(): string {
     switch (this.size) {

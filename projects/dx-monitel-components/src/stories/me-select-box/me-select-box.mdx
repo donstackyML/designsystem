@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
 import * as selectBoxStories from "./me-select-box.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
 
@@ -8,12 +8,12 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Директива meSelectBox, meLabel
 
-Применение директивы <code>meSelectBox</code> к элементу <code>dx-select-box</code>
-приводит его размеры к значению <code>size=medium (32)</code> из дизайн-системы, задает по умолчанию <code>stylingMode=filled</code> и предоставляет доступ к другим свойствам.
+Применение директивы <code>meSelectBox</code> к элементу <code>dx-select-box</code> приводит его размеры
+к значению <code>size=medium (32)</code> из дизайн-системы, задает по-умолчанию <code>stylingMode=filled</code> и предоставляет доступ к другим свойствам.
 
 [Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/)
 
-<Canvas of={selectBoxStories.Default} />
+<Story of={selectBoxStories.Default} />
 
 <Controls of={selectBoxStories.Default} />
 
@@ -25,46 +25,53 @@ import { Figma } from "@storybook/addon-designs/blocks";
   height="50%"
   collapsable
   defaultCollapsed
-  url="https://www.figma.com/file/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
 />
 
-## Примеры использования:
+{/* ## Примеры использования: */}
 
-- [определение положения лейбла снаружи SelectBox](#определение-положения-лейбла-снаружи-selectbox)
-- [положение лейбла сверху](#положение-лейбла-сверху)
-- [положение лейбла слева](#положение-лейбла-слева)
+{/* - [определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля) */}
+{/* - [положение лейбла сверху](#положение-лейбла-сверху) */}
+{/* - [положение лейбла слева](#положение-лейбла-слева) */}
 
-## Определение положения лейбла снаружи SelectBox
+## Определение положения лейбла снаружи текстового поля
 
-Применение директивы <code>meLabel</code> позволяет определить положение лейбла снаружи SelectBox (сверху или слева).
+Применение директивы <code>meLabel</code> позволяет определить положение лейбла снаружи текстового поля (сверху или слева).
 
-<code>labelDirection</code> определяет положение лейбла снаружи SelectBox (сверху
+<code>labelDirection</code> определяет положение лейбла снаружи текстового поля (сверху
 или слева).
 
 ### Положение лейбла сверху
 
-Для положения `label` сверху используйте тэг <code>label</code> с директивой <code>meLabel</code> и установите параметр <code>labelDirection="column"</code>. Также установите необходимые стили выравнивания как <code>align-items: flex-start</code>.
+<Story of={selectBoxStories.WithLabelColumn} />
 
-<Canvas of={selectBoxStories.WithLabelColumn} />
-
-<Source of={selectBoxStories.WithLabelColumn} dark />
+<Source
+  code={`<label meLabel labelDirection="column">
+    Label
+    <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
+</label>`}
+  dark
+/>
 
 ### Положение лейбла слева
 
-Для положения `label` слева установите параметр <code>labelDirection="row"</code>.
+  <Story of={selectBoxStories.WithLabelRow} />
 
-<Canvas of={selectBoxStories.WithLabelRow} />
+  <Source
+    code={`<label meLabel labelDirection="row" width="250px">
+    Label
+    <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
+    </label>`}
+      dark
+    />
 
-<Source of={selectBoxStories.WithLabelRow} dark />
+    <code>width</code> определяет размер текстового поля вместе с лейблом (используется
+    в теге <code>label</code> для расположения <code>labelPosition="left"</code>)
 
-<code>width</code> определяет размер SelectBox вместе с лейблом (используется в теге <code>
-  label
-</code> для расположения <code>labelPosition="left"</code>)
-
-<style>
+    <style>
   {`
-    h2 {
-      border-bottom: none !important;
+      h2 {
+        border-bottom: none !important;
     }
-  `}
+`}
 </style>
