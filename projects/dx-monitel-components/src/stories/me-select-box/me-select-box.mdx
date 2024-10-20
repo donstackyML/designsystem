@@ -1,59 +1,69 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import { Meta, Controls, Source, Story } from "@storybook/addon-docs";
 import * as selectBoxStories from "./me-select-box.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
 
-<Meta name="SelectBox Documentation" of={selectBoxStories} />
+<Meta
+  title="Components/SelectBox"
+  component={selectBoxStories.Default}
+  of={selectBoxStories}
+/>
 
 # SelectBox
 
-## Директива meSelectBox, meLabel
+## Директивы meSelectBox и meLabel
 
-Применение директивы <code>meSelectBox</code> к элементу <code>dx-select-box</code> приводит его размеры
-к значению <code>size=medium (32)</code> из дизайн-системы, задает по-умолчанию <code>stylingMode=filled</code> и предоставляет доступ к другим свойствам.
+Директива `meSelectBox`, применяемая к компоненту `<dx-select-box>`, стилизует его в соответствии с дизайн-системой, устанавливает размер по умолчанию (`size=medium (32)`), задает `stylingMode=filled` и предоставляет доступ к дополнительным свойствам через директиву `meLabel`.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/)
+[Документация по компоненту DevExtreme SelectBox](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/)
 
 <Story of={selectBoxStories.Default} />
 
 <Controls of={selectBoxStories.Default} />
 
-<Source of={selectBoxStories.Default} dark />
+<Source of={selectBoxStories.Default} dark language="html" />
 
-## Дизайн
+## Примеры использования
 
-<Figma
-  height="50%"
-  collapsable
-  defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
-/>
+- [С дефолтными настройками](#с-дефолтными-настройками)
+- [Определение положения лейбла снаружи](#определение-положения-лейбла-снаружи)
+- [Положение лейбла сверху](#положение-лейбла-сверху)
+- [Положение лейбла слева](#положение-лейбла-слева)
+- [Отключенное состояние](#отключенное-состояние)
+- [Только для чтения](#только-для-чтения)
+- [С пользовательским плейсхолдером](#с-пользовательским-плейсхолдером)
+- [С прокруткой при наведении](#с-прокруткой-при-наведении)
+- [В невалидном состоянии](#в-невалидном-состоянии)
 
-{/* ## Примеры использования: */}
+## С дефолтными настройками
 
-{/* - [определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля) */}
-{/* - [положение лейбла сверху](#положение-лейбла-сверху) */}
-{/* - [положение лейбла слева](#положение-лейбла-слева) */}
+Компонент `<dx-select-box>` с директивой `meSelectBox` использует стандартные настройки, заданные в истории `Default`.
 
-## Определение положения лейбла снаружи текстового поля
+<Story of={selectBoxStories.Default} />
 
-Применение директивы <code>meLabel</code> позволяет определить положение лейбла снаружи текстового поля (сверху или слева).
+<Source of={selectBoxStories.Default} dark language="html" />
 
-<code>labelDirection</code> определяет положение лейбла снаружи текстового поля (сверху
-или слева).
+## Определение положения лейбла снаружи
+
+Применение директивы `meLabel` позволяет определить положение лейбла снаружи поля выбора (сверху или слева).
 
 ### Положение лейбла сверху
+
+Используйте `labelDirection="column"` для расположения лейбла над полем выбора.
 
 <Story of={selectBoxStories.WithLabelColumn} />
 
 <Source
   code={`<label meLabel labelDirection="column">
-    Label
-    <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
+  Label
+  <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
 </label>`}
   dark
+  language="html"
 />
 
 ### Положение лейбла слева
+
+Используйте `labelDirection="row"` и задайте ширину для расположения лейбла слева от поля выбора.
 
   <Story of={selectBoxStories.WithLabelRow} />
 
@@ -63,15 +73,138 @@ import { Figma } from "@storybook/addon-designs/blocks";
     <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
     </label>`}
       dark
+      language="html"
     />
 
-    <code>width</code> определяет размер текстового поля вместе с лейблом (используется
-    в теге <code>label</code> для расположения <code>labelPosition="left"</code>)
+    `width` определяет размер текстового поля вместе с лейблом (используется в теге `label` для расположения `labelDirection="row"`).
 
-    <style>
-  {`
-      h2 {
-        border-bottom: none !important;
-    }
+    ## Отключенное состояние
+
+    Компонент `<dx-select-box>` можно отключить, установив свойство `disabled="true"`.
+
+    <Story of={selectBoxStories.Disabled} />
+
+<Source
+  code={`<dx-select-box meSelectBox [dataSource]="dataSource" disabled="true"></dx-select-box>`}
+  dark
+  language="html"
+/>
+
+## Только для чтения
+
+Сделайте компонент только для чтения, установив свойство `readOnly="true"`.
+
+<Story of={selectBoxStories.ReadOnly} />
+
+<Source
+  code={`<dx-select-box meSelectBox [dataSource]="dataSource" readOnly="true"></dx-select-box>`}
+  dark
+  language="html"
+/>
+
+## С пользовательским плейсхолдером
+
+Добавьте плейсхолдер для отображения подсказки в поле выбора.
+
+<Story of={selectBoxStories.WithCustomPlaceholder} />
+
+<Source
+  code={`<dx-select-box meSelectBox [dataSource]="dataSource" placeholder="Выберите продукт"></dx-select-box>`}
+  dark
+  language="html"
+/>
+
+## С прокруткой при наведении
+
+Определите отображение скролла только при наведении, установив `showScrollbar="onHover"`.
+
+<Story of={selectBoxStories.WithScrollbarOnHover} />
+
+<Source
+  code={`<dx-select-box meSelectBox [dataSource]="dataSource" showScrollbar="onHover"></dx-select-box>`}
+  dark
+  language="html"
+/>
+
+## В невалидном состоянии
+
+Отобразите компонент в невалидном состоянии, установив `isValid="false"`.
+
+<Story of={selectBoxStories.InvalidState} />
+
+<Source
+  code={`<dx-select-box meSelectBox [dataSource]="dataSource" [isValid]="false"></dx-select-box>`}
+  dark
+  language="html"
+/>
+
+## Свойства
+
+<Controls
+  of={selectBoxStories.Default}
+  include={[
+    "disabled",
+    "isValid",
+    "label",
+    "labelMode",
+    "placeholder",
+    "readOnly",
+    "showClearButton",
+    "size",
+    "dataSource",
+    "showScrollbar",
+  ]}
+/>
+
+## Пример использования
+
+Ниже приведен пример использования компонента `<dx-select-box>` с директивами `meSelectBox` и `meLabel`, а также различными свойствами.
+
+  <Source
+    code={`
+<template>
+  <label meLabel labelDirection="column">
+    Выберите продукт
+    <dx-select-box meSelectBox
+      [dataSource]="dataSource"
+      size="large"
+      placeholder="Выберите опцию"
+      showScrollbar="onHover"
+      [isValid]="false"
+    ></dx-select-box>
+  </label>
+</template>
+
+    <script>
+    export default {
+      data() {
+        return {
+          dataSource: ['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50'],
+        };
+      },
+    };
+    </script>
 `}
-</style>
+    dark
+    language="html"
+  />
+
+  ## Дополнительная информация
+
+  При использовании компонента `<dx-select-box>` с директивой `meSelectBox` обратите внимание на следующие моменты:
+
+  - Свойство `size` может принимать значения `small`, `medium` или `large`, влияя на размер поля выбора.
+  - Свойство `showScrollbar` определяет отображение скролла — `always` (постоянно) или `onHover` (при наведении).
+  - Свойство `isValid` позволяет отображать компонент в валидном или невалидном состоянии.
+  - Директива `meLabel` предоставляет гибкие возможности для расположения и стилизации лейбла относительно поля выбора.
+
+  ## Дизайн-система и Figma
+
+  Более подробную информацию о дизайне компонента можно найти в Figma:
+
+  <Figma
+    height="50%"
+    collapsable
+    defaultCollapsed
+    url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
+  />
