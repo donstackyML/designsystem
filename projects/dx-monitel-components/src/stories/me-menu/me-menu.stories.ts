@@ -4,7 +4,7 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { DxMenuComponent } from 'devextreme-angular';
+import {DxMenuComponent, DxMenuModule} from 'devextreme-angular';
 import { MeIconStoreService } from 'src/app/service/icon-store.service';
 import { MeMenuDirective } from '../../public-api';
 
@@ -473,7 +473,8 @@ export default {
   title: 'Components/Menu',
   decorators: [
     moduleMetadata({
-      declarations: [MeMenuDirective, DxMenuComponent],
+      imports: [DxMenuModule],
+      declarations: [MeMenuDirective],
     }),
   ],
   argTypes: {
