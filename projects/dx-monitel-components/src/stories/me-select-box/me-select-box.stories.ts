@@ -9,7 +9,6 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 import { MeLabelDirective, MeSelectBoxDirective } from '../../public-api';
 
 const data = ['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50'];
-const largeData = Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`);
 
 export default {
   title: 'Components/SelectBox',
@@ -23,66 +22,100 @@ export default {
     }),
   ],
   argTypes: {
-    dataSource: {
-      control: 'object',
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Определяет состояние компонента.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    isValid: {
+      control: { type: 'boolean' },
+      description: 'Определяет валидность компонента.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
+    label: {
+      control: 'text',
       description:
-        'Задает или получает массив данных, отображаемых компонентом.',
+        'Указывает текстовую строку, используемую для аннотации значения поля ввода.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    labelMode: {
+      control: 'select',
+      options: ['static', 'floating', 'hidden', 'outside'],
+      description: 'Определяет положение лейбла текстового поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'static' },
+      },
     },
     placeholder: {
       control: 'text',
       description:
-        'Задает текст, отображаемый, когда компонент не имеет значения.',
-    },
-    searchEnabled: {
-      control: 'boolean',
-      description: 'Определяет, разрешен ли поиск в списке элементов.',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Определяет, отключен ли компонент.',
+        'Определяет подсказку, которая отображается в текстовом поле.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     readOnly: {
-      control: 'boolean',
-      description: 'Определяет, доступен ли компонент только для чтения.',
-    },
-    width: {
-      control: 'text',
-      description: 'Задает ширину компонента.',
-    },
-    label: {
-      control: 'text',
-      description: 'Задает текст метки для компонента.',
+      control: { type: 'boolean' },
+      description: 'Определяет состояние только для чтения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
     },
     size: {
-      control: { type: 'select' },
+      control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Задает размер компонента.',
+      description: 'Принимает размер текстового поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
     },
-    isValid: {
-      control: 'boolean',
-      description: 'Определяет, является ли текущее значение допустимым.',
+    dataSource: {
+      control: 'array',
+      description: 'Источник данных для элементов выпадающего списка.',
+      table: {
+        type: { summary: 'string[]' },
+        defaultValue: { summary: '[]' },
+      },
     },
-    showClearButton: {
-      control: 'boolean',
-      description: 'Показывает или скрывает кнопку очистки.',
+    showScrollbar: {
+      control: 'select',
+      options: ['always', 'onHover'],
+      description:
+        'Определяет отображение скролла - при наведении или постоянно. По умолчанию скролл отображается при переполнении контента постоянно.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'always' },
+      },
     },
   },
   args: {
-    stylingMode: 'filled',
     size: 'medium',
-    labelMode: 'hidden',
-    label: 'Label*',
-    placeholder: 'Placeholder',
-    readOnly: false,
+    showScrollbar: 'always',
     disabled: false,
     isValid: true,
-    showClearButton: true,
+    labelMode: 'static',
+    label: '',
+    placeholder: '',
+    readOnly: false,
+    dataSource: data,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-select-box meSelectBox ${argsToTemplate(
-      args
-    )}></dx-select-box>`,
+    template: `<dx-select-box meSelectBox ${argsToTemplate(args)}>
+    </dx-select-box>`,
   }),
 } as Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
@@ -96,6 +129,36 @@ export const Default: Story = {
   },
 };
 
+export const WithLabelColumn: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <label meLabel
+        labelDirection="column"
+        style="align-items: flex-start;"
+      >
+        Label
+        <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+      </label>
+    `,
+  }),
+};
+
+export const WithLabelRow: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <label meLabel
+        labelDirection="row"
+        style="width: 250px;"
+      >
+        Label
+        <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+      </label>
+    `,
+  }),
+};
+
 export const Disabled: Story = {
   args: {
     dataSource: data,
@@ -106,67 +169,27 @@ export const Disabled: Story = {
 export const ReadOnly: Story = {
   args: {
     dataSource: data,
-    value: 'HD Video Player',
     readOnly: true,
   },
 };
 
-export const Invalid: Story = {
+export const WithCustomPlaceholder: Story = {
+  args: {
+    dataSource: data,
+    placeholder: 'Выберите продукт',
+  },
+};
+
+export const WithScrollbarOnHover: Story = {
+  args: {
+    dataSource: data,
+    showScrollbar: 'onHover',
+  },
+};
+
+export const InvalidState: Story = {
   args: {
     dataSource: data,
     isValid: false,
-  },
-};
-
-export const WithClearButton: Story = {
-  args: {
-    dataSource: data,
-    showClearButton: true,
-    value: 'HD Video Player',
-  },
-};
-
-export const SmallSize: Story = {
-  args: {
-    dataSource: data,
-    size: 'small',
-  },
-};
-
-export const LargeSize: Story = {
-  args: {
-    dataSource: data,
-    size: 'large',
-  },
-};
-
-export const WithLabelColumn: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <label meLabel
-      labelDirection="column"
-      style="align-items: flex-start;"
-      >Label
-      <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
-      </label>
-    `,
-  }),
-  args: {
-    dataSource: data,
-  },
-};
-
-export const WithLabelRow: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <label meLabel labelDirection="row" width="250px">Label
-      <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
-      </label>
-    `,
-  }),
-  args: {
-    dataSource: data,
   },
 };

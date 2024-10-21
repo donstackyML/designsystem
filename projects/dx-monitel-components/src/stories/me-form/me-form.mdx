@@ -1,102 +1,394 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
-import * as FormStories from "./me-form.stories";
+import { Meta, Controls, Source, Story } from "@storybook/addon-docs";
+import * as formStories from "./me-form.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
 
-<Meta title="Components/Form" of={FormStories} />
+<Meta
+  title="Components/Form(RC)"
+  component={formStories.Default}
+  of={formStories}
+/>
 
-# Form
+# Form(RC)
 
-Компонент `Form` предоставляет гибкий и настраиваемый интерфейс для создания форм в вашем приложении.
+## Директива `meForm` и сопутствующие директивы
 
-<Story of={FormStories.Default} />
+Директива `meForm`, применяемая к компоненту `<dx-form>`, стилизует его в соответствии с дизайн-системой, устанавливает размер по умолчанию (`size=medium`), определяет режим отображения меток (`labelMode`), размещение меток (`labelLocation`) и предоставляет доступ к дополнительным свойствам для гибкой настройки внешнего вида формы.
+
+Сопутствующие директивы:
+
+- `meTextBox`: стилизует `<dx-text-box>`.
+- `meSelectBox`: стилизует `<dx-select-box>`.
+- `meCheckBox`: стилизует `<dx-check-box>`.
+
+[Документация по компоненту DevExtreme Form](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxForm/)
+
+<Story of={formStories.Default} />
+
+<Controls of={formStories.Default} />
+
+<Source of={formStories.Default} dark language="html" />
 
 ## Примеры использования
 
-### Маленький размер
+- [Дефолтная конфигурация](#дефолтная-конфигурация)
+- [Маленький размер](#маленький-размер)
+- [Большой размер](#большой-размер)
+- [Плавающие метки](#плавающие-метки)
+- [Метки слева](#метки-слева)
+- [Одиночная колонка](#одиночная-колонка)
+- [Только для чтения](#только-для-чтения)
+- [Отключенное состояние](#отключенное-состояние)
+- [Без двоеточия после метки](#без-двоеточия-после-метки)
+- [Группировка элементов](#группировка-элементов)
 
-<Story of={FormStories.SmallSize} />
+## Дефолтная конфигурация
 
-<Source of={FormStories.SmallSize} language="html" />
+Форма с настройками по умолчанию, заданными в истории `Default`.
 
-### Средний размер
+<Story of={formStories.Default} />
 
-<Story of={FormStories.Default} />
+<Source of={formStories.Default} dark language="html" />
 
-<Source of={FormStories.Default} language="html" />
+## Маленький размер
 
-### Большой размер
+Изменение размера формы на маленький с помощью свойства `size="small"`.
 
-<Story of={FormStories.LargeSize} />
+<Story of={formStories.SmallSize} />
 
-<Source of={FormStories.LargeSize} language="html" />
+<Source
+  code={`
+<dx-form
+  meForm
+  [size]="size"
+  [formData]="formData"
+  [labelMode]="labelMode"
+  [labelLocation]="labelLocation"
+  [colCount]="colCount"
+  [showColonAfterLabel]="showColonAfterLabel"
+>
+  <!-- Поля формы -->
+</dx-form>
+`}
+  dark
+  language="html"
+/>
 
-### Плавающие метки
+## Большой размер
 
-<Story of={FormStories.FloatingLabels} />
+Увеличение размера формы с помощью свойства `size="large"`.
 
-<Source of={FormStories.FloatingLabels} language="html" />
+<Story of={formStories.LargeSize} />
 
-### Метки слева
+<Source
+  code={`
+<dx-form
+  meForm
+  [size]="size"
+  [formData]="formData"
+  [labelMode]="labelMode"
+  [labelLocation]="labelLocation"
+  [colCount]="colCount"
+  [showColonAfterLabel]="showColonAfterLabel"
+>
+  <!-- Поля формы -->
+</dx-form>
+`}
+  dark
+  language="html"
+/>
 
-<Story of={FormStories.LeftLabels} />
+## Плавающие метки
 
-<Source of={FormStories.LeftLabels} language="html" />
+Использование плавающих меток с помощью свойства `labelMode="floating"`.
 
-### Одна колонка
+<Story of={formStories.FloatingLabels} />
 
-<Story of={FormStories.SingleColumn} />
+<Source
+  code={`
+<dx-form
+  meForm
+  [size]="size"
+  [formData]="formData"
+  [labelMode]="labelMode"
+  [labelLocation]="labelLocation"
+  [colCount]="colCount"
+  [showColonAfterLabel]="showColonAfterLabel"
+>
+  <!-- Поля формы -->
+</dx-form>
+`}
+  dark
+  language="html"
+/>
 
-<Source of={FormStories.SingleColumn} language="html" />
+## Метки слева
 
-### Только для чтения
+Размещение меток слева от полей формы с помощью свойств `labelMode="outside"` и `labelLocation="left"`.
 
-<Story of={FormStories.ReadOnly} />
+<Story of={formStories.LeftLabels} />
 
-<Source of={FormStories.ReadOnly} language="html" />
+<Source
+  code={`
+<dx-form
+  meForm
+  [size]="size"
+  [formData]="formData"
+  [labelMode]="labelMode"
+  [labelLocation]="labelLocation"
+  [colCount]="colCount"
+  [showColonAfterLabel]="showColonAfterLabel"
+>
+  <!-- Поля формы -->
+</dx-form>
+`}
+  dark
+  language="html"
+/>
 
-### Отключено
+`width` определяет размер формы вместе с меткой (используется в теге `dx-form` для расположения `labelLocation="left"`).
 
-<Story of={FormStories.Disabled} />
+## Одиночная колонка
 
-<Source of={FormStories.Disabled} language="html" />
+Организация формы в одну колонку с помощью свойства `colCount=1`.
 
-### Без двоеточия после меток
+<Story of={formStories.SingleColumn} />
 
-<Story of={FormStories.WithoutColon} />
+<Source
+  code={`
+<dx-form
+  meForm
+  [size]="size"
+  [formData]="formData"
+  [labelMode]="labelMode"
+  [labelLocation]="labelLocation"
+  [colCount]="1"
+  [showColonAfterLabel]="showColonAfterLabel"
+>
+  <!-- Поля формы -->
+</dx-form>
+`}
+  dark
+  language="html"
+/>
 
-<Source of={FormStories.WithoutColon} language="html" />
+## Только для чтения
 
-### С группировкой
+Форма доступна только для чтения с помощью свойства `readOnly="true"`.
 
-<Story of={FormStories.WithGrouping} />
+<Story of={formStories.ReadOnly} />
 
-<Source of={FormStories.WithGrouping} language="html" />
+<Source
+  code={`
+<dx-form
+  meForm
+  [size]="size"
+  [formData]="formData"
+  [labelMode]="labelMode"
+  [labelLocation]="labelLocation"
+  [colCount]="colCount"
+  [showColonAfterLabel]="showColonAfterLabel"
+>
+  <!-- Поля формы -->
+</dx-form>
+`}
+  dark
+  language="html"
+/>
 
-## Настройки
+## Отключенное состояние
 
-<Controls of={FormStories.Default} />
+Форма отключена с помощью свойства `disabled="true"`.
 
-Компонент Form поддерживает различные настройки для кастомизации внешнего вида и поведения формы:
+<Story of={formStories.Disabled} />
 
-- `size`: Определяет размер формы ('small', 'medium', 'large').
-- `labelMode`: Определяет, как отображаются метки полей (снаружи, статично, плавающие или скрытые).
-- `labelLocation`: Устанавливает расположение меток (слева или сверху от полей).
-- `colCount`: Задает количество колонок в форме.
-- `readOnly`: Делает поля формы доступными только для чтения.
-- `disabled`: Отключает все поля формы.
-- `showColonAfterLabel`: Показывает или скрывает двоеточие после меток полей.
+<Source
+  code={`
+<dx-form
+  meForm
+  [size]="size"
+  [formData]="formData"
+  [labelMode]="labelMode"
+  [labelLocation]="labelLocation"
+  [colCount]="colCount"
+  [showColonAfterLabel]="showColonAfterLabel"
+  [disabled]="true"
+>
+  <!-- Поля формы -->
+</dx-form>
+`}
+  dark
+  language="html"
+/>
 
-## Использование
+## Без двоеточия после метки
 
-Для использования компонента Form в вашем приложении, импортируйте `MeFormDirective` и добавьте его к декларациям вашего модуля:
+Удаление двоеточия после метки с помощью свойства `showColonAfterLabel="false"`.
 
-```typescript
-import { MeFormDirective } from "path-to-me-form-directive";
-import { NgModule } from "@angular/core";
+<Story of={formStories.WithoutColon} />
 
-@NgModule({
-  // ...
-  declarations: [MeFormDirective],
-  // ...
-})
-export class YourModule {}
-```
+<Source
+  code={`
+<dx-form
+  meForm
+  [size]="size"
+  [formData]="formData"
+  [labelMode]="labelMode"
+  [labelLocation]="labelLocation"
+  [colCount]="colCount"
+  [showColonAfterLabel]="false"
+>
+  <!-- Поля формы -->
+</dx-form>
+`}
+  dark
+  language="html"
+/>
+
+## Свойства
+
+<Controls
+  of={formStories.Default}
+  include={[
+    "size",
+    "labelMode",
+    "labelLocation",
+    "colCount",
+    "readOnly",
+    "disabled",
+    "showColonAfterLabel",
+  ]}
+/>
+
+## Пример использования
+
+Ниже приведен пример использования компонента `<dx-form>` с директивой `meForm` и различными свойствами, включая группировку элементов.
+
+  <Source
+    code={`
+<template>
+  <dx-form
+    meForm
+    [size]="size"
+    [formData]="formData"
+    [labelMode]="labelMode"
+    [labelLocation]="labelLocation"
+    [colCount]="colCount"
+    [showColonAfterLabel]="showColonAfterLabel"
+  >
+    <dxi-item itemType="group" caption="Personal Information">
+      <dxi-item dataField="firstName">
+        <dxo-label text="First Name"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="lastName">
+        <dxo-label text="Last Name"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="email">
+        <dxo-label text="Email"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.email" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="phone">
+        <dxo-label text="Phone"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.phone" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="gender">
+        <dxo-label text="Gender"></dxo-label>
+        <div *dxTemplate>
+          <dx-select-box meSelectBox [(value)]="formData.gender" [items]="genderOptions" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-select-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="birthDate">
+        <dxo-label text="Birth Date"></dxo-label>
+        <div *dxTemplate>
+          <dx-date-box meDateBox [(value)]="formData.birthDate" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-date-box>
+        </div>
+      </dxi-item>
+    </dxi-item>
+    <dxi-item itemType="group" caption="Additional Information">
+      <dxi-item dataField="occupation">
+        <dxo-label text="Occupation"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox [(value)]="formData.occupation" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="isSubscribed">
+        <div *dxTemplate>
+          <dx-check-box meCheckBox [(value)]="formData.isSubscribed" text="Subscribe to newsletter" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-check-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="country">
+        <dxo-label text="Country"></dxo-label>
+        <div *dxTemplate>
+          <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-select-box>
+        </div>
+      </dxi-item>
+    </dxi-item>
+  </dx-form>
+</template>
+
+  <script>
+  export default {
+    data() {
+      return {
+        formData: {
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@example.com',
+          phone: '+1 (555) 123-4567',
+          gender: 'male',
+          birthDate: new Date(1990, 0, 1),
+          occupation: '',
+          isSubscribed: false,
+          country: 'USA',
+        },
+        genderOptions: ['male', 'female', 'other'],
+        countryOptions: ['USA', 'Canada', 'UK', 'Australia', 'Germany'],
+        size: 'medium',
+        labelMode: 'floating',
+        labelLocation: 'top',
+        colCount: 2,
+        readOnly: false,
+        disabled: false,
+        showColonAfterLabel: true,
+      };
+    },
+  };
+  </script>
+
+`}
+dark
+language="html"
+/>
+
+## Дополнительная информация
+
+При использовании компонента `<dx-form>` с директивой `meForm` обратите внимание на следующие моменты:
+
+    - Свойство `size` может принимать значения `small`, `medium` или `large`, влияя на размер формы и вложенных элементов.
+    - Свойство `labelMode` определяет режим отображения меток (`outside`, `floating`, `hidden`).
+    - Свойство `labelLocation` определяет расположение меток (`left`, `top`).
+    - Свойство `colCount` определяет количество колонок в форме (`auto`, `1`, `2`, `3`).
+    - Свойство `readOnly` делает всю форму доступной только для чтения.
+    - Свойство `disabled` отключает всю форму.
+    - Свойство `showColonAfterLabel` определяет, отображать ли двоеточие после меток.
+    - Использование группировки (`itemType="group"`) позволяет структурировать форму по логическим разделам.
+
+    ## Дизайн-система и Figma
+
+    Более подробную информацию о дизайне компонента можно найти в Figma:
+
+    <Figma
+    height="50%"
+    collapsable
+    defaultCollapsed
+    url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
+    />

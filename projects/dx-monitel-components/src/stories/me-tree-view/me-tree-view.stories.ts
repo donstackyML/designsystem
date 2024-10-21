@@ -130,8 +130,7 @@ export default {
       },
     },
     activeStateEnabled: {
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
       description: 'Определяет состояние при нажатии на элементы `TreeView`.',
       table: {
         type: { summary: 'boolean' },
@@ -139,8 +138,7 @@ export default {
       },
     },
     disabled: {
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
       description: 'Отключает `TreeView` и его элементы.',
       table: {
         type: { summary: 'boolean' },
@@ -158,8 +156,7 @@ export default {
       },
     },
     focusStateEnabled: {
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
       description: 'Определяет состояние `focused` `TreeView` и его элементов.',
       table: {
         type: { summary: 'boolean' },

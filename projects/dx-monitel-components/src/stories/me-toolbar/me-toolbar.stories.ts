@@ -122,12 +122,12 @@ export const Default: Story = {
 <dx-toolbar meToolbar ${argsToTemplate(args)}>
 	<dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
 		<div *dxTemplate>
-			<dx-button meButton iconOnly="undo" text="Undo" [size]="size"></dx-button>
+			<dx-button [disabled]="disabled" meButton iconOnly="undo" text="Undo" [size]="size"></dx-button>
 		</div>
 	</dxi-item>
 	<dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
 		<div *dxTemplate>
-			<dx-button meButton iconOnly="redo" text="Redo" [size]="size"></dx-button>
+			<dx-button [disabled]="disabled" meButton iconOnly="redo" text="Redo" [size]="size"></dx-button>
 		</div>
 	</dxi-item>
 
@@ -142,6 +142,7 @@ export const Default: Story = {
 			<dx-drop-down-button
 				meDropDownButton
 				[size]="size"
+				[disabled]="disabled"
 				text="1.35"
 				width="100%"
 				displayExpr="text"
@@ -156,7 +157,7 @@ export const Default: Story = {
 		<div *dxTemplate>
 			<dx-drop-down-button
 				meDropDownButton
-				[size]="size"
+				[size]="size" [disabled]="disabled"
 				width="100%"
 				text="Font"
 				[useSelectMode]="false"
@@ -179,7 +180,7 @@ export const Default: Story = {
 			<dx-drop-down-button
 				meDropDownButton
 				[size]="size"
-			
+			[disabled]="disabled"
 				width="100%"
 				text="Normal Text"
 				[useSelectMode]="false"
@@ -199,25 +200,25 @@ export const Default: Story = {
 
 	<dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
 		<div *dxTemplate>
-			<dx-button meButton iconOnly="link" text="Link" [size]="size"></dx-button>
+			<dx-button [disabled]="disabled" meButton iconOnly="link" text="Link" [size]="size"></dx-button>
 		</div>
 	</dxi-item>
 
 	<dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
 		<div *dxTemplate>
-			<dx-button meButton iconOnly="add_photo_alternate" text="Photo" [size]="size"></dx-button>
+			<dx-button [disabled]="disabled" meButton iconOnly="add_photo_alternate" text="Photo" [size]="size"></dx-button>
 		</div>
 	</dxi-item>
 
 	<dxi-item location="after" widget="dxButton" locateInMenu="auto" showText="inMenu">
 		<div *dxTemplate>
-			<dx-button meButton iconOnly="attach_file" text="File" [size]="size"></dx-button>
+			<dx-button [disabled]="disabled" meButton iconOnly="attach_file" text="File" [size]="size"></dx-button>
 		</div>
 	</dxi-item>
 
 	<dxi-item locateInMenu="always" widget="dxButton" locateInMenu="auto" showText="inMenu">
 		<div *dxTemplate>
-			<dx-button meButton iconOnly="help" text="About" [size]="size"></dx-button>
+			<dx-button [disabled]="disabled" meButton iconOnly="help" text="About" [size]="size"></dx-button>
 		</div>
 	</dxi-item>
 </dx-toolbar>

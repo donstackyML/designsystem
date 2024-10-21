@@ -269,8 +269,8 @@ export const HeaderDescription: Story = {
     props: args,
     template: `<dx-list meList width="436px" ${argsToTemplate(args)}>
     <div *dxTemplate="let group of 'group'">
-      <p class="me-title-header2" style="margin: 0">{{ group.key }}</p>
-      <p class="me-text-caption" style="margin: 0">{{ group.description }}</p>
+      <p class="me-title-header1" style="margin: 0">{{ group.key }}</p>
+      <p class="me-text-body2" style="margin: 0">{{ group.description }}</p>
     </div>
     </dx-list>`,
   }),

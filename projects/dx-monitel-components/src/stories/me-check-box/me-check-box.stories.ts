@@ -89,13 +89,12 @@ export const Default: Story = {
     isValid: true,
   },
 };
-export const WithLabelAndIcon: Story = {
+export const WithIconAndText: Story = {
   args: {},
   render: (args) => ({
     props: args,
     template: `
 		<label meLabel labelDirection="row" width="300px">
-    Label
     <dx-check-box meCheckBox ${argsToTemplate(args)}></dx-check-box>
 		<me-icon icon="account_circle" size="medium" color="var(--Controls-Content-In-Controls-Main-Default)"></me-icon>
 		<span>Text</span>

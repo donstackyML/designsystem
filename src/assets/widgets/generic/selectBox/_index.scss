@@ -2,6 +2,7 @@
 @use '../sizes' as *;
 @use '../colors' as *;
 @use '../../base/selectBox';
+@use '../common/mixins' as *;
 
 .me-selectbox.dx-selectbox {
   border-radius: 3px;
@@ -14,6 +15,7 @@
 
   &.dx-state-hover {
     background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+    border-color: #dfe0ed;
   }
 
   &.dx-state-focused:not(.dx-invalid) {
@@ -211,5 +213,19 @@
         }
       }
     }
+  }
+}
+
+.me-dropdownlist {
+  .dx-list-item-selected {
+    background: var(--Controls-Informative-BG-Selected-Element) !important;
+  }
+
+  .dx-state-hover {
+    background: var(--Controls-BG-Secondary-Elements-BG-Hover) !important;
+  }
+
+  .dx-state-active {
+    background: var(--Controls-BG-Secondary-Elements-BG-Pressed) !important;
   }
 }
