@@ -14,7 +14,11 @@ export default {
   title: 'Components/SelectBox',
   decorators: [
     moduleMetadata({
-      declarations: [MeSelectBoxDirective, DxSelectBoxComponent, MeLabelDirective],
+      declarations: [
+        MeSelectBoxDirective,
+        DxSelectBoxComponent,
+        MeLabelDirective,
+      ],
     }),
   ],
   argTypes: {
