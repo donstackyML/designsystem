@@ -163,6 +163,14 @@ export default {
         defaultValue: { summary: false },
       },
     },
+    hoverStateEnabled: {
+      control: 'boolean',
+      description: 'Определяет состояние `hover` `TreeView` и его элементов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
   },
   args: {
     dataSource: data,
@@ -171,6 +179,7 @@ export default {
     disabled: false,
     showCheckBoxesMode: 'normal',
     focusStateEnabled: false,
+    hoverStateEnabled: true,
   },
   render: (args) => ({
     props: args,

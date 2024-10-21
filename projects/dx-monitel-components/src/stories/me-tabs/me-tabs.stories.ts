@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabsModule } from 'devextreme-angular';
-import { MeTabsDirective } from '../../public-api';
 import { Tab } from '../../lib/directives/me-tabs/tabs.directive';
+import { MeTabsDirective } from '../../public-api';
 
 interface MeTabsProps {
   customClass: string;
@@ -15,6 +15,7 @@ interface MeTabsProps {
   width: string | number;
   tabsData: Tab[];
   rtlEnabled: boolean;
+  hoverStateEnabled: boolean;
 }
 
 const meta: Meta<MeTabsProps> = {
@@ -78,6 +79,9 @@ const meta: Meta<MeTabsProps> = {
     rtlEnabled: {
       control: 'boolean',
     },
+    hoverStateEnabled: {
+      control: 'boolean',
+    },
   },
 };
 
@@ -102,6 +106,8 @@ export const Default: Story = {
     width: 'auto',
     customClass: '',
     tabsData: defaultTabsData,
+    rtlEnabled: false,
+    hoverStateEnabled: true,
   },
 };
 
