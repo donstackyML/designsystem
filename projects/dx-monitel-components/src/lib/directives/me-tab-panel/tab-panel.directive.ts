@@ -19,18 +19,26 @@ import { DxTabPanelComponent } from 'devextreme-angular';
   },
 })
 export class MeTabPanelDirective implements OnInit {
-  @Input() position: 'top' | 'bottom' = 'top';
+  // @Input() position: 'top' | 'bottom' = 'top';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() stylingMode: 'inside' | 'outside' = 'outside';
-  @Input() tabsPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
-  @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
-  @Input() width: string | number = 'auto';
+  // @Input() tabsPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
+  // @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
+  // @Input() width: string | number = 'auto';
 
   constructor(private tabs: DxTabPanelComponent) {}
 
   ngOnInit() {
-    this.tabs.tabsPosition = this.tabsPosition;
-    this.tabs.iconPosition = this.iconPosition;
-    this.tabs.width = this.width;
+    // this.tabs.tabsPosition = this.tabsPosition;
+    // this.tabs.iconPosition = this.iconPosition;
+    // this.tabs.width = this.width;
+    if (this.stylingMode === 'inside') {
+      this.tabs.instance.option('stylingMode', 'primary');
+    }
+    {
+      this.tabs.instance.option('stylingMode', 'secondary');
+    }
+
+    console.log(this.tabs.instance.option().stylingMode);
   }
 }

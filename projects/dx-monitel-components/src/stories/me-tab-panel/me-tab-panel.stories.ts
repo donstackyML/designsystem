@@ -10,12 +10,18 @@ interface TabPanelItem {
 
 interface MeTabPanelProps {
   dataSource: TabPanelItem[];
-  height: number | string;
-  iconPosition: 'left' | 'top';
-  selectedIndex: number;
-  swipeEnabled: boolean;
   size: 'small' | 'medium' | 'large';
+  stylingMode: 'inside' | 'outside';
+  tabsPosition: 'top' | 'bottom' | 'left' | 'right';
+  iconPosition: 'left' | 'top';
+  height: number | string;
   width: number | string;
+  activeStateEnabled: boolean;
+  focusStateEnabled: boolean;
+  hoverStateEnabled: boolean;
+  disabled: boolean;
+  swipeEnabled: boolean;
+  selectedIndex: number;
 }
 
 const meta: Meta<MeTabPanelProps> = {
@@ -34,6 +40,12 @@ const meta: Meta<MeTabPanelProps> = {
         meTabPanel
         [dataSource]="dataSource"
         [height]="height"
+				[tabsPosition]="tabsPosition"
+				[hoverStateEnabled]="hoverStateEnabled"
+				[focusStateEnabled]="focusStateEnabled"
+				[activeStateEnabled]="activeStateEnabled"
+				[disabled]="disabled"
+				[stylingMode]="stylingMode"
         [iconPosition]="iconPosition"
         [selectedIndex]="selectedIndex"
         [swipeEnabled]="swipeEnabled"
@@ -57,8 +69,20 @@ const meta: Meta<MeTabPanelProps> = {
       options: ['small', 'medium', 'large'],
       control: { type: 'select' },
     },
+    stylingMode: {
+      options: ['inside', 'outside'],
+      control: { type: 'select' },
+    },
     width: { control: 'text' },
     height: { control: 'text' },
+    tabsPosition: {
+      options: ['top', 'bottom', 'left', 'right'],
+      control: { type: 'select' },
+    },
+    activeStateEnabled: { control: 'boolean' },
+    focusStateEnabled: { control: 'boolean' },
+    hoverStateEnabled: { control: 'boolean' },
+    disabled: { control: 'boolean' },
     swipeEnabled: { control: 'boolean' },
     selectedIndex: { control: 'number' },
   },
@@ -88,12 +112,18 @@ const defaultTabPanelData: TabPanelItem[] = [
 export const Default: Story = {
   args: {
     dataSource: defaultTabPanelData,
-    height: 200,
+    size: 'medium',
+    stylingMode: 'outside',
+    tabsPosition: 'left',
     iconPosition: 'left',
+    activeStateEnabled: true,
+    focusStateEnabled: true,
+    hoverStateEnabled: true,
+    disabled: false,
+    height: 246,
+    width: 528,
     selectedIndex: 0,
     swipeEnabled: false,
-    size: 'medium',
-    width: 'auto',
   },
 };
 
