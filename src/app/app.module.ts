@@ -25,6 +25,7 @@ import {
   MeTabsModule,
   MeTagBoxModule,
   MeTextAreaModule,
+  MeTooltipModule,
   MeTreeListModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
@@ -76,7 +77,6 @@ import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
 import { MeToolbarDirective } from './directives/toolbar.directive';
-import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
 
 @NgModule({
@@ -125,7 +125,6 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeMenuComponent,
     MeTreeViewComponent,
     MeTreeViewDirective,
-    TooltipDirective,
     MeToastDirective,
     MeToastComponent,
     MeLoadIndicatorDirective,
@@ -164,6 +163,7 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeButtonGroupModule,
     MeButtonModule,
     MePopupModule,
+    MeTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
