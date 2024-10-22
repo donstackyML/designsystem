@@ -1,10 +1,8 @@
 import { Meta, Source } from "@storybook/blocks";
 
-<Meta title="Documentation/Локализация приложений и библиотек" />
+<Meta title="Documentation/Локализация приложений" />
 
-# Локализация (i18next)
-
-## Локализация приложений
+# Локализация приложений (i18next)
 
 #### 1. Установить пакет и импортировать I18nextModule в модуле приложения
 
@@ -190,6 +188,35 @@ function fetchToObservable<T>(fileName: string): Observable<T | null> {
   language="js"
   dark
 />
+
+#### 6. Устранение ошибок
+
+Если возникает ошибка при импорте i18n
+
+<Source
+  code={`This module is declared with 'export =', and can only be used with a default import when using 
+the 'allowSyntheticDefaultImports' flag.
+`}
+  language="bash"
+  dark
+/>
+
+необходимо добавить флаг в tsconfig.ts в раздел "compilerOptions":
+
+<Source
+  code={`"compilerOptions": {
+  ...
+  "allowSyntheticDefaultImports": true,
+  ...
+}`}
+  language="js"
+  dark
+/>
+
+#### 7. Полезные ссылки
+- [демо локализованого приложения](https://cl-tfs2022.monitel.local/CK-11/WebDev/_git/i18next-demo)
+- [библиотека](https://cl-tfs2022.monitel.local/CK-11/WebDev/_artifacts/feed/NpmThirdPartyV2/Npm/i18next/overview) в реестре NpmThirdPartyV2
+- [документация библиотеки i18next](https://www.i18next.com/)
 
 <style>
   {`
