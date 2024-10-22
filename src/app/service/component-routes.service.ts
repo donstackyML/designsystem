@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 const componentsRoute: string[] = [
   'typography',
   'me-buttons',
+  'me-form',
   'me-text-box',
   'me-select-box',
   'me-check-box',
@@ -31,6 +32,7 @@ const componentsRoute: string[] = [
 const componentsName: string[] = [
   'typography',
   'meButton',
+  'meForm',
   'meTextBox',
   'meSelectBox',
   'meCheckBox',

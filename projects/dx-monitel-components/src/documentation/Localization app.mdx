@@ -94,9 +94,9 @@ language="js"
 dark
 />
 
-#### 3. Добавить файлы **auto-local.json**, **dx.en.json** и **dx.ru.json** в папку **./src/assets/i18n**
+#### 3. Добавить файлы **autolocal.json**, **dx.en.json** и **dx.ru.json** в папку **./src/assets/i18n**
 
-Пример словаря **auto-local.json**
+Пример словаря **autolocal.json**
 
 <Source
   code={`{
@@ -137,7 +137,7 @@ setLocalization().pipe().subscribe(() => {
 });
 
 function setLocalization(): Observable<any> {
-  return fetchToObservable<any>('assets/i18n/auto-local.json').pipe(
+  return fetchToObservable<any>('assets/i18n/autolocal.json').pipe(
     switchMap(value => from(i18next.init({
       lng: value.lang,
       debug: false,

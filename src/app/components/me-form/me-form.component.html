@@ -1,0 +1,41 @@
+<h1 class="dx-widget wrapper__title">Form</h1>
+<div id="form-demo">
+  <div class="form-container">
+    <div class="dx-widget">Выберите компанию:</div>
+    <dx-select-box
+      #company
+      displayExpr="Name"
+      [inputAttr]="{ 'aria-label': 'Company' }"
+      [dataSource]="companies"
+      [value]="companies[0]"
+      stylingMode="filled"
+    ></dx-select-box>
+    <div class="dx-widget form__title">Метки сверху</div>
+    <dx-form
+      id="form"
+      meForm
+      [formData]="company.value"
+      [readOnly]="readOnly"
+      labelLocation="top"
+      [showColonAfterLabel]="showColon"
+      [minColWidth]="minColWidth"
+      [colCount]="colCount"
+      [width]="width"
+    >
+    </dx-form>
+    <div class="dx-widget form__title">Метки слева (disabled)</div>
+    <dx-form
+      id="form"
+      meForm
+      [formData]="company.value"
+      [readOnly]="readOnly"
+      labelLocation="left"
+      [showColonAfterLabel]="showColon"
+      [minColWidth]="minColWidth"
+      [colCount]="colCount"
+      [width]="width"
+      [readOnly]="true"
+    >
+    </dx-form>
+  </div>
+</div>
