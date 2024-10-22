@@ -1,0 +1,227 @@
+import { Meta, Source } from "@storybook/blocks";
+
+<Meta title="Documentation/Локализация приложений" />
+
+# Локализация приложений (i18next)
+
+#### 1. Установить пакет и импортировать I18nextModule в модуле приложения
+
+<Source code={`npm i i18next@17.3.1`} language="bash" dark />
+
+<Source code={`import { I18nextModule } from './i18next/i18next.module';
+
+@NgModule({
+  declarations: [
+    ...
+  ],
+  imports: [
+    HttpClientModule,
+    I18nextModule,
+    ...
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+`} language="js" dark />
+
+#### 2. Добавить файлы **i18next.module.ts** и **i18next.pipe.ts** в папку **./src/app/i18next**
+
+В файле **i18next.module.ts** происходит выбор файла локализации для компонентов DevExtreme и конфигурация angular в зависимости от языка выбранного для i18next.
+
+<Source
+  code={`i18next.module.ts
+
+import { LOCALE_ID, NgModule } from "@angular/core";
+import { CommonModule, registerLocaleData } from "@angular/common";
+import { I18nextPipe } from "./i18next.pipe";
+import i18next from "i18next";
+import localeRu from "@angular/common/locales/ru";
+import { loadMessages, locale } from "devextreme/localization";
+import { from } from "rxjs";
+import { switchMap, tap } from "rxjs/operators";
+
+@NgModule({
+  declarations: [
+    I18nextPipe
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    I18nextPipe
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: i18next.language }
+  ]
+})
+export class I18nextModule {
+
+  dxMessagesSet() {
+    if (i18next.language) {
+      from(fetch(\`assets/i18n/dx.\${i18next.language}.json\`, { credentials: 'include' })).pipe(
+        switchMap(value => value.json()),
+        tap(messagesRu => loadMessages(messagesRu)),
+        tap(() => locale(i18next.language)),
+      ).subscribe()
+    }
+  }
+
+  constructor() {
+    this.dxMessagesSet();
+    registerLocaleData(localeRu, i18next.language);
+  }
+}`}
+language="js"
+dark
+/>
+
+<Source
+  code={`i18next.pipe.ts
+
+import { Pipe, PipeTransform } from "@angular/core";
+import i18next from "i18next";
+
+@Pipe({
+  name: 'i18next'
+})
+export class I18nextPipe implements PipeTransform {
+  transform(value: string, ...args: any[]): string {
+    return i18next.t(value, args);
+  }
+}
+`}
+language="js"
+dark
+/>
+
+#### 3. Добавить файлы **autolocal.json**, **dx.en.json** и **dx.ru.json** в папку **./src/assets/i18n**
+
+Пример словаря **autolocal.json**
+
+<Source
+  code={`{
+  "lang": "ru",
+  "HEADER": {
+    "APP_NAME": "Название приложения",
+    "CONTENT_NAME": "Название контента"
+  },
+  "DDB": {
+    "DEFAULT_USER": "Личный кабинет",
+    "USER": "Пользователь",
+    "CHANGE": "Сменить...",
+    "EXIT": "Выход...",
+    "DOMAIN": "Домен",
+    "CONNECT": "Подключиться..."
+  }
+}`}
+  language="js"
+  dark
+/>
+
+#### 4. Измененить файл main.ts
+
+<Source
+  code={`import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import i18next from 'i18next';
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+import { Observable, catchError, from, map, mergeMap, of, switchMap, tap } from 'rxjs';
+
+setLocalization().pipe().subscribe(() => {
+  if (environment.production) {
+    enableProdMode();
+  }
+  platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.log(err));
+});
+
+function setLocalization(): Observable<any> {
+  return fetchToObservable<any>('assets/i18n/autolocal.json').pipe(
+    switchMap(value => from(i18next.init({
+      lng: value.lang,
+      debug: false,
+      resources: {}
+    })).pipe(
+      map(() => value)
+    )),
+    tap(value => i18next.addResourceBundle(value.lang, 'translation', value, true, true))
+  );
+}
+
+function fetchToObservable<T>(fileName: string): Observable<T | null> {
+  return of(fetch(fileName, { credentials: 'include' })).pipe(
+    mergeMap(value => {
+      if (value)
+        return value;
+      else return of(null);
+    }),
+    mergeMap(value => {
+      if (value && value.json) {
+        return value.json()
+      } else {
+        return of({});
+      }
+    }),
+    catchError(err => of(null)),
+  )
+}`}
+  language="bash"
+  dark
+/>
+
+#### 5. Использование
+Использование в шаблоне
+
+<Source
+  code={`<h1>{{ "TITLE" | i18next }}</h1>`}
+  language="html"
+  dark
+/>
+
+Использование в компоненте
+
+<Source
+  code={`constructor() {
+  this.appName = i18next.t("HEADER.APP_NAME");
+}`}
+  language="js"
+  dark
+/>
+
+#### 6. Устранение ошибок
+
+Если возникает ошибка при импорте i18n
+
+<Source
+  code={`This module is declared with 'export =', and can only be used with a default import when using 
+the 'allowSyntheticDefaultImports' flag.
+`}
+  language="bash"
+  dark
+/>
+
+необходимо добавить флаг в tsconfig.ts в раздел "compilerOptions":
+
+<Source
+  code={`"compilerOptions": {
+  ...
+  "allowSyntheticDefaultImports": true,
+  ...
+}`}
+  language="js"
+  dark
+/>
+
+#### 7. Полезные ссылки
+- [демо локализованого приложения](https://cl-tfs2022.monitel.local/CK-11/WebDev/_git/i18next-demo)
+- [библиотека](https://cl-tfs2022.monitel.local/CK-11/WebDev/_artifacts/feed/NpmThirdPartyV2/Npm/i18next/overview) в реестре NpmThirdPartyV2
+- [документация библиотеки i18next](https://www.i18next.com/)
+
+<style>
+  {`
+      h2 {
+        border-bottom: none !important;
+    }
+`}
+</style>

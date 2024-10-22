@@ -9,7 +9,7 @@ import {
   inject,
 } from '@angular/core';
 import { DxTextAreaComponent } from 'devextreme-angular';
-import { MeSize } from 'src/app/types/types';
+type MeSize = 'small' | 'medium' | 'large';
 
 @Directive({
   selector: '[meTextArea]',

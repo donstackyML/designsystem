@@ -22,9 +22,11 @@ import {
   MeScrollViewModule,
   MeSkeletonComponent,
   MeSliderModule,
+  MeTabPanelModule,
   MeTabsModule,
   MeTagBoxModule,
   MeTextAreaModule,
+  MeTooltipModule,
   MeTreeListModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
@@ -76,8 +78,10 @@ import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
 import { MeToolbarDirective } from './directives/toolbar.directive';
-import { TooltipDirective } from './directives/tooltip.directive';
 import { MeTreeViewDirective } from './directives/tree-view.directive';
+import { MeFormModule } from 'projects/dx-monitel-components/src/lib/directives/me-form/me-form.module';
+import { MeFormComponent } from './components/me-form/me-form.component';
+import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 
 @NgModule({
   declarations: [
@@ -125,13 +129,14 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeMenuComponent,
     MeTreeViewComponent,
     MeTreeViewDirective,
-    TooltipDirective,
     MeToastDirective,
     MeToastComponent,
     MeLoadIndicatorDirective,
     MeLoadingIndicatorComponent,
     MeLoadPanelDirective,
     MeIconResearchComponent,
+    MeFormComponent,
+    MeTreeListComponent,
   ],
   imports: [
     BrowserModule,
@@ -164,6 +169,9 @@ import { MeTreeViewDirective } from './directives/tree-view.directive';
     MeButtonGroupModule,
     MeButtonModule,
     MePopupModule,
+    MeTooltipModule,
+    MeTabPanelModule,
+    MeFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
