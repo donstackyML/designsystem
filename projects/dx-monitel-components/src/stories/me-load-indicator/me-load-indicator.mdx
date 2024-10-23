@@ -1,52 +1,81 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as loadIndicatorStories from "./me-load-indicator.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxLoadIndicatorModule } from "devextreme-angular";
-import { MeLoadIndicatorDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
+
 
 <Meta
   title="Components/MeLoadIndicator"
   of={loadIndicatorStories}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeLoadIndicatorDirective],
-      imports: [DxLoadIndicatorModule],
-    }),
-  ]}
 />
 
 # meLoadIndicator
 
 ## Директива meLoadIndicator
 
-Директива `meLoadIndicator` позволяет создавать индикаторы загрузки с различными параметрами, включая размер и цвет. Индикаторы могут быть настроены с помощью CSS классов и внешних ресурсов.
+Директива `meLoadIndicator` позволяет создавать индикаторы загрузки с различными параметрами, включая размер, цвет и иконка.
+
+Документация на сайте разработчика Devextreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxLoadIndicator/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/LoadIndicator/Overview/MaterialBlueLight/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={loadIndicatorStories.Default} />
 <Controls of={loadIndicatorStories.Default} />
 <Source of={loadIndicatorStories.Default} dark />
 
+## Дизайн
+
+<Figma
+  height="50%"
+			collapsable
+			defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=569-23746&node-type=canvas&t=TPrqPuTvthwjqnxF-0"
+/>
+
 ## Примеры использования:
 
 - [Изменение размера индикатора](#изменение-размера-индикатора)
 - [Изменение цвета индикатора](#изменение-цвета-индикатора)
+- [Изменение стиля индикатора](#изменение-стиля-индикатора)
 - [Использование пользовательского индикатора](#использование-пользовательского-индикатора)
 
 ## Изменение размера индикатора
 
-Для изменения размера индикатора используйте параметр `size`.
+Для изменения размера индикатора используйте параметр `size`. Возможные значения: `small`, `medium` и `large`.
 
 <Source
-  code={`<div id="small-indicator" meLoadIndicator [size]="'small'" [color]="'normal'"></div>`}
+  code={`<x-load-indicator meLoadIndicator size="size"></x-load-indicator>`}
   dark
   language="html"
 />
 
 ## Изменение цвета индикатора
 
-Для изменения цвета индикатора используйте параметр `color`.
+Для изменения цвета индикатора используйте параметр `color`. Возможные значения: `normal`, `default`, `accent`
 
 <Source
-  code={`<div id="medium-indicator" meLoadIndicator [size]="'medium'" [color]="color"></div>`}
+  code={`<x-load-indicator meLoadIndicator color="color"></x-load-indicator>`}
+  dark
+  language="html"
+/>
+
+## Изменение стиля индикатора
+
+Для изменения стиля индикатора используйте параметр `stylingMode`. Возможные значения: `line`, `circle`.
+
+<Source
+  code={`<x-load-indicator meLoadIndicator stylingMode="stylingMode"></x-load-indicator>`}
   dark
   language="html"
 />
@@ -56,14 +85,7 @@ import { MeLoadIndicatorDirective } from "../../public-api";
 Для использования пользовательского индикатора используйте параметр `indicatorSrc`.
 
 <Source
-  code={`<div id="image-indicator" meLoadIndicator [size]="'large'" [indicatorSrc]="indicatorSrc"></div>`}
+  code={`<x-load-indicator meLoadIndicator indicatorSrc="indicatorSrc"></x-load-indicator>`}
   dark
   language="html"
-/>
-
-## Перечень свойств
-
-<Controls
-  of={loadIndicatorStories.Default}
-  include={["color", "indicatorSrc"]}
 />
