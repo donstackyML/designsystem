@@ -1,18 +1,10 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as TextAreaStories from "./me-text-area.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxTextAreaModule } from "devextreme-angular";
-import { MeTextAreaDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
+
 
 <Meta
   title="Components/TextArea"
-  component={MeTextAreaDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeTextAreaDirective],
-      imports: [DxTextAreaModule],
-    }),
-  ]}
   of={TextAreaStories}
 />
 
@@ -22,61 +14,71 @@ import { MeTextAreaDirective } from "../../public-api";
 
 Директива `meTextArea` расширяет функциональность стандартного компонента `textArea` DevExtreme, добавляя дополнительные настройки.
 
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTextArea/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TextArea/Overview/MaterialBlueLight/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
 <Canvas name="Default" of={TextAreaStories.Default} />
 <Controls of={TextAreaStories.Default} />
 <Source of={TextAreaStories.Default} dark />
 
+## Дизайн
+
+<Figma
+  height="50%"
+			collapsable
+			defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=tmDOoMTrKt6lidAQ-0"
+/>
+
 ## Примеры использования:
 
-### TextArea малого размера
+- [Размеры TextArea](#размеры-textarea)
+- [Положение Label](#положение-label)
+- [Состояние ReadOnly и Disabled](#состояние-readonly-и-disabled)
+- [Контроль восоты и ширины](#контроль-высоты-и-ширины)
 
-<Canvas name="Small" of={TextAreaStories.Small} />
+### Размеры TextArea
+Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
+
 <Source
-  code={`<dx-text-area meTextArea size="small"></dx-text-area>`}
+  code={`<dx-text-area meTextArea size="size"></dx-text-area>`}
   dark
   language="html"
 />
 
-### TextArea большого размера
+### Положение Label
+Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `top`, `inside`, `hidden`. Для изменения самого Label внутри используйте параметр `label`
 
-<Canvas name="Large" of={TextAreaStories.Large} />
 <Source
-  code={`<dx-text-area meTextArea size="large"></dx-text-area>`}
+  code={`<dx-text-area meTextArea labelMode="labelMode" label="label"></dx-text-area>`}
   dark
   language="html"
 />
 
-### Положение Label inside
+### Состояние ReadOnly и Disabled
+Для изменения состояний используйте параметры `readOnly` и `disabled` со значениями `true` и `false`.
 
-<Canvas name="LabelPosition" of={TextAreaStories.LabelModeInside} />
 <Source
-  code={`<dx-text-area meTextArea labelPosition="inside"></dx-text-area>`}
+  code={`<dx-text-area meTextArea readOnly="true" disabled="true"></dx-text-area>`}
   dark
   language="html"
 />
 
-### Состояние ReadOnly
 
-<Canvas name="ReadOnly" of={TextAreaStories.ReadOnly} />
-<Source
-  code={`<dx-text-area meTextArea readOnly="true"></dx-text-area>`}
-  dark
-  language="html"
-/>
-
-### Размеры textArea
-
-#### Можно настроить высоту и ширину используя параметры `height` и `width`
-
-<Source
-  code={`<dx-text-area meTextArea height="height" width="width"></dx-text-area>`}
-  dark
-  language="html"
-/>
-
-#### Или использовать параметр `autoResizeEnabled` для автоматического изменения высоты
-
-<Canvas name="AutoResize" of={TextAreaStories.AutoResize} />
+#### Контроль высоты и ширины
+Для изменения высоты и ширины используйте параметры `height` и `width`.
+Для автоматического изменения высоты и ширины используйте параметр `autoResizeEnabled`.	
 
 <Source
   code={`<dx-text-area meTextArea autoResizeEnabled="true"></dx-text-area>`}
