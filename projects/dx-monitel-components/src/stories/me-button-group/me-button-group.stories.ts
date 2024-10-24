@@ -85,7 +85,7 @@ export const Default: Story = {
   args: {
     items: [
       { text: 'Первая', type: 'default' },
-      { text: 'Вторая', type: 'normal' },
+      { text: 'Вторая', type: 'default' },
       { text: 'Третья', type: 'default' }
     ],
     size: 'medium',
@@ -110,7 +110,7 @@ export const WithIcons: Story = {
   args: {
     items: [
       { text: 'Назад', leftIcon: 'arrowback', type: 'default' },
-      { text: 'Обновить', leftIcon: 'cached', type: 'normal' },
+      { text: 'Обновить', leftIcon: 'cached', type: 'default' },
       { text: 'Вперед', leftIcon: 'arrowforward', type: 'default' }
     ],
     size: 'medium',
@@ -124,7 +124,7 @@ export const IconsOnly: Story = {
   args: {
     items: [
       { icon: 'arrowback', type: 'default' },
-      { icon: 'cached', type: 'normal' },
+      { icon: 'cached', type: 'default' },
       { icon: 'arrowforward', type: 'default' }
     ],
     size: 'medium',
@@ -153,9 +153,9 @@ export const ButtonTypes: Story = {
 export const DisabledStates: Story = {
   args: {
     items: [
-      { text: 'Активная', leftIcon: 'add', type: 'default' },
+      { text: 'Активная', leftIcon: 'add', type: 'default', disabled: true},
       { text: 'Отключенная', leftIcon: 'cancel', type: 'default', disabled: true },
-      { text: 'Активная', leftIcon: 'check', type: 'default' }
+      { text: 'Активная', leftIcon: 'check', type: 'default', disabled: true }
     ],
     size: 'medium',
     stylingMode: 'contained',
@@ -167,9 +167,9 @@ export const DisabledStates: Story = {
 export const Sizes: Story = {
   args: {
     items: [
-      { text: 'Назад', leftIcon: 'arrowback', type: 'default' },
+      { text: 'Назад', leftIcon: 'arrowback', type: 'normal' },
       { text: 'Обновить', leftIcon: 'cached', type: 'normal' },
-      { text: 'Вперед', leftIcon: 'arrowforward', type: 'default' }
+      { text: 'Вперед', leftIcon: 'arrowforward', type: 'normal' }
     ],
     stylingMode: 'contained',
   },
