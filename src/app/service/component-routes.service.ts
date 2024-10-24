@@ -26,6 +26,8 @@ const componentsRoute: string[] = [
   'me-accordion',
   'me-toast',
   'me-loading-indicator',
+  'me-data-grid',
+  'me-pivot-grid',
   'me-icon-research',
 ];
 
@@ -55,6 +57,8 @@ const componentsName: string[] = [
   'meAccordion (RC)',
   'meToast (RC)',
   'meLoadIndicator (RC)',
+  'meDataGrid',
+  'mePivotGrid',
   'meIconResearch',
 ];
 
