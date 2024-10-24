@@ -16,10 +16,8 @@ import {
 })
 export class MeLoadPanelDirective implements OnChanges {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() customClass: boolean = false;
 
   private renderer = inject(Renderer2);
-  private element = inject(ElementRef);
   private loadpanel = inject(DxLoadPanelComponent);
 
   @HostListener('onContentReady') onContentReady() {

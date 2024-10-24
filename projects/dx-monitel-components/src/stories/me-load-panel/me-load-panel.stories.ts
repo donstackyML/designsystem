@@ -15,17 +15,10 @@ import { MeLoadPanelDirective } from '../../public-api';
     <dx-load-panel
       #loadPanel
       meLoadPanel
-      shadingColor="rgba(0,0,0,0.4)"
-      [position]="{ of: '#employee' }"
       [(visible)]="loadingVisible"
-      [showIndicator]="showIndicator"
-      [showPane]="showPane"
-      [shading]="shading"
       [hideOnOutsideClick]="hideOnOutsideClick"
-      (onShown)="onShown()"
-      (onHidden)="onHidden()"
       [size]="size"
-      [customClass]="customClass"
+      [message]="message"
     ></dx-load-panel>
   `,
   styles: [
@@ -48,38 +41,16 @@ import { MeLoadPanelDirective } from '../../public-api';
 })
 export class LoadPanelDemoComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() customClass: boolean = false;
-  @Input() showIndicator: boolean = true;
-  @Input() showPane: boolean = true;
-  @Input() shading: boolean = true;
   @Input() hideOnOutsideClick: boolean = false;
 
   loadingVisible = false;
-  employeeInfo = {
-    Birth_Date: '1985-01-15',
-    City: 'Los Angeles',
-    Zipcode: '90001',
-    Address: '1234 Main St',
-    Mobile_Phone: '555-1234',
-    Email: 'john.heart@example.com',
-  };
 
   showLoadPanel() {
     this.loadingVisible = true;
   }
-
-  onShown() {
-    setTimeout(() => {
-      this.loadingVisible = false;
-    }, 300000);
-  }
-
-  onHidden() {
-    // do something when hidden
-  }
 }
 
-const meta: Meta<LoadPanelDemoComponent> = {
+const meta: Meta = {
   title: 'Components/LoadPanel(RC)',
   component: LoadPanelDemoComponent,
   decorators: [
@@ -90,54 +61,20 @@ const meta: Meta<LoadPanelDemoComponent> = {
   ],
   argTypes: {
     size: {
-      control: { type: 'select', options: ['small', 'medium', 'large'] },
+      control: 'select',
+      options: ['small', 'medium', 'large'],
     },
-    customClass: { control: 'boolean' },
-    showIndicator: { control: 'boolean' },
-    showPane: { control: 'boolean' },
-    shading: { control: 'boolean' },
+    message: { control: 'text' },
     hideOnOutsideClick: { control: 'boolean' },
   },
 };
 
 export default meta;
-type Story = StoryObj<LoadPanelDemoComponent>;
 
-export const Default: Story = {
+export const Default: StoryObj = {
   args: {
     size: 'medium',
-    customClass: false,
-    showIndicator: true,
-    showPane: true,
-    shading: true,
+    message: 'Loading...',
     hideOnOutsideClick: false,
-  },
-};
-
-export const Small: Story = {
-  args: {
-    ...Default.args,
-    size: 'small',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    ...Default.args,
-    size: 'large',
-  },
-};
-
-export const CustomClass: Story = {
-  args: {
-    ...Default.args,
-    customClass: true,
-  },
-};
-
-export const HideOnOutsideClick: Story = {
-  args: {
-    ...Default.args,
-    hideOnOutsideClick: true,
   },
 };

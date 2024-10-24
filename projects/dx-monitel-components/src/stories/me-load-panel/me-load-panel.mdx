@@ -1,114 +1,94 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as loadPanelStories from "./me-load-panel.stories";
-import { moduleMetadata } from "@storybook/angular";
-import {
-  DxButtonModule,
-  DxLoadPanelModule,
-  DxCheckBoxModule,
-} from "devextreme-angular";
-import { MeLoadPanelDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
+
 
 <Meta
   title="Components/MeLoadPanel"
   of={loadPanelStories}
-  decorators={[
-    moduleMetadata({
-      declarations: [
-        MeLoadPanelDirective,
-        loadPanelStories.LoadPanelDemoComponent,
-      ],
-      imports: [DxButtonModule, DxLoadPanelModule, DxCheckBoxModule],
-    }),
-  ]}
 />
 
 # MeLoadPanel
 
 ## Директива MeLoadPanel
 
-Директива `MeLoadPanel` позволяет создавать панели загрузки с различными параметрами, включая размер, отображение индикатора и затенение. Панели могут быть стилизованы с помощью CSS классов.
+При директивы `MeLoadPanel` к элементу `dx-load-panel` приводит его внешний вид согласно дизайн-системе и добавляет новое свойство `size`.
+
+Документация на сайте разработчика Devextreme:
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxLoadPanel/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/LoadPanel/Overview/MaterialBlueLight/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={loadPanelStories.Default} />
 <Controls of={loadPanelStories.Default} />
-<Source of={loadPanelStories.Default} dark />
+<Source code={`
+<dx-load-panel 
+  [size]="'size'" 
+  [message]="message" 
+  [hideOnOutsideClick]="true"
+></dx-load-panel>
+`} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+			collapsable
+			defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=569-23746&node-type=canvas&t=e2MIVE6oPmUHrREH-0"
+/>
 
 ## Примеры использования:
 
-- [Маленькая панель загрузки](#маленькая-панель-загрузки)
-- [Большая панель загрузки](#большая-панель-загрузки)
-- [Панель с пользовательским классом](#панель-с-пользовательским-классом)
-- [Скрытие при клике вне](#скрытие-при-клике-вне)
+- [Размер панели загрузки](#размер-панели-загрузки)
+- [Изменение текста панели](#изменение-текста-панели)
+- [Скрытие при клике вне](#скрытие-панели-при-клике-вне)
 
-## Маленькая панель загрузки
+## Размер панели загрузки
 
-Для создания маленькой панели загрузки используйте параметр `size` со значением `small`.
-
-<Canvas of={loadPanelStories.Small} />
+Для изменения размера панели загрузки используйте параметр `size`. Возможные значения: `small`, `medium` и `large`.
 
 <Source
   code={`<dx-load-panel
   meLoadPanel
-  [size]="'small'"
-  shadingColor="rgba(0,0,0,0.4)"
-  [position]="{ of: '#employee' }"
-  [(visible)]="loadingVisible"
-  [showIndicator]="showIndicator"
-  [showPane]="showPane"
-  [shading]="shading"
-  [hideOnOutsideClick]="hideOnOutsideClick"
-  (onShown)="onShown()"
-  (onHidden)="onHidden()"
+  size="size'"
 ></dx-load-panel>`}
   dark
   language="html"
 />
 
-## Большая панель загрузки
+## Изменение текста панели
 
-Для создания большой панели загрузки используйте параметр `size` со значением `large`.
-
-<Canvas of={loadPanelStories.Large} />
+Для изменения текста панели загрузки используйте параметр `message`.
 
 <Source
-  code={`<dx-load-panel
+	code={`<dx-load-panel
   meLoadPanel
-  [size]="'large'"
-  shadingColor="rgba(0,0,0,0.4)"
-  [position]="{ of: '#employee' }"
-  [(visible)]="loadingVisible"
-  [showIndicator]="showIndicator"
-  [showPane]="showPane"
-  [shading]="shading"
-  [hideOnOutsideClick]="hideOnOutsideClick"
-  (onShown)="onShown()"
-  (onHidden)="onHidden()"
+  message="message"
 ></dx-load-panel>`}
-  dark
-  language="html"
+	dark
+	language="html"
 />
 
-## Панель с пользовательским классом
+## Скрытие панели при клике вне
 
-Для добавления пользовательского класса используйте параметр `customClass`.
-
-<Canvas of={loadPanelStories.CustomClass} />
+Для скрытия панели загрузки при клике вне используйте параметр `hideOnOutsideClick`.
 
 <Source
-  code={`<dx-load-panel
+	code={`<dx-load-panel
   meLoadPanel
-  [customClass]="true"
-  shadingColor="rgba(0,0,0,0.4)"
-  [position]="{ of: '#employee' }"
-  [(visible)]="loadingVisible"
-  [showIndicator]="showIndicator"
-  [showPane]="showPane"
-  [shading]="shading"
-  [hideOnOutsideClick]="hideOnOutsideClick"
-  (onShown)="onShown()"
-  (onHidden)="onHidden()"
+  hideOnOutsideClick="hideOnOutsideClick"
 ></dx-load-panel>`}
-  dark
-  language="html"
+	dark
+	language="html"
 />
-
-##
