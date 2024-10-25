@@ -1,18 +1,9 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as ProgressBarStories from "./me-progress-bar.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxProgressBarModule } from "devextreme-angular";
-import { MeProgressBarDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
 
 <Meta
   title="Components/ProgressBar"
-  component={MeProgressBarDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeProgressBarDirective],
-      imports: [DxProgressBarModule],
-    }),
-  ]}
   of={ProgressBarStories}
 />
 
@@ -20,22 +11,98 @@ import { MeProgressBarDirective } from "../../public-api";
 
 ## Директива meProgressBar
 
-Директива `meProgressBar` расширяет настройки и изменяет внешний вид стандартного компонента ProgressBar DevExtreme, добавляя дополнительные размеры.
+Директива `meProgressBar` расширяет настройки и изменяет внешний вид стандартного компонента `ProgressBar DevExtreme`, добавляя дополнительные размеры.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/23_1/Guide/UI_Components/ProgressBar/)
+Документация на сайте разработчика Devextreme:
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxProgressBar/"
+    target="_blank"
+  >
+    API
+  </a>
 
-<Canvas name="Default" of={ProgressBarStories.ProgressBar} />
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ProgressBar/Overview/MaterialBlueLight/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
+<Canvas of={ProgressBarStories.ProgressBar} />
 <Controls of={ProgressBarStories.ProgressBar} />
-
 <Source of={ProgressBarStories.ProgressBar} dark />
 
-#### Для изменения размера прогрессбара используйте `size`.
+## Дизайн
 
-#### Имеются два варианта размера: `small` и `medium`.
+<Figma
+  height="50%"
+			collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1268-40855&node-type=canvas&t=OMBUUOLxasu12o5m-0"
+/>
+
+## Примеры использования
+
+- [Размеры прогрессбара](#размеры-прогрессбара)
+
+
+## Размеры прогрессбара
+
+Для изменения размера прогрессбара используйте `size`. Имеются два варианта размера: `small` и `medium`.
 
 <Source
-  code={`<div meProgressBar meProgressBar [size]="'small'"></div>`}
+  code={`<dx-progress-bar meProgressBar [size]="size"></dx-progress-bar>`}
   dark
   language="html"
+/>
+
+## Статус прогресса
+
+Для отображения статуса прогресса используйте свойство `showStatus="true"`.
+
+<Source
+  code={`<dx-progress-bar meProgressBar [showStatus]="true"></dx-progress-bar>`}
+  dark
+  language="html"
+/>
+
+## Обложка прогрессбара
+
+Компонент DevExtreme ProgressBar не поддерживает обложку, поэтому обложка создается и стилизуется отдельно как в примере.
+
+<Source
+			code={`
+template:
+  <div class="form">
+  <div class="me-title-header2"> Time left 00:00:10 </div>
+    <dx-progress-bar
+      meProgressBar
+      #progressBar
+      id="progress-bar-status"
+      [(value)]="value"
+      [(size)]="size"
+      [(height)]="height"
+      [(width)]="width"
+      [(showStatus)]="showStatus"
+    >
+    </dx-progress-bar>
+  </div>
+,
+styles: [
+  .form {
+    height: 100px;
+    text-align: center;
+    align-content: center;
+  }
+  .me-title-header2 {
+    text-align: center;
+  }
+  #progress-bar-status {
+    display: inline-block;
+    padding-top: 8px;
+  }
+],
+`}
+	dark
+	language="html"
 />
