@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, Renderer2 } from '@angular/core';
 import { DxButtonGroupComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeControlDirective } from '../me-control/control.directive';
@@ -11,7 +11,9 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 export class MeButtonGroupDirective extends MeControlDirective {
   constructor(
     private component: DxButtonGroupComponent,
-    private iconStore: MeIconStoreService
+    private iconStore: MeIconStoreService,
+    private renderer: Renderer2,
+    private element: ElementRef,
   ) {
     super();
   }
@@ -19,6 +21,22 @@ export class MeButtonGroupDirective extends MeControlDirective {
   ngOnInit(): void {
     this.component.items = this.items.map((item, index) => {
       if (!item.type) item.type = 'normal';
+
+      this.renderer.addClass(this.element.nativeElement, `me-button`);
+      this.renderer.addClass(
+        this.element.nativeElement,
+        `me-button-${this.size}`,
+      );
+
+      // @ts-ignore
+      if (item.type === 'warning') {
+        item.elementAttr = {
+          ...item.elementAttr,
+          class: item.elementAttr?.['class']
+            ? item.elementAttr?.['class'] + ' me-button-warning'
+            : 'me-button-warning',
+        };
+      }
 
       if (!item.iconColor) {
         if (this.stylingMode !== 'contained' || item.type === 'normal') {
@@ -46,16 +64,16 @@ export class MeButtonGroupDirective extends MeControlDirective {
         size: this.getIconSize(item.leftIconSize),
       })}
           ${this.iconStore.getIcon({
-            icon: item.icon,
-            color: item.iconColor,
-            size: this.getIconSize(item.iconSize),
-          })}
+        icon: item.icon,
+        color: item.iconColor,
+        size: this.getIconSize(item.iconSize),
+      })}
           ${this.getText(index)}
           ${this.iconStore.getIcon({
-            icon: item.rightIcon,
-            color: item.rightIconColor ? item.rightIconColor : item.iconColor,
-            size: this.getIconSize(item.rightIconSize),
-          })}</div>`;
+        icon: item.rightIcon,
+        color: item.rightIconColor ? item.rightIconColor : item.iconColor,
+        size: this.getIconSize(item.rightIconSize),
+      })}</div>`;
 
       if (item.leftIcon || item.rightIcon) {
         item.elementAttr = {
