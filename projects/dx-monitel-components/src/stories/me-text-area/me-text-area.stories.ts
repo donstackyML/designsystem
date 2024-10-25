@@ -102,35 +102,6 @@ export const Default: Story = {
   },
 };
 
-export const Small: Story = {
-  args: {
-    ...Default.args,
-    size: 'small',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    ...Default.args,
-    size: 'large',
-  },
-};
-
-export const LabelModeInside: Story = {
-  args: {
-    ...Default.args,
-    labelMode: 'inside',
-  },
-};
-
-export const ReadOnly: Story = {
-  args: {
-    ...Default.args,
-    readOnly: true,
-    autoResizeEnabled: true,
-  },
-};
-
 export const AutoResize: Story = {
   args: {
     ...Default.args,

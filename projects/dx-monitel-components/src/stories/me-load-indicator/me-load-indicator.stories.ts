@@ -20,6 +20,16 @@ const meta: Meta<MeLoadIndicatorDirective> = {
     indicatorSrc: {
       control: 'text',
     },
+    size: {
+      options: ['small', 'medium', 'large'],
+      control: { type: 'select' },
+      defaultValue: 'medium',
+    },
+    stylingMode: {
+      options: ['line', 'circle'],
+      control: { type: 'select' },
+      defaultValue: 'circle',
+    },
   },
 };
 
@@ -28,83 +38,59 @@ export default meta;
 type Story = StoryObj<MeLoadIndicatorDirective>;
 
 const Template: Story = {
+  args: {
+    color: 'normal',
+    size: 'small',
+    stylingMode: 'circle',
+  },
   render: (args) => ({
     props: args,
     template: `
-      <div class="indicators">
-        <div
-          id="small-indicator"
-          meLoadIndicator
-          [size]="'small'"
-          [color]="color"
-        ></div>
-        <div
-          id="medium-indicator"
-          meLoadIndicator
-          [size]="'medium'"
-          [color]="color"
-        ></div>
-        <div
-          id="large-indicator"
-          meLoadIndicator
-          [size]="'large'"
-          [color]="color"
-        ></div>
-      </div>
-      <div class="label me-title-header2">Custom image</div>
-
-			<div class="indicators">
-				<div
-					id="image-indicator"
-					meLoadIndicator
-					[size]="'large'"
-					[indicatorSrc]="indicatorSrc"
-				></div>
-			</div>
+		<div style="display: flex;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center; background-color: var(--Background-Canvas);
+		border-radius: 4px;
+		border: 1px dashed #9747ff">
+		<dx-load-indicator
+			id="small-indicator"
+			meLoadIndicator
+			[size]="size"
+			[color]="color"
+			[stylingMode]="stylingMode"
+		></dx-load-indicator>
+		</div>
     `,
-    styles: [
-      `
-      .indicators {
-        height: 80px;
-        width: 200px;
-        background-color: rgb(157, 157, 158);
-        display: flex;
-        border: 1px solid #9747ff;
-        border-radius: 4px;
-        align-items: center;
-        justify-content: space-around;
-      }
-      .label {
-        margin-top: 20px;
-        margin-bottom: 10px;
-      }
-    `,
-    ],
   }),
 };
 
 export const Default: Story = {
   ...Template,
-  args: {
-    color: 'default',
-    indicatorSrc:
-      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',
-  },
-};
-
-export const WithAccentColor: Story = {
-  ...Template,
-  args: {
-    color: 'accent',
-    indicatorSrc:
-      'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',
-  },
 };
 
 export const WithCustomImage: Story = {
-  ...Template,
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="label me-title-header2">Custom image</div>
+			<div style="display: flex;
+			height: 50px;
+			width: 50px;
+			justify-content: center;
+			align-items: center; background-color: var(--Background-Canvas);
+			border-radius: 4px;
+			border: 1px dashed #9747ff">
+				<dx-load-indicator
+					id="image-indicator"
+					meLoadIndicator
+					[size]="'large'"
+					[indicatorSrc]="indicatorSrc"
+				></dx-load-indicator>
+			</div>
+    `,
+  }),
   args: {
-    color: 'default',
     indicatorSrc:
       'https://static.tildacdn.com/tild6261-3766-4534-a636-643635653261/6068d1f9087cdc5982a3.gif',
   },

@@ -17,11 +17,14 @@ import DxLoadIndicator from 'devextreme/ui/load_indicator';
     '[class.me-load-indicator-color-default]': 'isColorDefault',
     '[class.me-load-indicator-color-accent]': 'isColorAccent',
     '[class.me-load-indicator-color-normal]': 'isColorNormal',
+    '[class.me-load-indicator-style-line]': 'isStylingMode',
   },
 })
 export class MeLoadIndicatorDirective implements OnInit, OnChanges {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() color: 'normal' | 'default' | 'accent' = 'default';
+  @Input() stylingMode: 'circle' | 'line' = 'circle';
+
   @Input() indicatorSrc!: string;
 
   private dxLoadIndicatorInstance!: DxLoadIndicator;
@@ -56,6 +59,10 @@ export class MeLoadIndicatorDirective implements OnInit, OnChanges {
 
   get isColorNormal() {
     return this.color === 'normal';
+  }
+
+  get isStylingMode() {
+    return this.stylingMode === 'line';
   }
 
   ngOnChanges() {
