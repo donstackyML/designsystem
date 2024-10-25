@@ -13,7 +13,7 @@ export class MeButtonGroupDirective extends MeControlDirective {
     private component: DxButtonGroupComponent,
     private iconStore: MeIconStoreService,
     private renderer: Renderer2,
-    private element: ElementRef,
+    private element: ElementRef
   ) {
     super();
   }
@@ -25,7 +25,7 @@ export class MeButtonGroupDirective extends MeControlDirective {
       this.renderer.addClass(this.element.nativeElement, `me-button`);
       this.renderer.addClass(
         this.element.nativeElement,
-        `me-button-${this.size}`,
+        `me-button-${this.size}`
       );
 
       // @ts-ignore
@@ -64,16 +64,16 @@ export class MeButtonGroupDirective extends MeControlDirective {
         size: this.getIconSize(item.leftIconSize),
       })}
           ${this.iconStore.getIcon({
-        icon: item.icon,
-        color: item.iconColor,
-        size: this.getIconSize(item.iconSize),
-      })}
+            icon: item.icon,
+            color: item.iconColor,
+            size: this.getIconSize(item.iconSize),
+          })}
           ${this.getText(index)}
           ${this.iconStore.getIcon({
-        icon: item.rightIcon,
-        color: item.rightIconColor ? item.rightIconColor : item.iconColor,
-        size: this.getIconSize(item.rightIconSize),
-      })}</div>`;
+            icon: item.rightIcon,
+            color: item.rightIconColor ? item.rightIconColor : item.iconColor,
+            size: this.getIconSize(item.rightIconSize),
+          })}</div>`;
 
       if (item.leftIcon || item.rightIcon) {
         item.elementAttr = {

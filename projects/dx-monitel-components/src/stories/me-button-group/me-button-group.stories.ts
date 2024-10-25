@@ -86,7 +86,7 @@ export const Default: Story = {
     items: [
       { text: 'Первая', type: 'default' },
       { text: 'Вторая', type: 'default' },
-      { text: 'Третья', type: 'default' }
+      { text: 'Третья', type: 'default' },
     ],
     size: 'medium',
     stylingMode: 'contained',
@@ -111,7 +111,7 @@ export const WithIcons: Story = {
     items: [
       { text: 'Назад', leftIcon: 'arrowback', type: 'default' },
       { text: 'Обновить', leftIcon: 'cached', type: 'default' },
-      { text: 'Вперед', leftIcon: 'arrowforward', type: 'default' }
+      { text: 'Вперед', leftIcon: 'arrowforward', type: 'default' },
     ],
     size: 'medium',
     stylingMode: 'contained',
@@ -125,7 +125,7 @@ export const IconsOnly: Story = {
     items: [
       { icon: 'arrowback', type: 'default' },
       { icon: 'cached', type: 'default' },
-      { icon: 'arrowforward', type: 'default' }
+      { icon: 'arrowforward', type: 'default' },
     ],
     size: 'medium',
     stylingMode: 'contained',
@@ -141,7 +141,7 @@ export const ButtonTypes: Story = {
       { text: 'Normal', leftIcon: 'help', type: 'normal' },
       { text: 'Success', leftIcon: 'check', type: 'success' },
       { text: 'Warning', leftIcon: 'help', type: 'warning' },
-      { text: 'Danger', leftIcon: 'cancel', type: 'danger' }
+      { text: 'Danger', leftIcon: 'cancel', type: 'danger' },
     ],
     size: 'medium',
     stylingMode: 'contained',
@@ -153,9 +153,14 @@ export const ButtonTypes: Story = {
 export const DisabledStates: Story = {
   args: {
     items: [
-      { text: 'Активная', leftIcon: 'add', type: 'default', disabled: true},
-      { text: 'Отключенная', leftIcon: 'cancel', type: 'default', disabled: true },
-      { text: 'Активная', leftIcon: 'check', type: 'default', disabled: true }
+      { text: 'Активная', leftIcon: 'add', type: 'default', disabled: true },
+      {
+        text: 'Отключенная',
+        leftIcon: 'cancel',
+        type: 'default',
+        disabled: true,
+      },
+      { text: 'Активная', leftIcon: 'check', type: 'default', disabled: true },
     ],
     size: 'medium',
     stylingMode: 'contained',
@@ -169,7 +174,7 @@ export const Sizes: Story = {
     items: [
       { text: 'Назад', leftIcon: 'arrowback', type: 'normal' },
       { text: 'Обновить', leftIcon: 'cached', type: 'normal' },
-      { text: 'Вперед', leftIcon: 'arrowforward', type: 'normal' }
+      { text: 'Вперед', leftIcon: 'arrowforward', type: 'normal' },
     ],
     stylingMode: 'contained',
   },
@@ -201,7 +206,7 @@ export const Styles: Story = {
     items: [
       { text: 'Default', leftIcon: 'add', type: 'default' },
       { text: 'Warning', leftIcon: 'cached', type: 'warning' },
-      { text: 'Danger', leftIcon: 'cancel', type: 'danger' }
+      { text: 'Danger', leftIcon: 'cancel', type: 'danger' },
     ],
     size: 'medium',
   },
