@@ -1,5 +1,6 @@
-import { Directive, Input, OnInit } from '@angular/core';
+import {Directive, ElementRef, Input, OnInit} from '@angular/core';
 import { DxTabsComponent } from 'devextreme-angular';
+import {FocusManagerService} from "../../service/keyboard-navigation.service";
 
 export interface Tab {
   id: number;
@@ -35,11 +36,16 @@ export class MeTabsDirective implements OnInit {
   @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
   @Input() width: string | number = 'auto';
 
-  constructor(private tabs: DxTabsComponent) {}
+  constructor(
+    private tabs: DxTabsComponent,
+    private elementRef: ElementRef,
+    private focusManager: FocusManagerService
+  ) {}
 
   ngOnInit() {
     this.tabs.orientation = this.orientation;
     this.tabs.iconPosition = this.iconPosition;
     this.tabs.width = this.width;
+    this.focusManager.monitorFocus(this.elementRef).subscribe();
   }
 }
