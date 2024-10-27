@@ -1,0 +1,148 @@
+@use 'sass:color';
+@use './colors' as *;
+
+$chip-bg-color: null !default;
+$chip-text-color: null !default;
+$chip-hover-bg: null !default;
+$chip-active-bg: null !default;
+$chip-disabled-bg: null !default;
+$chip-disabled-text: null !default;
+$chip-count-text: null !default;
+$chip-focus-border: null !default;
+
+// Светлая тема
+@if $color == 'light' {
+  $chip-bg-color: rgba(236, 237, 243, 1);
+  $chip-text-color: rgba(51, 51, 51, 1);
+  $chip-hover-bg: rgba(216, 218, 234, 1);
+  $chip-active-bg: rgba(196, 216, 255, 1);
+  $chip-disabled-bg: rgba(222, 223, 230, 1);
+  $chip-disabled-text: rgba(117, 117, 117, 1);
+  $chip-count-text: rgba(85, 85, 85, 1);
+  $chip-focus-border: var(--Dividers-Borders-Focus);
+}
+
+// Темная тема
+@if $color == 'dark' {
+  $chip-bg-color: rgba(64, 66, 78, 1);
+  $chip-text-color: rgba(255, 255, 255, 0.87);
+  $chip-hover-bg: rgba(78, 80, 95, 1);
+  $chip-active-bg: rgba(96, 98, 116, 1);
+  $chip-disabled-bg: rgba(52, 54, 65, 1);
+  $chip-disabled-text: rgba(255, 255, 255, 0.38);
+  $chip-count-text: rgba(255, 255, 255, 0.6);
+  $chip-focus-border: var(--Dividers-Borders-Focus);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: $chip-bg-color;
+  color: $chip-text-color;
+  font-family: Roboto, sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  outline: none;
+
+  &.me-keyboard-focused {
+    &.dx-state-focused {
+      border: 1px solid $chip-focus-border;
+      box-shadow: 0 0 0 1px $chip-focus-border;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        bottom: -2px;
+        left: -1px;
+        right: -1px;
+        border: 1px solid $chip-focus-border;
+        border-radius: 4px;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &.small {
+    height: 24px;
+    font-size: 12px;
+    padding: 0 8px;
+    border-radius: 12px;
+  }
+
+  &.medium {
+    height: 32px;
+    font-size: 14px;
+  }
+
+  &.large {
+    height: 40px;
+    font-size: 16px;
+    padding: 0 16px;
+  }
+}
+
+.chip-label {
+  display: flex;
+  align-items: baseline;
+}
+
+.chip-count {
+  font-size: 0.75em;
+  margin-left: 4px;
+  color: $chip-count-text;
+  vertical-align: baseline;
+  position: relative;
+  top: -4px;
+}
+
+.chip-remove-button {
+  margin-left: 8px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: currentColor;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.chip-disabled {
+  background-color: $chip-disabled-bg;
+  color: $chip-disabled-text;
+  cursor: not-allowed;
+}
+
+.chip-active {
+  background-color: $chip-active-bg;
+
+  &:hover {
+    background-color: $chip-active-bg;
+  }
+}
+
+.chip:not(.chip-disabled):not(.chip-active):hover {
+  background-color: $chip-hover-bg;
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  outline: none;
+
+  &.me-keyboard-focused {
+      border: 1px solid var(--Dividers-Borders-Focus);
+      border-radius: 3px;
+      box-shadow: 0 0 0 1px var(--Dividers-Borders-Focus);
+  }
+}

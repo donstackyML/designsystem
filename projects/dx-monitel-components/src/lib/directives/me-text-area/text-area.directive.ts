@@ -5,10 +5,16 @@ import {
   HostListener,
   Input,
   OnInit,
+  OnDestroy,
   Renderer2,
   inject,
+  NgZone,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { DxTextAreaComponent } from 'devextreme-angular';
+import { FocusManagerService } from "../../service/keyboard-navigation.service";
+import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
+
 type MeSize = 'small' | 'medium' | 'large';
 
 @Directive({
@@ -22,13 +28,15 @@ type MeSize = 'small' | 'medium' | 'large';
     '[class.me-text-area-label-inside]': 'isLabelModeInside',
   },
 })
-export class MeTextAreaDirective implements OnInit, AfterViewInit {
+export class MeTextAreaDirective implements OnInit, AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'medium';
   @Input() labelMode: 'top' | 'inside' | 'hidden' = 'inside';
 
   private component = inject(DxTextAreaComponent);
   private element = inject(ElementRef);
   private renderer = inject(Renderer2);
+  private focusSubject: BehaviorSubject<boolean>;
+  private focusSubscription: Subscription;
 
   get isSizeSmall() {
     return this.size === 'small';
@@ -50,12 +58,50 @@ export class MeTextAreaDirective implements OnInit, AfterViewInit {
     return this.labelMode === 'inside';
   }
 
+  constructor(
+    private elementRef: ElementRef,
+    private focusManager: FocusManagerService
+  ) {
+    this.focusSubject = new BehaviorSubject<boolean>(false);
+    this.focusSubscription = this.focusSubject
+      .pipe(debounceTime(0))
+      .subscribe((isFocus) => {
+        if (isFocus) {
+          this.renderer.addClass(this.elementRef.nativeElement, 'me-state-focus');
+        } else {
+          this.renderer.removeClass(
+            this.elementRef.nativeElement,
+            'me-state-focus'
+          );
+        }
+      });
+  }
+
   ngOnInit(): void {
+    this.focusManager.monitorFocus(this.elementRef).subscribe();
     this.applyInitialState();
   }
 
   ngAfterViewInit(): void {
     this.createLockIcon();
+  }
+
+  ngOnDestroy(): void {
+    if (this.focusSubscription) {
+      this.focusSubscription.unsubscribe();
+    }
+  }
+
+  @HostListener('keyup', ['$event'])
+  onKeyUp(event: KeyboardEvent): void {
+    if (event.key === 'Tab') {
+      this.focusSubject.next(true);
+    }
+  }
+
+  @HostListener('focusout')
+  onFocusOut(): void {
+    this.focusSubject.next(false);
   }
 
   applyInitialState() {
@@ -97,7 +143,8 @@ export class MeTextAreaDirective implements OnInit, AfterViewInit {
     );
   }
 
-  @HostListener('onOptionChanged', ['$event']) onOptionChanged(e: any) {
+  @HostListener('onOptionChanged', ['$event'])
+  onOptionChanged(e: any) {
     if (e.name === 'readOnly' && e.value === true) {
       this.addLockIcon();
     }

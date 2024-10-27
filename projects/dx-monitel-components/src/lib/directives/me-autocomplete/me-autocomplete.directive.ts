@@ -1,6 +1,7 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2, HostListener } from '@angular/core';
 import { DxAutocompleteComponent } from 'devextreme-angular';
 import { MeSize, MeScrollbarShowType } from '../../types/types';
+import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
 
 @Directive({
   selector: '[meAutocomplete]',
@@ -8,33 +9,77 @@ import { MeSize, MeScrollbarShowType } from '../../types/types';
     '[class.me-autocomplete]': 'true',
     '[class.me-autocomplete-small]': 'isSizeSmall',
     '[class.me-autocomplete-medium]': 'isSizeMedium',
-    '[class.me-autocomplete-large]': 'isSizeLarge',
-  },
+    '[class.me-autocomplete-large]': 'isSizeLarge'
+  }
 })
-export class MeAutocompleteDirective implements OnInit {
+export class MeAutocompleteDirective implements OnInit, OnDestroy {
   @Input() size: MeSize = 'medium';
   @Input() showScrollbar: MeScrollbarShowType = 'always';
 
-  constructor(
-    private element: ElementRef,
-    private component: DxAutocompleteComponent,
-    private renderer: Renderer2
-  ) {}
+  private focusSubject: BehaviorSubject<boolean>;
+  private focusSubscription: Subscription;
 
-  get isSizeSmall() {
+  constructor(
+    private component: DxAutocompleteComponent,
+    private element: ElementRef,
+    private renderer: Renderer2,
+  ) {
+    this.focusSubject = new BehaviorSubject<boolean>(false);
+    this.focusSubscription = this.focusSubject
+      .pipe(debounceTime(0))
+      .subscribe((isFocus) => {
+        if (isFocus) {
+          this.renderer.addClass(this.element.nativeElement, 'me-state-focus');
+        } else {
+          this.renderer.removeClass(
+            this.element.nativeElement,
+            'me-state-focus'
+          );
+        }
+      });
+  }
+
+  get isSizeSmall(): boolean {
     return this.size === 'small';
   }
 
-  get isSizeMedium() {
+  get isSizeMedium(): boolean {
     return this.size === 'medium';
   }
 
-  get isSizeLarge() {
+  get isSizeLarge(): boolean {
     return this.size === 'large';
   }
 
   ngOnInit(): void {
     this.setDropDownOptions();
+    this.initDefaultClasses();
+  }
+
+  ngOnDestroy(): void {
+    if (this.focusSubscription) {
+      this.focusSubscription.unsubscribe();
+    }
+  }
+
+  @HostListener('keyup', ['$event'])
+  onKeyUp(event: KeyboardEvent): void {
+    if (event.key === 'Tab') {
+      this.focusSubject.next(true);
+    }
+  }
+
+  @HostListener('focusout')
+  onFocusOut(): void {
+    this.focusSubject.next(false);
+  }
+
+  private initDefaultClasses(): void {
+    this.renderer.addClass(this.element.nativeElement, 'me-editor');
+    this.renderer.addClass(
+      this.element.nativeElement,
+      `me-editor-${this.size}`
+    );
   }
 
   private setDropDownOptions(): void {

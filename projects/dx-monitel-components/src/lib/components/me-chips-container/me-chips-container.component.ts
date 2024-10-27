@@ -31,15 +31,6 @@ export interface MeChip {
       </me-chip>
     </div>
   `,
-  styles: [
-    `
-      .chips-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-    `,
-  ],
 })
 export class MeChipsContainerComponent {
   @Input() chips: MeChip[] = [];
