@@ -1,4 +1,6 @@
 // Components
+import {MeFocusableModule} from "./lib/directives/me-focusable/me-focusable.module";
+
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
 export { MeCardComponent } from './lib/components/me-card/me-card.component';
@@ -31,6 +33,7 @@ export { MeTagBoxDirective } from './lib/directives/me-tag-box/tag-box.directive
 export { MeTextAreaDirective } from './lib/directives/me-text-area/text-area.directive';
 export { MeTextBoxDirective } from './lib/directives/me-text-box/text-box.directive';
 export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-editor.directive';
+export { MeFocusableDirective } from './lib/directives/me-focusable/me-focusable.directive';
 export { MeToastDirective } from './lib/directives/me-toast/toast.directive';
 
 // Layout and Navigation Directives
@@ -77,7 +80,9 @@ export { MeTagBoxModule } from './lib/directives/me-tag-box/tag-box.module';
 export { MeTextAreaModule } from './lib/directives/me-text-area/text-area.module';
 export { MeTextBoxModule } from './lib/directives/me-text-box/me-text-box.module';
 export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-editor.module';
+export { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
+
 
 // Layout and Navigation Modules
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';

@@ -5,15 +5,12 @@ import {
   HostListener,
   Input,
   OnInit,
-  OnDestroy,
   Renderer2,
-  inject,
-  NgZone,
-  ChangeDetectorRef,
+  inject
 } from '@angular/core';
 import { DxTextAreaComponent } from 'devextreme-angular';
 import { FocusManagerService } from "../../service/keyboard-navigation.service";
-import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
+import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
 type MeSize = 'small' | 'medium' | 'large';
 
@@ -28,15 +25,11 @@ type MeSize = 'small' | 'medium' | 'large';
     '[class.me-text-area-label-inside]': 'isLabelModeInside',
   },
 })
-export class MeTextAreaDirective implements OnInit, AfterViewInit, OnDestroy {
+export class MeTextAreaDirective extends MeFocusableDirective implements OnInit, AfterViewInit {
   @Input() size: MeSize = 'medium';
   @Input() labelMode: 'top' | 'inside' | 'hidden' = 'inside';
 
   private component = inject(DxTextAreaComponent);
-  private element = inject(ElementRef);
-  private renderer = inject(Renderer2);
-  private focusSubject: BehaviorSubject<boolean>;
-  private focusSubscription: Subscription;
 
   get isSizeSmall() {
     return this.size === 'small';
@@ -59,49 +52,18 @@ export class MeTextAreaDirective implements OnInit, AfterViewInit, OnDestroy {
   }
 
   constructor(
-    private elementRef: ElementRef,
-    private focusManager: FocusManagerService
+    element: ElementRef,
+    renderer: Renderer2,
   ) {
-    this.focusSubject = new BehaviorSubject<boolean>(false);
-    this.focusSubscription = this.focusSubject
-      .pipe(debounceTime(0))
-      .subscribe((isFocus) => {
-        if (isFocus) {
-          this.renderer.addClass(this.elementRef.nativeElement, 'me-state-focus');
-        } else {
-          this.renderer.removeClass(
-            this.elementRef.nativeElement,
-            'me-state-focus'
-          );
-        }
-      });
+    super(element, renderer);
   }
 
   ngOnInit(): void {
-    this.focusManager.monitorFocus(this.elementRef).subscribe();
     this.applyInitialState();
   }
 
   ngAfterViewInit(): void {
     this.createLockIcon();
-  }
-
-  ngOnDestroy(): void {
-    if (this.focusSubscription) {
-      this.focusSubscription.unsubscribe();
-    }
-  }
-
-  @HostListener('keyup', ['$event'])
-  onKeyUp(event: KeyboardEvent): void {
-    if (event.key === 'Tab') {
-      this.focusSubject.next(true);
-    }
-  }
-
-  @HostListener('focusout')
-  onFocusOut(): void {
-    this.focusSubject.next(false);
   }
 
   applyInitialState() {
