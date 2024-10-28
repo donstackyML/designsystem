@@ -41,8 +41,8 @@ export class MeButtonGroupDirective
         `me-button-${this.size}`
       );
 
-      // @ts-ignore
-      if (item.type === 'warning') {
+
+      if (item.meType === 'warning') {
         item.elementAttr = {
           ...item.elementAttr,
           class: item.elementAttr?.['class']
