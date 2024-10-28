@@ -5,7 +5,7 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 import { DxButtonGroupComponent } from 'devextreme-angular';
-import {MeButtonGroupDirective, MeButtonGroupItem} from '../../public-api';
+import { MeButtonGroupDirective, MeButtonGroupItem } from '../../public-api';
 
 interface ButtonGroupItem {
   text?: string;

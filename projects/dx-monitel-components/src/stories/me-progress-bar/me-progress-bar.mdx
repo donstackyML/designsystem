@@ -28,9 +28,9 @@ import { Figma } from "@storybook/addon-designs/blocks";
     Демо
   </a>
 
-<Canvas of={ProgressBarStories.ProgressBar} />
-<Controls of={ProgressBarStories.ProgressBar} />
-<Source of={ProgressBarStories.ProgressBar} dark />
+<Canvas of={ProgressBarStories.Default} />
+<Controls of={ProgressBarStories.Default} />
+<Source of={ProgressBarStories.Default} dark />
 
 ## Дизайн
 
@@ -44,6 +44,9 @@ import { Figma } from "@storybook/addon-designs/blocks";
 ## Примеры использования
 
 - [Размеры прогрессбара](#размеры-прогрессбара)
+- [Статус прогресса](#статус-прогресса)
+- [Обложка прогрессбара Small](#обложка-прогрессбара)
+- [Обложка прогрессбара Medium](#medium)
 
 
 ## Размеры прогрессбара
@@ -70,39 +73,83 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 Компонент DevExtreme ProgressBar не поддерживает обложку, поэтому обложка создается и стилизуется отдельно как в примере.
 
+## Small
 <Source
 			code={`
-template:
   <div class="form">
-  <div class="me-title-header2"> Time left 00:00:10 </div>
-    <dx-progress-bar
-      meProgressBar
-      #progressBar
-      id="progress-bar-status"
-      [(value)]="value"
-      [(size)]="size"
-      [(height)]="height"
-      [(width)]="width"
-      [(showStatus)]="showStatus"
-    >
-    </dx-progress-bar>
-  </div>
-,
-styles: [
+    <div class="me-text-body2"> Time left 00:00:10 </div>
+      <dx-progress-bar
+        meProgressBar
+        #progressBar
+        id="progress-bar-status"
+        [(value)]="value"
+        [(size)]="size"
+        [(height)]="height"
+        [(width)]="width"
+        [(showStatus)]="showStatus"
+      >
+      </dx-progress-bar>
+    </div>
+`}
+  dark
+  language="html"
+/>
+<Source
+			code={`
   .form {
-    height: 100px;
-    text-align: center;
-    align-content: center;
-  }
-  .me-title-header2 {
-    text-align: center;
-  }
-  #progress-bar-status {
-    display: inline-block;
-    padding-top: 8px;
-  }
-],
+      height: 100px;
+      text-align: center;
+      align-content: center;
+    }
+    .me-text-body2 {
+      text-align: center;
+    }
+    #progress-bar-status {
+      display: inline-block;
+      padding-top: 2px;
+    }
+`}
+  dark
+  language="css"
+/>
+
+## Medium
+<Source
+      code={`
+  <div class="form">
+    <div class="me-text-body1"> Time left 00:00:10 </div>
+      <dx-progress-bar
+        meProgressBar
+        #progressBar
+        id="progress-bar-status"
+        [(value)]="value"
+        [(size)]="size"
+        [(height)]="height"
+        [(width)]="width"
+        [(showStatus)]="showStatus"
+      >
+      </dx-progress-bar>
+    </div>
 `}
 	dark
-	language="html"
+			language="html"
+/>
+<Source
+      code={`
+
+  .form {
+      height: 100px;
+      text-align: center;
+      align-content: center;
+    }
+    .me-text-body1 {
+      text-align: center;
+    }
+    #progress-bar-status {
+      display: inline-block;
+      padding-top: 4px;
+    }
+`}
+	dark
+			language="css"
 />
