@@ -1,12 +1,6 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxTabPanelComponent } from 'devextreme-angular';
-import { FocusManagerService } from "../../service/keyboard-navigation.service";
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
 @Directive({

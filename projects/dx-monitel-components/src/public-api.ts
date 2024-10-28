@@ -1,5 +1,5 @@
 // Components
-import {MeFocusableModule} from "./lib/directives/me-focusable/me-focusable.module";
+import { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
@@ -82,7 +82,6 @@ export { MeTextBoxModule } from './lib/directives/me-text-box/me-text-box.module
 export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-editor.module';
 export { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
-
 
 // Layout and Navigation Modules
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';

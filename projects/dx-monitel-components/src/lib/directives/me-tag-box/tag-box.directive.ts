@@ -24,10 +24,7 @@ export class MeTagBoxDirective extends MeFocusableDirective {
 
   private component = inject(DxTagBoxComponent);
 
-  constructor(
-    element: ElementRef,
-    renderer: Renderer2
-  ) {
+  constructor(element: ElementRef, renderer: Renderer2) {
     super(element, renderer);
   }
 
@@ -42,7 +39,6 @@ export class MeTagBoxDirective extends MeFocusableDirective {
   get isSizeLarge() {
     return this.size === 'large';
   }
-
 
   @HostListener('onContentReady', ['$event'])
   onContentReady(e: any) {

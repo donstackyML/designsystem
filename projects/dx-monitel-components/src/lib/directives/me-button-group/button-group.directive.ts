@@ -1,15 +1,25 @@
-import {ChangeDetectorRef, Directive, ElementRef, NgZone, OnInit, Renderer2} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  NgZone,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { DxButtonGroupComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeControlDirective } from '../me-control/control.directive';
-import {FocusManagerService} from "../../service/keyboard-navigation.service";
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
 @Directive({
   selector: '[meButtonGroup]',
 })
-export class MeButtonGroupDirective extends MeControlDirective implements OnInit {
+export class MeButtonGroupDirective
+  extends MeControlDirective
+  implements OnInit
+{
   constructor(
     private component: DxButtonGroupComponent,
     private iconStore: MeIconStoreService,

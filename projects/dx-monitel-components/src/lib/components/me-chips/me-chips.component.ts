@@ -20,7 +20,7 @@ import { MeIconComponent } from '../me-icon/me-icon.component';
         <me-icon icon="close" [size]="size" color="#333"></me-icon>
       </button>
     </span>
-  `
+  `,
 })
 export class MeChipComponent {
   @Input() label: string = '';

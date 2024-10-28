@@ -4,12 +4,14 @@ import {
   Input,
   OnInit,
   Renderer2,
-  HostBinding, NgZone, ChangeDetectorRef,
+  HostBinding,
+  NgZone,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 import { MeScrollbarShowType, MeCommonType } from '../../types/types';
 import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
-import {FocusManagerService} from "../../service/keyboard-navigation.service";
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 @Directive({
   selector: '[meSelectBox]',

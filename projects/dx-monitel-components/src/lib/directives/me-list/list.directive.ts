@@ -1,9 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { MeSize } from '../../types/types';
 import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
@@ -13,16 +8,13 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-list]': 'true',
     '[class.me-list-small]': 'isSizeSmall',
     '[class.me-list-medium]': 'isSizeMedium',
-    '[class.me-list-large]': 'isSizeLarge'
-  }
+    '[class.me-list-large]': 'isSizeLarge',
+  },
 })
 export class MeListDirective extends MeFocusableDirective {
   @Input() size: MeSize = 'medium';
 
-  constructor(
-    element: ElementRef,
-    renderer: Renderer2
-  ) {
+  constructor(element: ElementRef, renderer: Renderer2) {
     super(element, renderer);
   }
 

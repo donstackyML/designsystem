@@ -9,17 +9,20 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-autocomplete]': 'true',
     '[class.me-autocomplete-small]': 'isSizeSmall',
     '[class.me-autocomplete-medium]': 'isSizeMedium',
-    '[class.me-autocomplete-large]': 'isSizeLarge'
-  }
+    '[class.me-autocomplete-large]': 'isSizeLarge',
+  },
 })
-export class MeAutocompleteDirective extends MeFocusableDirective implements OnInit {
+export class MeAutocompleteDirective
+  extends MeFocusableDirective
+  implements OnInit
+{
   @Input() size: MeSize = 'medium';
   @Input() showScrollbar: MeScrollbarShowType = 'always';
 
   constructor(
     private component: DxAutocompleteComponent,
     element: ElementRef,
-    renderer: Renderer2,
+    renderer: Renderer2
   ) {
     super(element, renderer);
   }

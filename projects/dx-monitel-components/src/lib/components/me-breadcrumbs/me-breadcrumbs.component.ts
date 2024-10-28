@@ -11,7 +11,8 @@ import {
   OnChanges,
   SimpleChanges,
   ChangeDetectionStrategy,
-  OnDestroy, OnInit,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -21,7 +22,7 @@ import {
   DxContextMenuComponent,
 } from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
-import {FocusManagerService} from "../../service/keyboard-navigation.service";
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 interface BreadcrumbItem {
   text: string;
@@ -141,8 +142,12 @@ export class MeBreadcrumbsComponent
   private resizeObserver!: ResizeObserver;
   private breadcrumbWidths: number[] = [];
 
-  constructor(private zone: NgZone, private cdr: ChangeDetectorRef,private elementRef: ElementRef,
-              private focusManager: FocusManagerService) {}
+  constructor(
+    private zone: NgZone,
+    private cdr: ChangeDetectorRef,
+    private elementRef: ElementRef,
+    private focusManager: FocusManagerService
+  ) {}
 
   ngOnInit() {
     this.focusManager.monitorFocus(this.elementRef).subscribe();

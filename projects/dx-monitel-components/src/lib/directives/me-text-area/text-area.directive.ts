@@ -6,10 +6,10 @@ import {
   Input,
   OnInit,
   Renderer2,
-  inject
+  inject,
 } from '@angular/core';
 import { DxTextAreaComponent } from 'devextreme-angular';
-import { FocusManagerService } from "../../service/keyboard-navigation.service";
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
 type MeSize = 'small' | 'medium' | 'large';
@@ -25,7 +25,10 @@ type MeSize = 'small' | 'medium' | 'large';
     '[class.me-text-area-label-inside]': 'isLabelModeInside',
   },
 })
-export class MeTextAreaDirective extends MeFocusableDirective implements OnInit, AfterViewInit {
+export class MeTextAreaDirective
+  extends MeFocusableDirective
+  implements OnInit, AfterViewInit
+{
   @Input() size: MeSize = 'medium';
   @Input() labelMode: 'top' | 'inside' | 'hidden' = 'inside';
 
@@ -51,10 +54,7 @@ export class MeTextAreaDirective extends MeFocusableDirective implements OnInit,
     return this.labelMode === 'inside';
   }
 
-  constructor(
-    element: ElementRef,
-    renderer: Renderer2,
-  ) {
+  constructor(element: ElementRef, renderer: Renderer2) {
     super(element, renderer);
   }
 

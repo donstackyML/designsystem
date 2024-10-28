@@ -1,4 +1,10 @@
-import { Directive, ElementRef, HostListener, OnDestroy, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  Renderer2,
+} from '@angular/core';
 import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
 
 @Directive({
@@ -8,10 +14,7 @@ export class MeFocusableDirective implements OnDestroy {
   protected focusSubject: BehaviorSubject<boolean>;
   protected focusSubscription: Subscription;
 
-  constructor(
-    protected element: ElementRef,
-    protected renderer: Renderer2
-  ) {
+  constructor(protected element: ElementRef, protected renderer: Renderer2) {
     this.focusSubject = new BehaviorSubject<boolean>(false);
     this.focusSubscription = this.focusSubject
       .pipe(debounceTime(0))

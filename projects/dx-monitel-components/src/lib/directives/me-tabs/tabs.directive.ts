@@ -1,6 +1,6 @@
-import {Directive, ElementRef, Input, OnInit} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { DxTabsComponent } from 'devextreme-angular';
-import {FocusManagerService} from "../../service/keyboard-navigation.service";
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 export interface Tab {
   id: number;
