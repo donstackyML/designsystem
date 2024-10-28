@@ -32,6 +32,7 @@ export interface MeTextBoxComponent {
   size: MeSize;
 }
 export interface MeButtonGroupItem extends Partial<dxButtonGroupItem> {
+  meType?: MeButtonType;
   leftIcon?: string;
   leftIconColor?: string;
   iconColor?: string;

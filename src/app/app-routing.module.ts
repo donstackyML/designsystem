@@ -6,6 +6,7 @@ import { MeButtonComponent } from './components/me-button/me-button.component';
 import { MeCalendarComponent } from './components/me-calendar/me-calendar.component';
 import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
+import { MeDataGridComponent } from './components/me-data-grid/me-data-grid.component';
 import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-drop-down-button.component';
 import { MeFormComponent } from './components/me-form/me-form.component';
 import { MeIconResearchComponent } from './components/me-icon-research/me-icon-research.component';
@@ -26,6 +27,7 @@ import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
+import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -54,6 +56,8 @@ const routes: Routes = [
   { path: 'me-accordion', component: MeAccordionComponent },
   { path: 'me-toast', component: MeToastComponent },
   { path: 'me-loading-indicator', component: MeLoadingIndicatorComponent },
+  { path: 'me-data-grid', component: MeDataGridComponent },
+  { path: 'me-pivot-grid', component: MePivotGridComponent },
   { path: 'me-icon-research', component: MeIconResearchComponent },
   { path: '**', component: TypographyComponent },
 ];

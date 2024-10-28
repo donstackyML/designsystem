@@ -8,29 +8,54 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Директива meRadioGroup
 
-Применение директивы <code>meRadioGroup</code> к элементу <code>dx-radio-group</code> приводит его
-размеры к значению <code>size=medium (20)</code> из дизайн-системы и предоставляет доступ
-к свойству <code>size</code>.
+Применение директивы <code>meRadioGroup</code> к элементу <code>dx-radio-group</code> предоставляет следующие возможности:
+
+- Установка размера через свойство <code>size</code> (small, medium, large)
+- Выбор расположения элементов через свойство <code>layout</code> (vertical, horizontal)
+- Подключение данных через свойство <code>dataSource</code>
+- Кастомизация отображения элементов через <code>itemTemplate</code>
 
 [Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxRadioGroup/)
 
-<Canvas of={radioGroupStories.Default} />
-<Controls of={radioGroupStories.Default} />
-<Source of={radioGroupStories.Default} dark />
+## Пример с иконками
 
-## Дизайн
+Пример использования радиогруппы с иконками DevExtreme:
 
+<Canvas of={radioGroupStories.WithIcons} />
+<Controls of={radioGroupStories.WithIcons} />
+<Source of={radioGroupStories.WithIcons} dark />
+
+### Структура данных
+
+```typescript
+const data = [
+  {
+    text: 'Красный',
+    icon: 'home',
+  },
+  {
+    text: 'Зеленый',
+    icon: 'favorites',
+  },
+  {
+    text: 'Синий',
+    icon: 'preferences',
+  },
+];
+```
+Настройки компонента
+СвойствоТипПо умолчаниюОписаниеsize'small' | 'medium' | 'large''medium'Размер радиокнопокlayout'vertical' | 'horizontal''vertical'Расположение элементов группыdataSourceany[]-Массив данных для отображения
+Дизайн
 <Figma
-  height="50%"
-  collapsable
-  defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=38-9464&t=gC6C40DcbGAFZEUK-0"
+height="50%"
+collapsable
+defaultCollapsed
+url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=38-9464&t=gC6C40DcbGAFZEUK-0"
 />
-
 <style>
   {`
-      h2 {
-        border-bottom: none !important;
+    h2 {
+      border-bottom: none !important;
     }
-`}
+  `}
 </style>

@@ -9,25 +9,34 @@ import {
   MeButtonGroupModule,
   MeButtonModule,
   MeCardComponent,
+  MeCheckBoxModule,
   MeChipComponent,
   MeChipsContainerComponent,
+  MeContextMenuModule,
   MeDataGridModule,
+  MeDropDownButtonModule,
   MeFileUploaderModule,
   MeIconComponent,
+  MeListModule,
   MeLoadPanelModule,
+  MeMenuModule,
   MePaginationComponent,
   MePivotGridModule,
   MePopupModule,
   MeProgressBarModule,
   MeScrollViewModule,
+  MeSelectBoxModule,
   MeSkeletonComponent,
   MeSliderModule,
   MeTabPanelModule,
   MeTabsModule,
   MeTagBoxModule,
   MeTextAreaModule,
+  MeTextBoxModule,
+  MeToolbarModule,
   MeTooltipModule,
   MeTreeListModule,
+  MeTreeViewModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,30 +67,32 @@ import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { MeCalendarDirective } from './directives/calendar.directive';
-import { MeCheckBoxDirective } from './directives/check-box.directive';
-import { MeContextMenuDirective } from './directives/context-menu.directive';
+// import { MeCheckBoxDirective } from './directives/check-box.directive';
+// import { MeContextMenuDirective } from './directives/context-menu.directive';
 import { MeControlDirective } from './directives/control.directive';
-import { MeDropDownButtonDirective } from './directives/drop-down-button.directive';
+// import { MeDropDownButtonDirective } from './directives/drop-down-button.directive';
 import { MeEditorDirective } from './directives/editor.directive';
 import { MeIconDirective } from './directives/icon.directive';
 import { MeLabelDirective } from './directives/label.directive';
-import { MeListDirective } from './directives/list.directive';
+// import { MeListDirective } from './directives/list.directive';
 import { MeLoadIndicatorDirective } from './directives/load-indicator.directive';
 import { MeLoadPanelDirective } from './directives/load-panel.directive';
-import { MeMenuDirective } from './directives/menu.directive';
+// import { MeMenuDirective } from './directives/menu.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
 import { MePopoverDirective } from './directives/popover.directive';
 import { MeRadioGroupDirective } from './directives/radio-group.directive';
-import { MeSelectBoxDirective } from './directives/select-box.directive';
+// import { MeSelectBoxDirective } from './directives/select-box.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
-import { MeTextBoxDirective } from './directives/text-box.directive';
-import { MeTextEditorDirective } from './directives/text-editor.directive';
-import { MeToastDirective } from './directives/toast.directive';
-import { MeToolbarDirective } from './directives/toolbar.directive';
-import { MeTreeViewDirective } from './directives/tree-view.directive';
+// import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeFormModule } from 'projects/dx-monitel-components/src/lib/directives/me-form/me-form.module';
 import { MeFormComponent } from './components/me-form/me-form.component';
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
+import { MeTextEditorDirective } from './directives/text-editor.directive';
+import { MeToastDirective } from './directives/toast.directive';
+import { MeDataGridComponent } from './components/me-data-grid/me-data-grid.component';
+import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
+// import { MeToolbarDirective } from './directives/toolbar.directive';
+// import { MeTreeViewDirective } from './directives/tree-view.directive';
 
 @NgModule({
   declarations: [
@@ -90,12 +101,12 @@ import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.comp
     MePopoverDirective,
     MePopoverComponent,
     MeTextBoxComponent,
-    MeTextBoxDirective,
+    // MeTextBoxDirective,
     MeLabelDirective,
     MeSelectBoxComponent,
-    MeSelectBoxDirective,
+    // MeSelectBoxDirective,
     MeTextEditorDirective,
-    MeCheckBoxDirective,
+    // MeCheckBoxDirective,
     MeCheckBoxComponent,
     MeEditorDirective,
     MeRadioGroupDirective,
@@ -111,24 +122,23 @@ import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.comp
     MeSidepageDemo,
     MeTabPanelComponent,
     TypographyComponent,
-    MeToolbarDirective,
+    // MeToolbarDirective,
     MeToolbarComponent,
     MeDropDownButtonComponent,
-    MeDropDownButtonDirective,
+    // MeDropDownButtonDirective,
     MeButtonGroupComponent,
     MeControlDirective,
     MeListComponent,
-    MeListDirective,
+    // MeListDirective,
     MeSwitchComponent,
     MeSwitchDirective,
     MeContextMenuComponent,
-    MeContextMenuDirective,
+    // MeContextMenuDirective,
     MeSidepageComponent,
-    MeMenuDirective,
-    MeMenuComponent,
+    // MeMenuDirective,
     MeMenuComponent,
     MeTreeViewComponent,
-    MeTreeViewDirective,
+    // MeTreeViewDirective,
     MeToastDirective,
     MeToastComponent,
     MeLoadIndicatorDirective,
@@ -137,6 +147,8 @@ import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.comp
     MeIconResearchComponent,
     MeFormComponent,
     MeTreeListComponent,
+    MeDataGridComponent,
+    MePivotGridComponent,
   ],
   imports: [
     BrowserModule,
@@ -172,6 +184,16 @@ import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.comp
     MeTooltipModule,
     MeTabPanelModule,
     MeFormModule,
+    MeTextBoxModule,
+    MeSelectBoxModule,
+    MeCheckBoxModule,
+    MeToolbarModule,
+    MeTreeViewModule,
+    MeDropDownButtonModule,
+    MeListModule,
+    MeMenuModule,
+    MeContextMenuModule,
+    MeDataGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

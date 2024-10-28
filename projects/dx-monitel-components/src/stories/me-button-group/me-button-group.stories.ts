@@ -5,7 +5,7 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 import { DxButtonGroupComponent } from 'devextreme-angular';
-import { MeButtonGroupDirective } from '../../public-api';
+import {MeButtonGroupDirective, MeButtonGroupItem} from '../../public-api';
 
 interface ButtonGroupItem {
   text?: string;
@@ -26,7 +26,7 @@ interface ButtonGroupItem {
 }
 
 interface ButtonGroupComponent {
-  items?: ButtonGroupItem[];
+  items?: MeButtonGroupItem[];
   size?: 'small' | 'medium' | 'large';
   stylingMode?: 'contained' | 'outlined' | 'text';
   disabled?: boolean;
@@ -140,7 +140,7 @@ export const ButtonTypes: Story = {
       { text: 'Default', leftIcon: 'database', type: 'default' },
       { text: 'Normal', leftIcon: 'help', type: 'normal' },
       { text: 'Success', leftIcon: 'check', type: 'success' },
-      { text: 'Warning', leftIcon: 'help', type: 'warning' },
+      { text: 'Warning', leftIcon: 'help', meType: 'warning' },
       { text: 'Danger', leftIcon: 'cancel', type: 'danger' },
     ],
     size: 'medium',
@@ -205,7 +205,7 @@ export const Styles: Story = {
   args: {
     items: [
       { text: 'Default', leftIcon: 'add', type: 'default' },
-      { text: 'Warning', leftIcon: 'cached', type: 'warning' },
+      { text: 'Warning', leftIcon: 'cached', meType: 'warning' },
       { text: 'Danger', leftIcon: 'cancel', type: 'danger' },
     ],
     size: 'medium',
