@@ -33,7 +33,14 @@ export class MeButtonGroupDirective
   ngOnInit(): void {
     this.focusManager.monitorFocus(this.element).subscribe();
     this.component.items = this.items.map((item, index) => {
-      if (!item.type) item.type = 'normal';
+      // Преобразуем существующие типы в meType
+      if (!item.meType) {
+        if (item.warningType) {
+          item.meType = 'warning';
+        } else {
+          item.meType = item.type || 'normal';
+        }
+      }
 
       this.renderer.addClass(this.element.nativeElement, `me-button`);
       this.renderer.addClass(
@@ -51,14 +58,15 @@ export class MeButtonGroupDirective
         };
       }
 
+      // Определение цвета иконки
       if (!item.iconColor) {
-        if (this.stylingMode !== 'contained' || item.type === 'normal') {
-          if (item.warningType && this.stylingMode !== 'contained') {
+        if (this.stylingMode !== 'contained' || item.meType === 'normal') {
+          if (item.meType === 'warning' && this.stylingMode !== 'contained') {
             item.iconColor = `var(--button-warning-icon-color)`;
-          } else if (item.warningType) {
+          } else if (item.meType === 'warning') {
             item.iconColor = DEFAULT_ICON_COLOR;
           } else {
-            item.iconColor = `var(--button-${item.type}-icon-color)`;
+            item.iconColor = `var(--button-${item.meType}-icon-color)`;
           }
         } else {
           item.iconColor = DEFAULT_ICON_COLOR;
@@ -66,7 +74,7 @@ export class MeButtonGroupDirective
 
         if (this.disabled) {
           item.iconColor = `var(--button-${
-            item.warningType ? 'warning' : item.type
+            item.meType
           }-${this.stylingMode}-icon-disabled-color)`;
         }
       }
@@ -77,16 +85,16 @@ export class MeButtonGroupDirective
         size: this.getIconSize(item.leftIconSize),
       })}
           ${this.iconStore.getIcon({
-            icon: item.icon,
-            color: item.iconColor,
-            size: this.getIconSize(item.iconSize),
-          })}
+        icon: item.icon,
+        color: item.iconColor,
+        size: this.getIconSize(item.iconSize),
+      })}
           ${this.getText(index)}
           ${this.iconStore.getIcon({
-            icon: item.rightIcon,
-            color: item.rightIconColor ? item.rightIconColor : item.iconColor,
-            size: this.getIconSize(item.rightIconSize),
-          })}</div>`;
+        icon: item.rightIcon,
+        color: item.rightIconColor ? item.rightIconColor : item.iconColor,
+        size: this.getIconSize(item.rightIconSize),
+      })}</div>`;
 
       if (item.leftIcon || item.rightIcon) {
         item.elementAttr = {
