@@ -7,7 +7,13 @@
     layout="horizontal"
     size="small"
     [value]="dataSource[0]"
-  ></dx-radio-group>
+    itemTemplate="radioTemplate"
+  >
+    <div *dxTemplate="let data of 'radioTemplate'">
+      <img src="../../../favicon.ico" alt="" /> - {{ data }}
+    </div>
+  </dx-radio-group>
+
   <dx-radio-group
     meRadioGroup
     [dataSource]="dataSource"
