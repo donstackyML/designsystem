@@ -6,6 +6,7 @@ import {
 } from '@storybook/angular';
 import { DxButtonGroupComponent } from 'devextreme-angular';
 import { MeButtonGroupDirective, MeButtonGroupItem } from '../../public-api';
+import { ButtonType } from 'devextreme/common';
 
 interface ButtonGroupItem {
   text?: string;
@@ -84,9 +85,9 @@ type Story = StoryObj<ButtonGroupComponent>;
 export const Default: Story = {
   args: {
     items: [
-      { text: 'Первая', type: 'default' },
-      { text: 'Вторая', type: 'default' },
-      { text: 'Третья', type: 'default' },
+      { text: 'Первая', type: 'warning' as ButtonType},
+      { text: 'Вторая', type: 'warning' as ButtonType},
+      { text: 'Третья', type: 'warning' as ButtonType},
     ],
     size: 'medium',
     stylingMode: 'contained',
