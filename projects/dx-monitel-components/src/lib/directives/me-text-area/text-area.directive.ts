@@ -9,6 +9,9 @@ import {
   inject,
 } from '@angular/core';
 import { DxTextAreaComponent } from 'devextreme-angular';
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
+import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
+
 type MeSize = 'small' | 'medium' | 'large';
 
 @Directive({
@@ -22,13 +25,14 @@ type MeSize = 'small' | 'medium' | 'large';
     '[class.me-text-area-label-inside]': 'isLabelModeInside',
   },
 })
-export class MeTextAreaDirective implements OnInit, AfterViewInit {
+export class MeTextAreaDirective
+  extends MeFocusableDirective
+  implements OnInit, AfterViewInit
+{
   @Input() size: MeSize = 'medium';
   @Input() labelMode: 'top' | 'inside' | 'hidden' = 'inside';
 
   private component = inject(DxTextAreaComponent);
-  private element = inject(ElementRef);
-  private renderer = inject(Renderer2);
 
   get isSizeSmall() {
     return this.size === 'small';
@@ -48,6 +52,10 @@ export class MeTextAreaDirective implements OnInit, AfterViewInit {
 
   get isLabelModeInside() {
     return this.labelMode === 'inside';
+  }
+
+  constructor(element: ElementRef, renderer: Renderer2) {
+    super(element, renderer);
   }
 
   ngOnInit(): void {
@@ -97,7 +105,8 @@ export class MeTextAreaDirective implements OnInit, AfterViewInit {
     );
   }
 
-  @HostListener('onOptionChanged', ['$event']) onOptionChanged(e: any) {
+  @HostListener('onOptionChanged', ['$event'])
+  onOptionChanged(e: any) {
     if (e.name === 'readOnly' && e.value === true) {
       this.addLockIcon();
     }

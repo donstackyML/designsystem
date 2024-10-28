@@ -12,7 +12,6 @@ import { MeSize } from '../../types/types';
 })
 export class MeTreeViewDirective {
   @Input() size: Exclude<MeSize, 'medium'> = 'large';
-  // @Input() itemWordWrap: boolean = false;
 
   get isSizeSmall() {
     return this.size === 'small';

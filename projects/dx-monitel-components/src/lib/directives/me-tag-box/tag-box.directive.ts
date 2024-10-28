@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { DxTagBoxComponent } from 'devextreme-angular';
 import { MeSize } from '../../types/types';
+import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
 @Directive({
   selector: '[meTagBox]',
@@ -18,12 +19,14 @@ import { MeSize } from '../../types/types';
     '[class.me-tag-box-large]': 'isSizeLarge',
   },
 })
-export class MeTagBoxDirective {
+export class MeTagBoxDirective extends MeFocusableDirective {
   @Input() size: MeSize = 'medium';
 
-  private element = inject(ElementRef);
   private component = inject(DxTagBoxComponent);
-  private renderer = inject(Renderer2);
+
+  constructor(element: ElementRef, renderer: Renderer2) {
+    super(element, renderer);
+  }
 
   get isSizeSmall() {
     return this.size === 'small';
@@ -37,44 +40,8 @@ export class MeTagBoxDirective {
     return this.size === 'large';
   }
 
-  // @HostListener('onOptionChanged', ['$event']) onOptionChanged(e: any) {
-  //   // if (e.name === 'opened' && e.value === true) {
-  //   //   this.renderer.addClass(
-  //   //     this.element.nativeElement.querySelector('.dx-overlay-content'),
-  //   //     'me-tag-box'
-  //   //   );
-  //     // console.log(
-  //     //   this.element.nativeElement.querySelector('.dx-overlay-content')
-  //     // );
-  //   }
-  // }
-
-  @HostListener('onContentReady', ['$event']) onContentReady(e: any) {
+  @HostListener('onContentReady', ['$event'])
+  onContentReady(e: any) {
     console.log('Content Ready:', e);
-    // if (e.name === 'opened' && e.value === true) {
-    //   this.renderer.addClass(
-    //     this.element.nativeElement.querySelector('.dx-overlay-content'),
-    //     'me-tag-box'
-    //   );
-    //   console.log(
-    //     this.element.nativeElement.querySelector('.dx-overlay-content')
-    //   );
-    // }
   }
-
-  // @HostListener('onOpened', ['$event']) onOpened(e: any) {
-  //   if (e) {
-  //     // console.log(
-  //     //   this.element.nativeElement.querySelector('.dx-overlay-content')
-  //     // );
-  //     // console.log(e);
-  //     console.log(
-  //       this.element.nativeElement.querySelector('.dx-overlay-content')
-  //     );
-  //     this.renderer.addClass(
-  //       this.element.nativeElement.querySelector('.dx-overlay-content'),
-  //       'me-tag-box'
-  //     );
-  //   }
-  // }
 }

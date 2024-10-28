@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxAutocompleteComponent } from 'devextreme-angular';
 import { MeSize, MeScrollbarShowType } from '../../types/types';
+import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
 @Directive({
   selector: '[meAutocomplete]',
@@ -11,25 +12,30 @@ import { MeSize, MeScrollbarShowType } from '../../types/types';
     '[class.me-autocomplete-large]': 'isSizeLarge',
   },
 })
-export class MeAutocompleteDirective implements OnInit {
+export class MeAutocompleteDirective
+  extends MeFocusableDirective
+  implements OnInit
+{
   @Input() size: MeSize = 'medium';
   @Input() showScrollbar: MeScrollbarShowType = 'always';
 
   constructor(
-    private element: ElementRef,
     private component: DxAutocompleteComponent,
-    private renderer: Renderer2
-  ) {}
+    element: ElementRef,
+    renderer: Renderer2
+  ) {
+    super(element, renderer);
+  }
 
-  get isSizeSmall() {
+  get isSizeSmall(): boolean {
     return this.size === 'small';
   }
 
-  get isSizeMedium() {
+  get isSizeMedium(): boolean {
     return this.size === 'medium';
   }
 
-  get isSizeLarge() {
+  get isSizeLarge(): boolean {
     return this.size === 'large';
   }
 

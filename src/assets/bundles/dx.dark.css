@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
 :root {
   /* Icon content */
   --me-icon-family: "Material Symbols Outlined";
@@ -4487,6 +4486,10 @@
   border-right-color: #3f4044;
 }
 
+.me-button.me-keyboard-focused .dx-state-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+}
+
 /**
 * $name 10. Scroller background color
 * $type color
@@ -5936,6 +5939,10 @@
 .dx-tabs-icon-position-bottom .dx-tab-text {
   text-align: center;
   flex-direction: column-reverse;
+}
+
+.me-tabs.me-keyboard-focused .dx-state-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
 }
 
 .me-tabs .dx-item.dx-tab.dx-state-hover {
@@ -8426,9 +8433,9 @@
 .me-form .dx-texteditor.dx-textbox.dx-state-focused:not(.dx-invalid) .dx-label span {
   color: var(--Controls-Content-In-Controls-Accent-Default);
 }
-.me-textbox.dx-texteditor.dx-textbox:focus-within,
-.me-form .dx-texteditor.dx-textbox:focus-within {
-  outline: 2px solid #7eb9ff;
+.me-textbox.dx-texteditor.dx-textbox.me-state-focus,
+.me-form .dx-texteditor.dx-textbox.me-state-focus {
+  outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
 }
 .me-textbox.dx-texteditor.dx-textbox.dx-invalid .dx-label span,
@@ -10411,6 +10418,10 @@
 .me-text-area {
   padding: 6px 8px;
 }
+.me-text-area.me-state-focus {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
+}
 .me-text-area.dx-show-clear-button .dx-texteditor-container {
   position: relative;
 }
@@ -11959,6 +11970,10 @@
   left: 8px;
 }
 
+.dx-autocomplete.me-state-focus {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
+}
 .dx-autocomplete .dx-texteditor-input {
   padding-left: 12px;
   padding-right: 30px;
@@ -13491,8 +13506,8 @@
 .me-selectbox.dx-selectbox.dx-state-focused:not(.dx-invalid) .dx-label span {
   color: var(--Controls-Content-In-Controls-Accent-Default);
 }
-.me-selectbox.dx-selectbox:focus-within {
-  outline: 2px solid #7eb9ff;
+.me-selectbox.dx-selectbox.me-state-focus {
+  outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
 }
 .me-selectbox.dx-selectbox.dx-invalid .dx-label span {
@@ -16482,9 +16497,11 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2196078431);
 }
 
+.me-load-panel {
+  width: auto !important;
+  height: auto !important;
+}
 .me-load-panel.me-load-panel-small {
-  width: 158px !important;
-  height: 76px !important;
   border-radius: 4px;
   padding: 16px 48px;
 }
@@ -16494,8 +16511,6 @@
   font-weight: 400;
 }
 .me-load-panel.me-load-panel-medium {
-  width: 182px !important;
-  height: 104px !important;
   border-radius: 4px;
   padding: 24px 56px;
 }
@@ -16505,8 +16520,6 @@
   font-weight: 400;
 }
 .me-load-panel.me-load-panel-large {
-  width: 233px !important;
-  height: 136px !important;
   border-radius: 4px;
   padding: 32px 64px;
 }
@@ -16889,6 +16902,11 @@
 .me-tag-box.me-tag-box-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-texteditor-input {
   padding: 2px;
   margin: 2px 4px 0 0;
+}
+
+.me-tag-box.me-state-focus {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
 }
 
 /**
@@ -23815,6 +23833,11 @@ input.dx-hidden {
   display: none;
 }
 
+.me-state-focus .dx-list-item.dx-state-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
+}
+
 /**
 * $name 10. Header text color
 * $type color
@@ -25098,6 +25121,11 @@ input.dx-hidden {
 }
 .me-tabs-panel.dx-tabs-styling-mode-secondary .dx-tab.dx-tab-selected::after {
   background-color: var(--Background-Content);
+}
+
+.me-state-focus .dx-tabpanel-tab.dx-state-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
 }
 
 /**
@@ -33337,4 +33365,113 @@ input.dx-hidden {
 
 .dx-overlay-wrapper .dx-overlay-content .dx-submenu ul.dx-menu-items-container {
   padding-inline: 0px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: rgb(64, 66, 78);
+  color: rgba(255, 255, 255, 0.87);
+  font-family: Roboto, sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  outline: none;
+}
+.chip.me-keyboard-focused.dx-state-focused {
+  border: 1px solid var(--Dividers-Borders-Focus);
+  box-shadow: 0 0 0 1px var(--Dividers-Borders-Focus);
+}
+.chip.me-keyboard-focused.dx-state-focused::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -1px;
+  right: -1px;
+  border: 1px solid var(--Dividers-Borders-Focus);
+  border-radius: 4px;
+  pointer-events: none;
+}
+.chip.small {
+  height: 24px;
+  font-size: 12px;
+  padding: 0 8px;
+  border-radius: 12px;
+}
+.chip.medium {
+  height: 32px;
+  font-size: 14px;
+}
+.chip.large {
+  height: 40px;
+  font-size: 16px;
+  padding: 0 16px;
+}
+
+.chip-label {
+  display: flex;
+  align-items: baseline;
+}
+
+.chip-count {
+  font-size: 0.75em;
+  margin-left: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  vertical-align: baseline;
+  position: relative;
+  top: -4px;
+}
+
+.chip-remove-button {
+  margin-left: 8px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: currentColor;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.chip-remove-button:hover {
+  opacity: 1;
+}
+
+.chip-disabled {
+  background-color: rgb(52, 54, 65);
+  color: rgba(255, 255, 255, 0.38);
+  cursor: not-allowed;
+}
+
+.chip-active {
+  background-color: rgb(96, 98, 116);
+}
+.chip-active:hover {
+  background-color: rgb(96, 98, 116);
+}
+
+.chip:not(.chip-disabled):not(.chip-active):hover {
+  background-color: rgb(78, 80, 95);
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  outline: none;
+}
+.chips-container.me-keyboard-focused {
+  border: 1px solid var(--Dividers-Borders-Focus);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--Dividers-Borders-Focus);
+}
+
+.me-state-focused .dx-state-focused {
+  border: 1px solid var(--Dividers-Borders-Focus);
+  border-radius: 3px;
+  box-shadow: 1px 0 0 1px var(--Dividers-Borders-Focus);
 }/*# sourceMappingURL=dx.dark.css.map */

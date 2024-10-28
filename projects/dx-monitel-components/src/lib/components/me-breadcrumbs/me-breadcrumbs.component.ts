@@ -12,6 +12,7 @@ import {
   SimpleChanges,
   ChangeDetectionStrategy,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -21,6 +22,7 @@ import {
   DxContextMenuComponent,
 } from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 interface BreadcrumbItem {
   text: string;
@@ -120,7 +122,7 @@ interface BreadcrumbItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MeBreadcrumbsComponent
-  implements AfterViewInit, OnChanges, OnDestroy
+  implements AfterViewInit, OnChanges, OnDestroy, OnInit
 {
   @Input() items: BreadcrumbItem[] = [];
   @Input() truncateFrom: 'left' | 'right' = 'right';
@@ -140,7 +142,16 @@ export class MeBreadcrumbsComponent
   private resizeObserver!: ResizeObserver;
   private breadcrumbWidths: number[] = [];
 
-  constructor(private zone: NgZone, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private zone: NgZone,
+    private cdr: ChangeDetectorRef,
+    private elementRef: ElementRef,
+    private focusManager: FocusManagerService
+  ) {}
+
+  ngOnInit() {
+    this.focusManager.monitorFocus(this.elementRef).subscribe();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['items'] || changes['truncateFrom'] || changes['size']) {
