@@ -48,7 +48,6 @@ export class MeButtonGroupDirective
         `me-button-${this.size}`
       );
 
-
       if (item.meType === 'warning') {
         item.elementAttr = {
           ...item.elementAttr,
@@ -73,9 +72,7 @@ export class MeButtonGroupDirective
         }
 
         if (this.disabled) {
-          item.iconColor = `var(--button-${
-            item.meType
-          }-${this.stylingMode}-icon-disabled-color)`;
+          item.iconColor = `var(--button-${item.meType}-${this.stylingMode}-icon-disabled-color)`;
         }
       }
 
@@ -85,16 +82,16 @@ export class MeButtonGroupDirective
         size: this.getIconSize(item.leftIconSize),
       })}
           ${this.iconStore.getIcon({
-        icon: item.icon,
-        color: item.iconColor,
-        size: this.getIconSize(item.iconSize),
-      })}
+            icon: item.icon,
+            color: item.iconColor,
+            size: this.getIconSize(item.iconSize),
+          })}
           ${this.getText(index)}
           ${this.iconStore.getIcon({
-        icon: item.rightIcon,
-        color: item.rightIconColor ? item.rightIconColor : item.iconColor,
-        size: this.getIconSize(item.rightIconSize),
-      })}</div>`;
+            icon: item.rightIcon,
+            color: item.rightIconColor ? item.rightIconColor : item.iconColor,
+            size: this.getIconSize(item.rightIconSize),
+          })}</div>`;
 
       if (item.leftIcon || item.rightIcon) {
         item.elementAttr = {

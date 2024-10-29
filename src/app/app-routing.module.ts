@@ -28,6 +28,8 @@ import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
+import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
+import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -59,6 +61,8 @@ const routes: Routes = [
   { path: 'me-data-grid', component: MeDataGridComponent },
   { path: 'me-pivot-grid', component: MePivotGridComponent },
   { path: 'me-icon-research', component: MeIconResearchComponent },
+  { path: 'me-load-panel', component: MeLoadPanelComponent },
+  { path: 'me-autocomplete', component: MeAutocompleteComponent },
   { path: '**', component: TypographyComponent },
 ];
 

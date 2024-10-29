@@ -1,6 +1,6 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { DxRadioGroupModule } from 'devextreme-angular';
-import {MeIconComponent, MeRadioGroupDirective} from '../../public-api';
+import { MeIconComponent, MeRadioGroupDirective } from '../../public-api';
 
 const data = [
   {
@@ -41,7 +41,8 @@ export default {
     layout: {
       control: 'select',
       options: ['vertical', 'horizontal'],
-      description: 'Устанавливает горизонтальное или вертикальное положение группы',
+      description:
+        'Устанавливает горизонтальное или вертикальное положение группы',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'vertical' },
