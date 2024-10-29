@@ -1,20 +1,9 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as ScrollViewStories from "./me-scroll-view.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxScrollViewModule } from "devextreme-angular";
-import { MeScrollViewDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
 
-<Meta
-  title="Components/ScrollView"
-  component={MeScrollViewDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeScrollViewDirective],
-      imports: [DxScrollViewModule],
-    }),
-  ]}
-  of={ScrollViewStories}
-/>
+
+<Meta title="Components/ScrollView" of={ScrollViewStories}/>
 
 # ScrollView
 
@@ -22,48 +11,40 @@ import { MeScrollViewDirective } from "../../public-api";
 
 Директива `meScrollView` изменяет внешний вид стандартного компонента ScrollView DevExtreme.
 
+Документация на сайте разработчика Devextreme:
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxScrollView/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ScrollView/Overview/MaterialBlueLight/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
 <Canvas name="Default" of={ScrollViewStories.Default} />
 <Controls of={ScrollViewStories.Default} />
+<Source of={ScrollViewStories.Default} dark language="html"/>
 
-<Source
-  code={`
-  <dx-scroll-view
-    meScrollView
-    [size]="size"
-    [height]="height"
-    [width]="width"
-    [direction]="direction"
-    [showScrollbar]="showScrollbar"
-    [disabled]="disabled"
-    [bounceEnabled]="bounceEnabled"
-  >
-    <div>Content</div>
-  </dx-scroll-view>
-`}
-  dark
-  language="html"
+## Дизайн
+
+<Figma
+  height="50%"
+			collapsable
+			defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=72-19711&node-type=canvas&t=HNTeOZLS9eL4vS7N-0"
 />
 
 ## Примеры использования:
 
-### Размеры ScrollView
+- [Размеры контента](#размеры-контента)
+- [Отображение скролла](#отображение-скролла)
+- [Эффект отскока](#эффект-отскока)
 
-#### Имеются три варианта размеров: `small`, `medium` и `large`.
-
-#### Для выбора варианта используется свойство `size`:
-
-<Source
-  code={`
-	<dx-scroll-view
-    meScrollView
-    [size]="size"
-  >
-    <div>Content</div>
-  </dx-scroll-view>
-	`}
-  dark
-  language="html"
-/>
 
 ### Размеры контента
 
@@ -85,13 +66,8 @@ import { MeScrollViewDirective } from "../../public-api";
 
 ### Отображение скролла
 
-#### Для условия отображения скролла используется свойство `showScrollbar`:
-
-#### `'onHover'`, `'onScroll'`, `'always'`, `'never'`;
-
-#### Для отображения скролла используется свойство `direction`:
-
-#### `'both'`, `'horizontal'`, `'vertical'`:
+Для условия отображения скролла используется свойство `showScrollbar`: `'onHover'`, `'onScroll'`, `'always'`, `'never'`;
+Для отображения направления скролла используется свойство `direction`:`'both'`, `'horizontal'`, `'vertical'`:
 
 <Source
   code={`
@@ -105,4 +81,20 @@ import { MeScrollViewDirective } from "../../public-api";
 	`}
   dark
   language="html"
+/>
+
+### Эффект отскока
+Для эффекта отскока используется свойство `bounceEnabled`: `true`, `false`;
+
+<Source
+	code={`
+  <dx-scroll-view
+    meScrollView
+    [bounceEnabled]="bounceEnabled"
+  >
+    <div>Content</div>
+  </dx-scroll-view>
+	`}
+	dark
+	language="html"
 />

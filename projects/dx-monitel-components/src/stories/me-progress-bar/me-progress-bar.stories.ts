@@ -47,8 +47,34 @@ export default {
       ...args,
     },
     template: `
+			<dx-progress-bar
+				meProgressBar
+				[(value)]="value"
+				[(size)]="size"
+				[(height)]="height"
+				[(width)]="width"
+				[(showStatus)]="showStatus"
+			>
+			</dx-progress-bar>
+		`,
+  }),
+} as Meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {
+  args: {},
+};
+
+export const WithSmallHeader: Story = {
+  args: {},
+  render: (args: any) => ({
+    props: {
+      ...args,
+    },
+    template: `
 		<div class="form">
-		<div class="me-title-header2"> Time left 00:00:10 </div>
+		<div class="me-text-body2"> Time left 00:00:10 </div>
 			<dx-progress-bar
 				meProgressBar
 				#progressBar
@@ -69,20 +95,55 @@ export default {
 			text-align: center;
 			align-content: center;
 		}
-		.me-title-header2 {
+		.me-text-body2 {
 			text-align: center;
 		}
 		#progress-bar-status {
 			display: inline-block;
-			padding-top: 8px;
+			padding-top: 2px;
 		}
 `,
     ],
   }),
-} as Meta;
+};
 
-type Story = StoryObj;
-
-export const ProgressBar: Story = {
+export const WithMediumHeader: Story = {
   args: {},
+  render: (args: any) => ({
+    props: {
+      ...args,
+    },
+    template: `
+		<div class="form">
+		<div class="me-text-body1"> Time left 00:00:10 </div>
+			<dx-progress-bar
+				meProgressBar
+				#progressBar
+				id="progress-bar-status"
+				[(value)]="value"
+				[(size)]="size"
+				[(height)]="height"
+				[(width)]="width"
+				[(showStatus)]="showStatus"
+			>
+			</dx-progress-bar>
+		</div>
+		`,
+    styles: [
+      `
+		.form {
+			height: 100px;
+			text-align: center;
+			align-content: center;
+		}
+		.me-text-body1 {
+			text-align: center;
+		}
+		#progress-bar-status {
+			display: inline-block;
+			padding-top: 4px;
+		}
+`,
+    ],
+  }),
 };

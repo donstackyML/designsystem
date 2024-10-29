@@ -11,11 +11,11 @@ export default {
     }),
   ],
   argTypes: {
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Размер скролла',
-    },
+    // size: {
+    //   control: 'select',
+    //   options: ['small', 'medium', 'large'],
+    //   description: 'Размер скролла',
+    // },
     height: {
       control: 'text',
     },
@@ -41,7 +41,7 @@ export default {
     },
   },
   args: {
-    size: 'small',
+    // size: 'small',
     height: '150',
     width: '250',
     direction: 'both',
@@ -55,7 +55,6 @@ export default {
 <div id="scrollview-demo">
 	<dx-scroll-view
 	meScrollView
-	[size]="size"
 	[height]="height"
 	[width]="width"
 	[direction]="direction"
