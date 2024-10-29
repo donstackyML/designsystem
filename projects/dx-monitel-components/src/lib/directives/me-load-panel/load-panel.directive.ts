@@ -7,6 +7,7 @@ import {
   inject,
   Input,
   OnChanges,
+  OnInit,
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
@@ -14,8 +15,10 @@ import {
 @Directive({
   selector: '[meLoadPanel]',
 })
-export class MeLoadPanelDirective implements OnChanges {
+export class MeLoadPanelDirective implements OnInit, OnChanges {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() color: 'normal' | 'default' | 'accent' = 'default';
+  @Input() stylingMode: 'circle' | 'line' = 'circle';
 
   private renderer = inject(Renderer2);
   private loadpanel = inject(DxLoadPanelComponent);
@@ -23,6 +26,8 @@ export class MeLoadPanelDirective implements OnChanges {
   @HostListener('onContentReady') onContentReady() {
     this.applyStyles();
   }
+
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updateLoadPanelProperties(changes);
@@ -36,6 +41,8 @@ export class MeLoadPanelDirective implements OnChanges {
     );
     this.applyPanelSize();
     this.applyIndicatorSize();
+    this.applyIndicatorColor();
+    this.applyIndicatorStyle();
   }
 
   private applyPanelSize() {
@@ -49,6 +56,19 @@ export class MeLoadPanelDirective implements OnChanges {
     this.renderer.addClass(
       this.loadpanel.instance.content().children[0].children[0],
       'me-load-indicator-' + this.size
+    );
+  }
+  private applyIndicatorColor() {
+    this.renderer.addClass(
+      this.loadpanel.instance.content().children[0].children[0],
+      'me-load-indicator-color-' + this.color
+    );
+  }
+
+  private applyIndicatorStyle() {
+    this.renderer.addClass(
+      this.loadpanel.instance.content().children[0].children[0],
+      'me-load-indicator-style-' + this.stylingMode
     );
   }
 
@@ -76,11 +96,42 @@ export class MeLoadPanelDirective implements OnChanges {
       );
     }
   }
+  private changeIndicatorColor(changes?: SimpleChanges) {
+    if (changes?.['color'].previousValue !== undefined) {
+      this.renderer.removeClass(
+        this.loadpanel.instance.content().children[0].children[0],
+        'me-load-indicator-color-' + changes?.['color'].previousValue
+      );
+      this.renderer.addClass(
+        this.loadpanel.instance.content().children[0].children[0],
+        'me-load-indicator-color-' + this.color
+      );
+    }
+  }
+
+  private changeIndicatorStyle(changes?: SimpleChanges) {
+    if (changes?.['stylingMode'].previousValue !== undefined) {
+      this.renderer.removeClass(
+        this.loadpanel.instance.content().children[0].children[0],
+        'me-load-indicator-style-' + changes?.['stylingMode'].previousValue
+      );
+      this.renderer.addClass(
+        this.loadpanel.instance.content().children[0].children[0],
+        'me-load-indicator-style-' + this.stylingMode
+      );
+    }
+  }
 
   private updateLoadPanelProperties(changes: SimpleChanges) {
     if (changes['size']) {
       this.changePanelSize(changes);
       this.changeIndicatorSize(changes);
+    }
+    if (changes['color']) {
+      this.changeIndicatorColor(changes);
+    }
+    if (changes['stylingMode']) {
+      this.changeIndicatorStyle(changes);
     }
   }
 }
