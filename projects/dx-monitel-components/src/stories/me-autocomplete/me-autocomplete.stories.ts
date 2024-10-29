@@ -20,6 +20,14 @@ const meta: Meta<MeAutocompleteDirective> = {
       options: ['always', 'onHover'],
       control: { type: 'radio' },
     },
+    minSearchLength: {
+      control: { type: 'number', min: 0, max: 10 },
+    },
+    dataSource: {
+      control: {
+        type: 'object',
+      },
+    },
   },
 };
 
@@ -31,15 +39,29 @@ export const Default: Story = {
   args: {
     size: 'medium',
     showScrollbar: 'always',
+    minSearchLength: 1,
+    dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
   },
   render: (args) => ({
     props: args,
     template: `
       <dx-autocomplete
+        id="autocomplete-element"
         meAutocomplete
         [size]="size"
         [showScrollbar]="showScrollbar"
-        [dataSource]="['Apple', 'Banana', 'Orange']"
+        [dataSource]="dataSource"
+        [minSearchLength]="minSearchLength"
+        [placeholder]="placeholder"
+        [dropDownOptions]="{
+          position: {
+            of: '#autocomplete-element',
+            my: 'top left',
+            at: 'bottom left',
+            offset: { y: 4 },
+            collision: 'fit flip'
+          }
+        }"
       ></dx-autocomplete>
     `,
   }),
@@ -49,6 +71,8 @@ export const Small: Story = {
   args: {
     size: 'small',
     showScrollbar: 'always',
+    minSearchLength: 1,
+    dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
   },
   render: Default.render,
 };
@@ -57,6 +81,8 @@ export const Large: Story = {
   args: {
     size: 'large',
     showScrollbar: 'always',
+    minSearchLength: 1,
+    dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
   },
   render: Default.render,
 };
@@ -65,6 +91,8 @@ export const ScrollOnHover: Story = {
   args: {
     size: 'medium',
     showScrollbar: 'onHover',
+    minSearchLength: 1,
+    dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
   },
   render: Default.render,
 };
