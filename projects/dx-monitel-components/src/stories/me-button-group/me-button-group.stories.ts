@@ -85,9 +85,9 @@ type Story = StoryObj<ButtonGroupComponent>;
 export const Default: Story = {
   args: {
     items: [
-      { text: 'Первая', type: 'warning' as ButtonType},
-      { text: 'Вторая', type: 'warning' as ButtonType},
-      { text: 'Третья', type: 'warning' as ButtonType},
+      { text: 'Первая', type: 'warning' as ButtonType },
+      { text: 'Вторая', type: 'warning' as ButtonType },
+      { text: 'Третья', type: 'warning' as ButtonType },
     ],
     size: 'medium',
     stylingMode: 'contained',
