@@ -18,6 +18,8 @@ export class MeAutocompleteDirective
 {
   @Input() size: MeSize = 'medium';
   @Input() showScrollbar: MeScrollbarShowType = 'always';
+  @Input() minSearchLength: number = 1;
+  @Input() dataSource: any[] = [];
 
   constructor(
     private component: DxAutocompleteComponent,
@@ -55,5 +57,7 @@ export class MeAutocompleteDirective
         class: popupWrapperClasses,
       },
     };
+
+    this.component.dataSource = this.dataSource;
   }
 }

@@ -12,7 +12,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Директива MeLoadPanel
 
-При директивы `MeLoadPanel` к элементу `dx-load-panel` приводит его внешний вид согласно дизайн-системе и добавляет новое свойство `size`.
+При директивы `MeLoadPanel` к элементу `dx-load-panel` приводит его внешний вид согласно дизайн-системе, добавляет новое свойство `size`, автоматически устанавливает затенение фона и дает возможность выбрать стиль и цветовую схему индикатора загрузки.
 
 Документация на сайте разработчика Devextreme:
 - <a
@@ -33,7 +33,10 @@ import { Figma } from "@storybook/addon-designs/blocks";
 <Controls of={loadPanelStories.Default} />
 <Source code={`
 <dx-load-panel 
-  [size]="'size'" 
+  [size]="size" 
+  [stylingMode]="stylingMode"
+  [color]="color"
+  [shading]="true"
   [message]="message" 
   [hideOnOutsideClick]="true"
 ></dx-load-panel>
@@ -51,6 +54,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
 ## Примеры использования:
 
 - [Размер панели загрузки](#размер-панели-загрузки)
+- [Изменение стиля и цвета индикатора загрузки](#изменение-стиля-и-цвета-индикатора-загрузки)
 - [Изменение текста панели](#изменение-текста-панели)
 - [Скрытие при клике вне](#скрытие-панели-при-клике-вне)
 
@@ -61,7 +65,21 @@ import { Figma } from "@storybook/addon-designs/blocks";
 <Source
   code={`<dx-load-panel
   meLoadPanel
-  size="size'"
+  size="size"
+></dx-load-panel>`}
+  dark
+  language="html"
+/>
+
+## Изменение стиля и цвета индикатора загрузки
+
+Для изменения стиля и цвета индикатора загрузки используйте параметры `stylingMode` и `color`. Возможные значения стиля: `circle`, `line`. Возможные значения цвета: `accent`, `default`, `normal`.
+
+<Source
+  code={`<dx-load-panel
+  meLoadPanel
+  stylingMode="stylingMode"
+  color="color"
 ></dx-load-panel>`}
   dark
   language="html"

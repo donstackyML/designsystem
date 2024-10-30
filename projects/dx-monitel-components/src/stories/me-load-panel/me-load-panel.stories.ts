@@ -18,7 +18,11 @@ import { MeLoadPanelDirective } from '../../public-api';
       [(visible)]="loadingVisible"
       [hideOnOutsideClick]="hideOnOutsideClick"
       [size]="size"
+      [color]="color"
+      [stylingMode]="stylingMode"
       [message]="message"
+      [shading]="shading"
+      [showPane]="showPane"
     ></dx-load-panel>
   `,
   styles: [
@@ -41,6 +45,8 @@ import { MeLoadPanelDirective } from '../../public-api';
 })
 export class LoadPanelDemoComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() color: 'normal' | 'default' | 'accent' = 'default';
+  @Input() stylingMode: 'circle' | 'line' = 'circle';
   @Input() hideOnOutsideClick: boolean = false;
 
   loadingVisible = false;
@@ -64,8 +70,23 @@ const meta: Meta = {
       control: 'select',
       options: ['small', 'medium', 'large'],
     },
-    message: { control: 'text' },
-    hideOnOutsideClick: { control: 'boolean' },
+    color: {
+      control: 'select',
+      options: ['normal', 'default', 'accent'],
+      description: 'Цвет индикатора загрузки',
+    },
+    stylingMode: {
+      control: 'select',
+      options: ['line', 'circle'],
+      description: 'Стиль индикатора загрузки',
+    },
+    shading: { control: 'boolean', description: 'Затемнение экрана' },
+    message: { control: 'text', description: 'Текст загрузки' },
+    showPane: { control: 'boolean', description: 'Показывать панель загрузки' },
+    hideOnOutsideClick: {
+      control: 'boolean',
+      description: 'Скрыть по клику вне панели',
+    },
   },
 };
 
@@ -74,7 +95,11 @@ export default meta;
 export const Default: StoryObj = {
   args: {
     size: 'medium',
+    color: 'default',
+    stylingMode: 'line',
+    shading: true,
     message: 'Loading...',
+    showPane: true,
     hideOnOutsideClick: false,
   },
 };
