@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
 import {
   MeAccordionModule,
+  MeAutocompleteModule,
   MeBadgeComponent,
   MeBreadcrumbsComponent,
   MeButtonGroupModule,
   MeButtonModule,
+  MeCalendarModule,
   MeCardComponent,
   MeCheckBoxModule,
   MeChipComponent,
@@ -18,12 +20,14 @@ import {
   MeFileUploaderModule,
   MeIconComponent,
   MeListModule,
+  MeLoadIndicatorModule,
   MeLoadPanelModule,
   MeMenuModule,
   MePaginationComponent,
   MePivotGridModule,
   MePopupModule,
   MeProgressBarModule,
+  MeRadioGroupModule,
   MeScrollViewModule,
   MeSelectBoxModule,
   MeSkeletonComponent,
@@ -66,7 +70,7 @@ import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
-import { MeCalendarDirective } from './directives/calendar.directive';
+// import { MeCalendarDirective } from './directives/calendar.directive';
 // import { MeCheckBoxDirective } from './directives/check-box.directive';
 // import { MeContextMenuDirective } from './directives/context-menu.directive';
 import { MeControlDirective } from './directives/control.directive';
@@ -75,22 +79,25 @@ import { MeEditorDirective } from './directives/editor.directive';
 import { MeIconDirective } from './directives/icon.directive';
 import { MeLabelDirective } from './directives/label.directive';
 // import { MeListDirective } from './directives/list.directive';
-import { MeLoadIndicatorDirective } from './directives/load-indicator.directive';
-import { MeLoadPanelDirective } from './directives/load-panel.directive';
+// import { MeLoadIndicatorDirective } from './directives/load-indicator.directive';
+// import { MeLoadPanelDirective } from './directives/load-panel.directive';
 // import { MeMenuDirective } from './directives/menu.directive';
 import { MeOverlayDirective } from './directives/overlay.directive';
 import { MePopoverDirective } from './directives/popover.directive';
-import { MeRadioGroupDirective } from './directives/radio-group.directive';
+// import { MeRadioGroupDirective } from './directives/radio-group.directive';
 // import { MeSelectBoxDirective } from './directives/select-box.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 // import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeFormModule } from 'projects/dx-monitel-components/src/lib/directives/me-form/me-form.module';
+import { MeDataGridComponent } from './components/me-data-grid/me-data-grid.component';
 import { MeFormComponent } from './components/me-form/me-form.component';
+import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
-import { MeDataGridComponent } from './components/me-data-grid/me-data-grid.component';
-import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
+import { MeDateRangeBoxComponent } from './components/me-date-range-box/me-date-range-box.component';
+import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
+import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
 // import { MeToolbarDirective } from './directives/toolbar.directive';
 // import { MeTreeViewDirective } from './directives/tree-view.directive';
 
@@ -109,7 +116,7 @@ import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.c
     // MeCheckBoxDirective,
     MeCheckBoxComponent,
     MeEditorDirective,
-    MeRadioGroupDirective,
+    // MeRadioGroupDirective,
     MeAccordionComponent,
     MeRadioGroupComponent,
     MeTabsComponent,
@@ -117,7 +124,7 @@ import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.c
     MeTooltipComponent,
     MeOverlayDirective,
     MeIconDirective,
-    MeCalendarDirective,
+    // MeCalendarDirective,
     MeCalendarComponent,
     MeSidepageDemo,
     MeTabPanelComponent,
@@ -141,14 +148,17 @@ import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.c
     // MeTreeViewDirective,
     MeToastDirective,
     MeToastComponent,
-    MeLoadIndicatorDirective,
+    // MeLoadIndicatorDirective,
     MeLoadingIndicatorComponent,
-    MeLoadPanelDirective,
+    // MeLoadPanelDirective,
     MeIconResearchComponent,
     MeFormComponent,
     MeTreeListComponent,
     MeDataGridComponent,
     MePivotGridComponent,
+    MeDateRangeBoxComponent,
+    MeLoadPanelComponent,
+    MeAutocompleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -165,7 +175,6 @@ import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.c
     MeChipsContainerComponent,
     MeDataGridModule,
     MeFileUploaderModule,
-    MeLoadPanelModule,
     MePaginationComponent,
     MePivotGridModule,
     MeProgressBarModule,
@@ -194,6 +203,10 @@ import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.c
     MeMenuModule,
     MeContextMenuModule,
     MeDataGridModule,
+    MeCalendarModule,
+    MeRadioGroupModule,
+    MeLoadIndicatorModule,
+    MeAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

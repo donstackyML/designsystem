@@ -29,6 +29,8 @@ const componentsRoute: string[] = [
   'me-data-grid',
   'me-pivot-grid',
   'me-icon-research',
+  'me-load-panel',
+  'me-autocomplete',
 ];
 
 const componentsName: string[] = [
@@ -60,6 +62,8 @@ const componentsName: string[] = [
   'meDataGrid',
   'mePivotGrid',
   'meIconResearch',
+  'meLoadPanel',
+  'meAutocomplete',
 ];
 
 @Injectable({
