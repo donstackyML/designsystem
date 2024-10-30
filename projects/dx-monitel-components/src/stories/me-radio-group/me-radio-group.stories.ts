@@ -48,10 +48,29 @@ export default {
         defaultValue: { summary: 'vertical' },
       },
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает всю группу радиокнопок',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    readonly: {
+      control: 'boolean',
+      description: 'Устанавливает группу радиокнопок в режим только для чтения',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
   },
   args: {
     size: 'medium',
     dataSource: data,
+    layout: 'vertical',
+    disabled: false,
+    readonly: false,
   },
 } as Meta<MeRadioGroupDirective>;
 
@@ -66,10 +85,12 @@ export const WithIcons: Story = {
         [dataSource]="dataSource"
         [layout]="layout"
         [size]="size"
+        [disabled]="disabled"
+        [readOnly]="readonly"
         itemTemplate="radioTemplate"
       >
         <div *dxTemplate="let item of 'radioTemplate'">
-          <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 4px;">
             <me-icon
               [icon]="item.icon"
               [size]="size"
