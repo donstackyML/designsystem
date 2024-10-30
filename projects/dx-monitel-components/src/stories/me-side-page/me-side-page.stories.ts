@@ -1,6 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { me24Public } from '@monitel/me-icons';
-import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
+import { MeIconsModule } from '@monitel/me-icons-registry';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { DxButtonComponent } from 'devextreme-angular';
 import { MeButtonDirective, MeSidepageComponent } from '../../public-api';
@@ -77,9 +76,7 @@ class SidePageComponent {
     this.isSidePageOpen = !this.isSidePageOpen;
   }
 
-  constructor(private iconRegistry: MeIconsRegistry) {
-    this.iconRegistry.registerIcons([me24Public]);
-  }
+  constructor() {}
 }
 
 export default {
