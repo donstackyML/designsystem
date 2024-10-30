@@ -1,0 +1,7 @@
+/*
+ * Public API Surface of me-icons
+ */
+export * from './lib/me-icons-registry.service';
+export * from './lib/me-icons.component';
+export * from './lib/me-icons.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL21lLWljb25zLXJlZ2lzdHJ5L3NyYy9wdWJsaWMtYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsY0FBYyxpQ0FBaUMsQ0FBQztBQUNoRCxjQUFjLDBCQUEwQixDQUFDO0FBQ3pDLGNBQWMsdUJBQXVCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIG1lLWljb25zXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9saWIvbWUtaWNvbnMtcmVnaXN0cnkuc2VydmljZSc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9tZS1pY29ucy5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbWUtaWNvbnMubW9kdWxlJzsiXX0=

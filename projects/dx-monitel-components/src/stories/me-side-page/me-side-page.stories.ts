@@ -1,4 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
+import { me24Public } from '@monitel/me-icons';
+import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { DxButtonComponent } from 'devextreme-angular';
 import { MeButtonDirective, MeSidepageComponent } from '../../public-api';
@@ -17,7 +19,7 @@ import { MeButtonDirective, MeSidepageComponent } from '../../public-api';
       [zIndexOverlay]="zIndexOverlay"
     >
       <div sidepage-header class="me-sidepage-header">
-        <div meIcon icon="public" size="24"></div>
+        <me-icon name="me24Public"></me-icon>
         <div class="me-sidepage-title">
           <span class="me-title-header1">Заголовок</span>
           <span class="me-text-body2">Описание</span>
@@ -74,6 +76,10 @@ class SidePageComponent {
     console.log(this.meSidePage);
     this.isSidePageOpen = !this.isSidePageOpen;
   }
+
+  constructor(private iconRegistry: MeIconsRegistry) {
+    this.iconRegistry.registerIcons([me24Public]);
+  }
 }
 
 export default {
@@ -82,7 +88,7 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [DxButtonComponent, MeButtonDirective, SidePageComponent],
-      imports: [MeSidepageComponent],
+      imports: [MeSidepageComponent, MeIconsModule],
     }),
   ],
   argTypes: {
