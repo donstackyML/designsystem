@@ -5,9 +5,10 @@ import {
   mailX20,
   publicX20,
 } from '@monitel/me-icons';
+import { registry } from '../../../.storybook/preview';
+
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabsModule } from 'devextreme-angular';
-import { registry } from '../../../.storybook/preview';
 import { Tab } from '../../lib/directives/me-tabs/tabs.directive';
 import { MeTabsDirective } from '../../public-api';
 
@@ -99,7 +100,11 @@ type Story = StoryObj<MeTabsProps>;
 const defaultTabsData: Tab[] = [
   { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
   { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
-  { id: 3, text: 'Tab 3', icon: registry.getIcon(attachFileX20) },
+  {
+    id: 3,
+    text: 'Tab 3',
+    icon: registry.getIcon(attachFileX20, 'var(--Icon-Error)'),
+  },
 ];
 
 export const Default: Story = {

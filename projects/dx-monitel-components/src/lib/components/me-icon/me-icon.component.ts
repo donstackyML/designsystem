@@ -34,7 +34,7 @@ export class MeIconComponent {
       case 'small':
         return '20px';
       case 'medium':
-        return '20px'
+        return '20px';
       case 'large':
         return '24px';
       default:
