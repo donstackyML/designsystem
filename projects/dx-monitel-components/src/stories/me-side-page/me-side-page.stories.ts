@@ -18,7 +18,7 @@ import { MeButtonDirective, MeSidepageComponent } from '../../public-api';
       [zIndexOverlay]="zIndexOverlay"
     >
       <div sidepage-header class="me-sidepage-header">
-        <me-icon name="me24Public"></me-icon>
+        <me-icon name="public_x24"></me-icon>
         <div class="me-sidepage-title">
           <span class="me-title-header1">Заголовок</span>
           <span class="me-text-body2">Описание</span>
