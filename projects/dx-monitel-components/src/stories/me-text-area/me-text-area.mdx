@@ -36,8 +36,8 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 <Figma
   height="50%"
-			collapsable
-			defaultCollapsed
+  	collapsable
+  	defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=tmDOoMTrKt6lidAQ-0"
 />
 
@@ -47,6 +47,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
 - [Положение Label](#положение-label)
 - [Состояние ReadOnly и Disabled](#состояние-readonly-и-disabled)
 - [Контроль восоты и ширины](#контроль-высоты-и-ширины)
+- [Валидация поля](#валидация-поля)
 
 ### Размеры TextArea
 Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
@@ -84,4 +85,25 @@ import { Figma } from "@storybook/addon-designs/blocks";
   code={`<dx-text-area meTextArea autoResizeEnabled="true"></dx-text-area>`}
   dark
   language="html"
+/>
+
+### Валидация поля
+Для валидации используйте `<dx-validator>` внутри тэга `dx-text-area`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
+Не забудьте импортировать `DxTextAreaModule` и `DxValidatorModule`.
+Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
+Используйте параметр `validationMessagePosition` для изменения положения сообщения об ошибке. Варианты: `top`, `bottom`, `left`, `right`.
+
+<Source
+	code={`<dx-text-area meTextArea
+  [(validationMessageMode)]="validationMessageMode"
+  [(validationMessagePosition)]="validationMessagePosition">
+  <dx-validator>
+    <dxi-validation-rule 
+    type="required"
+    message="Required"
+    ></dxi-validation-rule>
+  </dx-validator>
+</dx-text-area>`}
+	dark
+	language="html"
 />

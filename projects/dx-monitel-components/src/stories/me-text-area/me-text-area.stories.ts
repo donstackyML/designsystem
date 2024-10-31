@@ -1,5 +1,7 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxTextAreaModule } from 'devextreme-angular';
+import { DxTextAreaModule, DxValidatorModule } from 'devextreme-angular';
+
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+
 import { MeTextAreaDirective } from '../../lib/directives/me-text-area/text-area.directive';
 
 export default {
@@ -7,7 +9,7 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [MeTextAreaDirective],
-      imports: [DxTextAreaModule],
+      imports: [DxTextAreaModule, DxValidatorModule],
     }),
   ],
   argTypes: {
@@ -53,6 +55,25 @@ export default {
     disabled: {
       control: 'boolean',
     },
+    isValid: {
+      control: 'boolean',
+      description: 'Валидность компонента.',
+    },
+    validationError: {
+      control: 'text',
+    },
+    validationMessageMode: {
+      control: 'select',
+      options: ['auto', 'always'],
+      description:
+        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `text`, `icon`.',
+    },
+    validationMessagePosition: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+      description:
+        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `top`, `bottom`, `left`, `right`.',
+    },
   },
   args: {
     autoResizeEnabled: false,
@@ -63,6 +84,10 @@ export default {
     placeholder: 'Enter your text',
     readOnly: false,
     disabled: false,
+    isValid: true,
+    validationError: '',
+    validationMessageMode: 'auto',
+    validationMessagePosition: 'top',
   },
   render: (args) => ({
     props: {
@@ -83,9 +108,21 @@ export default {
 			[width]="width"
 			[(maxLength)]="maxLength"
 			[(value)]="value"
+			[(isValid)]="isValid"
+			[(validationError)]="validationError"
 			[(autoResizeEnabled)]="autoResizeEnabled"
+			[validationMessageMode]="validationMessageMode"
+			[validationMessagePosition]="validationMessagePosition"
 			[inputAttr]="{ 'aria-label': 'Notes' }"
-			></dx-text-area>
+			>
+			    <dx-validator>
+        <dxi-validation-rule
+            type="required"
+            message="Required"
+        >
+        </dxi-validation-rule>
+    </dx-validator>
+			</dx-text-area>
 		</div>
 `,
     styles: ['.textarea-wrapper { padding-top: 20px; }'],
@@ -99,6 +136,7 @@ export const Default: Story = {
     value:
       'Prepare 2013 Marketing Plan: We need to double revenues in 2013 and our marketing strategy is going to be key here.',
     width: '320px',
+    isValid: false,
   },
 };
 
