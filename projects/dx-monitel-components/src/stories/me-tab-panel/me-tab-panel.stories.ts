@@ -13,7 +13,7 @@ interface MeTabPanelProps {
   size: 'small' | 'medium' | 'large';
   stylingMode: 'inside' | 'outside';
   tabsPosition: 'top' | 'bottom' | 'left' | 'right';
-  iconPosition: 'left' | 'top'| 'start' | 'end';
+  iconPosition: 'left' | 'top' | 'start' | 'end';
   height: number | string;
   width: number | string;
   activeStateEnabled: boolean;
@@ -62,7 +62,7 @@ const meta: Meta<MeTabPanelProps> = {
   }),
   argTypes: {
     iconPosition: {
-      options: ['bottom', 'top', 'start' , 'end'],
+      options: ['bottom', 'top', 'start', 'end'],
       control: { type: 'select' },
     },
     size: {

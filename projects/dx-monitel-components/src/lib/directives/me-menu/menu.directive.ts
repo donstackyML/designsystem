@@ -3,10 +3,11 @@ import {
   HostListener,
   Input,
   Renderer2,
-  inject, OnInit,
+  inject,
+  OnInit,
 } from '@angular/core';
-import {MeOrientation, MeSize} from '../../types/types';
-import {DxMenuComponent} from "devextreme-angular";
+import { MeOrientation, MeSize } from '../../types/types';
+import { DxMenuComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meMenu]',

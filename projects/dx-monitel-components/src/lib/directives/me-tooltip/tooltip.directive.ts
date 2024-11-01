@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
-import {Position} from "devextreme/common";
+import { Position } from 'devextreme/common';
 
 @Directive({
   selector: '[meTooltip]',

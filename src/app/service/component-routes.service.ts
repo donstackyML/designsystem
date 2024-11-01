@@ -31,6 +31,7 @@ const componentsRoute: string[] = [
   'me-icon-research',
   'me-load-panel',
   'me-autocomplete',
+  'me-tree-list',
 ];
 
 const componentsName: string[] = [
@@ -64,6 +65,7 @@ const componentsName: string[] = [
   'meIconResearch',
   'meLoadPanel',
   'meAutocomplete',
+  'meTreeList',
 ];
 
 @Injectable({
