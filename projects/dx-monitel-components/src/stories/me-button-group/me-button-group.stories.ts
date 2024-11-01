@@ -120,6 +120,20 @@ export const WithIcons: Story = {
   render: Default.render,
 };
 
+
+export const WithTwoIcons: Story = {
+  args: {
+    items: [
+      { text: 'Назад', leftIcon: 'arrowback', rightIcon: 'arrowforward', type: 'default' },
+      { text: 'Обновить', leftIcon: 'arrowback', rightIcon: 'arrowforward', type: 'default' },
+      { text: 'Вперед', leftIcon: 'arrowback', rightIcon: 'arrowforward', type: 'default' },
+    ],
+    size: 'medium',
+    stylingMode: 'contained',
+  },
+  render: Default.render,
+};
+
 // Только иконки
 export const IconsOnly: Story = {
   args: {
