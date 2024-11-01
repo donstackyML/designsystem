@@ -90,7 +90,7 @@ export const WithIcons: Story = {
         itemTemplate="radioTemplate"
       >
         <div *dxTemplate="let item of 'radioTemplate'">
-          <div style="display: flex; align-items: center; gap: 4px;">
+          <div style="display: flex; align-items: end; gap: 4px;">
             <me-icon
               [icon]="item.icon"
               [size]="size"
