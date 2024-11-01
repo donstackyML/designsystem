@@ -16,6 +16,7 @@ import {
 } from '@angular/core';
 import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
+import {Position} from "devextreme/common";
 
 @Directive({
   selector: '[meTooltip]',
@@ -41,6 +42,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     duration: 300,
   };
   @Input() tooltipTemplateRef!: TemplateRef<any>;
+  @Input() tooltipVisible: boolean = false;
 
   private tooltipComponentRef!: ComponentRef<DxTooltipComponent>;
 
@@ -99,7 +101,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @HostListener('mouseleave')
   hideTooltip() {
     if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
-      this.tooltipComponentRef.instance.visible = false;
+      this.tooltipComponentRef.instance.visible = true;
     }
   }
 
@@ -129,7 +131,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
 
     this.renderer.appendChild(this.element.nativeElement, tooltipElement);
 
-    instance.visible = false;
+    instance.visible = this.tooltipVisible;
   }
 
   private updateTooltipContent() {
