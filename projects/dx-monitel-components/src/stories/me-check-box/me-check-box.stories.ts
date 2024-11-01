@@ -95,11 +95,11 @@ export const WithIconAndText: Story = {
     props: args,
     template: `
 		<label meLabel labelDirection="row" width="300px">
-    <dx-check-box meCheckBox ${argsToTemplate(args)}></dx-check-box>
+    <dx-check-box meCheckBox [enableThreeStateBehavior]="true" ${argsToTemplate(args)}></dx-check-box>
 		<me-icon icon="account_circle" size="medium" color="var(--Controls-Content-In-Controls-Main-Default)"></me-icon>
 		<span>Text</span>
 </label>
-		
+
 		`,
     styles: [
       'label { justify-content: flex-start; }',

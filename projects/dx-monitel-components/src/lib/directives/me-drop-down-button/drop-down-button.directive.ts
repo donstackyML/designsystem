@@ -26,12 +26,12 @@ export class MeDropDownButtonDirective
   extends MeControlDirective
   implements OnInit
 {
-  // @Input() icon: string = '';
-  // @Input() iconColor: string = '';
-  // @Input() iconSize: string = '';
-  // @Input() wrapperAttr: MeCommonType = {};
-  // @Input() showScrollbar: MeScrollbarShowType = 'always';
-  // @Input() dropDownOptions: MeCommonType = {};
+  @Input() icon: string = '';
+  @Input() iconColor: string = '';
+  @Input() iconSize: string = '';
+  @Input() wrapperAttr: MeCommonType = {};
+  @Input() showScrollbar: MeScrollbarShowType = 'always';
+  @Input() dropDownOptions: MeCommonType = {};
 
   constructor(
     private element: ElementRef,
@@ -55,44 +55,44 @@ export class MeDropDownButtonDirective
   }
 
   ngOnInit(): void {
-    // if (!this.iconColor) {
-    //   if (this.stylingMode !== 'contained') {
-    //     this.iconColor = `var(--button-${this.component.type}-icon-color)`;
-    //   } else {
-    //     this.iconColor = DEFAULT_ICON_COLOR;
-    //   }
-    //   if (this.disabled) {
-    //     this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
-    //   }
-    // }
-    // this.renderer.addClass(this.element.nativeElement, 'me-dropdownbutton');
-    // this.renderer.addClass(
-    //   this.element.nativeElement,
-    //   `me-dropdownbutton-${this.size}`
-    // );
-    // if (this.isSizeLarge) {
-    //   this.iconSize = 'large';
-    // }
-    // this.component.icon = this.iconStore.getIcon({
-    //   icon: this.icon,
-    //   color: this.iconColor,
-    //   size: this.getIconSize(this.iconSize),
-    // });
-    // if (this.type === 'default') {
-    //   this.renderer.addClass(this.element.nativeElement, 'dx-button-default');
-    // }
-    // const popupWrapperClasses = `${
-    //   this.wrapperAttr['class'] || ''
-    // } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${
-    //   this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
-    // }`;
-    // this.component.dropDownOptions = {
-    //   wrapperAttr: {
-    //     ...this.wrapperAttr,
-    //     class: popupWrapperClasses,
-    //   },
-    //   ...this.dropDownOptions,
-    // };
+    if (!this.iconColor) {
+      if (this.stylingMode !== 'contained') {
+        this.iconColor = `var(--button-${this.component.type}-icon-color)`;
+      } else {
+        this.iconColor = DEFAULT_ICON_COLOR;
+      }
+      if (this.disabled) {
+        this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
+      }
+    }
+    this.renderer.addClass(this.element.nativeElement, 'me-dropdownbutton');
+    this.renderer.addClass(
+      this.element.nativeElement,
+      `me-dropdownbutton-${this.size}`
+    );
+    if (this.isSizeLarge) {
+      this.iconSize = 'large';
+    }
+    this.component.icon = this.iconStore.getIcon({
+      icon: this.icon,
+      color: this.iconColor,
+      size: this.getIconSize(this.iconSize),
+    });
+    if (this.type === 'default') {
+      this.renderer.addClass(this.element.nativeElement, 'dx-button-default');
+    }
+    const popupWrapperClasses = `${
+      this.wrapperAttr['class'] || ''
+    } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${
+      this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+    }`;
+    this.component.dropDownOptions = {
+      wrapperAttr: {
+        ...this.wrapperAttr,
+        class: popupWrapperClasses,
+      },
+      ...this.dropDownOptions,
+    };
   }
 
   @HostListener('onContentReady', ['$event'])
