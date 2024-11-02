@@ -30,6 +30,7 @@ import { TypographyComponent } from './components/typography/typography.componen
 import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
 import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
 import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
+import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -63,6 +64,7 @@ const routes: Routes = [
   { path: 'me-icon-research', component: MeIconResearchComponent },
   { path: 'me-load-panel', component: MeLoadPanelComponent },
   { path: 'me-autocomplete', component: MeAutocompleteComponent },
+  { path: 'me-tree-list', component: MeTreeListComponent },
   { path: '**', component: TypographyComponent },
 ];
 

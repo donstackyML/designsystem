@@ -1,9 +1,11 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import { type Preview } from '@storybook/angular';
+import { moduleMetadata, type Preview } from '@storybook/angular';
 import { themes } from '@storybook/theming';
 import { useDarkMode } from 'storybook-dark-mode';
 import 'style-loader!css-loader!./style.css';
 import docJson from '../documentation.json';
+import { MeIconsRegistry } from '@monitel/me-icons-registry';
+import { meIconSet } from '@monitel/me-icons';
 
 setCompodocJson(docJson);
 
@@ -27,21 +29,26 @@ const themeWrapper = (Story: () => any) => {
   return Story();
 };
 
-// const channel = addons.getChannel();
-// const channel = addons.getChannel();
-// const withThemes = (Story: () => any, context: any) => {
-//   console.log(context.globals);
-//   return Story();
-// };
+export const registry = new MeIconsRegistry();
 
-export const decorators = [themeWrapper];
+export const decorators = [
+  themeWrapper,
+  moduleMetadata({
+    providers: [
+      {
+        provide: MeIconsRegistry,
+        useFactory: () => {
+          registry.registerIcons(meIconSet);
+          return registry;
+        },
+      },
+    ],
+  }),
+];
 
 const preview: Preview = {
   parameters: {
     controls: {
-      // disableSave: true,
-      // expanded: true,
-      // disableSaveFromUI: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
@@ -64,8 +71,6 @@ const preview: Preview = {
       disable: true,
     },
   },
-
-  // tags: ['autodocs', 'autodocs'],
 };
 
 export default preview;

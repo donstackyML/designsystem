@@ -1,3 +1,12 @@
+import {
+  addX20,
+  attachFileX20,
+  homeX20,
+  mailX20,
+  publicX20,
+} from '@monitel/me-icons';
+import { registry } from '../../../.storybook/preview';
+
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabsModule } from 'devextreme-angular';
 import { Tab } from '../../lib/directives/me-tabs/tabs.directive';
@@ -89,9 +98,13 @@ export default meta;
 type Story = StoryObj<MeTabsProps>;
 
 const defaultTabsData: Tab[] = [
-  { id: 1, text: 'Tab 1', icon: 'user' },
-  { id: 2, text: 'Tab 2', icon: 'email' },
-  { id: 3, text: 'Tab 3', icon: 'chart' },
+  { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
+  { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
+  {
+    id: 3,
+    text: 'Tab 3',
+    icon: registry.getIcon(attachFileX20, 'var(--Icon-Error)'),
+  },
 ];
 
 export const Default: Story = {
@@ -124,11 +137,11 @@ export const WithNavButtons: Story = {
     showNavButtons: true,
     width: '300px',
     tabsData: [
-      { id: 1, text: 'Tab 1', icon: 'user' },
-      { id: 2, text: 'Tab 2', icon: 'email' },
-      { id: 3, text: 'Tab 3', icon: 'chart' },
-      { id: 4, text: 'Tab 4', icon: 'home' },
-      { id: 5, text: 'Tab 5', icon: 'event' },
+      { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
+      { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
+      { id: 3, text: 'Tab 3', icon: registry.getIcon(attachFileX20) },
+      { id: 4, text: 'Tab 4', icon: registry.getIcon(homeX20) },
+      { id: 5, text: 'Tab 5', icon: registry.getIcon(addX20) },
     ],
   },
 };
@@ -139,11 +152,11 @@ export const ScrollByContent: Story = {
     scrollByContent: true,
     width: '300px',
     tabsData: [
-      { id: 1, text: 'Tab 1', icon: 'user' },
-      { id: 2, text: 'Tab 2', icon: 'email' },
-      { id: 3, text: 'Tab 3', icon: 'chart' },
-      { id: 4, text: 'Tab 4', icon: 'home' },
-      { id: 5, text: 'Tab 5', icon: 'event' },
+      { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
+      { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
+      { id: 3, text: 'Tab 3', icon: registry.getIcon(attachFileX20) },
+      { id: 4, text: 'Tab 4', icon: registry.getIcon(homeX20) },
+      { id: 5, text: 'Tab 5', icon: registry.getIcon(addX20) },
     ],
   },
 };

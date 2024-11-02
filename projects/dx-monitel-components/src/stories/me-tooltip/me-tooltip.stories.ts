@@ -140,6 +140,7 @@ export const WithAnimation: Story = {
         [tooltipPosition]="tooltipPosition"
         [tooltipShowAnimation]="tooltipShowAnimation"
         [tooltipHideAnimation]="tooltipHideAnimation"
+         [visible]="tooltipVisible"
       >
         Анимированный тултип
       </button>
