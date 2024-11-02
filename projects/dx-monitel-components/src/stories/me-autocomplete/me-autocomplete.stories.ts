@@ -49,6 +49,8 @@ export const Default: Story = {
         id="autocomplete-element"
         meAutocomplete
         [size]="size"
+				label='label'
+				labelMode="outside"
         [showScrollbar]="showScrollbar"
         [dataSource]="dataSource"
         [minSearchLength]="minSearchLength"
