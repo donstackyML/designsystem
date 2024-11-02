@@ -42,7 +42,6 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     duration: 300,
   };
   @Input() tooltipTemplateRef!: TemplateRef<any>;
-  @Input() tooltipVisible: boolean = false;
 
   private tooltipComponentRef!: ComponentRef<DxTooltipComponent>;
 
@@ -101,7 +100,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @HostListener('mouseleave')
   hideTooltip() {
     if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
-      this.tooltipComponentRef.instance.visible = true;
+      this.tooltipComponentRef.instance.visible = false;
     }
   }
 
@@ -130,8 +129,6 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     }
 
     this.renderer.appendChild(this.element.nativeElement, tooltipElement);
-
-    instance.visible = this.tooltipVisible;
   }
 
   private updateTooltipContent() {
