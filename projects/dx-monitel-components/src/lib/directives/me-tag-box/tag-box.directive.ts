@@ -1,12 +1,14 @@
+import { DxTagBoxComponent } from 'devextreme-angular';
+
 import {
   Directive,
   ElementRef,
   HostListener,
   Input,
+  OnInit,
   Renderer2,
-  inject,
 } from '@angular/core';
-import { DxTagBoxComponent } from 'devextreme-angular';
+
 import { MeSize } from '../../types/types';
 import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
@@ -19,13 +21,26 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-tag-box-large]': 'isSizeLarge',
   },
 })
-export class MeTagBoxDirective extends MeFocusableDirective {
+export class MeTagBoxDirective extends MeFocusableDirective implements OnInit {
   @Input() size: MeSize = 'medium';
 
-  private component = inject(DxTagBoxComponent);
-
-  constructor(element: ElementRef, renderer: Renderer2) {
+  constructor(
+    element: ElementRef,
+    renderer: Renderer2,
+    private component: DxTagBoxComponent
+  ) {
     super(element, renderer);
+  }
+
+  ngOnInit(): void {
+    this.component.instance.option('stylingMode', 'filled');
+    this.component.instance.option('labelMode', 'hidden');
+    this.component.instance.option('dropDownOptions', {
+      wrapperAttr: {
+        class: `me-dropdownlist me-dropdownlist-${this.size} me-tag-box`,
+      },
+    });
+    // console.log(this.element.nativeElement);
   }
 
   get isSizeSmall() {
@@ -40,8 +55,22 @@ export class MeTagBoxDirective extends MeFocusableDirective {
     return this.size === 'large';
   }
 
-  @HostListener('onContentReady', ['$event'])
-  onContentReady(e: any) {
-    console.log('Content Ready:', e);
+  @HostListener('onOpened', ['$event']) onOpened(e: any) {
+    const submitButton = e.component._list
+      .element()
+      .parentElement.parentElement.querySelector('.dx-button.dx-popup-done');
+    const cancelButton = e.component._list
+      .element()
+      .parentElement.parentElement.querySelector('.dx-button.dx-popup-cancel');
+
+    this.renderer.addClass(submitButton, 'me-button');
+    this.renderer.addClass(submitButton, 'dx-button-default');
+    this.renderer.addClass(submitButton, `me-button-${this.size}`);
+    submitButton.querySelector('.dx-button-text').innerHTML = 'Выбрать';
+    cancelButton.querySelector('.dx-button-text').innerHTML = 'Отмена';
+
+    this.renderer.addClass(cancelButton, 'me-button');
+    this.renderer.addClass(cancelButton, `me-button-${this.size}`);
+    this.renderer.addClass(cancelButton, 'dx-button-normal');
   }
 }

@@ -1,37 +1,44 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxTagBoxModule } from 'devextreme-angular';
-import { MeTagBoxDirective } from '../../public-api';
+import { DxTagBoxModule, DxValidatorModule } from 'devextreme-angular';
+import { MeLabelDirective, MeTagBoxDirective } from '../../public-api';
 
 export default {
   title: 'Components/TagBox(RC)',
   decorators: [
     moduleMetadata({
-      declarations: [MeTagBoxDirective],
-      imports: [DxTagBoxModule],
+      declarations: [MeTagBoxDirective, MeLabelDirective],
+      imports: [DxTagBoxModule, DxValidatorModule],
     }),
   ],
   argTypes: {
     items: {
       control: 'text',
+      description: 'Массив данных для отображения',
     },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
+      description: 'Размер компонента',
     },
     label: {
       control: 'text',
+      description: 'Текст label',
     },
     labelMode: {
       control: 'select',
-      options: ['static', 'floating', 'hidden'],
+      options: ['static', 'floating', 'hidden', 'outside'],
+      description: 'Режим отображения label',
     },
     activeStateEnabled: {
       control: 'boolean',
       defaultValue: true,
+      description: 'Определяет состояние при нажатии на компонент',
     },
     applyValueMode: {
       control: 'select',
       options: ['instantly', 'useButtons'],
+      description:
+        'Режим применения данных. `instantly` - Применяет значения, когда они выбраны. `useButtons` - Применяет значения, когда пользователь нажимает кнопку "ОК".',
     },
     fieldTemplate: {
       control: 'text',
@@ -48,6 +55,18 @@ export default {
     },
     isValid: {
       control: 'boolean',
+    },
+    validationMessageMode: {
+      control: 'select',
+      options: ['auto', 'always'],
+      description:
+        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `text`, `icon`.',
+    },
+    validationMessagePosition: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+      description:
+        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `top`, `bottom`, `left`, `right`.',
     },
     grouped: {
       control: 'boolean',
@@ -77,43 +96,17 @@ export default {
     showSelectionControls: {
       control: 'boolean',
     },
-    stylingMode: {
-      control: 'select',
-      options: ['outlined', 'underlined', 'filled'],
-    },
   },
   args: {
-    // items: [
-    //   {
-    //     text: 'Пункт 1',
-    //     html: '<div><i class="dx-icon dx-icon-folder"></i> Пункт 1</div>',
-    //   },
-    //   {
-    //     text: 'Пункт 2',
-    //     html: '<div><i class="dx-icon dx-icon-folder"></i> Пункт 2</div>',
-    //   },
-    //   {
-    //     text: 'Пункт 3',
-    //     html: '<div><i class="dx-icon dx-icon-folder"></i> Пункт 3</div>',
-    //   },
-    //   {
-    //     text: 'Пункт 4',
-    //     html: '<div><i class="dx-icon dx-icon-folder"></i> Пункт 4</div>',
-    //   },
-    //   {
-    //     text: 'Пункт 5',
-    //     html: '<div><i class="dx-icon dx-icon-folder"></i> Пункт 5</div>',
-    //   },
-    // ],
     items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
     size: 'small',
     width: '400px',
-    stylingMode: 'filled',
+    height: '',
+    label: 'Label*',
+    labelMode: 'hidden',
     applyValueMode: 'instantly',
     grouped: false,
     searchEnabled: true,
-    label: 'Label',
-    labelMode: 'hidden',
     placeholder: 'Выберите...',
     showClearButton: false,
     showSelectionControls: false,
@@ -123,43 +116,85 @@ export default {
     focusStateEnabled: true,
     disabled: false,
     isValid: true,
+    validationMessageMode: 'auto',
+    validationMessagePosition: 'top',
     readOnly: false,
   },
   render: (args) => ({
     props: { ...args },
     template: `
 		<dx-tag-box
-						meTagBox
-						[items]="items"
-		        [(size)]="size"
-		        [(activeStateEnabled)]="activeStateEnabled"
-		        [(applyValueMode)]="applyValueMode"
-		        [(fieldTemplate)]="fieldTemplate"
-		        [(disabled)]="disabled"
-		        [(hoverStateEnabled)]="hoverStateEnabled"
-		        [(focusStateEnabled)]="focusStateEnabled"
-		        [(isValid)]="isValid"
-		        [(grouped)]="grouped"
-		        [(height)]="height"
-		        [(width)]="width"
-		        [(hideSelectedItems)]="hideSelectedItems"
-		        [(label)]="label"
-		        [(labelMode)]="labelMode"
-		        [(placeholder)]="placeholder"
-		        [(readOnly)]="readOnly"
-		        [(searchEnabled)]="searchEnabled"
-		        [(showClearButton)]="showClearButton"
-		        [(showSelectionControls)]="showSelectionControls"
-		        [(stylingMode)]="stylingMode"
-        ></dx-tag-box>
+			meTagBox
+			[items]="items"
+			[(size)]="size"
+			[(label)]="label"
+			[(labelMode)]="labelMode"
+			[(activeStateEnabled)]="activeStateEnabled"
+			[(applyValueMode)]="applyValueMode"
+			[(fieldTemplate)]="fieldTemplate"
+			[(disabled)]="disabled"
+			[(hoverStateEnabled)]="hoverStateEnabled"
+			[(focusStateEnabled)]="focusStateEnabled"
+			[(isValid)]="isValid"
+			[validationMessageMode]="validationMessageMode"
+			[validationMessagePosition]="validationMessagePosition"
+			[(grouped)]="grouped"
+			[(height)]="height"
+			[(width)]="width"
+			[(hideSelectedItems)]="hideSelectedItems"
+			[(placeholder)]="placeholder"
+			[(readOnly)]="readOnly"
+			[(searchEnabled)]="searchEnabled"
+			[(showClearButton)]="showClearButton"
+			[(showSelectionControls)]="showSelectionControls"
+    >
+		<dx-validator>
+        <dxi-validation-rule
+            type="required"
+            message="Required"
+        >
+        </dxi-validation-rule>
+    </dx-validator>
+		</dx-tag-box>
 		`,
   }),
 } as Meta;
 
-// <dx-tag-box fieldTemplate="field">
-//     <div *dxTemplate="let data of 'field'">
-//         {{ data }}
-//     </div>
-// </dx-tag-box>
+export const Default: StoryObj = {};
 
-export const MeTagBox: StoryObj = {};
+export const WithLabelRow: StoryObj = {
+  args: {
+    ...Default.args,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<label meLabel
+		labelDirection="row"
+		isValid='true'
+		[size]="size" 
+		width="250px">
+		Label*
+		<dx-tag-box
+				meTagBox
+				[items]="items"
+				[(height)]="height"
+				[(width)]="width"
+				[(size)]="size"
+				[(placeholder)]="placeholder"
+				[(activeStateEnabled)]="activeStateEnabled"
+				[(hoverStateEnabled)]="hoverStateEnabled"
+				[(focusStateEnabled)]="focusStateEnabled"
+				[(applyValueMode)]="applyValueMode"
+				[(disabled)]="disabled"
+				[(readOnly)]="readOnly"
+				[(grouped)]="grouped"
+				[(hideSelectedItems)]="hideSelectedItems"
+				[(searchEnabled)]="searchEnabled"
+				[(showClearButton)]="showClearButton"
+				[(showSelectionControls)]="showSelectionControls"
+			></dx-tag-box>
+		</label>
+		`,
+  }),
+};

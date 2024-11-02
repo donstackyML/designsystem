@@ -89,15 +89,15 @@ import { MePopoverDirective } from './directives/popover.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 // import { MeTextBoxDirective } from './directives/text-box.directive';
 import { MeFormModule } from 'projects/dx-monitel-components/src/lib/directives/me-form/me-form.module';
+import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
 import { MeDataGridComponent } from './components/me-data-grid/me-data-grid.component';
+import { MeDateRangeBoxComponent } from './components/me-date-range-box/me-date-range-box.component';
 import { MeFormComponent } from './components/me-form/me-form.component';
+import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
 import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
-import { MeDateRangeBoxComponent } from './components/me-date-range-box/me-date-range-box.component';
-import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
-import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
 // import { MeToolbarDirective } from './directives/toolbar.directive';
 // import { MeTreeViewDirective } from './directives/tree-view.directive';
 
