@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MeIconComponent } from '../me-icon/me-icon.component';
 
@@ -7,17 +7,25 @@ import { MeIconComponent } from '../me-icon/me-icon.component';
   standalone: true,
   imports: [CommonModule, MeIconComponent],
   template: `
-    <span [class]="chipClasses" class="chip">
+    <span
+      [class]="chipClasses"
+      class="chip"
+      [attr.tabindex]="disabled ? -1 : 0"
+      [attr.role]="'option'"
+      [attr.aria-selected]="selected"
+      [attr.aria-disabled]="disabled"
+    >
       <span class="chip-label">
         {{ label }}
         <span *ngIf="count !== null" class="chip-count">{{ count }}</span>
       </span>
       <button
         *ngIf="removable && !disabled"
-        (click)="onRemove.emit()"
+        (click)="onRemove.emit(); $event.stopPropagation();"
         class="chip-remove-button"
+        aria-label="Удалить"
       >
-        <me-icon icon="close" [size]="size" color="#333"></me-icon>
+        <me-icon icon="close" [size]="size"></me-icon>
       </button>
     </span>
   `,
@@ -28,17 +36,41 @@ export class MeChipComponent {
   @Input() disabled: boolean = false;
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() count: number | null = null;
-  @Input() active: boolean = false;
+  @Input() selected = false;
+  @Input() tabindex: number = -1;
   @Output() onRemove = new EventEmitter<void>();
 
+  isFocused = false;
+
+
+  @HostListener('focus')
+  onFocus() {
+    this.isFocused = true;
+  }
+
+  @HostListener('blur')
+  onBlur() {
+    this.isFocused = false;
+  }
+
   get chipClasses(): string {
-    let classes = `${this.size}`;
+    const classes = [
+      this.size,
+      'chip-keyboard-navigable'
+    ];
+
     if (this.disabled) {
-      classes += ' chip-disabled';
+      classes.push('chip-disabled');
     }
-    if (this.active) {
-      classes += ' chip-active';
+
+    if (this.selected) {
+      classes.push('chip-selected');
     }
-    return classes;
+
+    if (this.isFocused) {
+      classes.push('chip-focused');
+    }
+
+    return classes.join(' ');
   }
 }
