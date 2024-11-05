@@ -61,7 +61,7 @@ export class MeAutocompleteDirective
         ...this.component.dropDownOptions?.wrapperAttr,
         class: popupWrapperClasses,
       },
-      maxHeight: 300 // Устанавливаем maxHeight для активации скролла
+      maxHeight: 300, // Устанавливаем maxHeight для активации скролла
     };
 
     this.component.dataSource = this.dataSource;
