@@ -34,7 +34,6 @@ export class MeTagBoxDirective extends MeFocusableDirective implements OnInit {
 
   ngOnInit(): void {
     this.component.instance.option('stylingMode', 'filled');
-    this.component.instance.option('labelMode', 'hidden');
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-dropdownlist me-dropdownlist-${this.size} me-tag-box`,

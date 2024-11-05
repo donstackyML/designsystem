@@ -103,7 +103,7 @@ export default {
     width: '400px',
     height: '',
     label: 'Label*',
-    labelMode: 'hidden',
+    labelMode: 'outside',
     applyValueMode: 'instantly',
     grouped: false,
     searchEnabled: true,
@@ -171,29 +171,28 @@ export const WithLabelRow: StoryObj = {
     template: `
 		<label meLabel
 		labelDirection="row"
-		isValid='true'
 		[size]="size" 
 		width="250px">
 		Label*
-		<dx-tag-box
-				meTagBox
-				[items]="items"
-				[(height)]="height"
-				[(width)]="width"
-				[(size)]="size"
-				[(placeholder)]="placeholder"
-				[(activeStateEnabled)]="activeStateEnabled"
-				[(hoverStateEnabled)]="hoverStateEnabled"
-				[(focusStateEnabled)]="focusStateEnabled"
-				[(applyValueMode)]="applyValueMode"
-				[(disabled)]="disabled"
-				[(readOnly)]="readOnly"
-				[(grouped)]="grouped"
-				[(hideSelectedItems)]="hideSelectedItems"
-				[(searchEnabled)]="searchEnabled"
-				[(showClearButton)]="showClearButton"
-				[(showSelectionControls)]="showSelectionControls"
-			></dx-tag-box>
+			<dx-tag-box
+			meTagBox
+			[items]="items"
+			[(height)]="height"
+			[(width)]="width"
+			[(size)]="size"
+			[(placeholder)]="placeholder"
+			[(activeStateEnabled)]="activeStateEnabled"
+			[(hoverStateEnabled)]="hoverStateEnabled"
+			[(focusStateEnabled)]="focusStateEnabled"
+			[(applyValueMode)]="applyValueMode"
+			[(disabled)]="disabled"
+			[(readOnly)]="readOnly"
+			[(grouped)]="grouped"
+			[(hideSelectedItems)]="hideSelectedItems"
+			[(searchEnabled)]="searchEnabled"
+			[(showClearButton)]="showClearButton"
+			[(showSelectionControls)]="showSelectionControls"
+				></dx-tag-box>
 		</label>
 		`,
   }),

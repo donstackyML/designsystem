@@ -1,10 +1,12 @@
+import { DxCheckBoxComponent } from 'devextreme-angular';
+
 import {
   argsToTemplate,
+  Meta,
   moduleMetadata,
-  type Meta,
-  type StoryObj,
+  StoryObj,
 } from '@storybook/angular';
-import { DxCheckBoxComponent } from 'devextreme-angular';
+
 import {
   MeCheckBoxDirective,
   MeIconComponent,
@@ -102,6 +104,30 @@ export const WithIconAndText: Story = {
 		<span>Text</span>
 </label>
 
+		`,
+    styles: [
+      'label { justify-content: flex-start; }',
+      'span { font-size: 14px; line-height: 20px; }',
+    ],
+  }),
+};
+
+export const IndeterminateState: Story = {
+  args: {
+    text: '',
+    disabled: false,
+    readOnly: false,
+    isValid: true,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<label meLabel labelDirection="row" width="300px">
+			<dx-check-box meCheckBox
+			class="dx-checkbox-indeterminate"
+			></dx-check-box>
+			<span>Indeterminate</span>
+		</label>
 		`,
     styles: [
       'label { justify-content: flex-start; }',

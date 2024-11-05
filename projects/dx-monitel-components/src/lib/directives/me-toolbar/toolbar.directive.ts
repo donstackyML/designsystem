@@ -1,19 +1,11 @@
-import {
-  AfterViewChecked,
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxToolbarComponent } from 'devextreme-angular';
 import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meToolbar]',
 })
-export class MeToolbarDirective implements OnInit, AfterViewChecked {
+export class MeToolbarDirective implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() background: boolean = false;
 
@@ -36,9 +28,5 @@ export class MeToolbarDirective implements OnInit, AfterViewChecked {
         `me-toolbar-background`
       );
     }
-  }
-
-  ngAfterViewChecked(): void {
-    console.log(this.component);
   }
 }

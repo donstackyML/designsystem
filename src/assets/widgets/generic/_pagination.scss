@@ -1,0 +1,239 @@
+@use 'sass:color';
+@use './colors' as *;
+
+$pagination-bg: null !default;
+$pagination-text-color: null !default;
+$pagination-active-bg: null !default;
+$pagination-hover-bg: null !default;
+$pagination-disabled-bg: null !default;
+$pagination-disabled-text: null !default;
+$pagination-focus-border: null !default;
+
+// Светлая тема
+@if $color == 'light' {
+  $pagination-bg: var(--Background-Content); // #ffffff для обычных кнопок
+  $pagination-text-color: var(--Text-Default); // #18181a
+  $pagination-active-bg: var(
+    --Controls-Informative-BG-Selected-Element
+  ); // #c4d8ff для активной страницы
+  $pagination-hover-bg: var(--Background-Canvas); // #ecedf4 для ховера
+  $pagination-disabled-bg: var(--Controls-BG-Secondary-Elements-BG-Disabled); // #dedfe6
+  $pagination-disabled-text: var(--Controls-Content-In-Controls-Main-Disabled); // #18181a66
+  $pagination-focus-border: var(--Controls-BG-Accent-Accent-BG-Default); // #3257dc
+}
+
+// Темная тема
+@if $color == 'dark' {
+  $pagination-bg: var(--Charts-Graphs-Gray-Dark); // #5a5a5c для обычных кнопок
+  $pagination-text-color: var(--Controls-Content-In-Controls-On-BG-Default); // #ffffff
+  $pagination-active-bg: var(
+    --Controls-BG-Accent-Accent-BG-Default
+  ); // #3257dc для активной страницы
+  $pagination-hover-bg: var(--Controls-BG-Secondary-Elements-BG-Hover); // #d8daea
+  $pagination-disabled-bg: var(--Controls-BG-Secondary-Elements-BG-Disabled); // #dedfe6
+  $pagination-disabled-text: var(--Controls-Content-In-Controls-On-BG-Disabled); // #ffffffbf
+  $pagination-focus-border: var(--Controls-BG-Accent-Accent-BG-Default); // #3257dc
+}
+
+.me-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__size-controls {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+
+    &.small {
+      .dx-button,
+      .dx-selectbox {
+        height: 28px;
+        font-size: 12px;
+      }
+    }
+
+    &.medium {
+      .dx-button,
+      .dx-selectbox {
+        height: 32px;
+        font-size: 14px;
+      }
+    }
+
+    &.large {
+      .dx-button,
+      .dx-selectbox {
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+
+    &.small .dx-button {
+      min-width: 32px;
+      height: 28px;
+      font-size: 12px;
+      .dx-icon {
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+
+    &.medium .dx-button {
+      min-width: 36px;
+      height: 32px;
+      font-size: 14px;
+      .dx-icon {
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+
+    &.large .dx-button {
+      min-width: 44px;
+      height: 40px;
+      font-size: 16px;
+      .dx-icon {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+
+  &__info {
+    font-size: 14px;
+    color: $pagination-text-color;
+    margin: 0 16px;
+  }
+
+  &__ellipsis {
+    font-size: 14px;
+    color: $pagination-text-color;
+    padding: 0 8px 0 0;
+  }
+
+  &__per-page {
+    font-size: 14px;
+    color: $pagination-text-color;
+  }
+
+  .dx-button {
+    min-width: 44px;
+    height: 32px;
+    padding: 0;
+    border-radius: 4px;
+    margin-right: 8px;
+    border: none;
+
+    &.small {
+      min-width: 36px;
+      height: 28px;
+    }
+
+    &.medium {
+      min-width: 44px;
+      height: 32px;
+    }
+
+    &.large {
+      min-width: 52px;
+      height: 40px;
+    }
+
+    &.dx-button-mode-outlined {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+
+      .dx-button-content {
+        .dx-button-text {
+          color: $pagination-text-color;
+        }
+      }
+    }
+
+    &.dx-button-mode-contained.dx-button-default {
+      background-color: $pagination-active-bg;
+
+      .dx-button-content {
+        .dx-button-text {
+          color: if(
+            $color == 'light',
+            $pagination-text-color,
+            var(--Controls-Content-In-Controls-On-BG-Default)
+          );
+        }
+      }
+    }
+
+    &.dx-state-hover {
+      background-color: $pagination-hover-bg;
+    }
+
+    &.dx-state-focused {
+      outline: none !important;
+    }
+
+    &.dx-state-disabled {
+      background-color: $pagination-disabled-bg;
+
+      .dx-button-content {
+        .dx-button-text {
+          color: $pagination-disabled-text;
+        }
+      }
+    }
+
+    &.dx-button-has-text {
+      .dx-button-content {
+        padding: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  // Стили для SelectBox
+  .dx-selectbox {
+    width: 80px;
+    background-color: $pagination-bg;
+
+    &.dx-state-focused {
+      outline: none;
+    }
+
+    .dx-texteditor-input {
+      color: $pagination-text-color;
+      text-align: center;
+    }
+
+    &.dx-state-hover {
+      background-color: $pagination-hover-bg;
+    }
+
+    &.dx-state-disabled {
+      background-color: $pagination-disabled-bg;
+
+      .dx-texteditor-input {
+        color: $pagination-disabled-text;
+      }
+    }
+  }
+}
+
+// Отключаем стандартный фокус
+.dx-button.dx-state-focused,
+.dx-selectbox.dx-state-focused {
+  outline: none !important;
+}
+
+// Стили для фокуса
+*:focus-visible {
+  outline: none;
+}
