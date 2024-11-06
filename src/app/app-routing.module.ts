@@ -31,6 +31,8 @@ import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.c
 import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
 import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
+import { MeTextAreaComponent } from './components/me-text-area/me-text-area.component';
+import { MeTagBoxComponent } from './components/me-tag-box/me-tag-box.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -65,6 +67,8 @@ const routes: Routes = [
   { path: 'me-load-panel', component: MeLoadPanelComponent },
   { path: 'me-autocomplete', component: MeAutocompleteComponent },
   { path: 'me-tree-list', component: MeTreeListComponent },
+  { path: 'me-text-area', component: MeTextAreaComponent },
+  { path: 'me-tag-box', component: MeTagBoxComponent },
   { path: '**', component: TypographyComponent },
 ];
 
