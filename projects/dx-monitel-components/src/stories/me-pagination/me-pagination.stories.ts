@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MePaginationComponent } from '../../public-api';
 import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
+import { MePaginationComponent } from '../../public-api';
 
 export default {
   title: 'Components/Pagination',
@@ -43,6 +43,10 @@ export default {
     },
     pageChange: { action: 'pageChanged' },
     itemsPerPageChange: { action: 'itemsPerPageChanged' },
+    transparentBackground: {
+      control: { type: 'boolean' },
+      description: 'Прозрачный фон для кнопок',
+    },
   },
   args: {
     totalItems: 100,
@@ -76,6 +80,7 @@ const Template: Story = {
         [itemsPerPageOptions]="itemsPerPageOptions"
         (pageChange)="onPageChange($event)"
         (itemsPerPageChange)="onItemsPerPageChange($event)"
+        [transparentBackground]="transparentBackground"
       >
       </me-pagination>
     `,
