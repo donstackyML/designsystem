@@ -1,13 +1,13 @@
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import {
   Component,
-  Input,
-  Output,
   EventEmitter,
+  Input,
   OnChanges,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
 interface ItemsPerPageOption {
   id: number;
   text: string;
@@ -28,6 +28,7 @@ export class MePaginationComponent implements OnChanges {
   @Input() size: 'small' | 'medium' | 'large' = 'medium'; // Объединенный параметр размера
   @Output() pageChange = new EventEmitter<number>();
   @Output() itemsPerPageChange = new EventEmitter<number>();
+  @Input() transparentBackground: boolean = false; // Опция для прозрачного фона
 
   pages: (number | string)[] = [];
   totalPages: number = 0;
