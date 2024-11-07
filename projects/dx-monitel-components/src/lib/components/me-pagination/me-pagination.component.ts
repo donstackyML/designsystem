@@ -1,39 +1,63 @@
+// me-pagination.component.ts
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   OnChanges,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
-interface ItemsPerPageOption {
-  id: number;
-  text: string;
-}
+import { ValueChangedEvent } from 'devextreme/ui/select_box';
+
 @Component({
   selector: 'me-pagination',
   templateUrl: './me-pagination.component.html',
   imports: [DxButtonModule, NgForOf, NgIf, DxSelectBoxModule, NgClass],
   standalone: true,
 })
-export class MePaginationComponent implements OnChanges {
+export class MePaginationComponent implements OnInit, OnChanges {
   @Input() totalItems: number = 0;
   @Input() itemsPerPage: number = 10;
   @Input() currentPage: number = 1;
   @Input() maxVisiblePages: number = 7;
   @Input() useButtons: boolean = false;
   @Input() itemsPerPageOptions: number[] = [10, 50, 100];
-  @Input() size: 'small' | 'medium' | 'large' = 'medium'; // Объединенный параметр размера
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() transparentBackground: boolean = false;
+  @Input() isDarkTheme: boolean = false;
+
   @Output() pageChange = new EventEmitter<number>();
   @Output() itemsPerPageChange = new EventEmitter<number>();
-  @Input() transparentBackground: boolean = false; // Опция для прозрачного фона
 
   pages: (number | string)[] = [];
   totalPages: number = 0;
+  selectedValue: number;
+  private defaultOptions: number[] = [10, 50, 100];
+
+  constructor() {
+    this.selectedValue = this.itemsPerPage;
+  }
+
+  ngOnInit(): void {
+    if (!this.itemsPerPageOptions?.length) {
+      this.itemsPerPageOptions = this.defaultOptions;
+    }
+    this.selectedValue = this.itemsPerPage;
+    this.calculatePages();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['itemsPerPageOptions'] && !changes['itemsPerPageOptions'].currentValue?.length) {
+      this.itemsPerPageOptions = this.defaultOptions;
+    }
+
+    if (changes['itemsPerPage']) {
+      this.selectedValue = changes['itemsPerPage'].currentValue;
+    }
+
     if (
       changes['totalItems'] ||
       changes['itemsPerPage'] ||
@@ -103,15 +127,18 @@ export class MePaginationComponent implements OnChanges {
     this.changePage(this.currentPage - 1);
   }
 
-  onItemsPerPageChange(e: any): void {
-    console.log(e);
-    this.itemsPerPage = e.value;
-    this.currentPage = 1;
-    this.calculatePages();
-    this.itemsPerPageChange.emit(this.itemsPerPage);
+  onItemsPerPageChange(e: ValueChangedEvent): void {
+    if (typeof e.value === 'number') {
+      this.selectedValue = e.value;
+      this.itemsPerPage = e.value;
+      this.currentPage = 1;
+      this.calculatePages();
+      this.itemsPerPageChange.emit(this.itemsPerPage);
+    }
   }
 
   changeItemsPerPage(size: number): void {
+    this.selectedValue = size;
     this.itemsPerPage = size;
     this.currentPage = 1;
     this.calculatePages();
