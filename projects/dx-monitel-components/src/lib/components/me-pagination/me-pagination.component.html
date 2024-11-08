@@ -7,12 +7,8 @@
         [type]="itemsPerPage === size ? 'default' : 'normal'"
         [text]="size.toString()"
         (onClick)="changeItemsPerPage(size)"
-        [style.backgroundColor]="
-          transparentBackground && !isDarkTheme ? 'transparent' : ''
-        "
-        [style.color]="
-          transparentBackground && !isDarkTheme ? '#007bff' : ''
-        "
+        [style.backgroundColor]="transparentBackground && !isDarkTheme ? 'transparent' : ''"
+        [style.color]="transparentBackground && !isDarkTheme ? '#007bff' : ''"
       ></dx-button>
     </ng-container>
     <ng-template #selectBoxTemplate>
@@ -39,16 +35,8 @@
           [text]="page.toString()"
           (onClick)="changePage(page)"
           [type]="page === currentPage ? 'default' : 'normal'"
-          [style.backgroundColor]="
-            transparentBackground && !isDarkTheme && page !== currentPage
-              ? 'transparent'
-              : ''
-          "
-          [style.color]="
-            transparentBackground && !isDarkTheme && page !== currentPage
-              ? '#007bff'
-              : ''
-          "
+          [style.backgroundColor]="transparentBackground && !isDarkTheme && page !== currentPage ? 'transparent' : ''"
+          [style.color]="transparentBackground && !isDarkTheme && page !== currentPage ? '#007bff' : ''"
         ></dx-button>
       </ng-container>
       <span *ngIf="page === '...'" class="me-pagination__ellipsis">...</span>
