@@ -373,6 +373,8 @@
 }
 
 .me-dropdown-button-popup {
+  border: none !important;
+  box-shadow: none !important;
   &.dx-overlay-content.me-dropdown-button-popup {
     .dx-popup-content.dx-dropdownbutton-content {
       padding: 0;
@@ -384,7 +386,6 @@
         .dx-item.dx-list-item {
           padding: 4px 16px 4px 8px;
           .dx-item-content.dx-list-item-content {
-            padding: 0;
             font-size: 13px;
             font-weight: var(--base-regular-font-weight);
             line-height: 16px;
@@ -398,4 +399,160 @@
       }
     }
   }
+}
+
+// Обновляем стили для выпадающего списка
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup {
+  border: 1px solid var(--Dividers-Borders-Long);
+  border-radius: 4px;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+
+  .dx-popup-content.dx-dropdownbutton-content {
+    padding: 0;
+
+    // Основные стили для всех размеров
+    &.me-dropdownbutton-list {
+      .dx-scrollable-wrapper {
+        .dx-scrollable-container {
+          .dx-scrollable-content {
+            .dx-list-items {
+              display: flex;
+              flex-direction: column;
+              gap: 4px;
+              padding-block: 4px;
+
+              .dx-item.dx-list-item {
+                border: none;
+                background: transparent;
+
+                .dx-item-content.dx-list-item-content {
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 4px 8px;
+                  font-weight: var(--base-regular-font-weight);
+
+                  .dx-icon {
+                    margin: 0;
+                    font-family: var(--me-icon-family);
+                  }
+                }
+
+                &.dx-state-hover {
+                  background-color: var(--Action-Hover);
+                }
+
+                &.dx-state-focused {
+                  background-color: var(--Action-Hover);
+                  box-shadow: inset 0px 0px 0px 2px var(--Dividers-Borders-Focus);
+                }
+
+                &.dx-state-active {
+                  background-color: var(--Action-Active);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Стили для скроллбара
+      .dx-scrollable-scrollbar {
+        &.dx-scrollbar-vertical {
+          width: 8px;
+          right: 2px;
+
+          .dx-scrollable-scroll {
+            background-color: var(--Scrollbar);
+            opacity: 0.6;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    // Стили для маленького размера
+    &.me-dropdownbutton-list-small {
+      .dx-scrollable-content {
+        .dx-list-items {
+          .dx-item.dx-list-item {
+            padding: 2px 16px 2px 8px;
+            margin-bottom: 4px;
+            .dx-item-content.dx-list-item-content {
+              padding: 4px 12px;
+              font-size: 13px;
+              line-height: 16px;
+
+              .dx-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Стили для среднего размера
+    &.me-dropdownbutton-list-medium {
+      .dx-scrollable-content {
+        .dx-list-items {
+          .dx-item.dx-list-item {
+            padding: 2px 16px 2px 8px;
+            margin-bottom: 4px;
+            .dx-item-content.dx-list-item-content {
+              padding: 6px 12px;
+              font-size: 14px;
+              line-height: 20px;
+
+              .dx-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Стили для большого размера
+    &.me-dropdownbutton-list-large {
+      .dx-scrollable-content {
+        .dx-list-items {
+          .dx-item.dx-list-item {
+            padding: 2px 16px 2px 0;
+            margin-bottom: 4px;
+            .dx-item-content.dx-list-item-content {
+              padding: 6px 12px;
+              font-size: 16px;
+              line-height: 24px;
+
+              .dx-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Стили для состояния disabled
+.dx-state-disabled {
+  .dx-item.dx-list-item {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+.dx-context-menu .dx-menu-item .dx-submenu {
+  position: fixed;
+  z-index: 1003;
 }

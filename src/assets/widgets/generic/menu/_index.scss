@@ -152,20 +152,24 @@
   .dx-menu-horizontal {
     .dx-menu-items-container {
       flex-direction: row;
+
       .dx-menu-item-popout::before {
         content: var(--me-icon-chevron-down);
       }
     }
   }
+
   .dx-menu-vertical {
     .dx-menu-items-container {
       flex-direction: column;
       align-items: flex-start;
+
       .dx-menu-item-popout::before {
         content: var(--me-icon-chevron-right);
       }
     }
   }
+
   .dx-menu-items-container {
     gap: 8px;
     display: flex;
@@ -174,20 +178,26 @@
       .dx-item.dx-state-active {
         background-color: $menu-item-active-bg;
       }
+
       .dx-item-content.dx-menu-item-content {
         display: flex;
         align-items: center;
         gap: 8px;
+
         .dx-icon {
           margin: 0;
         }
+
         .dx-menu-item-text {
           padding: 0;
           color: $base-text-color;
         }
+
         .dx-menu-item-popout-container {
           position: relative;
+
           .dx-menu-item-popout {
+            background-size: cover;
             font-family: var(--me-icon-family);
           }
         }
@@ -203,10 +213,16 @@
     .dx-menu-item-wrapper {
       .dx-item-content.dx-menu-item-content {
         padding: 4px 12px;
+
         .dx-icon,
         .dx-menu-item-popout-container {
           height: 20px;
           width: 20px;
+
+          .dx-menu-item-popout {
+            width: 20px;
+          }
+
           .dx-menu-item-popout::before {
             width: 20px;
             height: 20px;
@@ -216,6 +232,7 @@
             font-size: 20px;
           }
         }
+
         .dx-menu-item-text {
           font-size: 14px;
           line-height: 20px;
@@ -228,10 +245,12 @@
     .dx-menu-item-wrapper {
       .dx-item-content.dx-menu-item-content {
         padding: 8px 12px;
+
         .dx-icon,
         .dx-menu-item-popout-container {
           height: 24px;
           width: 24px;
+
           .dx-menu-item-popout::before {
             width: 24px;
             height: 24px;
@@ -241,6 +260,7 @@
             font-size: 24px;
           }
         }
+
         .dx-menu-item-text {
           font-size: 16px;
           line-height: 24px;
@@ -280,11 +300,14 @@
     cursor: default;
   }
 }
+
 .me-context-menu .dx-submenu {
   margin-top: 4px;
 }
+
 .me-menu-submenu {
   border: 1px solid $base-border-color;
+
   .dx-menu-item.dx-state-focused {
     box-shadow: inset 0px 0px 0px 2px var(--Dividers-Borders-Focus);
   }
@@ -293,13 +316,16 @@
     .dx-scrollable-scroll-content {
       border-radius: 10px;
     }
+
     .dx-scrollbar-vertical.dx-scrollable-scrollbar {
       width: auto;
       padding: 0;
+
       .dx-scrollable-scroll {
         width: 8px;
       }
     }
+
     .dx-scrollable-scrollbar.dx-state-hover {
       background: transparent;
     }
@@ -324,16 +350,20 @@
           .dx-icon {
             margin: 0;
           }
+
           .dx-menu-item-text {
             padding: 0;
             color: $base-text-color;
           }
+
           .dx-menu-item-popout-container {
             position: relative;
             margin-left: auto;
+
             .dx-menu-item-popout {
               font-family: var(--me-icon-family);
             }
+
             .dx-menu-item-popout::before {
               content: var(--me-icon-chevron-right);
             }
@@ -362,6 +392,7 @@
           .dx-menu-item-popout-container {
             height: 20px;
             width: 20px;
+
             .dx-menu-item-popout::before {
               width: 20px;
               height: 20px;
@@ -371,6 +402,7 @@
               font-size: 20px;
             }
           }
+
           .dx-menu-item-text {
             font-size: 14px;
             line-height: 20px;
@@ -385,6 +417,7 @@
 
     .dx-menu-items-container {
       padding-block: 2px;
+
       .dx-menu-item-wrapper {
         .dx-item.dx-menu-item {
           padding: 8px 12px;
@@ -393,6 +426,7 @@
           .dx-menu-item-popout-container {
             height: 24px;
             width: 24px;
+
             .dx-menu-item-popout::before {
               width: 24px;
               height: 24px;
@@ -402,20 +436,12 @@
               font-size: 24px;
             }
           }
+
           .dx-menu-item-text {
             font-size: 16px;
             line-height: 24px;
           }
         }
-      }
-    }
-  }
-
-  &.me-menu-submenu-small,
-  &.me-menu-submenu-large {
-    .dx-item.dx-menu-item {
-      .dx-submenu {
-        position: fixed;
       }
     }
   }
@@ -472,12 +498,20 @@
     .dx-menu-item-popout-container {
       position: relative;
       margin-left: auto;
+
       .dx-menu-item-popout {
         font-family: var(--me-icon-family);
       }
+
       .dx-menu-item-popout::before {
         content: var(--me-icon-chevron-right);
       }
     }
+  }
+}
+
+.dx-menu-vertical {
+  .dx-menu-item {
+    min-width: 200px;
   }
 }

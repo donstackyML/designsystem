@@ -4114,7 +4114,7 @@
   border-color: transparent;
 }
 .dx-button-mode-text.dx-state-disabled .dx-icon {
-  color: #18181A66;
+  color: rgba(24, 24, 26, 0.4);
 }
 .dx-button-mode-text.me-state-selected {
   background-color: #bfc1d0;
@@ -5996,6 +5996,10 @@
   outline: 2px solid var(--Dividers-Borders-Focus);
 }
 
+.me-tabs {
+  display: inline-flex;
+  width: auto;
+}
 .me-tabs .dx-item.dx-tab.dx-state-hover {
   background-color: var(--Controls-BG-Flat-Button-Main-BG-Hover);
 }
@@ -6912,7 +6916,7 @@
 
 /* B231111 */
 .dx-placeholder {
-  color: transparent;
+  color: rgba(24, 24, 26, 0.4);
 }
 .dx-placeholder::before {
   padding: 7px 9px 8px;
@@ -13535,9 +13539,6 @@
   font-size: 16px;
   line-height: 24px;
 }
-.me-menu-submenu.me-menu-submenu-small .dx-item.dx-menu-item .dx-submenu, .me-menu-submenu.me-menu-submenu-large .dx-item.dx-menu-item .dx-submenu {
-  position: fixed;
-}
 
 .dx-list-items.me-list-items-small .dx-item.dx-list-item {
   padding: 4px 12px;
@@ -13586,6 +13587,10 @@
   content: var(--me-icon-chevron-right);
 }
 
+.dx-menu-vertical .dx-menu-item {
+  min-width: 200px;
+}
+
 .dx-selectbox {
   cursor: pointer;
 }
@@ -13598,7 +13603,6 @@
 
 .dx-selectbox-container {
   position: relative;
-  min-height: 28px;
 }
 
 .dx-state-disabled .dx-selectbox .dx-texteditor-input, .dx-state-disabled.dx-selectbox .dx-texteditor-input {
@@ -15351,6 +15355,10 @@
   padding-inline: 16px;
 }
 
+.me-dropdown-button-popup {
+  border: none !important;
+  box-shadow: none !important;
+}
 .me-dropdown-button-popup.dx-overlay-content.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content {
   padding: 0;
 }
@@ -15364,13 +15372,115 @@
   padding: 4px 16px 4px 8px;
 }
 .me-dropdown-button-popup.dx-overlay-content.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content {
-  padding: 0;
   font-size: 13px;
   font-weight: var(--base-regular-font-weight);
   line-height: 16px;
 }
 .me-dropdown-button-popup.dx-overlay-content.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content .dx-list-items .dx-item.dx-list-item.dx-state-focused {
   box-shadow: none;
+}
+
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup {
+  border: 1px solid var(--Dividers-Borders-Long);
+  border-radius: 4px;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content {
+  padding: 0;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-block: 4px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item {
+  border: none;
+  background: transparent;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  font-weight: var(--base-regular-font-weight);
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content .dx-icon {
+  margin: 0;
+  font-family: var(--me-icon-family);
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item.dx-state-hover {
+  background-color: var(--Action-Hover);
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item.dx-state-focused {
+  background-color: var(--Action-Hover);
+  box-shadow: inset 0px 0px 0px 2px var(--Dividers-Borders-Focus);
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item.dx-state-active {
+  background-color: var(--Action-Active);
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-scrollbar.dx-scrollbar-vertical {
+  width: 8px;
+  right: 2px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll {
+  background-color: var(--Scrollbar);
+  opacity: 0.6;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list .dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll:hover {
+  opacity: 1;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-small .dx-scrollable-content .dx-list-items .dx-item.dx-list-item {
+  padding: 2px 16px 2px 8px;
+  margin-bottom: 4px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-small .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content {
+  padding: 4px 12px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-small .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content .dx-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-medium .dx-scrollable-content .dx-list-items .dx-item.dx-list-item {
+  padding: 2px 16px 2px 8px;
+  margin-bottom: 4px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-medium .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-medium .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content .dx-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-large .dx-scrollable-content .dx-list-items .dx-item.dx-list-item {
+  padding: 2px 16px 2px 0;
+  margin-bottom: 4px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-large .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content {
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 24px;
+}
+.dx-overlay-content.dx-popup-normal.me-dropdown-button-popup .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-large .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content .dx-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+
+.dx-state-disabled .dx-item.dx-list-item {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.dx-context-menu .dx-menu-item .dx-submenu {
+  position: fixed;
+  z-index: 1003;
 }
 
 .dx-actionsheet-popup-wrapper .dx-overlay-content {
@@ -17602,7 +17712,6 @@
   width: 379px;
   background-color: #fff;
   color: #18181a;
-  padding: 16px;
 }
 
 .dx-accordion-item {
@@ -21106,9 +21215,6 @@ input.dx-hidden {
 
 .me-data-grid td:not(:last-child) {
   margin-right: 1px;
-}
-.me-data-grid .dx-datagrid {
-  padding: 16px;
 }
 .me-data-grid .dx-datagrid .dx-datagrid-columns-separator {
   background: var(--Controls-BG-Accent-Accent-BG-Default);
@@ -25121,7 +25227,7 @@ input.dx-hidden {
   padding: 1px;
 }
 .dx-context-menu .dx-menu-item .dx-submenu {
-  position: absolute;
+  position: fixed;
   z-index: 1003;
 }
 .dx-context-menu .dx-menu-separator {
@@ -25427,7 +25533,7 @@ input.dx-hidden {
   border-width: 1px;
   border-color: var(--Dividers-Borders-Long);
   background-color: var(--Background-Content);
-  padding: 20px 16px;
+  padding: var(--me-tabpanel-container-padding, 0);
   height: 100%;
   width: 100%;
 }
@@ -33826,7 +33932,7 @@ input.dx-hidden {
 }
 
 .chip-remove-button {
-  margin-left: 4px;
+  margin-left: 8px;
   padding: 0;
   border: none;
   background: none;
@@ -33886,19 +33992,16 @@ input.dx-hidden {
 .me-pagination__size-controls.small .dx-selectbox {
   height: 28px;
   font-size: 12px;
-  border-radius: 3px;
 }
 .me-pagination__size-controls.medium .dx-button,
 .me-pagination__size-controls.medium .dx-selectbox {
   height: 32px;
   font-size: 14px;
-  border-radius: 3px;
 }
 .me-pagination__size-controls.large .dx-button,
 .me-pagination__size-controls.large .dx-selectbox {
   height: 40px;
   font-size: 16px;
-  border-radius: 4px;
 }
 .me-pagination__controls {
   display: flex;
@@ -33936,7 +34039,6 @@ input.dx-hidden {
   font-size: 14px;
   color: var(--Text-Default);
   margin: 0 16px;
-  font-family: "Roboto";
 }
 .me-pagination__ellipsis {
   font-size: 14px;
@@ -33960,7 +34062,7 @@ input.dx-hidden {
   height: 28px;
 }
 .me-pagination .dx-button.medium {
-  min-width: 32px;
+  min-width: 44px;
   height: 32px;
 }
 .me-pagination .dx-button.large {
@@ -33986,7 +34088,7 @@ input.dx-hidden {
   outline: none !important;
 }
 .me-pagination .dx-button.dx-state-disabled {
-  
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
 }
 .me-pagination .dx-button.dx-state-disabled .dx-button-content .dx-button-text {
   color: var(--Controls-Content-In-Controls-Main-Disabled);
