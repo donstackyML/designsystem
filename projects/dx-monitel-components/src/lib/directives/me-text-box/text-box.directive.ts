@@ -22,10 +22,17 @@ export class MeTextBoxDirective
   implements OnInit, AfterViewInit
 {
   private textBox = inject(DxTextBoxComponent);
+  private passwordVisible = false;
+  private isPasswordInput = false;
+  private passwordToggleButton: HTMLElement | null = null;
+
   ngOnInit(): void {
     this.initMeField();
     this.textBox.instance.option('stylingMode', 'filled');
     this.textBox.instance.option('labelMode', 'hidden');
+
+    // Проверяем, является ли поле полем для пароля
+    this.isPasswordInput = this.textBox.instance.option('mode') === 'password';
   }
 
   get isSizeSmall() {
@@ -42,6 +49,10 @@ export class MeTextBoxDirective
 
   ngAfterViewInit(): void {
     this.createLockIcon();
+    if (this.isPasswordInput) {
+      this.createPasswordToggle();
+      this.updatePasswordToggleVisibility();
+    }
   }
 
   createLockIcon() {
@@ -57,11 +68,63 @@ export class MeTextBoxDirective
     this.renderer.appendChild(parentSpan, childSpan);
 
     this.renderer.appendChild(
-      this.element.nativeElement.querySelector(
-        '.dx-texteditor-buttons-container'
-      ),
+      this.element.nativeElement.querySelector('.dx-texteditor-buttons-container'),
       parentSpan
     );
+  }
+
+  createPasswordToggle() {
+    this.passwordToggleButton = this.renderer.createElement('div');
+    this.renderer.addClass(this.passwordToggleButton, 'dx-password-toggle');
+    this.renderer.addClass(this.passwordToggleButton, 'dx-button');
+    this.renderer.addClass(this.passwordToggleButton, 'dx-button-mode-text');
+    this.renderer.addClass(this.passwordToggleButton, 'dx-button-normal');
+    this.renderer.addClass(this.passwordToggleButton, 'dx-button-has-icon');
+    // Изначально скрываем кнопку
+    this.renderer.setStyle(this.passwordToggleButton, 'display', 'none');
+
+    const iconElement = this.renderer.createElement('i');
+    this.renderer.addClass(iconElement, 'dx-icon');
+    this.renderer.addClass(iconElement, 'dx-icon-eyeoff');
+
+    const buttonContent = this.renderer.createElement('div');
+    this.renderer.addClass(buttonContent, 'dx-button-content');
+    this.renderer.appendChild(buttonContent, iconElement);
+    this.renderer.appendChild(this.passwordToggleButton, buttonContent);
+
+    this.renderer.listen(this.passwordToggleButton, 'click', () => {
+      this.togglePasswordVisibility(iconElement);
+    });
+
+    const buttonsContainer = this.element.nativeElement.querySelector(
+      '.dx-texteditor-buttons-container'
+    );
+    this.renderer.insertBefore(buttonsContainer, this.passwordToggleButton, buttonsContainer.firstChild);
+  }
+
+  updatePasswordToggleVisibility() {
+    if (!this.passwordToggleButton) return;
+
+    const hasValue = !!this.textBox.instance.option('value');
+    this.renderer.setStyle(
+      this.passwordToggleButton,
+      'display',
+      hasValue ? 'block' : 'none'
+    );
+  }
+
+  togglePasswordVisibility(iconElement: HTMLElement) {
+    this.passwordVisible = !this.passwordVisible;
+
+    this.textBox.instance.option('mode', this.passwordVisible ? 'text' : 'password');
+
+    if (this.passwordVisible) {
+      this.renderer.removeClass(iconElement, 'dx-icon-eyeoff');
+      this.renderer.addClass(iconElement, 'dx-icon-eyeopen');
+    } else {
+      this.renderer.removeClass(iconElement, 'dx-icon-eyeopen');
+      this.renderer.addClass(iconElement, 'dx-icon-eyeoff');
+    }
   }
 
   addLockIcon() {
@@ -84,6 +147,17 @@ export class MeTextBoxDirective
     }
     if (e.name === 'readOnly' && e.value === false) {
       this.removeLockIcon();
+    }
+    if (e.name === 'mode' && e.value === 'password' && !this.isPasswordInput) {
+      this.isPasswordInput = true;
+      this.createPasswordToggle();
+      this.updatePasswordToggleVisibility();
+    }
+    // Обработка изменения значения поля
+    if (e.name === 'value') {
+      if (this.isPasswordInput) {
+        this.updatePasswordToggleVisibility();
+      }
     }
   }
 }

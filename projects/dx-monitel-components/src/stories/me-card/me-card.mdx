@@ -1,205 +1,143 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
-import * as MeCardStories from "./me-card.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxButtonModule } from "devextreme-angular";
-import { CommonModule } from "@angular/common";
-import { MeCardComponent } from "../../public-api";
-import {
-  MeIconComponent,
-  MeChipComponent,
-  MeChipsContainerComponent,
-} from "../../public-api";
+import { Meta, Story, Controls, Source } from "@storybook/blocks";
+import * as Stories from "./me-card.stories";
 
-<Meta
-  title="Components/MeCard(RC)"
-  component={MeCardComponent}
-  decorators={[
-    moduleMetadata({
-      imports: [
-        CommonModule,
-        DxButtonModule,
-        MeCardComponent,
-        MeIconComponent,
-        MeChipComponent,
-        MeChipsContainerComponent,
-      ],
-    }),
-  ]}
-  of={MeCardStories}
-/>
+<Meta of={Stories} />
 
-# MeCard
+# Card
 
-## Компонент MeCard
+Компонент `Card` представляет собой контейнер для отображения контента в виде карточки с возможностью настройки заголовка, содержимого и подвала.
 
-Компонент `MeCard` представляет собой карточку с настраиваемыми размерами, заголовком и подвалом. В этом примере мы демонстрируем несколько вариантов использования компонента, включая различный размер и поведение при переполнении контента.
+## Базовое использование
 
-<Story name="Default" of={MeCardStories.Default} />
-<Controls of={MeCardStories.Default} />
+<Story of={Stories.ComplexCard} />
 
-<Source of={MeCardStories.Default} dark />
+В этом примере показана карточка со всеми основными элементами:
+- Заголовок с кнопками и чипами
+- Основной контент
+- Подвал с кнопками действий
 
-## Примеры использования:
+<Source of={Stories.ComplexCard} />
 
-### Маленькая карточка
+## Карточка с прокруткой
 
-<Story name="SmallCard" of={MeCardStories.SmallCard} />
+<Story of={Stories.ScrollableContent} />
+
+Карточка с фиксированной высотой контента и прокруткой. Когда содержимое превышает указанную высоту, появляется полоса прокрутки.
 
 <Source
-  code={`<me-card [size]="'small'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
-  <ng-container card-header-left>
-    <me-icon icon="home" size="medium"></me-icon>
-    <span>Card Title</span>
-  </ng-container>
-  <ng-container card-header-right>
-    <dx-button iconOnly="add" (onClick)="onAddClick()"></dx-button>
-    <dx-button iconOnly="arrowforward" (onClick)="onForwardClick()"></dx-button>
-  </ng-container>
-  <div>
-    <p>Card content goes here. This is a basic card example.</p>
-    <me-chips-container [chips]="[{ label: 'Example Chip', size: 'medium', count: 1 }]"></me-chips-container>
-  </div>
-  <ng-container card-footer>
-    <dx-button text="Cancel" type="normal" stylingMode="outlined" (onClick)="onCancelClick()"></dx-button>
-    <dx-button text="Save" type="success" (onClick)="onSaveClick()"></dx-button>
-  </ng-container>
-</me-card>`}
-  dark
-  language="html"
-/>
-
-### Большая карточка
-
-{" "}
-
-<Story name="LargeCard" of={MeCardStories.LargeCard} />
-
-{" "}
-
-<Source
-  code={`<me-card [size]="'large'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
-    <ng-container card-header-left>
-    <me-icon icon="home" size="medium"></me-icon>
-    <span>Card Title</span>
-    </ng-container>
-    <ng-container card-header-right>
-    <dx-button iconOnly="add" (onClick)="onAddClick()"></dx-button>
-    <dx-button iconOnly="arrowforward" (onClick)="onForwardClick()"></dx-button>
-    </ng-container>
-    <div>
-    <p>Card content goes here. This is a basic card example.</p>
-    <me-chips-container [chips]="[{ label: 'Example Chip', size: 'medium', count: 1 }]"></me-chips-container>
-  </div>
-  <ng-container card-footer>
-  <dx-button text="Cancel" type="normal" stylingMode="outlined" (onClick)="onCancelClick()"></dx-button>
-    <dx-button text="Save" type="success" (onClick)="onSaveClick()"></dx-button>
-  </ng-container>
-</me-card>`}
-  dark
-  language="html"
-/>
-
-### Карточка без подвала
-
-<Story name="NoFooter" of={MeCardStories.NoFooter} />
-
-<Source
-  code={`<me-card [size]="'medium'" [showHeader]="true" [showFooter]="false" [markerColor]="'#4CAF50'">
-  <ng-container card-header-left>
-    <me-icon icon="home" size="medium"></me-icon>
-    <span>Card Title</span>
-  </ng-container>
-  <ng-container card-header-right>
-    <dx-button iconOnly="add" (onClick)="onAddClick()"></dx-button>
-    <dx-button iconOnly="arrowforward" (onClick)="onForwardClick()"></dx-button>
-  </ng-container>
-  <div>
-    <p>Card content goes here. This is a basic card example.</p>
-    <me-chips-container [chips]="[{ label: 'Example Chip', size: 'medium', count: 1 }]"></me-chips-container>
-  </div>
-</me-card>`}
-  dark
-  language="html"
-/>
-
-### Карточка с переполнением
-
-{" "}
-
-<Story name="WithOverflow" of={MeCardStories.WithOverflow} />
-
-{" "}
-
-<Source
-  code={`<me-card [size]="'small'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
-    <ng-container card-header-left>
-    <me-icon icon="description" size="medium"></me-icon>
-    <span>Overflow Example</span>
-    </ng-container>
-    <div style="max-height: 200px; overflow-y: auto;">
-    <p>This is an example of a card with overflow content. The content will scroll when it exceeds the maximum height.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>
-    </div>
-    <ng-container card-footer>
-    <dx-button text="Close" type="normal" stylingMode="outlined" (onClick)="onCloseClick()"></dx-button>
-    </ng-container>
-    </me-card>`}
-  dark
-  language="html"
-/>
-
-    ## Перечень свойств
-
-    <Controls story={MeCardStories.Default} />
-
-## Обработка событий
-
-Карточка поддерживает обработку событий, такие как клики по кнопкам. Пример обработки событий в компоненте:
-
-  <Source
   code={`
-<me-card [size]="'medium'" [showHeader]="true" [showFooter]="true" [markerColor]="'#4CAF50'">
+<me-card
+  [size]="'medium'"
+  [showHeader]="true"
+  [showFooter]="true"
+  [contentHeight]="'200px'"
+>
+  <!-- Header -->
   <ng-container card-header-left>
-    <me-icon icon="home" size="medium"></me-icon>
-    <span>Card Title</span>
+    <span>Карточка с прокруткой</span>
   </ng-container>
-  <ng-container card-header-right>
-    <dx-button iconOnly="add" (onClick)="onAddClick()"></dx-button>
-    <dx-button iconOnly="arrowforward" (onClick)="onForwardClick()"></dx-button>
+
+    <!-- Scrollable Content -->
+    <div>
+      <p>Содержимое с прокруткой...</p>
+    </div>
+
+    <!-- Footer -->
+    <ng-container card-footer>
+      <dx-button
+        meButton
+        text="Cancel"
+        [stylingMode]="'text'"
+      ></dx-button>
+      <dx-button
+        meButton
+        text="Save"
+        [stylingMode]="'contained'"
+      ></dx-button>
+    </ng-container>
+  </me-card>
+`} />
+
+## Карточка без ограничения высоты
+
+<Story of={Stories.UnlimitedContent} />
+
+Карточка без ограничения высоты контента. Размер карточки адаптируется под содержимое.
+
+<Source
+  code={`
+<me-card
+  [size]="'medium'"
+  [showHeader]="true"
+  [showFooter]="true"
+>
+  <!-- Header -->
+  <ng-container card-header-left>
+    <span>Карточка без ограничения высоты</span>
   </ng-container>
-  <div>
-    <p>Card content goes here. This is a basic card example.</p>
-    <me-chips-container [chips]="[{ label: 'Example Chip', size: 'medium', count: 1 }]"></me-chips-container>
-  </div>
-  <ng-container card-footer>
-    <dx-button text="Cancel" type="normal" stylingMode="outlined" (onClick)="onCancelClick()"></dx-button>
-    <dx-button text="Save" type="success" (onClick)="onSaveClick()"></dx-button>
+
+    <!-- Content -->
+    <div>
+      <h3>Раздел</h3>
+      <p>Содержимое раздела...</p>
+    </div>
+
+    <!-- Footer -->
+    <ng-container card-footer>
+      <dx-button
+        meButton
+        text="Cancel"
+        [stylingMode]="'text'"
+      ></dx-button>
+      <dx-button
+        meButton
+        text="Save"
+        [stylingMode]="'contained'"
+      ></dx-button>
+    </ng-container>
+  </me-card>
+`} />
+
+## Свойства компонента
+
+<Controls />
+
+## Описание входных параметров
+
+- `size`: Размер карточки ('small' | 'medium' | 'large')
+- `showHeader`: Показывать ли заголовок карточки
+- `showFooter`: Показывать ли подвал карточки
+- `contentHeight`: Максимальная высота контента (например, '200px')
+
+## Слоты для контента
+
+Компонент предоставляет несколько слотов для размещения контента:
+
+1. `card-header-left` - левая часть заголовка
+2. `card-header-right` - правая часть заголовка
+3. Основной контент (без специального селектора)
+4. `card-footer` - подвал карточки
+
+Пример использования слотов:
+
+<Source
+  code={`
+<me-card [size]="'medium'">
+  <ng-container card-header-left>
+    <!-- Содержимое левой части заголовка -->
   </ng-container>
-</me-card>
 
-    // В вашем компоненте:
-    onAddClick() {
-      console.log('Add button clicked');
-    }
+    <ng-container card-header-right>
+      <!-- Содержимое правой части заголовка -->
+    </ng-container>
 
-    onForwardClick() {
-      console.log('Forward button clicked');
-    }
+    <!-- Основной контент -->
+    <div>
+      <p>Основное содержимое карточки</p>
+    </div>
 
-    onCancelClick() {
-      console.log('Cancel button clicked');
-    }
-
-    onSaveClick() {
-      console.log('Save button clicked');
-    }
-
-    onCloseClick() {
-      console.log('Close button clicked');
-    }
-
-`}
-dark
-language="typescript"
-/>
+    <ng-container card-footer>
+      <!-- Содержимое подвала -->
+    </ng-container>
+  </me-card>
+`} />

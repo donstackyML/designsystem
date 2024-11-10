@@ -42,7 +42,7 @@ const meta: Meta<ToolbarArgs> = {
         DxDropDownButtonModule,
         DxTemplateModule,
       ],
-      providers: [MeIconStoreService], // Добавьте провайдер для сервиса иконок
+      providers: [MeIconStoreService],
     }),
   ],
   argTypes: {
