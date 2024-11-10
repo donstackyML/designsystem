@@ -1,0 +1,156 @@
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import * as DateBoxStories from "./me-date-box.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+
+<Meta name="DateBox Documentation" of={DateBoxStories} />
+
+# DateBox
+
+## Директива meDateBox
+
+Применение директивы meDateBox к элементу <code>dx-date-box</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство <code>size</code>.
+
+Документация на сайте разработчика Devextreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDateBox/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DateBox/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+	<Canvas of={DateBoxStories.Default} />
+	<Controls of={DateBoxStories.Default} />
+
+	## Дизайн
+
+<Figma
+  height="50%"
+			collapsable
+	defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=uOtV7gZSB9RVNEJg-0"
+/>
+
+## Примеры использования:
+
+- [Размеры DateBox](#размеры-datebox)
+- [Положение Label](#положение-label)
+- [Валидация поля](#валидация-поля)
+- [Тип DateBox](#тип-datebox)
+- [Ввод даты](#ввод-даты)
+- [Формат даты и времени](#формат-даты-и-времени)
+- [Настройка дат для выбора](#настройка-дат-для-выбора)
+
+### Размеры DateBox
+Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
+
+<Source
+	code={`<dx-date-box meDateBox size="size"></dx-date-box>`}
+	language="html"
+	dark
+/>
+
+### Положение Label
+Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `static`, `floating`, `hidden`, `outside`. Для изменения самого Label внутри используйте параметр `label`
+
+<Source
+  code={`<dx-date-box meDateBox labelMode="labelMode" label="label"></dx-date-box>`}
+  dark
+  language="html"
+/>
+
+Для того, чтобы установить label слева от элемента, используйте тэг обертку `label` с директивой `meLabel` и параметром `labelDirection="row"`, установив параметр `labelMode="hidden"` в <code>meDateBox</code>.
+
+<Source
+			code={`
+<label meLabel 
+labelDirection="row">
+  <dx-date-box meDateBox labelMode="hidden"></dx-date-box>
+</label>`}
+	dark
+	language="html"
+/>
+<Story of={DateBoxStories.WithLabelRow} />
+
+### Валидация поля
+Для валидации используйте `<dx-validator>` внутри тэга `dx-date-box`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
+Не забудьте импортировать `DxTextAreaModule` и `DxValidatorModule`.
+Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
+Используйте параметр `validationMessagePosition` для изменения положения сообщения об ошибке. Варианты: `top`, `bottom`, `left`, `right`.
+
+<Source
+	code={`<dx-date-box meTextArea
+[(validationMessageMode)]="validationMessageMode"
+[(validationMessagePosition)]="validationMessagePosition">
+  <dx-validator>
+    <dxi-validation-rule 
+    type="required"
+    message="Required"
+    ></dxi-validation-rule>
+  </dx-validator>
+</dx-date-box>`}
+	dark
+	language="html"
+/>
+
+## Тип DateBox
+
+Для настроек типа используйте параметр `type`. Есть три варианта: `date`, `datetime`, `time`. По умолчанию тип DateBox - `date`.
+Так же можно включить отображение аналоговых часов, установив `showAnalogClock=true`.
+
+<Source
+	code={`<dx-date-box meDateBox 
+  type="type"
+  showAnalogClock="true"
+></dx-date-box>`}
+	language="html"
+	dark
+/>
+
+
+## Ввод даты
+Установив параметр `acceptCustomValue=true` можно вводить дату вручную.
+
+<Source
+	code={`<dx-date-box meDateBox 
+  acceptCustomValue="true"
+></dx-date-box>`}
+	language="html"
+	dark
+/>
+
+## Формат даты и времени
+`dateSerializationFormat` позволяет задать формат даты и времени, которые будут отображаться в компоненте. Примеры вариантов есть выше в контроллерах и на сайте DevExtreme.
+
+<Source
+	code={`<dx-date-box meDateBox 
+dateSerializationFormat="dateSerializationFormat"
+></dx-date-box>`}
+	language="html"
+	dark
+/>
+
+## Настройка дат для выбора
+
+`disabledDates` позволяет задать даты, которые пользователи не могут выбрать.
+`calendarOptions` позволяет задать настройки календаря. Необходимо передать объект с настройками. Возможности календаря приведены в документации к соответствующему компоненту DevExtreme.
+
+<Source
+	code={`<dx-date-box meDateBox 
+disabledDates="2024-04-22"
+calendarOptions="{
+  showWeekNumbers: true,
+  max: '2024-12-31',
+  min: '2023-12-31',}"
+></dx-date-box>`}
+	language="html"
+	dark
+/>
