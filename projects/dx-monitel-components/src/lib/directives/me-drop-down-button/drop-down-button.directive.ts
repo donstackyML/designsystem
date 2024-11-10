@@ -81,17 +81,22 @@ export class MeDropDownButtonDirective
     if (this.type === 'default') {
       this.renderer.addClass(this.element.nativeElement, 'dx-button-default');
     }
+
     const popupWrapperClasses = `${
       this.wrapperAttr['class'] || ''
     } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${
       this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
     }`;
+
     this.component.dropDownOptions = {
       wrapperAttr: {
         ...this.wrapperAttr,
         class: popupWrapperClasses,
       },
       ...this.dropDownOptions,
+      contentTemplate: (contentElement: any) => {
+        contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
+      }
     };
   }
 

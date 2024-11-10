@@ -22,7 +22,7 @@ interface MeTabsProps {
   showNavButtons: boolean;
   scrollByContent: boolean;
   width: string | number;
-  tabsData: Tab[];
+  dataSource: Tab[];
   rtlEnabled: boolean;
   hoverStateEnabled: boolean;
 }
@@ -39,21 +39,22 @@ const meta: Meta<MeTabsProps> = {
   render: (args: MeTabsProps) => ({
     props: args,
     template: `
-      <dx-tabs
-        meTabs
-        [position]="position"
-        [size]="size"
-        [stylingMode]="stylingMode"
-        [orientation]="orientation"
-        [iconPosition]="iconPosition"
-        [showNavButtons]="showNavButtons"
-        [scrollByContent]="scrollByContent"
-        [width]="width"
-        [dataSource]="tabsData"
-        [selectedIndex]="0"
-        [rtlEnabled]="false"
-      ></dx-tabs>
-    `,
+     <dx-tabs
+       meTabs
+       [position]="position"
+       [size]="size"
+       [stylingMode]="stylingMode"
+       [orientation]="orientation"
+       [iconPosition]="iconPosition"
+       [showNavButtons]="showNavButtons"
+       [scrollByContent]="scrollByContent"
+       [width]="width"
+       [dataSource]="dataSource"
+       [selectedIndex]="0"
+       [rtlEnabled]="rtlEnabled"
+       [hoverStateEnabled]="hoverStateEnabled"
+     ></dx-tabs>
+   `,
   }),
   argTypes: {
     position: {
@@ -118,7 +119,7 @@ export const Default: Story = {
     scrollByContent: false,
     width: 'auto',
     customClass: '',
-    tabsData: defaultTabsData,
+    dataSource: defaultTabsData,
     rtlEnabled: false,
     hoverStateEnabled: true,
   },
@@ -136,7 +137,7 @@ export const WithNavButtons: Story = {
     ...Default.args,
     showNavButtons: true,
     width: '300px',
-    tabsData: [
+    dataSource: [
       { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
       { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
       { id: 3, text: 'Tab 3', icon: registry.getIcon(attachFileX20) },
@@ -151,7 +152,7 @@ export const ScrollByContent: Story = {
     ...Default.args,
     scrollByContent: true,
     width: '300px',
-    tabsData: [
+    dataSource: [
       { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
       { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
       { id: 3, text: 'Tab 3', icon: registry.getIcon(attachFileX20) },

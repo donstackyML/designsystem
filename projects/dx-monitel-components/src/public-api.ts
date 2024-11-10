@@ -112,6 +112,7 @@ export { MeLoadPanelModule } from './lib/directives/me-load-panel/load-panel.mod
 export { FocusManagerService } from './lib/service/keyboard-navigation.service';
 export { MeIconStoreService } from './lib/service/icon-store.service';
 export { ThemesService } from './lib/service/themes.service';
+export { KeyboardNavigationService } from './lib/service/keyboard.service';
 
 // Types and Main Module
 export * from './lib/types/types';

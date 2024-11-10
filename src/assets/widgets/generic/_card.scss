@@ -1,0 +1,225 @@
+@use 'sass:color';
+@use './colors' as *;
+
+// Переменные для карточки
+$card-bg: null !default;
+$card-border-color: null !default;
+$card-text-color: null !default;
+$card-header-bg: null !default;
+$card-header-border: null !default;
+$card-header-text: null !default;
+$card-content-bg: null !default;
+$card-footer-bg: null !default;
+$card-footer-border: null !default;
+
+// Светлая тема
+@if $color == 'light' {
+  $card-bg: var(--Background-Content); // #ffffff
+  $card-border-color: var(--Dividers-Borders-Long); // #dfe0ed
+  $card-text-color: var(--Text-Default); // #18181a
+  $card-header-bg: var(--Background-Content); // #ffffff
+  $card-header-border: var(--Dividers-Borders-Long); // #dfe0ed
+  $card-header-text: var(--Text-Default); // #18181a
+  $card-content-bg: var(--Background-Content); // #ffffff
+  $card-footer-bg: var(--Background-Content); // #ffffff
+  $card-footer-border: var(--Dividers-Borders-Long); // #dfe0ed
+}
+
+// Темная тема
+@if $color == 'dark' {
+  $card-bg: var(--Background-Canvas); // #1e1e1e
+  $card-border-color: var(--Dividers-Borders-Long); // #2d2d2d
+  $card-text-color: var(--Controls-Content-In-Controls-On-BG-Default); // #ffffff
+  $card-header-bg: var(--Background-Canvas); // #1e1e1e
+  $card-header-border: var(--Dividers-Borders-Long); // #2d2d2d
+  $card-header-text: var(--Controls-Content-In-Controls-On-BG-Default); // #ffffff
+  $card-content-bg: var(--Background-Canvas); // #1e1e1e
+  $card-footer-bg: var(--Background-Canvas); // #1e1e1e
+  $card-footer-border: var(--Dividers-Borders-Long); // #2d2d2d
+}
+
+// Базовые стили карточки
+.me-card {
+  display: flex;
+  flex-direction: column;
+  background-color: $card-bg;
+  border: 1px solid $card-border-color;
+  border-radius: 4px;
+  font-family: var(--font-family);
+  color: $card-text-color;
+
+  // Размеры карточки
+  &.small {
+    width: 420px;
+
+    .me-card-content {
+      font-size: 13px;
+      line-height: 16px;
+
+      h1 {
+        font-size: 20px;
+        line-height: 24px;
+      }
+
+      h2 {
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      h3 {
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      p {
+        font-size: 13px;
+        line-height: 16px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  &.medium {
+    width: 600px;
+
+    .me-card-content {
+      font-size: 14px;
+      line-height: 20px;
+
+      h1 {
+        font-size: 24px;
+        line-height: 28px;
+      }
+
+      h2 {
+        font-size: 20px;
+        line-height: 24px;
+      }
+
+      h3 {
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  &.large {
+    width: 650px;
+
+    .me-card-content {
+      font-size: 16px;
+      line-height: 24px;
+
+      h1 {
+        font-size: 28px;
+        line-height: 32px;
+      }
+
+      h2 {
+        font-size: 24px;
+        line-height: 28px;
+      }
+
+      h3 {
+        font-size: 20px;
+        line-height: 24px;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  // Заголовок карточки
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: $card-header-bg;
+    border-bottom: 1px solid $card-header-border;
+    border-radius: 4px 4px 0 0;
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: var(--me-medium-font-weight);
+      color: $card-header-text;
+    }
+
+    &-right {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+
+  // Размеры заголовка для разных размеров карточки
+  &.small &-header-left {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &.medium &-header-left {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  &.large &-header-left {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  // Контент карточки
+  &-content {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background-color: $card-content-bg;
+
+    // Базовые стили для элементов контента
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--Controls-Content-In-Controls-Accent-Default);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    // Отступы между элементами
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Подвал карточки
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    gap: 8px;
+    background-color: $card-footer-bg;
+    border-top: 1px solid $card-footer-border;
+    border-radius: 0 0 4px 4px;
+  }
+}

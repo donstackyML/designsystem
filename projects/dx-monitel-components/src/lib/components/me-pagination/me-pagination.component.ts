@@ -1,172 +1,63 @@
+// me-pagination.component.ts
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import {
   Component,
-  Input,
-  Output,
   EventEmitter,
+  Input,
+  OnInit,
   OnChanges,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { ValueChangedEvent } from 'devextreme/ui/select_box';
 
 @Component({
   selector: 'me-pagination',
   templateUrl: './me-pagination.component.html',
-  styles: [
-    `
-      .me-pagination {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-family: Arial, sans-serif;
-      }
-
-      .me-pagination__size-controls {
-        display: flex;
-        align-items: center;
-        margin-right: 16px;
-      }
-
-      .me-pagination__size-controls.small .dx-button,
-      .me-pagination__size-controls.small .dx-selectbox,
-      .me-pagination__controls.small .dx-button {
-        height: 28px;
-        font-size: 12px;
-      }
-
-      .me-pagination__size-controls.medium .dx-button,
-      .me-pagination__size-controls.medium .dx-selectbox,
-      .me-pagination__controls.medium .dx-button {
-        height: 32px;
-        font-size: 14px;
-      }
-
-      .me-pagination__size-controls.large .dx-button,
-      .me-pagination__size-controls.large .dx-selectbox,
-      .me-pagination__controls.large .dx-button {
-        height: 40px;
-        font-size: 16px;
-      }
-
-      .me-pagination__info {
-        font-size: 14px;
-        color: #333;
-      }
-
-      .me-pagination__controls {
-        display: flex;
-        align-items: center;
-        margin-right: 8px;
-      }
-
-      .me-pagination__ellipsis {
-        font-size: 14px;
-        color: #333;
-        padding: 0 5px;
-      }
-
-      .me-pagination__per-page {
-        font-size: 14px;
-        color: #333;
-      }
-
-      .me-pagination .dx-button {
-        min-width: 32px;
-        height: 32px;
-        padding: 0;
-        border-radius: 4px;
-        margin-right: 8px;
-      }
-      .dx-button-mode-contained.dx-button-default,
-      .dx-button-default .dx-button-mode-contained {
-        background-color: #c4d8ff;
-        border-color: #c4d8ff;
-        color: #fff;
-      }
-
-      .me-pagination .dx-button.dx-state-active {
-        background-color: #c4d8ff;
-        border-color: #c4d8ff;
-      }
-
-      .me-pagination
-        .dx-button.dx-state-active
-        .dx-button-content
-        .dx-button-text {
-        color: #333;
-      }
-
-      .me-pagination .dx-button-mode-contained.dx-state-active {
-        background-color: #c4d8ff;
-        border-color: #c4d8ff;
-      }
-
-      .me-pagination
-        .dx-button-mode-contained.dx-state-active
-        .dx-button-content
-        .dx-button-text {
-        color: #333;
-      }
-
-      .me-pagination .dx-button.dx-button-mode-outlined {
-        border-color: #e0e0e0;
-        background-color: #f5f5f5;
-      }
-
-      .me-pagination
-        .dx-button.dx-button-mode-outlined
-        .dx-button-content
-        .dx-button-text {
-        color: #333;
-      }
-
-      .me-pagination .dx-button.dx-state-hover {
-        background-color: #e0e0e0;
-      }
-      .me-pagination
-        .dx-button.dx-state-active
-        .dx-button-content
-        .dx-button-text {
-        color: white;
-      }
-
-      .me-pagination .dx-button.dx-button-has-text .dx-button-content {
-        padding: 5px 10px;
-      }
-
-      .me-pagination .dx-button.dx-button-has-icon .dx-icon {
-        width: 18px;
-        height: 18px;
-        font-size: 18px;
-        line-height: 18px;
-      }
-
-      .me-pagination
-        .dx-button-mode-contained
-        .dx-button-content
-        .dx-button-text {
-        color: white;
-      }
-    `,
-  ],
   imports: [DxButtonModule, NgForOf, NgIf, DxSelectBoxModule, NgClass],
   standalone: true,
 })
-export class MePaginationComponent implements OnChanges {
+export class MePaginationComponent implements OnInit, OnChanges {
   @Input() totalItems: number = 0;
   @Input() itemsPerPage: number = 10;
   @Input() currentPage: number = 1;
   @Input() maxVisiblePages: number = 7;
   @Input() useButtons: boolean = false;
   @Input() itemsPerPageOptions: number[] = [10, 50, 100];
-  @Input() size: 'small' | 'medium' | 'large' = 'medium'; // Объединенный параметр размера
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() transparentBackground: boolean = false;
+  @Input() isDarkTheme: boolean = false;
+
   @Output() pageChange = new EventEmitter<number>();
   @Output() itemsPerPageChange = new EventEmitter<number>();
 
   pages: (number | string)[] = [];
   totalPages: number = 0;
+  selectedValue: number;
+  private defaultOptions: number[] = [10, 50, 100];
+
+  constructor() {
+    this.selectedValue = this.itemsPerPage;
+  }
+
+  ngOnInit(): void {
+    if (!this.itemsPerPageOptions?.length) {
+      this.itemsPerPageOptions = this.defaultOptions;
+    }
+    this.selectedValue = this.itemsPerPage;
+    this.calculatePages();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['itemsPerPageOptions'] && !changes['itemsPerPageOptions'].currentValue?.length) {
+      this.itemsPerPageOptions = this.defaultOptions;
+    }
+
+    if (changes['itemsPerPage']) {
+      this.selectedValue = changes['itemsPerPage'].currentValue;
+    }
+
     if (
       changes['totalItems'] ||
       changes['itemsPerPage'] ||
@@ -236,15 +127,18 @@ export class MePaginationComponent implements OnChanges {
     this.changePage(this.currentPage - 1);
   }
 
-  onItemsPerPageChange(e: any): void {
-    console.log(e);
-    this.itemsPerPage = e.value;
-    this.currentPage = 1;
-    this.calculatePages();
-    this.itemsPerPageChange.emit(this.itemsPerPage);
+  onItemsPerPageChange(e: ValueChangedEvent): void {
+    if (typeof e.value === 'number') {
+      this.selectedValue = e.value;
+      this.itemsPerPage = e.value;
+      this.currentPage = 1;
+      this.calculatePages();
+      this.itemsPerPageChange.emit(this.itemsPerPage);
+    }
   }
 
   changeItemsPerPage(size: number): void {
+    this.selectedValue = size;
     this.itemsPerPage = size;
     this.currentPage = 1;
     this.calculatePages();

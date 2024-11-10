@@ -1,6 +1,8 @@
-import { moduleMetadata, StoryObj, Meta } from '@storybook/angular';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxAutocompleteModule } from 'devextreme-angular';
 import { MeAutocompleteDirective } from '../../lib/directives/me-autocomplete/me-autocomplete.directive';
+import { MeLabelDirective } from '../../public-api';
 
 const meta: Meta<MeAutocompleteDirective> = {
   title: 'Components/Autocomplete',
@@ -8,7 +10,8 @@ const meta: Meta<MeAutocompleteDirective> = {
   decorators: [
     moduleMetadata({
       imports: [DxAutocompleteModule],
-      declarations: [MeAutocompleteDirective],
+      declarations: [MeAutocompleteDirective, MeLabelDirective],
+      schemas: [NO_ERRORS_SCHEMA],
     }),
   ],
   argTypes: {
@@ -28,6 +31,15 @@ const meta: Meta<MeAutocompleteDirective> = {
         type: 'object',
       },
     },
+    label: {
+      control: 'text',
+      description: 'Текст label',
+    },
+    labelMode: {
+      control: 'select',
+      options: ['floating', 'outside'],
+      description: 'Режим отображения label',
+    },
   },
 };
 
@@ -40,7 +52,20 @@ export const Default: Story = {
     size: 'medium',
     showScrollbar: 'always',
     minSearchLength: 1,
-    dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
+    dataSource: [
+      'Apple',
+      'Banana',
+      'Orange',
+      'Grape',
+      'Watermelon',
+      'Ananas',
+      'Arbuz',
+      'Cat',
+      'Dog',
+      'Abc',
+      'Cba',
+      'Bca',
+    ],
   },
   render: (args) => ({
     props: args,
@@ -49,12 +74,12 @@ export const Default: Story = {
         id="autocomplete-element"
         meAutocomplete
         [size]="size"
-				label='label'
-				labelMode="outside"
         [showScrollbar]="showScrollbar"
         [dataSource]="dataSource"
         [minSearchLength]="minSearchLength"
         [placeholder]="placeholder"
+        [(label)]="label"
+			  [(labelMode)]="labelMode"
         [dropDownOptions]="{
           position: {
             of: '#autocomplete-element',
@@ -69,12 +94,65 @@ export const Default: Story = {
   }),
 };
 
+export const WithLabelRow: Story = {
+  args: {
+    size: 'medium',
+    showScrollbar: 'always',
+    minSearchLength: 1,
+    dataSource: [
+      'Apple',
+      'Banana',
+      'Orange',
+      'Grape',
+      'Watermelon',
+      'Ananas',
+      'Arbuz',
+      'Cat',
+      'Dog',
+      'Abc',
+      'Cba',
+      'Bca',
+    ],
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <label meLabel
+		labelDirection="row"
+		[size]="size" 
+		min-width="100%">
+    Label*
+      <dx-autocomplete
+        id="autocomplete-element"
+        meAutocomplete
+        [size]="size"
+        [showScrollbar]="showScrollbar"
+        [dataSource]="dataSource"
+        [minSearchLength]="minSearchLength"
+        [placeholder]="placeholder"
+        [dropDownOptions]="{
+          position: {
+            of: '#autocomplete-element',
+            my: 'top left',
+            at: 'bottom left',
+            offset: { y: 4 },
+            collision: 'fit flip'
+          }
+        }"
+      ></dx-autocomplete>
+      </label>
+    `,
+  }),
+};
+
 export const Small: Story = {
   args: {
     size: 'small',
     showScrollbar: 'always',
     minSearchLength: 1,
     dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
+    label: 'Label*',
+    labelMode: 'outside',
   },
   render: Default.render,
 };

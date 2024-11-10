@@ -95,6 +95,8 @@ import { MeDateRangeBoxComponent } from './components/me-date-range-box/me-date-
 import { MeFormComponent } from './components/me-form/me-form.component';
 import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
 import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
+import { MeTagBoxComponent } from './components/me-tag-box/me-tag-box.component';
+import { MeTextAreaComponent } from './components/me-text-area/me-text-area.component';
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
@@ -159,6 +161,8 @@ import { MeToastDirective } from './directives/toast.directive';
     MeDateRangeBoxComponent,
     MeLoadPanelComponent,
     MeAutocompleteComponent,
+    MeTextAreaComponent,
+    MeTagBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -207,6 +211,8 @@ import { MeToastDirective } from './directives/toast.directive';
     MeLoadIndicatorModule,
     MeCalendarModule,
     MeAutocompleteModule,
+    MeTextAreaModule,
+    MeTagBoxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

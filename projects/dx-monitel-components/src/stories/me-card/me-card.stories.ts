@@ -1,22 +1,34 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MeCardComponent } from '../../public-api';
 import { MeIconComponent } from '../../public-api';
-import { MeChipComponent, MeChipsContainerComponent } from '../../public-api';
-import { DxButtonModule } from 'devextreme-angular';
+import { MeChipComponent } from '../../public-api';
+import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
 import { CommonModule } from '@angular/common';
+import { MeButtonModule } from '../../public-api';
+import { MeDropDownButtonModule } from '../../public-api';
+import { addX20, mailX20, publicX20 } from '@monitel/me-icons';
+import { registry } from '../../../.storybook/preview';
 
-export default {
-  title: 'Components/MeCard',
+const dropDownItems = [
+  { id: 1, name: 'Пункт меню 1' },
+  { id: 2, name: 'Пункт меню 2' },
+  { id: 3, name: 'Пункт меню 3' },
+];
+
+const meta: Meta<MeCardComponent> = {
+  title: 'Components/Card',
   component: MeCardComponent,
   decorators: [
     moduleMetadata({
       imports: [
         CommonModule,
         DxButtonModule,
+        DxDropDownButtonModule,
         MeCardComponent,
         MeIconComponent,
         MeChipComponent,
-        MeChipsContainerComponent,
+        MeButtonModule,
+        MeDropDownButtonModule
       ],
     }),
   ],
@@ -24,144 +36,342 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description:
-        'Определяет размер карточки. Возможные значения: small, medium, large.',
-      defaultValue: 'medium',
+      description: 'Определяет размер карточки',
     },
     showHeader: {
       control: 'boolean',
-      description:
-        'Показывать ли заголовок карточки. True - отображать, False - скрыть.',
-      defaultValue: true,
+      description: 'Показывать ли заголовок',
     },
     showFooter: {
       control: 'boolean',
-      description:
-        'Показывать ли нижний колонтитул карточки. True - отображать, False - скрыть.',
-      defaultValue: true,
-    },
-    contentHeight: {
-      control: 'text',
-      description:
-        'Максимальная высота содержимого карточки. Можно задать значение в px, %, и т.д.',
-      defaultValue: '300px',
+      description: 'Показывать ли футер',
     },
   },
-} as Meta<MeCardComponent>;
-
-type Story = StoryObj<MeCardComponent>;
-
-const Template: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <me-card
-        [size]="size"
-        [showHeader]="showHeader"
-        [showFooter]="showFooter"
-        [contentHeight]="contentHeight">
-
-        <ng-container card-header-left>
-          <me-icon icon="sync" [size]="size" color="#000000"></me-icon>
-          <span>Заголовок</span>
-        </ng-container>
-
-        <ng-container card-header-right *ngIf="size !== 'small'">
-          <me-chip [label]="'Маркер'" [size]="'large'" [removable]="false" [color]="'#ffffff'" [backgroundColor]="'#4CAF50'"></me-chip>
-          <me-icon icon="sync" [size]="size" color="#000000" (click)="onSyncClick()"></me-icon>
-          <me-icon icon="info" [size]="size" color="#000000" (click)="onInfoClick()"></me-icon>
-          <me-icon icon="more_vert" [size]="size" color="#000000" (click)="onMoreClick()"></me-icon>
-        </ng-container>
-
-        <div>
-          <!-- Содержимое карточки -->
-        </div>
-
-        <ng-container card-footer>
-          <dx-button text="Добавить" type="default" stylingMode="text" style="margin-right: auto;"></dx-button>
-          <dx-button text="Принять" type="success" stylingMode="contained" style="background-color: #3f51b5; color: white; margin-right: 8px;"></dx-button>
-          <dx-button text="Отмена" type="default" stylingMode="outlined" style="border-color: #3f51b5; color: #3f51b5;"></dx-button>
-        </ng-container>
-      </me-card>
-    `,
-    styles: [
-      `
-      .small-icon {
-        font-size: 24px;
-      }
-    `,
-    ],
-  }),
-};
-
-export const Default: Story = {
-  ...Template,
   args: {
     size: 'medium',
     showHeader: true,
     showFooter: true,
-    contentHeight: '300px',
-  },
+  }
 };
 
-export const SmallCard: Story = {
-  ...Template,
-  args: {
-    ...Default.args,
-    size: 'small',
-    contentHeight: '200px',
-  },
-};
+export default meta;
+type Story = StoryObj<MeCardComponent>;
 
-export const LargeCard: Story = {
-  ...Template,
-  args: {
-    ...Default.args,
-    size: 'large',
-    contentHeight: '400px',
-  },
-};
-
-export const NoFooter: Story = {
-  ...Template,
-  args: {
-    ...Default.args,
-    showFooter: false,
-  },
-};
-
-export const WithOverflow: Story = {
-  ...Template,
-  args: {
-    ...Default.args,
-    size: 'small',
-    contentHeight: '200px',
-  },
+export const ComplexCard: Story = {
   render: (args) => ({
-    props: args,
+    props: {
+      ...args,
+      chipProps: {
+        label: 'Новая',
+        size: 'medium',
+        count: null,
+        selected: false,
+        removable: false,
+      },
+      dropDownItems,
+      displayExpr: 'name',
+      onSyncClick: () => console.log('Sync clicked'),
+      onInfoClick: () => console.log('Info clicked'),
+      icons: {
+        sync: registry.getIcon(addX20),
+        info: registry.getIcon(mailX20),
+        more: registry.getIcon(publicX20),
+      },
+    },
     template: `
       <me-card
         [size]="size"
         [showHeader]="showHeader"
         [showFooter]="showFooter"
-        [contentHeight]="contentHeight">
-
+      >
+        <!-- Header -->
         <ng-container card-header-left>
-          <me-icon icon="sync" [size]="size" color="#000000"></me-icon>
-          <span>Overflow Example</span>
+          <dx-button
+            meButton
+            iconOnly="overflow"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <span>Заголовок карточки</span>
         </ng-container>
 
-        <div>
-          <p>This is an example of a card with overflow content. The content will scroll when it exceeds the maximum height.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc. Sed euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>
-        </div>
+        <ng-container card-header-right *ngIf="size !== 'small'">
+          <me-chip
+            [label]="chipProps.label"
+            [size]="size"
+            [count]="chipProps.count"
+            [selected]="chipProps.selected"
+            [removable]="chipProps.removable"
+            style="margin-right: 16px;"
+          ></me-chip>
+          <dx-drop-down-button
+            meDropDownButton
+            [items]="dropDownItems"
+            [icon]="icons.info"
+            [stylingMode]="'text'"
+            [size]="size"
+            displayExpr="name"
+          ></dx-drop-down-button>
+        </ng-container>
 
+        <!-- Content -->
+        <p>
+          Это пример содержимого карточки с использованием различных компонентов.
+          Здесь может быть размещен любой контент, включая текст, кнопки, чипы и другие элементы.
+        </p>
+
+        <!-- Footer -->
         <ng-container card-footer>
-          <dx-button text="Принять" type="success" stylingMode="contained" style="background-color: #3f51b5; color: white; margin-right: 8px;"></dx-button>
-          <dx-button text="Отмена" type="default" stylingMode="outlined" style="border-color: #3f51b5; color: #3f51b5;"></dx-button>
+          <dx-button
+            meButton
+            text="Cancel"
+            [stylingMode]="'text'"
+            [size]="size"
+          ></dx-button>
+          <dx-button
+            meButton
+            text="Save Draft"
+            [stylingMode]="'outlined'"
+            [size]="size"
+          ></dx-button>
+          <dx-button
+            meButton
+            text="Publish"
+            type="success"
+            [stylingMode]="'contained'"
+            [size]="size"
+          ></dx-button>
         </ng-container>
       </me-card>
-    `,
+    `
+  })
+};
+
+export const ScrollableContent: Story = {
+  args: {
+    size: 'medium',
+    showHeader: true,
+    showFooter: true,
+    contentHeight: '200px',
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      chipProps: {
+        label: 'Новая',
+        size: 'medium',
+        count: null,
+        selected: false,
+        removable: false,
+      },
+      dropDownItems,
+      displayExpr: 'name',
+      onSyncClick: () => console.log('Sync clicked'),
+      onInfoClick: () => console.log('Info clicked'),
+      icons: {
+        sync: registry.getIcon(addX20),
+        info: registry.getIcon(mailX20),
+        more: registry.getIcon(publicX20),
+      },
+    },
+    template: `
+      <me-card
+        [size]="size"
+        [showHeader]="showHeader"
+        [showFooter]="showFooter"
+        [contentHeight]="contentHeight"
+      >
+        <!-- Header -->
+        <ng-container card-header-left>
+          <dx-button
+            meButton
+            iconOnly="overflow"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <span>Карточка с прокруткой</span>
+        </ng-container>
+
+        <ng-container card-header-right *ngIf="size !== 'small'">
+          <me-chip
+            [label]="chipProps.label"
+            [size]="size"
+            [count]="chipProps.count"
+            [selected]="chipProps.selected"
+            [removable]="chipProps.removable"
+            style="margin-right: 16px;"
+          ></me-chip>
+          <dx-drop-down-button
+            meDropDownButton
+            [items]="dropDownItems"
+            [icon]="icons.info"
+            [stylingMode]="'text'"
+            [size]="size"
+              displayExpr="name"
+          ></dx-drop-down-button>
+        </ng-container>
+
+        <!-- Content с большим количеством текста -->
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+          <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+          <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+          <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+        </div>
+
+        <!-- Footer -->
+        <ng-container card-footer>
+          <dx-button
+            meButton
+            text="Cancel"
+            [stylingMode]="'text'"
+            [size]="size"
+          ></dx-button>
+          <dx-button
+            meButton
+            text="Save Draft"
+            [stylingMode]="'outlined'"
+            [size]="size"
+          ></dx-button>
+          <dx-button
+            meButton
+            text="Publish"
+            type="success"
+            [stylingMode]="'contained'"
+            [size]="size"
+          ></dx-button>
+        </ng-container>
+      </me-card>
+    `
   }),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Пример карточки с ограниченной высотой контента и прокруткой.',
+      },
+    },
+  },
+};
+
+export const UnlimitedContent: Story = {
+  args: {
+    size: 'medium',
+    showHeader: true,
+    showFooter: true,
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      chipProps: {
+        label: 'Новая',
+        size: 'medium',
+        count: null,
+        selected: false,
+        removable: false,
+      },
+      dropDownItems,
+      displayExpr: 'name',
+      onSyncClick: () => console.log('Sync clicked'),
+      onInfoClick: () => console.log('Info clicked'),
+      icons: {
+        sync: registry.getIcon(addX20),
+        info: registry.getIcon(mailX20),
+        more: registry.getIcon(publicX20),
+      },
+    },
+    template: `
+      <me-card
+        [size]="size"
+        [showHeader]="showHeader"
+        [showFooter]="showFooter"
+      >
+        <!-- Header -->
+        <ng-container card-header-left>
+          <dx-button
+            meButton
+            iconOnly="overflow"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <span>Карточка без ограничения высоты</span>
+        </ng-container>
+
+        <ng-container card-header-right *ngIf="size !== 'small'">
+          <me-chip
+            [label]="chipProps.label"
+            [size]="size"
+            [count]="chipProps.count"
+            [selected]="chipProps.selected"
+            [removable]="chipProps.removable"
+            style="margin-right: 16px;"
+          ></me-chip>
+          <dx-drop-down-button
+            meDropDownButton
+            [items]="dropDownItems"
+            [icon]="icons.info"
+            [stylingMode]="'text'"
+            [size]="size"
+            displayExpr="name"
+          ></dx-drop-down-button>
+        </ng-container>
+
+        <!-- Content с большим количеством текста -->
+        <div>
+          <h3>Раздел 1</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+          <h3>Раздел 2</h3>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+
+          <h3>Раздел 3</h3>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit.</p>
+
+          <h3>Раздел 4</h3>
+          <p>Neque porro quisquam est, qui dolorem ipsum quia dolor.</p>
+
+          <h3>Раздел 5</h3>
+          <p>Quis autem vel eum iure reprehenderit qui in ea voluptate.</p>
+        </div>
+
+        <!-- Footer -->
+        <ng-container card-footer>
+          <dx-button
+            meButton
+            text="Cancel"
+            [stylingMode]="'text'"
+            [size]="size"
+          ></dx-button>
+          <dx-button
+            meButton
+            text="Save Draft"
+            [stylingMode]="'outlined'"
+            [size]="size"
+          ></dx-button>
+          <dx-button
+            meButton
+            text="Publish"
+            type="success"
+            [stylingMode]="'contained'"
+            [size]="size"
+          ></dx-button>
+        </ng-container>
+      </me-card>
+    `
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Пример карточки с большим количеством контента без ограничения высоты.',
+      },
+    },
+  },
 };

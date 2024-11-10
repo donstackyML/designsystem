@@ -1,0 +1,106 @@
+@use 'sass:color';
+@use './colors' as *;
+
+// Переменные для бейджа
+$badge-text-color: null !default;
+$badge-font-family: null !default;
+
+// Цвета для разных состояний
+$badge-default-bg: null !default;
+$badge-secondary-bg: null !default;
+$badge-success-bg: null !default;
+$badge-attention-bg: null !default;
+$badge-error-bg: null !default;
+
+// Светлая тема
+@if $color == 'light' {
+  $badge-text-color: var(--Controls-Content-In-Controls-On-BG-Default); // #ffffff
+  $badge-font-family: var(--font-family);
+
+  $badge-default-bg: var(--me-icon-default); // #18181a
+  $badge-secondary-bg: var(--me-icon-secondary); // #808084
+  $badge-success-bg: var(--me-icon-success); // #00993d
+  $badge-attention-bg: var(--me-icon-attention); // #fea500
+  $badge-error-bg: var(--me-icon-error); // #dd0035
+}
+
+// Темная тема
+@if $color == 'dark' {
+  $badge-text-color: var(--Controls-Content-In-Controls-On-BG-Default); // #ffffff
+  $badge-font-family: var(--font-family);
+
+  $badge-default-bg: var(--me-icon-default); // #ffffff
+  $badge-secondary-bg: var(--me-icon-secondary); // #808084
+  $badge-success-bg: var(--me-icon-success); // #00993d
+  $badge-attention-bg: var(--me-icon-attention); // #fea500
+  $badge-error-bg: var(--me-icon-error); // #dd0035
+}
+
+// Базовые стили бейджа
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $badge-font-family;
+  font-weight: var(--me-regular-font-weight);
+  color: $badge-text-color;
+  border-radius: 10px; // Используем px вместо 50% для возможности растягивания
+  min-width: var(--badge-size);
+  height: var(--badge-size);
+  padding: 0 4px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  // Размеры
+  &.size-20 {
+    --badge-size: 20px;
+    font-size: 12px;
+    line-height: 16px;
+    min-width: 20px;
+
+    &.extended {
+      padding: 0 6px;
+    }
+  }
+
+  &.size-24 {
+    --badge-size: 24px;
+    font-size: 14px;
+    line-height: 20px;
+    min-width: 24px;
+
+    &.extended {
+      padding: 0 8px;
+    }
+  }
+
+  // Цвета
+  &.color-default {
+    background-color: $badge-default-bg;
+  }
+
+  &.color-secondary {
+    background-color: $badge-secondary-bg;
+  }
+
+  &.color-success {
+    background-color: $badge-success-bg;
+  }
+
+  &.color-attention {
+    background-color: $badge-attention-bg;
+  }
+
+  &.color-error {
+    background-color: $badge-error-bg;
+  }
+}

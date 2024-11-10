@@ -24,7 +24,7 @@ import { Position } from 'devextreme/common';
 export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Input() meTooltip: string = '';
   @Input() tooltipPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
-  @Input() tooltipClass: string = '';
+  @Input() tooltipClass: string = 'me-tooltip';
   @Input() tooltipWidth: number | string = 'auto';
   @Input() tooltipMaxWidth: number | string = 'auto';
   @Input() tooltipHeight: number | string = 'auto';
@@ -44,6 +44,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Input() tooltipTemplateRef!: TemplateRef<any>;
 
   private tooltipComponentRef!: ComponentRef<DxTooltipComponent>;
+  private readonly ME_TOOLTIP_CLASS = 'me-tooltip';
 
   constructor(
     private element: ElementRef,
@@ -124,6 +125,9 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     this.updateTooltipContent();
 
     const tooltipElement = this.tooltipComponentRef.location.nativeElement;
+
+    this.renderer.addClass(tooltipElement, this.ME_TOOLTIP_CLASS);
+
     if (this.tooltipClass) {
       this.renderer.addClass(tooltipElement, this.tooltipClass);
     }

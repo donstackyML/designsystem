@@ -1,71 +1,85 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
-import * as BadgeStories from "./me-badge.stories";
-import { MeBadgeComponent } from "../../public-api";
+import { Meta, Story, Controls, Source } from "@storybook/blocks";
+import * as Stories from "./me-badge.stories";
 
-<Meta
-  title="Components/Badge(RC)"
-  component={MeBadgeComponent}
-  of={BadgeStories}
-/>
+<Meta of={Stories} />
 
 # Badge
 
-Компонент `MeBadge` представляет собой круглый значок, который может отображать числовое значение или быть пустым. Он поддерживает различные размеры и цвета.
+Badge (бейдж) используется для отображения числовых индикаторов, таких как количество уведомлений, сообщений или других метрик.
 
-<Story name="Default" of={BadgeStories.Default} />
-<Controls of={BadgeStories.Default} />
+## Основные примеры
 
-## Примеры использования
+<Story of={Stories.BasicExamples} />
 
-### Стандартный значок
+Базовый бейдж доступен в пяти цветовых вариантах: default, secondary, success, attention и error.
 
-<Story name="Default" of={BadgeStories.Default} />
+## Размеры
 
-<Source code={`<me-badge [value]="5"></me-badge>`} dark language="html" />
+<Story of={Stories.Sizes} />
 
-### Большой значок
+Бейдж имеет два размера:
+- Small (20px)
+- Large (24px)
 
-<Story name="LargeBadge" of={BadgeStories.LargeBadge} />
+## Длинные числа
 
-<Source
-  code={`<me-badge size="24" color="success" [value]="10"></me-badge>`}
-  dark
-  language="html"
-/>
+<Story of={Stories.LongNumbers} />
 
-### Значок с переполнением
+При отображении чисел больше 99 бейдж автоматически расширяется, сохраняя читаемость значения.
 
-При значении больше 99, отображается "99+".
+## Все варианты
 
-<Story name="OverflowValue" of={BadgeStories.OverflowValue} />
+<Story of={Stories.AllVariants} />
 
-<Source
-  code={`<me-badge color="error" [value]="100"></me-badge>`}
-  dark
-  language="html"
-/>
+Демонстрация всех возможных комбинаций размеров и цветов.
 
-### Значок с пользовательским стилем
+## Числа и цвета
 
-<Story name="CustomStyleBadge" of={BadgeStories.CustomStyleBadge} />
+<Story of={Stories.NumbersAndColors} />
 
-<Source
-  code={`<me-badge size="24" color="secondary" [value]="7" [customStyle]="{ border: '2px solid black' }"></me-badge>`}
-  dark
-  language="html"
-/>
+Примеры отображения разных чисел для каждого цвета бейджа.
 
-## Свойства
+## Кастомизация
+
+<Story of={Stories.CustomStyles} />
+
+Бейдж можно кастомизировать с помощью пользовательских стилей.
+
+## Свойства компонента
 
 <Controls />
 
-- `size`: Размер значка ('20' или '24')
-- `color`: Цвет значка ('default', 'secondary', 'success', 'attention', 'error')
-- `value`: Числовое значение для отображения (null для пустого значка)
-- `customStyle`: Объект с пользовательскими стилями CSS
+## Использование в коде
 
-## Примечания
+### Базовый пример
 
-- Если значение не задано (null), значок будет пустым.
-- При значении больше 99 отображается "99+".
-- Компонент использует CSS-переменные для цветов, убедитесь, что они определены в вашей теме.
+<Source
+  code={`
+<me-badge [value]="5" color="default"></me-badge>
+`} />
+
+### С кастомными стилями
+
+<Source
+  code={`
+<me-badge
+  [value]="42"
+  color="success"
+  size="24"
+  [customStyle]="{
+    border: '2px solid var(--Controls-Content-In-Controls-Accent-Default)'
+  }"
+></me-badge>
+`} />
+
+### Все свойства
+
+<Source
+  code={`
+<me-badge
+  [value]="100"           // Числовое значение
+  size="24"               // '20' | '24'
+  color="success"         // 'default' | 'secondary' | 'success' | 'attention' | 'error'
+  [customStyle]="{...}"   // Пользовательские CSS-стили
+></me-badge>
+`} />

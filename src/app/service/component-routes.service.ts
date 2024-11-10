@@ -32,6 +32,8 @@ const componentsRoute: string[] = [
   'me-load-panel',
   'me-autocomplete',
   'me-tree-list',
+  'me-text-area',
+  'me-tag-box',
 ];
 
 const componentsName: string[] = [
@@ -66,6 +68,8 @@ const componentsName: string[] = [
   'meLoadPanel',
   'meAutocomplete',
   'meTreeList',
+  'meTextArea',
+  'meTagBox',
 ];
 
 @Injectable({

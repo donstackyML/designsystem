@@ -12,25 +12,25 @@ $chip-focus-border: null !default;
 
 // Светлая тема
 @if $color == 'light' {
-  $chip-bg-color: rgba(236, 237, 243, 1);
-  $chip-text-color: rgba(51, 51, 51, 1);
-  $chip-hover-bg: rgba(216, 218, 234, 1);
-  $chip-active-bg: rgba(196, 216, 255, 1);
-  $chip-disabled-bg: rgba(222, 223, 230, 1);
-  $chip-disabled-text: rgba(117, 117, 117, 1);
-  $chip-count-text: rgba(85, 85, 85, 1);
-  $chip-focus-border: var(--Dividers-Borders-Focus);
+  $chip-bg-color: var(--Controls-BG-Secondary-Elements-BG-Default); // #ecedf3
+  $chip-text-color: var(--Text-Default); // #18181a
+  $chip-hover-bg: var(--Controls-BG-Secondary-Elements-BG-Hover); // #d8daea
+  $chip-active-bg: var(--Controls-Informative-BG-Selected-Element); // #c4d8ff
+  $chip-disabled-bg: var(--Controls-BG-Secondary-Elements-BG-Disabled); // #dedfe6
+  $chip-disabled-text: var(--Controls-Content-In-Controls-Main-Disabled); // #18181a66
+  $chip-count-text: var(--Text-Gray-Dark); // #717175
+  $chip-focus-border: var(--Dividers-Borders-Focus); // #7eb9ff
 }
 
 // Темная тема
 @if $color == 'dark' {
-  $chip-bg-color: rgba(64, 66, 78, 1);
-  $chip-text-color: rgba(255, 255, 255, 0.87);
-  $chip-hover-bg: rgba(78, 80, 95, 1);
-  $chip-active-bg: rgba(96, 98, 116, 1);
-  $chip-disabled-bg: rgba(52, 54, 65, 1);
-  $chip-disabled-text: rgba(255, 255, 255, 0.38);
-  $chip-count-text: rgba(255, 255, 255, 0.6);
+  $chip-bg-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+  $chip-text-color: var(--Controls-Content-In-Controls-On-BG-Default);
+  $chip-hover-bg: var(--Controls-BG-Secondary-Elements-BG-Hover);
+  $chip-active-bg: var(--Controls-Informative-BG-Selected-Element);
+  $chip-disabled-bg: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+  $chip-disabled-text: var(--Controls-Content-In-Controls-On-BG-Disabled);
+  $chip-count-text: var(--Text-Gray);
   $chip-focus-border: var(--Dividers-Borders-Focus);
 }
 
@@ -49,23 +49,14 @@ $chip-focus-border: null !default;
   transition: all 0.2s ease;
   outline: none;
 
-  &.me-keyboard-focused {
-    &.dx-state-focused {
-      border: 1px solid $chip-focus-border;
-      box-shadow: 0 0 0 1px $chip-focus-border;
+  &:focus-visible {
+    outline: none !important;
+  }
 
-      &::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        bottom: -2px;
-        left: -1px;
-        right: -1px;
-        border: 1px solid $chip-focus-border;
-        border-radius: 4px;
-        pointer-events: none;
-      }
-    }
+  &.chip-focused {
+    position: relative;
+    z-index: 1;
+    outline: 2px solid var(--Dividers-Borders-Focus);
   }
 
   &.small {
@@ -107,7 +98,11 @@ $chip-focus-border: null !default;
   border: none;
   background: none;
   cursor: pointer;
-  color: currentColor;
+  color: if(
+    $color == 'light',
+    var(--Icon-Default),
+    var(--Controls-Content-In-Controls-On-BG-Default)
+  );
   opacity: 0.7;
   transition: opacity 0.2s ease;
 
@@ -120,9 +115,13 @@ $chip-focus-border: null !default;
   background-color: $chip-disabled-bg;
   color: $chip-disabled-text;
   cursor: not-allowed;
+
+  .chip-remove-button {
+    color: $chip-disabled-text;
+  }
 }
 
-.chip-active {
+.chip-selected {
   background-color: $chip-active-bg;
 
   &:hover {
@@ -130,7 +129,7 @@ $chip-focus-border: null !default;
   }
 }
 
-.chip:not(.chip-disabled):not(.chip-active):hover {
+.chip:not(.chip-disabled):not(.chip-selected):hover {
   background-color: $chip-hover-bg;
 }
 
@@ -139,10 +138,11 @@ $chip-focus-border: null !default;
   flex-wrap: wrap;
   gap: 8px;
   outline: none;
-
-  &.me-keyboard-focused {
-    border: 1px solid var(--Dividers-Borders-Focus);
-    border-radius: 3px;
-    box-shadow: 0 0 0 1px var(--Dividers-Borders-Focus);
+  padding: 4px;
+}
+* {
+  &:focus-visible {
+    outline: none;
+    -webkit-focus-ring-color: transparent;
   }
 }
