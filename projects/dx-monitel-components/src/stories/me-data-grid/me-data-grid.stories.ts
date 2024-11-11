@@ -1,5 +1,7 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxDataGridModule } from 'devextreme-angular';
+
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
 
 export default {

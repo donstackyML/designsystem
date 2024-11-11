@@ -115,6 +115,7 @@
     gap: 16px;
     align-items: center;
 
+    ///placeholder
     .dx-texteditor-input-container {
       *,
       *::before {
@@ -421,6 +422,57 @@
       .dx-texteditor-label {
         padding: 0 0 0 16px;
       }
+    }
+  }
+}
+.dx-password-toggle {
+  &.dx-button {
+    margin: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+
+    &:hover {
+      background: transparent;
+    }
+
+    .dx-button-content {
+      padding: 0;
+
+      .dx-icon {
+        margin: 0;
+        font-size: 18px;
+        line-height: 20px;
+        font-family: var(--me-icon-family);
+        font-style: normal;
+
+        &.dx-icon-eyeopen::before {
+          content: var(--me-icon-eye);
+        }
+
+        &.dx-icon-eyeoff::before {
+          content: var(--me-icon-eyeoff);
+        }
+      }
+    }
+  }
+}
+
+// Размеры для разных вариантов текстового поля
+.me-textbox-small .dx-password-toggle {
+  .dx-button-content {
+    .dx-icon {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+.me-textbox-large .dx-password-toggle {
+  .dx-button-content {
+    .dx-icon {
+      font-size: 18px;
+      line-height: 24px;
     }
   }
 }

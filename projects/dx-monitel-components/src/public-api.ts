@@ -19,6 +19,7 @@ export { MeButtonGroupDirective } from './lib/directives/me-button-group/button-
 export { MeCalendarDirective } from './lib/directives/me-calendar/calendar.directive';
 export { MeCheckBoxDirective } from './lib/directives/me-check-box/check-box.directive';
 export { MeControlDirective } from './lib/directives/me-control/control.directive';
+export { MeDateBoxDirective } from './lib/directives/me-date-box/date-box.directive';
 export { MeEditorDirective } from './lib/directives/me-editor/editor.directive';
 export { MeFileUploaderDirective } from './lib/directives/me-file-uploader/file-uploader.directive';
 export { MeFormDirective } from './lib/directives/me-form/me-form.directive';
@@ -66,6 +67,7 @@ export { MeButtonModule } from './lib/directives/me-button/me-button.module';
 export { MeCalendarModule } from './lib/directives/me-calendar/calendar.module';
 export { MeCheckBoxModule } from './lib/directives/me-check-box/me-check-box.module';
 export { MeControlModule } from './lib/directives/me-control/control.module';
+export { MeDateBoxModule } from './lib/directives/me-date-box/date-box.module';
 export { MeEditorModule } from './lib/directives/me-editor/me-editor.module';
 export { MeFileUploaderModule } from './lib/directives/me-file-uploader/file-uploader.module';
 export { MeFormModule } from './lib/directives/me-form/me-form.module';

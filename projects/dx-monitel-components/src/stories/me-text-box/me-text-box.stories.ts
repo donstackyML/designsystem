@@ -4,13 +4,14 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { DxTextBoxComponent } from 'devextreme-angular';
+import {DxButtonModule, DxTextBoxComponent} from 'devextreme-angular';
 import { MeLabelDirective, MeTextBoxDirective } from '../../public-api';
 
 export default {
   title: 'Components/TextBox',
   decorators: [
     moduleMetadata({
+      imports: [DxButtonModule],
       declarations: [MeTextBoxDirective, DxTextBoxComponent, MeLabelDirective],
     }),
   ],
@@ -144,4 +145,42 @@ export const WithTelMask: Story = {
       args
     )}></dx-text-box></label>`,
   }),
+};
+
+export const WithPasswordToggle: Story = {
+  render: (args) => ({
+    props: {
+      ...args,
+      passwordMode: 'password',
+      passwordButton: {
+        icon: 'eyeopen',
+        stylingMode: 'text',
+        onClick: function() {
+          this.passwordMode = this.passwordMode === 'text' ? 'password' : 'text';
+        },
+      },
+    },
+    template: `
+      <dx-text-box
+        meTextBox
+        ${argsToTemplate(args)}
+        [mode]="passwordMode"
+        [(value)]="value"
+        placeholder="Enter password"
+      >
+      </dx-text-box>
+    `,
+  }),
+  args: {
+    stylingMode: 'filled',
+    label: 'Password',
+    labelMode: 'floating',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Текстовое поле для ввода пароля с возможностью переключения видимости пароля. Кнопка с иконкой глаза позволяет переключаться между режимами отображения и скрытия пароля.',
+      },
+    },
+  },
 };

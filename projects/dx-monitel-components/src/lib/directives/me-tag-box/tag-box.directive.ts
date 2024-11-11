@@ -39,7 +39,6 @@ export class MeTagBoxDirective extends MeFocusableDirective implements OnInit {
         class: `me-dropdownlist me-dropdownlist-${this.size} me-tag-box`,
       },
     });
-    // console.log(this.element.nativeElement);
   }
 
   get isSizeSmall() {

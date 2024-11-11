@@ -1,15 +1,16 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MeTooltipDirective } from '../../public-api';
 import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { CommonModule } from '@angular/common';
 
 const meta: Meta<MeTooltipDirective> = {
-  title: 'Components/Tooltip(RC)',
+  title: 'Components/Tooltip',
   component: MeTooltipDirective,
   decorators: [
     moduleMetadata({
       declarations: [MeTooltipDirective],
-      imports: [DxTooltipModule, CommonModule],
+      imports: [DxTooltipModule, DxButtonModule, CommonModule],
     }),
   ],
   argTypes: {
@@ -26,12 +27,18 @@ const meta: Meta<MeTooltipDirective> = {
       control: 'text',
       description: 'Пользовательский CSS-класс для тултипа',
     },
-    tooltipWidth: { control: 'number', description: 'Ширина тултипа' },
+    tooltipWidth: {
+      control: 'number',
+      description: 'Ширина тултипа'
+    },
     tooltipMaxWidth: {
       control: 'number',
       description: 'Максимальная ширина тултипа',
     },
-    tooltipHeight: { control: 'number', description: 'Высота тултипа' },
+    tooltipHeight: {
+      control: 'number',
+      description: 'Высота тултипа'
+    },
     tooltipMaxHeight: {
       control: 'number',
       description: 'Максимальная высота тултипа',
@@ -58,10 +65,11 @@ export const Basic: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="meTooltip"
-              [tooltipPosition]="tooltipPosition">
-        Наведите на меня
-      </button>
+      <dx-button
+        [meTooltip]="meTooltip"
+        [tooltipPosition]="tooltipPosition">
+        Базовый тултип
+      </dx-button>
     `,
   }),
 };
@@ -74,10 +82,12 @@ export const Positioning: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="meTooltip"
-              [tooltipPosition]="tooltipPosition">
-        Тултип {{ tooltipPosition }}
-      </button>
+      <dx-button
+        text="Позиционирование тултипа"
+        [meTooltip]="meTooltip"
+        [tooltipPosition]="tooltipPosition">
+        Позиционирование тултипа
+      </dx-button>
     `,
   }),
 };
@@ -90,9 +100,12 @@ export const HTMLContent: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition">
-        HTML-тултип
-      </button>
+      <dx-button
+        text="Тултип с HTML содержимым"
+        [meTooltip]="meTooltip"
+        [tooltipPosition]="tooltipPosition">
+        Тултип с HTML содержимым
+      </dx-button>
     `,
   }),
 };
@@ -106,11 +119,13 @@ export const CustomStyles: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="meTooltip"
-              [tooltipPosition]="tooltipPosition"
-              [tooltipClass]="tooltipClass">
-        Кастомный тултип
-      </button>
+      <dx-button
+        text="Тултип с кастомными стилями"
+        [meTooltip]="meTooltip"
+        [tooltipPosition]="tooltipPosition"
+        [tooltipClass]="tooltipClass">
+        Тултип с кастомными стилями
+      </dx-button>
     `,
   }),
 };
@@ -135,15 +150,14 @@ export const WithAnimation: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button
+      <dx-button
+        text="Тултип с анимацией"
         [meTooltip]="meTooltip"
         [tooltipPosition]="tooltipPosition"
         [tooltipShowAnimation]="tooltipShowAnimation"
-        [tooltipHideAnimation]="tooltipHideAnimation"
-         [visible]="tooltipVisible"
-      >
-        Анимированный тултип
-      </button>
+        [tooltipHideAnimation]="tooltipHideAnimation">
+        Тултип с анимацией
+      </dx-button>
     `,
   }),
 };
@@ -155,11 +169,13 @@ export const CustomTemplate: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <button [meTooltip]="''"
-              [tooltipPosition]="tooltipPosition"
-              [tooltipTemplateRef]="tooltipTemplate">
+      <dx-button
+        text="Тултип с кастомным шаблоном"
+        [meTooltip]="''"
+        [tooltipPosition]="tooltipPosition"
+        [tooltipTemplateRef]="tooltipTemplate">
         Тултип с кастомным шаблоном
-      </button>
+      </dx-button>
 
       <ng-template #tooltipTemplate>
         <div>
@@ -175,44 +191,56 @@ export const CustomTemplate: Story = {
   }),
 };
 
-export const CustomSizedTooltip: Story = {
+export const ImageTooltip: Story = {
   args: {
-    meTooltip: 'Этот тултип имеет фиксированные размеры',
-    tooltipPosition: 'bottom',
-    tooltipWidth: 200,
-    tooltipHeight: 100,
-    tooltipMaxWidth: 300,
-    tooltipMaxHeight: 150,
+    tooltipPosition: 'right',
+    tooltipWidth: 390,
   },
   render: (args) => ({
-    props: args,
+    props: {
+      ...args,
+      tooltipContent: `
+        <div class="me-tooltip-custom">
+          <div class="me-tooltip-image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="390" height="140" viewBox="0 0 390 140" fill="none" preserveAspectRatio="xMidYMid slice">
+              <path fill="url(#paint0_linear)" d="M0 0h390v140H0z"/>
+              <path d="M0 70c97.5 0 97.5 40 195 40S487.5 30 585 30" stroke="#4A7DFF" stroke-width="2"/>
+              <path d="M0 90c97.5 0 97.5-40 195-40s292.5 80 390 80" stroke="#8C62FF" stroke-width="2"/>
+              <defs>
+                <linearGradient id="paint0_linear" x1="0" y1="0" x2="390" y2="140" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#FF8A00"/>
+                  <stop offset="0.5" stop-color="#9C4DFF"/>
+                  <stop offset="1" stop-color="#4A7DFF"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="me-tooltip-content">
+            <h1 class="me-tooltip-title">Заголовок</h1>
+            <p class="me-tooltip-text">Трансформатор - это устройство, способное изменять напряжение переменного тока</p>
+          </div>
+        </div>
+      `,
+      tooltipClass: 'me-custom-tooltip-wrapper'
+    },
     template: `
-      <button [meTooltip]="meTooltip"
-              [tooltipPosition]="tooltipPosition"
-              [tooltipWidth]="tooltipWidth"
-              [tooltipHeight]="tooltipHeight"
-              [tooltipMaxWidth]="tooltipMaxWidth"
-              [tooltipMaxHeight]="tooltipMaxHeight">
-        Тултип с фиксированными размерами
-      </button>
-    `,
-  }),
-};
-
-export const ContainerTooltip: Story = {
-  args: {
-    meTooltip: 'Этот тултип отображается в определенном контейнере',
-    tooltipPosition: 'bottom',
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-      <div id="tooltipContainer" style="position: relative; height: 100px; border: 1px solid #ccc; padding: 10px;">
-        <button [meTooltip]="meTooltip"
-                [tooltipPosition]="tooltipPosition">
-          Тултип в контейнере
-        </button>
+      <div style="padding: 50px;">
+        <dx-button
+          text="Тултип с изображением"
+          [meTooltip]="tooltipContent"
+          [tooltipPosition]="tooltipPosition"
+          [tooltipWidth]="tooltipWidth"
+          [tooltipClass]="tooltipClass">
+          Тултип с изображением
+        </dx-button>
       </div>
     `,
   }),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Пример тултипа с изображением, заголовком и текстом. Содержит SVG-изображение с градиентом и волнами.',
+      },
+    },
+  },
 };

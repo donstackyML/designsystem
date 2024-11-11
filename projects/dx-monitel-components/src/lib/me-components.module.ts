@@ -9,6 +9,7 @@ import { MeCalendarModule } from './directives/me-calendar/calendar.module';
 import { MeCheckBoxModule } from './directives/me-check-box/me-check-box.module';
 import { MeContextMenuModule } from './directives/me-context-menu/context-menu.module';
 import { MeControlModule } from './directives/me-control/control.module';
+import { MeDateBoxModule } from './directives/me-date-box/date-box.module';
 import { MeDropDownButtonModule } from './directives/me-drop-down-button/drop-down-button.module';
 import { MeEditorModule } from './directives/me-editor/me-editor.module';
 import { MeIconModule } from './directives/me-icon/me-icon.module';
@@ -59,6 +60,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MeContextMenuModule,
     MeControlModule,
     MeEditorModule,
+    MeDateBoxModule,
     MeDropDownButtonModule,
     MeIconModule,
     MeLabelModule,
@@ -110,6 +112,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MeContextMenuModule,
     MeControlModule,
     MeEditorModule,
+    MeDateBoxModule,
     MeDropDownButtonModule,
     MeIconModule,
     MeLabelModule,
