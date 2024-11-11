@@ -4397,8 +4397,8 @@
 .dx-button-mode-outlined.dx-buttongroup-first-item.dx-button, .dx-button-mode-outlined.dx-buttongroup-first-item.dx-state-hover .dx-button-content,
 .dx-button-mode-contained.dx-buttongroup-first-item.dx-button,
 .dx-button-mode-contained.dx-buttongroup-first-item.dx-state-hover .dx-button-content {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 .dx-button-mode-outlined.dx-buttongroup-last-item,
 .dx-button-mode-contained.dx-buttongroup-last-item {
@@ -4493,6 +4493,8 @@
   border-right-width: 1px;
   border-right-style: solid;
   border-right-color: #dfe0ed;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .me-button.me-keyboard-focused .dx-state-focused {
@@ -6705,6 +6707,19 @@
   position: relative;
   overflow: hidden;
   height: 100%;
+  z-index: 30;
+  min-width: 100%;
+}
+
+.dx-autocomplete.me-autocomplete-large.dx-editor-outlined.dx-texteditor-with-label{
+  height: 48px;
+}
+.dx-autocomplete.me-autocomplete-medium.dx-editor-outlined.dx-texteditor-with-label{
+  height: 40px;
+}
+.dx-autocomplete.me-autocomplete-small.dx-editor-outlined.dx-texteditor-with-label{
+  height: 36px;
+  border-radius: 3px;
 }
 
 .dx-texteditor-buttons-container {
@@ -6800,9 +6815,8 @@
 }
 
 .dx-texteditor.dx-editor-outlined {
-  background: #ffffff;
+  background: #ECEDF3;
   border: 1px solid #dfe0ed;
-  border-radius: 3px;
 }
 .dx-texteditor.dx-editor-underlined {
   background: transparent;
@@ -6826,7 +6840,7 @@
   border-bottom-style: dashed;
 }
 .dx-texteditor.dx-state-hover:not(.dx-state-readonly) {
-  border-color: #3257dc;
+  background-color: #D8DAEA;
 }
 .dx-texteditor.dx-state-hover:not(.dx-state-readonly).dx-editor-filled {
   border-color: transparent;
@@ -6841,6 +6855,7 @@
 }
 .dx-texteditor.dx-state-focused:not(.dx-state-readonly).dx-editor-filled, .dx-texteditor.dx-state-focused:not(.dx-state-readonly).dx-editor-underlined, .dx-texteditor.dx-state-focused:not(.dx-state-readonly).dx-editor-outlined, .dx-texteditor.dx-state-active:not(.dx-state-readonly).dx-editor-filled, .dx-texteditor.dx-state-active:not(.dx-state-readonly).dx-editor-underlined, .dx-texteditor.dx-state-active:not(.dx-state-readonly).dx-editor-outlined {
   border-color: #3257dc;
+  background-color: rgba(50, 87, 220, 0.12);
 }
 .dx-texteditor.dx-state-focused:not(.dx-state-readonly).dx-editor-filled, .dx-texteditor.dx-state-active:not(.dx-state-readonly).dx-editor-filled {
   background-color: rgba(50, 87, 220, 0.1215686275);
@@ -7222,7 +7237,7 @@
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-texteditor-label .dx-label {
-  border-bottom: 1px solid #3257dc;
+  border-bottom: 0px solid #3257dc;
   border-top: 0;
   height: 100%;
   padding: 0 2px;
@@ -7245,20 +7260,20 @@
 }
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-texteditor-label .dx-label-before,
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-texteditor-label .dx-label-after {
-  border-top: 1px solid #3257dc;
-  border-bottom: 1px solid #3257dc;
+  border-top: 0px solid #3257dc;
+  border-bottom: 0px solid #3257dc;
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-lookup-field {
   font-size: 14px;
 }
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover.dx-rtl .dx-texteditor-label .dx-label-before {
-  border-right: 1px solid #3257dc;
+  border-right: 0px solid #3257dc;
   border-radius: 0 3px 3px 0;
   border-left: 0;
 }
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover.dx-rtl .dx-texteditor-label .dx-label-after {
-  border-left: 1px solid #3257dc;
+  border-left: 0px solid #3257dc;
   border-radius: 3px 0 0 3px;
   border-right: 0;
 }
@@ -7317,8 +7332,6 @@
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty .dx-texteditor-label .dx-label, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty .dx-texteditor-label .dx-label {
-  border-bottom: 1px solid #dfe0ed;
-  border-top: 1px solid #dfe0ed;
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty .dx-texteditor-label .dx-label span, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty .dx-texteditor-label .dx-label span {
@@ -7407,8 +7420,6 @@
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover .dx-texteditor-label .dx-label, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover .dx-texteditor-label .dx-label {
-  border-bottom: 1px solid #3257dc;
-  border-top: 1px solid #3257dc;
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover .dx-texteditor-label .dx-label span, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover .dx-texteditor-label .dx-label span {
@@ -7432,8 +7443,6 @@
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover .dx-texteditor-label .dx-label-after, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover .dx-texteditor-label .dx-label-before,
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover .dx-texteditor-label .dx-label-after {
   height: 100%;
-  border-top: 1px solid #3257dc;
-  border-bottom: 1px solid #3257dc;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover.dx-textarea .dx-texteditor-label .dx-label span, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover.dx-textarea .dx-texteditor-label .dx-label span {
   top: 7px;
@@ -7453,7 +7462,6 @@
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover.dx-dropdowneditor-active .dx-texteditor-label .dx-label, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover.dx-dropdowneditor-active .dx-texteditor-label .dx-label {
-  border-bottom: 1px solid #3257dc;
   border-top: 0;
   height: 100%;
   padding: 0 2px;
@@ -7477,20 +7485,16 @@
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover.dx-dropdowneditor-active .dx-texteditor-label .dx-label-before,
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover.dx-dropdowneditor-active .dx-texteditor-label .dx-label-after, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover.dx-dropdowneditor-active .dx-texteditor-label .dx-label-before,
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover.dx-dropdowneditor-active .dx-texteditor-label .dx-label-after {
-  border-top: 1px solid #3257dc;
-  border-bottom: 1px solid #3257dc;
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover.dx-dropdowneditor-active .dx-lookup-field, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover.dx-dropdowneditor-active .dx-lookup-field {
   font-size: 14px;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover.dx-dropdowneditor-active.dx-rtl .dx-texteditor-label .dx-label-before, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover.dx-dropdowneditor-active.dx-rtl .dx-texteditor-label .dx-label-before {
-  border-right: 1px solid #3257dc;
   border-radius: 0 3px 3px 0;
   border-left: 0;
 }
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty.dx-state-hover.dx-dropdowneditor-active.dx-rtl .dx-texteditor-label .dx-label-after, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty.dx-state-hover.dx-dropdowneditor-active.dx-rtl .dx-texteditor-label .dx-label-after {
-  border-left: 1px solid #3257dc;
   border-radius: 3px 0 0 3px;
   border-right: 0;
 }
@@ -7906,7 +7910,6 @@
 }
 .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label, .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label {
   padding: 0 2px;
-  border-bottom: 1px solid #dfe0ed;
 }
 .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label span, .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label span {
   transform: translate(0, -7.5px);
@@ -7934,6 +7937,7 @@
   height: 100%;
   border-top: 1px solid #dfe0ed;
   border-bottom: 1px solid #dfe0ed;
+  z-index: -1;
 }
 .dx-editor-outlined.dx-texteditor-with-label.dx-rtl .dx-texteditor-label .dx-label-before, .dx-rtl .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label-before, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-rtl .dx-texteditor-label .dx-label-before, .dx-rtl .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label-before {
   border-right-width: 1px;
@@ -7953,7 +7957,6 @@
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-texteditor-label .dx-label, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover .dx-texteditor-label .dx-label {
-  border-bottom: 1px solid #3257dc;
   border-top: 0;
   height: 100%;
   padding: 0 2px;
@@ -7966,6 +7969,7 @@
   margin-top: 0;
   top: 0;
 }
+
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-texteditor-label .dx-label-before, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover .dx-texteditor-label .dx-label-before {
   border-color: #3257dc;
   border-style: solid;
@@ -7977,8 +7981,6 @@
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-texteditor-label .dx-label-before,
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-texteditor-label .dx-label-after, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover .dx-texteditor-label .dx-label-before,
 .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover .dx-texteditor-label .dx-label-after {
-  border-top: 1px solid #3257dc;
-  border-bottom: 1px solid #3257dc;
   height: 100%;
 }
 .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-lookup-field, .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover .dx-lookup-field {
@@ -8409,7 +8411,7 @@
   line-height: 16px;
 }
 .me-label-invalid {
-  color: #d50f3f;
+  color: #808084;
 }
 
 .me-label-disabled {
@@ -8839,7 +8841,7 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   overflow: hidden;
   height: 100%;
-  display: flex;
+  border-radius: 3px;
 }
 .dx-dropdowneditor-input-wrapper .dx-texteditor {
   border: none;
@@ -9506,7 +9508,7 @@
   border: 1px solid #7eb9ff;
 }
 .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-hover, .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item:hover, .dx-list:not(.dx-list-select-decorator-enabled).dx-list-collapsible-groups .dx-list-group-header.dx-state-hover, .dx-list:not(.dx-list-select-decorator-enabled).dx-list-collapsible-groups .dx-list-group-header:hover, .dx-list.me-list .dx-list-item.dx-state-hover, .dx-list.me-list .dx-list-item:hover, .dx-list.me-list.dx-list-collapsible-groups .dx-list-group-header.dx-state-hover, .dx-list.me-list.dx-list-collapsible-groups .dx-list-group-header:hover {
-  background-color: rgba(60, 101, 248, 0.1215686275);
+  background-color: #D8DAEA;
   color: #18181a;
 }
 .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-hover .dx-icon, .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item:hover .dx-icon, .dx-list:not(.dx-list-select-decorator-enabled).dx-list-collapsible-groups .dx-list-group-header.dx-state-hover .dx-icon, .dx-list:not(.dx-list-select-decorator-enabled).dx-list-collapsible-groups .dx-list-group-header:hover .dx-icon, .dx-list.me-list .dx-list-item.dx-state-hover .dx-icon, .dx-list.me-list .dx-list-item:hover .dx-icon, .dx-list.me-list.dx-list-collapsible-groups .dx-list-group-header.dx-state-hover .dx-icon, .dx-list.me-list.dx-list-collapsible-groups .dx-list-group-header:hover .dx-icon {
@@ -12430,8 +12432,7 @@
   height: 100%;
 }
 .dx-dropdownlist-popup-wrapper.dx-popup-wrapper .dx-overlay-content {
-  border-top-width: 0;
-  border-bottom-width: 1px;
+  border: 1px solid #DFE0ED;
 }
 .dx-dropdownlist-popup-wrapper.dx-popup-wrapper .dx-overlay-content.dx-dropdowneditor-overlay-flipped {
   border-top-width: 1px;
@@ -12439,7 +12440,7 @@
 }
 .dx-dropdownlist-popup-wrapper .dx-popup-content {
   height: 100%;
-  padding: 1px;
+  padding: 4px 0;
 }
 .dx-dropdownlist-popup-wrapper.me-dropdownlist-small .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
   padding: 8px 16px 8px 8px;
@@ -12504,24 +12505,43 @@
 */
 .dx-autocomplete.me-autocomplete-small {
   height: 28px;
+  width: 100%;
+  border-radius: 3px;
 }
 .dx-autocomplete.me-autocomplete-small .dx-texteditor-input {
   font-size: 13px;
   padding: 4px 8px;
 }
 .dx-autocomplete.me-autocomplete-medium {
-  height: 36px;
+  width: 100%;
+  height: 32px;
 }
 .dx-autocomplete.me-autocomplete-medium .dx-texteditor-input {
   font-size: 14px;
   padding: 6px 12px;
 }
 .dx-autocomplete.me-autocomplete-large {
-  height: 44px;
+  width: 100%;
+  height: 40px;
 }
 .dx-autocomplete.me-autocomplete-large .dx-texteditor-input {
   font-size: 16px;
-  padding: 8px 16px;
+  padding: 10px 12px;
+}
+
+.dx-autocomplete.me-autocomplete-large{
+  border-radius: 4px;
+}
+
+.dx-autocomplete.me-autocomplete-medium{
+  border-radius: 3px;
+}
+
+.dx-button-mode-outlined.dx-buttongroup-first-item.dx-button.me-button-large, .dx-button-mode-outlined.dx-buttongroup-first-item.dx-state-hover .dx-button-content,
+.dx-button-mode-contained.dx-buttongroup-first-item.dx-button.me-button-large,
+.dx-button-mode-contained.dx-buttongroup-first-item.dx-state-hover .dx-button-content {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .dx-autocomplete .dx-texteditor-input {
@@ -14095,6 +14115,7 @@
   width: 100%;
   gap: 16px;
   align-items: center;
+  min-width: 100%;
 }
 .me-selectbox.dx-selectbox .dx-texteditor-container .dx-texteditor-input-container *,
 .me-selectbox.dx-selectbox .dx-texteditor-container .dx-texteditor-input-container *::before {
@@ -34347,7 +34368,7 @@ input.dx-hidden {
 }
 
 .chip-remove-button {
-  margin-left: 8px;
+  margin-left: 4px;
   padding: 0;
   border: none;
   background: none;
