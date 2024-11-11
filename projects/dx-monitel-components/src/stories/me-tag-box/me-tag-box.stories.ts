@@ -34,6 +34,12 @@ export default {
       defaultValue: true,
       description: 'Определяет состояние при нажатии на компонент',
     },
+    pickerType: {
+      control: 'select',
+      options: ['calendar', 'list', 'native', 'rollers'],
+      description: 'Тип пикера для выбора значений',
+      defaultValue: 'list'
+    },
     applyValueMode: {
       control: 'select',
       options: ['instantly', 'useButtons'],
@@ -108,6 +114,7 @@ export default {
     grouped: false,
     searchEnabled: true,
     placeholder: 'Выберите...',
+    pickerType: 'list',
     showClearButton: false,
     showSelectionControls: false,
     hideSelectedItems: false,
@@ -171,7 +178,7 @@ export const WithLabelRow: StoryObj = {
     template: `
 		<label meLabel
 		labelDirection="row"
-		[size]="size" 
+		[size]="size"
 		width="250px">
 		Label*
 			<dx-tag-box
