@@ -11,6 +11,7 @@ export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
+export {MeStatusBarComponent} from "./lib/components/me-status-bar/me-status-bar.component";
 
 // Form and Input Directives
 export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';
