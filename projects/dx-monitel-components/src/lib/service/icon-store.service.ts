@@ -21,7 +21,16 @@ export class MeIconStoreService {
         .replaceAll('color', color)
         .replaceAll('iconSize', size);
     } else {
-      return icon.replaceAll('color', color).replaceAll('iconSize', size);
+      if (
+        icon.includes('.svg') ||
+        icon.includes('.jpeg') ||
+        icon.includes('.jpg') ||
+        icon.includes('.png')
+      ) {
+        return `<img src="${icon}"></img>`;
+      } else {
+        return icon.replaceAll('color', color).replaceAll('iconSize', size);
+      }
     }
   }
 

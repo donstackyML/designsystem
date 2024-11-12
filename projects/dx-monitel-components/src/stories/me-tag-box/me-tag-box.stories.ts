@@ -38,7 +38,7 @@ export default {
       control: 'select',
       options: ['calendar', 'list', 'native', 'rollers'],
       description: 'Тип пикера для выбора значений',
-      defaultValue: 'list'
+      defaultValue: 'list',
     },
     applyValueMode: {
       control: 'select',

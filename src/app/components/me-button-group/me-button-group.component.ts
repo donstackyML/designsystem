@@ -194,5 +194,56 @@ export class MeButtonGroupComponent {
     },
   ];
 
+  itemCustomTemplate: any[] = [
+    {
+      text: 'Пункт 1',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'default',
+      onClick: () => {
+        console.log('Пункт 1');
+      },
+      template: 'custom',
+    },
+    {
+      text: 'Пункт 2',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'default',
+      onClick: () => {
+        console.log('Пункт 2');
+      },
+      template: 'custom',
+    },
+    {
+      text: 'Пункт 3',
+      leftIcon: this.icon,
+      rightIcon: this.iconRight,
+      type: 'default',
+      template: 'custom',
+    },
+  ];
+
+  itemWithPath: any[] = [
+    {
+      text: 'Пункт 1',
+      leftIcon: '../../../assets/bundles/images/Watch.svg',
+      rightIcon: '../../../assets/bundles/images/Logo1.png',
+      type: 'default',
+    },
+    {
+      text: 'Пункт 2',
+      leftIcon: '../../../assets/bundles/images/Watch.svg',
+      rightIcon: '../../../assets/bundles/images/Logo1.png',
+      type: 'default',
+    },
+    {
+      text: 'Пункт 3',
+      leftIcon: '../../../assets/bundles/images/Watch.svg',
+      rightIcon: '../../../assets/bundles/images/Logo1.png',
+      type: 'default',
+    },
+  ];
+
   constructor() {}
 }
