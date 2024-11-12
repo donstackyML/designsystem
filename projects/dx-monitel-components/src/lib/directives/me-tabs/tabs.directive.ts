@@ -22,8 +22,7 @@ export type MeTabsStylingMode = 'inside' | 'outside';
     '[class.me-tabs-large]': 'size === "large"',
     // Обновляем классы для стилизации
     '[class.dx-tabs-styling-mode-primary]': 'internalStylingMode === "primary"',
-    '[class.dx-tabs-styling-mode-secondary]':
-      'internalStylingMode === "secondary"',
+    '[class.dx-tabs-styling-mode-secondary]': 'internalStylingMode === "secondary"',
     '[class.me-tabs-style-inside]': 'stylingMode === "inside"',
     '[class.me-tabs-style-outside]': 'stylingMode === "outside"',
     '[class.me-tabs-icon-top]': 'iconPosition === "top"',

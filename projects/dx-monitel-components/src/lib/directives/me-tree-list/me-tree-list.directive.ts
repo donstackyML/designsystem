@@ -1,6 +1,5 @@
-import { DxTreeListComponent } from 'devextreme-angular';
-
 import { Directive, inject } from '@angular/core';
+import { DxTreeListComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meTreeList]',

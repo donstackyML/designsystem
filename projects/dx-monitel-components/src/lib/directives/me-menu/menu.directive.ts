@@ -28,8 +28,7 @@ export class MeMenuDirective implements OnInit {
       `me-menu-submenu-${this.size}`,
     ].filter(Boolean);
 
-    if (this.orientation === 'horizontal')
-      menuClasses.push('me-menu-horizontal');
+    if (this.orientation === 'horizontal') menuClasses.push('me-menu-horizontal');
     if (this.orientation === 'vertical') menuClasses.push('me-menu-vertical');
 
     this.component.cssClass = menuClasses.join(' ');

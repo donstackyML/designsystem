@@ -45,8 +45,8 @@ export const BasicExamples: Story = {
         <me-badge [value]="5" color="attention"></me-badge>
         <me-badge [value]="5" color="error"></me-badge>
       </div>
-    `,
-  }),
+    `
+  })
 };
 
 // Разные размеры
@@ -57,8 +57,8 @@ export const Sizes: Story = {
         <me-badge [value]="8" size="20" color="default"></me-badge>
         <me-badge [value]="8" size="24" color="default"></me-badge>
       </div>
-    `,
-  }),
+    `
+  })
 };
 
 // Длинные числа
@@ -71,8 +71,8 @@ export const LongNumbers: Story = {
         <me-badge [value]="1000" color="default"></me-badge>
         <me-badge [value]="9999" color="default"></me-badge>
       </div>
-    `,
-  }),
+    `
+  })
 };
 
 // Все размеры и цвета
@@ -104,8 +104,8 @@ export const AllVariants: Story = {
           </div>
         </div>
       </div>
-    `,
-  }),
+    `
+  })
 };
 
 // Разные значения чисел для каждого цвета
@@ -139,8 +139,8 @@ export const NumbersAndColors: Story = {
           <me-badge [value]="999" color="error"></me-badge>
         </div>
       </div>
-    `,
-  }),
+    `
+  })
 };
 
 // Кастомные стили
@@ -151,9 +151,8 @@ export const CustomStyles: Story = {
         border: '2px solid var(--Controls-Content-In-Controls-Accent-Default)',
       },
       outlineStyles: {
-        boxShadow:
-          '0 0 0 2px var(--Controls-Content-In-Controls-Accent-Default)',
-      },
+        boxShadow: '0 0 0 2px var(--Controls-Content-In-Controls-Accent-Default)',
+      }
     },
     template: `
       <div style="display: flex; gap: 16px; align-items: center;">
@@ -161,6 +160,6 @@ export const CustomStyles: Story = {
         <me-badge [value]="42" [customStyle]="outlineStyles"></me-badge>
         <me-badge [value]="100" [customStyle]="styles"></me-badge>
       </div>
-    `,
-  }),
+    `
+  })
 };
