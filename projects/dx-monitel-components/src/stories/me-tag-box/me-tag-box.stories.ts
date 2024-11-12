@@ -102,6 +102,10 @@ export default {
     showSelectionControls: {
       control: 'boolean',
     },
+    description: {
+      control: 'text',
+      description: 'Описание для компонента',
+    },
   },
   args: {
     items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
@@ -126,6 +130,7 @@ export default {
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
     readOnly: false,
+    description: 'description',
   },
   render: (args) => ({
     props: { ...args },
@@ -163,6 +168,7 @@ export default {
         </dxi-validation-rule>
     </dx-validator>
 		</dx-tag-box>
+    <p class='tag-box-desc' *ngIf="description">{{ description }}</p>
 		`,
   }),
 } as Meta;
