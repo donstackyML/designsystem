@@ -68,7 +68,9 @@ export class MeTextBoxDirective
     this.renderer.appendChild(parentSpan, childSpan);
 
     this.renderer.appendChild(
-      this.element.nativeElement.querySelector('.dx-texteditor-buttons-container'),
+      this.element.nativeElement.querySelector(
+        '.dx-texteditor-buttons-container'
+      ),
       parentSpan
     );
   }
@@ -99,7 +101,11 @@ export class MeTextBoxDirective
     const buttonsContainer = this.element.nativeElement.querySelector(
       '.dx-texteditor-buttons-container'
     );
-    this.renderer.insertBefore(buttonsContainer, this.passwordToggleButton, buttonsContainer.firstChild);
+    this.renderer.insertBefore(
+      buttonsContainer,
+      this.passwordToggleButton,
+      buttonsContainer.firstChild
+    );
   }
 
   updatePasswordToggleVisibility() {
@@ -116,7 +122,10 @@ export class MeTextBoxDirective
   togglePasswordVisibility(iconElement: HTMLElement) {
     this.passwordVisible = !this.passwordVisible;
 
-    this.textBox.instance.option('mode', this.passwordVisible ? 'text' : 'password');
+    this.textBox.instance.option(
+      'mode',
+      this.passwordVisible ? 'text' : 'password'
+    );
 
     if (this.passwordVisible) {
       this.renderer.removeClass(iconElement, 'dx-icon-eyeoff');

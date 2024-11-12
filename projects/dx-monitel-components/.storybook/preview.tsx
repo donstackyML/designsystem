@@ -1,9 +1,9 @@
 // .storybook/preview.tsx
-import { Preview } from '@storybook/angular';
+import { Preview } from "@storybook/angular";
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -16,7 +16,7 @@ const preview: Preview = {
 export default preview;
 
 // Добавляем глобальные стили
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
   .me-tooltip-custom {
     overflow: hidden;

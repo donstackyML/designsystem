@@ -4,7 +4,7 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import {DxButtonModule, DxTextBoxComponent} from 'devextreme-angular';
+import { DxButtonModule, DxTextBoxComponent } from 'devextreme-angular';
 import { MeLabelDirective, MeTextBoxDirective } from '../../public-api';
 
 export default {
@@ -155,8 +155,9 @@ export const WithPasswordToggle: Story = {
       passwordButton: {
         icon: 'eyeopen',
         stylingMode: 'text',
-        onClick: function() {
-          this.passwordMode = this.passwordMode === 'text' ? 'password' : 'text';
+        onClick: function () {
+          this.passwordMode =
+            this.passwordMode === 'text' ? 'password' : 'text';
         },
       },
     },
@@ -179,7 +180,8 @@ export const WithPasswordToggle: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Текстовое поле для ввода пароля с возможностью переключения видимости пароля. Кнопка с иконкой глаза позволяет переключаться между режимами отображения и скрытия пароля.',
+        story:
+          'Текстовое поле для ввода пароля с возможностью переключения видимости пароля. Кнопка с иконкой глаза позволяет переключаться между режимами отображения и скрытия пароля.',
       },
     },
   },

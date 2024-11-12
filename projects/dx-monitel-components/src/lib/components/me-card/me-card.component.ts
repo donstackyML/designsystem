@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
         <ng-content select="[card-footer]"></ng-content>
       </div>
     </div>
-  `
+  `,
 })
 export class MeCardComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';

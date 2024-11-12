@@ -128,7 +128,9 @@ export class MePaginationComponent implements OnChanges {
   }
 
   get sizeControlsBackgroundClass(): string {
-    return this.transparentBackground && !this.isDarkTheme ? 'default-background' : '';
+    return this.transparentBackground && !this.isDarkTheme
+      ? 'default-background'
+      : '';
   }
 
   getPadding(): string {

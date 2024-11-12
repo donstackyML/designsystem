@@ -20,6 +20,7 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
   @Input() rightIconColor: string = '';
   @Input() selectionStateEnable: boolean = false;
   @Input() isSelected: boolean = false;
+  @Input() template: string | Function | HTMLElement = 'content';
 
   constructor(
     private element: ElementRef,
@@ -43,25 +44,27 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
       }
     }
 
-    this.component.template = `
-      <div class="me-button-inner">
-        ${this.iconStore.getIcon({
-          icon: this.leftIcon,
-          color: this.leftIconColor ? this.leftIconColor : this.iconColor,
-          size: this.getIconSize(this.leftIconSize),
-        })}
-        ${this.iconStore.getIcon({
-          icon: this.iconOnly,
-          color: this.iconColor,
-          size: this.getIconSize(this.iconSize),
-        })}
-        ${this.getText()}
-        ${this.iconStore.getIcon({
-          icon: this.rightIcon,
-          color: this.rightIconColor ? this.rightIconColor : this.iconColor,
-          size: this.getIconSize(this.rightIconSize),
-        })}
-      </div>`;
+    if (this.template === 'content') {
+      this.component.template = `
+        <div class="me-button-inner">
+          ${this.iconStore.getIcon({
+            icon: this.leftIcon,
+            color: this.leftIconColor ? this.leftIconColor : this.iconColor,
+            size: this.getIconSize(this.leftIconSize),
+          })}
+          ${this.iconStore.getIcon({
+            icon: this.iconOnly,
+            color: this.iconColor,
+            size: this.getIconSize(this.iconSize),
+          })}
+          ${this.getText()}
+          ${this.iconStore.getIcon({
+            icon: this.rightIcon,
+            color: this.rightIconColor ? this.rightIconColor : this.iconColor,
+            size: this.getIconSize(this.rightIconSize),
+          })}
+        </div>`;
+    }
 
     this.renderer.addClass(this.element.nativeElement, `me-button`);
     this.renderer.addClass(

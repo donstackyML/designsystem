@@ -29,7 +29,7 @@ const meta: Meta<MeTooltipDirective> = {
     },
     tooltipWidth: {
       control: 'number',
-      description: 'Ширина тултипа'
+      description: 'Ширина тултипа',
     },
     tooltipMaxWidth: {
       control: 'number',
@@ -37,7 +37,7 @@ const meta: Meta<MeTooltipDirective> = {
     },
     tooltipHeight: {
       control: 'number',
-      description: 'Высота тултипа'
+      description: 'Высота тултипа',
     },
     tooltipMaxHeight: {
       control: 'number',
@@ -221,7 +221,7 @@ export const ImageTooltip: Story = {
           </div>
         </div>
       `,
-      tooltipClass: 'me-custom-tooltip-wrapper'
+      tooltipClass: 'me-custom-tooltip-wrapper',
     },
     template: `
       <div style="padding: 50px;">
@@ -239,7 +239,8 @@ export const ImageTooltip: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Пример тултипа с изображением, заголовком и текстом. Содержит SVG-изображение с градиентом и волнами.',
+        story:
+          'Пример тултипа с изображением, заголовком и текстом. Содержит SVG-изображение с градиентом и волнами.',
       },
     },
   },
