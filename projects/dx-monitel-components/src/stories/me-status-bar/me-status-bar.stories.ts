@@ -1,7 +1,10 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxLoadPanelModule } from 'devextreme-angular';
-import { MeStatusBarComponent, StatusInfo } from '../../lib/components/me-status-bar/me-status-bar.component';
-import { MeLoadPanelModule } from "../../public-api";
+import {
+  MeStatusBarComponent,
+  StatusInfo,
+} from '../../lib/components/me-status-bar/me-status-bar.component';
+import { MeLoadPanelModule } from '../../public-api';
 
 type Story = StoryObj<MeStatusBarComponent>;
 
@@ -10,10 +13,7 @@ const meta: Meta<MeStatusBarComponent> = {
   component: MeStatusBarComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        DxLoadPanelModule,
-        MeLoadPanelModule
-      ],
+      imports: [DxLoadPanelModule, MeLoadPanelModule],
     }),
   ],
 } as Meta<MeStatusBarComponent>;
@@ -24,32 +24,32 @@ export default meta;
 const defaultStatusInfo: StatusInfo = {
   organizationName: {
     text: 'Воткинская ГЭС',
-    icon: { name: 'home' }
+    icon: { name: 'home' },
   },
   primaryInfo: {
     text: 'Раскраска схемы без узла ТП',
     icon: { name: 'chart' },
     backgroundColor: '#3257DC',
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
   secondaryInfo: {
     text: 'Режим исследования',
     icon: { name: 'clock' },
     backgroundColor: '#FFB82E',
-    color: '#000000'
+    color: '#000000',
   },
   status: {
     type: 'error',
     message: 'Отсутствует соединение с источником данных',
     icon: { name: 'close' },
-    loading: false
-  }
+    loading: false,
+  },
 };
 
 export const Default: Story = {
   args: {
-    statusInfo: defaultStatusInfo
-  }
+    statusInfo: defaultStatusInfo,
+  },
 };
 
 export const Loading: Story = {
@@ -60,10 +60,10 @@ export const Loading: Story = {
         type: 'error',
         message: 'Загрузка данных...',
         icon: { name: 'loading' },
-        loading: true
-      }
-    }
-  }
+        loading: true,
+      },
+    },
+  },
 };
 
 export const Success: Story = {
@@ -74,10 +74,10 @@ export const Success: Story = {
         type: 'success',
         message: 'Соединение с источником данных восстановлено',
         icon: { name: 'check' },
-        loading: false
-      }
-    }
-  }
+        loading: false,
+      },
+    },
+  },
 };
 
 export const Warning: Story = {
@@ -88,10 +88,10 @@ export const Warning: Story = {
         type: 'warning',
         message: 'Предупреждение о состоянии системы',
         icon: { name: 'warning' },
-        loading: false
-      }
-    }
-  }
+        loading: false,
+      },
+    },
+  },
 };
 
 export const Info: Story = {
@@ -102,10 +102,10 @@ export const Info: Story = {
         type: 'info',
         message: 'Информационное сообщение',
         icon: { name: 'info' },
-        loading: false
-      }
-    }
-  }
+        loading: false,
+      },
+    },
+  },
 };
 
 // Пример с SVG иконками
@@ -116,38 +116,38 @@ export const WithSvgIcons: Story = {
         text: 'Воткинская ГЭС',
         icon: {
           name: 'home',
-          path: '/assets/icons/home.svg'
-        }
+          path: '/assets/icons/home.svg',
+        },
       },
       primaryInfo: {
         text: 'Раскраска схемы без узла ТП',
         icon: {
           name: 'chart',
-          path: '/assets/icons/chart.svg'
+          path: '/assets/icons/chart.svg',
         },
         backgroundColor: '#3257DC',
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       secondaryInfo: {
         text: 'Режим исследования',
         icon: {
           name: 'clock',
-          path: '/assets/icons/clock.svg'
+          path: '/assets/icons/clock.svg',
         },
         backgroundColor: '#FFB82E',
-        color: '#000000'
+        color: '#000000',
       },
       status: {
         type: 'success',
         message: 'Пример с SVG иконками',
         icon: {
           name: 'check',
-          path: '/assets/icons/check.svg'
+          path: '/assets/icons/check.svg',
         },
-        loading: false
-      }
-    }
-  }
+        loading: false,
+      },
+    },
+  },
 };
 
 // Пример с кастомными цветами
@@ -158,18 +158,18 @@ export const CustomColors: Story = {
       organizationName: {
         ...defaultStatusInfo.organizationName,
         color: '#FF5733',
-        backgroundColor: '#F8F9FA'
+        backgroundColor: '#F8F9FA',
       },
       primaryInfo: {
         ...defaultStatusInfo.primaryInfo,
         color: '#FFFFFF',
-        backgroundColor: '#6C757D'
+        backgroundColor: '#6C757D',
       },
       secondaryInfo: {
         ...defaultStatusInfo.secondaryInfo,
         color: '#FFFFFF',
-        backgroundColor: '#17A2B8'
-      }
-    }
-  }
+        backgroundColor: '#17A2B8',
+      },
+    },
+  },
 };

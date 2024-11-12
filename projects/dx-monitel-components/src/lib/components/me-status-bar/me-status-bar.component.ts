@@ -48,13 +48,23 @@ export interface StatusInfo {
           [style.background-color]="statusInfo.organizationName.backgroundColor"
           [style.width]="statusInfo.organizationName.width"
         >
-          <ng-container *ngIf="!statusInfo.organizationName.loading; else loadingTpl">
-            <ng-container *ngTemplateOutlet="iconTemplate; context: {
-              icon: statusInfo.organizationName.icon,
-              size: statusInfo.organizationName.icon?.size || defaultIconSize
-            }">
+          <ng-container
+            *ngIf="!statusInfo.organizationName.loading; else loadingTpl"
+          >
+            <ng-container
+              *ngTemplateOutlet="
+                iconTemplate;
+                context: {
+                  icon: statusInfo.organizationName.icon,
+                  size:
+                    statusInfo.organizationName.icon?.size || defaultIconSize
+                }
+              "
+            >
             </ng-container>
-            <span class="me-status-bar__text">{{statusInfo.organizationName.text}}</span>
+            <span class="me-status-bar__text">{{
+              statusInfo.organizationName.text
+            }}</span>
           </ng-container>
         </div>
 
@@ -65,13 +75,22 @@ export interface StatusInfo {
           [style.background-color]="statusInfo.primaryInfo.backgroundColor"
           [style.width]="statusInfo.primaryInfo.width"
         >
-          <ng-container *ngIf="!statusInfo.primaryInfo.loading; else loadingTpl">
-            <ng-container *ngTemplateOutlet="iconTemplate; context: {
-              icon: statusInfo.primaryInfo.icon,
-              size: statusInfo.primaryInfo.icon?.size || defaultIconSize
-            }">
+          <ng-container
+            *ngIf="!statusInfo.primaryInfo.loading; else loadingTpl"
+          >
+            <ng-container
+              *ngTemplateOutlet="
+                iconTemplate;
+                context: {
+                  icon: statusInfo.primaryInfo.icon,
+                  size: statusInfo.primaryInfo.icon?.size || defaultIconSize
+                }
+              "
+            >
             </ng-container>
-            <span class="me-status-bar__text">{{statusInfo.primaryInfo.text}}</span>
+            <span class="me-status-bar__text">{{
+              statusInfo.primaryInfo.text
+            }}</span>
           </ng-container>
         </div>
 
@@ -82,13 +101,22 @@ export interface StatusInfo {
           [style.background-color]="statusInfo.secondaryInfo.backgroundColor"
           [style.width]="statusInfo.secondaryInfo.width"
         >
-          <ng-container *ngIf="!statusInfo.secondaryInfo.loading; else loadingTpl">
-            <ng-container *ngTemplateOutlet="iconTemplate; context: {
-              icon: statusInfo.secondaryInfo.icon,
-              size: statusInfo.secondaryInfo.icon?.size || defaultIconSize
-            }">
+          <ng-container
+            *ngIf="!statusInfo.secondaryInfo.loading; else loadingTpl"
+          >
+            <ng-container
+              *ngTemplateOutlet="
+                iconTemplate;
+                context: {
+                  icon: statusInfo.secondaryInfo.icon,
+                  size: statusInfo.secondaryInfo.icon?.size || defaultIconSize
+                }
+              "
+            >
             </ng-container>
-            <span class="me-status-bar__text">{{statusInfo.secondaryInfo.text}}</span>
+            <span class="me-status-bar__text">{{
+              statusInfo.secondaryInfo.text
+            }}</span>
           </ng-container>
         </div>
 
@@ -98,12 +126,21 @@ export interface StatusInfo {
           [class]="'me-status-bar__status--' + statusInfo.status.type"
         >
           <ng-container *ngIf="!statusInfo.status.loading; else loadingTpl">
-            <ng-container *ngTemplateOutlet="iconTemplate; context: {
-              icon: statusInfo.status.icon || getDefaultStatusIcon(statusInfo.status.type),
-              size: (statusInfo.status.icon?.size || defaultIconSize)
-            }">
+            <ng-container
+              *ngTemplateOutlet="
+                iconTemplate;
+                context: {
+                  icon:
+                    statusInfo.status.icon ||
+                    getDefaultStatusIcon(statusInfo.status.type),
+                  size: statusInfo.status.icon?.size || defaultIconSize
+                }
+              "
+            >
             </ng-container>
-            <span class="me-status-bar__text status-message">{{statusInfo.status.message}}</span>
+            <span class="me-status-bar__text status-message">{{
+              statusInfo.status.message
+            }}</span>
           </ng-container>
         </div>
       </div>
@@ -132,7 +169,7 @@ export interface StatusInfo {
             class="me-status-bar__icon"
             [style.width.px]="size"
             [style.height.px]="size"
-          >
+          />
         </ng-container>
         <ng-template #defaultIcon>
           <i
@@ -145,100 +182,102 @@ export interface StatusInfo {
       </ng-container>
     </ng-template>
   `,
-  styles: [`
-    .me-status-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: var(--Controls-Size-L);
-      border-top: 1px solid var(--Dividers-Borders-Long);
-      background: var(--Background-Canvas);
-      z-index: 1000;
+  styles: [
+    `
+      .me-status-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: var(--Controls-Size-L);
+        border-top: 1px solid var(--Dividers-Borders-Long);
+        background: var(--Background-Canvas);
+        z-index: 1000;
 
-      &__items {
-        display: flex;
-        align-items: stretch;
-        height: 100%;
-        gap: 1px;
-        background: var(--Dividers-Borders-Short);
-      }
-
-      &__item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 0 16px;
-        font-size: var(--Font-Size-XS);
-        line-height: var(--Line-Height-XS);
-        white-space: nowrap;
-        background: var(--Background-Content);
-        transition: all 0.2s ease;
-
-        &.organization {
-          min-width: 200px;
-          flex-shrink: 0;
+        &__items {
+          display: flex;
+          align-items: stretch;
+          height: 100%;
+          gap: 1px;
+          background: var(--Dividers-Borders-Short);
         }
 
-        &.primary {
-          min-width: 250px;
-          flex-shrink: 0;
+        &__item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 0 16px;
+          font-size: var(--Font-Size-XS);
+          line-height: var(--Line-Height-XS);
+          white-space: nowrap;
+          background: var(--Background-Content);
+          transition: all 0.2s ease;
+
+          &.organization {
+            min-width: 200px;
+            flex-shrink: 0;
+          }
+
+          &.primary {
+            min-width: 250px;
+            flex-shrink: 0;
+          }
+
+          &.secondary {
+            min-width: 180px;
+            flex-shrink: 0;
+          }
+
+          &.status {
+            flex: 1;
+            min-width: 0;
+          }
+
+          dx-load-panel {
+            margin: auto;
+          }
         }
 
-        &.secondary {
-          min-width: 180px;
-          flex-shrink: 0;
-        }
-
-        &.status {
-          flex: 1;
+        &__text {
+          overflow: hidden;
+          text-overflow: ellipsis;
           min-width: 0;
+          flex: 1;
         }
 
-        dx-load-panel {
-          margin: auto;
+        &__icon {
+          flex-shrink: 0;
+          object-fit: contain;
         }
       }
 
-      &__text {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        min-width: 0;
-        flex: 1;
-      }
+      // Стили для LoadPanel
+      :host ::ng-deep {
+        .dx-loadpanel-wrapper {
+          background: transparent;
+        }
 
-      &__icon {
-        flex-shrink: 0;
-        object-fit: contain;
-      }
-    }
+        .dx-loadpanel-content {
+          background: transparent;
+          border: none;
+          box-shadow: none;
+          padding: 0;
+        }
 
-    // Стили для LoadPanel
-    :host ::ng-deep {
-      .dx-loadpanel-wrapper {
-        background: transparent;
-      }
+        .dx-loadpanel-message {
+          display: none;
+        }
 
-      .dx-loadpanel-content {
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        padding: 0;
-      }
+        .dx-loadindicator {
+          margin: 0;
+        }
 
-      .dx-loadpanel-message {
-        display: none;
+        .dx-loadindicator-segment {
+          background: var(--Controls-Content-In-Controls-Accent-Default);
+        }
       }
-
-      .dx-loadindicator {
-        margin: 0;
-      }
-
-      .dx-loadindicator-segment {
-        background: var(--Controls-Content-In-Controls-Accent-Default);
-      }
-    }
-  `]
+    `,
+  ],
 })
 export class MeStatusBarComponent {
   @Input() statusInfo!: StatusInfo;
@@ -247,8 +286,14 @@ export class MeStatusBarComponent {
   private readonly defaultStatusIcons: Record<StatusType, StatusBarIcon> = {
     error: { name: 'warning', color: 'var(--Text-Error)' },
     success: { name: 'check', color: 'var(--Text-Success)' },
-    warning: { name: 'warning', color: 'var(--Controls-Content-In-Controls-Attention-Default)' },
-    info: { name: 'info', color: 'var(--Controls-Content-In-Controls-Accent-Default)' }
+    warning: {
+      name: 'warning',
+      color: 'var(--Controls-Content-In-Controls-Attention-Default)',
+    },
+    info: {
+      name: 'info',
+      color: 'var(--Controls-Content-In-Controls-Accent-Default)',
+    },
   };
 
   getDefaultStatusIcon(type: StatusType): StatusBarIcon {

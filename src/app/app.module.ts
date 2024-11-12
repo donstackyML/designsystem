@@ -31,7 +31,8 @@ import {
   MeScrollViewModule,
   MeSelectBoxModule,
   MeSkeletonComponent,
-  MeSliderModule, MeStatusBarComponent,
+  MeSliderModule,
+  MeStatusBarComponent,
   MeTabPanelModule,
   MeTabsModule,
   MeTagBoxModule,
@@ -213,7 +214,7 @@ import { MeToastDirective } from './directives/toast.directive';
     MeAutocompleteModule,
     MeTextAreaModule,
     MeTagBoxModule,
-    MeStatusBarComponent
+    MeStatusBarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
