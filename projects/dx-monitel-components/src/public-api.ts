@@ -1,5 +1,7 @@
 // Components
 import { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
+import { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
+import { MeDateRangeBoxModule } from './lib/directives/me-date-range-box/date-range-box.module';
 
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
@@ -11,6 +13,11 @@ export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
+<<<<<<< HEAD
+export { MeStatusBarComponent } from './lib/components/me-status-bar/me-status-bar.component';
+=======
+export {MeStatusBarComponent} from "./lib/components/me-status-bar/me-status-bar.component";
+>>>>>>> a3458aab165540c676ecedd049a4d915a2d0aea7
 
 // Form and Input Directives
 export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';
@@ -55,6 +62,7 @@ export { MeToolbarDirective } from './lib/directives/me-toolbar/toolbar.directiv
 export { MeTooltipDirective } from './lib/directives/me-tooltip/tooltip.directive';
 export { MeTreeListDirective } from './lib/directives/me-tree-list/me-tree-list.directive';
 export { MeTreeViewDirective } from './lib/directives/me-tree-view/tree-view.directive';
+export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 
 // UI Feedback Directives
 export { MeLoadIndicatorDirective } from './lib/directives/me-load-indicator/load-indicator.directive';
@@ -84,6 +92,7 @@ export { MeTextBoxModule } from './lib/directives/me-text-box/me-text-box.module
 export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-editor.module';
 export { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
+export { MeDateRangeBoxModule } from './lib/directives/me-date-range-box/date-range-box.module';
 
 // Layout and Navigation Modules
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';

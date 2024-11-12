@@ -47,6 +47,7 @@ import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.modu
 import { MeAutocompleteModule } from './directives/me-autocomplete/me-autocomplete.module';
 import { MeFormModule } from './directives/me-form/me-form.module';
 import { A11yModule } from '@angular/cdk/a11y';
+import { MeDateRangeBoxModule } from './directives/me-date-range-box/date-range-box.module';
 
 @NgModule({
   declarations: [],
@@ -91,6 +92,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MeIconComponent,
     MeBreadcrumbsComponent,
     MeDataGridModule,
+    MeDateRangeBoxModule,
     MeSkeletonComponent,
     MeChipsContainerComponent,
     MeChipComponent,
@@ -139,6 +141,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MeFileUploaderModule,
     MeScrollViewModule,
     MeDataGridModule,
+    MeDateRangeBoxModule,
     MeFileUploaderComponent,
     MeIconModule,
     MePaginationComponent,
