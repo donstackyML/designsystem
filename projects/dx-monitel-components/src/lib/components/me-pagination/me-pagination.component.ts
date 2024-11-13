@@ -50,7 +50,10 @@ export class MePaginationComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['itemsPerPageOptions'] && !changes['itemsPerPageOptions'].currentValue?.length) {
+    if (
+      changes['itemsPerPageOptions'] &&
+      !changes['itemsPerPageOptions'].currentValue?.length
+    ) {
       this.itemsPerPageOptions = this.defaultOptions;
     }
 

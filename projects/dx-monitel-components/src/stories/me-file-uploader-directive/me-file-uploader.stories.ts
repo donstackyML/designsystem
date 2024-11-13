@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { DxFileUploaderModule, DxSelectBoxModule, DxTextBoxModule } from 'devextreme-angular';
+import {
+  DxFileUploaderModule,
+  DxSelectBoxModule,
+  DxTextBoxModule,
+} from 'devextreme-angular';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MeFileUploaderDirective } from "../../public-api";
+import { MeFileUploaderDirective } from '../../public-api';
 
 export default {
   title: 'Directives/FileUploader',
@@ -16,17 +20,17 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Размер компонента'
+      description: 'Размер компонента',
     },
     accept: {
       control: 'select',
       options: ['*', 'image/*', 'video/*', '.pdf,.doc,.docx'],
-      description: 'Тип принимаемых файлов'
+      description: 'Тип принимаемых файлов',
     },
     allowedFileExtensions: {
       control: 'object',
-      description: 'Допустимые расширения файлов'
-    }
+      description: 'Допустимые расширения файлов',
+    },
   },
 } as Meta<MeFileUploaderDirective>;
 
@@ -35,7 +39,7 @@ type Story = StoryObj<MeFileUploaderDirective>;
 const defaultArgs = {
   size: 'medium' as const,
   accept: 'image/*',
-  allowedFileExtensions: ['.jpg', '.jpeg', '.gif', '.png']
+  allowedFileExtensions: ['.jpg', '.jpeg', '.gif', '.png'],
 };
 
 // Form Upload
@@ -66,7 +70,7 @@ export const FormUpload: Story = {
     `,
     props: args,
   }),
-  args: defaultArgs
+  args: defaultArgs,
 };
 
 // Async Upload - Instantly
@@ -86,7 +90,7 @@ export const AsyncUploadInstantly: Story = {
     `,
     props: args,
   }),
-  args: defaultArgs
+  args: defaultArgs,
 };
 
 // Async Upload with Buttons
@@ -105,7 +109,7 @@ export const AsyncUploadButtons: Story = {
     `,
     props: args,
   }),
-  args: defaultArgs
+  args: defaultArgs,
 };
 
 // Validation
@@ -128,7 +132,7 @@ export const ValidationExample: Story = {
     `,
     props: args,
   }),
-  args: defaultArgs
+  args: defaultArgs,
 };
 
 // Chunk Uploading
@@ -147,7 +151,7 @@ export const ChunkUpload: Story = {
     `,
     props: args,
   }),
-  args: defaultArgs
+  args: defaultArgs,
 };
 
 // File Types Selection
@@ -195,7 +199,7 @@ export const FileTypesSelection: Story = {
           gap: 12px;
           margin-bottom: 20px;
         }
-      `
+      `,
     ],
     props: {
       ...args,
@@ -204,17 +208,17 @@ export const FileTypesSelection: Story = {
         { name: 'All types', value: '*' },
         { name: 'Images', value: 'image/*' },
         { name: 'Videos', value: 'video/*' },
-        { name: 'Documents', value: '.pdf,.doc,.docx' }
+        { name: 'Documents', value: '.pdf,.doc,.docx' },
       ],
       allowedExtensions: {
         '*': [],
         'image/*': ['.jpg', '.jpeg', '.gif', '.png'],
         'video/*': ['.mp4', '.avi', '.mov'],
-        '.pdf,.doc,.docx': ['.pdf', '.doc', '.docx']
-      }
+        '.pdf,.doc,.docx': ['.pdf', '.doc', '.docx'],
+      },
     },
   }),
-  args: defaultArgs
+  args: defaultArgs,
 };
 
 // Custom Drop Zone
@@ -248,11 +252,11 @@ export const CustomDropZone: Story = {
         background-color: var(--Background-Content);
         min-height: 120px;
       }
-      `
+      `,
     ],
     props: args,
   }),
-  args: defaultArgs
+  args: defaultArgs,
 };
 
 // Disabled State
@@ -271,5 +275,5 @@ export const DisabledState: Story = {
     `,
     props: args,
   }),
-  args: defaultArgs
+  args: defaultArgs,
 };

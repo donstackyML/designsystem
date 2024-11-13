@@ -6,17 +6,15 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div
-      [class]="badgeClasses"
-      [ngStyle]="style"
-    >
+    <div [class]="badgeClasses" [ngStyle]="style">
       <span class="badge-content">{{ displayValue }}</span>
     </div>
-  `
+  `,
 })
 export class MeBadgeComponent implements OnChanges {
   @Input() size: '20' | '24' = '20';
-  @Input() color: 'default' | 'secondary' | 'success' | 'attention' | 'error' = 'default';
+  @Input() color: 'default' | 'secondary' | 'success' | 'attention' | 'error' =
+    'default';
   @Input() value: number | null = null;
   @Input() customStyle: { [key: string]: string } = {};
 
@@ -36,8 +34,10 @@ export class MeBadgeComponent implements OnChanges {
       'badge',
       `size-${this.size}`,
       `color-${this.color}`,
-      isExtended ? 'extended' : ''
-    ].filter(Boolean).join(' ');
+      isExtended ? 'extended' : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
 
     this.displayValue = this.formatValue(this.value);
     this.style = { ...this.customStyle };

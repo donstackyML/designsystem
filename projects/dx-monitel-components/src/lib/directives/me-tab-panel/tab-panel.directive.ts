@@ -16,10 +16,7 @@ export class MeTabPanelDirective extends MeFocusableDirective {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() stylingMode: 'inside' | 'outside' = 'outside';
 
-  constructor(
-    elementRef: ElementRef,
-    renderer: Renderer2
-  ) {
+  constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer);
   }
 }

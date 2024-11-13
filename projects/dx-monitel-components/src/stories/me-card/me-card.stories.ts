@@ -28,7 +28,7 @@ const meta: Meta<MeCardComponent> = {
         MeIconComponent,
         MeChipComponent,
         MeButtonModule,
-        MeDropDownButtonModule
+        MeDropDownButtonModule,
       ],
     }),
   ],
@@ -51,7 +51,7 @@ const meta: Meta<MeCardComponent> = {
     size: 'medium',
     showHeader: true,
     showFooter: true,
-  }
+  },
 };
 
 export default meta;
@@ -144,8 +144,8 @@ export const ComplexCard: Story = {
           ></dx-button>
         </ng-container>
       </me-card>
-    `
-  })
+    `,
+  }),
 };
 
 export const ScrollableContent: Story = {
@@ -250,7 +250,7 @@ export const ScrollableContent: Story = {
           ></dx-button>
         </ng-container>
       </me-card>
-    `
+    `,
   }),
   parameters: {
     docs: {
@@ -365,12 +365,13 @@ export const UnlimitedContent: Story = {
           ></dx-button>
         </ng-container>
       </me-card>
-    `
+    `,
   }),
   parameters: {
     docs: {
       description: {
-        story: 'Пример карточки с большим количеством контента без ограничения высоты.',
+        story:
+          'Пример карточки с большим количеством контента без ограничения высоты.',
       },
     },
   },
