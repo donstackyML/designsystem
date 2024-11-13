@@ -486,7 +486,7 @@ export default {
       <dxi-validation-rule type="required"></dxi-validation-rule>
     </dxi-column>
     <dxi-column dataField="Head_ID" caption="Head">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule type="required" message="Head is very very very very very very very very very very very required"></dxi-validation-rule>
     </dxi-column>
     <dxi-column dataField="Title" caption="Position">
       <dxi-validation-rule type="required"></dxi-validation-rule>
