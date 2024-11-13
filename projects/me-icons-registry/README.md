@@ -1,27 +1,80 @@
-# NgMeIcons
+Библиотека представляет из себя компонент <me-icon> для размещения иконок и сервис MeIconsRegistry для регистрации иконок.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+Разрабатывалась и тестировалась на версии Angular 16.2.14.
 
-## Development server
+Обратная связь — [публичная комната команды разработки дизайн-системы МЭ в Element](#UI:monitel.com).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Установка
 
-## Code scaffolding
+```
+npm install @monitel/me-icon-registry
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## Использование
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Установить пакет @monitel/me-icon
 
-## Running unit tests
+2. Импортировать MeIconsModule
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+import { MeIconsModule } from '@monitel/me-icons-registry';
 
-## Running end-to-end tests
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    ...
+    MeIconsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule { }
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
 
-## Further help
+3. Инжектировать сервис и зарегистрировать необходимые иконки в компоненте
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+import { meIcon24AccountCircle, meIcon24Add, meIcon24CalendarToday, meIcon24Close, meIcon24ContentCopy, meIcon24Edit } from '@monitel/me-icons';
+import { MeIconsRegistry } from '@monitel/me-icons-registry';
+
+export class AppComponent {
+  constructor(private meIconRegistry: MeIconsRegistry) {
+    meIconRegistry.registerIcons([meIcon24Add, meIcon24AccountCircle, meIcon24CalendarToday, meIcon24Close, meIcon24ContentCopy, meIcon24Edit]);
+  }
+}
+```
+
+4. Использовать иконки в разметке
+
+```
+  <me-icon name="24_content_copy"></me-icon>
+  <me-icon name="24_calendar_today"></me-icon>
+  <me-icon name="24_close" color="var(--Icon-Secondary)"></me-icon>
+  <me-icon name="24_edit" color="var(--Icon-Blue)"></me-icon>
+```
+
+5. При необходимости передать иконку в компонент DevExtreme, сначала получаем её в свойство компонента
+
+```
+constructor(private meIconRegistry: MeIconsRegistry) {
+  ...
+  this.add_24 = this.iconRegistry.getIcon('24_add', 'red');
+}
+```
+
+6. Затем байндим свойство класса к аттрибуту icon компонента DevExtreme
+
+```
+<dx-button meButton [leftIcon]="add_24" text="Добавить"></dx-button>
+```
+
+---
+
+## 🥂 License
+
+[Apache-2.0](./LICENSE.md) as always
