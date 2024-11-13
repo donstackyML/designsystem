@@ -96,7 +96,7 @@ export class MeDropDownButtonDirective
       ...this.dropDownOptions,
       contentTemplate: (contentElement: any) => {
         contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
-      }
+      },
     };
   }
 
