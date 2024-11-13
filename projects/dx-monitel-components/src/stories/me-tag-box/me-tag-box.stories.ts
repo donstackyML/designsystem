@@ -34,12 +34,6 @@ export default {
       defaultValue: true,
       description: 'Определяет состояние при нажатии на компонент',
     },
-    pickerType: {
-      control: 'select',
-      options: ['calendar', 'list', 'native', 'rollers'],
-      description: 'Тип пикера для выбора значений',
-      defaultValue: 'list',
-    },
     applyValueMode: {
       control: 'select',
       options: ['instantly', 'useButtons'],
@@ -102,10 +96,6 @@ export default {
     showSelectionControls: {
       control: 'boolean',
     },
-    description: {
-      control: 'text',
-      description: 'Описание для компонента',
-    },
   },
   args: {
     items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
@@ -118,7 +108,6 @@ export default {
     grouped: false,
     searchEnabled: true,
     placeholder: 'Выберите...',
-    pickerType: 'list',
     showClearButton: false,
     showSelectionControls: false,
     hideSelectedItems: false,
@@ -130,7 +119,6 @@ export default {
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
     readOnly: false,
-    description: 'description',
   },
   render: (args) => ({
     props: { ...args },
@@ -168,7 +156,6 @@ export default {
         </dxi-validation-rule>
     </dx-validator>
 		</dx-tag-box>
-    <p class='tag-box-desc' *ngIf="description">{{ description }}</p>
 		`,
   }),
 } as Meta;
@@ -184,7 +171,7 @@ export const WithLabelRow: StoryObj = {
     template: `
 		<label meLabel
 		labelDirection="row"
-		[size]="size"
+		[size]="size" 
 		width="250px">
 		Label*
 			<dx-tag-box

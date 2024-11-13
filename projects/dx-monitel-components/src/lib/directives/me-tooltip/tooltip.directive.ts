@@ -101,7 +101,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @HostListener('mouseleave')
   hideTooltip() {
     if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
-      this.tooltipComponentRef.instance.visible = true;
+      this.tooltipComponentRef.instance.visible = false;
     }
   }
 

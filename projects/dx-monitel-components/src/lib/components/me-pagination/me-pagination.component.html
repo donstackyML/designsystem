@@ -1,5 +1,6 @@
-<div class="me-pagination" [style.backgroundColor]="backgroundColor" [style.padding]="getPadding()">
-  <div class="me-pagination__size-controls">
+<!-- me-pagination.component.html -->
+<div class="me-pagination">
+  <div class="me-pagination__size-controls" [ngClass]="size">
     <ng-container *ngIf="useButtons; else selectBoxTemplate">
       <dx-button
         *ngFor="let size of itemsPerPageOptions"
@@ -7,20 +8,12 @@
         [type]="itemsPerPage === size ? 'default' : 'normal'"
         [text]="size.toString()"
         (onClick)="changeItemsPerPage(size)"
-        [style.backgroundColor]="transparentBackground && !isDarkTheme ? '#ECEDF3' : '#fff'"
-        [ngClass]="buttonStyle"
+        [style.backgroundColor]="transparentBackground && !isDarkTheme ? 'transparent' : ''"
+        [style.color]="transparentBackground && !isDarkTheme ? '#007bff' : ''"
       ></dx-button>
     </ng-container>
     <ng-template #selectBoxTemplate>
-      <dx-select-box
-        [items]="itemsPerPageOptions"
-        [(value)]="itemsPerPage"
-        (onValueChanged)="onItemsPerPageChange($event)"
-        [width]="80"
-        [ngClass]="size"
-      ></dx-select-box>
-      <!-- [valueExpr]="null"
-        [displayExpr]="null" -->
+      <dx-select-box [items]="itemsPerPageOptions" (onValueChanged)="onItemsPerPageChange($event)" [width]="80" [ngClass]="size"></dx-select-box>
     </ng-template>
   </div>
 
@@ -35,6 +28,8 @@
           [text]="page.toString()"
           (onClick)="changePage(page)"
           [type]="page === currentPage ? 'default' : 'normal'"
+          [style.backgroundColor]="transparentBackground && !isDarkTheme && page !== currentPage ? 'transparent' : ''"
+          [style.color]="transparentBackground && !isDarkTheme && page !== currentPage ? '#007bff' : ''"
         ></dx-button>
       </ng-container>
       <span *ngIf="page === '...'" class="me-pagination__ellipsis">...</span>

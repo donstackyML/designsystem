@@ -10,24 +10,18 @@ export class MeButtonGroupComponent {
   icon = 'arrowback';
   iconRight = 'arrowforward';
 
-  itemDataDefault: any[] = [
+  itemDataDefault: MeButtonGroupItem[] = [
     {
       text: 'Пункт 1',
       leftIcon: this.icon,
       rightIcon: this.iconRight,
       type: 'default',
-      onClick: () => {
-        console.log('Пункт 1');
-      },
     },
     {
       text: 'Пункт 2',
       leftIcon: this.icon,
       rightIcon: this.iconRight,
       type: 'default',
-      onClick: () => {
-        console.log('Пункт 2');
-      },
     },
     {
       text: 'Пункт 3',

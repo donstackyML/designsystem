@@ -1,10 +1,6 @@
 import { Directive, Input } from '@angular/core';
-import {
-  MeButtonGroupItem,
-  MeButtonStyle,
-  MeButtonType,
-  MeSize,
-} from '../../types/types';
+import { MeButtonStyle, MeButtonType, MeSize } from '../../types/types';
+import { MeButtonGroupItem } from '../../types/types';
 
 const LARGE_ICON_SIZE = '24';
 const DEFAULT_ICON_SIZE = '20';
@@ -20,9 +16,7 @@ export class MeControlDirective {
   @Input() text: string = '';
   @Input({
     transform: (originalItems: MeButtonGroupItem[]) =>
-      originalItems.map((item) => {
-        return { ...item };
-      }),
+      structuredClone(originalItems),
   })
   items: MeButtonGroupItem[] = [];
 

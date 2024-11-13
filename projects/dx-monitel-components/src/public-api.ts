@@ -1,5 +1,6 @@
 // Components
 import { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
+import { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
@@ -11,7 +12,6 @@ export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
-export { MeStatusBarComponent } from './lib/components/me-status-bar/me-status-bar.component';
 
 // Form and Input Directives
 export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';
@@ -37,6 +37,7 @@ export { MeTextBoxDirective } from './lib/directives/me-text-box/text-box.direct
 export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-editor.directive';
 export { MeFocusableDirective } from './lib/directives/me-focusable/me-focusable.directive';
 export { MeToastDirective } from './lib/directives/me-toast/toast.directive';
+export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 
 // Layout and Navigation Directives
 export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';
@@ -85,6 +86,7 @@ export { MeTextBoxModule } from './lib/directives/me-text-box/me-text-box.module
 export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-editor.module';
 export { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
+export { MeDateRangeBoxModule } from './lib/directives/me-date-range-box/date-range-box.module';
 
 // Layout and Navigation Modules
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';
