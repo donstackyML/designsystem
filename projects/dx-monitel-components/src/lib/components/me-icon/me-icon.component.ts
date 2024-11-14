@@ -6,7 +6,7 @@ import { NgStyle } from '@angular/common';
   standalone: true,
   template: `
     <span
-      class="material-symbols-outlined"
+      class="material-icons"
       [ngStyle]="{ fontSize: getSize(), color: color }"
     >
       {{ icon }}

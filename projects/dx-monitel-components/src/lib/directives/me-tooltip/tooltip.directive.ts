@@ -1,22 +1,22 @@
 import {
+  ComponentRef,
   Directive,
   ElementRef,
-  Input,
-  OnInit,
-  OnDestroy,
-  Renderer2,
-  TemplateRef,
-  OnChanges,
-  SimpleChanges,
-  HostListener,
-  ViewContainerRef,
-  ComponentRef,
-  SecurityContext,
   EmbeddedViewRef,
+  HostListener,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  SecurityContext,
+  SimpleChanges,
+  TemplateRef,
+  ViewContainerRef,
+  inject,
 } from '@angular/core';
-import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Position } from 'devextreme/common';
+import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
 
 @Directive({
   selector: '[meTooltip]',
@@ -45,12 +45,12 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
 
   private tooltipComponentRef!: ComponentRef<DxTooltipComponent>;
   private readonly ME_TOOLTIP_CLASS = 'me-tooltip';
+  private sanitizer = inject(DomSanitizer);
 
   constructor(
     private element: ElementRef,
     private renderer: Renderer2,
-    private viewContainerRef: ViewContainerRef,
-    private sanitizer: DomSanitizer
+    private viewContainerRef: ViewContainerRef
   ) {}
 
   ngOnInit() {
