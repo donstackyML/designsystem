@@ -23,6 +23,11 @@ export default {
       options: ['small', 'medium', 'large'],
       description: 'Размер компонента',
     },
+    showBorder: {
+      control: 'boolean',
+      description: 'Показывать ли границы таблицы',
+      defaultValue: true
+    },
     showPageSizeSelector: {
       control: 'select',
       options: [true, false],
@@ -893,6 +898,7 @@ export default {
 				id="gridContainer"
 				[(dataSource)]="dataSource"
 				[size]="size"
+				[showBorders]="showBorder"
 				[allowColumnReordering]="true"
 			>
 				<dxo-search-panel [visible]="true"></dxo-search-panel>

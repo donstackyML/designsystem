@@ -11,7 +11,7 @@ interface TabPanelItem {
 interface MeTabPanelProps {
   dataSource: TabPanelItem[];
   size: 'small' | 'medium' | 'large';
-  stylingMode: 'inside' | 'outside';
+  styling: 'inside' | 'outside';
   tabsPosition: 'top' | 'bottom' | 'left' | 'right';
   iconPosition: 'left' | 'top' | 'start' | 'end';
   height: number | string;
@@ -45,7 +45,7 @@ const meta: Meta<MeTabPanelProps> = {
 				[focusStateEnabled]="focusStateEnabled"
 				[activeStateEnabled]="activeStateEnabled"
 				[disabled]="disabled"
-				[stylingMode]="stylingMode"
+				[styling]="styling"
         [iconPosition]="iconPosition"
         [selectedIndex]="selectedIndex"
         [swipeEnabled]="swipeEnabled"
@@ -69,7 +69,7 @@ const meta: Meta<MeTabPanelProps> = {
       options: ['small', 'medium', 'large'],
       control: { type: 'select' },
     },
-    stylingMode: {
+    styling: {
       options: ['inside', 'outside'],
       control: { type: 'select' },
     },
@@ -113,7 +113,7 @@ export const Default: Story = {
   args: {
     dataSource: defaultTabPanelData,
     size: 'medium',
-    stylingMode: 'outside',
+    styling: 'outside',
     tabsPosition: 'left',
     iconPosition: 'left',
     activeStateEnabled: true,
