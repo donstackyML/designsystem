@@ -37,8 +37,12 @@ const meta: Meta<MeAutocompleteDirective> = {
     },
     labelMode: {
       control: 'select',
-      options: ['floating', 'outside'],
+      options: ['floating', 'outside', 'hidden', 'inside'],
       description: 'Режим отображения label',
+    },
+    description: {
+      control: 'text',
+      description: 'Описание для компонента',
     },
   },
 };
@@ -66,6 +70,7 @@ export const Default: Story = {
       'Cba',
       'Bca',
     ],
+    description: 'description',
   },
   render: (args) => ({
     props: args,
@@ -90,6 +95,7 @@ export const Default: Story = {
           }
         }"
       ></dx-autocomplete>
+      <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
     `,
   }),
 };

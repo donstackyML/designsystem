@@ -22,6 +22,7 @@ export class MeAutocompleteDirective
   @Input() dataSource: any[] = [];
   @Input() label?: string;
   @Input() labelMode?: 'static' | 'floating' | 'hidden' | 'outside';
+  @Input() description: string = '';
 
   constructor(
     private component: DxAutocompleteComponent,
