@@ -20,7 +20,6 @@ export type MeTabsStylingMode = 'inside' | 'outside';
     '[class.me-tabs-small]': 'size === "small"',
     '[class.me-tabs-medium]': 'size === "medium"',
     '[class.me-tabs-large]': 'size === "large"',
-    // Обновляем классы для стилизации
     '[class.dx-tabs-styling-mode-primary]': 'internalStylingMode === "primary"',
     '[class.dx-tabs-styling-mode-secondary]':
       'internalStylingMode === "secondary"',
@@ -41,7 +40,6 @@ export class MeTabsDirective implements OnInit {
   // Обновляем определение stylingMode
   @Input() set stylingMode(value: MeTabsStylingMode) {
     this._stylingMode = value;
-    // Конвертируем наш stylingMode в формат, понятный DevExtreme
     this.internalStylingMode = value === 'inside' ? 'primary' : 'secondary';
   }
   get stylingMode(): MeTabsStylingMode {
