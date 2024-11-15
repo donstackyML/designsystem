@@ -1,13 +1,13 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
-import { MePaginationComponent } from '../../public-api';
+import {MePaginationComponent, MeSelectBoxModule} from '../../public-api';
 
 export default {
   title: 'Components/Pagination',
   component: MePaginationComponent,
   decorators: [
     moduleMetadata({
-      imports: [MePaginationComponent, DxButtonModule, DxSelectBoxModule],
+      imports: [MePaginationComponent, DxButtonModule, DxSelectBoxModule, MeSelectBoxModule],
     }),
   ],
   argTypes: {
