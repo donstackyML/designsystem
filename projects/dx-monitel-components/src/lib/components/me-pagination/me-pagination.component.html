@@ -1,5 +1,11 @@
 <!-- me-pagination.component.html -->
-<div class="me-pagination">
+<div class="me-pagination"
+[ngClass]="{
+  'me-pagination-background': !transparentBackground,
+  'me-pagination--small': size === 'small',
+  'me-pagination--medium': size === 'medium',
+  'me-pagination--large': size === 'large'
+}">
   <div class="me-pagination__size-controls" [ngClass]="size">
     <ng-container *ngIf="useButtons; else selectBoxTemplate">
       <dx-button
@@ -8,8 +14,12 @@
         [type]="itemsPerPage === size ? 'default' : 'normal'"
         [text]="size.toString()"
         (onClick)="changeItemsPerPage(size)"
-        [style.backgroundColor]="transparentBackground && !isDarkTheme ? 'transparent' : ''"
+        [style.backgroundColor]="transparentBackground && !isDarkTheme ? '' : ''"
         [style.color]="transparentBackground && !isDarkTheme ? '#007bff' : ''"
+        [ngClass]="{
+          'me-pagination-button-background': !transparentBackground,
+          'me-pagination-button-background-false': transparentBackground
+        }"
       ></dx-button>
     </ng-container>
     <ng-template #selectBoxTemplate>
@@ -18,7 +28,10 @@
         [items]="itemsPerPageOptions"
         (onValueChanged)="onItemsPerPageChange($event)"
         [width]="80"
-        [ngClass]="size"
+        [ngClass]="{
+          'me-pagination-button-background': !transparentBackground,
+          'me-pagination-button-background-false': transparentBackground
+        }"
       ></dx-select-box>
     </ng-template>
   </div>
