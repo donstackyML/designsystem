@@ -7,3 +7,170 @@ import { Figma } from "@storybook/addon-designs/blocks";
 # DateRangeBox
 
 ## Директива meDateRangeBox
+
+Применение директивы meDateRangeBox к элементу <code>dx-date-range-box</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство <code>size</code>.
+
+Документация на сайте разработчика Devextreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDateRangeBox/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DateRangeBox/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+	<Canvas of={DateRangeBoxStories.Default} />
+	<Controls of={DateRangeBoxStories.Default} />
+
+	## Дизайн
+
+<Figma
+  height="50%"
+			collapsable
+	defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=uOtV7gZSB9RVNEJg-0"
+/>
+
+## Примеры использования:
+
+- [Размеры DateRangeBox](#размеры-daterangebox)
+- [Мульти календарь](#мульти-календарь)
+- [Минимальная и максимальная дата](#минимальная-и-максимальная-дата)
+- [Положение Label](#положение-label)
+- [Валидация поля](#валидация-поля)
+- [Тип DateRangeBox](#тип-daterangebox)
+- [Ввод даты](#ввод-даты)
+- [Формат даты и времени](#формат-даты-и-времени)
+- [Настройка дат для выбора](#настройка-дат-для-выбора)
+
+### Размеры DateRangeBox
+Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
+
+<Source
+	code={`<dx-date-range-box meDateRangeBox size="size"></dx-date-range-box>`}
+	language="html"
+	dark
+/>
+
+### Мульти календарь
+Для отображения двойного календаря используйте параметр `multiView`.
+
+<Source
+	code={`<dx-date-range-box meDateRangeBox [multiView]="true"></dx-date-range-box>`}
+	language="html"
+	dark
+/>
+
+### Минимальная и максимальная дата
+Для установки минимальной и максимальной даты используются параметры `min` и `max`.
+
+<Source
+	code={`<dx-date-range-box meDateRangeBox [min]="1/1/2024" [max]="12/31/2024"></dx-date-range-box>`}
+	language="html"
+	dark
+/>
+
+### Положение Label
+Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `static`, `floating`, `hidden`, `outside`. Для изменения самого Label внутри используйте параметр `label`
+
+<Source
+  code={`<dx-date-range-box meDateRangeBox labelMode="labelMode" label="label"></dx-date-range-box>`}
+  dark
+  language="html"
+/>
+
+Для того, чтобы установить label слева от элемента, используйте тэг обертку `label` с директивой `meLabel` и параметром `labelDirection="row"`, установив параметр `labelMode="hidden"` в <code>meDateRangeBox</code>.
+
+<Source
+			code={`
+<label meLabel 
+labelDirection="row">
+  <dx-date-range-box meDateRangeBox labelMode="hidden"></dx-date-range-box>
+</label>`}
+	dark
+	language="html"
+/>
+<Story of={DateRangeBoxStories.WithLabelRow} />
+
+### Валидация поля
+Для валидации используйте `<dx-validator>` внутри тэга `dx-date-range-box`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
+Не забудьте импортировать `DxTextAreaModule` и `DxValidatorModule`.
+Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
+Используйте параметр `validationMessagePosition` для изменения положения сообщения об ошибке. Варианты: `top`, `bottom`, `left`, `right`.
+
+<Source
+	code={`<dx-date-range-box meTextArea
+[(validationMessageMode)]="validationMessageMode"
+[(validationMessagePosition)]="validationMessagePosition">
+  <dx-validator>
+    <dxi-validation-rule 
+    type="required"
+    message="Required"
+    ></dxi-validation-rule>
+  </dx-validator>
+</dx-date-range-box>`}
+	dark
+	language="html"
+/>
+
+## Тип DateRangeBox
+
+Для настроек типа используйте параметр `type`. Есть три варианта: `date`, `datetime`, `time`. По умолчанию тип DateRangeBox - `date`.
+Так же можно включить отображение аналоговых часов, установив `showAnalogClock=true`.
+
+<Source
+	code={`<dx-date-range-box meDateRangeBox 
+  type="type"
+  showAnalogClock="true"
+></dx-date-range-box>`}
+	language="html"
+	dark
+/>
+
+
+## Ввод даты
+Установив параметр `acceptCustomValue=true` можно вводить дату вручную.
+
+<Source
+	code={`<dx-date-range-box meDateRangeBox 
+  acceptCustomValue="true"
+></dx-date-range-box>`}
+	language="html"
+	dark
+/>
+
+## Формат даты и времени
+`dateSerializationFormat` позволяет задать формат даты и времени, которые будут отображаться в компоненте. Примеры вариантов есть выше в контроллерах и на сайте DevExtreme.
+
+<Source
+	code={`<dx-date-range-box meDateRangeBox 
+dateSerializationFormat="dateSerializationFormat"
+></dx-date-range-box>`}
+	language="html"
+	dark
+/>
+
+## Настройка дат для выбора
+
+`disabledDates` позволяет задать даты, которые пользователи не могут выбрать.
+`calendarOptions` позволяет задать настройки календаря. Необходимо передать объект с настройками. Возможности календаря приведены в документации к соответствующему компоненту DevExtreme.
+
+<Source
+	code={`<dx-date-range-box meDateRangeBox 
+disabledDates="2024-04-22"
+calendarOptions="{
+  showWeekNumbers: true,
+  max: '2024-12-31',
+  min: '2023-12-31',}"
+></dx-date-range-box>`}
+	language="html"
+	dark
+/>
