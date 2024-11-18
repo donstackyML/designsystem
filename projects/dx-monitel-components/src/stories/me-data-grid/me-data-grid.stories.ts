@@ -26,7 +26,7 @@ export default {
     showBorder: {
       control: 'boolean',
       description: 'Показывать ли границы таблицы',
-      defaultValue: true
+      defaultValue: true,
     },
     showPageSizeSelector: {
       control: 'select',

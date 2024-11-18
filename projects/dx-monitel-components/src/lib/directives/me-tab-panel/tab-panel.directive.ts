@@ -13,10 +13,14 @@ export type MeTabPanelStylingMode = 'inside' | 'outside';
     '[class.me-tabs-medium]': 'size === "medium"',
     '[class.me-tabs-large]': 'size === "large"',
     '[class.dx-tabs-styling-mode-primary]': 'internalStylingMode === "primary"',
-    '[class.dx-tabs-styling-mode-secondary]': 'internalStylingMode === "secondary"',
+    '[class.dx-tabs-styling-mode-secondary]':
+      'internalStylingMode === "secondary"',
   },
 })
-export class MeTabPanelDirective extends MeFocusableDirective implements OnInit {
+export class MeTabPanelDirective
+  extends MeFocusableDirective
+  implements OnInit
+{
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
 
   @Input() set styling(value: MeTabPanelStylingMode) {

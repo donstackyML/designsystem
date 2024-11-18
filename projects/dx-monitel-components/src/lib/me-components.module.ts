@@ -47,6 +47,8 @@ import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.modu
 import { MeAutocompleteModule } from './directives/me-autocomplete/me-autocomplete.module';
 import { MeFormModule } from './directives/me-form/me-form.module';
 import { A11yModule } from '@angular/cdk/a11y';
+import { MeNumberBoxModule } from './directives/me-number-box/me-number-box.module';
+import { MeNumberBoxDirective } from './directives/me-number-box/me-number-box.directive';
 
 @NgModule({
   declarations: [],
@@ -102,6 +104,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MeTagBoxModule,
     MeAutocompleteModule,
     MeFormModule,
+    MeNumberBoxModule,
   ],
   exports: [
     MeAccordionModule,
@@ -155,6 +158,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MeTagBoxModule,
     MeAutocompleteModule,
     MeFormModule,
+    MeNumberBoxDirective,
   ],
 })
 export class MeComponentsModule {}
