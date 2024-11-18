@@ -1,6 +1,8 @@
 // Components
 import { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 import { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
+import { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
+import { MeNumberBoxModule } from './lib/directives/me-number-box/me-number-box.module';
 
 
 
@@ -42,6 +44,7 @@ export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-edit
 export { MeFocusableDirective } from './lib/directives/me-focusable/me-focusable.directive';
 export { MeToastDirective } from './lib/directives/me-toast/toast.directive';
 export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
+export { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
 
 // Layout and Navigation Directives
 export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';
@@ -91,6 +94,7 @@ export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-edit
 export { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
 export { MeDateRangeBoxModule } from './lib/directives/me-date-range-box/date-range-box.module';
+export { MeNumberBoxModule } from './lib/directives/me-number-box/me-number-box.module';
 
 // Layout and Navigation Modules
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';

@@ -6,43 +6,38 @@ import {
   Input,
   OnInit,
   Renderer2,
+  inject,
 } from '@angular/core';
-import { DxTagBoxComponent } from 'devextreme-angular';
+import { DxNumberBoxComponent } from 'devextreme-angular';
 
 import { MeSize } from '../../types/types';
 import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
 @Directive({
-  selector: '[meTagBox]',
+  selector: '[meNumberBox]',
   host: {
-    '[class.me-tag-box]': 'true',
-    '[class.me-tag-box-small]': 'isSizeSmall',
-    '[class.me-tag-box-medium]': 'isSizeMedium',
-    '[class.me-tag-box-large]': 'isSizeLarge',
+    '[class.me-number-box]': 'true',
+    '[class.me-number-box-small]': 'isSizeSmall',
+    '[class.me-number-box-medium]': 'isSizeMedium',
+    '[class.me-number-box-large]': 'isSizeLarge',
+
+    '[class.me-editor]': 'true',
+    '[class.me-editor-large]': 'isSizeLarge',
+    '[class.me-editor-medium]': 'isSizeMedium',
+    '[class.me-editor-small]': 'isSizeSmall',
   },
 })
-export class MeTagBoxDirective
+export class MeNumberBoxDirective
   extends MeFocusableDirective
   implements OnInit, AfterViewInit
 {
   @Input() size: MeSize = 'medium';
-  @Input() description: string = ''; // Новое свойство description
 
-  constructor(
-    element: ElementRef,
-    renderer: Renderer2,
-    private component: DxTagBoxComponent
-  ) {
-    super(element, renderer);
-  }
+  override renderer = inject(Renderer2);
+  private component = inject(DxNumberBoxComponent);
 
   ngOnInit(): void {
     this.component.instance.option('stylingMode', 'filled');
-    this.component.instance.option('dropDownOptions', {
-      wrapperAttr: {
-        class: `me-dropdownlist me-dropdownlist-${this.size} me-tag-box`,
-      },
-    });
   }
 
   get isSizeSmall() {
@@ -55,26 +50,6 @@ export class MeTagBoxDirective
 
   get isSizeLarge() {
     return this.size === 'large';
-  }
-
-  @HostListener('onOpened', ['$event'])
-  onOpened(e: any) {
-    const submitButton = e.component._list
-      .element()
-      .parentElement.parentElement.querySelector('.dx-button.dx-popup-done');
-    const cancelButton = e.component._list
-      .element()
-      .parentElement.parentElement.querySelector('.dx-button.dx-popup-cancel');
-
-    this.renderer.addClass(submitButton, 'me-button');
-    this.renderer.addClass(submitButton, 'dx-button-default');
-    this.renderer.addClass(submitButton, `me-button-${this.size}`);
-    submitButton.querySelector('.dx-button-text').innerHTML = 'Выбрать';
-    cancelButton.querySelector('.dx-button-text').innerHTML = 'Отмена';
-
-    this.renderer.addClass(cancelButton, 'me-button');
-    this.renderer.addClass(cancelButton, `me-button-${this.size}`);
-    this.renderer.addClass(cancelButton, 'dx-button-normal');
   }
 
   // Установка цвета при фокусе

@@ -25,7 +25,8 @@ export default {
     },
     showBorders: {
       control: 'boolean',
-      description: 'Отображать границы таблицы',
+      description: 'Показывать ли границы таблицы',
+      defaultValue: true,
     },
     showRowLines: {
       control: 'boolean',

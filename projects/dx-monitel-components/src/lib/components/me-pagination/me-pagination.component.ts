@@ -10,12 +10,19 @@ import {
 } from '@angular/core';
 import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
 import { ValueChangedEvent } from 'devextreme/ui/select_box';
-import {MeSelectBoxModule} from "../../directives/me-select-box/me-select-box.module";
+import { MeSelectBoxModule } from '../../directives/me-select-box/me-select-box.module';
 
 @Component({
   selector: 'me-pagination',
   templateUrl: './me-pagination.component.html',
-  imports: [DxButtonModule, NgForOf, NgIf, DxSelectBoxModule, NgClass, MeSelectBoxModule],
+  imports: [
+    DxButtonModule,
+    NgForOf,
+    NgIf,
+    DxSelectBoxModule,
+    NgClass,
+    MeSelectBoxModule,
+  ],
   standalone: true,
 })
 export class MePaginationComponent implements OnInit, OnChanges {

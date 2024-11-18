@@ -49,6 +49,8 @@ import { MeFormModule } from './directives/me-form/me-form.module';
 import { A11yModule } from '@angular/cdk/a11y';
 import {MeStatusBarComponent} from "./components/me-status-bar/me-status-bar.component";
 import {MeSidebarMenuComponent} from "./components/me-sidebar-menu/me-sidebar-menu.component";
+import { MeNumberBoxModule } from './directives/me-number-box/me-number-box.module';
+import { MeNumberBoxDirective } from './directives/me-number-box/me-number-box.directive';
 
 @NgModule({
   declarations: [],
@@ -106,6 +108,7 @@ import {MeSidebarMenuComponent} from "./components/me-sidebar-menu/me-sidebar-me
     MeFormModule,
     MeStatusBarComponent,
     MeSidebarMenuComponent
+    MeNumberBoxModule,
   ],
   exports: [
     MeAccordionModule,
@@ -161,6 +164,7 @@ import {MeSidebarMenuComponent} from "./components/me-sidebar-menu/me-sidebar-me
     MeFormModule,
     MeStatusBarComponent,
     MeSidebarMenuComponent
+    MeNumberBoxDirective,
   ],
 })
 export class MeComponentsModule {}

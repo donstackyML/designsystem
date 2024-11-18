@@ -1,0 +1,144 @@
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import * as NumberBoxStories from "./me-number-box.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+
+<Meta
+  title="Components/NumberBox"
+  of={NumberBoxStories}
+/>
+
+# NumberBox
+
+## Директива meNumberBox
+
+Применение директивы meNumberBox к элементу <code>dx-numberbox</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство <code>size</code>.
+
+Документация на сайте разработчика Devextreme:
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxNumberBox/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/NumberBox/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+<Canvas of={NumberBoxStories.Default} />
+<Controls of={NumberBoxStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+			collapsable
+	defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=sQe2fg33jNgXT1Pd-0"
+/>
+
+## Примеры использования:
+
+- [Размеры NumberBox](#размеры-numberbox)
+- [Формат отображения](#формат-отображения)
+- [Положение Label](#положение-label)
+- [Валидация поля](#валидация-поля)
+- [Добавление Description](#добавление-description)
+
+### Размеры NumberBox
+Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
+
+<Source
+			code={`<dx-number-box meNumberBox size="size"></dx-number-box>`}
+			language="html"
+			dark
+/>
+
+### Формат отображения
+
+Для изменения формата отображения используйте параметр `format` и укажите желаемое отображение.
+
+##### `0` - цифра. 
+Отображается '0', если в отформатированном номере нет цифры в этой позиции.
+
+##### `#` До 15 начальных цифр, одна цифра или ничего. 
+Если этот символ идет первым в строке формата, он может соответствовать нескольким начальным цифрам (до десятичной запятой). Последующие символы соответствуют одной цифре. Если форматированное число не содержит цифры в соответствующей позиции, оно ничего не отображает.
+Например, если вы примените формат "# 0. #" к "123.45", результатом будет "123.4".
+
+##### `.` Десятичный разделитель.
+Фактический символ зависит от локали.
+
+##### `,` Разделитель групп.
+Фактический символ зависит от локали.
+
+##### `%` Знак процента.
+Умножает входное значение на 100.
+
+##### `;` Разделяет положительные и отрицательные шаблоны форматирования.
+Например, формат "#0.##;(#0.##)" отображает положительное число в соответствии с шаблоном перед точкой с запятой (";") и отрицательное число в соответствии с шаблоном после точки с запятой (";").
+Если вы не используете этот символ и дополнительный шаблон, в отрицательных числах отображается префикс минус ("-").
+
+##### `Экранирующие символы` 
+Приведенные выше специальные символы можно отобразить как литералы, если заключить их в одинарные кавычки. Например, '%'.
+
+##### `Другие символы` 
+Вы можете добавить любые буквенные символы в начало или конец строки формата.
+
+### Положение Label
+Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `static`, `floating`, `hidden`, `outside`. Для изменения самого Label внутри используйте параметр `label`
+
+<Source
+  code={`<dx-number-box meNumberBox labelMode="labelMode" label="label"></dx-number-box>`}
+  dark
+  language="html"
+/>
+
+Для того, чтобы установить label слева от элемента, используйте тэг обертку `label` с директивой `meLabel` и параметром `labelDirection="row"`, установив параметр `labelMode="hidden"` в <code>meNumberBox</code>.
+
+<Source
+			code={`
+  <label meLabel 
+  labelDirection="row">
+    <dx-number-box meNumberBox labelMode="hidden"></dx-number-box>
+  </label>`}
+	dark
+	language="html"
+/>
+<Story name="Default" of={NumberBoxStories.WithLabelRow} />
+
+### Валидация поля
+Для валидации используйте `<dx-validator>` внутри тэга `dx-number-box`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
+Не забудьте импортировать `DxTextAreaModule` и `DxValidatorModule`.
+Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
+Используйте параметр `validationMessagePosition` для изменения положения сообщения об ошибке. Варианты: `top`, `bottom`, `left`, `right`.
+
+<Source
+	code={`<dx-number-box meNumberBox
+  [(validationMessageMode)]="validationMessageMode"
+  [(validationMessagePosition)]="validationMessagePosition">
+  <dx-validator>
+    <dxi-validation-rule 
+    type="required"
+    message="Required"
+    ></dxi-validation-rule>
+  </dx-validator>
+</dx-number-box>`}
+	dark
+	language="html"
+/>
+
+### Добавление Description
+Компоненты DevExtreme не поддерживают собственных description. Добавление description можно осуществить добавлением доп тегов, классов и стилей как на примере ниже.
+
+<Story name="Default" of={NumberBoxStories.WithDiscription} />
+<Source code={`<dx-number-box meNumberBox ></dx-number-box>
+<div class="me-text-body2">Description</div>`} dark language="html" />
+<Source code={`.me-text-body2 { 
+  height: 20px;
+  margin-top: 4px;
+  color: #808084
+}`} dark language="css" />
