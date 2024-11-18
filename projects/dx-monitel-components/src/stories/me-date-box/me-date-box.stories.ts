@@ -159,7 +159,7 @@ export const WithLabelRow: StoryObj = {
     template: `
 		<label meLabel
 		labelDirection="row"
-		[size]="size" 
+		[size]="size"
 		width="250px">
 		Label*
 			<dx-date-box meDateBox

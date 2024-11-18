@@ -2,6 +2,8 @@
 import { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 import { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 
+
+
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
 export { MeCardComponent } from './lib/components/me-card/me-card.component';
@@ -12,6 +14,8 @@ export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
+export { MeStatusBarComponent } from "./lib/components/me-status-bar/me-status-bar.component";
+export { MeSidebarMenuComponent } from "./lib/components/me-sidebar-menu/me-sidebar-menu.component";
 
 // Form and Input Directives
 export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';

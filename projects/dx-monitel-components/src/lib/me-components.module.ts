@@ -47,6 +47,8 @@ import { MePivotGridModule } from './directives/me-pivot-grid/me-pivot-grid.modu
 import { MeAutocompleteModule } from './directives/me-autocomplete/me-autocomplete.module';
 import { MeFormModule } from './directives/me-form/me-form.module';
 import { A11yModule } from '@angular/cdk/a11y';
+import {MeStatusBarComponent} from "./components/me-status-bar/me-status-bar.component";
+import {MeSidebarMenuComponent} from "./components/me-sidebar-menu/me-sidebar-menu.component";
 
 @NgModule({
   declarations: [],
@@ -102,6 +104,8 @@ import { A11yModule } from '@angular/cdk/a11y';
     MeTagBoxModule,
     MeAutocompleteModule,
     MeFormModule,
+    MeStatusBarComponent,
+    MeSidebarMenuComponent
   ],
   exports: [
     MeAccordionModule,
@@ -155,6 +159,8 @@ import { A11yModule } from '@angular/cdk/a11y';
     MeTagBoxModule,
     MeAutocompleteModule,
     MeFormModule,
+    MeStatusBarComponent,
+    MeSidebarMenuComponent
   ],
 })
 export class MeComponentsModule {}
