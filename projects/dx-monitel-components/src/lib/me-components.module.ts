@@ -107,7 +107,7 @@ import { MeNumberBoxDirective } from './directives/me-number-box/me-number-box.d
     MeAutocompleteModule,
     MeFormModule,
     MeStatusBarComponent,
-    MeSidebarMenuComponent
+    MeSidebarMenuComponent,
     MeNumberBoxModule,
   ],
   exports: [
@@ -163,7 +163,7 @@ import { MeNumberBoxDirective } from './directives/me-number-box/me-number-box.d
     MeAutocompleteModule,
     MeFormModule,
     MeStatusBarComponent,
-    MeSidebarMenuComponent
+    MeSidebarMenuComponent,
     MeNumberBoxDirective,
   ],
 })

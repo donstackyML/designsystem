@@ -7,7 +7,7 @@ import {
 } from 'devextreme-angular';
 import {
   MeTextBoxModule,
-  MeDateBoxModule,
+  MeDateBoxModule, MeNumberBoxModule,
 } from '../../public-api';
 import { MeIconsModule } from '@monitel/me-icons-registry';
 
@@ -27,6 +27,7 @@ interface ButtonProperties extends DxButtonTypes.Properties {
     MeTextBoxModule,
     MeDateBoxModule,
     MeIconsModule,
+    MeNumberBoxModule
   ],
   template: `
     <div class="dx-fieldset">
@@ -58,6 +59,8 @@ interface ButtonProperties extends DxButtonTypes.Properties {
         <div class="dx-field-label">Currency Field</div>
         <div class="dx-field-value">
           <dx-number-box
+            meNumberBox
+            [size]="size"
             [stylingMode]="stylingMode"
             [disabled]="disabled"
             [readOnly]="readOnly"
