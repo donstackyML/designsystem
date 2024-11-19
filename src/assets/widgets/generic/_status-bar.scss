@@ -1,0 +1,181 @@
+@use 'sass:color';
+@use './colors' as *;
+
+.me-status-bar {
+  // Основные стили
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: var(--Background-Content);
+  border: 1px solid var(--Controls-BG-Secondary-Elements-BG-Default);
+  &--transparent {
+    background: transparent;
+    border: none;
+  }
+
+  // Размеры
+  &--small {
+    height: 32px;
+
+    .me-status-bar__divider {
+      height: 24px;
+    }
+
+    .me-status-bar__button {
+      height: 28px;
+      border-radius: 2px;
+
+      .me-status-bar__button-content {
+        padding: 4px 8px;
+        font-size: 14px;
+        line-height: 16px;
+
+        i.dx-icon {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  &--large {
+    height: 48px;
+
+    .me-status-bar__divider {
+      height: 28px;
+      margin: 0 6px;
+    }
+
+    .me-status-bar__button {
+      height: 40px;
+      border-radius: 2px;
+
+      .me-status-bar__button-content {
+        padding: 6px 12px;
+        font-size: 16px;
+        line-height: 24px;
+
+        i.dx-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  &__section {
+    display: flex;
+    align-items: center;
+
+    &--right {
+      margin-left: auto;
+    }
+  }
+
+  &__button {
+    &.dx-button-mode-contained {
+      // Стили для кнопок с заливкой при наличии type
+      &.me-status-bar__button--error {
+        background-color: var(--Controls-BG-Accent-Danger-BG-Default) !important;
+        border-color: var(--Controls-BG-Accent-Danger-BG-Default) !important;
+        color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+
+        .dx-icon {
+          color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+        }
+      }
+
+      &.me-status-bar__button--warning {
+        background-color: var(--Controls-BG-Accent-Attention-BG-Default) !important;
+        border-color: var(--Controls-BG-Accent-Attention-BG-Default) !important;
+        color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+
+        .dx-icon {
+          color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+        }
+      }
+
+      &.me-status-bar__button--success {
+        background-color: var(--Controls-BG-Accent-Success-BG-Default) !important;
+        border-color: var(--Controls-BG-Accent-Success-BG-Default) !important;
+        color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+
+        .dx-icon {
+          color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+        }
+      }
+
+      &.me-status-bar__button--info {
+        background-color: var(--Controls-BG-Accent-Accent-BG-Default) !important;
+        color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+
+        .dx-icon {
+          color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+        }
+      }
+    }
+
+    &.dx-button-mode-text {
+      // Базовые стили для текстовых кнопок
+      background-color: transparent !important;
+      border: none !important;
+
+      // Стили для кнопок с type но без заливки
+      &.me-status-bar__button--error {
+        .dx-button-content {
+          color: var(--Controls-Content-In-Controls-Danger-Default) !important;
+        }
+
+        .dx-icon {
+          color: var(--Controls-Content-In-Controls-Danger-Default) !important;
+        }
+      }
+
+      &.me-status-bar__button--warning {
+        .dx-button-content {
+          color: var(--Controls-Content-In-Controls-Attention-Default) !important;
+        }
+
+        .dx-icon {
+          color: var(--Controls-Content-In-Controls-Attention-Default) !important;
+        }
+      }
+
+      &.me-status-bar__button--success {
+        .dx-button-content {
+          color: var(--Controls-Content-In-Controls-Success-Default) !important;
+        }
+
+        .dx-icon {
+          color: var(--Controls-Content-In-Controls-Success-Default) !important;
+        }
+      }
+
+      &.me-status-bar__button--info {
+        .dx-button-content {
+          color: var(--Controls-Informative-BG-Notification) !important;
+        }
+
+        .dx-icon {
+          color: var(--Controls-Informative-BG-Notification) !important;
+        }
+      }
+    }
+  }
+
+  &__button-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i.dx-icon {
+      margin: 0;
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 16px;
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+    margin: 0 4px;
+  }
+}

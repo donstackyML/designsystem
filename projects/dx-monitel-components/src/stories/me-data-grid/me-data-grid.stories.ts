@@ -23,10 +23,14 @@ export default {
       options: ['small', 'medium', 'large'],
       description: 'Размер компонента',
     },
-    showBorder: {
+    showBorders: {
       control: 'boolean',
       description: 'Показывать ли границы таблицы',
       defaultValue: true,
+    },
+    showRowLines: {
+      control: 'boolean',
+      description: 'Отображать границы строк',
     },
     showPageSizeSelector: {
       control: 'select',
@@ -882,6 +886,8 @@ export default {
         State: 'State 3',
       },
     ],
+    showBorders: false,
+    showRowLines: false,
     size: 'medium',
     showPageSizeSelector: true,
     displayMode: 'full',
@@ -899,10 +905,11 @@ export default {
 				[(dataSource)]="dataSource"
 				[size]="size"
 				[showBorders]="showBorder"
+			  [showRowLines]="showRowLines"
 				[allowColumnReordering]="true"
 			>
 				<dxo-search-panel [visible]="true"></dxo-search-panel>
-				<dxo-paging [(pageSize)]="pageSize" [showPageSizeSelector]></dxo-paging>
+				<dxo-paging [(pageSize)]="pageSize"></dxo-paging>
 				<dxo-pager
 					[showPageSizeSelector]="showPageSizeSelector"
 					[displayMode]="displayMode"

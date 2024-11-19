@@ -1,0 +1,170 @@
+import { Meta, Story, Controls, Source, Canvas } from '@storybook/blocks';
+import * as SidebarMenuStories from './me-sidebar-menu.stories';
+
+<Meta of={SidebarMenuStories} />
+
+# SidebarMenu
+
+SidebarMenu - компонент для создания бокового навигационного меню с возможностью сворачивания.
+
+## Особенности
+
+- Древовидная структура на основе DevExtreme TreeView
+- Поддержка сворачивания/разворачивания
+- Поиск по пунктам меню
+- Поддержка иконок и бейджей
+- Кастомные шаблоны элементов
+- Адаптивный дизайн
+
+## Примеры
+
+### Стандартный вид
+
+<Canvas of={SidebarMenuStories.Default} />
+
+### Свёрнутое состояние
+
+<Canvas of={SidebarMenuStories.Collapsed} />
+
+### Без поиска
+
+<Canvas of={SidebarMenuStories.WithoutSearch} />
+
+## Props
+
+<Controls />
+
+## API
+
+### Интерфейс MeSidebarMenuItem
+
+<Source
+  language="typescript"
+  code={`
+interface MeSidebarMenuItem {
+  text: string;           // Текст пункта меню
+  icon?: string;          // Путь к SVG иконке
+  expanded?: boolean;     // Начальное состояние раскрытия
+  items?: MeSidebarMenuItem[]; // Дочерние элементы
+  badge?: number;         // Счетчик/бейдж
+  id?: string;           // Уникальный идентификатор
+  onClick?: () => void;  // Обработчик клика
+}
+`} />
+
+### Размеры
+
+| Состояние  | Ширина | Примечание                  |
+|------------|--------|----------------------------|
+| Развернуто | 280px  | Показываются текст и иконки |
+| Свернуто   | 64px   | Показываются только иконки  |
+
+### События
+
+| Событие         | Тип                  | Описание                                |
+|-----------------|----------------------|-----------------------------------------|
+| itemSelected    | `EventEmitter`       | Срабатывает при выборе пункта меню      |
+| collapsedChange | `EventEmitter`       | Срабатывает при сворачивании/разворачивании |
+
+### Настройка шаблонов
+
+<Source
+  language="typescript"
+  code={`
+<me-sidebar-menu [items]="items">
+  <div *dxTemplate="let item of 'itemTemplate'">
+    <div class="custom-item">
+      <img [src]="item.icon" class="custom-icon"/>
+      <span class="custom-text">{{item.text}}</span>
+      <div *ngIf="item.badge" class="custom-badge">
+        {{item.badge}}
+      </div>
+    </div>
+  </div>
+</me-sidebar-menu>
+`} />
+
+### Использование с маршрутизацией
+
+<Source
+  language="typescript"
+  code={`
+const MENU_ITEMS: MeSidebarMenuItem[] = [
+  {
+    text: 'Главная',
+    icon: 'home.svg',
+    onClick: () => this.router.navigate(['/'])
+  },
+  {
+    text: 'Проекты',
+    icon: 'projects.svg',
+    items: [
+      {
+        text: 'Список',
+        onClick: () => this.router.navigate(['/projects'])
+      },
+      {
+        text: 'Создать',
+        onClick: () => this.router.navigate(['/projects/new'])
+      }
+    ]
+  }
+];
+`} />
+
+### CSS переменные
+
+<Source
+  language="scss"
+  code={`
+.me-sidebar {
+  --sidebar-bg: var(--dx-surface-bg);
+  --sidebar-border: var(--dx-border-color);
+  --sidebar-text: var(--dx-primary-text-color);
+  --sidebar-hover-bg: var(--dx-list-item-hover-bg);
+  --sidebar-active-bg: var(--dx-list-item-selected-bg);
+  --sidebar-badge-bg: var(--dx-accent-color);
+  --sidebar-badge-text: var(--dx-primary-text-color);
+}
+`} />
+
+### Лучшие практики
+
+1. **Иконки**
+   - Используйте SVG для лучшей масштабируемости
+   - Размер иконок: 24x24px
+   - Поддерживайте единый стиль иконок
+
+2. **Структура меню**
+   - Ограничивайте вложенность 2-3 уровнями
+   - Группируйте связанные пункты
+   - Используйте бейджи умеренно
+
+3. **Производительность**
+   - Включайте поиск только при необходимости
+   - Для больших меню используйте виртуальную прокрутку
+
+4. **Доступность**
+   - Используйте ARIA-атрибуты
+   - Обеспечьте навигацию с клавиатуры
+   - Поддерживайте контрастные цвета
+
+### Известные ограничения
+
+1. В свернутом состоянии:
+   - Не отображаются бейджи
+   - Поиск недоступен
+   - Всплывающие подсказки для иконок
+
+2. Технические:
+   - Максимальная ширина в развернутом состоянии: 280px
+   - Минимальная ширина в свернутом состоянии: 64px
+   - Максимальное количество уровней вложенности: 3
+
+### Планируемые улучшения
+
+1. Поддержка drag-and-drop
+2. Контекстное меню
+3. Анимация переходов
+4. Режим мини-меню
+5. Поддержка групп элементов

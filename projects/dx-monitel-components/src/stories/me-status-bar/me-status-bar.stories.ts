@@ -1,175 +1,165 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxLoadPanelModule } from 'devextreme-angular';
-import {
-  MeStatusBarComponent,
-  StatusInfo,
-} from '../../lib/components/me-status-bar/me-status-bar.component';
-import { MeLoadPanelModule } from '../../public-api';
+import { DxButtonModule } from 'devextreme-angular';
+import { MeIconComponent, MeStatusBarComponent } from '../../public-api';
 
-type Story = StoryObj<MeStatusBarComponent>;
-
-const meta: Meta<MeStatusBarComponent> = {
-  title: 'Components/StatusBar',
-  component: MeStatusBarComponent,
+export default {
+  title: 'Components/MeStatusBar(RC)',
   decorators: [
     moduleMetadata({
-      imports: [DxLoadPanelModule, MeLoadPanelModule],
+      imports: [DxButtonModule, MeIconComponent, MeStatusBarComponent],
     }),
   ],
-} as Meta<MeStatusBarComponent>;
-
-export default meta;
-
-// Базовый объект с данными
-const defaultStatusInfo: StatusInfo = {
-  organizationName: {
-    text: 'Воткинская ГЭС',
-    icon: { name: 'home' },
-  },
-  primaryInfo: {
-    text: 'Раскраска схемы без узла ТП',
-    icon: { name: 'chart' },
-    backgroundColor: '#3257DC',
-    color: '#FFFFFF',
-  },
-  secondaryInfo: {
-    text: 'Режим исследования',
-    icon: { name: 'clock' },
-    backgroundColor: '#FFB82E',
-    color: '#000000',
-  },
-  status: {
-    type: 'error',
-    message: 'Отсутствует соединение с источником данных',
-    icon: { name: 'close' },
-    loading: false,
-  },
-};
-
-export const Default: Story = {
-  args: {
-    statusInfo: defaultStatusInfo,
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    statusInfo: {
-      ...defaultStatusInfo,
-      status: {
-        type: 'error',
-        message: 'Загрузка данных...',
-        icon: { name: 'loading' },
-        loading: true,
-      },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'large'],
+      description: 'Размер компонента',
+    },
+    showDivider: {
+      control: 'boolean',
+      description: 'Отображать разделители между элементами',
+    },
+    transparent: {
+      control: 'boolean',
+      description: 'Прозрачный фон',
     },
   },
-};
-
-export const Success: Story = {
   args: {
-    statusInfo: {
-      ...defaultStatusInfo,
-      status: {
-        type: 'success',
-        message: 'Соединение с источником данных восстановлено',
-        icon: { name: 'check' },
-        loading: false,
-      },
-    },
+    size: 'large',
+    showDivider: true,
+    transparent: false,
   },
-};
+  render: (args) => ({
+    props: { ...args },
+    template: `
+      <me-status-bar
+        [leftItems]="leftItems"
+        [rightItems]="rightItems"
+        [size]="size"
+        [showDivider]="showDivider"
+        [transparent]="transparent"
+      ></me-status-bar>
+    `,
+  }),
+} as Meta;
 
-export const Warning: Story = {
-  args: {
-    statusInfo: {
-      ...defaultStatusInfo,
-      status: {
-        type: 'warning',
-        message: 'Предупреждение о состоянии системы',
-        icon: { name: 'warning' },
-        loading: false,
-      },
-    },
-  },
-};
+type Story = StoryObj;
 
-export const Info: Story = {
+// Пример с ошибкой
+export const ErrorStatus: Story = {
   args: {
-    statusInfo: {
-      ...defaultStatusInfo,
-      status: {
+    leftItems: [
+      { text: 'Воткинская ГЭС' },
+      {
+        text: 'Раскраска схемы без учета ТП',
+        fill: true,
         type: 'info',
-        message: 'Информационное сообщение',
-        icon: { name: 'info' },
-        loading: false,
       },
-    },
-  },
-};
-
-// Пример с SVG иконками
-export const WithSvgIcons: Story = {
-  args: {
-    statusInfo: {
-      organizationName: {
-        text: 'Воткинская ГЭС',
-        icon: {
-          name: 'home',
-          path: '/assets/icons/home.svg',
-        },
-      },
-      primaryInfo: {
-        text: 'Раскраска схемы без узла ТП',
-        icon: {
-          name: 'chart',
-          path: '/assets/icons/chart.svg',
-        },
-        backgroundColor: '#3257DC',
-        color: '#FFFFFF',
-      },
-      secondaryInfo: {
+      {
         text: 'Режим исследования',
-        icon: {
-          name: 'clock',
-          path: '/assets/icons/clock.svg',
-        },
-        backgroundColor: '#FFB82E',
-        color: '#000000',
+        fill: true,
+        type: 'warning',
       },
-      status: {
-        type: 'success',
-        message: 'Пример с SVG иконками',
-        icon: {
-          name: 'check',
-          path: '/assets/icons/check.svg',
-        },
-        loading: false,
+    ],
+    rightItems: [
+      {
+        icon: 'warning',
+        text: 'Отсутствует соединение с источником данных',
+        type: 'error',
+        fill: true,
       },
-    },
+    ],
   },
 };
 
-// Пример с кастомными цветами
-export const CustomColors: Story = {
+// Пример с успешным подключением
+export const SuccessStatus: Story = {
   args: {
-    statusInfo: {
-      ...defaultStatusInfo,
-      organizationName: {
-        ...defaultStatusInfo.organizationName,
-        color: '#FF5733',
-        backgroundColor: '#F8F9FA',
+    leftItems: [
+      { text: 'Воткинская ГЭС' },
+      {
+        text: 'Раскраска схемы без учета ТП',
+        fill: true,
+        type: 'default',
       },
-      primaryInfo: {
-        ...defaultStatusInfo.primaryInfo,
-        color: '#FFFFFF',
-        backgroundColor: '#6C757D',
+      { text: 'Режим исследования' },
+    ],
+    rightItems: [
+      {
+        icon: 'info',
+        text: 'Соединение с источником данных восстановлено',
+        type: 'success',
+        fill: true,
       },
-      secondaryInfo: {
-        ...defaultStatusInfo.secondaryInfo,
-        color: '#FFFFFF',
-        backgroundColor: '#17A2B8',
+    ],
+  },
+};
+
+// Пример с предупреждением
+export const WarningStatus: Story = {
+  args: {
+    leftItems: [
+      { text: 'Воткинская ГЭС' },
+      {
+        text: 'Раскраска схемы без учета ТП',
+        fill: true,
+        type: 'default',
       },
-    },
+      { text: 'Режим исследования' },
+    ],
+    rightItems: [
+      {
+        icon: 'info',
+        text: 'Соединение с источником данных восстановлено',
+        type: 'warning',
+        fill: true,
+      },
+    ],
+  },
+};
+
+// Пример с информацией
+export const InfoStatus: Story = {
+  args: {
+    leftItems: [
+      { text: 'Воткинская ГЭС' },
+      {
+        text: 'Раскраска схемы без учета ТП',
+        fill: true,
+        type: 'default',
+      },
+      { text: 'Режим исследования' },
+    ],
+    rightItems: [
+      {
+        icon: 'info',
+        text: 'Новая информация',
+        type: 'info',
+      },
+    ],
+  },
+};
+
+// Компактный размер
+export const Small: Story = {
+  args: {
+    ...ErrorStatus.args,
+    size: 'small',
+  },
+};
+
+// С разделителями
+export const WithDividers: Story = {
+  args: {
+    ...ErrorStatus.args,
+    showDivider: true,
+  },
+};
+
+// Без разделителей
+export const WithoutDividers: Story = {
+  args: {
+    ...ErrorStatus.args,
+    showDivider: false,
   },
 };
