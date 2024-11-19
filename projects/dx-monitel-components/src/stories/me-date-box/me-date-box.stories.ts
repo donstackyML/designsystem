@@ -108,6 +108,10 @@ export default {
       options: ['top', 'bottom', 'left', 'right'],
       description: 'Позиция отображения сообщения об ошибке.',
     },
+    description: {
+      control: 'text',
+      description: 'Описание для компонента',
+    },
   },
   args: {
     size: 'medium',
@@ -129,6 +133,7 @@ export default {
     displayFormat: '',
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
+    description: 'description',
   },
   render: (args) => ({
     props: args,
@@ -143,7 +148,8 @@ export default {
         >
         </dxi-validation-rule>
     </dx-validator>
-		</dx-date-box>`,
+		</dx-date-box>
+    <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>`,
   }),
 } as Meta;
 
@@ -153,6 +159,7 @@ export const WithLabelRow: StoryObj = {
   args: {
     ...Default.args,
     labelMode: 'hidden',
+    description: 'description',
   },
   render: (args) => ({
     props: args,
@@ -167,6 +174,25 @@ export const WithLabelRow: StoryObj = {
 			>
 			</dx-date-box>
 		</label>
+    <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
+		`,
+  }),
+};
+
+export const WithDatePicker: StoryObj = {
+  args: {
+    ...Default.args,
+    description: 'description',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+			<dx-date-box meDateBox
+      pickerType="rollers"
+				${argsToTemplate(args)}
+			>
+			</dx-date-box>
+    <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
 		`,
   }),
 };
