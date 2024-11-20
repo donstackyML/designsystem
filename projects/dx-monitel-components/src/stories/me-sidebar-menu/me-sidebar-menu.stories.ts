@@ -1,9 +1,11 @@
 // me-sidebar.stories.ts
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxTreeViewModule, DxButtonModule } from 'devextreme-angular';
-import {MeIconComponent, MeSidebarMenuComponent, MeTreeViewModule} from '../../public-api';
-
-
+import {
+  MeIconComponent,
+  MeSidebarMenuComponent,
+  MeTreeViewModule,
+} from '../../public-api';
 
 interface MenuItem {
   id: string;
@@ -25,35 +27,35 @@ const meta: Meta<MeSidebarMenuComponent> = {
         DxButtonModule,
         MeIconComponent,
         MeIconComponent,
-        MeTreeViewModule
+        MeTreeViewModule,
       ],
     }),
   ],
   argTypes: {
     isCollapsed: {
       control: 'boolean',
-      description: 'Определяет, свернуто ли меню'
+      description: 'Определяет, свернуто ли меню',
     },
     title: {
       control: 'text',
-      description: 'Заголовок меню'
+      description: 'Заголовок меню',
     },
     toggleIcon: {
       control: 'text',
-      description: 'Иконка кнопки сворачивания'
+      description: 'Иконка кнопки сворачивания',
     },
     expandedIcon: {
       control: 'text',
-      description: 'Иконка развернутого пункта'
+      description: 'Иконка развернутого пункта',
     },
     collapsedIcon: {
       control: 'text',
-      description: 'Иконка свернутого пункта'
-    }
+      description: 'Иконка свернутого пункта',
+    },
   },
   parameters: {
-    layout: 'fullscreen'
-  }
+    layout: 'fullscreen',
+  },
 };
 
 export default meta;
@@ -71,15 +73,15 @@ const DEMO_ITEMS: MenuItem[] = [
         id: 'inbox',
         text: 'Входящие',
         icon: 'inbox',
-        badge: 2
+        badge: 2,
       },
       {
         id: 'inprogress',
         text: 'В работе',
         icon: 'pending',
-        badge: 1
-      }
-    ]
+        badge: 1,
+      },
+    ],
   },
   {
     id: 'path',
@@ -100,28 +102,28 @@ const DEMO_ITEMS: MenuItem[] = [
               {
                 id: 'active',
                 text: 'Активные',
-                badge: 5
+                badge: 5,
               },
               {
                 id: 'archive',
-                text: 'Архив'
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                text: 'Архив',
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'downloads',
     text: 'Загрузки',
-    icon: 'download'
+    icon: 'download',
   },
   {
     id: 'settings',
     text: 'Настройки',
-    icon: 'settings'
-  }
+    icon: 'settings',
+  },
 ];
 
 export const Default: Story = {
@@ -143,7 +145,7 @@ export const Default: Story = {
           <me-search placeholder="Поиск..."></me-search>
         </div>
       </me-sidebar>
-    `
+    `,
   }),
   args: {
     items: DEMO_ITEMS,
@@ -151,8 +153,8 @@ export const Default: Story = {
     isCollapsed: false,
     toggleIcon: 'chevron_left',
     expandedIcon: 'expand_less',
-    collapsedIcon: 'expand_more'
-  }
+    collapsedIcon: 'expand_more',
+  },
 };
 
 export const Collapsed: Story = {
@@ -160,8 +162,8 @@ export const Collapsed: Story = {
   args: {
     ...Default.args,
     isCollapsed: true,
-    toggleIcon: 'chevron_right'
-  }
+    toggleIcon: 'chevron_right',
+  },
 };
 
 export const CustomIcons: Story = {
@@ -170,18 +172,16 @@ export const CustomIcons: Story = {
     ...Default.args,
     toggleIcon: 'menu',
     expandedIcon: 'keyboard_arrow_up',
-    collapsedIcon: 'keyboard_arrow_down'
-  }
+    collapsedIcon: 'keyboard_arrow_down',
+  },
 };
 
 export const WithSelectedItem: Story = {
   ...Default,
   args: {
     ...Default.args,
-    items: DEMO_ITEMS.map(item =>
-      item.id === 'tasks'
-        ? { ...item, selected: true }
-        : item
-    )
-  }
+    items: DEMO_ITEMS.map((item) =>
+      item.id === 'tasks' ? { ...item, selected: true } : item
+    ),
+  },
 };

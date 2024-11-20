@@ -1,6 +1,11 @@
 import { DxDataGridModule } from 'devextreme-angular';
 
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import {
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
 
@@ -64,6 +69,14 @@ export default {
       options: [true, false],
       description:
         'Относится к Pagination. Показывать кнопки навигации. Тэг `dxo-pager`',
+    },
+    showBorders: {
+      control: 'boolean',
+      description: 'Показывать границы',
+    },
+    showRowLines: {
+      control: 'boolean',
+      description: 'Показывать линии строк',
     },
   },
 
@@ -895,12 +908,15 @@ export default {
     infoText: 'Записей: {2}',
     showNavigationButtons: true,
     pageSize: '10',
+    showRowLines: true,
+    showBorders: true,
   },
   render: (args) => ({
     props: args,
     template: `
 			<dx-data-grid
 				meDataGrid
+<<<<<<< Updated upstream
 				id="gridContainer"
 				[(dataSource)]="dataSource"
 				[size]="size"
@@ -910,6 +926,12 @@ export default {
 			>
 				<dxo-search-panel [visible]="true"></dxo-search-panel>
 				<dxo-paging [(pageSize)]="pageSize"></dxo-paging>
+=======
+				${argsToTemplate(args)}
+			>
+				<dxo-search-panel [visible]="true"></dxo-search-panel>
+				<dxo-paging [(pageSize)]="pageSize" [showPageSizeSelector]="true"></dxo-paging>
+>>>>>>> Stashed changes
 				<dxo-pager
 					[showPageSizeSelector]="showPageSizeSelector"
 					[displayMode]="displayMode"
@@ -929,7 +951,7 @@ export const WithCounter: StoryObj = {
     props: args,
     template: `<dx-data-grid
   meDataGrid
-  [dataSource]="dataSource"
+  ${argsToTemplate(args)}
 >
   <dxo-paging [(pageSize)]="pageSize" [showPageSizeSelector]></dxo-paging>
   <dxi-column dataField="CompanyName"></dxi-column>

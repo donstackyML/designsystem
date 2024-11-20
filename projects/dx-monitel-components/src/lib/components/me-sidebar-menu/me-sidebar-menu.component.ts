@@ -1,5 +1,11 @@
 // me-sidebar-menu.component.ts
-import {Component, Input, Output, EventEmitter, ViewChild} from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DxTreeViewModule, DxButtonModule } from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
@@ -18,12 +24,7 @@ export interface MeSidebarMenuItem {
 @Component({
   selector: 'me-sidebar',
   standalone: true,
-  imports: [
-    CommonModule,
-    DxTreeViewModule,
-    DxButtonModule,
-    MeIconComponent
-  ],
+  imports: [CommonModule, DxTreeViewModule, DxButtonModule, MeIconComponent],
   template: `
     <div
       class="me-sidebar"
@@ -32,7 +33,9 @@ export interface MeSidebarMenuItem {
     >
       <div class="me-sidebar__header">
         <div class="me-sidebar__header-content">
-          <span *ngIf="!isCollapsed" class="me-sidebar__title">{{ title }}</span>
+          <span *ngIf="!isCollapsed" class="me-sidebar__title">{{
+            title
+          }}</span>
           <ng-content select="[header]"></ng-content>
         </div>
         <me-icon
@@ -77,10 +80,9 @@ export interface MeSidebarMenuItem {
                 [color]="'#666666'"
                 class="me-sidebar__item-icon"
               ></me-icon>
-              <span
-                *ngIf="!isCollapsed"
-                class="me-sidebar__item-text"
-              >{{ item.text }}</span>
+              <span *ngIf="!isCollapsed" class="me-sidebar__item-text">{{
+                item.text
+              }}</span>
             </div>
             <div class="me-sidebar__item-right">
               <div
@@ -101,7 +103,7 @@ export interface MeSidebarMenuItem {
         </div>
       </dx-tree-view>
     </div>
-  `
+  `,
 })
 export class MeSidebarMenuComponent {
   @ViewChild('treeView') treeView!: any;
@@ -110,7 +112,7 @@ export class MeSidebarMenuComponent {
   @Input() isCollapsed = false;
 
   // Иконки для настройки внешнего вида
-  @Input() toggleIcon = 'chevron_left';  // Иконка кнопки сворачивания
+  @Input() toggleIcon = 'chevron_left'; // Иконка кнопки сворачивания
   @Input() expandedIcon = 'expand_less'; // Иконка развернутого пункта
   @Input() collapsedIcon = 'expand_more'; // Иконка свернутого пункта
 
