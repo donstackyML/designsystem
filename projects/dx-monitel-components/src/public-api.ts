@@ -3,7 +3,6 @@ import { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.mo
 import { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 import { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
 import { MeNumberBoxModule } from './lib/directives/me-number-box/me-number-box.module';
-import { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
@@ -42,7 +41,6 @@ export { MeTextBoxDirective } from './lib/directives/me-text-box/text-box.direct
 export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-editor.directive';
 export { MeFocusableDirective } from './lib/directives/me-focusable/me-focusable.directive';
 export { MeToastDirective } from './lib/directives/me-toast/toast.directive';
-export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 export { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
 
@@ -93,7 +91,6 @@ export { MeTextBoxModule } from './lib/directives/me-text-box/me-text-box.module
 export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-editor.module';
 export { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
-export { MeDateRangeBoxModule } from './lib/directives/me-date-range-box/date-range-box.module';
 export { MeDateRangeBoxModule } from './lib/directives/me-date-range-box/date-range-box.module';
 export { MeNumberBoxModule } from './lib/directives/me-number-box/me-number-box.module';
 

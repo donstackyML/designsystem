@@ -1,143 +1,98 @@
 import {
   Directive,
   Input,
-  Output,
-  EventEmitter,
-  AfterViewInit,
   OnChanges,
-  OnDestroy,
   SimpleChanges,
   Self,
   Optional,
+  HostBinding
 } from '@angular/core';
 import { DxToastComponent } from 'devextreme-angular';
-import { Subscription } from 'rxjs';
-import { AnimationConfig } from 'devextreme/animation/fx';
-import DevExpress from 'devextreme/bundles/dx.all';
+import { dxToastOptions } from 'devextreme/ui/toast';
+
+type ToastSize = 'small' | 'large';
+type ToastType = 'info' | 'warning' | 'success' | 'error';
 
 @Directive({
   selector: '[meToast]',
-  exportAs: 'meToastControl',
-  host: {
-    '[class.customClass]': 'customClass',
-  },
+  exportAs: 'meToastControl'
 })
-export class MeToastDirective implements AfterViewInit, OnChanges, OnDestroy {
-  @Input() customClass: string = '';
-  @Input() message: string = '';
-  @Input() displayTime: number = 2000;
-  @Input() position: DevExpress.PositionConfig | string = 'bottom right';
-  @Input() animation: { hide?: AnimationConfig; show?: AnimationConfig } = {
-    show: { type: 'fade', duration: 400, from: 0, to: 1 },
-    hide: { type: 'fade', duration: 400, from: 1, to: 0 },
+export class MeToastDirective implements OnChanges {
+  @Input() size: ToastSize = 'small';
+  @Input() type: ToastType = 'info';
+
+  @HostBinding('class.me-toast')
+  baseClass = true;
+
+  @HostBinding('class.me-toast-small')
+  get isSmall(): boolean {
+    return this.size === 'small';
+  }
+
+  @HostBinding('class.me-toast-large')
+  get isLarge(): boolean {
+    return this.size === 'large';
+  }
+
+  @HostBinding('class.me-toast-info')
+  get isInfo(): boolean {
+    return this.type === 'info';
+  }
+
+  @HostBinding('class.me-toast-warning')
+  get isWarning(): boolean {
+    return this.type === 'warning';
+  }
+
+  @HostBinding('class.me-toast-success')
+  get isSuccess(): boolean {
+    return this.type === 'success';
+  }
+
+  @HostBinding('class.me-toast-error')
+  get isError(): boolean {
+    return this.type === 'error';
+  }
+
+  private readonly sizeConfig = {
+    small: {
+      minWidth: 344,
+      maxWidth: 568,
+      width: '80vw'
+    },
+    large: {
+      minWidth: 400,
+      maxWidth: 600,
+      width: '90vw'
+    }
   };
 
-  @Output() onShowing = new EventEmitter<any>();
-  @Output() onShown = new EventEmitter<any>();
-  @Output() onHiding = new EventEmitter<any>();
-  @Output() onHidden = new EventEmitter<any>();
+  constructor(@Self() @Optional() private dxToastComponent: DxToastComponent) {
+    if (this.dxToastComponent?.instance) {
+      const options: Partial<dxToastOptions> = {
+        type: undefined,
+        message: '',
+        contentTemplate: 'content'
+      };
 
-  private subscriptions: Subscription[] = [];
-
-  constructor(@Self() @Optional() private dxToastComponent: DxToastComponent) {}
-
-  ngAfterViewInit() {
-    this.initializeToast();
+      this.dxToastComponent.instance.option(options);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.dxToastComponent?.instance) {
-      this.updateToastProperties(changes);
-    }
-  }
+    if (!this.dxToastComponent?.instance) return;
 
-  ngOnDestroy() {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
-  }
+    const instance = this.dxToastComponent.instance;
 
-  private initializeToast() {
-    this.updateToastProperties();
-    this.setupEventListeners();
-  }
-
-  private updateToastProperties(changes?: SimpleChanges) {
-    if (this.dxToastComponent?.instance) {
-      const instance = this.dxToastComponent.instance;
-
-      if (!changes || changes['message']) {
-        instance.option('message', this.message);
-      }
-
-      if (!changes || changes['displayTime']) {
-        instance.option('displayTime', this.displayTime);
-      }
-
-      if (!changes || changes['position']) {
-        instance.option('position', this.getPositionConfig(this.position));
-      }
-
-      if (!changes || changes['animation']) {
-        instance.option('animation', this.animation);
-      }
-    }
-  }
-
-  private setupEventListeners() {
-    if (this.dxToastComponent) {
-      this.subscribeToEvent(this.dxToastComponent.onShowing, this.onShowing);
-      this.subscribeToEvent(this.dxToastComponent.onShown, this.onShown);
-      this.subscribeToEvent(this.dxToastComponent.onHiding, this.onHiding);
-      this.subscribeToEvent(this.dxToastComponent.onHidden, this.onHidden);
-    }
-  }
-
-  private subscribeToEvent(dxEvent: any, emitter: EventEmitter<any>) {
-    this.subscriptions.push(dxEvent.subscribe((e: any) => emitter.emit(e)));
-  }
-
-  private getPositionConfig(
-    position: DevExpress.PositionConfig | string
-  ): DevExpress.PositionConfig {
-    if (typeof position === 'string') {
-      const [vertical, horizontal] = position.split(' ');
-      return {
-        my: {
-          x: this.convertToHorizontalAlignment(horizontal),
-          y: this.convertToVerticalAlignment(vertical),
-        },
-        at: {
-          x: this.convertToHorizontalAlignment(horizontal),
-          y: this.convertToVerticalAlignment(vertical),
-        },
-        of: window,
+    if (changes['size']) {
+      const sizeOptions = this.sizeConfig[this.size];
+      const options: Partial<dxToastOptions> = {
+        width: sizeOptions.width,
+        minWidth: sizeOptions.minWidth,
+        maxWidth: sizeOptions.maxWidth
       };
-    }
-    return position;
-  }
 
-  private convertToHorizontalAlignment(
-    alignment: string
-  ): DevExpress.common.HorizontalAlignment {
-    switch (alignment) {
-      case 'left':
-      case 'center':
-      case 'right':
-        return alignment as DevExpress.common.HorizontalAlignment;
-      default:
-        throw new Error(`Invalid horizontal alignment: ${alignment}`);
-    }
-  }
-
-  private convertToVerticalAlignment(
-    alignment: string
-  ): DevExpress.common.VerticalAlignment {
-    switch (alignment) {
-      case 'top':
-      case 'center':
-      case 'bottom':
-        return alignment as DevExpress.common.VerticalAlignment;
-      default:
-        throw new Error(`Invalid vertical alignment: ${alignment}`);
+      instance.option(options);
     }
   }
 
