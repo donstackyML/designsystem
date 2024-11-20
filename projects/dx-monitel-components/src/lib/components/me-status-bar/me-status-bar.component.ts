@@ -14,13 +14,8 @@ export interface StatusBarItem {
 }
 
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { DxButtonModule } from 'devextreme-angular';
-
 
 @Component({
   selector: 'me-status-bar',
@@ -35,7 +30,6 @@ export class MeStatusBarComponent {
   @Input() size: StatusBarSize = 'small';
   @Input() showDivider: boolean = false;
   @Input() transparent: boolean = false;
-
 
   get containerClass(): string[] {
     const classes = ['me-status-bar'];
@@ -60,10 +54,9 @@ export class MeStatusBarComponent {
     return item.fill ? 'contained' : 'text';
   }
 
-
   getContentStyles(item: StatusBarItem): Record<string, string> {
     return {
-      color: item.textColor || ''
+      color: item.textColor || '',
     };
   }
 }

@@ -1,5 +1,11 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { DxButtonTypes } from "devextreme-angular/ui/button";
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { DxButtonTypes } from 'devextreme-angular/ui/button';
 import {
   DxTextBoxModule,
   DxNumberBoxModule,
@@ -7,7 +13,8 @@ import {
 } from 'devextreme-angular';
 import {
   MeTextBoxModule,
-  MeDateBoxModule, MeNumberBoxModule,
+  MeDateBoxModule,
+  MeNumberBoxModule,
 } from '../../public-api';
 import { MeIconsModule } from '@monitel/me-icons-registry';
 
@@ -27,7 +34,7 @@ interface ButtonProperties extends DxButtonTypes.Properties {
     MeTextBoxModule,
     MeDateBoxModule,
     MeIconsModule,
-    MeNumberBoxModule
+    MeNumberBoxModule,
   ],
   template: `
     <div class="dx-fieldset">
@@ -93,11 +100,7 @@ interface ButtonProperties extends DxButtonTypes.Properties {
             [showDropDownButton]="true"
             [openOnFieldClick]="true"
           >
-            <dxi-button
-              name="today"
-              location="before"
-              [options]="todayButton"
-            >
+            <dxi-button name="today" location="before" [options]="todayButton">
             </dxi-button>
             <dxi-button
               name="prevDate"
@@ -126,9 +129,17 @@ export class InputFieldsComponent {
   @Input() currencyValue = 14500.55;
   @Input() dateValue = new Date();
 
-  @Output() onPasswordVisibilityChange = new EventEmitter<{ mode: 'text' | 'password' }>();
-  @Output() onCurrencyChange = new EventEmitter<{ currency: '$' | '€'; value: number }>();
-  @Output() onValueChange = new EventEmitter<{ value: any; component: string }>();
+  @Output() onPasswordVisibilityChange = new EventEmitter<{
+    mode: 'text' | 'password';
+  }>();
+  @Output() onCurrencyChange = new EventEmitter<{
+    currency: '$' | '€';
+    value: number;
+  }>();
+  @Output() onValueChange = new EventEmitter<{
+    value: any;
+    component: string;
+  }>();
 
   millisecondsInDay = 24 * 60 * 60 * 1000;
   passwordMode: 'text' | 'password' = 'password';
@@ -142,10 +153,7 @@ export class InputFieldsComponent {
   prevDateButton!: ButtonProperties;
   nextDateButton!: ButtonProperties;
 
-
-  constructor(
-    private cdr: ChangeDetectorRef,
-  ) {
+  constructor(private cdr: ChangeDetectorRef) {
     this.initializeButtons();
   }
 
@@ -157,7 +165,7 @@ export class InputFieldsComponent {
         this.passwordMode = this.passwordMode === 'text' ? 'password' : 'text';
         this.onPasswordVisibilityChange.emit({ mode: this.passwordMode });
         this.cdr.detectChanges();
-      }
+      },
     };
 
     this.currencyButton = {
@@ -165,10 +173,11 @@ export class InputFieldsComponent {
       hoverStateEnabled: true,
       text: this.currentCurrencySymbol,
       onClick: (e) => {
-        this.currentCurrencySymbol = this.currentCurrencySymbol === '$' ? '€' : '$';
+        this.currentCurrencySymbol =
+          this.currentCurrencySymbol === '$' ? '€' : '$';
         // Обновляем иконку и текст через instance
         e.component.option({
-          text: this.currentCurrencySymbol
+          text: this.currentCurrencySymbol,
         });
         this.currencyFormat = `${this.currentCurrencySymbol} #,##0.00`;
         this.onCurrencyChange.emit({
@@ -176,7 +185,7 @@ export class InputFieldsComponent {
           value: this.currencyValue,
         });
         this.cdr.detectChanges();
-      }
+      },
     };
 
     // Календарные кнопки
@@ -187,7 +196,7 @@ export class InputFieldsComponent {
       onClick: () => {
         this.dateValue = new Date();
         this.cdr.detectChanges();
-      }
+      },
     };
 
     this.prevDateButton = {
@@ -195,9 +204,11 @@ export class InputFieldsComponent {
       hoverStateEnabled: true,
       icon: 'chevronleft',
       onClick: () => {
-        this.dateValue = new Date(this.dateValue.getTime() - this.millisecondsInDay);
+        this.dateValue = new Date(
+          this.dateValue.getTime() - this.millisecondsInDay
+        );
         this.cdr.detectChanges();
-      }
+      },
     };
 
     this.nextDateButton = {
@@ -205,9 +216,11 @@ export class InputFieldsComponent {
       hoverStateEnabled: true,
       icon: 'chevronright',
       onClick: () => {
-        this.dateValue = new Date(this.dateValue.getTime() + this.millisecondsInDay);
+        this.dateValue = new Date(
+          this.dateValue.getTime() + this.millisecondsInDay
+        );
         this.cdr.detectChanges();
-      }
+      },
     };
   }
 

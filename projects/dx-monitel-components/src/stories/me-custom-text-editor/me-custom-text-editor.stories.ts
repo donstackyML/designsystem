@@ -1,8 +1,4 @@
-import {
-  Meta,
-  StoryObj,
-  moduleMetadata,
-} from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
 import {
   DxTextBoxModule,
@@ -22,7 +18,7 @@ const meta: Meta<InputFieldsComponent> = {
         DxNumberBoxModule,
         DxDateBoxModule,
         DxButtonModule,
-        InputFieldsComponent
+        InputFieldsComponent,
       ],
     }),
   ],
