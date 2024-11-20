@@ -28,15 +28,6 @@ export default {
       options: ['small', 'medium', 'large'],
       description: 'Размер компонента',
     },
-    showBorders: {
-      control: 'boolean',
-      description: 'Показывать ли границы таблицы',
-      defaultValue: true,
-    },
-    showRowLines: {
-      control: 'boolean',
-      description: 'Отображать границы строк',
-    },
     showPageSizeSelector: {
       control: 'select',
       options: [true, false],
@@ -899,8 +890,6 @@ export default {
         State: 'State 3',
       },
     ],
-    showBorders: false,
-    showRowLines: false,
     size: 'medium',
     showPageSizeSelector: true,
     displayMode: 'full',
@@ -916,7 +905,6 @@ export default {
     template: `
 			<dx-data-grid
 				meDataGrid
-<<<<<<< Updated upstream
 				id="gridContainer"
 				[(dataSource)]="dataSource"
 				[size]="size"
@@ -926,12 +914,6 @@ export default {
 			>
 				<dxo-search-panel [visible]="true"></dxo-search-panel>
 				<dxo-paging [(pageSize)]="pageSize"></dxo-paging>
-=======
-				${argsToTemplate(args)}
-			>
-				<dxo-search-panel [visible]="true"></dxo-search-panel>
-				<dxo-paging [(pageSize)]="pageSize" [showPageSizeSelector]="true"></dxo-paging>
->>>>>>> Stashed changes
 				<dxo-pager
 					[showPageSizeSelector]="showPageSizeSelector"
 					[displayMode]="displayMode"
@@ -953,7 +935,8 @@ export const WithCounter: StoryObj = {
   meDataGrid
   ${argsToTemplate(args)}
 >
-  <dxo-paging [(pageSize)]="pageSize" [showPageSizeSelector]></dxo-paging>
+  <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
+  <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
   <dxi-column dataField="CompanyName"></dxi-column>
   <dxi-column dataField="Fax"></dxi-column>
   <dxi-column dataField="Phone"></dxi-column>
