@@ -20,11 +20,6 @@ export default {
       control: 'select',
       options: ['small', 'medium', 'large'],
     },
-    type: {
-      control: 'select',
-      options: ['date', 'datetime', 'time'],
-      description: 'Формат, используемый для отображения информации.',
-    },
     acceptCustomValue: {
       control: 'boolean',
       description: 'Позволяет пользователю ввести дату вручную.',
@@ -33,14 +28,15 @@ export default {
       control: 'text',
       description: 'Надпись на кнопке "Применить".',
     },
+    applyValueMode: {
+      control: 'select',
+      options: ['instantly', 'useButtons'],
+      description:
+        'Определяет способ, которым конечный пользователь применяет выбранное значение.',
+    },
     cancelButtonText: {
       control: 'text',
       description: 'Надпись на кнопке "Отменить".',
-    },
-    dateOutOfRangeMessage: {
-      control: 'text',
-      description:
-        'Сообщение об ошибке при выборе даты за пределами диапазона.',
     },
     dateSerializationFormat: {
       control: 'text',
@@ -51,16 +47,6 @@ export default {
       control: 'boolean',
       description:
         'Указывает, отключает ли компонент пользовательского интерфейса выбор даты до даты начала и после даты окончания.',
-    },
-    invalidDateMessage: {
-      control: 'text',
-      description: 'Сообщение об ошибке при неверной дате.',
-    },
-    applyValueMode: {
-      control: 'select',
-      options: ['instantly', 'useButtons'],
-      description:
-        'Определяет способ, которым конечный пользователь применяет выбранное значение.',
     },
     disabled: {
       control: 'boolean',
@@ -82,27 +68,73 @@ export default {
       control: 'text',
       description: 'Задает метку поля ввода даты окончания.',
     },
+    endDatePlaceholder: {
+      control: 'text',
+      description: 'Задает метку поля ввода даты окончания.',
+    },
+    invalidEndDateMessage: {
+      control: 'text',
+      description: 'Сообщение при неверной дате окончания.',
+    },
+    invalidStartDateMessage: {
+      control: 'text',
+      description: 'Сообщение при неверной дате начала.',
+    },
     labelMode: {
       control: 'select',
       options: ['static', 'floating', 'hidden', 'outside'],
       description: 'Режим отображения метки',
     },
-    placeholder: {
+    max: {
       control: 'text',
-      description: 'Подсказка.',
+      description: 'Максимальная дата окончания.',
+      table: {
+        type: { summary: 'number | Date | string' },
+        defaultValue: { summary: 'null' },
+      },
+    },
+    min: {
+      control: 'text',
+      description: 'Минимальная дата начала.',
+      table: {
+        type: { summary: 'number | Date | string' },
+        defaultValue: { summary: 'null' },
+      },
+    },
+    multiView: {
+      control: 'boolean',
+      description: 'Показывает дату начала и дату окончания в одном поле.',
     },
     readOnly: {
       control: 'boolean',
       description: 'Определяет состояние только для чтения.',
     },
-    showAnalogClock: {
-      control: 'boolean',
-      description:
-        'Указывает, следует ли отображать аналоговые часы в средстве выбора значений. Применяется, только если type равен "datetime", а pickerType равен "calendar".',
-    },
     showClearButton: {
       control: 'boolean',
       description: 'Показ кнопки очистки.',
+      defaultValue: false,
+    },
+    startDate: {
+      control: 'text',
+      description: 'Дата начала.',
+      table: {
+        type: { summary: 'number | Date | string' },
+        defaultValue: { summary: 'null' },
+      },
+    },
+    startDateLabel: {
+      control: 'text',
+      description: 'Задает метку поля ввода даты начала.',
+    },
+    startDateOutOfRangeMessage: {
+      control: 'text',
+      description:
+        'Указывает сообщение, отображаемое, если указанная дата начала позже максимального значения или раньше минимального значения.',
+      defaultValue: 'Start date is out of range',
+    },
+    startDatePlaceholder: {
+      control: 'text',
+      description: 'Задает метку поля ввода даты начала.',
     },
     validationMessageMode: {
       control: 'select',
@@ -117,6 +149,31 @@ export default {
   },
   args: {
     size: 'medium',
+    multiView: false,
+    labelMode: 'outside',
+    acceptCustomValue: false,
+    applyValueMode: 'instantly',
+    applyButtonText: 'Применить',
+    cancelButtonText: 'Отмена',
+    showClearButton: false,
+    disabled: false,
+    readOnly: false,
+    validationMessageMode: 'auto',
+    validationMessagePosition: 'bottom',
+    dateSerializationFormat: 'yyyy-MM-dd',
+    displayFormat: 'dd.MM.yyyy',
+    startDate: null,
+    startDateLabel: 'Начальная дата',
+    endDate: null,
+    endDateLabel: 'Конечная дата',
+    max: '31/12/2024',
+    min: '1/1/2024',
+    invalidEndDateMessage: 'Неверная дата окончания',
+    invalidStartDateMessage: 'Неверная дата начала',
+    startDateOutOfRangeMessage:
+      'Начальная дата за пределами допустимых значений',
+    startDatePlaceholder: 'Начальная дата',
+    endDatePlaceholder: 'Конечная дата',
   },
   render: (args) => ({
     props: args,
@@ -124,9 +181,38 @@ export default {
 			<dx-date-range-box meDateRangeBox
 				${argsToTemplate(args)}
 			>
+				<dx-validator>
+        <dxi-validation-rule
+            type="required"
+            message="Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required "
+        >
+        </dxi-validation-rule>
+    </dx-validator>
 			</dx-date-range-box>
 		`,
   }),
 } as Meta;
 
 export const Default: StoryObj = {};
+
+export const WithLabelRow: StoryObj = {
+  args: {
+    ...Default.args,
+    labelMode: 'hidden',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<label meLabel
+		labelDirection="row"
+		[size]="size"
+		width="500px">
+		Label*
+			<dx-date-range-box meDateRangeBox
+				${argsToTemplate(args)}
+			>
+			</dx-date-range-box>
+		</label>
+		`,
+  }),
+};

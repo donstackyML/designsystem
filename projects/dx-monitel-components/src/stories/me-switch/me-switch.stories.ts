@@ -4,7 +4,7 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { DxSwitchComponent } from 'devextreme-angular';
+import { DxSwitchComponent, DxValidatorModule } from 'devextreme-angular';
 import { MeLabelDirective, MeSwitchDirective } from '../../public-api';
 
 export default {
@@ -15,6 +15,22 @@ export default {
     }),
   ],
   argTypes: {
+    disabled: {
+      control: 'boolean',
+      description: 'Отключение компонента',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    readOnly: {
+      control: 'boolean',
+      description: 'Состояние только для чтения',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
@@ -25,6 +41,11 @@ export default {
       },
     },
   },
+  args: {
+    size: 'medium',
+    disabled: false,
+    readOnly: false,
+  },
   render: (args) => ({
     props: args,
     template: `<dx-switch meSwitch ${argsToTemplate(args)}></dx-switch>`,
@@ -33,9 +54,7 @@ export default {
 
 type Story = StoryObj<MeLabelDirective | MeSwitchDirective | DxSwitchComponent>;
 
-export const Default: Story = {
-  args: { size: 'medium' },
-};
+export const Default: Story = {};
 
 export const WithLabel: Story = {
   args: {},

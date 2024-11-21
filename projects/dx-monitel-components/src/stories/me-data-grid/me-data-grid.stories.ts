@@ -1,6 +1,11 @@
 import { DxDataGridModule } from 'devextreme-angular';
 
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import {
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
 
@@ -22,15 +27,6 @@ export default {
       control: 'select',
       options: ['small', 'medium', 'large'],
       description: 'Размер компонента',
-    },
-    showBorders: {
-      control: 'boolean',
-      description: 'Показывать ли границы таблицы',
-      defaultValue: true,
-    },
-    showRowLines: {
-      control: 'boolean',
-      description: 'Отображать границы строк',
     },
     showPageSizeSelector: {
       control: 'select',
@@ -64,6 +60,14 @@ export default {
       options: [true, false],
       description:
         'Относится к Pagination. Показывать кнопки навигации. Тэг `dxo-pager`',
+    },
+    showBorders: {
+      control: 'boolean',
+      description: 'Показывать границы',
+    },
+    showRowLines: {
+      control: 'boolean',
+      description: 'Показывать линии строк',
     },
   },
 
@@ -886,8 +890,6 @@ export default {
         State: 'State 3',
       },
     ],
-    showBorders: false,
-    showRowLines: false,
     size: 'medium',
     showPageSizeSelector: true,
     displayMode: 'full',
@@ -895,6 +897,8 @@ export default {
     infoText: 'Записей: {2}',
     showNavigationButtons: true,
     pageSize: '10',
+    showRowLines: true,
+    showBorders: true,
   },
   render: (args) => ({
     props: args,
@@ -929,9 +933,10 @@ export const WithCounter: StoryObj = {
     props: args,
     template: `<dx-data-grid
   meDataGrid
-  [dataSource]="dataSource"
+  ${argsToTemplate(args)}
 >
-  <dxo-paging [(pageSize)]="pageSize" [showPageSizeSelector]></dxo-paging>
+  <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
+  <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
   <dxi-column dataField="CompanyName"></dxi-column>
   <dxi-column dataField="Fax"></dxi-column>
   <dxi-column dataField="Phone"></dxi-column>

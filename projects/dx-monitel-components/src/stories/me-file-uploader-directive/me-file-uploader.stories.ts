@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import {
+  DxButtonModule,
   DxFileUploaderModule,
   DxSelectBoxModule,
   DxTextBoxModule,
 } from 'devextreme-angular';
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { MeFileUploaderDirective } from '../../public-api';
 
 export default {
@@ -12,7 +12,12 @@ export default {
   component: MeFileUploaderDirective,
   decorators: [
     moduleMetadata({
-      imports: [DxFileUploaderModule, DxSelectBoxModule, DxTextBoxModule],
+      imports: [
+        DxFileUploaderModule,
+        DxSelectBoxModule,
+        DxTextBoxModule,
+        DxButtonModule,
+      ],
       declarations: [MeFileUploaderDirective],
     }),
   ],
@@ -31,6 +36,10 @@ export default {
       control: 'object',
       description: 'Допустимые расширения файлов',
     },
+    title: {
+      control: 'text',
+      description: 'Заголовок для компонента',
+    },
   },
 } as Meta<MeFileUploaderDirective>;
 
@@ -40,6 +49,7 @@ const defaultArgs = {
   size: 'medium' as const,
   accept: 'image/*',
   allowedFileExtensions: ['.jpg', '.jpeg', '.gif', '.png'],
+  title: 'Profile Settings',
 };
 
 // Form Upload
@@ -47,6 +57,7 @@ export const FormUpload: Story = {
   render: (args) => ({
     template: `
       <form class="dx-fieldset">
+      <h2 class='form-title' *ngIf="title">{{ title }}</h2>
         <div class="dx-field">
           <div class="dx-field-label">First Name:</div>
           <dx-text-box class="dx-field-value" value="John"></dx-text-box>
@@ -65,6 +76,9 @@ export const FormUpload: Story = {
             uploadMode="useForm"
           >
           </dx-file-uploader>
+        </div>
+        <div class='form-btn-box'>
+        <dx-button meButton type='default' text='Update profile'></dx-button>
         </div>
       </form>
     `,

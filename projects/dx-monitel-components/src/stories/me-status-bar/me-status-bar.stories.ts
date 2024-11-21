@@ -55,11 +55,7 @@ export const ErrorStatus: Story = {
         fill: true,
         type: 'info',
       },
-      {
-        text: 'Режим исследования',
-        fill: true,
-        type: 'warning',
-      },
+      { text: 'Режим исследования', fill: true, type: 'warning' },
     ],
     rightItems: [
       {

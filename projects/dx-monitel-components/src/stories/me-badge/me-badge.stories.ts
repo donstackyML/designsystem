@@ -82,7 +82,7 @@ export const AllVariants: Story = {
       <div style="display: flex; flex-direction: column; gap: 24px;">
         <!-- Size 20 -->
         <div>
-          <h4 style="margin-bottom: 12px;">Size: 20px</h4>
+          <h4 class="badge-title" style="margin-bottom: 12px;">Size: 20px</h4>
           <div style="display: flex; gap: 16px; align-items: center;">
             <me-badge [value]="5" size="20" color="default"></me-badge>
             <me-badge [value]="5" size="20" color="secondary"></me-badge>
@@ -94,7 +94,7 @@ export const AllVariants: Story = {
 
         <!-- Size 24 -->
         <div>
-          <h4 style="margin-bottom: 12px;">Size: 24px</h4>
+          <h4 class="badge-title" style="margin-bottom: 12px;">Size: 24px</h4>
           <div style="display: flex; gap: 16px; align-items: center;">
             <me-badge [value]="5" size="24" color="default"></me-badge>
             <me-badge [value]="5" size="24" color="secondary"></me-badge>
