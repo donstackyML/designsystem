@@ -1,5 +1,11 @@
 <!-- me-pagination.component.html -->
-<div class="me-pagination">
+<div class="me-pagination"
+[ngClass]="{
+  'me-pagination-background': !transparentBackground,
+  'me-pagination--small': size === 'small',
+  'me-pagination--medium': size === 'medium',
+  'me-pagination--large': size === 'large'
+}">
   <div class="me-pagination__size-controls" [ngClass]="size">
     <ng-container *ngIf="useButtons; else selectBoxTemplate">
       <dx-button
@@ -8,19 +14,37 @@
         [type]="itemsPerPage === size ? 'default' : 'normal'"
         [text]="size.toString()"
         (onClick)="changeItemsPerPage(size)"
-        [style.backgroundColor]="transparentBackground && !isDarkTheme ? 'transparent' : ''"
+        [style.backgroundColor]="transparentBackground && !isDarkTheme ? '' : ''"
         [style.color]="transparentBackground && !isDarkTheme ? '#007bff' : ''"
+        [ngClass]="{
+          'me-pagination-button-background': !transparentBackground,
+          'me-pagination-button-background-false': transparentBackground
+        }"
       ></dx-button>
     </ng-container>
     <ng-template #selectBoxTemplate>
-      <dx-select-box meSelectBox [items]="itemsPerPageOptions" (onValueChanged)="onItemsPerPageChange($event)" [width]="80" [ngClass]="size"></dx-select-box>
+      <dx-select-box
+        meSelectBox
+        [items]="itemsPerPageOptions"
+        (onValueChanged)="onItemsPerPageChange($event)"
+        [width]="80"
+        [ngClass]="{
+          'me-pagination-button-background': !transparentBackground,
+          'me-pagination-button-background-false': transparentBackground
+        }"
+      ></dx-select-box>
     </ng-template>
   </div>
 
   <div class="me-pagination__controls" [ngClass]="size">
     <span class="me-pagination__info">Записей: {{ totalItems }}</span>
 
-    <dx-button stylingMode="text" [disabled]="currentPage === 1" (onClick)="prevPage()" icon="chevronleft"></dx-button>
+    <dx-button
+      stylingMode="text"
+      [disabled]="currentPage === 1"
+      (onClick)="prevPage()"
+      icon="chevronleft"
+    ></dx-button>
 
     <ng-container *ngFor="let page of pages; trackBy: trackByFn">
       <ng-container *ngIf="page !== '...'">
@@ -29,13 +53,25 @@
           [text]="page.toString()"
           (onClick)="changePage(page)"
           [type]="page === currentPage ? 'default' : 'normal'"
-          [style.backgroundColor]="transparentBackground && !isDarkTheme && page !== currentPage ? 'transparent' : ''"
-          [style.color]="transparentBackground && !isDarkTheme && page !== currentPage ? '#007bff' : ''"
+          [style.backgroundColor]="
+            transparentBackground && !isDarkTheme && page !== currentPage
+              ? 'transparent'
+              : ''"
+          [style.color]="
+            transparentBackground && !isDarkTheme && page !== currentPage
+              ? '#007bff'
+              : ''"
         ></dx-button>
       </ng-container>
       <span *ngIf="page === '...'" class="me-pagination__ellipsis">...</span>
     </ng-container>
 
-    <dx-button stylingMode="text" [disabled]="currentPage === totalPages" (onClick)="nextPage()" [ngClass]="size" icon="chevronright"></dx-button>
+    <dx-button
+      stylingMode="text"
+      [disabled]="currentPage === totalPages"
+      (onClick)="nextPage()"
+      [ngClass]="size"
+      icon="chevronright"
+    ></dx-button>
   </div>
 </div>
