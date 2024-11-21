@@ -1,107 +1,191 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as toastStories from "./me-toast.stories";
 import { moduleMetadata } from "@storybook/angular";
-import { DxToastModule } from "devextreme-angular";
-import { MeToastDirective } from "../../public-api";
+import { DxToastModule, DxButtonModule } from "devextreme-angular";
+import { MeToastDirective, MeIconComponent, MeButtonDirective, MeButtonModule } from "../../public-api";
 
 <Meta
-  title="Components/meToast"
+  title="Components/Toast"
   of={toastStories}
   decorators={[
     moduleMetadata({
-      declarations: [MeToastDirective, toastStories.ToastDemoComponent],
-      imports: [DxToastModule],
+      declarations: [MeToastDirective],
+      imports: [DxToastModule, DxButtonModule, MeButtonModule, MeIconComponent],
     }),
-  ]}
+    ]}
 />
 
-# meToast
+# Toast
 
-## Директива meToast
+## Описание
 
-Директива `meToast` позволяет создавать уведомления с различными параметрами, включая время отображения, позицию и анимацию. Уведомления могут быть стилизованы с помощью CSS классов.
+Компонент `Toast` используется для отображения уведомлений различных типов: информационных сообщений, предупреждений, ошибок и уведомлений об успешных операциях.
 
-<Canvas of={toastStories.Default} />
-<Controls of={toastStories.Default} />
+## Размеры и типы
+
+Toast поддерживает два размера:
+- Маленький (small) - для простых уведомлений
+- Большой (large) - для уведомлений с дополнительными действиями
+
+И четыре типа:
+- Информационный (info)
+- Предупреждение (warning)
+- Ошибка (error)
+- Успех (success)
+
+## Маленький информационный тост
+
 <Source
-  code={`<dx-toast 
-  [message]="'This is a toast message'"
-  [displayTime]="2000"
-  [position]="'bottom right'"
-  [animation]="{
-    show: {type: 'fade', duration: 400, from: 0, to: 1},
-    hide: {type: 'fade', duration: 400, from: 1, to: 0}
-    }"
-  [customClass]="''">
+  code={`<dx-toast
+  meToast
+  [visible]="true"
+  [type]="'info'"
+>
+  <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small">
+    <div class="me-toast-header">
+      <me-icon icon="info" size="small" color="var(--Controls-BG-Accent-Accent-BG-Default)"></me-icon>
+      <div class="me-title-header2">Информация</div>
+      <dx-button
+        icon="close"
+        stylingMode="text"
+        class="me-toast-close-button"
+      ></dx-button>
+    </div>
+    <div class="me-toast-content2 me-text-body2">Операция выполнена успешно</div>
+  </div>
 </dx-toast>`}
   dark
   language="html"
 />
 
-## Примеры использования:
+## Маленький предупреждающий тост
 
-- [Изменение времени отображения](#изменение-времени-отображения)
-- [Изменение позиции уведомления](#изменение-позиции-уведомления)
-- [Настройка анимации](#настройка-анимации)
-- [Применение пользовательского CSS класса](#применение-пользовательского-css-класса)
 
-## Изменение времени отображения
+  <Source
+    code={`<dx-toast
+    meToast
+    [visible]="true"
+    [type]="'warning'"
+    >
+    <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small">
+    <div class="me-toast-header">
+    <me-icon icon="warning" size="small" color="var(--Icon-Attention)"></me-icon>
+    <div class="me-title-header2">Предупреждение</div>
+    <dx-button
+    icon="close"
+    stylingMode="text"
+    class="me-toast-close-button"
+    ></dx-button>
+    </div>
+    <div class="me-toast-content2 me-text-body2">Внимание! Данное действие нельзя будет отменить</div>
+    </div>
+    </dx-toast>`}
+      dark
+      language="html"
+    />
 
-Для изменения времени отображения используйте параметр `displayTime`.
+    ## Большой тост с ошибкой
 
-<Canvas of={toastStories.LongDuration} />
-
-<Source
-  code={`<dx-toast [displayTime]="5000" message="This toast will be displayed for 5 seconds"></dx-toast>`}
-  dark
-  language="html"
-/>
-
-## Изменение позиции уведомления
-
-Для изменения позиции уведомления используйте параметр `position` с возможными значениями `top left`, `top center`, `top right`, `bottom left`, `bottom center`, `bottom right`.
-
-<Canvas of={toastStories.CustomPosition} />
-
-<Source
-  code={`<dx-toast position="top center" message="This toast is positioned at the top center"></dx-toast>`}
-  dark
-  language="html"
-/>
-
-## Настройка анимации
-
-Для настройки анимации используйте параметр `animation`.
-
-<Canvas of={toastStories.CustomAnimation} />
 
 <Source
   code={`<dx-toast
-  [animation]="{
-    show: { type: 'pop', duration: 400, from: { scale: 0 }, to: { scale: 1 } },
-    hide: { type: 'pop', duration: 400, to: { scale: 0 } }
-  }"
-  message="This toast has a custom animation"
-></dx-toast>`}
+  meToast
+  [visible]="true"
+  [type]="'error'"
+>
+  <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
+    <div class="me-toast-header">
+      <me-icon icon="error" size="large" color="var(--Icon-Error)"></me-icon>
+      <div class="me-title-header1">Ошибка</div>
+      <dx-button
+        icon="close"
+        stylingMode="text"
+        class="me-toast-close-button"
+      ></dx-button>
+    </div>
+    <div class="me-toast-content1 me-text-body1">Произошла ошибка при выполнении операции</div>
+    <div class="me-toast-actions">
+      <dx-button
+        meButton
+        size="large"
+        text="Повторить"
+        type="danger"
+        stylingMode="contained"
+      ></dx-button>
+      <dx-button
+        meButton
+        size="large"
+        text="Отмена"
+        type="danger"
+        stylingMode="text"
+      ></dx-button>
+    </div>
+  </div>
+</dx-toast>`}
   dark
   language="html"
 />
 
-## Применение пользовательского CSS класса
+## Большой тост успеха
 
-Для применения пользовательского CSS класса используйте параметр `customClass`.
+  <Source
+    code={`<dx-toast
+    meToast
+    [visible]="true"
+    [type]="'success'"
+    >
+    <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
+    <div class="me-toast-header">
+    <me-icon icon="check_circle" size="large" color="var(--Icon-Success)"></me-icon>
+    <div class="me-title-header1">Успешно</div>
+    <dx-button
+    icon="close"
+    stylingMode="text"
+    class="me-toast-close-button"
+    ></dx-button>
+    </div>
+    <div class="me-toast-content1 me-text-body1">Все файлы успешно загружены на сервер</div>
+    <div class="me-toast-actions">
+    <dx-button
+    meButton
+    size="large"
+    text="Открыть"
+    type="success"
+    stylingMode="contained"
+    ></dx-button>
+    <dx-button
+    meButton
+    size="large"
+    text="Закрыть"
+    type="success"
+    stylingMode="text"
+    ></dx-button>
+    </div>
+    </div>
+    </dx-toast>`}
+      dark
+      language="html"
+    />
 
-<Canvas of={toastStories.CustomClass} />
+    ## API
 
-<Source
-  code={`<dx-toast customClass="my-custom-toast" message="This toast has a custom CSS class"></dx-toast>`}
-  dark
-  language="html"
-/>
+    ### Свойства компонента
 
-## Перечень свойств
+    | Свойство | Тип | Описание |
+    |----------|-----|----------|
+    | type | 'info' \| 'warning' \| 'error' \| 'success' | Тип уведомления |
+    | visible | boolean | Флаг видимости уведомления |
+    | displayTime | number | Время отображения в миллисекундах |
 
-<Controls
-  of={toastStories.Default}
-  include={["message", "displayTime", "position", "animation", "customClass"]}
-/>
+    ### CSS классы
+
+    | Класс | Описание |
+    |-------|----------|
+    | me-toast-content | Базовый класс для контейнера уведомления |
+    | me-toast-small | Класс для маленького уведомления |
+    | me-toast-large | Класс для большого уведомления |
+    | me-toast-header | Класс для заголовка уведомления |
+    | me-toast-content1 | Класс для отступа контента в больших уведомлениях |
+    | me-toast-content2 | Класс для отступа контента в маленьких уведомлениях |
+    | me-toast-actions | Класс для контейнера с кнопками действий |
+    | me-toast-close-button | Класс для кнопки закрытия |

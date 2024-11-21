@@ -1,43 +1,12 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxToastModule, DxButtonModule } from 'devextreme-angular';
-import { MeToastDirective, MeIconComponent } from "../../public-api";
+import { MeToastDirective, MeIconComponent, MeButtonDirective, MeButtonModule } from "../../public-api";
 
 const ToastStyles = `
-  .me-toast-content {
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-  }
-
   .me-toast-header {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 8px;
-  }
-
-  .me-toast-title {
-    flex: 1;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--Text-Default);
-  }
-
-  .me-toast-message {
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--Text-Secondary);
-    margin: 8px 0 16px;
-  }
-
-  .me-toast-actions {
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-top: auto;
   }
 
   .me-toast-close-button {
@@ -46,41 +15,24 @@ const ToastStyles = `
     color: var(--Text-Secondary);
     background: transparent;
     border: none;
+    margin-left: auto;
   }
 
-  .dx-button {
-    height: 32px;
-    min-width: 80px;
-    border-radius: 4px;
+  .me-toast-content1 {
+    margin-left: 34px
   }
 
-  .dx-button-mode-outlined {
-    &.info-button {
-      border-color: var(--Controls-Content-In-Controls-Accent-Default);
-      color: var(--Controls-Content-In-Controls-Accent-Default);
-    }
-
-    &.warning-button {
-      border-color: var(--Controls-Content-In-Controls-Attention-Default);
-      color: var(--Controls-Content-In-Controls-Attention-Default);
-    }
-
-    &.success-button {
-      border-color: var(--Controls-Content-In-Controls-Success-Default);
-      color: var(--Controls-Content-In-Controls-Success-Default);
-    }
+  .me-toast-content2 {
+    margin-left: 30px
   }
 
-  .dx-button-mode-contained.error-button {
-    background-color: var(--Controls-BG-Accent-Danger-BG-Default);
-    color: var(--Controls-Content-In-Controls-On-BG-Default);
-    border-color: transparent;
-  }
-
-  .dx-button-mode-text {
-    color: var(--Text-Secondary);
-    background: transparent;
-    border-color: transparent;
+  .me-toast-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--Dividers-Borders-On-Bg, rgba(24, 24, 26, 0.20));
   }
 `;
 
@@ -89,109 +41,117 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [MeToastDirective],
-      imports: [DxToastModule, DxButtonModule, MeIconComponent],
+      imports: [DxToastModule, DxButtonModule, MeButtonModule, MeIconComponent],
     }),
   ],
-  argTypes: {
-    type: {
-      control: 'select',
-      options: ['info', 'warning', 'success', 'error'],
-    },
-    title: { control: 'text' },
-    message: { control: 'text' },
-    showCloseButton: { control: 'boolean' },
-    showActions: { control: 'boolean' },
-    position: {
-      control: 'select',
-      options: ['bottom right', 'bottom center', 'bottom left', 'top right', 'top center', 'top left'],
-    },
-    size: {
-      control: 'select',
-      options: ['medium', 'large'],
-    },
-  },
-  args: {
-    type: 'info',
-    title: 'Заголовок',
-    message: 'Описание',
-    showCloseButton: true,
-    showActions: true,
-    size: 'medium',
-    position: { my: 'bottom right', at: 'bottom right', offset: '-20 -20' }
-  },
-  render: (args) => ({
+} as Meta;
+
+type Story = StoryObj;
+
+// Маленький информационный тост
+export const SmallInfo: Story = {
+  render: () => ({
     props: {
-      ...args,
       isVisible: true,
-      displayTime: 1000000,
-      getIconByType: (type: string) => {
-        switch (type) {
-          case 'info': return 'info';
-          case 'warning': return 'warning';
-          case 'success': return 'check_circle';
-          case 'error': return 'error';
-          default: return 'info';
-        }
-      },
-      getButtonTypeByToastType: (type: string) => {
-        switch (type) {
-          case 'info': return 'normal';
-          case 'warning': return 'warning';
-          case 'success': return 'success';
-          case 'error': return 'danger';
-          default: return 'default';
-        }
-      },
-      getIconColor: (type: string) => {
-        switch (type) {
-          case 'info': return 'var(--Icon-Default)';
-          case 'warning': return 'var(--Icon-Attention)';
-          case 'success': return 'var(--Icon-Success)';
-          case 'error': return 'var(--Icon-Error)';
-          default: return 'var(--Icon-Default)';
-        }
-      }
     },
     template: `
       <dx-toast
         meToast
-        [type]="type"
-        [size]="size"
         [(visible)]="isVisible"
-        [position]="position"
-        [displayTime]="displayTime"
+        [displayTime]="100000000000"
+        [type]="'info'"
       >
-        <div *dxTemplate="let data of 'content'" class="me-toast-content">
+        <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small">
           <div class="me-toast-header">
-            <me-icon
-              [icon]="getIconByType(type)"
-              [size]="size"
-              [color]="getIconColor(type)"
-            ></me-icon>
-            <div class="me-toast-title">{{ title }}</div>
+            <me-icon icon="info" size="small" color="var(--Controls-BG-Accent-Accent-BG-Default)"></me-icon>
+            <div class="me-title-header2">Информация</div>
             <dx-button
-              *ngIf="showCloseButton"
               icon="close"
               stylingMode="text"
               class="me-toast-close-button"
               (onClick)="isVisible = false"
             ></dx-button>
           </div>
-          <div class="me-toast-message">{{ message }}</div>
+          <div class="me-toast-content2 me-text-body2">Операция выполнена успешно</div>
+        </div>
+      </dx-toast>
+    `,
+    styles: [ToastStyles]
+  })
+};
 
-          <div *ngIf="showActions" class="me-toast-actions">
+// Маленький предупреждающий тост
+export const SmallWarning: Story = {
+  render: () => ({
+    props: {
+      isVisible: true,
+    },
+    template: `
+      <dx-toast
+        meToast
+        [(visible)]="isVisible"
+        [displayTime]="100000000000"
+        [type]="'warning'"
+      >
+        <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small">
+          <div class="me-toast-header">
+            <me-icon icon="warning" size="small" color="var(--Icon-Attention)"></me-icon>
+            <div class="me-title-header2">Предупреждение</div>
+            <dx-button
+              icon="close"
+              stylingMode="text"
+              class="me-toast-close-button"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
+          <div class="me-toast-content2 me-text-body2">Внимание! Данное действие нельзя будет отменить</div>
+        </div>
+      </dx-toast>
+    `,
+    styles: [ToastStyles]
+  })
+};
+
+// Большой тост с ошибкой
+export const LargeError: Story = {
+  render: () => ({
+    props: {
+      isVisible: true,
+    },
+    template: `
+      <dx-toast
+        meToast
+        [(visible)]="isVisible"
+        [displayTime]="100000000000"
+        [type]="'error'"
+      >
+        <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
+          <div class="me-toast-header">
+            <me-icon icon="error" size="large" color="var(--Icon-Error)"></me-icon>
+            <div class="me-title-header1">Ошибка</div>
+            <dx-button
+              icon="close"
+              stylingMode="text"
+              class="me-toast-close-button"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
+          <div class="me-toast-content1 me-text-body1">Произошла ошибка при выполнении операции</div>
+          <div class="me-toast-actions">
             <dx-button
               meButton
-              [size]="size"
-              [text]="'Принять'"
-              [type]="getButtonTypeByToastType(type)"
+              size="large"
+              text="Повторить"
+              type="danger"
+              stylingMode="contained"
               (onClick)="isVisible = false"
             ></dx-button>
             <dx-button
               meButton
-              [size]="size"
-              [text]="'Отменить'"
-              [stylingMode]="'text'"
+              size="large"
+              text="Отмена"
+              type="danger"
+              stylingMode="text"
               (onClick)="isVisible = false"
             ></dx-button>
           </div>
@@ -200,39 +160,55 @@ export default {
     `,
     styles: [ToastStyles]
   })
-} as Meta;
-
-type Story = StoryObj;
-
-export const Info: Story = {
-  args: {
-    type: 'info',
-    title: 'Заголовок',
-    message: 'Описание'
-  }
 };
 
-export const Warning: Story = {
-  args: {
-    type: 'warning',
-    title: 'Предупреждение',
-    message: 'Внимание! Данное действие нельзя будет отменить'
-  }
-};
-
-export const Success: Story = {
-  args: {
-    type: 'success',
-    title: 'Успешно',
-    message: 'Операция выполнена успешно',
-    showActions: false
-  }
-};
-
-export const Error: Story = {
-  args: {
-    type: 'error',
-    title: 'Ошибка',
-    message: 'Произошла ошибка при выполнении операции'
-  }
+// Большой тост успеха
+export const LargeSuccess: Story = {
+  render: () => ({
+    props: {
+      isVisible: true,
+    },
+    template: `
+      <dx-toast
+        meToast
+        [(visible)]="isVisible"
+        [displayTime]="100000000000"
+        [type]="'success'"
+        [position]="{ my: 'bottom right', at: 'bottom right', offset: '-20 -20' }"
+      >
+        <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
+          <div class="me-toast-header">
+            <me-icon icon="check_circle" size="large" color="var(--Icon-Success)"></me-icon>
+            <div class="me-title-header1">Успешно</div>
+            <dx-button
+              icon="close"
+              stylingMode="text"
+              class="me-toast-close-button"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
+          <div class="me-toast-content1 me-text-body1">Все файлы успешно загружены на сервер</div>
+          <div class="me-toast-actions">
+            <dx-button
+              meButton
+              size="large"
+              text="Открыть"
+              type="success"
+              stylingMode="contained"
+              (onClick)="isVisible = false"
+            ></dx-button>
+            <dx-button
+              meButton
+              size="large"
+              text="Закрыть"
+              type="success"
+              stylingMode="text"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
+        </div>
+      </dx-toast>
+    `,
+    styles: [ToastStyles]
+  })
 };

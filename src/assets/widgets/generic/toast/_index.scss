@@ -22,11 +22,20 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
 
 
 .dx-overlay-wrapper.dx-toast-wrapper {
-  .dx-toast-error,
-  .dx-toast-success,
-  .dx-toast-warning,
+
+  .dx-toast-success {
+    background-color: var(--Background-Success);
+  }
+  .dx-toast-error {
+    background-color: var(--Background-Error);
+  }
+
+  .dx-toast-warning {
+    background-color: var(--Background-Attention);
+  }
+
   .dx-toast-info {
-    background: none;
+    background-color: var(--Background-Content);
   }
 
   .dx-toast-icon {
@@ -36,38 +45,11 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
   .dx-toast-message {
     display: none;
   }
-
-  .dx-overlay-content {
-    background: none;
-  }
-
-  .dx-toast-content {
-    padding: 0;
-    margin: 0;
-    background: none;
-  }
-
-  // Стили для разных типов тостов
-  .me-toast.me-toast-info + .dx-overlay-content {
-    background-color: var(--Background-Content);
-  }
-
-  .me-toast.me-toast-warning + .dx-overlay-content {
-    background-color: var(--Background-Attention);
-  }
-
-  .me-toast.me-toast-success + .dx-overlay-content {
-    background-color: var(--Background-Success);
-  }
-
-  .me-toast.me-toast-error + .dx-overlay-content {
-    background-color: var(--Background-Error);
-  }
 }
 
 // Стили для базового класса
 .dx-toast.me-toast {
-  &.me-toast-info {
+  &.dx-toast-content {
     background-color: var(--Background-Content);
   }
 
