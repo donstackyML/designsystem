@@ -1,0 +1,218 @@
+import { Meta, Story, Controls, Source, Canvas } from '@storybook/blocks';
+import * as CustomEditorStories from './me-custom-text-editor.stories';
+
+<Meta of={CustomEditorStories} />
+
+# Редакторы с кнопками DevExtreme
+
+Примеры использования встроенных кнопок в редакторах DevExtreme.
+
+## Обзор компонентов
+
+<Canvas of={CustomEditorStories.Default} />
+
+<Controls of={CustomEditorStories.Default} />
+
+## Примеры использования
+
+- [Password TextBox](#password-textbox)
+- [Multi-currency NumberBox](#multi-currency-numberbox)
+- [Advanced DateBox](#advanced-datebox)
+
+## Password TextBox
+
+### Компонент с кнопкой отображения пароля
+
+<Source
+  code={`
+<dx-text-box
+  meTextBox
+  [size]="size"
+  [(mode)]="passwordMode"
+  placeholder="password"
+  [inputAttr]="{ 'aria-label': 'Password' }"
+  stylingMode="filled"
+  [(value)]="passwordValue"
+  [disabled]="disabled"
+>
+  <dxi-button
+    *ngIf="showPasswordToggle"
+    name="today"
+    location="after"
+    [options]="passwordButton"
+  ></dxi-button>
+</dx-text-box>
+`}
+  language="html"
+/>
+
+### Конфигурация кнопки показа пароля
+
+<Source
+  code={`
+passwordButton: DxButtonTypes.Properties = {
+  icon: 'eyeopen',
+  stylingMode: 'text',
+  onClick: () => {
+    this.passwordMode = this.passwordMode === 'text' ? 'password' : 'text';
+  }
+};
+`}
+  language="typescript"
+/>
+
+## Multi-currency NumberBox
+
+### Компонент с кнопкой переключения валюты
+
+<Source
+  code={`
+<dx-number-box
+  [(value)]="priceValue"
+  [(format)]="currencyFormat"
+  [showClearButton]="showClearButton"
+  [showSpinButtons]="showSpinButtons"
+  [inputAttr]="{ 'aria-label': 'Currency Format' }"
+  [disabled]="disabled"
+>
+  <dxi-button
+    *ngIf="showCurrencyToggle"
+    name="currency"
+    location="after"
+    [options]="currencyButton"
+  ></dxi-button>
+  <dxi-button *ngIf="showClearButton" name="clear"></dxi-button>
+  <dxi-button *ngIf="showSpinButtons" name="spins"></dxi-button>
+</dx-number-box>
+`}
+  language="html"
+/>
+
+### Конфигурация кнопки переключения валюты
+
+  <Source
+    code={`
+    currencyButton: DxButtonTypes.Properties = {
+    text: '€',
+    stylingMode: 'text',
+    width: 32,
+    elementAttr: { class: 'currency' },
+    onClick: (e) => {
+    if (e.component.option('text') === '$') {
+    e.component.option('text', '€');
+    this.currencyFormat = '$ #.##';
+    this.priceValue /= 0.836;
+  } else {
+    e.component.option('text', '$');
+    this.currencyFormat = '€ #.##';
+    this.priceValue *= 0.836;
+  }
+  }
+  };
+    `}
+  language="typescript"
+/>
+
+## Advanced DateBox
+
+### Компонент с кнопками навигации
+
+    <Source
+      code={`
+    <dx-date-box
+    meDateBox
+    [size]="size"
+    stylingMode="outlined"
+    [(value)]="dateValue"
+    [inputAttr]="{ 'aria-label': 'Date' }"
+    [disabled]="disabled"
+    >
+    <dxi-button
+    *ngIf="showTodayButton"
+    name="today"
+    location="before"
+    [options]="todayButton"
+    ></dxi-button>
+    <dxi-button
+    *ngIf="showNavigationButtons"
+    name="prevDate"
+    location="before"
+    [options]="prevDateButton"
+    ></dxi-button>
+    <dxi-button
+    *ngIf="showNavigationButtons"
+    name="nextDate"
+    location="after"
+    [options]="nextDateButton"
+    ></dxi-button>
+    <dxi-button *ngIf="showDropDownButton" name="dropDown"></dxi-button>
+    </dx-date-box>
+    `}
+      language="html"
+    />
+
+    ### Конфигурация кнопок календаря
+
+    <Source
+    code={`
+todayButton: DxButtonTypes.Properties = {
+  text: 'Today',
+  stylingMode: 'text',
+  onClick: () => {
+    this.dateValue = new Date().getTime();
+  }
+};
+
+    prevDateButton: DxButtonTypes.Properties = {
+      icon: 'spinprev',
+      stylingMode: 'text',
+      onClick: () => {
+        this.dateValue -= 86400000; // 24 часа в миллисекундах
+      }
+    };
+
+    nextDateButton: DxButtonTypes.Properties = {
+      icon: 'spinnext',
+      stylingMode: 'text',
+      onClick: () => {
+        this.dateValue += 86400000; // 24 часа в миллисекундах
+      }
+    };
+`}
+  language="typescript"
+/>
+
+## CSS классы
+
+### Основные стили компонентов
+
+<Source
+  code={`
+.dx-fieldset {
+  margin: 0;
+  padding: 20px;
+}
+
+  .dx-field {
+    margin-bottom: 20px;
+  }
+
+  .dx-field-label {
+    width: 200px;
+    padding-right: 16px;
+  }
+
+  .dx-field-value {
+    flex-grow: 1;
+  }
+`}
+  language="css"
+/>
+
+## Примечания
+
+1. Для всех кнопок используется `stylingMode="text"` для единообразного стиля
+2. Все поля поддерживают `aria-label` для доступности
+3. Параметр `size` меняет размер компонентов и их кнопок
+4. Стандартные кнопки (`clear`, `spins`, `dropDown`) имеют встроенную функциональность
+5. При `disabled=true` блокируются все элементы управления компонента
