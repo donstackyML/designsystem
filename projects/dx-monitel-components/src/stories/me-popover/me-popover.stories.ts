@@ -1,183 +1,198 @@
 import {
   Meta,
   StoryObj,
-  argsToTemplate,
   moduleMetadata,
 } from '@storybook/angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
-import { MeButtonDirective, MePopoverDirective } from '../../public-api';
-import { Component } from '@angular/core';
-import { DxButtonComponent, DxButtonModule } from 'devextreme-angular';
-
-let args = {
-  size: 'medium',
-  showEvent: 'mouseenter',
-  hideEvent: 'mouseleave',
-  position: 'bottom',
-  width: 300,
-  showTitle: false,
-  title: '',
-  shading: false,
-  shadingColor: '',
-  content: 'Это содержимое поповера по умолчанию.',
-  animation: {
-    show: { type: 'fade', duration: 0 },
-    hide: { type: 'fade', duration: 0 },
-  },
-};
+import { MePopoverDirective } from '../../public-api';
+import { Component, Input } from '@angular/core';
+import { DxButtonModule } from 'devextreme-angular';
 
 @Component({
   selector: 'me-popover-demo',
   template: `
     <div style="padding: 20px;">
-      <a id="popoverTarget">Наведите для показа поповера</a>
-      <dx-popover mePopover target="#popoverTarget" ${argsToTemplate(args)}>
-        <div *dxTemplate="let data of 'content'">{{ content }}</div>
+      <a id="popoverTarget">{{triggerText}}</a>
+      <dx-popover
+        mePopover
+        target="#popoverTarget"
+        [showEvent]="showEvent"
+        [hideEvent]="hideEvent"
+        [width]="width"
+        [showTitle]="showTitle"
+        [title]="title"
+        [shading]="shading"
+        [shadingColor]="shadingColor"
+        [showCloseButton]="showCloseButton"
+        [hideOnOutsideClick]="hideOnOutsideClick"
+        [enableBodyScroll]="enableBodyScroll"
+      >
+        <div *dxTemplate="let data of 'content'">
+          {{content}}
+        </div>
 
-        <dxi-toolbar-item
-          widget="dxButton"
-          toolbar="bottom"
-          location="before"
-          [options]="acceptButton"
-        >
-        </dxi-toolbar-item>
+        <ng-container *dxTemplate="let data of 'titleTemplate'">
+          <div *ngIf="titleTemplate">
+            {{titleTemplate}}
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="showToolbarItems">
+          <dxi-toolbar-item
+            widget="dxButton"
+            toolbar="bottom"
+            location="before"
+            [options]="acceptButton"
+          >
+          </dxi-toolbar-item>
+        </ng-container>
       </dx-popover>
     </div>
-  `,
+  `
 })
-class MePopoverComponent {
+export class PopoverDemoComponent {
+  @Input() triggerText: string = 'Наведите для показа поповера';
+  @Input() size: string = 'medium';
+  @Input() showEvent: string = 'mouseenter';
+  @Input() hideEvent: string = 'mouseleave';
+  @Input() position: string = 'bottom';
+  @Input() width: number = 300;
+  @Input() maxWidth?: number;
+  @Input() showTitle: boolean = false;
+  @Input() title: string = '';
+  @Input() titleTemplate?: string;
+  @Input() shading: boolean = false;
+  @Input() shadingColor: string = '';
+  @Input() content: string = 'Это содержимое поповера по умолчанию.';
+  @Input() showCloseButton: boolean = false;
+  @Input() hideOnOutsideClick: boolean = true;
+  @Input() enableBodyScroll: boolean = true;
+  @Input() showToolbarItems: boolean = false;
+
+  @Input() animation = {
+    show: { type: 'fade', duration: 0 },
+    hide: { type: 'fade', duration: 0 }
+  };
+
   acceptButton = {
-    widget: 'dxButton',
-    toolbar: 'bottom',
-    location: 'before',
-    option: {
-      icon: '',
-      stylingMode: 'filled',
-      text: 'Принять',
-      onClick: () => {
-        console.log('Принять');
-      },
-    },
+    icon: '',
+    stylingMode: 'filled',
+    text: 'Принять',
+    onClick: () => {
+      console.log('Принять');
+    }
   };
 }
 
-const meta: Meta = {
+const meta: Meta<PopoverDemoComponent> = {
   title: 'Components/Popover(RC)',
-  component: MePopoverDirective,
+  component: PopoverDemoComponent,
   decorators: [
     moduleMetadata({
-      declarations: [MePopoverDirective, MePopoverComponent],
+      declarations: [MePopoverDirective, PopoverDemoComponent],
       imports: [DxPopoverModule, DxButtonModule],
     }),
   ],
   argTypes: {
-    animation: {
-      control: 'object',
-      description: 'Настройки анимации появления и исчезновения поповера.',
-    },
-    enableBodyScroll: {
-      control: 'boolean',
-      description: 'Разрешить скролл страницы внутри поповера.',
-    },
-    height: {
-      control: 'text',
-      description: 'Высота поповера.',
-    },
-    hideEvent: {
+    size: {
       control: 'select',
-      options: ['mouseleave', 'click', 'blur'],
-      description:
-        'Задает свойства скрытия поповера. Игнорируется, если свойство затенения установлено в значение `true`. Селектор: `dxo-hide-event`.',
-    },
-    hideOnOutsideClick: {
-      control: 'boolean',
-      description:
-        'Указывает, следует ли скрывать компонент пользовательского интерфейса, если пользователь щелкает за пределами всплывающего окна или за пределами целевого элемента.',
-    },
-    maxHeight: {
-      control: 'number',
-      description: 'Максимальная высота поповера в пикселях.',
-    },
-    maxWidth: {
-      control: 'number',
-      description: 'Максимальная ширина поповера в пикселях.',
-    },
-    position: {
-      control: 'select',
-      options: ['top', 'bottom', 'left', 'right'],
-      description: 'Позиция поповера относительно целевого элемента.',
-    },
-    shading: {
-      control: 'boolean',
-      description: 'Включить затенение фона при показе поповера.',
-    },
-    shadingColor: {
-      control: 'color',
-      description: 'Цвет затенения фона.',
-    },
-    showCloseButton: {
-      control: 'boolean',
-      description: 'Показывать ли кнопку закрытия поповера.',
+      options: ['small', 'medium', 'large'],
+      description: 'Размер поповера.',
+      defaultValue: 'medium'
     },
     showEvent: {
       control: 'select',
       options: ['mouseenter', 'click', 'focus'],
       description: 'Событие, при котором поповер будет показываться.',
+      defaultValue: 'mouseenter'
     },
-    showTitle: {
-      control: 'boolean',
-      description: 'Показывать ли заголовок поповера.',
-    },
-    size: {
+    hideEvent: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Размер поповера.',
+      options: ['mouseleave', 'click', 'blur'],
+      description: 'Событие, при котором поповер будет скрываться.',
+      defaultValue: 'mouseleave'
     },
-    target: {
-      control: 'text',
-      description:
-        'Указывает элемент, напротив которого будет располагаться всплывающее окно.',
-    },
-    title: {
-      control: 'text',
-      description: 'Текст заголовка поповера.',
-    },
-    titleTemplate: {
-      control: 'text',
-      description: 'Шаблон заголовка поповера.',
-    },
-    toolbarItems: {
-      control: 'object',
-      description:
-        'Панель инструментов поповера. Селектор: `dxo-toolbar-items`.',
+    position: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+      description: 'Позиция поповера относительно целевого элемента.',
+      defaultValue: 'bottom'
     },
     width: {
       control: 'number',
       description: 'Ширина поповера в пикселях.',
+      defaultValue: 300
     },
-  },
-  // render: (args) => ({
-  //   props: args,
-  //   template: `
-  //     <div style="padding: 20px;">
-  //       <a id="popoverTarget">Наведите для показа поповера</a>
-  //       <dx-popover
-  //         mePopover
-  //         target="#popoverTarget"
-  //         ${argsToTemplate(args)}
-  //       >
-  //         <div *dxTemplate="let data of 'content'">
-  //           {{ content }}
-  //         </div>
-  //       </dx-popover>
-  //     </div>
-  //   `,
-  // }),
+    maxWidth: {
+      control: 'number',
+      description: 'Максимальная ширина поповера в пикселях.'
+    },
+    showTitle: {
+      control: 'boolean',
+      description: 'Показывать ли заголовок поповера.',
+      defaultValue: false
+    },
+    title: {
+      control: 'text',
+      description: 'Текст заголовка поповера.',
+      if: { arg: 'showTitle', truthy: true }
+    },
+    titleTemplate: {
+      control: 'text',
+      description: 'Шаблон заголовка поповера.',
+      if: { arg: 'showTitle', truthy: true }
+    },
+    shading: {
+      control: 'boolean',
+      description: 'Включить затенение фона при показе поповера.',
+      defaultValue: false
+    },
+    shadingColor: {
+      control: 'color',
+      description: 'Цвет затенения фона.',
+      if: { arg: 'shading', truthy: true }
+    },
+    content: {
+      control: 'text',
+      description: 'Содержимое поповера.',
+      defaultValue: 'Это содержимое поповера по умолчанию.'
+    },
+    showCloseButton: {
+      control: 'boolean',
+      description: 'Показывать ли кнопку закрытия поповера.',
+      defaultValue: false
+    },
+    hideOnOutsideClick: {
+      control: 'boolean',
+      description: 'Скрывать ли поповер при клике вне его области.',
+      defaultValue: true
+    },
+    enableBodyScroll: {
+      control: 'boolean',
+      description: 'Разрешить скролл страницы при открытом поповере.',
+      defaultValue: true
+    },
+    showToolbarItems: {
+      control: 'boolean',
+      description: 'Показывать ли панель инструментов.',
+      defaultValue: false
+    },
+    animation: {
+      control: 'object',
+      description: 'Настройки анимации появления и исчезновения поповера.',
+    },
+    triggerText: {
+      control: 'text',
+      description: 'Текст триггера поповера.',
+      defaultValue: 'Наведите для показа поповера'
+    }
+  }
 };
 
 export default meta;
+type Story = StoryObj<PopoverDemoComponent>;
 
-export const Default: StoryObj = {
+export const Default: Story = {
   args: {
     size: 'medium',
     showEvent: 'mouseenter',
@@ -191,180 +206,31 @@ export const Default: StoryObj = {
     content: 'Это содержимое поповера по умолчанию.',
     animation: {
       show: { type: 'fade', duration: 0 },
-      hide: { type: 'fade', duration: 0 },
-    },
-  },
+      hide: { type: 'fade', duration: 0 }
+    }
+  }
 };
 
-// export const WithTitleAndOverlay: StoryObj = {
-//   args: {
-//     ...Default.args,
-//     position: 'bottom',
-//     showCloseButton: true,
-//     showEvent: 'click',
-//     hideEvent: 'click',
-//     shading: true,
-//     showTitle: true,
-//     title: 'Заголовок поповера',
-//     maxWidth: 400,
-//     content: 'Это поповер с заголовком и ограничением максимальной ширины.',
-//   },
-// };
+export const WithTitleAndShading: Story = {
+  args: {
+    ...Default.args,
+    showTitle: true,
+    title: 'Заголовок поповера',
+    shading: true,
+    shadingColor: 'rgba(0, 0, 0, 0.3)',
+    showEvent: 'click',
+    hideEvent: 'click',
+    showCloseButton: true,
+    content: 'Поповер с заголовком и затенением фона.'
+  }
+};
 
-// export const WithContent: StoryObj = {
-//   args: {
-//     ...Default.args,
-//     showEvent: 'click',
-//     hideEvent: 'click',
-//     shading: true,
-//     showTitle: true,
-//     title: 'Заголовок поповера',
-//     showCloseButton: true,
-//     shadingColor: 'rgba(0, 0, 0, 0.5)',
-//     content: 'Это поповер с затенением фона.',
-//     options: {
-//       widget: 'dxButton',
-//       toolbar: 'bottom',
-//       location: 'before',
-//     },
-//   },
-//   render: (args: any) => ({
-//     props: args,
-//     template: `
-//       <div style="padding: 20px;">
-//         <a id="popoverTarget">Наведите для показа поповера</a>
-//         <dx-popover
-//           mePopover
-//           target="#popoverTarget"
-//           ${argsToTemplate(args)}
-//         >
-//           <div *dxTemplate="let data of 'content'">{{ content }}</div>
-
-//           <dxi-toolbar-item
-//           widget="dxButton"
-// 					toolbar="bottom"
-//           location="before"
-// 					>
-//           </dxi-toolbar-item>
-
-//         </dx-popover>
-//       </div>
-//     `,
-//   }),
-// };
-
-// export default {
-//   title: 'Components/Popover',
-//   component: MePopoverComponent,
-//   decorators: [
-//     moduleMetadata({
-//       declarations: [DxButtonComponent, MeButtonDirective, MePopoverComponent],
-//       imports: [],
-//     }),
-//   ],
-//   argTypes: {
-//     animation: {
-//       control: 'object',
-//       description: 'Настройки анимации появления и исчезновения поповера.',
-//     },
-//     enableBodyScroll: {
-//       control: 'boolean',
-//       description: 'Разрешить скролл страницы внутри поповера.',
-//     },
-//     height: {
-//       control: 'text',
-//       description: 'Высота поповера.',
-//     },
-//     hideEvent: {
-//       control: 'select',
-//       options: ['mouseleave', 'click', 'blur'],
-//       description:
-//         'Задает свойства скрытия поповера. Игнорируется, если свойство затенения установлено в значение `true`. Селектор: `dxo-hide-event`.',
-//     },
-//     hideOnOutsideClick: {
-//       control: 'boolean',
-//       description:
-//         'Указывает, следует ли скрывать компонент пользовательского интерфейса, если пользователь щелкает за пределами всплывающего окна или за пределами целевого элемента.',
-//     },
-//     maxHeight: {
-//       control: 'number',
-//       description: 'Максимальная высота поповера в пикселях.',
-//     },
-//     maxWidth: {
-//       control: 'number',
-//       description: 'Максимальная ширина поповера в пикселях.',
-//     },
-//     position: {
-//       control: 'select',
-//       options: ['top', 'bottom', 'left', 'right'],
-//       description: 'Позиция поповера относительно целевого элемента.',
-//     },
-//     shading: {
-//       control: 'boolean',
-//       description: 'Включить затенение фона при показе поповера.',
-//     },
-//     shadingColor: {
-//       control: 'color',
-//       description: 'Цвет затенения фона.',
-//     },
-//     showCloseButton: {
-//       control: 'boolean',
-//       description: 'Показывать ли кнопку закрытия поповера.',
-//     },
-//     showEvent: {
-//       control: 'select',
-//       options: ['mouseenter', 'click', 'focus'],
-//       description: 'Событие, при котором поповер будет показываться.',
-//     },
-//     showTitle: {
-//       control: 'boolean',
-//       description: 'Показывать ли заголовок поповера.',
-//     },
-//     size: {
-//       control: 'select',
-//       options: ['small', 'medium', 'large'],
-//       description: 'Размер поповера.',
-//     },
-//     target: {
-//       control: 'text',
-//       description:
-//         'Указывает элемент, напротив которого будет располагаться всплывающее окно.',
-//     },
-//     title: {
-//       control: 'text',
-//       description: 'Текст заголовка поповера.',
-//     },
-//     titleTemplate: {
-//       control: 'text',
-//       description: 'Шаблон заголовка поповера.',
-//     },
-//     toolbarItems: {
-//       control: 'object',
-//       description:
-//         'Панель инструментов поповера. Селектор: `dxo-toolbar-items`.',
-//     },
-//     width: {
-//       control: 'number',
-//       description: 'Ширина поповера в пикселях.',
-//     },
-//   },
-// } as Meta<MePopoverComponent>;
-
-// export const Demo: StoryObj = {
-//   args: {
-//     size: 'medium',
-//     showEvent: 'mouseenter',
-//     hideEvent: 'mouseleave',
-//     position: 'bottom',
-//     width: 300,
-//     showTitle: false,
-//     title: '',
-//     shading: false,
-//     shadingColor: '',
-//     content: 'Это содержимое поповера по умолчанию.',
-//     animation: {
-//       show: { type: 'fade', duration: 0 },
-//       hide: { type: 'fade', duration: 0 },
-//     },
-//   },
-// };
+export const WithToolbar: Story = {
+  args: {
+    ...Default.args,
+    showToolbarItems: true,
+    showEvent: 'click',
+    hideEvent: 'click',
+    content: 'Поповер с панелью инструментов внизу.'
+  }
+};
