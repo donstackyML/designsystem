@@ -159,3 +159,26 @@ export const WithoutDividers: Story = {
     showDivider: false,
   },
 };
+
+// Пример без заливки
+export const WithoutFill: Story = {
+  args: {
+    leftItems: [
+      { text: 'Воткинская ГЭС' },
+      {
+        text: 'Раскраска схемы без учета ТП',
+        fill: false,
+        type: 'info',
+      },
+      { text: 'Режим исследования', fill: false, type: 'success' },
+    ],
+    rightItems: [
+      {
+        icon: 'warning',
+        text: 'Отсутствует соединение с источником данных',
+        type: 'error',
+        fill: false,
+      },
+    ],
+  },
+};

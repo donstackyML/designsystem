@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   Directive,
-  ElementRef,
   HostListener,
   Input,
   OnInit,
