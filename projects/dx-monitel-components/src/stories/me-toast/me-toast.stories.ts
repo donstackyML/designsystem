@@ -1,6 +1,11 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxToastModule, DxButtonModule } from 'devextreme-angular';
-import { MeToastDirective, MeIconComponent, MeButtonDirective, MeButtonModule } from "../../public-api";
+import {
+  MeToastDirective,
+  MeIconComponent,
+  MeButtonDirective,
+  MeButtonModule,
+} from '../../public-api';
 
 const ToastStyles = `
   .me-toast-header {
@@ -76,8 +81,8 @@ export const SmallInfo: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles]
-  })
+    styles: [ToastStyles],
+  }),
 };
 
 // Маленький предупреждающий тост
@@ -108,8 +113,8 @@ export const SmallWarning: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles]
-  })
+    styles: [ToastStyles],
+  }),
 };
 
 // Большой тост с ошибкой
@@ -158,8 +163,8 @@ export const LargeError: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles]
-  })
+    styles: [ToastStyles],
+  }),
 };
 
 // Большой тост успеха
@@ -209,6 +214,6 @@ export const LargeSuccess: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles]
-  })
+    styles: [ToastStyles],
+  }),
 };

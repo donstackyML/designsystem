@@ -1,50 +1,42 @@
-import { Meta, Story, Controls } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
 import * as PopoverStories from "./me-popover.stories";
 
 <Meta title="Components/Popover(RC)" of={PopoverStories} />
 
 # Popover
 
-Компонент `MePopoverDirective` предоставляет возможность создания всплывающих подсказок и диалогов.
+## Директива mePopover
 
-<Story of={PopoverStories.Default} />
+Применение директивы `mePopover` к элементу <code>dx-popover</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство <code>size</code>.
 
-## Пример использования
+Документация на сайте разработчика Devextreme:
 
-```html
-<dx-popover
-  mePopover
-  target="#popoverTarget"
-  [showEvent]="showEvent"
-  [hideEvent]="hideEvent"
-  [position]="position"
-  [width]="width"
-  [maxWidth]="maxWidth"
-  [showTitle]="showTitle"
-  [title]="title"
-  [shading]="shading"
-  [shadingColor]="shadingColor"
-  [size]="size"
->
-  <div *dxTemplate="let data of 'content'">{{ content }}</div>
-</dx-popover>
-```
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopover/"
+    target="_blank"
+  >
+    API
+  </a>
 
-## Свойства
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Popover/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
-<Controls of={PopoverStories.Default} />
+	{/* <Canvas of={PopoverStories.Default} />
+	<Controls of={PopoverStories.Default} /> */}
 
-## Примеры
+	## Дизайн
 
-## С заголовком
+<Figma
+  height="50%"
+	collapsable
+	defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=9146-198240&node-type=canvas&t=yiFk7FNXip9QT3Xt-0"
+/>
 
-<Story of={PopoverStories.WithTitle} />
 
-## С затенением фона
-
-<Story of={PopoverStories.WithOverlay} />
-
-## Дополнительная информация
-
-Свойства showEvent и hideEvent определяют, при каких действиях поповер будет показываться и скрываться.
-Свойство position задает расположение поповера относительно целевого элемента.

@@ -2,59 +2,76 @@ import {
   AfterViewInit,
   Directive,
   ElementRef,
+  HostListener,
   inject,
   Input,
   OnChanges,
+  OnInit,
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
-import { DxPopoverComponent } from 'devextreme-angular';
 
-export type PopoverSize = 'small' | 'medium' | 'large';
-export type PopoverPosition = 'top' | 'bottom' | 'left' | 'right';
+import { MeSize } from '../../types/types';
+import { DxPopoverComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[mePopover]',
   host: {
     '[class.me-popover]': 'true',
+    '[class.me-popover-small]': 'isSizeSmall',
+    '[class.me-popover-medium]': 'isSizeMedium',
+    '[class.me-popover-large]': 'isSizeLarge',
   },
 })
 export class MePopoverDirective implements AfterViewInit, OnChanges {
-  @Input() size: PopoverSize = 'medium';
-  @Input() position: PopoverPosition = 'bottom';
-  @Input() showTitle = true;
-  @Input() showCloseButton = true;
+  @Input() size: MeSize = 'medium';
   @Input() customClass = '';
 
   private renderer = inject(Renderer2);
   private element = inject(ElementRef);
-  private dxPopoverComponent = inject(DxPopoverComponent);
 
   ngAfterViewInit(): void {
     this.applyStyles();
     this.updatePopoverProperties();
+    this.addClassesToPopup();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.updatePopoverProperties(changes);
+    this.updatePopoverProperties();
+  }
+
+  private addClassesToPopup() {
+    this.renderer.addClass(
+      this.element.nativeElement.children[0],
+      'me-popover'
+    );
+
+    this.renderer.addClass(
+      this.element.nativeElement.children[0],
+      'me-popover-' + this.size
+    );
+  }
+
+  get isSizeSmall() {
+    return this.size === 'small';
+  }
+
+  get isSizeMedium() {
+    return this.size === 'medium';
+  }
+
+  get isSizeLarge() {
+    return this.size === 'large';
   }
 
   private applyStyles(): void {
     const popoverElement = this.element.nativeElement;
-    this.renderer.addClass(popoverElement, 'me-popover');
-    this.renderer.addClass(popoverElement, `me-popover-${this.size}`);
-    this.renderer.addClass(popoverElement, `me-popover-${this.position}`);
-
     if (this.customClass) {
       this.renderer.addClass(popoverElement, this.customClass);
     }
   }
 
   private updatePopoverProperties(changes?: SimpleChanges): void {
-    this.dxPopoverComponent.position = this.position;
-    this.dxPopoverComponent.showTitle = this.showTitle;
-    this.dxPopoverComponent.showCloseButton = this.showCloseButton;
-
     if (changes) {
       for (const propName in changes) {
         if (changes.hasOwnProperty(propName)) {
