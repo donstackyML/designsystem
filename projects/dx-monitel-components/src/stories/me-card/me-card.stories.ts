@@ -83,12 +83,11 @@ export const ComplexCard: Story = {
         <!-- Header -->
         <ng-container card-header-left>
           <dx-button
-            meButton
+            meButton class="header-card-icon"
             iconOnly="public"
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <span>Заголовок карточки</span>
         </ng-container>
@@ -108,7 +107,6 @@ export const ComplexCard: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <dx-button
             meButton
@@ -116,7 +114,6 @@ export const ComplexCard: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <dx-button
             meButton
@@ -124,7 +121,6 @@ export const ComplexCard: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
         </ng-container>
 
@@ -199,13 +195,12 @@ export const ScrollableContent: Story = {
       >
         <!-- Header -->
         <ng-container card-header-left>
-          <dx-button
+          <dx-button class="header-card-icon"
             meButton
             iconOnly="public"
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <span>Карточка с прокруткой</span>
         </ng-container>
@@ -225,7 +220,6 @@ export const ScrollableContent: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <dx-button
             meButton
@@ -233,7 +227,6 @@ export const ScrollableContent: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <dx-button
             meButton
@@ -241,7 +234,6 @@ export const ScrollableContent: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
         </ng-container>
 
@@ -330,13 +322,12 @@ export const UnlimitedContent: Story = {
       >
         <!-- Header -->
         <ng-container card-header-left>
-          <dx-button
+          <dx-button class="header-card-icon"
             meButton
             iconOnly="public"
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <span>Карточка без ограничения высоты</span>
         </ng-container>
@@ -356,7 +347,6 @@ export const UnlimitedContent: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <dx-button
             meButton
@@ -364,7 +354,6 @@ export const UnlimitedContent: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
           <dx-button
             meButton
@@ -372,7 +361,6 @@ export const UnlimitedContent: Story = {
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
-            [disabled]="true"
           ></dx-button>
         </ng-container>
 

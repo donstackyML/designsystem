@@ -1,12 +1,11 @@
 import {
   AfterViewInit,
   Directive,
-  ElementRef,
   HostListener,
   Input,
   OnInit,
   Renderer2,
-  inject,
+  inject
 } from '@angular/core';
 import { DxNumberBoxComponent } from 'devextreme-angular';
 
