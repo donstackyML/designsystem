@@ -2,19 +2,18 @@
 @use './colors' as *;
 
 @font-face {
-  font-family: 'Material Symbols Outlined';
+  font-family: 'Material Icons Outlined';
   font-style: normal;
   font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'),
-    url('fonts/MaterialIcons-Regular.ttf') format('truetype');
+  src: local('Material Icons Outlined'),
+  url('fonts/MaterialIconsOutlined-Regular.otf') format('opentype');
 }
 
 .material-icons {
-  font-family: 'Material Symbols Outlined', serif;
+  font-family: 'Material Icons Outlined', serif;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
-  color: $typography-color;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -22,8 +21,9 @@
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
+
+  // Для outlined версии не нужны variation settings, так как это отдельный шрифт
+  -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: 'liga';
+  color: $typography-color;
 }
