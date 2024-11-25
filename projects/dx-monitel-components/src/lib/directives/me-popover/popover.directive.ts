@@ -6,25 +6,18 @@ import {
   inject,
   Input,
   OnChanges,
-  OnInit,
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';
-import { DxPopoverComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[mePopover]',
-  host: {
-    '[class.me-popover]': 'true',
-    '[class.me-popover-small]': 'isSizeSmall',
-    '[class.me-popover-medium]': 'isSizeMedium',
-    '[class.me-popover-large]': 'isSizeLarge',
-  },
 })
 export class MePopoverDirective implements AfterViewInit, OnChanges {
   @Input() size: MeSize = 'medium';
+  @Input() colorMode: 'light' | 'dark' = 'dark';
   @Input() customClass = '';
 
   private renderer = inject(Renderer2);
@@ -45,23 +38,24 @@ export class MePopoverDirective implements AfterViewInit, OnChanges {
       this.element.nativeElement.children[0],
       'me-popover'
     );
-
     this.renderer.addClass(
       this.element.nativeElement.children[0],
       'me-popover-' + this.size
     );
+    this.renderer.addClass(
+      this.element.nativeElement.children[0],
+      'me-popover-' + this.colorMode
+    );
   }
 
-  get isSizeSmall() {
-    return this.size === 'small';
-  }
-
-  get isSizeMedium() {
-    return this.size === 'medium';
-  }
-
-  get isSizeLarge() {
-    return this.size === 'large';
+  @HostListener('onShown', ['$event'])
+  onShown(event: any): void {
+    let buttons = event.component._$bottom[0].querySelectorAll('.dx-button');
+    buttons.forEach((e: any) => {
+      this.renderer.addClass(e, 'me-button');
+      this.renderer.addClass(e, 'me-button-' + this.size);
+    });
+    console.log(buttons);
   }
 
   private applyStyles(): void {
