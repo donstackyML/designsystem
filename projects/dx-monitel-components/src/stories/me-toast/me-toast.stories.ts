@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxToastModule, DxButtonModule } from 'devextreme-angular';
-import { MeToastDirective, MeIconComponent, MeButtonDirective, MeButtonModule } from "../../public-api";
+import { DxButtonModule, DxToastModule } from 'devextreme-angular';
+import { MeButtonModule, MeIconComponent, MeToastDirective } from "../../public-api";
 
 const ToastStyles = `
   .me-toast-header {
@@ -73,6 +73,24 @@ export const SmallInfo: Story = {
             ></dx-button>
           </div>
           <div class="me-toast-content2 me-text-body2">Операция выполнена успешно</div>
+          <div class="me-toast-actions">
+            <dx-button
+              meButton
+              size="large"
+              text="Принять"
+              type="default"
+              stylingMode="contained"
+              (onClick)="isVisible = false"
+            ></dx-button>
+            <dx-button
+              meButton
+              size="large"
+              text="Отменить"
+              type="default"
+              stylingMode="text"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
         </div>
       </dx-toast>
     `,
@@ -95,7 +113,7 @@ export const SmallWarning: Story = {
       >
         <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small">
           <div class="me-toast-header">
-            <me-icon icon="warning" size="small" color="var(--Icon-Attention)"></me-icon>
+            <me-icon icon="warning_outlined" class="outlined-icon" type="outlined" size="small" color="var(--Icon-Attention)"></me-icon>
             <div class="me-title-header2">Предупреждение</div>
             <dx-button
               icon="close"
@@ -105,6 +123,24 @@ export const SmallWarning: Story = {
             ></dx-button>
           </div>
           <div class="me-toast-content2 me-text-body2">Внимание! Данное действие нельзя будет отменить</div>
+          <div class="me-toast-actions">
+            <dx-button
+              meButton
+              size="large"
+              text="Принять"
+              type="warning"
+              stylingMode="contained"
+              (onClick)="isVisible = false"
+            ></dx-button>
+            <dx-button
+              meButton
+              size="large"
+              text="Отменить"
+              type="warning"
+              stylingMode="text"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
         </div>
       </dx-toast>
     `,
@@ -127,7 +163,7 @@ export const LargeError: Story = {
       >
         <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
           <div class="me-toast-header">
-            <me-icon icon="error" size="large" color="var(--Icon-Error)"></me-icon>
+            <me-icon icon="error_outlined" size="large" color="var(--Icon-Error)"></me-icon>
             <div class="me-title-header1">Ошибка</div>
             <dx-button
               icon="close"
@@ -141,7 +177,7 @@ export const LargeError: Story = {
             <dx-button
               meButton
               size="large"
-              text="Повторить"
+              text="Принять"
               type="danger"
               stylingMode="contained"
               (onClick)="isVisible = false"
@@ -149,7 +185,7 @@ export const LargeError: Story = {
             <dx-button
               meButton
               size="large"
-              text="Отмена"
+              text="Отменить"
               type="danger"
               stylingMode="text"
               (onClick)="isVisible = false"
