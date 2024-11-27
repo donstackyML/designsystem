@@ -4,24 +4,28 @@
 @use '../../base/selectBox';
 @use '../common/mixins' as *;
 
-.me-selectbox.dx-selectbox {
+.me-selectbox.dx-selectbox.dx-texteditor {
   border-radius: 3px;
   background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
-  border: 0;
+  &:not(.dx-invalid, .dx-state-focused) {
+    border: 1px solid var(--Controls-BG-Secondary-Elements-BG-Default);
+  }
+
+  &.dx-state-hover {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+  }
 
   .dx-clear-button-area {
     display: flex;
     align-items: center;
   }
 
-  &.dx-state-hover {
-    background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
-    border-color: #dfe0ed;
-  }
-
   &.dx-state-focused:not(.dx-invalid) {
     background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
     border-color: var(--Controls-Content-In-Controls-Accent-Default);
+    &.dx-state-hover {
+      border: 1px solid var(--Controls-Content-In-Controls-Accent-Default) !important;
+    }
 
     .dx-label {
       span {
@@ -36,6 +40,7 @@
   }
 
   &.dx-invalid {
+    border: 1px solid var(--Controls-Content-In-Controls-Danger-Default) !important;
     .dx-label {
       span {
         color: var(--Controls-Content-In-Controls-Danger-Default);
@@ -51,10 +56,11 @@
 
   .dx-texteditor-container {
     padding-inline: 8px;
-    width: 100%;
+    // width: 100%;
     gap: 16px;
     align-items: center;
 
+    ///placeholder
     .dx-texteditor-input-container {
       *,
       *::before {
@@ -72,9 +78,11 @@
       .dx-placeholder {
         font-weight: var(--me-regular-font-weight);
         color: var(--Controls-Content-In-Controls-Main-Disabled);
+        // line-height: normal !important;
       }
     }
 
+    //кнопки
     .dx-texteditor-buttons-container {
       height: 20px;
       width: 20px;
@@ -88,11 +96,32 @@
           height: 12px;
         }
       }
+
+      .dx-lock-button-area {
+        width: 20px;
+        height: 20px;
+        text-align-last: center;
+
+        .dx-icon.dx-icon-key {
+          font-size: 19px;
+          line-height: 20px;
+          font-family: var(--me-icon-family);
+          color: var(--Controls-Content-In-Controls-Main-Default);
+
+          &::before {
+            content: var(--me-icon-lock);
+          }
+        }
+      }
     }
   }
 
   .dx-texteditor-label {
     align-items: center;
+
+    & > * {
+      border: none !important;
+    }
 
     .dx-label {
       span {
@@ -135,8 +164,8 @@
     .dx-texteditor-label {
       padding: 0;
       align-items: center;
-      height: 16px;
-      margin-top: -8.5px !important;
+      // height: 16px;
+      // margin-top: -8.5px !important;
     }
 
     &.dx-state-focused,
@@ -148,7 +177,13 @@
     }
   }
 
+  //sizes
   &.me-selectbox-small {
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-texteditor-container {
+        padding-block: 17px 3px;
+      }
+    }
     .dx-texteditor-container {
       padding-block: 4px;
 
@@ -163,6 +198,12 @@
   }
 
   &.me-selectbox-medium {
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-texteditor-container {
+        padding-block: 17px 3px;
+      }
+    }
+
     .dx-texteditor-container {
       padding-block: 6px;
 
@@ -178,6 +219,12 @@
 
   &.me-selectbox-large {
     border-radius: 4px;
+
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-texteditor-container {
+        padding-block: 22px 5px;
+      }
+    }
 
     .dx-texteditor-container {
       padding-inline: 12px;
@@ -203,6 +250,17 @@
             height: 16px;
           }
         }
+
+        .dx-lock-button-area {
+          width: 24px;
+          height: 24px;
+          text-align-last: center;
+
+          .dx-icon.dx-icon-key {
+            font-size: 23px;
+            line-height: 24px;
+          }
+        }
       }
     }
 
@@ -212,6 +270,15 @@
           font-size: 14px;
           line-height: 20px;
         }
+      }
+    }
+
+    &.dx-texteditor-label-outside {
+      margin-top: 24px;
+
+      .dx-texteditor-label {
+        height: 20px;
+        top: -24px;
       }
     }
   }
