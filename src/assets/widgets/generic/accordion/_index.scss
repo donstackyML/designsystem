@@ -36,6 +36,7 @@ $generic-accordion-disabled-opacity: 0.5;
     & > .dx-accordion-item-title {
       color: $accordion-title-active-color;
       background-color: $accordion-title-active-bg;
+      border-color: $accordion-item-hover-bg;
     }
   }
 
@@ -46,7 +47,7 @@ $generic-accordion-disabled-opacity: 0.5;
 
     &:not(.dx-accordion-item-opened) {
       border-radius: 3px;
-      border-color: transparent;
+      border-color: $accordion-item-hover-bg;
     }
 
     &:not(:last-child):not(.dx-accordion-item-opened):not(.dx-state-focused) {
@@ -58,6 +59,7 @@ $generic-accordion-disabled-opacity: 0.5;
 .dx-accordion-item-opened {
   border-radius: 3px;
   border: 1px solid $accordion-item-border-color;
+  margin-top: -1.5px;
 
   &.dx-state-hover {
     & > .dx-accordion-item-title {

@@ -1,13 +1,9 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MeCardComponent } from '../../public-api';
-import { MeIconComponent } from '../../public-api';
-import { MeChipComponent } from '../../public-api';
-import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
 import { CommonModule } from '@angular/common';
-import { MeButtonModule } from '../../public-api';
-import { MeDropDownButtonModule } from '../../public-api';
 import { addX20, mailX20, publicX20 } from '@monitel/me-icons';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
 import { registry } from '../../../.storybook/preview';
+import { MeButtonModule, MeCardComponent, MeChipComponent, MeDropDownButtonModule, MeIconComponent } from '../../public-api';
 
 const dropDownItems = [
   { id: 1, name: 'Пункт меню 1' },
@@ -87,8 +83,8 @@ export const ComplexCard: Story = {
         <!-- Header -->
         <ng-container card-header-left>
           <dx-button
-            meButton
-            iconOnly="overflow"
+            meButton class="header-card-icon"
+            iconOnly="public"
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
@@ -96,8 +92,8 @@ export const ComplexCard: Story = {
           <span>Заголовок карточки</span>
         </ng-container>
 
-        <ng-container card-header-right *ngIf="size !== 'small'">
-          <me-chip
+        <ng-container card-header-right>
+          <me-chip class="card-header-btn"
             [label]="chipProps.label"
             [size]="size"
             [count]="chipProps.count"
@@ -105,14 +101,27 @@ export const ComplexCard: Story = {
             [removable]="chipProps.removable"
             style="margin-right: 16px;"
           ></me-chip>
-          <dx-drop-down-button
-            meDropDownButton
-            [items]="dropDownItems"
-            [icon]="icons.info"
+          <dx-button
+            meButton
+            iconOnly="cached"
             [stylingMode]="'text'"
             [size]="size"
-            displayExpr="name"
-          ></dx-drop-down-button>
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <dx-button
+            meButton
+            iconOnly="help"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <dx-button
+            meButton
+            iconOnly="overflow"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
         </ng-container>
 
         <!-- Content -->
@@ -125,23 +134,25 @@ export const ComplexCard: Story = {
         <ng-container card-footer>
           <dx-button
             meButton
-            text="Cancel"
-            [stylingMode]="'text'"
+            text="Добавить"
+            [stylingMode]="'normal'"
             [size]="size"
+          ></dx-button>
+          <div class="card-footer-box">
+          <dx-button
+            meButton
+            text="Принять"
+            [stylingMode]="'normal'"
+            [size]="size"
+            type="default"
           ></dx-button>
           <dx-button
             meButton
-            text="Save Draft"
-            [stylingMode]="'outlined'"
+            text="Отмена"
+            [stylingMode]="'normal'"
             [size]="size"
           ></dx-button>
-          <dx-button
-            meButton
-            text="Publish"
-            type="success"
-            [stylingMode]="'contained'"
-            [size]="size"
-          ></dx-button>
+          </div>
         </ng-container>
       </me-card>
     `,
@@ -184,9 +195,9 @@ export const ScrollableContent: Story = {
       >
         <!-- Header -->
         <ng-container card-header-left>
-          <dx-button
+          <dx-button class="header-card-icon"
             meButton
-            iconOnly="overflow"
+            iconOnly="public"
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
@@ -194,8 +205,8 @@ export const ScrollableContent: Story = {
           <span>Карточка с прокруткой</span>
         </ng-container>
 
-        <ng-container card-header-right *ngIf="size !== 'small'">
-          <me-chip
+        <ng-container card-header-right>
+          <me-chip class="card-header-btn"
             [label]="chipProps.label"
             [size]="size"
             [count]="chipProps.count"
@@ -203,14 +214,27 @@ export const ScrollableContent: Story = {
             [removable]="chipProps.removable"
             style="margin-right: 16px;"
           ></me-chip>
-          <dx-drop-down-button
-            meDropDownButton
-            [items]="dropDownItems"
-            [icon]="icons.info"
+          <dx-button
+            meButton
+            iconOnly="cached"
             [stylingMode]="'text'"
             [size]="size"
-              displayExpr="name"
-          ></dx-drop-down-button>
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <dx-button
+            meButton
+            iconOnly="help"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <dx-button
+            meButton
+            iconOnly="overflow"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
         </ng-container>
 
         <!-- Content с большим количеством текста -->
@@ -231,23 +255,26 @@ export const ScrollableContent: Story = {
         <ng-container card-footer>
           <dx-button
             meButton
-            text="Cancel"
+            text="Добавить"
             [stylingMode]="'text'"
             [size]="size"
+            [stylingMode]="'normal'"
+          ></dx-button>
+          <div class="card-footer-box">
+          <dx-button
+            meButton
+            text="Принять"
+            [stylingMode]="'normal'"
+            [size]="size"
+            type="default"
           ></dx-button>
           <dx-button
             meButton
-            text="Save Draft"
-            [stylingMode]="'outlined'"
+            text="Отмена"
+            [stylingMode]="'normal'"
             [size]="size"
           ></dx-button>
-          <dx-button
-            meButton
-            text="Publish"
-            type="success"
-            [stylingMode]="'contained'"
-            [size]="size"
-          ></dx-button>
+          </div>
         </ng-container>
       </me-card>
     `,
@@ -295,9 +322,9 @@ export const UnlimitedContent: Story = {
       >
         <!-- Header -->
         <ng-container card-header-left>
-          <dx-button
+          <dx-button class="header-card-icon"
             meButton
-            iconOnly="overflow"
+            iconOnly="public"
             [stylingMode]="'text'"
             [size]="size"
             (onClick)="onSyncClick()"
@@ -305,8 +332,8 @@ export const UnlimitedContent: Story = {
           <span>Карточка без ограничения высоты</span>
         </ng-container>
 
-        <ng-container card-header-right *ngIf="size !== 'small'">
-          <me-chip
+        <ng-container card-header-right>
+          <me-chip class="card-header-btn"
             [label]="chipProps.label"
             [size]="size"
             [count]="chipProps.count"
@@ -314,14 +341,27 @@ export const UnlimitedContent: Story = {
             [removable]="chipProps.removable"
             style="margin-right: 16px;"
           ></me-chip>
-          <dx-drop-down-button
-            meDropDownButton
-            [items]="dropDownItems"
-            [icon]="icons.info"
+          <dx-button
+            meButton
+            iconOnly="cached"
             [stylingMode]="'text'"
             [size]="size"
-            displayExpr="name"
-          ></dx-drop-down-button>
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <dx-button
+            meButton
+            iconOnly="help"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
+          <dx-button
+            meButton
+            iconOnly="overflow"
+            [stylingMode]="'text'"
+            [size]="size"
+            (onClick)="onSyncClick()"
+          ></dx-button>
         </ng-container>
 
         <!-- Content с большим количеством текста -->
@@ -346,23 +386,25 @@ export const UnlimitedContent: Story = {
         <ng-container card-footer>
           <dx-button
             meButton
-            text="Cancel"
-            [stylingMode]="'text'"
+            text="Добавить"
             [size]="size"
+            [stylingMode]="'normal'"
+          ></dx-button>
+          <div class="card-footer-box">
+          <dx-button
+            meButton
+            text="Принять"
+            [size]="size"
+            [stylingMode]="'normal'"
+            type="default"
           ></dx-button>
           <dx-button
             meButton
-            text="Save Draft"
-            [stylingMode]="'outlined'"
+            text="Отмена"
+            [stylingMode]="'normal'"
             [size]="size"
           ></dx-button>
-          <dx-button
-            meButton
-            text="Publish"
-            type="success"
-            [stylingMode]="'contained'"
-            [size]="size"
-          ></dx-button>
+          </div>
         </ng-container>
       </me-card>
     `,
