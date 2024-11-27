@@ -1,50 +1,120 @@
-import { Meta, Story, Controls } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
 import * as PopoverStories from "./me-popover.stories";
 
 <Meta title="Components/Popover(RC)" of={PopoverStories} />
 
 # Popover
 
-Компонент `MePopoverDirective` предоставляет возможность создания всплывающих подсказок и диалогов.
+## Директива mePopover
 
-<Story of={PopoverStories.Default} />
+Применение директивы `mePopover` к элементу <code>dx-popover</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство <code>size=medium (32)</code> и <code>colorMode=dark</code>.
 
-## Пример использования
+Документация на сайте разработчика Devextreme:
 
-```html
+- [Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopover/)
+
+- [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Popover/Overview/Light/)
+
+<Canvas of={PopoverStories.Default} />
+<Controls of={PopoverStories.Default} />
+<Source of={PopoverStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+	collapsable
+	defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=9146-198240&node-type=canvas&t=yiFk7FNXip9QT3Xt-0"
+/>
+
+## Примеры использования:
+
+## Размеры:
+
+Для изменения размеров используется свойство <code>size</code>. Возможные значения: <code>small</code>, <code>medium</code>, <code>large</code>. По умолчанию <code>size="medium"</code>.
+<Source code={`<dx-popover mePopover size="medium"></dx-popover> `} language="html" dark/>
+
+## Цвет
+
+Для изменения цвета используется свойство <code>colorMode</code>. Возможные значения: <code>light</code>, <code>dark</code>. По умолчанию <code>colorMode="dark"</code>.
+
+<Source code={`<dx-popover mePopover colorMode="light"></dx-popover> `} language="html" dark/>
+
+## События показа и скрытия:
+Для показа и скрытия поповера используются события <code>showEvent</code> и <code>hideEvent</code>.
+<Source code={`<dx-popover mePopover showEvent="click" hideEvent="click"></dx-popover> `} language="html" dark/>
+
+## Добавление кнопок:
+Для добавления кнопок используется тэг `dxi-toolbar-item` в компоненте <code>dx-popover</code> c виджетом <code>dxButton</code> и остальными свойствами.
+
+<Source code={`
+<dx-popover mePopover>
+  <ng-container *ngIf="showToolbarItems">
+    <dxi-toolbar-item
+      widget="dxButton"
+      toolbar="bottom"
+      location="after"
+			cssClass="popover-accept-button"
+      [options]="acceptButton">
+    </dxi-toolbar-item>
+    <dxi-toolbar-item
+      widget="dxButton"
+      toolbar="bottom"
+      location="after"
+      [options]="cancelButton">
+    </dxi-toolbar-item>
+  </ng-container>
+</dx-popover>`} language="html" dark />
+
+Чтобы стилизовать кнопку, добавте параметр <code>cssClass</code> и стилизуйте его в CSS-файле.
+
+## Добавление шаблонов заголовка и контента:
+Для добавления шаблонов заголовка и контента используются тэги `dxTemplate` в компоненте <code>dx-popover</code>.
+
+<Source code={`
 <dx-popover
   mePopover
-  target="#popoverTarget"
-  [showEvent]="showEvent"
-  [hideEvent]="hideEvent"
-  [position]="position"
-  [width]="width"
-  [maxWidth]="maxWidth"
   [showTitle]="showTitle"
   [title]="title"
-  [shading]="shading"
-  [shadingColor]="shadingColor"
-  [size]="size"
->
-  <div *dxTemplate="let data of 'content'">{{ content }}</div>
+  >
+  <div *dxTemplate="let data of 'title'">
+    <div class="tittle-wrapper">
+      <div class="tittle-template"></div>
+      <h3 class="me-title-header1" style="margin: 0;">
+        {{ titleTemplate }}
+      </h3>
+    </div>
+  </div>
+  <div *dxTemplate="let data of 'content'">
+    {{ content }}
+  </div>
 </dx-popover>
-```
+`} language="html" dark />
 
-## Свойства
+Также стилизуются шаблоны отдельно:
 
-<Controls of={PopoverStories.Default} />
+<Source code={`
+.tittle-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tittle-template {
+  width: 216px;
+  height: 125px;
+  background: linear-gradient(
+    135deg,
+    #ff8a00 0%,
+    #9c4dff 50%,
+    #4a7dff 100%
+  );
+  border-radius: 3px;
+}
+`} language="css" dark />
 
-## Примеры
+Пример кастомного использзования шаблонов:
 
-## С заголовком
-
-<Story of={PopoverStories.WithTitle} />
-
-## С затенением фона
-
-<Story of={PopoverStories.WithOverlay} />
-
-## Дополнительная информация
-
-Свойства showEvent и hideEvent определяют, при каких действиях поповер будет показываться и скрываться.
-Свойство position задает расположение поповера относительно целевого элемента.
+<Canvas of={PopoverStories.WithContent} />
