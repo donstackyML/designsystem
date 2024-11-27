@@ -264,6 +264,25 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
 .me-state-focus {
   .dx-tabpanel-tab.dx-state-focused {
     outline: 2px solid var(--Dividers-Borders-Focus);
-    outline-offset: 2px;
+    outline-offset: -2px;
+  }
+}
+
+
+.me-tabs-panel {
+  &.dx-state-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+
+    .dx-item.dx-tab {
+      .dx-item-content.dx-tab-content {
+        .dx-tab-text {
+          .dx-icon,
+          .dx-tab-text-span {
+            color: var(--Controls-Content-In-Controls-Disabled);
+          }
+        }
+      }
+    }
   }
 }
