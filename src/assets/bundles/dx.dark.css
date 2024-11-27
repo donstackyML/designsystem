@@ -1,7 +1,7 @@
 @charset "UTF-8";
 :root {
   /* Icon content */
-  --me-icon-family: "Material Symbols Outlined";
+  --me-icon-family: "Material Icons Outlined";
   --me-icon-arrow-forward: "";
   --me-icon-arrow-drop-down: "";
   --me-icon-arrow-right: "";
@@ -2922,6 +2922,27 @@
 
 .me-card.large .me-card-footer {
   padding: 16px 24px;
+}
+
+.me-card.medium .me-card-footer {
+  padding: 16px 20px;
+}
+
+.me-card.medium .me-card-content {
+  padding: 16px 20px;
+}
+
+.me-card-header-right {
+  gap: 4px;
+}
+
+.me-card-header .me-card-header-right .card-header-btn {
+  margin-right: 12px !important;
+}
+
+.dx-widget.me-button.me-button-icon-only.me-button-medium .dx-button-content {
+  width: 40px;
+  height: 40px;
 }
 
 /**
@@ -7154,8 +7175,6 @@
 }
 .dx-show-clear-button.me-editor .dx-icon-clear {
   font-size: 12px;
-  width: auto;
-  height: auto;
   padding: 4px;
   margin-top: 0;
   top: 0;
@@ -17538,6 +17557,29 @@
   background: inherit;
 }
 
+.me-toast-small .me-text-body2 {
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 2px;
+}
+
+.dx-toast-content {
+  padding: 8px;
+}
+
+.me-toast-large .me-text-body1 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.me-toast-header[_ngcontent-ng-c4126730769] .outlined-icon {
+  width: 20px;
+}
+
+.me-toast-header[_ngcontent-ng-c2307239523] .material-icons {
+  width: 20px;
+}
+
 /**
 * $name 10. Bar background color
 * $type color
@@ -19752,13 +19794,14 @@
 .dx-accordion-item.dx-state-active:not(.dx-accordion-item-opened) > .dx-accordion-item-title {
   color: #ffffff;
   background-color: rgba(60, 101, 248, 0.2);
+  border-color: rgba(60, 101, 248, 0.1215686275);
 }
 .dx-accordion-item.dx-state-hover > .dx-accordion-item-title {
   background-color: rgba(60, 101, 248, 0.1215686275);
 }
 .dx-accordion-item.dx-state-hover:not(.dx-accordion-item-opened) {
   border-radius: 3px;
-  border-color: transparent;
+  border-color: rgba(60, 101, 248, 0.1215686275);
 }
 .dx-accordion-item.dx-state-hover:not(:last-child):not(.dx-accordion-item-opened):not(.dx-state-focused) {
   border-bottom-color: rgba(60, 101, 248, 0.1215686275);
@@ -19767,6 +19810,7 @@
 .dx-accordion-item-opened {
   border-radius: 3px;
   border: 1px solid #3f4044;
+  margin-top: -1.5px;
 }
 .dx-accordion-item-opened.dx-state-hover > .dx-accordion-item-title {
   background-color: transparent;
@@ -36222,7 +36266,7 @@ input.dx-hidden {
   background-color: transparent;
 }
 .chip.small {
-  height: 24px;
+  height: 28px;
   font-size: 13px;
   line-height: 16px;
   padding: 0 8px;
@@ -36232,11 +36276,12 @@ input.dx-hidden {
   height: 32px;
   font-size: 14px;
   border-radius: 9999px;
+  padding: 0 8px;
 }
 .chip.large {
   height: 40px;
   font-size: 16px;
-  padding: 0 16px;
+  padding: 0 12px;
   border-radius: 9999px;
 }
 
@@ -36699,14 +36744,6 @@ input.dx-hidden {
   margin: 0 8px;
 }
 
-.dx-icon-warning::before {
-  content: "\e002" !important;
-}
-
-.dx-lock-button-area .dx-icon.dx-icon-key::before {
-  content: "/e897" !important;
-}
-
 .me-sidebar {
   display: block;
   height: 100%;
@@ -36892,17 +36929,16 @@ input.dx-hidden {
 }
 
 @font-face {
-  font-family: "Material Symbols Outlined";
+  font-family: "Material Icons Outlined";
   font-style: normal;
   font-weight: 400;
-  src: local("Material Icons"), local("MaterialIcons-Regular"), url("fonts/MaterialIcons-Regular.ttf") format("truetype");
+  src: local("Material Icons Outlined"), url("fonts/MaterialIconsOutlined-Regular.otf") format("opentype");
 }
 .material-icons {
-  font-family: "Material Symbols Outlined", serif;
+  font-family: "Material Icons Outlined", serif;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
-  color: #ffffff;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -36910,8 +36946,7 @@ input.dx-hidden {
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
+  -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "liga";
+  color: #ffffff;
 }/*# sourceMappingURL=dx.dark.css.map */

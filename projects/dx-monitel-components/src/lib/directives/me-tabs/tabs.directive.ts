@@ -47,7 +47,6 @@ export class MeTabsDirective implements OnInit {
   }
   private _stylingMode: MeTabsStylingMode = 'inside';
 
-  // Внутреннее свойство для DevExtreme tabs
   internalStylingMode: 'primary' | 'secondary' = 'primary';
 
   @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
@@ -75,5 +74,20 @@ export class MeTabsDirective implements OnInit {
     }
 
     this.focusManager.monitorFocus(this.elementRef).subscribe();
+  }
+
+  ngAfterViewInit() {
+    // Проверяем инициализацию
+    const instance = this.tabs.instance;
+
+    console.log('Tabs Debug Info:', {
+      // Проверяем опции
+      options: {
+        scrollingEnabled: instance.option('scrollingEnabled'),
+        showNavButtons: instance.option('showNavButtons'),
+        scrollByContent: instance.option('scrollByContent'),
+        width: instance.option('width'),
+      },
+    });
   }
 }
