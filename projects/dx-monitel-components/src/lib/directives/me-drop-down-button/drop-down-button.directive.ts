@@ -1,10 +1,9 @@
 import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  Renderer2,
+	Directive,
+	ElementRef,
+	Input,
+	OnInit,
+	Renderer2
 } from '@angular/core';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
@@ -31,7 +30,7 @@ export class MeDropDownButtonDirective
   @Input() iconSize: string = '';
   @Input() wrapperAttr: MeCommonType = {};
   @Input() showScrollbar: MeScrollbarShowType = 'always';
-  @Input() dropDownOptions: MeCommonType = {};
+	@Input() dropDownOptions: MeCommonType = {};
 
   constructor(
     private element: ElementRef,
@@ -91,20 +90,14 @@ export class MeDropDownButtonDirective
     this.component.dropDownOptions = {
       wrapperAttr: {
         ...this.wrapperAttr,
-        class: popupWrapperClasses,
+        class: `${popupWrapperClasses} me-dropdown-button-popup`,
       },
       ...this.dropDownOptions,
       contentTemplate: (contentElement: any) => {
         contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
       },
-    };
-  }
 
-  @HostListener('onContentReady', ['$event'])
-  onContentReady(event: any) {
-    this.renderer.addClass(
-      event.component._popup._$content[0],
-      'me-dropdown-button-popup'
-    );
+		};
+		;
   }
 }
