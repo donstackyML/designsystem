@@ -1,6 +1,7 @@
 @use 'sass:color';
 @use './colors' as *;
 
+
 .me-status-bar {
   // Основные стили
   display: flex;
@@ -9,7 +10,6 @@
   width: 100%;
   background: var(--Background-Content);
   border: 1px solid var(--Controls-BG-Secondary-Elements-BG-Default);
-
   &--transparent {
     background: transparent;
     border: none;
@@ -22,6 +22,7 @@
     .me-status-bar__divider {
       height: 24px;
     }
+
 
     .me-status-bar__button {
       height: 28px;
@@ -181,15 +182,15 @@
   }
 }
 
-.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content {
+.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content{
   color: var(--Text-Default) !important;
 }
 
-.me-status-bar__button.dx-button-mode-text {
+.me-status-bar__button.dx-button-mode-text{
   color: var(--Text-Default) !important;
 }
 
-.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-icon {
+.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-icon{
   color: var(--Text-Default) !important;
 }
 
@@ -197,7 +198,7 @@
   margin: 0 4px;
 }
 
-.me-status-bar--small {
+.me-status-bar--small{
   padding: 0 4px;
 }
 
@@ -205,14 +206,43 @@
   margin: 0 8px;
 }
 
-//.dx-icon-warning{
-//
-//}
+.me-status-bar__button-content .dx-icon .material-icons{
+  color: #FFFFFF;
+}
 
-//.dx-icon-warning::before{
-//  content: '\e002' !important;
-//}
-//
-//.dx-lock-button-area .dx-icon.dx-icon-key::before{
-//  content: '/e897' !important;
-//}
+.me-status-bar__button-content{
+  gap: 0px;
+}
+
+.me-status-bar__divider{
+  margin: 0;
+}
+
+.me-status-bar--large .me-status-bar__divider{
+  margin: 0;
+}
+
+.me-status-bar--large .me-status-bar__button .me-status-bar__button-content i.dx-icon{
+  margin-right: 8px;
+}
+
+.me-status-bar--small .me-status-bar__button .me-status-bar__button-content i.dx-icon{
+  margin-right: 4px;
+}
+
+.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content{
+  color: var(--Icon-Default);
+}
+
+.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content .dx-icon .material-icons{
+  color: var(--Icon-Default);
+}
+
+.me-status-bar__button.dx-button-mode-text.me-status-bar__button--error .dx-button-content .dx-icon .material-icons{
+  color: var(--Controls-Content-In-Controls-Danger-Default);
+}
+
+.me-status-bar__button-content .dx-icon {
+  display: flex;
+  align-items: inherit;
+}

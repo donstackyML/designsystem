@@ -80,7 +80,7 @@ export class MeNumberBoxDirective
   createLockIcon() {
     const parentSpan = this.renderer.createElement('span');
     this.renderer.addClass(parentSpan, 'dx-lock-button-area');
-    if (!this.element.nativeElement.classList.contains('dx-state-readonly')) {
+    if ((!this.element.nativeElement.classList.contains('dx-state-readonly')) && (!this.element.nativeElement.classList.contains('dx-state-disabled'))) {
       this.renderer.addClass(parentSpan, 'dx-state-invisible');
     }
 
@@ -112,10 +112,10 @@ export class MeNumberBoxDirective
   }
 
   @HostListener('onOptionChanged', ['$event']) onOptionChanged(e: any) {
-    if (e.name === 'readOnly' && e.value === true) {
+    if ((e.name === 'readOnly' && e.value === true) || (e.name === 'disabled' && e.value === true)) {
       this.addLockIcon();
     }
-    if (e.name === 'readOnly' && e.value === false) {
+    if ((e.name === 'readOnly' && e.value === false) || (e.name === 'disabled' && e.value === false)) {
       this.removeLockIcon();
     }
   }
