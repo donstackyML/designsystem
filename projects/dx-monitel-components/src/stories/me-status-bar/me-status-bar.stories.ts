@@ -13,16 +13,16 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'large'],
-      description: 'Размер компонента',
+      description: 'Размер компонента'
     },
     showDivider: {
       control: 'boolean',
-      description: 'Отображать разделители между элементами',
+      description: 'Отображать разделители между элементами'
     },
     transparent: {
       control: 'boolean',
-      description: 'Прозрачный фон',
-    },
+      description: 'Прозрачный фон'
+    }
   },
   args: {
     size: 'large',
@@ -53,19 +53,23 @@ export const ErrorStatus: Story = {
       {
         text: 'Раскраска схемы без учета ТП',
         fill: true,
-        type: 'info',
+        type: 'info'
       },
-      { text: 'Режим исследования', fill: true, type: 'warning' },
+      { text: 'Режим исследования',
+        fill: true,
+        type: 'warning'
+      }
+
     ],
     rightItems: [
       {
-        icon: 'warning',
+        icon: 'error_outlined',
         text: 'Отсутствует соединение с источником данных',
         type: 'error',
-        fill: true,
-      },
-    ],
-  },
+        fill: true
+      }
+    ]
+  }
 };
 
 // Пример с успешным подключением
@@ -76,19 +80,19 @@ export const SuccessStatus: Story = {
       {
         text: 'Раскраска схемы без учета ТП',
         fill: true,
-        type: 'default',
+        type: 'default'
       },
-      { text: 'Режим исследования' },
+      { text: 'Режим исследования' }
     ],
     rightItems: [
       {
-        icon: 'info',
+        icon: 'check_circle',
         text: 'Соединение с источником данных восстановлено',
         type: 'success',
-        fill: true,
-      },
-    ],
-  },
+        fill: true
+      }
+    ]
+  }
 };
 
 // Пример с предупреждением
@@ -99,19 +103,19 @@ export const WarningStatus: Story = {
       {
         text: 'Раскраска схемы без учета ТП',
         fill: true,
-        type: 'default',
+        type: 'default'
       },
-      { text: 'Режим исследования' },
+      { text: 'Режим исследования' }
     ],
     rightItems: [
       {
-        icon: 'info',
+        icon: 'warning_amber',
         text: 'Соединение с источником данных восстановлено',
         type: 'warning',
-        fill: true,
-      },
-    ],
-  },
+        fill: true
+      }
+    ]
+  }
 };
 
 // Пример с информацией
@@ -122,42 +126,42 @@ export const InfoStatus: Story = {
       {
         text: 'Раскраска схемы без учета ТП',
         fill: true,
-        type: 'default',
+        type: 'default'
       },
-      { text: 'Режим исследования' },
+      { text: 'Режим исследования' }
     ],
     rightItems: [
       {
         icon: 'info',
         text: 'Новая информация',
         type: 'info',
-      },
-    ],
-  },
+      }
+    ]
+  }
 };
 
 // Компактный размер
 export const Small: Story = {
   args: {
     ...ErrorStatus.args,
-    size: 'small',
-  },
+    size: 'small'
+  }
 };
 
 // С разделителями
 export const WithDividers: Story = {
   args: {
     ...ErrorStatus.args,
-    showDivider: true,
-  },
+    showDivider: true
+  }
 };
 
 // Без разделителей
 export const WithoutDividers: Story = {
   args: {
     ...ErrorStatus.args,
-    showDivider: false,
-  },
+    showDivider: false
+  }
 };
 
 // Пример без заливки
@@ -168,17 +172,21 @@ export const WithoutFill: Story = {
       {
         text: 'Раскраска схемы без учета ТП',
         fill: false,
-        type: 'info',
+        type: 'info'
       },
-      { text: 'Режим исследования', fill: false, type: 'success' },
+      { text: 'Режим исследования',
+        fill: false,
+        type: 'success'
+      }
+
     ],
     rightItems: [
       {
-        icon: 'warning',
+        icon: 'error_outlined',
         text: 'Отсутствует соединение с источником данных',
         type: 'error',
         fill: false,
-      },
-    ],
-  },
+      }
+    ]
+  }
 };

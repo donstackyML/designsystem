@@ -77,6 +77,24 @@ export const SmallInfo: Story = {
             ></dx-button>
           </div>
           <div class="me-toast-content2 me-text-body2">Операция выполнена успешно</div>
+          <div class="me-toast-actions">
+            <dx-button
+              meButton
+              size="small"
+              text="Принять"
+              type="default"
+              stylingMode="contained"
+              (onClick)="isVisible = false"
+            ></dx-button>
+            <dx-button
+              meButton
+              size="small"
+              text="Отменить"
+              type="default"
+              stylingMode="text"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
         </div>
       </dx-toast>
     `,
@@ -99,7 +117,7 @@ export const SmallWarning: Story = {
       >
         <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small">
           <div class="me-toast-header">
-            <me-icon icon="warning" size="small" color="var(--Icon-Attention)"></me-icon>
+            <me-icon icon="warning_amber" class="outlined-icon" type="outlined" size="small" color="var(--Icon-Attention)"></me-icon>
             <div class="me-title-header2">Предупреждение</div>
             <dx-button
               icon="close"
@@ -109,6 +127,24 @@ export const SmallWarning: Story = {
             ></dx-button>
           </div>
           <div class="me-toast-content2 me-text-body2">Внимание! Данное действие нельзя будет отменить</div>
+          <div class="me-toast-actions">
+            <dx-button
+              meButton
+              size="large"
+              text="Принять"
+              type="warning"
+              stylingMode="contained"
+              (onClick)="isVisible = false"
+            ></dx-button>
+            <dx-button
+              meButton
+              size="large"
+              text="Отменить"
+              type="warning"
+              stylingMode="text"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
         </div>
       </dx-toast>
     `,
@@ -131,7 +167,7 @@ export const LargeError: Story = {
       >
         <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
           <div class="me-toast-header">
-            <me-icon icon="error" size="large" color="var(--Icon-Error)"></me-icon>
+            <me-icon icon="error_outlined" size="large" color="var(--Icon-Error)"></me-icon>
             <div class="me-title-header1">Ошибка</div>
             <dx-button
               icon="close"
@@ -145,7 +181,7 @@ export const LargeError: Story = {
             <dx-button
               meButton
               size="large"
-              text="Повторить"
+              text="Принять"
               type="danger"
               stylingMode="contained"
               (onClick)="isVisible = false"
@@ -153,7 +189,7 @@ export const LargeError: Story = {
             <dx-button
               meButton
               size="large"
-              text="Отмена"
+              text="Отменить"
               type="danger"
               stylingMode="text"
               (onClick)="isVisible = false"
@@ -207,6 +243,57 @@ export const LargeSuccess: Story = {
               text="Закрыть"
               type="success"
               stylingMode="text"
+              (onClick)="isVisible = false"
+            ></dx-button>
+          </div>
+        </div>
+      </dx-toast>
+    `,
+    styles: [ToastStyles],
+  }),
+};
+
+// Маленький инвертированный фон
+export const InvertedInfo: Story = {
+  render: () => ({
+    props: {
+      isVisible: true,
+    },
+    template: `
+      <dx-toast
+        meToast
+        [(visible)]="isVisible"
+        [displayTime]="100000000000"
+        [type]="'info-inverted'"
+      >
+        <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small me-toast-small-inverted">
+          <div class="me-toast-header">
+            <me-icon icon="info" size="small" color="var(--Controls-BG-Accent-Accent-BG-Default)"></me-icon>
+            <div class="me-title-header2 me-text-body2-inverted">Информация</div>
+            <dx-button
+              icon="close"
+              stylingMode="text"
+              class="me-toast-close-button me-toast-close-button-inverted"
+              (onClick)="isVisible = false"
+              type="normal"
+            ></dx-button>
+          </div>
+          <div class="me-toast-content2 me-text-body2 me-text-body2-inverted">Операция выполнена успешно</div>
+          <div class="me-toast-actions me-toast-actions-inverted">
+            <dx-button
+              meButton
+              size="small"
+              text="Принять"
+              type="normal"
+              stylingMode="contained"
+              (onClick)="isVisible = false"
+            ></dx-button>
+            <dx-button
+              meButton
+              size="small"
+              text="Отменить"
+              type="normal"
+              stylingMode="contained"
               (onClick)="isVisible = false"
             ></dx-button>
           </div>
