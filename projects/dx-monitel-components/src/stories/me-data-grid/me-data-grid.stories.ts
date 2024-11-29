@@ -908,7 +908,7 @@ export default {
 				id="gridContainer"
 				[(dataSource)]="dataSource"
 				[size]="size"
-				[showBorders]="showBorder"
+				[showBorders]="showBorders"
 			  [showRowLines]="showRowLines"
 				[allowColumnReordering]="true"
 			>
