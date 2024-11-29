@@ -12,7 +12,12 @@ export default {
   component: MeFileUploaderDirective,
   decorators: [
     moduleMetadata({
-      imports: [DxFileUploaderModule, DxSelectBoxModule, DxTextBoxModule, DxButtonModule],
+      imports: [
+        DxFileUploaderModule,
+        DxSelectBoxModule,
+        DxTextBoxModule,
+        DxButtonModule,
+      ],
       declarations: [MeFileUploaderDirective],
     }),
   ],
@@ -44,7 +49,7 @@ const defaultArgs = {
   size: 'medium' as const,
   accept: 'image/*',
   allowedFileExtensions: ['.jpg', '.jpeg', '.gif', '.png'],
-  title: 'Profile Settings'
+  title: 'Profile Settings',
 };
 
 // Form Upload

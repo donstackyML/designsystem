@@ -5,7 +5,7 @@ import {
   SimpleChanges,
   Self,
   Optional,
-  HostBinding
+  HostBinding,
 } from '@angular/core';
 import { DxToastComponent } from 'devextreme-angular';
 import { dxToastOptions } from 'devextreme/ui/toast';
@@ -15,7 +15,7 @@ type ToastType = 'info' | 'warning' | 'success' | 'error';
 
 @Directive({
   selector: '[meToast]',
-  exportAs: 'meToastControl'
+  exportAs: 'meToastControl',
 })
 export class MeToastDirective {
   @Input() size: ToastSize = 'small';
@@ -38,7 +38,7 @@ export class MeToastDirective {
       const options: Partial<dxToastOptions> = {
         type: undefined,
         message: '',
-        contentTemplate: 'content'
+        contentTemplate: 'content',
       };
 
       this.dxToastComponent.instance.option(options);

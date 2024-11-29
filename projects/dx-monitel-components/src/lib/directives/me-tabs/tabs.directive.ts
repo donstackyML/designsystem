@@ -86,8 +86,8 @@ export class MeTabsDirective implements OnInit {
         scrollingEnabled: instance.option('scrollingEnabled'),
         showNavButtons: instance.option('showNavButtons'),
         scrollByContent: instance.option('scrollByContent'),
-        width: instance.option('width')
-      }
+        width: instance.option('width'),
+      },
     });
   }
 }

@@ -3,7 +3,13 @@ import { addX20, mailX20, publicX20 } from '@monitel/me-icons';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
 import { registry } from '../../../.storybook/preview';
-import { MeButtonModule, MeCardComponent, MeChipComponent, MeDropDownButtonModule, MeIconComponent } from '../../public-api';
+import {
+  MeButtonModule,
+  MeCardComponent,
+  MeChipComponent,
+  MeDropDownButtonModule,
+  MeIconComponent,
+} from '../../public-api';
 
 const dropDownItems = [
   { id: 1, name: 'Пункт меню 1' },

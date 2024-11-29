@@ -14,13 +14,14 @@ export interface StatusBarItem {
 }
 
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DxButtonModule } from 'devextreme-angular';
+import { MeIconComponent } from "../me-icon/me-icon.component";
 
 @Component({
   selector: 'me-status-bar',
   templateUrl: './me-status-bar.component.html',
-  imports: [DxButtonModule, NgForOf, NgIf, NgClass],
+  imports: [DxButtonModule, NgForOf, NgIf, NgClass, MeIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

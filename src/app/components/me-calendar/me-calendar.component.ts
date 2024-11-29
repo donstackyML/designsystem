@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FirstDayOfWeek, ValueChangedEvent } from 'devextreme/ui/calendar';
 import { DxCalendarTypes } from 'devextreme-angular/ui/calendar';
-import { DxCalendarComponent } from 'devextreme-angular';
+import { FirstDayOfWeek, ValueChangedEvent } from 'devextreme/ui/calendar';
 import { MeCalendarDirective } from '../../directives/calendar.directive';
 
 @Component({
@@ -12,6 +11,7 @@ import { MeCalendarDirective } from '../../directives/calendar.directive';
 })
 export class MeCalendarComponent implements OnInit {
   @ViewChild(MeCalendarDirective) meCalendar!: MeCalendarDirective;
+  private fb = inject(FormBuilder);
 
   calendarForm: FormGroup;
 
@@ -34,7 +34,7 @@ export class MeCalendarComponent implements OnInit {
     'fullWeek',
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.calendarForm = this.fb.group({
       currentValue: [new Date()],
       showWeekNumbers: [false],

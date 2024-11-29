@@ -4,11 +4,15 @@ import {
   DxSelectBoxModule,
   DxTextBoxModule,
   DxCheckBoxModule,
-  DxDateBoxModule, DxNumberBoxModule,
+  DxDateBoxModule,
+  DxNumberBoxModule,
 } from 'devextreme-angular';
 import {
   MeFormDirective,
-  MeTextBoxModule, MeDateBoxModule, MeFormModule, MeSelectBoxModule,
+  MeTextBoxModule,
+  MeDateBoxModule,
+  MeFormModule,
+  MeSelectBoxModule,
 } from '../../public-api';
 
 interface FormStoryArgs {
@@ -38,7 +42,7 @@ export default {
         MeTextBoxModule,
         MeDateBoxModule,
         MeFormModule,
-        MeSelectBoxModule
+        MeSelectBoxModule,
       ],
     }),
   ],

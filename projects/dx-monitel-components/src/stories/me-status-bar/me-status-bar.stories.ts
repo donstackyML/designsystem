@@ -63,7 +63,7 @@ export const ErrorStatus: Story = {
     ],
     rightItems: [
       {
-        icon: 'warning',
+        icon: 'error_outlined',
         text: 'Отсутствует соединение с источником данных',
         type: 'error',
         fill: true
@@ -86,7 +86,7 @@ export const SuccessStatus: Story = {
     ],
     rightItems: [
       {
-        icon: 'info',
+        icon: 'check_circle',
         text: 'Соединение с источником данных восстановлено',
         type: 'success',
         fill: true
@@ -109,7 +109,7 @@ export const WarningStatus: Story = {
     ],
     rightItems: [
       {
-        icon: 'info',
+        icon: 'warning_amber',
         text: 'Соединение с источником данных восстановлено',
         type: 'warning',
         fill: true
@@ -182,10 +182,10 @@ export const WithoutFill: Story = {
     ],
     rightItems: [
       {
-        icon: 'warning',
+        icon: 'error_outlined',
         text: 'Отсутствует соединение с источником данных',
         type: 'error',
-        fill: false
+        fill: false,
       }
     ]
   }

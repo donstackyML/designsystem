@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
 import {
   MeAccordionModule,
@@ -100,6 +98,8 @@ import { MeTextAreaComponent } from './components/me-text-area/me-text-area.comp
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 // import { MeToolbarDirective } from './directives/toolbar.directive';
 // import { MeTreeViewDirective } from './directives/tree-view.directive';
 
@@ -165,12 +165,12 @@ import { MeToastDirective } from './directives/toast.directive';
     MeTagBoxComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     DevExtremeModule,
     DxDateBoxModule,
     DxPivotGridModule,
-    ReactiveFormsModule,
     MeBadgeComponent,
     MeBreadcrumbsComponent,
     MeCardComponent,

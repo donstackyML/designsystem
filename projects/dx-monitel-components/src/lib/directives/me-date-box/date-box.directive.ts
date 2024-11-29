@@ -31,10 +31,7 @@ export class MeDateBoxDirective implements OnInit, AfterViewInit {
   @Input() size: MeSize = 'medium';
   @Input() description: string = ''; // Новое свойство description
 
-  constructor(
-    public element: ElementRef,
-  ) {
-  }
+  constructor(public element: ElementRef) {}
 
   private renderer = inject(Renderer2);
   private component = inject(DxDateBoxComponent);
