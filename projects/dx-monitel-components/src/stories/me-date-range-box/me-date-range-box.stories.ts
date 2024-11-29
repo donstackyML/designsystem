@@ -4,8 +4,8 @@ import {
   argsToTemplate,
   moduleMetadata,
 } from '@storybook/angular';
-import { MeDateRangeBoxDirective, MeLabelDirective } from '../../public-api';
 import { DxDateRangeBoxModule, DxValidatorModule } from 'devextreme-angular';
+import { MeDateRangeBoxDirective, MeLabelDirective } from '../../public-api';
 
 export default {
   title: 'Components/DateRangeBox(RC)',
@@ -166,8 +166,8 @@ export default {
     startDateLabel: 'Начальная дата',
     endDate: null,
     endDateLabel: 'Конечная дата',
-    max: '31/12/2024',
-    min: '1/1/2024',
+    max: '',
+    min: '',
     invalidEndDateMessage: 'Неверная дата окончания',
     invalidStartDateMessage: 'Неверная дата начала',
     startDateOutOfRangeMessage:
@@ -205,7 +205,7 @@ export const WithLabelRow: StoryObj = {
     template: `
 		<label meLabel
 		labelDirection="row"
-		[size]="size"
+		[size]="size" 
 		width="500px">
 		Label*
 			<dx-date-range-box meDateRangeBox
