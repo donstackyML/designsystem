@@ -1,17 +1,13 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2,
-  HostBinding,
-  NgZone,
-  ChangeDetectorRef,
-} from '@angular/core';
 import { DxSelectBoxComponent } from 'devextreme-angular';
-import { MeScrollbarShowType, MeCommonType } from '../../types/types';
+
+import {
+	Directive, ElementRef,
+	Input,
+	OnInit, Renderer2
+} from '@angular/core';
+
+import { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 @Directive({
   selector: '[meSelectBox]',
@@ -28,6 +24,7 @@ export class MeSelectBoxDirective
 {
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() wrapperAttr: MeCommonType = {};
+	
 
   constructor(
     element: ElementRef,
@@ -54,27 +51,21 @@ export class MeSelectBoxDirective
     };
 
     // Set default styling mode and label mode
-    (<DxSelectBoxComponent>this.component).instance.option(
-      'stylingMode',
-      'outlined'
-    );
-    (<DxSelectBoxComponent>this.component).instance.option(
-      'labelMode',
-      'hidden'
-    );
+    // (<DxSelectBoxComponent>this.component).instance.option(
+    //   'stylingMode',
+    //   'outlined'
+    // );
   }
 
-  @HostBinding('class.me-selectbox-small')
+
   get isSizeSmall() {
     return this.size === 'small';
   }
 
-  @HostBinding('class.me-selectbox-medium')
   get isSizeMedium() {
     return this.size === 'medium';
-  }
-
-  @HostBinding('class.me-selectbox-large')
+	}
+	
   get isSizeLarge() {
     return this.size === 'large';
   }
