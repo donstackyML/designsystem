@@ -1,8 +1,8 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { MeTooltipDirective } from '../../public-api';
-import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
-import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { CommonModule } from '@angular/common';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
+import { MeTooltipDirective } from '../../public-api';
 
 const meta: Meta<MeTooltipDirective> = {
   title: 'Components/Tooltip',
@@ -50,12 +50,20 @@ const meta: Meta<MeTooltipDirective> = {
     tooltipHideAnimation: {
       control: 'object',
       description: 'Настройки анимации скрытия тултипа',
-    },
-  },
+		},
+		colorMode: {
+			control: 'select',
+			options: ['light', 'dark'],
+			description: 'Цветовая тема тултипа',
+		}
+	},
+	args: {
+		colorMode: 'dark'
+	}
 };
 
 export default meta;
-type Story = StoryObj<MeTooltipDirective>;
+type Story = StoryObj;
 
 export const Basic: Story = {
   args: {
@@ -66,8 +74,7 @@ export const Basic: Story = {
     props: args,
     template: `
       <dx-button
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition">
+				${argsToTemplate(args)}>
         Базовый тултип
       </dx-button>
     `,
@@ -84,8 +91,8 @@ export const Positioning: Story = {
     template: `
       <dx-button
         text="Позиционирование тултипа"
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition">
+        ${argsToTemplate(args)}
+				>
         Позиционирование тултипа
       </dx-button>
     `,
@@ -102,8 +109,8 @@ export const HTMLContent: Story = {
     template: `
       <dx-button
         text="Тултип с HTML содержимым"
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition">
+        ${argsToTemplate(args)}
+				>
         Тултип с HTML содержимым
       </dx-button>
     `,
@@ -121,9 +128,8 @@ export const CustomStyles: Story = {
     template: `
       <dx-button
         text="Тултип с кастомными стилями"
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition"
-        [tooltipClass]="tooltipClass">
+        ${argsToTemplate(args)}
+				>
         Тултип с кастомными стилями
       </dx-button>
     `,
@@ -132,8 +138,9 @@ export const CustomStyles: Story = {
 
 export const WithAnimation: Story = {
   args: {
-    meTooltip: 'Анимированный тултип',
-    tooltipPosition: 'top',
+    meTooltip: 'Анимированный тултип juhsdfbvjsdbfkjsbdkfskdjfhkjsdhfkjhsdkfjhsdkjfhksjdhfksdhfkhsdkfhskjdhfkjsdhfkjshdfkshdkjfhsdkjfhkshfkjshdfkjhsdkfhsdkfhkshfkshkfhskjfhskjhfkjshfkjshdfkjhskdjfhskjfdhkjh',
+		tooltipPosition: 'top',
+		tooltipMaxWidth: 400,
     tooltipShowAnimation: {
       type: 'pop',
       from: { scale: 0.5, opacity: 0 },
@@ -144,7 +151,7 @@ export const WithAnimation: Story = {
       type: 'fade',
       from: { opacity: 1 },
       to: { opacity: 0 },
-      duration: 200,
+      duration: 200000000,
     },
   },
   render: (args) => ({
@@ -152,10 +159,8 @@ export const WithAnimation: Story = {
     template: `
       <dx-button
         text="Тултип с анимацией"
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition"
-        [tooltipShowAnimation]="tooltipShowAnimation"
-        [tooltipHideAnimation]="tooltipHideAnimation">
+        ${argsToTemplate(args)}
+				>
         Тултип с анимацией
       </dx-button>
     `,
@@ -171,9 +176,8 @@ export const CustomTemplate: Story = {
     template: `
       <dx-button
         text="Тултип с кастомным шаблоном"
-        [meTooltip]="''"
-        [tooltipPosition]="tooltipPosition"
-        [tooltipTemplateRef]="tooltipTemplate">
+        ${argsToTemplate(args)}
+				>
         Тултип с кастомным шаблоном
       </dx-button>
 
