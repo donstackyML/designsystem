@@ -12,7 +12,7 @@ import {
 } from 'devextreme-angular';
 import { MeLabelDirective, MeSelectBoxDirective } from '../../public-api';
 
-const data = ['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50'];
+const data = ['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50'];
 
 export default {
   title: 'Components/SelectBox',
