@@ -8,7 +8,7 @@ import {
   inject,
   Input,
   OnInit,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';
