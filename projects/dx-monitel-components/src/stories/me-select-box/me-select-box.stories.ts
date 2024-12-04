@@ -1,24 +1,25 @@
 import {
-  argsToTemplate,
-  moduleMetadata,
-  type Meta,
-  type StoryObj,
+	argsToTemplate,
+	moduleMetadata,
+	type Meta,
+	type StoryObj,
 } from '@storybook/angular';
 
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import {
+	DxSelectBoxComponent,
+	DxSelectBoxModule,
+	DxValidatorModule,
+} from 'devextreme-angular';
 import { MeLabelDirective, MeSelectBoxDirective } from '../../public-api';
 
-const data = ['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50'];
+const data = ['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50'];
 
 export default {
   title: 'Components/SelectBox',
   decorators: [
     moduleMetadata({
-      declarations: [
-        MeSelectBoxDirective,
-        DxSelectBoxComponent,
-        MeLabelDirective,
-      ],
+      declarations: [MeSelectBoxDirective, MeLabelDirective],
+      imports: [DxSelectBoxModule, DxValidatorModule],
     }),
   ],
   argTypes: {
@@ -107,15 +108,27 @@ export default {
     disabled: false,
     isValid: true,
     labelMode: 'static',
-    label: '',
-    placeholder: '',
+    label: 'Label*',
+    placeholder: 'Select...',
     readOnly: false,
     dataSource: data,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-select-box meSelectBox ${argsToTemplate(args)}>
-    </dx-select-box>`,
+    template: `
+		<dx-select-box meSelectBox ${argsToTemplate(args)}>
+			<dx-validator>
+        <dxi-validation-rule
+          type="required"
+          message="Required">
+        </dxi-validation-rule>
+    	</dx-validator>
+    </dx-select-box>
+		<p class='select-box-desc' >description</p>`,
+    styles: [
+      '.select-box-desc { color: #808084; font-size: 12px; line-height: 16px; font-family: Roboto; }',
+      '.select-box-desc { margin-top: 4px; }',
+    ],
   }),
 } as Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
@@ -125,7 +138,9 @@ type Story = StoryObj<
 
 export const Default: Story = {
   args: {
-    dataSource: data,
+		dataSource: data,
+		label: 'Label*',
+		labelMode: 'outside',
   },
 };
 
@@ -135,8 +150,7 @@ export const WithLabelColumn: Story = {
     template: `
       <label meLabel
         labelDirection="column"
-        style="align-items: flex-start;"
-      >
+        style="align-items: flex-start;">
         Label
         <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
       </label>
@@ -157,39 +171,4 @@ export const WithLabelRow: Story = {
       </label>
     `,
   }),
-};
-
-export const Disabled: Story = {
-  args: {
-    dataSource: data,
-    disabled: true,
-  },
-};
-
-export const ReadOnly: Story = {
-  args: {
-    dataSource: data,
-    readOnly: true,
-  },
-};
-
-export const WithCustomPlaceholder: Story = {
-  args: {
-    dataSource: data,
-    placeholder: 'Выберите продукт',
-  },
-};
-
-export const WithScrollbarOnHover: Story = {
-  args: {
-    dataSource: data,
-    showScrollbar: 'onHover',
-  },
-};
-
-export const InvalidState: Story = {
-  args: {
-    dataSource: data,
-    isValid: false,
-  },
 };

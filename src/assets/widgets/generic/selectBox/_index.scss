@@ -21,7 +21,9 @@
 
   &.dx-state-focused:not(.dx-invalid) {
     background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
-    border-color: var(--Controls-Content-In-Controls-Accent-Default);
+    .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
+      box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Accent-Default);
+    }
 
     .dx-label {
       span {
@@ -36,6 +38,9 @@
   }
 
   &.dx-invalid {
+    .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
+      box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Danger-Default);
+    }
     .dx-label {
       span {
         color: var(--Controls-Content-In-Controls-Danger-Default);
@@ -145,10 +150,26 @@
         top: -48%;
         left: -9px;
       }
+
+      &.me-selectbox-large {
+        .dx-texteditor-label {
+          top: -42%;
+        }
+      }
     }
   }
 
+  //small
   &.me-selectbox-small {
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-label-before {
+        min-width: 8px;
+      }
+      .dx-texteditor-container {
+        padding-block: 17px 3px;
+      }
+    }
+
     .dx-texteditor-container {
       padding-block: 4px;
 
@@ -162,7 +183,17 @@
     }
   }
 
+  //medium
   &.me-selectbox-medium {
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-label-before {
+        min-width: 8px;
+      }
+      .dx-texteditor-container {
+        padding-block: 17px 3px;
+      }
+    }
+
     .dx-texteditor-container {
       padding-block: 6px;
 
@@ -176,8 +207,21 @@
     }
   }
 
+  //large
   &.me-selectbox-large {
     border-radius: 4px;
+
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-texteditor-label {
+        padding-top: 3px;
+      }
+      .dx-label-before {
+        min-width: 12px;
+      }
+      .dx-texteditor-container {
+        padding-block: 22px 5px;
+      }
+    }
 
     .dx-texteditor-container {
       padding-inline: 12px;
@@ -220,10 +264,6 @@
 .me-dropdownlist {
   .dx-list-item-selected {
     background: var(--Controls-Informative-BG-Selected-Element) !important;
-  }
-
-  .dx-state-hover {
-    background: var(--Controls-BG-Secondary-Elements-BG-Hover) !important;
   }
 
   .dx-state-active {
