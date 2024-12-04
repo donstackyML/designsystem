@@ -182,7 +182,6 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 }
 
 //meTreeList
-
 .me-tree-list {
   .dx-row > td {
     padding: 8px;
@@ -260,7 +259,7 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 
                 .dx-sort {
                   &::before {
-                    font-family: 'Material Symbols Outlined';
+                    font-family: var(--me-icon-family);
                     height: 15px;
                     display: flex;
                     align-items: center;
@@ -338,15 +337,20 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
                   .dx-dropdowneditor-icon {
                     line-height: 16px;
                     font-size: 18px;
-                    font-family: 'Material Symbols Outlined';
+                    font-family: var(--me-symbols-family);
                     color: var(--Controls-Content-In-Controls-Accent-Default);
 
                     &::before {
-                      content: '\e935';
+                      content: var(--me-icon-calendar-today);
                     }
                   }
                 }
               }
+            }
+
+            .dx-treelist-collapsed,
+            .dx-treelist-expanded {
+              color: var(--Icon-Default);
             }
           }
 
@@ -377,30 +381,30 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
             color: $base-accent;
 
             .dx-link {
-              font-family: 'Material Symbols Outlined';
+              font-family: var(--me-symbols-family);
             }
 
             .dx-link-edit {
               &::before {
-                content: '\e3c9';
+                content: var(--me-icon-edit);
               }
             }
 
             .dx-link-delete {
               &::before {
-                content: '\e872';
+                content: var(--me-icon-delete);
               }
             }
 
             .dx-link-save {
               &::before {
-                content: '\e161';
+                content: var(--me-icon-save);
               }
             }
 
             .dx-link-cancel {
               &::before {
-                content: '\e166';
+                content: var(--me-icon-cancel);
               }
             }
 
@@ -534,11 +538,25 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
             &[aria-label='Yes'] {
               background: var(--Controls-BG-Accent-Accent-BG-Default);
               color: var(--Controls-Content-In-Controls-On-BG-Default);
+
+              &.dx-state-hover {
+                background: var(--Controls-BG-Accent-Accent-BG-Hover);
+              }
+              &.dx-state-active {
+                background: var(--Controls-BG-Accent-Accent-BG-Pressed);
+              }
             }
 
             &[aria-label='No'] {
               background: var(--Controls-BG-Secondary-Elements-BG-Default);
               color: var(--Controls-Content-In-Controls-Main-Default);
+
+              &.dx-state-hover {
+                background: var(--Controls-BG-Secondary-Elements-BG-Hover);
+              }
+              &.dx-state-active {
+                background: var(--Controls-BG-Secondary-Elements-BG-Pressed);
+              }
             }
           }
         }

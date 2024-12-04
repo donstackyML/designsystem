@@ -23,11 +23,21 @@ export default {
     allowColumnResizing: {
       control: 'select',
       options: [true, false],
-    },
+		},
+		hoverStateEnabled: {
+			control: 'select',
+			options: [true, false],
+			description: 'Определяет состояние при наведении мыши на элемент',
+		},
     showRowLines: {
       control: 'select',
       options: [true, false],
-    },
+		},
+		selectionMode: {
+			control: 'select',
+			options: ['single', 'multiple', 'none'],
+			description: 'Определяет тип выделения. Используется с тэгом `<dxo-selection [mode]="multi"></dxo-selection>` внутри компонента',
+		}
   },
 
   args: {
@@ -455,8 +465,11 @@ export default {
     ],
     activeStateEnabled: true,
     allowColumnReordering: true,
-    allowColumnResizing: true,
-    showRowLines: true,
+		allowColumnResizing: true,
+		hoverStateEnabled: true,
+		showRowLines: true,
+		selectionMode: 'multiple',
+		
   },
   render: (args) => ({
     props: args,
@@ -471,6 +484,7 @@ export default {
 				[activeStateEnabled]="activeStateEnabled"
 				[allowColumnReordering]="allowColumnReordering"
 				[allowColumnResizing]="allowColumnResizing"
+				[hoverStateEnabled]="hoverStateEnabled"
   		>
     <dxo-editing
       mode="row"
@@ -480,7 +494,7 @@ export default {
     >
     </dxo-editing>
 
-		<dxo-selection mode="multiple"></dxo-selection>
+		<dxo-selection [mode]="selectionMode"></dxo-selection>
 
     <dxi-column dataField="Full_Name">
       <dxi-validation-rule type="required"></dxi-validation-rule>

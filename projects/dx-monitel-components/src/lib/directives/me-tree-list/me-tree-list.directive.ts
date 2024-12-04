@@ -11,7 +11,8 @@ export class MeTreeListDirective {
   private component = inject(DxTreeListComponent);
 
   ngOnInit(): void {
-    this.applyInitialSettings();
+		this.applyInitialSettings();
+		console.log(this.component);
   }
 
   private applyInitialSettings() {
