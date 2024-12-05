@@ -57,6 +57,32 @@ export class MeTagBoxDirective
     return this.size === 'large';
   }
 
+  @HostListener('onValueChanged', ['$event'])
+onValueChanged(): void {
+  this.moveCursorToEnd();
+}
+
+ngAfterViewChecked(): void {
+  this.moveCursorToEnd();
+}
+
+moveCursorToEnd(): void {
+  const inputElement = this.element.nativeElement.querySelector('.dx-texteditor-input');
+  if (inputElement) {
+    setTimeout(() => {
+      inputElement.focus();
+      const valueLength = inputElement.value.length;
+      inputElement.setSelectionRange(valueLength, valueLength); // Установка курсора в конец
+    }, 0); // Таймаут для ожидания завершения изменений
+  }
+}
+
+  @HostListener('onOpened', ['$event'])
+@HostListener('onKeyDown', ['$event'])
+onInteraction(): void {
+  this.moveCursorToEnd();
+}
+
   @HostListener('onOpened', ['$event'])
   onOpened(e: any) {
     const submitButton = e.component._list
@@ -106,7 +132,7 @@ export class MeTagBoxDirective
   createLockIcon() {
     const parentSpan = this.renderer.createElement('span');
     this.renderer.addClass(parentSpan, 'dx-lock-button-area');
-    if (!this.element.nativeElement.classList.contains('dx-state-readonly')) {
+    if ((!this.element.nativeElement.classList.contains('dx-state-readonly')) && (!this.element.nativeElement.classList.contains('dx-state-disabled'))) {
       this.renderer.addClass(parentSpan, 'dx-state-invisible');
     }
 
@@ -138,10 +164,10 @@ export class MeTagBoxDirective
   }
 
   @HostListener('onOptionChanged', ['$event']) onOptionChanged(e: any) {
-    if (e.name === 'readOnly' && e.value === true) {
+    if ((e.name === 'readOnly' && e.value === true) || (e.name === 'disabled' && e.value === true)) {
       this.addLockIcon();
     }
-    if (e.name === 'readOnly' && e.value === false) {
+    if ((e.name === 'readOnly' && e.value === false) || (e.name === 'disabled' && e.value === false)) {
       this.removeLockIcon();
     }
   }
