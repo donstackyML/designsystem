@@ -1,8 +1,8 @@
 import {
-  argsToTemplate,
-  moduleMetadata,
-  type Meta,
-  type StoryObj,
+	argsToTemplate,
+	moduleMetadata,
+	type Meta,
+	type StoryObj,
 } from '@storybook/angular';
 import { DxTreeViewComponent } from 'devextreme-angular';
 import { MeIconStoreService } from 'src/app/service/icon-store.service';
@@ -179,7 +179,8 @@ export default {
     disabled: false,
     showCheckBoxesMode: 'normal',
     focusStateEnabled: false,
-    hoverStateEnabled: true,
+		hoverStateEnabled: true,
+		height: '300px',
   },
   render: (args) => ({
     props: args,
