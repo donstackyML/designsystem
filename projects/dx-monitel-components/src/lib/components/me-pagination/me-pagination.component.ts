@@ -8,9 +8,10 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
-import { ValueChangedEvent } from 'devextreme/ui/select_box';
-import { MeSelectBoxModule } from '../../directives/me-select-box/me-select-box.module';
+import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
+import { ItemClickEvent } from 'devextreme/ui/drop_down_button';
+import {MeButtonModule, MeDropDownButtonModule} from "dx-monitel-components";
+import {MeSize} from "../../types/types";
 
 @Component({
   selector: 'me-pagination',
@@ -19,9 +20,10 @@ import { MeSelectBoxModule } from '../../directives/me-select-box/me-select-box.
     DxButtonModule,
     NgForOf,
     NgIf,
-    DxSelectBoxModule,
     NgClass,
-    MeSelectBoxModule,
+    DxDropDownButtonModule,
+    MeButtonModule,
+    MeDropDownButtonModule
   ],
   standalone: true,
 })
@@ -32,7 +34,7 @@ export class MePaginationComponent implements OnInit, OnChanges {
   @Input() maxVisiblePages: number = 7;
   @Input() useButtons: boolean = false;
   @Input() itemsPerPageOptions: number[] = [10, 50, 100];
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() size: MeSize = 'medium';
   @Input() transparentBackground: boolean = false;
   @Input() isDarkTheme: boolean = false;
 
@@ -42,7 +44,18 @@ export class MePaginationComponent implements OnInit, OnChanges {
   pages: (number | string)[] = [];
   totalPages: number = 0;
   selectedValue: number;
+  dropDownItems: Array<{ value: number; text: string }> = [];
   private defaultOptions: number[] = [10, 50, 100];
+
+  dropDownOptions = {
+    wrapperAttr: {
+      class: `me-dropdown-button-popup`,
+    },
+    contentTemplate: (contentElement: any) => {
+      contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
+    },
+
+  };
 
   constructor() {
     this.selectedValue = this.itemsPerPage;
@@ -53,6 +66,7 @@ export class MePaginationComponent implements OnInit, OnChanges {
       this.itemsPerPageOptions = this.defaultOptions;
     }
     this.selectedValue = this.itemsPerPage;
+    this.initializeDropDownItems();
     this.calculatePages();
   }
 
@@ -62,6 +76,7 @@ export class MePaginationComponent implements OnInit, OnChanges {
       !changes['itemsPerPageOptions'].currentValue?.length
     ) {
       this.itemsPerPageOptions = this.defaultOptions;
+      this.initializeDropDownItems();
     }
 
     if (changes['itemsPerPage']) {
@@ -76,6 +91,13 @@ export class MePaginationComponent implements OnInit, OnChanges {
     ) {
       this.calculatePages();
     }
+  }
+
+  private initializeDropDownItems(): void {
+    this.dropDownItems = this.itemsPerPageOptions.map(value => ({
+      value,
+      text: value.toString()
+    }));
   }
 
   calculatePages(): void {
@@ -137,10 +159,11 @@ export class MePaginationComponent implements OnInit, OnChanges {
     this.changePage(this.currentPage - 1);
   }
 
-  onItemsPerPageChange(e: ValueChangedEvent): void {
-    if (typeof e.value === 'number') {
-      this.selectedValue = e.value;
-      this.itemsPerPage = e.value;
+  onItemClick(e: ItemClickEvent): void {
+    const newValue = e.itemData.value;
+    if (typeof newValue === 'number') {
+      this.selectedValue = newValue;
+      this.itemsPerPage = newValue;
       this.currentPage = 1;
       this.calculatePages();
       this.itemsPerPageChange.emit(this.itemsPerPage);

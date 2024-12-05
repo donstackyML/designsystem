@@ -16,80 +16,64 @@ export class MeSliderDirective {
   private renderer = inject(Renderer2);
   private element = inject(ElementRef);
 
+  private addClassSafely(selector: string, className: string) {
+    const element = this.element.nativeElement.querySelector(selector);
+    if (element) {
+      this.renderer.addClass(element, className);
+    }
+  }
+
+  private removeClassSafely(selector: string, className: string) {
+    const element = this.element.nativeElement.querySelector(selector);
+    if (element) {
+      this.renderer.removeClass(element, className);
+    }
+  }
+
   private addHoverEffect() {
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.me-start-point'),
-      'dx-state-hover'
-    );
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.dx-slider-handle'),
-      'dx-state-hover'
-    );
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.dx-trackbar-range'),
-      'dx-state-hover'
-    );
+    this.addClassSafely('.me-start-point', 'dx-state-hover');
+    this.addClassSafely('.dx-slider-handle', 'dx-state-hover');
+    this.addClassSafely('.dx-trackbar-range', 'dx-state-hover');
   }
 
   private addActiveEffect() {
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.me-start-point'),
-      'dx-state-active'
-    );
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.dx-slider-handle'),
-      'dx-state-active'
-    );
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.dx-trackbar-range'),
-      'dx-state-active'
-    );
+    this.addClassSafely('.me-start-point', 'dx-state-active');
+    this.addClassSafely('.dx-slider-handle', 'dx-state-active');
+    this.addClassSafely('.dx-trackbar-range', 'dx-state-active');
   }
 
   private removeHoverEffect() {
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.me-start-point'),
-      'dx-state-hover'
-    );
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.dx-slider-handle'),
-      'dx-state-hover'
-    );
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.dx-trackbar-range'),
-      'dx-state-hover'
-    );
+    this.removeClassSafely('.me-start-point', 'dx-state-hover');
+    this.removeClassSafely('.dx-slider-handle', 'dx-state-hover');
+    this.removeClassSafely('.dx-trackbar-range', 'dx-state-hover');
   }
 
   private removeActiveEffect() {
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.me-start-point'),
-      'dx-state-active'
-    );
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.dx-slider-handle'),
-      'dx-state-active'
-    );
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.dx-trackbar-range'),
-      'dx-state-active'
-    );
+    this.removeClassSafely('.me-start-point', 'dx-state-active');
+    this.removeClassSafely('.dx-slider-handle', 'dx-state-active');
+    this.removeClassSafely('.dx-trackbar-range', 'dx-state-active');
   }
 
   @HostListener('onOptionChanged', ['$event'])
   onOptionChanged(e: any) {
-    if (e.name === 'hoveredElement' && e.previousValue === null) {
-      this.addHoverEffect();
-    }
-    if (e.name === 'hoveredElement' && e.previousValue !== null) {
-      this.removeHoverEffect();
+    if (!this.element.nativeElement) {
+      return;
     }
 
-    if (e.name === 'isActive' && e.value === true) {
-      this.addActiveEffect();
+    if (e.name === 'hoveredElement') {
+      if (e.previousValue === null) {
+        this.addHoverEffect();
+      } else {
+        this.removeHoverEffect();
+      }
     }
-    if (e.name === 'isActive' && e.value !== true) {
-      this.removeActiveEffect();
+
+    if (e.name === 'isActive') {
+      if (e.value === true) {
+        this.addActiveEffect();
+      } else {
+        this.removeActiveEffect();
+      }
     }
   }
 }

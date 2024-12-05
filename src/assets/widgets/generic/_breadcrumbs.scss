@@ -25,7 +25,7 @@ $breadcrumbs-active-bg: null !default;
   }
 
   .dx-menu-horizontal .menu-item {
-    padding: 4px 12px;
+    padding: 2px 12px;
   }
 
   .dx-menu-item-content .dx-menu-item-text {
@@ -57,7 +57,7 @@ $breadcrumbs-active-bg: null !default;
   }
 
   .dx-menu-horizontal .menu-item {
-    padding: 8px 12px;
+    padding: 4px 12px;
   }
 
   .dx-menu-item-content .dx-menu-item-text {
@@ -131,6 +131,20 @@ $breadcrumbs-active-bg: null !default;
     border: none !important;
     box-shadow: none !important;
   }
+
+  .dx-icon-spindown {
+    transform: rotate(180deg);
+    transition: transform 0.2s ease-in-out;
+    &::before {
+      font-family: var(--me-icon-family);
+      content: "\e316";
+    }
+  }
+
+  .dx-menu-item-expanded .dx-icon-spindown {
+    transform: rotate(0deg);
+  }
+
 }
 
 .separator {
@@ -145,7 +159,6 @@ $breadcrumbs-active-bg: null !default;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1px;
     height: 20px;
     border-right: 1px solid $breadcrumbs-separator-color;
   }
@@ -199,8 +212,27 @@ $breadcrumbs-active-bg: null !default;
   .dx-overlay-content {
     .dx-submenu {
       ul.dx-menu-items-container {
-        padding-inline: 0px;
+        padding-inline: 0;
+        padding: 4px 0;
       }
     }
   }
 }
+
+.breadcrumbs-overflow-menu {
+
+  .dx-menu-items-container {
+    padding: 5px !important;
+  }
+  .dx-menu-item {
+    &.dx-state-hover {
+      background-color: transparent;
+    }
+
+    &.dx-menu-item.dx-state-hover {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+    }
+  }
+}
+
+

@@ -19,8 +19,8 @@ import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
 })
 export class MeTextBoxDirective
   extends MeTextEditorDirective
-  implements OnInit, AfterViewInit
-{
+  implements OnInit, AfterViewInit {
+
   private textBox = inject(DxTextBoxComponent);
   private passwordVisible = false;
   private isPasswordInput = false;
@@ -52,6 +52,11 @@ export class MeTextBoxDirective
     if (this.isPasswordInput) {
       this.createPasswordToggle();
       this.updatePasswordToggleVisibility();
+
+      // Добавляем слушатель события valueChanged
+      this.textBox.instance.on('valueChanged', () => {
+        this.updatePasswordToggleVisibility();
+      });
     }
   }
 
@@ -67,12 +72,10 @@ export class MeTextBoxDirective
     this.renderer.addClass(childSpan, 'dx-icon-key');
     this.renderer.appendChild(parentSpan, childSpan);
 
-    this.renderer.appendChild(
-      this.element.nativeElement.querySelector(
-        '.dx-texteditor-buttons-container'
-      ),
-      parentSpan
-    );
+    const buttonsContainer = this.element.nativeElement.querySelector('.dx-texteditor-buttons-container');
+    if (buttonsContainer) {
+      this.renderer.appendChild(buttonsContainer, parentSpan);
+    }
   }
 
   createPasswordToggle() {
@@ -101,21 +104,27 @@ export class MeTextBoxDirective
     const buttonsContainer = this.element.nativeElement.querySelector(
       '.dx-texteditor-buttons-container'
     );
-    this.renderer.insertBefore(
-      buttonsContainer,
-      this.passwordToggleButton,
-      buttonsContainer.firstChild
-    );
+
+    if (buttonsContainer) {
+      this.renderer.insertBefore(
+        buttonsContainer,
+        this.passwordToggleButton,
+        buttonsContainer.firstChild
+      );
+    }
   }
 
   updatePasswordToggleVisibility() {
     if (!this.passwordToggleButton) return;
 
     const hasValue = !!this.textBox.instance.option('value');
+    const inputElement = this.element.nativeElement.querySelector('input');
+    const hasInputValue = inputElement && inputElement.value.length > 0;
+
     this.renderer.setStyle(
       this.passwordToggleButton,
       'display',
-      hasValue ? 'block' : 'none'
+      (hasValue || hasInputValue) ? 'block' : 'none'
     );
   }
 
@@ -137,36 +146,44 @@ export class MeTextBoxDirective
   }
 
   addLockIcon() {
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.dx-lock-button-area'),
-      'dx-state-invisible'
-    );
+    const lockIcon = this.element.nativeElement.querySelector('.dx-lock-button-area');
+    if (lockIcon) {
+      this.renderer.removeClass(lockIcon, 'dx-state-invisible');
+    }
   }
 
   removeLockIcon() {
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.dx-lock-button-area'),
-      'dx-state-invisible'
-    );
+    const lockIcon = this.element.nativeElement.querySelector('.dx-lock-button-area');
+    if (lockIcon) {
+      this.renderer.addClass(lockIcon, 'dx-state-invisible');
+    }
   }
 
-  @HostListener('onOptionChanged', ['$event']) onOptionChanged(e: any) {
-    if (e.name === 'readOnly' && e.value === true) {
-      this.addLockIcon();
+  @HostListener('input')
+  onInput() {
+    if (this.isPasswordInput) {
+      this.updatePasswordToggleVisibility();
     }
-    if (e.name === 'readOnly' && e.value === false) {
-      this.removeLockIcon();
+  }
+
+  @HostListener('onOptionChanged', ['$event'])
+  onOptionChanged(e: any) {
+    if (e.name === 'readOnly') {
+      if (e.value === true) {
+        this.addLockIcon();
+      } else {
+        this.removeLockIcon();
+      }
     }
+
     if (e.name === 'mode' && e.value === 'password' && !this.isPasswordInput) {
       this.isPasswordInput = true;
       this.createPasswordToggle();
       this.updatePasswordToggleVisibility();
     }
-    // Обработка изменения значения поля
-    if (e.name === 'value') {
-      if (this.isPasswordInput) {
-        this.updatePasswordToggleVisibility();
-      }
+
+    if (e.name === 'value' && this.isPasswordInput) {
+      this.updatePasswordToggleVisibility();
     }
   }
 }

@@ -292,6 +292,12 @@ export class MeBreadcrumbsComponent
     offset: { x: 0, y: 5 },
   };
 
+  private overflowMenuOptions = {
+    wrapperAttr: {
+      class: 'me-overflow-menu-popup',
+    }
+  };
+
   showOverflowMenu(position: 'left' | 'right', event: any) {
     this.overflowMenuTarget = event.element as HTMLElement;
     if (this.overflowMenuTarget) {
@@ -301,7 +307,12 @@ export class MeBreadcrumbsComponent
         of: this.overflowMenuTarget,
         offset: { x: 0, y: 5 },
       };
-      this.overflowMenu.instance.option('position', this.contextMenuPosition);
+
+      this.overflowMenu.instance.option({
+        position: this.contextMenuPosition,
+        ...this.overflowMenuOptions
+      });
+
       this.overflowMenu.instance.show();
     }
   }

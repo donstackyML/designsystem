@@ -59,22 +59,41 @@ export class MeTagBoxDirective
 
   @HostListener('onOpened', ['$event'])
   onOpened(e: any) {
-    const submitButton = e.component._list
-      .element()
-      .parentElement.parentElement.querySelector('.dx-button.dx-popup-done');
-    const cancelButton = e.component._list
-      .element()
-      .parentElement.parentElement.querySelector('.dx-button.dx-popup-cancel');
+    if (!e.component?._list?.element()) {
+      return;
+    }
 
-    this.renderer.addClass(submitButton, 'me-button');
-    this.renderer.addClass(submitButton, 'dx-button-default');
-    this.renderer.addClass(submitButton, `me-button-${this.size}`);
-    submitButton.querySelector('.dx-button-text').innerHTML = 'Выбрать';
-    cancelButton.querySelector('.dx-button-text').innerHTML = 'Отмена';
+    const listElement = e.component._list.element();
+    const popupContainer = listElement.parentElement?.parentElement;
 
-    this.renderer.addClass(cancelButton, 'me-button');
-    this.renderer.addClass(cancelButton, `me-button-${this.size}`);
-    this.renderer.addClass(cancelButton, 'dx-button-normal');
+    if (!popupContainer) {
+      return;
+    }
+
+    const submitButton = popupContainer.querySelector('.dx-button.dx-popup-done');
+    const cancelButton = popupContainer.querySelector('.dx-button.dx-popup-cancel');
+
+    if (submitButton) {
+      this.renderer.addClass(submitButton, 'me-button');
+      this.renderer.addClass(submitButton, 'dx-button-default');
+      this.renderer.addClass(submitButton, `me-button-${this.size}`);
+
+      const submitText = submitButton.querySelector('.dx-button-text');
+      if (submitText) {
+        submitText.innerHTML = 'Выбрать';
+      }
+    }
+
+    if (cancelButton) {
+      this.renderer.addClass(cancelButton, 'me-button');
+      this.renderer.addClass(cancelButton, `me-button-${this.size}`);
+      this.renderer.addClass(cancelButton, 'dx-button-normal');
+
+      const cancelText = cancelButton.querySelector('.dx-button-text');
+      if (cancelText) {
+        cancelText.innerHTML = 'Отмена';
+      }
+    }
   }
 
   // Установка цвета при фокусе
