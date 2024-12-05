@@ -1,21 +1,21 @@
 import {
-  argsToTemplate,
-  moduleMetadata,
-  type Meta,
-  type StoryObj,
+	argsToTemplate,
+	moduleMetadata,
+	type Meta,
+	type StoryObj,
 } from '@storybook/angular';
 import {
-  DxButtonComponent,
-  DxButtonModule,
-  DxPopupModule,
-  DxScrollViewComponent,
-  DxTemplateModule,
+	DxButtonComponent,
+	DxButtonModule,
+	DxPopupModule,
+	DxScrollViewComponent,
+	DxTemplateModule,
 } from 'devextreme-angular';
 import { MePopupComponent } from 'src/app/components/me-popup/me-popup.component';
 import {
-  MeButtonDirective,
-  MeIconDirective,
-  MePopupDirective,
+	MeButtonDirective,
+	MeIconDirective,
+	MePopupDirective,
 } from '../../public-api';
 
 export default {
@@ -464,8 +464,8 @@ export const DialogLarge: Story = {
       <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
           <div class="me-flex-column">
-            <h3 class="me-title-header1" style="margin: 0;">Заголовок</h3>
-            <div class="me-text-body2">${lorem25}</div>
+            <h3 class="me-title-display2" style="margin: 0;">Заголовок</h3>
+            <div class="me-text-body1">${lorem25}</div>
           </div>
         </dx-scroll-view>
       </div>
