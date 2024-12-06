@@ -10,7 +10,8 @@ import {
 } from '@angular/core';
 import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
 import { ItemClickEvent } from 'devextreme/ui/drop_down_button';
-import {MeButtonModule, MeDropDownButtonModule} from "dx-monitel-components";
+import {MeButtonModule} from "dx-monitel-components";
+import { MeDropDownButtonModule } from "../../directives/me-drop-down-button/drop-down-button.module";
 import {MeSize} from "../../types/types";
 
 @Component({
