@@ -5,26 +5,8 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 import { DxButtonGroupComponent } from 'devextreme-angular';
-import { MeButtonGroupDirective, MeButtonGroupItem } from '../../public-api';
 import { ButtonType } from 'devextreme/common';
-
-interface ButtonGroupItem {
-  text?: string;
-  icon?: string;
-  leftIcon?: string;
-  rightIcon?: string;
-  type?: 'default' | 'normal' | 'success' | 'warning' | 'danger';
-  disabled?: boolean;
-  iconColor?: string;
-  leftIconColor?: string;
-  rightIconColor?: string;
-  iconSize?: string;
-  leftIconSize?: string;
-  rightIconSize?: string;
-  elementAttr?: {
-    class?: string;
-  };
-}
+import { MeButtonGroupDirective, MeButtonGroupItem } from '../../public-api';
 
 interface ButtonGroupComponent {
   items?: MeButtonGroupItem[];
@@ -35,7 +17,6 @@ interface ButtonGroupComponent {
 
 export default {
   title: 'Components/ButtonGroup',
-  component: DxButtonGroupComponent,
   decorators: [
     moduleMetadata({
       declarations: [MeButtonGroupDirective, DxButtonGroupComponent],
@@ -77,9 +58,18 @@ export default {
       },
     },
   },
-} as Meta<ButtonGroupComponent>;
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-button-group
+        meButtonGroup
+        ${argsToTemplate(args)}
+      ></dx-button-group>
+    `,
+  })
+} as Meta<ButtonGroupComponent | MeButtonGroupDirective>;
 
-type Story = StoryObj<ButtonGroupComponent>;
+type Story = StoryObj<ButtonGroupComponent | MeButtonGroupDirective>;
 
 // Базовый вариант с текстом
 export const Default: Story = {
@@ -91,19 +81,7 @@ export const Default: Story = {
     ],
     size: 'medium',
     stylingMode: 'contained',
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-      <dx-button-group
-        meButtonGroup
-        [items]="items"
-        [size]="size"
-        [stylingMode]="stylingMode"
-        [disabled]="disabled"
-      ></dx-button-group>
-    `,
-  }),
+  }
 };
 
 // Кнопки с иконками
@@ -117,7 +95,6 @@ export const WithIcons: Story = {
     size: 'medium',
     stylingMode: 'contained',
   },
-  render: Default.render,
 };
 
 export const WithTwoIcons: Story = {
@@ -145,7 +122,6 @@ export const WithTwoIcons: Story = {
     size: 'medium',
     stylingMode: 'contained',
   },
-  render: Default.render,
 };
 
 // Только иконки
@@ -159,7 +135,6 @@ export const IconsOnly: Story = {
     size: 'medium',
     stylingMode: 'contained',
   },
-  render: Default.render,
 };
 
 // Разные типы кнопок
@@ -175,7 +150,6 @@ export const ButtonTypes: Story = {
     size: 'medium',
     stylingMode: 'contained',
   },
-  render: Default.render,
 };
 
 // Отключенные состояния
@@ -194,7 +168,6 @@ export const DisabledStates: Story = {
     size: 'medium',
     stylingMode: 'contained',
   },
-  render: Default.render,
 };
 
 // Разные размеры
@@ -218,10 +191,7 @@ export const Sizes: Story = {
           <h4 style="margin-bottom: 0.5rem;">{{currentSize}}</h4>
           <dx-button-group
             meButtonGroup
-            [items]="items"
-            [size]="currentSize"
-            [stylingMode]="stylingMode"
-            [disabled]="disabled"
+            ${argsToTemplate(args)}
           ></dx-button-group>
         </div>
       </div>
@@ -250,10 +220,7 @@ export const Styles: Story = {
           <h4 style="margin-bottom: 0.5rem;">{{style}}</h4>
           <dx-button-group
             meButtonGroup
-            [items]="items"
-            [size]="size"
-            [stylingMode]="style"
-            [disabled]="disabled"
+            ${argsToTemplate(args)}
           ></dx-button-group>
         </div>
       </div>
