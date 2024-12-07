@@ -1,6 +1,6 @@
 import { DxTextAreaModule, DxValidatorModule } from 'devextreme-angular';
 
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { MeTextAreaDirective } from '../../lib/directives/me-text-area/text-area.directive';
 
@@ -41,9 +41,9 @@ export default {
     },
     labelMode: {
       control: 'select',
-      options: ['top', 'inside', 'hidden'],
+      options: ['static', 'floating', 'outside', 'hidden'],
       description:
-        'Определяет положение `label` в компоненте. В рамках дизайн системы добывлены позиции: `top`, `inside`.',
+        'Определяет положение `label` в компоненте. В рамках дизайн системы добывлены позиции: `static`, `floating`, `outside`, `hidden`.',
     },
     placeholder: {
       control: 'text',
@@ -58,7 +58,11 @@ export default {
     isValid: {
       control: 'boolean',
       description: 'Валидность компонента.',
-    },
+		},
+		showClearButton: {
+			control: 'boolean',
+			description: 'Показывать кнопку очистки.',
+		},
     validationError: {
       control: 'text',
     },
@@ -84,7 +88,8 @@ export default {
     placeholder: 'Enter your text',
     readOnly: false,
     disabled: false,
-    isValid: true,
+		isValid: true,
+		showClearButton: true,
     validationError: '',
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
@@ -97,22 +102,7 @@ export default {
 		<div class="textarea-wrapper">
 			<dx-text-area
 			meTextArea
-			[(activeStateEnabled)]="activeStateEnabled"
-			[(label)]="label"
-			[(labelMode)]="labelMode"
-			[(placeholder)]="placeholder"
-			[(size)]="size"
-			[(readOnly)]="readOnly"
-			[(disabled)]="disabled"
-			[height]="height"
-			[width]="width"
-			[(maxLength)]="maxLength"
-			[(value)]="value"
-			[(isValid)]="isValid"
-			[(validationError)]="validationError"
-			[(autoResizeEnabled)]="autoResizeEnabled"
-			[validationMessageMode]="validationMessageMode"
-			[validationMessagePosition]="validationMessagePosition"
+      ${argsToTemplate(args)}
 			[inputAttr]="{ 'aria-label': 'Notes' }"
 			>
 			    <dx-validator>
@@ -134,7 +124,7 @@ type Story = StoryObj;
 export const Default: Story = {
   args: {
     value:
-      'Prepare 2013 Marketing Plan: We need to double revenues in 2013 and our marketing strategy is going to be key here.',
+      '',
     width: '320px',
     isValid: false,
   },

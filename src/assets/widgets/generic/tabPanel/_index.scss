@@ -261,14 +261,6 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
   }
 }
 
-.me-state-focus {
-  .dx-tabpanel-tab.dx-state-focused {
-    outline: 2px solid var(--Dividers-Borders-Focus);
-    outline-offset: -2px;
-  }
-}
-
-
 .me-tabs-panel {
   &.dx-state-disabled {
     opacity: 0.5;
@@ -284,5 +276,41 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
         }
       }
     }
+  }
+}
+
+.me-tabs-panel.me-state-focus {
+  .dx-tabpanel-tab.dx-state-focused {
+    outline: 2px solid var(--Dividers-Borders-Focus);
+    outline-offset: -2px;
+  }
+
+  .dx-tabpanel-container {
+    outline: 2px solid var(--Dividers-Borders-Focus);
+    outline-offset: -2px;
+  }
+
+  &.dx-tabpanel-tabs-position-top .dx-tab.dx-tab-selected::after {
+    bottom: -4px;
+    height: 6px;
+    width: calc(100% - 2px);
+  }
+  &.dx-tabpanel-tabs-position-bottom .dx-tab.dx-tab-selected::after {
+    top: -4px;
+    height: 6px;
+    width: calc(100% - 2px);
+  }
+  &.dx-tabpanel-tabs-position-left .dx-tab.dx-tab-selected::after {
+    right: -4px;
+    width: 6px;
+    height: calc(100% - 2px);
+    top: 1px;
+  }
+
+  &.dx-tabpanel-tabs-position-right .dx-tab.dx-tab-selected::after {
+    left: -4px;
+    width: 6px;
+    height: calc(100% - 2px);
+    top: 1px;
   }
 }

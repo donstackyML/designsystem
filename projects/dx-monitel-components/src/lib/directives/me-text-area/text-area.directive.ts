@@ -21,8 +21,6 @@ type MeSize = 'small' | 'medium' | 'large';
     '[class.me-text-area-small]': 'isSizeSmall',
     '[class.me-text-area-medium]': 'isSizeMedium',
     '[class.me-text-area-large]': 'isSizeLarge',
-    '[class.me-text-area-label-top]': 'isLabelModeTop',
-    '[class.me-text-area-label-inside]': 'isLabelModeInside',
   },
 })
 export class MeTextAreaDirective
@@ -30,7 +28,6 @@ export class MeTextAreaDirective
   implements OnInit, AfterViewInit
 {
   @Input() size: MeSize = 'medium';
-  @Input() labelMode: 'top' | 'inside' | 'hidden' = 'inside';
 
   private component = inject(DxTextAreaComponent);
 
@@ -44,14 +41,6 @@ export class MeTextAreaDirective
 
   get isSizeLarge() {
     return this.size === 'large';
-  }
-
-  get isLabelModeTop() {
-    return this.labelMode === 'top';
-  }
-
-  get isLabelModeInside() {
-    return this.labelMode === 'inside';
   }
 
   constructor(element: ElementRef, renderer: Renderer2) {
@@ -68,7 +57,6 @@ export class MeTextAreaDirective
 
   applyInitialState() {
     this.component.instance.option('stylingMode', 'filled');
-    this.component.instance.option('showClearButton', true);
   }
 
   createLockIcon() {
