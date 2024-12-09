@@ -204,6 +204,20 @@
     }
   }
 
+  //label общие
+
+  &.dx-editor-filled.dx-texteditor-with-floating-label.dx-textarea.dx-state-focused.dx-textarea
+    .dx-texteditor-label {
+    top: -14px;
+  }
+  &.dx-editor-filled.dx-texteditor-label-outside.dx-textarea.dx-textarea .dx-texteditor-label {
+    top: -21px;
+  }
+  &.dx-editor-filled.dx-texteditor-label-outside.dx-textarea.dx-textarea.me-text-area-large
+    .dx-texteditor-label {
+    top: -23px;
+  }
+
   //размеры
 
   //small
@@ -396,6 +410,160 @@
       }
       .dx-texteditor-input {
         padding-right: 38px;
+      }
+    }
+  }
+}
+
+//label
+
+.me-text-area.dx-textarea {
+  &.dx-texteditor-label-outside.dx-texteditor-with-label {
+    &.me-textarea-small,
+    &.me-textarea-medium {
+      margin-top: 20px;
+
+      .dx-texteditor-label {
+        height: 16px;
+        margin-top: 0;
+        top: -20px;
+        color: var(--Controls-Content-In-Controls-Main-Default);
+      }
+    }
+
+    &.me-textarea-large {
+      margin-top: 24px;
+
+      .dx-texteditor-label {
+        height: 20px;
+        margin-top: 0;
+        top: -24px;
+        color: var(--Controls-Content-In-Controls-Main-Default);
+      }
+    }
+  }
+
+  &.dx-texteditor-with-floating-label {
+    margin-top: 20px;
+
+    .dx-texteditor-label {
+      padding: 0;
+      align-items: center;
+      height: 16px;
+      margin-top: -8.5px !important;
+    }
+
+    &.dx-state-focused,
+    &:not(.dx-texteditor-empty) {
+      .dx-texteditor-label {
+        top: -48%;
+        left: -9px;
+      }
+
+      &.me-textarea-large {
+        .dx-texteditor-label {
+          top: -42%;
+        }
+      }
+    }
+  }
+
+  //small
+  &.me-text-area-small {
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-label-before {
+        min-width: 8px;
+      }
+      .dx-texteditor-container {
+        padding-block: 17px 3px;
+      }
+    }
+
+    .dx-texteditor-container {
+      padding-block: 4px;
+
+      .dx-texteditor-input-container {
+        .dx-texteditor-input,
+        .dx-placeholder {
+          font-size: 13px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+
+  //medium
+  &.me-text-area-medium {
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-label-before {
+        min-width: 8px;
+      }
+      .dx-texteditor-container {
+        padding-block: 17px 3px;
+      }
+    }
+
+    .dx-texteditor-container {
+      padding-block: 6px;
+
+      .dx-texteditor-input-container {
+        .dx-texteditor-input,
+        .dx-placeholder {
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+
+  //large
+  &.me-text-area-large {
+    border-radius: 4px;
+
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+      .dx-texteditor-label {
+        padding-top: 3px;
+      }
+      .dx-label-before {
+        min-width: 12px;
+      }
+      .dx-texteditor-container {
+        padding-block: 22px 5px;
+      }
+    }
+
+    .dx-texteditor-container {
+      padding-block: 8px;
+
+      .dx-texteditor-input-container {
+        .dx-texteditor-input,
+        .dx-placeholder {
+          font-size: 16px;
+          line-height: 20px;
+        }
+      }
+
+      .dx-texteditor-buttons-container {
+        height: 24px;
+        width: 24px;
+
+        .dx-clear-button-area {
+          width: 24px;
+
+          .dx-icon.dx-icon-clear {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+
+    .dx-texteditor-label {
+      .dx-label {
+        span {
+          font-size: 14px;
+          line-height: 20px;
+        }
       }
     }
   }
