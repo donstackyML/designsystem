@@ -68,6 +68,7 @@ interface BreadcrumbItem {
           (onItemClick)="onItemClick($event)"
           class="breadcrumb-menu"
           [ngClass]="size"
+          (onSubmenuShowing)="onSubmenuShowing($event)"
         >
           <div
             *dxTemplate="let data of 'item'"
@@ -283,6 +284,14 @@ export class MeBreadcrumbsComponent
       e.position.my = e.position.my.replace('top', 'bottom');
       e.position.at = e.position.at.replace('bottom', 'top');
       e.position.offset.y = -5;
+    }
+  }
+
+  onSubmenuShowing(e: any) {
+    const submenuContainer = e.submenuContainer;
+    console.log(submenuContainer, e)
+    if (submenuContainer) {
+      submenuContainer.classList.add('me-custom-submenu-class');
     }
   }
 
