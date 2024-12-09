@@ -121,7 +121,7 @@ export const CustomHeader: Story = {
         itemTitleTemplate="customTitle"
       >
         <div *dxTemplate="let item of 'customTitle'">
-          <div class="custom-header-container">
+          <div class="custom-header-container" style="align-items: flex-start">
             <me-icon
               class="custom-header-icon"
               [icon]="item.icon"

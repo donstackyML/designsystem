@@ -148,12 +148,12 @@ export const WithLabelColumn: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <label meLabel
+      <span meLabel
         labelDirection="column"
         style="align-items: flex-start;">
         Label
         <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
-      </label>
+      </span>
     `,
   }),
 };
@@ -162,13 +162,13 @@ export const WithLabelRow: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <label meLabel
+      <span meLabel
         labelDirection="row"
         style="width: 250px;"
       >
         Label
         <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
-      </label>
+      </span>
     `,
   }),
 };

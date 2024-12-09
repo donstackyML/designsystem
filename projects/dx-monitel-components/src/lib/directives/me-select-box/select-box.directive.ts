@@ -24,7 +24,7 @@ export class MeSelectBoxDirective
 {
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() wrapperAttr: MeCommonType = {};
-	
+
 
   constructor(
     element: ElementRef,
@@ -65,7 +65,7 @@ export class MeSelectBoxDirective
   get isSizeMedium() {
     return this.size === 'medium';
 	}
-	
+
   get isSizeLarge() {
     return this.size === 'large';
   }

@@ -1,15 +1,21 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MeIconsModule } from '@monitel/me-icons-registry';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { DxButtonComponent } from 'devextreme-angular';
-import { MeButtonDirective, MeSidepageComponent } from '../../public-api';
+import { DxButtonComponent, DxCheckBoxComponent, DxMenuModule } from 'devextreme-angular';
+import {
+  MeButtonDirective,
+  MeSidepageComponent,
+  MeCheckBoxDirective,
+  MeLabelDirective,
+  MeMenuDirective
+} from '../../public-api';
 
 @Component({
-  selector: 'selesel',
+  selector: 'sidepage-demo',
   template: `
     <me-sidepage
       #meSidePage
-      [isSidePageOpen]="isSidePageOpen"
+      [(isSidePageOpen)]="isSidePageOpen"
       [position]="position"
       [width]="width"
       [hideOnOutsideClick]="hideOnOutsideClick"
@@ -20,63 +26,166 @@ import { MeButtonDirective, MeSidepageComponent } from '../../public-api';
       <div sidepage-header class="me-sidepage-header">
         <me-icon name="public_x24"></me-icon>
         <div class="me-sidepage-title">
-          <span class="me-title-header1">Заголовок</span>
-          <span class="me-text-body2">Описание</span>
+          <span class="me-title-header1">Настройки</span>
+          <span class="me-text-body2">Выберите параметры отображения</span>
         </div>
         <dx-button
           meButton
           stylingMode="text"
           iconOnly="close"
-          (onClick)="showSidePage()"
+          (onClick)="toggleSidePage()"
         ></dx-button>
       </div>
-      <div sidepage-content class="me-text-body1">{{ lorem500 }}</div>
+
+      <div sidepage-content class="me-sidepage-content">
+        <!-- Checkboxes Section -->
+        <div class="settings-section">
+          <h3 class="me-title-subheader1">Основные параметры</h3>
+          <div class="checkbox-group">
+            <label meLabel labelDirection="row" class="checkbox-item">
+              <dx-check-box
+                meCheckBox
+                [(value)]="settings.showHeaders"
+                text="Показывать заголовки"
+                [size]="'medium'"
+              ></dx-check-box>
+            </label>
+            <label meLabel labelDirection="row" class="checkbox-item">
+              <dx-check-box
+                meCheckBox
+                [(value)]="settings.enableFilters"
+                text="Включить фильтры"
+                [size]="'medium'"
+              ></dx-check-box>
+            </label>
+            <label meLabel labelDirection="row" class="checkbox-item">
+              <dx-check-box
+                meCheckBox
+                [(value)]="settings.autoRefresh"
+                text="Автоматическое обновление"
+                [size]="'medium'"
+              ></dx-check-box>
+            </label>
+          </div>
+        </div>
+
+        <!-- Vertical Menu Section -->
+        <div class="settings-section">
+          <h3 class="me-title-subheader1">Дополнительные настройки</h3>
+          <div class="me-text-body2 settings-description">
+            Выберите необходимые параметры из списка
+          </div>
+          <dx-menu
+            meMenu
+            [dataSource]="menuItems"
+            [orientation]="'vertical'"
+            [showFirstSubmenuMode]="{ name: 'onClick', delay: 0 }"
+            [showSubmenuMode]="{ name: 'onClick', delay: 0 }"
+            [adaptivityEnabled]="false"
+            [position]="{ my: 'left top', at: 'right top', offset: '0 0' }"
+            [size]="'medium'"
+          ></dx-menu>
+        </div>
+
+        <!-- Description Section -->
+        <div class="settings-section">
+          <div class="me-text-description1">
+            Все изменения сохраняются автоматически
+          </div>
+        </div>
+      </div>
+
       <div sidepage-footer class="me-sidepage-footer">
         <dx-button
           meButton
-          text="Добавить"
-          stylingMode="contained"
-          [style.margin-right]="'auto'"
-        ></dx-button>
-        <dx-button
-          meButton
-          text="Прнинять"
+          text="Сохранить"
           stylingMode="contained"
           type="default"
+          [style.margin-right]="'auto'"
         ></dx-button>
         <dx-button
           meButton
           text="Отменить"
           stylingMode="contained"
-          (onClick)="onClickHandler()"
-        ></dx-button></div
-    ></me-sidepage>
+          (onClick)="toggleSidePage()"
+        ></dx-button>
+      </div>
+    </me-sidepage>
 
     <dx-button
       meButton
-      text="Открыть"
+      text="Открыть настройки"
       stylingMode="contained"
-      (onClick)="showSidePage()"
+      (onClick)="toggleSidePage()"
     ></dx-button>
   `,
+  styles: [`
+    .me-sidepage-content {
+      padding: 24px;
+    }
+    .settings-section {
+      margin-bottom: 32px;
+    }
+    .settings-description {
+      margin: 8px 0 16px;
+    }
+    .checkbox-group {
+      margin-top: 16px;
+    }
+    .checkbox-item {
+      display: block;
+      margin-bottom: 16px;
+    }
+  `]
 })
 class SidePageComponent {
   @ViewChild('meSidePage', { static: false }) meSidePage!: MeSidepageComponent;
 
-  @Input() isSidePageOpen: boolean = false;
   @Input() hideOnOutsideClick: boolean = false;
-  @Input() position: string = 'right';
+  @Input() position: 'left' | 'right' = 'right';
   @Input() width: string = '450px';
   @Input() shading: boolean = true;
   @Input() zIndex: string = '1505';
   @Input() zIndexOverlay: string = '1504';
 
-  showSidePage() {
-    console.log(this.meSidePage);
+  isSidePageOpen: boolean = false;
+
+  settings = {
+    showHeaders: true,
+    enableFilters: false,
+    autoRefresh: true
+  };
+
+  menuItems = [
+    {
+      text: 'Основные настройки',
+      items: [
+        { text: 'Профиль пользователя' },
+        { text: 'Уведомления' },
+        { text: 'Безопасность' }
+      ]
+    },
+    {
+      text: 'Внешний вид',
+      items: [
+        { text: 'Тема оформления' },
+        { text: 'Шрифты' },
+        { text: 'Цветовая схема' }
+      ]
+    },
+    {
+      text: 'Дополнительно',
+      items: [
+        { text: 'Резервное копирование' },
+        { text: 'Производительность' },
+        { text: 'Диагностика' }
+      ]
+    }
+  ];
+
+  toggleSidePage() {
     this.isSidePageOpen = !this.isSidePageOpen;
   }
-
-  constructor() {}
 }
 
 export default {
@@ -84,74 +193,54 @@ export default {
   component: SidePageComponent,
   decorators: [
     moduleMetadata({
-      declarations: [DxButtonComponent, MeButtonDirective, SidePageComponent],
-      imports: [MeSidepageComponent, MeIconsModule],
+      declarations: [
+        DxButtonComponent,
+        MeButtonDirective,
+        SidePageComponent,
+        DxCheckBoxComponent,
+        MeCheckBoxDirective,
+        MeLabelDirective,
+        MeMenuDirective
+      ],
+      imports: [
+        MeSidepageComponent,
+        MeIconsModule,
+        DxMenuModule
+      ],
     }),
   ],
   argTypes: {
-    showSidePage: {
-      table: {
-        disable: true,
-      },
-    },
-    meSidePage: {
-      table: {
-        disable: true,
-      },
-    },
-    isSidePageOpen: {
-      table: {
-        disable: true,
-      },
-    },
     position: {
-      control: 'select',
-      options: ['left', 'right'],
+      control: 'inline-radio',
+      options: ['left', 'right'] as const,
       description: 'Определяет сторону с которой выезжает side page.',
       table: {
-        type: { summary: 'string' },
+        type: { summary: '"left" | "right"' },
+        defaultValue: { summary: 'right' },
       },
     },
     width: {
       control: 'text',
-      description:
-        'Определяет ширину side page. Значение в px, других единицах измерения css (em, rem, vh, vw и др.), значение auto, inherit и т.п.',
-      table: {
-        type: { summary: 'string' },
-      },
+      description: 'Определяет ширину side page.',
     },
     shading: {
       control: 'boolean',
       description: 'Затеняет фон, когда компонент активен',
     },
-    zIndex: {
-      control: 'text',
-      description: 'Позволяет изменить z-index side page.',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    zIndexOverlay: {
-      control: 'text',
-      description: 'Позволяет изменить z-index затененного фона',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
     hideOnOutsideClick: {
       control: 'boolean',
-      description:
-        'При устанавлении значения true cкрывает side page при клике вне компонента.',
-    },
-  },
+      description: 'Скрывает side page при клике вне компонента.',
+    }
+  }
 } as Meta<SidePageComponent>;
 
 type Story = StoryObj<SidePageComponent>;
 
 export const Default: Story = {
   args: {
-    isSidePageOpen: false,
-    position: 'left',
+    position: 'right',
     width: '450px',
-  },
+    shading: true,
+    hideOnOutsideClick: false
+  }
 };

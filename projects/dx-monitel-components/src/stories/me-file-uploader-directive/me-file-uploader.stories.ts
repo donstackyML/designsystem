@@ -4,6 +4,7 @@ import {
   DxFileUploaderModule,
   DxSelectBoxModule,
   DxTextBoxModule,
+  DxProgressBarModule,
 } from 'devextreme-angular';
 import { MeFileUploaderDirective } from '../../public-api';
 
@@ -17,6 +18,7 @@ export default {
         DxSelectBoxModule,
         DxTextBoxModule,
         DxButtonModule,
+        DxProgressBarModule,
       ],
       declarations: [MeFileUploaderDirective],
     }),
@@ -56,8 +58,9 @@ const defaultArgs = {
 export const FormUpload: Story = {
   render: (args) => ({
     template: `
+      <!-- Пример формы, в которой используется File Uploader -->
       <form class="dx-fieldset">
-      <h2 class='form-title' *ngIf="title">{{ title }}</h2>
+        <h2 class='form-title' *ngIf="title">{{ title }}</h2>
         <div class="dx-field">
           <div class="dx-field-label">First Name:</div>
           <dx-text-box class="dx-field-value" value="John"></dx-text-box>
@@ -78,7 +81,7 @@ export const FormUpload: Story = {
           </dx-file-uploader>
         </div>
         <div class='form-btn-box'>
-        <dx-button meButton type='default' text='Update profile'></dx-button>
+          <dx-button meButton type='default' text='Update profile'></dx-button>
         </div>
       </form>
     `,
@@ -99,8 +102,7 @@ export const AsyncUploadInstantly: Story = {
         uploadMode="instantly"
         uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
         [showFileList]="true"
-      >
-      </dx-file-uploader>
+      ></dx-file-uploader>
     `,
     props: args,
   }),
@@ -118,8 +120,7 @@ export const AsyncUploadButtons: Story = {
         [allowedFileExtensions]="allowedFileExtensions"
         uploadMode="useButtons"
         uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
-      >
-      </dx-file-uploader>
+      ></dx-file-uploader>
     `,
     props: args,
   }),
@@ -138,8 +139,7 @@ export const ValidationExample: Story = {
         uploadMode="useButtons"
         uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
         [maxFileSize]="4000000"
-      >
-      </dx-file-uploader>
+      ></dx-file-uploader>
       <div class="allowed-extensions">
         Allowed file extensions: {{ allowedFileExtensions.join(', ') }}
       </div>
@@ -160,8 +160,7 @@ export const ChunkUpload: Story = {
         uploadUrl="https://js.devexpress.com/Demos/WidgetsGalleryDataService/api/ChunkUpload"
         [chunkSize]="200000"
         uploadMode="instantly"
-      >
-      </dx-file-uploader>
+      ></dx-file-uploader>
     `,
     props: args,
   }),
@@ -182,8 +181,7 @@ export const FileTypesSelection: Story = {
             [inputAttr]="{ 'aria-label': 'File Type' }"
             valueExpr="value"
             displayExpr="name"
-          >
-          </dx-select-box>
+          ></dx-select-box>
         </div>
         <dx-file-uploader
           meFileUploader
@@ -191,8 +189,7 @@ export const FileTypesSelection: Story = {
           [allowedFileExtensions]="allowedExtensions[selectedType] || []"
           uploadMode="instantly"
           uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
-        >
-        </dx-file-uploader>
+        ></dx-file-uploader>
       </div>
     `,
     styles: [
@@ -235,42 +232,154 @@ export const FileTypesSelection: Story = {
   args: defaultArgs,
 };
 
-// Custom Drop Zone
-export const CustomDropZone: Story = {
-  render: (args) => ({
-    template: `
-      <div id="dropzone-external" class="flex-box custom-dropzone">
-        <h3>Profile Picture</h3>
-        <dx-file-uploader
-          #fileUploader
-          meFileUploader
-          dialogTrigger="#dropzone-external"
-          dropZone="#dropzone-external"
-          [multiple]="false"
-          [accept]="accept"
-          [allowedFileExtensions]="allowedFileExtensions"
-          uploadMode="instantly"
-          uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
-          [showFileList]="false"
-        >
-        </dx-file-uploader>
-      </div>
-    `,
-    styles: [
-      `
-      .custom-dropzone {
-        text-align: center;
-        padding: 20px;
-        border: 1px dashed var(--Dividers-Borders-Long);
-        border-radius: 4px;
-        background-color: var(--Background-Content);
-        min-height: 120px;
+export const AdvancedCustomDropZone: Story = {
+  render: (args) => {
+    const componentState = {
+      isDropZoneActive: false,
+      imageSource: '',
+      textVisible: true,
+      progressVisible: false,
+      progressValue: 0,
+      allowedFileExtensions: (args as any).allowedFileExtensions,
+    };
+
+    // Обработчики событий
+    const onDropZoneEnter = (e: any) => {
+      if (e.dropZoneElement.id === 'dropzone-external') {
+        const items = e.event.originalEvent.dataTransfer.items;
+        const allowedFileExtensions = componentState.allowedFileExtensions;
+        const draggedFileExtension = `.${items[0].type.replace(/^image\//, '')}`;
+
+        const isSingleFileDragged = items.length === 1;
+        const isValidFileExtension = allowedFileExtensions.includes(draggedFileExtension);
+
+        if (isSingleFileDragged && isValidFileExtension) {
+          componentState.isDropZoneActive = true;
+        }
       }
+    };
+
+    const onDropZoneLeave = (e: any) => {
+      if (e.dropZoneElement.id === 'dropzone-external') {
+        componentState.isDropZoneActive = false;
+      }
+    };
+
+    const onUploaded = (e: any) => {
+      const file = e.file;
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        componentState.isDropZoneActive = false;
+        componentState.imageSource = fileReader.result as string;
+      };
+      fileReader.readAsDataURL(file);
+      componentState.textVisible = false;
+      componentState.progressVisible = false;
+      componentState.progressValue = 0;
+    };
+
+    const onProgress = (e: any) => {
+      componentState.progressValue = (e.bytesLoaded / e.bytesTotal) * 100;
+    };
+
+    const onUploadStarted = () => {
+      componentState.imageSource = '';
+      componentState.progressVisible = true;
+    };
+
+    return {
+      template: `
+        <div class="widget-container flex-box">
+          <span>Profile Picture</span>
+          <div
+            id="dropzone-external"
+            class="flex-box"
+            [ngClass]="componentState.isDropZoneActive ? 'dropzone-active' : null"
+          >
+            <img id="dropzone-image" [src]="componentState.imageSource" *ngIf="componentState.imageSource" alt="" />
+            <div id="dropzone-text" class="flex-box" *ngIf="componentState.textVisible">
+              <span>Drag & Drop the desired file</span>
+              <span>…or click to browse for a file instead.</span>
+            </div>
+            <dx-progress-bar
+              #uploadProgress
+              [min]="0"
+              [max]="100"
+              width="30%"
+              [showStatus]="false"
+              [visible]="componentState.progressVisible"
+              [value]="componentState.progressValue"
+            ></dx-progress-bar>
+          </div>
+          <dx-file-uploader
+            #fileUploader
+            meFileUploader
+            dialogTrigger="#dropzone-external"
+            dropZone="#dropzone-external"
+            [multiple]="false"
+            [allowedFileExtensions]="componentState.allowedFileExtensions"
+            uploadMode="instantly"
+            uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
+            [visible]="false"
+            (onDropZoneEnter)="onDropZoneEnter($event)"
+            (onDropZoneLeave)="onDropZoneLeave($event)"
+            (onUploaded)="onUploaded($event)"
+            (onProgress)="onProgress($event)"
+            (onUploadStarted)="onUploadStarted()"
+          ></dx-file-uploader>
+        </div>
       `,
-    ],
-    props: args,
-  }),
-  args: defaultArgs,
+      props: {
+        ...args,
+        componentState,
+        onDropZoneEnter,
+        onDropZoneLeave,
+        onUploaded,
+        onProgress,
+        onUploadStarted,
+      },
+      styles: [
+        `
+        .widget-container {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: center;
+        }
+        .flex-box {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        #dropzone-external {
+          flex-direction: column;
+          border: 1px dashed #ccc;
+          padding: 20px;
+          border-radius: 4px;
+          width: 300px;
+          height: 200px;
+          position: relative;
+          transition: border-color 0.3s;
+        }
+        #dropzone-external.dropzone-active {
+          border-color: #339966;
+        }
+        #dropzone-text {
+          flex-direction: column;
+          text-align: center;
+        }
+        #dropzone-image {
+          max-width: 100%;
+          max-height: 100%;
+          margin-bottom: 10px;
+        }
+        `,
+      ],
+    };
+  },
+  args: {
+    ...defaultArgs,
+  },
 };
 
 // Disabled State
@@ -284,8 +393,7 @@ export const DisabledState: Story = {
         [allowedFileExtensions]="allowedFileExtensions"
         uploadMode="instantly"
         uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
-      >
-      </dx-file-uploader>
+      ></dx-file-uploader>
     `,
     props: args,
   }),

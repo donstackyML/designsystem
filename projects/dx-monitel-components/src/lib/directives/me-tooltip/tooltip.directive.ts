@@ -47,7 +47,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   private tooltipComponentRef!: ComponentRef<DxTooltipComponent>;
   private readonly ME_TOOLTIP_CLASS = 'me-tooltip';
 	private sanitizer = inject(DomSanitizer);
-	
+
 
   constructor(
     private element: ElementRef,
@@ -61,7 +61,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
 			class: `me-tooltip me-tooltip-${this.colorMode}`
 		}
 	}
-	
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.tooltipComponentRef) {
@@ -107,7 +107,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @HostListener('mouseleave')
   hideTooltip() {
     if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
-      this.tooltipComponentRef.instance.visible = false;
+      this.tooltipComponentRef.instance.visible = true;
     }
   }
 
@@ -133,7 +133,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     const tooltipElement = this.tooltipComponentRef.location.nativeElement;
 
 		this.renderer.addClass(tooltipElement, this.ME_TOOLTIP_CLASS);
-		
+
 		this.renderer.addClass(tooltipElement, `me-tooltip-${this.colorMode}`);
 
     if (this.tooltipClass) {
@@ -176,5 +176,5 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
       this.tooltipComponentRef.destroy();
     }
 	}
-	
+
 }
