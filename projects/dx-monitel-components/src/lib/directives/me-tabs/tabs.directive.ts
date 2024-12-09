@@ -13,8 +13,8 @@ export type MeTabsStylingMode = 'inside' | 'outside';
   selector: '[meTabs]',
   host: {
     '[class.me-tabs]': 'true',
-    '[class.me-tabs-top]': 'position === "top"',
-    '[class.me-tabs-bottom]': 'position === "bottom"',
+    '[class.me-tabs-top]': 'position === "bottom"',
+    '[class.me-tabs-bottom]': 'position === "top"',
     '[class.me-tabs-horizontal]': 'orientation === "horizontal"',
     '[class.me-tabs-vertical]': 'orientation === "vertical"',
     '[class.me-tabs-small]': 'size === "small"',

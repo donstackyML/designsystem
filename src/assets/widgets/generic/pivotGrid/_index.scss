@@ -106,13 +106,15 @@
   }
 }
 
-.me-pivot-grid {
+.me-pivot-grid.dx-pivotgrid {
   // padding: 16px;
   // border: 1px solid var(--dividers-borders-long);
   // border-radius: 4px;
   .dx-total,
-  .dx-area-description-cell {
+  .dx-area-description-cell,
+  .dx-grandtotal {
     background: var(--Background-Canvas);
+    background-color: var(--Background-Canvas);
   }
   //иконки открытия и закрытия группировки
   td.dx-pivotgrid-collapsed,
@@ -231,6 +233,16 @@
     height: 8px;
     .dx-scrollable-scroll {
       height: 8px;
+    }
+  }
+}
+
+.me-pivot-grid.dx-pivotgrid {
+  .dx-icon-sorted {
+    font-family: var(--me-symbols-family);
+    rotate: 90deg;
+    &::before {
+      content: var(--me-icon-sync-alt);
     }
   }
 }

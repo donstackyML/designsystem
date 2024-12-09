@@ -13,7 +13,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 .me-tabs {
   display: inline-flex;
   width: auto;
-  min-height:auto !important;
+  min-height: auto !important;
   .dx-item.dx-tab {
     &.dx-state-hover {
       background-color: var(--Controls-BG-Flat-Button-Main-BG-Hover);
@@ -52,7 +52,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 
   .dx-tab .dx-icon {
-    margin-right: var(--me-tabs-small-icon-margin-right);
     font-size: var(--me-tabs-small-icon-font-size);
   }
 }
@@ -447,4 +446,151 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   outline: none;
   border: none;
   box-shadow: none;
+}
+
+////////////////////////////////////////////////////////// vagab 09.12.24
+
+//скругления при hover
+.me-tabs.dx-tabs {
+  &.me-tabs-bottom.me-tabs-horizontal {
+    .dx-item.dx-tab.dx-state-hover {
+      border-radius: 4px 4px 0 0;
+      -webkit-border-radius: 4px 4px 0 0;
+      -moz-border-radius: 4px 4px 0 0;
+      -ms-border-radius: 4px 4px 0 0;
+      -o-border-radius: 4px 4px 0 0;
+    }
+  }
+  &.me-tabs-top.me-tabs-horizontal {
+    .dx-item.dx-tab.dx-state-hover {
+      border-radius: 0 0 4px 4px;
+      -webkit-border-radius: 0 0 4px 4px;
+      -moz-border-radius: 0 0 4px 4px;
+      -ms-border-radius: 0 0 4px 4px;
+      -o-border-radius: 0 0 4px 4px;
+    }
+  }
+  &.me-tabs-vertical {
+    .dx-item.dx-tab.dx-state-hover {
+      border-radius: 4px 0 0 4px;
+      -webkit-border-radius: 4px 0 0 4px;
+      -moz-border-radius: 4px 0 0 4px;
+      -ms-border-radius: 4px 0 0 4px;
+      -o-border-radius: 4px 0 0 4px;
+    }
+  }
+  &.me-tabs-vertical.dx-rtl {
+    .dx-item.dx-tab.dx-state-hover {
+      border-radius: 0 4px 4px 0;
+      -webkit-border-radius: 0 4px 4px 0;
+      -moz-border-radius: 0 4px 4px 0;
+      -ms-border-radius: 0 4px 4px 0;
+      -o-border-radius: 0 4px 4px 0;
+    }
+  }
+}
+
+//линии
+.me-tabs.dx-tabs.dx-tabs-styling-mode-primary {
+  .dx-tab:not(.dx-tab-selected) {
+    &::after {
+      background-color: var(--Dividers-Borders-Long);
+    }
+  }
+
+  &.me-tabs-vertical {
+    .dx-tab:not(.dx-tab-selected) {
+      &::after {
+        width: 1px;
+      }
+    }
+  }
+}
+
+//размеры кнопок
+.me-tabs.dx-tabs {
+  &.me-tabs-horizontal {
+    &.me-tabs-small {
+      .dx-tabs-nav-button .dx-button-content {
+        width: 28px;
+      }
+    }
+    &.me-tabs-medium {
+      .dx-tabs-nav-button .dx-button-content {
+        width: 32px;
+      }
+    }
+    &.me-tabs-large {
+      .dx-tabs-nav-button .dx-button-content {
+        width: 40px;
+      }
+    }
+  }
+  &.me-tabs-vertical {
+    &.me-tabs-small {
+      .dx-tabs-nav-button .dx-button-content {
+        height: 28px;
+      }
+    }
+    &.me-tabs-medium {
+      .dx-tabs-nav-button .dx-button-content {
+        height: 32px;
+      }
+    }
+    &.me-tabs-large {
+      .dx-tabs-nav-button .dx-button-content {
+        height: 40px;
+      }
+    }
+  }
+}
+
+//
+.me-tabs.dx-tabs {
+  &.me-tabs-small {
+    .dx-item.dx-tab {
+      padding: 4px 8px;
+      .dx-tab-text {
+        gap: 4px;
+      }
+    }
+  }
+  &.me-tabs-medium {
+    .dx-item.dx-tab {
+      padding: 6px 8px;
+      .dx-tab-text {
+        gap: 4px;
+      }
+    }
+  }
+  &.me-tabs-large {
+    .dx-item.dx-tab {
+      padding: 8px 10px;
+      .dx-tab-text {
+        gap: 6px;
+      }
+    }
+  }
+
+  .dx-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.me-tabs.dx-tabs.dx-state-disabled {
+  .dx-scrollable-content .dx-tabs-wrapper {
+    .dx-item.dx-tab {
+      &.dx-tab-selected::after {
+        background-color: var(--Dividers-Borders-Long);
+      }
+      * {
+        color: var(--Controls-Content-In-Controls-Main-Disabled);
+      }
+      svg {
+        opacity: 0.4;
+      }
+    }
+  }
 }
