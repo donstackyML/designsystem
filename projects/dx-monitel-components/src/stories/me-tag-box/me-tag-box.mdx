@@ -30,8 +30,10 @@ import { Figma } from "@storybook/addon-designs/blocks";
   </a>
 
 <Canvas of={TagBoxStories.Default} />
+
+## Свойства
+
 <Controls of={TagBoxStories.Default} />
-<Source of={TagBoxStories.Default} dark />
 
 ## Дизайн
 
@@ -81,12 +83,12 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ### Валидация поля
 Для валидации используйте `<dx-validator>` внутри тэга `dx-tag-box`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
-Не забудьте импортировать `DxTextAreaModule` и `DxValidatorModule`.
+Не забудьте импортировать `DxValidatorModule`.
 Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
 Используйте параметр `validationMessagePosition` для изменения положения сообщения об ошибке. Варианты: `top`, `bottom`, `left`, `right`.
 
 <Source
-	code={`<dx-tag-box meTextArea
+	code={`<dx-tag-box meTagBox
   [(validationMessageMode)]="validationMessageMode"
   [(validationMessagePosition)]="validationMessagePosition">
   <dx-validator>

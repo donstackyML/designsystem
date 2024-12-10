@@ -1,17 +1,13 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { DxAutocompleteModule } from 'devextreme-angular';
-import { MeAutocompleteDirective } from '../../lib/directives/me-autocomplete/me-autocomplete.directive';
-import { MeLabelDirective } from '../../public-api';
+import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { DxAutocompleteModule, DxValidatorModule } from 'devextreme-angular';
+import { MeAutocompleteDirective, MeLabelDirective } from '../../public-api';
 
-const meta: Meta<MeAutocompleteDirective> = {
-  title: 'Components/Autocomplete',
-  component: MeAutocompleteDirective,
+export default {
+  title: 'Components/Autocomplete(RC)',
   decorators: [
     moduleMetadata({
-      imports: [DxAutocompleteModule],
       declarations: [MeAutocompleteDirective, MeLabelDirective],
-      schemas: [NO_ERRORS_SCHEMA],
+      imports: [DxAutocompleteModule, DxValidatorModule],
     }),
   ],
   argTypes: {
@@ -43,19 +39,28 @@ const meta: Meta<MeAutocompleteDirective> = {
     description: {
       control: 'text',
       description: 'Описание для компонента',
-    },
-  },
-};
-
-export default meta;
-
-type Story = StoryObj<MeAutocompleteDirective>;
-
-export const Default: Story = {
+		},
+		showClearButton: {
+			control: 'boolean',
+			description: 'Показывать кнопку очистки.',
+		},
+		isValid: {
+			control: 'boolean',
+			description: 'Определяет состояние валидности.',
+		},
+		disabled: {
+			control: 'boolean',
+		}
+	},
   args: {
-    size: 'medium',
+		size: 'medium',
+		label: 'Label*',
+		labelMode: 'outside',
+		showClearButton: true,
+		isValid: true,
+		disabled: false,
     showScrollbar: 'always',
-    minSearchLength: 1,
+		minSearchLength: 1,
     dataSource: [
       'Apple',
       'Banana',
@@ -72,35 +77,39 @@ export const Default: Story = {
     ],
     description: 'description',
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <dx-autocomplete
-        id="autocomplete-element"
-        meAutocomplete
-        [size]="size"
-        [showScrollbar]="showScrollbar"
-        [dataSource]="dataSource"
-        [minSearchLength]="minSearchLength"
-        [placeholder]="placeholder"
-        [(label)]="label"
-			  [(labelMode)]="labelMode"
-        [dropDownOptions]="{
-          position: {
-            of: '#autocomplete-element',
-            my: 'top left',
-            at: 'bottom left',
-            offset: { y: 4 },
-            collision: 'fit flip'
-          }
-        }"
-      ></dx-autocomplete>
-      <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
-    `,
+	render: (args) => ({
+	props: args,
+	template: `
+		<dx-autocomplete
+			id="autocomplete-element"
+			meAutocomplete
+			${argsToTemplate(args)}
+			[dropDownOptions]="{
+				position: {
+					of: '#autocomplete-element',
+					my: 'top left',
+					at: 'bottom left',
+					offset: { y: 4 },
+					collision: 'fit flip'
+				}
+			}"
+		>
+					<dx-validator>
+        <dxi-validation-rule
+            type="required"
+            message="Required"
+        >
+        </dxi-validation-rule>
+    </dx-validator>
+			</dx-autocomplete>
+		<p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
+	`,
   }),
-};
+} as Meta;
 
-export const WithLabelRow: Story = {
+export const Default: StoryObj = {};
+
+export const WithLabelRow: StoryObj = {
   args: {
     size: 'medium',
     showScrollbar: 'always',
@@ -149,36 +158,4 @@ export const WithLabelRow: Story = {
       </label>
     `,
   }),
-};
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    showScrollbar: 'always',
-    minSearchLength: 1,
-    dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
-    label: 'Label*',
-    labelMode: 'outside',
-  },
-  render: Default.render,
-};
-
-export const Large: Story = {
-  args: {
-    size: 'large',
-    showScrollbar: 'always',
-    minSearchLength: 1,
-    dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
-  },
-  render: Default.render,
-};
-
-export const ScrollOnHover: Story = {
-  args: {
-    size: 'medium',
-    showScrollbar: 'onHover',
-    minSearchLength: 1,
-    dataSource: ['Apple', 'Banana', 'Orange', 'Grape', 'Watermelon'],
-  },
-  render: Default.render,
 };
