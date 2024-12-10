@@ -1,9 +1,9 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule, DxToastModule } from 'devextreme-angular';
 import {
-  MeButtonModule,
-  MeIconComponent,
-  MeToastDirective,
+	MeButtonModule,
+	MeIconComponent,
+	MeToastDirective,
 } from '../../public-api';
 
 const ToastStyles = `
@@ -17,11 +17,21 @@ const ToastStyles = `
     padding: 4px;
     cursor: pointer;
     color: var(--Text-Secondary);
-    background: transparent;
     border: none;
     margin-left: auto;
-  }
+		height: 28px;
+		width: 28px;
+		place-content: center;
 
+		.dx-button-content {
+			align-items: center;
+		}
+  }
+  
+  .me-toast-close-button:not(.dx-state-hover) {
+    background: transparent;
+  }
+  
   .me-toast-content1 {
     margin-left: 34px
   }
@@ -38,6 +48,25 @@ const ToastStyles = `
     padding-top: 16px;
     border-top: 1px solid var(--Dividers-Borders-On-Bg, rgba(24, 24, 26, 0.20));
   }
+
+	.me-toast-close-button-inverted:hover {
+	  .dx-icon-close {
+	    color: black
+	  }
+	}
+
+	.me-toast-close-button-warning:hover {
+	  background-color: rgba(240, 115, 0, 0.1215686275);
+	}
+	.me-toast-close-button-warning {
+	  .dx-icon-close {
+	    color: #fea500;
+	  }
+	}
+
+	.me-error-icon {
+	width: 24px;
+	}
 `;
 
 export default {
@@ -122,7 +151,7 @@ export const SmallWarning: Story = {
             <dx-button
               icon="close"
               stylingMode="text"
-              class="me-toast-close-button"
+              class="me-toast-close-button me-toast-close-button-warning"
               (onClick)="isVisible = false"
             ></dx-button>
           </div>
@@ -130,7 +159,7 @@ export const SmallWarning: Story = {
           <div class="me-toast-actions">
             <dx-button
               meButton
-              size="large"
+              size="small"
               text="Принять"
               type="warning"
               stylingMode="contained"
@@ -138,7 +167,7 @@ export const SmallWarning: Story = {
             ></dx-button>
             <dx-button
               meButton
-              size="large"
+              size="small"
               text="Отменить"
               type="warning"
               stylingMode="text"
@@ -167,10 +196,11 @@ export const LargeError: Story = {
       >
         <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
           <div class="me-toast-header">
-            <me-icon icon="error_outlined" size="large" color="var(--Icon-Error)"></me-icon>
+            <me-icon class="me-error-icon" icon="error_outlined" size="large" color="var(--Icon-Error)"></me-icon>
             <div class="me-title-header1">Ошибка</div>
             <dx-button
               icon="close"
+							type="danger"
               stylingMode="text"
               class="me-toast-close-button"
               (onClick)="isVisible = false"
@@ -222,6 +252,8 @@ export const LargeSuccess: Story = {
             <div class="me-title-header1">Успешно</div>
             <dx-button
               icon="close"
+              type="success"
+              stylingMode="text"
               stylingMode="text"
               class="me-toast-close-button"
               (onClick)="isVisible = false"

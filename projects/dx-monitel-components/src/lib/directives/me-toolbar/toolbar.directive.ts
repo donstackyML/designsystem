@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxToolbarComponent } from 'devextreme-angular';
 import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meToolbar]',
 })
-export class MeToolbarDirective implements OnInit {
+export class MeToolbarDirective implements OnInit, AfterViewInit {
   @Input() size: MeSize = 'medium';
   @Input() background: boolean = false;
 
@@ -28,5 +28,11 @@ export class MeToolbarDirective implements OnInit {
         `me-toolbar-background`
       );
     }
-  }
+
+	}
+	
+	ngAfterViewInit(): void {
+		console.log(this.component.instance.option('wrapperAttr', {class: 'me-me--me-me-me-me'}));
+		
+	}
 }

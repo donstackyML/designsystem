@@ -1,49 +1,101 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as AutocompleteStories from "./me-autocomplete.stories";
-import { MeAutocompleteDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
 
 <Meta
   title="Компоненты/Autocomplete"
-  component={MeAutocompleteDirective}
   of={AutocompleteStories}
 />
 
 # Autocomplete
 
-Компонент Autocomplete с кастомными стилями и поведением.
+## Директива meAutocomplete
 
-<Story of={AutocompleteStories.Default} />
+Применение директивы meAutocomplete к элементу <code>dx-autocomplete</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство <code>size</code>.
+
+Документация на сайте разработчика Devextreme:
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxAutocomplete/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Autocomplete/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+<Canvas of={AutocompleteStories.Default} />
 
 ## Свойства
 
 <Controls of={AutocompleteStories.Default} />
 
-## Размеры
+<Figma
+  height="50%"
+			collapsable
+	defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=sQe2fg33jNgXT1Pd-0"
+/>
 
-Autocomplete поддерживает три размера: small, medium (по умолчанию) и large.
+## Примеры использования:
 
-<Story of={AutocompleteStories.Small} />
-<Story of={AutocompleteStories.Default} />
-<Story of={AutocompleteStories.Large} />
+- [Размеры Autocomplete](#размеры-autocomplete)
+- [Положение Label](#положение-label)
+- [Валидация поля](#валидация-поля)
 
-## Поведение скроллбара
-
-Скроллбар может быть всегда видимым или появляться только при наведении.
-
-<Story of={AutocompleteStories.Default} />
-<Story of={AutocompleteStories.ScrollOnHover} />
-
-## Использование
+### Размеры Autocomplete
+Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
 
 <Source
-  code={`
-<dx-autocomplete
-  meAutocomplete
-  [size]="'medium'"
-  [showScrollbar]="'always'"
-  [dataSource]="['Apple', 'Banana', 'Orange']"
-></dx-autocomplete>
-  `}
-  language="html"
+			code={`<dx-autocomplete meAutocomplete size="size"></dx-autocomplete>`}
+			language="html"
+			dark
+/>
+
+### Положение Label
+Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `static`, `floating`, `hidden`, `outside`. Для изменения самого Label внутри используйте параметр `label`
+
+<Source
+  code={`<dx-autocomplete meAutocomplete labelMode="labelMode" label="label"></dx-autocomplete>`}
   dark
+  language="html"
+/>
+
+Для того, чтобы установить label слева от элемента, используйте тэг обертку `label` с директивой `meLabel` и параметром `labelDirection="row"`, установив параметр `labelMode="hidden"` в <code>meAutocomplete</code>.
+
+<Source
+			code={`
+  <label meLabel 
+  labelDirection="row">
+    <dx-autocomplete meAutocomplete labelMode="hidden"></dx-autocomplete>
+  </label>`}
+	dark
+	language="html"
+/>
+<Story name="Default" of={AutocompleteStories.WithLabelRow} />
+
+### Валидация поля
+Для валидации используйте `<dx-validator>` внутри тэга `dx-autocomplete`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
+Не забудьте импортировать `DxValidatorModule`.
+Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
+Используйте параметр `validationMessagePosition` для изменения положения сообщения об ошибке. Варианты: `top`, `bottom`, `left`, `right`.
+
+<Source
+	code={`<dx-autocomplete meAutocomplete
+  [(validationMessageMode)]="validationMessageMode"
+  [(validationMessagePosition)]="validationMessagePosition">
+  <dx-validator>
+    <dxi-validation-rule 
+    type="required"
+    message="Required"
+    ></dxi-validation-rule>
+  </dx-validator>
+</dx-autocomplete>`}
+	dark
+	language="html"
 />
