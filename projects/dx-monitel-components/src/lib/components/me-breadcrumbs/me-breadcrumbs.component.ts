@@ -49,6 +49,7 @@ interface BreadcrumbItem {
       #breadcrumbsContainer
     >
       <dx-button
+        class="breadcrumbs__left-btn"
         *ngIf="overflowLeft"
         stylingMode="text"
         (onClick)="showOverflowMenu('left', $event)"
@@ -60,7 +61,7 @@ interface BreadcrumbItem {
         <dx-menu
           [dataSource]="[item]"
           [showFirstSubmenuMode]="{
-            name: 'onClick',
+            name: 'onHover',
             delay: { show: 0, hide: 300 }
           }"
           orientation="horizontal"
@@ -90,6 +91,7 @@ interface BreadcrumbItem {
 
       <dx-button
         *ngIf="overflowRight"
+        class="breadcrumbs__right-btn"
         stylingMode="text"
         (onClick)="showOverflowMenu('right', $event)"
       >

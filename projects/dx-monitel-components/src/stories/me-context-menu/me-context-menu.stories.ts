@@ -6,7 +6,7 @@ import {
 } from '@storybook/angular';
 import { DxButtonComponent, DxContextMenuModule } from 'devextreme-angular';
 import { MeIconStoreService } from 'src/app/service/icon-store.service';
-import { MeButtonDirective, MeContextMenuDirective } from '../../public-api';
+import {MeButtonDirective, MeContextMenuDirective, MeIconComponent} from '../../public-api';
 
 const iconStore = new MeIconStoreService();
 
@@ -1242,7 +1242,7 @@ export default {
         MeButtonDirective,
         DxButtonComponent,
       ],
-      imports: [DxContextMenuModule],
+      imports: [DxContextMenuModule, MeIconComponent],
     }),
   ],
 
@@ -1280,9 +1280,9 @@ export default {
     props: args,
     template: `
     <dx-button meButton text="Right click" id="contextButton"></dx-button>
-    <dx-context-menu 
-        meContextMenu 
-        target="#contextButton" 
+    <dx-context-menu
+        meContextMenu
+        target="#contextButton"
         ${argsToTemplate(args)}>
     </dx-context-menu>`,
   }),
@@ -1297,10 +1297,10 @@ export const SelectedItems: Story = {
     dataSource: [
       {
         text: 'Share',
-        icon: 'globe',
+        icon: 'public',
         items: [
           { icon: 'menu_book', text: 'Facebook', selected: true },
-          { icon: 'raven', text: 'Twitter' },
+          { icon: 'single_bed', text: 'Twitter' },
         ],
       },
       { text: 'Download', icon: 'download' },
@@ -1319,15 +1319,17 @@ meContextMenu
   target="#contextButton"
 >
   <div *dxTemplate="let itemData of 'item'">
-    <div class="item-template-container">
-      <span
-        class="material-symbols-outlined"
-				innerHTML="{{ itemData.icon }}"
-      ></span>
-      <span class="dx-menu-item-text">{{ itemData.text }}</span>
-      <span *ngIf="itemData.items" style="margin-left: auto" class="material-symbols-outlined">chevron_right</span>
-    </div>
+  <div class="item-template-container">
+    <me-icon [icon]="itemData.icon" [size]="size"></me-icon>
+    <span class="dx-menu-item-text">{{ itemData.text }}</span>
+    <me-icon
+      *ngIf="itemData.items"
+      icon="chevron_right"
+      [size]="size"
+      style="margin-left: auto"
+    ></me-icon>
   </div>
+</div>
 </dx-context-menu>`,
   }),
 };

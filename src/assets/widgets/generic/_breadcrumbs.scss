@@ -87,10 +87,22 @@ $breadcrumbs-active-bg: null !default;
 
   &.small {
     @include small-size;
+    .breadcrumbs__right-btn {
+      margin-left: 4px;
+    }
+    .breadcrumbs__left-btn {
+      margin-right: 4px;
+    }
   }
 
   &.large {
     @include large-size;
+    .breadcrumbs__right-btn {
+      margin-left: 8px;
+    }
+    .breadcrumbs__left-btn {
+      margin-right: 8px;
+    }
   }
 }
 
@@ -106,10 +118,6 @@ $breadcrumbs-active-bg: null !default;
 
   .dx-menu-item {
     border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
 
     &.dx-state-hover {
       background-color: $breadcrumbs-hover-bg;
@@ -132,18 +140,18 @@ $breadcrumbs-active-bg: null !default;
     box-shadow: none !important;
   }
 
+  .dx-menu-item.dx-menu-item-expanded {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+  }
+
   .dx-icon-spindown {
     transform: rotate(180deg);
-    transition: transform 0.2s ease-in-out;
     &::before {
-      font-family: var(--me-icon-family);
-      content: '\e316';
+      font-family: var(--me-icon-family), serif;
+      content: "\e316";
     }
   }
 
-  .dx-menu-item-expanded .dx-icon-spindown {
-    transform: rotate(0deg);
-  }
 }
 
 .separator {
@@ -215,6 +223,7 @@ $breadcrumbs-active-bg: null !default;
 }
 
 .breadcrumbs-overflow-menu {
+
   .dx-menu-items-container {
     padding: 5px 0;
   }
@@ -228,3 +237,5 @@ $breadcrumbs-active-bg: null !default;
     }
   }
 }
+
+

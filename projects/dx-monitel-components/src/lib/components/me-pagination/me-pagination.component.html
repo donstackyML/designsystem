@@ -1,11 +1,9 @@
 <div
   class="me-pagination"
-  [ngClass]="{
-    'me-pagination-background': !transparentBackground,
-    'me-pagination--small': size === 'small',
-    'me-pagination--medium': size === 'medium',
-    'me-pagination--large': size === 'large'
-  }"
+  [ngClass]="[
+    transparentBackground ? 'me-pagination--transparent' : 'me-pagination--filled',
+    'me-pagination--' + size
+  ]"
 >
   <div class="me-pagination__size-controls" [ngClass]="size">
     <ng-container *ngIf="useButtons; else dropDownTemplate">

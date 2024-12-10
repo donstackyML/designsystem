@@ -73,7 +73,6 @@ $generic-accordion-disabled-opacity: 0.5;
 .dx-accordion-item-opened {
   border-radius: 3px;
   border: 1px solid $accordion-item-border-color;
-  margin-top: -1.5px;
 
   &.dx-state-hover {
     & > .dx-accordion-item-title {
@@ -90,7 +89,6 @@ $generic-accordion-disabled-opacity: 0.5;
   }
 
   + .dx-accordion-item {
-    border-top-color: transparent;
 
     &.dx-state-hover:not(.dx-state-focused) {
       border-top-color: $accordion-item-hover-bg;
@@ -98,11 +96,14 @@ $generic-accordion-disabled-opacity: 0.5;
   }
 }
 
+.dx-accordion-item-closed:has(+ .dx-accordion-item-opened) {
+  border-bottom-color: transparent;
+}
 .dx-accordion-item-closed {
   border-bottom: 1px solid $accordion-item-border-color;
 
   + .dx-accordion-item {
-    border-top-color: transparent;
+    //border-top-color: transparent;
   }
 }
 

@@ -225,7 +225,7 @@ export const ImageTooltip: Story = {
               </defs>
             </svg>
           </div>
-          <div class="me-tooltip-content">
+          <div class="me-tooltip-content me-tooltip-content-dark">
             <h1 class="me-tooltip-title">Заголовок</h1>
             <p class="me-tooltip-text">Трансформатор - это устройство, способное изменять напряжение переменного тока</p>
           </div>

@@ -130,7 +130,7 @@ export const SmallWarning: Story = {
           <div class="me-toast-actions">
             <dx-button
               meButton
-              size="large"
+              size="small"
               text="Принять"
               type="warning"
               stylingMode="contained"
@@ -138,7 +138,7 @@ export const SmallWarning: Story = {
             ></dx-button>
             <dx-button
               meButton
-              size="large"
+              size="small"
               text="Отменить"
               type="warning"
               stylingMode="text"
