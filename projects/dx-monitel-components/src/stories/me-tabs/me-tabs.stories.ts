@@ -1,9 +1,9 @@
 import {
-	addX20,
-	attachFileX20,
-	homeX20,
-	mailX20,
-	publicX20,
+  addX20,
+  attachFileX20,
+  homeX20,
+  mailX20,
+  publicX20,
 } from '@monitel/me-icons';
 import { registry } from '../../../.storybook/preview';
 
@@ -21,12 +21,12 @@ interface MeTabsProps {
   iconPosition: 'top' | 'start' | 'end' | 'bottom';
   showNavButtons: boolean;
   scrollByContent: boolean;
-	width: string | number;
-	height: string | number;
+  width: string | number;
+  height: string | number;
   dataSource: Tab[];
   rtlEnabled: boolean;
-	hoverStateEnabled: boolean;
-	disabled: boolean;
+  hoverStateEnabled: boolean;
+  disabled: boolean;
 }
 
 const meta: Meta<MeTabsProps> = {
@@ -89,10 +89,10 @@ const meta: Meta<MeTabsProps> = {
     },
     width: {
       control: 'text',
-		},
-		height: {
-			control: 'text',
-		},
+    },
+    height: {
+      control: 'text',
+    },
     rtlEnabled: {
       control: 'boolean',
     },
@@ -127,13 +127,13 @@ export const Default: Story = {
     iconPosition: 'start',
     showNavButtons: false,
     scrollByContent: false,
-		width: 'auto',
-		height: 'auto',
+    width: 'auto',
+    height: 'auto',
     customClass: '',
     dataSource: defaultTabsData,
     rtlEnabled: false,
-		hoverStateEnabled: true,
-		disabled: false
+    hoverStateEnabled: true,
+    disabled: false,
   },
 };
 

@@ -1,19 +1,19 @@
 import {
-	ComponentRef,
-	Directive,
-	ElementRef,
-	EmbeddedViewRef,
-	HostListener,
-	Input,
-	OnChanges,
-	OnDestroy,
-	OnInit,
-	Renderer2,
-	SecurityContext,
-	SimpleChanges,
-	TemplateRef,
-	ViewContainerRef,
-	inject
+  ComponentRef,
+  Directive,
+  ElementRef,
+  EmbeddedViewRef,
+  HostListener,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  SecurityContext,
+  SimpleChanges,
+  TemplateRef,
+  ViewContainerRef,
+  inject,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
@@ -41,13 +41,12 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     to: 0,
     duration: 300,
   };
-	@Input() tooltipTemplateRef!: TemplateRef<any>;
-	@Input() colorMode: 'light' | 'dark' = 'dark';
+  @Input() tooltipTemplateRef!: TemplateRef<any>;
+  @Input() colorMode: 'light' | 'dark' = 'dark';
 
   private tooltipComponentRef!: ComponentRef<DxTooltipComponent>;
   private readonly ME_TOOLTIP_CLASS = 'me-tooltip';
-	private sanitizer = inject(DomSanitizer);
-
+  private sanitizer = inject(DomSanitizer);
 
   constructor(
     private element: ElementRef,
@@ -56,12 +55,11 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   ) {}
 
   ngOnInit() {
-		this.initializeTooltip();
-		this.tooltipComponentRef.instance.wrapperAttr = {
-			class: `me-tooltip me-tooltip-${this.colorMode}`
-		}
-	}
-
+    this.initializeTooltip();
+    this.tooltipComponentRef.instance.wrapperAttr = {
+      class: `me-tooltip me-tooltip-${this.colorMode}`,
+    };
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.tooltipComponentRef) {
@@ -89,8 +87,8 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
       }
       if (changes['tooltipContent'] || changes['tooltipTemplateRef']) {
         this.updateTooltipContent();
-			}
-		}
+      }
+    }
   }
 
   ngOnDestroy() {
@@ -132,9 +130,9 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
 
     const tooltipElement = this.tooltipComponentRef.location.nativeElement;
 
-		this.renderer.addClass(tooltipElement, this.ME_TOOLTIP_CLASS);
+    this.renderer.addClass(tooltipElement, this.ME_TOOLTIP_CLASS);
 
-		this.renderer.addClass(tooltipElement, `me-tooltip-${this.colorMode}`);
+    this.renderer.addClass(tooltipElement, `me-tooltip-${this.colorMode}`);
 
     if (this.tooltipClass) {
       this.renderer.addClass(tooltipElement, this.tooltipClass);
@@ -175,6 +173,5 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     if (this.tooltipComponentRef) {
       this.tooltipComponentRef.destroy();
     }
-	}
-
+  }
 }

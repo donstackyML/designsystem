@@ -16,7 +16,7 @@ export interface StatusBarItem {
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DxButtonModule } from 'devextreme-angular';
-import { MeIconComponent } from "../me-icon/me-icon.component";
+import { MeIconComponent } from '../me-icon/me-icon.component';
 
 @Component({
   selector: 'me-status-bar',

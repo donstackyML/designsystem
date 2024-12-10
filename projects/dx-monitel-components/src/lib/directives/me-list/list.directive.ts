@@ -1,7 +1,6 @@
 import { Directive } from '@angular/core';
 import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 
-
 @Directive({
   selector: '[meList]',
   host: {
@@ -11,5 +10,4 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-list-large]': 'isSizeLarge',
   },
 })
-export class MeListDirective extends MeFocusableDirective {
-}
+export class MeListDirective extends MeFocusableDirective {}

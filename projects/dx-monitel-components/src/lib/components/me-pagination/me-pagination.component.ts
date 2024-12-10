@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
 import { ItemClickEvent } from 'devextreme/ui/drop_down_button';
-import { MeDropDownButtonModule } from "../../directives/me-drop-down-button/drop-down-button.module";
-import {MeSize} from "../../types/types";
+import { MeDropDownButtonModule } from '../../directives/me-drop-down-button/drop-down-button.module';
+import { MeSize } from '../../types/types';
 
 @Component({
   selector: 'me-pagination',
@@ -22,7 +22,7 @@ import {MeSize} from "../../types/types";
     NgIf,
     NgClass,
     DxDropDownButtonModule,
-    MeDropDownButtonModule
+    MeDropDownButtonModule,
   ],
   standalone: true,
 })
@@ -53,7 +53,6 @@ export class MePaginationComponent implements OnInit, OnChanges {
     contentTemplate: (contentElement: any) => {
       contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
     },
-
   };
 
   constructor() {
@@ -93,9 +92,9 @@ export class MePaginationComponent implements OnInit, OnChanges {
   }
 
   private initializeDropDownItems(): void {
-    this.dropDownItems = this.itemsPerPageOptions.map(value => ({
+    this.dropDownItems = this.itemsPerPageOptions.map((value) => ({
       value,
-      text: value.toString()
+      text: value.toString(),
     }));
   }
 

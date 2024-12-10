@@ -1,10 +1,4 @@
-import {
-	Directive,
-	ElementRef,
-	Input,
-	OnInit,
-	Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeCommonType, MeScrollbarShowType } from '../../types/types';
@@ -30,7 +24,7 @@ export class MeDropDownButtonDirective
   @Input() iconSize: string = '';
   @Input() wrapperAttr: MeCommonType = {};
   @Input() showScrollbar: MeScrollbarShowType = 'always';
-	@Input() dropDownOptions: MeCommonType = {};
+  @Input() dropDownOptions: MeCommonType = {};
 
   constructor(
     private element: ElementRef,
@@ -96,7 +90,6 @@ export class MeDropDownButtonDirective
       contentTemplate: (contentElement: any) => {
         contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
       },
-
-		};
+    };
   }
 }

@@ -23,21 +23,22 @@ export default {
     allowColumnResizing: {
       control: 'select',
       options: [true, false],
-		},
-		hoverStateEnabled: {
-			control: 'select',
-			options: [true, false],
-			description: 'Определяет состояние при наведении мыши на элемент',
-		},
+    },
+    hoverStateEnabled: {
+      control: 'select',
+      options: [true, false],
+      description: 'Определяет состояние при наведении мыши на элемент',
+    },
     showRowLines: {
       control: 'select',
       options: [true, false],
-		},
-		selectionMode: {
-			control: 'select',
-			options: ['single', 'multiple', 'none'],
-			description: 'Определяет тип выделения. Используется с тэгом `<dxo-selection [mode]="multi"></dxo-selection>` внутри компонента',
-		}
+    },
+    selectionMode: {
+      control: 'select',
+      options: ['single', 'multiple', 'none'],
+      description:
+        'Определяет тип выделения. Используется с тэгом `<dxo-selection [mode]="multi"></dxo-selection>` внутри компонента',
+    },
   },
 
   args: {
@@ -465,11 +466,10 @@ export default {
     ],
     activeStateEnabled: true,
     allowColumnReordering: true,
-		allowColumnResizing: true,
-		hoverStateEnabled: true,
-		showRowLines: true,
-		selectionMode: 'multiple',
-		
+    allowColumnResizing: true,
+    hoverStateEnabled: true,
+    showRowLines: true,
+    selectionMode: 'multiple',
   },
   render: (args) => ({
     props: args,

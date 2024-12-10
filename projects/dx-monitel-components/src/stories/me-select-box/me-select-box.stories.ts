@@ -1,18 +1,32 @@
 import {
-	argsToTemplate,
-	moduleMetadata,
-	type Meta,
-	type StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
 } from '@storybook/angular';
 
 import {
-	DxSelectBoxComponent,
-	DxSelectBoxModule,
-	DxValidatorModule,
+  DxSelectBoxComponent,
+  DxSelectBoxModule,
+  DxValidatorModule,
 } from 'devextreme-angular';
 import { MeLabelDirective, MeSelectBoxDirective } from '../../public-api';
 
-const data = ['HD Video Player', 'SuperHD Video Player', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50', 'SuperPlasma 50'];
+const data = [
+  'HD Video Player',
+  'SuperHD Video Player',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+  'SuperPlasma 50',
+];
 
 export default {
   title: 'Components/SelectBox',
@@ -138,9 +152,9 @@ type Story = StoryObj<
 
 export const Default: Story = {
   args: {
-		dataSource: data,
-		label: 'Label*',
-		labelMode: 'outside',
+    dataSource: data,
+    label: 'Label*',
+    labelMode: 'outside',
   },
 };
 

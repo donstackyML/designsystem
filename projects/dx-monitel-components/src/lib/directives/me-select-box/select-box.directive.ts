@@ -1,10 +1,6 @@
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
-import {
-	Directive, ElementRef,
-	Input,
-	OnInit, Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 import { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
@@ -24,7 +20,6 @@ export class MeSelectBoxDirective
 {
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() wrapperAttr: MeCommonType = {};
-
 
   constructor(
     element: ElementRef,
@@ -57,14 +52,13 @@ export class MeSelectBoxDirective
     // );
   }
 
-
   get isSizeSmall() {
     return this.size === 'small';
   }
 
   get isSizeMedium() {
     return this.size === 'medium';
-	}
+  }
 
   get isSizeLarge() {
     return this.size === 'large';

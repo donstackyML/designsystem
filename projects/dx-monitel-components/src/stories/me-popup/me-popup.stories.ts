@@ -1,21 +1,21 @@
 import {
-	argsToTemplate,
-	moduleMetadata,
-	type Meta,
-	type StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
 } from '@storybook/angular';
 import {
-	DxButtonComponent,
-	DxButtonModule,
-	DxPopupModule,
-	DxScrollViewComponent,
-	DxTemplateModule,
+  DxButtonComponent,
+  DxButtonModule,
+  DxPopupModule,
+  DxScrollViewComponent,
+  DxTemplateModule,
 } from 'devextreme-angular';
 import { MePopupComponent } from 'src/app/components/me-popup/me-popup.component';
 import {
-	MeButtonDirective,
-	MeIconDirective,
-	MePopupDirective,
+  MeButtonDirective,
+  MeIconDirective,
+  MePopupDirective,
 } from '../../public-api';
 
 export default {

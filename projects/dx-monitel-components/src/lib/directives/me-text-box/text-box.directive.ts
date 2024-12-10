@@ -19,8 +19,8 @@ import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
 })
 export class MeTextBoxDirective
   extends MeTextEditorDirective
-  implements OnInit, AfterViewInit {
-
+  implements OnInit, AfterViewInit
+{
   private textBox = inject(DxTextBoxComponent);
   private passwordVisible = false;
   private isPasswordInput = false;
@@ -72,7 +72,9 @@ export class MeTextBoxDirective
     this.renderer.addClass(childSpan, 'dx-icon-key');
     this.renderer.appendChild(parentSpan, childSpan);
 
-    const buttonsContainer = this.element.nativeElement.querySelector('.dx-texteditor-buttons-container');
+    const buttonsContainer = this.element.nativeElement.querySelector(
+      '.dx-texteditor-buttons-container'
+    );
     if (buttonsContainer) {
       this.renderer.appendChild(buttonsContainer, parentSpan);
     }
@@ -124,7 +126,7 @@ export class MeTextBoxDirective
     this.renderer.setStyle(
       this.passwordToggleButton,
       'display',
-      (hasValue || hasInputValue) ? 'block' : 'none'
+      hasValue || hasInputValue ? 'block' : 'none'
     );
   }
 
@@ -146,14 +148,18 @@ export class MeTextBoxDirective
   }
 
   addLockIcon() {
-    const lockIcon = this.element.nativeElement.querySelector('.dx-lock-button-area');
+    const lockIcon = this.element.nativeElement.querySelector(
+      '.dx-lock-button-area'
+    );
     if (lockIcon) {
       this.renderer.removeClass(lockIcon, 'dx-state-invisible');
     }
   }
 
   removeLockIcon() {
-    const lockIcon = this.element.nativeElement.querySelector('.dx-lock-button-area');
+    const lockIcon = this.element.nativeElement.querySelector(
+      '.dx-lock-button-area'
+    );
     if (lockIcon) {
       this.renderer.addClass(lockIcon, 'dx-state-invisible');
     }

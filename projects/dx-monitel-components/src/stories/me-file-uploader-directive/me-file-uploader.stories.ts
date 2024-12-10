@@ -248,10 +248,14 @@ export const AdvancedCustomDropZone: Story = {
       if (e.dropZoneElement.id === 'dropzone-external') {
         const items = e.event.originalEvent.dataTransfer.items;
         const allowedFileExtensions = componentState.allowedFileExtensions;
-        const draggedFileExtension = `.${items[0].type.replace(/^image\//, '')}`;
+        const draggedFileExtension = `.${items[0].type.replace(
+          /^image\//,
+          ''
+        )}`;
 
         const isSingleFileDragged = items.length === 1;
-        const isValidFileExtension = allowedFileExtensions.includes(draggedFileExtension);
+        const isValidFileExtension =
+          allowedFileExtensions.includes(draggedFileExtension);
 
         if (isSingleFileDragged && isValidFileExtension) {
           componentState.isDropZoneActive = true;

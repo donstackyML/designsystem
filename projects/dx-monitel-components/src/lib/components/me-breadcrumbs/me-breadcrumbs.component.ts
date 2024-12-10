@@ -289,7 +289,7 @@ export class MeBreadcrumbsComponent
 
   onSubmenuShowing(e: any) {
     const submenuContainer = e.submenuContainer;
-    console.log(submenuContainer, e)
+    console.log(submenuContainer, e);
     if (submenuContainer) {
       submenuContainer.classList.add('me-custom-submenu-class');
     }
@@ -304,7 +304,7 @@ export class MeBreadcrumbsComponent
   private overflowMenuOptions = {
     wrapperAttr: {
       class: 'me-overflow-menu-popup',
-    }
+    },
   };
 
   showOverflowMenu(position: 'left' | 'right', event: any) {
@@ -319,7 +319,7 @@ export class MeBreadcrumbsComponent
 
       this.overflowMenu.instance.option({
         position: this.contextMenuPosition,
-        ...this.overflowMenuOptions
+        ...this.overflowMenuOptions,
       });
 
       this.overflowMenu.instance.show();

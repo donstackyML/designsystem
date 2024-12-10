@@ -1,13 +1,17 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MeIconsModule } from '@monitel/me-icons-registry';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { DxButtonComponent, DxCheckBoxComponent, DxMenuModule } from 'devextreme-angular';
+import {
+  DxButtonComponent,
+  DxCheckBoxComponent,
+  DxMenuModule,
+} from 'devextreme-angular';
 import {
   MeButtonDirective,
-  MeSidepageComponent,
   MeCheckBoxDirective,
   MeLabelDirective,
-  MeMenuDirective
+  MeMenuDirective,
+  MeSidepageComponent,
 } from '../../public-api';
 
 @Component({
@@ -119,24 +123,26 @@ import {
       (onClick)="toggleSidePage()"
     ></dx-button>
   `,
-  styles: [`
-    .me-sidepage-content {
-      padding: 24px;
-    }
-    .settings-section {
-      margin-bottom: 32px;
-    }
-    .settings-description {
-      margin: 8px 0 16px;
-    }
-    .checkbox-group {
-      margin-top: 16px;
-    }
-    .checkbox-item {
-      display: block;
-      margin-bottom: 16px;
-    }
-  `]
+  styles: [
+    `
+      .me-sidepage-content {
+        padding: 24px;
+      }
+      .settings-section {
+        margin-bottom: 32px;
+      }
+      .settings-description {
+        margin: 8px 0 16px;
+      }
+      .checkbox-group {
+        margin-top: 16px;
+      }
+      .checkbox-item {
+        display: block;
+        margin-bottom: 16px;
+      }
+    `,
+  ],
 })
 class SidePageComponent {
   @ViewChild('meSidePage', { static: false }) meSidePage!: MeSidepageComponent;
@@ -153,7 +159,7 @@ class SidePageComponent {
   settings = {
     showHeaders: true,
     enableFilters: false,
-    autoRefresh: true
+    autoRefresh: true,
   };
 
   menuItems = [
@@ -162,25 +168,25 @@ class SidePageComponent {
       items: [
         { text: 'Профиль пользователя' },
         { text: 'Уведомления' },
-        { text: 'Безопасность' }
-      ]
+        { text: 'Безопасность' },
+      ],
     },
     {
       text: 'Внешний вид',
       items: [
         { text: 'Тема оформления' },
         { text: 'Шрифты' },
-        { text: 'Цветовая схема' }
-      ]
+        { text: 'Цветовая схема' },
+      ],
     },
     {
       text: 'Дополнительно',
       items: [
         { text: 'Резервное копирование' },
         { text: 'Производительность' },
-        { text: 'Диагностика' }
-      ]
-    }
+        { text: 'Диагностика' },
+      ],
+    },
   ];
 
   toggleSidePage() {
@@ -200,13 +206,9 @@ export default {
         DxCheckBoxComponent,
         MeCheckBoxDirective,
         MeLabelDirective,
-        MeMenuDirective
+        MeMenuDirective,
       ],
-      imports: [
-        MeSidepageComponent,
-        MeIconsModule,
-        DxMenuModule
-      ],
+      imports: [MeSidepageComponent, MeIconsModule, DxMenuModule],
     }),
   ],
   argTypes: {
@@ -230,8 +232,8 @@ export default {
     hideOnOutsideClick: {
       control: 'boolean',
       description: 'Скрывает side page при клике вне компонента.',
-    }
-  }
+    },
+  },
 } as Meta<SidePageComponent>;
 
 type Story = StoryObj<SidePageComponent>;
@@ -241,6 +243,8 @@ export const Default: Story = {
     position: 'right',
     width: '450px',
     shading: true,
-    hideOnOutsideClick: false
-  }
+    hideOnOutsideClick: false,
+    zIndex: '1501',
+    zIndexOverlay: '1500',
+  },
 };

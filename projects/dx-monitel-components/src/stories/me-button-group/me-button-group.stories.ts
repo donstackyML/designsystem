@@ -66,7 +66,7 @@ export default {
         ${argsToTemplate(args)}
       ></dx-button-group>
     `,
-  })
+  }),
 } as Meta<ButtonGroupComponent | MeButtonGroupDirective>;
 
 type Story = StoryObj<ButtonGroupComponent | MeButtonGroupDirective>;
@@ -81,7 +81,7 @@ export const Default: Story = {
     ],
     size: 'medium',
     stylingMode: 'contained',
-  }
+  },
 };
 
 // Кнопки с иконками

@@ -70,8 +70,12 @@ export class MeTagBoxDirective
       return;
     }
 
-    const submitButton = popupContainer.querySelector('.dx-button.dx-popup-done');
-    const cancelButton = popupContainer.querySelector('.dx-button.dx-popup-cancel');
+    const submitButton = popupContainer.querySelector(
+      '.dx-button.dx-popup-done'
+    );
+    const cancelButton = popupContainer.querySelector(
+      '.dx-button.dx-popup-cancel'
+    );
 
     if (submitButton) {
       this.renderer.addClass(submitButton, 'me-button');

@@ -1,6 +1,11 @@
 import { DxTextAreaModule, DxValidatorModule } from 'devextreme-angular';
 
-import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import {
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
 
 import { MeTextAreaDirective } from '../../lib/directives/me-text-area/text-area.directive';
 
@@ -58,11 +63,11 @@ export default {
     isValid: {
       control: 'boolean',
       description: 'Валидность компонента.',
-		},
-		showClearButton: {
-			control: 'boolean',
-			description: 'Показывать кнопку очистки.',
-		},
+    },
+    showClearButton: {
+      control: 'boolean',
+      description: 'Показывать кнопку очистки.',
+    },
     validationError: {
       control: 'text',
     },
@@ -88,8 +93,8 @@ export default {
     placeholder: 'Enter your text',
     readOnly: false,
     disabled: false,
-		isValid: true,
-		showClearButton: true,
+    isValid: true,
+    showClearButton: true,
     validationError: '',
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
@@ -123,8 +128,7 @@ type Story = StoryObj;
 
 export const Default: Story = {
   args: {
-    value:
-      '',
+    value: '',
     width: '320px',
     isValid: false,
   },

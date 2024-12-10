@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
 import { MeTooltipDirective } from '../../public-api';
@@ -50,16 +55,16 @@ const meta: Meta<MeTooltipDirective> = {
     tooltipHideAnimation: {
       control: 'object',
       description: 'Настройки анимации скрытия тултипа',
-		},
-		colorMode: {
-			control: 'select',
-			options: ['light', 'dark'],
-			description: 'Цветовая тема тултипа',
-		}
-	},
-	args: {
-		colorMode: 'dark'
-	}
+    },
+    colorMode: {
+      control: 'select',
+      options: ['light', 'dark'],
+      description: 'Цветовая тема тултипа',
+    },
+  },
+  args: {
+    colorMode: 'dark',
+  },
 };
 
 export default meta;
@@ -138,9 +143,10 @@ export const CustomStyles: Story = {
 
 export const WithAnimation: Story = {
   args: {
-    meTooltip: 'Анимированный тултип juhsdfbvjsdbfkjsbdkfskdjfhkjsdhfkjhsdkfjhsdkjfhksjdhfksdhfkhsdkfhskjdhfkjsdhfkjshdfkshdkjfhsdkjfhkshfkjshdfkjhsdkfhsdkfhkshfkshkfhskjfhskjhfkjshfkjshdfkjhskdjfhskjfdhkjh',
-		tooltipPosition: 'top',
-		tooltipMaxWidth: 400,
+    meTooltip:
+      'Анимированный тултип juhsdfbvjsdbfkjsbdkfskdjfhkjsdhfkjhsdkfjhsdkjfhksjdhfksdhfkhsdkfhskjdhfkjsdhfkjshdfkshdkjfhsdkjfhkshfkjshdfkjhsdkfhsdkfhkshfkshkfhskjfhskjhfkjshfkjshdfkjhskdjfhskjfdhkjh',
+    tooltipPosition: 'top',
+    tooltipMaxWidth: 400,
     tooltipShowAnimation: {
       type: 'pop',
       from: { scale: 0.5, opacity: 0 },
