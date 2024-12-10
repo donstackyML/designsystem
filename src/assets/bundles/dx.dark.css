@@ -6577,28 +6577,32 @@
   box-shadow: none;
 }
 
-.me-tabs.dx-tabs.me-tabs-bottom.me-tabs-horizontal .dx-item.dx-tab.dx-state-hover {
+.me-tabs.dx-tabs.me-tabs-bottom.me-tabs-horizontal .dx-item.dx-tab.dx-state-hover,
+.me-tabs.dx-tabs.me-tabs-bottom.me-tabs-horizontal .dx-item.dx-tab.dx-state-active {
   border-radius: 4px 4px 0 0;
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
   -ms-border-radius: 4px 4px 0 0;
   -o-border-radius: 4px 4px 0 0;
 }
-.me-tabs.dx-tabs.me-tabs-top.me-tabs-horizontal .dx-item.dx-tab.dx-state-hover {
+.me-tabs.dx-tabs.me-tabs-top.me-tabs-horizontal .dx-item.dx-tab.dx-state-hover,
+.me-tabs.dx-tabs.me-tabs-top.me-tabs-horizontal .dx-item.dx-tab.dx-state-active {
   border-radius: 0 0 4px 4px;
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
   -ms-border-radius: 0 0 4px 4px;
   -o-border-radius: 0 0 4px 4px;
 }
-.me-tabs.dx-tabs.me-tabs-vertical .dx-item.dx-tab.dx-state-hover {
+.me-tabs.dx-tabs.me-tabs-vertical .dx-item.dx-tab.dx-state-hover,
+.me-tabs.dx-tabs.me-tabs-vertical .dx-item.dx-tab.dx-state-active {
   border-radius: 4px 0 0 4px;
   -webkit-border-radius: 4px 0 0 4px;
   -moz-border-radius: 4px 0 0 4px;
   -ms-border-radius: 4px 0 0 4px;
   -o-border-radius: 4px 0 0 4px;
 }
-.me-tabs.dx-tabs.me-tabs-vertical.dx-rtl .dx-item.dx-tab.dx-state-hover {
+.me-tabs.dx-tabs.me-tabs-vertical.dx-rtl .dx-item.dx-tab.dx-state-hover,
+.me-tabs.dx-tabs.me-tabs-vertical.dx-rtl .dx-item.dx-tab.dx-state-active {
   border-radius: 0 4px 4px 0;
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;
@@ -13717,22 +13721,13 @@
 * $name 60. Dropdown item hover background color
 * $type color
 */
-.dx-autocomplete.me-autocomplete-small {
-  height: 28px;
-}
 .dx-autocomplete.me-autocomplete-small .dx-texteditor-input {
   font-size: 13px;
   padding: 4px 8px;
 }
-.dx-autocomplete.me-autocomplete-medium {
-  height: 36px;
-}
 .dx-autocomplete.me-autocomplete-medium .dx-texteditor-input {
   font-size: 14px;
   padding: 6px 12px;
-}
-.dx-autocomplete.me-autocomplete-large {
-  height: 44px;
 }
 .dx-autocomplete.me-autocomplete-large .dx-texteditor-input {
   font-size: 16px;
@@ -13759,26 +13754,26 @@
   left: 8px;
 }
 
-.dx-autocomplete.me-state-focus {
+.me-autocomplete.dx-autocomplete.me-state-focus {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
 }
-.dx-autocomplete .dx-texteditor-input {
+.me-autocomplete.dx-autocomplete .dx-texteditor-input {
   padding-left: 12px;
   padding-right: 30px;
 }
-.dx-autocomplete .dx-placeholder {
+.me-autocomplete.dx-autocomplete .dx-placeholder {
   padding-left: 15px;
   left: 0;
   right: 30px;
 }
-.dx-autocomplete .dx-placeholder::before {
+.me-autocomplete.dx-autocomplete .dx-placeholder::before {
   padding-left: 0;
 }
-.dx-autocomplete .dx-texteditor-input {
+.me-autocomplete.dx-autocomplete .dx-texteditor-input {
   padding-right: 30px;
 }
-.dx-autocomplete .dx-clear-button-area {
+.me-autocomplete.dx-autocomplete .dx-clear-button-area {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13787,7 +13782,7 @@
   right: 0;
   top: 0;
 }
-.dx-autocomplete .dx-clear-button-area .dx-icon-clear {
+.me-autocomplete.dx-autocomplete .dx-clear-button-area .dx-icon-clear {
   line-height: 1;
   font-size: 12px;
 }
@@ -13803,32 +13798,6 @@
   left: 0;
 }
 
-.me-autocomplete-large.dx-editor-outlined.dx-texteditor-with-label {
-  height: 48px;
-}
-
-.me-autocomplete-medium.dx-editor-outlined.dx-texteditor-with-label {
-  height: 40px;
-}
-
-.me-autocomplete-small.dx-editor-outlined.dx-texteditor-with-label {
-  height: 36px;
-  border-radius: 3px;
-}
-
-.me-autocomplete .dx-dropdowneditor-input-wrapper .dx-texteditor-container {
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  z-index: 30;
-  min-width: 100%;
-}
-
-.me-selectbox.dx-selectbox .dx-texteditor-container {
-  min-width: 100%;
-}
-
 .autocomplete-box-desc {
   color: #808084;
   font-size: 12px;
@@ -13837,72 +13806,267 @@
   margin-top: 4px;
 }
 
-.me-autocomplete-small {
-  height: 28px;
-  width: 100%;
-  border-radius: 3px;
-}
-
-.me-autocomplete-small .dx-texteditor-input {
-  font-size: 13px;
-  padding: 4px 8px;
-}
-
-.me-autocomplete-medium {
-  width: 100%;
-  height: 32px;
-}
-
-.me-autocomplete-large {
-  width: 100%;
-  height: 40px;
-}
-
-.me-autocomplete-large .dx-texteditor-input {
-  font-size: 16px;
-  padding: 10px 12px;
-}
-
-.me-autocomplete-large {
-  border-radius: 4px;
-}
-
-.me-autocomplete-medium {
-  border-radius: 3px;
-}
-
-.me-autocomplete .dx-autocomplete.dx-texteditor.dx-editor-outlined {
-  border: 0px solid transparent;
-}
-
-.me-autocomplete .dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty,
-.dx-editor-outlined.dx-texteditor-with-floating-label.dx-lookup-empty {
+.me-autocomplete.dx-autocomplete {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
   border: 0;
-  height: 36px;
 }
-
-.me-autocomplete .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label span {
-  top: 2px;
-  left: 8px;
+.me-autocomplete.dx-autocomplete .dx-clear-button-area {
+  display: flex;
+  align-items: center;
 }
-
-.me-autocomplete .dx-editor-outlined.dx-texteditor-with-label.dx-state-tocused .dx-texteditor-label .dx-label-after {
-  border-color: transparent !important;
-  border-top: none !important;
-  border-bottom: non !important;
-}
-
-.me-dropdownlist.dx-popup-wrapper > .dx-overlay-content .dx-popup-content {
-  margin: 0 !important;
-}
-
-.dx-texteditor.dx-editor-outlined {
-  background: #ecedf3;
-  border: 1px solid #dfe0ed;
-}
-
-.dx-texteditor.dx-state-hover:not(.dx-state-readonly) {
+.me-autocomplete.dx-autocomplete.dx-state-hover {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+}
+.me-autocomplete.dx-autocomplete.dx-state-focused:not(.dx-invalid) {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+}
+.me-autocomplete.dx-autocomplete.dx-state-focused:not(.dx-invalid) .dx-dropdowneditor-input-wrapper .dx-texteditor-container {
+  box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Accent-Default);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.me-autocomplete.dx-autocomplete.dx-state-focused:not(.dx-invalid).me-autocomplete-large .dx-dropdowneditor-input-wrapper .dx-texteditor-container {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.me-autocomplete.dx-autocomplete.dx-state-focused:not(.dx-invalid) .dx-label span {
+  color: var(--Controls-Content-In-Controls-Accent-Default);
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-label-outside:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) .dx-label span, .me-autocomplete.dx-autocomplete.dx-texteditor-with-floating-label:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) .dx-label span {
+  color: var(--Text-Default);
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-label-outside .dx-label, .me-autocomplete.dx-autocomplete.dx-texteditor-with-floating-label .dx-label {
+  height: 100%;
+}
+.me-autocomplete.dx-autocomplete.dx-state-focused:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-label, .me-autocomplete.dx-autocomplete.dx-state-hover:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-label, .me-autocomplete.dx-autocomplete.dx-state-hover.dx-state-focused:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-label {
+  height: auto;
+}
+.me-autocomplete.dx-autocomplete.me-state-focus {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
+}
+.me-autocomplete.dx-autocomplete.dx-invalid.me-autocomplete-small, .me-autocomplete.dx-autocomplete.dx-invalid.me-autocomplete-medium .dx-dropdowneditor-input-wrapper {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.me-autocomplete.dx-autocomplete.dx-invalid.me-autocomplete-large .dx-dropdowneditor-input-wrapper {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.me-autocomplete.dx-autocomplete.dx-invalid .dx-dropdowneditor-input-wrapper {
+  box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Danger-Default);
+}
+.me-autocomplete.dx-autocomplete.dx-invalid .dx-label span {
+  color: var(--Controls-Content-In-Controls-Danger-Default);
+}
+.me-autocomplete.dx-autocomplete.dx-state-disabled .dx-texteditor-input {
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
+}
+.me-autocomplete.dx-autocomplete.dx-state-disabled .dx-clear-button-area .dx-icon.dx-icon-clear {
+  color: var(--Text-Disabled);
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-container {
+  padding-inline: 8px;
+  width: 100%;
+  gap: 16px;
+  align-items: center;
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-container .dx-texteditor-input-container *,
+.me-autocomplete.dx-autocomplete .dx-texteditor-container .dx-texteditor-input-container *::before {
+  padding: 0;
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  font-weight: var(--me-regular-font-weight);
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input::placeholder {
+  color: transparent;
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+  font-weight: var(--me-regular-font-weight);
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-container .dx-texteditor-buttons-container {
+  height: 20px;
+  width: 20px;
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  margin: 0;
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
+  width: 12px;
+  height: 12px;
+  align-content: center;
+  text-align: center;
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-label {
+  align-items: center;
+}
+.me-autocomplete.dx-autocomplete .dx-texteditor-label .dx-label span {
+  font-size: 12px;
+  font-weight: var(--me-regular-font-weight);
+  line-height: 16px;
+  text-align: left;
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-label-outside.dx-texteditor-with-label.me-autocomplete-small, .me-autocomplete.dx-autocomplete.dx-texteditor-label-outside.dx-texteditor-with-label.me-autocomplete-medium {
+  margin-top: 20px;
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-label-outside.dx-texteditor-with-label.me-autocomplete-small .dx-texteditor-label, .me-autocomplete.dx-autocomplete.dx-texteditor-label-outside.dx-texteditor-with-label.me-autocomplete-medium .dx-texteditor-label {
+  margin-top: 0;
+  top: -20px;
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-label-outside.dx-texteditor-with-label.me-autocomplete-large {
+  margin-top: 24px;
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-label-outside.dx-texteditor-with-label.me-autocomplete-large .dx-texteditor-label {
+  height: 20px;
+  margin-top: 0;
+  top: -24px;
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-with-floating-label {
+  margin-top: 20px;
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-with-floating-label .dx-texteditor-label {
+  padding: 0;
+  align-items: center;
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-with-floating-label.dx-state-focused .dx-texteditor-label, .me-autocomplete.dx-autocomplete.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) .dx-texteditor-label {
+  top: -48%;
+  left: -9px;
+}
+.me-autocomplete.dx-autocomplete.dx-texteditor-with-floating-label.dx-state-focused.me-autocomplete-large .dx-texteditor-label, .me-autocomplete.dx-autocomplete.dx-texteditor-with-floating-label:not(.dx-texteditor-empty).me-autocomplete-large .dx-texteditor-label {
+  top: -42%;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-small {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-label-before {
+  min-width: 8px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 13px 3px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-small .dx-texteditor-container {
+  padding-block: 4px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-small .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
+.me-autocomplete.dx-autocomplete.me-autocomplete-small .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+  font-size: 13px;
+  line-height: 16px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-medium {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-label-before {
+  min-width: 8px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 17px 3px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-medium .dx-texteditor-container {
+  padding-block: 6px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-medium .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
+.me-autocomplete.dx-autocomplete.me-autocomplete-medium .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+  font-size: 14px;
+  line-height: 20px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-label {
+  padding-top: 3px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-label-before {
+  min-width: 12px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 22px 5px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large .dx-texteditor-container {
+  padding-inline: 12px;
+  padding-block: 8px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input,
+.me-autocomplete.dx-autocomplete.me-autocomplete-large .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
+  font-size: 16px;
+  line-height: 20px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large .dx-texteditor-container .dx-texteditor-buttons-container {
+  height: 24px;
+  width: 24px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  width: 24px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area .dx-icon.dx-icon-clear {
+  width: 16px;
+  height: 16px;
+  font-size: 14px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large .dx-texteditor-label .dx-label span {
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large:not(.dx-texteditor-with-floating-label, .dx-texteditor-label-outside) .dx-texteditor-label .dx-label span {
+  top: -6px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-large:not(.dx-texteditor-with-floating-label, .dx-texteditor-label-outside).dx-state-focused .dx-texteditor-label .dx-label span {
+  top: -6px;
+}
+.me-autocomplete.dx-autocomplete .me-dropdownlist .dx-list-item-selected {
+  background: var(--Controls-Informative-BG-Selected-Element) !important;
+}
+.me-autocomplete.dx-autocomplete .me-dropdownlist .dx-state-active {
+  background: var(--Controls-BG-Secondary-Elements-BG-Pressed) !important;
+}
+.me-autocomplete.dx-autocomplete .me-autocomplete.dx-autocomplete.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container {
+  font-size: 19px;
+  line-height: 20px;
+  font-family: var(--me-icon-family);
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+.me-autocomplete.dx-autocomplete .me-autocomplete.dx-autocomplete.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container::before {
+  content: var(--me-icon-lock);
+}
+.me-autocomplete.dx-autocomplete .me-autocomplete.dx-autocomplete.me-autocomplete-large.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container {
+  width: 20px;
+  height: 20px;
+}
+.me-autocomplete.dx-autocomplete .me-autocomplete.dx-autocomplete.me-autocomplete-large.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container::before {
+  width: 20px;
+  height: 20px;
+}
+.me-autocomplete.dx-autocomplete.me-autocomplete-small.dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty .dx-texteditor-label .dx-label span, .me-autocomplete.dx-autocomplete.me-autocomplete-medium.dx-editor-outlined.dx-texteditor-with-floating-label.dx-texteditor-empty .dx-texteditor-label .dx-label span {
+  font-size: 12px;
+}
+
+.dx-texteditor .dx-texteditor-label > * {
+  border: none !important;
 }
 
 /**
@@ -16220,6 +16384,20 @@
 }
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdownmenu-popup-wrapper.dx-dropdownmenu-popup .dx-overlay-content .dx-popup-content.dx-popup-content-scrollable.dx-dropdownmenu-list.dx-list.dx-widget.dx-collection .dx-scrollview-content .dx-toolbar-menu-section .dx-item .dx-toolbar-item-auto-hide {
   padding: 0;
+}
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdownmenu-popup-wrapper.dx-dropdownmenu-popup .dx-overlay-content .dx-popup-content.dx-popup-content-scrollable.dx-dropdownmenu-list.dx-list.dx-widget.dx-collection .dx-scrollview-content .dx-toolbar-menu-section .dx-item .dx-template-wrapper > * {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdownmenu-popup-wrapper.dx-dropdownmenu-popup .dx-overlay-content .dx-popup-content.dx-popup-content-scrollable.dx-dropdownmenu-list.dx-list.dx-widget.dx-collection .dx-scrollview-content .dx-toolbar-menu-section .dx-item .dx-template-wrapper .dx-button {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
 }
 
 /**
@@ -24007,6 +24185,25 @@ input.dx-hidden {
   background: var(--Background-Canvas);
 }
 
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal {
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--Dividers-Borders-Default);
+}
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content {
+  padding: 4px 0;
+}
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item:hover {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+}
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item.dx-state-active {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
+}
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item.dx-list-item-selected {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+
 .dx-treelist-checkbox-size {
   vertical-align: middle;
 }
@@ -27659,6 +27856,10 @@ input.dx-hidden {
 }
 .me-context-menu-submenu.dx-submenu .dx-item.dx-menu-item .dx-submenu {
   position: fixed;
+}
+
+.me-context-menu.dx-menu-base.dx-context-menu .dx-submenu {
+  overflow: hidden;
 }
 
 .dx-multiview-wrapper {
@@ -36193,6 +36394,14 @@ input.dx-hidden {
   background: rgba(0, 0, 0, 0.4);
 }
 
+.me-sidepage-left .me-sidepage-footer {
+  justify-content: flex-end;
+}
+
+.me-sidepage-right .me-sidepage-footer {
+  justify-content: flex-start;
+}
+
 .skeleton {
   display: flex;
   width: 100%;
@@ -36410,6 +36619,9 @@ input.dx-hidden {
   background-color: transparent;
 }
 
+.me-custom-submenu-class {
+  margin-top: 4px;
+}
 .me-custom-submenu-class ul.dx-menu-items-container {
   padding-inline: 0;
   padding: 4px 0;
@@ -37108,7 +37320,7 @@ input.dx-hidden {
   src: local("Material Symbols Outlined"), url("fonts/MaterialSymbolsOutlined-VariableFont_FILL,GRAD,opsz,wght.ttf") format("opentype");
 }
 .material-icons {
-  font-family: "Material Icons Outlined", serif;
+  font-family: "Material Symbols Outlined", serif;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;

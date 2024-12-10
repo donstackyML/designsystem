@@ -9,7 +9,7 @@ import { Directive, HostListener, Renderer2, inject } from '@angular/core';
 export class MeContextMenuDirective {
   private renderer = inject(Renderer2);
   @HostListener('onItemRendered', ['$event'])
-  ononItemRendered(event: any) {
+  onItemRendered(event: any) {
     this.renderer.addClass(
       event.itemElement.parentElement.parentElement.parentElement,
       'me-context-menu-submenu'

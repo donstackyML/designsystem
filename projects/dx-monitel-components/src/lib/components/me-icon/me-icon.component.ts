@@ -16,6 +16,7 @@ import { NgStyle } from '@angular/common';
     `
       :host {
         display: flex;
+        font-family: var(--me-symbols-family);
       }
       .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;

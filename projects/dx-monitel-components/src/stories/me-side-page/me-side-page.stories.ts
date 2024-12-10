@@ -140,6 +140,9 @@ import {
         display: block;
         margin-bottom: 16px;
       }
+      :host ::ng-deep .dx-menu-vertical .dx-menu-item-wrapper {
+        width: 100%;
+      }
     `,
   ],
 })

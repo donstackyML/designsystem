@@ -37,6 +37,7 @@ export class MeSidepageComponent implements OnInit, OnChanges {
   constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
+    this.renderer.addClass(this.element.nativeElement, `me-sidepage-${this.position}`);
     if (this.shading) {
       this.createShading();
     }
