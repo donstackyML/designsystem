@@ -105,7 +105,6 @@ import {
           text="Сохранить"
           stylingMode="contained"
           type="default"
-          [style.margin-right]="'auto'"
         ></dx-button>
         <dx-button
           meButton

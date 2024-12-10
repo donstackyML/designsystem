@@ -1,7 +1,12 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabPanelModule } from 'devextreme-angular';
 import { MeTabPanelDirective } from '../../public-api';
-
+import {
+  homeX20,
+  mailX20,
+  publicX20,
+} from '@monitel/me-icons';
+import { registry } from '../../../.storybook/preview';
 interface TabPanelItem {
   title: string;
   icon: string;
@@ -94,17 +99,17 @@ type Story = StoryObj<MeTabPanelProps>;
 const defaultTabPanelData: TabPanelItem[] = [
   {
     title: 'To Do',
-    icon: 'user',
+    icon: registry.getIcon(homeX20),
     content: 'This is the content for the To Do tab.',
   },
   {
     title: 'In Progress',
-    icon: 'email',
+    icon: registry.getIcon(mailX20),
     content: 'This is the content for the In Progress tab.',
   },
   {
     title: 'Done',
-    icon: 'check',
+    icon: registry.getIcon(publicX20),
     content: 'This is the content for the Done tab.',
   },
 ];
