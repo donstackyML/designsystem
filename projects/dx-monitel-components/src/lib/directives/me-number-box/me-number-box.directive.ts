@@ -3,8 +3,10 @@ import {
   Directive,
   HostListener,
   Input,
+  OnChanges,
   OnInit,
   Renderer2,
+  SimpleChanges,
   inject,
 } from '@angular/core';
 import { DxNumberBoxComponent } from 'devextreme-angular';
@@ -28,9 +30,10 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 })
 export class MeNumberBoxDirective
   extends MeFocusableDirective
-  implements OnInit, AfterViewInit
+  implements OnInit, AfterViewInit, OnChanges
 {
   @Input() size: MeSize = 'medium';
+  @Input() currency = '$';
 
   override renderer = inject(Renderer2);
   private component = inject(DxNumberBoxComponent);
@@ -74,6 +77,7 @@ export class MeNumberBoxDirective
   }
 
   ngAfterViewInit(): void {
+    this.createCurrencyLabel();
     this.createLockIcon();
   }
 
@@ -117,6 +121,40 @@ export class MeNumberBoxDirective
     }
     if ((e.name === 'readOnly' && e.value === false) || (e.name === 'disabled' && e.value === false)) {
       this.removeLockIcon();
+    }
+  }
+
+  createCurrencyLabel() {
+    // Создаем элемент для валюты
+    const currencySpan = this.renderer.createElement('span');
+    this.renderer.addClass(currencySpan, 'dx-currency-label');
+    this.renderer.setProperty(currencySpan, 'textContent', this.currency);
+  
+    // Находим контейнер кнопок
+    const buttonContainer = this.element.nativeElement.querySelector('.dx-texteditor-buttons-container');
+    if (buttonContainer) {
+      // Вставляем элемент в начало контейнера
+      const firstChild = buttonContainer.firstChild;
+      if (firstChild) {
+        this.renderer.insertBefore(buttonContainer, currencySpan, firstChild);
+      } else {
+        this.renderer.appendChild(buttonContainer, currencySpan); // Если контейнер пустой, просто добавляем
+      }
+    }
+  }
+
+  updateCurrencyLabel() {
+    const currencySpan = this.element.nativeElement.querySelector('.dx-currency-label');
+    if (currencySpan) {
+      this.renderer.setProperty(currencySpan, 'textContent', this.currency);
+    } else {
+      this.createCurrencyLabel(); // Если элемента еще нет, создаем
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['currency']) {
+      this.updateCurrencyLabel();
     }
   }
 }

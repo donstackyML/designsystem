@@ -77,6 +77,11 @@ export default {
     width: {
       control: 'text',
     },
+    currency: {
+      control: 'select',
+      options: ['$', '₽', '€'],
+      description: 'Валюта',
+    },
   },
   args: {
     size: 'small',
@@ -95,6 +100,7 @@ export default {
     value: null,
     height: null,
     width: null,
+    currency: '$'
   },
   render: (args) => ({
     props: { ...args },
@@ -111,7 +117,6 @@ export default {
         </dxi-validation-rule>
     </dx-validator>
 		</dx-number-box>
-    <p class='number-box-desc' *ngIf="description">{{ description }}</p>
 		`,
   }),
 } as Meta;
