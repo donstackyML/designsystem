@@ -6379,42 +6379,50 @@
   background-color: var(--Background-Content);
 }
 
-.dx-tabs-styling-mode-secondary.me-tabs-bottom.dx-tabs-horizontal .dx-tab {
-  border-width: 1px;
-  border-style: solid;
-  border-top-color: rgb(223, 224, 237);
-  border-bottom-color: transparent;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-radius: 0 0 4px 4px;
+.dx-tabs-styling-mode-secondary .dx-tabs-wrapper {
+  margin-left: 1px;
+  padding-right: 1px;
 }
-.dx-tabs-styling-mode-secondary.me-tabs-bottom.dx-tabs-horizontal .dx-tab.dx-tab-selected {
-  border-radius: 0 0 4px 4px;
+.dx-tabs-styling-mode-secondary.me-tabs-bottom.dx-tabs-horizontal .dx-tab {
   border-width: 1px;
   border-style: solid;
   border-top-color: transparent;
   border-bottom-color: rgb(223, 224, 237);
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.dx-tabs-styling-mode-secondary.me-tabs-bottom.dx-tabs-horizontal .dx-tab.dx-tab-selected {
+  border-radius: 4px 4px 0 0;
+  border-width: 1px;
+  border-style: solid;
+  border-top-color: rgb(223, 224, 237);
+  border-bottom-color: transparent;
   border-left-color: rgb(223, 224, 237);
   border-right-color: rgb(223, 224, 237);
+}
+.dx-tabs-styling-mode-secondary.me-tabs-bottom.dx-tabs-horizontal .dx-tab.dx-state-hover, .dx-tabs-styling-mode-secondary.me-tabs-bottom.dx-tabs-horizontal .dx-tab.dx-state-active {
+  border-radius: 4px 4px 0 0;
 }
 .dx-tabs-styling-mode-secondary.me-tabs-top .dx-tab {
   margin-left: -1px;
   border-width: 1px;
   border-style: solid;
-  border-top-color: transparent;
-  border-bottom-color: rgb(223, 224, 237);
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-radius: 4px 4px 0 0;
-}
-.dx-tabs-styling-mode-secondary.me-tabs-top .dx-tab.dx-tab-selected {
-  border-radius: 4px 4px 0 0;
-  border-width: 1px;
-  border-style: solid;
   border-top-color: rgb(223, 224, 237);
   border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.dx-tabs-styling-mode-secondary.me-tabs-top .dx-tab.dx-tab-selected {
+  border-radius: 0 0 4px 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-bottom-color: rgb(223, 224, 237);
   border-left-color: rgb(223, 224, 237);
   border-right-color: rgb(223, 224, 237);
+}
+.dx-tabs-styling-mode-secondary.me-tabs-top .dx-tab.dx-state-hover, .dx-tabs-styling-mode-secondary.me-tabs-top .dx-tab.dx-state-active {
+  border-radius: 0 0 4px 4px;
 }
 .dx-tabs-styling-mode-secondary.me-tabs-bottom .dx-tab {
   margin-left: -1px;
@@ -6472,11 +6480,9 @@
   padding: 12px 10px;
   background-color: transparent;
   color: var(--Controls-Content-In-Controls-Main-Default);
-  border-radius: 4px;
 }
 .dx-tab.dx-state-hover {
   background-color: rgba(60, 101, 248, 0.12);
-  border-radius: 3px;
 }
 .dx-tab.dx-state-active {
   background-color: rgba(60, 113, 248, 0.2);
@@ -6577,16 +6583,16 @@
   box-shadow: none;
 }
 
-.me-tabs.dx-tabs.me-tabs-bottom.me-tabs-horizontal .dx-item.dx-tab.dx-state-hover,
-.me-tabs.dx-tabs.me-tabs-bottom.me-tabs-horizontal .dx-item.dx-tab.dx-state-active {
+.me-tabs.dx-tabs.me-tabs-bottom.me-tabs-horizontal.dx-tabs-styling-mode-primary.me-tabs-style-inside .dx-item.dx-tab.dx-state-hover,
+.me-tabs.dx-tabs.me-tabs-bottom.me-tabs-horizontal.dx-tabs-styling-mode-primary.me-tabs-style-inside .dx-item.dx-tab.dx-state-active {
   border-radius: 4px 4px 0 0;
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
   -ms-border-radius: 4px 4px 0 0;
   -o-border-radius: 4px 4px 0 0;
 }
-.me-tabs.dx-tabs.me-tabs-top.me-tabs-horizontal .dx-item.dx-tab.dx-state-hover,
-.me-tabs.dx-tabs.me-tabs-top.me-tabs-horizontal .dx-item.dx-tab.dx-state-active {
+.me-tabs.dx-tabs.me-tabs-top.me-tabs-horizontal.dx-tabs-styling-mode-primary.me-tabs-style-inside .dx-item.dx-tab.dx-state-hover,
+.me-tabs.dx-tabs.me-tabs-top.me-tabs-horizontal.dx-tabs-styling-mode-primary.me-tabs-style-inside .dx-item.dx-tab.dx-state-active {
   border-radius: 0 0 4px 4px;
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
@@ -6660,6 +6666,10 @@
   align-items: center;
 }
 
+.me-tabs.dx-tabs.dx-state-disabled .dx-scrollable-content .dx-tabs-wrapper {
+  margin-left: 1px;
+  padding-right: 1px;
+}
 .me-tabs.dx-tabs.dx-state-disabled .dx-scrollable-content .dx-tabs-wrapper .dx-item.dx-tab.dx-tab-selected::after {
   background-color: var(--Dividers-Borders-Long);
 }
@@ -18128,7 +18138,7 @@
 }
 .dx-tooltip-wrapper.dx-popover-wrapper.dx-position-bottom .dx-popover-arrow::after {
   bottom: -1px;
-  right: -3px;
+  right: -1px;
 }
 .dx-tooltip-wrapper.dx-popover-wrapper.dx-position-top .dx-popover-arrow::after {
   top: 10px;
@@ -18168,8 +18178,8 @@
   border: 1px solid #dfe0ed;
   background: #fff;
   display: block;
-  width: 14.1422712488px;
-  height: 14.1422712488px;
+  width: 16px;
+  height: 16px;
   overflow: hidden;
   content: " ";
   transform: rotate(-45deg);
@@ -18179,9 +18189,15 @@
 
 .me-tooltip-custom {
   overflow: hidden;
-  background-color: var(--Background-Alert);
+  background-color: #ffffff;
   width: 100%;
   max-width: 390px;
+}
+.me-tooltip-custom .me-tooltip-title {
+  color: #18181a;
+}
+.me-tooltip-custom .me-tooltip-text {
+  color: #18181a;
 }
 
 .me-tooltip-image {
@@ -18249,6 +18265,15 @@
 }
 .me-tooltip.me-tooltip-dark .dx-overlay-content .dx-toolbar.dx-popup-bottom {
   background-color: var(--Background-Alert);
+}
+.me-tooltip.me-tooltip-dark .dx-overlay-content .me-tooltip-custom {
+  background-color: var(--Background-Alert);
+}
+.me-tooltip.me-tooltip-dark .dx-overlay-content .me-tooltip-title {
+  color: var(--Text-Alert);
+}
+.me-tooltip.me-tooltip-dark .dx-overlay-content .me-tooltip-text {
+  color: var(--Text-Alert);
 }
 .me-tooltip.me-tooltip-dark .dx-popover-arrow::after {
   border-color: var(--Background-Alert);
@@ -20138,7 +20163,7 @@
   content: "\f014";
 }
 .dx-accordion-item-opened + .dx-accordion-item.dx-state-hover:not(.dx-state-focused) {
-  border-top-color: rgba(60, 101, 248, 0.1215686275);
+  border-top-color: #dfe0ed;
 }
 
 .dx-accordion-item-closed:has(+ .dx-accordion-item-opened) {
@@ -20219,7 +20244,7 @@
 /* Общие стили для заголовка */
 .dx-accordion-item-title .custom-header-container {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .dx-accordion-item-title .custom-header-icon {

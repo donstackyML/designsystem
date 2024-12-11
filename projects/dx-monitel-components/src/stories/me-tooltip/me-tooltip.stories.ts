@@ -240,7 +240,9 @@ export const ImageTooltip: Story = {
           [meTooltip]="tooltipContent"
           [tooltipPosition]="tooltipPosition"
           [tooltipWidth]="tooltipWidth"
-          [tooltipClass]="tooltipClass">
+          [tooltipClass]="tooltipClass"
+          [colorMode]="colorMode"
+          >
           Тултип с изображением
         </dx-button>
       </div>

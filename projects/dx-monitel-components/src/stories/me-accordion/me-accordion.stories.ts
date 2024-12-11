@@ -117,7 +117,8 @@ export const CustomHeader: Story = {
         meAccordion
         [size]="size"
         [dataSource]="dataSource"
-        [collapsible]="true"
+        [collapsible]="collapsible"
+        [multiple]="multiple"
         itemTitleTemplate="customTitle"
       >
         <div *dxTemplate="let item of 'customTitle'">
@@ -134,7 +135,7 @@ export const CustomHeader: Story = {
           </div>
         </div>
         <div *dxTemplate="let item of 'item'">
-          <p>Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis</p>
         </div>
       </dx-accordion>
     `,

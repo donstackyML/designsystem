@@ -105,7 +105,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @HostListener('mouseleave')
   hideTooltip() {
     if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
-      this.tooltipComponentRef.instance.visible = true;
+      this.tooltipComponentRef.instance.visible = false;
     }
   }
 
@@ -137,6 +137,10 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     if (this.tooltipClass) {
       this.renderer.addClass(tooltipElement, this.tooltipClass);
     }
+
+    instance.wrapperAttr = {
+      class: `me-tooltip me-tooltip-${this.colorMode}`,
+    };
 
     this.renderer.appendChild(this.element.nativeElement, tooltipElement);
   }
