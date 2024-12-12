@@ -549,12 +549,17 @@ export default {
   render: (args) => ({
     props: args,
     template: `
-		<dx-menu meMenu ${argsToTemplate(args)}
-		showFirstSubmenuMode="onHover"
-		showSubmenuMode="onHover"
-		>
-			<dxi-item items="data.items"></dxi-item>
-		</dx-menu>`,
+      <div style="width: 400px;">
+       <dx-menu
+         meMenu
+         ${argsToTemplate(args)}
+         showFirstSubmenuMode="onHover"
+         showSubmenuMode="onHover"
+       >
+         <dxi-item items="data.items"></dxi-item>
+       </dx-menu>
+      </div>
+      `
   }),
 } as Meta<MeMenuDirective | DxMenuComponent>;
 

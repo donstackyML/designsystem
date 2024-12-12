@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   Meta,
   StoryObj,
-  argsToTemplate,
   moduleMetadata,
 } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
@@ -68,7 +67,7 @@ const meta: Meta<MeTooltipDirective> = {
 };
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<MeTooltipDirective>;
 
 export const Basic: Story = {
   args: {
@@ -76,31 +75,19 @@ export const Basic: Story = {
     tooltipPosition: 'top',
   },
   render: (args) => ({
-    props: args,
     template: `
       <dx-button
-				${argsToTemplate(args)}>
+        [meTooltip]="meTooltip"
+        [tooltipPosition]="tooltipPosition"
+        [colorMode]="colorMode">
         Базовый тултип
       </dx-button>
     `,
-  }),
-};
-
-export const Positioning: Story = {
-  args: {
-    meTooltip: 'Позиционированный тултип',
-    tooltipPosition: 'right',
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-      <dx-button
-        text="Позиционирование тултипа"
-        ${argsToTemplate(args)}
-				>
-        Позиционирование тултипа
-      </dx-button>
-    `,
+    props: {
+      meTooltip: args.meTooltip,
+      tooltipPosition: args.tooltipPosition,
+      colorMode: args.colorMode
+    }
   }),
 };
 
@@ -110,41 +97,25 @@ export const HTMLContent: Story = {
     tooltipPosition: 'bottom',
   },
   render: (args) => ({
-    props: args,
     template: `
       <dx-button
-        text="Тултип с HTML содержимым"
-        ${argsToTemplate(args)}
-				>
+        [meTooltip]="meTooltip"
+        [tooltipPosition]="tooltipPosition"
+        [colorMode]="colorMode">
         Тултип с HTML содержимым
       </dx-button>
     `,
-  }),
-};
-
-export const CustomStyles: Story = {
-  args: {
-    meTooltip: 'Стилизованный тултип',
-    tooltipPosition: 'left',
-    tooltipClass: 'custom-tooltip',
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-      <dx-button
-        text="Тултип с кастомными стилями"
-        ${argsToTemplate(args)}
-				>
-        Тултип с кастомными стилями
-      </dx-button>
-    `,
+    props: {
+      meTooltip: args.meTooltip,
+      tooltipPosition: args.tooltipPosition,
+      colorMode: args.colorMode
+    }
   }),
 };
 
 export const WithAnimation: Story = {
   args: {
-    meTooltip:
-      'Анимированный тултип juhsdfbvjsdbfkjsbdkfskdjfhkjsdhfkjhsdkfjhsdkjfhksjdhfksdhfkhsdkfhskjdhfkjsdhfkjshdfkshdkjfhsdkjfhkshfkjshdfkjhsdkfhsdkfhkshfkshkfhskjfhskjhfkjshfkjshdfkjhskdjfhskjfdhkjh',
+    meTooltip: 'Анимированный тултип',
     tooltipPosition: 'top',
     tooltipMaxWidth: 400,
     tooltipShowAnimation: {
@@ -157,47 +128,29 @@ export const WithAnimation: Story = {
       type: 'fade',
       from: { opacity: 1 },
       to: { opacity: 0 },
-      duration: 200000000,
+      duration: 200,
     },
   },
   render: (args) => ({
-    props: args,
     template: `
       <dx-button
-        text="Тултип с анимацией"
-        ${argsToTemplate(args)}
-				>
+        [meTooltip]="meTooltip"
+        [tooltipPosition]="tooltipPosition"
+        [tooltipMaxWidth]="tooltipMaxWidth"
+        [tooltipShowAnimation]="tooltipShowAnimation"
+        [tooltipHideAnimation]="tooltipHideAnimation"
+        [colorMode]="colorMode">
         Тултип с анимацией
       </dx-button>
     `,
-  }),
-};
-
-export const CustomTemplate: Story = {
-  args: {
-    tooltipPosition: 'right',
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-      <dx-button
-        text="Тултип с кастомным шаблоном"
-        ${argsToTemplate(args)}
-				>
-        Тултип с кастомным шаблоном
-      </dx-button>
-
-      <ng-template #tooltipTemplate>
-        <div>
-          <h4>Заголовок тултипа</h4>
-          <p>Это пример тултипа с кастомной разметкой.</p>
-          <ul>
-            <li>Пункт 1</li>
-            <li>Пункт 2</li>
-          </ul>
-        </div>
-      </ng-template>
-    `,
+    props: {
+      meTooltip: args.meTooltip,
+      tooltipPosition: args.tooltipPosition,
+      tooltipMaxWidth: args.tooltipMaxWidth,
+      tooltipShowAnimation: args.tooltipShowAnimation,
+      tooltipHideAnimation: args.tooltipHideAnimation,
+      colorMode: args.colorMode
+    }
   }),
 };
 
@@ -205,10 +158,22 @@ export const ImageTooltip: Story = {
   args: {
     tooltipPosition: 'right',
     tooltipWidth: 390,
+    tooltipClass: 'me-custom-tooltip-wrapper',
   },
   render: (args) => ({
+    template: `
+      <div style="padding: 50px;">
+        <dx-button
+          [meTooltip]="tooltipContent"
+          [tooltipPosition]="tooltipPosition"
+          [tooltipWidth]="tooltipWidth"
+          [tooltipClass]="tooltipClass"
+          [colorMode]="colorMode">
+          Тултип с изображением
+        </dx-button>
+      </div>
+    `,
     props: {
-      ...args,
       tooltipContent: `
         <div class="me-tooltip-custom">
           <div class="me-tooltip-image">
@@ -231,29 +196,10 @@ export const ImageTooltip: Story = {
           </div>
         </div>
       `,
-      tooltipClass: 'me-custom-tooltip-wrapper',
-    },
-    template: `
-      <div style="padding: 50px;">
-        <dx-button
-          text="Тултип с изображением"
-          [meTooltip]="tooltipContent"
-          [tooltipPosition]="tooltipPosition"
-          [tooltipWidth]="tooltipWidth"
-          [tooltipClass]="tooltipClass"
-          [colorMode]="colorMode"
-          >
-          Тултип с изображением
-        </dx-button>
-      </div>
-    `,
+      tooltipPosition: args.tooltipPosition,
+      tooltipWidth: args.tooltipWidth,
+      tooltipClass: args.tooltipClass,
+      colorMode: args.colorMode
+    }
   }),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Пример тултипа с изображением, заголовком и текстом. Содержит SVG-изображение с градиентом и волнами.',
-      },
-    },
-  },
-};
+}
