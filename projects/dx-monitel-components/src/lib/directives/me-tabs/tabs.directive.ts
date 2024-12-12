@@ -6,7 +6,7 @@ export interface Tab {
   text?: string;
   icon?: string;
 }
-// Определяем собственный тип для стилей
+
 export type MeTabsStylingMode = 'inside' | 'outside';
 
 @Directive({
@@ -29,7 +29,6 @@ export type MeTabsStylingMode = 'inside' | 'outside';
     '[class.me-tabs-icon-start]': 'iconPosition === "start"',
     '[class.me-tabs-icon-end]': 'iconPosition === "end"',
     '[class.me-tabs-icon-bottom]': 'iconPosition === "bottom"',
-    '[style.min-height.px]': '50',
   },
 })
 export class MeTabsDirective implements OnInit {
@@ -77,11 +76,9 @@ export class MeTabsDirective implements OnInit {
   }
 
   ngAfterViewInit() {
-    // Проверяем инициализацию
     const instance = this.tabs.instance;
 
     console.log('Tabs Debug Info:', {
-      // Проверяем опции
       options: {
         scrollingEnabled: instance.option('scrollingEnabled'),
         showNavButtons: instance.option('showNavButtons'),
