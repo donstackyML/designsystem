@@ -469,7 +469,8 @@ export default {
     allowColumnResizing: true,
     hoverStateEnabled: true,
     showRowLines: true,
-    selectionMode: 'multiple',
+		selectionMode: 'multiple',
+		disabled: false,
   },
   render: (args) => ({
     props: args,
@@ -485,6 +486,7 @@ export default {
 				[allowColumnReordering]="allowColumnReordering"
 				[allowColumnResizing]="allowColumnResizing"
 				[hoverStateEnabled]="hoverStateEnabled"
+				[disabled]="disabled"
   		>
     <dxo-editing
       mode="row"
