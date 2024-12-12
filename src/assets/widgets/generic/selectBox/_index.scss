@@ -122,11 +122,14 @@
     }
   }
 
+  &.dx-texteditor-with-floating-label,
+  &.dx-texteditor-label-outside {
+    margin-top: 24px;
+  }
+
   &.dx-texteditor-label-outside.dx-texteditor-with-label {
     &.me-selectbox-small,
     &.me-selectbox-medium {
-      margin-top: 20px;
-
       .dx-texteditor-label {
         height: 16px;
         margin-top: 0;
@@ -136,8 +139,6 @@
     }
 
     &.me-selectbox-large {
-      margin-top: 24px;
-
       .dx-texteditor-label {
         height: 20px;
         margin-top: 0;
@@ -148,8 +149,6 @@
   }
 
   &.dx-texteditor-with-floating-label {
-    margin-top: 20px;
-
     .dx-texteditor-label {
       padding: 0;
       align-items: center;
@@ -166,9 +165,25 @@
 
       &.me-selectbox-large {
         .dx-texteditor-label {
-          top: -14px;
+          top: -16px;
         }
       }
+    }
+  }
+
+  //цвет лейбла при непустом инпуте
+  &.dx-texteditor-label-outside,
+  &.dx-texteditor-with-floating-label {
+    &:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) {
+      .dx-label {
+        span {
+          color: var(--Text-Default);
+        }
+      }
+    }
+
+    .dx-label {
+      height: 100%;
     }
   }
 

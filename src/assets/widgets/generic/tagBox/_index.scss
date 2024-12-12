@@ -579,8 +579,6 @@
 
   &.dx-texteditor-label-outside.dx-texteditor-with-label.me-tag-box-small,
   &.dx-texteditor-label-outside.dx-texteditor-with-label.me-tag-box-medium {
-    margin-top: 20px;
-
     &.dx-searchbox {
       .dx-texteditor-label {
         padding: 0;
@@ -596,8 +594,6 @@
   }
 
   &.dx-texteditor-label-outside.dx-texteditor-with-label.me-tag-box-large {
-    margin-top: 20px;
-
     &.dx-searchbox {
       .dx-texteditor-label {
         padding: 0;
@@ -612,9 +608,12 @@
     }
   }
 
-  &.dx-texteditor-with-floating-label {
-    margin-top: 20px;
+  &.dx-texteditor-with-floating-label,
+  &.dx-texteditor-label-outside {
+    margin-top: 24px;
+  }
 
+  &.dx-texteditor-with-floating-label {
     .dx-texteditor-label {
       padding: 0;
       align-items: center;
@@ -625,8 +624,40 @@
     &.dx-state-focused,
     &:not(.dx-texteditor-empty) {
       .dx-texteditor-label {
-        top: -48%;
+        color: var(--Controls-Content-In-Controls-Main-Default);
+        top: -12px;
         left: -9px;
+      }
+
+      &.me-tag-box-large {
+        .dx-texteditor-label {
+          top: -16px;
+        }
+      }
+    }
+  }
+
+  &.dx-texteditor-label-outside,
+  &.dx-texteditor-with-floating-label {
+    &:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) {
+      .dx-label {
+        span {
+          color: var(--Text-Default);
+        }
+      }
+    }
+
+    .dx-label {
+      height: 100%;
+    }
+  }
+
+  &.dx-state-focused,
+  &.dx-state-hover,
+  &.dx-state-hover.dx-state-focused {
+    &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
+      .dx-label {
+        height: auto;
       }
     }
   }
@@ -742,11 +773,6 @@
 .me-tag-box.me-state-focus {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
-}
-
-.me-select-box.dx-popup-wrapper > .dx-overlay-content .dx-popup-content,
-.me-dropdownlist.dx-popup-wrapper > .dx-overlay-content .dx-popup-content {
-  // border: 1px solid #dfe0ed !important;
 }
 
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large

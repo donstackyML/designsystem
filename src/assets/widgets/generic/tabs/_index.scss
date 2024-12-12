@@ -39,7 +39,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 }
 
 .me-tabs-small {
-  height: var(--me-tabs-small-height) !important;
   font-weight: 400;
   font-size: var(--me-tabs-small-font-size);
 
@@ -220,7 +219,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 }
 
 .dx-tabs-styling-mode-secondary {
-  .dx-tabs-wrapper {
+  .dx-tabs-wrapper.me-tabs {
     margin-left: 1px;
     padding-right: 1px;
   }
@@ -232,9 +231,8 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     border-left-color: transparent;
     border-right-color: transparent;
 
-
     &.dx-tab-selected {
-      border-radius: 4px 4px 0 0 ;
+      border-radius: 4px 4px 0 0;
       border-width: 1px;
       border-style: solid;
       border-top-color: $tabs-disabled-border-color;
@@ -243,8 +241,9 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
       border-right-color: $tabs-disabled-border-color;
     }
 
-    &.dx-state-hover, &.dx-state-active {
-      border-radius: 4px 4px 0 0 ;
+    &.dx-state-hover,
+    &.dx-state-active {
+      border-radius: 4px 4px 0 0;
     }
   }
 
@@ -257,9 +256,8 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     border-left-color: transparent;
     border-right-color: transparent;
 
-
     &.dx-tab-selected {
-      border-radius:  0 0 4px 4px;
+      border-radius: 0 0 4px 4px;
       border-width: 1px;
       border-style: solid;
       border-top-color: transparent;
@@ -268,8 +266,9 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
       border-right-color: $tabs-disabled-border-color;
     }
 
-    &.dx-state-hover, &.dx-state-active {
-      border-radius:  0 0 4px 4px ;
+    &.dx-state-hover,
+    &.dx-state-active {
+      border-radius: 0 0 4px 4px;
     }
   }
 
@@ -422,7 +421,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 .dx-tabs-nav-button-left {
   border: none;
   border-radius: 0;
-  background-color: rgba(236, 237, 243, 1);
 
   .dx-button-content {
     display: flex;
@@ -437,7 +435,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 .dx-tabs-nav-button-right {
   border: none;
   border-radius: 0;
-  background-color: rgba(236, 237, 243, 1);
 
   .dx-button-content {
     display: flex;
@@ -523,6 +520,10 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 
 //размеры кнопок
 .me-tabs.dx-tabs {
+  .dx-button-has-icon .dx-button-content,
+  .dx-button .dx-button-content {
+    padding: 5px;
+  }
   &.me-tabs-horizontal {
     &.me-tabs-small {
       .dx-tabs-nav-button .dx-button-content {
