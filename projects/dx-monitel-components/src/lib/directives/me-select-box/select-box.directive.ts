@@ -1,8 +1,8 @@
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, inject, Input, OnInit, Renderer2 } from '@angular/core';
 
-import { MeCommonType, MeScrollbarShowType } from '../../types/types';
+import { MeCommonType, MeScrollbarShowType, MeSize } from '../../types/types';
 import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
 
 @Directive({
@@ -11,45 +11,36 @@ import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
     '[class.me-selectbox]': 'true',
     '[class.me-selectbox-small]': 'isSizeSmall',
     '[class.me-selectbox-medium]': 'isSizeMedium',
-    '[class.me-selectbox-large]': 'isSizeLarge',
+		'[class.me-selectbox-large]': 'isSizeLarge',
+		
+    '[class.me-inputs]': 'true',
+    '[class.me-inputs-small]': 'isSizeSmall',
+    '[class.me-inputs-medium]': 'isSizeMedium',
+    '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
 export class MeSelectBoxDirective
-  extends MeTextEditorDirective
   implements OnInit
 {
   @Input() showScrollbar: MeScrollbarShowType = 'always';
-  @Input() wrapperAttr: MeCommonType = {};
-
-  constructor(
-    element: ElementRef,
-    component: DxSelectBoxComponent,
-    renderer: Renderer2
-  ) {
-    super(element, component, renderer);
-  }
+	@Input() wrapperAttr: MeCommonType = {};
+	@Input() size: MeSize = 'medium';
+	
+	private component = inject(DxSelectBoxComponent)
 
   ngOnInit(): void {
-    this.initMeField();
-
     const popupWrapperClasses = `${
       this.wrapperAttr['class'] || ''
     } me-scroll-view me-dropdownlist me-dropdownlist-${this.size} ${
       this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
     }`;
 
-    (<DxSelectBoxComponent>this.component).dropDownOptions = {
+    (this.component).dropDownOptions = {
       wrapperAttr: {
         ...this.wrapperAttr,
         class: popupWrapperClasses,
       },
     };
-
-    // Set default styling mode and label mode
-    // (<DxSelectBoxComponent>this.component).instance.option(
-    //   'stylingMode',
-    //   'outlined'
-    // );
   }
 
   get isSizeSmall() {

@@ -33,7 +33,7 @@ export default {
     },
     labelMode: {
       control: 'select',
-      options: ['floating', 'outside', 'hidden', 'inside'],
+      options: ['floating', 'outside', 'hidden', 'static'],
       description: 'Режим отображения label',
     },
     description: {
@@ -59,6 +59,7 @@ export default {
 		showClearButton: true,
 		isValid: true,
 		disabled: false,
+		readOnly: false,
     showScrollbar: 'always',
 		minSearchLength: 1,
     dataSource: [
@@ -75,7 +76,8 @@ export default {
       'Cba',
       'Bca',
     ],
-    description: 'description',
+		description: 'description',
+		placeholder: 'Placeholder',
   },
 	render: (args) => ({
 	props: args,

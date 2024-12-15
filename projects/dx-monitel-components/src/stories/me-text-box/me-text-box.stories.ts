@@ -1,8 +1,8 @@
 import {
-  argsToTemplate,
-  moduleMetadata,
-  type Meta,
-  type StoryObj,
+	argsToTemplate,
+	moduleMetadata,
+	type Meta,
+	type StoryObj,
 } from '@storybook/angular';
 import { DxButtonModule, DxTextBoxComponent } from 'devextreme-angular';
 import { MeLabelDirective, MeTextBoxDirective } from '../../public-api';
@@ -45,10 +45,6 @@ export default {
       control: 'select',
       options: ['static', 'floating', 'hidden', 'outside'],
       description: 'Определяет положение лейбла текстового поля.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'static' },
-      },
     },
     mode: {
       control: 'select',
@@ -93,7 +89,7 @@ export default {
   args: {
     size: 'medium',
     mode: 'text',
-    labelMode: 'hidden',
+    labelMode: 'outside',
     label: 'Label*',
     placeholder: 'Placeholder',
     readOnly: false,

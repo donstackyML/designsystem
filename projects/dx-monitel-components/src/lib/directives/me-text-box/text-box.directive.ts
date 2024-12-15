@@ -1,12 +1,15 @@
 import {
-  AfterViewInit,
-  Directive,
-  HostListener,
-  OnInit,
-  inject,
+	AfterViewInit,
+	Directive,
+	ElementRef,
+	HostListener,
+	Input,
+	OnInit,
+	Renderer2,
+	inject,
 } from '@angular/core';
 import { DxTextBoxComponent } from 'devextreme-angular';
-import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
+import { MeSize } from 'projects/dx-monitel-components/me-components';
 
 @Directive({
   selector: '[meTextBox]',
@@ -14,23 +17,27 @@ import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
     '[class.me-textbox]': 'true',
     '[class.me-textbox-small]': 'isSizeSmall',
     '[class.me-textbox-medium]': 'isSizeMedium',
-    '[class.me-textbox-large]': 'isSizeLarge',
+		'[class.me-textbox-large]': 'isSizeLarge',
+		
+    '[class.me-inputs]': 'true',
+    '[class.me-inputs-small]': 'isSizeSmall',
+    '[class.me-inputs-medium]': 'isSizeMedium',
+    '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
 export class MeTextBoxDirective
-  extends MeTextEditorDirective
   implements OnInit, AfterViewInit
 {
-  private textBox = inject(DxTextBoxComponent);
+	@Input() size: MeSize = 'medium';
   private passwordVisible = false;
   private isPasswordInput = false;
-  private passwordToggleButton: HTMLElement | null = null;
+	private passwordToggleButton: HTMLElement | null = null;
+	
+	private textBox = inject(DxTextBoxComponent);
+	private renderer = inject(Renderer2);
+	private element = inject(ElementRef);
 
   ngOnInit(): void {
-    this.initMeField();
-    this.textBox.instance.option('stylingMode', 'filled');
-    this.textBox.instance.option('labelMode', 'hidden');
-
     // Проверяем, является ли поле полем для пароля
     this.isPasswordInput = this.textBox.instance.option('mode') === 'password';
   }
@@ -48,7 +55,6 @@ export class MeTextBoxDirective
   }
 
   ngAfterViewInit(): void {
-    this.createLockIcon();
     if (this.isPasswordInput) {
       this.createPasswordToggle();
       this.updatePasswordToggleVisibility();
@@ -57,26 +63,6 @@ export class MeTextBoxDirective
       this.textBox.instance.on('valueChanged', () => {
         this.updatePasswordToggleVisibility();
       });
-    }
-  }
-
-  createLockIcon() {
-    const parentSpan = this.renderer.createElement('span');
-    this.renderer.addClass(parentSpan, 'dx-lock-button-area');
-    if (!this.element.nativeElement.classList.contains('dx-state-readonly')) {
-      this.renderer.addClass(parentSpan, 'dx-state-invisible');
-    }
-
-    const childSpan = this.renderer.createElement('span');
-    this.renderer.addClass(childSpan, 'dx-icon');
-    this.renderer.addClass(childSpan, 'dx-icon-key');
-    this.renderer.appendChild(parentSpan, childSpan);
-
-    const buttonsContainer = this.element.nativeElement.querySelector(
-      '.dx-texteditor-buttons-container'
-    );
-    if (buttonsContainer) {
-      this.renderer.appendChild(buttonsContainer, parentSpan);
     }
   }
 
@@ -147,24 +133,6 @@ export class MeTextBoxDirective
     }
   }
 
-  addLockIcon() {
-    const lockIcon = this.element.nativeElement.querySelector(
-      '.dx-lock-button-area'
-    );
-    if (lockIcon) {
-      this.renderer.removeClass(lockIcon, 'dx-state-invisible');
-    }
-  }
-
-  removeLockIcon() {
-    const lockIcon = this.element.nativeElement.querySelector(
-      '.dx-lock-button-area'
-    );
-    if (lockIcon) {
-      this.renderer.addClass(lockIcon, 'dx-state-invisible');
-    }
-  }
-
   @HostListener('input')
   onInput() {
     if (this.isPasswordInput) {
@@ -174,14 +142,6 @@ export class MeTextBoxDirective
 
   @HostListener('onOptionChanged', ['$event'])
   onOptionChanged(e: any) {
-    if (e.name === 'readOnly') {
-      if (e.value === true) {
-        this.addLockIcon();
-      } else {
-        this.removeLockIcon();
-      }
-    }
-
     if (e.name === 'mode' && e.value === 'password' && !this.isPasswordInput) {
       this.isPasswordInput = true;
       this.createPasswordToggle();

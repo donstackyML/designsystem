@@ -1,8 +1,8 @@
 import {
-  Meta,
-  StoryObj,
-  argsToTemplate,
-  moduleMetadata,
+	Meta,
+	StoryObj,
+	argsToTemplate,
+	moduleMetadata,
 } from '@storybook/angular';
 import { DxNumberBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { MeLabelDirective, MeNumberBoxDirective } from '../../public-api';
@@ -83,7 +83,8 @@ export default {
     label: 'Label',
     labelMode: 'static',
     disabled: false,
-    readOnly: false,
+		readOnly: false,
+		isValid: true,
     showClearButton: true,
     showSpinButtons: true,
     placeholder: 'Placeholder',
@@ -94,7 +95,7 @@ export default {
     validationMessagePosition: 'bottom',
     value: null,
     height: null,
-    width: null,
+		width: null,
   },
   render: (args) => ({
     props: { ...args },

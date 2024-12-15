@@ -1,10 +1,10 @@
 import { DxDateBoxModule, DxValidatorModule } from 'devextreme-angular';
 
 import {
-  argsToTemplate,
-  Meta,
-  moduleMetadata,
-  StoryObj,
+	argsToTemplate,
+	Meta,
+	moduleMetadata,
+	StoryObj,
 } from '@storybook/angular';
 
 import { MeDateBoxDirective, MeLabelDirective } from '../../public-api';
