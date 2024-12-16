@@ -1,22 +1,22 @@
 import {
+  ChangeDetectorRef,
   Component,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
-  ChangeDetectorRef,
 } from '@angular/core';
+import { MeIconsModule } from '@monitel/me-icons-registry';
+import {
+  DxDateBoxModule,
+  DxNumberBoxModule,
+  DxTextBoxModule,
+} from 'devextreme-angular';
 import { DxButtonTypes } from 'devextreme-angular/ui/button';
 import {
-  DxTextBoxModule,
-  DxNumberBoxModule,
-  DxDateBoxModule,
-} from 'devextreme-angular';
-import {
-  MeTextBoxModule,
   MeDateBoxModule,
   MeNumberBoxModule,
+  MeTextBoxModule,
 } from '../../public-api';
-import { MeIconsModule } from '@monitel/me-icons-registry';
 
 // Определяем типы для кнопок
 interface ButtonProperties extends DxButtonTypes.Properties {
@@ -52,12 +52,12 @@ interface ButtonProperties extends DxButtonTypes.Properties {
             (onValueChanged)="handleValueChange($event)"
             placeholder="Enter password"
           >
-            <dxi-button
+            <!-- <dxi-button
               name="password-toggle"
               location="after"
               [options]="passwordButton"
             >
-            </dxi-button>
+            </dxi-button> -->
           </dx-text-box>
         </div>
       </div>
@@ -75,6 +75,7 @@ interface ButtonProperties extends DxButtonTypes.Properties {
             [(value)]="currencyValue"
             (onValueChanged)="handleValueChange($event)"
             [showClearButton]="true"
+            [showSpinButtons]="true"
           >
             <dxi-button
               name="currency"
@@ -82,6 +83,8 @@ interface ButtonProperties extends DxButtonTypes.Properties {
               [options]="currencyButton"
             >
             </dxi-button>
+            <dxi-button name="clear"></dxi-button>
+            <dxi-button name="spins"></dxi-button>
           </dx-number-box>
         </div>
       </div>
@@ -100,8 +103,7 @@ interface ButtonProperties extends DxButtonTypes.Properties {
             [showDropDownButton]="true"
             [openOnFieldClick]="true"
           >
-            <dxi-button name="today" location="before" [options]="todayButton">
-            </dxi-button>
+            
             <dxi-button
               name="prevDate"
               location="before"
@@ -113,6 +115,8 @@ interface ButtonProperties extends DxButtonTypes.Properties {
               location="after"
               [options]="nextDateButton"
             >
+            </dxi-button>
+            <dxi-button name="today" location="before" [options]="todayButton">
             </dxi-button>
           </dx-date-box>
         </div>
@@ -190,6 +194,7 @@ export class InputFieldsComponent {
 
     // Календарные кнопки
     this.todayButton = {
+      text: 'Today',
       stylingMode: 'text',
       hoverStateEnabled: true,
       icon: 'event',
