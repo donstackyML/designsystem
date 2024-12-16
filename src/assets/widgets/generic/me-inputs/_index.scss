@@ -93,7 +93,8 @@
   &.dx-state-disabled {
     .dx-texteditor-input,
     .dx-texteditor-label,
-    .dx-texteditor-buttons-container {
+    .dx-texteditor-buttons-container,
+    .dx-dropdowneditor-icon {
       color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
     }
 
@@ -159,6 +160,8 @@
     align-items: center;
 
     .dx-texteditor-input-container {
+      min-height: 20px;
+      align-items: center;
       *,
       *::before {
         padding: 0;
@@ -552,6 +555,7 @@
       padding-block: 8px;
 
       .dx-texteditor-input-container {
+        min-height: 24px;
         .dx-texteditor-input,
         .dx-placeholder {
           font-size: 16px;
@@ -644,5 +648,19 @@
 .dx-texteditor {
   .dx-texteditor-label > * {
     border: none !important;
+  }
+}
+
+.dx-overlay.dx-invalid-message {
+  .dx-overlay-wrapper.dx-invalid-message {
+    .dx-overlay-content.dx-invalid-message-content {
+      background-color: var(--Background-Error);
+      color: var(--Text-Error);
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+    }
   }
 }
