@@ -10,6 +10,10 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-autocomplete-small]': 'isSizeSmall',
     '[class.me-autocomplete-medium]': 'isSizeMedium',
     '[class.me-autocomplete-large]': 'isSizeLarge',
+    '[class.me-inputs]': 'true',
+    '[class.me-inputs-small]': 'isSizeSmall',
+    '[class.me-inputs-medium]': 'isSizeMedium',
+    '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
 export class MeAutocompleteDirective
@@ -48,7 +52,7 @@ export class MeAutocompleteDirective
     this.setDropDownOptions();
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
-        class: `me-dropdownlist me-dropdownlist-${this.size} me-tag-box`,
+        class: `me-dropdownlist me-dropdownlist-${this.size}`,
       },
     });
   }

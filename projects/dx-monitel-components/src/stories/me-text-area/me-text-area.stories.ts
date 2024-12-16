@@ -1,10 +1,10 @@
 import { DxTextAreaModule, DxValidatorModule } from 'devextreme-angular';
 
 import {
-  argsToTemplate,
-  Meta,
-  moduleMetadata,
-  StoryObj,
+	argsToTemplate,
+	Meta,
+	moduleMetadata,
+	StoryObj,
 } from '@storybook/angular';
 
 import { MeTextAreaDirective } from '../../lib/directives/me-text-area/text-area.directive';
@@ -64,10 +64,6 @@ export default {
       control: 'boolean',
       description: 'Валидность компонента.',
     },
-    showClearButton: {
-      control: 'boolean',
-      description: 'Показывать кнопку очистки.',
-    },
     validationError: {
       control: 'text',
     },
@@ -94,10 +90,9 @@ export default {
     readOnly: false,
     disabled: false,
     isValid: true,
-    showClearButton: true,
     validationError: '',
     validationMessageMode: 'auto',
-    validationMessagePosition: 'top',
+    validationMessagePosition: 'bottom',
   },
   render: (args) => ({
     props: {

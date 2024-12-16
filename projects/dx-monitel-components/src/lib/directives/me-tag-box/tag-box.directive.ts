@@ -19,14 +19,19 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-tag-box-small]': 'isSizeSmall',
     '[class.me-tag-box-medium]': 'isSizeMedium',
     '[class.me-tag-box-large]': 'isSizeLarge',
+    '[class.me-inputs]': 'true',
+    '[class.me-inputs-small]': 'isSizeSmall',
+    '[class.me-inputs-medium]': 'isSizeMedium',
+    '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
 export class MeTagBoxDirective
   extends MeFocusableDirective
-  implements OnInit, AfterViewInit
+  implements OnInit
 {
   @Input() size: MeSize = 'medium';
-  @Input() description: string = ''; // Новое свойство description
+	@Input() description: string = ''; // Новое свойство description
+	
 
   constructor(
     element: ElementRef,
@@ -37,7 +42,6 @@ export class MeTagBoxDirective
   }
 
   ngOnInit(): void {
-    this.component.instance.option('stylingMode', 'filled');
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-dropdownlist me-dropdownlist-${this.size} me-tag-box`,
@@ -119,53 +123,6 @@ export class MeTagBoxDirective
     );
     if (labelElement) {
       this.renderer.removeStyle(labelElement, 'color');
-    }
-  }
-
-  ngAfterViewInit(): void {
-    this.createLockIcon();
-  }
-
-  createLockIcon() {
-    const parentSpan = this.renderer.createElement('span');
-    this.renderer.addClass(parentSpan, 'dx-lock-button-area');
-    if (!this.element.nativeElement.classList.contains('dx-state-readonly')) {
-      this.renderer.addClass(parentSpan, 'dx-state-invisible');
-    }
-
-    const childSpan = this.renderer.createElement('span');
-    this.renderer.addClass(childSpan, 'dx-icon');
-    this.renderer.addClass(childSpan, 'dx-icon-key');
-    this.renderer.appendChild(parentSpan, childSpan);
-
-    this.renderer.appendChild(
-      this.element.nativeElement.querySelector(
-        '.dx-texteditor-buttons-container'
-      ),
-      parentSpan
-    );
-  }
-
-  addLockIcon() {
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.dx-lock-button-area'),
-      'dx-state-invisible'
-    );
-  }
-
-  removeLockIcon() {
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.dx-lock-button-area'),
-      'dx-state-invisible'
-    );
-  }
-
-  @HostListener('onOptionChanged', ['$event']) onOptionChanged(e: any) {
-    if (e.name === 'readOnly' && e.value === true) {
-      this.addLockIcon();
-    }
-    if (e.name === 'readOnly' && e.value === false) {
-      this.removeLockIcon();
     }
   }
 }

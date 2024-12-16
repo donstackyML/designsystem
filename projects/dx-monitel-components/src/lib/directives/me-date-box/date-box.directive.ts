@@ -1,14 +1,13 @@
 import { DxDateBoxComponent } from 'devextreme-angular';
 
 import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  HostListener,
-  inject,
-  Input,
-  OnInit,
-  Renderer2,
+	Directive,
+	ElementRef,
+	HostListener,
+	inject,
+	Input,
+	OnInit,
+	Renderer2
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';
@@ -21,13 +20,13 @@ import { MeSize } from '../../types/types';
     '[class.me-date-box-medium]': 'isSizeMedium',
     '[class.me-date-box-small]': 'isSizeSmall',
 
-    '[class.me-editor]': 'true',
-    '[class.me-editor-large]': 'isSizeLarge',
-    '[class.me-editor-medium]': 'isSizeMedium',
-    '[class.me-editor-small]': 'isSizeSmall',
+    '[class.me-inputs]': 'true',
+    '[class.me-inputs-large]': 'isSizeLarge',
+    '[class.me-inputs-medium]': 'isSizeMedium',
+    '[class.me-inputs-small]': 'isSizeSmall',
   },
 })
-export class MeDateBoxDirective implements OnInit, AfterViewInit {
+export class MeDateBoxDirective implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() description: string = ''; // Новое свойство description
 
@@ -37,7 +36,6 @@ export class MeDateBoxDirective implements OnInit, AfterViewInit {
   private component = inject(DxDateBoxComponent);
 
   ngOnInit(): void {
-    this.component.instance.option('stylingMode', 'filled');
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-date-box-overlay`,
@@ -94,55 +92,5 @@ export class MeDateBoxDirective implements OnInit, AfterViewInit {
     this.renderer.addClass(todayButton, `me-button-medium`);
     this.renderer.addClass(todayButton, 'dx-button-mode-text');
     this.renderer.addClass(todayButton, 'dx-button-default');
-
-    //Меняем текст кнопки 'Сегодня'
-    todayButton.querySelector('.dx-button-text').innerHTML = 'Сегодня';
-  }
-
-  ngAfterViewInit(): void {
-    this.createLockIcon();
-  }
-
-  createLockIcon() {
-    const parentSpan = this.renderer.createElement('span');
-    this.renderer.addClass(parentSpan, 'dx-lock-button-area');
-    if (!this.element.nativeElement.classList.contains('dx-state-readonly')) {
-      this.renderer.addClass(parentSpan, 'dx-state-invisible');
-    }
-
-    const childSpan = this.renderer.createElement('span');
-    this.renderer.addClass(childSpan, 'dx-icon');
-    this.renderer.addClass(childSpan, 'dx-icon-key');
-    this.renderer.appendChild(parentSpan, childSpan);
-
-    this.renderer.appendChild(
-      this.element.nativeElement.querySelector(
-        '.dx-texteditor-buttons-container'
-      ),
-      parentSpan
-    );
-  }
-
-  addLockIcon() {
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.dx-lock-button-area'),
-      'dx-state-invisible'
-    );
-  }
-
-  removeLockIcon() {
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.dx-lock-button-area'),
-      'dx-state-invisible'
-    );
-  }
-
-  @HostListener('onOptionChanged', ['$event']) onOptionChanged(e: any) {
-    if (e.name === 'readOnly' && e.value === true) {
-      this.addLockIcon();
-    }
-    if (e.name === 'readOnly' && e.value === false) {
-      this.removeLockIcon();
-    }
   }
 }

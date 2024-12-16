@@ -1,15 +1,13 @@
 import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  Renderer2,
-  inject,
+	Directive,
+	HostListener,
+	Input,
+	OnInit,
+	Renderer2,
+	inject
 } from '@angular/core';
-import { MeSize } from '../../types/types';
 import { DxDateRangeBoxComponent } from 'devextreme-angular';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meDateRangeBox]',
@@ -19,24 +17,30 @@ import { DxDateRangeBoxComponent } from 'devextreme-angular';
     '[class.me-date-range-box-medium]': 'isSizeMedium',
     '[class.me-date-range-box-small]': 'isSizeSmall',
 
-    '[class.me-editor]': 'true',
-    '[class.me-editor-large]': 'isSizeLarge',
-    '[class.me-editor-medium]': 'isSizeMedium',
-    '[class.me-editor-small]': 'isSizeSmall',
+    '[class.me-inputs]': 'true',
+    '[class.me-inputs-large]': 'isSizeLarge',
+    '[class.me-inputs-medium]': 'isSizeMedium',
+    '[class.me-inputs-small]': 'isSizeSmall',
   },
 })
-export class MeDateRangeBoxDirective implements OnInit, AfterViewInit {
+export class MeDateRangeBoxDirective implements OnInit {
   @Input() size: MeSize = 'medium';
   private component = inject(DxDateRangeBoxComponent);
-  private renderer = inject(Renderer2);
-  private element = inject(ElementRef);
+	private renderer = inject(Renderer2);
+	
+	  ngOnInit(): void {
+    this.component.instance.option('dropDownOptions', {
+      wrapperAttr: {
+        class: `me-date-range-box-overlay`,
+      },
+    });
 
-  ngOnInit(): void {
-    this.component.instance.option('stylingMode', 'filled');
-  }
-
-  ngAfterViewInit(): void {
-    this.createLockIcon();
+    // this.component.instance.option('calendarOptions', {
+    //   showWeekNumbers: true,
+    //   bindingOptions: {
+    //     class: 'me-calendar-show-weeks-numbers',
+    //   },
+    // });
   }
 
   get isSizeLarge() {
@@ -49,55 +53,6 @@ export class MeDateRangeBoxDirective implements OnInit, AfterViewInit {
 
   get isSizeSmall() {
     return this.size === 'small';
-  }
-
-  createLockIcon() {
-    const parentSpan = this.renderer.createElement('span');
-    this.renderer.addClass(parentSpan, 'dx-lock-button-area');
-    const childSpan = this.renderer.createElement('span');
-    this.renderer.addClass(childSpan, 'dx-icon');
-    this.renderer.addClass(childSpan, 'dx-icon-key');
-
-    if (!this.element.nativeElement.classList.contains('dx-state-readonly')) {
-      this.renderer.addClass(parentSpan, 'dx-state-invisible');
-    }
-
-    if (
-      this.element.nativeElement.lastChild.classList.contains(
-        'dx-texteditor-buttons-container'
-      )
-    ) {
-      this.renderer.appendChild(parentSpan, childSpan);
-
-      this.renderer.appendChild(
-        this.element.nativeElement.lastChild,
-        parentSpan
-      );
-    }
-  }
-
-  addLockIcon() {
-    this.renderer.removeClass(
-      this.element.nativeElement.querySelector('.dx-lock-button-area'),
-      'dx-state-invisible'
-    );
-  }
-
-  removeLockIcon() {
-    this.renderer.addClass(
-      this.element.nativeElement.querySelector('.dx-lock-button-area'),
-      'dx-state-invisible'
-    );
-  }
-
-  @HostListener('onOptionChanged', ['$event'])
-  onOptionChanged(e: any) {
-    if (e.name === 'readOnly' && e.value === true) {
-      this.addLockIcon();
-    }
-    if (e.name === 'readOnly' && e.value === false) {
-      this.removeLockIcon();
-    }
   }
 
   @HostListener('onOpened', ['$event']) onOpened(e: any) {
@@ -127,12 +82,6 @@ export class MeDateRangeBoxDirective implements OnInit, AfterViewInit {
       this.renderer.addClass(todayButton, `me-button-medium`);
       this.renderer.addClass(todayButton, 'dx-button-mode-text');
       this.renderer.addClass(todayButton, 'dx-button-default');
-
-      //Меняем текст кнопки 'Сегодня'
-      const todayText = todayButton?.querySelector('.dx-button-text');
-      if (todayText) {
-        todayText.innerHTML = 'Сегодня';
-      }
     }
   }
 }

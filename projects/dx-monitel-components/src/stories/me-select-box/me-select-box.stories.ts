@@ -121,10 +121,10 @@ export default {
     showScrollbar: 'always',
     disabled: false,
     isValid: true,
+    readOnly: false,
     labelMode: 'static',
     label: 'Label*',
     placeholder: 'Select...',
-    readOnly: false,
     dataSource: data,
   },
   render: (args) => ({
