@@ -243,7 +243,6 @@ export const AdvancedCustomDropZone: Story = {
       allowedFileExtensions: (args as any).allowedFileExtensions,
     };
 
-    // Обработчики событий
     const onDropZoneEnter = (e: any) => {
       if (e.dropZoneElement.id === 'dropzone-external') {
         const items = e.event.originalEvent.dataTransfer.items;
@@ -307,6 +306,7 @@ export const AdvancedCustomDropZone: Story = {
             </div>
             <dx-progress-bar
               #uploadProgress
+              meProgressBar
               [min]="0"
               [max]="100"
               width="30%"
@@ -345,6 +345,7 @@ export const AdvancedCustomDropZone: Story = {
       styles: [
         `
         .widget-container {
+         font-family: "Roboto", sans-serif;
           display: flex;
           flex-direction: column;
           gap: 10px;
@@ -356,6 +357,7 @@ export const AdvancedCustomDropZone: Story = {
           justify-content: center;
         }
         #dropzone-external {
+          font-family: "Roboto", sans-serif;
           flex-direction: column;
           border: 1px dashed #ccc;
           padding: 20px;
@@ -366,11 +368,19 @@ export const AdvancedCustomDropZone: Story = {
           transition: border-color 0.3s;
         }
         #dropzone-external.dropzone-active {
-          border-color: #339966;
+          border-color: #3257DC;
+          #dropzone-text {
+ color: #2e2e2f
+          }
         }
         #dropzone-text {
           flex-direction: column;
           text-align: center;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px;
+          color:#18181A66;
+
         }
         #dropzone-image {
           max-width: 100%;

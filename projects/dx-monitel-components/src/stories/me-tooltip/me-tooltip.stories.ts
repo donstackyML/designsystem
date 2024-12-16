@@ -159,6 +159,7 @@ export const ImageTooltip: Story = {
     tooltipPosition: 'right',
     tooltipWidth: 390,
     tooltipClass: 'me-custom-tooltip-wrapper',
+    colorMode: 'dark', // Значение по умолчанию
   },
   render: (args) => ({
     template: `
@@ -190,7 +191,7 @@ export const ImageTooltip: Story = {
               </defs>
             </svg>
           </div>
-          <div class="me-tooltip-content me-tooltip-content-dark">
+          <div class="me-tooltip-content me-tooltip-content-${args.colorMode}">
             <h1 class="me-tooltip-title">Заголовок</h1>
             <p class="me-tooltip-text">Трансформатор - это устройство, способное изменять напряжение переменного тока</p>
           </div>
@@ -199,7 +200,8 @@ export const ImageTooltip: Story = {
       tooltipPosition: args.tooltipPosition,
       tooltipWidth: args.tooltipWidth,
       tooltipClass: args.tooltipClass,
-      colorMode: args.colorMode
-    }
+      colorMode: args.colorMode,
+    },
   }),
-}
+};
+
