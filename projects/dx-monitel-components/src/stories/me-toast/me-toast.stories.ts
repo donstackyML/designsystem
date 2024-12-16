@@ -27,11 +27,11 @@ const ToastStyles = `
 			align-items: center;
 		}
   }
-  
+
   .me-toast-close-button:not(.dx-state-hover) {
     background: transparent;
   }
-  
+
   .me-toast-content1 {
     margin-left: 34px
   }
@@ -196,7 +196,7 @@ export const LargeError: Story = {
       >
         <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
           <div class="me-toast-header">
-            <me-icon class="me-error-icon" icon="error_outlined" size="large" color="var(--Icon-Error)"></me-icon>
+            <me-icon class="me-error-icon" icon="error" size="large" color="var(--Icon-Error)"></me-icon>
             <div class="me-title-header1">Ошибка</div>
             <dx-button
               icon="close"

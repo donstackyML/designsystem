@@ -90,13 +90,13 @@
   width: 100%;
   max-width: 390px;
 
-  .me-tooltip-title {
-    color: $tooltip-color;
-  }
-
-  .me-tooltip-text {
-    color: $tooltip-color;
-  }
+  //.me-tooltip-title {
+  //  color: $tooltip-color;
+  //}
+  //
+  //.me-tooltip-text {
+  //  color: $tooltip-color;
+  //}
 }
 
 .me-tooltip-image {
@@ -216,17 +216,21 @@
   }
 }
 
-.me-tooltip-content {
-  background-color: var(--tooltip-background-color);
-  color: var(--tooltip-text-color);
+
+@if $color == 'dark' {
+  .me-tooltip-content-dark {
+    background-color: #fff;
+    color: #000;
+  }
+
 }
 
-.me-tooltip-content-light {
-  --tooltip-background-color: #282829;
-  --tooltip-text-color: #fff;
+@if $color == 'light' {
+  .me-tooltip-content-light {
+    background-color: #282829;
+    color: #fff;
+  }
 }
 
-.me-tooltip-content-dark {
-  --tooltip-background-color: #fff;
-  --tooltip-text-color: #000;
-}
+
+

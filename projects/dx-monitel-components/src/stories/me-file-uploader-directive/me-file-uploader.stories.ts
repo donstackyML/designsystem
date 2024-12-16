@@ -293,7 +293,7 @@ export const AdvancedCustomDropZone: Story = {
     return {
       template: `
         <div class="widget-container flex-box">
-          <span>Profile Picture</span>
+          <span class="me-title-subheader1">Profile Picture</span>
           <div
             id="dropzone-external"
             class="flex-box"
@@ -370,7 +370,7 @@ export const AdvancedCustomDropZone: Story = {
         #dropzone-external.dropzone-active {
           border-color: #3257DC;
           #dropzone-text {
- color: #2e2e2f
+            color: #2e2e2f
           }
         }
         #dropzone-text {
@@ -379,7 +379,7 @@ export const AdvancedCustomDropZone: Story = {
           font-size: 14px;
           font-weight: 400;
           line-height: 20px;
-          color:#18181A66;
+          color:#18181A66 !important;
 
         }
         #dropzone-image {
