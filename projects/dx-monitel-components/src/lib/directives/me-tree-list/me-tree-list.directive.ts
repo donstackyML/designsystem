@@ -12,11 +12,10 @@ export class MeTreeListDirective {
 
   ngOnInit(): void {
     this.applyInitialSettings();
-    console.log(this.component);
   }
 
   private applyInitialSettings() {
     this.component.instance.option('showBorders', true);
-    this.component.instance.option('showRowLines', true);
+		this.component.instance.option('showRowLines', true);
   }
 }
