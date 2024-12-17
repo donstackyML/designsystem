@@ -181,13 +181,13 @@ export default {
 			<dx-date-range-box meDateRangeBox
 				${argsToTemplate(args)}
 			>
-<!--				<dx-validator>-->
-<!--        <dxi-validation-rule-->
-<!--            type="required"-->
-<!--            message="Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required "-->
-<!--        >-->
-<!--        </dxi-validation-rule>-->
-<!--    </dx-validator>-->
+				<dx-validator>
+        <dxi-validation-rule
+            type="required"
+            message="Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required "
+        >
+        </dxi-validation-rule>
+    </dx-validator>
 			</dx-date-range-box>
 		`,
   }),
