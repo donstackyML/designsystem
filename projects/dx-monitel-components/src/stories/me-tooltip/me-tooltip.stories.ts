@@ -55,14 +55,6 @@ const meta: Meta<MeTooltipDirective> = {
       control: 'object',
       description: 'Настройки анимации скрытия тултипа',
     },
-    colorMode: {
-      control: 'select',
-      options: ['light', 'dark'],
-      description: 'Цветовая тема тултипа',
-    },
-  },
-  args: {
-    colorMode: 'dark',
   },
 };
 
@@ -78,15 +70,13 @@ export const Basic: Story = {
     template: `
       <dx-button
         [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition"
-        [colorMode]="colorMode">
+        [tooltipPosition]="tooltipPosition">
         Базовый тултип
       </dx-button>
     `,
     props: {
       meTooltip: args.meTooltip,
       tooltipPosition: args.tooltipPosition,
-      colorMode: args.colorMode
     }
   }),
 };
@@ -100,15 +90,13 @@ export const HTMLContent: Story = {
     template: `
       <dx-button
         [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition"
-        [colorMode]="colorMode">
+        [tooltipPosition]="tooltipPosition">
         Тултип с HTML содержимым
       </dx-button>
     `,
     props: {
       meTooltip: args.meTooltip,
       tooltipPosition: args.tooltipPosition,
-      colorMode: args.colorMode
     }
   }),
 };
@@ -138,8 +126,7 @@ export const WithAnimation: Story = {
         [tooltipPosition]="tooltipPosition"
         [tooltipMaxWidth]="tooltipMaxWidth"
         [tooltipShowAnimation]="tooltipShowAnimation"
-        [tooltipHideAnimation]="tooltipHideAnimation"
-        [colorMode]="colorMode">
+        [tooltipHideAnimation]="tooltipHideAnimation">
         Тултип с анимацией
       </dx-button>
     `,
@@ -149,17 +136,23 @@ export const WithAnimation: Story = {
       tooltipMaxWidth: args.tooltipMaxWidth,
       tooltipShowAnimation: args.tooltipShowAnimation,
       tooltipHideAnimation: args.tooltipHideAnimation,
-      colorMode: args.colorMode
     }
   }),
 };
 
 export const ImageTooltip: Story = {
+  argTypes: {
+    colorMode: {
+      control: 'select',
+      options: ['', 'light', 'dark'],
+      description: 'Цветовая тема тултипа',
+    },
+  },
   args: {
     tooltipPosition: 'right',
     tooltipWidth: 390,
     tooltipClass: 'me-custom-tooltip-wrapper',
-    colorMode: 'dark', // Значение по умолчанию
+    colorMode: 'light',
   },
   render: (args) => ({
     template: `
@@ -191,7 +184,7 @@ export const ImageTooltip: Story = {
               </defs>
             </svg>
           </div>
-          <div class="me-tooltip-content me-tooltip-content-${args.colorMode}">
+          <div class="me-tooltip-content">
             <h1 class="me-tooltip-title">Заголовок</h1>
             <p class="me-tooltip-text">Трансформатор - это устройство, способное изменять напряжение переменного тока</p>
           </div>
@@ -200,8 +193,7 @@ export const ImageTooltip: Story = {
       tooltipPosition: args.tooltipPosition,
       tooltipWidth: args.tooltipWidth,
       tooltipClass: args.tooltipClass,
-      colorMode: args.colorMode,
-    },
+      colorMode: args.colorMode
+    }
   }),
 };
-

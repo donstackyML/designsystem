@@ -138,10 +138,6 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
       this.renderer.addClass(tooltipElement, this.tooltipClass);
     }
 
-    instance.wrapperAttr = {
-      class: `me-tooltip me-tooltip-${this.colorMode}`,
-    };
-
     this.renderer.appendChild(this.element.nativeElement, tooltipElement);
   }
 
