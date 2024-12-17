@@ -2,32 +2,178 @@ import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as menuStories from "./me-menu.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
 
-<Meta name="Menu Documentation" of={menuStories} />
+<Meta
+  title="Components/Menu"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    },
+    layout: 'centered',
+    docs: {
+      description: {
+        component: 'Компонент Menu для создания многоуровневого меню'
+      }
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=2517-147162&t=Dli8UZECKMfmQUCu-0'
+    }
+  }}
+/>
 
 # Menu
 
-## Директива meMenu
-
-Применение директивы meMenu к элементу <code>dx-menu</code> приводит его внешний вид в соответствие с дизайн-системой,
-его размеры к значению <code>size = large (L)</code> и предоставляет доступ к свойству <code>size</code>.
+> ## Директива meMenu
+>
+> Применение директивы `meMenu` к элементу `dx-menu` стилизует компонент в соответствии с дизайн-системой. По умолчанию устанавливает `size = large (L)`.
 
 <Canvas of={menuStories.Default} />
 <Controls of={menuStories.Default} />
-<Source of={menuStories.Default} dark />
+
+## Примеры использования
+
+### Базовое меню
+
+```html
+<dx-menu
+  meMenu
+  [dataSource]="menuItems"
+  [orientation]="'horizontal'"
+  [size]="'large'"
+  showFirstSubmenuMode="onHover"
+  showSubmenuMode="onHover"
+>
+</dx-menu>
+```
+
+### Данные для меню
+
+```typescript
+const menuItems = [
+  {
+    icon: 'folder',
+    text: 'Electronics',
+    items: [
+      {
+        icon: 'folder',
+        text: 'Computers',
+        items: [
+          { text: 'Desktops' },
+          { text: 'Laptops' }
+        ]
+      },
+      {
+        icon: 'folder',
+        text: 'Phones',
+        items: [
+          { text: 'Smartphones' },
+          { text: 'Accessories' }
+        ]
+      }
+    ]
+  },
+  {
+    icon: 'folder',
+    text: 'Entertainment',
+    items: [/*...*/]
+  }
+];
+```
+
+### Вертикальное меню
+
+```html
+<dx-menu
+  meMenu
+  [dataSource]="menuItems"
+  [orientation]="'vertical'"
+  [size]="'large'"
+>
+</dx-menu>
+```
+
+### С выделением элементов
+
+```html
+<dx-menu
+  meMenu
+  [dataSource]="menuItems"
+  [selectByClick]="true"
+  [selectionMode]="'single'"
+>
+</dx-menu>
+```
+
+## API Reference
+
+### Основные параметры
+
+| Параметр | Тип | По умолчанию | Описание |
+|----------|-----|--------------|-----------|
+| size | 'small' \| 'large' | 'large' | Размер меню и элементов |
+| orientation | 'vertical' \| 'horizontal' | 'horizontal' | Ориентация меню |
+| dataSource | array | [] | Данные для пунктов меню |
+| selectByClick | boolean | false | Выбор элементов по клику |
+| selectionMode | 'single' \| 'multiple' \| 'none' | 'none' | Режим выделения |
+| showFirstSubmenuMode | string | 'onHover' | Режим показа первого подменю |
+| showSubmenuMode | string | 'onHover' | Режим показа остальных подменю |
+
+### Структура dataSource
+
+| Свойство | Тип | Описание |
+|----------|-----|-----------|
+| text | string | Текст пункта меню |
+| icon | string | Иконка |
+| items | array | Дочерние пункты меню |
+| disabled | boolean | Отключение пункта |
+| visible | boolean | Видимость пункта |
+| beginGroup | boolean | Начало новой группы |
+
+### События
+
+- `onItemClick` - клик по пункту меню
+- `onSelectionChanged` - изменение выделения
+- `onSubmenuShowing` - показ подменю
+- `onSubmenuShown` - подменю показано
+- `onSubmenuHiding` - скрытие подменю
+- `onSubmenuHidden` - подменю скрыто
 
 ## Дизайн
 
 <Figma
   height="50%"
   collapsable
-  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=2517-147162&t=Dli8UZECKMfmQUCu-0"
 />
 
 <style>
   {`
-      h2 {
-        border-bottom: none !important;
-    }
+  h2 {
+    border-bottom: none !important;
+  }
+
+  a {
+    display: inline-block !important;
+  }
+
+  a p {
+    color: #029CFD !important;
+  }
+
+  table {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
 `}
 </style>

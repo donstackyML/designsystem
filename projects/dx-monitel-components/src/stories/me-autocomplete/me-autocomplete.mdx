@@ -1,101 +1,67 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import {Meta, Story, Controls, Source, Canvas} from "@storybook/addon-docs";
 import * as AutocompleteStories from "./me-autocomplete.stories";
-import { Figma } from "@storybook/addon-designs/blocks";
+import { MeAutocompleteDirective } from "../../public-api";
 
 <Meta
   title="Компоненты/Autocomplete"
+  component={MeAutocompleteDirective}
   of={AutocompleteStories}
 />
 
 # Autocomplete
 
-## Директива meAutocomplete
-
-Применение директивы meAutocomplete к элементу <code>dx-autocomplete</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
-с дизайн-системой, добавляет свойство <code>size</code>.
-
-Документация на сайте разработчика Devextreme:
-- <a
-    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxAutocomplete/"
-    target="_blank"
-  >
-    API
-  </a>
-
-- <a
-    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Autocomplete/Overview/Light/"
-    target="_blank"
-  >
-    Демо
-  </a>
+> ## Директива meAutocomplete
+>
+> Применение директивы meAutocomplete к элементу `dx-autocomplete` приводит его размеры и стили в соответствие с дизайн-системой.
 
 <Canvas of={AutocompleteStories.Default} />
-
-## Свойства
-
 <Controls of={AutocompleteStories.Default} />
 
-<Figma
-  height="50%"
-			collapsable
-	defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=sQe2fg33jNgXT1Pd-0"
-/>
+## Примеры использования
 
-## Примеры использования:
+- [Размеры компонента](#размеры-компонента)
+- [Поведение скроллбара](#поведение-скроллбара)
+- [Положение метки](#положение-метки)
 
-- [Размеры Autocomplete](#размеры-autocomplete)
-- [Положение Label](#положение-label)
-- [Валидация поля](#валидация-поля)
+### Размеры компонента
 
-### Размеры Autocomplete
-Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
+> Поддерживаются три размера: small, medium (по умолчанию) и large
+
+<Canvas of={AutocompleteStories.Small} />
+
+```html
+<dx-autocomplete
+  meAutocomplete
+  size="small"
+  [dataSource]="dataSource"
+>
+</dx-autocomplete>
+```
+
+<Canvas of={AutocompleteStories.Large} />
+
+```html
+<dx-autocomplete
+  meAutocomplete
+  size="large"
+  [dataSource]="dataSource"
+>
+</dx-autocomplete>
+```
+
+### Поведение скроллбара
+
+> Скроллбар может быть всегда видимым или появляться при наведении
 
 <Source
-			code={`<dx-autocomplete meAutocomplete size="size"></dx-autocomplete>`}
-			language="html"
-			dark
-/>
-
-### Положение Label
-Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `static`, `floating`, `hidden`, `outside`. Для изменения самого Label внутри используйте параметр `label`
-
-<Source
-  code={`<dx-autocomplete meAutocomplete labelMode="labelMode" label="label"></dx-autocomplete>`}
-  dark
+  code={`
+<dx-autocomplete
+  meAutocomplete
+  [size]="'medium'"
+  [showScrollbar]="'always'"
+  [dataSource]="['Apple', 'Banana', 'Orange']"
+></dx-autocomplete>
+  `}
   language="html"
-/>
-
-Для того, чтобы установить label слева от элемента, используйте тэг обертку `label` с директивой `meLabel` и параметром `labelDirection="row"`, установив параметр `labelMode="hidden"` в <code>meAutocomplete</code>.
-
-<Source
-			code={`
-  <label meLabel 
-  labelDirection="row">
-    <dx-autocomplete meAutocomplete labelMode="hidden"></dx-autocomplete>
-  </label>`}
-	dark
-	language="html"
-/>
-<Story name="Default" of={AutocompleteStories.WithLabelRow} />
-
-### Валидация поля
-Для валидации используйте `<dx-validator>` внутри тэга `dx-autocomplete`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
-Не забудьте импортировать `DxValidatorModule`.
-Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
-Используйте параметр `validationMessagePosition` для изменения положения сообщения об ошибке. Варианты: `top`, `bottom`, `left`, `right`.
-
-<Source
-	code={`<dx-autocomplete meAutocomplete
-  [(validationMessageMode)]="validationMessageMode"
-  [(validationMessagePosition)]="validationMessagePosition">
-  <dx-validator>
-    <dxi-validation-rule 
-    type="required"
-    message="Required"
-    ></dxi-validation-rule>
-  </dx-validator>
-</dx-autocomplete>`}
-	dark
-	language="html"
+  dark
 />

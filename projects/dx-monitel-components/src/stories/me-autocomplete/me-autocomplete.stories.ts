@@ -13,7 +13,7 @@ export default {
   argTypes: {
     size: {
       options: ['small', 'medium', 'large'],
-      control: { type: 'radio' },
+      control: { type: 'select' },
     },
     showScrollbar: {
       options: ['always', 'onHover'],
@@ -39,29 +39,29 @@ export default {
     description: {
       control: 'text',
       description: 'Описание для компонента',
-		},
-		showClearButton: {
-			control: 'boolean',
-			description: 'Показывать кнопку очистки.',
-		},
-		isValid: {
-			control: 'boolean',
-			description: 'Определяет состояние валидности.',
-		},
-		disabled: {
-			control: 'boolean',
-		}
-	},
+    },
+    showClearButton: {
+      control: 'boolean',
+      description: 'Показывать кнопку очистки.',
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Определяет состояние валидности.',
+    },
+    disabled: {
+      control: 'boolean',
+    }
+  },
   args: {
-		size: 'medium',
-		label: 'Label*',
-		labelMode: 'outside',
-		showClearButton: true,
-		isValid: true,
-		disabled: false,
-		readOnly: false,
+    size: 'medium',
+    label: 'Label*',
+    labelMode: 'outside',
+    showClearButton: true,
+    isValid: true,
+    disabled: false,
+    readOnly: false,
     showScrollbar: 'always',
-		minSearchLength: 1,
+    minSearchLength: 1,
     dataSource: [
       'Apple',
       'Banana',
@@ -76,40 +76,52 @@ export default {
       'Cba',
       'Bca',
     ],
-		description: 'description',
-		placeholder: 'Placeholder',
+    description: 'description',
+    placeholder: 'Placeholder',
   },
-	render: (args) => ({
-	props: args,
-	template: `
-		<dx-autocomplete
-			id="autocomplete-element"
-			meAutocomplete
-			${argsToTemplate(args)}
-			[dropDownOptions]="{
-				position: {
-					of: '#autocomplete-element',
-					my: 'top left',
-					at: 'bottom left',
-					offset: { y: 4 },
-					collision: 'fit flip'
-				}
-			}"
-		>
-					<dx-validator>
-        <dxi-validation-rule
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-autocomplete
+        id="autocomplete-element"
+        meAutocomplete
+        ${argsToTemplate(args)}
+        [dropDownOptions]="{
+          position: {
+            of: '#autocomplete-element',
+            my: 'top left',
+            at: 'bottom left',
+            offset: { y: 4 },
+            collision: 'fit flip'
+          }
+        }"
+      >
+        <dx-validator>
+          <dxi-validation-rule
             type="required"
             message="Required"
-        >
-        </dxi-validation-rule>
-    </dx-validator>
-			</dx-autocomplete>
-		<p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
-	`,
+          >
+          </dxi-validation-rule>
+        </dx-validator>
+      </dx-autocomplete>
+      <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
+    `,
   }),
 } as Meta;
 
 export const Default: StoryObj = {};
+
+export const Small: StoryObj = {
+  args: {
+    size: 'small',
+  }
+};
+
+export const Large: StoryObj = {
+  args: {
+    size: 'large',
+  }
+};
 
 export const WithLabelRow: StoryObj = {
   args: {
@@ -135,10 +147,9 @@ export const WithLabelRow: StoryObj = {
     props: args,
     template: `
     <label meLabel
-		labelDirection="row"
-		[size]="size" 
-		min-width="100%">
-    Label*
+      labelDirection="row"
+      style="max-width: 200px">
+      Label*
       <dx-autocomplete
         id="autocomplete-element"
         meAutocomplete
@@ -157,7 +168,7 @@ export const WithLabelRow: StoryObj = {
           }
         }"
       ></dx-autocomplete>
-      </label>
+    </label>
     `,
   }),
 };

@@ -1,92 +1,187 @@
 import { Meta, Canvas, Controls, Source } from "@storybook/addon-docs";
 import * as tabPanelStories from "./me-tab-panel.stories";
 
-<Meta title="Components/TabPanel" of={tabPanelStories} />
+<Meta
+  title="Components/TabPanel"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    },
+    layout: 'centered',
+    docs: {
+      description: {
+        component: 'Компонент TabPanel для отображения содержимого во вкладках'
+      }
+    }
+  }}
+/>
 
 # TabPanel
 
-Компонент TabPanel представляет собой контейнер для отображения содержимого во вкладках.
+> ## Директива meTabPanel
+>
+> Директива `meTabPanel` расширяет стандартный компонент `dx-tab-panel`, добавляя поддержку размеров и стилей из дизайн-системы.
 
 <Canvas of={tabPanelStories.Default} />
+<Controls of={tabPanelStories.Default} />
 
-## Свойства
+## Примеры использования
 
-<Controls />
+### Базовый TabPanel
 
-## Использование
-
-Для использования TabPanel в вашем приложении, примените директиву `meTabPanel` к компоненту `dx-tab-panel`:
-
-<Source
-  language="html"
-  dark
-  code={`
+```html
 <dx-tab-panel
   meTabPanel
-  [dataSource]="dataSource"
-  [height]="height"
-  [iconPosition]="iconPosition"
-  [selectedIndex]="selectedIndex"
-  [width]="width"
-  [size]="size"
+  [dataSource]="tabItems"
+  [size]="'medium'"
+  [styling]="'outside'"
 >
   <div *dxTemplate="let item of 'item'">
     <div class="tabpanel-content">
-      <p>{{item.content}}</p>
+      {{ item.content }}
     </div>
   </div>
 </dx-tab-panel>
-  `}
-/>
+```
 
-## Примеры
-
-### Вертикальное расположение вкладок
-
-{" "}
+### Вертикальные вкладки
 
 <Canvas of={tabPanelStories.VerticalTabs} />
 
-### Различные позиции иконок
+```html
+<dx-tab-panel
+  meTabPanel
+  [dataSource]="tabItems"
+  [tabsPosition]="'left'"
+  [height]="300"
+>
+</dx-tab-panel>
+```
 
-{" "}
+### Разные позиции иконок
 
 <Canvas of={tabPanelStories.DifferentIconPositions} />
 
-## API
+```html
+<dx-tab-panel
+  meTabPanel
+  [dataSource]="tabItems"
+  [iconPosition]="'top'"
+>
+</dx-tab-panel>
+```
 
-{" "}
+### Структура данных
 
-<Controls
-  of={tabPanelStories.Default}
-  include={[
-    "dataSource",
-    "height",
-    "hoverStateEnabled",
-    "iconPosition",
-    "selectedIndex",
-    "swipeEnabled",
-    "size",
-    "width",
-  ]}
-/>
+```typescript
+interface TabPanelItem {
+  title: string;          // Заголовок вкладки
+  icon: string;           // Иконка
+  content: string;        // Содержимое
+  disabled?: boolean;     // Отключение вкладки
+  visible?: boolean;      // Видимость вкладки
+}
 
-## Кастомизация
+const tabItems = [
+  {
+    title: 'To Do',
+    icon: 'user',
+    content: 'Content for To Do tab'
+  },
+  // ...
+];
+```
 
-### Внутренние отступы
+## API Reference
 
-По умолчанию контейнер TabPanel не имеет внутренних отступов. Вы можете добавить их через:
+### Основные параметры
 
-1. CSS-классы:
+| Параметр | Тип | По умолчанию | Описание |
+|----------|-----|--------------|-----------|
+| size | 'small' \| 'medium' \| 'large' | 'medium' | Размер компонента |
+| styling | 'inside' \| 'outside' | 'outside' | Стиль отображения |
+| tabsPosition | 'top' \| 'bottom' \| 'left' \| 'right' | 'top' | Позиция вкладок |
+| iconPosition | 'bottom' \| 'top' \| 'start' \| 'end' | 'start' | Позиция иконок |
+| height | number \| string | 'auto' | Высота панели |
+| width | number \| string | '100%' | Ширина панели |
+| selectedIndex | number | 0 | Индекс активной вкладки |
+
+### Состояния
+
+| Параметр | Тип | По умолчанию | Описание |
+|----------|-----|--------------|-----------|
+| disabled | boolean | false | Отключение компонента |
+| activeStateEnabled | boolean | true | Состояние активности |
+| focusStateEnabled | boolean | true | Состояние фокуса |
+| hoverStateEnabled | boolean | true | Состояние наведения |
+| swipeEnabled | boolean | false | Переключение свайпом |
+
+### События
+
+- `onSelectionChanged` - при смене вкладки
+- `onTitleClick` - при клике на заголовок
+- `onTitleHold` - при удержании заголовка
+- `onTitleRendered` - после рендера заголовка
+
+### Стилизация
+
+#### CSS-классы
+
 ```css
+/* Отступы контейнера */
 .my-tabpanel .dx-tabpanel-container {
   padding: 20px;
 }
-```
-2. CSS-переменную:
 
-```css
-  .my-tabpanel {
-  --me-tabpanel-container-padding: 20px;
+/* Стили вкладок */
+.my-tabpanel .dx-tab {
+  padding: 10px 20px;
+}
+
+/* Активная вкладка */
+.my-tabpanel .dx-tab-selected {
+  background-color: #f0f0f0;
 }
 ```
+
+#### CSS-переменные
+
+```css
+.my-tabpanel {
+  --me-tabpanel-container-padding: 20px;
+  --me-tabpanel-tab-padding: 10px 20px;
+  --me-tabpanel-selected-bg: #f0f0f0;
+}
+```
+
+<style>
+  {`
+  h2 {
+    border-bottom: none !important;
+  }
+
+  a {
+    display: inline-block !important;
+  }
+
+  a p {
+    color: #029CFD !important;
+  }
+
+  table {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
+`}
+</style>
