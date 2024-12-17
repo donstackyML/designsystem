@@ -144,7 +144,7 @@ export default {
 				<dx-validator>
         <dxi-validation-rule
             type="required"
-            message="Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required "
+            message="Required"
         >
         </dxi-validation-rule>
     </dx-validator>
