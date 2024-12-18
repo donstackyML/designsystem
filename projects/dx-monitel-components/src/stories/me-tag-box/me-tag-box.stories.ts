@@ -1,4 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { DxTagBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { MeLabelDirective, MeTagBoxDirective } from '../../public-api';
 
@@ -34,12 +34,6 @@ export default {
       defaultValue: true,
       description: 'Определяет состояние при нажатии на компонент',
     },
-    pickerType: {
-      control: 'select',
-      options: ['calendar', 'list', 'native', 'rollers'],
-      description: 'Тип пикера для выбора значений',
-      defaultValue: 'list',
-    },
     applyValueMode: {
       control: 'select',
       options: ['instantly', 'useButtons'],
@@ -74,10 +68,6 @@ export default {
       description:
         'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `top`, `bottom`, `left`, `right`.',
     },
-    grouped: {
-      control: 'boolean',
-      description: 'Указывает, следует ли группировать элементы данных',
-    },
     height: {
       control: 'text',
     },
@@ -102,10 +92,6 @@ export default {
     showSelectionControls: {
       control: 'boolean',
     },
-    description: {
-      control: 'text',
-      description: 'Описание для компонента',
-    },
   },
   args: {
     items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
@@ -114,22 +100,20 @@ export default {
     height: '',
     label: 'Label*',
     labelMode: 'outside',
+    disabled: false,
+    isValid: true,
+    readOnly: false,
     applyValueMode: 'instantly',
-    grouped: false,
     searchEnabled: true,
     placeholder: 'Выберите...',
-    pickerType: 'list',
     showClearButton: false,
     showSelectionControls: false,
     hideSelectedItems: false,
     activeStateEnabled: true,
     hoverStateEnabled: true,
     focusStateEnabled: true,
-    disabled: false,
-    isValid: true,
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
-    readOnly: false,
     description: 'description',
   },
   render: (args) => ({
@@ -137,28 +121,7 @@ export default {
     template: `
 		<dx-tag-box
 			meTagBox
-			[items]="items"
-			[(size)]="size"
-			[(label)]="label"
-			[(labelMode)]="labelMode"
-			[(activeStateEnabled)]="activeStateEnabled"
-			[(applyValueMode)]="applyValueMode"
-			[(fieldTemplate)]="fieldTemplate"
-			[(disabled)]="disabled"
-			[(hoverStateEnabled)]="hoverStateEnabled"
-			[(focusStateEnabled)]="focusStateEnabled"
-			[(isValid)]="isValid"
-			[validationMessageMode]="validationMessageMode"
-			[validationMessagePosition]="validationMessagePosition"
-			[(grouped)]="grouped"
-			[(height)]="height"
-			[(width)]="width"
-			[(hideSelectedItems)]="hideSelectedItems"
-			[(placeholder)]="placeholder"
-			[(readOnly)]="readOnly"
-			[(searchEnabled)]="searchEnabled"
-			[(showClearButton)]="showClearButton"
-			[(showSelectionControls)]="showSelectionControls"
+			${argsToTemplate(args)}
     >
 		<dx-validator>
         <dxi-validation-rule
@@ -168,8 +131,17 @@ export default {
         </dxi-validation-rule>
     </dx-validator>
 		</dx-tag-box>
-    <p class='tag-box-desc' *ngIf="description">{{ description }}</p>
+    <div class='me-text-body2' *ngIf="size=='large'">{{ description }}</div>
+    <div class='me-text-caption' *ngIf="size=='small'">{{ description }}</div>
+    <div class='me-text-caption' *ngIf="size=='medium'">{{ description }}</div>
 		`,
+		styles: [
+			`
+			.me-text-body2, me-text-caption {
+				color: var(--Text-Secondary);
+				margin-top: 4px;
+			}`
+		]
   }),
 } as Meta;
 
@@ -189,22 +161,7 @@ export const WithLabelRow: StoryObj = {
 		Label*
 			<dx-tag-box
 			meTagBox
-			[items]="items"
-			[(height)]="height"
-			[(width)]="width"
-			[(size)]="size"
-			[(placeholder)]="placeholder"
-			[(activeStateEnabled)]="activeStateEnabled"
-			[(hoverStateEnabled)]="hoverStateEnabled"
-			[(focusStateEnabled)]="focusStateEnabled"
-			[(applyValueMode)]="applyValueMode"
-			[(disabled)]="disabled"
-			[(readOnly)]="readOnly"
-			[(grouped)]="grouped"
-			[(hideSelectedItems)]="hideSelectedItems"
-			[(searchEnabled)]="searchEnabled"
-			[(showClearButton)]="showClearButton"
-			[(showSelectionControls)]="showSelectionControls"
+			${argsToTemplate(args)}
 				></dx-tag-box>
 		</label>
 		`,

@@ -375,38 +375,27 @@
   }
 
   &.dx-texteditor-with-floating-label {
-    &.dx-texteditor-empty .dx-texteditor-label .dx-label span {
-      margin-top: 0;
-    }
-
     .dx-texteditor-label {
       padding: 0;
       align-items: center;
-
-      .dx-label span {
-        transform: translate(0, -7.5px);
-      }
-    }
-
-    &.dx-state-focused.dx-state-readonly .dx-texteditor-label .dx-label span {
-      top: 0;
     }
 
     &.dx-state-focused,
     &:not(.dx-texteditor-empty) {
-      .dx-texteditor-label {
-        top: -13px;
-        left: -9px;
+      &:not(.dx-state-readonly) {
+        .dx-texteditor-label {
+          top: -13px;
+          left: -9px;
+        }
+        &.me-inputs-large {
+          .dx-texteditor-label {
+            top: -17px;
+          }
+        }
       }
 
       &:not(.dx-state-disabled) {
         color: var(--Controls-Content-In-Controls-Main-Default);
-      }
-
-      &.me-inputs-large {
-        .dx-texteditor-label {
-          top: -17px;
-        }
       }
     }
   }

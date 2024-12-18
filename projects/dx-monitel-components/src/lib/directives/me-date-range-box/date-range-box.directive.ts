@@ -34,13 +34,6 @@ export class MeDateRangeBoxDirective implements OnInit {
         class: `me-date-range-box-overlay`,
       },
     });
-
-    // this.component.instance.option('calendarOptions', {
-    //   showWeekNumbers: true,
-    //   bindingOptions: {
-    //     class: 'me-calendar-show-weeks-numbers',
-    //   },
-    // });
   }
 
   get isSizeLarge() {
