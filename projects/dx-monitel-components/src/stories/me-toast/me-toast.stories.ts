@@ -151,7 +151,7 @@ export const SmallWarning: Story = {
             <dx-button
               icon="close"
               stylingMode="text"
-              class="me-toast-close-button me-toast-close-button-warning"
+              class="me-toast-close-button"
               (onClick)="isVisible = false"
             ></dx-button>
           </div>
@@ -200,7 +200,6 @@ export const LargeError: Story = {
             <div class="me-title-header1">Ошибка</div>
             <dx-button
               icon="close"
-							type="danger"
               stylingMode="text"
               class="me-toast-close-button"
               (onClick)="isVisible = false"
@@ -252,7 +251,6 @@ export const LargeSuccess: Story = {
             <div class="me-title-header1">Успешно</div>
             <dx-button
               icon="close"
-              type="success"
               stylingMode="text"
               stylingMode="text"
               class="me-toast-close-button"

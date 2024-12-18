@@ -13,23 +13,8 @@ interface TabPanelItem {
   content: string;
 }
 
-interface MeTabPanelProps {
-  dataSource: TabPanelItem[];
-  size: 'small' | 'medium' | 'large';
-  styling: 'inside' | 'outside';
-  tabsPosition: 'top' | 'bottom' | 'left' | 'right';
-  iconPosition: 'left' | 'top' | 'start' | 'end';
-  height: number | string;
-  width: number | string;
-  activeStateEnabled: boolean;
-  focusStateEnabled: boolean;
-  hoverStateEnabled: boolean;
-  disabled: boolean;
-  swipeEnabled: boolean;
-  selectedIndex: number;
-}
 
-const meta: Meta<MeTabPanelProps> = {
+const meta: Meta = {
   title: 'Components/TabPanel',
   component: MeTabPanelDirective,
   decorators: [
@@ -38,7 +23,7 @@ const meta: Meta<MeTabPanelProps> = {
       imports: [DxTabPanelModule],
     }),
   ],
-  render: (args: MeTabPanelProps) => ({
+  render: (args) => ({
     props: args,
     template: `
       <dx-tab-panel
@@ -56,6 +41,7 @@ const meta: Meta<MeTabPanelProps> = {
         [swipeEnabled]="swipeEnabled"
         [width]="width"
         [size]="size"
+				
       >
         <div *dxTemplate="let item of 'item'">
           <div class="tabpanel-content">
@@ -94,7 +80,6 @@ const meta: Meta<MeTabPanelProps> = {
 };
 
 export default meta;
-type Story = StoryObj<MeTabPanelProps>;
 
 const defaultTabPanelData: TabPanelItem[] = [
   {
@@ -114,7 +99,7 @@ const defaultTabPanelData: TabPanelItem[] = [
   },
 ];
 
-export const Default: Story = {
+export const Default: StoryObj = {
   args: {
     dataSource: defaultTabPanelData,
     size: 'medium',
@@ -132,14 +117,14 @@ export const Default: Story = {
   },
 };
 
-export const VerticalTabs: Story = {
+export const VerticalTabs: StoryObj = {
   args: {
     ...Default.args,
     height: 300,
   },
 };
 
-export const DifferentIconPositions: Story = {
+export const DifferentIconPositions: StoryObj = {
   args: {
     ...Default.args,
     iconPosition: 'top',

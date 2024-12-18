@@ -112,9 +112,18 @@ export default {
         </dxi-validation-rule>
     </dx-validator>
 		</dx-number-box>
-    <p class='number-box-desc' *ngIf="description">{{ description }}</p>
+    <div class='me-text-body2' *ngIf="size=='large'">description </div>
+    <div class='me-text-caption' *ngIf="size=='small'">description </div>
+    <div class='me-text-caption' *ngIf="size=='medium'">description </div>
 		`,
-  }),
+		styles: [
+		`
+		.me-text-body2, .me-text-caption {
+			color: var(--Text-Secondary);
+			margin-top: 4px;
+		}`
+	]
+	}),
 } as Meta;
 
 export const Default: StoryObj = {};
@@ -140,24 +149,51 @@ export const WithLabelRow: StoryObj = {
   }),
 };
 
-export const WithDiscription: StoryObj = {
+export const WithCurrency: StoryObj = {
   args: {
     ...Default.args,
-    size: 'medium',
+		size: 'large',
+		currencyButton: {
+			text: '€',
+			stylingMode: 'text',
+			width: '24px',
+			height: '24px',
+			elementAttr: {
+      	class: 'me-button me-button-small me-button-icon-only',
+    	},
+			onClick: (e: any) => {
+				if (e.component.option('text') === '$') {
+					e.component.option('text', '€');
+				} else {
+					e.component.option('text', '$');
+				}
+			},
+		},
+    label: 'Label',
+    labelMode: 'static',
+    placeholder: 'Placeholder',
+    format: '#,##0.00',
   },
   render: (args) => ({
     props: args,
     template: `
 			<dx-number-box
 			meNumberBox
-			${argsToTemplate(args)}
-				></dx-number-box>
-				<div class="me-text-body2">Description</div>
+				>
+			  <dxi-button
+          name="currency"
+          location="after"
+          [options]="currencyButton"
+        ></dxi-button>
+			</dx-number-box>
+    <div class='me-text-body2'>description</div>
 		`,
     styles: [
       'label { justify-content: flex-start; }',
       'span { font-size: 14px; line-height: 20px; }',
-      '.me-text-body2 { height: 20px; margin-top: 4px; color: #808084 }',
+			'.me-text-body2 { height: 20px; margin-top: 4px; color: #808084 }',
+			'.currency { padding: 0; }',
+			'.me-text-body2 { color: var(--Text-Secondary); margin-top: 4px; }'
     ],
   }),
 };
