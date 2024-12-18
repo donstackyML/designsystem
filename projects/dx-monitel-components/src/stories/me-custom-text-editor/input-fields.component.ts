@@ -103,7 +103,6 @@ interface ButtonProperties extends DxButtonTypes.Properties {
             [showDropDownButton]="true"
             [openOnFieldClick]="true"
           >
-            
             <dxi-button
               name="prevDate"
               location="before"
@@ -123,6 +122,35 @@ interface ButtonProperties extends DxButtonTypes.Properties {
       </div>
     </div>
   `,
+  styles: [
+    `
+      ::ng-deep
+        .dx-texteditor-buttons-container
+        > .dx-button
+        > .dx-button-content {
+        padding: 0;
+        align-items: center;
+      }
+
+      ::ng-deep .dx-texteditor-buttons-container {
+        .dx-state-active,
+        .dx-state-hover {
+          background: transparent;
+        }
+      }
+      .me-date-box-medium ::ng-deep {
+        .dx-icon-chevronleft::before {
+          /*font-size: 6px;*/
+        }
+      }
+      ::ng-deep
+        .me-inputs.dx-texteditor.dx-widget
+        .dx-texteditor-container
+        .dx-texteditor-buttons-container {
+        align-items: center;
+      }
+    `,
+  ],
 })
 export class InputFieldsComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
