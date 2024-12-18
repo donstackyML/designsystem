@@ -137,7 +137,7 @@ export default {
 		`,
 		styles: [
 			`
-			.me-text-body2, me-text-caption {
+			.me-text-body2, .me-text-caption {
 				color: var(--Text-Secondary);
 				margin-top: 4px;
 			}`
@@ -147,9 +147,64 @@ export default {
 
 export const Default: StoryObj = {};
 
+export const WithGroups: StoryObj = {
+	args: {
+		...Default.args,
+		items: [
+			{ key: 'Group 1', items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] },
+			{ key: 'Group 2', items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] },
+		],
+		grouped: true
+	}
+};
+export const WithGroupsAndIcons: StoryObj = {
+	args: {
+		...Default.args,
+		items: [
+			{ key: 'Group 1', items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] },
+			{ key: 'Group 2', items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] },
+		],
+		grouped: true
+	},
+	render: (args) => ({
+    props: { ...args },
+    template: `
+		<dx-tag-box
+			meTagBox
+			${argsToTemplate(args)}
+    >
+		<dx-validator>
+        <dxi-validation-rule
+            type="required"
+            message="Required"
+        >
+        </dxi-validation-rule>
+    </dx-validator>
+		<div *dxTemplate="let data of 'group'">
+          <div class="custom-icon">
+            <span class="dx-icon-globe icon"></span>
+            {{ data.key }}
+          </div>
+        </div>
+		</dx-tag-box>
+    <div class='me-text-body2' *ngIf="size=='large'">{{ description }}</div>
+    <div class='me-text-caption' *ngIf="size=='small'">{{ description }}</div>
+    <div class='me-text-caption' *ngIf="size=='medium'">{{ description }}</div>
+		`,
+		styles: [
+			`
+			.me-text-body2, .me-text-caption {
+				color: var(--Text-Secondary);
+				margin-top: 4px;
+			}`
+		]
+  }),
+};
+
 export const WithLabelRow: StoryObj = {
   args: {
-    ...Default.args,
+		...Default.args,
+		labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
