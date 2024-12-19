@@ -86,7 +86,6 @@ import {
             [showFirstSubmenuMode]="{ name: 'onClick', delay: 0 }"
             [showSubmenuMode]="{ name: 'onClick', delay: 0 }"
             [adaptivityEnabled]="false"
-            [position]="{ my: 'left top', at: 'right top', offset: '0 0' }"
             [size]="'medium'"
           ></dx-menu>
         </div>
