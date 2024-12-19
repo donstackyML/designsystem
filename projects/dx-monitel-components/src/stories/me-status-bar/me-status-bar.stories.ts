@@ -59,7 +59,7 @@ export const ErrorStatus: Story = {
     ],
     rightItems: [
       {
-        icon: 'error_outlined',
+        icon: 'error',
         text: 'Отсутствует соединение с источником данных',
         type: 'error',
         fill: true,

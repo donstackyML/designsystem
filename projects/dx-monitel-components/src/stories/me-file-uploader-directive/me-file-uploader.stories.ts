@@ -301,8 +301,8 @@ export const AdvancedCustomDropZone: Story = {
           >
             <img id="dropzone-image" [src]="componentState.imageSource" *ngIf="componentState.imageSource" alt="" />
             <div id="dropzone-text" class="flex-box" *ngIf="componentState.textVisible">
-              <span>Drag & Drop the desired file</span>
-              <span>…or click to browse for a file instead.</span>
+              <span class="me-text-caption">Drag & Drop the desired file</span>
+              <span class="me-text-caption">…or click to browse for a file instead.</span>
             </div>
             <dx-progress-bar
               #uploadProgress
