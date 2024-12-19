@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as selectBoxStories from "./me-select-box.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
 
@@ -11,13 +11,14 @@ import { Figma } from "@storybook/addon-designs/blocks";
 Применение директивы <code>meSelectBox</code> к элементу <code>dx-select-box</code> приводит его размеры
 к значению <code>size=medium (32)</code> из дизайн-системы, задает по-умолчанию <code>stylingMode=filled</code> и предоставляет доступ к другим свойствам.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/)
+[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/)
 
-<Story of={selectBoxStories.Default} />
+[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/SelectBox/Overview/Light/)
+
+<Canvas of={selectBoxStories.Default} />
 
 <Controls of={selectBoxStories.Default} />
 
-<Source of={selectBoxStories.Default} dark />
 
 ## Дизайн
 
@@ -28,11 +29,12 @@ import { Figma } from "@storybook/addon-designs/blocks";
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
 />
 
-{/* ## Примеры использования: */}
+## Примеры использования:
 
-{/* - [определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля) */}
-{/* - [положение лейбла сверху](#положение-лейбла-сверху) */}
-{/* - [положение лейбла слева](#положение-лейбла-слева) */}
+- [Определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля)
+- [Положение лейбла сверху](#положение-лейбла-сверху)
+- [Положение лейбла слева](#положение-лейбла-слева)
+- [Кастомные данные](#кастомные-данные)
 
 ## Определение положения лейбла снаружи текстового поля
 
@@ -43,39 +45,39 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ### Положение лейбла сверху
 
-<Story of={selectBoxStories.WithLabelColumn} />
+Для положения `label` сверху используйте тэг <code>label</code> с директивой <code>meLabel</code> и установите параметр <code>labelDirection="column"</code>. Также установите необходимые стили выравнивания как <code>align-items: flex-start</code>.
 
-<Source
-  code={`<label meLabel labelDirection="column">
-    Label
-    <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
-</label>`}
-  dark
-/>
+<Canvas of={selectBoxStories.WithLabelColumn} />
 
 ### Положение лейбла слева
 
-{" "}
+Для положения `label` слева установите параметр <code>labelDirection="row"</code>.
 
-<Story of={selectBoxStories.WithLabelRow} />
+<Canvas of={selectBoxStories.WithLabelRow} />
 
-{" "}
+<code>width</code> определяет размер текстового поля вместе с лейблом (используется
+в теге <code>label</code> для расположения <code>labelPosition="left"</code>)
 
-<Source
-  code={`<label meLabel labelDirection="row" width="250px">
-    Label
-    <dx-select-box meSelectBox [dataSource]="dataSource"></dx-select-box>
-    </label>`}
-  dark
-/>
+### Кастомные данные
 
-    <code>width</code> определяет размер текстового поля вместе с лейблом (используется
-    в теге <code>label</code> для расположения <code>labelPosition="left"</code>)
+Для использования кастомных данных используйте `*dxTemplate` внутри тэга основного компонента.
 
-    <style>
+<Source code={`
+<dx-select-box
+  [dataSource]="products">
+  <div *dxTemplate="let data of 'field'">
+    <div class="custom-item">
+      <img alt="Product name" src="{{ data && data.ImageSrc }}" />
+      <div> {{ data && data.Name }} </div>
+    </div>
+  </div>
+</dx-select-box>
+`} dark language="html" />
 
-{`      h2 {
-        border-bottom: none !important;
-    }`}
-
+<style>
+{`
+    h2 {
+      border-bottom: none !important;
+    }
+`}
 </style>
