@@ -2,9 +2,9 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import {
   DxButtonModule,
   DxFileUploaderModule,
+  DxProgressBarModule,
   DxSelectBoxModule,
   DxTextBoxModule,
-  DxProgressBarModule,
 } from 'devextreme-angular';
 import { MeFileUploaderDirective } from '../../public-api';
 
