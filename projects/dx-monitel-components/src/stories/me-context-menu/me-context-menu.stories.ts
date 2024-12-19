@@ -8,6 +8,7 @@ import { DxButtonComponent, DxContextMenuModule } from 'devextreme-angular';
 import { MeIconStoreService } from 'src/app/service/icon-store.service';
 import {MeButtonDirective, MeContextMenuDirective, MeIconComponent} from '../../public-api';
 
+
 const iconStore = new MeIconStoreService();
 
 const data = [
@@ -1268,31 +1269,32 @@ export default {
       },
     },
   },
+} as Meta<MeContextMenuDirective | DxContextMenuModule>;
 
+type Story = StoryObj<MeContextMenuDirective | DxContextMenuModule>;
+
+export const Default: Story = {
+  name: 'Default Menu',
   args: {
     dataSource: data,
     focusStateEnabled: true,
     selectionMode: 'multiple',
     activeStateEnabled: false,
   },
-
   render: (args) => ({
     props: args,
     template: `
-    <dx-button meButton text="Right click" id="contextButton"></dx-button>
+    <dx-button meButton text="Right click Default" id="contextButtonDefault"></dx-button>
     <dx-context-menu
         meContextMenu
-        target="#contextButton"
+        target="#contextButtonDefault"
         ${argsToTemplate(args)}>
-    </dx-context-menu>`,
-  }),
-} as Meta<MeContextMenuDirective | DxContextMenuModule>;
-
-type Story = StoryObj<MeContextMenuDirective | DxContextMenuModule>;
-
-export const Default: Story = {};
+    </dx-context-menu>`
+  })
+};
 
 export const SelectedItems: Story = {
+  name: 'Selected Items Menu',
   args: {
     dataSource: [
       {
@@ -1308,28 +1310,26 @@ export const SelectedItems: Story = {
       { text: 'Add to Favorite', icon: 'favorite', selected: true },
     ],
   },
-
   render: (args) => ({
     props: args,
     template: `
-<dx-button meButton text="Right click" id="contextButton"></dx-button>
-<dx-context-menu
-meContextMenu
-  [dataSource]="dataSource"
-  target="#contextButton"
->
-  <div *dxTemplate="let itemData of 'item'">
-  <div class="item-template-container">
-    <me-icon [icon]="itemData.icon" [size]="size"></me-icon>
-    <span class="dx-menu-item-text">{{ itemData.text }}</span>
-    <me-icon
-      *ngIf="itemData.items"
-      icon="chevron_right"
-      [size]="size"
-      style="margin-left: auto"
-    ></me-icon>
-  </div>
-</div>
-</dx-context-menu>`,
-  }),
+    <dx-button meButton text="Right click Selected" id="contextButtonSelected"></dx-button>
+    <dx-context-menu
+        meContextMenu
+        target="#contextButtonSelected"
+        ${argsToTemplate(args)}>
+      <div *dxTemplate="let itemData of 'item'">
+        <div class="item-template-container">
+          <me-icon [icon]="itemData.icon" [size]="size"></me-icon>
+          <span class="dx-menu-item-text">{{ itemData.text }}</span>
+          <me-icon
+            *ngIf="itemData.items"
+            icon="chevron_right"
+            [size]="size"
+            style="margin-left: auto"
+          ></me-icon>
+        </div>
+      </div>
+    </dx-context-menu>`
+  })
 };

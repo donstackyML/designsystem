@@ -2,25 +2,7 @@ import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as contextmenuStories from "./me-context-menu.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
 
-<Meta
-  title="Components/ContextMenu"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true }
-    },
-    layout: 'centered',
-    docs: {
-      description: {
-        component: 'Компонент ContextMenu для отображения контекстного меню'
-      }
-    },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=745-25563&t=1Amx2NO5kVyJu99X-0'
-    }
-  }}
-/>
+<Meta of={contextmenuStories} /> {/* Добавлен параметр of */}
 
 # ContextMenu
 
@@ -32,8 +14,50 @@ import { Figma } from "@storybook/addon-designs/blocks";
 - [API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxContextMenu/)
 - [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ContextMenu/Basics/MaterialBlueLight/)
 
+## Базовое использование
+
 <Canvas of={contextmenuStories.Default} />
+
 <Controls of={contextmenuStories.Default} />
+
+## Выбранные элементы
+
+<Canvas of={contextmenuStories.SelectedItems} />
+
+## Примеры кода
+
+### Базовое использование
+
+<Source
+  code={`
+<dx-button meButton text="Right click" id="contextButton"></dx-button>
+<dx-context-menu
+  meContextMenu
+  [dataSource]="dataSource"
+  target="#contextButton">
+</dx-context-menu>`}
+  language="html"
+  dark
+/>
+
+### Выбранные элементы
+
+<Source
+  code={`
+const dataSource = [
+  {
+    text: 'Share',
+    icon: 'public',
+    items: [
+      { icon: 'menu_book', text: 'Facebook', selected: true },
+      { icon: 'single_bed', text: 'Twitter' }
+    ]
+  },
+  { text: 'Add to Favorite', icon: 'favorite', selected: true }
+];`}
+  language="typescript"
+  dark
+/>
 
 ## Дизайн
 
@@ -43,79 +67,16 @@ import { Figma } from "@storybook/addon-designs/blocks";
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=745-25563&t=1Amx2NO5kVyJu99X-0"
 />
 
-## Примеры использования
-
-- [Базовое использование](#базовое-использование)
-- [Выбранные элементы](#выбранные-элементы)
-- [Заголовки групп](#заголовки-групп)
-
-### Базовое использование
-
-<Canvas of={contextmenuStories.Default} />
-
-```html
-<dx-button meButton text="Right click" id="contextButton"></dx-button>
-<dx-context-menu
-  meContextMenu
-  [dataSource]="dataSource"
-  target="#contextButton">
-</dx-context-menu>
-```
-
-### Выбранные элементы
-
-<Canvas of={contextmenuStories.SelectedItems} />
-
-> Состояние `selected` устанавливается в dataSource:
-
-```typescript
-dataSource: [
-  {
-    text: 'Share',
-    icon: 'globe',
-    items: [
-      { text: 'Facebook', selected: true },
-      { text: 'Twitter' }
-    ]
-  },
-  { text: 'Add to Favorite', selected: true }
-]
-```
-
-### Заголовки групп
-
-> Для добавления заголовка группы используйте следующие свойства:
-
-```typescript
-{
-  text: 'Заголовок группы',
-  icon: iconService.getIcon({ icon: 'public', size: '24' }),
-  disabled: true, // отключает hover и active состояния
-  beginGroup: true // добавляет разделитель
-}
-```
-
-### Основные параметры:
-
-- `dataSource` - данные для отображения
-- `target` - элемент, на котором вызывается контекстное меню
-- `selectionMode` - режим выделения (`single`, `multiple`, `all`, `none`)
-- `items` - вложенные пункты меню
-- `disabled` - отключение пункта меню
-- `beginGroup` - начало новой группы с разделителем
-
 <style>
   {`
-  h2 {
-    border-bottom: none !important;
-  }
-
-  a {
-    display: inline-block !important;
-  }
-
-  a p {
-    color: #029CFD !important;
-  }
-`}
+    h2 {
+      border-bottom: none !important;
+    }
+    a {
+      display: inline-block !important;
+    }
+    a p {
+      color: #029CFD !important;
+    }
+  `}
 </style>

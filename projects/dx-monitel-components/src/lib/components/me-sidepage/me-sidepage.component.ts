@@ -50,7 +50,6 @@ import {NgIf} from "@angular/common";
       position: fixed;
       top: 0;
       height: 100vh;
-      background: white;
       transition: transform 0.3s ease;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
