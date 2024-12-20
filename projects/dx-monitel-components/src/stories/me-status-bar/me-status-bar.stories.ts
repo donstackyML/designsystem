@@ -174,7 +174,7 @@ export const WithoutFill: Story = {
     ],
     rightItems: [
       {
-        icon: 'error_outlined',
+        icon: 'error',
         text: 'Отсутствует соединение с источником данных',
         type: 'error',
         fill: false,

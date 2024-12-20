@@ -601,35 +601,107 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 }
 
-.me-tabs.dx-tabs.dx-state-disabled {
-  .dx-scrollable-content .dx-tabs-wrapper {
+//.me-tabs.dx-tabs.dx-state-disabled {
+//  .dx-scrollable-content .dx-tabs-wrapper {
+//    .dx-item.dx-tab {
+//      &.dx-tab-selected::after {
+//        background-color: var(--Controls-Content-In-Controls-Main-Disabled);
+//      }
+//      * {
+//        color: var(--Controls-Content-In-Controls-Main-Disabled);
+//      }
+//      svg {
+//        opacity: 0.4;
+//      }
+//    }
+//  }
+//}
+//.me-tabs.dx-tabs.dx-state-disabled {
+//  .dx-item.dx-tab {
+//    &.dx-tab-selected::after {
+//      background-color: var(--Controls-Content-In-Controls-Main-Disabled);
+//    }
+//
+//    .dx-tab-text-span {
+//      color: var(--Controls-Content-In-Controls-Main-Disabled)!important;
+//    }
+//    * {
+//      color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+//    }
+//    svg {
+//      opacity: 0.4;
+//    }
+//  }
+//}
+// Стили для disabled состояния табов
+.me-tabs.dx-tabs {
+  // Общие стили для disabled состояния вкладок
+  &.dx-state-disabled {
     .dx-item.dx-tab {
-      &.dx-tab-selected::after {
-        background-color: var(--Controls-Content-In-Controls-Main-Disabled);
+      // Стили для выбранной вкладки в disabled состоянии
+      &.dx-tab-selected {
+        &::after {
+          background-color: var(--Controls-Content-In-Controls-Main-Disabled);
+        }
       }
-      * {
-        color: var(--Controls-Content-In-Controls-Main-Disabled);
+
+      // Стили для текста и иконок в disabled состоянии
+      .dx-tab-text {
+        .dx-tab-text-span,
+        .dx-tab-text-span-pseudo {
+          color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+          opacity: 0.8;
+        }
       }
+
+      // Стили для иконок в disabled состоянии
+      .dx-icon,
       svg {
-        opacity: 0.4;
+        color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+        opacity: 0.8;
+      }
+
+      // Отключение hover и active эффектов
+      &:hover,
+      &:active {
+        background-color: transparent;
+        cursor: not-allowed;
+      }
+    }
+
+    // Стили для скроллбаров в disabled состоянии
+    .dx-scrollable-content {
+      .dx-tabs-wrapper {
+        opacity: 0.8;
       }
     }
   }
-}
-.me-tabs.dx-tabs.dx-state-disabled {
-  .dx-item.dx-tab {
+
+  // Стили для отдельных disabled вкладок
+  .dx-item.dx-tab.dx-state-disabled {
+    // Те же стили, что и выше, но для отдельных вкладок
     &.dx-tab-selected::after {
       background-color: var(--Controls-Content-In-Controls-Main-Disabled);
     }
 
-    .dx-tab-text-span {
-      color: var(--Controls-Content-In-Controls-Main-Disabled);
+    .dx-tab-text {
+      .dx-tab-text-span,
+      .dx-tab-text-span-pseudo {
+        color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+        opacity: 0.8;
+      }
     }
-    * {
-      color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
-    }
+
+    .dx-icon,
     svg {
-      opacity: 0.4;
+      color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+      opacity: 0.8;
+    }
+
+    &:hover,
+    &:active {
+      background-color: transparent;
+      cursor: not-allowed;
     }
   }
 }
