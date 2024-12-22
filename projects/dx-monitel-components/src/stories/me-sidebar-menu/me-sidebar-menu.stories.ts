@@ -126,12 +126,26 @@ const DEMO_ITEMS: MenuItem[] = [
   },
 ];
 
+const DEMO_BOTTOM_ITEMS: MenuItem[] = [
+  {
+    id: 'downloads',
+    text: 'Загрузки',
+    icon: 'download',
+  },
+  {
+    id: 'settings',
+    text: 'Настройки',
+    icon: 'settings',
+  },
+];
+
 export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
       <me-sidebar
         [items]="items"
+        [bottomItems]="bottomItems"
         [title]="title"
         [isCollapsed]="isCollapsed"
         [toggleIcon]="toggleIcon"
@@ -149,6 +163,7 @@ export const Default: Story = {
   }),
   args: {
     items: DEMO_ITEMS,
+    bottomItems: DEMO_BOTTOM_ITEMS,
     title: 'Меню',
     isCollapsed: false,
     toggleIcon: 'chevron_left',

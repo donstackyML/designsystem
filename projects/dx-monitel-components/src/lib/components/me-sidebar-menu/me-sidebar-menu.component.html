@@ -1,0 +1,90 @@
+<div #sidebar class="me-sidebar" [class.me-sidebar--collapsed]="isCollapsed" [style.width]="getCurrentWidth() + 'px'">
+  <div class="me-sidebar_content">
+    <div class="me-sidebar__header">
+      <div class="me-sidebar__header-content">
+        <span *ngIf="!isCollapsed" class="me-sidebar__title">{{ title }}</span>
+        <ng-content select="[header]"></ng-content>
+      </div>
+      <me-icon [icon]="toggleIcon" size="medium" color="#666666" class="me-sidebar__toggle" (click)="toggleSidebar()"></me-icon>
+    </div>
+    <div class="me-sidebar__divider"></div>
+    <ng-content select="[search]"></ng-content>
+    <dx-tree-view
+      #treeView
+      [items]="items"
+      [width]="'100%'"
+      [selectByClick]="true"
+      [expandedExpr]="'expanded'"
+      [displayExpr]="'text'"
+      [searchEnabled]="false"
+      [focusStateEnabled]="false"
+      [hoverStateEnabled]="true"
+      [selectNodesRecursive]="false"
+      [showCheckBoxesMode]="'none'"
+      [selectionMode]="'single'"
+      [expandEvent]="'click'"
+      itemTemplate="itemTemplate"
+      (onItemClick)="onItemClick($event)"
+    >
+      <div *dxTemplate="let item of 'itemTemplate'">
+        <div class="me-sidebar__item" [class.me-sidebar__item--selected]="item.selected" [class.me-sidebar__item--with-children]="item.items?.length">
+          <div class="me-sidebar__item-content">
+            <me-icon *ngIf="item.icon" [icon]="item.icon" [size]="'medium'" [color]="'#666666'" class="me-sidebar__item-icon"></me-icon>
+            <span *ngIf="!isCollapsed" class="me-sidebar__item-text">{{ item.text }}</span>
+          </div>
+          <div class="me-sidebar__item-right">
+            <div *ngIf="item.badge && !isCollapsed" class="me-sidebar__item-badge">
+              {{ item.badge }}
+            </div>
+            <me-icon
+              *ngIf="item.items?.length && !isCollapsed"
+              [icon]="item.expanded ? expandedIcon : collapsedIcon"
+              size="medium"
+              [color]="'#666666'"
+              class="me-sidebar__item-expand"
+            ></me-icon>
+          </div>
+        </div>
+      </div>
+    </dx-tree-view>
+    <div class="me-sidebar__empty"></div>
+    <div class="me-sidebar__divider"></div>
+    <div class="me-sidebar__bottom">
+      <div
+        *ngFor="let item of bottomItems"
+        class="me-sidebar__item"
+        [class.me-sidebar__item--selected]="item.selected"
+        [class.me-sidebar__item--pressed]="item.pressed"
+        [class.me-sidebar__item--with-children]="item.items?.length"
+        (click)="bottomItemClick(item)"
+      >
+        <div class="me-sidebar__item-content">
+          <me-icon *ngIf="item.icon" [icon]="item.icon" [size]="'medium'" [color]="'#666666'" class="me-sidebar__item-icon"></me-icon>
+          <span *ngIf="!isCollapsed" class="me-sidebar__item-text">{{ item.text }}</span>
+        </div>
+        <div class="me-sidebar__item-right">
+          <div *ngIf="item.badge && !isCollapsed" class="me-sidebar__item-badge">
+            {{ item.badge }}
+          </div>
+          <me-icon
+            *ngIf="item.items?.length && !isCollapsed"
+            [icon]="item.expanded ? expandedIcon : collapsedIcon"
+            size="medium"
+            [color]="'#666666'"
+            class="me-sidebar__item-expand"
+          ></me-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    #dragHandleRight
+    class="resize-handle"
+    cdkDrag
+    (cdkDragStarted)="started($event)"
+    (cdkDragEnded)="ended($event)"
+    (cdkDragMoved)="dragMove($event)"
+    [cdkDragLockAxis]="'x'"
+    [style.height]="getHeight()"
+  ></div>
+</div>

@@ -5,10 +5,24 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  ElementRef,
+  NgZone,
+  AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DxTreeViewModule, DxButtonModule } from 'devextreme-angular';
+import {
+  DxTreeViewModule,
+  DxButtonModule,
+  DxTreeViewComponent,
+} from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDragEnd,
+  CdkDragMove,
+  CdkDragStart,
+} from '@angular/cdk/drag-drop';
 
 export interface MeSidebarMenuItem {
   id: string;
@@ -19,105 +33,94 @@ export interface MeSidebarMenuItem {
   badge?: number;
   onClick?: () => void;
   selected?: boolean;
+  pressed?: boolean;
 }
 
 @Component({
   selector: 'me-sidebar',
   standalone: true,
-  imports: [CommonModule, DxTreeViewModule, DxButtonModule, MeIconComponent],
-  template: `
-    <div
-      class="me-sidebar"
-      [class.me-sidebar--collapsed]="isCollapsed"
-      [style.width]="isCollapsed ? '64px' : '280px'"
-    >
-      <div class="me-sidebar__header">
-        <div class="me-sidebar__header-content">
-          <span *ngIf="!isCollapsed" class="me-sidebar__title">{{
-            title
-          }}</span>
-          <ng-content select="[header]"></ng-content>
-        </div>
-        <me-icon
-          [icon]="toggleIcon"
-          size="medium"
-          color="#666666"
-          class="me-sidebar__toggle"
-          (click)="toggleSidebar()"
-        ></me-icon>
-      </div>
-
-      <ng-content select="[search]"></ng-content>
-
-      <dx-tree-view
-        #treeView
-        [items]="items"
-        [width]="'100%'"
-        [selectByClick]="true"
-        [expandedExpr]="'expanded'"
-        [displayExpr]="'text'"
-        [searchEnabled]="false"
-        [focusStateEnabled]="false"
-        [hoverStateEnabled]="true"
-        [selectNodesRecursive]="false"
-        [showCheckBoxesMode]="'none'"
-        [selectionMode]="'single'"
-        [expandEvent]="'click'"
-        itemTemplate="itemTemplate"
-        (onItemClick)="onItemClick($event)"
-      >
-        <div *dxTemplate="let item of 'itemTemplate'">
-          <div
-            class="me-sidebar__item"
-            [class.me-sidebar__item--selected]="item.selected"
-            [class.me-sidebar__item--with-children]="item.items?.length"
-          >
-            <div class="me-sidebar__item-content">
-              <me-icon
-                *ngIf="item.icon"
-                [icon]="item.icon"
-                [size]="'medium'"
-                [color]="'#666666'"
-                class="me-sidebar__item-icon"
-              ></me-icon>
-              <span *ngIf="!isCollapsed" class="me-sidebar__item-text">{{
-                item.text
-              }}</span>
-            </div>
-            <div class="me-sidebar__item-right">
-              <div
-                *ngIf="item.badge && !isCollapsed"
-                class="me-sidebar__item-badge"
-              >
-                {{ item.badge }}
-              </div>
-              <me-icon
-                *ngIf="item.items?.length && !isCollapsed"
-                [icon]="item.expanded ? expandedIcon : collapsedIcon"
-                size="medium"
-                [color]="'#666666'"
-                class="me-sidebar__item-expand"
-              ></me-icon>
-            </div>
-          </div>
-        </div>
-      </dx-tree-view>
-    </div>
-  `,
+  imports: [
+    CommonModule,
+    DxTreeViewModule,
+    DxButtonModule,
+    MeIconComponent,
+    CdkDrag,
+  ],
+  templateUrl: 'me-sidebar-menu.component.html',
+  styleUrls: ['me-sidebar-menu.component.scss'],
 })
-export class MeSidebarMenuComponent {
-  @ViewChild('treeView') treeView!: any;
+export class MeSidebarMenuComponent implements AfterViewInit {
+  @ViewChild('dragHandleRight') dragHandleRight!: ElementRef;
+  @ViewChild('sidebar') sidebar!: ElementRef;
+  @ViewChild('treeView') treeView!: DxTreeViewComponent;
   @Input() items: MeSidebarMenuItem[] = [];
+  @Input() bottomItems: MeSidebarMenuItem[] = [];
   @Input() title = 'Меню';
   @Input() isCollapsed = false;
 
   // Иконки для настройки внешнего вида
-  @Input() toggleIcon = 'chevron_left'; // Иконка кнопки сворачивания
+  @Input() toggleIcon = 'drag'; // Иконка кнопки сворачивания
   @Input() expandedIcon = 'expand_less'; // Иконка развернутого пункта
   @Input() collapsedIcon = 'expand_more'; // Иконка свернутого пункта
 
   @Output() collapsedChange = new EventEmitter<boolean>();
   @Output() itemSelected = new EventEmitter<MeSidebarMenuItem>();
+
+  @Input() collapsedWidth = 64;
+
+  private _width = 280;
+  private _withStarted = 0;
+  private _transition = '';
+
+  get width(): number {
+    return this._width;
+  }
+
+  set width(value: number) {
+    this._width = value;
+  }
+
+  constructor(private element: ElementRef, private ngZone: NgZone) {}
+
+  ngAfterViewInit(): void {
+    this.updateDragHandler();
+    const parentRec =
+      this.resizeBoxElement.parentElement?.getBoundingClientRect();
+    if (parentRec) {
+      // this.resizeBoxElement.parentElement!.style.height = "100%"
+      // console.log("Parent rec: %o", parentRec)
+      // console.log("Parent: %o", this.resizeBoxElement.parentElement)
+    }
+  }
+
+  updateDragHandler() {
+    const dragRect = this.dragHandleRightElement.getBoundingClientRect();
+    const targetRect = this.resizeBoxElement.getBoundingClientRect();
+    const translateX = targetRect.x + targetRect.width;
+    const translateY = -1 * targetRect.height;
+    this.dragHandleRightElement.style.transform = `translate(${translateX}px, ${translateY}px)`;
+  }
+
+  get resizeBoxElement(): HTMLElement {
+    return this.element.nativeElement;
+  }
+
+  get containerElement(): HTMLElement {
+    return this.sidebar.nativeElement;
+  }
+
+  get dragHandleRightElement(): HTMLElement {
+    return this.dragHandleRight.nativeElement;
+  }
+
+  setHandleTransform(
+    dragHandle: HTMLElement,
+    targetRect: ClientRect | DOMRect
+  ) {
+    const dragRect = dragHandle.getBoundingClientRect();
+    const translateX = targetRect.width - dragRect.width;
+    dragHandle.style.transform = `translate(${translateX}px, 0)`;
+  }
 
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
@@ -129,11 +132,39 @@ export class MeSidebarMenuComponent {
     }
 
     this.collapsedChange.emit(this.isCollapsed);
+    setTimeout(() => {
+      this.updateDragHandler();
+    }, 350);
   }
 
-  onItemClick(e: any) {
-    const item = e.itemData as MeSidebarMenuItem;
+  bottomItemClick(item: MeSidebarMenuItem) {
+    this.treeView.items.forEach((itm) => {
+      itm.selected = false;
+    });
+    this.bottomItems.forEach((itm) => {
+      itm.selected = false;
+      itm.pressed = false;
+    });
+    console.log('bottomItemClick: %o', item);
+    item.pressed = true;
+    setTimeout(() => {
+      item.pressed = false;
+      item.selected = true;
+      console.log('bottomItemClick pressed false: %o', item);
+    }, 300);
 
+    if (item.onClick) {
+      item.onClick();
+    }
+    this.itemSelected.emit(item);
+  }
+  onItemClick(e: any) {
+    this.bottomItems.forEach((itm) => {
+      itm.selected = false;
+      itm.pressed = false;
+    });
+    const item = e.itemData as MeSidebarMenuItem;
+    // .me-sidebar__item--pressed
     if (this.isCollapsed) {
       this.isCollapsed = false;
       this.toggleIcon = 'chevron_left';
@@ -150,5 +181,58 @@ export class MeSidebarMenuComponent {
       item.onClick();
     }
     this.itemSelected.emit(item);
+  }
+
+  getHeight(): string {
+    return this.element.nativeElement.offsetHeight + 'px';
+  }
+
+  getCurrentWidth(): number {
+    if (this.isCollapsed) {
+      return this.collapsedWidth;
+    } else {
+      return this._width;
+    }
+  }
+  started($event: CdkDragStart) {
+    this._withStarted = this._width;
+    console.log('Start: transition: %o', this.resizeBoxElement);
+    this._transition = this.containerElement.style.transition;
+    this.containerElement.style.transition = 'none';
+    console.log(
+      'Start: transition: %o, %o',
+      this.containerElement.style.transition,
+      this.containerElement
+    );
+  }
+
+  ended($event: CdkDragEnd) {
+    this._withStarted = 0;
+    this.containerElement.style.transition = this._transition;
+    console.log('End: transition: %o', this.containerElement.style.transition);
+  }
+
+  dragMove($event: CdkDragMove<any>) {
+    this.ngZone.runOutsideAngular(() => {
+      this.resize(this.resizeBoxElement);
+    });
+  }
+
+  setAllHandleTransform() {
+    const rect = this.resizeBoxElement.getBoundingClientRect();
+    this.setHandleTransform(this.dragHandleRightElement, rect);
+  }
+
+  resize(target: HTMLElement) {
+    const dragRect = this.dragHandleRightElement.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    //    console.log("Bounds: %o, %o", dragRect, targetRect)
+
+    this.width = dragRect.left - (targetRect.left - dragRect.width / 2);
+    //    const height = dragRect.top - targetRect.top + dragRect.height;
+
+    //    target.style.width = width + 'px';
+    //    target.style.height = height + 'px';
   }
 }
