@@ -155,6 +155,10 @@ export default {
         defaultValue: { summary: 'normal' },
       },
     },
+    selectionMode: {
+      control: 'select',
+      options: ['none', 'single', 'multiple', 'all'],
+    },
     focusStateEnabled: {
       control: 'boolean',
       description: 'Определяет состояние `focused` `TreeView` и его элементов.',
@@ -181,6 +185,7 @@ export default {
     activeStateEnabled: true,
     disabled: false,
     showCheckBoxesMode: 'normal',
+    selectionMode: 'none',
     focusStateEnabled: false,
     hoverStateEnabled: true,
     height: '300px',
