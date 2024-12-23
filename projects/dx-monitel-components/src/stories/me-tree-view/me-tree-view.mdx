@@ -10,13 +10,15 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 Применение директивы `meTreeView` к элементу `dx-tree-view` приводит его внешний вид в соответствие с дизайн-системой, его размеры к значению `size = large (24)` и предоставляет доступ к свойству `size`.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/)
+Добавление нетипичных для DevExtreme
+элементов производится через переопределение свойств [itemTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#itemTemplate).
 
-[Ссылка на Demo компонента DevExtreme](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TreeView/Basics/MaterialBlueLight/)
+[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/)
+
+[Demo](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TreeView/HierarchicalDataStructure/Light/)
 
 <Canvas of={treeViewStories.Default} />
 <Controls of={treeViewStories.Default} />
-<Source of={treeViewStories.Default} dark />
 
 ## Дизайн
 
@@ -26,3 +28,44 @@ import { Figma } from "@storybook/addon-designs/blocks";
   defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=607-7610&node-type=canvas&t=MxuwBk9yX1p7sXoU-0"
 />
+
+### Размеры компонента
+
+Директива `meTreeView` дает возможность регулировать размер компонента при помощи свойств `size`: `small` и `large`.
+
+<Source code={`
+<tree-view meTreeView size="small"></tree-view>
+`} dark language="html"/>
+
+### [DataStructure](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataStructure)
+
+Компонент пользовательского интерфейса ожидает, что данные будут иметь иерархическую структуру (`dataStructure: "tree"`). Каждый элемент данных содержит текст, уникальный идентификатор и массив `items`, если элемент данных включает подпункты:
+
+<Source code={`
+var hierarchicalData = [{
+    id: '1',
+    text: 'Fruits',
+    items: [
+        { id: '1_1', text: 'Apples' },
+        { id: '1_2', text: 'Oranges' }
+    ]
+}, {
+    id: '2',
+    text: 'Vegetables',
+    items: [
+        { id: '2_1', text: 'Cucumbers' },
+        { id: '2_2', text: 'Tomatoes' }
+    ]
+}];
+`} dark language="js"/>
+
+### [DataSource](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataSource)
+
+Привязывает компонент пользовательского интерфейса к данным.
+
+Тип: `String` | `Array<dxTreeViewItem>` | `Store` | `DataSource` | `DataSource Configuration` | `null`
+
+Значение по умолчанию: `null`
+
+`TreeView` работает с коллекциями объектов, которые могут иметь простую или иерархическую структуру. В зависимости от структуры объекты должны предоставлять разные поля данных.
+

@@ -166,7 +166,7 @@ export const WithLabelColumn: Story = {
         labelDirection="column"
         style="align-items: flex-start;">
         Label
-        <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+        <dx-select-box meSelectBox labelMode="hidden" [label]="label" [size]="size" [placeholder]="placeholder"></dx-select-box>
       </span>
     `,
   }),
@@ -181,7 +181,7 @@ export const WithLabelRow: Story = {
         style="width: 250px;"
       >
         Label
-        <dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+        <dx-select-box meSelectBox labelMode="hidden" [label]="label" [size]="size" [placeholder]="placeholder"></dx-select-box>
       </span>
     `,
   }),

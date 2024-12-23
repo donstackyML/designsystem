@@ -78,24 +78,6 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    // showScrollbar: {
-    //   control: 'select',
-    //   options: ['always', 'onHover'],
-    //   description:
-    //     'Определяет показывать скроллбар всегда или только при наведении.',
-    //   table: {
-    //     type: { summary: 'string' },
-    //     defaultValue: { summary: 'always' },
-    //   },
-    // },
-    // iconColor: {
-    //   control: 'color',
-    //   description: 'Принимает цвет иконки',
-    //   table: {
-    //     type: { summary: 'string' },
-    //     defaultValue: { summary: '' },
-    //   },
-    // },
     items: {
       description: 'Принимает данные для выпадающего списка',
     },

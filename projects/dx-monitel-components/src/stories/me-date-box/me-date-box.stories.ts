@@ -84,7 +84,12 @@ export default {
     placeholder: {
       control: 'text',
       description: 'Подсказка.',
-    },
+		},
+		pickerType: {
+			control: 'select',
+			options: ['calendar', 'list', 'native', 'rollers'],
+      description: 'Режим отображения выбора даты',
+		},
     readOnly: {
       control: 'boolean',
       description: 'Определяет состояние только для чтения.',
@@ -119,10 +124,11 @@ export default {
     label: 'label',
     labelMode: 'outside',
     placeholder: 'Select...',
+    disabled: false,
+		readOnly: false,
+		pickerType: 'calendar',
     showAnalogClock: false,
     showClearButton: true,
-    disabled: false,
-    readOnly: false,
     applyValueMode: 'useButtons',
     acceptCustomValue: false,
     applyButtonText: 'Выбрать',

@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as listStories from "./me-list.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
 
@@ -9,15 +9,18 @@ import { Figma } from "@storybook/addon-designs/blocks";
 ## Директива meList
 
 Применение директивы <code>meList</code> к элементу <code>dx-list</code> приводит его к отступы,
-цвета и размеры в соответствие с дизайн-системой. Добавление нетипичных для DevExtreme
-элементов производится через переопределение свойств [itemTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/Configuration/#itemTemplate)
-и [groupTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/Configuration/#groupTemplate) .
+цвета и размеры в соответствие с дизайн-системой.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/)
+Добавление нетипичных для DevExtreme
+элементов производится через переопределение свойств [itemTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/Configuration/#itemTemplate)
+и [groupTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/Configuration/#groupTemplate).
+
+[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/)
+
+[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/List/ListEditingAndAPI/Light/)
 
 <Canvas of={listStories.Default} />
 <Controls of={listStories.Default} />
-<Source of={listStories.Default} dark />
 
 ## Дизайн
 
@@ -51,17 +54,17 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 <Source
   code={`<dx-list 
-    meList 
-    [dataSource]="itemsGrouped" 
-    displayExpr="name" 
-    [grouped]="true" 
-    searchExpr="name" 
-    width="436px" 
-    >
-    <div *dxTemplate="let group of 'group'">
-      <p class="me-title-header2">{{ group.key }}</p>
-      <p class="me-text-caption">{{ group.description }}</p>
-    </div>
+  meList 
+  [dataSource]="itemsGrouped" 
+  displayExpr="name" 
+  [grouped]="true" 
+  searchExpr="name" 
+  width="436px" 
+  >
+  <div *dxTemplate="let group of 'group'">
+    <p class="me-title-header2">{{ group.key }}</p>
+    <p class="me-text-caption">{{ group.description }}</p>
+  </div>
 </dx-list>`}
   dark
 />
@@ -77,16 +80,16 @@ import { Figma } from "@storybook/addon-designs/blocks";
 <Canvas of={listStories.ListDescription} />
 
 <Source
-  code={`<dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" width="436px">
-    <div *dxTemplate="let item of 'item'">
-      <div class="me-list-item-content">
-        <img alt="{{ item.name }}" src="{{ item.image }}" />
-        <div>
-          <div class="me-text-body2">{{ item.name }}</div>
-          <div class="me-text-caption">{{ item.description }}</div>
-        </div>
+code={`<dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" width="436px">
+  <div *dxTemplate="let item of 'item'">
+    <div class="me-list-item-content">
+      <img alt="{{ item.name }}" src="{{ item.image }}" />
+      <div>
+        <div class="me-text-body2">{{ item.name }}</div>
+        <div class="me-text-caption">{{ item.description }}</div>
       </div>
     </div>
+  </div>
 </dx-list>`}
   dark
 />
@@ -106,15 +109,15 @@ import { Figma } from "@storybook/addon-designs/blocks";
 2. Получить нужную иконку в свойстве icon элемента.
 
 <Source
-  code={`public itemsWithIcons: Item[] = [
-    {
-      name: 'Apples',
-      count: 10,
-      icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
-    },
-  // и так далее`}
-  dark
-  language="js"
+code={`public itemsWithIcons: Item[] = [
+{
+  name: 'Apples',
+  count: 10,
+  icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
+},
+// и так далее`}
+dark
+language="js"
 />
 
 Обратите внимание, что в функции <code>getIcon</code> аргументом является объект с опциями, не забывайте фигурные скобки.
@@ -148,27 +151,16 @@ DevExtreme автоматически вставит иконку, переда�
   dark
 />
 
-<style>
-  {`
-      h2 {
-        border-bottom: none !important;
-    }
-`}
-</style>
-
-    <Source
-    	code={`  <dx-list
-    height="100%"
-    [dataSource]="employees"
-    [grouped]="true"
-    [collapsibleGroups]="true"
-
+<Source
+  code={`<dx-list
+  height="100%"
+  [dataSource]="employees"
+  [grouped]="true"
+  [collapsibleGroups]="true"
 >
-
-    <div *dxTemplate="let item of 'group'">
-      <div>Assigned: {{ item.key }}</div>
-    </div>
-
+  <div *dxTemplate="let item of 'group'">
+    <div>Assigned: {{ item.key }}</div>
+  </div>
 </dx-list>`}
 dark
 language="html"

@@ -1,19 +1,9 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as TreeListStories from "./me-tree-list.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxTreeListModule } from "devextreme-angular";
-import { MeTreeListDirective } from "../../public-api";
 import { Figma } from "@storybook/addon-designs/blocks";
 
 <Meta
-  title="Components/TreeList"
-  component={MeTreeListDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeTreeListDirective],
-      imports: [DxTreeListModule],
-    }),
-  ]}
+  name="TreeList Documentation"
   of={TreeListStories}
 />
 
@@ -23,11 +13,12 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 Применение директивы `meTreeList` к элементу `dx-tree-list` изменяет внешний вид стандартного компонента treeList DevExtreme в соответствие с дизайн системой.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/23_1/ApiReference/UI_Components/dxTreeList/)
+[API](https://js.devexpress.com/Angular/Documentation/23_1/ApiReference/UI_Components/dxTreeList/)
 
-<Story name="Default" of={TreeListStories.TreeList} />
+[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TreeList/Overview/Light/)
+
+<Canvas name="Default" of={TreeListStories.TreeList} />
 <Controls of={TreeListStories.TreeList} exclude={["dataSource"]} />
-<Source of={TreeListStories.TreeList} dark />
 
 ## Дизайн
 
@@ -55,14 +46,13 @@ import { Figma } from "@storybook/addon-designs/blocks";
   dark
   language="html"
 />
-<Story of={TreeListStories.TreeListColumns} />
+<Canvas of={TreeListStories.TreeListColumns} />
 
 ## Кнопки в TreeList
 
 Для добавления кнопок необходимо добавить колонку к кнопками `dxi-column` и указать аттрибут `type=buttons`. А дочерним элементом уставить сами кнопки `dxi-button`. Аттрибутом `name` указываем тип кнопки: `add` | `cancel` | `delete` | `edit` | `save` | `undelete`. Так же использовать `dxo-editing` с разрешениями для редактирования.
 
-<Story of={TreeListStories.TreeListButtons} />
-<Source of={TreeListStories.TreeListButtons} dark />
+<Canvas of={TreeListStories.TreeListButtons} />
 
 ## Валидация данных
 
@@ -76,7 +66,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
   dark
   language="html"
 />
-<Story of={TreeListStories.TreeListValidation} />
+<Canvas of={TreeListStories.TreeListValidation} />
 
 ## Selection mode
 Чтобы управлять возможностью выбора строк в `dxTreeList` необходимо использовать свойство `dxi-selection` с аттрибутом `mode=multi` или `single`.
@@ -90,3 +80,58 @@ import { Figma } from "@storybook/addon-designs/blocks";
   dark
   language="html"
 />
+
+## [DataStructure](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/#dataStructure)
+
+Компонент пользовательского интерфейса ожидает, что данные будут иметь простую структуру, где:
+
+- каждый элемент данных содержит `ParentID` и уникальный идентификатор; 
+- элементы данных самого высокого иерархического уровня имеют `ParentID`, равный `0`, `null` или `undefined`. Это указывает на то, что эти элементы данных происходят от корневого узла. Корневой узел не имеет визуального представления.
+
+<Source code={`
+var treeListData = [
+  { id: 1, parentId: 0 },
+  { id: 11, parentId: 1 },
+  { id: 12, parentId: 1 },
+  { id: 13, parentId: 1 },
+  { id: 131, parentId: 13 },
+  { id: 132, parentId: 13 },
+  { id: 133, parentId: 13 },
+  { id: 2, parentId: 0 }
+];
+`} dark language="js" />
+
+<Source code={`
+dataSource: [
+  {
+    ID: 1,
+    Head_ID: 0,
+    Full_Name: 'John Heart',
+    Prefix: 'Mr.',
+    Title: 'CEO',
+    City: 'Los Angeles',
+    State: 'California',
+    Email: 'jheart@dx-email.com',
+    Skype: 'jheart_DX_skype',
+    Mobile_Phone: '(213) 555-9392',
+    Birth_Date: '1964-03-16',
+    Hire_Date: '1995-01-15',
+  },
+  {
+    ID: 2,
+    Head_ID: 1,
+    Full_Name: 'Samantha Bright',
+    Prefix: 'Dr.',
+    Title: 'COO',
+    City: 'Los Angeles',
+    State: 'California',
+    Email: 'samanthab@dx-email.com',
+    Skype: 'samanthab_DX_skype',
+    Mobile_Phone: '(213) 555-2858',
+    Birth_Date: '1966-05-02',
+    Hire_Date: '2004-05-24',
+  },
+  {...}
+]
+`} dark language="js" />
+

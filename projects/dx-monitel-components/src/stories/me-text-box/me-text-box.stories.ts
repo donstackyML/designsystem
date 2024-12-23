@@ -120,7 +120,7 @@ export const WithLabelColumn: Story = {
 		labelDirection="column"
 		style="align-items: flex-start;"
 		>Label
-		<dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>
+		<dx-text-box meTextBox labelMode="hidden" [label]="label" [size]="size" [placeholder]="placeholder"></dx-text-box>
 		</label>`,
   }),
 };
@@ -128,18 +128,14 @@ export const WithLabelColumn: Story = {
 export const WithLabelRow: Story = {
   render: (args) => ({
     props: args,
-    template: `<label meLabel labelDirection="row" width="250px">Label<dx-text-box meTextBox ${argsToTemplate(
-      args
-    )}></dx-text-box></label>`,
+    template: `<label meLabel labelDirection="row" width="250px">Label<dx-text-box meTextBox labelMode="hidden" [label]="label" [size]="size" [placeholder]="placeholder"></dx-text-box></label>`,
   }),
 };
 
 export const WithTelMask: Story = {
   render: (args) => ({
     props: args,
-    template: `<label meLabel labelDirection="row" width="250px">Phone<dx-text-box mask="+7 (000) 000-0000" meTextBox ${argsToTemplate(
-      args
-    )}></dx-text-box></label>`,
+    template: `<dx-text-box meTextBox mask="+7 (000) 000-0000" ${argsToTemplate(args)}></dx-text-box>`,
   }),
 };
 
@@ -169,7 +165,6 @@ export const WithPasswordToggle: Story = {
     `,
   }),
   args: {
-    stylingMode: 'filled',
     label: 'Password',
     labelMode: 'floating',
   },
@@ -182,3 +177,4 @@ export const WithPasswordToggle: Story = {
     },
   },
 };
+

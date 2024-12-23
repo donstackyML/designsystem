@@ -215,11 +215,17 @@
       }
     }
   }
+
+  &.dx-datebox-native.dx-state-hover {
+    .dx-placeholder {
+      display: none;
+    }
+  }
 }
 
 ///Overlay
 .me-date-box-overlay {
-  &.dx-overlay-wrapper.me-date-box-overlay.dx-datebox-wrapper {
+  &.dx-overlay-wrapper.dx-datebox-wrapper {
     ///Calendar showWeeks
     .dx-overlay-content {
       background: none;
@@ -585,4 +591,85 @@
   .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) {
   box-shadow: none;
   background-color: #b8bbca;
+}
+
+//rollers
+.me-date-box-overlay.dx-datebox-wrapper-rollers.dx-overlay-wrapper.dx-datebox-wrapper {
+  .dx-overlay-content.dx-popup-normal {
+    display: flex;
+    flex-direction: column;
+    min-width: 343px;
+    background-color: var(--Background-Accent-in-the-content);
+    padding: 16px;
+    gap: 24px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+
+    //tittle
+    .dx-toolbar.dx-popup-title {
+      padding: 0;
+      .dx-toolbar-items-container {
+        height: 20px;
+      }
+      .dx-item-content.dx-toolbar-item-content {
+        padding: 0;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        text-align: left;
+        margin: 0;
+      }
+      .dx-button.dx-closebutton {
+        left: 0;
+        border: none;
+        height: 24px;
+        width: 24px;
+        .dx-button-content {
+          padding: 0;
+          align-items: center;
+          display: flex;
+        }
+      }
+    }
+
+    //content
+    .dx-popup-content {
+      padding: 0;
+      margin: 0;
+      .dx-dateview-wrapper {
+        .dx-dateview-rollers {
+          .dx-dateview-item-selected-frame:before,
+          .dx-dateview-item-selected-frame:after {
+            background-image: none;
+          }
+
+          .dx-dateview-item {
+            color: var(--Controls-Content-In-Controls-Main-Disabled);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            text-align: center;
+            align-content: center;
+
+            &.dx-dateview-item-selected {
+              color: var(--Controls-Content-In-Controls-Main-Default);
+              font-size: 24px;
+              font-weight: 400;
+              line-height: 36px;
+            }
+          }
+        }
+      }
+    }
+
+    //buttons
+    .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done {
+      padding: 0;
+      margin: 0;
+      background-color: var(--Background-Accent-in-the-content);
+    }
+  }
 }
