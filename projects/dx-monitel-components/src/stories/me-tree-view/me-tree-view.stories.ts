@@ -170,7 +170,10 @@ export default {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
       },
-    },
+		},
+		selectionMode: {
+			
+		}
   },
   args: {
     dataSource: data,

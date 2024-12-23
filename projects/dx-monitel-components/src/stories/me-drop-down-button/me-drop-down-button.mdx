@@ -11,13 +11,12 @@ import { Figma } from "@storybook/addon-designs/blocks";
 Применение директивы <code>meDropDownButton</code> к элементу <code>dx-drop-down-button</code> приводит
 его размеры к значению <code>size = medium (32)</code> из дизайн-системы и предоставляет доступ к другим свойствам.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDropDownButton/)
+[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDropDownButton/)
+
+[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DropDownButton/Overview/Light/)
 
 <Canvas of={dropDownButtonStories.Default} />
-
 <Controls of={dropDownButtonStories.Default} />
-
-<Source of={dropDownButtonStories.Default} dark />
 
 ## Дизайн
 
@@ -28,10 +27,98 @@ import { Figma } from "@storybook/addon-designs/blocks";
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1268-39848&t=VlGcgVhlLr8MKym1-0"
 />
 
+## Примеры использования
+
+- [Стилизация кнопки](#стилизация-кнопки)
+- [Кнопка с иконкой](#кнопка-с-иконкой)
+
+### Стилизация кнопки
+
+- Для настройки стиля кнопки используйте параметр <code>stylingMode</code>: `contained`, `outlined`, `text`.
+- Для настройки типа кнопки используйте параметр <code>type</code>: `default`, `normal`, `success`, `danger`.
+- Для настройки размера кнопки используйте параметр <code>size</code>: `small`, `medium`, `large`.
+- Для разделения кнопки используйте параметр <code>splitButton</code>: `true`, `false`.
+
+
+<Source code={
+`<dx-drop-down-button
+  meDropDownButton
+  [splitButton]="true"
+	[stylingMode]="'contained'"
+	[type]="'success'"
+	[size]="'small'">
+>
+</dx-drop-down-button>
+`} dark />
+
+### Кнопка с иконкой
+
+Используйте параметр `icon` для установки иконки. Это свойство принимает одно из следующих значений:
+
+- URL-адрес значка
+- Название значка, если значок находится в библиотеке значков DevExtreme
+- CSS-класс значка, если значок взят из внешней библиотеки значков (см. Внешние библиотеки значков)
+- Значок в формате Base64
+- Значок в формате SVG. Убедитесь, что источник надежный.
+
+<Source code={
+`<dx-drop-down-button
+  meDropDownButton
+  [icon]="'add'">
+</dx-drop-down-button>
+`} dark />
+
+### Данные для списка
+
+```typescript
+const items = [
+  {
+    id: 1,
+    name: 'Фиксированный диапазон времени',
+  },
+  {
+    id: 4,
+    name: 'Абсолютное время',
+  },
+  {
+    id: 2,
+    name: 'Относительное время, обн 10 сек.',
+  },
+  {
+    id: 3,
+    name: 'Пункт',
+  },
+];
+```
+
+
 <style>
   {`
-      h2 {
-        border-bottom: none !important;
-    }
+  h2 {
+    border-bottom: none !important;
+  }
+
+  a {
+    display: inline-block !important;
+  }
+
+  a p {
+    color: #029CFD !important;
+  }
+
+  table {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
 `}
 </style>

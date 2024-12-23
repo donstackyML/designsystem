@@ -1,19 +1,9 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as DataGridStories from "./me-data-grid.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxDataGridModule } from "devextreme-angular";
-import { MeDataGridDirective } from "../../public-api";
 import { Figma } from "@storybook/addon-designs/blocks";
 
 <Meta
-  title="Components/DataGrid"
-  component={MeDataGridDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeDataGridDirective],
-      imports: [DxDataGridModule],
-    }),
-  ]}
+  name="Components/DataGrid"
   of={DataGridStories}
 />
 
@@ -23,11 +13,12 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 Применение директивы `meDataGrid` к элементу `dx-data-grid` приводит его размеры к значению `size=medium` из дизайн-системы, а также приводит отступы в соответствие с дизайн-системой, добавляет свойство `size`.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDataGrid/)
+[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDataGrid/)
 
-<Story name="Default" of={DataGridStories.DataGrid} />
+[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DataGrid/Overview/Light/)
+
+<Canvas name="Default" of={DataGridStories.DataGrid} />
 <Controls of={DataGridStories.DataGrid} />
-<Source of={DataGridStories.DataGrid} dark />
 
 ## Дизайн
 
@@ -40,16 +31,54 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Примеры использования:
 
-- [размеры dataGrid](#размеры)
-- [pagination](#pagination)
-- [стиль Pagination](#стиль-пагинатора)
-- [каунтеры в таблице](#каунтеры-в-таблице)
+- [Размеры dataGrid](#размеры)
+- [DataSource](#datasource)
+- [Pagination](#pagination)
+- [Стиль Pagination](#стиль-пагинатора)
+- [Шаблон в таблице](#шаблон-в-таблице)
 
 ## Размеры
 
 Поддерживает несколько вариаций размеров dataGrid: `small`, `medium` и `large`.
 
-<Source of={DataGridStories.DataGrid} dark />
+<Source
+  code={`
+<dx-data-grid 
+  meDataGrid
+  size="medium"
+>
+</dx-data-grid>`}
+  dark
+  language="html"
+/>
+
+## [DataSource](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#dataSource)
+
+`DataGrid` работает с коллекциями объектов. Рекомендуется вам использовать в data простой объект (без цикличных элементов, прототипов и т.д.). `DataGird` использует `JSON.stringify` и другие рекурсивные методы. Циклические ссылки на объекты могут привести к сбою собственных рекурсивных алгоритмов (таких как сериализаторы) из-за переполнения стека.
+
+Пример структуры данных:
+
+<Source code={`
+dataSource: [
+  {
+    ID: 1,
+    CompanyName: 'Company Name 1',
+    Phone: 'Phone 1',
+    Fax: 'Fax 1',
+    City: 'City 1',
+    State: 'State 1',
+  },
+  {
+    ID: 2,
+    CompanyName: 'Company Name 2',
+    Phone: 'Phone 2',
+    Fax: 'Fax 2',
+    City: 'City 2',
+    State: 'State 2',
+  },
+  {...}
+],
+`} dark language="html"/>
 
 ## Pagination
 
@@ -59,8 +88,8 @@ import { Figma } from "@storybook/addon-designs/blocks";
 <Source
   code={`
 <dx-data-grid meDataGrid>
-	<dxo-pager></dxo-pager>
-	<dxo-paging></dxo-paging>
+  <dxo-pager></dxo-pager>
+  <dxo-paging></dxo-paging>
 </dx-data-grid>`}
   dark
   language="html"
@@ -77,9 +106,12 @@ import { Figma } from "@storybook/addon-designs/blocks";
   language="html"
 />
 
-## Каунтеры в таблице
+## Шаблон в таблице
 
-Для добавления каунтеров или инных элементов в ячейках необходимо использовать `cellTemplate` в `dxi-column` и создвть шаблон с помощью `*dxTemplate`.
+Для добавления каунтеров или инных элементов в ячейках необходимо использовать `cellTemplate` в `dxi-column` и создать шаблон с помощью `*dxTemplate`.
 
-<Source of={DataGridStories.WithCounter} dark language="html" />
-<Story of={DataGridStories.WithCounter} />
+<Canvas of={DataGridStories.WithCounter} />
+
+## [Столбцы](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/columns/)
+
+Для добавления столбцов необходимо использовать `dxi-column` внутри `dx-data-grid`. Все возможности на [сайте разработчика](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/columns/)

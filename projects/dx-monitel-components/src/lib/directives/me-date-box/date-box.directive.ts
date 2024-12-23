@@ -1,13 +1,13 @@
 import { DxDateBoxComponent } from 'devextreme-angular';
 
 import {
-	Directive,
-	ElementRef,
-	HostListener,
-	inject,
-	Input,
-	OnInit,
-	Renderer2
+  Directive,
+  ElementRef,
+  HostListener,
+  inject,
+  Input,
+  OnInit,
+  Renderer2,
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';

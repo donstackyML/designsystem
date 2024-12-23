@@ -1,19 +1,9 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as PivotGridStories from "./me-pivot-grid.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxPivotGridModule } from "devextreme-angular";
-import { MePivotGridDirective } from "../../public-api";
 import { Figma } from "@storybook/addon-designs/blocks";
 
 <Meta
   title="Components/PivotGrid"
-  component={MePivotGridDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MePivotGridDirective],
-      imports: [DxPivotGridModule],
-    }),
-  ]}
   of={PivotGridStories}
 />
 
@@ -23,7 +13,9 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 Применение директивы `mePivotGrid` изменяет внешний вид стандартного компонента `PivotGrid` DevExtreme в соответствие с дизайн системой.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPivotGrid/)
+[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPivotGrid/)
+
+[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/PivotGrid/Overview/Light/)
 
 <Canvas name="Default" of={PivotGridStories.PivotGrid} />
 <Controls of={PivotGridStories.PivotGrid} />
@@ -36,3 +28,59 @@ import { Figma } from "@storybook/addon-designs/blocks";
   defaultCollapsed
   url="https://www.figma.com/design/RKYvr3REXwOglog9PMcZLF/Components-(Copy)?node-id=1853-55218&node-type=canvas&t=1Nl0fnyw2NOsrNIM-0"
 />
+
+## [DataSource](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPivotGrid/Configuration/#dataSource)
+
+`PivotGrid` привязывается к данным через [PivotGridDataSource](https://js.devexpress.com/Angular/Documentation/ApiReference/Data_Layer/PivotGridDataSource/), компонент, который позволяет вам сортировать, фильтровать, группировать и выполнять другие операции формирования данных.
+
+Чтобы привязать `PivotGrid` к данным, присвойте `PivotGridDataSource` свойству `DataSource` компонента. Также укажите массив `fields`[] для настройки полей `PivotGrid`. [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/PivotGrid/SimpleArray/MaterialBlueLight/).
+
+<Source code={`
+const Sales = [
+  {
+    id: 10248,
+    region: 'North America',
+    country: 'United States of America',
+    city: 'New York',
+    amount: 1740,
+    date: new Date('2013-01-06'),
+  },
+  {
+    id: 10249,
+    region: 'North America',
+    country: 'United States of America',
+    city: 'Los Angeles',
+    amount: 850,
+    date: new Date('2013-01-13'),
+  },
+  {
+    id: 10250,
+    region: 'North America',
+    country: 'United States of America',
+    city: 'Denver',
+    amount: 2235,
+    date: new Date('2013-01-07'),
+  },
+  { ... }
+]
+`} dark language="js"/>
+
+## Добавление инструментов
+
+PivotGrid имеет свои инструменты, такие как `field chooser`, `field panel`, `header filter`, `load panel` и т.д. См. в [API компонента](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPivotGrid/).
+
+Для использования инструментов вам необходимо добавить соответствующие тэги в компонент `PivotGrid`.
+
+<Source code={`
+<pivot-grid mePivotGrid [dataSource]="Sales">
+  <dxo-field-chooser [enabled]="true"></dxo-field-chooser>
+  <dxo-scrolling mode="virtual"></dxo-scrolling>
+  <dxo-load-panel
+    meLoadPanel
+    size="small"
+    showPane="false"
+    text="Загрузка..."
+    [enabled]="true"
+  ></dxo-load-panel>
+</pivot-grid>
+`} dark language="html"/>
