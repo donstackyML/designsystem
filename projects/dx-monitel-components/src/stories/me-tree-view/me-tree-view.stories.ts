@@ -175,9 +175,6 @@ export default {
         defaultValue: { summary: false },
       },
 		},
-		selectionMode: {
-			
-		}
   },
   args: {
     dataSource: data,

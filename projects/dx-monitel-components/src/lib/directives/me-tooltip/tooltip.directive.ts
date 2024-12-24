@@ -56,122 +56,129 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.initializeTooltip();
-    this.tooltipComponentRef.instance.wrapperAttr = {
-      class: `me-tooltip me-tooltip-${this.colorMode}`,
-    };
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.tooltipComponentRef) {
-      const instance = this.tooltipComponentRef.instance;
-      if (changes['tooltipPosition']) {
-        instance.position = this.tooltipPosition;
-      }
-      if (changes['tooltipWidth']) {
-        instance.width = this.tooltipWidth;
-      }
-      if (changes['tooltipMaxWidth']) {
-        instance.maxWidth = this.tooltipMaxWidth;
-      }
-      if (changes['tooltipHeight']) {
-        instance.height = this.tooltipHeight;
-      }
-      if (changes['tooltipMaxHeight']) {
-        instance.maxHeight = this.tooltipMaxHeight;
-      }
-      if (changes['tooltipShowAnimation'] || changes['tooltipHideAnimation']) {
-        instance.animation = {
-          show: this.tooltipShowAnimation,
-          hide: this.tooltipHideAnimation,
-        };
-      }
-      if (changes['tooltipContent'] || changes['tooltipTemplateRef']) {
-        this.updateTooltipContent();
-      }
+    if (!this.tooltipComponentRef) return;
+
+    const instance = this.tooltipComponentRef.instance;
+
+    if (changes['tooltipPosition']) {
+      instance.position = this.tooltipPosition;
+    }
+
+    if (changes['tooltipWidth'] || changes['tooltipMaxWidth'] ||
+      changes['tooltipHeight'] || changes['tooltipMaxHeight']) {
+      this.updateTooltipDimensions(instance);
+    }
+
+    if (changes['tooltipShowAnimation'] || changes['tooltipHideAnimation']) {
+      instance.animation = {
+        show: this.tooltipShowAnimation,
+        hide: this.tooltipHideAnimation,
+      };
+    }
+
+    if (changes['meTooltip'] || changes['tooltipTemplateRef']) {
+      this.updateTooltipContent();
+    }
+
+    if (changes['colorMode']) {
+      instance.wrapperAttr = {
+        class: `${this.ME_TOOLTIP_CLASS} me-tooltip-${this.colorMode}`,
+      };
     }
   }
 
   ngOnDestroy() {
-    this.destroyTooltip();
+    if (this.tooltipComponentRef) {
+      this.tooltipComponentRef.destroy();
+    }
   }
 
   @HostListener('mouseenter')
   showTooltip() {
-    if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
+    if (this.tooltipComponentRef?.instance) {
       this.tooltipComponentRef.instance.visible = true;
     }
   }
 
   @HostListener('mouseleave')
   hideTooltip() {
-    if (this.tooltipComponentRef && this.tooltipComponentRef.instance) {
+    if (this.tooltipComponentRef?.instance) {
       this.tooltipComponentRef.instance.visible = false;
     }
   }
 
   private initializeTooltip() {
-    this.tooltipComponentRef =
-      this.viewContainerRef.createComponent(DxTooltipComponent);
+    this.tooltipComponentRef = this.viewContainerRef.createComponent(DxTooltipComponent);
     const instance = this.tooltipComponentRef.instance;
 
     instance.target = this.element.nativeElement;
     instance.position = this.tooltipPosition;
-    instance.width = this.tooltipWidth;
-    instance.maxWidth = this.tooltipMaxWidth;
-    instance.height = this.tooltipHeight;
-    instance.maxHeight = this.tooltipMaxHeight;
+
+    this.updateTooltipDimensions(instance);
 
     instance.animation = {
       show: this.tooltipShowAnimation,
       hide: this.tooltipHideAnimation,
     };
 
+    instance.wrapperAttr = {
+      class: `${this.ME_TOOLTIP_CLASS} me-tooltip-${this.colorMode}`,
+    };
+
     this.updateTooltipContent();
 
     const tooltipElement = this.tooltipComponentRef.location.nativeElement;
 
-    this.renderer.addClass(tooltipElement, this.ME_TOOLTIP_CLASS);
-
-    this.renderer.addClass(tooltipElement, `me-tooltip-${this.colorMode}`);
-
     if (this.tooltipClass) {
       this.renderer.addClass(tooltipElement, this.tooltipClass);
     }
+  }
 
-    this.renderer.appendChild(this.element.nativeElement, tooltipElement);
+  private updateTooltipDimensions(instance: DxTooltipComponent) {
+    instance.width = this.tooltipWidth;
+    instance.maxWidth = this.tooltipMaxWidth;
+    instance.height = this.tooltipHeight;
+    instance.maxHeight = this.tooltipMaxHeight;
+  }
+
+  private createContentDiv(): HTMLDivElement {
+    const contentDiv = this.renderer.createElement('div');
+    const width = typeof this.tooltipWidth === 'number' ? `${this.tooltipWidth}px` : this.tooltipWidth;
+
+    if (width !== 'auto') {
+      this.renderer.setStyle(contentDiv, 'width', width);
+    }
+
+    this.renderer.setStyle(contentDiv, 'box-sizing', 'border-box');
+    this.renderer.setStyle(contentDiv, 'word-wrap', 'break-word');
+
+    return contentDiv;
   }
 
   private updateTooltipContent() {
-    if (this.tooltipComponentRef) {
-      const instance: DxTooltipComponent = this.tooltipComponentRef.instance;
+    if (!this.tooltipComponentRef) return;
 
-      if (this.tooltipTemplateRef) {
-        instance.contentTemplate = (contentElement: any) => {
-          const viewRef: EmbeddedViewRef<any> =
-            this.tooltipTemplateRef.createEmbeddedView({});
-          contentElement.appendChild(viewRef.rootNodes[0]);
-          return contentElement;
-        };
-      } else if (this.meTooltip) {
-        instance.contentTemplate = () => {
-          const contentElement = this.renderer.createElement('div');
+    const instance = this.tooltipComponentRef.instance;
 
-          let safeContent: string =
-            this.sanitizer.sanitize(SecurityContext.HTML, this.meTooltip) || '';
-
-          this.renderer.setProperty(contentElement, 'innerHTML', safeContent);
-
-          return contentElement;
-        };
-      } else {
-        instance.contentTemplate = null;
-      }
-    }
-  }
-
-  private destroyTooltip() {
-    if (this.tooltipComponentRef) {
-      this.tooltipComponentRef.destroy();
+    if (this.tooltipTemplateRef) {
+      instance.contentTemplate = (contentElement: HTMLElement) => {
+        const viewRef = this.tooltipTemplateRef.createEmbeddedView({});
+        const contentDiv = this.createContentDiv();
+        contentDiv.appendChild(viewRef.rootNodes[0]);
+        return contentDiv;
+      };
+    } else if (this.meTooltip) {
+      instance.contentTemplate = () => {
+        const contentDiv = this.createContentDiv();
+        const safeContent = this.sanitizer.sanitize(SecurityContext.HTML, this.meTooltip) || '';
+        this.renderer.setProperty(contentDiv, 'innerHTML', safeContent);
+        return contentDiv;
+      };
+    } else {
+      instance.contentTemplate = null;
     }
   }
 }

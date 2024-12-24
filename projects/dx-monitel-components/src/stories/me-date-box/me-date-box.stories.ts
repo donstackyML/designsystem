@@ -1,12 +1,10 @@
 import { DxDateBoxModule, DxValidatorModule } from 'devextreme-angular';
-
 import {
-	argsToTemplate,
-	Meta,
-	moduleMetadata,
-	StoryObj,
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
 } from '@storybook/angular';
-
 import { MeDateBoxDirective, MeLabelDirective } from '../../public-api';
 
 export default {
@@ -41,18 +39,15 @@ export default {
     },
     dateOutOfRangeMessage: {
       control: 'text',
-      description:
-        'Сообщение об ошибке при выборе даты за пределами диапазона.',
+      description: 'Сообщение об ошибке при выборе даты за пределами диапазона.',
     },
     dateSerializationFormat: {
       control: 'text',
-      description:
-        'Формат сериализации даты. `yyyy-MM-dd` - Дата. `yyyy-MM-ddTHH:mm:ss` Локальная дата и время. `yyyy-MM-ddTHH:mm:ssZ` Дата и время в UTC. `yyyy-MM-ddTHH:mm:ssx`, `yyyy-MM-ddTHH:mm:ssxx`, `yyyy-MM-ddTHH:mm:ssxxx` Дата и время с таймзоной.',
+      description: 'Формат сериализации даты. `yyyy-MM-dd` - Дата. `yyyy-MM-ddTHH:mm:ss` Локальная дата и время. `yyyy-MM-ddTHH:mm:ssZ` Дата и время в UTC. `yyyy-MM-ddTHH:mm:ssx`, `yyyy-MM-ddTHH:mm:ssxx`, `yyyy-MM-ddTHH:mm:ssxxx` Дата и время с таймзоной.',
     },
     disabledDates: {
       control: 'text',
-      description:
-        'Указывает даты, которые пользователи не могут выбрать. Применяется, только если выбран параметр "календарь".',
+      description: 'Указывает даты, которые пользователи не могут выбрать. Применяется, только если выбран параметр "календарь".',
     },
     invalidDateMessage: {
       control: 'text',
@@ -61,8 +56,7 @@ export default {
     applyValueMode: {
       control: 'select',
       options: ['instantly', 'useButtons'],
-      description:
-        'Определяет способ, которым конечный пользователь применяет выбранное значение.',
+      description: 'Определяет способ, которым конечный пользователь применяет выбранное значение.',
     },
     disabled: {
       control: 'boolean',
@@ -84,20 +78,19 @@ export default {
     placeholder: {
       control: 'text',
       description: 'Подсказка.',
-		},
-		pickerType: {
-			control: 'select',
-			options: ['calendar', 'list', 'native', 'rollers'],
+    },
+    pickerType: {
+      control: 'select',
+      options: ['calendar', 'list', 'native', 'rollers'],
       description: 'Режим отображения выбора даты',
-		},
+    },
     readOnly: {
       control: 'boolean',
       description: 'Определяет состояние только для чтения.',
     },
     showAnalogClock: {
       control: 'boolean',
-      description:
-        'Указывает, следует ли отображать аналоговые часы в средстве выбора значений. Применяется, только если type равен "datetime", а pickerType равен "calendar".',
+      description: 'Указывает, следует ли отображать аналоговые часы в средстве выбора значений. Применяется, только если type равен "datetime", а pickerType равен "calendar".',
     },
     showClearButton: {
       control: 'boolean',
@@ -125,8 +118,8 @@ export default {
     labelMode: 'outside',
     placeholder: 'Select...',
     disabled: false,
-		readOnly: false,
-		pickerType: 'calendar',
+    readOnly: false,
+    pickerType: 'calendar',
     showAnalogClock: false,
     showClearButton: true,
     applyValueMode: 'useButtons',
@@ -144,17 +137,17 @@ export default {
   render: (args) => ({
     props: args,
     template: `
-		<dx-date-box meDateBox
-		${argsToTemplate(args)}
-		>
-				<dx-validator>
+    <dx-date-box meDateBox
+      ${argsToTemplate(args)}
+    >
+      <dx-validator>
         <dxi-validation-rule
-            type="required"
-            message="Required"
+          type="required"
+          message="Required"
         >
         </dxi-validation-rule>
-    </dx-validator>
-		</dx-date-box>
+      </dx-validator>
+    </dx-date-box>
     <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>`,
   }),
 } as Meta;
@@ -170,18 +163,17 @@ export const WithLabelRow: StoryObj = {
   render: (args) => ({
     props: args,
     template: `
-		<label meLabel
-		labelDirection="row"
-		[size]="size"
-		width="250px">
-		Label*
-			<dx-date-box meDateBox
-				${argsToTemplate(args)}
-			>
-			</dx-date-box>
-		</label>
+    <div meLabel
+      labelDirection="row"
+      width="250px">
+      <span>Label*</span>
+      <dx-date-box meDateBox
+        ${argsToTemplate(args)}
+      >
+      </dx-date-box>
+    </div>
     <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
-		`,
+    `,
   }),
 };
 
@@ -193,12 +185,12 @@ export const WithDatePicker: StoryObj = {
   render: (args) => ({
     props: args,
     template: `
-			<dx-date-box meDateBox
+    <dx-date-box meDateBox
       pickerType="rollers"
-				${argsToTemplate(args)}
-			>
-			</dx-date-box>
+      ${argsToTemplate(args)}
+    >
+    </dx-date-box>
     <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
-		`,
+    `,
   }),
 };

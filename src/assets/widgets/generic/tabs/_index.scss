@@ -218,6 +218,11 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 .me-tabs.dx-tabs-styling-mode-secondary .dx-tab.dx-tab-selected {
   background-color: var(--Background-Content);
 }
+.me-tabs-panel .dx-tabs-styling-mode-secondary {
+  .dx-tabs-wrapper {
+    left: 0;
+  }
+}
 
 .dx-tabs-styling-mode-secondary {
   .dx-tabs-wrapper {
@@ -601,38 +606,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 }
 
-//.me-tabs.dx-tabs.dx-state-disabled {
-//  .dx-scrollable-content .dx-tabs-wrapper {
-//    .dx-item.dx-tab {
-//      &.dx-tab-selected::after {
-//        background-color: var(--Controls-Content-In-Controls-Main-Disabled);
-//      }
-//      * {
-//        color: var(--Controls-Content-In-Controls-Main-Disabled);
-//      }
-//      svg {
-//        opacity: 0.4;
-//      }
-//    }
-//  }
-//}
-//.me-tabs.dx-tabs.dx-state-disabled {
-//  .dx-item.dx-tab {
-//    &.dx-tab-selected::after {
-//      background-color: var(--Controls-Content-In-Controls-Main-Disabled);
-//    }
-//
-//    .dx-tab-text-span {
-//      color: var(--Controls-Content-In-Controls-Main-Disabled)!important;
-//    }
-//    * {
-//      color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
-//    }
-//    svg {
-//      opacity: 0.4;
-//    }
-//  }
-//}
 // Стили для disabled состояния табов
 .me-tabs.dx-tabs {
   // Общие стили для disabled состояния вкладок
@@ -640,6 +613,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     .dx-item.dx-tab {
       // Стили для выбранной вкладки в disabled состоянии
       &.dx-tab-selected {
+        color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
         &::after {
           background-color: var(--Controls-Content-In-Controls-Main-Disabled);
         }
