@@ -64,13 +64,6 @@ type Story = StoryObj<InputFieldsComponent>;
 
 export const Default: Story = {};
 
-export const FilledStyle: Story = {
-  args: {
-    stylingMode: 'filled',
-    size: 'medium',
-  },
-};
-
 export const WithInitialValues: Story = {
   args: {
     initialValue: 'Initial password',

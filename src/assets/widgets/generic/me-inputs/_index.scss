@@ -94,14 +94,12 @@
     .dx-texteditor-input,
     .dx-texteditor-label,
     .dx-texteditor-buttons-container,
-    .dx-dropdowneditor-icon {
+    .dx-dropdowneditor-icon,
+    .dx-numberbox-spin-up-icon,
+    .dx-numberbox-spin-down-icon,
+    .dx-button-text,
+    .dx-icon {
       color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
-    }
-
-    .dx-clear-button-area {
-      .dx-icon {
-        opacity: 0.4;
-      }
     }
   }
 
@@ -122,6 +120,15 @@
           content: var(--me-icon-lock);
           align-content: center;
           text-align: center;
+        }
+
+        & > * {
+          width: 0 !important;
+          overflow: hidden;
+        }
+
+        &:not(.dx-texteditor-buttons-container:last-child) {
+          display: none;
         }
       }
     }

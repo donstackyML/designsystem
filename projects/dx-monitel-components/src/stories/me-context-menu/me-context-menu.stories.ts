@@ -6,8 +6,11 @@ import {
 } from '@storybook/angular';
 import { DxButtonComponent, DxContextMenuModule } from 'devextreme-angular';
 import { MeIconStoreService } from 'src/app/service/icon-store.service';
-import {MeButtonDirective, MeContextMenuDirective, MeIconComponent} from '../../public-api';
-
+import {
+  MeButtonDirective,
+  MeContextMenuDirective,
+  MeIconComponent,
+} from '../../public-api';
 
 const iconStore = new MeIconStoreService();
 
@@ -22,7 +25,8 @@ const data = [
 
   {
     text: 'Пункт',
-    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    // icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    icon: 'add',
     items: [
       {
         text: 'Заголовок группы уровень 2',
@@ -260,7 +264,7 @@ const data = [
   },
   {
     text: 'Пункт',
-    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    // icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
     items: [
       {
         text: 'Заголовок группы уровень 2',
@@ -507,7 +511,8 @@ const data = [
 
   {
     text: 'Пункт',
-    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    icon: 'add',
+    // icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
     items: [
       {
         text: 'Заголовок группы уровень 2',
@@ -1289,8 +1294,8 @@ export const Default: Story = {
         meContextMenu
         target="#contextButtonDefault"
         ${argsToTemplate(args)}>
-    </dx-context-menu>`
-  })
+    </dx-context-menu>`,
+  }),
 };
 
 export const SelectedItems: Story = {
@@ -1330,6 +1335,6 @@ export const SelectedItems: Story = {
           ></me-icon>
         </div>
       </div>
-    </dx-context-menu>`
-  })
+    </dx-context-menu>`,
+  }),
 };
