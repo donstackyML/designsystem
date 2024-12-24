@@ -6694,20 +6694,15 @@
   align-items: center;
 }
 
-.me-tabs.dx-tabs.dx-state-disabled .dx-item.dx-tab.dx-tab-selected {
-  color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
-}
 .me-tabs.dx-tabs.dx-state-disabled .dx-item.dx-tab.dx-tab-selected::after {
   background-color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 .me-tabs.dx-tabs.dx-state-disabled .dx-item.dx-tab .dx-tab-text .dx-tab-text-span,
 .me-tabs.dx-tabs.dx-state-disabled .dx-item.dx-tab .dx-tab-text .dx-tab-text-span-pseudo {
-  color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
-  opacity: 0.8;
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 .me-tabs.dx-tabs.dx-state-disabled .dx-item.dx-tab .dx-icon,
 .me-tabs.dx-tabs.dx-state-disabled .dx-item.dx-tab svg {
-  color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
   opacity: 0.8;
 }
 .me-tabs.dx-tabs.dx-state-disabled .dx-item.dx-tab:hover, .me-tabs.dx-tabs.dx-state-disabled .dx-item.dx-tab:active {
@@ -6715,19 +6710,18 @@
   cursor: not-allowed;
 }
 .me-tabs.dx-tabs.dx-state-disabled .dx-scrollable-content .dx-tabs-wrapper {
-  opacity: 0.8;
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 .me-tabs.dx-tabs .dx-item.dx-tab.dx-state-disabled.dx-tab-selected::after {
   background-color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 .me-tabs.dx-tabs .dx-item.dx-tab.dx-state-disabled .dx-tab-text .dx-tab-text-span,
 .me-tabs.dx-tabs .dx-item.dx-tab.dx-state-disabled .dx-tab-text .dx-tab-text-span-pseudo {
-  color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
-  opacity: 0.8;
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 .me-tabs.dx-tabs .dx-item.dx-tab.dx-state-disabled .dx-icon,
 .me-tabs.dx-tabs .dx-item.dx-tab.dx-state-disabled svg {
-  color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
   opacity: 0.8;
 }
 .me-tabs.dx-tabs .dx-item.dx-tab.dx-state-disabled:hover, .me-tabs.dx-tabs .dx-item.dx-tab.dx-state-disabled:active {
@@ -10780,6 +10774,9 @@
 .me-number-box.dx-numberbox.dx-texteditor.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container > * {
   width: 0 !important;
 }
+.me-number-box.dx-numberbox.dx-texteditor.dx-state-disabled .dx-numberbox-spin-container {
+  opacity: 1;
+}
 
 /**
 * $name 10. Text color
@@ -11783,7 +11780,8 @@
 .me-date-box.dx-datebox.dx-texteditor.dx-widget.dx-invalid:not(.dx-state-disabled) .dx-button-content .dx-dropdowneditor-icon {
   color: var(--Controls-Content-In-Controls-Danger-Default);
 }
-.me-date-box.dx-datebox.dx-texteditor.dx-widget.dx-state-disabled .dx-button-content .dx-dropdowneditor-icon {
+.me-date-box.dx-datebox.dx-texteditor.dx-widget.dx-state-disabled .dx-button-content .dx-dropdowneditor-icon,
+.me-date-box.dx-datebox.dx-texteditor.dx-widget.dx-state-disabled .dx-button-content .dx-button-text {
   color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 .me-date-box.dx-datebox.dx-texteditor.dx-widget.dx-datebox-native.dx-state-hover .dx-placeholder {
@@ -26166,11 +26164,14 @@ input.dx-hidden {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-height: 24px;
 }
 .me-context-menu-submenu.dx-submenu .dx-menu-items-container .dx-menu-item-wrapper .dx-item.dx-menu-item .dx-item-content.dx-menu-item-content .dx-icon {
   margin: 0;
   width: 24px;
   height: 24px;
+  align-content: center;
+  text-align: center;
 }
 .me-context-menu-submenu.dx-submenu .dx-menu-items-container .dx-menu-item-wrapper .dx-item.dx-menu-item .dx-item-content.dx-menu-item-content .dx-menu-item-text {
   padding: 0;
@@ -35730,11 +35731,12 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-input,
 .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-label,
 .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-buttons-container,
-.me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-dropdowneditor-icon {
+.me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-dropdowneditor-icon,
+.me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-numberbox-spin-up-icon,
+.me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-numberbox-spin-down-icon,
+.me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-button-text,
+.me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-icon {
   color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
-}
-.me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-clear-button-area .dx-icon {
-  opacity: 0.4;
 }
 .me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-numberbox-spin-container {
   width: 0;
@@ -35750,6 +35752,13 @@ input.dx-hidden {
   content: var(--me-icon-lock);
   align-content: center;
   text-align: center;
+}
+.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container > * {
+  width: 0 !important;
+  overflow: hidden;
+}
+.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container:not(.dx-texteditor-buttons-container:last-child) {
+  display: none;
 }
 .me-inputs.dx-texteditor.dx-widget.dx-state-readonly.me-inputs-large .dx-texteditor-container .dx-texteditor-buttons-container {
   width: 24px;
