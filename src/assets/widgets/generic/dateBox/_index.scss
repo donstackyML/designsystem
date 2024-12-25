@@ -167,16 +167,30 @@
   &.dx-datebox-date {
     .dx-texteditor-container {
       .dx-texteditor-buttons-container {
-        .dx-dropdowneditor-button {
-          .dx-button-content {
-            .dx-dropdowneditor-icon {
-              background-image: none;
-              font-family: var(--me-icon-family);
-              &:before {
-                content: var(--me-icon-calendar-today);
-              }
+        .dx-button-content {
+          .dx-dropdowneditor-icon,
+          .dx-icon-event {
+            background-image: none;
+            font-family: var(--me-icon-family);
+            &:before {
+              content: var(--me-icon-calendar-today);
             }
           }
+        }
+      }
+    }
+  }
+  &.me-date-box-large .dx-texteditor-container {
+    .dx-texteditor-buttons-container {
+      .dx-button-content {
+        height: 24px;
+        .dx-icon-event {
+          font-size: 20px;
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
     }
@@ -574,14 +588,16 @@
     .dx-overlay-content.dx-popup-normal {
     box-shadow: none;
   }
+
+  &.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay
+    .dx-overlay-content.dx-popup-normal
+    .dx-popup-content {
+    padding: 0;
+  }
 }
 
 .dx-selectbox-popup-wrapper {
   top: 4px;
-}
-
-.dx-overlay-wrapper.me-date-box-overlay.dx-datebox-wrapper .dx-overlay-content {
-  background-color: #fff;
 }
 
 .dx-popup-title .dx-closebutton {

@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
 import { MePopoverDirective } from '../../public-api';
@@ -32,11 +37,10 @@ import { MePopoverDirective } from '../../public-api';
 
         <div *dxTemplate="let data of 'title'">
           <div class="tittle-wrapper">
-
             <div class="tittle-template-wrapper">
-            <div class="tittle-template"></div>
-						<dx-button icon="close" stylingMode="text"></dx-button>
-						</div>
+              <div class="tittle-template"></div>
+              <dx-button icon="close" stylingMode="text"></dx-button>
+            </div>
             <h3 class="me-title-header1" style="margin: 0;">
               {{ titleTemplate }}
             </h3>
@@ -71,8 +75,8 @@ import { MePopoverDirective } from '../../public-api';
       }
       .tittle-template-wrapper {
         display: flex;
-    		justify-content: space-between;
-    		align-items: flex-start;
+        justify-content: space-between;
+        align-items: flex-start;
       }
       .tittle-template {
         width: 216px;
@@ -84,6 +88,9 @@ import { MePopoverDirective } from '../../public-api';
           #4a7dff 100%
         );
         border-radius: 3px;
+      }
+      .me-popover-dark .me-title-header1 {
+        color: var(--Text-Alert);
       }
     `,
   ],
@@ -213,7 +220,8 @@ const meta: Meta<PopoverDemoComponent> = {
     },
     showCloseButton: {
       control: 'boolean',
-      description: 'Показывать ли кнопку закрытия поповера. Работает только если `showTittle=true` и в `tittle` не используется шаблон.',
+      description:
+        'Показывать ли кнопку закрытия поповера. Работает только если `showTittle=true` и в `tittle` не используется шаблон.',
       defaultValue: false,
     },
     hideOnOutsideClick: {
@@ -257,7 +265,7 @@ export const Default: Story = {
     showTitle: false,
     title: '',
     shading: false,
-		shadingColor: '',
+    shadingColor: '',
     content: 'Это содержимое поповера по умолчанию.',
     animation: {
       show: { type: 'fade', duration: 0 },
@@ -278,17 +286,17 @@ export const DefaultWithCloseButton: Story = {
     showTitle: true,
     title: 'Заголовок',
     shading: false,
-		shadingColor: '',
-		showCloseButton: true,
+    shadingColor: '',
+    showCloseButton: true,
     content: 'Это содержимое поповера по умолчанию.',
     animation: {
       show: { type: 'fade', duration: 0 },
       hide: { type: 'fade', duration: 0 },
     },
-	},
-	render: (args) => ({
-		props: args,
-		template: `
+  },
+  render: (args) => ({
+    props: args,
+    template: `
     <div style="padding: 20px;">
       <a id="popoverTarget">{{ triggerText }}</a>
       <dx-popover
@@ -319,7 +327,7 @@ export const DefaultWithCloseButton: Story = {
       </dx-popover>
     </div>
   `,
-	})
+  }),
 };
 
 export const WithContent: Story = {

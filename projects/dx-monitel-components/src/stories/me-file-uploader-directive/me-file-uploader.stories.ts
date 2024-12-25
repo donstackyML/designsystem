@@ -140,11 +140,18 @@ export const ValidationExample: Story = {
         uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
         [maxFileSize]="4000000"
       ></dx-file-uploader>
-      <div class="allowed-extensions">
-        Allowed file extensions: {{ allowedFileExtensions.join(', ') }}
+      <div class="allowed-extensions me-text-caption">
+        Allowed file extensions: <span class="me-action-med4"> {{ allowedFileExtensions.join(', ') }} </span>
       </div>
     `,
     props: args,
+    styles: [
+      `
+			.allowed-extensions {
+				color: var(--Text-Secondary);
+			}
+			`,
+    ],
   }),
   args: defaultArgs,
 };

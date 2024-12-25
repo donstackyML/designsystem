@@ -124,6 +124,7 @@
 
         & > * {
           width: 0 !important;
+          min-width: 0 !important;
           overflow: hidden;
         }
 
@@ -202,6 +203,8 @@
 
       & > * {
         height: 20px;
+        min-width: 20px;
+        margin: 0;
       }
 
       .dx-clear-button-area {
@@ -409,16 +412,24 @@
       }
     }
 
-    &.dx-state-readonly:not(.dx-texteditor-empty) .dx-texteditor-label {
-      top: -13px;
-      left: -9px;
+    &.dx-state-readonly:not(.dx-texteditor-empty) {
+      &.me-inputs-large {
+        .dx-texteditor-label {
+          top: -17px;
+        }
+      }
 
-      .dx-label span {
-        transform: translate(0, -7.5px);
-        -webkit-transform: translate(0, -7.5px);
-        -moz-transform: translate(0, -7.5px);
-        -ms-transform: translate(0, -7.5px);
-        -o-transform: translate(0, -7.5px);
+      .dx-texteditor-label {
+        top: -13px;
+        left: -9px;
+
+        .dx-label span {
+          transform: translate(0, -7.5px);
+          -webkit-transform: translate(0, -7.5px);
+          -moz-transform: translate(0, -7.5px);
+          -ms-transform: translate(0, -7.5px);
+          -o-transform: translate(0, -7.5px);
+        }
       }
     }
 
@@ -586,6 +597,7 @@
       .dx-texteditor-buttons-container {
         & > * {
           height: 24px;
+          min-width: 24px;
         }
 
         .dx-clear-button-area {

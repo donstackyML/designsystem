@@ -182,7 +182,7 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 }
 
 //meTreeList
-.me-tree-list {
+.me-tree-list.dx-treelist.dx-widget {
   .dx-row > td {
     padding: 8px;
   }
@@ -249,6 +249,10 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 
             .dx-treelist-action {
               align-content: center;
+
+              &.dx-treelist-select-all {
+                padding-left: 44px;
+              }
 
               .dx-treelist-text-content {
                 font-size: 13px;
@@ -437,9 +441,9 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
           }
 
           .dx-focused {
-            background-color: $tree-list-focused-bg;
+            background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
 
-            & * {
+            & *:not(.dx-checkbox-checked .dx-checkbox-container .dx-checkbox-icon) {
               background-color: transparent;
             }
           }
