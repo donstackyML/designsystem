@@ -11166,8 +11166,11 @@
   margin: 0;
 }
 
-.me-calendar.dx-calendar.dx-widget,
-.dx-calendar.dx-widget.dx-calendar-view-month {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century,
+.dx-calendar.dx-widget.dx-calendar-view-month,
+.dx-calendar.dx-widget.dx-calendar-view-year,
+.dx-calendar.dx-widget.dx-calendar-view-decade,
+.dx-calendar.dx-widget.dx-calendar-view-century {
   padding: 2px 8px 8px 8px;
   border: 1px solid #3f4044;
   border-radius: 4px;
@@ -11175,85 +11178,152 @@
   width: 288px;
   box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.14);
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body {
   top: 52px;
 }
-.me-calendar.dx-calendar.dx-widget .dx-button-text,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-button-text {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell),
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell),
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell),
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell),
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell) {
+  box-shadow: inset 0 0 0 2px var(--Controls-BG-Accent-Accent-BG-Default);
+}
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-button-text {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   text-transform: capitalize;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-navigator .dx-calendar-caption-button,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-caption-button {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-caption-button, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-caption-button, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-caption-button, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-caption-button,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-caption-button,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-caption-button,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-caption-button,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-caption-button {
   display: flex;
   align-items: center;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-navigator,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator {
   height: 48px;
   gap: 8px;
   display: flex;
   padding-block: 8px;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-navigator .dx-calendar-navigator-next-view,
-.me-calendar.dx-calendar.dx-widget .dx-calendar-navigator .dx-calendar-navigator-previous-view,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-next-view,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-previous-view, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-navigator-next-view,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-navigator-previous-view, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-navigator-next-view,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-navigator-previous-view, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-navigator-next-view,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-navigator-previous-view,
 .dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-next-view,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-previous-view {
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-previous-view,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-navigator-next-view,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-navigator-previous-view,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-navigator-next-view,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-navigator-previous-view,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-navigator-next-view,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-navigator-previous-view {
   margin: 0;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
-.me-calendar.dx-calendar.dx-widget .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon,
 .dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon {
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-navigator-next-view .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-calendar-navigator-previous-view .dx-button-content .dx-icon {
   margin: 0;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-navigator .dx-button-text,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-button-text {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-navigator .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-navigator .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-navigator .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-navigator .dx-button-text {
   display: flex;
   align-items: center;
 }
-.me-calendar.dx-calendar.dx-widget .dx-icon,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-icon {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-icon {
   font-size: 14px;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body {
   padding: 0 6px 8px 8px;
   top: 45px;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body table,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body table {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body table, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body table, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body table, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body table,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body table,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body table,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body table,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body table {
   padding-right: 8px;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body .dx-calendar-cell,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell {
   height: 24px;
   word-spacing: 20px;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell {
   background-color: #43444c;
   border-radius: 0;
   box-shadow: 0px -4px 0 0 #43444c;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:first-child .dx-calendar-week-number-cell {
   border-radius: 3px 3px 0 0;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:first-child tr:last-child .dx-calendar-week-number-cell {
   border-radius: 0 0 3px 3px;
   box-shadow: 0px 4px 0 0 #43444c;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-views-wrapper .dx-widget:not(:first-child) table > thead > tr > th {
   color: transparent;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body thead th,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body thead th {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body thead th, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body thead th, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body thead th, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body thead th,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body thead th,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body thead th,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body thead th,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body thead th {
   padding: 0;
   font-size: 12px;
   font-weight: 500;
@@ -11261,61 +11331,112 @@
   text-transform: capitalize;
   box-shadow: none;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body thead tr,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body thead tr {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body thead tr, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body thead tr, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body thead tr, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body thead tr,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body thead tr,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body thead tr,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body thead tr,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body thead tr {
   height: 24px;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body tbody tr td,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body tbody tr td {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body tbody tr td, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body tbody tr td, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body tbody tr td, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body tbody tr td,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body tbody tr td,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body tbody tr td,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body tbody tr td,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body tbody tr td {
   padding: 4px;
   border-radius: 3px;
   height: 26px;
   text-align: center;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body tbody tr td span,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body tbody tr td span {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body tbody tr td span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body tbody tr td span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body tbody tr td span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body tbody tr td span,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body tbody tr td span,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body tbody tr td span,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body tbody tr td span,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body tbody tr td span {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
 }
-.me-calendar.dx-calendar.dx-widget .dx-state-disabled *,
-.me-calendar.dx-calendar.dx-widget .dx-state-disabled .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled *,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-button-content .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled *,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-button-content .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled *,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-button-content .dx-icon, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled *,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-button-content .dx-icon,
 .dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled *,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-button-content .dx-icon {
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled *,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled *,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled *,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-button-content .dx-icon {
   color: rgba(255, 255, 255, 0.3019607843);
 }
-.me-calendar.dx-calendar.dx-widget .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-views-wrapper .dx-widget:first-child .dx-calendar-week-number-cell {
   background-color: #202124;
 }
-.me-calendar.dx-calendar.dx-widget .dx-state-disabled .dx-calendar-cell.dx-calendar-today,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-cell.dx-calendar-today {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-cell.dx-calendar-today, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-cell.dx-calendar-today, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-cell.dx-calendar-today, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-cell.dx-calendar-today,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-cell.dx-calendar-today,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-cell.dx-calendar-today,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-cell.dx-calendar-today,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-cell.dx-calendar-today {
   box-shadow: none;
 }
-.me-calendar.dx-calendar.dx-widget .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date {
   box-shadow: none;
   color: #ffffff;
 }
-.me-calendar.dx-calendar.dx-widget.dx-state-disabled .dx-button-content .dx-icon,
-.me-calendar.dx-calendar.dx-widget.dx-state-disabled .dx-button-content .dx-button-text,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month.dx-state-disabled .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month.dx-state-disabled .dx-button-content .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year.dx-state-disabled .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-year.dx-state-disabled .dx-button-content .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade.dx-state-disabled .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade.dx-state-disabled .dx-button-content .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century.dx-state-disabled .dx-button-content .dx-icon,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-century.dx-state-disabled .dx-button-content .dx-button-text,
 .dx-calendar.dx-widget.dx-calendar-view-month.dx-state-disabled .dx-button-content .dx-icon,
-.dx-calendar.dx-widget.dx-calendar-view-month.dx-state-disabled .dx-button-content .dx-button-text {
+.dx-calendar.dx-widget.dx-calendar-view-month.dx-state-disabled .dx-button-content .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-year.dx-state-disabled .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-year.dx-state-disabled .dx-button-content .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-decade.dx-state-disabled .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-decade.dx-state-disabled .dx-button-content .dx-button-text,
+.dx-calendar.dx-widget.dx-calendar-view-century.dx-state-disabled .dx-button-content .dx-icon,
+.dx-calendar.dx-widget.dx-calendar-view-century.dx-state-disabled .dx-button-content .dx-button-text {
   color: var(--Controls-Content-In-Controls-Accent-Disabled);
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-week-number-cell span,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-week-number-cell span {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-week-number-cell span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-week-number-cell span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-week-number-cell span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-week-number-cell span,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-week-number-cell span,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-week-number-cell span,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-week-number-cell span,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-week-number-cell span {
   width: 100%;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-cell.dx-calendar-selected-date,
-.me-calendar.dx-calendar.dx-widget .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-cell.dx-calendar-selected-date,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-cell.dx-calendar-selected-date,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-cell.dx-calendar-selected-date,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-cell.dx-calendar-selected-date,
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today,
 .dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-cell.dx-calendar-selected-date,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today {
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-cell.dx-calendar-selected-date,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-cell.dx-calendar-selected-date,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-cell.dx-calendar-selected-date,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-cell.dx-calendar-selected-date.dx-calendar-today {
   color: var(--Controls-Content-In-Controls-On-BG-Default);
   box-shadow: inset 0 0 0 1000px #5d9eff;
 }
-.me-calendar.dx-calendar.dx-widget .dx-calendar-body .dx-widget,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-widget {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-widget, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-widget, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-widget, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-widget,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-widget,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-widget,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-widget,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-widget {
   width: 102%;
   right: -5px;
 }
@@ -15858,14 +15979,10 @@
   font-family: var(--me-icon-family);
 }
 .me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item.dx-state-hover {
-  background-color: var(--Action-Hover);
-}
-.me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item.dx-state-focused {
-  background-color: var(--Action-Hover);
-  box-shadow: inset 0px 0px 0px 2px var(--Dividers-Borders-Focus);
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
 .me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item.dx-state-active {
-  background-color: var(--Action-Active);
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
 }
 .me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content .dx-scrollable-scrollbar.dx-scrollbar-vertical {
   width: 8px;
@@ -22530,7 +22647,7 @@ input.dx-hidden {
   font-size: 13px;
   color: #ffffff;
   box-shadow: 0px 1px 4px 0px rgba(0, 6, 20, 0.2392156863);
-  border-top: 1px solid var(--Dividers-Borders-Long);
+  border: 1px solid var(--Dividers-Borders-Long);
   background: var(--Background-Canvas);
 }
 
@@ -26981,7 +27098,6 @@ input.dx-hidden {
 }
 
 .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-content .dx-fileuploader-input-wrapper .dx-fileuploader-input-container {
-  min-width: 200px;
   width: auto;
 }
 
@@ -35438,7 +35554,7 @@ input.dx-hidden {
 }
 
 .me-status-bar--small {
-  padding: 0 4px;
+  padding: 4px;
 }
 
 .me-status-bar--large .me-status-bar__button {
@@ -35811,6 +35927,9 @@ input.dx-hidden {
   height: 20px;
   min-width: 20px;
   margin: 0;
+}
+.me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container > *:not(.dx-button) {
+  display: none;
 }
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
   margin: 0;
