@@ -155,10 +155,17 @@ export const WithAnimation: Story = {
       duration: 300,
     },
     tooltipHideAnimation: {
-      type: 'fade',
-      from: { opacity: 1 },
-      to: { opacity: 0 },
-      duration: 200,
+      "type": "fade",
+
+      "from": {
+        "opacity": 1
+      },
+
+      "to": {
+        "opacity": 0
+      },
+
+      "duration": 90000000
     },
   },
   render: (args) => ({

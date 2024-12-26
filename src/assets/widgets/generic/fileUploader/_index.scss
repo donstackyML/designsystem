@@ -107,7 +107,7 @@
           height: auto;
           margin-right: 0;
 
-          &:not(.dx-state-hover) {
+          &:not(.dx-state-hover, .dx-state-active) {
             background: transparent;
           }
         }
@@ -424,11 +424,25 @@
   .dx-button.dx-widget {
     &.dx-state-hover {
       background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+    }
 
-      .dx-icon-close {
-        &:before {
-          color: var(--Controls-BG-Accent-Danger-BG-Hover);
+    &.dx-state-active {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
+    }
+
+    &.dx-fileuploader-cancel-button {
+      &.dx-state-hover {
+        background-color: var(--Controls-BG-Flat-Button-Danger-BG-Hover);
+
+        .dx-icon-close {
+          &:before {
+            color: var(--Controls-BG-Accent-Danger-BG-Hover);
+          }
         }
+      }
+
+      &.dx-state-active {
+        background-color: var(--Controls-BG-Flat-Button-Danger-BG-Pressed);
       }
     }
   }
