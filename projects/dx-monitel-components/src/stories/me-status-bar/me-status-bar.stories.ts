@@ -19,15 +19,10 @@ export default {
       control: 'boolean',
       description: 'Отображать разделители между элементами',
     },
-    transparent: {
-      control: 'boolean',
-      description: 'Прозрачный фон',
-    },
   },
   args: {
     size: 'large',
     showDivider: true,
-    transparent: false,
   },
   render: (args) => ({
     props: { ...args },
@@ -37,7 +32,6 @@ export default {
         [rightItems]="rightItems"
         [size]="size"
         [showDivider]="showDivider"
-        [transparent]="transparent"
       ></me-status-bar>
     `,
   }),
