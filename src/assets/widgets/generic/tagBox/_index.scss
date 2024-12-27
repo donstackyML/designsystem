@@ -291,10 +291,10 @@
             }
           }
         }
-        .dx-clear-button-area {
-          width: 22px;
-          height: 22px;
-        }
+        // .dx-clear-button-area {
+        //   width: 22px;
+        //   height: 22px;
+        // }
       }
     }
 
@@ -360,10 +360,10 @@
             }
           }
         }
-        .dx-clear-button-area {
-          width: 24px;
-          height: 24px;
-        }
+        // .dx-clear-button-area {
+        //   width: 24px;
+        //   height: 24px;
+        // }
       }
     }
 
@@ -431,10 +431,10 @@
             }
           }
         }
-        .dx-clear-button-area {
-          width: 32px;
-          height: 32px;
-        }
+        // .dx-clear-button-area {
+        //   width: 32px;
+        //   height: 32px;
+        // }
       }
     }
 
@@ -503,6 +503,11 @@
       -ms-border-radius: 4px;
       -o-border-radius: 4px;
     }
+  }
+
+  .dx-tag.dx-state-focused .dx-tag-content {
+    background-color: var(--Background-Accent-in-the-content);
+    box-shadow: inset 0 0 0 2px var(--Dividers-Borders-Focus);
   }
 
   //error
@@ -673,7 +678,7 @@
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
 
-.me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly {
+.me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly:not(.dx-texteditor-empty) {
   &.me-tag-box-small {
     .dx-texteditor-container .dx-texteditor-buttons-container::before {
       height: 22px;
@@ -687,6 +692,27 @@
   &.me-tag-box-large {
     .dx-texteditor-container .dx-texteditor-buttons-container::before {
       height: 32px;
+    }
+  }
+}
+
+.me-tag-box.me-inputs.dx-texteditor.dx-widget:not(.dx-texteditor-empty) {
+  &.me-tag-box-small {
+    .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+      height: 22px;
+      width: 22px;
+    }
+  }
+  &.me-tag-box-medium {
+    .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+      height: 24px;
+      width: 24px;
+    }
+  }
+  &.me-tag-box-large {
+    .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+      height: 32px;
+      width: 32px;
     }
   }
 }

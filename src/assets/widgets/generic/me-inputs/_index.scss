@@ -91,6 +91,8 @@
   }
 
   &.dx-state-disabled {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+
     .dx-texteditor-input,
     .dx-texteditor-label,
     .dx-texteditor-buttons-container,
@@ -105,6 +107,9 @@
 
   //иконка при readOnly
   &.dx-state-readonly {
+    &:not(.dx-state-disabled) {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+    }
     .dx-numberbox-spin-container {
       width: 0;
     }
@@ -208,7 +213,7 @@
       }
 
       // убираем лишние пустые div если они не кнопки
-      & > *:not(.dx-button) {
+      & > *:not(.dx-widget, .dx-numberbox-spin-container, .dx-button, .dx-clear-button-area) {
         display: none;
       }
 
