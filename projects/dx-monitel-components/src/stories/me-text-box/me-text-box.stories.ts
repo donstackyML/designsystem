@@ -1,8 +1,8 @@
 import {
-	argsToTemplate,
-	moduleMetadata,
-	type Meta,
-	type StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
 } from '@storybook/angular';
 import { DxButtonModule, DxTextBoxComponent } from 'devextreme-angular';
 import { MeLabelDirective, MeTextBoxDirective } from '../../public-api';
@@ -135,7 +135,9 @@ export const WithLabelRow: Story = {
 export const WithTelMask: Story = {
   render: (args) => ({
     props: args,
-    template: `<dx-text-box meTextBox mask="+7 (000) 000-0000" ${argsToTemplate(args)}></dx-text-box>`,
+    template: `<dx-text-box meTextBox mask="+7 (000) 000-0000" ${argsToTemplate(
+      args
+    )}></dx-text-box>`,
   }),
 };
 
@@ -177,4 +179,3 @@ export const WithPasswordToggle: Story = {
     },
   },
 };
-

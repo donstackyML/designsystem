@@ -1,10 +1,10 @@
 import { DxTextAreaModule, DxValidatorModule } from 'devextreme-angular';
 
 import {
-	argsToTemplate,
-	Meta,
-	moduleMetadata,
-	StoryObj,
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
 } from '@storybook/angular';
 
 import { MeTextAreaDirective } from '../../lib/directives/me-text-area/text-area.directive';

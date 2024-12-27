@@ -559,7 +559,7 @@ export default {
          <dxi-item items="data.items"></dxi-item>
        </dx-menu>
       </div>
-      `
+      `,
   }),
 } as Meta<MeMenuDirective | DxMenuComponent>;
 

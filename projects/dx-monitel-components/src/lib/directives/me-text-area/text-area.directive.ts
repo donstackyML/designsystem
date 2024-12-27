@@ -1,7 +1,4 @@
-import {
-	Directive,
-	Input
-} from '@angular/core';
+import { Directive, Input } from '@angular/core';
 
 type MeSize = 'small' | 'medium' | 'large';
 
@@ -11,16 +8,15 @@ type MeSize = 'small' | 'medium' | 'large';
     '[class.me-text-area]': 'true',
     '[class.me-text-area-small]': 'isSizeSmall',
     '[class.me-text-area-medium]': 'isSizeMedium',
-		'[class.me-text-area-large]': 'isSizeLarge',
-		
+    '[class.me-text-area-large]': 'isSizeLarge',
+
     '[class.me-inputs]': 'true',
     '[class.me-inputs-small]': 'isSizeSmall',
     '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
-export class MeTextAreaDirective
-{
+export class MeTextAreaDirective {
   @Input() size: MeSize = 'medium';
 
   get isSizeSmall() {

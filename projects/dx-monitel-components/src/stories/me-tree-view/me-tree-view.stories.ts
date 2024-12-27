@@ -174,7 +174,7 @@ export default {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
       },
-		},
+    },
   },
   args: {
     dataSource: data,

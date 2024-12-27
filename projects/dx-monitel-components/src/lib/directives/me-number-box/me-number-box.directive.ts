@@ -1,10 +1,10 @@
 import {
-	Directive,
-	HostListener,
-	Input,
-	OnInit,
-	Renderer2,
-	inject
+  Directive,
+  HostListener,
+  Input,
+  OnInit,
+  Renderer2,
+  inject,
 } from '@angular/core';
 import { DxNumberBoxComponent } from 'devextreme-angular';
 
@@ -18,7 +18,7 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-number-box-small]': 'isSizeSmall',
     '[class.me-number-box-medium]': 'isSizeMedium',
     '[class.me-number-box-large]': 'isSizeLarge',
-		
+
     '[class.me-inputs]': 'true',
     '[class.me-inputs-large]': 'isSizeLarge',
     '[class.me-inputs-medium]': 'isSizeMedium',
@@ -34,8 +34,7 @@ export class MeNumberBoxDirective
   override renderer = inject(Renderer2);
   private component = inject(DxNumberBoxComponent);
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get isSizeSmall() {
     return this.size === 'small';

@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { DxScrollViewModule } from 'devextreme-angular';
 import { MePosition } from '../../types/types';
-import {NgIf} from "@angular/common";
+import { NgIf } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -37,59 +37,61 @@ import {NgIf} from "@angular/common";
         class="resize-handle"
         [class.resize-handle-right]="position === 'right'"
         [class.resize-handle-left]="position === 'left'"
-        (mousedown)="onResizeStart($event)">
-      </div>
+        (mousedown)="onResizeStart($event)"
+      ></div>
     </div>
   `,
-  styles: [`
-    :host {
-      display: block;
-    }
+  styles: [
+    `
+      :host {
+        display: block;
+      }
 
-    .me-sidepage {
-      position: fixed;
-      top: 0;
-      height: 100vh;
-      transition: transform 0.3s ease;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+      .me-sidepage {
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        transition: transform 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-    .me-sidepage.me-sidepage-left {
-      left: 0;
-    }
+      .me-sidepage.me-sidepage-left {
+        left: 0;
+      }
 
-    .me-sidepage.me-sidepage-right {
-      right: 0;
-    }
+      .me-sidepage.me-sidepage-right {
+        right: 0;
+      }
 
-    .me-sidepage-content {
-      height: 100%;
-      overflow: hidden;
-    }
+      .me-sidepage-content {
+        height: 100%;
+        overflow: hidden;
+      }
 
-    .resize-handle {
-      position: absolute;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      cursor: ew-resize;
-      background: transparent;
-      transition: background-color 0.2s;
-      z-index: 1;
-    }
+      .resize-handle {
+        position: absolute;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        cursor: ew-resize;
+        background: transparent;
+        transition: background-color 0.2s;
+        z-index: 1;
+      }
 
-    .resize-handle:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-    }
+      .resize-handle:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
 
-    .resize-handle-right {
-      left: 0;
-    }
+      .resize-handle-right {
+        left: 0;
+      }
 
-    .resize-handle-left {
-      right: 0;
-    }
-  `]
+      .resize-handle-left {
+        right: 0;
+      }
+    `,
+  ],
 })
 export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
   @Input() hideOnOutsideClick: boolean = false;
@@ -118,16 +120,15 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    this.renderer.addClass(this.element.nativeElement, `me-sidepage-${this.position}`);
+    this.renderer.addClass(
+      this.element.nativeElement,
+      `me-sidepage-${this.position}`
+    );
     if (this.shading) {
       this.createShading();
     }
 
-    this.renderer.setStyle(
-      this.element.nativeElement,
-      'width',
-      this.width
-    );
+    this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
 
     if (this.position === 'right') {
       this.startPosition = 'calc(100vw)';
@@ -154,7 +155,10 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     const isOpen = changes?.['isSidePageOpen'];
-    if (isOpen?.currentValue !== isOpen?.previousValue && !isOpen?.firstChange) {
+    if (
+      isOpen?.currentValue !== isOpen?.previousValue &&
+      !isOpen?.firstChange
+    ) {
       this.toggleSidePage();
     }
   }
@@ -186,11 +190,7 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
     this.width = `${newWidth}px`;
     this.widthChange.emit(this.width);
 
-    this.renderer.setStyle(
-      this.element.nativeElement,
-      'width',
-      this.width
-    );
+    this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
   }
 
   onResizeEnd(): void {

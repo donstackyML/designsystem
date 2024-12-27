@@ -1,7 +1,14 @@
 import { DxPopoverComponent } from 'devextreme-angular';
 
 import {
-	AfterViewInit, Directive, ElementRef, inject, Input, OnChanges, Renderer2, SimpleChanges
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  inject,
+  Input,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';
@@ -15,8 +22,8 @@ export class MePopoverDirective implements AfterViewInit, OnChanges {
   @Input() customClass = '';
 
   private renderer = inject(Renderer2);
-	private element = inject(ElementRef);
-	private component = inject(DxPopoverComponent);
+  private element = inject(ElementRef);
+  private component = inject(DxPopoverComponent);
 
   ngAfterViewInit(): void {
     this.applyStyles();
@@ -29,12 +36,15 @@ export class MePopoverDirective implements AfterViewInit, OnChanges {
   }
 
   private addClassesToPopup() {
-		this.component.instance.option('wrapperAttr', { class: 'me-popover me-popover-' + this.size + ' me-popover-' + this.colorMode });
-				this.component.toolbarItems.forEach((e: any) => {
-			if (e.widget == 'dxButton') {
-				e.options.elementAttr = { class: 'me-button me-button-' + this.size };
-			}
-		})
+    this.component.instance.option('wrapperAttr', {
+      class:
+        'me-popover me-popover-' + this.size + ' me-popover-' + this.colorMode,
+    });
+    this.component.toolbarItems.forEach((e: any) => {
+      if (e.widget == 'dxButton') {
+        e.options.elementAttr = { class: 'me-button me-button-' + this.size };
+      }
+    });
   }
 
   private applyStyles(): void {

@@ -1,8 +1,8 @@
 import {
-	Meta,
-	StoryObj,
-	argsToTemplate,
-	moduleMetadata,
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
 } from '@storybook/angular';
 import { DxDateRangeBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { MeDateRangeBoxDirective, MeLabelDirective } from '../../public-api';
@@ -152,8 +152,8 @@ export default {
     multiView: false,
     labelMode: 'outside',
     disabled: false,
-		readOnly: false,
-		showClearButton: false,
+    readOnly: false,
+    showClearButton: false,
     acceptCustomValue: false,
     applyValueMode: 'instantly',
     applyButtonText: 'Применить',

@@ -25,13 +25,9 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
-export class MeTagBoxDirective
-  extends MeFocusableDirective
-  implements OnInit
-{
+export class MeTagBoxDirective extends MeFocusableDirective implements OnInit {
   @Input() size: MeSize = 'medium';
-	@Input() description: string = ''; // Новое свойство description
-	
+  @Input() description: string = ''; // Новое свойство description
 
   constructor(
     element: ElementRef,

@@ -39,15 +39,18 @@ export default {
     },
     dateOutOfRangeMessage: {
       control: 'text',
-      description: 'Сообщение об ошибке при выборе даты за пределами диапазона.',
+      description:
+        'Сообщение об ошибке при выборе даты за пределами диапазона.',
     },
     dateSerializationFormat: {
       control: 'text',
-      description: 'Формат сериализации даты. `yyyy-MM-dd` - Дата. `yyyy-MM-ddTHH:mm:ss` Локальная дата и время. `yyyy-MM-ddTHH:mm:ssZ` Дата и время в UTC. `yyyy-MM-ddTHH:mm:ssx`, `yyyy-MM-ddTHH:mm:ssxx`, `yyyy-MM-ddTHH:mm:ssxxx` Дата и время с таймзоной.',
+      description:
+        'Формат сериализации даты. `yyyy-MM-dd` - Дата. `yyyy-MM-ddTHH:mm:ss` Локальная дата и время. `yyyy-MM-ddTHH:mm:ssZ` Дата и время в UTC. `yyyy-MM-ddTHH:mm:ssx`, `yyyy-MM-ddTHH:mm:ssxx`, `yyyy-MM-ddTHH:mm:ssxxx` Дата и время с таймзоной.',
     },
     disabledDates: {
       control: 'text',
-      description: 'Указывает даты, которые пользователи не могут выбрать. Применяется, только если выбран параметр "календарь".',
+      description:
+        'Указывает даты, которые пользователи не могут выбрать. Применяется, только если выбран параметр "календарь".',
     },
     invalidDateMessage: {
       control: 'text',
@@ -56,7 +59,8 @@ export default {
     applyValueMode: {
       control: 'select',
       options: ['instantly', 'useButtons'],
-      description: 'Определяет способ, которым конечный пользователь применяет выбранное значение.',
+      description:
+        'Определяет способ, которым конечный пользователь применяет выбранное значение.',
     },
     disabled: {
       control: 'boolean',
@@ -90,7 +94,8 @@ export default {
     },
     showAnalogClock: {
       control: 'boolean',
-      description: 'Указывает, следует ли отображать аналоговые часы в средстве выбора значений. Применяется, только если type равен "datetime", а pickerType равен "calendar".',
+      description:
+        'Указывает, следует ли отображать аналоговые часы в средстве выбора значений. Применяется, только если type равен "datetime", а pickerType равен "calendar".',
     },
     showClearButton: {
       control: 'boolean',

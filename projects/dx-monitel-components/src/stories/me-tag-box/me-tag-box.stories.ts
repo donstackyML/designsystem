@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxTagBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { MeLabelDirective, MeTagBoxDirective } from '../../public-api';
 
@@ -135,38 +140,50 @@ export default {
     <div class='me-text-caption' *ngIf="size=='small'">{{ description }}</div>
     <div class='me-text-caption' *ngIf="size=='medium'">{{ description }}</div>
 		`,
-		styles: [
-			`
+    styles: [
+      `
 			.me-text-body2, .me-text-caption {
 				color: var(--Text-Secondary);
 				margin-top: 4px;
-			}`
-		]
+			}`,
+    ],
   }),
 } as Meta;
 
 export const Default: StoryObj = {};
 
 export const WithGroups: StoryObj = {
-	args: {
-		...Default.args,
-		items: [
-			{ key: 'Group 1', items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] },
-			{ key: 'Group 2', items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] },
-		],
-		grouped: true
-	}
+  args: {
+    ...Default.args,
+    items: [
+      {
+        key: 'Group 1',
+        items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
+      },
+      {
+        key: 'Group 2',
+        items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
+      },
+    ],
+    grouped: true,
+  },
 };
 export const WithGroupsAndIcons: StoryObj = {
-	args: {
-		...Default.args,
-		items: [
-			{ key: 'Group 1', items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] },
-			{ key: 'Group 2', items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] },
-		],
-		grouped: true
-	},
-	render: (args) => ({
+  args: {
+    ...Default.args,
+    items: [
+      {
+        key: 'Group 1',
+        items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
+      },
+      {
+        key: 'Group 2',
+        items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
+      },
+    ],
+    grouped: true,
+  },
+  render: (args) => ({
     props: { ...args },
     template: `
 		<dx-tag-box
@@ -191,20 +208,20 @@ export const WithGroupsAndIcons: StoryObj = {
     <div class='me-text-caption' *ngIf="size=='small'">{{ description }}</div>
     <div class='me-text-caption' *ngIf="size=='medium'">{{ description }}</div>
 		`,
-		styles: [
-			`
+    styles: [
+      `
 			.me-text-body2, .me-text-caption {
 				color: var(--Text-Secondary);
 				margin-top: 4px;
-			}`
-		]
+			}`,
+    ],
   }),
 };
 
 export const WithLabelRow: StoryObj = {
   args: {
-		...Default.args,
-		labelMode: 'hidden',
+    ...Default.args,
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,

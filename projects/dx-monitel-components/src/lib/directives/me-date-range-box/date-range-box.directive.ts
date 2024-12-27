@@ -1,10 +1,10 @@
 import {
-	Directive,
-	HostListener,
-	Input,
-	OnInit,
-	Renderer2,
-	inject
+  Directive,
+  HostListener,
+  Input,
+  OnInit,
+  Renderer2,
+  inject,
 } from '@angular/core';
 import { DxDateRangeBoxComponent } from 'devextreme-angular';
 import { MeSize } from '../../types/types';
@@ -26,9 +26,9 @@ import { MeSize } from '../../types/types';
 export class MeDateRangeBoxDirective implements OnInit {
   @Input() size: MeSize = 'medium';
   private component = inject(DxDateRangeBoxComponent);
-	private renderer = inject(Renderer2);
-	
-	  ngOnInit(): void {
+  private renderer = inject(Renderer2);
+
+  ngOnInit(): void {
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-date-range-box-overlay`,

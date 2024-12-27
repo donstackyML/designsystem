@@ -1,4 +1,9 @@
-import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import {
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
 import { DxAutocompleteModule, DxValidatorModule } from 'devextreme-angular';
 import { MeAutocompleteDirective, MeLabelDirective } from '../../public-api';
 
@@ -50,7 +55,7 @@ export default {
     },
     disabled: {
       control: 'boolean',
-    }
+    },
   },
   args: {
     size: 'medium',
@@ -114,13 +119,13 @@ export const Default: StoryObj = {};
 export const Small: StoryObj = {
   args: {
     size: 'small',
-  }
+  },
 };
 
 export const Large: StoryObj = {
   args: {
     size: 'large',
-  }
+  },
 };
 
 export const WithLabelRow: StoryObj = {

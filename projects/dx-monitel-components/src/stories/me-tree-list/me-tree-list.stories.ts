@@ -469,8 +469,8 @@ export default {
     allowColumnResizing: true,
     hoverStateEnabled: true,
     showRowLines: true,
-		selectionMode: 'multiple',
-		disabled: false,
+    selectionMode: 'multiple',
+    disabled: false,
   },
   render: (args) => ({
     props: args,

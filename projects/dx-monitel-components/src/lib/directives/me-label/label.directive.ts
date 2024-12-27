@@ -20,7 +20,9 @@ import { MeEditorComponents, MeLabelDirection } from '../../types/types';
 @Directive({
   selector: '[meLabel]',
 })
-export class MeLabelDirective implements OnInit, AfterContentInit, AfterContentChecked, OnDestroy {
+export class MeLabelDirective
+  implements OnInit, AfterContentInit, AfterContentChecked, OnDestroy
+{
   @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
   @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
@@ -58,12 +60,14 @@ export class MeLabelDirective implements OnInit, AfterContentInit, AfterContentC
   }
 
   private createLabelElement(): void {
-    const textNode = Array.from<ChildNode>(this.element.nativeElement.childNodes)
-      .find((node): node is Text =>
+    const textNode = Array.from<ChildNode>(
+      this.element.nativeElement.childNodes
+    ).find(
+      (node): node is Text =>
         node.nodeType === Node.TEXT_NODE &&
         node instanceof Text &&
         node.textContent?.trim() !== ''
-      );
+    );
 
     if (textNode && textNode.textContent) {
       this.labelElement = this.renderer.createElement('span');
@@ -73,7 +77,11 @@ export class MeLabelDirective implements OnInit, AfterContentInit, AfterContentC
       const text = this.renderer.createText(textNode.textContent.trim());
       this.renderer.appendChild(this.labelElement, text);
 
-      this.renderer.insertBefore(this.element.nativeElement, this.labelElement, textNode);
+      this.renderer.insertBefore(
+        this.element.nativeElement,
+        this.labelElement,
+        textNode
+      );
       this.renderer.removeChild(this.element.nativeElement, textNode);
     }
   }
@@ -112,13 +120,22 @@ export class MeLabelDirective implements OnInit, AfterContentInit, AfterContentC
 
     if (this.labelDirection === 'row' && size) {
       if (size.includes('small')) {
-        this.renderer.addClass(this.element.nativeElement, 'me-label-row-small');
+        this.renderer.addClass(
+          this.element.nativeElement,
+          'me-label-row-small'
+        );
       }
       if (size.includes('medium')) {
-        this.renderer.addClass(this.element.nativeElement, 'me-label-row-medium');
+        this.renderer.addClass(
+          this.element.nativeElement,
+          'me-label-row-medium'
+        );
       }
       if (size.includes('large')) {
-        this.renderer.addClass(this.element.nativeElement, 'me-label-row-large');
+        this.renderer.addClass(
+          this.element.nativeElement,
+          'me-label-row-large'
+        );
       }
     }
   }
@@ -144,11 +161,17 @@ export class MeLabelDirective implements OnInit, AfterContentInit, AfterContentC
       if (this.field?.disabled) {
         this.renderer.addClass(this.element.nativeElement, 'me-label-disabled');
       } else {
-        this.renderer.removeClass(this.element.nativeElement, 'me-label-disabled');
+        this.renderer.removeClass(
+          this.element.nativeElement,
+          'me-label-disabled'
+        );
       }
 
       if (!this.field?.disabled && !this.field?.readOnly) {
-        this.renderer.addClass(this.element.nativeElement, 'me-label-container');
+        this.renderer.addClass(
+          this.element.nativeElement,
+          'me-label-container'
+        );
       }
     }
   }
@@ -157,7 +180,12 @@ export class MeLabelDirective implements OnInit, AfterContentInit, AfterContentC
     const target = e.target as HTMLElement;
     const isLabelClick = target.classList.contains('me-label-text');
 
-    if (isLabelClick && this.field && !this.field?.disabled && !this.field?.readOnly) {
+    if (
+      isLabelClick &&
+      this.field &&
+      !this.field?.disabled &&
+      !this.field?.readOnly
+    ) {
       const instance = this.field.instance;
       instance.focus();
     }

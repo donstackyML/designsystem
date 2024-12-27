@@ -52,7 +52,7 @@ export class MeLabelDirective implements OnInit, AfterContentInit, OnDestroy {
 
   private initializeStyles(): void {
     const baseClasses = ['dx-widget', 'me-label'];
-    baseClasses.forEach(className => {
+    baseClasses.forEach((className) => {
       this.renderer.addClass(this.element.nativeElement, className);
     });
 
@@ -60,9 +60,7 @@ export class MeLabelDirective implements OnInit, AfterContentInit, OnDestroy {
       this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
     }
 
-    const directionClass = this.labelDirection === 'column'
-      ? 'me-flex-column'
-      : 'me-flex-row';
+    const directionClass = this.labelDirection === 'column' ? 'me-flex-column' : 'me-flex-row';
     this.renderer.addClass(this.element.nativeElement, directionClass);
   }
 
@@ -78,24 +76,25 @@ export class MeLabelDirective implements OnInit, AfterContentInit, OnDestroy {
       const text = this.renderer.createText(firstChild.textContent?.trim() || '');
       this.renderer.appendChild(this.labelElement, text);
       this.renderer.removeChild(this.element.nativeElement, firstChild);
-      this.renderer.insertBefore(this.element.nativeElement, this.labelElement, this.element.nativeElement.firstChild);
+      this.renderer.insertBefore(
+        this.element.nativeElement,
+        this.labelElement,
+        this.element.nativeElement.firstChild,
+      );
     }
   }
 
   private initializeField(): void {
-    this.field = this.textBoxComponent
-      || this.selectBoxComponent
-      || this.checkBoxComponent
-      || this.switchComponent;
+    this.field =
+      this.textBoxComponent ||
+      this.selectBoxComponent ||
+      this.checkBoxComponent ||
+      this.switchComponent;
   }
 
   private setupEventListeners(): void {
     if (this.labelElement) {
-      this.unlistenLabel = this.renderer.listen(
-        this.labelElement,
-        'click',
-        this.handleLabelClick
-      );
+      this.unlistenLabel = this.renderer.listen(this.labelElement, 'click', this.handleLabelClick);
     }
   }
 
@@ -124,7 +123,7 @@ export class MeLabelDirective implements OnInit, AfterContentInit, OnDestroy {
       const sizeMap = {
         small: 'me-label-row-small',
         medium: 'me-label-row-medium',
-        large: 'me-label-row-large'
+        large: 'me-label-row-large',
       };
 
       Object.entries(sizeMap).forEach(([sizeKey, className]) => {
@@ -147,5 +146,5 @@ export class MeLabelDirective implements OnInit, AfterContentInit, OnDestroy {
 
     const instance = this.field.instance;
     instance.focus();
-  }
+  };
 }

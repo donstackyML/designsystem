@@ -14,6 +14,7 @@ export class FocusManagerService implements OnDestroy {
 
   monitorFocus(
     element: ElementRef<HTMLElement>,
+    checkChildren: boolean = false,
     className: string = 'me-keyboard-focused'
   ): Observable<FocusOrigin> {
     if (this.focusedElements.has(element)) {
@@ -21,7 +22,7 @@ export class FocusManagerService implements OnDestroy {
     }
 
     const subscription = this.focusMonitor
-      .monitor(element)
+      .monitor(element, checkChildren)
       .pipe(takeUntil(this.destroy$))
       .subscribe((origin: FocusOrigin) => {
         this.ngZone.run(() => {
