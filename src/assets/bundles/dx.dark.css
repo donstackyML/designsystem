@@ -11185,11 +11185,11 @@
 .dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body {
   top: 52px;
 }
-.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell),
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell),
-.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell),
-.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell),
-.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-empty-cell) {
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-selected-date), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-selected-date), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-selected-date), .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-selected-date),
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-selected-date),
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-selected-date),
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-selected-date),
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell.dx-calendar-contoured-date:not(.dx-calendar-selected-date) {
   box-shadow: inset 0 0 0 2px var(--Controls-BG-Accent-Accent-BG-Default);
 }
 .me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-button-text,
@@ -12607,6 +12607,10 @@
   -moz-border-radius: 0 0 4px 4px;
   -ms-border-radius: 0 0 4px 4px;
   -o-border-radius: 0 0 4px 4px;
+}
+
+.me-date-range-box.dx-daterangebox:not(:has(.dx-start-datebox.dx-texteditor-empty)):has(.dx-end-datebox.dx-texteditor-empty) .dx-end-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-invalid .dx-texteditor-label .dx-label span {
+  margin-top: 3.5px;
 }
 
 .dx-dropdownlist-popup-wrapper .dx-list {
@@ -16819,6 +16823,9 @@
   text-wrap: balance;
   overflow-wrap: anywhere;
 }
+.me-tooltip.dx-tooltip-wrapper .dx-overlay-content {
+  box-shadow: none;
+}
 
 /**
 * $name 10. Slider bar background color
@@ -17995,10 +18002,6 @@
   font-size: 13px;
   line-height: 16px;
 }
-.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-clear-button-area {
-  width: 22px;
-  height: 22px;
-}
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside):has(.dx-tag) .dx-texteditor-label {
   height: 36px;
@@ -18026,10 +18029,6 @@
   margin: 0;
   font-size: 14px;
   line-height: 20px;
-}
-.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-clear-button-area {
-  width: 24px;
-  height: 24px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside):has(.dx-tag) .dx-texteditor-label {
@@ -18060,10 +18059,6 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
-}
-.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-clear-button-area {
-  width: 32px;
-  height: 32px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside):has(.dx-tag) .dx-texteditor-label {
@@ -18101,6 +18096,10 @@
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
+}
+.me-tag-box .dx-tag.dx-state-focused .dx-tag-content {
+  background-color: var(--Background-Accent-in-the-content);
+  box-shadow: inset 0 0 0 2px var(--Dividers-Borders-Focus);
 }
 .me-tag-box .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
   margin-top: 1px;
@@ -18210,14 +18209,27 @@
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
 
-.me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly.me-tag-box-small .dx-texteditor-container .dx-texteditor-buttons-container::before {
+.me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly:not(.dx-texteditor-empty).me-tag-box-small .dx-texteditor-container .dx-texteditor-buttons-container::before {
   height: 22px;
 }
-.me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly.me-tag-box-medium .dx-texteditor-container .dx-texteditor-buttons-container::before {
+.me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly:not(.dx-texteditor-empty).me-tag-box-medium .dx-texteditor-container .dx-texteditor-buttons-container::before {
   height: 24px;
 }
-.me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly.me-tag-box-large .dx-texteditor-container .dx-texteditor-buttons-container::before {
+.me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly:not(.dx-texteditor-empty).me-tag-box-large .dx-texteditor-container .dx-texteditor-buttons-container::before {
   height: 32px;
+}
+
+.me-tag-box.me-inputs.dx-texteditor.dx-widget:not(.dx-texteditor-empty).me-tag-box-small .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  height: 22px;
+  width: 22px;
+}
+.me-tag-box.me-inputs.dx-texteditor.dx-widget:not(.dx-texteditor-empty).me-tag-box-medium .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  height: 24px;
+  width: 24px;
+}
+.me-tag-box.me-inputs.dx-texteditor.dx-widget:not(.dx-texteditor-empty).me-tag-box-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
+  height: 32px;
+  width: 32px;
 }
 
 /**
@@ -26913,7 +26925,7 @@ input.dx-hidden {
   height: auto;
   margin-right: 0;
 }
-.me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-button:not(.dx-state-hover) {
+.me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-button:not(.dx-state-hover, .dx-state-active) {
   background: transparent;
 }
 .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file {
@@ -27124,8 +27136,17 @@ input.dx-hidden {
 .me-file-uploader .dx-button.dx-widget.dx-state-hover {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
-.me-file-uploader .dx-button.dx-widget.dx-state-hover .dx-icon-close:before {
+.me-file-uploader .dx-button.dx-widget.dx-state-active {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
+}
+.me-file-uploader .dx-button.dx-widget.dx-fileuploader-cancel-button.dx-state-hover {
+  background-color: var(--Controls-BG-Flat-Button-Danger-BG-Hover);
+}
+.me-file-uploader .dx-button.dx-widget.dx-fileuploader-cancel-button.dx-state-hover .dx-icon-close:before {
   color: var(--Controls-BG-Accent-Danger-BG-Hover);
+}
+.me-file-uploader .dx-button.dx-widget.dx-fileuploader-cancel-button.dx-state-active {
+  background-color: var(--Controls-BG-Flat-Button-Danger-BG-Pressed);
 }
 
 /**
@@ -34875,6 +34896,10 @@ input.dx-hidden {
   justify-content: flex-start;
 }
 
+.me-sidepage:not(.me-sidepage-open) {
+  box-shadow: none !important;
+}
+
 .skeleton {
   display: flex;
   width: 100%;
@@ -35838,6 +35863,9 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget.dx-invalid:not(.dx-state-disabled) .dx-label span {
   color: var(--Controls-Content-In-Controls-Danger-Default);
 }
+.me-inputs.dx-texteditor.dx-widget.dx-state-disabled {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+}
 .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-input,
 .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-label,
 .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-buttons-container,
@@ -35847,6 +35875,9 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-button-text,
 .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-icon {
   color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+}
+.me-inputs.dx-texteditor.dx-widget.dx-state-readonly:not(.dx-state-disabled) {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
 }
 .me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-numberbox-spin-container {
   width: 0;
@@ -35928,7 +35959,7 @@ input.dx-hidden {
   min-width: 20px;
   margin: 0;
 }
-.me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container > *:not(.dx-button) {
+.me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container > *:not(.dx-widget, .dx-numberbox-spin-container, .dx-button, .dx-clear-button-area) {
   display: none;
 }
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container .dx-clear-button-area {
