@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';
+import { FocusManagerService } from 'projects/dx-monitel-components/src/lib/service/keyboard-navigation.service';
+import { KeyboardCustomService } from 'projects/dx-monitel-components/src/lib/service/keyboard-custom.service';
 
 @Directive({
   selector: '[meDateBox]',
@@ -30,12 +32,19 @@ export class MeDateBoxDirective implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() description: string = ''; // Новое свойство description
 
-  constructor(public element: ElementRef) {}
+  constructor(
+    public element: ElementRef,
+    private focusManager: FocusManagerService,
+    private keyboardService: KeyboardCustomService
+  ) {}
 
   private renderer = inject(Renderer2);
   private component = inject(DxDateBoxComponent);
 
   ngOnInit(): void {
+    this.focusManager.monitorFocus(this.element, true).subscribe();
+    this.keyboardService.setup(this.element);
+
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-date-box-overlay`,
