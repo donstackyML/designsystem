@@ -1,14 +1,14 @@
-import {
-  Directive,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  Self,
-  Optional,
-  HostBinding,
-} from '@angular/core';
 import { DxToastComponent } from 'devextreme-angular';
 import { dxToastOptions } from 'devextreme/ui/toast';
+
+import {
+  Directive,
+  HostBinding,
+  Input,
+  OnInit,
+  Optional,
+  Self,
+} from '@angular/core';
 
 type ToastSize = 'small' | 'large';
 type ToastType = 'info' | 'warning' | 'success' | 'error';
@@ -16,19 +16,19 @@ type ToastType = 'info' | 'warning' | 'success' | 'error';
 @Directive({
   selector: '[meToast]',
   exportAs: 'meToastControl',
+  host: {
+    '[class.me-toast]': 'true',
+    '[class.me-toast-small]': 'isSmall',
+    '[class.me-toast-large]': 'isLarge',
+  },
 })
-export class MeToastDirective {
+export class MeToastDirective implements OnInit {
   @Input() size: ToastSize = 'small';
 
-  @HostBinding('class.me-toast')
-  baseClass = true;
-
-  @HostBinding('class.me-toast-small')
   get isSmall(): boolean {
     return this.size === 'small';
   }
 
-  @HostBinding('class.me-toast-large')
   get isLarge(): boolean {
     return this.size === 'large';
   }
@@ -40,9 +40,12 @@ export class MeToastDirective {
         message: '',
         contentTemplate: 'content',
       };
-
       this.dxToastComponent.instance.option(options);
     }
+  }
+
+  ngOnInit(): void {
+    this.dxToastComponent.instance.option().wrapperAttr.class = `me-toast me-toast-${this.size}`;
   }
 
   public showToast() {

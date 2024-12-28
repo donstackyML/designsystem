@@ -1,73 +1,15 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxButtonModule, DxToastModule } from 'devextreme-angular';
 import {
-	MeButtonModule,
-	MeIconComponent,
-	MeToastDirective,
+  MeButtonModule,
+  MeIconComponent,
+  MeToastDirective,
 } from '../../public-api';
-
-const ToastStyles = `
-  .me-toast-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .me-toast-close-button {
-    padding: 4px;
-    cursor: pointer;
-    color: var(--Text-Secondary);
-    border: none;
-    margin-left: auto;
-		height: 28px;
-		width: 28px;
-		place-content: center;
-
-		.dx-button-content {
-			align-items: center;
-		}
-  }
-
-  .me-toast-close-button:not(.dx-state-hover) {
-    background: transparent;
-  }
-
-  .me-toast-content1 {
-    margin-left: 34px
-  }
-
-  .me-toast-content2 {
-    margin-left: 30px
-  }
-
-  .me-toast-actions {
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--Dividers-Borders-On-Bg, rgba(24, 24, 26, 0.20));
-  }
-
-	.me-toast-close-button-inverted:hover {
-	  .dx-icon-close {
-	    color: black
-	  }
-	}
-
-	.me-toast-close-button-warning:hover {
-	  background-color: rgba(240, 115, 0, 0.1215686275);
-	}
-	.me-toast-close-button-warning {
-	  .dx-icon-close {
-	    color: #fea500;
-	  }
-	}
-
-	.me-error-icon {
-	width: 24px;
-	}
-`;
 
 export default {
   title: 'Components/Toast',
@@ -80,6 +22,27 @@ export default {
 } as Meta;
 
 type Story = StoryObj;
+
+// export const Default: Story = {
+//   args: {
+//     size: 'small',
+//     message: 'Hello, world!',
+//     position: 'top',
+//     displayTime: 200000000000000,
+//     type: 'info',
+//     visible: true,
+//   },
+//   render: (args) => ({
+//     props: { ...args },
+//     template: `
+//       <dx-toast
+//         meToast
+//         ${argsToTemplate(args)}
+//       >
+// 	</dx-toast>
+//     `,
+//   }),
+// };
 
 // Маленький информационный тост
 export const SmallInfo: Story = {
@@ -127,7 +90,6 @@ export const SmallInfo: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles],
   }),
 };
 
@@ -177,7 +139,6 @@ export const SmallWarning: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles],
   }),
 };
 
@@ -227,7 +188,6 @@ export const LargeError: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles],
   }),
 };
 
@@ -279,7 +239,6 @@ export const LargeSuccess: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles],
   }),
 };
 
@@ -330,6 +289,5 @@ export const InvertedInfo: Story = {
         </div>
       </dx-toast>
     `,
-    styles: [ToastStyles],
   }),
 };
