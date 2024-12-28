@@ -1,18 +1,13 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabPanelModule } from 'devextreme-angular';
 import { MeTabPanelDirective } from '../../public-api';
-import {
-  homeX20,
-  mailX20,
-  publicX20,
-} from '@monitel/me-icons';
+import { homeX20, mailX20, publicX20 } from '@monitel/me-icons';
 import { registry } from '../../../.storybook/preview';
 interface TabPanelItem {
   title: string;
   icon: string;
   content: string;
 }
-
 
 const meta: Meta = {
   title: 'Components/TabPanel',
@@ -35,7 +30,6 @@ const meta: Meta = {
 				[focusStateEnabled]="focusStateEnabled"
 				[activeStateEnabled]="activeStateEnabled"
 				[disabled]="disabled"
-				[styling]="styling"
         [iconPosition]="iconPosition"
         [selectedIndex]="selectedIndex"
         [swipeEnabled]="swipeEnabled"
@@ -103,7 +97,6 @@ export const Default: StoryObj = {
   args: {
     dataSource: defaultTabPanelData,
     size: 'medium',
-    styling: 'outside',
     tabsPosition: 'left',
     iconPosition: 'left',
     activeStateEnabled: true,
