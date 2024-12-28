@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Meta,
-  StoryObj,
-  moduleMetadata,
-} from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
 import { MeTooltipDirective } from '../../public-api';
@@ -24,7 +20,7 @@ const meta: Meta<MeTooltipDirective> = {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
-      }
+      },
     },
     tooltipPosition: {
       control: 'select',
@@ -33,7 +29,7 @@ const meta: Meta<MeTooltipDirective> = {
       table: {
         type: { summary: "'top' | 'bottom' | 'left' | 'right'" },
         defaultValue: { summary: 'top' },
-      }
+      },
     },
     tooltipClass: {
       control: 'text',
@@ -41,7 +37,7 @@ const meta: Meta<MeTooltipDirective> = {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'me-tooltip' },
-      }
+      },
     },
     tooltipWidth: {
       control: 'number',
@@ -49,7 +45,7 @@ const meta: Meta<MeTooltipDirective> = {
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
-      }
+      },
     },
     tooltipMaxWidth: {
       control: 'number',
@@ -57,7 +53,7 @@ const meta: Meta<MeTooltipDirective> = {
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
-      }
+      },
     },
     tooltipHeight: {
       control: 'number',
@@ -65,7 +61,7 @@ const meta: Meta<MeTooltipDirective> = {
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
-      }
+      },
     },
     tooltipMaxHeight: {
       control: 'number',
@@ -73,23 +69,27 @@ const meta: Meta<MeTooltipDirective> = {
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
-      }
+      },
     },
     tooltipShowAnimation: {
       control: 'object',
       description: 'Настройки анимации появления тултипа',
       table: {
         type: { summary: 'object' },
-        defaultValue: { summary: '{ type: "fade", from: 0, to: 1, duration: 300 }' },
-      }
+        defaultValue: {
+          summary: '{ type: "fade", from: 0, to: 1, duration: 300 }',
+        },
+      },
     },
     tooltipHideAnimation: {
       control: 'object',
       description: 'Настройки анимации скрытия тултипа',
       table: {
         type: { summary: 'object' },
-        defaultValue: { summary: '{ type: "fade", from: 1, to: 0, duration: 300 }' },
-      }
+        defaultValue: {
+          summary: '{ type: "fade", from: 1, to: 0, duration: 300 }',
+        },
+      },
     },
     colorMode: {
       control: 'select',
@@ -98,8 +98,8 @@ const meta: Meta<MeTooltipDirective> = {
       table: {
         type: { summary: "'light' | 'dark'" },
         defaultValue: { summary: 'dark' },
-      }
-    }
+      },
+    },
   },
 };
 
@@ -155,21 +155,22 @@ export const WithAnimation: Story = {
       duration: 300,
     },
     tooltipHideAnimation: {
-      "type": "fade",
+      type: 'fade',
 
-      "from": {
-        "opacity": 1
+      from: {
+        opacity: 1,
       },
 
-      "to": {
-        "opacity": 0
+      to: {
+        opacity: 0,
       },
 
-      "duration": 90000000
+      duration: 90000000,
     },
   },
   render: (args) => ({
     template: `
+		<div style="background-color: grey; padding: 50px;">
       <dx-button
         [meTooltip]="meTooltip"
         [tooltipPosition]="tooltipPosition"
@@ -181,6 +182,7 @@ export const WithAnimation: Story = {
         [tooltipHideAnimation]="tooltipHideAnimation">
         Тултип с анимацией
       </dx-button>
+		</div>
     `,
     props: args,
   }),
@@ -236,7 +238,8 @@ export const ImageTooltip: Story = {
 
 export const WithMaxDimensions: Story = {
   args: {
-    meTooltip: 'Это тултип с ограничением максимальных размеров. Длинный текст будет автоматически переноситься на новую строку при достижении максимальной ширины.',
+    meTooltip:
+      'Это тултип с ограничением максимальных размеров. Длинный текст будет автоматически переноситься на новую строку при достижении максимальной ширины.',
     tooltipPosition: 'top',
     tooltipWidth: undefined,
     tooltipMaxWidth: 200,

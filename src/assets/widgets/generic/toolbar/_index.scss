@@ -14,6 +14,117 @@
 // adduse
 @use '../dropDownMenu';
 
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-list-item-content.dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-list-item-content.dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-list-item-content
+  > .dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-list-item-content
+  > .dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-toolbar-item-auto-hide.dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-toolbar-item-auto-hide.dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-toolbar-item-auto-hide
+  > .dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-toolbar-item-auto-hide
+  > .dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-toolbar-item-content.dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-toolbar-item-content.dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-toolbar-item-content
+  > .dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button
+  .dx-toolbar-item-content
+  > .dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-list-item-content.dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-list-item-content.dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-list-item-content
+  > .dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-list-item-content
+  > .dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-toolbar-item-auto-hide.dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-toolbar-item-auto-hide.dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-toolbar-item-auto-hide
+  > .dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-toolbar-item-auto-hide
+  > .dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-toolbar-item-content.dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-toolbar-item-content.dx-buttongroup
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-toolbar-item-content
+  > .dx-button
+  .dx-button-content,
+.dx-toolbar-menu-section
+  .dx-toolbar-hidden-button-group
+  .dx-toolbar-item-content
+  > .dx-buttongroup
+  .dx-button-content {
+  justify-content: flex-start;
+}
+
 .dx-toolbar:not(.dx-popup-title) {
   background-color: $toolbar-bg;
   color: $toolbar-color;
@@ -272,6 +383,10 @@
     flex-wrap: wrap;
     align-items: center;
   }
+
+  .dx-toolbar-item-content > .dx-texteditor {
+    width: auto;
+  }
 }
 
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdownmenu-popup-wrapper.dx-dropdownmenu-popup {
@@ -287,6 +402,10 @@
         flex-direction: column;
         .dx-toolbar-menu-section {
           padding: 0px;
+
+          &:not(:has(div)) {
+            display: none;
+          }
 
           &:not(:last-child) {
             margin-bottom: 8px;
@@ -353,4 +472,13 @@
 
 .dx-widget.dx-button.dx-button-mode-contained.dx-button-normal.dx-button-has-text.me-button.me-button-icon-only.dx-state-focused.dx-state-active {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
+}
+
+.dx-list .dx-list-item:has(.dx-buttongroup.me-button) {
+  &:hover {
+    background-color: transparent;
+  }
+  .dx-button.dx-state-hover {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+  }
 }
