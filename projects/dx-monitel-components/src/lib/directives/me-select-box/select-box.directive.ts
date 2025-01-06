@@ -11,6 +11,7 @@ import {
 
 import { MeCommonType, MeScrollbarShowType, MeSize } from '../../types/types';
 import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meSelectBox]',
@@ -25,6 +26,7 @@ import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
     '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-large]': 'isSizeLarge',
   },
+  providers: [{ provide: MeFormField, useExisting: MeSelectBoxDirective }],
 })
 export class MeSelectBoxDirective implements OnInit {
   @Input() showScrollbar: MeScrollbarShowType = 'always';

@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';
+import { MeFormField } from '../me-form-item/me-form-field';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { locale } from 'devextreme/localization';
 
@@ -27,18 +28,22 @@ import { locale } from 'devextreme/localization';
     '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-small]': 'isSizeSmall',
   },
+  providers: [{ provide: MeFormField, useExisting: MeDateBoxDirective }],
 })
-export class MeDateBoxDirective implements OnInit {
+export class MeDateBoxDirective extends MeFormField implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() description: string = ''; // Новое свойство description
 
   constructor(
     public element: ElementRef,
-    private focusManager: FocusManagerService
-  ) {}
+    private focusManager: FocusManagerService,
+    protected override component: DxDateBoxComponent
+  ) {
+    super(component);
+  }
 
   private renderer = inject(Renderer2);
-  private component = inject(DxDateBoxComponent);
+  //  private component = inject(DxDateBoxComponent);
 
   ngOnInit(): void {
     this.focusManager.monitorFocus(this.element, true).subscribe();

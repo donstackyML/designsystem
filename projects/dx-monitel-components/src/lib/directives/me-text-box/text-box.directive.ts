@@ -25,9 +25,12 @@ import { FocusManagerService } from '../../service/keyboard-navigation.service';
     '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-large]': 'isSizeLarge',
   },
+  providers: [{ provide: MeFormField, useExisting: MeTextBoxDirective }],
 })
-export class MeTextBoxDirective implements OnInit, AfterViewInit {
-  @Input() size: MeSize = 'medium';
+export class MeTextBoxDirective
+  implements OnInit, AfterViewInit
+{
+	@Input() size: MeSize = 'medium';
   private passwordVisible = false;
   private isPasswordInput = false;
   private passwordToggleButton: HTMLElement | null = null;

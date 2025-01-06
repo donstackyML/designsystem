@@ -51,6 +51,7 @@ import { MeStatusBarComponent } from './components/me-status-bar/me-status-bar.c
 import { MeSidebarMenuComponent } from './components/me-sidebar-menu/me-sidebar-menu.component';
 import { MeNumberBoxModule } from './directives/me-number-box/me-number-box.module';
 import { MeNumberBoxDirective } from './directives/me-number-box/me-number-box.directive';
+import { MeFormItemModule } from './directives/me-form-item/me-form-item.module';
 
 @NgModule({
   declarations: [],
@@ -109,6 +110,7 @@ import { MeNumberBoxDirective } from './directives/me-number-box/me-number-box.d
     MeStatusBarComponent,
     MeSidebarMenuComponent,
     MeNumberBoxModule,
+    MeFormItemModule,
   ],
   exports: [
     MeAccordionModule,
@@ -165,6 +167,7 @@ import { MeNumberBoxDirective } from './directives/me-number-box/me-number-box.d
     MeStatusBarComponent,
     MeSidebarMenuComponent,
     MeNumberBoxDirective,
+    MeFormItemModule,
   ],
 })
 export class MeComponentsModule {}

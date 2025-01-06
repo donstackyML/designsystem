@@ -9,6 +9,8 @@ import {
 import { MeEditorComponents, MeSize } from '../../types/types';
 import { DxTextBoxComponent } from 'devextreme-angular';
 import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
+import { LabelMode } from 'devextreme/common';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meEditor]',
@@ -17,7 +19,7 @@ import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
     '(focusout)': 'removeFocus()',
   },
 })
-export class MeEditorDirective {
+export class MeEditorDirective extends MeFormField {
   @Input() size: MeSize = 'medium';
   focusSubject: BehaviorSubject<boolean>;
   focusSubscription: Subscription;
@@ -25,9 +27,10 @@ export class MeEditorDirective {
   constructor(
     protected element: ElementRef,
     @Inject(DxTextBoxComponent)
-    protected component: MeEditorComponents,
+    protected override component: MeEditorComponents,
     protected renderer: Renderer2
   ) {
+    super(component);
     this.focusSubject = new BehaviorSubject<boolean>(false);
     this.focusSubscription = this.focusSubject
       .pipe(debounceTime(0))
