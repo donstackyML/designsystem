@@ -11,8 +11,7 @@ import {
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';
-import { FocusManagerService } from 'projects/dx-monitel-components/src/lib/service/keyboard-navigation.service';
-import { KeyboardCustomService } from 'projects/dx-monitel-components/src/lib/service/keyboard-custom.service';
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 @Directive({
   selector: '[meDateBox]',
@@ -34,8 +33,7 @@ export class MeDateBoxDirective implements OnInit {
 
   constructor(
     public element: ElementRef,
-    private focusManager: FocusManagerService,
-    private keyboardService: KeyboardCustomService
+    private focusManager: FocusManagerService
   ) {}
 
   private renderer = inject(Renderer2);
@@ -43,7 +41,6 @@ export class MeDateBoxDirective implements OnInit {
 
   ngOnInit(): void {
     this.focusManager.monitorFocus(this.element, true).subscribe();
-    this.keyboardService.setup(this.element);
 
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
