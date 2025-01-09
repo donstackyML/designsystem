@@ -6,8 +6,13 @@ import 'style-loader!css-loader!./style.css';
 import docJson from '../documentation.json';
 import { MeIconsRegistry } from '@monitel/me-icons-registry';
 import { meIconSet } from '@monitel/me-icons';
+import ruMessages from 'devextreme/localization/messages/ru.json';
+import { locale, loadMessages } from 'devextreme/localization';
 
 setCompodocJson(docJson);
+
+loadMessages(ruMessages);
+locale(navigator.language);
 
 const linkDark = document.createElement('link');
 linkDark.setAttribute('rel', 'stylesheet');

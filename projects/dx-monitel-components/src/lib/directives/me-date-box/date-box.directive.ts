@@ -12,6 +12,7 @@ import {
 
 import { MeSize } from '../../types/types';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
+import { locale } from 'devextreme/localization';
 
 @Directive({
   selector: '[meDateBox]',
@@ -50,6 +51,7 @@ export class MeDateBoxDirective implements OnInit {
 
     this.component.instance.option('calendarOptions', {
       showWeekNumbers: true,
+      firstDayOfWeek: 1,
       bindingOptions: {
         class: 'me-calendar-show-weeks-numbers',
       },
