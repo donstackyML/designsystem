@@ -1,4 +1,11 @@
-import { Directive, HostListener, Renderer2, inject } from '@angular/core';
+import {
+  Directive,
+  HostListener,
+  Renderer2,
+  inject,
+  ElementRef,
+} from '@angular/core';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meContextMenu]',
@@ -7,7 +14,10 @@ import { Directive, HostListener, Renderer2, inject } from '@angular/core';
   },
 })
 export class MeContextMenuDirective {
-  private renderer = inject(Renderer2);
+  private focusService: ComponentFocusService;
+  constructor(element: ElementRef, private renderer: Renderer2) {
+    this.focusService = new ComponentFocusService(element, renderer);
+  }
   @HostListener('onItemRendered', ['$event'])
   onItemRendered(event: any) {
     this.renderer.addClass(

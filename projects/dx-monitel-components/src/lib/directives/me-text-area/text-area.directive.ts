@@ -1,7 +1,8 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { DxTextAreaComponent } from 'devextreme-angular';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 type MeSize = 'small' | 'medium' | 'large';
 
@@ -22,18 +23,17 @@ type MeSize = 'small' | 'medium' | 'large';
 })
 export class MeTextAreaDirective extends MeFormField implements OnInit {
   @Input() size: MeSize = 'medium';
-
+  private focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
     protected override component: DxTextAreaComponent,
-    private focusManager: FocusManagerService
+    protected renderer: Renderer2
   ) {
     super(component);
+    this.focusService = new ComponentFocusService(element, renderer);
   }
 
-  ngOnInit(): void {
-    this.focusManager.monitorFocus(this.element, true).subscribe();
-  }
+  ngOnInit(): void {}
 
   get isSizeSmall() {
     return this.size === 'small';

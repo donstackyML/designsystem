@@ -12,6 +12,7 @@ import { DxTextBoxComponent } from 'devextreme-angular';
 import { MeSize } from 'projects/dx-monitel-components/me-components';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meTextBox]',
@@ -37,17 +38,16 @@ export class MeTextBoxDirective
   private isPasswordInput = false;
   private passwordToggleButton: HTMLElement | null = null;
 
-  private renderer = inject(Renderer2);
-
+  private focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
     protected textBox: DxTextBoxComponent,
-    private focusManager: FocusManagerService
+    private renderer: Renderer2
   ) {
     super(textBox);
+    this.focusService = new ComponentFocusService(element, renderer);
   }
   ngOnInit(): void {
-    this.focusManager.monitorFocus(this.element, true).subscribe();
     // Проверяем, является ли поле полем для пароля
     this.isPasswordInput = this.textBox.instance.option('mode') === 'password';
   }

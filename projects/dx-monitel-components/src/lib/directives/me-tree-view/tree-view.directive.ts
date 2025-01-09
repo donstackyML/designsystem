@@ -1,5 +1,7 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { MeSize } from '../../types/types';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { DxListComponent, DxTreeViewComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meTreeView]',
@@ -7,11 +9,19 @@ import { MeSize } from '../../types/types';
     '[class.me-tree-view]': 'true',
     '[class.me-tree-view-small]': 'isSizeSmall',
     '[class.me-tree-view-large]': 'isSizeLarge',
-    // '[class.me-tree-view-word-wrap]': 'itemWordWrap',
   },
 })
 export class MeTreeViewDirective {
   @Input() size: Exclude<MeSize, 'medium'> = 'large';
+
+  private focusService: ComponentFocusService;
+  constructor(
+    private element: ElementRef,
+    private component: DxTreeViewComponent,
+    renderer: Renderer2
+  ) {
+    this.focusService = new ComponentFocusService(element, renderer);
+  }
 
   get isSizeSmall() {
     return this.size === 'small';
