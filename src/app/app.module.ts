@@ -39,6 +39,7 @@ import {
   MeTooltipModule,
   MeTreeListModule,
   MeTreeViewModule,
+  MeFormItemModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -213,6 +214,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MeAutocompleteModule,
     MeTextAreaModule,
     MeTagBoxModule,
+    MeFormItemModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

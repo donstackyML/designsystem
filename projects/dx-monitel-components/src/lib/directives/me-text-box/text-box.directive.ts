@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { DxTextBoxComponent } from 'devextreme-angular';
 import { MeSize } from 'projects/dx-monitel-components/me-components';
+import { MeFormField } from '../me-form-item/me-form-field';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 @Directive({
@@ -25,24 +26,28 @@ import { FocusManagerService } from '../../service/keyboard-navigation.service';
     '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-large]': 'isSizeLarge',
   },
+  providers: [{ provide: MeFormField, useExisting: MeTextBoxDirective }],
 })
-export class MeTextBoxDirective implements OnInit, AfterViewInit {
+export class MeTextBoxDirective
+  extends MeFormField
+  implements OnInit, AfterViewInit
+{
   @Input() size: MeSize = 'medium';
   private passwordVisible = false;
   private isPasswordInput = false;
   private passwordToggleButton: HTMLElement | null = null;
 
-  private textBox = inject(DxTextBoxComponent);
   private renderer = inject(Renderer2);
-  private element = inject(ElementRef);
 
   constructor(
-    private elementRef: ElementRef,
+    public element: ElementRef,
+    protected textBox: DxTextBoxComponent,
     private focusManager: FocusManagerService
-  ) {}
-
+  ) {
+    super(textBox);
+  }
   ngOnInit(): void {
-    this.focusManager.monitorFocus(this.elementRef, true).subscribe();
+    this.focusManager.monitorFocus(this.element, true).subscribe();
     // Проверяем, является ли поле полем для пароля
     this.isPasswordInput = this.textBox.instance.option('mode') === 'password';
   }
