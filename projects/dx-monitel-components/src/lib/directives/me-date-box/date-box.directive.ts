@@ -14,7 +14,6 @@ import { MeSize } from '../../types/types';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { locale } from 'devextreme/localization';
-
 @Directive({
   selector: '[meDateBox]',
   host: {

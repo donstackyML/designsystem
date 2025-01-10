@@ -8,7 +8,7 @@ import {
   Renderer2,
   inject,
 } from '@angular/core';
-import { DxDateBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
+import { DxTextBoxComponent } from 'devextreme-angular';
 import { MeSize } from 'projects/dx-monitel-components/me-components';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
@@ -47,7 +47,7 @@ export class MeTextBoxDirective
     super(textBox);
   }
   ngOnInit(): void {
-    this.focusManager.monitorFocus(this.elementRef, true).subscribe();
+    this.focusManager.monitorFocus(this.element, true).subscribe();
     // Проверяем, является ли поле полем для пароля
     this.isPasswordInput = this.textBox.instance.option('mode') === 'password';
   }

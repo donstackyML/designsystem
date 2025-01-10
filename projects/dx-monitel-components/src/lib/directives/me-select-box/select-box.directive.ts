@@ -1,4 +1,4 @@
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
 
 import {
   Directive,
@@ -12,6 +12,7 @@ import {
 import { MeCommonType, MeScrollbarShowType, MeSize } from '../../types/types';
 import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
 import { MeFormField } from '../me-form-item/me-form-field';
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 @Directive({
   selector: '[meSelectBox]',
@@ -28,12 +29,18 @@ import { MeFormField } from '../me-form-item/me-form-field';
   },
   providers: [{ provide: MeFormField, useExisting: MeSelectBoxDirective }],
 })
-export class MeSelectBoxDirective implements OnInit {
+export class MeSelectBoxDirective extends MeFormField implements OnInit {
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() wrapperAttr: MeCommonType = {};
   @Input() size: MeSize = 'medium';
 
-  private component = inject(DxSelectBoxComponent);
+  constructor(
+    public element: ElementRef,
+    protected override component: DxSelectBoxComponent,
+    private focusManager: FocusManagerService
+  ) {
+    super(component);
+  }
 
   ngOnInit(): void {
     const popupWrapperClasses = `${
