@@ -2,8 +2,10 @@ import {
   AfterViewInit,
   ContentChildren,
   Directive,
+  ElementRef,
   Host,
   Input,
+  OnDestroy,
   Optional,
   QueryList,
   Self,
@@ -14,6 +16,7 @@ import { MeFormItemDirective } from '../me-form-item/me-form-item.directive';
 import { FormDataFieldsService } from '../../service/form-datafields.service';
 import { FormLabelMode, LabelLocation } from 'devextreme/ui/form';
 import { LocationChangeEvent } from '@angular/common';
+import { fromEvent } from 'rxjs';
 
 type MeFormSize = 'small' | 'medium' | 'large';
 
@@ -32,26 +35,36 @@ export interface FormOptions {
     '[class.me-form-large]': 'isLarge',
   },
 })
-export class MeFormDirective implements AfterViewInit {
+export class MeFormDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeFormSize = 'medium';
 
   @ContentChildren(MeFormItemDirective, { descendants: true })
   viewChildren!: QueryList<MeFormItemDirective>;
 
   private readonly formService!: FormDataFieldsService;
-
+  private resizeObserver: ResizeObserver;
   constructor(
+    public element: ElementRef,
     @Host() @Self() @Optional() public hostFormComponent: DxFormComponent
   ) {
     this.formService = new FormDataFieldsService();
+    this.resizeObserver = new ResizeObserver((entries) => {
+      this.syncLabelMode();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver.unobserve(this.element.nativeElement);
   }
 
   ngAfterViewInit(): void {
+    this.resizeObserver.observe(this.element.nativeElement);
+
     this.viewChildren.forEach((item) => {
       item.formService = this.formService;
     });
+
     this.hostFormComponent.onOptionChanged.subscribe((evt) => {
-      //console.log("onOptionChanged %o", evt)
       switch (evt.name) {
         case 'labelMode':
           {
@@ -79,6 +92,11 @@ export class MeFormDirective implements AfterViewInit {
           }
           break;
         case 'showColonAfterLabel':
+          {
+            this.syncLabelMode();
+          }
+          break;
+        case 'formData':
           {
             this.syncLabelMode();
           }
