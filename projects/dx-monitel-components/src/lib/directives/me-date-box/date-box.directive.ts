@@ -34,6 +34,7 @@ export class MeDateBoxDirective extends MeFormField implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() description: string = ''; // Новое свойство description
 
+  private renderer = inject(Renderer2);
   constructor(
     public element: ElementRef,
     private focusManager: FocusManagerService,
@@ -41,9 +42,6 @@ export class MeDateBoxDirective extends MeFormField implements OnInit {
   ) {
     super(component);
   }
-
-  private renderer = inject(Renderer2);
-  //  private component = inject(DxDateBoxComponent);
 
   ngOnInit(): void {
     this.focusManager.monitorFocus(this.element, true).subscribe();

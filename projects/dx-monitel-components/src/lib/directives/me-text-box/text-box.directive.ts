@@ -8,8 +8,9 @@ import {
   Renderer2,
   inject,
 } from '@angular/core';
-import { DxTextBoxComponent } from 'devextreme-angular';
+import { DxDateBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
 import { MeSize } from 'projects/dx-monitel-components/me-components';
+import { MeFormField } from '../me-form-item/me-form-field';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 @Directive({
@@ -28,22 +29,23 @@ import { FocusManagerService } from '../../service/keyboard-navigation.service';
   providers: [{ provide: MeFormField, useExisting: MeTextBoxDirective }],
 })
 export class MeTextBoxDirective
+  extends MeFormField
   implements OnInit, AfterViewInit
 {
-	@Input() size: MeSize = 'medium';
+  @Input() size: MeSize = 'medium';
   private passwordVisible = false;
   private isPasswordInput = false;
   private passwordToggleButton: HTMLElement | null = null;
 
-  private textBox = inject(DxTextBoxComponent);
   private renderer = inject(Renderer2);
-  private element = inject(ElementRef);
 
   constructor(
-    private elementRef: ElementRef,
+    public element: ElementRef,
+    protected textBox: DxTextBoxComponent,
     private focusManager: FocusManagerService
-  ) {}
-
+  ) {
+    super(textBox);
+  }
   ngOnInit(): void {
     this.focusManager.monitorFocus(this.elementRef, true).subscribe();
     // Проверяем, является ли поле полем для пароля
