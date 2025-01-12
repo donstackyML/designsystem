@@ -17,6 +17,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DxTooltipComponent } from 'devextreme-angular/ui/tooltip';
+import { AnimationConfig } from 'devextreme/animation/fx';
 
 @Directive({
   selector: '[meTooltip]',
@@ -29,13 +30,13 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Input() tooltipMaxWidth: number | string = 'auto';
   @Input() tooltipHeight: number | string = 'auto';
   @Input() tooltipMaxHeight: number | string = 'auto';
-  @Input() tooltipShowAnimation: any = {
+  @Input() tooltipShowAnimation?: AnimationConfig = {
     type: 'fade',
     from: 0,
     to: 1,
     duration: 300,
   };
-  @Input() tooltipHideAnimation: any = {
+  @Input() tooltipHideAnimation?: AnimationConfig = {
     type: 'fade',
     from: 1,
     to: 0,
