@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Renderer2 } from '@angular/core';
 import { MeEditorDirective } from '../me-editor/editor.directive';
 import { DxRadioGroupComponent } from 'devextreme-angular';
+import { FocusManagerService } from '../../service/keyboard-navigation.service';
 
 @Directive({
   selector: '[meRadioGroup]',

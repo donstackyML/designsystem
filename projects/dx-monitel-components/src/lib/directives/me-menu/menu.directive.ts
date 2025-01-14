@@ -1,17 +1,39 @@
-import { Directive, Input, OnInit } from '@angular/core';
-import { DxMenuComponent } from 'devextreme-angular';
-import { SubmenuShowingEvent } from 'devextreme/ui/menu';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { MeOrientation, MeSize } from '../../types/types';
+import { DxMenuComponent } from 'devextreme-angular';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { SubmenuShowingEvent } from 'devextreme/ui/menu';
 
 @Directive({
   selector: '[meMenu]',
 })
-export class MeMenuDirective implements OnInit {
+export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
   @Input() cssClass?: string = '';
   @Input() size: MeSize = 'large';
   @Input() orientation: MeOrientation = 'horizontal';
 
-  constructor(private component: DxMenuComponent) {}
+  private focusService: ComponentFocusService;
+  constructor(
+    private element: ElementRef,
+    private component: DxMenuComponent,
+    renderer: Renderer2
+  ) {
+    this.focusService = new ComponentFocusService(element, renderer);
+  }
+
+  ngAfterViewInit(): void {}
+
+  ngOnDestroy(): void {
+    this.focusService.ngOnDestroy();
+  }
 
   ngOnInit(): void {
     const menuClasses = [
