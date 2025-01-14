@@ -6,7 +6,7 @@ import {
   DxSelectBoxModule,
   DxTextBoxModule,
 } from 'devextreme-angular';
-import { MeFileUploaderDirective } from '../../public-api';
+import { MeButtonModule, MeFileUploaderDirective } from '../../public-api';
 
 export default {
   title: 'Directives/FileUploader',
@@ -19,6 +19,7 @@ export default {
         DxTextBoxModule,
         DxButtonModule,
         DxProgressBarModule,
+        MeButtonModule,
       ],
       declarations: [MeFileUploaderDirective],
     }),
@@ -81,7 +82,7 @@ export const FormUpload: Story = {
           </dx-file-uploader>
         </div>
         <div class='form-btn-box'>
-          <dx-button meButton type='default' text='Update profile'></dx-button>
+          <dx-button meButton type='default' size="small" text='Update profile'></dx-button>
         </div>
       </form>
     `,
