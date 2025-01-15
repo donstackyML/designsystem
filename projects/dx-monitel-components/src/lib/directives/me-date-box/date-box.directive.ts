@@ -14,6 +14,7 @@ import { MeSize } from '../../types/types';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { locale } from 'devextreme/localization';
+import { ComponentFocusService } from '../../service/component-focus.service';
 @Directive({
   selector: '[meDateBox]',
   host: {
@@ -33,18 +34,17 @@ export class MeDateBoxDirective extends MeFormField implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() description: string = ''; // Новое свойство description
 
-  private renderer = inject(Renderer2);
+  private focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
-    private focusManager: FocusManagerService,
-    protected override component: DxDateBoxComponent
+    protected override component: DxDateBoxComponent,
+    protected renderer: Renderer2
   ) {
     super(component);
+    this.focusService = new ComponentFocusService(element, renderer);
   }
 
   ngOnInit(): void {
-    this.focusManager.monitorFocus(this.element, true).subscribe();
-
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-date-box-overlay`,
