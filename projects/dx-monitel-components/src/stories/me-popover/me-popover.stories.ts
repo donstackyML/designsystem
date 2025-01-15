@@ -89,8 +89,8 @@ import { MePopoverDirective } from '../../public-api';
         );
         border-radius: 3px;
       }
-      .me-popover-dark .me-title-header1 {
-        color: var(--Text-Alert);
+      .me-title-header1 {
+        color: var(--popover-color);
       }
     `,
   ],
@@ -157,9 +157,9 @@ const meta: Meta<PopoverDemoComponent> = {
     },
     colorMode: {
       control: 'select',
-      options: ['light', 'dark'],
+      options: ['light', 'dark', 'default', 'alternate'],
       description: 'Цветовая схема поповера.',
-      defaultValue: 'dark',
+      defaultValue: 'default',
     },
     showEvent: {
       control: 'select',
@@ -257,7 +257,7 @@ type Story = StoryObj<PopoverDemoComponent>;
 export const Default: Story = {
   args: {
     size: 'medium',
-    colorMode: 'dark',
+    colorMode: 'default',
     showEvent: 'mouseenter',
     hideEvent: 'mouseleave',
     position: 'right',
@@ -278,7 +278,7 @@ export const DefaultWithCloseButton: Story = {
   args: {
     triggerText: 'Наведите для показа поповера',
     size: 'medium',
-    colorMode: 'dark',
+    colorMode: 'default',
     showEvent: 'mouseenter',
     hideEvent: 'mouseleave',
     position: 'right',
@@ -334,7 +334,7 @@ export const WithContent: Story = {
   args: {
     ...Default.args,
     triggerText: 'Нажмите для показа поповера',
-    colorMode: 'light',
+    colorMode: 'default',
     showTitle: true,
     title: undefined,
     titleTemplate: 'Заголовок с картинкой',

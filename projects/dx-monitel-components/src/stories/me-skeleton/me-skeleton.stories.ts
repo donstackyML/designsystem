@@ -114,7 +114,7 @@ export const ComplexCombination: Story = {
     active: true,
     avatar: { size: 'large', shape: 'circle' },
     title: { width: '50%' },
-    paragraph: { rows: 4, width: ['100%', '90%', '80%', '70%'] },
+    paragraph: { rows: 4, width: '10%' },
     round: true,
   },
 };

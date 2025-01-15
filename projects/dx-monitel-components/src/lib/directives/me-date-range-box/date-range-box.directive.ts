@@ -5,9 +5,11 @@ import {
   OnInit,
   Renderer2,
   inject,
+  ElementRef,
 } from '@angular/core';
 import { DxDateRangeBoxComponent } from 'devextreme-angular';
 import { MeSize } from '../../types/types';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meDateRangeBox]',
@@ -25,9 +27,15 @@ import { MeSize } from '../../types/types';
 })
 export class MeDateRangeBoxDirective implements OnInit {
   @Input() size: MeSize = 'medium';
-  private component = inject(DxDateRangeBoxComponent);
-  private renderer = inject(Renderer2);
 
+  private focusService: ComponentFocusService;
+  constructor(
+    public element: ElementRef,
+    protected component: DxDateRangeBoxComponent,
+    protected renderer: Renderer2
+  ) {
+    this.focusService = new ComponentFocusService(element, renderer);
+  }
   ngOnInit(): void {
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {

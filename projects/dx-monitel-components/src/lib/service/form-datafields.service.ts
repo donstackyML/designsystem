@@ -20,7 +20,7 @@ export class FormDataFieldsService {
         location: location,
         showColon: showColonAfterLabel,
       });
-    }, 5);
+    }, 15);
   }
 
   labelChangeObservable(): Observable<{

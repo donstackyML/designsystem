@@ -1,8 +1,8 @@
 import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { DxButtonGroupComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { MeControlDirective } from '../me-control/control.directive';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -13,18 +13,18 @@ export class MeButtonGroupDirective
   extends MeControlDirective
   implements OnInit
 {
+  private focusService: ComponentFocusService;
   constructor(
     private component: DxButtonGroupComponent,
     private iconStore: MeIconStoreService,
     private renderer: Renderer2,
-    private element: ElementRef,
-    private focusManager: FocusManagerService
+    private element: ElementRef
   ) {
     super();
+    this.focusService = new ComponentFocusService(element, renderer);
   }
 
   ngOnInit(): void {
-    this.focusManager.monitorFocus(this.element).subscribe();
     this.component.items = this.items.map((item, index) => {
       // Преобразуем существующие типы в meType
       if (!item.meType) {
