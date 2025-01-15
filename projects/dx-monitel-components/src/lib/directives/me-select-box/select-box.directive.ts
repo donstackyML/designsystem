@@ -13,6 +13,7 @@ import { MeCommonType, MeScrollbarShowType, MeSize } from '../../types/types';
 import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { FocusManagerService } from '../../service/keyboard-navigation.service';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meSelectBox]',
@@ -34,12 +35,14 @@ export class MeSelectBoxDirective extends MeFormField implements OnInit {
   @Input() wrapperAttr: MeCommonType = {};
   @Input() size: MeSize = 'medium';
 
+  focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
     protected override component: DxSelectBoxComponent,
-    private focusManager: FocusManagerService
+    renderer: Renderer2
   ) {
     super(component);
+    this.focusService = new ComponentFocusService(element, renderer);
   }
 
   ngOnInit(): void {

@@ -7,11 +7,25 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  ElementRef,
+  Renderer2,
+  ContentChildren,
+  QueryList,
+  AfterViewInit,
+  ViewChildren,
+  ViewChild,
 } from '@angular/core';
-import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
+import {
+  DxButtonComponent,
+  DxButtonModule,
+  DxDropDownButtonComponent,
+  DxDropDownButtonModule,
+  DxMenuComponent,
+} from 'devextreme-angular';
 import { ItemClickEvent } from 'devextreme/ui/drop_down_button';
 import { MeDropDownButtonModule } from '../../directives/me-drop-down-button/drop-down-button.module';
 import { MeSize } from '../../types/types';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Component({
   selector: 'me-pagination',
@@ -26,7 +40,7 @@ import { MeSize } from '../../types/types';
   ],
   standalone: true,
 })
-export class MePaginationComponent implements OnInit, OnChanges {
+export class MePaginationComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() totalItems: number = 0;
   @Input() itemsPerPage: number = 10;
   @Input() currentPage: number = 1;
@@ -55,9 +69,17 @@ export class MePaginationComponent implements OnInit, OnChanges {
     },
   };
 
-  constructor() {
+  @ViewChild(DxDropDownButtonComponent) dropBox!: DxDropDownButtonComponent;
+  @ViewChildren(DxButtonComponent) pageButtons!: QueryList<DxButtonComponent>;
+
+  private focusService: ComponentFocusService;
+  constructor(element: ElementRef, renderer: Renderer2) {
     this.selectedValue = this.itemsPerPage;
+    this.focusService = new ComponentFocusService(element, renderer);
+    this.focusService.addKeyUpEventHandle('Tab', (evt) => this.tabHandle(evt));
   }
+
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
     if (!this.itemsPerPageOptions?.length) {
@@ -88,6 +110,8 @@ export class MePaginationComponent implements OnInit, OnChanges {
       changes['maxVisiblePages']
     ) {
       this.calculatePages();
+    }
+    if (changes['useButtons']) {
     }
   }
 
@@ -174,5 +198,27 @@ export class MePaginationComponent implements OnInit, OnChanges {
     this.currentPage = 1;
     this.calculatePages();
     this.itemsPerPageChange.emit(this.itemsPerPage);
+  }
+
+  private getButtonKeyboardFocused(): number {
+    let result = -1;
+    this.pageButtons.forEach((btn, idx) => {
+      if (btn.instance.element().classList.contains('dx-state-focused')) {
+        result = idx;
+      }
+    });
+    return result;
+  }
+  private tabHandle(evt: KeyboardEvent) {
+    console.log('Tab up %o', evt);
+    setTimeout(() => {
+      console.log(
+        'Tab up isButtonKeyboardFocused %o',
+        this.getButtonKeyboardFocused()
+      );
+    }, 20);
+    if (this.getButtonKeyboardFocused() == -1 && this.dropBox) {
+      console.log('Tab up dropBox %o', evt);
+    }
   }
 }

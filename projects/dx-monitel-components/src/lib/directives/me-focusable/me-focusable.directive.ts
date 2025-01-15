@@ -13,7 +13,7 @@ import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
 export class MeFocusableDirective implements OnDestroy {
   protected focusSubject: BehaviorSubject<boolean>;
   protected focusSubscription: Subscription;
-
+  protected keyboardFocuseClass = 'me-keyboard-focused';
   constructor(protected element: ElementRef, protected renderer: Renderer2) {
     this.focusSubject = new BehaviorSubject<boolean>(false);
     this.focusSubscription = this.focusSubject

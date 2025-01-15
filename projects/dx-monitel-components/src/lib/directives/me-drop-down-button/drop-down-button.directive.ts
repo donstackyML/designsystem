@@ -1,8 +1,16 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeControlDirective } from '../me-control/control.directive';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -17,7 +25,7 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 })
 export class MeDropDownButtonDirective
   extends MeControlDirective
-  implements OnInit
+  implements OnInit, OnDestroy
 {
   @Input() icon: string = '';
   @Input() iconColor: string = '';
@@ -26,6 +34,8 @@ export class MeDropDownButtonDirective
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() dropDownOptions: MeCommonType = {};
 
+  private focusService: ComponentFocusService;
+
   constructor(
     private element: ElementRef,
     private component: DxDropDownButtonComponent,
@@ -33,6 +43,11 @@ export class MeDropDownButtonDirective
     private iconStore: MeIconStoreService
   ) {
     super();
+    this.focusService = new ComponentFocusService(element, renderer);
+  }
+
+  ngOnDestroy(): void {
+    this.focusService.ngOnDestroy();
   }
 
   get isSizeSmall() {
