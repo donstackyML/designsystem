@@ -7,6 +7,7 @@ export interface StatusBarItem {
   type?: StatusType;
   icon?: string;
   iconColor?: string;
+  showStatusIcon?: boolean;
   fill?: boolean;
   backgroundColor?: string;
   readonly?: boolean;
@@ -56,6 +57,14 @@ export class MeStatusBarComponent {
     }
 
     return classes;
+  }
+
+  getIcon(item: StatusBarItem): string {
+    if (item.showStatusIcon && item.type) {
+      return statusIcons[item.type]
+    }
+
+    return item.icon || ''
   }
 
   getStylingMode(item: StatusBarItem): 'text' | 'contained' {
