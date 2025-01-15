@@ -68,7 +68,6 @@
   }
 
   &.dx-invalid {
-
     &.me-inputs-small .dx-texteditor-container,
     &.me-inputs-medium .dx-texteditor-container {
       border-radius: 3px;
@@ -138,7 +137,7 @@
           text-align: center;
         }
 
-        &>* {
+        & > * {
           width: 0 !important;
           min-width: 0 !important;
           overflow: hidden;
@@ -221,14 +220,14 @@
       gap: 4px;
       color: var(--Controls-Content-In-Controls-Main-Default);
 
-      &>* {
+      & > * {
         height: 20px;
         min-width: 20px;
         margin: 0;
       }
 
       // убираем лишние пустые div если они не кнопки
-      &>*:not(.dx-widget, .dx-numberbox-spin-container, .dx-button, .dx-clear-button-area) {
+      & > *:not(.dx-widget, .dx-numberbox-spin-container, .dx-button, .dx-clear-button-area) {
         display: none;
       }
 
@@ -252,7 +251,6 @@
       }
 
       .dx-numberbox-spin-container {
-
         .dx-numberbox-spin-up-icon,
         .dx-numberbox-spin-down-icon {
           font-family: var(--me-icon-family);
@@ -342,9 +340,11 @@
       padding: 0 0 0 24px;
     }
 
-    &:not(.dx-texteditor-label-outside,
-      .dx-texteditor-with-floating-label.dx-state-focused,
-      .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)) {
+    &:not(
+        .dx-texteditor-label-outside,
+        .dx-texteditor-with-floating-label.dx-state-focused,
+        .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)
+      ) {
       .dx-texteditor-label {
         padding: 0 0 0 12px;
       }
@@ -425,6 +425,7 @@
     }
 
     &.dx-state-focused,
+    &.dx-dropdowneditor-active,
     &:not(.dx-texteditor-empty) {
       &:not(.dx-state-readonly) {
         .dx-texteditor-label {
@@ -515,7 +516,6 @@
       padding-block: 4px;
 
       .dx-texteditor-input-container {
-
         .dx-texteditor-input,
         .dx-placeholder {
           font-size: 13px;
@@ -525,7 +525,6 @@
 
       .dx-texteditor-buttons-container {
         .dx-numberbox-spin-container {
-
           .dx-numberbox-spin-up,
           .dx-numberbox-spin-down {
             width: 26px;
@@ -558,7 +557,6 @@
       padding-block: 6px;
 
       .dx-texteditor-input-container {
-
         .dx-texteditor-input,
         .dx-placeholder {
           font-size: 14px;
@@ -568,12 +566,10 @@
 
       .dx-texteditor-buttons-container {
         .dx-numberbox-spin-container {
-
           .dx-numberbox-spin-up,
           .dx-numberbox-spin-down {
             width: 30px;
           }
-
         }
       }
     }
@@ -616,9 +612,11 @@
         padding: 0 0 0 28px;
       }
 
-      &:not(.dx-texteditor-label-outside,
-        .dx-texteditor-with-floating-label.dx-state-focused,
-        .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)) {
+      &:not(
+          .dx-texteditor-label-outside,
+          .dx-texteditor-with-floating-label.dx-state-focused,
+          .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)
+        ) {
         .dx-texteditor-label {
           padding: 0 0 0 16px;
         }
@@ -647,7 +645,7 @@
       }
 
       .dx-texteditor-buttons-container {
-        &>* {
+        & > * {
           height: 24px;
           min-width: 24px;
         }
@@ -663,7 +661,6 @@
         }
 
         .dx-numberbox-spin-container {
-
           .dx-numberbox-spin-up,
           .dx-numberbox-spin-down {
             width: 38px;
@@ -740,7 +737,6 @@
   }
 }
 
-
 // MeNumberBox
 
 .me-inputs.dx-texteditor.dx-widget.me-number-box {
@@ -775,7 +771,6 @@
     &-small {
       &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
         .dx-texteditor-container {
-
           .dx-texteditor-input-container,
           .dx-placeholder {
             height: 28px;
@@ -786,7 +781,6 @@
 
       &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
         .dx-texteditor-container {
-
           .dx-texteditor-input-container,
           .dx-placeholder {
             height: 36px;
@@ -799,7 +793,6 @@
     &-medium {
       &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
         .dx-texteditor-container {
-
           .dx-texteditor-input-container,
           .dx-placeholder {
             height: 32px;
@@ -810,7 +803,6 @@
 
       &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
         .dx-texteditor-container {
-
           .dx-texteditor-input-container,
           .dx-placeholder {
             height: 40px;
@@ -823,7 +815,6 @@
     &-large {
       &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
         .dx-texteditor-container {
-
           .dx-texteditor-input-container,
           .dx-placeholder {
             height: 40px;
@@ -834,18 +825,15 @@
 
       &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
         .dx-texteditor-container {
-
           .dx-texteditor-input-container,
           .dx-placeholder {
             height: 48px;
             padding-left: 12px;
           }
         }
-
       }
     }
   }
-
 
   .dx-texteditor-container {
     align-items: center;
@@ -871,7 +859,7 @@
 
 //отключение бордеров у label везде!
 .dx-texteditor {
-  .dx-texteditor-label>* {
+  .dx-texteditor-label > * {
     border: none !important;
   }
 }

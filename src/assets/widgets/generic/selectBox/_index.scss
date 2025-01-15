@@ -4,6 +4,22 @@
 @use '../../base/selectBox';
 @use '../common/mixins' as *;
 
+.me-selectbox.me-keyboard-focused {
+  &.dx-state-focused {
+    outline: 2px solid var(--Dividers-Borders-Focus);
+    outline-offset: 2px;
+    .dx-texteditor-container {
+      box-shadow: none !important;
+    }
+  }
+}
+.me-dropdownlist.me-keyboard-focused {
+  .dx-state-focused {
+    outline: 2px solid var(--Dividers-Borders-Focus);
+    outline-offset: -2px;
+  }
+}
+
 .me-dropdownlist.dx-selectbox-popup-wrapper {
   .dx-list-items {
     display: flex;
