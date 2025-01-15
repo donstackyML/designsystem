@@ -2,63 +2,27 @@
 @use 'sass:color';
 @use '../sizes' as *;
 @use '../colors' as *;
+@use './colors' as *;
 @use '../overlay/colors' as *;
+@use '../../base/popover';
 
-// Определение переменной для фона стрелки
-$popover-arrow-bg: $overlay-content-bg !default;
-
-// Миксин для создания стилей Popover
-@mixin dx-popover-styling {
-  .me-popover {
-    &.dx-popover-wrapper {
-      .dx-popup-wrapper {
-        .dx-overlay-content {
-          background-color: $overlay-content-bg;
-          border-color: $overlay-border-color;
-
-          .dx-popover-arrow {
-            background-color: $popover-arrow-bg;
-            border-color: $overlay-border-color;
-          }
-
-          .dx-popup-content {
-            color: $base-text-color;
-          }
-
-          .dx-popup-title {
-            background-color: color.scale($overlay-content-bg, $lightness: -5%);
-            color: $base-text-color;
-
-            .dx-popup-title-text {
-              color: inherit;
-            }
-          }
-
-          .dx-button.dx-closebutton {
-            background-color: transparent;
-            color: $base-icon-color;
-
-            &:hover {
-              background-color: color.scale($overlay-content-bg, $lightness: -10%);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-//light
 .me-popover .dx-overlay-content.dx-popup-normal {
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
-  overflow: auto;
+  overflow: visible;
   padding: 16px;
-  border: 1px solid var(--Dividers-Borders-Long);
-  background-color: var(--Background-Accent-in-the-content);
+
+  @include standardColors;
+
+  background-color: var(--popover-background);
+  color: var(--popover-color);
+
+  .dx-popover-arrow::after {
+    background-color: var(--popover-background);
+  }
 
   & > *:not(.dx-popover-arrow, :last-child) {
     margin-bottom: 16px;
@@ -107,7 +71,7 @@ $popover-arrow-bg: $overlay-content-bg !default;
   }
 
   .dx-toolbar.dx-popup-bottom {
-    background-color: var(--Background-Accent-in-the-content);
+    background-color: var(--popover-background);
     .dx-toolbar-items-container {
       min-height: 32px;
       height: 32px;
@@ -115,19 +79,17 @@ $popover-arrow-bg: $overlay-content-bg !default;
   }
 }
 
-//dark
-.me-popover.me-popover-dark .dx-overlay-content {
-  border-color: var(--Background-Alert);
-  background-color: var(--Background-Alert);
-  color: var(--Text-Alert);
-
-  .dx-toolbar.dx-popup-title {
-    .dx-toolbar-items-container {
-      color: var(--Text-Alert);
-    }
+.me-popover.me-popover-alternate .dx-overlay-content.dx-popup-normal {
+  @include alternateColors;
+}
+.me-popover.me-popover-light .dx-overlay-content.dx-popup-normal {
+  @if $color == 'light' {
+    @include alternateColors;
   }
-  .dx-toolbar.dx-popup-bottom {
-    background-color: var(--Background-Alert);
+}
+.me-popover.me-popover-dark .dx-overlay-content.dx-popup-normal {
+  @if $color == 'dark' {
+    @include alternateColors;
   }
 }
 
