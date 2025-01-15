@@ -4,13 +4,14 @@ import {
   ElementRef,
   HostListener,
   Input,
+  OnDestroy,
   OnInit,
   Renderer2,
 } from '@angular/core';
 import { DxTagBoxComponent } from 'devextreme-angular';
 
 import { MeSize } from '../../types/types';
-import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meTagBox]',
@@ -25,16 +26,23 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
-export class MeTagBoxDirective extends MeFocusableDirective implements OnInit {
+export class MeTagBoxDirective implements OnInit, OnDestroy {
   @Input() size: MeSize = 'medium';
   @Input() description: string = ''; // Новое свойство description
 
+  private focusService: ComponentFocusService;
   constructor(
-    element: ElementRef,
-    renderer: Renderer2,
+    private element: ElementRef,
+    private renderer: Renderer2,
     private component: DxTagBoxComponent
   ) {
-    super(element, renderer);
+    this.focusService = new ComponentFocusService(element, renderer);
+    this.focusService.addFocusInHandle((evt: FocusEvent) => this.onFocusIn());
+    this.focusService.addFocusOutHandle((evt: FocusEvent) => this.onFocusOut());
+  }
+
+  ngOnDestroy(): void {
+    this.focusService.ngOnDestroy();
   }
 
   ngOnInit(): void {
@@ -101,7 +109,6 @@ export class MeTagBoxDirective extends MeFocusableDirective implements OnInit {
   }
 
   // Установка цвета при фокусе
-  @HostListener('focusin')
   onFocusIn() {
     const labelElement = this.element.nativeElement.querySelector(
       '.dx-texteditor-label'
@@ -112,8 +119,7 @@ export class MeTagBoxDirective extends MeFocusableDirective implements OnInit {
   }
 
   // Снятие цвета при потере фокуса
-  @HostListener('focusout')
-  override onFocusOut() {
+  onFocusOut() {
     const labelElement = this.element.nativeElement.querySelector(
       '.dx-texteditor-label'
     );

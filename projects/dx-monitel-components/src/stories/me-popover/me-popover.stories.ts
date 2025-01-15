@@ -334,7 +334,7 @@ export const WithContent: Story = {
   args: {
     ...Default.args,
     triggerText: 'Нажмите для показа поповера',
-    colorMode: "default",
+    colorMode: 'default',
     showTitle: true,
     title: undefined,
     titleTemplate: 'Заголовок с картинкой',

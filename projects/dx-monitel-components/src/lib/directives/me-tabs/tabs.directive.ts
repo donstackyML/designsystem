@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxTabsComponent } from 'devextreme-angular';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
+import { ComponentFocusService } from '../../service/component-focus.service';
 export interface Tab {
   id: number;
   text?: string;
@@ -35,6 +35,10 @@ export class MeTabsDirective implements OnInit {
   @Input() customClass: string = '';
   @Input() position: 'top' | 'bottom' = 'top';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
+  @Input() width: string | number = 'auto';
+  @Input() stretchTabs: boolean = false;
 
   // Обновляем определение stylingMode
   @Input() set stylingMode(value: MeTabsStylingMode) {
@@ -44,20 +48,19 @@ export class MeTabsDirective implements OnInit {
   get stylingMode(): MeTabsStylingMode {
     return this._stylingMode;
   }
+
   private _stylingMode: MeTabsStylingMode = 'inside';
+  private focusService: ComponentFocusService;
 
   internalStylingMode: 'primary' | 'secondary' = 'primary';
 
-  @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
-  @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
-  @Input() width: string | number = 'auto';
-  @Input() stretchTabs: boolean = false;
-
   constructor(
+    elementRef: ElementRef,
     private tabs: DxTabsComponent,
-    private elementRef: ElementRef,
-    private focusManager: FocusManagerService
-  ) {}
+    renderer: Renderer2
+  ) {
+    this.focusService = new ComponentFocusService(elementRef, renderer);
+  }
 
   ngOnInit() {
     this.tabs.orientation = this.orientation;
@@ -71,20 +74,7 @@ export class MeTabsDirective implements OnInit {
     if (this.tabs.instance) {
       this.tabs.instance.option('stylingMode', this.internalStylingMode);
     }
-
-    this.focusManager.monitorFocus(this.elementRef).subscribe();
   }
 
-  ngAfterViewInit() {
-    const instance = this.tabs.instance;
-
-    console.log('Tabs Debug Info:', {
-      options: {
-        scrollingEnabled: instance.option('scrollingEnabled'),
-        showNavButtons: instance.option('showNavButtons'),
-        scrollByContent: instance.option('scrollByContent'),
-        width: instance.option('width'),
-      },
-    });
-  }
+  ngAfterViewInit() {}
 }

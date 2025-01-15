@@ -13,6 +13,9 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
   OnInit,
+  Renderer2,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -20,9 +23,13 @@ import {
   DxButtonModule,
   DxContextMenuModule,
   DxContextMenuComponent,
+  DxButtonComponent,
+  DxMenuComponent,
 } from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import DevExpress from 'devextreme';
+import Widget = DevExpress.ui.Widget;
 
 interface BreadcrumbItem {
   text: string;
@@ -49,6 +56,7 @@ interface BreadcrumbItem {
       #breadcrumbsContainer
     >
       <dx-button
+        #leftBtn
         class="breadcrumbs__left-btn"
         *ngIf="overflowLeft"
         stylingMode="text"
@@ -90,6 +98,7 @@ interface BreadcrumbItem {
       </ng-container>
 
       <dx-button
+        #rightBtn
         *ngIf="overflowRight"
         class="breadcrumbs__right-btn"
         stylingMode="text"
@@ -136,6 +145,12 @@ export class MeBreadcrumbsComponent
   breadcrumbsContainer!: ElementRef;
   @ViewChild('overflowMenu', { static: true })
   overflowMenu!: DxContextMenuComponent;
+  @ViewChildren(DxMenuComponent)
+  menuItems!: QueryList<DxMenuComponent>;
+  @ViewChild('leftBtn', { static: true })
+  leftBtn?: DxButtonComponent;
+  @ViewChild('rightBtn', { static: true })
+  rightBtn?: DxButtonComponent;
 
   visibleItems: BreadcrumbItem[] = [];
   overflowItems: BreadcrumbItem[] = [];
@@ -144,16 +159,28 @@ export class MeBreadcrumbsComponent
   overflowMenuTarget: HTMLElement | null = null;
   private resizeObserver!: ResizeObserver;
   private breadcrumbWidths: number[] = [];
+  private focusService: ComponentFocusService;
 
+  private keyNavigationIdx = -1;
   constructor(
     private zone: NgZone,
     private cdr: ChangeDetectorRef,
     private elementRef: ElementRef,
-    private focusManager: FocusManagerService
-  ) {}
+    private renderer: Renderer2
+  ) {
+    this.focusService = new ComponentFocusService(elementRef, renderer);
+    this.focusService.addKeyUpEventHandle('Tab', (evt) => this.tabHandle(evt));
+    this.focusService.addKeyUpEventHandle('ArrowLeft', (evt) =>
+      this.leftHandle(evt)
+    );
+    this.focusService.addKeyUpEventHandle('ArrowRight', (evt) =>
+      this.rightHandle(evt)
+    );
+    this.focusService.addFocusOutHandle((evt) => this.outFocusHandle(evt));
+  }
 
   ngOnInit() {
-    this.focusManager.monitorFocus(this.elementRef).subscribe();
+    this.renderer.addClass(this.elementRef.nativeElement, 'me-breadcrumbs');
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -163,6 +190,10 @@ export class MeBreadcrumbsComponent
   }
 
   ngAfterViewInit() {
+    console.log('BreadcrumbItems: %o', this.menuItems);
+    console.log('BreadcrumbItems leftBtn: %o', this.leftBtn);
+    console.log('BreadcrumbItems rightBtn: %o', this.rightBtn);
+
     this.setupResizeObserver();
     this.updateItems();
 
@@ -340,5 +371,43 @@ export class MeBreadcrumbsComponent
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }
+    this.focusService.ngOnDestroy();
   }
+
+  private tabHandle(evt: KeyboardEvent) {
+    let container = this.breadcrumbsContainer.nativeElement;
+
+    let btnLeft = container.querySelector('.breadcrumbs__left-btn');
+    let btnRight = container.querySelector('.breadcrumbs__right-btn');
+
+    let items: any = [];
+    if (btnLeft) {
+      items.push(btnLeft);
+    }
+    this.menuItems.forEach((cmp) => items.push(cmp.instance.element()));
+    if (btnRight) {
+      items.push(btnRight);
+    }
+    if (this.keyNavigationIdx < 0) {
+      this.keyNavigationIdx = 0;
+    } else {
+      this.keyNavigationIdx += 1;
+      if (this.keyNavigationIdx >= items.length) {
+        this.keyNavigationIdx = -1;
+        return;
+      }
+    }
+    items.forEach((elm: { tabIndex: number }) => (elm.tabIndex = 0));
+    let elm = items[this.keyNavigationIdx];
+    elm.tabIndex = 0;
+    elm.focus();
+    evt.preventDefault();
+    this.focusService.holdKeyboardFocus();
+  }
+
+  private leftHandle(evt: KeyboardEvent) {}
+
+  private rightHandle(evt: KeyboardEvent) {}
+
+  private outFocusHandle(evt: FocusEvent) {}
 }
