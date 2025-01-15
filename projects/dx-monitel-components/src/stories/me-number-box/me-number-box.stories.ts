@@ -137,7 +137,6 @@ export const WithLabelRow: StoryObj = {
     template: `
 		<label meLabel
 		labelDirection="row"
-		[size]="size"
 		width="250px">
 		Label*
 			<dx-number-box

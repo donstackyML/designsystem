@@ -10797,7 +10797,7 @@
 }
 
 .dx-numberbox-spin-button {
-  padding: 1px;
+  padding: 0;
 }
 .dx-editor-underlined .dx-numberbox-spin-button {
   background: transparent;
@@ -36259,7 +36259,7 @@ input.dx-hidden {
   width: 0;
 }
 .me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container {
-  font-size: 19px;
+  font-size: 20px;
   line-height: 20px;
   font-family: var(--me-icon-family);
   gap: 0;
@@ -36303,6 +36303,7 @@ input.dx-hidden {
 }
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-input-container {
   min-height: 20px;
+  height: auto;
   align-items: center;
 }
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-input-container *,
@@ -36526,7 +36527,8 @@ input.dx-hidden {
   font-size: 13px;
   line-height: 16px;
 }
-.me-inputs.dx-texteditor.dx-widget.me-inputs-small .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container {
+.me-inputs.dx-texteditor.dx-widget.me-inputs-small .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-up,
+.me-inputs.dx-texteditor.dx-widget.me-inputs-small .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-down {
   width: 26px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-medium {
@@ -36551,7 +36553,8 @@ input.dx-hidden {
   font-size: 14px;
   line-height: 20px;
 }
-.me-inputs.dx-texteditor.dx-widget.me-inputs-medium .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container {
+.me-inputs.dx-texteditor.dx-widget.me-inputs-medium .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-up,
+.me-inputs.dx-texteditor.dx-widget.me-inputs-medium .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-down {
   width: 30px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-large {
@@ -36614,7 +36617,8 @@ input.dx-hidden {
   height: 16px;
   font-size: 14px;
 }
-.me-inputs.dx-texteditor.dx-widget.me-inputs-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container {
+.me-inputs.dx-texteditor.dx-widget.me-inputs-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-up,
+.me-inputs.dx-texteditor.dx-widget.me-inputs-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-down {
   width: 38px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-large .dx-texteditor-container .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-up-icon,
@@ -36653,6 +36657,72 @@ input.dx-hidden {
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-large:not(.dx-texteditor-with-floating-label, .dx-texteditor-label-outside).dx-state-focused .dx-texteditor-label .dx-label span {
   top: -6px;
+}
+
+.me-inputs.dx-texteditor.dx-widget.me-number-box:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-readonly .dx-texteditor-buttons-container {
+  margin-right: 4px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container {
+  gap: 0;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-clear-button-area {
+  margin-right: 4px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box-small {
+  --number-box-spin-button-height: 13px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box-medium {
+  --number-box-spin-button-height: 15px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box-large {
+  --number-box-spin-button-height: 19px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-small:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-texteditor-input-container,
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-small:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-placeholder {
+  height: 28px;
+  padding-left: 8px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-small:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-texteditor-input-container,
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-small:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-placeholder {
+  height: 36px;
+  padding-left: 8px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-medium:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-texteditor-input-container,
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-medium:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-placeholder {
+  height: 32px;
+  padding-left: 8px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-medium:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-texteditor-input-container,
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-medium:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-placeholder {
+  height: 40px;
+  padding-left: 8px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-large:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-texteditor-input-container,
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-large:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-placeholder {
+  height: 40px;
+  padding-left: 12px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-large:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-texteditor-input-container,
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-large:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) .dx-texteditor-container .dx-placeholder {
+  height: 48px;
+  padding-left: 12px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-container {
+  align-items: center;
+  padding-inline: 0;
+  padding-block: 0;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container {
+  align-items: center;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-numberbox-spin-container {
+  height: auto;
+  width: auto;
+  min-width: auto;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-up,
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-numberbox-spin-container .dx-numberbox-spin-down {
+  height: var(--number-box-spin-button-height);
 }
 
 .dx-texteditor .dx-texteditor-label > * {
