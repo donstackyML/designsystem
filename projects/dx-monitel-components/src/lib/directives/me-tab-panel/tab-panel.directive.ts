@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
 import { DxTabPanelComponent } from 'devextreme-angular';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 // Определяем тип для стилей
 export type MeTabPanelStylingMode = 'inside' | 'outside';
@@ -17,10 +17,7 @@ export type MeTabPanelStylingMode = 'inside' | 'outside';
       'internalStylingMode === "secondary"',
   },
 })
-export class MeTabPanelDirective
-  extends MeFocusableDirective
-  implements OnInit
-{
+export class MeTabPanelDirective implements OnInit {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
 
   @Input() set styling(value: MeTabPanelStylingMode) {
@@ -37,13 +34,13 @@ export class MeTabPanelDirective
   private _stylingMode: MeTabPanelStylingMode = 'outside';
 
   internalStylingMode: 'primary' | 'secondary' = 'secondary';
-
+  private focusService: ComponentFocusService;
   constructor(
     elementRef: ElementRef,
     renderer: Renderer2,
     private tabPanel: DxTabPanelComponent
   ) {
-    super(elementRef, renderer);
+    this.focusService = new ComponentFocusService(elementRef, renderer);
   }
 
   ngOnInit() {
