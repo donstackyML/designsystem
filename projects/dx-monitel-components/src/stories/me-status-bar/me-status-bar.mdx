@@ -1,115 +1,295 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
-import * as StatusBarStories from './me-status-bar.stories';
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as statusBarStories from './me-status-bar.stories';
 
-<Meta of={StatusBarStories} />
+<Meta name="StatusBar Documentation" of={statusBarStories} />
 
 # StatusBar
 
+## Компонент me-status-bar
+
 StatusBar - компонент для отображения статусной информации и навигационных элементов.
 
-## Особенности
+<Canvas of={statusBarStories.Default} />
+<Controls of={statusBarStories.Default} />
+<Source of={statusBarStories.Default} />
 
-- Поддержка различных типов статусов (error, warning, success, info)
-- Два размера (smsll, large)
-- Возможность добавления разделителей
-- Поддержка read-only состояния
-- Кастомизация через стили DevExtreme
+## Дизайн
 
-## Использование
-
-```typescript
-<me-status-bar
-  [leftItems]="[
-    {
-      text: 'Воткинская ГЭС',
-      icon: 'home'
-    },
-    {
-      text: 'Раскраска схемы без учета ТП',
-      fill: true,
-      type: 'default'
-    },
-    {
-      text: 'Режим исследования'
-    }
-  ]"
-  [rightItems]="[
-    {
-      icon: 'warning',
-      text: 'Отсутствует соединение с источником данных',
-      type: 'error'
-    }
-  ]"
-  size="large"
-  [showDivider]="true"
-></me-status-bar>
-```
-
-## Примеры
-
-### Статус Error
-
-<Canvas of={StatusBarStories.ErrorStatus} />
-
-### Статус Success
-
-<Canvas of={StatusBarStories.SuccessStatus} />
-
-### Статус Warning
-
-<Canvas of={StatusBarStories.WarningStatus} />
-
-### Статус Info
-
-<Canvas of={StatusBarStories.InfoStatus} />
-
-### Компактный размер
-
-<Canvas of={StatusBarStories.Small} />
-
-### С разделителями
-
-<Canvas of={StatusBarStories.WithDividers} />
-
-### Без разделителей
-
-<Canvas of={StatusBarStories.WithoutDividers} />
-
-## Props
-
-<Controls />
+<Figma
+  height="50%"
+  collapsable
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1395-40073&t=PsUcJpTrMn1vLPOD-4"
+/>
 
 ## API
-
-### StatusBarItem
-```typescript
-import {StatusType} from "./me-status-bar.component";
-interface StatusBarItem {
-  icon?: string;           // Иконка
-  text: string;            // Текст
-  type?: StatusType;       // Тип статуса
-  fill?: boolean;          // Использовать заливку фона
-  stylingMode?: 'text' | 'contained';  // Режим отображения кнопки (по умолчанию 'text')
-}
-```
 
 ### StatusType
 ```typescript
 type StatusType = 'error' | 'warning' | 'success' | 'info';
 ```
 
-### Цвета статусов
+### StatusBarItem
+```typescript
+import {StatusType} from "./me-status-bar.component";
 
-| Тип статуса | С заливкой (fill: true) | Без заливки |
-|-------------|------------------------|-------------|
-| error       | Красный фон, белый текст | Красный текст |
-| warning     | Оранжевый фон, белый текст | Оранжевый текст |
-| success     | Зеленый фон, белый текст | Зеленый текст |
-| info        | Синий фон, белый текст | Синий текст |
+interface StatusBarItem {
+  text: string;             // Текст
+  textColor?: string;       // Цвет текста
+  type?: StatusType;        // Тип статуса
+  icon?: string;            // Иконка
+  iconColor?: string;       // Цвет иконки
+  showStatusIcon?: boolean; // Показать иконку, которая соответствует типу статуса
+  fill?: boolean;           // Использовать заливку фона
+  backgroundColor?: string; // Цвет фона
+  readonly?: boolean;       // Только для чтения
+  onClick?: () => void;     // Обработчик события клика
+}
+```
 
-### Размеры
+## Примеры
 
-| Размер | Высота | Размер текста | Размер иконок |
-|--------|---------|--------------|---------------|
-| small      | 32px    | 14px         | 20px          |
-| large      | 48px    | 16px         | 24px          |
+- [Статусы](#статусы)
+  - [Статус Error](#статус-error)
+  - [Статус Warning](#статус-warning)
+  - [Статус Success](#статус-success)
+  - [Статус Info](#статус-info)
+- [Добавление иконок](#добавление-иконок)
+  - [Иконки соответствующие типу статусов](#иконки-соответствующие-типу-статусов)
+  - [Кастомные иконки](#кастомные-иконки)
+  - [Управление цветом у иконок](#управление-цветом-у-иконок)
+- [Разделители](#разделители)
+  - [С разделителями](#с-разделителями)
+  - [Без разделителей](#без-разделителей)
+- [Размеры](#размеры)
+  - [Компактный размер - small](#компактный-размер)
+  - [Большой размер - large](#большой-размер)
+
+## Статусы
+
+### Статус Error
+
+<Canvas of={statusBarStories.ErrorStatus} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС', icon: 'home' },
+      {
+        text: 'Раскраска схемы без учета ТП',
+        fill: true,
+        type: 'info',
+      },
+      { text: 'Режим исследования', fill: true, type: 'warning' },
+    ]"
+  [rightItems]="[
+    {
+      icon: 'error',
+      text: 'Отсутствует соединение с источником данных',
+      fill: true,
+      type: 'error'
+    }
+  ]"
+  size="large"
+  [showDivider]="true"
+></me-status-bar>
+`} dark language='html'/>
+
+
+### Статус Warning
+
+<Canvas of={statusBarStories.WarningStatus} />
+
+### Статус Success
+
+<Canvas of={statusBarStories.SuccessStatus} />
+
+### Статус Info
+
+<Canvas of={statusBarStories.InfoStatus} />
+
+## Добавление иконок
+
+### Иконки соответствующие типу статусов
+
+<Canvas of={statusBarStories.StatusIcons} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС' },
+  ]"
+  [rightItems]="[
+    {
+      text: 'Отсутствует соединение с источником данных',
+      type: 'error',
+      showStatusIcon: true,
+      fill: true,
+    }
+  ]"
+  size="large"
+  [showDivider]="true"
+></me-status-bar>
+`} dark language='html'/>
+
+### Кастомные иконки
+
+<Canvas of={statusBarStories.CustomIcons} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС', icon: 'home' },
+  ]"
+  [rightItems]="[
+    {
+      text: 'Отсутствует соединение с источником данных',
+      type: 'error',
+      icon: 'error',
+      fill: true,
+    }
+  ]"
+  size="large"
+  [showDivider]="true"
+></me-status-bar>
+`} dark language='html'/>
+
+### Управление цветом у иконок
+
+<Canvas of={statusBarStories.CustomIconsWithColor} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС', icon: 'home', iconColor: '#f00' },
+  ]"
+  [rightItems]="[
+    {
+      text: 'Отсутствует соединение с источником данных',
+      type: 'error',
+      icon: 'error',
+      fill: true,
+    }
+  ]"
+  size="large"
+  [showDivider]="true"
+></me-status-bar>
+`} dark language='html'/>
+
+## Разделители
+
+### С разделителями
+
+<Canvas of={statusBarStories.WithDividers} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС' },
+  ]"
+  [rightItems]="[
+    {
+      text: 'Отсутствует соединение с источником данных',
+      type: 'error',
+      icon: 'error',
+      fill: true,
+    }
+  ]"
+  size="large"
+  [showDivider]="true"
+></me-status-bar>
+`} dark language='html'/>
+
+### Без разделителей
+
+<Canvas of={statusBarStories.WithoutDividers} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС' },
+  ]"
+  [rightItems]="[
+    {
+      text: 'Отсутствует соединение с источником данных',
+      type: 'error',
+      icon: 'error',
+      fill: true,
+    }
+  ]"
+  size="large"
+  [showDivider]="false"
+></me-status-bar>
+`} dark language='html'/>
+
+## Размеры
+
+### Компактный размер
+
+<Canvas of={statusBarStories.SizeSmall} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС' },
+  ]"
+  [rightItems]="[
+    {
+      text: 'Отсутствует соединение с источником данных',
+      type: 'error',
+      icon: 'error',
+      fill: true,
+    }
+  ]"
+  size="small"
+  [showDivider]="true"
+></me-status-bar>
+`} dark language='html'/>
+
+### Большой размер
+
+<Canvas of={statusBarStories.SizeLarge} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС' },
+  ]"
+  [rightItems]="[
+    {
+      text: 'Отсутствует соединение с источником данных',
+      type: 'error',
+      icon: 'error',
+      fill: true,
+    }
+  ]"
+  size="large"
+  [showDivider]="true"
+></me-status-bar>
+`} dark language='html'/>
+
+## Readonly
+
+<Canvas of={statusBarStories.Readonly} />
+
+<Source code={`
+<me-status-bar
+  [leftItems]="[
+      { text: 'Воткинская ГЭС' },
+  ]"
+  [rightItems]="[
+    {
+      text: 'Отсутствует соединение с источником данных',
+      type: 'error',
+      icon: 'error',
+      fill: true,
+      onClick: () => {
+          console.log('При заданном свойстве readonly этот текст в консоле не отобразится');
+      },
+      readonly: true,
+    }
+  ]"
+  size="large"
+  [showDivider]="true"
+></me-status-bar>
+`} dark language='html'/>

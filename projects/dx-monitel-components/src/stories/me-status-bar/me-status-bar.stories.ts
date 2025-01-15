@@ -39,7 +39,28 @@ export default {
 
 type Story = StoryObj;
 
-// Пример с ошибкой
+export const Default: Story = {
+  args: {
+    leftItems: [
+      { text: 'Воткинская ГЭС' },
+      {
+        text: 'Раскраска схемы без учета ТП',
+        fill: true,
+        type: 'info',
+      },
+      { text: 'Режим исследования', fill: true, type: 'warning' },
+    ],
+    rightItems: [
+      {
+        text: 'Отсутствует соединение с источником данных',
+        type: 'error',
+        showStatusIcon: true,
+        fill: true,
+      },
+    ]
+  },
+};
+
 export const ErrorStatus: Story = {
   args: {
     leftItems: [
@@ -53,16 +74,15 @@ export const ErrorStatus: Story = {
     ],
     rightItems: [
       {
-        icon: 'error',
         text: 'Отсутствует соединение с источником данных',
         type: 'error',
+        showStatusIcon: true,
         fill: true,
       },
     ],
   },
 };
 
-// Пример с успешным подключением
 export const SuccessStatus: Story = {
   args: {
     leftItems: [
@@ -76,16 +96,15 @@ export const SuccessStatus: Story = {
     ],
     rightItems: [
       {
-        icon: 'check_circle',
         text: 'Соединение с источником данных восстановлено',
         type: 'success',
+        showStatusIcon: true,
         fill: true,
       },
     ],
   },
 };
 
-// Пример с предупреждением
 export const WarningStatus: Story = {
   args: {
     leftItems: [
@@ -99,16 +118,15 @@ export const WarningStatus: Story = {
     ],
     rightItems: [
       {
-        icon: 'warning_amber',
         text: 'Соединение с источником данных восстановлено',
         type: 'warning',
+        showStatusIcon: true,
         fill: true,
       },
     ],
   },
 };
 
-// Пример с информацией
 export const InfoStatus: Story = {
   args: {
     leftItems: [
@@ -122,23 +140,82 @@ export const InfoStatus: Story = {
     ],
     rightItems: [
       {
-        icon: 'info',
         text: 'Новая информация',
         type: 'info',
+        showStatusIcon: true,
       },
     ],
   },
 };
 
-// Компактный размер
-export const Small: Story = {
+// Добавление иконок
+
+export const StatusIcons: Story = {
+  args: {
+    leftItems: [
+      { text: 'Воткинская ГЭС' },
+    ],
+    rightItems: [
+      {
+        text: 'Отсутствует соединение с источником данных',
+        type: 'error',
+        showStatusIcon: true,
+        fill: true,
+      },
+    ],
+  },
+};
+
+export const CustomIcons: Story = {
+  args: {
+    leftItems: [
+      { text: 'Воткинская ГЭС', icon: 'home' },
+    ],
+    rightItems: [
+      {
+        text: 'Отсутствует соединение с источником данных',
+        type: 'error',
+        icon: 'error',
+        fill: true,
+      },
+    ],
+  },
+};
+
+export const CustomIconsWithColor: Story = {
+  args: {
+    leftItems: [
+      { text: 'Воткинская ГЭС', icon: 'home', color: '#ff0' },
+    ],
+    rightItems: [
+      {
+        text: 'Отсутствует соединение с источником данных',
+        type: 'error',
+        icon: 'error',
+        fill: true,
+      },
+    ],
+  },
+};
+
+// Размеры
+
+export const SizeSmall: Story = {
   args: {
     ...ErrorStatus.args,
     size: 'small',
   },
 };
 
-// С разделителями
+export const SizeLarge: Story = {
+  args: {
+    ...ErrorStatus.args,
+    size: 'large',
+  },
+};
+
+// Разделитель
+
 export const WithDividers: Story = {
   args: {
     ...ErrorStatus.args,
@@ -146,7 +223,6 @@ export const WithDividers: Story = {
   },
 };
 
-// Без разделителей
 export const WithoutDividers: Story = {
   args: {
     ...ErrorStatus.args,
@@ -154,7 +230,6 @@ export const WithoutDividers: Story = {
   },
 };
 
-// Пример без заливки
 export const WithoutFill: Story = {
   args: {
     leftItems: [
@@ -168,10 +243,34 @@ export const WithoutFill: Story = {
     ],
     rightItems: [
       {
-        icon: 'error',
         text: 'Отсутствует соединение с источником данных',
         type: 'error',
         fill: false,
+      },
+    ]
+  },
+};
+
+export const Readonly: Story = {
+  args: {
+    leftItems: [
+      { text: 'Воткинская ГЭС' },
+      {
+        text: 'Раскраска схемы без учета ТП',
+        fill: true,
+        type: 'info',
+      },
+      { text: 'Режим исследования', fill: true, type: 'success' },
+    ],
+    rightItems: [
+      {
+        text: 'Отсутствует соединение с источником данных',
+        type: 'error',
+        fill: true,
+        onClick: () => {
+          console.log('При заданном свойстве readonly этот текст в консоле не отобразится');
+        },
+        readonly: true,
       },
     ],
   },
