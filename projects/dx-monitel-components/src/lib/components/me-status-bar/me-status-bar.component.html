@@ -13,7 +13,7 @@
         (onClick)="!item.readonly && item.onClick && item.onClick()"
       >
         <div *dxTemplate="let data of 'content'" [style]="getContentStyles(item)" class="me-status-bar__button-content">
-          <i *ngIf="item.icon" [class]="'dx-icon dx-icon-' + item.icon" [style.color]="item.iconColor"></i>
+          <me-icon *ngIf="item.icon" [icon]="item.icon" [class]="'dx-icon'" [size]="size" [color]="item.iconColor"></me-icon>
           <span>{{ item.text }}</span>
         </div>
       </dx-button>
@@ -35,7 +35,7 @@
         (onClick)="!item.readonly && item.onClick && item.onClick()"
       >
         <div *dxTemplate="let data of 'content'" [style]="getContentStyles(item)" class="me-status-bar__button-content">
-          <me-icon [icon]="item.icon" *ngIf="item.icon" [class]="'dx-icon'" [style.color]="item.iconColor"></me-icon>
+          <me-icon *ngIf="item.icon" [icon]="item.icon" [class]="'dx-icon'" [size]="size" [color]="item.iconColor"></me-icon>
           <span>{{ item.text }}</span>
         </div>
       </dx-button>
