@@ -3,6 +3,29 @@
 @use '../sizes' as *;
 @use '../common/sizes' as *;
 
+@mixin unfocusState($indent, $fontSize) {
+  font-size: $fontSize;
+  line-height: $fontSize;
+
+  transform: translate(0, $indent);
+  -webkit-transform: translate(0, $indent);
+  -moz-transform: translate(0, $indent);
+  -ms-transform: translate(0, $indent);
+  -o-transform: translate(0, $indent);
+}
+
+@mixin focusState($indent, $fontSize) {
+  top: $indent;
+
+  font-size: $fontSize;
+
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+}
+
 .me-inputs.dx-texteditor.dx-widget {
   &.me-textbox.me-keyboard-focused.dx-state-focused {
     outline: 2px solid var(--Dividers-Borders-Focus);
@@ -353,7 +376,7 @@
     &.dx-texteditor-with-floating-label.dx-state-focused,
     &.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) {
       .dx-label span {
-        left: -11px;
+        left: 11px;
       }
     }
   }
@@ -366,7 +389,7 @@
       padding: 0 !important;
 
       span {
-        font-size: 12px !important;
+        font-size: 12px;
         font-weight: var(--me-regular-font-weight);
         line-height: 16px;
         text-align: left;
@@ -374,7 +397,6 @@
     }
   }
 
-  &.dx-texteditor-with-floating-label,
   &.dx-texteditor-label-outside {
     margin-top: 24px;
   }
@@ -418,25 +440,32 @@
     }
   }
 
-  &.dx-texteditor-with-floating-label {
+  &.dx-texteditor-with-floating-label,
+  &.dx-editor-outlined.dx-state-readonly.dx-state-hover,
+  &.dx-editor-outlined.dx-state-readonly.dx-state-focused {
     .dx-texteditor-label {
       padding: 0;
       align-items: center;
+
+      .dx-label span {
+        margin-top: 0;
+      }
     }
 
     &.dx-state-focused,
     &.dx-dropdowneditor-active,
     &:not(.dx-texteditor-empty) {
       &:not(.dx-state-readonly) {
-        .dx-texteditor-label {
-          top: -13px;
-          left: -9px;
+        &.me-inputs-small .dx-texteditor-label .dx-label span {
+          @include focusState(5px, 12px);
         }
 
-        &.me-inputs-large {
-          .dx-texteditor-label {
-            top: -17px;
-          }
+        &.me-inputs-medium .dx-texteditor-label .dx-label span {
+          @include focusState(7.5px, 12px);
+        }
+
+        &.me-inputs-large .dx-texteditor-label .dx-label span {
+          @include focusState(7.5px, 13px);
         }
       }
 
@@ -446,32 +475,9 @@
     }
 
     &.dx-state-readonly:not(.dx-texteditor-empty) {
-      &.me-inputs-large {
-        .dx-texteditor-label {
-          top: -17px;
-        }
+      .dx-texteditor-label .dx-label span {
+        @include focusState(7.5px, 12px);
       }
-
-      .dx-texteditor-label {
-        top: -13px;
-        left: -9px;
-
-        .dx-label span {
-          transform: translate(0, -7.5px);
-          -webkit-transform: translate(0, -7.5px);
-          -moz-transform: translate(0, -7.5px);
-          -ms-transform: translate(0, -7.5px);
-          -o-transform: translate(0, -7.5px);
-        }
-      }
-    }
-
-    &.dx-state-readonly.dx-texteditor-empty .dx-texteditor-label .dx-label span {
-      transform: translate(0, 0);
-      -webkit-transform: translate(0, 0);
-      -moz-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-      -o-transform: translate(0, 0);
     }
   }
 
@@ -495,13 +501,16 @@
 //Sizes
 .me-inputs.dx-texteditor.dx-widget {
   &.me-inputs-small {
+    $placeholder-font-size: 13px;
+
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
 
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
+    &.dx-texteditor-with-floating-label {
       .dx-label-before {
         min-width: 8px;
       }
@@ -518,7 +527,7 @@
       .dx-texteditor-input-container {
         .dx-texteditor-input,
         .dx-placeholder {
-          font-size: 13px;
+          font-size: $placeholder-font-size;
           line-height: 16px;
         }
       }
@@ -532,17 +541,27 @@
         }
       }
     }
+
+    &.dx-texteditor-with-floating-label,
+    &.dx-state-readonly.dx-state-hover {
+      .dx-texteditor-label .dx-label span {
+        @include unfocusState(-7.5px, $placeholder-font-size);
+      }
+    }
   }
 
   //medium
   &.me-inputs-medium {
+    $placeholder-font-size: 14px;
+
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
 
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
+    &.dx-texteditor-with-floating-label {
       .dx-label-before {
         min-width: 8px;
       }
@@ -559,7 +578,7 @@
       .dx-texteditor-input-container {
         .dx-texteditor-input,
         .dx-placeholder {
-          font-size: 14px;
+          font-size: $placeholder-font-size;
           line-height: 20px;
         }
       }
@@ -573,21 +592,31 @@
         }
       }
     }
+
+    &.dx-texteditor-with-floating-label,
+    &.dx-state-readonly.dx-state-hover {
+      .dx-texteditor-label .dx-label span {
+        @include unfocusState(-7.5px, $placeholder-font-size);
+      }
+    }
   }
 
   //large
   &.me-inputs-large {
+    $placeholder-font-size: 16px;
+
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
 
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
-      .dx-texteditor-label {
-        padding-top: 3px;
-      }
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-label {
+      padding-top: 3px;
+    }
 
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
+    &.dx-texteditor-with-floating-label {
       .dx-label-before {
         min-width: 12px;
       }
@@ -625,7 +654,7 @@
       &.dx-texteditor-with-floating-label.dx-state-focused,
       &.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) {
         .dx-label span {
-          left: -15px;
+          left: 15px;
         }
       }
     }
@@ -639,7 +668,7 @@
 
         .dx-texteditor-input,
         .dx-placeholder {
-          font-size: 16px;
+          font-size: $placeholder-font-size;
           line-height: 20px;
         }
       }
@@ -709,7 +738,7 @@
     .dx-texteditor-label {
       .dx-label {
         span {
-          font-size: 14px !important;
+          font-size: 14px;
           line-height: 20px !important;
         }
       }
@@ -732,6 +761,13 @@
             }
           }
         }
+      }
+    }
+
+    &.dx-texteditor-with-floating-label,
+    &.dx-state-readonly.dx-state-hover {
+      .dx-texteditor-label .dx-label span {
+        @include unfocusState(-8.5px, $placeholder-font-size);
       }
     }
   }
