@@ -18,7 +18,7 @@ import { MeSize } from '../../types/types';
 })
 export class MePopoverDirective implements AfterViewInit, OnChanges {
   @Input() size: MeSize = 'medium';
-  @Input() colorMode: 'light' | 'dark' = 'dark';
+  @Input() colorMode: 'default' | 'alternate' | 'light' | 'dark' = 'default';
   @Input() customClass = '';
 
   private renderer = inject(Renderer2);

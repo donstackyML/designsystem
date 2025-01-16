@@ -9,6 +9,9 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     outline: 2px solid var(--Dividers-Borders-Focus);
     outline-offset: -2px;
   }
+  .dx-state-focused.dx-tab::after {
+    height: 0 !important;
+  }
 }
 .me-tabs {
   display: inline-flex;
@@ -20,7 +23,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     }
     &:not(.dx-tab-selected) {
       .dx-tab-text-span {
-        font-weight: var(--me-regular-font-weight);
       }
     }
     .dx-item-content.dx-tab-content {
@@ -40,8 +42,9 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 
 .me-tabs-small {
   height: var(--me-tabs-small-height);
-  font-weight: 400;
+  font-weight: var(--me-tabs-small-font-weight);
   font-size: var(--me-tabs-small-font-size);
+  line-height: var(--me-tabs-small-line-height);
 
   .dx-tab {
     padding: var(--me-tabs-small-tab-padding);
@@ -59,8 +62,9 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 .me-tabs-medium {
   height: var(--me-tabs-medium-height);
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: var(--me-tabs-medium-font-weight);
   font-size: var(--me-tabs-medium-font-size);
+  line-height: var(--me-tabs-medium-line-height);
 
   .dx-tab {
     padding: var(--me-tabs-medium-tab-padding);
@@ -79,8 +83,9 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 .me-tabs-large {
   height: var(--me-tabs-large-height);
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: var(--me-tabs-large-font-weight);
   font-size: var(--me-tabs-large-font-size);
+  line-height: var(--me-tabs-large-line-height);
 
   .dx-tab-text {
     line-height: var(--me-tabs-large-line-height);
@@ -107,7 +112,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     right: 0;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: $tabs-disabled-color;
   }
 
@@ -128,7 +133,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
       &::after,
       &.dx-state-focused::after {
         background-color: $tabs-hover-border-color;
-        height: 2px;
+        height: 1px;
       }
 
       &.dx-state-hover::after,
@@ -178,7 +183,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
       &.dx-state-hover::after,
       &.dx-state-active::after {
         background-color: $tabs-hover-border-color;
-        width: 2px;
+        width: 1px;
       }
 
       &.dx-state-disabled::after {
@@ -207,7 +212,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 4px;
   background-color: $tabs-hover-border-color;
 }
 
@@ -259,6 +264,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 
   &.me-tabs-top .dx-tab {
+    border-radius: 0 0 4px 4px;
     margin-left: -1px;
     border-width: 1px;
     border-style: solid;
@@ -268,7 +274,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     border-right-color: transparent;
 
     &.dx-tab-selected {
-      border-radius: 0 0 4px 4px;
       border-width: 1px;
       border-style: solid;
       border-top-color: transparent;
@@ -284,6 +289,7 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   }
 
   &.me-tabs-bottom .dx-tab {
+    border-radius: 4px 4px 0 0;
     margin-left: -1px;
     border-width: 1px;
     border-style: solid;
@@ -294,7 +300,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     border-radius: 0;
 
     &.dx-tab-selected {
-      border-radius: 4px 4px 0 0;
       border-width: 1px;
       border-style: solid;
       border-top-color: $tabs-disabled-border-color;
@@ -392,7 +397,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     .dx-tab-text-span {
       position: relative;
       display: block;
-      font-weight: 500;
       visibility: hidden;
     }
 
@@ -404,7 +408,6 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
       left: 0;
       pointer-events: none;
       color: var(--Controls-Content-In-Controls-Main-Default);
-      font-weight: 400;
       visibility: visible;
     }
   }
@@ -467,7 +470,45 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
 }
 
 ////////////////////////////////////////////////////////// vagab 09.12.24
-
+//скругления при keyboard actions
+.me-tabs.dx-tabs.me-keyboard-focused {
+  &.me-tabs-bottom.me-tabs-horizontal {
+    .dx-item.dx-tab {
+      border-radius: 4px 4px 0 0;
+      -webkit-border-radius: 4px 4px 0 0;
+      -moz-border-radius: 4px 4px 0 0;
+      -ms-border-radius: 4px 4px 0 0;
+      -o-border-radius: 4px 4px 0 0;
+    }
+  }
+  &.me-tabs-top.me-tabs-horizontal {
+    .dx-item.dx-tab {
+      border-radius: 0 0 4px 4px;
+      -webkit-border-radius: 0 0 4px 4px;
+      -moz-border-radius: 0 0 4px 4px;
+      -ms-border-radius: 0 0 4px 4px;
+      -o-border-radius: 0 0 4px 4px;
+    }
+  }
+  &.me-tabs-vertical {
+    .dx-item.dx-tab {
+      border-radius: 4px 0 0 4px;
+      -webkit-border-radius: 4px 0 0 4px;
+      -moz-border-radius: 4px 0 0 4px;
+      -ms-border-radius: 4px 0 0 4px;
+      -o-border-radius: 4px 0 0 4px;
+    }
+  }
+  &.me-tabs-vertical.dx-rtl {
+    .dx-item.dx-tab {
+      border-radius: 0 4px 4px 0;
+      -webkit-border-radius: 0 4px 4px 0;
+      -moz-border-radius: 0 4px 4px 0;
+      -ms-border-radius: 0 4px 4px 0;
+      -o-border-radius: 0 4px 4px 0;
+    }
+  }
+}
 //скругления при hover и active
 .me-tabs.dx-tabs {
   &.me-tabs-bottom.me-tabs-horizontal.dx-tabs-styling-mode-primary.me-tabs-style-inside {

@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxAutocompleteComponent } from 'devextreme-angular';
 import { MeScrollbarShowType, MeSize } from '../../types/types';
-import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meAutocomplete]',
@@ -16,10 +16,7 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
-export class MeAutocompleteDirective
-  extends MeFocusableDirective
-  implements OnInit
-{
+export class MeAutocompleteDirective implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() minSearchLength: number = 1;
@@ -28,12 +25,13 @@ export class MeAutocompleteDirective
   @Input() labelMode?: 'static' | 'floating' | 'hidden' | 'outside';
   @Input() description: string = '';
 
+  private focusService: ComponentFocusService;
   constructor(
     private component: DxAutocompleteComponent,
     element: ElementRef,
     renderer: Renderer2
   ) {
-    super(element, renderer);
+    this.focusService = new ComponentFocusService(element, renderer);
   }
 
   get isSizeSmall(): boolean {
