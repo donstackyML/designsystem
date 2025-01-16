@@ -28,6 +28,7 @@ export { MeDateBoxDirective } from './lib/directives/me-date-box/date-box.direct
 export { MeEditorDirective } from './lib/directives/me-editor/editor.directive';
 export { MeFileUploaderDirective } from './lib/directives/me-file-uploader/file-uploader.directive';
 export { MeFormDirective } from './lib/directives/me-form/me-form.directive';
+export { MeFormItemDirective } from './lib/directives/me-form-item/me-form-item.directive';
 export { MeIconDirective } from './lib/directives/me-icon/icon.directive';
 export { MeLabelDirective } from './lib/directives/me-label/label.directive';
 export { MeListDirective } from './lib/directives/me-list/list.directive';
@@ -78,6 +79,7 @@ export { MeDateBoxModule } from './lib/directives/me-date-box/date-box.module';
 export { MeEditorModule } from './lib/directives/me-editor/me-editor.module';
 export { MeFileUploaderModule } from './lib/directives/me-file-uploader/file-uploader.module';
 export { MeFormModule } from './lib/directives/me-form/me-form.module';
+export { MeFormItemModule } from './lib/directives/me-form-item/me-form-item.module';
 export { MeIconModule } from './lib/directives/me-icon/me-icon.module';
 export { MeLabelModule } from './lib/directives/me-label/me-label.module';
 export { MeListModule } from './lib/directives/me-list/list.module';

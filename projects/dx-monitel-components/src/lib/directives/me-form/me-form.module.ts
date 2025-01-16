@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeFormDirective } from './me-form.directive';
+import { FormOptions, MeFormDirective } from './me-form.directive';
 
 @NgModule({
   declarations: [MeFormDirective],

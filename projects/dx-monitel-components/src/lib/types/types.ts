@@ -50,3 +50,11 @@ export interface MeButtonGroupItem extends Partial<dxButtonGroupItem> {
   warningType?: boolean;
 }
 export type MeOrientation = 'horizontal' | 'vertical';
+
+export const KEYBOARD_FOCUSABLE_CLASS = 'me-keyboard-focused';
+
+export type FocusInEventHandle = (evt: FocusEvent) => void;
+
+export type FocusOutEventHandle = (evt: FocusEvent) => void;
+
+export type KeyUpEventHandle = (evt: KeyboardEvent) => void;
