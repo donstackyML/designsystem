@@ -123,7 +123,7 @@ type Story = StoryObj;
 
 export const Default: Story = {
   args: {
-    value: 'value',
+    value: '',
     width: '320px',
     isValid: false,
   },
