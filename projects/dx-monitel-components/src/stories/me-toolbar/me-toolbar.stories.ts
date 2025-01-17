@@ -314,9 +314,9 @@ export const Default: Story = {
 	>
 		<div *dxTemplate>
 			<dx-text-box
+			meTextBox
 	    class="search-item"
 			[disabled]="disabled"
-			meTextBox
 			mode="search"
 			[showClearButton]="false"
 			[size]="size"

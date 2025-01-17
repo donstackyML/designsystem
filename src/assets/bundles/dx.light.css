@@ -8901,6 +8901,9 @@
 .dx-searchbox .dx-icon-search::before {
   color: rgba(24, 24, 26, 0.4);
 }
+.dx-searchbox.dx-state-focused .dx-icon-search::before {
+  color: var(--me-icon-default);
+}
 .dx-searchbox .dx-texteditor-input,
 .dx-searchbox .dx-placeholder::before {
   padding-left: 34px;
@@ -36321,7 +36324,6 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container {
   padding-inline: 8px;
   width: 100%;
-  gap: 16px;
   align-items: center;
 }
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-input-container {
@@ -36353,6 +36355,10 @@ input.dx-hidden {
   align-items: flex-start;
   gap: 4px;
   color: var(--Controls-Content-In-Controls-Main-Default);
+  margin-left: 4px;
+}
+.me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container:has(> div:empty) {
+  margin-left: 0;
 }
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container > * {
   height: 20px;
