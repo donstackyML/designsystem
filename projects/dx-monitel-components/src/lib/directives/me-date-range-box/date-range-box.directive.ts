@@ -15,14 +15,14 @@ import { ComponentFocusService } from '../../service/component-focus.service';
   selector: '[meDateRangeBox]',
   host: {
     '[class.me-date-range-box]': 'true',
-    '[class.me-date-range-box-large]': 'isSizeLarge',
-    '[class.me-date-range-box-medium]': 'isSizeMedium',
     '[class.me-date-range-box-small]': 'isSizeSmall',
+    '[class.me-date-range-box-medium]': 'isSizeMedium',
+    '[class.me-date-range-box-large]': 'isSizeLarge',
 
     '[class.me-inputs]': 'true',
-    '[class.me-inputs-large]': 'isSizeLarge',
-    '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-small]': 'isSizeSmall',
+    '[class.me-inputs-medium]': 'isSizeMedium',
+    '[class.me-inputs-large]': 'isSizeLarge',
   },
 })
 export class MeDateRangeBoxDirective implements OnInit {
