@@ -22,12 +22,23 @@
 
   &.dx-fileuploader-dragover {
     .dx-fileuploader-input-wrapper {
-      border-style: solid;
-      border-color: var(--uploader-hover-border-color) !important;
+      outline-color: var(--uploader-hover-border-color) !important;
       background-color: var(--uploader-dragover-background) !important;
-      opacity: 0.5;
     }
   }
+
+  &.dx-state-disabled .dx-fileuploader-input-wrapper,
+  &.dx-fileuploader-dragover .dx-fileuploader-input-wrapper {
+    .dx-fileuploader-button {
+      background-color: var(--Controls-BG-Accent-Accent-BG-Disabled) !important;
+      color: var(--Controls-Content-In-Controls-On-BG-Disabled) !important;
+    }
+
+    .dx-fileuploader-input-label {
+      color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+    }
+  }
+
   .dx-fileuploader-wrapper {
     padding: 0;
 
@@ -37,7 +48,9 @@
         background-color: transparent;
 
         .dx-fileuploader-input-wrapper {
-          border: 1px dashed var(--uploader-border-color);
+          gap: 8px;
+          outline: 1px dashed var(--uploader-border-color);
+          outline-offset: -1px;
           border-radius: 4px;
           padding: 24px;
           margin: 0;
@@ -53,8 +66,7 @@
             background-color: var(--Controls-BG-Accent-Accent-BG-Default);
             border-radius: 4px;
             border: none;
-            height: 36px;
-            min-width: 120px;
+            height: 28px;
             padding: 0;
             margin: 0;
 
@@ -67,8 +79,8 @@
             }
 
             .dx-button-content {
-              padding: 0 16px;
-              height: 36px;
+              padding: 0 12px;
+              height: 28px;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -91,6 +103,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            width: auto;
           }
         }
       }
@@ -98,7 +111,27 @@
       // Список файлов
       .dx-fileuploader-files-container {
         .dx-fileuploader-file-container {
+          padding: 0;
           display: flex;
+
+          .dx-fileuploader-button-container {
+            margin-right: 4px;
+
+            &:not(:has(~ &)) {
+              margin-right: 8px;
+            }
+
+            & > * {
+              width: 28px;
+              height: 28px;
+
+              .dx-button-content {
+                display: flex;
+                align-items: center;
+                padding: 0;
+              }
+            }
+          }
         }
 
         .dx-button {
@@ -111,10 +144,10 @@
             background: transparent;
           }
         }
+
         .dx-fileuploader-file {
           display: flex;
           flex-direction: column;
-          padding: 8px 12px;
 
           // Контейнер для иконок и кнопок
           .dx-fileuploader-button-container {
@@ -248,11 +281,10 @@
 
   // Состояния
   &.dx-state-disabled {
-    opacity: 0.5;
     pointer-events: none;
 
     .dx-fileuploader-input-wrapper {
-      border-color: var(--Controls-Content-In-Controls-Main-Disabled);
+      outline-color: var(--Controls-Content-In-Controls-Main-Disabled);
     }
 
     .dx-icon::before {
@@ -266,8 +298,8 @@
 
   &.dx-fileuploader-dragover {
     .dx-fileuploader-input-wrapper {
-      border-style: solid;
-      border-color: var(--uploader-hover-border-color);
+      // border-style: solid;
+      outline-color: var(--uploader-hover-border-color);
       background-color: var(--uploader-dragover-background);
     }
   }
@@ -275,7 +307,7 @@
   // Состояния файла
   &.dx-fileuploader-invalid {
     .dx-fileuploader-file {
-      border-color: var(--Controls-Content-In-Controls-Danger-Default);
+      outline-color: var(--Controls-Content-In-Controls-Danger-Default);
 
       .dx-fileuploader-file-status-message {
         color: var(--Controls-Content-In-Controls-Danger-Default);
@@ -362,15 +394,6 @@
   justify-content: start;
 }
 
-.me-file-uploader
-  .dx-fileuploader-wrapper
-  .dx-fileuploader-container
-  .dx-fileuploader-content
-  .dx-fileuploader-input-wrapper
-  .dx-fileuploader-input-label {
-  // margin-left: -50px;
-}
-
 .me-file-uploader .dx-icon-upload::before {
   font-family: var(--me-symbols-family);
   content: var(--me-icon-upload);
@@ -380,18 +403,12 @@
   color: var(--Text-Default);
 }
 
-// .dx-texteditor.dx-editor-outlined {
-//   border: none;
-//   background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
-// }
-
 .me-file-uploader
   .dx-fileuploader-wrapper
   .dx-fileuploader-container
   .dx-fileuploader-content
   .dx-fileuploader-input-wrapper
   .dx-fileuploader-input-container {
-  // min-width: 200px;
   width: auto;
 }
 
@@ -416,8 +433,12 @@
   justify-content: end;
 }
 
+.flex-box .me-text-caption {
+  text-align: center;
+}
+
 .flex-box.dropzone-active .flex-box .me-text-caption {
-  color: var(--Text-Disabled);
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 
 .me-file-uploader {

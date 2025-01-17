@@ -16837,7 +16837,7 @@
 }
 .dx-tooltip-wrapper .dx-overlay-content .dx-popup-content {
   display: inline-block;
-  padding: 12px 17px;
+  padding: 16px;
   font-size: 0.85em;
   line-height: normal;
   white-space: nowrap;
@@ -16929,7 +16929,7 @@
 }
 
 .me-tooltip-content {
-  padding: 16px;
+  padding-top: 16px;
   text-align: left;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -18013,6 +18013,7 @@
   line-height: 18px;
   padding-left: 0;
   margin-left: 5px;
+  width: auto;
 }
 .dx-tagbox:not(.dx-texteditor-empty) .dx-texteditor-input::before {
   content: "\f027";
@@ -18205,6 +18206,18 @@
   line-height: 16px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 17px 3px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container {
+  min-height: auto;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container .dx-placeholder {
+  padding-block: 0;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside):has(.dx-tag) .dx-texteditor-label {
   height: 36px;
 }
@@ -18231,6 +18244,18 @@
   margin: 0;
   font-size: 14px;
   line-height: 20px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 17px 3px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container {
+  min-height: auto;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container .dx-placeholder {
+  padding-block: 0;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside):has(.dx-tag) .dx-texteditor-label {
@@ -18261,6 +18286,18 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container {
+  padding-block: 23px 5px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container {
+  min-height: auto;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container .dx-placeholder {
+  padding-block: 0;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside):has(.dx-tag) .dx-texteditor-label {
@@ -22880,7 +22917,6 @@ input.dx-hidden {
 
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal {
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   border: 1px solid var(--Dividers-Borders-Default);
 }
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content {
@@ -27070,10 +27106,15 @@ input.dx-hidden {
   color: var(--Controls-Content-In-Controls-Danger-Default) !important;
 }
 .me-file-uploader.dx-fileuploader-dragover .dx-fileuploader-input-wrapper {
-  border-style: solid;
-  border-color: var(--uploader-hover-border-color) !important;
+  outline-color: var(--uploader-hover-border-color) !important;
   background-color: var(--uploader-dragover-background) !important;
-  opacity: 0.5;
+}
+.me-file-uploader.dx-state-disabled .dx-fileuploader-input-wrapper .dx-fileuploader-button, .me-file-uploader.dx-fileuploader-dragover .dx-fileuploader-input-wrapper .dx-fileuploader-button {
+  background-color: var(--Controls-BG-Accent-Accent-BG-Disabled) !important;
+  color: var(--Controls-Content-In-Controls-On-BG-Disabled) !important;
+}
+.me-file-uploader.dx-state-disabled .dx-fileuploader-input-wrapper .dx-fileuploader-input-label, .me-file-uploader.dx-fileuploader-dragover .dx-fileuploader-input-wrapper .dx-fileuploader-input-label {
+  color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
 }
 .me-file-uploader .dx-fileuploader-wrapper {
   padding: 0;
@@ -27083,7 +27124,9 @@ input.dx-hidden {
   background-color: transparent;
 }
 .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-content .dx-fileuploader-input-wrapper {
-  border: 1px dashed var(--uploader-border-color);
+  gap: 8px;
+  outline: 1px dashed var(--uploader-border-color);
+  outline-offset: -1px;
   border-radius: 4px;
   padding: 24px;
   margin: 0;
@@ -27098,8 +27141,7 @@ input.dx-hidden {
   background-color: var(--Controls-BG-Accent-Accent-BG-Default);
   border-radius: 4px;
   border: none;
-  height: 36px;
-  min-width: 120px;
+  height: 28px;
   padding: 0;
   margin: 0;
 }
@@ -27110,8 +27152,8 @@ input.dx-hidden {
   background-color: var(--Controls-BG-Accent-Accent-BG-Pressed);
 }
 .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-content .dx-fileuploader-input-wrapper .dx-fileuploader-button .dx-button-content {
-  padding: 0 16px;
-  height: 36px;
+  padding: 0 12px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27130,9 +27172,26 @@ input.dx-hidden {
   text-align: center;
   margin: 0;
   padding: 0;
+  width: auto;
 }
 .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file-container {
+  padding: 0;
   display: flex;
+}
+.me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file-container .dx-fileuploader-button-container {
+  margin-right: 4px;
+}
+.me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file-container .dx-fileuploader-button-container:not(:has(~ .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file-container .dx-fileuploader-button-container)) {
+  margin-right: 8px;
+}
+.me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file-container .dx-fileuploader-button-container > * {
+  width: 28px;
+  height: 28px;
+}
+.me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file-container .dx-fileuploader-button-container > * .dx-button-content {
+  display: flex;
+  align-items: center;
+  padding: 0;
 }
 .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-button {
   padding: 0;
@@ -27146,7 +27205,6 @@ input.dx-hidden {
 .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file {
   display: flex;
   flex-direction: column;
-  padding: 8px 12px;
 }
 .me-file-uploader .dx-fileuploader-wrapper .dx-fileuploader-container .dx-fileuploader-files-container .dx-fileuploader-file .dx-fileuploader-button-container {
   display: flex;
@@ -27247,11 +27305,10 @@ input.dx-hidden {
   color: var(--Controls-Content-In-Controls-Main-Default);
 }
 .me-file-uploader.dx-state-disabled {
-  opacity: 0.5;
   pointer-events: none;
 }
 .me-file-uploader.dx-state-disabled .dx-fileuploader-input-wrapper {
-  border-color: var(--Controls-Content-In-Controls-Main-Disabled);
+  outline-color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 .me-file-uploader.dx-state-disabled .dx-icon::before {
   color: var(--Controls-Content-In-Controls-Main-Disabled);
@@ -27260,12 +27317,11 @@ input.dx-hidden {
   color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 .me-file-uploader.dx-fileuploader-dragover .dx-fileuploader-input-wrapper {
-  border-style: solid;
-  border-color: var(--uploader-hover-border-color);
+  outline-color: var(--uploader-hover-border-color);
   background-color: var(--uploader-dragover-background);
 }
 .me-file-uploader.dx-fileuploader-invalid .dx-fileuploader-file {
-  border-color: var(--Controls-Content-In-Controls-Danger-Default);
+  outline-color: var(--Controls-Content-In-Controls-Danger-Default);
 }
 .me-file-uploader.dx-fileuploader-invalid .dx-fileuploader-file .dx-fileuploader-file-status-message {
   color: var(--Controls-Content-In-Controls-Danger-Default);
@@ -27344,8 +27400,12 @@ input.dx-hidden {
   justify-content: end;
 }
 
+.flex-box .me-text-caption {
+  text-align: center;
+}
+
 .flex-box.dropzone-active .flex-box .me-text-caption {
-  color: var(--Text-Disabled);
+  color: var(--Controls-Content-In-Controls-Main-Disabled);
 }
 
 .me-file-uploader .dx-button.dx-widget.dx-state-hover {
@@ -35724,9 +35784,6 @@ input.dx-hidden {
   font-size: 14px;
   line-height: 16px;
 }
-.me-status-bar--small .me-status-bar__button .me-status-bar__button-content i.dx-icon {
-  font-size: 18px;
-}
 .me-status-bar--large {
   gap: 8px;
 }
@@ -35745,9 +35802,6 @@ input.dx-hidden {
   padding: 6px 12px;
   font-size: 16px;
   line-height: 24px;
-}
-.me-status-bar--large .me-status-bar__button .me-status-bar__button-content i.dx-icon {
-  font-size: 20px;
 }
 .me-status-bar__section {
   display: flex;
@@ -35822,7 +35876,7 @@ input.dx-hidden {
   align-items: center;
   gap: 8px;
 }
-.me-status-bar__button-content i.dx-icon {
+.me-status-bar__button-content .dx-icon {
   margin: 0;
 }
 .me-status-bar__divider {
@@ -35845,7 +35899,7 @@ input.dx-hidden {
 }
 
 .me-status-bar__button-content .dx-icon .material-icons {
-  color: #ffffff;
+  color: currentColor;
 }
 
 .me-status-bar__button-content {
@@ -35860,11 +35914,11 @@ input.dx-hidden {
   margin: 0;
 }
 
-.me-status-bar--large .me-status-bar__button .me-status-bar__button-content i.dx-icon {
+.me-status-bar--large .me-status-bar__button .me-status-bar__button-content .dx-icon {
   margin-right: 8px;
 }
 
-.me-status-bar--small .me-status-bar__button .me-status-bar__button-content i.dx-icon {
+.me-status-bar--small .me-status-bar__button .me-status-bar__button-content .dx-icon {
   margin-right: 4px;
 }
 
@@ -35881,8 +35935,11 @@ input.dx-hidden {
 }
 
 .me-status-bar__button-content .dx-icon {
+  color: currentColor;
   display: flex;
   align-items: inherit;
+  width: auto;
+  height: auto;
 }
 
 .me-sidebar {
@@ -36406,7 +36463,7 @@ input.dx-hidden {
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-input-container,
 .me-inputs.dx-texteditor.dx-widget.me-inputs-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-placeholder {
-  padding-block: 13px 3px !important;
+  padding-block: 13px 3px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-small .dx-texteditor-container {
   padding-block: 4px;
@@ -36435,7 +36492,7 @@ input.dx-hidden {
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-input-container,
 .me-inputs.dx-texteditor.dx-widget.me-inputs-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-placeholder {
-  padding-block: 17px 3px !important;
+  padding-block: 17px 3px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-medium .dx-texteditor-container {
   padding-block: 6px;
@@ -36464,7 +36521,7 @@ input.dx-hidden {
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-input-container,
 .me-inputs.dx-texteditor.dx-widget.me-inputs-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-placeholder {
-  padding-block: 19px 5px !important;
+  padding-block: 19px 5px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs-large.dx-searchbox .dx-icon.dx-icon-search {
   align-content: center;
