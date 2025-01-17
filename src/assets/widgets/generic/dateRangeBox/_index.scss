@@ -34,7 +34,6 @@
 
         &.dx-texteditor-with-label,
         &.dx-texteditor-with-floating-label {
-
           .dx-label,
           .dx-label-before,
           .dx-label-after {
@@ -98,7 +97,6 @@
 }
 
 .me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget {
-
   .dx-datebox,
   .dx-daterangebox-separator {
     margin-right: 8px;
@@ -120,7 +118,7 @@
   }
 
   .dx-texteditor-container {
-    .dx-texteditor-buttons-container>* {
+    .dx-texteditor-buttons-container > * {
       height: 0 !important;
     }
   }
@@ -131,7 +129,7 @@
     margin-right: 8px;
     color: var(--Controls-Content-In-Controls-Main-Default);
 
-    &>* {
+    & > * {
       height: 20px;
     }
 
@@ -155,7 +153,6 @@
       padding: 0;
 
       .dx-button-content {
-
         .dx-dropdowneditor-icon {
           width: auto;
           height: auto;
@@ -203,24 +200,18 @@
       }
     }
 
-    &>.dx-texteditor-buttons-container {
+    & > .dx-texteditor-buttons-container {
       font-family: var(--me-icon-family);
-
 
       &::before {
         content: var(--me-icon-lock);
-
-
       }
     }
-
-
   }
 }
 
 ///sizes
 .me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget {
-
   &.me-date-range-box {
     align-items: center;
 
@@ -235,10 +226,8 @@
       display: initial;
     }
 
-
     &-small,
     &-medium {
-
       .dx-daterangebox-separator .dx-icon.dx-icon-to,
       .dx-dropdowneditor-icon,
       .dx-texteditor-buttons-container {
@@ -249,7 +238,6 @@
         margin-right: 8px;
       }
     }
-
 
     &-large {
       .dx-daterangebox-separator .dx-icon.dx-icon-to,
@@ -262,13 +250,11 @@
         margin-right: 12px;
       }
     }
-
   }
-
-
 }
 
-.me-date-range-box-overlay.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal {
+.me-date-range-box-overlay.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay
+  .dx-overlay-content.dx-popup-normal {
   overflow: visible;
   box-shadow: none;
 
@@ -305,10 +291,11 @@
 
                 tr {
                   td {
-
-                    &.dx-calendar-cell-in-range:not(.dx-calendar-other-view,
-                      .dx-calendar-range-start-date,
-                      .dx-calendar-range-end-date) {
+                    &.dx-calendar-cell-in-range:not(
+                        .dx-calendar-other-view,
+                        .dx-calendar-range-start-date,
+                        .dx-calendar-range-end-date
+                      ) {
                       background-color: var(--Controls-Informative-BG-Selected-Element);
                       border-radius: 0;
                       -webkit-border-radius: 0;
@@ -344,7 +331,7 @@
               }
             }
 
-            &:last-child table>thead>tr>th {
+            &:last-child table > thead > tr > th {
               color: var(--Controls-Content-In-Controls-Main-Default);
             }
           }
@@ -363,7 +350,9 @@
     }
   }
 
-  &:has(.dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done) {
+  &:has(
+      .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done
+    ) {
     .dx-popup-content {
       padding: 16px;
       background-color: var(--Background-Accent-in-the-content);
@@ -397,31 +386,50 @@
 }
 
 .me-date-range-box.dx-daterangebox {
-
   //2й инпут
-  &:not(:has(.dx-start-datebox.dx-texteditor-empty)):has(.dx-end-datebox.dx-texteditor-empty):not(.dx-state-focused,
-    .dx-state-hover) {
-    .dx-end-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-invalid .dx-texteditor-label .dx-label span {
+  &:not(:has(.dx-start-datebox.dx-texteditor-empty)):has(.dx-end-datebox.dx-texteditor-empty):not(
+      .dx-state-focused,
+      .dx-state-hover
+    ) {
+    .dx-end-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-invalid
+      .dx-texteditor-label
+      .dx-label
+      span {
       margin-top: 3.5px;
     }
   }
 
   &:not(:has(.dx-start-datebox.dx-texteditor-empty)):has(.dx-end-datebox.dx-texteditor-empty) {
-    .dx-end-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-state-hover:not(.dx-state-focused) .dx-texteditor-label .dx-label span {
+    .dx-end-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-state-hover:not(
+        .dx-state-focused
+      )
+      .dx-texteditor-label
+      .dx-label
+      span {
       margin-top: 3.5px;
     }
   }
 
-  &:not(:has(.dx-end-datebox.dx-texteditor-empty)):has(.dx-start-datebox.dx-texteditor-empty):not(.dx-state-focused,
-    .dx-state-hover) {
-    .dx-start-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-invalid .dx-texteditor-label .dx-label span {
+  &:not(:has(.dx-end-datebox.dx-texteditor-empty)):has(.dx-start-datebox.dx-texteditor-empty):not(
+      .dx-state-focused,
+      .dx-state-hover
+    ) {
+    .dx-start-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-invalid
+      .dx-texteditor-label
+      .dx-label
+      span {
       margin-top: 3.5px;
       left: 9px;
     }
   }
 
   &:not(:has(.dx-end-datebox.dx-texteditor-empty)):has(.dx-start-datebox.dx-texteditor-empty) {
-    .dx-start-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-state-hover:not(.dx-state-focused) .dx-texteditor-label .dx-label span {
+    .dx-start-datebox.dx-texteditor-empty.dx-texteditor-with-floating-label.dx-state-hover:not(
+        .dx-state-focused
+      )
+      .dx-texteditor-label
+      .dx-label
+      span {
       margin-top: 3.5px;
       left: 9px;
     }
