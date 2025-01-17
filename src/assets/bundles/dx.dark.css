@@ -8902,6 +8902,9 @@
 .dx-searchbox .dx-icon-search::before {
   color: rgba(255, 255, 255, 0.3019607843);
 }
+.dx-searchbox.dx-state-focused .dx-icon-search::before {
+  color: var(--me-icon-default);
+}
 .dx-searchbox .dx-texteditor-input,
 .dx-searchbox .dx-placeholder::before {
   padding-left: 34px;
@@ -14599,7 +14602,6 @@
 .dx-dropdownmenu-popup-wrapper .dx-dropdownmenu-list {
   min-height: 0;
   min-width: 100px;
-  border-radius: 8px;
 }
 .dx-dropdownmenu-popup-wrapper .dx-dropdownmenu-list .dx-list-item {
   display: block;
@@ -14813,6 +14815,9 @@
 .dx-toolbar-menu-section {
   border-bottom: 1px solid #3f4044;
 }
+.dx-toolbar-menu-section .me-button.me-button-medium .dx-button-content .dx-button-text {
+  font-weight: var(--me-regular-font-weight);
+}
 .dx-toolbar-menu-section .dx-toolbar-hidden-button .me-dropdownbutton .dx-buttongroup .dx-button-has-text .dx-button-content,
 .dx-toolbar-menu-section .dx-toolbar-item-auto-hide .me-dropdownbutton .dx-buttongroup .dx-button-has-text .dx-button-content {
   justify-content: space-between;
@@ -15002,6 +15007,8 @@
   border-bottom: 1px solid var(--Dividers-Borders-Short);
 }
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdownmenu-popup-wrapper.dx-dropdownmenu-popup .dx-overlay-content .dx-popup-content.dx-popup-content-scrollable.dx-dropdownmenu-list.dx-list.dx-widget.dx-collection .dx-scrollview-content .dx-toolbar-menu-section .dx-item:has(.me-toolbar-separator) {
+  width: calc(100% - 24px);
+  margin-left: 12px;
   border-bottom: 1px solid var(--Dividers-Borders-Short);
 }
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdownmenu-popup-wrapper.dx-dropdownmenu-popup .dx-overlay-content .dx-popup-content.dx-popup-content-scrollable.dx-dropdownmenu-list.dx-list.dx-widget.dx-collection .dx-scrollview-content .dx-toolbar-menu-section .dx-item .dx-toolbar-item-auto-hide {
@@ -18190,7 +18197,11 @@
   content: none;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-buttons-container {
-  align-self: flex-start;
+  align-self: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.dx-state-readonly .dx-tag-content {
   color: rgba(255, 255, 255, 0.3019607843);
@@ -18211,6 +18222,9 @@
   margin: 0;
   font-size: 13px;
   line-height: 16px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-buttons-container {
+  right: 4px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside) .dx-texteditor-container {
@@ -18251,6 +18265,9 @@
   margin: 0;
   font-size: 14px;
   line-height: 20px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-buttons-container {
+  right: 4px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside) .dx-texteditor-container {
@@ -18293,6 +18310,9 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-buttons-container {
+  right: 8px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside) .dx-texteditor-container {
@@ -18384,16 +18404,24 @@
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-list.dx-list-select-decorator-enabled .dx-list-select-all .dx-list-select-all-label {
   margin-top: 0;
+  padding: 0;
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-list.dx-list-select-decorator-enabled .dx-list-select-all:hover {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
-.me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-small .dx-list.dx-list-select-decorator-enabled .dx-checkbox, .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-medium .dx-list.dx-list-select-decorator-enabled .dx-checkbox {
-  margin-right: 3px;
+.me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-checkbox-container {
+  width: auto;
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-small .dx-list.dx-list-select-decorator-enabled .dx-checkbox .dx-checkbox-icon, .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-medium .dx-list.dx-list-select-decorator-enabled .dx-checkbox .dx-checkbox-icon {
   height: 18px;
   width: 18px;
+}
+.me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-small .dx-list-select-all, .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-medium .dx-list-select-all {
+  height: 28px;
+}
+.me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-small .dx-list-select-all .dx-list-select-all-checkbox, .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-medium .dx-list-select-all .dx-list-select-all-checkbox {
+  margin-right: 0px;
+  width: 31px;
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list .dx-list-item-content,
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list .dx-list-select-all-label {
@@ -18406,6 +18434,13 @@
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list.dx-list-select-decorator-enabled .dx-checkbox.dx-list-select-all-checkbox {
   margin-top: -1px;
+}
+.me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list .dx-list-select-all {
+  height: 40px;
+}
+.me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list .dx-list-select-all .dx-list-select-all-checkbox {
+  margin-right: 1px;
+  width: 31px;
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-overlay-content .dx-popup-content .dx-scrollview-content .dx-list-select-all {
   margin: 0;
@@ -36296,7 +36331,6 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container {
   padding-inline: 8px;
   width: 100%;
-  gap: 16px;
   align-items: center;
 }
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-input-container {
@@ -36328,6 +36362,10 @@ input.dx-hidden {
   align-items: flex-start;
   gap: 4px;
   color: var(--Controls-Content-In-Controls-Main-Default);
+  margin-left: 4px;
+}
+.me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container:has(> div:empty) {
+  margin-left: 0;
 }
 .me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container > * {
   height: 20px;
