@@ -6,7 +6,7 @@ import {
   DxSelectBoxModule,
   DxTextBoxModule,
 } from 'devextreme-angular';
-import { MeFileUploaderDirective } from '../../public-api';
+import { MeButtonModule, MeFileUploaderDirective } from '../../public-api';
 
 export default {
   title: 'Directives/FileUploader',
@@ -19,6 +19,7 @@ export default {
         DxTextBoxModule,
         DxButtonModule,
         DxProgressBarModule,
+        MeButtonModule,
       ],
       declarations: [MeFileUploaderDirective],
     }),
@@ -81,7 +82,7 @@ export const FormUpload: Story = {
           </dx-file-uploader>
         </div>
         <div class='form-btn-box'>
-          <dx-button meButton type='default' text='Update profile'></dx-button>
+          <dx-button meButton type='default' size="small" text='Update profile'></dx-button>
         </div>
       </form>
     `,
@@ -308,16 +309,15 @@ export const AdvancedCustomDropZone: Story = {
           >
             <img id="dropzone-image" [src]="componentState.imageSource" *ngIf="componentState.imageSource" alt="" />
             <div id="dropzone-text" class="flex-box" *ngIf="componentState.textVisible">
-              <span class="me-text-caption">Drag & Drop the desired file</span>
-              <span class="me-text-caption">…or click to browse for a file instead.</span>
+              <span class="me-text-caption">Drag&Drop the desired file or click to browse for a file instead</span>
             </div>
             <dx-progress-bar
               #uploadProgress
               meProgressBar
               [min]="0"
               [max]="100"
-              width="30%"
-              [showStatus]="false"
+              width="100%"
+              [showStatus]="true"
               [visible]="componentState.progressVisible"
               [value]="componentState.progressValue"
             ></dx-progress-bar>

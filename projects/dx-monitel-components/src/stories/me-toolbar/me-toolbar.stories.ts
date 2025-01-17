@@ -126,41 +126,62 @@ export const Default: Story = {
         { text: 'Heading 3', value: 'h3' },
       ],
       buttonGroupIcons: [
-        { icon: 'format_bold', type: 'normal', hint: 'Bold' },
+        { icon: 'format_bold', type: 'normal', hint: 'Bold', style: 'bold' },
         {
           icon: 'format_italic',
           type: 'normal',
+          style: 'italic',
         },
         {
           icon: 'format_underlined',
           type: 'normal',
+          style: 'underlined',
         },
         {
           icon: 'strikethrough_s',
           type: 'normal',
+          style: 'strikethrough',
         },
       ],
       buttonGroupMenu: [
-        { type: 'normal', text: 'Bold', alightment: 'left' },
+        {
+          type: 'normal',
+          text: 'Bold',
+          alightment: 'left',
+          leftIcon: 'format_bold',
+          style: 'bold',
+        },
         {
           type: 'normal',
           text: 'Italic',
           alightment: 'left',
+          leftIcon: 'format_italic',
+          style: 'italic',
         },
         {
           type: 'normal',
           text: 'Underline',
           alightment: 'left',
+          leftIcon: 'format_underlined',
+          style: 'underlined',
         },
         {
           type: 'normal',
           text: 'Strike',
           alightment: 'left',
+          leftIcon: 'strikethrough_s',
+          style: 'strikethrough',
         },
       ],
     },
+    styles: [
+      `
+      div:has(> .search-item) {
+        max-width: calc(100% - 40px);
+      }
+      `,
+    ],
     template: `
-
 <dx-toolbar meToolbar ${argsToTemplate(args)}>
 	<dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
 		<div *dxTemplate>
@@ -222,7 +243,7 @@ export const Default: Story = {
 			<dx-drop-down-button
 				meDropDownButton
 				[size]="size"
-			[disabled]="disabled"
+			  [disabled]="disabled"
 				width="100%"
 				text="Normal Text"
 				[useSelectMode]="false"
@@ -241,19 +262,19 @@ export const Default: Story = {
 	</dxi-item>
 
 
-	
-	<dxi-item 
-	location="before" 
-	widget="dxButtonGroup" 
-	locateInMenu="auto" 
+
+	<dxi-item
+	location="before"
+	widget="dxButtonGroup"
+	locateInMenu="auto"
 	menuItemTemplate="menuTextAlignTemplate"
 	>
 		<div *dxTemplate>
-			<dx-button-group 
-			meButtonGroup 
+			<dx-button-group
+			meButtonGroup
 			[size]="size"
-			[items]="buttonGroupIcons" 
-			[disabled]="disabled"
+			keyExpr="style"
+			[items]="buttonGroupIcons"
 			></dx-button-group>
 		</div>
 	</dxi-item>
@@ -291,16 +312,17 @@ export const Default: Story = {
 		</div>
 	</dxi-item>
 
-	<dxi-item 
+	<dxi-item
 	location="before"
 	widget="dxTextbox"
 	showText="inMenu"
 	width="300"
 	>
 		<div *dxTemplate>
-			<dx-text-box 
-			[disabled]="disabled" 
+			<dx-text-box
 			meTextBox
+	    class="search-item"
+			[disabled]="disabled"
 			mode="search"
 			[showClearButton]="false"
 			[size]="size"
@@ -319,15 +341,16 @@ export const Default: Story = {
 
 	      <div *dxTemplate="let data of 'menuTextAlignTemplate'">
         <dx-button-group
-				meButtonGroup
+				  meButtonGroup
           stylingMode="outlined"
 					[size]="size"
           [items]="buttonGroupMenu"
 					alignment="buttonGroupMenu.alignment"
+					keyExpr="style"
         ></dx-button-group>
       </div>
 
-			
+
 </dx-toolbar>
 
     `,
