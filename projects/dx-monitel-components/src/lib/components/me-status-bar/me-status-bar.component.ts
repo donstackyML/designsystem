@@ -24,7 +24,7 @@ const statusIcons: Record<StatusType, string> = {
   warning: 'warning',
   success: 'check_circle',
   info: 'info',
-}
+};
 
 @Component({
   selector: 'me-status-bar',
@@ -61,10 +61,10 @@ export class MeStatusBarComponent {
 
   getIcon(item: StatusBarItem): string {
     if (item.showStatusIcon && item.type) {
-      return statusIcons[item.type]
+      return statusIcons[item.type];
     }
 
-    return item.icon || ''
+    return item.icon || '';
   }
 
   getStylingMode(item: StatusBarItem): 'text' | 'contained' {

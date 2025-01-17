@@ -57,7 +57,7 @@ export const Default: Story = {
         showStatusIcon: true,
         fill: true,
       },
-    ]
+    ],
   },
 };
 
@@ -152,9 +152,7 @@ export const InfoStatus: Story = {
 
 export const StatusIcons: Story = {
   args: {
-    leftItems: [
-      { text: 'Воткинская ГЭС' },
-    ],
+    leftItems: [{ text: 'Воткинская ГЭС' }],
     rightItems: [
       {
         text: 'Отсутствует соединение с источником данных',
@@ -168,9 +166,7 @@ export const StatusIcons: Story = {
 
 export const CustomIcons: Story = {
   args: {
-    leftItems: [
-      { text: 'Воткинская ГЭС', icon: 'home' },
-    ],
+    leftItems: [{ text: 'Воткинская ГЭС', icon: 'home' }],
     rightItems: [
       {
         text: 'Отсутствует соединение с источником данных',
@@ -184,9 +180,7 @@ export const CustomIcons: Story = {
 
 export const CustomIconsWithColor: Story = {
   args: {
-    leftItems: [
-      { text: 'Воткинская ГЭС', icon: 'home', color: '#ff0' },
-    ],
+    leftItems: [{ text: 'Воткинская ГЭС', icon: 'home', color: '#ff0' }],
     rightItems: [
       {
         text: 'Отсутствует соединение с источником данных',
@@ -247,7 +241,7 @@ export const WithoutFill: Story = {
         type: 'error',
         fill: false,
       },
-    ]
+    ],
   },
 };
 
@@ -268,7 +262,9 @@ export const Readonly: Story = {
         type: 'error',
         fill: true,
         onClick: () => {
-          console.log('При заданном свойстве readonly этот текст в консоле не отобразится');
+          console.log(
+            'При заданном свойстве readonly этот текст в консоле не отобразится'
+          );
         },
         readonly: true,
       },
