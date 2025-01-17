@@ -2,21 +2,29 @@ export type StatusBarSize = 'small' | 'large';
 export type StatusType = 'error' | 'warning' | 'success' | 'info';
 
 export interface StatusBarItem {
-  icon?: string;
   text: string;
-  type?: StatusType;
-  fill?: boolean;
-  onClick?: () => void;
-  readonly?: boolean;
-  backgroundColor?: string;
   textColor?: string;
+  type?: StatusType;
+  icon?: string;
   iconColor?: string;
+  showStatusIcon?: boolean;
+  fill?: boolean;
+  backgroundColor?: string;
+  readonly?: boolean;
+  onClick?: () => void;
 }
 
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DxButtonModule } from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
+
+const statusIcons: Record<StatusType, string> = {
+  error: 'error',
+  warning: 'warning',
+  success: 'check_circle',
+  info: 'info',
+};
 
 @Component({
   selector: 'me-status-bar',
@@ -49,6 +57,14 @@ export class MeStatusBarComponent {
     }
 
     return classes;
+  }
+
+  getIcon(item: StatusBarItem): string {
+    if (item.showStatusIcon && item.type) {
+      return statusIcons[item.type];
+    }
+
+    return item.icon || '';
   }
 
   getStylingMode(item: StatusBarItem): 'text' | 'contained' {
