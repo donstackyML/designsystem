@@ -8,8 +8,20 @@
 @mixin standardColors {
   --popover-background: var(--Background-Alert);
   --popover-color: var(--Text-Alert);
+
+  @if $color == 'light' {
+    --popover-border: transparant;
+  } @else {
+    --popover-border: var(--dividers-borders-long);
+  }
 }
 @mixin alternateColors {
   --popover-background: var(--Background-Accent-in-the-content);
   --popover-color: var(--Text-Default);
+
+  @if $color == 'dark' {
+    --popover-border: transparant;
+  } @else {
+    --popover-border: var(--dividers-borders-long);
+  }
 }
