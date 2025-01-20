@@ -3,6 +3,29 @@
 @use '../sizes' as *;
 @use '../common/sizes' as *;
 
+@mixin unfocusState($indent, $fontSize) {
+  font-size: $fontSize;
+  line-height: $fontSize;
+
+  transform: translate(0, $indent);
+  -webkit-transform: translate(0, $indent);
+  -moz-transform: translate(0, $indent);
+  -ms-transform: translate(0, $indent);
+  -o-transform: translate(0, $indent);
+}
+
+@mixin focusState($indent, $fontSize) {
+  top: $indent;
+
+  font-size: $fontSize;
+
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+}
+
 .me-inputs.dx-texteditor.dx-widget {
   &.me-textbox.me-keyboard-focused.dx-state-focused {
     outline: 2px solid var(--Dividers-Borders-Focus);
@@ -68,7 +91,6 @@
   }
 
   &.dx-invalid {
-
     &.me-inputs-small .dx-texteditor-container,
     &.me-inputs-medium .dx-texteditor-container {
       border-radius: 3px;
@@ -138,7 +160,7 @@
           text-align: center;
         }
 
-        &>* {
+        & > * {
           width: 0 !important;
           min-width: 0 !important;
           overflow: hidden;
@@ -225,14 +247,14 @@
         margin-left: 0;
       }
 
-      &>* {
+      & > * {
         height: 20px;
         min-width: 20px;
         margin: 0;
       }
 
       // убираем лишние пустые div если они не кнопки
-      &>*:not(.dx-widget, .dx-numberbox-spin-container, .dx-button, .dx-clear-button-area) {
+      & > *:not(.dx-widget, .dx-numberbox-spin-container, .dx-button, .dx-clear-button-area) {
         display: none;
       }
 
@@ -256,7 +278,6 @@
       }
 
       .dx-numberbox-spin-container {
-
         .dx-numberbox-spin-up-icon,
         .dx-numberbox-spin-down-icon {
           font-family: var(--me-icon-family);
@@ -346,9 +367,11 @@
       padding: 0 0 0 24px;
     }
 
-    &:not(.dx-texteditor-label-outside,
-      .dx-texteditor-with-floating-label.dx-state-focused,
-      .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)) {
+    &:not(
+        .dx-texteditor-label-outside,
+        .dx-texteditor-with-floating-label.dx-state-focused,
+        .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)
+      ) {
       .dx-texteditor-label {
         padding: 0 0 0 12px;
       }
@@ -357,7 +380,7 @@
     &.dx-texteditor-with-floating-label.dx-state-focused,
     &.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) {
       .dx-label span {
-        left: -11px;
+        left: 11px;
       }
     }
   }
@@ -370,7 +393,7 @@
       padding: 0 !important;
 
       span {
-        font-size: 12px !important;
+        font-size: 12px;
         font-weight: var(--me-regular-font-weight);
         line-height: 16px;
         text-align: left;
@@ -378,7 +401,6 @@
     }
   }
 
-  &.dx-texteditor-with-floating-label,
   &.dx-texteditor-label-outside {
     margin-top: 24px;
   }
@@ -422,25 +444,32 @@
     }
   }
 
-  &.dx-texteditor-with-floating-label {
+  &.dx-texteditor-with-floating-label,
+  &.dx-editor-outlined.dx-state-readonly.dx-state-hover,
+  &.dx-editor-outlined.dx-state-readonly.dx-state-focused {
     .dx-texteditor-label {
       padding: 0;
       align-items: center;
+
+      .dx-label span {
+        margin-top: 0;
+      }
     }
 
     &.dx-state-focused,
     &.dx-dropdowneditor-active,
     &:not(.dx-texteditor-empty) {
       &:not(.dx-state-readonly) {
-        .dx-texteditor-label {
-          top: -13px;
-          left: -9px;
+        &.me-inputs-small .dx-texteditor-label .dx-label span {
+          @include focusState(5px, 12px);
         }
 
-        &.me-inputs-large {
-          .dx-texteditor-label {
-            top: -17px;
-          }
+        &.me-inputs-medium .dx-texteditor-label .dx-label span {
+          @include focusState(7.5px, 12px);
+        }
+
+        &.me-inputs-large .dx-texteditor-label .dx-label span {
+          @include focusState(7.5px, 13px);
         }
       }
 
@@ -450,32 +479,9 @@
     }
 
     &.dx-state-readonly:not(.dx-texteditor-empty) {
-      &.me-inputs-large {
-        .dx-texteditor-label {
-          top: -17px;
-        }
+      .dx-texteditor-label .dx-label span {
+        @include focusState(7.5px, 12px);
       }
-
-      .dx-texteditor-label {
-        top: -13px;
-        left: -9px;
-
-        .dx-label span {
-          transform: translate(0, -7.5px);
-          -webkit-transform: translate(0, -7.5px);
-          -moz-transform: translate(0, -7.5px);
-          -ms-transform: translate(0, -7.5px);
-          -o-transform: translate(0, -7.5px);
-        }
-      }
-    }
-
-    &.dx-state-readonly.dx-texteditor-empty .dx-texteditor-label .dx-label span {
-      transform: translate(0, 0);
-      -webkit-transform: translate(0, 0);
-      -moz-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-      -o-transform: translate(0, 0);
     }
   }
 
@@ -499,17 +505,20 @@
 //Sizes
 .me-inputs.dx-texteditor.dx-widget {
   &.me-inputs-small {
+    $placeholder-font-size: 13px;
+
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
 
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
-      .dx-texteditor-label {
-        padding-top: 2px;
-      }
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-label {
+      padding-top: 2px;
+    }
 
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
+    &.dx-texteditor-with-floating-label {
       .dx-label-before {
         min-width: 8px;
       }
@@ -524,17 +533,15 @@
       padding-block: 4px;
 
       .dx-texteditor-input-container {
-
         .dx-texteditor-input,
         .dx-placeholder {
-          font-size: 13px;
+          font-size: $placeholder-font-size;
           line-height: 16px;
         }
       }
 
       .dx-texteditor-buttons-container {
         .dx-numberbox-spin-container {
-
           .dx-numberbox-spin-up,
           .dx-numberbox-spin-down {
             width: 26px;
@@ -542,21 +549,31 @@
         }
       }
     }
+
+    &.dx-texteditor-with-floating-label,
+    &.dx-state-readonly.dx-state-hover {
+      .dx-texteditor-label .dx-label span {
+        @include unfocusState(-7.5px, $placeholder-font-size);
+      }
+    }
   }
 
   //medium
   &.me-inputs-medium {
+    $placeholder-font-size: 14px;
+
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
 
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
-      .dx-texteditor-label {
-        padding-top: 2px;
-      }
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-label {
+      padding-top: 2px;
+    }
 
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
+    &.dx-texteditor-with-floating-label {
       .dx-label-before {
         min-width: 8px;
       }
@@ -571,17 +588,15 @@
       padding-block: 6px;
 
       .dx-texteditor-input-container {
-
         .dx-texteditor-input,
         .dx-placeholder {
-          font-size: 14px;
+          font-size: $placeholder-font-size;
           line-height: 20px;
         }
       }
 
       .dx-texteditor-buttons-container {
         .dx-numberbox-spin-container {
-
           .dx-numberbox-spin-up,
           .dx-numberbox-spin-down {
             width: 30px;
@@ -589,21 +604,31 @@
         }
       }
     }
+
+    &.dx-texteditor-with-floating-label,
+    &.dx-state-readonly.dx-state-hover {
+      .dx-texteditor-label .dx-label span {
+        @include unfocusState(-7.5px, $placeholder-font-size);
+      }
+    }
   }
 
   //large
   &.me-inputs-large {
+    $placeholder-font-size: 16px;
+
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
 
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) {
-      .dx-texteditor-label {
-        padding-top: 5.5px;
-      }
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-label {
+      padding-top: 5.5px;
+    }
 
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
+    &.dx-texteditor-with-floating-label {
       .dx-label-before {
         min-width: 12px;
       }
@@ -628,9 +653,11 @@
         padding: 0 0 0 28px;
       }
 
-      &:not(.dx-texteditor-label-outside,
-        .dx-texteditor-with-floating-label.dx-state-focused,
-        .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)) {
+      &:not(
+          .dx-texteditor-label-outside,
+          .dx-texteditor-with-floating-label.dx-state-focused,
+          .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)
+        ) {
         .dx-texteditor-label {
           padding: 0 0 0 16px;
         }
@@ -639,7 +666,7 @@
       &.dx-texteditor-with-floating-label.dx-state-focused,
       &.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) {
         .dx-label span {
-          left: -15px;
+          left: 15px;
         }
       }
     }
@@ -653,13 +680,13 @@
 
         .dx-texteditor-input,
         .dx-placeholder {
-          font-size: 16px;
+          font-size: $placeholder-font-size;
           line-height: 20px;
         }
       }
 
       .dx-texteditor-buttons-container {
-        &>* {
+        & > * {
           height: 24px;
           min-width: 24px;
         }
@@ -675,7 +702,6 @@
         }
 
         .dx-numberbox-spin-container {
-
           .dx-numberbox-spin-up,
           .dx-numberbox-spin-down {
             width: 38px;
@@ -724,7 +750,7 @@
     .dx-texteditor-label {
       .dx-label {
         span {
-          font-size: 14px !important;
+          font-size: 14px;
           line-height: 20px !important;
         }
       }
@@ -749,15 +775,19 @@
         }
       }
     }
+
+    &.dx-texteditor-with-floating-label,
+    &.dx-state-readonly.dx-state-hover {
+      .dx-texteditor-label .dx-label span {
+        @include unfocusState(-8.5px, $placeholder-font-size);
+      }
+    }
   }
 }
 
-
 .me-inputs.dx-texteditor.dx-widget {
-
   &.me-number-box,
   &.me-date-range-box {
-
     &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label),
     &.dx-state-readonly {
       .dx-texteditor-buttons-container {
@@ -773,12 +803,10 @@
       }
     }
 
-
     &.me-inputs {
       &-small {
         &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
           .dx-texteditor-container {
-
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 28px;
@@ -789,7 +817,6 @@
 
         &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
           .dx-texteditor-container {
-
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 36px;
@@ -802,7 +829,6 @@
       &-medium {
         &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
           .dx-texteditor-container {
-
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 32px;
@@ -813,7 +839,6 @@
 
         &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
           .dx-texteditor-container {
-
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 40px;
@@ -826,7 +851,6 @@
       &-large {
         &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
           .dx-texteditor-container {
-
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 40px;
@@ -837,7 +861,6 @@
 
         &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
           .dx-texteditor-container {
-
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 48px;
@@ -879,7 +902,6 @@
     }
 
     .dx-texteditor-buttons-container .dx-numberbox-spin-container {
-
       .dx-numberbox-spin-up,
       .dx-numberbox-spin-down {
         height: var(--number-box-spin-button-height);
@@ -890,7 +912,7 @@
 
 //отключение бордеров у label везде!
 .dx-texteditor {
-  .dx-texteditor-label>* {
+  .dx-texteditor-label > * {
     border: none !important;
   }
 }

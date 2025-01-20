@@ -130,41 +130,47 @@ export const Default: Story = {
         {
           icon: 'format_italic',
           type: 'normal',
-          style: 'italic'
+          style: 'italic',
         },
         {
           icon: 'format_underlined',
           type: 'normal',
-          style: 'underlined'
+          style: 'underlined',
         },
         {
           icon: 'strikethrough_s',
           type: 'normal',
-          style: 'strikethrough'
+          style: 'strikethrough',
         },
       ],
       buttonGroupMenu: [
-        { type: 'normal', text: 'Bold', alightment: 'left', leftIcon: 'format_bold', style: 'bold' },
+        {
+          type: 'normal',
+          text: 'Bold',
+          alightment: 'left',
+          leftIcon: 'format_bold',
+          style: 'bold',
+        },
         {
           type: 'normal',
           text: 'Italic',
           alightment: 'left',
           leftIcon: 'format_italic',
-          style: 'italic'
+          style: 'italic',
         },
         {
           type: 'normal',
           text: 'Underline',
           alightment: 'left',
           leftIcon: 'format_underlined',
-          style: 'underlined'
+          style: 'underlined',
         },
         {
           type: 'normal',
           text: 'Strike',
           alightment: 'left',
           leftIcon: 'strikethrough_s',
-          style: 'strikethrough'
+          style: 'strikethrough',
         },
       ],
     },
@@ -173,7 +179,7 @@ export const Default: Story = {
       div:has(> .search-item) {
         max-width: calc(100% - 40px);
       }
-      `
+      `,
     ],
     template: `
 <dx-toolbar meToolbar ${argsToTemplate(args)}>
