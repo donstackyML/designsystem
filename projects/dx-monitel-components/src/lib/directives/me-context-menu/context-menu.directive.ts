@@ -4,8 +4,10 @@ import {
   Renderer2,
   inject,
   ElementRef,
+  Input,
 } from '@angular/core';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meContextMenu]',
@@ -15,6 +17,7 @@ import { ComponentFocusService } from '../../service/component-focus.service';
 })
 export class MeContextMenuDirective {
   private focusService: ComponentFocusService;
+  @Input() size: MeSize = 'medium';
   constructor(element: ElementRef, private renderer: Renderer2) {
     this.focusService = new ComponentFocusService(element, renderer);
   }

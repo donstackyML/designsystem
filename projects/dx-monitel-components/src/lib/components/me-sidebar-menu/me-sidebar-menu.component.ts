@@ -8,12 +8,17 @@ import {
   ElementRef,
   NgZone,
   AfterViewInit,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation,
+  Renderer2,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   DxTreeViewModule,
   DxButtonModule,
-  DxTreeViewComponent,
+  DxContextMenuModule,
+  DxScrollViewModule,
 } from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
 import {
@@ -23,6 +28,14 @@ import {
   CdkDragMove,
   CdkDragStart,
 } from '@angular/cdk/drag-drop';
+import { MeSidebarMenuItemComponent } from './me-sidebar-menu-item.component';
+import { MeSize } from '../../types/types';
+import { MeContextMenuModule } from '../../directives/me-context-menu/context-menu.module';
+import { DxContextMenuComponent } from 'devextreme-angular/ui/context-menu';
+import DevExpress from 'devextreme';
+import PositionConfig = DevExpress.PositionConfig;
+import { MeScrollViewModule } from '../../directives/me-scroll-view/scroll-view.module';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 export interface MeSidebarMenuItem {
   id: string;
@@ -31,9 +44,16 @@ export interface MeSidebarMenuItem {
   expanded?: boolean;
   items?: MeSidebarMenuItem[];
   badge?: number;
-  onClick?: () => void;
+  action?: () => {};
   selected?: boolean;
   pressed?: boolean;
+}
+
+interface TreeNode {
+  parent?: TreeNode;
+  children: TreeNode[];
+  item: MeSidebarMenuItem;
+  active: boolean;
 }
 
 @Component({
@@ -45,18 +65,26 @@ export interface MeSidebarMenuItem {
     DxButtonModule,
     MeIconComponent,
     CdkDrag,
+    MeSidebarMenuItemComponent,
+    DxContextMenuModule,
+    MeContextMenuModule,
+    DxScrollViewModule,
+    MeScrollViewModule,
   ],
   templateUrl: 'me-sidebar-menu.component.html',
   styleUrls: ['me-sidebar-menu.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class MeSidebarMenuComponent implements AfterViewInit {
+export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   @ViewChild('dragHandleRight') dragHandleRight!: ElementRef;
+  @ViewChild('subMenu') subMenu!: DxContextMenuComponent;
   @ViewChild('sidebar') sidebar!: ElementRef;
-  @ViewChild('treeView') treeView!: DxTreeViewComponent;
-  @Input() items: MeSidebarMenuItem[] = [];
-  @Input() bottomItems: MeSidebarMenuItem[] = [];
+
+  @Input() private _bottomItems: MeSidebarMenuItem[] = [];
   @Input() title = 'Меню';
-  @Input() isCollapsed = false;
+  @Input() collapsed = false;
+  @Input() floatMode = false;
+  @Input() size: MeSize = 'medium';
 
   // Иконки для настройки внешнего вида
   @Input() toggleIcon = 'drag'; // Иконка кнопки сворачивания
@@ -67,11 +95,20 @@ export class MeSidebarMenuComponent implements AfterViewInit {
   @Output() itemSelected = new EventEmitter<MeSidebarMenuItem>();
 
   @Input() collapsedWidth = 64;
+  @Input() expandedWidth = 280;
 
+  private _items: MeSidebarMenuItem[] = [];
   private _width = 280;
   private _withStarted = 0;
   private _transition = '';
 
+  nodes: TreeNode[] = [];
+  bottomNodes: TreeNode[] = [];
+  menuDatasource: any[] = [];
+  private focusService: ComponentFocusService;
+
+  nodeFlatList?: TreeNode[];
+  activeIndex = 0;
   get width(): number {
     return this._width;
   }
@@ -80,25 +117,67 @@ export class MeSidebarMenuComponent implements AfterViewInit {
     this._width = value;
   }
 
-  constructor(private element: ElementRef, private ngZone: NgZone) {}
+  get items(): MeSidebarMenuItem[] {
+    return this._items;
+  }
 
-  ngAfterViewInit(): void {
-    this.updateDragHandler();
-    const parentRec =
-      this.resizeBoxElement.parentElement?.getBoundingClientRect();
-    if (parentRec) {
-      // this.resizeBoxElement.parentElement!.style.height = "100%"
-      // console.log("Parent rec: %o", parentRec)
-      // console.log("Parent: %o", this.resizeBoxElement.parentElement)
+  set items(value: MeSidebarMenuItem[]) {
+    this._items = value;
+    this.nodes = [];
+    if (value) {
+      this.initNodes(this.nodes, this._items);
     }
   }
 
+  get bottomItems(): MeSidebarMenuItem[] {
+    return this._bottomItems;
+  }
+
+  set bottomItems(value: MeSidebarMenuItem[]) {
+    this._bottomItems = value;
+    this.bottomNodes = [];
+    if (value) {
+      this.initNodes(this.bottomNodes, this._bottomItems);
+    }
+  }
+
+  constructor(
+    private element: ElementRef,
+    private ngZone: NgZone,
+    renderer: Renderer2
+  ) {
+    this.focusService = new ComponentFocusService(element, renderer);
+    this.focusService.addKeyUpEventHandle('Tab', (evt) =>
+      this.keyTabHandle(evt)
+    );
+    this.focusService.addKeyUpEventHandle('ArrowDown', (evt) =>
+      this.keyDownHandle(evt)
+    );
+    this.focusService.addKeyUpEventHandle('ArrowUp', (evt) =>
+      this.keyUpHandle(evt)
+    );
+    this.focusService.addKeyUpEventHandle('Enter', (evt) =>
+      this.keyEnterHandle(evt)
+    );
+    this.focusService.addFocusOutHandle((evt) => this.focusOutHandle(evt));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['collapsed']) {
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.stateUpdate();
+  }
+
   updateDragHandler() {
-    const dragRect = this.dragHandleRightElement.getBoundingClientRect();
-    const targetRect = this.resizeBoxElement.getBoundingClientRect();
-    const translateX = targetRect.x + targetRect.width;
-    const translateY = -1 * targetRect.height;
-    this.dragHandleRightElement.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    if (!this.collapsed) {
+      const targetRect = this.resizeBoxElement.getBoundingClientRect();
+      const translateX = targetRect.x + targetRect.width;
+      const translateY = -1 * targetRect.height;
+      this.dragHandleRightElement.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    }
   }
 
   get resizeBoxElement(): HTMLElement {
@@ -123,93 +202,31 @@ export class MeSidebarMenuComponent implements AfterViewInit {
   }
 
   toggleSidebar() {
-    this.isCollapsed = !this.isCollapsed;
-    this.toggleIcon = this.isCollapsed ? 'chevron_right' : 'chevron_left';
-
-    if (this.isCollapsed && this.treeView) {
-      // Свернуть все элементы при закрытии сайдбара
-      this.treeView.instance.collapseAll();
-    }
-
-    this.collapsedChange.emit(this.isCollapsed);
-    setTimeout(() => {
-      this.updateDragHandler();
-    }, 350);
+    this.collapsed = !this.collapsed;
+    this.stateUpdate();
+    this.collapsedChange.emit(this.collapsed);
   }
-
-  bottomItemClick(item: MeSidebarMenuItem) {
-    this.treeView.items.forEach((itm) => {
-      itm.selected = false;
-    });
-    this.bottomItems.forEach((itm) => {
-      itm.selected = false;
-      itm.pressed = false;
-    });
-    console.log('bottomItemClick: %o', item);
-    item.pressed = true;
-    setTimeout(() => {
-      item.pressed = false;
-      item.selected = true;
-      console.log('bottomItemClick pressed false: %o', item);
-    }, 300);
-
-    if (item.onClick) {
-      item.onClick();
-    }
-    this.itemSelected.emit(item);
-  }
-  onItemClick(e: any) {
-    this.bottomItems.forEach((itm) => {
-      itm.selected = false;
-      itm.pressed = false;
-    });
-    const item = e.itemData as MeSidebarMenuItem;
-    // .me-sidebar__item--pressed
-    if (this.isCollapsed) {
-      this.isCollapsed = false;
-      this.toggleIcon = 'chevron_left';
-      this.collapsedChange.emit(this.isCollapsed);
-
-      setTimeout(() => {
-        if (this.treeView && item.items?.length) {
-          this.treeView.instance.expandItem(item);
-        }
-      }, 300);
-    }
-
-    if (item.onClick) {
-      item.onClick();
-    }
-    this.itemSelected.emit(item);
-  }
-
   getHeight(): string {
     return this.element.nativeElement.offsetHeight + 'px';
   }
 
   getCurrentWidth(): number {
-    if (this.isCollapsed) {
+    if (this.collapsed) {
       return this.collapsedWidth;
     } else {
       return this._width;
     }
   }
+
   started($event: CdkDragStart) {
     this._withStarted = this._width;
-    console.log('Start: transition: %o', this.resizeBoxElement);
     this._transition = this.containerElement.style.transition;
     this.containerElement.style.transition = 'none';
-    console.log(
-      'Start: transition: %o, %o',
-      this.containerElement.style.transition,
-      this.containerElement
-    );
   }
 
   ended($event: CdkDragEnd) {
     this._withStarted = 0;
     this.containerElement.style.transition = this._transition;
-    console.log('End: transition: %o', this.containerElement.style.transition);
   }
 
   dragMove($event: CdkDragMove<any>) {
@@ -226,13 +243,207 @@ export class MeSidebarMenuComponent implements AfterViewInit {
   resize(target: HTMLElement) {
     const dragRect = this.dragHandleRightElement.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
-
-    //    console.log("Bounds: %o, %o", dragRect, targetRect)
-
     this.width = dragRect.left - (targetRect.left - dragRect.width / 2);
-    //    const height = dragRect.top - targetRect.top + dragRect.height;
+    this.expandedWidth = this.width;
+  }
 
-    //    target.style.width = width + 'px';
-    //    target.style.height = height + 'px';
+  selectItem($event: MouseEvent, node: TreeNode) {
+    let item = node.item;
+    if (item.items && item.items.length > 0) {
+      item.expanded = !item.expanded;
+      this.updateFlatList();
+    }
+    if (!item.expanded) {
+      item.selected = false;
+    }
+    if (this.collapsed && item.items && item.items.length > 0) {
+      let element = $event.target as Element;
+      element = element.parentElement as Element;
+      let w = element.clientWidth;
+      let h = element.clientHeight;
+      let position: PositionConfig = { at: 'right top' };
+      //this.subMenu.cssClass
+      this.subMenu.target = element;
+      this.subMenu.position = position;
+      this.subMenu.dataSource = this.getDataSource(item);
+      this.subMenu.visible = true;
+    } else {
+      this.clearItemSelected(this.items);
+      this.clearItemSelected(this.bottomItems);
+      item.selected = true;
+      if (!item.items || item.items.length == 0) {
+        this.itemSelected.emit(item);
+        if (item.action) {
+          item.action();
+          this.itemSelected.emit(item);
+        }
+      }
+    }
+  }
+
+  private initNodes(
+    nodes: TreeNode[],
+    items: MeSidebarMenuItem[],
+    parent?: TreeNode
+  ) {
+    items.forEach((item) => {
+      let treeNode: TreeNode = {
+        item: item,
+        children: [],
+        parent: parent,
+        active: false,
+      };
+      nodes.push(treeNode);
+      if (item.items && item.items.length > 0) {
+        this.initNodes(treeNode.children, item.items, treeNode);
+      }
+    });
+  }
+
+  getMargin(node: TreeNode): number {
+    let parent = node.parent;
+    let margin = 0;
+    while (parent) {
+      margin += 1;
+      parent = parent.parent;
+    }
+    return margin * 16;
+  }
+
+  private updateItemExpanded(items: MeSidebarMenuItem[], expanded: boolean) {
+    items.forEach((item) => {
+      item.expanded = expanded;
+      if (item.items) {
+        this.updateItemExpanded(item.items, expanded);
+      }
+    });
+  }
+
+  private clearItemSelected(items: MeSidebarMenuItem[]) {
+    items.forEach((item) => {
+      item.selected = false;
+      if (item.items) {
+        this.clearItemSelected(item.items);
+      }
+    });
+  }
+
+  private stateUpdate() {
+    this.toggleIcon = this.collapsed ? 'chevron_right' : 'chevron_left';
+    if (this.collapsed) {
+      this.width = this.collapsedWidth;
+      this.updateItemExpanded(this._items, false);
+    } else {
+      this.width = this.expandedWidth;
+    }
+    setTimeout(() => {
+      this.updateDragHandler();
+    }, 250);
+  }
+
+  private getDataSource(item: MeSidebarMenuItem): any[] {
+    if (item.items) {
+      return item.items;
+    } else {
+      return [];
+    }
+  }
+
+  selectSubmenuItem($event: Event) {
+    console.log('select by submenu %o', $event);
+  }
+
+  pressedNode($event: MouseEvent, node: TreeNode) {
+    node.active = true;
+  }
+
+  pressedEndNode($event: MouseEvent, node: TreeNode) {
+    node.active = false;
+  }
+
+  getItemsMinHeight(): number {
+    let itemH = this.calculateItemsMinHeight(this._items);
+    let botItemH = this.calculateItemsMinHeight(this._bottomItems);
+    return 24 + itemH + botItemH;
+  }
+  calculateItemsMinHeight(items: MeSidebarMenuItem[]): number {
+    let heightAll = 0;
+    let count = 0;
+    items.forEach((item) => {
+      heightAll += 24;
+      count += 1;
+      if (!this.collapsed && item.expanded && item.items) {
+        heightAll += this.calculateItemsMinHeight(item.items);
+      }
+    });
+    return heightAll;
+  }
+
+  updateFlatListNodes(list: TreeNode[], nodes: TreeNode[]) {
+    nodes.forEach((node) => {
+      list.push(node);
+      if (node.children && node.item.expanded) {
+        this.updateFlatListNodes(list, node.children);
+      }
+    });
+  }
+
+  updateFlatList() {
+    this.nodeFlatList = [];
+    this.activeIndex = 0;
+    this.updateFlatListNodes(this.nodeFlatList, this.nodes);
+    this.updateFlatListNodes(this.nodeFlatList, this.bottomNodes);
+    console.log('FlatList %o', this.nodeFlatList);
+  }
+  private keyTabHandle(evt: KeyboardEvent) {
+    this.updateFlatList();
+    this.activeIndex = 0;
+    if (this.nodeFlatList) {
+      this.nodeFlatList[this.activeIndex].active = true;
+    }
+  }
+
+  private keyDownHandle(evt: KeyboardEvent) {
+    if (this.nodeFlatList) {
+      this.nodeFlatList[this.activeIndex].active = false;
+      if (this.nodeFlatList.length > this.activeIndex + 1) {
+        this.activeIndex += 1;
+        this.nodeFlatList[this.activeIndex].active = true;
+      }
+    }
+  }
+
+  private keyUpHandle(evt: KeyboardEvent) {
+    if (this.nodeFlatList) {
+      this.nodeFlatList[this.activeIndex].active = false;
+      if (this.activeIndex > 0) {
+        this.activeIndex -= 1;
+        this.nodeFlatList[this.activeIndex].active = true;
+      }
+    }
+  }
+
+  private keyEnterHandle(evt: KeyboardEvent) {
+    if (this.nodeFlatList && this.activeIndex < this.nodeFlatList.length) {
+      let node = this.nodeFlatList[this.activeIndex];
+      if (node.item.items) {
+        node.item.expanded = !node.item.expanded;
+        let holderIdx = this.activeIndex;
+        this.updateFlatList();
+        this.activeIndex = holderIdx;
+      } else {
+        if (node.item.action) {
+          node.item.action();
+        }
+      }
+    }
+  }
+
+  private focusOutHandle(evt: FocusEvent) {
+    if (this.nodeFlatList) {
+      this.nodeFlatList[this.activeIndex].active = false;
+      this.nodeFlatList = [];
+      this.activeIndex = 0;
+    }
   }
 }
