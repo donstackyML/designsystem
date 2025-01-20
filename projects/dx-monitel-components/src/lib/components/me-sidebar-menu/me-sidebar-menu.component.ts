@@ -268,15 +268,18 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
       this.subMenu.dataSource = this.getDataSource(item);
       this.subMenu.visible = true;
     } else {
-      this.clearItemSelected(this.items);
-      this.clearItemSelected(this.bottomItems);
-      item.selected = true;
-      if (!item.items || item.items.length == 0) {
-        this.itemSelected.emit(item);
-        if (item.action) {
-          item.action();
-          this.itemSelected.emit(item);
-        }
+      this.itemSelect(item);
+    }
+  }
+
+  private itemSelect(item: MeSidebarMenuItem) {
+    this.clearItemSelected(this.items);
+    this.clearItemSelected(this.bottomItems);
+    item.selected = true;
+    if (!item.items || item.items.length == 0) {
+      this.itemSelected.emit(item);
+      if (item.action) {
+        item.action();
       }
     }
   }
@@ -354,6 +357,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   }
 
   pressedNode($event: MouseEvent, node: TreeNode) {
+    this.focusService.clearKeyboardFocus();
     node.active = true;
   }
 
@@ -432,9 +436,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
         this.updateFlatList();
         this.activeIndex = holderIdx;
       } else {
-        if (node.item.action) {
-          node.item.action();
-        }
+        this.itemSelect(node.item);
       }
     }
   }
