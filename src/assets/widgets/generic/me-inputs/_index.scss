@@ -795,7 +795,7 @@
 .me-inputs.dx-texteditor.dx-widget {
   &.me-number-box,
   &.me-date-range-box {
-    &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label),
+    &:not(.dx-texteditor-label-outside),
     &.dx-state-readonly {
       .dx-texteditor-buttons-container {
         margin-right: 4px;
@@ -812,11 +812,20 @@
 
     &.me-inputs {
       &-small {
-        &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
+        &:is(.dx-texteditor-label-outside) {
           .dx-texteditor-container {
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 28px;
+              padding-left: 8px;
+            }
+          }
+        }
+
+        &:is(.dx-texteditor-with-floating-label) {
+          .dx-texteditor-container {
+            .dx-texteditor-input-container,
+            .dx-placeholder {
               padding-left: 8px;
             }
           }
@@ -834,11 +843,20 @@
       }
 
       &-medium {
-        &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
+        &:is(.dx-texteditor-label-outside) {
           .dx-texteditor-container {
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 32px;
+              padding-left: 8px;
+            }
+          }
+        }
+
+        &:is(.dx-texteditor-with-floating-label) {
+          .dx-texteditor-container {
+            .dx-texteditor-input-container,
+            .dx-placeholder {
               padding-left: 8px;
             }
           }
@@ -856,11 +874,20 @@
       }
 
       &-large {
-        &:is(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
+        &:is(.dx-texteditor-label-outside) {
           .dx-texteditor-container {
             .dx-texteditor-input-container,
             .dx-placeholder {
               height: 40px;
+              padding-left: 12px;
+            }
+          }
+        }
+
+        &:is(.dx-texteditor-with-floating-label) {
+          .dx-texteditor-container {
+            .dx-texteditor-input-container,
+            .dx-placeholder {
               padding-left: 12px;
             }
           }
@@ -881,6 +908,9 @@
     .dx-texteditor-container {
       align-items: center;
       padding-inline: 0;
+    }
+
+    &:not(.dx-texteditor-with-floating-label) .dx-texteditor-container {
       padding-block: 0;
     }
 
@@ -891,6 +921,13 @@
         height: auto;
         width: auto;
         min-width: auto;
+      }
+    }
+
+    .dx-texteditor-buttons-container {
+      .dx-state-active,
+      .dx-state-hover {
+        background: transparent;
       }
     }
   }
