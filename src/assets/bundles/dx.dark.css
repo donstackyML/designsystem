@@ -31689,6 +31689,9 @@ input.dx-hidden {
 .me-form .dx-layout-manager .dx-label-h-align.dx-flex-layout:not(.dx-field-item-label-align) {
   align-items: center;
 }
+.me-form .dx-texteditor-with-floating-label .dx-texteditor-label {
+  left: 20px !important;
+}
 .me-form .dx-textbox,
 .me-form .dx-selectbox {
   width: 100%;
@@ -31765,33 +31768,20 @@ input.dx-hidden {
   font-size: var(--field-item-label-font-size);
   top: var(--label-top-position);
 }
-.me-form .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label {
+.me-form .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label {
   font-size: var(--field-item-label-font-size);
   padding: 0 4px;
   transition: none;
 }
-.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-focused .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-focused .dx-label {
+.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-focused .dx-label {
   font-size: var(--field-item-label-font-size);
   top: var(--label-top-position); /* Начальная позиция */
   left: var(--label-left-position);
 }
-.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover .dx-label {
+.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-focused .dx-label {
   font-size: var(--field-item-label-font-size);
   top: var(--label-top-position); /* Начальная позиция */
   left: var(--label-left-position);
-}
-.me-form .dx-texteditor-with-floating-label .dx-texteditor-label {
-  left: 0 !important;
-}
-.me-form .dx-texteditor-with-floating-label .dx-texteditor-label .dx-label:after {
-  top: -6px;
-  right: -8px;
-}
-.me-form .dx-texteditor-with-floating-label.dx-texteditor-empty:not(.dx-state-focused) .dx-texteditor-label {
-  left: 9px !important;
-}
-.me-form .dx-texteditor-with-floating-label.dx-texteditor-empty:not(.dx-state-focused) .dx-texteditor-label .dx-label:after {
-  top: 6px;
 }
 .me-form .dx-texteditor-with-label .dx-texteditor-label {
   top: -2px;
@@ -31819,9 +31809,7 @@ input.dx-hidden {
 .me-form .dx-field-item-required .dx-label::after {
   content: "*";
   color: var(--required-color, red);
-  position: absolute;
-  right: -8px;
-  top: -25%;
+  padding: 8px 2px;
 }
 .me-form .dx-editor-outlined .dx-label {
   position: absolute;
@@ -31831,10 +31819,6 @@ input.dx-hidden {
   font-size: var(--field-item-label-font-size);
   color: var(--label-color, #757575); /* Цвет лейбла */
   border-color: transparent !important;
-}
-.me-form .dx-editor-outlined .dx-selectbox.dx-texteditor-with-floating-label .dx-label {
-  margin-top: 0 !important;
-  height: auto;
 }
 .me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:focus ~ .dx-label,
 .me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:hover ~ .dx-label,

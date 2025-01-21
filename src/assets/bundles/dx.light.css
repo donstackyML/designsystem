@@ -14436,9 +14436,10 @@
   cursor: default;
 }
 
-.me-selectbox.me-keyboard-focused.dx-state-focused {
+.me-selectbox.me-keyboard-focused.dx-state-focused .dx-selectbox-container {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
+  border-radius: 3px;
 }
 .me-selectbox.me-keyboard-focused.dx-state-focused .dx-texteditor-container {
   box-shadow: none !important;
@@ -31686,8 +31687,73 @@ input.dx-hidden {
 .me-form {
   font-family: var(--font-family, Arial, sans-serif);
 }
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-small {
+  height: 36px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-small .dx-texteditor-container {
+  padding-block: 2px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-medium {
+  height: 40px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-medium .dx-texteditor-container {
+  padding-block: 2px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-large {
+  height: 48px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-large .dx-texteditor-container {
+  padding-block: 2px;
+}
+.me-form .me-textbox-small.dx-texteditor-with-label .dx-texteditor-label .dx-label span {
+  transform: translate(0, -5px);
+}
+.me-form .me-textbox-medium.dx-texteditor-with-label .dx-texteditor-label .dx-label:after {
+  top: -5px;
+}
+.me-form .me-textbox-large.dx-texteditor-with-label .dx-texteditor-label {
+  left: 12px;
+}
+.me-form .me-textbox-large.dx-texteditor-with-label .dx-texteditor-label .dx-label:after {
+  top: -8px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.dx-dropdowneditor {
+  background-color: transparent !important;
+}
+.me-form .dx-selectbox-container {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+  border-radius: 3px;
+}
+.me-form .me-date-box .dx-texteditor-container {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+  border-radius: 3px;
+}
 .me-form .dx-layout-manager .dx-label-h-align.dx-flex-layout:not(.dx-field-item-label-align) {
   align-items: center;
+}
+.me-form .dx-texteditor-with-floating-label .dx-texteditor-label {
+  left: 9px;
+}
+.me-form .dx-texteditor-with-floating-label.me-inputs-large .dx-texteditor-label {
+  left: 12px;
+}
+.me-form .dx-texteditor-with-floating-label.me-inputs-large .dx-texteditor-label .dx-label::after {
+  padding: 12px 2px;
+}
+.me-form .dx-field-item-required .dx-texteditor-with-label .dx-label::after {
+  padding: 0 2px;
+  position: relative;
+  top: -3px;
+}
+.me-form .dx-field-item-required .dx-texteditor-with-floating-label .dx-label::after {
+  align-content: start;
+}
+.me-form .dx-field-item-required .dx-texteditor-with-floating-label.dx-texteditor-empty:not(.dx-state-focused) .dx-label::after {
+  align-content: center;
+  line-height: 0;
+}
+.me-form .me-textbox.me-textbox-small.dx-texteditor-with-floating-label .dx-label::after {
+  padding: 4px 2px;
 }
 .me-form .dx-textbox,
 .me-form .dx-selectbox {
@@ -31765,33 +31831,20 @@ input.dx-hidden {
   font-size: var(--field-item-label-font-size);
   top: var(--label-top-position);
 }
-.me-form .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label .dx-texteditor-label .dx-label {
+.me-form .dx-editor-outlined.dx-texteditor-with-label .dx-texteditor-label .dx-label {
   font-size: var(--field-item-label-font-size);
   padding: 0 4px;
   transition: none;
 }
-.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-focused .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-focused .dx-label {
+.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-focused .dx-label {
   font-size: var(--field-item-label-font-size);
   top: var(--label-top-position); /* Начальная позиция */
   left: var(--label-left-position);
 }
-.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-hover .dx-label, .me-form .dx-editor-outlined.dx-texteditor-with-floating-label.dx-state-hover .dx-label {
+.me-form .dx-editor-outlined.dx-texteditor-with-label.dx-state-focused .dx-label {
   font-size: var(--field-item-label-font-size);
   top: var(--label-top-position); /* Начальная позиция */
   left: var(--label-left-position);
-}
-.me-form .dx-texteditor-with-floating-label .dx-texteditor-label {
-  left: 0 !important;
-}
-.me-form .dx-texteditor-with-floating-label .dx-texteditor-label .dx-label:after {
-  top: -6px;
-  right: -8px;
-}
-.me-form .dx-texteditor-with-floating-label.dx-texteditor-empty:not(.dx-state-focused) .dx-texteditor-label {
-  left: 9px !important;
-}
-.me-form .dx-texteditor-with-floating-label.dx-texteditor-empty:not(.dx-state-focused) .dx-texteditor-label .dx-label:after {
-  top: 6px;
 }
 .me-form .dx-texteditor-with-label .dx-texteditor-label {
   top: -2px;
@@ -31819,9 +31872,7 @@ input.dx-hidden {
 .me-form .dx-field-item-required .dx-label::after {
   content: "*";
   color: var(--required-color, red);
-  position: absolute;
-  right: -8px;
-  top: -25%;
+  padding: 8px 2px;
 }
 .me-form .dx-editor-outlined .dx-label {
   position: absolute;
@@ -31832,12 +31883,6 @@ input.dx-hidden {
   color: var(--label-color, #757575); /* Цвет лейбла */
   border-color: transparent !important;
 }
-.me-form .dx-editor-outlined .dx-selectbox.dx-texteditor-with-floating-label .dx-label {
-  margin-top: 0 !important;
-  height: auto;
-}
-.me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:focus ~ .dx-label,
-.me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:hover ~ .dx-label,
 .me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:not(:placeholder-shown) ~ .dx-label {
   margin-top: 0 !important;
 }

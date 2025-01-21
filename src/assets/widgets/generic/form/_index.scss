@@ -7,9 +7,115 @@
 .me-form {
   font-family: var(--font-family, Arial, sans-serif);
 
+  .me-inputs.dx-texteditor.dx-widget.me-inputs-small {
+    height: 36px;
+    .dx-texteditor-container {
+      padding-block: 2px;
+    }
+  }
+  .me-inputs.dx-texteditor.dx-widget.me-inputs-medium {
+    height: 40px;
+    .dx-texteditor-container {
+      padding-block: 2px;
+    }
+  }
+  .me-inputs.dx-texteditor.dx-widget.me-inputs-large {
+    height: 48px;
+    .dx-texteditor-container {
+      padding-block: 2px;
+    }
+  }
+
+  .me-textbox-small.dx-texteditor-with-label {
+    .dx-texteditor-label {
+      .dx-label {
+        span {
+          transform: translate(0, -5px);
+        }
+      }
+    }
+  }
+  .me-textbox-medium.dx-texteditor-with-label {
+    .dx-texteditor-label {
+      .dx-label:after {
+        top: -5px;
+      }
+    }
+  }
+  .me-textbox-large.dx-texteditor-with-label {
+    .dx-texteditor-label {
+      left: 12px;
+      .dx-label:after {
+        top: -8px;
+      }
+    }
+  }
+
+  .me-inputs.dx-texteditor.dx-widget.dx-dropdowneditor {
+    background-color: transparent !important;
+  }
+  .dx-selectbox-container {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+    border-radius: 3px;
+  }
+  .me-date-box {
+    .dx-texteditor-container {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+      border-radius: 3px;
+    }
+  }
+
   .dx-layout-manager .dx-label-h-align.dx-flex-layout:not(.dx-field-item-label-align) {
     align-items: center;
   }
+
+  .dx-texteditor-with-floating-label {
+    .dx-texteditor-label {
+      left: 9px;
+    }
+    &.me-inputs-large {
+      .dx-texteditor-label {
+        left: 12px;
+        .dx-label::after {
+          padding: 12px 2px;
+        }
+      }
+    }
+    //
+    //&.dx-texteditor-empty {
+    //  .dx-texteditor-label {
+    //    left: 0;
+    //  }
+    //}
+  }
+  .dx-field-item-required {
+    .dx-texteditor-with-label {
+      .dx-label::after {
+        padding: 0 2px;
+        position: relative;
+        top: -3px;
+      }
+    }
+    .dx-texteditor-with-floating-label {
+      .dx-label::after {
+        align-content: start;
+      }
+      &.dx-texteditor-empty:not(.dx-state-focused) {
+        .dx-label::after {
+          align-content: center;
+          line-height: 0;
+        }
+      }
+    }
+  }
+  .me-textbox.me-textbox-small {
+    &.dx-texteditor-with-floating-label {
+      .dx-label::after {
+        padding: 4px 2px;
+      }
+    }
+  }
+
   // Маленькая форма
   // &.me-form-small {
   //   --label-top-position: 9px;
@@ -46,7 +152,6 @@
     width: 100%;
     box-sizing: border-box;
     border-radius: 4px;
-    //padding: var(--selectbox-padding);
     font-size: var(--selectbox-font-size);
     height: var(--selectbox-height);
     position: relative;
@@ -121,7 +226,6 @@
   // Стили для меток внутри полей
   .dx-texteditor-label {
     font-size: var(--field-item-label-font-size);
-    //padding: 0 4px;
     transition: none;
   }
 
@@ -131,8 +235,8 @@
       font-size: var(--field-item-label-font-size);
       top: var(--label-top-position);
     }
-    &.dx-texteditor-with-label,
-    &.dx-texteditor-with-floating-label {
+
+    &.dx-texteditor-with-label {
       .dx-texteditor-label .dx-label {
         font-size: var(--field-item-label-font-size);
         padding: 0 4px;
@@ -145,7 +249,20 @@
         left: var(--label-left-position);
       }
 
-      &.dx-state-hover .dx-label {
+      //&.dx-state-hover:not(.dx-texteditor-with-floating-label) .dx-label {
+      //  font-size: var(--field-item-label-font-size);
+      //  top: var(--label-top-position); /* Начальная позиция */
+      //  left: var(--label-left-position);
+      //}
+      //}
+      //&.dx-texteditor-with-floating-label {
+      //  .dx-texteditor-label .dx-label {
+      //    font-size: var(--field-item-label-font-size);
+      //    padding: 0 4px;
+      //    transition: none;
+      //  }
+
+      &.dx-state-focused .dx-label {
         font-size: var(--field-item-label-font-size);
         top: var(--label-top-position); /* Начальная позиция */
         left: var(--label-left-position);
@@ -153,23 +270,23 @@
     }
   }
 
-  .dx-texteditor-with-floating-label {
-    .dx-texteditor-label {
-      left: 0 !important;
-      .dx-label:after {
-        top: -6px;
-        right: -8px;
-      }
-    }
-    &.dx-texteditor-empty:not(.dx-state-focused) {
-      .dx-texteditor-label {
-        left: 9px !important;
-        .dx-label:after {
-          top: 6px;
-        }
-      }
-    }
-  }
+  //.dx-texteditor-with-floating-label {
+  //  .dx-texteditor-label {
+  //    left: 8px !important;
+  //    .dx-label:after {
+  //      padding: 8px 4px;
+  //    }
+  //  }
+  //  &.dx-texteditor-empty:not(.dx-state-focused) {
+  //    .dx-texteditor-label {
+  //      left: 8px !important;
+  //      .dx-label:after {
+  //        align-content: center;
+  //        line-height: 3;
+  //      }
+  //    }
+  //  }
+  //}
   .dx-texteditor-with-label {
     .dx-texteditor-label {
       top: -2px;
@@ -183,6 +300,7 @@
       font-weight: 400;
     }
   }
+
   &.me-form-large {
     .dx-field-item-label-text {
       font-size: 16px;
@@ -212,9 +330,7 @@
       &::after {
         content: '*';
         color: var(--required-color, red);
-        position: absolute;
-        right: -8px;
-        top: -25%;
+        padding: 8px 2px;
       }
     }
   }
@@ -230,13 +346,6 @@
       border-color: transparent !important;
     }
 
-    .dx-selectbox.dx-texteditor-with-floating-label .dx-label {
-      margin-top: 0 !important;
-      height: auto;
-    }
-
-    .dx-editor-outlined .dx-texteditor-input:focus ~ .dx-label,
-    .dx-editor-outlined .dx-texteditor-input:hover ~ .dx-label,
     .dx-editor-outlined .dx-texteditor-input:not(:placeholder-shown) ~ .dx-label {
       margin-top: 0 !important;
     }
@@ -246,8 +355,6 @@
         var(--selectbox-padding) + 10px
       ) !important; /* Дополнительное пространство для лейбла */
       box-sizing: border-box;
-      //font-size: var(--selectbox-font-size);
-      //height: var(--selectbox-height);
     }
 
     .me-form .dx-textbox .dx-texteditor-input,

@@ -14,6 +14,7 @@ import {
   MeFormModule,
   MeSelectBoxModule,
   MeFormItemModule,
+  MeCheckBoxModule,
 } from '../../public-api';
 
 interface FormStoryArgs {
@@ -45,6 +46,7 @@ export default {
         MeFormModule,
         MeFormItemModule,
         MeSelectBoxModule,
+        MeCheckBoxModule,
       ],
     }),
   ],
@@ -124,8 +126,8 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
           </div>
         </dxi-item>
         <dxi-item meFormItem dataField="email">
-          <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
-          <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>
+<!--          <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>-->
+<!--          <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>-->
           <dxo-label text="Email"></dxo-label>
           <div *dxTemplate>
             <dx-text-box meTextBox [(value)]="formData.email" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
@@ -152,7 +154,7 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
         <dxi-item meFormItem dataField="occupation">
           <dxo-label text="Occupation"></dxo-label>
           <div *dxTemplate>
-            <dx-text-box meTextBox [(value)]="formData.occupation" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+            <dx-text-box meTextBox [(value)]="formData.occupation" [placeholder]="'placeholder'" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
           </div>
         </dxi-item>
         <dxi-item dataField="isSubscribed">
