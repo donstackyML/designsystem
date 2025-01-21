@@ -18070,11 +18070,6 @@
   width: 0;
 }
 
-.dx-tag-remove-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
 .dx-tag-remove-button::before, .dx-tag-remove-button::after {
   position: absolute;
   top: 50%;
@@ -18157,17 +18152,17 @@
 }
 
 .dx-tag-content {
-  margin: 4px 0 0 4px;
-  padding: 3px 25px 4px 6px;
   min-width: 40px;
   background-color: #ffffff;
   border-radius: 2px;
   color: #18181a;
+  font-weight: var(--me-medium-font-weight);
 }
 
 .dx-tag-remove-button {
-  width: 25px;
-  height: 100%;
+  width: var(--dx-tag-remove-button-size);
+  height: var(--dx-tag-remove-button-size);
+  margin-left: 4px;
 }
 .dx-tag-remove-button::before, .dx-tag-remove-button::after {
   inset-inline-end: 9px;
@@ -18217,6 +18212,7 @@
   border-bottom: 1px solid #dfe0ed;
   padding-bottom: 11px;
   margin-bottom: 3px;
+  cursor: pointer;
 }
 
 .dx-rtl .dx-tag-content {
@@ -18249,22 +18245,21 @@
   font-family: "RobotoFallback", "Roboto", sans-serif;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content {
-  padding-right: 28px;
-  padding-left: 4px;
+  display: flex;
+  align-items: center;
   align-content: center;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content .dx-tag-remove-button {
   display: flex;
   justify-content: center;
-  width: 28px;
   font-family: var(--me-icon-family);
   font-size: 16px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content .dx-tag-remove-button::before {
   content: var(--me-icon-close);
   position: relative;
-  width: 20px !important;
-  height: 100% !important;
+  width: inherit;
+  height: inherit;
   inset-inline-end: 0px !important;
   margin-top: 0px !important;
   display: flex;
@@ -18304,10 +18299,14 @@
   background: rgba(24, 24, 26, 0.4);
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content {
+  padding: 8px 4px;
   height: 22px;
   margin: 0;
   font-size: 13px;
   line-height: 16px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content .dx-tag-remove-button {
+  --dx-tag-remove-button-size: 20px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-buttons-container {
   right: 4px;
@@ -18347,10 +18346,14 @@
   padding: 2px 8px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content {
+  padding: 8px 4px;
   height: 24px;
   margin: 0;
   font-size: 14px;
   line-height: 20px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content .dx-tag-remove-button {
+  --dx-tag-remove-button-size: 20px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-medium .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-buttons-container {
   right: 4px;
@@ -18390,12 +18393,14 @@
   padding: 4px 8px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content {
-  padding-right: 32px;
+  padding: 8px 8px;
   height: 32px;
   margin: 0;
   font-size: 16px;
   line-height: 20px;
-  font-weight: 400;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content .dx-tag-remove-button {
+  --dx-tag-remove-button-size: 24px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-buttons-container {
   right: 8px;
