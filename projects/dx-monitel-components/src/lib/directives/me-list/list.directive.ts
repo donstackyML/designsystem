@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Renderer2 } from '@angular/core';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { DxListComponent, DxMenuComponent } from 'devextreme-angular';
+import { DxListComponent } from 'devextreme-angular';
 
 @Directive({
   selector: '[meList]',
