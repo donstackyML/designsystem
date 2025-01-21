@@ -756,9 +756,25 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     &.dx-textarea {
-      .dx-texteditor-label .dx-label span {
+      &:not(.dx-texteditor-with-floating-label) .dx-texteditor-label .dx-label span {
         top: $generic-base-inline-borderedwidget-top-padding;
         margin-top: 0;
+      }
+
+      &.dx-texteditor-with-floating-label {
+        &.me-inputs-small,
+        &.me-inputs-medium {
+          --label-indent: 3px;
+        }
+
+        &.me-inputs-large {
+          --label-indent: 5px;
+        }
+
+        .dx-texteditor-label .dx-label span {
+          top: calc(50% - var(--label-indent));
+          margin-top: 0;
+        }
       }
     }
 
