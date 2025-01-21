@@ -1,0 +1,80 @@
+<div
+  #sidebar
+  class="me-sidebar"
+  [class.me-sidebar--collapsed]="collapsed"
+  [class.me-sidebar--expanded]="!collapsed"
+  [class.float-mode]="floatMode"
+  [style.width]="getCurrentWidth() + 'px'"
+>
+  <div class="me-sidebar_content">
+    <div class="me-sidebar__header">
+      <div class="me-sidebar__header-content">
+        <span *ngIf="!collapsed" class="me-sidebar__title">{{ title }}</span>
+        <ng-content select="[header]"></ng-content>
+      </div>
+      <me-icon [icon]="toggleIcon" size="medium" color="#666666" class="me-sidebar__toggle" (click)="toggleSidebar()"></me-icon>
+    </div>
+    <div class="me-sidebar__divider"></div>
+    <ng-content select="[search]"></ng-content>
+    <dx-scroll-view meScrollView [height]="getHeight()" [width]="width" [direction]="'both'" [showScrollbar]="'onScroll'">
+      <ul class="me-sidebar__list me-sidebar__list-root" [style.min-height.px]="getItemsMinHeight()">
+        <ng-container *ngFor="let node of nodes" [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ $implicit: node }"> </ng-container>
+      </ul>
+    </dx-scroll-view>
+    <ng-template #treeNode let-node>
+      <li
+        class="me-sidebar__item_list"
+        [class.me-sidebar_item-expanded]="node.item.expanded"
+        [class.me-sidebar_item-active]="node.active"
+        (click)="selectItem($event, node)"
+        (mousedown)="pressedNode($event, node)"
+        (mouseup)="pressedEndNode($event, node)"
+      >
+        <me-sidebar-item
+          [collapsed]="collapsed"
+          [expandedIcon]="expandedIcon"
+          [collapsedIcon]="collapsedIcon"
+          [size]="size"
+          [item]="node.item"
+          [offset]="getMargin(node)"
+        ></me-sidebar-item>
+      </li>
+      <ng-container *ngIf="node.item.items && node.item.expanded">
+        <ul class="me-sidebar__list" *ngIf="!collapsed" [class.me-sidebar_item-expanded]="node.item.expanded">
+          <ng-container *ngFor="let child of node.children" [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ $implicit: child }"> </ng-container>
+        </ul>
+      </ng-container>
+    </ng-template>
+    <div class="me-sidebar__empty"></div>
+    <div class="me-sidebar__divider"></div>
+    <div class="me-sidebar__bottom">
+      <ul class="me-sidebar__list">
+        <ng-container *ngFor="let node of bottomNodes" [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ $implicit: node }"> </ng-container>
+      </ul>
+    </div>
+  </div>
+  <div
+    #dragHandleRight
+    class="resize-handle"
+    cdkDrag
+    (cdkDragStarted)="started($event)"
+    (cdkDragEnded)="ended($event)"
+    (cdkDragMoved)="dragMove($event)"
+    [cdkDragLockAxis]="'x'"
+    [style.height]="getHeight()"
+    *ngIf="!collapsed"
+  >
+    <svg width="8" height="20" viewBox="0 0 8 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 17L1 17L1 15L3 15L3 17Z" fill="#808084" />
+      <path d="M3 13L1 13L1 11L3 11L3 13Z" fill="#808084" />
+      <path d="M3 9L1 9L1 7L3 7L3 9Z" fill="#808084" />
+      <path d="M3 5L1 5L1 3L3 3L3 5Z" fill="#808084" />
+      <path d="M7 17L5 17L5 15L7 15L7 17Z" fill="#808084" />
+      <path d="M7 13L5 13L5 11L7 11L7 13Z" fill="#808084" />
+      <path d="M7 9L5 9L5 7L7 7L7 9Z" fill="#808084" />
+      <path d="M7 5L5 5L5 3L7 3L7 5Z" fill="#808084" />
+    </svg>
+  </div>
+  <dx-context-menu #subMenu *ngIf="collapsed" meContextMenu [size]="size" [dataSource]="menuDatasource" (select)="selectSubmenuItem($event)" cssClass="me-sidebar">
+  </dx-context-menu>
+</div>

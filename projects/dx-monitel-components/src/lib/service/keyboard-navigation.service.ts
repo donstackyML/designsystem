@@ -11,7 +11,6 @@ export class FocusManagerService implements OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(private focusMonitor: FocusMonitor, private ngZone: NgZone) {}
-
   monitorFocus(
     element: ElementRef<HTMLElement>,
     checkChildren: boolean = false,

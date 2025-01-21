@@ -1,61 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
-* {
-  margin: 0;
-  padding: 0;
-}
+/* Error: This module was already loaded, so it can't be configured using "with".
+ *   ,--> assets\bundles\dx.light.scss
+ * 1 | / @use '../widgets/generic/colors' with (
+ * 2 | |   $color: 'light'
+ * 3 | | );
+ *   | '-^ new load
+ *   '
+ *   ,--> assets\bundles\dx.dark.scss
+ * 1 | / @use '../widgets/generic/colors' with (
+ * 2 | |   $color: 'dark'
+ * 3 | | );
+ *   | '-^ original load
+ *   '
+ *   assets\bundles\dx.light.scss 1:1  @import
+ *   styles.scss 2:9                   root stylesheet */
 
-p {
-  text-align: center;
+body::before {
+  font-family: 'Source Code Pro', 'SF Mono', Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono',
+    monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: This module was already loaded, so it can't be configured using \"with\".\a   \250c \2500 \2500 > assets\\bundles\\dx.light.scss\a 1 \2502  \250c  @use '../widgets/generic/colors' with (\a 2 \2502  \2502    $color: 'light'\a 3 \2502  \2502  );\a   \2502  \2514 \2500 ^ new load\a   \2575 \a   \250c \2500 \2500 > assets\\bundles\\dx.dark.scss\a 1 \2502  \250c  @use '../widgets/generic/colors' with (\a 2 \2502  \2502    $color: 'dark'\a 3 \2502  \2502  );\a   \2502  \2514 \2500 ^ original load\a   \2575 \a   assets\\bundles\\dx.light.scss 1:1  @import\a   styles.scss 2:9                   root stylesheet";
 }
-
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.flex-column {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.wrapper {
-  padding: 0 60px 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  text-align: center;
-}
-.wrapper__main-title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-top: 50px;
-}
-.wrapper__title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 20px;
-}
-.wrapper__subtitle {
-  font-size: 18px;
-  margin-top: 15px;
-}
-
-.flex-row {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-html {
-  width: 100vw;
-  overflow-x: hidden;
-}
-
-/*# sourceMappingURL=styles.css.map */

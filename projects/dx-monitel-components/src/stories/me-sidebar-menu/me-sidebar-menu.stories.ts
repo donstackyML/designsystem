@@ -7,13 +7,13 @@ import {
   MeTreeViewModule,
 } from '../../public-api';
 
-interface MenuItem {
+interface MeSidebarMenuItem {
   id: string;
   text: string;
   icon?: string;
   badge?: number;
   expanded?: boolean;
-  items?: MenuItem[];
+  items?: MeSidebarMenuItem[];
   selected?: boolean;
 }
 
@@ -32,7 +32,7 @@ const meta: Meta<MeSidebarMenuComponent> = {
     }),
   ],
   argTypes: {
-    isCollapsed: {
+    collapsed: {
       control: 'boolean',
       description: 'Определяет, свернуто ли меню',
     },
@@ -52,6 +52,11 @@ const meta: Meta<MeSidebarMenuComponent> = {
       control: 'text',
       description: 'Иконка свернутого пункта',
     },
+    floatMode: {
+      control: 'boolean',
+      description:
+        'Определяет режим раскрытия меню, над страницей или внутри страицы',
+    },
   },
   parameters: {
     layout: 'fullscreen',
@@ -61,7 +66,7 @@ const meta: Meta<MeSidebarMenuComponent> = {
 export default meta;
 type Story = StoryObj<MeSidebarMenuComponent>;
 
-const DEMO_ITEMS: MenuItem[] = [
+const DEMO_ITEMS: MeSidebarMenuItem[] = [
   {
     id: 'tasks',
     text: 'Задачи',
@@ -126,17 +131,33 @@ const DEMO_ITEMS: MenuItem[] = [
   },
 ];
 
+const DEMO_BOTTOM_ITEMS: MeSidebarMenuItem[] = [
+  {
+    id: 'downloads',
+    text: 'Загрузки',
+    icon: 'download',
+  },
+  {
+    id: 'settings',
+    text: 'Настройки',
+    icon: 'settings',
+  },
+];
+
 export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
+     <div style="display: flex; height: 100%;">
       <me-sidebar
         [items]="items"
+        [bottomItems]="bottomItems"
         [title]="title"
-        [isCollapsed]="isCollapsed"
+        [collapsed]="collapsed"
         [toggleIcon]="toggleIcon"
         [expandedIcon]="expandedIcon"
         [collapsedIcon]="collapsedIcon"
+        [floatMode]="floatMode"
       >
         <div header>
           <me-icon icon="notifications" size="medium" color="#666666"></me-icon>
@@ -145,12 +166,21 @@ export const Default: Story = {
           <me-search placeholder="Поиск..."></me-search>
         </div>
       </me-sidebar>
+      <div style="padding: 36px;">
+          <p>Тестовая страница</p>
+          <span>
+          Группа исследователей из Миланского университета разработала обогащенный витаминами «коктейль» от похмелья, эффект которого основан на полезном действии имбиря, опунции, вишни и гинкго билоба. Результаты работы опубликованы в медицинском журнале The Lancet.
+          В исследовании приняли участие 214 представителей разных возрастных групп. Ученые применили инновационный трехэтапный протокол для тестирования воздействия растительных компонентов. Основной группе участников предложили напиток, состоящий из экстрактов имбиря, опунции, барбадосской вишни и гинкго билоба, дополненный минералами и витаминами группы B.
+          </span>
+       </div>
+      </div>
     `,
   }),
   args: {
     items: DEMO_ITEMS,
+    bottomItems: DEMO_BOTTOM_ITEMS,
     title: 'Меню',
-    isCollapsed: false,
+    collapsed: false,
     toggleIcon: 'chevron_left',
     expandedIcon: 'expand_less',
     collapsedIcon: 'expand_more',
@@ -161,7 +191,7 @@ export const Collapsed: Story = {
   ...Default,
   args: {
     ...Default.args,
-    isCollapsed: true,
+    collapsed: true,
     toggleIcon: 'chevron_right',
   },
 };
