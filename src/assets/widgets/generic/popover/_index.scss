@@ -19,9 +19,15 @@
 
   background-color: var(--popover-background);
   color: var(--popover-color);
+  border: 1px solid var(--popover-border);
+
+  .dx-popup-title {
+    color: var(--popover-color);
+  }
 
   .dx-popover-arrow::after {
     background-color: var(--popover-background);
+    border: 1px solid var(--popover-border);
   }
 
   & > *:not(.dx-popover-arrow, :last-child) {
@@ -31,7 +37,7 @@
     padding: 0;
   }
 
-  .dx-toolbar.dx-popup-title {
+  .dx-toolbar.dx-popup-title, .dx-popup-title {
     border: none;
     .dx-toolbar-items-container {
       height: 100%;
@@ -85,11 +91,30 @@
 .me-popover.me-popover-light .dx-overlay-content.dx-popup-normal {
   @if $color == 'light' {
     @include alternateColors;
+  } @else {
+    @include standardColors;
   }
 }
 .me-popover.me-popover-dark .dx-overlay-content.dx-popup-normal {
   @if $color == 'dark' {
     @include alternateColors;
+  } @else {
+    @include standardColors;
+  }
+}
+
+@mixin close-button-size($iconWidth, $buttonWidth) {
+  .dx-button.dx-button-has-icon {
+    .dx-button-content {
+      height: $buttonWidth;
+      width: $buttonWidth;
+      padding: calc(($buttonWidth - $iconWidth) / 2);
+
+      .dx-icon.dx-icon-close {
+        font-size: $iconWidth;
+        line-height: $iconWidth;
+      }
+    }
   }
 }
 
@@ -102,22 +127,14 @@
       margin-bottom: 12px;
     }
 
-    .dx-toolbar.dx-popup-title {
+    .dx-toolbar.dx-popup-title, .dx-popup-title {
       .dx-item-content {
         font-size: 16px;
         font-weight: 600;
         line-height: 20px;
       }
 
-      .dx-button.dx-closebutton {
-        .dx-button-content {
-          height: 20px;
-          width: 20px;
-          .dx-icon.dx-icon-close {
-            font-size: 14px;
-          }
-        }
-      }
+      @include close-button-size(10px, 28px);
     }
 
     .dx-popup-content {
@@ -133,14 +150,21 @@
       }
     }
   }
+  &.me-popover-medium {
+    .dx-toolbar.dx-popup-title, .dx-popup-title {
+      @include close-button-size(10px, 32px);
+    }
+  }
   &.me-popover-large {
     padding: 20px;
-    .dx-toolbar.dx-popup-title {
+    .dx-toolbar.dx-popup-title, .dx-popup-title {
       .dx-item-content {
         font-size: 24px;
         font-weight: 600;
         line-height: 30px;
       }
+
+      @include close-button-size(14px, 40px);
     }
 
     .dx-popup-content {
@@ -156,6 +180,7 @@
       }
     }
   }
+
 }
 
 //////////////////////////////////
