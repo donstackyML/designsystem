@@ -47,26 +47,4 @@ export class MeNumberBoxDirective
   get isSizeLarge() {
     return this.size === 'large';
   }
-
-  // Установка цвета при фокусе
-  @HostListener('focusin')
-  onFocusIn() {
-    const labelElement = this.element.nativeElement.querySelector(
-      '.dx-texteditor-label'
-    );
-    if (labelElement) {
-      this.renderer.setStyle(labelElement, 'color', '#3257DC'); // Установите нужный цвет
-    }
-  }
-
-  // Снятие цвета при потере фокуса
-  @HostListener('focusout')
-  override onFocusOut() {
-    const labelElement = this.element.nativeElement.querySelector(
-      '.dx-texteditor-label'
-    );
-    if (labelElement) {
-      this.renderer.removeStyle(labelElement, 'color');
-    }
-  }
 }
