@@ -178,7 +178,7 @@ export const WithCurrency: StoryObj = {
     template: `
 			<dx-number-box
 			meNumberBox
-				>
+      ${argsToTemplate(args)}>
 			  <dxi-button
           name="currency"
           location="after"
