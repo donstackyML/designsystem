@@ -35939,7 +35939,6 @@ input.dx-hidden {
 
 .me-status-bar {
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
   padding: 4px;
   background: var(--Background-Content);
@@ -35950,14 +35949,23 @@ input.dx-hidden {
   background: transparent;
   border: none;
 }
-.me-status-bar--small {
-  gap: 4px;
+.me-status-bar__button-container {
+  display: flex;
+  align-items: center;
 }
-.me-status-bar--small .me-status-bar__section {
-  gap: 4px;
+.me-status-bar__button-container .me-status-bar__divider {
+  margin: 0;
+  width: 1px;
+}
+.me-status-bar--small .me-status-bar__section:not(:last-of-type) {
+  margin-right: 4px;
+}
+.me-status-bar--small .me-status-bar__button-container:not(:last-of-type) {
+  margin-right: 4px;
 }
 .me-status-bar--small .me-status-bar__divider {
   height: 24px;
+  margin-left: 4px;
 }
 .me-status-bar--small .me-status-bar__button {
   height: 28px;
@@ -35968,15 +35976,15 @@ input.dx-hidden {
   font-size: 14px;
   line-height: 16px;
 }
-.me-status-bar--large {
-  gap: 8px;
+.me-status-bar--large .me-status-bar__section:not(:last-of-type) {
+  margin-right: 8px;
 }
-.me-status-bar--large .me-status-bar__section {
-  gap: 8px;
+.me-status-bar--large .me-status-bar__button-container:not(:last-of-type) {
+  margin-right: 8px;
 }
 .me-status-bar--large .me-status-bar__divider {
   height: 28px;
-  margin: 0 6px;
+  margin-left: 8px;
 }
 .me-status-bar--large .me-status-bar__button {
   height: 40px;
@@ -35990,11 +35998,24 @@ input.dx-hidden {
 .me-status-bar__section {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   height: 100%;
+}
+.me-status-bar__section--left {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.me-status-bar__section--left .me-status-bar__button-content {
+  max-width: 100%;
 }
 .me-status-bar__section--right {
   margin-left: auto;
+  max-width: 100%;
+}
+.me-status-bar__button .dx-button-content span {
+  text-overflow: inherit;
+  overflow: inherit;
+  white-space: inherit;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--error {
   background-color: var(--Controls-BG-Accent-Danger-BG-Default) !important;
@@ -36087,15 +36108,8 @@ input.dx-hidden {
 }
 
 .me-status-bar__button-content {
+  justify-content: flex-start;
   gap: 0px;
-}
-
-.me-status-bar__divider {
-  margin: 0;
-}
-
-.me-status-bar--large .me-status-bar__divider {
-  margin: 0;
 }
 
 .me-status-bar--large .me-status-bar__button .me-status-bar__button-content .dx-icon {
