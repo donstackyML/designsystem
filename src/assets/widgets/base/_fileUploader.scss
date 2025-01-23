@@ -32,11 +32,12 @@
   &::before {
     padding-top: 1em;
     margin-top: -1em;
+    display: none;
   }
 
   &::after {
-    padding-bottom: 1em;
-    margin-bottom: -1em;
+    padding-bottom: 0;
+    margin-bottom:  0;
   }
 
   .dx-button {
@@ -48,22 +49,38 @@
   }
 }
 
-.dx-fileuploader-button {
-  position: relative;
+.dx-button {
+  --fileuploader-button-height: 28px;
+  --fileuploader-button-padding-inline: 12px;
 
-  .dx-fileuploader-input {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    cursor: pointer;
+  &.dx-fileuploader-button {
 
-    &::-webkit-file-upload-button,
-    &::-ms-browse {
-      cursor: pointer;
+      position: relative;
+
+      .dx-fileuploader-input {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+
+        &::-webkit-file-upload-button,
+        &::-ms-browse {
+          cursor: pointer;
+        }
+      }
     }
-  }
+
+    &.dx-fileuploader-upload-button,
+    &.dx-fileuploader-button {
+      .dx-button-content {
+        padding-inline: var(--fileuploader-button-padding-inline);
+        padding-block: 0;
+        height: var(--fileuploader-button-height);
+        align-items: center;
+      }
+    }
 }
 
 .dx-fileuploader-content {
