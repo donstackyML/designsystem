@@ -12729,6 +12729,10 @@
   font-size: 1em;
 }
 
+.dx-overlay-content {
+  margin: 0 !important;
+}
+
 .dx-autocomplete.dx-invalid .dx-texteditor-container::after,
 .dx-autocomplete.dx-valid .dx-texteditor-container::after {
   right: 8px;
@@ -14353,9 +14357,10 @@
   cursor: default;
 }
 
-.me-selectbox.me-keyboard-focused.dx-state-focused {
+.me-selectbox.me-keyboard-focused.dx-state-focused .dx-selectbox-container {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
+  border-radius: 3px;
 }
 .me-selectbox.me-keyboard-focused.dx-state-focused .dx-texteditor-container {
   box-shadow: none !important;
@@ -15597,7 +15602,6 @@
 }
 .me-select-box.dx-popup-wrapper > .dx-overlay-content .dx-popup-content,
 .me-dropdownlist.dx-popup-wrapper > .dx-overlay-content .dx-popup-content {
-  margin: 4px 0;
   border: 1px solid #3f4044;
   background: #2e2e2f;
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1411764706);
@@ -31610,11 +31614,73 @@ input.dx-hidden {
 .me-form {
   font-family: var(--font-family, Arial, sans-serif);
 }
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-small {
+  height: 36px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-small .dx-texteditor-container {
+  padding-block: 2px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-medium {
+  height: 40px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-medium .dx-texteditor-container {
+  padding-block: 2px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-large {
+  height: 48px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.me-inputs-large .dx-texteditor-container {
+  padding-block: 2px;
+}
+.me-form .me-textbox-small.dx-texteditor-with-label .dx-texteditor-label .dx-label span {
+  transform: translate(0, -5px);
+}
+.me-form .me-textbox-medium.dx-texteditor-with-label .dx-texteditor-label .dx-label:after {
+  top: -5px;
+}
+.me-form .me-textbox-large.dx-texteditor-with-label .dx-texteditor-label {
+  left: 12px;
+}
+.me-form .me-textbox-large.dx-texteditor-with-label .dx-texteditor-label .dx-label:after {
+  top: -8px;
+}
+.me-form .me-inputs.dx-texteditor.dx-widget.dx-dropdowneditor {
+  background-color: transparent !important;
+}
+.me-form .dx-selectbox-container {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+  border-radius: 3px;
+}
+.me-form .me-date-box .dx-texteditor-container {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+  border-radius: 3px;
+}
 .me-form .dx-layout-manager .dx-label-h-align.dx-flex-layout:not(.dx-field-item-label-align) {
   align-items: center;
 }
 .me-form .dx-texteditor-with-floating-label .dx-texteditor-label {
-  left: 20px !important;
+  left: 9px;
+}
+.me-form .dx-texteditor-with-floating-label.me-inputs-large .dx-texteditor-label {
+  left: 12px;
+}
+.me-form .dx-texteditor-with-floating-label.me-inputs-large .dx-texteditor-label .dx-label::after {
+  padding: 12px 2px;
+}
+.me-form .dx-field-item-required .dx-texteditor-with-label .dx-label::after {
+  padding: 0 2px;
+  position: relative;
+  top: -3px;
+}
+.me-form .dx-field-item-required .dx-texteditor-with-floating-label .dx-label::after {
+  align-content: start;
+}
+.me-form .dx-field-item-required .dx-texteditor-with-floating-label.dx-texteditor-empty:not(.dx-state-focused) .dx-label::after {
+  align-content: center;
+  line-height: 0;
+}
+.me-form .me-textbox.me-textbox-small.dx-texteditor-with-floating-label .dx-label::after {
+  padding: 4px 2px;
 }
 .me-form .dx-textbox,
 .me-form .dx-selectbox {
@@ -31744,8 +31810,6 @@ input.dx-hidden {
   color: var(--label-color, #757575); /* Цвет лейбла */
   border-color: transparent !important;
 }
-.me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:focus ~ .dx-label,
-.me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:hover ~ .dx-label,
 .me-form .dx-editor-outlined .dx-editor-outlined .dx-texteditor-input:not(:placeholder-shown) ~ .dx-label {
   margin-top: 0 !important;
 }
@@ -35802,7 +35866,6 @@ input.dx-hidden {
 
 .me-status-bar {
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
   padding: 4px;
   background: var(--Background-Content);
@@ -35813,14 +35876,23 @@ input.dx-hidden {
   background: transparent;
   border: none;
 }
-.me-status-bar--small {
-  gap: 4px;
+.me-status-bar__button-container {
+  display: flex;
+  align-items: center;
 }
-.me-status-bar--small .me-status-bar__section {
-  gap: 4px;
+.me-status-bar__button-container .me-status-bar__divider {
+  margin: 0;
+  width: 1px;
+}
+.me-status-bar--small .me-status-bar__section:not(:last-of-type) {
+  margin-right: 4px;
+}
+.me-status-bar--small .me-status-bar__button-container:not(:last-of-type) {
+  margin-right: 4px;
 }
 .me-status-bar--small .me-status-bar__divider {
   height: 24px;
+  margin-left: 4px;
 }
 .me-status-bar--small .me-status-bar__button {
   height: 28px;
@@ -35831,15 +35903,15 @@ input.dx-hidden {
   font-size: 14px;
   line-height: 16px;
 }
-.me-status-bar--large {
-  gap: 8px;
+.me-status-bar--large .me-status-bar__section:not(:last-of-type) {
+  margin-right: 8px;
 }
-.me-status-bar--large .me-status-bar__section {
-  gap: 8px;
+.me-status-bar--large .me-status-bar__button-container:not(:last-of-type) {
+  margin-right: 8px;
 }
 .me-status-bar--large .me-status-bar__divider {
   height: 28px;
-  margin: 0 6px;
+  margin-left: 8px;
 }
 .me-status-bar--large .me-status-bar__button {
   height: 40px;
@@ -35853,11 +35925,24 @@ input.dx-hidden {
 .me-status-bar__section {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   height: 100%;
+}
+.me-status-bar__section--left {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.me-status-bar__section--left .me-status-bar__button-content {
+  max-width: 100%;
 }
 .me-status-bar__section--right {
   margin-left: auto;
+  max-width: 100%;
+}
+.me-status-bar__button .dx-button-content span {
+  text-overflow: inherit;
+  overflow: inherit;
+  white-space: inherit;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--error {
   background-color: var(--Controls-BG-Accent-Danger-BG-Default) !important;
@@ -35950,15 +36035,8 @@ input.dx-hidden {
 }
 
 .me-status-bar__button-content {
+  justify-content: flex-start;
   gap: 0px;
-}
-
-.me-status-bar__divider {
-  margin: 0;
-}
-
-.me-status-bar--large .me-status-bar__divider {
-  margin: 0;
 }
 
 .me-status-bar--large .me-status-bar__button .me-status-bar__button-content .dx-icon {

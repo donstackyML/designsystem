@@ -3,7 +3,7 @@ import { DxButtonModule } from 'devextreme-angular';
 import { MeIconComponent, MeStatusBarComponent } from '../../public-api';
 
 export default {
-  title: 'Components/MeStatusBar(RC)',
+  title: 'Components/Status Bar',
   decorators: [
     moduleMetadata({
       imports: [DxButtonModule, MeIconComponent, MeStatusBarComponent],
@@ -180,7 +180,7 @@ export const CustomIcons: Story = {
 
 export const CustomIconsWithColor: Story = {
   args: {
-    leftItems: [{ text: 'Воткинская ГЭС', icon: 'home', color: '#ff0' }],
+    leftItems: [{ text: 'Воткинская ГЭС', icon: 'home', iconColor: '#ff0' }],
     rightItems: [
       {
         text: 'Отсутствует соединение с источником данных',
