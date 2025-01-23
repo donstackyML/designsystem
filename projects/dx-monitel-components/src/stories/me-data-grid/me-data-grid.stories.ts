@@ -1,11 +1,6 @@
 import { DxDataGridModule } from 'devextreme-angular';
 
-import {
-  argsToTemplate,
-  Meta,
-  moduleMetadata,
-  StoryObj,
-} from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
 
@@ -932,8 +927,11 @@ export const WithCounter: StoryObj = {
   render: (args) => ({
     props: args,
     template: `<dx-data-grid
-  meDataGrid
-  ${argsToTemplate(args)}
+    meDataGrid
+    [(dataSource)]="dataSource"
+    [size]="size"
+    [showBorders]="showBorders"
+    [showRowLines]="showRowLines"
 >
   <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
   <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
