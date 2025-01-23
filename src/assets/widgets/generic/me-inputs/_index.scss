@@ -1,113 +1,389 @@
 @use 'sass:color';
 @use '../colors' as *;
-@use '../sizes' as *;
-@use '../common/sizes' as *;
 
-@mixin unfocusState($indent, $fontSize) {
+@mixin unfocusState($fontSize, $lineHeight: $fontSize) {
   font-size: $fontSize;
-  line-height: $fontSize;
-
-  transform: translate(0, $indent);
-  -webkit-transform: translate(0, $indent);
-  -moz-transform: translate(0, $indent);
-  -ms-transform: translate(0, $indent);
-  -o-transform: translate(0, $indent);
+  line-height: $lineHeight;
 }
 
-@mixin focusState($indent, $fontSize) {
-  top: $indent;
-
+@mixin focusState($fontSize, $lineHeight: $fontSize) {
   font-size: $fontSize;
-  line-height: $fontSize;
-
-  transform: translate(0, 0);
-  -webkit-transform: translate(0, 0);
-  -moz-transform: translate(0, 0);
-  -ms-transform: translate(0, 0);
-  -o-transform: translate(0, 0);
+  line-height: $lineHeight;
 }
+
+$generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms,
+  transform 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms, top 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
 
 .me-inputs.dx-texteditor.dx-widget {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+  border: 0;
+
   &.me-textbox.me-keyboard-focused.dx-state-focused {
     outline: 2px solid var(--Dividers-Borders-Focus);
     outline-offset: 2px;
   }
 
-  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
-  border: 0;
+  &.me-inputs {
+    // Size: small | medium | large
 
-  //Состояния
-  &:not(&.dx-texteditor-label-outside, &.dx-texteditor-with-floating-label) {
-    .dx-texteditor-label {
-      .dx-label {
-        height: auto;
+    &.me-inputs {
+      &-small {
+        --input-border-radius: 3px;
+        --input-font-size: 13px;
+        --input-line-height: 16px;
+        --input-fields-gap: 4px;
+
+        --input-height: 36px;
+        --padding-inline: 8px;
+        --padding-block: 2px;
+
+        --input-top-offset: 17px;
+        --input-bottom-offset: 3px;
+
+        --label-font-size: 12px;
+        --label-line-height: 16px;
+
+        --icon-width: 20px;
+        --clear-icon-inner-width: 12px;
+        --dropdowneditor-icon: 16px;
+
+        &:is(.dx-texteditor-label-outside),
+        &:not(:has(.dx-texteditor-label)) {
+          --input-height: 28px;
+
+          --label-font-size: 12px;
+          --label-line-height: 16px;
+        }
+      }
+
+      &-medium {
+        --input-border-radius: 3px;
+        --input-height: 40px;
+        --input-font-size: 14px;
+        --input-line-height: 20px;
+        --input-fields-gap: 4px;
+
+        --padding-inline: 8px;
+        --padding-block: 2px;
+
+        --input-top-offset: 17px;
+        --input-bottom-offset: 3px;
+
+        --label-font-size: 12px;
+        --label-line-height: 16px;
+
+        --icon-width: 20px;
+        --clear-icon-inner-width: 12px;
+        --dropdowneditor-icon: 16px;
+
+        &:is(.dx-texteditor-label-outside),
+        &:not(:has(.dx-texteditor-label)) {
+          --input-height: 32px;
+
+          --label-font-size: 12px;
+          --label-line-height: 16px;
+        }
+      }
+
+      &-large {
+        --input-border-radius: 4px;
+        --input-height: 48px;
+        --input-font-size: 16px;
+        --input-line-height: 20px;
+        --input-fields-gap: 4px;
+
+        --padding-inline: 12px;
+        --padding-block: 5.5px;
+
+        --input-top-offset: 22.5px;
+        --input-bottom-offset: 5.5px;
+
+        --label-font-size: 13px;
+        --label-line-height: 16px;
+
+        --icon-width: 24px;
+        --clear-icon-inner-width: 16px;
+        --dropdowneditor-icon: 18px;
+
+        &:is(.dx-texteditor-label-outside),
+        &:not(:has(.dx-texteditor-label)) {
+          --input-height: 40px;
+
+          --label-font-size: 14px;
+          --label-line-height: 20px;
+        }
       }
     }
-  }
-
-  &.me-state-focus {
-    outline: 2px solid var(--Dividers-Borders-Focus);
-    outline-offset: 2px;
-  }
-
-  &.dx-state-hover {
-    background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
-  }
-
-  &.dx-state-focused,
-  &.dx-state-hover,
-  &.dx-state-hover.dx-state-focused {
-    &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
-      .dx-label {
-        height: auto;
-      }
-    }
-  }
-
-  &.dx-state-focused:not(.dx-invalid, .dx-state-readonly) {
-    background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
 
     .dx-texteditor-container {
-      box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Accent-Default);
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -ms-border-radius: 3px;
-      -o-border-radius: 3px;
+      width: 100%;
+      align-items: center;
+
+      border-radius: var(--input-border-radius);
+      padding-inline: var(--padding-inline);
+
+      .dx-texteditor-input-container,
+      .dx-placeholder {
+        font-size: var(--input-font-size);
+        line-height: var(--input-line-height);
+        height: var(--input-height);
+
+        font-weight: var(--me-regular-font-weight);
+      }
+
+      .dx-texteditor-input-container {
+        align-items: center;
+
+        *,
+        *::before {
+          padding: 0;
+        }
+
+        .dx-texteditor-input {
+          text-align: left;
+
+          &::placeholder {
+            color: transparent !important;
+            visibility: hidden;
+          }
+
+          input {
+            height: auto;
+          }
+        }
+
+        .dx-placeholder {
+          color: var(--Controls-Content-In-Controls-Main-Disabled);
+
+          &::before {
+            display: flex;
+            height: 100%;
+            align-items: center;
+          }
+        }
+      }
+
+
+      .dx-texteditor-buttons-container {
+        font-family: var(--me-icon-family);
+        align-items: center;
+        gap: 4px;
+        color: var(--Controls-Content-In-Controls-Main-Default);
+        margin-left: 4px;
+
+        &:has(> div:empty) {
+          margin-left: 0;
+        }
+
+        &>* {
+          height: var(--icon-width);
+          width: var(--icon-width);
+          min-width: var(--icon-width);
+          margin: 0;
+          padding: 0;
+        }
+
+        // убираем лишние пустые div если они не кнопки
+        &>*:not(.dx-widget, .dx-button, .dx-numberbox-spin-container, .dx-clear-button-area) {
+          display: none;
+        }
+
+        // Dropdown button
+
+        .dx-dropdowneditor-button {
+
+          .dx-button-content {
+
+            .dx-dropdowneditor-icon {
+              font-family: var(--me-icon-family);
+              font-size: 18px;
+              width: inherit;
+              height: inherit;
+
+              &::before {
+                content: var(--me-icon-chevron-down);
+              }
+            }
+          }
+        }
+      }
     }
 
-    &.me-inputs-large .dx-texteditor-container {
-      border-radius: 4px;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      -ms-border-radius: 4px;
-      -o-border-radius: 4px;
+    .dx-texteditor-label {
+      transition: $generic-texteditor-label-transition;
+      height: fit-content !important;
+      position: absolute;
+      top: var(--label-top-offset, var(--padding-block));
+      transform: translateY(calc(var(--label-bottom-offset) * -1));
+      bottom: var(--label-bottom-offset);
+
+
+      align-items: center;
+
+      .dx-label {
+        padding: 0 !important;
+        height: var(--label-line-height) !important;
+
+        span {
+          position: static;
+          height: fit-content !important;
+          margin: 0 !important;
+
+          transform: none !important;
+          font-size: var(--label-font-size) !important;
+          font-weight: var(--me-regular-font-weight) !important;
+          line-height: var(--label-line-height) !important;
+          text-align: left;
+        }
+      }
     }
 
-    .dx-label {
-      span {
-        color: var(--Controls-Content-In-Controls-Accent-Default);
+    // labelMode: static | hidden
+
+    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
+    &.dx-texteditor-with-floating-label {
+      .dx-label-before {
+        min-width: var(--padding-inline);
+      }
+
+      .dx-texteditor-input-container,
+      .dx-placeholder {
+        padding-block: var(--input-top-offset) var(--input-bottom-offset);
+      }
+    }
+
+    // labelMode: floating
+
+    &.dx-texteditor-with-floating-label {
+
+      &.dx-texteditor-empty:not(.dx-state-focused),
+      &.dx-state-readonly.dx-texteditor-empty:not(.dx-state-focused),
+      &.dx-state-readonly.dx-texteditor-empty.dx-state-focused {
+        --label-top-offset: 50%;
+        --label-bottom-offset: 50%;
+
+        --label-font-size: var(--input-font-size);
+        --label-line-height: var(--input-line-height);
+      }
+    }
+
+    // labelMode: outside
+
+    &.dx-texteditor-label-outside {
+      --outside-label-height-with-padding: calc(var(--label-line-height) + var(--input-fields-gap));
+      --label-top-offset: calc(var(--outside-label-height-with-padding) * -1);
+
+      margin-top: var(--outside-label-height-with-padding);
+
+      .dx-label-before {
+        min-width: 0px;
+      }
+    }
+
+    &.dx-texteditor-label-outside.dx-texteditor-with-label {
+      &:not(.dx-state-disabled, .dx-state-focused, .dx-invalid) .dx-texteditor-label .dx-label {
+        color: var(--Controls-Content-In-Controls-Main-Default);
+      }
+
+      &-before {
+        min-width: 0;
       }
     }
   }
 
-  &.dx-invalid {
-    &.me-inputs-small .dx-texteditor-container,
-    &.me-inputs-medium .dx-texteditor-container {
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -ms-border-radius: 3px;
-      -o-border-radius: 3px;
+  // States
+
+  &.me-state {
+    &-focus {
+      outline: 2px solid var(--Dividers-Borders-Focus);
+      outline-offset: 2px;
+    }
+  }
+
+  &.dx-state {
+    &-hover {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
     }
 
-    &.me-inputs-large .dx-texteditor-container {
-      border-radius: 4px;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      -ms-border-radius: 4px;
-      -o-border-radius: 4px;
+    &-focused:not(.dx-invalid, .dx-state-readonly) {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+
+      .dx-texteditor-container {
+        box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Accent-Default);
+      }
+
+      .dx-label {
+        span {
+          color: var(--Controls-Content-In-Controls-Accent-Default) !important;
+        }
+      }
     }
+
+    // disables: true
+
+    &-disabled {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+
+      .dx-texteditor-input,
+      .dx-texteditor-label,
+      .dx-texteditor-buttons-container,
+      .dx-dropdowneditor-icon,
+      .dx-numberbox-spin-up-icon,
+      .dx-numberbox-spin-down-icon,
+      .dx-button-text,
+      .dx-icon {
+        color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+      }
+    }
+
+    // readOnly: true
+
+    &-readonly {
+      input {
+        cursor: auto;
+      }
+
+      &:not(.dx-state-disabled) {
+        background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+      }
+
+      .dx-numberbox-spin-container,
+      .dx-clear-button-area {
+        display: none;
+      }
+
+      .dx-texteditor-container {
+        .dx-texteditor-buttons-container {
+          font-size: var(--icon-width);
+          line-height: var(--icon-width);
+          font-family: var(--me-icon-family);
+          gap: 0;
+          align-self: center;
+
+          &::before {
+            content: var(--me-icon-lock);
+            align-content: center;
+            text-align: center;
+          }
+
+          &>* {
+            width: 0 !important;
+            min-width: 0 !important;
+            overflow: hidden;
+          }
+
+          &:not(.dx-texteditor-buttons-container:last-child) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+
+  // isValid: false
+
+  &.dx-invalid {
 
     &:not(.dx-state-disabled) {
       .dx-texteditor-container {
@@ -122,316 +398,85 @@
     }
   }
 
-  &.dx-state-disabled {
-    background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+  // showClearButton: true
 
-    .dx-texteditor-input,
-    .dx-texteditor-label,
-    .dx-texteditor-buttons-container,
-    .dx-dropdowneditor-icon,
-    .dx-numberbox-spin-up-icon,
-    .dx-numberbox-spin-down-icon,
-    .dx-button-text,
-    .dx-icon {
-      color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
-    }
-  }
-
-  //иконка при readOnly
-  &.dx-state-readonly {
-    &:not(.dx-state-disabled) {
-      background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
-    }
-
-    .dx-numberbox-spin-container {
-      width: 0;
-    }
-
-    .dx-texteditor-container {
-      .dx-texteditor-buttons-container {
-        font-size: 20px;
-        line-height: 20px;
-        font-family: var(--me-icon-family);
-        gap: 0;
-        align-self: center;
-
-        &::before {
-          content: var(--me-icon-lock);
-          align-content: center;
-          text-align: center;
-        }
-
-        & > * {
-          width: 0 !important;
-          min-width: 0 !important;
-          overflow: hidden;
-        }
-
-        &:not(.dx-texteditor-buttons-container:last-child) {
-          display: none;
-        }
-      }
-    }
-
-    &.me-inputs-large {
-      .dx-texteditor-container {
-        .dx-texteditor-buttons-container {
-          width: 24px;
-          height: 24px;
-
-          &::before {
-            width: 24px;
-            height: 24px;
-            font-size: 23px;
-          }
-        }
-      }
-    }
-  }
-
-  /////////////////////////////////////////////////////////////////////////
-
-  .dx-placeholder {
-    padding-left: 15px;
-    left: 0;
-    right: 30px;
-
-    &::before {
-      padding-left: 0;
-    }
-  }
-
-  .dx-texteditor-container {
-    padding-inline: 8px;
-    width: 100%;
+  .dx-clear-button-area {
+    visibility: hidden;
+    display: flex;
+    position: relative;
     align-items: center;
-    &:has(input:not(:placeholder-shown)) .dx-clear-button-area {
-      display: flex;
+    justify-content: center;
+    margin: 0;
+    min-width: var(--icon-width);
+    width: var(--icon-width);
+  }
+
+  &:not(.dx-texteditor-empty) {
+    .dx-clear-button-area {
+
+      visibility: visible;
+
+      .dx-icon {
+        width: var(--clear-icon-inner-width);
+        height: var(--clear-icon-inner-width);
+        align-content: center;
+        text-align: center;
+        line-height: 1;
+        font-size: var(--clear-icon-inner-width);
+      }
     }
-    .dx-texteditor-input-container {
-      min-height: 20px;
-      height: auto;
+  }
+
+  // Mode: search
+
+  &.dx-searchbox {
+
+    &.me-inputs {
+      --icon-search-width: var(--icon-width);
+      --searchbox-gap: 4px;
+      --searchbox-input-left-offset: calc(var(--icon-search-width) + var(--searchbox-gap));
+
+      &-small {
+        --icon-search-inner-width: 14px;
+      }
+
+      &-medium {
+        --icon-search-inner-width: 14px;
+      }
+
+      &-large {
+        --icon-search-inner-width: 14px;
+      }
+    }
+
+    .dx-icon.dx-icon-search {
+      display: flex;
       align-items: center;
 
-      *,
-      *::before {
-        padding: 0;
-      }
-
-      .dx-texteditor-input {
-        font-weight: var(--me-regular-font-weight);
-        text-align: left;
-
-        &::placeholder {
-          color: transparent !important;
-        }
-      }
-
-      .dx-placeholder {
-        font-weight: var(--me-regular-font-weight);
-        color: var(--Controls-Content-In-Controls-Main-Disabled);
-
-        &::before {
-          display: flex;
-          height: 100%;
-          align-items: center;
-        }
-      }
-    }
-
-    //кнопки
-    .dx-texteditor-buttons-container {
-      align-items: flex-start;
-      gap: 4px;
-      color: var(--Controls-Content-In-Controls-Main-Default);
-      margin-left: 4px;
-
-      &:has(> div:empty) {
-        margin-left: 0;
-      }
-
-      & > * {
-        height: 20px;
-        min-width: 20px;
-        margin: 0;
-      }
-
-      // убираем лишние пустые div если они не кнопки
-      & > *:not(.dx-widget, .dx-numberbox-spin-container, .dx-button, .dx-clear-button-area) {
-        display: none;
-      }
-
-      .dx-clear-button-area {
-        margin: 0;
-        width: 20px;
-        min-width: 0;
-        display: none;
-        position: relative;
-        align-items: center;
-        justify-content: center;
-
-        .dx-icon {
-          width: 12px;
-          height: 12px;
-          align-content: center;
-          text-align: center;
-          line-height: 1;
-          font-size: 12px;
-        }
-      }
-
-      .dx-numberbox-spin-container {
-        .dx-numberbox-spin-up-icon,
-        .dx-numberbox-spin-down-icon {
-          font-family: var(--me-icon-family);
-        }
-
-        .dx-numberbox-spin-up-icon {
-          &::before {
-            content: var(--me-icon-chevron-up);
-          }
-        }
-
-        .dx-numberbox-spin-down-icon {
-          &::before {
-            content: var(--me-icon-chevron-down);
-          }
-        }
-      }
-
-      .dx-dropdowneditor-button {
-        width: 20px;
-        min-width: 20px;
-        padding: 0;
-
-        .dx-button-content {
-          width: 20px;
-          height: 20px;
-
-          .dx-dropdowneditor-icon {
-            font-family: var(--me-icon-family);
-            font-size: 18px;
-            width: 20px;
-            height: 20px;
-
-            &::before {
-              content: var(--me-icon-chevron-down);
-            }
-          }
-        }
-      }
-
-      .dx-password-toggle {
-        &.dx-button {
-          margin: 0;
-          border: none;
-          background: transparent;
-          box-shadow: none;
-
-          &:hover {
-            background: transparent;
-          }
-
-          .dx-button-content {
-            padding: 0;
-
-            .dx-icon {
-              margin: 0;
-              font-family: var(--me-icon-family);
-              font-style: normal;
-              font-size: 20px;
-
-              &.dx-icon-eyeopen::before {
-                content: var(--me-icon-eye);
-              }
-
-              &.dx-icon-eyeoff::before {
-                content: var(--me-icon-eyeoff);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  //searchBox
-  &.dx-searchbox {
-    .dx-icon.dx-icon-search {
-      align-content: center;
-      width: 20px;
-      line-height: 14px;
-      font-size: 14px;
-      padding-top: 3px;
+      width: var(--icon-search-width);
+      height: var(--icon-search-width);
+      transform: translateY(-50%);
+      margin: 0;
+      line-height: var(--icon-search-inner-width);
+      font-size: var(--icon-search-inner-width);
     }
 
     .dx-texteditor-input,
     .dx-placeholder {
-      padding: 0 0 0 24px;
+
+      margin-left: var(--searchbox-input-left-offset);
     }
 
-    &:not(
-        .dx-texteditor-label-outside,
-        .dx-texteditor-with-floating-label.dx-state-focused,
-        .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)
-      ) {
+    .dx-texteditor-label {
+      .dx-label-before {
+        min-width: 0;
+        max-width: 0;
+      }
+    }
+
+    &:not(.dx-texteditor-label-outside) {
       .dx-texteditor-label {
-        padding: 0 0 0 12px;
-      }
-    }
-
-    &.dx-texteditor-with-floating-label.dx-state-focused,
-    &.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) {
-      .dx-label span {
-        left: 11px;
-      }
-    }
-  }
-
-  //Labels
-  .dx-texteditor-label {
-    align-items: center;
-
-    .dx-label {
-      padding: 0 !important;
-
-      span {
-        font-size: 12px;
-        font-weight: var(--me-regular-font-weight);
-        line-height: 16px;
-        text-align: left;
-      }
-    }
-  }
-
-  &.dx-texteditor-label-outside {
-    margin-top: 24px;
-  }
-
-  &.dx-texteditor-label-outside.dx-texteditor-with-label {
-    &:not(.dx-state-disabled, .dx-state-focused, .dx-invalid) .dx-texteditor-label .dx-label {
-      color: var(--Controls-Content-In-Controls-Main-Default);
-    }
-
-    &.me-inputs-small,
-    &.me-inputs-medium {
-      .dx-texteditor-label {
-        margin-top: 0;
-        top: -20px;
-      }
-
-      &.dx-searchbox {
-        .dx-texteditor-label {
-          padding: 0;
-        }
-      }
-    }
-
-    &.me-inputs-large {
-      .dx-texteditor-label {
-        height: 20px;
-        margin-top: 0;
-        top: -24px;
+        left: calc(var(--padding-inline) + var(--searchbox-input-left-offset));
       }
     }
   }
@@ -447,43 +492,59 @@
     }
   }
 
+
+  // Mode: password
+
+  .dx-password-toggle {
+    &.dx-button {
+      margin: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+
+      &:hover {
+        background: transparent;
+      }
+
+      .dx-button-content {
+        padding: 0;
+
+
+        .dx-icon {
+          display: flex;
+          align-items: center;
+
+          font-family: var(--me-icon-family);
+          font-style: normal;
+          font-size: var(--icon-width);
+          width: var(--icon-width);
+          height: var(--icon-width);
+
+          &.dx-icon-eyeopen::before {
+            content: var(--me-icon-eye);
+          }
+
+          &.dx-icon-eyeoff::before {
+            content: var(--me-icon-eyeoff);
+          }
+        }
+      }
+    }
+  }
+
+
+
+
   &.dx-texteditor-with-floating-label,
   &.dx-editor-outlined.dx-state-readonly.dx-state-hover,
   &.dx-editor-outlined.dx-state-readonly.dx-state-focused {
-    .dx-texteditor-label {
-      padding: 0;
-      align-items: center;
-
-      .dx-label span {
-        margin-top: 0;
-      }
-    }
 
     &.dx-state-focused,
     &.dx-dropdowneditor-active,
     &:not(.dx-texteditor-empty) {
-      &:not(.dx-state-readonly) {
-        &.me-inputs-small .dx-texteditor-label .dx-label span {
-          @include focusState(5px, 12px);
-        }
-
-        &.me-inputs-medium .dx-texteditor-label .dx-label span {
-          @include focusState(7.5px, 12px);
-        }
-
-        &.me-inputs-large .dx-texteditor-label .dx-label span {
-          @include focusState(7.5px, 13px);
-        }
-      }
 
       &:not(.dx-state-disabled) {
         color: var(--Controls-Content-In-Controls-Main-Default);
-      }
-    }
-
-    &.dx-state-readonly:not(.dx-texteditor-empty) {
-      .dx-texteditor-label .dx-label span {
-        @include focusState(7.5px, 12px);
       }
     }
   }
@@ -499,304 +560,14 @@
       }
     }
 
-    .dx-label {
-      height: 100%;
-    }
-  }
-}
-
-//Sizes
-.me-inputs.dx-texteditor.dx-widget {
-  &.me-inputs-small {
-    $placeholder-font-size: 13px;
-
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-label {
-      padding-top: 2px;
-    }
-
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
-    &.dx-texteditor-with-floating-label {
-      .dx-label-before {
-        min-width: 8px;
-      }
-
-      .dx-texteditor-input-container,
-      .dx-placeholder {
-        padding-block: 13px 3px;
-      }
-    }
-
-    .dx-texteditor-container {
-      padding-block: 4px;
-
-      .dx-texteditor-input-container {
-        .dx-texteditor-input,
-        .dx-placeholder {
-          font-size: $placeholder-font-size;
-          line-height: 16px;
-        }
-      }
-
-      .dx-texteditor-buttons-container {
-        .dx-numberbox-spin-container {
-          .dx-numberbox-spin-up,
-          .dx-numberbox-spin-down {
-            width: 26px;
-          }
-        }
-      }
-    }
-
-    &.dx-texteditor-with-floating-label,
-    &.dx-state-readonly.dx-state-hover,
-    &.dx-state-readonly.dx-state-focused,
-    &.dx-state-readonly.dx-state-hover.dx-state-focused {
-      .dx-texteditor-label .dx-label span {
-        @include unfocusState(-7.5px, $placeholder-font-size);
-      }
-    }
-  }
-
-  //medium
-  &.me-inputs-medium {
-    $placeholder-font-size: 14px;
-
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-label {
-      padding-top: 2px;
-    }
-
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
-    &.dx-texteditor-with-floating-label {
-      .dx-label-before {
-        min-width: 8px;
-      }
-
-      .dx-texteditor-input-container,
-      .dx-placeholder {
-        padding-block: 17px 3px;
-      }
-    }
-
-    .dx-texteditor-container {
-      padding-block: 6px;
-
-      .dx-texteditor-input-container {
-        .dx-texteditor-input,
-        .dx-placeholder {
-          font-size: $placeholder-font-size;
-          line-height: 20px;
-        }
-      }
-
-      .dx-texteditor-buttons-container {
-        .dx-numberbox-spin-container {
-          .dx-numberbox-spin-up,
-          .dx-numberbox-spin-down {
-            width: 30px;
-          }
-        }
-      }
-    }
-
-    &.dx-texteditor-with-floating-label,
-    &.dx-state-readonly.dx-state-hover,
-    &.dx-state-readonly.dx-state-focused,
-    &.dx-state-readonly.dx-state-hover.dx-state-focused {
-      .dx-texteditor-label .dx-label span {
-        @include unfocusState(-7.5px, $placeholder-font-size);
-      }
-    }
-  }
-
-  //large
-  &.me-inputs-large {
-    $placeholder-font-size: 16px;
-
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-texteditor-label {
-      padding-top: 5.5px;
-    }
-
-    &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
-    &.dx-texteditor-with-floating-label {
-      .dx-label-before {
-        min-width: 12px;
-      }
-
-      .dx-texteditor-input-container,
-      .dx-placeholder {
-        padding-block: 19px 5px;
-      }
-    }
-
-    &.dx-searchbox {
-      .dx-icon.dx-icon-search {
-        align-content: center;
-        width: 24px;
-        line-height: 18px;
-        font-size: 18px;
-        padding-top: 3px;
-      }
-
-      .dx-texteditor-input,
-      .dx-placeholder {
-        padding: 0 0 0 28px;
-      }
-
-      &:not(
-          .dx-texteditor-label-outside,
-          .dx-texteditor-with-floating-label.dx-state-focused,
-          .dx-texteditor-with-floating-label:not(.dx-texteditor-empty)
-        ) {
-        .dx-texteditor-label {
-          padding: 0 0 0 16px;
-        }
-      }
-
-      &.dx-texteditor-with-floating-label.dx-state-focused,
-      &.dx-texteditor-with-floating-label:not(.dx-texteditor-empty) {
-        .dx-label span {
-          left: 15px;
-        }
-      }
-    }
-
-    .dx-texteditor-container {
-      padding-inline: 12px;
-      padding-block: 8px;
-
-      .dx-texteditor-input-container {
-        min-height: 24px;
-
-        .dx-texteditor-input,
-        .dx-placeholder {
-          font-size: $placeholder-font-size;
-          line-height: 20px;
-        }
-      }
-
-      .dx-texteditor-buttons-container {
-        & > * {
-          height: 24px;
-          min-width: 24px;
-        }
-
-        .dx-clear-button-area {
-          width: 24px;
-
-          .dx-icon {
-            width: 16px;
-            height: 16px;
-            font-size: 14px;
-          }
-        }
-
-        .dx-numberbox-spin-container {
-          .dx-numberbox-spin-up,
-          .dx-numberbox-spin-down {
-            width: 38px;
-          }
-
-          .dx-numberbox-spin-up-icon,
-          .dx-numberbox-spin-down-icon {
-            font-size: 22px;
-
-            &::before {
-              margin-left: -11px;
-            }
-          }
-        }
-
-        .dx-dropdowneditor-button {
-          width: 24px;
-          min-width: 24px;
-
-          .dx-button-content {
-            width: 24px;
-            height: 24px;
-
-            .dx-dropdowneditor-icon {
-              font-size: 20px;
-              width: 24px;
-              height: 24px;
-
-              &::before {
-                margin-left: -11px;
-              }
-            }
-          }
-        }
-
-        .dx-password-toggle {
-          .dx-button-content {
-            .dx-icon {
-              font-size: 24px;
-            }
-          }
-        }
-      }
-    }
-
-    .dx-texteditor-label {
-      .dx-label {
-        span {
-          font-size: 14px;
-          line-height: 20px !important;
-        }
-      }
-    }
-
-    &:not(.dx-texteditor-with-floating-label, .dx-texteditor-label-outside) {
-      .dx-texteditor-label {
-        .dx-label {
-          span {
-            top: -6px;
-          }
-        }
-      }
-
-      &.dx-state-focused {
-        .dx-texteditor-label {
-          .dx-label {
-            span {
-              top: -6px;
-            }
-          }
-        }
-      }
-    }
-
-    &.dx-texteditor-with-floating-label,
-    &.dx-state-readonly.dx-state-hover,
-    &.dx-state-readonly.dx-state-focused,
-    &.dx-state-readonly.dx-state-hover.dx-state-focused {
-      .dx-texteditor-label .dx-label span {
-        @include unfocusState(-8.5px, $placeholder-font-size);
-      }
-    }
   }
 }
 
 .me-inputs.dx-texteditor.dx-widget {
+
   &.me-number-box,
   &.me-date-range-box {
+
     &:not(.dx-texteditor-label-outside),
     &.dx-state-readonly {
       .dx-texteditor-buttons-container {
@@ -813,97 +584,15 @@
     }
 
     &.me-inputs {
-      &-small {
-        &:is(.dx-texteditor-label-outside) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              height: 28px;
-              padding-left: 8px;
-            }
-          }
+
+      .dx-texteditor-container {
+
+        .dx-texteditor-input-container,
+        .dx-placeholder {
+
+          padding-left: var(--padding-inline);
         }
 
-        &:is(.dx-texteditor-with-floating-label) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              padding-left: 8px;
-            }
-          }
-        }
-
-        &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              height: 36px;
-              padding-left: 8px;
-            }
-          }
-        }
-      }
-
-      &-medium {
-        &:is(.dx-texteditor-label-outside) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              height: 32px;
-              padding-left: 8px;
-            }
-          }
-        }
-
-        &:is(.dx-texteditor-with-floating-label) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              padding-left: 8px;
-            }
-          }
-        }
-
-        &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              height: 40px;
-              padding-left: 8px;
-            }
-          }
-        }
-      }
-
-      &-large {
-        &:is(.dx-texteditor-label-outside) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              height: 40px;
-              padding-left: 12px;
-            }
-          }
-        }
-
-        &:is(.dx-texteditor-with-floating-label) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              padding-left: 12px;
-            }
-          }
-        }
-
-        &:not(.dx-texteditor-label-outside, .dx-texteditor-with-floating-label) {
-          .dx-texteditor-container {
-            .dx-texteditor-input-container,
-            .dx-placeholder {
-              height: 48px;
-              padding-left: 12px;
-            }
-          }
-        }
       }
     }
 
@@ -924,32 +613,37 @@
         width: auto;
         min-width: auto;
       }
-    }
 
-    .dx-texteditor-buttons-container {
       .dx-state-active,
       .dx-state-hover {
         background: transparent;
       }
     }
+
   }
 
   &.me-number-box {
     &-small {
       --number-box-spin-button-height: 13px;
+      --number-box-spin-button-width: 26px;
     }
 
     &-medium {
       --number-box-spin-button-height: 15px;
+      --number-box-spin-button-width: 30px;
     }
 
     &-large {
       --number-box-spin-button-height: 19px;
+      --number-box-spin-button-width: 38px;
     }
 
+
     .dx-texteditor-buttons-container .dx-numberbox-spin-container {
+
       .dx-numberbox-spin-up,
       .dx-numberbox-spin-down {
+        width: var(--number-box-spin-button-width);
         height: var(--number-box-spin-button-height);
       }
     }
@@ -958,7 +652,7 @@
 
 //отключение бордеров у label везде!
 .dx-texteditor {
-  .dx-texteditor-label > * {
+  .dx-texteditor-label>* {
     border: none !important;
   }
 }
@@ -969,10 +663,6 @@
       background-color: var(--Background-Error);
       color: var(--Text-Error);
       border-radius: 3px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -ms-border-radius: 3px;
-      -o-border-radius: 3px;
     }
   }
 }
