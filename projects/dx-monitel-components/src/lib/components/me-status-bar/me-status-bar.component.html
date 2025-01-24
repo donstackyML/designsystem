@@ -3,9 +3,16 @@
   <div #leftSection class="me-status-bar__section me-status-bar__section--left">
     <ng-container *ngFor="let item of leftItems; let i = index; let last = last">
       <div class="me-status-bar__button-container">
-        <dx-button [ngClass]="getButtonClasses(item)" [text]="item.text" [icon]="item.icon || ''"
-          [stylingMode]="getStylingMode(item)" [activeStateEnabled]="false" [hoverStateEnabled]="false"
-          [focusStateEnabled]="false" (onClick)="!item.readonly && item.onClick && item.onClick()">
+        <dx-button
+          [ngClass]="getButtonClasses(item)"
+          [text]="item.text"
+          [icon]="item.icon || ''"
+          [stylingMode]="getStylingMode(item)"
+          [activeStateEnabled]="false"
+          [hoverStateEnabled]="false"
+          [focusStateEnabled]="false"
+          (onClick)="!item.readonly && item.onClick && item.onClick()"
+        >
           <div *dxTemplate="let data of 'content'" [style]="getContentStyles(item)" class="me-status-bar__button-content">
             <me-icon *ngIf="item.icon || item.showStatusIcon" [icon]="getIcon(item)" [class]="'dx-icon'" [size]="size" [color]="item.iconColor"></me-icon>
             <span>{{ item.text }}</span>
@@ -17,7 +24,7 @@
   </div>
 
   <!-- Правая секция -->
-  <div #rightSection  class="me-status-bar__section me-status-bar__section--right">
+  <div #rightSection class="me-status-bar__section me-status-bar__section--right">
     <ng-container *ngFor="let item of rightItems; let i = index; let last = last">
       <dx-button
         [ngClass]="getButtonClasses(item)"

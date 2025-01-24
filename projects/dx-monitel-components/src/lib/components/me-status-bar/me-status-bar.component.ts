@@ -15,14 +15,22 @@ export interface StatusBarItem {
 }
 
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { DxButtonModule } from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
 
 const spacings: Record<StatusBarSize, number> = {
-  'large': 8,
-  'small': 4
-}
+  large: 8,
+  small: 4,
+};
 
 const statusIcons: Record<StatusType, string> = {
   error: 'error',
@@ -31,7 +39,10 @@ const statusIcons: Record<StatusType, string> = {
   info: 'info',
 };
 
-const applyStyles = (element: HTMLElement, styles: Partial<CSSStyleDeclaration>): void => {
+const applyStyles = (
+  element: HTMLElement,
+  styles: Partial<CSSStyleDeclaration>
+): void => {
   Object.assign(element.style, styles);
 };
 
@@ -49,8 +60,10 @@ export class MeStatusBarComponent implements AfterViewInit {
   @Input() showDivider: boolean = false;
   @Input() transparent: boolean = false;
 
-  @ViewChild('leftSection', { static: true }) leftSectionRef!: ElementRef<HTMLElement>;
-  @ViewChild('rightSection', { static: true }) rightSectionRef!: ElementRef<HTMLElement>;
+  @ViewChild('leftSection', { static: true })
+  leftSectionRef!: ElementRef<HTMLElement>;
+  @ViewChild('rightSection', { static: true })
+  rightSectionRef!: ElementRef<HTMLElement>;
 
   private currentOverlappingIndex: null | number = null;
 
@@ -64,10 +77,11 @@ export class MeStatusBarComponent implements AfterViewInit {
   }
 
   adjustBlocks(): void {
-    const isCurrentIndexValid = typeof this.currentOverlappingIndex === 'number';
+    const isCurrentIndexValid =
+      typeof this.currentOverlappingIndex === 'number';
 
     const adjustedSpacing = spacings[this.size] + 1;
-    const spacingStyle = `${spacings[this.size]}px`
+    const spacingStyle = `${spacings[this.size]}px`;
 
     const leftSection = this.leftSectionRef.nativeElement;
     const leftButtons = Array.from(leftSection.children) as HTMLElement[];
@@ -81,13 +95,17 @@ export class MeStatusBarComponent implements AfterViewInit {
     leftButtons.forEach((button, index) => {
       const buttonRect = button.getBoundingClientRect();
 
-      if ((this.currentOverlappingIndex && this.currentOverlappingIndex! < index) || (this.currentOverlappingIndex === 0)) {
+      if (
+        (this.currentOverlappingIndex &&
+          this.currentOverlappingIndex! < index) ||
+        this.currentOverlappingIndex === 0
+      ) {
         applyStyles(button, {
           width: '0',
           overflow: 'initial',
           marginRight: 'auto',
         });
-        return
+        return;
       } else if (buttonRect.right > rightSectionLeft) {
         if (buttonRect.left >= rightSectionLeft) {
           applyStyles(button, {
@@ -108,7 +126,10 @@ export class MeStatusBarComponent implements AfterViewInit {
     });
 
     applyStyles(leftSection, {
-      marginRight: leftSectionLeft + adjustedSpacing > rightSectionLeft ? '0' : spacingStyle,
+      marginRight:
+        leftSectionLeft + adjustedSpacing > rightSectionLeft
+          ? '0'
+          : spacingStyle,
     });
 
     if (!shouldUpdateIndex) return;
@@ -120,9 +141,14 @@ export class MeStatusBarComponent implements AfterViewInit {
     const nextButton = leftButtons[nextIndex];
     const nextButtonRect = nextButton?.getBoundingClientRect();
 
-    if (nextButtonRect && rightSectionLeft > nextButtonRect.right + adjustedSpacing) {
-      const currentButton = isCurrentIndexValid && leftButtons[this.currentOverlappingIndex!];
-      const isLastIndex = this.currentOverlappingIndex === leftSection.children.length - 1
+    if (
+      nextButtonRect &&
+      rightSectionLeft > nextButtonRect.right + adjustedSpacing
+    ) {
+      const currentButton =
+        isCurrentIndexValid && leftButtons[this.currentOverlappingIndex!];
+      const isLastIndex =
+        this.currentOverlappingIndex === leftSection.children.length - 1;
 
       if (currentButton) {
         applyStyles(currentButton, {
@@ -140,7 +166,6 @@ export class MeStatusBarComponent implements AfterViewInit {
       }
     }
   }
-
 
   get containerClass(): string[] {
     const classes = ['me-status-bar'];
