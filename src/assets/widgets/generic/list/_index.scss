@@ -16,6 +16,30 @@
 // adduse
 @use '../badge';
 
+@mixin list-toggle-delete-switch-container($bg-color, $color) {
+  .dx-list-item-before-bag.dx-list-toggle-delete-switch-container {
+    width: auto;
+
+    .dx-icon.dx-icon-toggle-delete {
+      margin: 0;
+      height: 20px;
+      width: 20px;
+      background-image: none;
+      background: $bg-color;
+      border-radius: 50%;
+      font-family: var(--me-icon-family);
+      font-size: 20px;
+      font-style: normal;
+      align-content: center;
+
+      &::before {
+        content: var(--me-icon-remove);
+        color: $color;
+      }
+    }
+  }
+}
+
 $generic-mobile-list-item-horizontal-padding: 15px;
 
 $generic-list-border: $generic-list-border-width solid $list-border-color;
@@ -399,12 +423,12 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
     .dx-list-item-before-bag {
       .dx-list-select-checkbox,
       .dx-list-select-radiobutton {
-        margin-left: 8px;
+        margin-left: 0px;
       }
     }
 
     .dx-list-select-all-checkbox {
-      margin-left: 8px;
+      margin-left: 0px;
     }
 
     .dx-list-item-before-bag.dx-list-select-checkbox-container {
@@ -594,6 +618,9 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
 }
 
 .me-list {
+  --list-item-padding: 8px;
+  --list-item-gap: 8px;
+
   background: $me-list-bg;
   padding: 8px;
   gap: 16px;
@@ -705,41 +732,20 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
             }
 
             .dx-item.dx-list-item {
-              padding: 8px;
-              gap: 8px;
+              padding: var(--list-item-padding);
+              gap: var(--list-item-gap);
               border-top: 0;
               border-bottom: 1px solid var(--Dividers-Borders-Long);
 
               &.dx-list-slide-menu-wrapper {
                 .dx-list-slide-menu-content {
                   display: flex;
-                  gap: 8px;
+                  gap: var(--list-item-gap);
                   align-items: center;
                 }
               }
 
-              .dx-list-item-before-bag {
-                &.dx-list-toggle-delete-switch-container {
-                  width: auto;
-
-                  .dx-icon.dx-icon-toggle-delete {
-                    margin: 0;
-                    height: 20px;
-                    width: 20px;
-                    background-image: none;
-                    background: var(--Controls-BG-Accent-Accent-BG-Default);
-                    border-radius: 50%;
-                    font-family: var(--me-icon-family);
-                    font-size: 20px;
-                    font-style: normal;
-                    align-content: center;
-                    &::before {
-                      content: var(--me-icon-remove);
-                      color: var(--Controls-Content-In-Controls-On-BG-Default);
-                    }
-                  }
-                }
-              }
+              @include list-toggle-delete-switch-container(var(--Controls-BG-Accent-Accent-BG-Default), var(--Controls-Content-In-Controls-On-BG-Default));
 
               .dx-item-content.dx-list-item-content {
                 padding: 0;
@@ -753,8 +759,8 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
           .dx-list-select-all {
             display: flex;
             align-items: center;
-            padding: 8px;
-            gap: 8px;
+            padding: var(--list-item-padding);
+            gap: var(--list-item-gap);
             border-top: 0;
             border-bottom: 1px solid var(--Dividers-Borders-Long);
 
@@ -802,7 +808,33 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
 
 .me-list.dx-list {
   .dx-sortable-clone.dx-sortable-dragging > div {
-    padding-inline: 8px;
+
+    .dx-checkbox-container {
+      .dx-checkbox-icon {
+        border-color: var(--Controls-BG-Accent-Accent-BG-Disabled);
+      }
+    }
+
+    @include list-toggle-delete-switch-container(var(--Controls-BG-Accent-Accent-BG-Disabled), var(--Controls-Content-In-Controls-On-BG-Disabled));
+
+    &.dx-item.dx-list-item .dx-list-slide-menu-content,
+    &.dx-item.dx-list-item {
+      gap: var(--list-item-gap);
+      display: flex;
+      align-items: center;
+    }
+
+    &.dx-item.dx-list-item {
+      display: flex;
+      box-sizing: content-box;
+      padding: var(--list-item-padding);
+
+      .dx-item-content.dx-list-item-content {
+        display: flex;
+        align-items: center;
+        padding: 0;
+      }
+    }
 
     & > div {
       //height: 45px !important;
