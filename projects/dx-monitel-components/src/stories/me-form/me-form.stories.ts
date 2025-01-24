@@ -115,14 +115,14 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
           <dxi-validation-rule type="required" message="First Name is required"></dxi-validation-rule>
           <dxo-label text="First Name"></dxo-label>
           <div *dxTemplate>
-            <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+            <dx-text-box meTextBox [(value)]="formData.firstName" [size]="size" [readOnly]="readOnly" [disabled]="disabled" showClearButton="true"></dx-text-box>
           </div>
         </dxi-item>
         <dxi-item meFormItem dataField="lastName">
           <dxi-validation-rule type="required" message="Last Name is required"></dxi-validation-rule>
           <dxo-label text="Last Name"></dxo-label>
           <div *dxTemplate>
-            <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+            <dx-text-box meTextBox [(value)]="formData.lastName" [size]="size" [readOnly]="readOnly" [disabled]="disabled"  showClearButton="true"></dx-text-box>
           </div>
         </dxi-item>
         <dxi-item meFormItem dataField="email">
@@ -130,13 +130,13 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
 <!--          <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>-->
           <dxo-label text="Email"></dxo-label>
           <div *dxTemplate>
-            <dx-text-box meTextBox [(value)]="formData.email" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+            <dx-text-box meTextBox [(value)]="formData.email" [size]="size" [readOnly]="readOnly" [disabled]="disabled"  showClearButton="true"></dx-text-box>
           </div>
         </dxi-item>
         <dxi-item meFormItem dataField="phone">
           <dxo-label text="Phone"></dxo-label>
           <div *dxTemplate>
-            <dx-text-box meTextBox [(value)]="formData.phone" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+            <dx-text-box meTextBox [(value)]="formData.phone" [size]="size" [readOnly]="readOnly" [disabled]="disabled"  showClearButton="true"></dx-text-box>
           </div>
         </dxi-item>
         <dxi-item meFormItem dataField="gender">
@@ -154,7 +154,7 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
         <dxi-item meFormItem dataField="occupation">
           <dxo-label text="Occupation"></dxo-label>
           <div *dxTemplate>
-            <dx-text-box meTextBox [(value)]="formData.occupation" [placeholder]="'placeholder'" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-text-box>
+            <dx-text-box meTextBox [(value)]="formData.occupation" [placeholder]="'placeholder'" [size]="size" [readOnly]="readOnly" [disabled]="disabled"  showClearButton="true"></dx-text-box>
           </div>
         </dxi-item>
         <dxi-item dataField="isSubscribed">
