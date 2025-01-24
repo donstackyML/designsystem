@@ -16824,6 +16824,14 @@
     background-position-x: -900%;
   }
 }
+.me-progress-bar.dx-progressbar {
+  display: flex;
+}
+.me-progress-bar .dx-trackbar-wrapper.dx-progressbar-wrapper.dx-position-bottom-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 .me-progress-bar .dx-trackbar-range.dx-progressbar-range {
   border-radius: 4px;
   background-color: #5d9eff;
@@ -16831,20 +16839,19 @@
   margin-left: -1px;
 }
 .me-progress-bar .dx-trackbar-container.dx-progressbar-container {
+  overflow: hidden;
   border-radius: 4px;
 }
 .me-progress-bar .dx-progressbar-status {
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
+  height: 16px;
 }
 .me-progress-bar .dx-trackbar-container.dx-progressbar-container {
   margin-bottom: 2px;
   background-color: #43444c;
   border: 1px solid #43444c;
-}
-.me-progress-bar .dx-progressbar-status {
-  height: 16px;
 }
 .me-progress-bar.me-progress-bar-medium .dx-trackbar-container.dx-progressbar-container {
   height: 8px;
@@ -26985,10 +26992,11 @@ input.dx-hidden {
 .dx-fileuploader-input-wrapper::before {
   padding-top: 1em;
   margin-top: -1em;
+  display: none;
 }
 .dx-fileuploader-input-wrapper::after {
-  padding-bottom: 1em;
-  margin-bottom: -1em;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 .dx-fileuploader-input-wrapper .dx-button {
   float: left;
@@ -26997,10 +27005,14 @@ input.dx-hidden {
   margin-left: 12px;
 }
 
-.dx-fileuploader-button {
+.dx-button {
+  --fileuploader-button-height: 28px;
+  --fileuploader-button-padding-inline: 12px;
+}
+.dx-button.dx-fileuploader-button {
   position: relative;
 }
-.dx-fileuploader-button .dx-fileuploader-input {
+.dx-button.dx-fileuploader-button .dx-fileuploader-input {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -27008,8 +27020,14 @@ input.dx-hidden {
   left: 0;
   cursor: pointer;
 }
-.dx-fileuploader-button .dx-fileuploader-input::-webkit-file-upload-button, .dx-fileuploader-button .dx-fileuploader-input::-ms-browse {
+.dx-button.dx-fileuploader-button .dx-fileuploader-input::-webkit-file-upload-button, .dx-button.dx-fileuploader-button .dx-fileuploader-input::-ms-browse {
   cursor: pointer;
+}
+.dx-button.dx-fileuploader-upload-button .dx-button-content, .dx-button.dx-fileuploader-button .dx-button-content {
+  padding-inline: var(--fileuploader-button-padding-inline);
+  padding-block: 0;
+  height: var(--fileuploader-button-height);
+  align-items: center;
 }
 
 .dx-fileuploader-content {

@@ -91,6 +91,15 @@ $generic-progress-bar-border: 1px solid $progressbar-bg;
 }
 
 .me-progress-bar {
+  &.dx-progressbar {
+    display: flex;
+  }
+
+  .dx-trackbar-wrapper.dx-progressbar-wrapper.dx-position-bottom-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
   .dx-trackbar-range.dx-progressbar-range {
     border-radius: 4px;
     background-color: $progressbar-bg;
@@ -98,20 +107,19 @@ $generic-progress-bar-border: 1px solid $progressbar-bg;
     margin-left: -1px;
   }
   .dx-trackbar-container.dx-progressbar-container {
+    overflow: hidden;
     border-radius: 4px;
   }
   .dx-progressbar-status {
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;
+    height: 16px;
   }
   .dx-trackbar-container.dx-progressbar-container {
     margin-bottom: 2px;
     background-color: $progressbar-range-bg;
     border: 1px solid $progressbar-border-color;
-  }
-  .dx-progressbar-status {
-    height: 16px;
   }
 
   &.me-progress-bar-medium {
