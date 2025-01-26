@@ -6,7 +6,11 @@ import {
   DxSelectBoxModule,
   DxTextBoxModule,
 } from 'devextreme-angular';
-import { MeButtonModule, MeFileUploaderDirective } from '../../public-api';
+import {
+  MeButtonModule,
+  MeFileUploaderDirective,
+  MeProgressBarDirective,
+} from '../../public-api';
 
 export default {
   title: 'Directives/FileUploader',
@@ -21,7 +25,7 @@ export default {
         DxProgressBarModule,
         MeButtonModule,
       ],
-      declarations: [MeFileUploaderDirective],
+      declarations: [MeFileUploaderDirective, MeProgressBarDirective],
     }),
   ],
   argTypes: {
@@ -59,7 +63,6 @@ const defaultArgs = {
 export const FormUpload: Story = {
   render: (args) => ({
     template: `
-      <!-- Пример формы, в которой используется File Uploader -->
       <form class="dx-fieldset">
         <h2 class='form-title' *ngIf="title">{{ title }}</h2>
         <div class="dx-field">
@@ -296,6 +299,7 @@ export const AdvancedCustomDropZone: Story = {
     const onUploadStarted = () => {
       componentState.imageSource = '';
       componentState.progressVisible = true;
+      componentState.isDropZoneActive = false;
     };
 
     return {
@@ -312,8 +316,8 @@ export const AdvancedCustomDropZone: Story = {
               <span class="me-text-caption">Drag&Drop the desired file or click to browse for a file instead</span>
             </div>
             <dx-progress-bar
-              #uploadProgress
               meProgressBar
+              #uploadProgress
               [min]="0"
               [max]="100"
               width="100%"
@@ -355,13 +359,17 @@ export const AdvancedCustomDropZone: Story = {
          font-family: "Roboto", sans-serif;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
           align-items: center;
         }
         .flex-box {
           display: flex;
           align-items: center;
           justify-content: center;
+          gap: 12px;
+        }
+        .me-progress-bar {
+          color: var(--Text-Secondary);
         }
         #dropzone-external {
           font-family: "Roboto", sans-serif;
@@ -392,7 +400,6 @@ export const AdvancedCustomDropZone: Story = {
         #dropzone-image {
           max-width: 100%;
           max-height: 100%;
-          margin-bottom: 10px;
         }
         `,
       ],

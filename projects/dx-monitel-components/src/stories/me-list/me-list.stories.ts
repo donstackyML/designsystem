@@ -222,7 +222,7 @@ export default {
     template: `<dx-list meList width="436px" height="300px" ${argsToTemplate(
       args
     )}>
-        <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>   
+        <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
     </dx-list>`,
   }),
 } as Meta<MeListDirective | DxListModule>;
@@ -250,10 +250,10 @@ export const GroupedWithSearch: Story = {
 		<dx-list meList width="436px" height="300px" grouped="true" ${argsToTemplate(
       args
     )}>
-        <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging> 
+        <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
 				    <div *dxTemplate="let item of 'data'">
       <div>{{ item.key }}</div>
-    </div>  
+    </div>
     </dx-list>`,
   }),
 };
@@ -295,7 +295,7 @@ export const ListDescription: Story = {
           <div class="me-text-caption">{{ item.description }}</div>
         </div>
       </div>
-    </div>   
+    </div>
 </dx-list>
 `,
   }),
