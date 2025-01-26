@@ -27,6 +27,11 @@ import { ComponentFocusService } from '../../service/component-focus.service';
     '[class.me-inputs-small]': 'isSizeSmall',
     '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-large]': 'isSizeLarge',
+
+    '[class.me-selectbox-label-mode-hidden]': 'isHidden',
+    '[class.me-selectbox-label-mode-floating]': 'isFloating',
+    '[class.me-selectbox-label-mode-outside]': 'isOutside',
+    '[class.me-selectbox-label-mode-static]': 'isStatic',
   },
   providers: [{ provide: MeFormField, useExisting: MeSelectBoxDirective }],
 })
@@ -52,6 +57,15 @@ export class MeSelectBoxDirective extends MeFormField implements OnInit {
       this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
     }`;
 
+    this.component.wrapItemText = true;
+
+    // let dropDownOptions = {
+    //   maxWidth: 200,
+    //   position: {
+    //     offset: { x: 0, y: 40 }
+    //   }
+    // };
+
     this.component.dropDownOptions = {
       wrapperAttr: {
         ...this.wrapperAttr,
@@ -70,5 +84,22 @@ export class MeSelectBoxDirective extends MeFormField implements OnInit {
 
   get isSizeLarge() {
     return this.size === 'large';
+  }
+
+  get isFloating() {
+    let optionLabelMode = this.component.instance.option('labelMode');
+    return !optionLabelMode || optionLabelMode == 'floating';
+  }
+  get isOutside() {
+    let optionLabelMode = this.component.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'outside';
+  }
+  get isStatic() {
+    let optionLabelMode = this.component.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'static';
+  }
+  get isHidden() {
+    let optionLabelMode = this.component.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'hidden';
   }
 }

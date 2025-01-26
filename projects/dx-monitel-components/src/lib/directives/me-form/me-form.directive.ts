@@ -33,6 +33,12 @@ export interface FormOptions {
     '[class.me-form-small]': 'isSmall',
     '[class.me-form-medium]': 'isMedium',
     '[class.me-form-large]': 'isLarge',
+    '[class.me-form-label-mode-floating]': 'isFloating',
+    '[class.me-form-label-mode-outside]': 'isOutside',
+    '[class.me-form-label-mode-static]': 'isStatic',
+    '[class.me-form-label-mode-hidden]': 'isHidden',
+    '[class.me-form-label-position-top]': 'isTop',
+    '[class.me-form-label-position-left]': 'isLeft',
   },
 })
 export class MeFormDirective implements AfterViewInit, OnDestroy {
@@ -43,6 +49,7 @@ export class MeFormDirective implements AfterViewInit, OnDestroy {
 
   private readonly formService!: FormDataFieldsService;
   private resizeObserver: ResizeObserver;
+
   constructor(
     public element: ElementRef,
     @Host() @Self() @Optional() public hostFormComponent: DxFormComponent
@@ -138,5 +145,30 @@ export class MeFormDirective implements AfterViewInit, OnDestroy {
 
   get isLarge() {
     return this.size === 'large';
+  }
+
+  get isFloating() {
+    let optionLabelMode = this.hostFormComponent.instance.option('labelMode');
+    return !optionLabelMode || optionLabelMode == 'floating';
+  }
+  get isOutside() {
+    let optionLabelMode = this.hostFormComponent.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'outside';
+  }
+  get isStatic() {
+    let optionLabelMode = this.hostFormComponent.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'static';
+  }
+  get isHidden() {
+    let optionLabelMode = this.hostFormComponent.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'hidden';
+  }
+  get isTop() {
+    let location = this.hostFormComponent.instance.option('labelLocation');
+    return !location || location == 'top';
+  }
+  get isLeft() {
+    let location = this.hostFormComponent.instance.option('labelLocation');
+    return location != undefined && location == 'left';
   }
 }

@@ -5,36 +5,140 @@
 
 // Стили для формы
 .me-form {
+  --label-font-size: 12px;
+  --label-line-height: 16px;
+
   font-family: var(--font-family, Arial, sans-serif);
+
+  .dx-field-item-label-content {
+    font-size: var(--label-font-size);
+    line-height: var(--label-line-height);
+    position: relative;
+    .dx-field-item-required-mark {
+      position: absolute;
+      top: 2px;
+      right: -9px;
+    }
+  }
+
+  &.me-form-small {
+    .me-date-box-small {
+      height: var(--input-height);
+    }
+
+    &.me-form-label-mode-floating {
+      --input-height: 36px;
+    }
+
+    &.me-form-label-mode-outside {
+      --input-height: 28px;
+      .dx-field-item-label-content {
+        --label-font-size: 12px;
+        --label-line-height: 16px;
+      }
+    }
+
+    &.me-form-label-mode-static {
+      --input-height: 36px;
+    }
+
+    &.me-form-label-mode-hidden {
+      --input-height: 28px;
+    }
+
+    &.me-form-label-position-top {
+    }
+
+    &.me-form-label-position-left {
+      .dx-field-item-label-content {
+        .dx-field-item-required-mark {
+          position: unset;
+        }
+      }
+    }
+  }
+
+  &.me-form-medium {
+    .me-date-box-medium {
+      height: var(--input-height);
+    }
+
+    &.me-form-label-mode-floating {
+      --input-height: 40px;
+    }
+
+    &.me-form-label-mode-outside {
+      --input-height: 32px;
+      .dx-field-item-label-content {
+        --label-font-size: 12px;
+        --label-line-height: 16px;
+      }
+    }
+
+    &.me-form-label-mode-static {
+      --input-height: 40px;
+    }
+
+    &.me-form-label-mode-hidden {
+      --input-height: 32px;
+    }
+
+    &.me-form-label-position-top {
+    }
+
+    &.me-form-label-position-left {
+      .dx-field-item-label-content {
+        .dx-field-item-required-mark {
+          position: unset;
+        }
+      }
+    }
+  }
+
+  &.me-form-large {
+    .me-date-box-large {
+      height: var(--input-height);
+    }
+
+    .me-form-label-mode-floating {
+      --input-height: 48px;
+    }
+
+    &.me-form-label-mode-outside {
+      --input-height: 40px;
+      .dx-field-item-label-content {
+        --label-font-size: 13px;
+        .dx-field-item-required-mark {
+          right: -10px;
+        }
+      }
+    }
+
+    &.me-form-label-mode-static {
+      --input-height: 48px;
+    }
+
+    &.me-form-label-mode-hidden {
+      --input-height: 40px;
+    }
+
+    &.me-form-label-position-top {
+    }
+
+    &.me-form-label-position-left {
+      .dx-field-item-label-content {
+        .dx-field-item-required-mark {
+          position: unset;
+        }
+      }
+    }
+  }
 
   .dx-texteditor-with-floating-label.me-inputs.dx-texteditor:not(.dx-texteditor-empty)
     .dx-texteditor-label
     .dx-label
     span {
     transform: translate(0, 9px) !important;
-  }
-
-  .me-inputs.dx-texteditor.dx-widget.me-inputs-small {
-    height: 36px;
-    .dx-texteditor-container {
-      padding-block: 2px;
-    }
-  }
-
-  .me-inputs.dx-texteditor.dx-widget.me-inputs-medium {
-    height: 40px;
-
-    .dx-texteditor-container {
-      padding-block: 2px;
-    }
-  }
-
-  .me-inputs.dx-texteditor.dx-widget.me-inputs-large {
-    height: 48px;
-
-    .dx-texteditor-container {
-      padding-block: 2px;
-    }
   }
 
   .me-selectbox-small.me-inputs.dx-texteditor.dx-widget,
@@ -47,7 +151,6 @@
           position: relative;
           left: 2px;
         }
-
         span {
           transform: translate(0, 9px) !important;
         }
@@ -65,13 +168,13 @@
           position: relative;
           left: 2px;
         }
-
         span {
           transform: translate(0, 9px) !important;
         }
       }
     }
   }
+
   .me-selectbox-large.me-inputs.dx-texteditor.dx-widget,
   .me-date-box-large.me-inputs.dx-texteditor.dx-widget,
   .me-textbox-large.dx-texteditor-with-label.me-inputs.dx-texteditor.dx-widget {
@@ -82,13 +185,13 @@
           position: relative;
           left: 2px;
         }
-
         span {
           transform: translate(0, 9px) !important;
         }
       }
     }
   }
+
   .me-textbox-large.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty,
   .me-textbox-medium.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty,
   .me-textbox-small.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty {
@@ -144,7 +247,6 @@
           position: relative;
           left: 2px;
         }
-
         span {
           font-size: 12px !important;
           transform: translate(0, -5px);
@@ -161,7 +263,6 @@
           position: relative;
           left: 2px;
         }
-
         span {
           font-size: 12px !important;
           transform: translate(0, -5px);
@@ -178,7 +279,6 @@
           position: relative;
           left: 2px;
         }
-
         span {
           font-size: 13px !important;
           transform: translate(0, -5px);
@@ -208,26 +308,9 @@
   .me-textbox-large.dx-texteditor-with-label {
     .dx-texteditor-label {
       left: 12px;
-
       .dx-label:after {
         top: -8px;
       }
-    }
-  }
-
-  .me-inputs.dx-texteditor.dx-widget.dx-dropdowneditor {
-    background-color: transparent !important;
-  }
-
-  .dx-selectbox-container {
-    background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
-    border-radius: 3px;
-  }
-
-  .me-date-box {
-    .dx-texteditor-container {
-      background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
-      border-radius: 3px;
     }
   }
 
@@ -248,13 +331,6 @@
         }
       }
     }
-
-    //
-    //&.dx-texteditor-empty {
-    //  .dx-texteditor-label {
-    //    left: 0;
-    //  }
-    //}
   }
 
   .dx-field-item-required {
@@ -391,24 +467,18 @@
     }
   }
 
+  .me-inputs-large {
+    &.dx-texteditor-with-label {
+      .dx-texteditor-label {
+        left: 12px;
+      }
+    }
+  }
+
   .dx-texteditor-with-label {
     .dx-texteditor-label {
       top: -2px;
       left: 9px;
-    }
-  }
-
-  &:not(.me-form-large) {
-    .dx-field-item-label-text {
-      font-size: 16px;
-      font-weight: 400;
-    }
-  }
-
-  &.me-form-large {
-    .dx-field-item-label-text {
-      font-size: 20px;
-      font-weight: 400;
     }
   }
 
@@ -433,7 +503,6 @@
     .dx-label {
       &::after {
         content: '*';
-        color: var(--required-color, red);
       }
     }
   }
