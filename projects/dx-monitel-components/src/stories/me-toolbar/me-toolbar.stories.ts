@@ -20,11 +20,10 @@ import {
   MeToolbarDirective,
   MeTextBoxDirective,
 } from '../../public-api';
-import { text } from 'stream/consumers';
 
 // 1. Определяем интерфейс для аргументов
 interface ToolbarArgs {
-  dataSourse: any;
+  dataSource: any;
   size: 'small' | 'medium' | 'large';
   background: boolean;
   multiline: boolean;
@@ -147,28 +146,28 @@ export const Default: Story = {
         {
           type: 'normal',
           text: 'Bold',
-          alightment: 'left',
+          alignment: 'left',
           leftIcon: 'format_bold',
           style: 'bold',
         },
         {
           type: 'normal',
           text: 'Italic',
-          alightment: 'left',
+          alignment: 'left',
           leftIcon: 'format_italic',
           style: 'italic',
         },
         {
           type: 'normal',
           text: 'Underline',
-          alightment: 'left',
+          alignment: 'left',
           leftIcon: 'format_underlined',
           style: 'underlined',
         },
         {
           type: 'normal',
           text: 'Strike',
-          alightment: 'left',
+          alignment: 'left',
           leftIcon: 'strikethrough_s',
           style: 'strikethrough',
         },
@@ -176,8 +175,12 @@ export const Default: Story = {
     },
     styles: [
       `
-      div:has(> .search-item) {
-        max-width: calc(100% - 40px);
+      .me-toolbar {
+        &:not(.dx-toolbar-multiline) {
+          div:has(> .search-item) {
+            max-width: calc(100% - 40px);
+          }
+        }
       }
       `,
     ],
@@ -324,7 +327,7 @@ export const Default: Story = {
 	    class="search-item"
 			[disabled]="disabled"
 			mode="search"
-			[showClearButton]="false"
+			[showClearButton]="true"
 			[size]="size"
 			></dx-text-box>
 		</div>
