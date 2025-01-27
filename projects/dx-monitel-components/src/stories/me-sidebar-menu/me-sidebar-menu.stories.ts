@@ -123,6 +123,7 @@ const DEMO_ITEMS: MeSidebarMenuItem[] = [
     id: 'downloads',
     text: 'Загрузки',
     icon: 'download',
+    badge: 5,
   },
   {
     id: 'settings',
@@ -136,6 +137,7 @@ const DEMO_BOTTOM_ITEMS: MeSidebarMenuItem[] = [
     id: 'downloads',
     text: 'Загрузки',
     icon: 'download',
+    badge: 4,
   },
   {
     id: 'settings',
@@ -160,13 +162,13 @@ export const Default: Story = {
         [floatMode]="floatMode"
       >
         <div header>
-          <me-icon icon="notifications" size="medium" color="#666666"></me-icon>
+          <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
         </div>
         <div search>
           <me-search placeholder="Поиск..."></me-search>
         </div>
       </me-sidebar>
-      <div style="padding: 36px;">
+      <div style="padding: 36px; color: var(--Text-Default)">
           <p>Тестовая страница</p>
           <span>
           Группа исследователей из Миланского университета разработала обогащенный витаминами «коктейль» от похмелья, эффект которого основан на полезном действии имбиря, опунции, вишни и гинкго билоба. Результаты работы опубликованы в медицинском журнале The Lancet.
@@ -196,22 +198,22 @@ export const Collapsed: Story = {
   },
 };
 
-export const CustomIcons: Story = {
-  ...Default,
-  args: {
-    ...Default.args,
-    toggleIcon: 'menu',
-    expandedIcon: 'keyboard_arrow_up',
-    collapsedIcon: 'keyboard_arrow_down',
-  },
-};
-
-export const WithSelectedItem: Story = {
-  ...Default,
-  args: {
-    ...Default.args,
-    items: DEMO_ITEMS.map((item) =>
-      item.id === 'tasks' ? { ...item, selected: true } : item
-    ),
-  },
-};
+// export const CustomIcons: Story = {
+//   ...Default,
+//   args: {
+//     ...Default.args,
+//     toggleIcon: 'menu',
+//     expandedIcon: 'keyboard_arrow_up',
+//     collapsedIcon: 'keyboard_arrow_down',
+//   },
+// };
+//
+// export const WithSelectedItem: Story = {
+//   ...Default,
+//   args: {
+//     ...Default.args,
+//     items: DEMO_ITEMS.map((item) =>
+//       item.id === 'tasks' ? { ...item, selected: true } : item
+//     ),
+//   },
+// };

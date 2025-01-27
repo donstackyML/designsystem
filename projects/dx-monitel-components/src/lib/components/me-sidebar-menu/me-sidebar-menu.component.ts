@@ -72,10 +72,11 @@ interface TreeNode {
     MeScrollViewModule,
   ],
   templateUrl: 'me-sidebar-menu.component.html',
-  styleUrls: ['me-sidebar-menu.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
+  @ViewChild('menuHeader') headerElement!: ElementRef;
+  @ViewChild('menuBottom') bottomElement!: ElementRef;
+
   @ViewChild('dragHandleRight') dragHandleRight!: ElementRef;
   @ViewChild('subMenu') subMenu!: DxContextMenuComponent;
   @ViewChild('sidebar') sidebar!: ElementRef;
@@ -94,11 +95,11 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   @Output() collapsedChange = new EventEmitter<boolean>();
   @Output() itemSelected = new EventEmitter<MeSidebarMenuItem>();
 
-  @Input() collapsedWidth = 64;
-  @Input() expandedWidth = 280;
+  @Input() collapsedWidth = 72;
+  @Input() expandedWidth = 336;
 
   private _items: MeSidebarMenuItem[] = [];
-  private _width = 280;
+  private _width = 336;
   private _withStarted = 0;
   private _transition = '';
 
@@ -207,6 +208,10 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     this.collapsedChange.emit(this.collapsed);
   }
   getHeight(): string {
+    // console.log("height: %o, %o, %o", this.headerElement.nativeElement, this.bottomElement.nativeElement, this.element.nativeElement)
+    // let top = this.headerElement.nativeElement.offsetHeight
+    // let bottom = this.bottomElement.nativeElement.offsetHeight
+    // return this.element.nativeElement.offsetHeight - (top + bottom) + 'px';
     return this.element.nativeElement.offsetHeight + 'px';
   }
 
@@ -253,23 +258,22 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
       item.expanded = !item.expanded;
       this.updateFlatList();
     }
-    if (!item.expanded) {
-      item.selected = false;
-    }
     if (this.collapsed && item.items && item.items.length > 0) {
       let element = $event.target as Element;
       element = element.parentElement as Element;
-      let w = element.clientWidth;
-      let h = element.clientHeight;
-      let position: PositionConfig = { at: 'right top' };
-      //this.subMenu.cssClass
-      this.subMenu.target = element;
-      this.subMenu.position = position;
-      this.subMenu.dataSource = this.getDataSource(item);
-      this.subMenu.visible = true;
+      this.showPopup(element, item);
     } else {
-      this.itemSelect(item);
+      if (!item.items || item.items.length == 0) this.itemSelect(item);
     }
+  }
+
+  showPopup(elm: Element, item: MeSidebarMenuItem) {
+    let position: PositionConfig = { at: 'right top' };
+    this.subMenu.cssClass = 'me-sidebar-popup';
+    this.subMenu.target = elm;
+    this.subMenu.position = position;
+    this.subMenu.dataSource = this.getDataSource(item);
+    this.subMenu.visible = true;
   }
 
   private itemSelect(item: MeSidebarMenuItem) {
@@ -428,22 +432,38 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   }
 
   private keyEnterHandle(evt: KeyboardEvent) {
-    if (this.nodeFlatList && this.activeIndex < this.nodeFlatList.length) {
-      let node = this.nodeFlatList[this.activeIndex];
-      if (node.item.items) {
-        node.item.expanded = !node.item.expanded;
-        let holderIdx = this.activeIndex;
-        this.updateFlatList();
-        this.activeIndex = holderIdx;
-      } else {
-        this.itemSelect(node.item);
+    if (this.collapsed) {
+      if (this.nodeFlatList && this.activeIndex < this.nodeFlatList.length) {
+        let node = this.nodeFlatList[this.activeIndex];
+        let elm = this.element.nativeElement.querySelector(
+          '.me-sidebar_item-active'
+        );
+        if (elm) {
+          this.showPopup(elm, node.item);
+        }
+      }
+    } else {
+      if (this.nodeFlatList && this.activeIndex < this.nodeFlatList.length) {
+        let node = this.nodeFlatList[this.activeIndex];
+        if (node.item.items) {
+          node.item.expanded = !node.item.expanded;
+          let holderIdx = this.activeIndex;
+          this.updateFlatList();
+          this.activeIndex = holderIdx;
+        } else {
+          this.itemSelect(node.item);
+          node.active = false;
+          this.focusService.clearKeyboardFocus();
+        }
       }
     }
   }
 
   private focusOutHandle(evt: FocusEvent) {
     if (this.nodeFlatList) {
-      this.nodeFlatList[this.activeIndex].active = false;
+      if (this.nodeFlatList[this.activeIndex]) {
+        this.nodeFlatList[this.activeIndex].active = false;
+      }
       this.nodeFlatList = [];
       this.activeIndex = 0;
     }

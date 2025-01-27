@@ -7,16 +7,16 @@
   [style.width]="getCurrentWidth() + 'px'"
 >
   <div class="me-sidebar_content">
-    <div class="me-sidebar__header">
+    <div #menuHeader class="me-sidebar__header">
       <div class="me-sidebar__header-content">
-        <span *ngIf="!collapsed" class="me-sidebar__title">{{ title }}</span>
+        <span *ngIf="!collapsed" class="header_text">{{ title }}</span>
         <ng-content select="[header]"></ng-content>
       </div>
-      <me-icon [icon]="toggleIcon" size="medium" color="#666666" class="me-sidebar__toggle" (click)="toggleSidebar()"></me-icon>
+      <me-icon [icon]="toggleIcon" size="medium" class="me-sidebar__toggle" (click)="toggleSidebar()"></me-icon>
     </div>
     <div class="me-sidebar__divider"></div>
     <ng-content select="[search]"></ng-content>
-    <dx-scroll-view meScrollView [height]="getHeight()" [width]="width" [direction]="'both'" [showScrollbar]="'onScroll'">
+    <dx-scroll-view meScrollView [width]="width" [direction]="'both'" [showScrollbar]="'onScroll'">
       <ul class="me-sidebar__list me-sidebar__list-root" [style.min-height.px]="getItemsMinHeight()">
         <ng-container *ngFor="let node of nodes" [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ $implicit: node }"> </ng-container>
       </ul>
@@ -37,6 +37,7 @@
           [size]="size"
           [item]="node.item"
           [offset]="getMargin(node)"
+          [pressed]="node.active"
         ></me-sidebar-item>
       </li>
       <ng-container *ngIf="node.item.items && node.item.expanded">
@@ -47,8 +48,8 @@
     </ng-template>
     <div class="me-sidebar__empty"></div>
     <div class="me-sidebar__divider"></div>
-    <div class="me-sidebar__bottom">
-      <ul class="me-sidebar__list">
+    <div #menuBottom class="me-sidebar__bottom">
+      <ul class="me-sidebar__list me-sidebar__list-root">
         <ng-container *ngFor="let node of bottomNodes" [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ $implicit: node }"> </ng-container>
       </ul>
     </div>

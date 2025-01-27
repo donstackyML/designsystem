@@ -15,8 +15,6 @@ import { MeSize } from '../../types/types';
   standalone: true,
   imports: [MeIconComponent, NgIf, NgStyle],
   templateUrl: 'me-sidebar-menu-item.component.html',
-  styleUrls: ['me-sidebar-menu-item.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class MeSidebarMenuItemComponent implements OnInit, OnDestroy {
   @Input() item?: MeSidebarMenuItem;
@@ -26,9 +24,15 @@ export class MeSidebarMenuItemComponent implements OnInit, OnDestroy {
   @Input() size: MeSize = 'medium';
   @Input() offset: number = 0;
 
+  @Input() pressed = false;
+
   constructor() {}
 
   ngOnInit(): void {}
 
   ngOnDestroy(): void {}
+
+  isPressed(): boolean {
+    return this.pressed;
+  }
 }

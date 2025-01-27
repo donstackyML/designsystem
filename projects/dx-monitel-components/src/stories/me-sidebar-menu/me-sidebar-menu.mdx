@@ -1,7 +1,7 @@
 import { Meta, Story, Controls, Source, Canvas } from '@storybook/blocks';
 import * as SidebarMenuStories from './me-sidebar-menu.stories';
 
-<Meta of={SidebarMenuStories} />
+<Meta name="SidebarMenu Documentation" of={SidebarMenuStories} />
 
 # SidebarMenu
 
@@ -9,7 +9,7 @@ SidebarMenu - компонент для создания бокового нав
 
 ## Особенности
 
-- Древовидная структура на основе DevExtreme TreeView
+- Древовидная структура
 - Поддержка сворачивания/разворачивания
 - Поиск по пунктам меню
 - Поддержка иконок и бейджей
@@ -25,10 +25,6 @@ SidebarMenu - компонент для создания бокового нав
 ### Свёрнутое состояние
 
 <Canvas of={SidebarMenuStories.Collapsed} />
-
-### Без поиска
-
-<Canvas of={SidebarMenuStories.WithoutSearch} />
 
 ## Props
 
@@ -48,7 +44,7 @@ interface MeSidebarMenuItem {
   items?: MeSidebarMenuItem[]; // Дочерние элементы
   badge?: number;         // Счетчик/бейдж
   id?: string;           // Уникальный идентификатор
-  onClick?: () => void;  // Обработчик клика
+  action?: () => void;  // Обработчик клика
 }
 `} />
 
@@ -56,8 +52,8 @@ interface MeSidebarMenuItem {
 
 | Состояние  | Ширина | Примечание                  |
 |------------|--------|----------------------------|
-| Развернуто | 280px  | Показываются текст и иконки |
-| Свернуто   | 64px   | Показываются только иконки  |
+| Развернуто | 336px  | Показываются текст и иконки |
+| Свернуто   | 72px   | Показываются только иконки  |
 
 ### События
 
@@ -93,7 +89,7 @@ const MENU_ITEMS: MeSidebarMenuItem[] = [
   {
     text: 'Главная',
     icon: 'home.svg',
-    onClick: () => this.router.navigate(['/'])
+    action: () => this.router.navigate(['/'])
   },
   {
     text: 'Проекты',
@@ -101,11 +97,11 @@ const MENU_ITEMS: MeSidebarMenuItem[] = [
     items: [
       {
         text: 'Список',
-        onClick: () => this.router.navigate(['/projects'])
+        action: () => this.router.navigate(['/projects'])
       },
       {
         text: 'Создать',
-        onClick: () => this.router.navigate(['/projects/new'])
+        action: () => this.router.navigate(['/projects/new'])
       }
     ]
   }
@@ -152,19 +148,11 @@ const MENU_ITEMS: MeSidebarMenuItem[] = [
 ### Известные ограничения
 
 1. В свернутом состоянии:
-   - Не отображаются бейджи
    - Поиск недоступен
    - Всплывающие подсказки для иконок
 
 2. Технические:
-   - Максимальная ширина в развернутом состоянии: 280px
-   - Минимальная ширина в свернутом состоянии: 64px
+   - Максимальная ширина в развернутом состоянии: 336px
+   - Минимальная ширина в свернутом состоянии: 72px
    - Максимальное количество уровней вложенности: 3
 
-### Планируемые улучшения
-
-1. Поддержка drag-and-drop
-2. Контекстное меню
-3. Анимация переходов
-4. Режим мини-меню
-5. Поддержка групп элементов
