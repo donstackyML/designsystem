@@ -10633,6 +10633,10 @@
 .me-list.dx-list .dx-sortable-clone.dx-sortable-dragging > div .dx-checkbox-container .dx-checkbox-icon {
   border-color: var(--Controls-BG-Accent-Accent-BG-Disabled);
 }
+.me-list.dx-list .dx-sortable-clone.dx-sortable-dragging > div .dx-checkbox-checked .dx-checkbox-container .dx-checkbox-icon {
+  background-color: var(--Controls-BG-Accent-Accent-BG-Disabled);
+  color: var(--Text-Disabled);
+}
 .me-list.dx-list .dx-sortable-clone.dx-sortable-dragging > div .dx-list-item-before-bag.dx-list-toggle-delete-switch-container {
   width: auto;
 }
@@ -10735,66 +10739,52 @@
   margin-top: 0;
 }
 
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
-  background-color: var(--Background-Error);
-  color: var(--Text-Error);
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: var(--me-regular-font-weight);
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-}
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input::-webkit-scrollbar {
-  width: 4px;
-}
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input::-webkit-scrollbar-thumb {
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input::-webkit-scrollbar-thumb {
   cursor: pointer;
+  width: 4px;
   background-color: var(--Controls-Scrollbar-Default);
   border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container {
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container {
   gap: 0;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input-container {
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input-container {
   padding-top: 1px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-small .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
-  padding: 2px 8px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs.me-inputs-small {
+  --input-height: 100%;
+  --input-min-height: 44px;
+  --text-area-padding-block: 6px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside,
-.dx-texteditor-with-floating-label) .dx-texteditor-label {
-  height: 36px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs.me-inputs-medium {
+  --input-height: 100%;
+  --input-min-height: 52px;
+  --text-area-padding-block: 6px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-medium .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
-  padding: 4px 8px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs.me-inputs-large {
+  --input-height: 100%;
+  --input-min-height: 52px;
+  --text-area-padding-block: 10px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-medium .dx-texteditor-input-container {
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize) {
+  --input-bottom-offset: 6px;
+}
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize) .dx-texteditor-container .dx-texteditor-buttons-container {
+  padding-top: calc(var(--padding-block) + 4px);
+}
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize):is(.dx-texteditor-label-outside) .dx-texteditor-container, .me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize):not(:has(.dx-texteditor-label)) .dx-texteditor-container {
+  padding-block: var(--text-area-padding-block);
+}
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize):is(.dx-texteditor-label-outside) .dx-texteditor-container .dx-texteditor-buttons-container, .me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize):not(:has(.dx-texteditor-label)) .dx-texteditor-container .dx-texteditor-buttons-container {
   padding-top: 0px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside,
-.dx-texteditor-with-floating-label) .dx-texteditor-label {
-  height: 40px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder::before,
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container {
+  align-items: flex-start;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-large .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
-  padding: 4px 12px;
-  font-size: 14px;
-  line-height: 20px;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-}
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside,
-.dx-texteditor-with-floating-label) .dx-texteditor-label {
-  height: 48px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container {
+  align-self: flex-start;
+  padding-top: 4px;
 }
 
 /**
@@ -18465,13 +18455,13 @@
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-buttons-container {
   right: 4px;
 }
-.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-floating-label .dx-placeholder {
-  padding-block: 0;
-}
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside) .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container {
   min-height: auto;
-  height: 100%;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
+.dx-texteditor-label-outside) .dx-texteditor-container .dx-placeholder {
+  padding-block: 0;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-tag-box-small.dx-texteditor-with-label:not(.dx-texteditor-with-floating-label,
 .dx-texteditor-label-outside):has(.dx-tag) .dx-texteditor-label {
@@ -36420,7 +36410,7 @@ input.dx-hidden {
 }
 .me-sidebar .me-sidebar__divider {
   height: 1px;
-  background: #DFE0ED;
+  background: #dfe0ed;
 }
 .me-sidebar__header {
   position: relative;
@@ -36438,10 +36428,10 @@ input.dx-hidden {
   flex: 1;
 }
 .me-sidebar__header-content .notify_icon {
-  color: #18181A;
+  color: #18181a;
 }
 .me-sidebar__header-content .header_text {
-  color: #18181A;
+  color: #18181a;
   font-size: 20px;
   font-weight: 500;
   white-space: nowrap;
@@ -36497,7 +36487,7 @@ input.dx-hidden {
 }
 .me-sidebar .me-sidebar__list:not(:first-child) {
   margin-top: 2px;
-  border-top: 1px solid #DFE0ED;
+  border-top: 1px solid #dfe0ed;
 }
 .me-sidebar__toggle {
   position: absolute;
@@ -36562,7 +36552,7 @@ input.dx-hidden {
   border-radius: 3px;
 }
 .me-sidebar .me-sidebar_item-pressed {
-  background-color: #BFC1D0 !important;
+  background-color: #bfc1d0 !important;
 }
 .me-sidebar .me-sidebar_item-content {
   display: flex;
@@ -36705,6 +36695,7 @@ input.dx-hidden {
   font-size: var(--input-font-size);
   line-height: var(--input-line-height);
   height: var(--input-height);
+  min-height: var(--input-min-height);
   font-weight: var(--me-regular-font-weight);
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-texteditor-input-container {
@@ -36805,9 +36796,6 @@ input.dx-hidden {
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-label-outside .dx-label-before {
   min-width: 0px;
-}
-.me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-label-outside.dx-texteditor-with-label:not(.dx-state-disabled, .dx-state-focused, .dx-invalid) .dx-texteditor-label .dx-label {
-  color: var(--Controls-Content-In-Controls-Main-Default);
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-label-outside.dx-texteditor-with-label-before {
   min-width: 0;
@@ -36966,21 +36954,32 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget .dx-password-toggle.dx-button .dx-button-content .dx-icon.dx-icon-eyeoff::before {
   content: var(--me-icon-eyeoff);
 }
-.me-inputs.dx-texteditor.dx-widget.dx-texteditor-with-floating-label.dx-state-focused:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-texteditor-with-floating-label.dx-dropdowneditor-active:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-texteditor-with-floating-label:not(.dx-texteditor-empty):not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-hover.dx-state-focused:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-hover.dx-dropdowneditor-active:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-hover:not(.dx-texteditor-empty):not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-focused.dx-state-focused:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-focused.dx-dropdowneditor-active:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-focused:not(.dx-texteditor-empty):not(.dx-state-disabled) {
+.me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-hover.dx-state-focused:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-hover.dx-dropdowneditor-active:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-hover:not(.dx-texteditor-empty):not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-focused.dx-state-focused:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-focused.dx-dropdowneditor-active:not(.dx-state-disabled), .me-inputs.dx-texteditor.dx-widget.dx-editor-outlined.dx-state-readonly.dx-state-focused:not(.dx-texteditor-empty):not(.dx-state-disabled) {
   color: var(--Controls-Content-In-Controls-Main-Default);
 }
-.me-inputs.dx-texteditor.dx-widget.dx-texteditor-label-outside:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) .dx-label span, .me-inputs.dx-texteditor.dx-widget.dx-texteditor-with-floating-label:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) .dx-label span {
+.me-inputs.dx-texteditor.dx-widget.dx-texteditor-label-outside:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) .dx-label span {
   color: var(--Controls-Content-In-Controls-Main-Default);
 }
 
-.me-inputs.dx-texteditor.dx-widget.me-number-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-readonly .dx-texteditor-buttons-container {
+.me-inputs.dx-texteditor.dx-widget.me-number-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container {
   margin-right: 4px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-readonly .dx-texteditor-buttons-container {
+  margin-right: var(--padding-inline);
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-buttons-container {
   gap: 0;
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-clear-button-area, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-buttons-container .dx-clear-button-area {
   margin-right: 4px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-numberbox-spin-up-icon::before, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-buttons-container .dx-numberbox-spin-up-icon::before {
+  font-family: var(--me-icon-family);
+  content: var(--me-icon-chevron-up);
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-numberbox-spin-down-icon::before, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-buttons-container .dx-numberbox-spin-down-icon::before {
+  font-family: var(--me-icon-family);
+  content: var(--me-icon-chevron-down);
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs .dx-texteditor-container .dx-texteditor-input-container,
 .me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs .dx-texteditor-container .dx-placeholder, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.me-inputs .dx-texteditor-container .dx-texteditor-input-container,

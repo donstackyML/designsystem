@@ -127,6 +127,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         font-size: var(--input-font-size);
         line-height: var(--input-line-height);
         height: var(--input-height);
+        min-height: var(--input-min-height);
 
         font-weight: var(--me-regular-font-weight);
       }
@@ -276,9 +277,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     &.dx-texteditor-label-outside.dx-texteditor-with-label {
-      &:not(.dx-state-disabled, .dx-state-focused, .dx-invalid) .dx-texteditor-label .dx-label {
-        color: var(--Controls-Content-In-Controls-Main-Default);
-      }
 
       &-before {
         min-width: 0;
@@ -520,7 +518,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
   }
 
-  &.dx-texteditor-with-floating-label,
   &.dx-editor-outlined.dx-state-readonly.dx-state-hover,
   &.dx-editor-outlined.dx-state-readonly.dx-state-focused {
     &.dx-state-focused,
@@ -533,8 +530,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   //цвет лейбла при непустом инпуте
-  &.dx-texteditor-label-outside,
-  &.dx-texteditor-with-floating-label {
+  &.dx-texteditor-label-outside {
     &:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) {
       .dx-label {
         span {
@@ -548,10 +544,15 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 .me-inputs.dx-texteditor.dx-widget {
   &.me-number-box,
   &.me-date-range-box {
-    &:not(.dx-texteditor-label-outside),
-    &.dx-state-readonly {
+    &:not(.dx-texteditor-label-outside) {
       .dx-texteditor-buttons-container {
         margin-right: 4px;
+      }
+    }
+
+    &.dx-state-readonly {
+      .dx-texteditor-buttons-container {
+        margin-right: var(--padding-inline);
       }
     }
 
@@ -560,6 +561,16 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
       .dx-clear-button-area {
         margin-right: 4px;
+      }
+
+      .dx-numberbox-spin-up-icon::before {
+        font-family: var(--me-icon-family);
+        content: var(--me-icon-chevron-up);
+      }
+
+      .dx-numberbox-spin-down-icon::before {
+        font-family: var(--me-icon-family);
+        content: var(--me-icon-chevron-down);
       }
     }
 

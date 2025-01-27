@@ -125,7 +125,6 @@ export const Default: Story = {
   args: {
     value: '',
     width: '320px',
-    isValid: false,
   },
 };
 
