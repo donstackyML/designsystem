@@ -10735,66 +10735,52 @@
   margin-top: 0;
 }
 
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
-  background-color: var(--Background-Error);
-  color: var(--Text-Error);
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: var(--me-regular-font-weight);
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-}
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input::-webkit-scrollbar {
-  width: 4px;
-}
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input::-webkit-scrollbar-thumb {
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input::-webkit-scrollbar-thumb {
   cursor: pointer;
+  width: 4px;
   background-color: var(--Controls-Scrollbar-Default);
   border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container {
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container {
   gap: 0;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input-container {
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input-container {
   padding-top: 1px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-small .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
-  padding: 2px 8px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs.me-inputs-small {
+  --input-height: 100%;
+  --input-min-height: 44px;
+  --text-area-padding-block: 6px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-small.dx-texteditor-with-label:not(.dx-texteditor-label-outside,
-.dx-texteditor-with-floating-label) .dx-texteditor-label {
-  height: 36px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs.me-inputs-medium {
+  --input-height: 100%;
+  --input-min-height: 52px;
+  --text-area-padding-block: 6px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-medium .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
-  padding: 4px 8px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs.me-inputs-large {
+  --input-height: 100%;
+  --input-min-height: 52px;
+  --text-area-padding-block: 10px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-medium .dx-texteditor-input-container {
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize) {
+  --input-bottom-offset: 6px;
+}
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize) .dx-texteditor-container .dx-texteditor-buttons-container {
+  padding-top: calc(var(--padding-block) + 4px);
+}
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize):is(.dx-texteditor-label-outside) .dx-texteditor-container, .me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize):not(:has(.dx-texteditor-label)) .dx-texteditor-container {
+  padding-block: var(--text-area-padding-block);
+}
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize):is(.dx-texteditor-label-outside) .dx-texteditor-container .dx-texteditor-buttons-container, .me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget.me-inputs:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize):not(:has(.dx-texteditor-label)) .dx-texteditor-container .dx-texteditor-buttons-container {
   padding-top: 0px;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-medium.dx-texteditor-with-label:not(.dx-texteditor-label-outside,
-.dx-texteditor-with-floating-label) .dx-texteditor-label {
-  height: 40px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder::before,
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container {
+  align-items: flex-start;
 }
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-large .dx-overlay-wrapper.dx-invalid-message .dx-invalid-message-content {
-  padding: 4px 12px;
-  font-size: 14px;
-  line-height: 20px;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-}
-.me-text-area.dx-textarea.dx-textbox.dx-widget.me-text-area-large.dx-texteditor-with-label:not(.dx-texteditor-label-outside,
-.dx-texteditor-with-floating-label) .dx-texteditor-label {
-  height: 48px;
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container {
+  align-self: flex-start;
+  padding-top: 4px;
 }
 
 /**
@@ -36705,6 +36691,7 @@ input.dx-hidden {
   font-size: var(--input-font-size);
   line-height: var(--input-line-height);
   height: var(--input-height);
+  min-height: var(--input-min-height);
   font-weight: var(--me-regular-font-weight);
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-texteditor-input-container {
