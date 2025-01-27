@@ -8971,7 +8971,7 @@
 .dx-searchbox .dx-icon-search::before {
   color: rgba(255, 255, 255, 0.3019607843);
 }
-.dx-searchbox.dx-state-focused .dx-icon-search::before {
+.dx-searchbox:not(.dx-state-readonly, .dx-state-disabled).dx-state-focused .dx-icon-search::before {
   color: var(--me-icon-default);
 }
 .dx-searchbox .dx-texteditor-input,
@@ -10739,9 +10739,11 @@
   margin-top: 0;
 }
 
+.me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input::-webkit-scrollbar {
+  width: 4px;
+}
 .me-inputs.me-text-area.dx-textarea.dx-textbox.dx-widget .dx-texteditor-input::-webkit-scrollbar-thumb {
   cursor: pointer;
-  width: 4px;
   background-color: var(--Controls-Scrollbar-Default);
   border-radius: 10px;
 }
@@ -15093,11 +15095,15 @@
   background-color: #2e2e2f;
 }
 
+.me-toolbar.dx-toolbar-multiline {
+  width: fit-content;
+}
 .me-toolbar .dx-toolbar-items-container {
   gap: 4px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  min-width: 180px;
 }
 .me-toolbar .dx-toolbar-item-content > .dx-texteditor {
   width: auto;
@@ -36610,6 +36616,7 @@ input.dx-hidden {
   --label-font-size: 12px;
   --label-line-height: 16px;
   --icon-width: 20px;
+  --icon-lock-inner-height: 17px;
   --clear-icon-inner-width: 12px;
   --dropdowneditor-icon: 16px;
 }
@@ -36631,6 +36638,7 @@ input.dx-hidden {
   --label-font-size: 12px;
   --label-line-height: 16px;
   --icon-width: 20px;
+  --icon-lock-inner-height: 17px;
   --clear-icon-inner-width: 12px;
   --dropdowneditor-icon: 16px;
 }
@@ -36652,6 +36660,7 @@ input.dx-hidden {
   --label-font-size: 13px;
   --label-line-height: 16px;
   --icon-width: 24px;
+  --icon-lock-inner-height: 21px;
   --clear-icon-inner-width: 16px;
   --dropdowneditor-icon: 18px;
 }
@@ -36812,27 +36821,28 @@ input.dx-hidden {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
 }
 .me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-numberbox-spin-container,
-.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-clear-button-area {
+.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-clear-button-area, .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-numberbox-spin-container,
+.me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-clear-button-area {
   display: none;
 }
-.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container {
-  font-size: var(--icon-width);
-  line-height: var(--icon-width);
+.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container {
+  font-size: var(--icon-lock-inner-height);
+  line-height: var(--icon-lock-inner-height);
   font-family: var(--me-icon-family);
   gap: 0;
   align-self: center;
 }
-.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container::before {
+.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container::before, .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container::before {
   content: var(--me-icon-lock);
   align-content: center;
   text-align: center;
 }
-.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container > * {
+.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container > *, .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container > * {
   width: 0 !important;
   min-width: 0 !important;
   overflow: hidden;
 }
-.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container:not(.dx-texteditor-buttons-container:last-child) {
+.me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container:not(.dx-texteditor-buttons-container:last-child), .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container:not(.dx-texteditor-buttons-container:last-child) {
   display: none;
 }
 .me-inputs.dx-texteditor.dx-widget.dx-invalid:not(.dx-state-disabled) .dx-texteditor-container {
