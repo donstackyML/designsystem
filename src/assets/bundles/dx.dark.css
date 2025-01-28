@@ -9905,7 +9905,7 @@
   margin-left: 0px;
 }
 .me-list .dx-list-item-before-bag.dx-list-select-checkbox-container {
-  width: 28px;
+  width: auto;
 }
 
 .dx-list-next-button .dx-button .dx-button-content {
@@ -9951,9 +9951,6 @@
 
 .dx-list-item-before-bag.dx-list-toggle-delete-switch-container {
   width: 29px;
-}
-.dx-list-item-before-bag.dx-list-select-checkbox-container, .dx-list-item-before-bag.dx-list-select-radiobutton-container {
-  width: 31px;
 }
 .dx-list-item-before-bag .dx-button.dx-list-toggle-delete-switch {
   border: none;
@@ -10310,7 +10307,7 @@
   margin-left: 0px;
 }
 .dx-device-mobile .me-list .dx-list-item-before-bag.dx-list-select-checkbox-container {
-  width: 28px;
+  width: auto;
 }
 .dx-device-mobile .dx-list-next-button .dx-button .dx-button-content {
   padding: 7px 18px 8px;
@@ -10353,9 +10350,6 @@
 }
 .dx-device-mobile .dx-list-item-before-bag.dx-list-toggle-delete-switch-container {
   width: 34px;
-}
-.dx-device-mobile .dx-list-item-before-bag.dx-list-select-checkbox-container, .dx-device-mobile .dx-list-item-before-bag.dx-list-select-radiobutton-container {
-  width: 36px;
 }
 .dx-device-mobile .dx-list-item-before-bag .dx-button.dx-list-toggle-delete-switch {
   border: none;
@@ -10482,11 +10476,12 @@
 .me-list {
   --list-item-padding: 8px;
   --list-item-gap: 8px;
-  background: #2e2e2f;
+  height: auto;
   padding: 8px;
   gap: 16px;
   display: flex;
   flex-direction: column;
+  background: #2e2e2f;
 }
 .me-list .dx-list-search {
   padding: 0;
@@ -10695,6 +10690,13 @@
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: -2px;
   background-color: transparent;
+}
+
+.me-list .me-list-item-content img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .dx-textarea .dx-texteditor-input-container {
@@ -12524,13 +12526,16 @@
 .me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-invalid:not(.dx-state-disabled) {
   box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Danger-Default);
 }
-.me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container::before {
+.me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container::before, .me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container::before {
   content: none;
 }
-.me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-readonly > .dx-texteditor-buttons-container {
+.me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-readonly .dx-dropdowneditor-button, .me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-disabled .dx-dropdowneditor-button {
+  display: none;
+}
+.me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-readonly > .dx-texteditor-buttons-container, .me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-disabled > .dx-texteditor-buttons-container {
   font-family: var(--me-icon-family);
 }
-.me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-readonly > .dx-texteditor-buttons-container::before {
+.me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-readonly > .dx-texteditor-buttons-container::before, .me-date-range-box.dx-daterangebox.dx-texteditor.dx-dropdowneditor.dx-widget.dx-state-disabled > .dx-texteditor-buttons-container::before {
   content: var(--me-icon-lock);
 }
 
@@ -36952,7 +36957,7 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget.me-number-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container {
   margin-right: 4px;
 }
-.me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-readonly .dx-texteditor-buttons-container {
+.me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-disabled .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-disabled .dx-texteditor-buttons-container {
   margin-right: var(--padding-inline);
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-buttons-container {
