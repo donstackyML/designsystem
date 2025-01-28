@@ -9,10 +9,18 @@
   <div class="me-sidebar_content">
     <div #menuHeader class="me-sidebar__header">
       <div class="me-sidebar__header-content">
-        <span *ngIf="!collapsed" class="header_text">{{ title }}</span>
+        <span [style.max-width]="getHeaderMaxWidth()" *ngIf="!collapsed" class="header_text">{{ title }}</span>
         <ng-content select="[header]"></ng-content>
       </div>
-      <me-icon [icon]="toggleIcon" size="medium" class="me-sidebar__toggle" (click)="toggleSidebar()"></me-icon>
+      <me-icon
+        [icon]="toggleIcon"
+        size="medium"
+        class="me-sidebar__toggle"
+        [class.me-sidebar__toggle-active]="toggleBtnPressed"
+        (click)="toggleSidebar()"
+        (pressup)="togglePressedUp($event)"
+        (press)="togglePressed($event)"
+      ></me-icon>
     </div>
     <div class="me-sidebar__divider"></div>
     <ng-content select="[search]"></ng-content>

@@ -7,6 +7,7 @@ import { NgStyle } from '@angular/common';
   template: `
     <span
       class="material-icons"
+      [class.icon_active]="pressed"
       [ngStyle]="{ fontSize: getSize(), color: color }"
     >
       {{ icon }}
@@ -30,6 +31,8 @@ export class MeIconComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() color?: string;
 
+  pressed = false;
+
   getSize(): string {
     switch (this.size) {
       case 'small':
@@ -41,5 +44,15 @@ export class MeIconComponent {
       default:
         return '20px';
     }
+  }
+
+  press() {
+    this.pressed = true;
+    console.log('icon press');
+  }
+
+  pressup() {
+    console.log('icon unpress');
+    this.pressed = false;
   }
 }
