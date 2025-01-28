@@ -197,7 +197,7 @@ export default {
       options: [true, false],
     },
     grouped: {
-      discription: 'Группировать элементы',
+      description: 'Группировать элементы',
       control: 'select',
       options: [true, false],
     },
