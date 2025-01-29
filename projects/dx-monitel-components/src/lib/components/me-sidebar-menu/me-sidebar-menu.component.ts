@@ -475,7 +475,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   }
 
   getHeaderMaxWidth() {
-    return this.width - (32 + 40) + 'px';
+    return this.width - (32 + 55) + 'px';
   }
 
   togglePressed($event: MouseEvent) {

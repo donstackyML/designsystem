@@ -1,4 +1,10 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  Input,
+  Renderer2,
+} from '@angular/core';
 import { MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DxListComponent, DxTreeViewComponent } from 'devextreme-angular';
@@ -11,7 +17,7 @@ import { DxListComponent, DxTreeViewComponent } from 'devextreme-angular';
     '[class.me-tree-view-large]': 'isSizeLarge',
   },
 })
-export class MeTreeViewDirective {
+export class MeTreeViewDirective implements AfterViewInit {
   @Input() size: Exclude<MeSize, 'medium'> = 'large';
 
   private focusService: ComponentFocusService;
@@ -21,6 +27,10 @@ export class MeTreeViewDirective {
     renderer: Renderer2
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
+  }
+
+  ngAfterViewInit(): void {
+    this.element.nativeElement.setAttribute('tabindex', '1');
   }
 
   get isSizeSmall() {

@@ -10,9 +10,7 @@ import {
 } from '@angular/core';
 
 import { MeCommonType, MeScrollbarShowType, MeSize } from '../../types/types';
-import { MeTextEditorDirective } from '../me-text-editor/text-editor.directive';
 import { MeFormField } from '../me-form-item/me-form-field';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({

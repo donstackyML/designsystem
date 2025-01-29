@@ -5723,9 +5723,10 @@
   color: var(--Controls-Content-In-Controls-Danger-Default);
 }
 
-.me-editor.me-keyboard-focused .dx-checkbox-container .dx-checkbox-icon {
+.me-editor.me-keyboard-focused .dx-checkbox-container {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /**
@@ -10686,6 +10687,10 @@
   opacity: 0.4;
 }
 
+.me-list.me-keyboard-focused .dx-list-search.dx-state-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
+}
 .me-list.me-keyboard-focused .dx-scrollview-content .dx-state-focused {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: -2px;
@@ -12413,9 +12418,11 @@
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
 }
-.me-date-range-box.me-keyboard-focused .dx-texteditor-container {
-  outline: 2px solid var(--Dividers-Borders-Focus);
+.me-date-range-box.dx-daterangebox.me-keyboard-focused {
   outline-offset: 2px;
+  outline-color: var(--Dividers-Borders-Focus);
+  outline-style: solid;
+  outline-width: 2px;
 }
 
 .dx-daterangebox {
@@ -13096,26 +13103,6 @@
   transform: rotate(0deg) translate(9px, -4px);
 }
 
-/**
-* $name 10. Focused state background color
-* $type color
-*/
-/**
-* $name 90. Hovered state background color
-* $type color
-*/
-/**
-* $name 100. Border color
-* $type color
-*/
-/**
-* $name 110. Selected item text color
-* $type color
-*/
-/**
-* $name 120. Spin icon color
-* $type color
-*/
 .dx-treeview-loadindicator-wrapper {
   text-align: center;
 }
@@ -13272,6 +13259,9 @@
 .dx-treeview.dx-rtl .dx-treeview-item-with-checkbox .dx-checkbox {
   overflow: visible;
 }
+.dx-treeview .dx-scrollable-container {
+  background: var(--Background-Content);
+}
 
 .dx-treeview-search {
   margin-bottom: 5px;
@@ -13324,15 +13314,10 @@
 
 .dx-treeview-item-without-checkbox.dx-state-selected > .dx-treeview-item {
   color: #18181a;
-  background-color: #c4d8ff;
+  background-color: rgba(60, 113, 248, 0.2);
 }
 .dx-treeview-item-without-checkbox.dx-state-selected:not(.dx-state-focused) > .dx-treeview-item.dx-state-hover {
   background-color: rgba(0, 0, 0, 0.07);
-}
-.dx-treeview-item-without-checkbox.dx-state-focused > .dx-treeview-item {
-  box-shadow: inset 0px 0px 0px 2px #7eb9ff, inset 0px 0px 0px 4px #ffffff;
-  z-index: 1;
-  color: #18181a;
 }
 
 .dx-treeview-item {
@@ -13451,16 +13436,13 @@
   text-overflow: clip;
 }
 .me-tree-view .dx-treeview-item-with-checkbox.dx-state-selected > .dx-treeview-item {
-  background-color: #c4d8ff;
+  background-color: rgba(60, 113, 248, 0.2);
 }
 .me-tree-view .dx-treeview-item-without-checkbox.dx-state-selected > .dx-treeview-item {
-  background-color: #c4d8ff;
+  background-color: rgba(60, 113, 248, 0.2);
 }
 .me-tree-view .dx-treeview-item-without-checkbox.dx-state-focused > .dx-treeview-item {
   box-shadow: none;
-}
-.me-tree-view:focus-visible .dx-treeview-item-without-checkbox.dx-state-focused > .dx-treeview-item, .me-tree-view:focus-visible .dx-treeview-item-with-checkbox.dx-state-focused > .dx-treeview-item {
-  box-shadow: inset 0px 0px 0px 2px #7eb9ff;
 }
 .me-tree-view .dx-state-active {
   background-color: var(--Controls-BG-Flat-Button-Main-BG-Pressed);
@@ -13504,7 +13486,7 @@
 .me-tree-view.me-tree-view-large .dx-scrollable li.dx-treeview-node.dx-treeview-item-with-checkbox .dx-checkbox {
   height: 20px;
   width: 20px;
-  top: 10px;
+  top: 8px;
   left: auto;
   margin-left: 32px;
 }
@@ -13579,6 +13561,13 @@
 .me-tree-view.me-tree-view-small .dx-scrollable .dx-treeview-select-all-item .dx-checkbox-container .dx-checkbox-text {
   font-size: 14px;
   font-weight: var(--me-regular-font-weight);
+}
+
+.me-tree-view.me-keyboard-focused .dx-treeview-item-without-checkbox.dx-state-focused > .dx-treeview-item,
+.me-tree-view.me-keyboard-focused .dx-treeview-item-with-checkbox.dx-state-focused > .dx-treeview-item {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: -2px;
+  z-index: 1;
 }
 
 /**
@@ -14369,6 +14358,7 @@
 .dx-menu.me-keyboard-focused .dx-menu-item.dx-state-focused {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
+  background-color: transparent;
 }
 
 .dx-selectbox {
@@ -14417,7 +14407,6 @@
 }
 .me-selectbox-small.me-selectbox-label-mode-outside.me-keyboard-focused .dx-dropdowneditor-input-wrapper {
   height: 28px !important;
-  margin-bottom: 4px;
 }
 .me-selectbox-small.me-selectbox-label-mode-floating .dx-dropdowneditor-input-wrapper, .me-selectbox-small.me-selectbox-label-mode-static .dx-dropdowneditor-input-wrapper {
   height: 36px;
@@ -14427,7 +14416,6 @@
 }
 .me-selectbox-small.me-selectbox-label-mode-floating.me-keyboard-focused .dx-dropdowneditor-input-wrapper, .me-selectbox-small.me-selectbox-label-mode-static.me-keyboard-focused .dx-dropdowneditor-input-wrapper {
   height: 36px !important;
-  margin-bottom: 4px;
 }
 .me-selectbox-small.me-selectbox-label-mode-hidden .dx-dropdowneditor-input-wrapper {
   height: 28px !important;
@@ -14437,7 +14425,6 @@
 }
 .me-selectbox-small.me-selectbox-label-mode-hidden.me-keyboard-focused:not(.dx-dropdowneditor-active) .dx-dropdowneditor-input-wrapper {
   height: 28px !important;
-  margin-bottom: 4px;
 }
 .me-selectbox-medium.me-selectbox-label-mode-outside .dx-dropdowneditor-input-wrapper {
   height: 32px;
@@ -14448,7 +14435,6 @@
 }
 .me-selectbox-medium.me-selectbox-label-mode-outside.me-keyboard-focused .dx-dropdowneditor-input-wrapper {
   height: 32px !important;
-  margin-bottom: 4px;
 }
 .me-selectbox-medium.me-selectbox-label-mode-floating .dx-dropdowneditor-input-wrapper, .me-selectbox-medium.me-selectbox-label-mode-static .dx-dropdowneditor-input-wrapper {
   height: 40px;
@@ -14458,7 +14444,6 @@
 }
 .me-selectbox-medium.me-selectbox-label-mode-floating.me-keyboard-focused .dx-dropdowneditor-input-wrapper, .me-selectbox-medium.me-selectbox-label-mode-static.me-keyboard-focused .dx-dropdowneditor-input-wrapper {
   height: 40px !important;
-  margin-bottom: 4px;
 }
 .me-selectbox-medium.me-selectbox-label-mode-hidden .dx-dropdowneditor-input-wrapper {
   height: 32px !important;
@@ -14468,7 +14453,6 @@
 }
 .me-selectbox-medium.me-selectbox-label-mode-hidden.me-keyboard-focused:not(.dx-dropdowneditor-active) .dx-dropdowneditor-input-wrapper {
   height: 32px !important;
-  margin-bottom: 4px;
 }
 .me-selectbox-large.me-selectbox-label-mode-outside .dx-dropdowneditor-input-wrapper {
   height: 40px;
@@ -14479,7 +14463,6 @@
 }
 .me-selectbox-large.me-selectbox-label-mode-outside.me-keyboard-focused .dx-dropdowneditor-input-wrapper {
   height: 40px !important;
-  margin-bottom: 4px;
 }
 .me-selectbox-large.me-selectbox-label-mode-floating .dx-dropdowneditor-input-wrapper, .me-selectbox-large.me-selectbox-label-mode-static .dx-dropdowneditor-input-wrapper {
   height: 48px;
@@ -14489,7 +14472,6 @@
 }
 .me-selectbox-large.me-selectbox-label-mode-floating.me-keyboard-focused .dx-dropdowneditor-input-wrapper, .me-selectbox-large.me-selectbox-label-mode-static.me-keyboard-focused .dx-dropdowneditor-input-wrapper {
   height: 48px !important;
-  margin-bottom: 4px;
 }
 .me-selectbox-large.me-selectbox-label-mode-hidden .dx-dropdowneditor-input-wrapper {
   height: 40px !important;
@@ -14499,7 +14481,6 @@
 }
 .me-selectbox-large.me-selectbox-label-mode-hidden.me-keyboard-focused:not(.dx-dropdowneditor-active) .dx-dropdowneditor-input-wrapper {
   height: 40px !important;
-  margin-bottom: 4px;
 }
 
 .me-selectbox.me-keyboard-focused:not(.dx-dropdowneditor-active).dx-state-focused .dx-selectbox-container {
@@ -18219,6 +18200,11 @@
   margin-left: 0;
 }
 
+.me-tag-box.me-keyboard-focused.dx-state-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
+}
+
 .dx-tagbox-single-line .dx-tag-container {
   padding-right: 0;
 }
@@ -21455,6 +21441,11 @@ input.dx-hidden {
     background-color: rgba(24, 24, 26, 0.08);
   }
 }
+.me-data-grid.me-keyboard-focused .dx-toolbar .dx-widget.dx-state-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
+}
+
 .dx-datagrid.dx-filter-menu .dx-menu-item-has-icon .dx-icon,
 .dx-datagrid-container.dx-filter-menu .dx-menu-item-has-icon .dx-icon {
   color: #808084;
@@ -25636,11 +25627,6 @@ input.dx-hidden {
   display: none;
 }
 
-.me-state-focus .dx-list-item.dx-state-focused {
-  outline: 2px solid var(--Dividers-Borders-Focus);
-  outline-offset: 2px;
-}
-
 .dx-datebox-wrapper-calendar .dx-calendar {
   margin: 0;
 }
@@ -25722,6 +25708,16 @@ input.dx-hidden {
   display: inline-block;
   font: 14px/1 DXIcons;
   width: 24px;
+}
+
+.me-state-focus .dx-list-item.dx-state-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
+}
+
+.me-tree-list.me-keyboard-focused .dx-data-row .dx-focused {
+  outline: 2px solid var(--Dividers-Borders-Focus);
+  outline-offset: 2px;
 }
 
 /**
@@ -36427,7 +36423,7 @@ input.dx-hidden {
   text-overflow: ellipsis;
 }
 .me-sidebar .me-sidebar__list.me-sidebar__list-root {
-  padding: 0 8px;
+  padding: 0 16px;
   margin-top: 16px;
 }
 .me-sidebar .me-sidebar_content {
@@ -36484,7 +36480,7 @@ input.dx-hidden {
   width: 28px;
   height: 28px;
   min-width: 28px;
-  background: #ECEDF3;
+  background: #ecedf3;
   border: 1px solid var(--Border-Default);
   border-radius: 4px;
   padding: 0;
@@ -36499,7 +36495,7 @@ input.dx-hidden {
   background: #d8daea;
 }
 .me-sidebar__toggle-active {
-  background: #BFC1D0;
+  background: #bfc1d0;
 }
 .me-sidebar--collapsed {
   width: 86px;
