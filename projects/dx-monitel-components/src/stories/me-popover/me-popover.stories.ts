@@ -7,13 +7,13 @@ import {
 } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
-import { MePopoverDirective } from '../../public-api';
+import { MeButtonDirective, MePopoverDirective } from '../../public-api';
 
 @Component({
   selector: 'me-popover-demo',
   template: `
-    <div style="padding: 20px;">
-      <a id="popoverTarget">{{ triggerText }}</a>
+    <div style="padding: 20px;" class="dx-widget">
+      <a id="popoverTarget" >{{ triggerText }}</a>
       <dx-popover
         mePopover
         target="#popoverTarget"
@@ -36,10 +36,10 @@ import { MePopoverDirective } from '../../public-api';
         </div>
 
         <div *dxTemplate="let data of 'title'">
-          <div class="tittle-wrapper">
-            <div class="tittle-template-wrapper">
-              <div class="tittle-template"></div>
-              <dx-button icon="close" stylingMode="text"></dx-button>
+          <div class="title-wrapper">
+            <div class="title-template-wrapper">
+              <div class="title-template-image"></div>
+              <dx-button meButton [size]="size" stylingMode="text" type="normal" iconOnly="close"></dx-button>
             </div>
             <h3 class="me-title-header1" style="margin: 0;">
               {{ titleTemplate }}
@@ -47,40 +47,39 @@ import { MePopoverDirective } from '../../public-api';
           </div>
         </div>
 
-        <ng-container *ngIf="showToolbarItems">
-          <dxi-toolbar-item
-            widget="dxButton"
-            toolbar="bottom"
-            location="after"
-            [options]="acceptButton"
-          >
-          </dxi-toolbar-item>
-          <dxi-toolbar-item
-            widget="dxButton"
-            toolbar="bottom"
-            location="after"
-            [options]="cancelButton"
-          >
-          </dxi-toolbar-item>
-        </ng-container>
+       <ng-container *ngIf="showToolbarItems">
+        <dxi-toolbar-item  toolbar="bottom" location="after">
+          <dx-button meButton  [text]="acceptButton.text" [size]="size" stylingMode="filled" type="default" (click)="acceptButton.onClick()">
+          </dx-button>
+        </dxi-toolbar-item>
+        <dxi-toolbar-item   toolbar="bottom" location="after">
+          <dx-button meButton [text]="cancelButton.text" [size]="size" stylingMode="filled" type="normal" (click)="cancelButton.onClick()">
+          </dx-button>
+        </dxi-toolbar-item>
+      </ng-container>
       </dx-popover>
     </div>
   `,
   styles: [
     `
-      .tittle-wrapper {
+      .title-wrapper {
         display: flex;
         flex-direction: column;
         gap: 16px;
       }
-      .tittle-template-wrapper {
+      .title-template-wrapper {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        gap: 16px;
+
+        .dx-button {
+          align-self: flex-start;
+        }
       }
-      .tittle-template {
-        width: 216px;
-        height: 125px;
+      .title-template-image {
+        width: 100%;
+        aspect-ratio: 1.72;
         background: linear-gradient(
           135deg,
           #ff8a00 0%,
@@ -144,7 +143,7 @@ const meta: Meta<PopoverDemoComponent> = {
   component: PopoverDemoComponent,
   decorators: [
     moduleMetadata({
-      declarations: [MePopoverDirective, PopoverDemoComponent],
+      declarations: [MePopoverDirective, MeButtonDirective, PopoverDemoComponent],
       imports: [DxPopoverModule, DxButtonModule],
     }),
   ],
@@ -221,7 +220,7 @@ const meta: Meta<PopoverDemoComponent> = {
     showCloseButton: {
       control: 'boolean',
       description:
-        'Показывать ли кнопку закрытия поповера. Работает только если `showTittle=true` и в `tittle` не используется шаблон.',
+        'Показывать ли кнопку закрытия поповера. Работает только если `showTitle=true` и в `title` не используется шаблон.',
       defaultValue: false,
     },
     hideOnOutsideClick: {
@@ -297,7 +296,7 @@ export const DefaultWithCloseButton: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <div style="padding: 20px;">
+    <div style="padding: 20px;" class="dx-widget">
       <a id="popoverTarget">{{ triggerText }}</a>
       <dx-popover
         mePopover
@@ -330,12 +329,69 @@ export const DefaultWithCloseButton: Story = {
   }),
 };
 
-export const WithContent: Story = {
+export const ContentColorModeLight: Story = {
   args: {
     ...Default.args,
     triggerText: 'Нажмите для показа поповера',
     colorMode: 'light',
     showTitle: true,
+    title: undefined,
+    titleTemplate: 'Заголовок с картинкой',
+    size: 'small',
+    showToolbarItems: true,
+    shading: true,
+    showEvent: 'click',
+    hideEvent: 'click',
+    showCloseButton: true,
+    content:
+      'Трансформатор - это устройство, способное изменять напряжение переменного тока.',
+  },
+};
+
+export const ContentColorModeDark: Story = {
+  args: {
+    ...Default.args,
+    triggerText: 'Нажмите для показа поповера',
+    colorMode: 'dark',
+    showTitle: true,
+    title: undefined,
+    titleTemplate: 'Заголовок с картинкой',
+    size: 'small',
+    showToolbarItems: true,
+    shading: true,
+    showEvent: 'click',
+    hideEvent: 'click',
+    showCloseButton: true,
+    content:
+      'Трансформатор - это устройство, способное изменять напряжение переменного тока.',
+  },
+};
+
+export const ContentColorModeAlternate: Story = {
+  args: {
+    ...Default.args,
+    triggerText: 'Нажмите для показа поповера',
+    showTitle: true,
+    colorMode: 'alternate',
+    title: undefined,
+    titleTemplate: 'Заголовок с картинкой',
+    size: 'small',
+    showToolbarItems: true,
+    shading: true,
+    showEvent: 'click',
+    hideEvent: 'click',
+    showCloseButton: true,
+    content:
+      'Трансформатор - это устройство, способное изменять напряжение переменного тока.',
+  },
+};
+
+export const ContentColorModeDefault: Story = {
+  args: {
+    ...Default.args,
+    triggerText: 'Нажмите для показа поповера',
+    showTitle: true,
+    colorMode: 'default',
     title: undefined,
     titleTemplate: 'Заголовок с картинкой',
     size: 'small',

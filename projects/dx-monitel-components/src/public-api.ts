@@ -1,8 +1,4 @@
 // Components
-import { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
-import { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
-import { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
-import { MeNumberBoxModule } from './lib/directives/me-number-box/me-number-box.module';
 
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
@@ -12,26 +8,29 @@ export { MeChipComponent } from './lib/components/me-chips/me-chips.component';
 export { MeFileUploaderComponent } from './lib/components/me-file-uploader/me-file-uploader.component';
 export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
+export { MeSidebarMenuComponent } from './lib/components/me-sidebar-menu/me-sidebar-menu.component';
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
 export { MeStatusBarComponent } from './lib/components/me-status-bar/me-status-bar.component';
-export { MeSidebarMenuComponent } from './lib/components/me-sidebar-menu/me-sidebar-menu.component';
 
 // Form and Input Directives
 export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';
-export { MeButtonDirective } from './lib/directives/me-button/button.directive';
 export { MeButtonGroupDirective } from './lib/directives/me-button-group/button-group.directive';
+export { MeButtonDirective } from './lib/directives/me-button/me-button.directive';
 export { MeCalendarDirective } from './lib/directives/me-calendar/calendar.directive';
 export { MeCheckBoxDirective } from './lib/directives/me-check-box/check-box.directive';
 export { MeControlDirective } from './lib/directives/me-control/control.directive';
 export { MeDateBoxDirective } from './lib/directives/me-date-box/date-box.directive';
+export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
 export { MeEditorDirective } from './lib/directives/me-editor/editor.directive';
 export { MeFileUploaderDirective } from './lib/directives/me-file-uploader/file-uploader.directive';
-export { MeFormDirective } from './lib/directives/me-form/me-form.directive';
+export { MeFocusableDirective } from './lib/directives/me-focusable/me-focusable.directive';
 export { MeFormItemDirective } from './lib/directives/me-form-item/me-form-item.directive';
+export { MeFormDirective } from './lib/directives/me-form/me-form.directive';
 export { MeIconDirective } from './lib/directives/me-icon/icon.directive';
 export { MeLabelDirective } from './lib/directives/me-label/label.directive';
 export { MeListDirective } from './lib/directives/me-list/list.directive';
+export { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
 export { MeRadioGroupDirective } from './lib/directives/me-radio-group/radio-group.directive';
 export { MeSelectBoxDirective } from './lib/directives/me-select-box/select-box.directive';
 export { MeSliderDirective } from './lib/directives/me-slider/slider.directive';
@@ -40,10 +39,7 @@ export { MeTagBoxDirective } from './lib/directives/me-tag-box/tag-box.directive
 export { MeTextAreaDirective } from './lib/directives/me-text-area/text-area.directive';
 export { MeTextBoxDirective } from './lib/directives/me-text-box/text-box.directive';
 export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-editor.directive';
-export { MeFocusableDirective } from './lib/directives/me-focusable/me-focusable.directive';
 export { MeToastDirective } from './lib/directives/me-toast/toast.directive';
-export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/date-range-box.directive';
-export { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
 
 // Layout and Navigation Directives
 export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';
@@ -53,7 +49,7 @@ export { MeDropDownButtonDirective } from './lib/directives/me-drop-down-button/
 export { MeMenuDirective } from './lib/directives/me-menu/menu.directive';
 export { MeOverlayDirective } from './lib/directives/me-overlay/overlay.directive';
 export { MePivotGridDirective } from './lib/directives/me-pivot-grid/me-pivot-grid.directive';
-export { MePopoverDirective } from './lib/directives/me-popover/popover.directive';
+export { MePopoverDirective } from './lib/directives/me-popover/me-popover.directive';
 export { MePopupDirective } from './lib/directives/me-popup/popup.directive';
 export { MeProgressBarDirective } from './lib/directives/me-progress-bar/progress-bar.directive';
 export { MeScrollViewDirective } from './lib/directives/me-scroll-view/scroll-view.directive';
@@ -76,13 +72,16 @@ export { MeCalendarModule } from './lib/directives/me-calendar/calendar.module';
 export { MeCheckBoxModule } from './lib/directives/me-check-box/me-check-box.module';
 export { MeControlModule } from './lib/directives/me-control/control.module';
 export { MeDateBoxModule } from './lib/directives/me-date-box/date-box.module';
+export { MeDateRangeBoxModule } from './lib/directives/me-date-range-box/date-range-box.module';
 export { MeEditorModule } from './lib/directives/me-editor/me-editor.module';
 export { MeFileUploaderModule } from './lib/directives/me-file-uploader/file-uploader.module';
-export { MeFormModule } from './lib/directives/me-form/me-form.module';
+export { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 export { MeFormItemModule } from './lib/directives/me-form-item/me-form-item.module';
+export { MeFormModule } from './lib/directives/me-form/me-form.module';
 export { MeIconModule } from './lib/directives/me-icon/me-icon.module';
 export { MeLabelModule } from './lib/directives/me-label/me-label.module';
 export { MeListModule } from './lib/directives/me-list/list.module';
+export { MeNumberBoxModule } from './lib/directives/me-number-box/me-number-box.module';
 export { MeRadioGroupModule } from './lib/directives/me-radio-group/me-radio-group.module';
 export { MeSelectBoxModule } from './lib/directives/me-select-box/me-select-box.module';
 export { MeSliderModule } from './lib/directives/me-slider/slider.module';
@@ -91,10 +90,7 @@ export { MeTagBoxModule } from './lib/directives/me-tag-box/tag-box.module';
 export { MeTextAreaModule } from './lib/directives/me-text-area/text-area.module';
 export { MeTextBoxModule } from './lib/directives/me-text-box/me-text-box.module';
 export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-editor.module';
-export { MeFocusableModule } from './lib/directives/me-focusable/me-focusable.module';
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
-export { MeDateRangeBoxModule } from './lib/directives/me-date-range-box/date-range-box.module';
-export { MeNumberBoxModule } from './lib/directives/me-number-box/me-number-box.module';
 
 // Layout and Navigation Modules
 export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';
@@ -120,11 +116,11 @@ export { MeLoadIndicatorModule } from './lib/directives/me-load-indicator/load-i
 export { MeLoadPanelModule } from './lib/directives/me-load-panel/load-panel.module';
 
 // Services
-export { FocusManagerService } from './lib/service/keyboard-navigation.service';
 export { MeIconStoreService } from './lib/service/icon-store.service';
-export { ThemesService } from './lib/service/themes.service';
+export { FocusManagerService } from './lib/service/keyboard-navigation.service';
 export { KeyboardNavigationService } from './lib/service/keyboard.service';
+export { ThemesService } from './lib/service/themes.service';
 
 // Types and Main Module
-export * from './lib/types/types';
 export * from './lib/me-components.module';
+export * from './lib/types/types';
