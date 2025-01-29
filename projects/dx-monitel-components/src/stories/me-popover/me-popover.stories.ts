@@ -46,13 +46,12 @@ import { MeButtonDirective, MePopoverDirective } from '../../public-api';
             </h3>
           </div>
         </div>
-
        <ng-container *ngIf="showToolbarItems">
-        <dxi-toolbar-item  toolbar="bottom" location="after">
-          <dx-button meButton  [text]="acceptButton.text" [size]="size" stylingMode="filled" type="default" (click)="acceptButton.onClick()">
+        <dxi-toolbar-item toolbar="bottom" location="after">
+          <dx-button meButton [text]="acceptButton.text" [size]="size" stylingMode="filled" type="default" (click)="acceptButton.onClick()">
           </dx-button>
         </dxi-toolbar-item>
-        <dxi-toolbar-item   toolbar="bottom" location="after">
+        <dxi-toolbar-item toolbar="bottom" location="after">
           <dx-button meButton [text]="cancelButton.text" [size]="size" stylingMode="filled" type="normal" (click)="cancelButton.onClick()">
           </dx-button>
         </dxi-toolbar-item>
@@ -329,69 +328,12 @@ export const DefaultWithCloseButton: Story = {
   }),
 };
 
-export const ContentColorModeLight: Story = {
+export const WithContent: Story = {
   args: {
     ...Default.args,
     triggerText: 'Нажмите для показа поповера',
     colorMode: 'light',
     showTitle: true,
-    title: undefined,
-    titleTemplate: 'Заголовок с картинкой',
-    size: 'small',
-    showToolbarItems: true,
-    shading: true,
-    showEvent: 'click',
-    hideEvent: 'click',
-    showCloseButton: true,
-    content:
-      'Трансформатор - это устройство, способное изменять напряжение переменного тока.',
-  },
-};
-
-export const ContentColorModeDark: Story = {
-  args: {
-    ...Default.args,
-    triggerText: 'Нажмите для показа поповера',
-    colorMode: 'dark',
-    showTitle: true,
-    title: undefined,
-    titleTemplate: 'Заголовок с картинкой',
-    size: 'small',
-    showToolbarItems: true,
-    shading: true,
-    showEvent: 'click',
-    hideEvent: 'click',
-    showCloseButton: true,
-    content:
-      'Трансформатор - это устройство, способное изменять напряжение переменного тока.',
-  },
-};
-
-export const ContentColorModeAlternate: Story = {
-  args: {
-    ...Default.args,
-    triggerText: 'Нажмите для показа поповера',
-    showTitle: true,
-    colorMode: 'alternate',
-    title: undefined,
-    titleTemplate: 'Заголовок с картинкой',
-    size: 'small',
-    showToolbarItems: true,
-    shading: true,
-    showEvent: 'click',
-    hideEvent: 'click',
-    showCloseButton: true,
-    content:
-      'Трансформатор - это устройство, способное изменять напряжение переменного тока.',
-  },
-};
-
-export const ContentColorModeDefault: Story = {
-  args: {
-    ...Default.args,
-    triggerText: 'Нажмите для показа поповера',
-    showTitle: true,
-    colorMode: 'default',
     title: undefined,
     titleTemplate: 'Заголовок с картинкой',
     size: 'small',
