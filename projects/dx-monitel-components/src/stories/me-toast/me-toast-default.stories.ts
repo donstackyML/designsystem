@@ -4,18 +4,18 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
+import { DxButtonModule, DxToastComponent, DxToastModule } from 'devextreme-angular';
 
-import {
-  MeToastComponent
-} from '../../public-api';
+import { MeButtonModule, MeIconComponent, MeToastDirective, } from '../../public-api';
 
 export default {
-  title: 'Components/Toast',
   decorators: [
     moduleMetadata({
-      imports: [MeToastComponent],
+      declarations: [MeToastDirective],
+      imports: [DxToastModule, DxButtonModule, MeButtonModule, MeIconComponent],
     }),
   ],
+  title: 'Components/Toast/Default',
   argTypes: {
     visible: {
       control: 'boolean',
@@ -60,15 +60,6 @@ export default {
         defaultValue: { summary: '' },
       },
     },
-    title: {
-      control: 'text',
-      description:
-        'Текст заголовка уведомления в тосте. Если не указан, заголовок не отображается.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
     displayTime: {
       control: { type: 'number' },
       description: 'Время отображения тоста в миллисекундах.',
@@ -77,71 +68,84 @@ export default {
         defaultValue: { summary: 10000 },
       },
     },
+    showIcon: {
+      control: 'boolean',
+      description: 'Отображение иконки рядом с текстом.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
+
   render: (args) => ({
     props: args,
-    template: `<me-toast ${argsToTemplate(args)}
-    (onAccept)="visible = false"
-    (onCancel)="visible = false"
-    (handleClose)="visible = false"
-    >
-  </me-toast>`,
+    template: `<dx-toast meToast ${argsToTemplate(args)}>
+  </dx-toast>`,
   }),
-} as Meta<typeof MeToastComponent>;
+} as Meta<MeToastDirective | DxToastComponent>;
 
-type Story = StoryObj<MeToastComponent
+type Story = StoryObj<
+  MeToastDirective | DxToastComponent
 >;
 
-export const FullToastSizeSmall: Story = {
+export const DefaultToastSizeSmall: Story = {
   args: {
     size: 'small',
     type: 'info',
     visible: true,
     displayTime: 4000,
-    title: 'Заголовок',
     message: 'Операция выполнена успешно',
     position: 'bottom center',
+    showIcon: false
   }
 };
 
-export const FullToastSizeLarge: Story = {
+
+export const DefaultToastSizeLarge: Story = {
   args: {
-    ...FullToastSizeSmall.args,
+    ...DefaultToastSizeSmall.args,
     size: 'large'
   }
 };
 
-export const FullToastTypeInfo: Story = {
+export const DefaultToastTypeInfo: Story = {
   args: {
-    ...FullToastSizeSmall.args,
+    ...DefaultToastSizeSmall.args,
     type: 'info'
   }
 };
 
-export const FullToastTypeWarning: Story = {
+export const DefaultToastTypeWarning: Story = {
   args: {
-    ...FullToastSizeSmall.args,
+    ...DefaultToastSizeSmall.args,
     type: 'warning'
   }
 };
 
-export const FullToastTypeSuccess: Story = {
+export const DefaultToastTypeSuccess: Story = {
   args: {
-    ...FullToastSizeSmall.args,
+    ...DefaultToastSizeSmall.args,
     type: 'success'
   }
 };
 
-export const FullToastTypeError: Story = {
+export const DefaultToastTypeError: Story = {
   args: {
-    ...FullToastSizeSmall.args,
+    ...DefaultToastSizeSmall.args,
     type: 'error'
   }
 };
 
-export const FullToastTypeInfoInverted: Story = {
+export const DefaultToastTypeInfoInverted: Story = {
   args: {
-    ...FullToastSizeSmall.args,
-    type: 'info-inverted'
+    ...DefaultToastSizeSmall.args,
+    type: 'info-inverted' as any
+  }
+};
+export const DefaultToastWithIcon: Story = {
+  args: {
+    ...DefaultToastSizeSmall.args,
+    showIcon: true
   }
 };

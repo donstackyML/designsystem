@@ -3,7 +3,6 @@ import { dxToastOptions } from 'devextreme/ui/toast';
 
 import {
   Directive,
-  HostBinding,
   Input,
   OnInit,
   Optional,
@@ -11,7 +10,6 @@ import {
 } from '@angular/core';
 
 type ToastSize = 'small' | 'large';
-type ToastType = 'info' | 'warning' | 'success' | 'error';
 
 @Directive({
   selector: '[meToast]',
@@ -24,6 +22,7 @@ type ToastType = 'info' | 'warning' | 'success' | 'error';
 })
 export class MeToastDirective implements OnInit {
   @Input() size: ToastSize = 'small';
+  @Input() showIcon = false;
 
   get isSmall(): boolean {
     return this.size === 'small';
@@ -45,7 +44,7 @@ export class MeToastDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dxToastComponent.instance.option().wrapperAttr.class = `me-toast me-toast-${this.size}`;
+    this.dxToastComponent.instance.option().wrapperAttr.class = `me-toast me-toast-${this.size} ` + (this.showIcon ? 'me-show-icon' : '');
   }
 
   public showToast() {
