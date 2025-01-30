@@ -35,6 +35,9 @@ export class MeDateRangeBoxDirective implements OnInit {
     protected renderer: Renderer2
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
+    this.focusService.addKeyUpEventHandle('Enter', (evt) =>
+      this.enterHandle(evt)
+    );
   }
   ngOnInit(): void {
     this.component.instance.option('dropDownOptions', {
@@ -42,6 +45,7 @@ export class MeDateRangeBoxDirective implements OnInit {
         class: `me-date-range-box-overlay`,
       },
     });
+    this.component.instance.open;
   }
 
   get isSizeLarge() {
@@ -84,5 +88,9 @@ export class MeDateRangeBoxDirective implements OnInit {
       this.renderer.addClass(todayButton, 'dx-button-mode-text');
       this.renderer.addClass(todayButton, 'dx-button-default');
     }
+  }
+
+  private enterHandle(evt: KeyboardEvent) {
+    this.component.instance.open();
   }
 }

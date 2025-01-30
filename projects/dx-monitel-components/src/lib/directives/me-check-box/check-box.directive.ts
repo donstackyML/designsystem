@@ -7,10 +7,10 @@ import {
   OnInit,
   Renderer2,
 } from '@angular/core';
-import { DxCheckBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
-import { MeEditorDirective } from '../me-editor/editor.directive';
+import { DxCheckBoxComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { MeEditorComponents, MeSize } from '../../types/types';
+import { MeSize } from '../../types/types';
+
 @Directive({
   selector: '[meCheckBox]',
 })
@@ -40,7 +40,5 @@ export class MeCheckBoxDirective implements OnInit, OnDestroy {
     );
   }
 
-  private tabHandle(evt: KeyboardEvent) {
-    console.log(evt);
-  }
+  private tabHandle(evt: KeyboardEvent) {}
 }

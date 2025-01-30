@@ -6,6 +6,7 @@ import {
   MeSidebarMenuComponent,
   MeTreeViewModule,
 } from '../../public-api';
+import { MeIconStoreService } from '../../../../../src/app/service/icon-store.service';
 
 interface MeSidebarMenuItem {
   id: string;
@@ -16,6 +17,7 @@ interface MeSidebarMenuItem {
   items?: MeSidebarMenuItem[];
   selected?: boolean;
 }
+const iconStore = new MeIconStoreService();
 
 const meta: Meta<MeSidebarMenuComponent> = {
   title: 'Components/Sidebar',
@@ -77,13 +79,13 @@ const DEMO_ITEMS: MeSidebarMenuItem[] = [
       {
         id: 'inbox',
         text: 'Входящие',
-        icon: 'inbox',
+        icon: 'folder',
         badge: 2,
       },
       {
         id: 'inprogress',
         text: 'В работе',
-        icon: 'pending',
+        icon: 'folder',
         badge: 1,
       },
     ],

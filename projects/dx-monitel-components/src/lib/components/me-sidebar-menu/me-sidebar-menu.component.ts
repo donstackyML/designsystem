@@ -95,7 +95,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   @Output() collapsedChange = new EventEmitter<boolean>();
   @Output() itemSelected = new EventEmitter<MeSidebarMenuItem>();
 
-  @Input() collapsedWidth = 72;
+  @Input() collapsedWidth = 86;
   @Input() expandedWidth = 336;
 
   private _items: MeSidebarMenuItem[] = [];
@@ -110,6 +110,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
 
   nodeFlatList?: TreeNode[];
   activeIndex = 0;
+  toggleBtnPressed = false;
   get width(): number {
     return this._width;
   }
@@ -248,8 +249,12 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   resize(target: HTMLElement) {
     const dragRect = this.dragHandleRightElement.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
-    this.width = dragRect.left - (targetRect.left - dragRect.width / 2);
-    this.expandedWidth = this.width;
+    let widthNew = dragRect.left - (targetRect.left - dragRect.width / 2);
+    if (widthNew <= this.collapsedWidth) {
+      this.toggleSidebar();
+    } else {
+      this.width = widthNew;
+    }
   }
 
   selectItem($event: MouseEvent, node: TreeNode) {
@@ -467,5 +472,19 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
       this.nodeFlatList = [];
       this.activeIndex = 0;
     }
+  }
+
+  getHeaderMaxWidth() {
+    return this.width - (32 + 55) + 'px';
+  }
+
+  togglePressed($event: MouseEvent) {
+    console.log('Pressed togller');
+    this.toggleBtnPressed = true;
+  }
+
+  togglePressedUp($event: MouseEvent) {
+    console.log('UNPressed togller');
+    this.toggleBtnPressed = false;
   }
 }

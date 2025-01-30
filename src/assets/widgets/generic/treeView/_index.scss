@@ -41,6 +41,9 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
       overflow: visible;
     }
   }
+  .dx-scrollable-container {
+    background: var(--Background-Content);
+  }
 }
 
 .dx-treeview-search {
@@ -122,14 +125,6 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
           background-color: $treeview-item-selected-hover-bg;
         }
       }
-    }
-  }
-
-  &.dx-state-focused {
-    > .dx-treeview-item {
-      box-shadow: inset 0px 0px 0px 2px #7eb9ff, inset 0px 0px 0px 4px #ffffff;
-      z-index: 1;
-      color: $treeview-color;
     }
   }
 }
@@ -246,12 +241,12 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
     box-shadow: none;
   }
 
-  &:focus-visible .dx-treeview-item-without-checkbox.dx-state-focused,
-  &:focus-visible .dx-treeview-item-with-checkbox.dx-state-focused {
-    & > .dx-treeview-item {
-      box-shadow: inset 0px 0px 0px 2px #7eb9ff;
-    }
-  }
+  //&:focus-visible .dx-treeview-item-without-checkbox.dx-state-focused,
+  //&:focus-visible .dx-treeview-item-with-checkbox.dx-state-focused {
+  //  & > .dx-treeview-item {
+  //    box-shadow: inset 0px 0px 0px 2px #7eb9ff;
+  //  }
+  //}
 
   .dx-state-active {
     background-color: var(--Controls-BG-Flat-Button-Main-BG-Pressed);
@@ -269,6 +264,11 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
   li ul {
     margin-left: 32px;
   }
+  //.dx-treeview-toggle-item-visibility {
+  //  &.dx-treeview-toggle-item-visibility-opened::before {
+  //     left: 8px;
+  //  }
+  //}
   .dx-scrollable {
     li.dx-treeview-node {
       font-size: 16px;
@@ -298,7 +298,7 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
         .dx-checkbox {
           height: 20px;
           width: 20px;
-          top: 10px;
+          top: 8px;
           left: auto;
           margin-left: 32px;
           .dx-checkbox-icon {
@@ -395,3 +395,23 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
     }
   }
 }
+
+.me-tree-view.me-keyboard-focused {
+  .dx-treeview-item-without-checkbox,
+  .dx-treeview-item-with-checkbox {
+    &.dx-state-focused {
+      & > .dx-treeview-item {
+        outline: 2px solid var(--Dividers-Borders-Focus);
+        outline-offset: -2px;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+//&:focus-visible .dx-treeview-item-without-checkbox.dx-state-focused,
+//&:focus-visible .dx-treeview-item-with-checkbox.dx-state-focused {
+//  & > .dx-treeview-item {
+//    box-shadow: inset 0px 0px 0px 2px #7eb9ff;
+//  }
+//}
