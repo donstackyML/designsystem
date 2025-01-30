@@ -16,6 +16,7 @@ import {
   MeDataGridModule,
   MeDropDownButtonModule,
   MeFileUploaderModule,
+  MeFormItemModule,
   MeIconComponent,
   MeListModule,
   MeLoadIndicatorModule,
@@ -35,11 +36,11 @@ import {
   MeTagBoxModule,
   MeTextAreaModule,
   MeTextBoxModule,
+  MeToastComponent,
   MeToolbarModule,
   MeTooltipModule,
   MeTreeListModule,
   MeTreeViewModule,
-  MeFormItemModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,7 +65,6 @@ import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
 import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
 import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
-import { MeToastComponent } from './components/me-toast/me-toast.component';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
@@ -87,6 +87,8 @@ import { MePopoverDirective } from './directives/popover.directive';
 // import { MeSelectBoxDirective } from './directives/select-box.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 // import { MeTextBoxDirective } from './directives/text-box.directive';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { MeFormModule } from 'projects/dx-monitel-components/src/lib/directives/me-form/me-form.module';
 import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
 import { MeDataGridComponent } from './components/me-data-grid/me-data-grid.component';
@@ -99,8 +101,6 @@ import { MeTextAreaComponent } from './components/me-text-area/me-text-area.comp
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
 // import { MeToolbarDirective } from './directives/toolbar.directive';
 // import { MeTreeViewDirective } from './directives/tree-view.directive';
 
@@ -150,7 +150,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MeTreeViewComponent,
     // MeTreeViewDirective,
     MeToastDirective,
-    MeToastComponent,
     // MeLoadIndicatorDirective,
     MeLoadingIndicatorComponent,
     // MeLoadPanelDirective,
@@ -176,6 +175,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MeBreadcrumbsComponent,
     MeCardComponent,
     MeIconComponent,
+    MeToastComponent,
     MeChipComponent,
     MeChipsContainerComponent,
     MeDataGridModule,
@@ -219,4 +219,4 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

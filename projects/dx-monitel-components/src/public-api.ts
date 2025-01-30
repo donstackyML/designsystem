@@ -12,6 +12,7 @@ export { MeSidebarMenuComponent } from './lib/components/me-sidebar-menu/me-side
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
 export { MeStatusBarComponent } from './lib/components/me-status-bar/me-status-bar.component';
+export { MeToastComponent } from './lib/components/me-toast/me-toast.component';
 
 // Form and Input Directives
 export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';

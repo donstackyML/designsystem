@@ -6,7 +6,6 @@ import {
 } from '../../types/types';
 import { DxTextBoxComponent } from 'devextreme-angular';
 import { MeEditorDirective } from '../me-editor/editor.directive';
-import { LabelMode } from 'devextreme/common';
 
 @Directive({
   selector: '[meTextEditor]',

@@ -1,0 +1,20 @@
+<dx-toast meToast [(visible)]="visible" [size]="size" [type]="type" [position]="position" [displayTime]="displayTime">
+  <div *dxTemplate="let data of 'content'" class="me-toast-content">
+    <div class="me-toast-header">
+      <me-icon [icon]="statusIcon()" class="me-toast-icon" [size]="size"></me-icon>
+      <div class="me-toast-header-content">
+        <div class="me-toast-header-title"> {{ title }}</div>
+        <div class="me-toast-header-message">{{ message }}</div>
+      </div>
+      <dx-button meButton iconOnly="close" size="small" stylingMode="text" class="me-toast-close-button"
+        (onClick)="handleClose()"></dx-button>
+    </div>
+    <hr class="me-toast-divider" />
+    <div class="me-toast-actions">
+      <dx-button meButton size="large" text="Принять" [type]="actionButtonType().type" stylingMode="contained"
+        (onClick)="handleAccept()"></dx-button>
+      <dx-button meButton size="large" text="Отменить" [type]="actionButtonType().type" [stylingMode]="actionButtonType().cancelButtonStylingMode"
+        (onClick)="handleCancel()"></dx-button>
+    </div>
+  </div>
+</dx-toast>

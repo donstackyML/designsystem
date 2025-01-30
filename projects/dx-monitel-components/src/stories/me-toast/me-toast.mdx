@@ -1,8 +1,8 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as toastStories from "./me-toast.stories";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
 import { moduleMetadata } from "@storybook/angular";
-import { DxToastModule, DxButtonModule } from "devextreme-angular";
-import { MeToastDirective, MeIconComponent, MeButtonDirective, MeButtonModule } from "../../public-api";
+import { DxButtonModule, DxToastModule } from "devextreme-angular";
+import { MeButtonDirective, MeButtonModule, MeIconComponent, MeToastDirective } from "../../public-api";
+import * as toastStories from "./me-toast.stories";
 
 <Meta
   title="Components/Toast"
@@ -24,168 +24,63 @@ import { MeToastDirective, MeIconComponent, MeButtonDirective, MeButtonModule } 
 ## Размеры и типы
 
 Toast поддерживает два размера:
-- Маленький (small) - для простых уведомлений
-- Большой (large) - для уведомлений с дополнительными действиями
+- Маленький (`small`) - для простых уведомлений
+- Большой (`large`) - для уведомлений с дополнительными действиями
 
-И четыре типа:
-- Информационный (info)
-- Предупреждение (warning)
-- Ошибка (error)
-- Успех (success)
+И пять типов:
+- Информационный (`info`)
+- Предупреждение (`warning`)
+- Ошибка (`error`)
+- Успех (`success`)
+- Информационный инвертированный (`info-inverted`)
 
-## Маленький информационный тост
+## Тост обычный с информацией
 
 <Source
   code={`<dx-toast
-  meToast
-  [visible]="true"
-  [type]="'info'"
->
-  <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small">
-    <div class="me-toast-header">
-      <me-icon icon="info" size="small" color="var(--Controls-BG-Accent-Accent-BG-Default)"></me-icon>
-      <div class="me-title-header2">Информация</div>
-      <dx-button
-        icon="close"
-        stylingMode="text"
-        class="me-toast-close-button"
-      ></dx-button>
-    </div>
-    <div class="me-toast-content2 me-text-body2">Операция выполнена успешно</div>
-  </div>
-</dx-toast>`}
+    meToast
+    [visible]="visible"
+    type="info"
+    message="Операция выполнена успешно"
+  >
+  </dx-toast>`}
   dark
   language="html"
 />
 
-## Маленький предупреждающий тост
-
-
-  <Source
-    code={`<dx-toast
-    meToast
-    [visible]="true"
-    [type]="'warning'"
-    >
-    <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-small">
-    <div class="me-toast-header">
-    <me-icon icon="warning" size="small" color="var(--Icon-Attention)"></me-icon>
-    <div class="me-title-header2">Предупреждение</div>
-    <dx-button
-    icon="close"
-    stylingMode="text"
-    class="me-toast-close-button"
-    ></dx-button>
-    </div>
-    <div class="me-toast-content2 me-text-body2">Внимание! Данное действие нельзя будет отменить</div>
-    </div>
-    </dx-toast>`}
-      dark
-      language="html"
-    />
-
-    ## Большой тост с ошибкой
-
+## Тост расширенный с информацией
 
 <Source
-  code={`<dx-toast
-  meToast
-  [visible]="true"
-  [type]="'error'"
->
-  <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
-    <div class="me-toast-header">
-      <me-icon icon="error" size="large" color="var(--Icon-Error)"></me-icon>
-      <div class="me-title-header1">Ошибка</div>
-      <dx-button
-        icon="close"
-        stylingMode="text"
-        class="me-toast-close-button"
-      ></dx-button>
-    </div>
-    <div class="me-toast-content1 me-text-body1">Произошла ошибка при выполнении операции</div>
-    <div class="me-toast-actions">
-      <dx-button
-        meButton
-        size="large"
-        text="Повторить"
-        type="danger"
-        stylingMode="contained"
-      ></dx-button>
-      <dx-button
-        meButton
-        size="large"
-        text="Отмена"
-        type="danger"
-        stylingMode="text"
-      ></dx-button>
-    </div>
-  </div>
-</dx-toast>`}
+  code={`<me-toast
+    [visible]="visible"
+    type="info"
+    message="Операция выполнена успешно"
+    title="Информация"
+  >
+  </me-toast>`}
   dark
   language="html"
 />
 
-## Большой тост успеха
+## API
 
-  <Source
-    code={`<dx-toast
-    meToast
-    [visible]="true"
-    [type]="'success'"
-    >
-    <div *dxTemplate="let data of 'content'" class="me-toast-content me-toast-large">
-    <div class="me-toast-header">
-    <me-icon icon="check_circle" size="large" color="var(--Icon-Success)"></me-icon>
-    <div class="me-title-header1">Успешно</div>
-    <dx-button
-    icon="close"
-    stylingMode="text"
-    class="me-toast-close-button"
-    ></dx-button>
-    </div>
-    <div class="me-toast-content1 me-text-body1">Все файлы успешно загружены на сервер</div>
-    <div class="me-toast-actions">
-    <dx-button
-    meButton
-    size="large"
-    text="Открыть"
-    type="success"
-    stylingMode="contained"
-    ></dx-button>
-    <dx-button
-    meButton
-    size="large"
-    text="Закрыть"
-    type="success"
-    stylingMode="text"
-    ></dx-button>
-    </div>
-    </div>
-    </dx-toast>`}
-      dark
-      language="html"
-    />
+### Свойства компонента
 
-    ## API
+| Свойство | Тип | Описание |
+|----------|-----|----------|
+| type | 'info' \| 'warning' \| 'error' \| 'success' \| 'info-inverted' | Тип уведомления |
+| visible | boolean | Флаг видимости уведомления |
+| displayTime | number | Время отображения в миллисекундах |
 
-    ### Свойства компонента
+### CSS классы
 
-    | Свойство | Тип | Описание |
-    |----------|-----|----------|
-    | type | 'info' \| 'warning' \| 'error' \| 'success' | Тип уведомления |
-    | visible | boolean | Флаг видимости уведомления |
-    | displayTime | number | Время отображения в миллисекундах |
-
-    ### CSS классы
-
-    | Класс | Описание |
-    |-------|----------|
-    | me-toast-content | Базовый класс для контейнера уведомления |
-    | me-toast-small | Класс для маленького уведомления |
-    | me-toast-large | Класс для большого уведомления |
-    | me-toast-header | Класс для заголовка уведомления |
-    | me-toast-content1 | Класс для отступа контента в больших уведомлениях |
-    | me-toast-content2 | Класс для отступа контента в маленьких уведомлениях |
-    | me-toast-actions | Класс для контейнера с кнопками действий |
-    | me-toast-close-button | Класс для кнопки закрытия |
+| Класс | Описание |
+|-------|----------|
+| me-toast-content | Базовый класс для контейнера уведомления |
+| me-toast-small | Класс для маленького уведомления |
+| me-toast-large | Класс для большого уведомления |
+| me-toast-header | Класс для заголовка уведомления |
+| me-toast-content1 | Класс для отступа контента в больших уведомлениях |
+| me-toast-content2 | Класс для отступа контента в маленьких уведомлениях |
+| me-toast-actions | Класс для контейнера с кнопками действий |
+| me-toast-close-button | Класс для кнопки закрытия |
