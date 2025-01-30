@@ -3,25 +3,38 @@
 @use '../colors' as *;
 @use '../overlay/colors' as *;
 
-// adduse
-
-@mixin standardColors {
-  --popover-background: var(--Background-Alert);
-  --popover-color: var(--Text-Alert);
-
-  @if $color == 'light' {
-    --popover-border: transparant;
-  } @else {
-    --popover-border: var(--dividers-borders-long);
-  }
-}
-@mixin alternateColors {
+@mixin baseColors($border) {
   --popover-background: var(--Background-Accent-in-the-content);
   --popover-color: var(--Text-Default);
+  --popover-border: $border;
+}
 
-  @if $color == 'dark' {
-    --popover-border: transparant;
-  } @else {
-    --popover-border: var(--dividers-borders-long);
+@mixin standardColors {
+  @if $color =='dark' {
+    @include baseColors(var(--dividers-borders-long));
   }
+
+  @else {
+    @include baseColors(transparent);
+  }
+}
+
+@mixin alternateColors {
+  @if $color =='dark' {
+    @include lightColors();
+    @include baseColors(transparent);
+  }
+
+  @else {
+    @include darkColors();
+    @include baseColors(var(--dividers-borders-long));
+  }
+}
+
+@mixin lightColors {
+  @include baseColors(var(--dividers-borders-long));
+}
+
+@mixin darkColors {
+  @include baseColors(transparent);
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MePopoverDirective } from './popover.directive';
+import { MePopoverDirective } from './me-popover.directive';
 
 @NgModule({
   declarations: [MePopoverDirective],
