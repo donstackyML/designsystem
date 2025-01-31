@@ -20,32 +20,10 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
   border-radius: $toast-border-radius;
 }
 
-// Стили для базового класса
-.me-toast.dx-toast {
-  &.dx-toast-content {
-    background-color: var(--Background-Content);
-  }
-
-  &.me-toast-warning {
-    background-color: var(--Background-Attention);
-  }
-
-  &.me-toast-success {
-    background-color: var(--Background-Success);
-  }
-
-  &.me-toast-error {
-    background-color: var(--Background-Error);
-  }
-
-  .dx-toast-content {
-    background: inherit;
-  }
-}
-
 .me-toast {
 
   // Status
+  
   .dx-toast {
     &-info {
       --status-background-color: var(--Background-Content);
@@ -118,10 +96,20 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
   }
 
   .dx-toast-content {
-    background: none;
-    padding: 0;
+    position: relative;
+    padding: 8px;
+    background-color: var(--status-background-color);
+    color: var(--text-color, var(--Controls-Content-In-Controls-Main-Default));
   }
 
+  .me-toast-header-message,
+  .dx-toast-message {
+    font-size: var(--toast-message-font-size);
+    line-height: var(--toast-message-line-height);
+    font-weight: 400;
+  }
+
+  // Toast without content
 
   &:not(:has(.me-toast-content)) {
     .dx-toast-icon {
@@ -130,6 +118,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
 
     &.me-show-icon {
       .dx-toast {
+
         &-info,
         &-info-inverted {
           --material-icon: 'info';
@@ -178,11 +167,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
     }
   }
 
-  .dx-toast-content {
-    padding: 8px;
-    background-color: var(--status-background-color);
-    color: var(--text-color, var(--Controls-Content-In-Controls-Main-Default));
-  }
+  // Toast with content
 
   &:has(.me-toast-content) {
     .dx-toast-icon {
@@ -200,7 +185,6 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
     }
 
     .me-toast-content {
-      position: relative;
       gap: 16px;
       display: flex;
       flex-direction: column;
@@ -245,14 +229,5 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
       }
     }
   }
-
-
-  .me-toast-header-message,
-  .dx-toast-message {
-    font-size: var(--toast-message-font-size);
-    line-height: var(--toast-message-line-height);
-    font-weight: 400;
-  }
-
 
 }
