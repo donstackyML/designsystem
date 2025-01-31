@@ -16922,22 +16922,6 @@
   border-radius: 6px;
 }
 
-.me-toast.dx-toast.dx-toast-content {
-  background-color: var(--Background-Content);
-}
-.me-toast.dx-toast.me-toast-warning {
-  background-color: var(--Background-Attention);
-}
-.me-toast.dx-toast.me-toast-success {
-  background-color: var(--Background-Success);
-}
-.me-toast.dx-toast.me-toast-error {
-  background-color: var(--Background-Error);
-}
-.me-toast.dx-toast .dx-toast-content {
-  background: inherit;
-}
-
 .me-toast .dx-toast-info {
   --status-background-color: var(--Background-Content);
   --status-icon-color: var(--Controls-Content-In-Controls-Accent-Default);
@@ -17158,8 +17142,16 @@
   gap: 10px;
 }
 .me-toast .dx-toast-content {
-  background: none;
-  padding: 0;
+  position: relative;
+  padding: 8px;
+  background-color: var(--status-background-color);
+  color: var(--text-color, var(--Controls-Content-In-Controls-Main-Default));
+}
+.me-toast .me-toast-header-message,
+.me-toast .dx-toast-message {
+  font-size: var(--toast-message-font-size);
+  line-height: var(--toast-message-line-height);
+  font-weight: 400;
 }
 .me-toast:not(:has(.me-toast-content)) .dx-toast-icon {
   display: none;
@@ -17196,11 +17188,6 @@
 .me-toast:not(:has(.me-toast-content)) .dx-toast-message {
   color: var(--text-color, var(--Controls-Content-In-Controls-Main-Default));
 }
-.me-toast .dx-toast-content {
-  padding: 8px;
-  background-color: var(--status-background-color);
-  color: var(--text-color, var(--Controls-Content-In-Controls-Main-Default));
-}
 .me-toast:has(.me-toast-content) .dx-toast-icon {
   display: none;
 }
@@ -17213,7 +17200,6 @@
   gap: var(--toast-content-message-gap);
 }
 .me-toast:has(.me-toast-content) .me-toast-content {
-  position: relative;
   gap: 16px;
   display: flex;
   flex-direction: column;
@@ -17249,12 +17235,6 @@
   display: flex;
   gap: 8px;
   justify-content: flex-end;
-}
-.me-toast .me-toast-header-message,
-.me-toast .dx-toast-message {
-  font-size: var(--toast-message-font-size);
-  line-height: var(--toast-message-line-height);
-  font-weight: 400;
 }
 
 .dx-popover-wrapper .dx-popover-arrow::after {
