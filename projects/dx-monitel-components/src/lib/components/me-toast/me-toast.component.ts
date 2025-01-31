@@ -3,7 +3,7 @@ import { DxButtonModule, DxToastModule } from 'devextreme-angular';
 import { MeButtonModule } from '../../directives/me-button/me-button.module';
 import { MeToastModule } from '../../directives/me-toast/toast.module';
 
-import { MeButtonStyle, MeButtonType } from '../../types/types';
+import { MeButtonStyle, MeButtonType, MeSize } from '../../types/types';
 import { MeIconComponent } from '../me-icon/me-icon.component';
 
 const ANIMATION_DURATION_MS = 400;
@@ -66,21 +66,50 @@ export class MeToastComponent {
     }
   }
 
-  actionButtonType(): {
+  actionButtonStyles(): {
     type: MeButtonType,
     cancelButtonStylingMode: MeButtonStyle
+    size: MeSize
   } {
+    let size: MeSize = 'small'
+    let type: MeButtonType = 'default'
+    let cancelButtonStylingMode: MeButtonStyle = 'text'
+
+    switch (this.size) {
+      case 'large':
+        size = 'medium'
+        break;
+      default:
+        size = 'small'
+        break;
+    }
+
     switch (this.type) {
       case 'success':
-        return { type: 'success', cancelButtonStylingMode: 'text' };
+        type = 'success';
+        cancelButtonStylingMode = 'text'
+        break
       case 'error':
-        return { type: 'danger', cancelButtonStylingMode: 'text' };
+        type = 'danger';
+        cancelButtonStylingMode = 'text'
+        break
       case 'warning':
-        return { type: 'warning', cancelButtonStylingMode: 'text' };
+        type = 'warning';
+        cancelButtonStylingMode = 'text';
+        break
       case 'info-inverted':
-        return { type: 'normal', cancelButtonStylingMode: 'contained' };
+        type = 'normal';
+        cancelButtonStylingMode = 'contained'
+        break
       default:
-        return { type: 'default', cancelButtonStylingMode: 'text' };
+        type = 'default';
+        cancelButtonStylingMode = 'text'
+        break
+    }
+    return {
+      size,
+      type,
+      cancelButtonStylingMode
     }
   }
 
