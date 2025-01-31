@@ -28,7 +28,7 @@ export class MeTreeListDirective implements AfterViewInit {
     this.applyInitialSettings();
   }
   ngAfterViewInit(): void {
-    this.element.nativeElement.setAttribute('tabindex', '1');
+    this.element.nativeElement.setAttribute('tabindex', '0');
     let toolbarElm: Element =
       this.element.nativeElement.querySelector('.dx-toolbar');
     if (toolbarElm) {
