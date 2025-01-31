@@ -156,7 +156,6 @@ export const WithAnimation: Story = {
     },
     tooltipHideAnimation: {
       type: 'fade',
-
       from: {
         opacity: 1,
       },
@@ -164,8 +163,7 @@ export const WithAnimation: Story = {
       to: {
         opacity: 0,
       },
-
-      duration: 90000000,
+      duration: 300,
     },
   },
   render: (args) => ({
