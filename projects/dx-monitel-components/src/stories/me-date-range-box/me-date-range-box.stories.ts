@@ -166,8 +166,8 @@ export default {
     startDateLabel: 'Начальная дата',
     endDate: null,
     endDateLabel: 'Конечная дата',
-    max: '',
-    min: '',
+    max: '2025-12-31',
+    min: '2025-01-01',
     invalidEndDateMessage: 'Неверная дата окончания',
     invalidStartDateMessage: 'Неверная дата начала',
     startDateOutOfRangeMessage:

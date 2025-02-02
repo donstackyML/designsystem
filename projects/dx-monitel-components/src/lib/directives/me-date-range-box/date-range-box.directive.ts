@@ -45,7 +45,6 @@ export class MeDateRangeBoxDirective implements OnInit {
         class: `me-date-range-box-overlay`,
       },
     });
-    this.component.instance.open;
   }
 
   get isSizeLarge() {

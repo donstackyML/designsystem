@@ -1,6 +1,10 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { NgModule } from '@angular/core';
-import { MeBadgeComponent, MeDataGridModule, MeTagBoxModule } from '../public-api';
+import {
+  MeBadgeComponent,
+  MeDataGridModule,
+  MeTagBoxModule,
+} from '../public-api';
 import { MeBreadcrumbsComponent } from './components/me-breadcrumbs/me-breadcrumbs.component';
 import { MeCardComponent } from './components/me-card/me-card.component';
 import { MeChipsContainerComponent } from './components/me-chips-container/me-chips-container.component';
@@ -52,8 +56,6 @@ import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/tooltip.module';
 import { MeTreeListModule } from './directives/me-tree-list/me-tree-list.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
-;
-
 @NgModule({
   declarations: [],
   imports: [
@@ -173,4 +175,4 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeFormItemModule,
   ],
 })
-export class MeComponentsModule { }
+export class MeComponentsModule {}

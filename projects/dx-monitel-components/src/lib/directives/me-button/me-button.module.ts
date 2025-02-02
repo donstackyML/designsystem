@@ -7,4 +7,4 @@ import { MeButtonDirective } from './me-button.directive';
   imports: [CommonModule],
   exports: [MeButtonDirective],
 })
-export class MeButtonModule { }
+export class MeButtonModule {}

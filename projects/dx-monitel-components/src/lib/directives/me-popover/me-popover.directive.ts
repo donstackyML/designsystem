@@ -40,10 +40,10 @@ export class MePopoverDirective implements AfterViewInit, OnChanges {
     const popoverElement = this.element.nativeElement;
 
     // Удаляем все возможные классы, чтобы избежать накопления
-    ['default', 'alternate', 'light', 'dark'].forEach(mode =>
+    ['default', 'alternate', 'light', 'dark'].forEach((mode) =>
       this.renderer.removeClass(popoverElement, `me-colors-${mode}`)
     );
-    ['small', 'medium', 'large'].forEach(size =>
+    ['small', 'medium', 'large'].forEach((size) =>
       this.renderer.removeClass(popoverElement, `me-popover-${size}`)
     );
 

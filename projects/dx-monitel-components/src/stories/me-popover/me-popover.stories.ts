@@ -13,7 +13,7 @@ import { MeButtonDirective, MePopoverDirective } from '../../public-api';
   selector: 'me-popover-demo',
   template: `
     <div style="padding: 20px;" class="dx-widget">
-      <a id="popoverTarget" >{{ triggerText }}</a>
+      <a id="popoverTarget">{{ triggerText }}</a>
       <dx-popover
         mePopover
         target="#popoverTarget"
@@ -39,23 +39,43 @@ import { MeButtonDirective, MePopoverDirective } from '../../public-api';
           <div class="title-wrapper">
             <div class="title-template-wrapper">
               <div class="title-template-image"></div>
-              <dx-button meButton [size]="size" stylingMode="text" type="normal" iconOnly="close"></dx-button>
+              <dx-button
+                meButton
+                [size]="size"
+                stylingMode="text"
+                type="normal"
+                iconOnly="close"
+              ></dx-button>
             </div>
             <h3 class="me-title-header1" style="margin: 0;">
               {{ titleTemplate }}
             </h3>
           </div>
         </div>
-       <ng-container *ngIf="showToolbarItems">
-        <dxi-toolbar-item toolbar="bottom" location="after">
-          <dx-button meButton [text]="acceptButton.text" [size]="size" stylingMode="filled" type="default" (click)="acceptButton.onClick()">
-          </dx-button>
-        </dxi-toolbar-item>
-        <dxi-toolbar-item toolbar="bottom" location="after">
-          <dx-button meButton [text]="cancelButton.text" [size]="size" stylingMode="filled" type="normal" (click)="cancelButton.onClick()">
-          </dx-button>
-        </dxi-toolbar-item>
-      </ng-container>
+        <ng-container *ngIf="showToolbarItems">
+          <dxi-toolbar-item toolbar="bottom" location="after">
+            <dx-button
+              meButton
+              [text]="acceptButton.text"
+              [size]="size"
+              stylingMode="filled"
+              type="default"
+              (click)="acceptButton.onClick()"
+            >
+            </dx-button>
+          </dxi-toolbar-item>
+          <dxi-toolbar-item toolbar="bottom" location="after">
+            <dx-button
+              meButton
+              [text]="cancelButton.text"
+              [size]="size"
+              stylingMode="filled"
+              type="normal"
+              (click)="cancelButton.onClick()"
+            >
+            </dx-button>
+          </dxi-toolbar-item>
+        </ng-container>
       </dx-popover>
     </div>
   `,
@@ -142,7 +162,11 @@ const meta: Meta<PopoverDemoComponent> = {
   component: PopoverDemoComponent,
   decorators: [
     moduleMetadata({
-      declarations: [MePopoverDirective, MeButtonDirective, PopoverDemoComponent],
+      declarations: [
+        MePopoverDirective,
+        MeButtonDirective,
+        PopoverDemoComponent,
+      ],
       imports: [DxPopoverModule, DxButtonModule],
     }),
   ],

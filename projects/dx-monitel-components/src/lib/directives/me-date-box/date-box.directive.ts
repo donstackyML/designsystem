@@ -6,6 +6,7 @@ import {
   HostListener,
   inject,
   Input,
+  OnDestroy,
   OnInit,
   Renderer2,
 } from '@angular/core';
@@ -30,7 +31,10 @@ import { ComponentFocusService } from '../../service/component-focus.service';
   },
   providers: [{ provide: MeFormField, useExisting: MeDateBoxDirective }],
 })
-export class MeDateBoxDirective extends MeFormField implements OnInit {
+export class MeDateBoxDirective
+  extends MeFormField
+  implements OnInit, OnDestroy
+{
   @Input() size: MeSize = 'medium';
   @Input() description: string = ''; // Новое свойство description
 
@@ -42,6 +46,13 @@ export class MeDateBoxDirective extends MeFormField implements OnInit {
   ) {
     super(component);
     this.focusService = new ComponentFocusService(element, renderer);
+    this.focusService.addKeyUpEventHandle('Enter', (evt) =>
+      this.keyEnterHandle(evt)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.focusService.ngOnDestroy();
   }
 
   ngOnInit(): void {
@@ -102,5 +113,11 @@ export class MeDateBoxDirective extends MeFormField implements OnInit {
     this.renderer.addClass(todayButton, `me-button-medium`);
     this.renderer.addClass(todayButton, 'dx-button-mode-text');
     this.renderer.addClass(todayButton, 'dx-button-default');
+  }
+
+  private keyEnterHandle(evt: KeyboardEvent) {
+    if (this.component.pickerType != 'native') {
+      this.component.instance.open();
+    }
   }
 }
