@@ -67,7 +67,7 @@ interface BreadcrumbItem {
         <dx-menu
           [dataSource]="[item]"
           [showFirstSubmenuMode]="{
-            name: 'onHover',
+            name: 'onClick',
             delay: { show: 0, hide: 300 }
           }"
           orientation="horizontal"
