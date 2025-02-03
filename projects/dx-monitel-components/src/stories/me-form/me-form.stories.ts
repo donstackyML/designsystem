@@ -99,7 +99,7 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
     countryOptions: ['USA', 'Canada', 'UK', 'Australia', 'Germany'],
   },
   template: `
-    <div style="width: 800px; margin: 0 auto;">
+    <div style="max-width: 800px; margin: 0 auto;">
       <dx-form
         meForm
         [size]="size"
