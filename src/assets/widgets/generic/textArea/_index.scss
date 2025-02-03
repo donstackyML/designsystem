@@ -45,33 +45,42 @@
     gap: 0;
   }
 
-  .dx-texteditor-input-container {
-    padding-top: 1px;
-  }
 
   &.me-inputs {
     &.me-inputs {
       &-small {
+        --text-area-height: 48px;
         --input-height: 100%;
-        --input-min-height: 44px;
+
+        --input-bottom-offset: 6px;
+        --input-top-offset: 17px;
         --text-area-padding-block: 6px;
       }
 
       &-medium {
+        --text-area-height: 48px;
         --input-height: 100%;
-        --input-min-height: 52px;
+
+        --input-bottom-offset: 6px;
+        --input-top-offset: 17px;
         --text-area-padding-block: 6px;
       }
 
       &-large {
+        --text-area-height: 56px;
         --input-height: 100%;
-        --input-min-height: 52px;
+
+        --input-bottom-offset: 6px;
+        --input-top-offset: 22px;
         --text-area-padding-block: 10px;
       }
     }
 
+
     &:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize) {
-      --input-bottom-offset: 6px;
+      .dx-texteditor-container {
+          min-height: var(--text-area-height);
+        }
 
       .dx-texteditor-container .dx-texteditor-buttons-container {
         padding-top: calc(var(--padding-block) + 4px);
@@ -80,12 +89,44 @@
       &:is(.dx-texteditor-label-outside),
       &:not(:has(.dx-texteditor-label)) {
         .dx-texteditor-container {
-          padding-block: var(--text-area-padding-block);
 
           .dx-texteditor-buttons-container {
             padding-top: 0px;
           }
         }
+      }
+    }
+
+    .dx-texteditor-input-container {
+      align-items: flex-start;
+    }
+
+    &:not(:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize)) {
+      .dx-texteditor-container {
+        height: var(--text-area-height);
+      }
+    }
+
+
+    &:is(.dx-texteditor-label-outside),
+    &:not(:has(.dx-texteditor-label)) {
+      &.me-inputs {
+        &-small {
+          --text-area-height: 44px;
+        }
+
+        &-medium {
+          --text-area-height: 52px;
+        }
+
+        &-large {
+          --text-area-height: 60px;
+        }
+      }
+
+      .dx-texteditor-input-container,
+      .dx-placeholder {
+        padding-block: var(--text-area-padding-block)
       }
     }
   }

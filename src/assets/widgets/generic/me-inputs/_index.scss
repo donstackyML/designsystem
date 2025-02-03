@@ -97,8 +97,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --padding-inline: 12px;
         --padding-block: 5.5px;
 
-        --input-top-offset: 22.5px;
-        --input-bottom-offset: 5.5px;
+        --input-top-offset: 22px;
+        --input-bottom-offset: 6px;
 
         --label-font-size: 13px;
         --label-line-height: 16px;
@@ -130,7 +130,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         font-size: var(--input-font-size);
         line-height: var(--input-line-height);
         height: var(--input-height);
-        min-height: var(--input-min-height);
 
         font-weight: var(--me-regular-font-weight);
       }
@@ -178,7 +177,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
           margin-left: 0;
         }
 
-        & > * {
+        &>* {
           height: var(--icon-width);
           width: var(--icon-width);
           min-width: var(--icon-width);
@@ -187,7 +186,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         }
 
         // убираем лишние пустые div если они не кнопки
-        & > *:not(.dx-widget, .dx-button, .dx-numberbox-spin-container, .dx-clear-button-area) {
+        &>*:not(.dx-widget, .dx-button, .dx-numberbox-spin-container, .dx-clear-button-area) {
           display: none;
         }
 
@@ -255,6 +254,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     // labelMode: floating
 
     &.dx-texteditor-with-floating-label {
+
       &.dx-texteditor-empty:not(.dx-state-focused),
       &.dx-state-readonly.dx-texteditor-empty:not(.dx-state-focused),
       &.dx-state-readonly.dx-texteditor-empty.dx-state-focused {
@@ -307,20 +307,17 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Accent-Default);
       }
 
-      .dx-label {
-        span {
-          color: var(--Controls-Content-In-Controls-Accent-Default) !important;
-        }
+      .dx-texteditor-label {
+        color: var(--Controls-Content-In-Controls-Accent-Default);
       }
     }
 
-    // disables: true
+    // disabled: true
 
     &-disabled {
       background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
 
       .dx-texteditor-input,
-      .dx-texteditor-label,
       .dx-texteditor-buttons-container,
       .dx-dropdowneditor-icon,
       .dx-numberbox-spin-up-icon,
@@ -328,6 +325,12 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       .dx-button-text,
       .dx-icon {
         color: var(--Controls-Content-In-Controls-Main-Disabled) !important;
+      }
+
+      &:not(.dx-texteditor-label-outside) {
+        .dx-texteditor-label {
+          color: var(--Controls-Content-In-Controls-Main-Disabled);
+        }
       }
     }
 
@@ -345,6 +348,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &-readonly,
     &-disabled {
+
       .dx-numberbox-spin-container,
       .dx-clear-button-area {
         display: none;
@@ -364,7 +368,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
             text-align: center;
           }
 
-          & > * {
+          &>* {
             width: 0 !important;
             min-width: 0 !important;
             overflow: hidden;
@@ -386,10 +390,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Danger-Default);
       }
 
-      .dx-label {
-        span {
-          color: var(--Controls-Content-In-Controls-Danger-Default);
-        }
+      .dx-texteditor-label {
+        color: var(--Controls-Content-In-Controls-Danger-Default);
       }
     }
   }
@@ -525,6 +527,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
   &.dx-editor-outlined.dx-state-readonly.dx-state-hover,
   &.dx-editor-outlined.dx-state-readonly.dx-state-focused {
+
     &.dx-state-focused,
     &.dx-dropdowneditor-active,
     &:not(.dx-texteditor-empty) {
@@ -534,19 +537,15 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
   }
 
-  //цвет лейбла при непустом инпуте
   &.dx-texteditor-label-outside {
-    &:not(.dx-texteditor-empty, .dx-state-focused, .dx-state-disabled, .dx-invalid) {
-      .dx-label {
-        span {
-          color: var(--Controls-Content-In-Controls-Main-Default);
-        }
-      }
+    .dx-texteditor-label {
+      color: var(--Controls-Content-In-Controls-Main-Default);
     }
   }
 }
 
 .me-inputs.dx-texteditor.dx-widget {
+
   &.me-number-box,
   &.me-date-range-box {
     &:not(.dx-texteditor-label-outside) {
@@ -582,6 +581,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &.me-inputs {
       .dx-texteditor-container {
+
         .dx-texteditor-input-container,
         .dx-placeholder {
           padding-left: var(--padding-inline);
@@ -631,6 +631,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     .dx-texteditor-buttons-container .dx-numberbox-spin-container {
+
       .dx-numberbox-spin-up,
       .dx-numberbox-spin-down {
         width: var(--number-box-spin-button-width);
@@ -642,7 +643,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
 //отключение бордеров у label везде!
 .dx-texteditor {
-  .dx-texteditor-label > * {
+  .dx-texteditor-label>* {
     border: none !important;
   }
 }
