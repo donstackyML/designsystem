@@ -89,7 +89,7 @@ export default {
   args: {
     size: 'medium',
     mode: 'text',
-    labelMode: 'outside',
+    // labelMode: 'static',
     label: 'Label*',
     placeholder: 'Placeholder',
     readOnly: false,

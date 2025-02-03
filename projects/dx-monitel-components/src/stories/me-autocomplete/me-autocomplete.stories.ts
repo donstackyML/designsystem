@@ -60,7 +60,6 @@ export default {
   args: {
     size: 'medium',
     label: 'Label*',
-    labelMode: 'outside',
     showClearButton: true,
     isValid: true,
     disabled: false,

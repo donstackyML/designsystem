@@ -1,10 +1,9 @@
 import {
   Directive,
-  HostListener,
+  ElementRef,
   Input,
   OnInit,
-  Renderer2,
-  inject,
+  Renderer2
 } from '@angular/core';
 import { DxNumberBoxComponent } from 'devextreme-angular';
 
@@ -31,8 +30,14 @@ export class MeNumberBoxDirective
 {
   @Input() size: MeSize = 'medium';
 
-  override renderer = inject(Renderer2);
-  private component = inject(DxNumberBoxComponent);
+  constructor(
+    public override element: ElementRef,
+    private component: DxNumberBoxComponent,
+    override renderer: Renderer2
+  ) {
+    super(element, renderer);
+    this.component.labelMode = 'outside';
+  }
 
   ngOnInit(): void {}
 

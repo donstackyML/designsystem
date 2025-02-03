@@ -30,6 +30,7 @@ export class MeTextAreaDirective extends MeFormField implements OnInit {
     protected renderer: Renderer2
   ) {
     super(component);
+    this.component.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
