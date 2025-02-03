@@ -37,6 +37,7 @@ export class MeTagBoxDirective implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private component: DxTagBoxComponent
   ) {
+    this.component.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
     this.focusService.addFocusInHandle((evt: FocusEvent) => this.onFocusIn());
     this.focusService.addFocusOutHandle((evt: FocusEvent) => this.onFocusOut());

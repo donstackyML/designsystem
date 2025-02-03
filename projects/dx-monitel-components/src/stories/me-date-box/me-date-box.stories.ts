@@ -119,8 +119,7 @@ export default {
   args: {
     size: 'medium',
     type: 'date',
-    label: 'label',
-    labelMode: 'outside',
+    label: 'Label*',
     placeholder: 'Select...',
     disabled: false,
     readOnly: false,

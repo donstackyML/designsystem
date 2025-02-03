@@ -14,8 +14,13 @@
     font-size: var(--label-font-size);
     line-height: var(--label-line-height);
     position: relative;
-    .dx-field-item-required-mark {
-    }
+    display: flex;
+  }
+
+  .dx-flex-layout.dx-label-v-align {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   &.me-form-small {
@@ -27,12 +32,13 @@
       --input-height: 36px;
     }
 
+    .dx-field-item-label-location-top {
+      --label-font-size: 12px;
+      --label-line-height: 16px;
+    }
+
     &.me-form-label-mode-outside {
       --input-height: 28px;
-      .dx-field-item-label-content {
-        --label-font-size: 12px;
-        --label-line-height: 16px;
-      }
     }
 
     &.me-form-label-mode-static {
@@ -41,9 +47,6 @@
 
     &.me-form-label-mode-hidden {
       --input-height: 28px;
-    }
-
-    &.me-form-label-position-top {
     }
 
     &.me-form-label-position-left {
@@ -64,12 +67,13 @@
       --input-height: 40px;
     }
 
+    .dx-field-item-label-location-top {
+      --label-font-size: 12px;
+      --label-line-height: 16px;
+    }
+
     &.me-form-label-mode-outside {
       --input-height: 32px;
-      .dx-field-item-label-content {
-        --label-font-size: 12px;
-        --label-line-height: 16px;
-      }
     }
 
     &.me-form-label-mode-static {
@@ -78,9 +82,6 @@
 
     &.me-form-label-mode-hidden {
       --input-height: 32px;
-    }
-
-    &.me-form-label-position-top {
     }
 
     &.me-form-label-position-left {
@@ -101,10 +102,16 @@
       --input-height: 48px;
     }
 
+    .dx-field-item-label-location-top {
+      --label-font-size: 14px;
+      --label-line-height: 20px;
+    }
+
     &.me-form-label-mode-outside {
       --input-height: 40px;
+
       .dx-field-item-label-content {
-        --label-font-size: 13px;
+
         .dx-field-item-required-mark {
           right: -10px;
         }
@@ -119,8 +126,7 @@
       --input-height: 40px;
     }
 
-    &.me-form-label-position-top {
-    }
+    &.me-form-label-position-top {}
 
     &.me-form-label-position-left {
       .dx-field-item-label-content {
@@ -131,10 +137,7 @@
     }
   }
 
-  .dx-texteditor-with-floating-label.me-inputs.dx-texteditor:not(.dx-texteditor-empty)
-    .dx-texteditor-label
-    .dx-label
-    span {
+  .dx-texteditor-with-floating-label.me-inputs.dx-texteditor:not(.dx-texteditor-empty) .dx-texteditor-label .dx-label span {
     transform: translate(0, 9px) !important;
   }
 
@@ -148,6 +151,7 @@
           position: relative;
           left: 2px;
         }
+
         span {
           transform: translate(0, 9px) !important;
         }
@@ -165,6 +169,7 @@
           position: relative;
           left: 2px;
         }
+
         span {
           transform: translate(0, 9px) !important;
         }
@@ -182,6 +187,7 @@
           position: relative;
           left: 2px;
         }
+
         span {
           transform: translate(0, 9px) !important;
         }
@@ -212,6 +218,7 @@
           position: relative;
           left: 2px;
         }
+
         span {
           font-size: 12px !important;
           transform: translate(0, 9px) !important;
@@ -228,6 +235,7 @@
           position: relative;
           left: 2px;
         }
+
         span {
           font-size: 13px !important;
           transform: translate(0, 9px) !important;
@@ -244,6 +252,7 @@
           position: relative;
           left: 2px;
         }
+
         span {
           font-size: 12px !important;
           transform: translate(0, -5px);
@@ -260,6 +269,7 @@
           position: relative;
           left: 2px;
         }
+
         span {
           font-size: 12px !important;
           transform: translate(0, -5px);
@@ -276,6 +286,7 @@
           position: relative;
           left: 2px;
         }
+
         span {
           font-size: 13px !important;
           transform: translate(0, -5px);
@@ -305,6 +316,7 @@
   .me-textbox-large.dx-texteditor-with-label {
     .dx-texteditor-label {
       left: 12px;
+
       .dx-label:after {
         top: -8px;
       }
@@ -324,8 +336,7 @@
       .dx-texteditor-label {
         left: 12px;
 
-        .dx-label::after {
-        }
+        .dx-label::after {}
       }
     }
   }
@@ -391,6 +402,10 @@
       .dx-texteditor-input {
         color: var(--Controls-Content-In-Controls-Main-Disabled);
       }
+
+      .dx-field-item-label-content {
+        color: #000;
+      }
     }
 
     .dx-texteditor-input {
@@ -452,13 +467,15 @@
 
       &.dx-state-focused .dx-label {
         font-size: var(--field-item-label-font-size);
-        top: var(--label-top-position); /* Начальная позиция */
+        top: var(--label-top-position);
+        /* Начальная позиция */
         left: var(--label-left-position);
       }
 
       &.dx-state-focused .dx-label {
         font-size: var(--field-item-label-font-size);
-        top: var(--label-top-position); /* Начальная позиция */
+        top: var(--label-top-position);
+        /* Начальная позиция */
         left: var(--label-left-position);
       }
     }
@@ -504,62 +521,67 @@
     }
   }
 
-  .me-inputs.dx-texteditor.dx-widget.dx-texteditor-with-floating-label:not(
-      .dx-texteditor-empty,
-      .dx-state-focused,
-      .dx-state-disabled,
-      .dx-invalid
-    )
-    .dx-label
-    span {
-    color: var(--label-color, #757575) !important; /* Цвет лейбла */
+  .me-inputs.dx-texteditor.dx-widget.dx-texteditor-with-floating-label:not(.dx-texteditor-empty,
+    .dx-state-focused,
+    .dx-state-disabled,
+    .dx-invalid) .dx-label span {
+    color: var(--label-color, #757575) !important;
+    /* Цвет лейбла */
   }
 
   .dx-editor-outlined {
     .dx-label {
       position: absolute;
-      top: var(--label-top-position); /* Начальная позиция */
+      top: var(--label-top-position);
+      /* Начальная позиция */
       left: var(--label-left-position);
-      transition: all 0.3s ease; /* Плавный переход */
+      transition: all 0.3s ease;
+      /* Плавный переход */
       font-size: var(--field-item-label-font-size);
-      color: var(--label-color, #757575) !important; /* Цвет лейбла */
+      color: var(--label-color, #757575) !important;
+      /* Цвет лейбла */
       border-color: transparent !important;
     }
 
-    .dx-editor-outlined .dx-texteditor-input:not(:placeholder-shown) ~ .dx-label {
+    .dx-editor-outlined .dx-texteditor-input:not(:placeholder-shown)~.dx-label {
       margin-top: 0 !important;
     }
 
     .dx-texteditor-input {
-      padding-bottom: calc(
-        var(--selectbox-padding) + 10px
-      ) !important; /* Дополнительное пространство для лейбла */
+      padding-bottom: calc(var(--selectbox-padding) + 10px) !important;
+      /* Дополнительное пространство для лейбла */
       box-sizing: border-box;
     }
 
     .me-form .dx-textbox .dx-texteditor-input,
     .me-form .dx-selectbox .dx-texteditor-input {
       font-size: var(--selectbox-font-size);
-      padding-left: 12px; /* Оставляем стандартный padding слева */
+      padding-left: 12px;
+      /* Оставляем стандартный padding слева */
       padding-right: 12px;
-      padding-bottom: 10px; /* Фиксируем нижний padding */
-      height: var(--selectbox-height); /* Высота поля */
+      padding-bottom: 10px;
+      /* Фиксируем нижний padding */
+      height: var(--selectbox-height);
+      /* Высота поля */
       width: 100%;
     }
 
     .me-form-small .dx-textbox .dx-texteditor-input,
     .me-form-small .dx-selectbox .dx-texteditor-input {
-      padding-top: 18px; /* Верхний padding для маленькой формы */
+      padding-top: 18px;
+      /* Верхний padding для маленькой формы */
     }
 
     .me-form-medium .dx-textbox .dx-texteditor-input,
     .me-form-medium .dx-selectbox .dx-texteditor-input {
-      padding-top: 20px; /* Верхний padding для средней формы */
+      padding-top: 20px;
+      /* Верхний padding для средней формы */
     }
 
     .me-form-large .dx-textbox .dx-texteditor-input,
     .me-form-large .dx-selectbox .dx-texteditor-input {
-      padding-top: 22px; /* Верхний padding для большой формы */
+      padding-top: 22px;
+      /* Верхний padding для большой формы */
     }
   }
 }

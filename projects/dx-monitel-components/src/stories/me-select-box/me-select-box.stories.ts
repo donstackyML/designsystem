@@ -122,7 +122,6 @@ export default {
     disabled: false,
     isValid: true,
     readOnly: false,
-    labelMode: 'static',
     label: 'Label*',
     placeholder: 'Select...',
     dataSource: data,

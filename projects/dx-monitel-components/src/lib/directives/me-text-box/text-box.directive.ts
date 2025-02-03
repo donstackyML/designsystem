@@ -6,12 +6,10 @@ import {
   Input,
   OnInit,
   Renderer2,
-  inject,
 } from '@angular/core';
 import { DxTextBoxComponent } from 'devextreme-angular';
 import { MeSize } from 'projects/dx-monitel-components/me-components';
 import { MeFormField } from '../me-form-item/me-form-field';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
@@ -45,10 +43,10 @@ export class MeTextBoxDirective
     private renderer: Renderer2
   ) {
     super(textBox);
+    this.textBox.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
   }
   ngOnInit(): void {
-    // Проверяем, является ли поле полем для пароля
     this.isPasswordInput = this.textBox.instance.option('mode') === 'password';
   }
 

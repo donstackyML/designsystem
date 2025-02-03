@@ -45,6 +45,7 @@ export class MeSelectBoxDirective extends MeFormField implements OnInit {
     renderer: Renderer2
   ) {
     super(component);
+    this.component.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
@@ -56,13 +57,6 @@ export class MeSelectBoxDirective extends MeFormField implements OnInit {
     }`;
 
     this.component.wrapItemText = true;
-
-    // let dropDownOptions = {
-    //   maxWidth: 200,
-    //   position: {
-    //     offset: { x: 0, y: 40 }
-    //   }
-    // };
 
     this.component.dropDownOptions = {
       wrapperAttr: {

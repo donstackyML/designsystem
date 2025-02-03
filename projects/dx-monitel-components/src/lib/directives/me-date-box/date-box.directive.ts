@@ -45,6 +45,7 @@ export class MeDateBoxDirective
     protected renderer: Renderer2
   ) {
     super(component);
+    this.component.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
     this.focusService.addKeyUpEventHandle('Enter', (evt) =>
       this.keyEnterHandle(evt)

@@ -34,6 +34,7 @@ export class MeDateRangeBoxDirective implements OnInit {
     protected component: DxDateRangeBoxComponent,
     protected renderer: Renderer2
   ) {
+    this.component.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
     this.focusService.addKeyUpEventHandle('Enter', (evt) =>
       this.enterHandle(evt)

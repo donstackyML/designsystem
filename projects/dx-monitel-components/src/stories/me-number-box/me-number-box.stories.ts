@@ -80,8 +80,7 @@ export default {
   },
   args: {
     size: 'small',
-    label: 'Label',
-    labelMode: 'static',
+    label: 'Label*',
     disabled: false,
     readOnly: false,
     isValid: true,
@@ -168,7 +167,7 @@ export const WithCurrency: StoryObj = {
         }
       },
     },
-    label: 'Label',
+    label: 'Label*',
     labelMode: 'static',
     placeholder: 'Placeholder',
     format: '#,##0.00',

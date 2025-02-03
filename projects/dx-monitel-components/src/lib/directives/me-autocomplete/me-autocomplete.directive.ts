@@ -31,6 +31,7 @@ export class MeAutocompleteDirective implements OnInit {
     element: ElementRef,
     renderer: Renderer2
   ) {
+    this.component.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
