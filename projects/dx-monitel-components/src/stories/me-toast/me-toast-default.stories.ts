@@ -4,9 +4,17 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { DxButtonModule, DxToastComponent, DxToastModule } from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxToastComponent,
+  DxToastModule,
+} from 'devextreme-angular';
 
-import { MeButtonModule, MeIconComponent, MeToastDirective, } from '../../public-api';
+import {
+  MeButtonModule,
+  MeIconComponent,
+  MeToastDirective,
+} from '../../public-api';
 
 export default {
   decorators: [
@@ -45,7 +53,15 @@ export default {
     },
     position: {
       control: 'select',
-      options: ['top left', 'top right', 'top center', 'bottom left', 'bottom center', 'bottom right', 'center'],
+      options: [
+        'top left',
+        'top right',
+        'top center',
+        'bottom left',
+        'bottom center',
+        'bottom right',
+        'center',
+      ],
       description: 'Позиция тоста на экране.',
       table: {
         type: { summary: 'string' },
@@ -85,9 +101,7 @@ export default {
   }),
 } as Meta<MeToastDirective | DxToastComponent>;
 
-type Story = StoryObj<
-  MeToastDirective | DxToastComponent
->;
+type Story = StoryObj<MeToastDirective | DxToastComponent>;
 
 export const DefaultToastSizeSmall: Story = {
   args: {
@@ -97,55 +111,54 @@ export const DefaultToastSizeSmall: Story = {
     displayTime: 4000,
     message: 'Операция выполнена успешно',
     position: 'bottom center',
-    showIcon: false
-  }
+    showIcon: false,
+  },
 };
-
 
 export const DefaultToastSizeLarge: Story = {
   args: {
     ...DefaultToastSizeSmall.args,
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const DefaultToastTypeInfo: Story = {
   args: {
     ...DefaultToastSizeSmall.args,
-    type: 'info'
-  }
+    type: 'info',
+  },
 };
 
 export const DefaultToastTypeWarning: Story = {
   args: {
     ...DefaultToastSizeSmall.args,
-    type: 'warning'
-  }
+    type: 'warning',
+  },
 };
 
 export const DefaultToastTypeSuccess: Story = {
   args: {
     ...DefaultToastSizeSmall.args,
-    type: 'success'
-  }
+    type: 'success',
+  },
 };
 
 export const DefaultToastTypeError: Story = {
   args: {
     ...DefaultToastSizeSmall.args,
-    type: 'error'
-  }
+    type: 'error',
+  },
 };
 
 export const DefaultToastTypeInfoInverted: Story = {
   args: {
     ...DefaultToastSizeSmall.args,
-    type: 'info-inverted' as any
-  }
+    type: 'info-inverted' as any,
+  },
 };
 export const DefaultToastWithIcon: Story = {
   args: {
     ...DefaultToastSizeSmall.args,
-    showIcon: true
-  }
+    showIcon: true,
+  },
 };

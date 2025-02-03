@@ -10,22 +10,18 @@
 }
 
 @mixin standardColors {
-  @if $color =='dark' {
+  @if $color == 'dark' {
     @include baseColors(var(--dividers-borders-long));
-  }
-
-  @else {
+  } @else {
     @include baseColors(transparent);
   }
 }
 
 @mixin alternateColors {
-  @if $color =='dark' {
+  @if $color == 'dark' {
     @include lightColors();
     @include baseColors(transparent);
-  }
-
-  @else {
+  } @else {
     @include darkColors();
     @include baseColors(var(--dividers-borders-long));
   }

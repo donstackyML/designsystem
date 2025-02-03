@@ -219,4 +219,4 @@ import { MeToastDirective } from './directives/toast.directive';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

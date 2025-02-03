@@ -24,6 +24,7 @@ import { ComponentFocusService } from '../../service/component-focus.service';
     '[class.me-inputs-small]': 'isSizeSmall',
     '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-large]': 'isSizeLarge',
+    '[class.me-tag-box-tag-empty]': 'isNoTags',
   },
 })
 export class MeTagBoxDirective implements OnInit, OnDestroy {
@@ -64,6 +65,13 @@ export class MeTagBoxDirective implements OnInit, OnDestroy {
 
   get isSizeLarge() {
     return this.size === 'large';
+  }
+
+  isNoTags(): boolean {
+    let length = this.component.itemsChildren.length;
+    debugger;
+    console.log('Tags count: %o', length);
+    return length == 0;
   }
 
   @HostListener('onOpened', ['$event'])

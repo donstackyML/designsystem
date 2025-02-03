@@ -1,13 +1,7 @@
 import { DxToastComponent } from 'devextreme-angular';
 import { dxToastOptions } from 'devextreme/ui/toast';
 
-import {
-  Directive,
-  Input,
-  OnInit,
-  Optional,
-  Self,
-} from '@angular/core';
+import { Directive, Input, OnInit, Optional, Self } from '@angular/core';
 
 type ToastSize = 'small' | 'large';
 
@@ -44,7 +38,8 @@ export class MeToastDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dxToastComponent.instance.option().wrapperAttr.class = `me-toast me-toast-${this.size} ` + (this.showIcon ? 'me-show-icon' : '');
+    this.dxToastComponent.instance.option().wrapperAttr.class =
+      `me-toast me-toast-${this.size} ` + (this.showIcon ? 'me-show-icon' : '');
   }
 
   public showToast() {

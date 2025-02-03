@@ -5,9 +5,7 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 
-import {
-  MeToastComponent
-} from '../../public-api';
+import { MeToastComponent } from '../../public-api';
 
 export default {
   title: 'Components/Toast',
@@ -45,7 +43,15 @@ export default {
     },
     position: {
       control: 'select',
-      options: ['top left', 'top right', 'top center', 'bottom left', 'bottom center', 'bottom right', 'center'],
+      options: [
+        'top left',
+        'top right',
+        'top center',
+        'bottom left',
+        'bottom center',
+        'bottom right',
+        'center',
+      ],
       description: 'Позиция тоста на экране.',
       table: {
         type: { summary: 'string' },
@@ -89,8 +95,7 @@ export default {
   }),
 } as Meta<typeof MeToastComponent>;
 
-type Story = StoryObj<MeToastComponent
->;
+type Story = StoryObj<MeToastComponent>;
 
 export const FullToastSizeSmall: Story = {
   args: {
@@ -101,47 +106,47 @@ export const FullToastSizeSmall: Story = {
     title: 'Заголовок',
     message: 'Операция выполнена успешно',
     position: 'bottom center',
-  }
+  },
 };
 
 export const FullToastSizeLarge: Story = {
   args: {
     ...FullToastSizeSmall.args,
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const FullToastTypeInfo: Story = {
   args: {
     ...FullToastSizeSmall.args,
-    type: 'info'
-  }
+    type: 'info',
+  },
 };
 
 export const FullToastTypeWarning: Story = {
   args: {
     ...FullToastSizeSmall.args,
-    type: 'warning'
-  }
+    type: 'warning',
+  },
 };
 
 export const FullToastTypeSuccess: Story = {
   args: {
     ...FullToastSizeSmall.args,
-    type: 'success'
-  }
+    type: 'success',
+  },
 };
 
 export const FullToastTypeError: Story = {
   args: {
     ...FullToastSizeSmall.args,
-    type: 'error'
-  }
+    type: 'error',
+  },
 };
 
 export const FullToastTypeInfoInverted: Story = {
   args: {
     ...FullToastSizeSmall.args,
-    type: 'info-inverted'
-  }
+    type: 'info-inverted',
+  },
 };

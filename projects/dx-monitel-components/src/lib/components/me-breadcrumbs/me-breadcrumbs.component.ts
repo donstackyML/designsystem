@@ -28,8 +28,6 @@ import {
 } from 'devextreme-angular';
 import { MeIconComponent } from '../me-icon/me-icon.component';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import DevExpress from 'devextreme';
-import Widget = DevExpress.ui.Widget;
 
 interface BreadcrumbItem {
   text: string;
@@ -162,6 +160,7 @@ export class MeBreadcrumbsComponent
   private focusService: ComponentFocusService;
 
   private keyNavigationIdx = -1;
+  private keyItemNavigationIdx = -1;
   constructor(
     private zone: NgZone,
     private cdr: ChangeDetectorRef,
@@ -397,6 +396,21 @@ export class MeBreadcrumbsComponent
         return;
       }
     }
+
+    if (btnLeft) {
+      if (this.keyItemNavigationIdx < this.menuItems.length) {
+        this.keyItemNavigationIdx = this.keyNavigationIdx - 1;
+      } else {
+        this.keyItemNavigationIdx = -1;
+      }
+    } else {
+      if (this.keyNavigationIdx < this.menuItems.length) {
+        this.keyItemNavigationIdx = this.keyNavigationIdx;
+      } else {
+        this.keyItemNavigationIdx = -1;
+      }
+    }
+
     items.forEach((elm: { tabIndex: number }) => (elm.tabIndex = 0));
     let elm = items[this.keyNavigationIdx];
     elm.tabIndex = 0;
@@ -405,9 +419,39 @@ export class MeBreadcrumbsComponent
     this.focusService.holdKeyboardFocus();
   }
 
-  private leftHandle(evt: KeyboardEvent) {}
+  private leftHandle(evt: KeyboardEvent) {
+    let items: any = [];
+    this.menuItems.forEach((cmp) => items.push(cmp.instance.element()));
+    if (this.keyItemNavigationIdx < 0) {
+      this.keyItemNavigationIdx = this.items.length - 1;
+    } else if (this.keyItemNavigationIdx - 1 > -1) {
+      this.keyItemNavigationIdx -= 1;
+    } else {
+      this.keyItemNavigationIdx = this.items.length - 1;
+    }
+    let elm = items[this.keyItemNavigationIdx];
+    elm.tabIndex = 0;
+    elm.focus();
+    evt.preventDefault();
+    this.focusService.holdKeyboardFocus();
+  }
 
-  private rightHandle(evt: KeyboardEvent) {}
+  private rightHandle(evt: KeyboardEvent) {
+    let items: any = [];
+    this.menuItems.forEach((cmp) => items.push(cmp.instance.element()));
+    if (this.keyItemNavigationIdx < 0) {
+      this.keyItemNavigationIdx = 0;
+    } else if (this.keyItemNavigationIdx + 1 < this.items.length) {
+      this.keyItemNavigationIdx += 1;
+    } else {
+      this.keyItemNavigationIdx = 0;
+    }
+    let elm = items[this.keyItemNavigationIdx];
+    elm.tabIndex = 0;
+    elm.focus();
+    evt.preventDefault();
+    this.focusService.holdKeyboardFocus();
+  }
 
   private outFocusHandle(evt: FocusEvent) {}
 }
