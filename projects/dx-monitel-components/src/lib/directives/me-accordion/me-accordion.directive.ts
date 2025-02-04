@@ -1,6 +1,5 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { MeSize } from '../../types/types';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({

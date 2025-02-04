@@ -1,6 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxAccordionModule } from 'devextreme-angular';
 import { MeAccordionDirective, MeIconComponent } from '../../public-api';
+import { meAccordionMockData } from './me-accordion-mock-data';
 
 export default {
   title: 'Components/Accordion',
@@ -14,15 +15,31 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
+      description: 'Меняет размер аккордиона и его элементов.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
     },
     collapsible: {
       control: 'boolean',
+      description: 'Определяет, может ли аккордеон сворачиваться.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
     },
     multiple: {
       control: 'boolean',
+      description: 'Разрешает одновременное раскрытие нескольких секций.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
     },
   },
   args: {
+    dataSource: meAccordionMockData,
     size: 'medium',
     collapsible: false,
     multiple: false,
@@ -56,60 +73,45 @@ export default {
       </dx-accordion>
     `,
   }),
-} as Meta;
+} as Meta<DxAccordionModule | MeAccordionDirective>;
 
-type Story = StoryObj;
+type Story = StoryObj<DxAccordionModule | MeAccordionDirective>;
 
 export const Default: Story = {
+  args: {}
+};
+
+export const SizeSmall: Story = {
   args: {
-    dataSource: [
-      {
-        title: 'Заголовок 1',
-        content:
-          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
-        icon: 'folder',
-      },
-      {
-        title: 'Заголовок 2',
-        content:
-          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
-        icon: 'folder',
-      },
-      {
-        title: 'Заголовок 3',
-        content:
-          'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
-        icon: 'folder',
-      },
-    ],
+    size: 'small',
   },
 };
 
-export const CustomHeader: Story = {
+export const SizeMedium: Story = {
   args: {
-    ...Default.args,
     size: 'medium',
-    dataSource: [
-      {
-        id: 1,
-        text: 'Заголовок 1',
-        description: 'Описание',
-        icon: 'folder',
-      },
-      {
-        id: 2,
-        text: 'Заголовок 2',
-        description: 'Описание',
-        icon: 'folder',
-      },
-      {
-        id: 3,
-        text: 'Заголовок 3',
-        description: 'Описание',
-        icon: 'folder',
-      },
-    ],
   },
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const Collapsible: Story = {
+  args: {
+    collapsible: true
+  },
+};
+
+export const Multiple: Story = {
+  args: {
+    multiple: true
+  },
+};
+
+export const WithDescription: Story = {
   render: (args) => ({
     props: args,
     template: `
@@ -129,13 +131,13 @@ export const CustomHeader: Story = {
               [size]="size"
             ></me-icon>
             <div class="custom-header-content">
-              <div class="custom-header-title">{{ item.text }}</div>
+              <div class="custom-header-title">{{ item.title }}</div>
               <div class="custom-header-description">{{ item.description }}</div>
             </div>
           </div>
         </div>
         <div *dxTemplate="let item of 'item'">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis</p>
+          <p>{{ item.content }}</p>
         </div>
       </dx-accordion>
     `,

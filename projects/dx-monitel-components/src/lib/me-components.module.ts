@@ -17,7 +17,7 @@ import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.compon
 import { MeSkeletonComponent } from './components/me-skeleton/me-skeleton.component';
 import { MeStatusBarComponent } from './components/me-status-bar/me-status-bar.component';
 import { MeToastComponent } from './components/me-toast/me-toast.component';
-import { MeAccordionModule } from './directives/me-accordion/accordion.module';
+import { MeAccordionModule } from './directives/me-accordion/me-accordion.module';
 import { MeAutocompleteModule } from './directives/me-autocomplete/me-autocomplete.module';
 import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
 import { MeButtonModule } from './directives/me-button/me-button.module';
@@ -175,4 +175,4 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeFormItemModule,
   ],
 })
-export class MeComponentsModule {}
+export class MeComponentsModule { }

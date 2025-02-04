@@ -43,7 +43,7 @@ export { MeTextEditorDirective } from './lib/directives/me-text-editor/text-edit
 export { MeToastDirective } from './lib/directives/me-toast/toast.directive';
 
 // Layout and Navigation Directives
-export { MeAccordionDirective } from './lib/directives/me-accordion/accordion.directive';
+export { MeAccordionDirective } from './lib/directives/me-accordion/me-accordion.directive';
 export { MeContextMenuDirective } from './lib/directives/me-context-menu/context-menu.directive';
 export { MeDataGridDirective } from './lib/directives/me-data-grid/data-grid.directive';
 export { MeDropDownButtonDirective } from './lib/directives/me-drop-down-button/drop-down-button.directive';
@@ -94,7 +94,7 @@ export { MeTextEditorModule } from './lib/directives/me-text-editor/me-text-edit
 export { MeToastModule } from './lib/directives/me-toast/toast.module';
 
 // Layout and Navigation Modules
-export { MeAccordionModule } from './lib/directives/me-accordion/accordion.module';
+export { MeAccordionModule } from './lib/directives/me-accordion/me-accordion.module';
 export { MeContextMenuModule } from './lib/directives/me-context-menu/context-menu.module';
 export { MeDataGridModule } from './lib/directives/me-data-grid/data-grid.module';
 export { MeDropDownButtonModule } from './lib/directives/me-drop-down-button/drop-down-button.module';
