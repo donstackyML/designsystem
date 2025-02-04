@@ -67,7 +67,7 @@ export class MeToastComponent {
   }
 
   actionButtonStyles(): {
-    type: MeButtonType,
+    type: any,
     cancelButtonStylingMode: MeButtonStyle
     size: MeSize
   } {
@@ -111,6 +111,9 @@ export class MeToastComponent {
       type,
       cancelButtonStylingMode
     }
+  }
+  setToastType(): any {
+    return this.type
   }
 
   showToast(toastDirective: any) {
