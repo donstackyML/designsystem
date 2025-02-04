@@ -6,9 +6,10 @@ import {
 } from '@storybook/angular';
 import { DxAutocompleteModule, DxValidatorModule } from 'devextreme-angular';
 import { MeAutocompleteDirective, MeLabelDirective } from '../../public-api';
+import { meAutocompleteMockData } from './me-autocomplete-mock-data';
 
 export default {
-  title: 'Components/Autocomplete(RC)',
+  title: 'Components/Autocomplete',
   decorators: [
     moduleMetadata({
       declarations: [MeAutocompleteDirective, MeLabelDirective],
@@ -17,71 +18,88 @@ export default {
   ],
   argTypes: {
     size: {
-      options: ['small', 'medium', 'large'],
       control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
+      description: 'Меняет размер аккордиона и его элементов.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
     },
-    showScrollbar: {
-      options: ['always', 'onHover'],
-      control: { type: 'radio' },
-    },
-    minSearchLength: {
-      control: { type: 'number', min: 0, max: 10 },
-    },
-    dataSource: {
-      control: {
-        type: 'object',
+    labelMode: {
+      control: 'select',
+      options: ['outside', 'static', 'floating', 'hidden'],
+      description: 'Определяет положение лейбла текстового поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'outside' },
       },
     },
     label: {
       control: 'text',
-      description: 'Текст label',
-    },
-    labelMode: {
-      control: 'select',
-      options: ['floating', 'outside', 'hidden', 'static'],
-      description: 'Режим отображения label',
-    },
-    description: {
-      control: 'text',
-      description: 'Описание для компонента',
+      description: 'Текст лейбла',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     showClearButton: {
       control: 'boolean',
-      description: 'Показывать кнопку очистки.',
+      description: 'Показывать кнопку очистки',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false }
+      }
     },
-    isValid: {
+    readOnly: {
       control: 'boolean',
-      description: 'Определяет состояние валидности.',
+      description: 'Определяет состояние только для чтения',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false }
+      }
     },
     disabled: {
       control: 'boolean',
+      description: 'Отключение компонента',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false }
+      }
+    },
+    minSearchLength: {
+      control: { type: 'number', min: 0, max: 10 },
+      description: 'Минимальная длина поиска',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 1 }
+      }
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Определяет состояние валидности',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true }
+      }
+    },
+    dataSource: {
+      table: {
+        disable: true
+      }
     },
   },
   args: {
     size: 'medium',
-    label: 'Label*',
+    labelMode: 'outside',
+    label: 'City*',
+    placeholder: 'Enter city name',
     showClearButton: true,
     isValid: true,
     disabled: false,
     readOnly: false,
-    showScrollbar: 'always',
     minSearchLength: 1,
-    dataSource: [
-      'Apple',
-      'Banana',
-      'Orange',
-      'Grape',
-      'Watermelon',
-      'Ananas',
-      'Arbuz',
-      'Cat',
-      'Dog',
-      'Abc',
-      'Cba',
-      'Bca',
-    ],
-    description: 'description',
-    placeholder: 'Placeholder',
+    dataSource: meAutocompleteMockData,
   },
   render: (args) => ({
     props: args,
@@ -111,41 +129,87 @@ export default {
       <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
     `,
   }),
-} as Meta;
+} as Meta<DxAutocompleteModule | MeAutocompleteDirective>;
 
-export const Default: StoryObj = {};
+type Story = StoryObj<DxAutocompleteModule | MeAutocompleteDirective>;
 
-export const Small: StoryObj = {
+export const Default: Story = {};
+
+export const SizeSmall: Story = {
   args: {
     size: 'small',
   },
 };
 
-export const Large: StoryObj = {
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium'
+  }
+}
+
+export const SizeLarge: Story = {
   args: {
     size: 'large',
   },
 };
 
-export const WithLabelRow: StoryObj = {
+export const LabelModeFloating: Story = {
   args: {
     size: 'medium',
-    showScrollbar: 'always',
+    labelMode: 'floating',
+  },
+};
+
+export const LabelModeOutside: Story = {
+  args: {
+    size: 'medium',
+    labelMode: 'outside',
+  },
+};
+
+export const LabelModeStatic: Story = {
+  args: {
+    size: 'medium',
+    labelMode: 'static',
+  },
+};
+
+export const LabelModeHidden: Story = {
+  args: {
+    size: 'medium',
+    labelMode: 'hidden',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    size: 'medium',
+    disabled: true
+  },
+};
+
+export const ReadOnly: Story = {
+  args: {
+    size: 'medium',
+    readOnly: true,
+    value: 'Moscow'
+  },
+};
+
+export const DisabledAndReadOnly: Story = {
+  args: {
+    size: 'medium',
+    readOnly: true,
+    disabled: true,
+    value: 'Moscow'
+  },
+};
+
+export const WithLabelRow: Story = {
+  args: {
+    size: 'medium',
     minSearchLength: 1,
-    dataSource: [
-      'Apple',
-      'Banana',
-      'Orange',
-      'Grape',
-      'Watermelon',
-      'Ananas',
-      'Arbuz',
-      'Cat',
-      'Dog',
-      'Abc',
-      'Cba',
-      'Bca',
-    ],
+    dataSource: meAutocompleteMockData,
   },
   render: (args) => ({
     props: args,
@@ -158,7 +222,6 @@ export const WithLabelRow: StoryObj = {
         id="autocomplete-element"
         meAutocomplete
         [size]="size"
-        [showScrollbar]="showScrollbar"
         [dataSource]="dataSource"
         [minSearchLength]="minSearchLength"
         [placeholder]="placeholder"
