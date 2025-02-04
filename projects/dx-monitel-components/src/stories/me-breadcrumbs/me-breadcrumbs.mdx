@@ -1,60 +1,49 @@
-import { MeBreadcrumbsComponent } from "../../public-api";
-import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as breadcrumbsStories from "./me-breadcrumbs.stories";
 
-<Meta
-  title="Components/MeBreadcrumbs"
-  component={MeBreadcrumbsComponent}
-  of={BreadcrumbsStories}
+<Meta name="Breadcrumbs Documentation" of={breadcrumbsStories} />
+
+# Breadcrumbs
+
+Компонент `me-breadcrumbs` предоставляет навигационную цепочку для отображения текущего местоположения пользователя в иерархии сайта. Он улучшает пользовательский опыт, позволяя легко ориентироваться по структуре приложения.
+
+<Canvas of={breadcrumbsStories.Default} />
+<Controls of={breadcrumbsStories.Default} />
+<Source of={breadcrumbsStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1348-42368"
 />
-
-# MeBreadcrumbs
-
-## Компонент MeBreadcrumbs
-
-Компонент `MeBreadcrumbs` предоставляет навигационную цепочку для отображения текущего местоположения пользователя в иерархии сайта. Он улучшает пользовательский опыт, позволяя легко ориентироваться по структуре приложения.
-
-[Документация по компоненту MeBreadcrumbs](https://your-documentation-link.com/me-breadcrumbs)
-
-<Source of={BreadcrumbsStories.Default} dark language="html" />
 
 ## Примеры использования
 
-- [Основной пример](#основной-пример)
 - [С иконками](#с-иконками)
 - [С выпадающими меню](#с-выпадающими-меню)
-- [Большой размер](#большой-размер)
-- [Сокращение слева](#сокращение-слева)
-- [Длинные хлебные крошки](#длинные-хлебные-крошки)
+- [Размеры компонента](#размеры-компонента)
+  - [Маленький размер](#маленький-размер)
+  - [Большой размер](#большой-размер)
+- [Направление сокращения хлебных крошек](#направление-сокращения-хлебных-крошек)
+  - [Сокращение справа](#сокращение-справа)
+  - [Сокращение слева](#сокращение-слева)
+- [Хлебные крошки с большим кол-вом элементов](#хлебные-крошки-с-большим-кол-вом-элементов)
 - [Обработка событий](#обработка-событий)
-- [Свойства](#свойства)
-
-## Основной пример
-
-Компонент `MeBreadcrumbs` в базовой конфигурации:
-
-<Canvas of={BreadcrumbsStories.Default} />
-
-<Source
-  code={`
-<me-breadcrumbs
-  [items]="breadcrumbItems"
-></me-breadcrumbs>
-  `}
-  dark
-  language="html"
-/>
+- [Пример использования](#пример-использования)
 
 ## С иконками
 
 Добавление иконок к элементам хлебных крошек для улучшения визуального восприятия:
 
-<Canvas of={BreadcrumbsStories.WithIcons} />
+<Canvas of={breadcrumbsStories.WithIcons} />
 
 <Source
   code={`
 <me-breadcrumbs
-  [items]="breadcrumbItemsWithIcons"
+  [items]="breadcrumbsItems"
 ></me-breadcrumbs>
   `}
   dark
@@ -65,28 +54,41 @@ import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
 
 Для добавления дополнительных опций навигации можно использовать выпадающие меню:
 
-<Canvas of={BreadcrumbsStories.WithIconsAndDropdowns} />
+<Canvas of={breadcrumbsStories.WithIconsAndDropdowns} />
 
 <Source
   code={`
 <me-breadcrumbs
-  [items]="breadcrumbItemsWithDropdowns"
+  [items]="breadcrumbsItems"
 ></me-breadcrumbs>
   `}
   dark
   language="html"
 />
 
-## Большой размер
+## Размеры компонента
 
-Компонент поддерживает различные размеры. Пример с большим размером:
+### Маленький размер
 
-<Canvas of={BreadcrumbsStories.LongBreadcrumbs} />
-
+<Canvas of={breadcrumbsStories.SizeSmall} />
 <Source
   code={`
 <me-breadcrumbs
-  [items]="breadcrumbItems"
+  [items]="breadcrumbsItems"
+  size="small"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
+
+### Большой размер
+
+<Canvas of={breadcrumbsStories.SizeLarge} />
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="breadcrumbsItems"
   size="large"
 ></me-breadcrumbs>
   `}
@@ -94,15 +96,32 @@ import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
   language="html"
 />
 
-## Сокращение слева
+## Направление сокращения хлебных крошек
 
-По умолчанию, при нехватке места элементы сокращаются справа. Вы можете изменить это поведение, установив `truncateFrom="left"`:
+### Сокращение справа
 
-<Canvas of={BreadcrumbsStories.TruncateFromLeft} />
+По умолчанию, при нехватке места элементы сокращаются справа.
+
+<Canvas of={breadcrumbsStories.TruncateFromRight} />
 <Source
   code={`
 <me-breadcrumbs
-  [items]="breadcrumbItems"
+  [items]="breadcrumbsItems"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
+
+### Сокращение слева
+
+По умолчанию, при нехватке места элементы сокращаются справа. Вы можете изменить это поведение, установив свойство `truncateFrom="left"`:
+
+<Canvas of={breadcrumbsStories.TruncateFromLeft} />
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="breadcrumbsItems"
   truncateFrom="left"
 ></me-breadcrumbs>
   `}
@@ -110,16 +129,16 @@ import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
   language="html"
 />
 
-## Длинные хлебные крошки
+## Хлебные крошки с большим кол-вом элементов
 
 Компонент автоматически адаптируется к большому количеству элементов:
 
-<Canvas of={BreadcrumbsStories.LargeSizeBreadcrumbs} />
+<Canvas of={breadcrumbsStories.WithManyItems} />
 
 <Source
   code={`
 <me-breadcrumbs
-  [items]="longBreadcrumbItems"
+  [items]="breadcrumbsItems"
 ></me-breadcrumbs>
   `}
   dark
@@ -133,19 +152,12 @@ import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
 <Source
   code={`
 <me-breadcrumbs
-  [items]="breadcrumbItems"
+  [items]="breadcrumbsItems"
   (itemClick)="onBreadcrumbItemClick($event)"
 ></me-breadcrumbs>
   `}
   dark
   language="html"
-/>
-
-## Свойства
-
-<Controls
-  of={BreadcrumbsStories.Default}
-  include={["items", "size", "truncateFrom", "showIcons", "enableDropdowns"]}
 />
 
 ## Пример использования
@@ -155,7 +167,7 @@ import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
 <Source
   code={`
 <me-breadcrumbs
-  [items]="breadcrumbItems"
+  [items]="breadcrumbsItems"
   [size]="medium"
   truncateFrom="right"
   (itemClick)="handleItemClick($event)"
@@ -164,16 +176,3 @@ import * as BreadcrumbsStories from "./me-breadcrumbs.stories";
   dark
   language="html"
 />
-
-## Дополнительная информация
-
-При использовании компонента `MeBreadcrumbs` обратите внимание на следующие моменты:
-
-- Свойство `size` может принимать значения `small`, `medium` или `large`, влияя на размер хлебных крошек.
-- Свойство `truncateFrom` определяет, с какой стороны будут сокращаться элементы при нехватке места (`left` или `right`).
-
-## Дизайн-система и Figma
-
-Более подробную информацию о дизайне компонента можно найти в Figma:
-
-[Ссылка на Figma](https://www.figma.com/file/your-design-system-link)
