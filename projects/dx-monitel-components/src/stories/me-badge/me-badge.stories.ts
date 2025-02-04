@@ -1,7 +1,7 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { MeBadgeComponent } from '../../public-api';
 
-const meta: Meta<MeBadgeComponent> = {
+export default {
   title: 'Components/Badge',
   component: MeBadgeComponent,
   decorators: [
@@ -14,27 +14,45 @@ const meta: Meta<MeBadgeComponent> = {
       control: 'select',
       options: ['20', '24'],
       description: 'Размер бейджа',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '20' },
+      },
     },
     color: {
       control: 'select',
       options: ['default', 'secondary', 'success', 'attention', 'error'],
       description: 'Цветовая тема бейджа',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'default' },
+      },
     },
     value: {
       control: 'number',
       description: 'Числовое значение бейджа',
-    },
-    customStyle: {
-      control: 'object',
-      description: 'Пользовательские CSS-стили',
+      table: {
+        type: { summary: 'number | null' },
+        defaultValue: { summary: 'null' },
+      },
     },
   },
-};
+} satisfies Meta<MeBadgeComponent>;
 
-export default meta;
 type Story = StoryObj<MeBadgeComponent>;
 
-// Базовые примеры для всех цветов
+export const Default: Story = {
+  args: {
+    value: 1,
+    size: '20',
+    color: 'default'
+  },
+  render: (args) => ({
+    props: args,
+    template: `<me-badge ${argsToTemplate(args)}></me-badge>`,
+  })
+}
+
 export const BasicExamples: Story = {
   render: () => ({
     template: `
@@ -49,7 +67,7 @@ export const BasicExamples: Story = {
   }),
 };
 
-// Разные размеры
+
 export const Sizes: Story = {
   render: () => ({
     template: `

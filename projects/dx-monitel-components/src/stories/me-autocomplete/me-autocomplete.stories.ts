@@ -20,7 +20,7 @@ export default {
     size: {
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
-      description: 'Меняет размер аккордиона и его элементов.',
+      description: 'Меняет размер текстового поля.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
