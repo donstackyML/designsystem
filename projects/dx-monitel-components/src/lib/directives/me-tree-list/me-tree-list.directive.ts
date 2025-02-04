@@ -2,10 +2,9 @@ import {
   AfterViewInit,
   Directive,
   ElementRef,
-  inject,
   Renderer2,
 } from '@angular/core';
-import { DxListComponent, DxTreeListComponent } from 'devextreme-angular';
+import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
