@@ -175,6 +175,13 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
   .dx-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon {
     background-color: var(--Controls-BG-Accent-Accent-BG-Default);
   }
+  &.dx-state-disabled {
+    .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
+    .dx-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon {
+      background-color: var(--Controls-BG-Accent-Accent-BG-Disabled);
+      background-image: $checkbox-checked-icon-image-bg-disabled;
+    }
+  }
 
   .dx-scrollable {
     width: -webkit-fill-available;
@@ -193,9 +200,6 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
           font-family: var(--me-icon-family);
           &::before {
             content: var(--me-icon-arrow-right);
-          }
-          &.dx-treeview-toggle-item-visibility-opened {
-            transform: rotate(90deg);
           }
         }
         .dx-item-content.dx-treeview-item-content {
@@ -260,55 +264,71 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
   }
 }
 
-.me-tree-view.me-tree-view-large {
+.me-tree-view {
   li ul {
-    margin-left: 32px;
+    margin-left: var(--default-margin-left);
   }
-  //.dx-treeview-toggle-item-visibility {
-  //  &.dx-treeview-toggle-item-visibility-opened::before {
-  //     left: 8px;
-  //  }
-  //}
+
   .dx-scrollable {
     li.dx-treeview-node {
-      font-size: 16px;
+      font-size: var(--text-font-size);
       font-weight: var(--me-regular-font-weight);
+      line-height: var(--text-line-height);
+
+      .dx-item {
+        position: relative;
+      }
       .dx-item.dx-treeview-item {
-        padding: 8px;
+        padding: var(--treeview-item-padding);
+
         .dx-treeview-toggle-item-visibility {
-          height: 24px;
-          width: 24px;
-          font-size: 20px;
-          top: 8px;
-        }
-        .dx-item-content.dx-treeview-item-content {
-          margin-left: 32px;
-          .dx-icon {
-            width: 24px;
-            height: 24px;
+          top: 50%;
+          transform: translateY(-50%);
+          height: var(--item-visibility-width);
+          width: var(--item-visibility-width);
+          font-size: var(--item-visibility-width);
+          line-height: var(--item-visibility-width);
+
+          &::before {
+            height: var(--item-visibility-width);
+            width: var(--item-visibility-width);
+            position: static;
+            margin: 0;
           }
-          span {
-            font-size: 16px;
-            font-weight: var(--me-regular-font-weight);
-            line-height: 24px;
+
+          &.dx-treeview-toggle-item-visibility-opened {
+            transform: translateY(-50%) rotate(90deg);
+          }
+        }
+
+        .dx-item-content.dx-treeview-item-content {
+          margin-left: var(--default-margin-left);
+
+          .dx-icon {
+            width: var(--item-icon-width);
+            height: var(--item-icon-width);
           }
         }
       }
+
       &.dx-treeview-item-with-checkbox {
         .dx-checkbox {
-          height: 20px;
-          width: 20px;
-          top: 8px;
+          top: 50%;
+          transform: translateY(-50%);
+          height: var(--checkbox-width);
+          width: var(--checkbox-width);
           left: auto;
-          margin-left: 32px;
+          margin-left: var(--default-margin-left);
+
           .dx-checkbox-icon {
-            height: 20px;
-            width: 20px;
+            height: var(--checkbox-width);
+            width: var(--checkbox-width);
           }
         }
+
         .dx-item.dx-treeview-item {
           .dx-item-content.dx-treeview-item-content {
-            margin-left: 64px;
+            margin-left: calc((var(--default-margin-left) - 1px) * 2);
           }
         }
       }
@@ -317,13 +337,14 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
     .dx-treeview-select-all-item {
       .dx-checkbox-container {
         display: flex;
+
         .dx-checkbox-icon {
-          height: 20px;
-          width: 20px;
+          height: var(--checkbox-width);
+          width: var(--checkbox-width);
         }
+
         .dx-checkbox-text {
-          font-size: 16px;
-          font-weight: var(--me-regular-font-weight);
+          font-size: var(--checkbox-text-font-size);
         }
       }
     }
@@ -331,70 +352,31 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
 }
 
 .me-tree-view.me-tree-view-small {
-  li ul {
-    margin-left: 28px;
-  }
-  .dx-scrollable {
-    li.dx-treeview-node {
-      font-size: 14px;
-      font-weight: 400;
-      .dx-item.dx-treeview-item {
-        padding: 4px 8px;
-        .dx-treeview-toggle-item-visibility {
-          height: 20px;
-          width: 20px;
-          font-size: 18px;
-          top: 4px;
-        }
+  --text-font-size: 14px;
+  --text-line-height: 20px;
 
-        .dx-item-content.dx-treeview-item-content {
-          margin-left: 28px;
-          .dx-icon {
-            width: 20px;
-            height: 20px;
-          }
-          span {
-            font-size: 14px;
-            font-weight: var(--me-regular-font-weight);
-            line-height: 20px;
-          }
-        }
-      }
-      &.dx-treeview-item-with-checkbox {
-        .dx-checkbox {
-          height: 16px;
-          width: 16px;
-          top: 6px;
-          left: auto;
-          margin-left: 28px;
-          .dx-checkbox-icon {
-            height: 16px;
-            width: 16px;
-          }
-        }
-        .dx-item.dx-treeview-item {
-          .dx-item-content.dx-treeview-item-content {
-            margin-left: 56px;
-          }
-        }
-      }
-    }
+  --default-margin-left: 28px;
+  --treeview-item-padding: 4px 8px;
 
-    .dx-treeview-select-all-item {
-      .dx-checkbox-container {
-        display: flex;
-        .dx-checkbox-icon {
-          height: 16px;
-          width: 16px;
-        }
-        .dx-checkbox-text {
-          font-size: 14px;
-          font-weight: var(--me-regular-font-weight);
-        }
-      }
-    }
-  }
+  --checkbox-text-font-size: 14px;
+  --checkbox-width: 16px;
+  --item-icon-width: 20px;
+  --item-visibility-width: 20px;
 }
+
+.me-tree-view.me-tree-view-large {
+  --text-font-size: 16px;
+  --text-line-height: 24px;
+
+  --default-margin-left: 32px;
+  --treeview-item-padding: 8px;
+
+  --checkbox-text-font-size: 16px;
+  --checkbox-width: 20px;
+  --item-icon-width: 24px;
+  --item-visibility-width: 24px;
+}
+
 
 .me-tree-view.me-keyboard-focused {
   .dx-treeview-item-without-checkbox,
@@ -408,10 +390,3 @@ $generic-treeview-toggle-item-visibility-offset: -4px;
     }
   }
 }
-
-//&:focus-visible .dx-treeview-item-without-checkbox.dx-state-focused,
-//&:focus-visible .dx-treeview-item-with-checkbox.dx-state-focused {
-//  & > .dx-treeview-item {
-//    box-shadow: inset 0px 0px 0px 2px #7eb9ff;
-//  }
-//}
