@@ -58,6 +58,18 @@ export default {
       },
     },
   },
+  args: {
+    items: [
+      { text: 'Первая', type: 'default' },
+      { text: 'Вторая', type: 'normal' },
+      { text: 'Третья', type: 'success' },
+      { text: 'Четвертая', type: 'warning' as ButtonType },
+      { text: 'Пятая', type: 'danger' },
+    ],
+    size: 'medium',
+    stylingMode: 'contained',
+    disabled: false
+  },
   render: (args) => ({
     props: args,
     template: `
@@ -67,25 +79,15 @@ export default {
       ></dx-button-group>
     `,
   }),
-} as Meta<ButtonGroupComponent | MeButtonGroupDirective>;
+} satisfies Meta<ButtonGroupComponent | MeButtonGroupDirective>;
 
 type Story = StoryObj<ButtonGroupComponent | MeButtonGroupDirective>;
 
-// Базовый вариант с текстом
 export const Default: Story = {
-  args: {
-    items: [
-      { text: 'Первая', type: 'warning' as ButtonType },
-      { text: 'Вторая', type: 'warning' as ButtonType },
-      { text: 'Третья', type: 'warning' as ButtonType },
-    ],
-    size: 'medium',
-    stylingMode: 'contained',
-  },
+  args: {}
 };
 
-// Кнопки с иконками
-export const WithIcons: Story = {
+export const WithLeftSideIcons: Story = {
   args: {
     items: [
       { text: 'Назад', leftIcon: 'arrowback', type: 'default' },
@@ -124,7 +126,6 @@ export const WithTwoIcons: Story = {
   },
 };
 
-// Только иконки
 export const IconsOnly: Story = {
   args: {
     items: [
@@ -137,93 +138,57 @@ export const IconsOnly: Story = {
   },
 };
 
-// Разные типы кнопок
-export const ButtonTypes: Story = {
+export const SizeSmall: Story = {
+  args: {
+    size: 'small'
+  },
+};
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium'
+  },
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large'
+  },
+};
+
+export const StylingModeContained: Story = {
+  args: {
+    stylingMode: 'contained'
+  },
+};
+
+export const StylingModeOutlined: Story = {
+  args: {
+    stylingMode: 'outlined'
+  },
+};
+
+export const StylingModeText: Story = {
+  args: {
+    stylingMode: 'text'
+  },
+};
+
+export const DisabledState: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const AllButtonTypes: Story = {
   args: {
     items: [
       { text: 'Default', leftIcon: 'database', type: 'default' },
       { text: 'Normal', leftIcon: 'help', type: 'normal' },
       { text: 'Success', leftIcon: 'check', type: 'success' },
-      { text: 'Warning', leftIcon: 'help', meType: 'warning' },
+      { text: 'Warning', leftIcon: 'help', type: 'warning' as ButtonType },
       { text: 'Danger', leftIcon: 'cancel', type: 'danger' },
     ],
     size: 'medium',
     stylingMode: 'contained',
   },
-};
-
-// Отключенные состояния
-export const DisabledStates: Story = {
-  args: {
-    items: [
-      { text: 'Активная', leftIcon: 'add', type: 'default', disabled: true },
-      {
-        text: 'Отключенная',
-        leftIcon: 'cancel',
-        type: 'default',
-        disabled: true,
-      },
-      { text: 'Активная', leftIcon: 'check', type: 'default', disabled: true },
-    ],
-    size: 'medium',
-    stylingMode: 'contained',
-  },
-};
-
-// Разные размеры
-export const Sizes: Story = {
-  args: {
-    items: [
-      { text: 'Назад', leftIcon: 'arrowback', type: 'normal' },
-      { text: 'Обновить', leftIcon: 'cached', type: 'normal' },
-      { text: 'Вперед', leftIcon: 'arrowforward', type: 'normal' },
-    ],
-    stylingMode: 'contained',
-  },
-  render: (args) => ({
-    props: {
-      ...args,
-      sizes: ['small', 'medium', 'large'],
-    },
-    template: `
-      <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <div *ngFor="let currentSize of sizes">
-          <h4 style="margin-bottom: 0.5rem;">{{currentSize}}</h4>
-          <dx-button-group
-            meButtonGroup
-            ${argsToTemplate(args)}
-          ></dx-button-group>
-        </div>
-      </div>
-    `,
-  }),
-};
-
-// Стили кнопок
-export const Styles: Story = {
-  args: {
-    items: [
-      { text: 'Default', leftIcon: 'add', type: 'default' },
-      { text: 'Warning', leftIcon: 'cached', meType: 'warning' },
-      { text: 'Danger', leftIcon: 'cancel', type: 'danger' },
-    ],
-    size: 'medium',
-  },
-  render: (args) => ({
-    props: {
-      ...args,
-      styles: ['contained', 'outlined', 'text'],
-    },
-    template: `
-      <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <div *ngFor="let style of styles">
-          <h4 style="margin-bottom: 0.5rem;">{{style}}</h4>
-          <dx-button-group
-            meButtonGroup
-            ${argsToTemplate(args)}
-          ></dx-button-group>
-        </div>
-      </div>
-    `,
-  }),
 };

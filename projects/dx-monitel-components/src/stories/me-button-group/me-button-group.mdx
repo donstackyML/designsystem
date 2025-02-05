@@ -1,6 +1,6 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as buttonGroupStories from "./me-button-group.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as buttonGroupStories from "./me-button-group.stories";
 
 <Meta name="ButtonGroup Documentation" of={buttonGroupStories} />
 
@@ -8,8 +8,24 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Директива meButtonGroup
 
-Применение директивы <code>meButtonGroup</code> к элементу <code>dx-button-group</code> приводит его размеры к значению <code>size = medium (32) </code>
+Применение директивы `meButtonGroup` к элементу `dx-button-group` приводит его размеры к значению `size = medium` (32px)
 из дизайн-системы и предоставляет доступ к другим свойствам.
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxButtonGroup/api/"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ButtonGroup/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={buttonGroupStories.Default} />
 <Controls of={buttonGroupStories.Default} />
@@ -20,14 +36,212 @@ import { Figma } from "@storybook/addon-designs/blocks";
 <Figma
   height="50%"
   collapsable
-  defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1730-94575&t=XdbdPrLe6igOwCVI-0"
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1730-94575"
 />
 
-<style>
-  {`
-      h2 {
-        border-bottom: none !important;
-    }
+## Примеры использования
+
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера-по-умолчанию)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [Применения режимов стилей к кнопкам](#применения-режимов-стилей-к-кнопкам)
+  - [Contained](#contained)
+  - [Outlined](#outlined)
+  - [Text](#text)
+- [Состояние disabled](#состояние-disabled)
+- [Примеры передаваемого контента через свойство items](#примеры-передаваемого-контента-через-свойство-items)
+  - [Контент с иконками только слева](#контент-с-иконками-только-слева)
+  - [Контент с иконками с обеих сторон](#контент-с-иконками-с-обеих-сторон)
+  - [Контент только с иконками](#контент-только-с-иконками)
+
+### Размеры компонента
+
+Элементы кнопок, которыми управляет компонент `dx-button-group` с помощью директивой `meButtonGroup` через свойство `size` могут небольшими (`small`), средними (`medium`) и большими (`large`).
+
+#### Компонент небольшого размера
+
+<Canvas of={buttonGroupStories.SizeSmall} />
+
+<Source
+  code={`
+<dx-button-group
+  meButtonGroup
+  [items]="items"
+  size="small"
+>
+</dx-button-group>
 `}
-</style>
+  dark
+  language="html"
+/>
+
+#### Компонент среднего размера (по умолчанию)
+
+<Canvas of={buttonGroupStories.SizeMedium} />
+
+<Source
+  code={`
+<dx-button-group
+  meButtonGroup
+  [items]="items"
+  size="medium"
+>
+</dx-button-group>
+`}
+  dark
+  language="html"
+/>
+
+#### Компонент большого размера
+
+<Canvas of={buttonGroupStories.SizeLarge} />
+
+<Source
+  code={`
+<dx-button-group
+  meButtonGroup
+  [items]="items"
+  size="large"
+>
+</dx-button-group>
+`}
+  dark
+  language="html"
+/>
+
+### Применения режимов стилей к кнопкам
+
+Элементы кнопок, которыми управляет компонент `dx-button-group` с помощью директивой `meButtonGroup` через свойство `stylingMode` могут иметь стили `contained`, `outlined`, `text`.
+
+#### Contained
+
+<Canvas of={buttonGroupStories.StylingModeContained} />
+
+<Source
+  code={`
+<dx-button-group
+  meButtonGroup
+  [items]="items"
+  stylingMode="contained"
+>
+</dx-button-group>
+`}
+  dark
+  language="html"
+/>
+
+#### Outlined
+
+<Canvas of={buttonGroupStories.StylingModeOutlined} />
+
+<Source
+  code={`
+<dx-button-group
+  meButtonGroup
+  [items]="items"
+  stylingMode="text"
+>
+</dx-button-group>
+`}
+  dark
+  language="html"
+/>
+
+#### Text
+
+<Canvas of={buttonGroupStories.StylingModeText} />
+
+<Source
+  code={`
+<dx-button-group
+  meButtonGroup
+  stylingMode="outlined"
+  [items]="items"
+>
+</dx-button-group>
+`}
+  dark
+  language="html"
+/>
+
+### Состояние disabled
+
+<Canvas of={buttonGroupStories.DisabledState} />
+
+<Source
+  code={`
+<dx-button-group
+  meButtonGroup
+  disabled="true"
+>
+</dx-button-group>
+`}
+  dark
+  language="html"
+/>
+
+### Примеры передаваемого контента через свойство items
+
+#### Контент с иконками только слева
+
+<Canvas of={buttonGroupStories.WithLeftSideIcons} />
+
+<Source
+  code={`
+const items = [
+  { text: 'Назад', leftIcon: 'arrowback', type: 'default' },
+  { text: 'Обновить', leftIcon: 'cached', type: 'default' },
+  { text: 'Вперед', leftIcon: 'arrowforward', type: 'default' },
+];
+`}
+  dark
+  language="typescript"
+/>
+
+#### Контент с иконками с обеих сторон
+
+<Canvas of={buttonGroupStories.WithTwoIcons} />
+
+<Source
+  code={`
+const items = [
+  {
+    text: 'Назад',
+    leftIcon: 'arrowback',
+    rightIcon: 'arrowforward',
+    type: 'default',
+  },
+  {
+    text: 'Обновить',
+    leftIcon: 'arrowback',
+    rightIcon: 'arrowforward',
+    type: 'default',
+  },
+  {
+    text: 'Вперед',
+    leftIcon: 'arrowback',
+    rightIcon: 'arrowforward',
+    type: 'default',
+  },
+];
+`}
+  dark
+  language="typescript"
+/>
+
+#### Контент только с иконками
+
+<Canvas of={buttonGroupStories.IconsOnly} />
+
+<Source
+  code={`
+const items = [
+  { icon: 'arrowback', type: 'default' },
+  { icon: 'cached', type: 'default' },
+  { icon: 'arrowforward', type: 'default' },
+];
+`}
+  dark
+  language="typescript"
+/>

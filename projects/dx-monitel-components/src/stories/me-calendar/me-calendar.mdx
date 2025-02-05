@@ -1,50 +1,56 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
-import * as CalendarStories from "./me-calendar.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { DxCalendarModule } from "devextreme-angular";
-import { MeCalendarDirective } from "../../public-api";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as calendarStories from "./me-calendar.stories";
 
-<Meta
-  title="Components/Calendar"
-  component={MeCalendarDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeCalendarDirective],
-      imports: [DxCalendarModule],
-    }),
-  ]}
-  of={CalendarStories}
-/>
+<Meta name="Calendar Documentation" of={calendarStories} />
 
 # Calendar
 
-## Директива meCalendar
+## Директива `meCalendar`
 
-Директива `meCalendar` расширяет функциональность стандартного компонента календаря DevExtreme, добавляя дополнительные возможности настройки и обработки событий.
+Директива `meCalendar` расширяет функциональность компонента `dx-calendar` из библиотеки DevExtreme, добавляя дополнительные возможности настройки и обработки событий.
 
-<Story name="Default" of={CalendarStories.Default} />
-<Controls of={CalendarStories.Default} />
+Документация на сайте разработчика DevExtreme:
+- [API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxCalendar/api/)
+- [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Calendar/Overview/Light/)
 
-<Source of={CalendarStories.Default} dark />
+<Canvas of={calendarStories.Default} />
+<Controls of={calendarStories.Default} />
+<Source of={calendarStories.Default} dark />
 
-## Содержание
+## Дизайн
 
-- [Примеры использования](#примеры-использования)
-- [Календарь без номеров недель](#календарь-без-номеров-недель)
-- [Отключенный календарь](#отключенный-календарь)
-- [Изменение первого дня недели](#изменение-первого-дня-недели)
-- [Изменение уровня масштабирования](#изменение-уровня-масштабирования)
-- [Настройка правила номера недели](#настройка-правила-номера-недели)
-- [Перечень свойств](#перечень-свойств)
-- [Обработка событий](#обработка-событий)
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1551-63219"
+/>
 
 ## Примеры использования
 
+- [Календарь без номеров недель](#календарь-без-номеров-недель)
+- [Нумерация недель](#нумерация-недель)
+  - [Вариант `firstDay`](#вариант-firstday)
+  - [Вариант `firstFourDays`](#вариант-firstfourdays)
+  - [Вариант `fullWeek`](#вариант-fullweek)
+- [Выбор даты](#выбор-даты)
+  - [Режим одиночного выбора](#режим-одиночного-выбора)
+  - [Режим множественного выбора](#режим-множественного-выбора)
+  - [Режим выбора диапазона](#режим-выбора-диапазона)
+  - [Выбор полной недели при клике](#выбор-полной-недели-при-клике)
+- [Отключенный календарь](#отключенный-календарь)
+- [Изменение первого дня недели](#изменение-первого-дня-недели)
+- [Изменение уровня масштабирования](#изменение-уровня-масштабирования)
+  - [Масштабирование: Месяц](#масштабирование-месяц)
+  - [Масштабирование: Год](#масштабирование-год)
+- [Обработка событий](#обработка-событий)
+
 ### Календарь без номеров недель
 
-Для скрытия номеров недель используйте параметр `showWeekNumbers={false}`.
+Чтобы скрыть номера недель, используйте параметр `showWeekNumbers={false}`.
 
-<Story name="WithoutWeekNumbers" of={CalendarStories.WithoutWeekNumbers} />
+<Story name="WithoutWeekNumbers" of={calendarStories.WithoutWeekNumbers} />
 
 <Source
   code={`<dx-calendar meCalendar [showWeekNumbers]="false"></dx-calendar>`}
@@ -52,11 +58,104 @@ import { MeCalendarDirective } from "../../public-api";
   language="html"
 />
 
+### Нумерация недель
+
+В некоторых случаях может потребоваться настроить, как именно отображаются номера недель в календаре. Это может зависеть от региональных стандартов или специфики вашего проекта. Для этого предусмотрена настройка правила нумерации с помощью параметра `weekNumberRule`. Доступны следующие варианты:
+
+#### Вариант `firstDay`
+
+Вариант `firstDay` определяет номер недели, исходя из первого дня недели, установленного в календаре.
+
+<Story name="WeekNumberRuleFirstDay" of={calendarStories.WeekNumberRuleFirstDay} />
+
+<Source
+  code={`<dx-calendar meCalendar [weekNumberRule]="'firstDay'"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+#### Вариант `firstFourDays`
+
+При выборе варианта `firstFourDays` неделя будет присвоена тому месяцу, в котором содержится не менее четырех дней. Это позволяет учитывать ситуации, когда первые дни месяца распределены между двумя календарными неделями.
+
+<Story name="WeekNumberRuleFirstFourDays" of={calendarStories.WeekNumberRuleFirstFourDays} />
+
+<Source
+  code={`<dx-calendar meCalendar [weekNumberRule]="'firstFourDays'"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+#### Вариант `fullWeek`
+
+Вариант `fullWeek` предполагает, что неделя будет отображаться только в том случае, если она полностью входит в текущий месяц. Это может быть полезно для строгого разделения недель по месяцам.
+
+<Story name="WeekNumberRuleFullWeek" of={calendarStories.WeekNumberRuleFullWeek} />
+
+<Source
+  code={`<dx-calendar meCalendar [weekNumberRule]="'fullWeek'"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+### Выбор даты
+
+Календарь поддерживает несколько режимов выбора дат, которые позволяют реализовать различные сценарии работы с датами.
+
+#### Режим одиночного выбора
+
+В режиме одиночного выбора можно выбрать только одну дату.
+
+<Story name="SelectionModeSingle" of={calendarStories.SelectionModeSingle} />
+
+<Source
+  code={`<dx-calendar meCalendar selectionMode="single"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+#### Режим множественного выбора
+
+В режиме множественного выбора можно выбрать несколько дат одновременно.
+
+<Story name="SelectionModeMultiple" of={calendarStories.SelectionModeMultiple} />
+
+<Source
+  code={`<dx-calendar meCalendar selectionMode="multiple"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+#### Выбор полной недели при клике
+
+Чтобы при клике выделялась не отдельная дата, а целая неделя, используйте параметр `selectWeekOnClick` совместно с параметром `selectionMode="multiple"`. Это позволит выбрать всю неделю, нажав на ее номер.
+
+<Story name="SelectFullWeekOnClick" of={calendarStories.SelectFullWeekOnClick} />
+
+<Source
+  code={`<dx-calendar meCalendar [selectWeekOnClick]="true"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+#### Режим выбора диапазона
+
+В режиме выбора диапазона можно выбрать диапазон дат, например, для указания периода.
+
+<Story name="SelectionModeRange" of={calendarStories.SelectionModeRange} />
+
+<Source
+  code={`<dx-calendar meCalendar selectionMode="range"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+
 ### Отключенный календарь
 
 Чтобы отключить календарь, используйте параметр `disabled={true}`.
 
-<Story name="Disabled" of={CalendarStories.Disabled} />
+<Story name="StateDisabled" of={calendarStories.StateDisabled} />
 
 <Source
   code={`<dx-calendar meCalendar [disabled]="true"></dx-calendar>`}
@@ -66,9 +165,9 @@ import { MeCalendarDirective } from "../../public-api";
 
 ### Изменение первого дня недели
 
-Для изменения первого дня недели используйте параметр `firstDayOfWeek`.
+Для изменения первого дня недели используйте параметр `firstDayOfWeek`. Например, чтобы задать воскресенье в качестве первого дня недели:
 
-<Story name="CustomFirstDay" of={CalendarStories.CustomFirstDay} />
+<Story name="CustomFirstDay" of={calendarStories.CustomFirstDay} />
 
 <Source
   code={`<dx-calendar meCalendar [firstDayOfWeek]="0"></dx-calendar>`}
@@ -78,9 +177,23 @@ import { MeCalendarDirective } from "../../public-api";
 
 ### Изменение уровня масштабирования
 
-Для изменения начального уровня масштабирования используйте параметр `zoomLevel`.
+#### Масштабирование: Месяц
 
-<Story name="YearZoomLevel" of={CalendarStories.YearZoomLevel} />
+Для установки начального уровня масштабирования "month" используйте параметр `zoomLevel="month"`.
+
+<Story name="ZoomLevelMonth" of={calendarStories.ZoomLevelMonth} />
+
+<Source
+  code={`<dx-calendar meCalendar zoomLevel="month"></dx-calendar>`}
+  dark
+  language="html"
+/>
+
+#### Масштабирование: Год
+
+Для установки начального уровня масштабирования "year" используйте параметр `zoomLevel="year"`.
+
+<Story name="ZoomLevelYear" of={calendarStories.ZoomLevelYear} />
 
 <Source
   code={`<dx-calendar meCalendar zoomLevel="year"></dx-calendar>`}
@@ -88,13 +201,9 @@ import { MeCalendarDirective } from "../../public-api";
   language="html"
 />
 
-## Перечень свойств
-
-<Controls of={CalendarStories.Default} />
-
 ## Обработка событий
 
-Календарь поддерживает стандартные события DevExtreme. Вот пример обработки события изменения даты:
+Календарь поддерживает стандартные события DevExtreme. Например, для обработки изменения выбранной даты:
 
 <Source
   code={`
@@ -106,11 +215,9 @@ import { MeCalendarDirective } from "../../public-api";
 
 // В вашем компоненте:
 onDateValueChanged(e: any) {
-console.log('Выбранная дата:', e.value);
+  console.log('Выбранная дата:', e.value);
 }
 `}
-dark
-language="typescript"
+  dark
+  language="typescript"
 />
-
-Это позволяет вам реагировать на изменения выбранной даты в календаре.

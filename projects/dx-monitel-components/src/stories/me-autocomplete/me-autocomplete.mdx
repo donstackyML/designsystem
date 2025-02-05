@@ -1,67 +1,179 @@
-import {Meta, Story, Controls, Source, Canvas} from "@storybook/addon-docs";
-import * as AutocompleteStories from "./me-autocomplete.stories";
-import { MeAutocompleteDirective } from "../../public-api";
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as autocompleteStories from "./me-autocomplete.stories";
 
-<Meta
-  title="Компоненты/Autocomplete"
-  component={MeAutocompleteDirective}
-  of={AutocompleteStories}
-/>
+<Meta name="Autocomplete Documentation" of={autocompleteStories} />
 
 # Autocomplete
 
-> ## Директива meAutocomplete
->
-> Применение директивы meAutocomplete к элементу `dx-autocomplete` приводит его размеры и стили в соответствие с дизайн-системой.
+## Директива meAutocomplete
 
-<Canvas of={AutocompleteStories.Default} />
-<Controls of={AutocompleteStories.Default} />
+Директива `meAutocomplete`, применяемая к компоненту `dx-autocomplete`, изменяет его стили в соответствии с дизайн-системой и добавляет новые свойства.
+
+Новые свойства компонента:
+
+- `size` - Свойство влияет на размер компонента. Доступны три значения: `small`, `medium` (*default*) и `large`.
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxAutocomplete/api"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Autocomplete/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+<Canvas of={autocompleteStories.Default} />
+<Controls of={autocompleteStories.Default} />
+<Source of={autocompleteStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1537-58686&t=7Mkh2xQf8oM0BMVi-4"
+/>
 
 ## Примеры использования
 
 - [Размеры компонента](#размеры-компонента)
-- [Поведение скроллбара](#поведение-скроллбара)
-- [Положение метки](#положение-метки)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера-по-умолчанию)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [Разные режимы поведения лейбла](#разные-режимы-поведения-лейбла)
+  - [Лейбл сверху (по умолчанию)](#лейбл-сверху-по-умолчанию)
+  - [Лейбл статичный](#лейбл-статичный)
+  - [Лейбл всплывающий](#лейбл-всплывающий)
+  - [Лейбл невидимый](#лейбл-невидимый)
 
 ### Размеры компонента
 
-> Поддерживаются три размера: small, medium (по умолчанию) и large
+#### Компонент небольшого размера
 
-<Canvas of={AutocompleteStories.Small} />
+<Canvas of={autocompleteStories.SizeSmall} />
 
-```html
+<Source
+  code={`
 <dx-autocomplete
   meAutocomplete
   size="small"
   [dataSource]="dataSource"
 >
 </dx-autocomplete>
-```
+`}
+  dark
+  language="html"
+/>
 
-<Canvas of={AutocompleteStories.Large} />
+#### Компонент среднего размера (по умолчанию)
 
-```html
+<Canvas of={autocompleteStories.SizeMedium} />
+
+<Source
+  code={`
+<dx-autocomplete
+  meAutocomplete
+  size="medium"
+  [dataSource]="dataSource"
+>
+</dx-autocomplete>
+`}
+  dark
+  language="html"
+/>
+
+#### Компонент большого размера
+
+<Canvas of={autocompleteStories.SizeLarge} />
+
+<Source
+  code={`
 <dx-autocomplete
   meAutocomplete
   size="large"
   [dataSource]="dataSource"
 >
 </dx-autocomplete>
-```
+`}
+  dark
+  language="html"
+/>
 
-### Поведение скроллбара
+### Разные режимы поведения лейбла
 
-> Скроллбар может быть всегда видимым или появляться при наведении
+#### Лейбл внешний (по умолчанию)
+
+<Canvas of={autocompleteStories.LabelModeOutside} />
 
 <Source
   code={`
 <dx-autocomplete
   meAutocomplete
-  [size]="'medium'"
-  [showScrollbar]="'always'"
-  [dataSource]="['Apple', 'Banana', 'Orange']"
-></dx-autocomplete>
-  `}
-  language="html"
+  [dataSource]="dataSource"
+  labelMode="outside"
+>
+</dx-autocomplete>
+`}
   dark
+  language="html"
+/>
+
+#### Лейбл статичный
+
+<Canvas of={autocompleteStories.LabelModeStatic} />
+
+<Source
+  code={`
+<dx-autocomplete
+  meAutocomplete
+  [dataSource]="dataSource"
+  labelMode="static"
+>
+</dx-autocomplete>
+`}
+  dark
+  language="html"
+/>
+
+#### Лейбл всплывающий
+
+<Canvas of={autocompleteStories.LabelModeFloating} />
+
+<Source
+  code={`
+<dx-autocomplete
+  meAutocomplete
+  [dataSource]="dataSource"
+  labelMode="floating"
+>
+</dx-autocomplete>
+`}
+  dark
+  language="html"
+/>
+
+#### Лейбл невидимый
+
+<Canvas of={autocompleteStories.LabelModeHidden} />
+
+<Source
+  code={`
+<dx-autocomplete
+  meAutocomplete
+  [dataSource]="dataSource"
+  labelMode="hidden"
+>
+</dx-autocomplete>
+`}
+  dark
+  language="html"
 />

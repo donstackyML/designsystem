@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxAutocompleteComponent } from 'devextreme-angular';
-import { MeScrollbarShowType, MeSize } from '../../types/types';
+import { MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
@@ -18,12 +18,10 @@ import { ComponentFocusService } from '../../service/component-focus.service';
 })
 export class MeAutocompleteDirective implements OnInit {
   @Input() size: MeSize = 'medium';
-  @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() minSearchLength: number = 1;
   @Input() dataSource: any[] = [];
   @Input() label?: string;
   @Input() labelMode?: 'static' | 'floating' | 'hidden' | 'outside';
-  @Input() description: string = '';
 
   private focusService: ComponentFocusService;
   constructor(
@@ -65,7 +63,7 @@ export class MeAutocompleteDirective implements OnInit {
         ...this.component.dropDownOptions?.wrapperAttr,
         class: popupWrapperClasses,
       },
-      maxHeight: 300, // Устанавливаем maxHeight для активации скролла
+      maxHeight: 300,
     };
 
     this.component.dataSource = this.dataSource;

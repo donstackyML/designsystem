@@ -1,8 +1,6 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as buttonStories from "./me-button.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
-// import { Sandpack } from "@codesandbox/sandpack-react";
-// import buttonDirective from "!!raw-loader!../../lib/directives/me-button/button.directive";
+import * as buttonStories from "./me-button.stories";
 
 <Meta name="Button Documentation" of={buttonStories} />
 
@@ -10,75 +8,16 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Директива meButton
 
-Применение директивы <code>meButton</code> к элементу <code>dx-button</code> приводит его размеры к значению <code>size = medium (32)</code> из дизайн-системы и предоставляет доступ к другим свойствам.
+Применение директивы `meButton` к элементу `dx-button` приводит его размеры к значению `size = medium` (32px) из дизайн-системы и предоставляет доступ к другим свойствам.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxButton/)
+Документация на сайте разработчика DevExtreme:
 
-{/* <Description of={buttonStories.Default} /> */}
-
-{/* <Story of={buttonStories.Default} /> */}
+- <a href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxButton/api/" target="_blank">API</a>
+- <a href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Button/Overview/Light/" target="_blank">Демо</a>
 
 <Canvas of={buttonStories.Default} />
-
 <Controls of={buttonStories.Default} />
-
-<Source of={buttonStories.Default} type="dynamic" dark />
-{/*
-   <Sandpack
-     template="angular"
-     files={{
-       '/src/app/app.component.ts': `
-        import { Component } from '@angular/core';
-
-         @Component({
-           selector: 'app-root',
-           template: '<div>title</div>',
-         })
-         export class AppComponent {
-           title = 'angular-sandbox';
-         }
-       `,
-        "/src/app/button.directive.ts": buttonDirective,
-       '/src/app/app.module.ts': `
-         import { NgModule } from '@angular/core';
-         import { BrowserModule } from '@angular/platform-browser';
-         import { AppComponent } from './app.component';
-         import { MeButtonDirective } from './button.directive';
-         import { DxButtonComponent } from "devextreme-angular";
-
-         @NgModule({
-           declarations: [
-             AppComponent,
-             MeButtonDirective,
-             DxButtonComponent
-           ],
-           imports: [ BrowserModule ],
-           providers: [],
-         })
-         export class AppModule { }
-       `,
-       '/src/index.html': `
-          <app-root></app-root>
-       `,
-     }}
-     customSetup={{
-       dependencies: {
-          "@angular/core": "13.0.0",
-          "@angular/common": "13.0.0",
-          "@angular/compiler": "13.0.0",
-          "@angular/platform-browser": "13.0.0",
-          "@angular/platform-browser-dynamic": "13.0.0",
-          "rxjs": "7.4.0",
-          "zone.js": "0.11.4",
-          "devextreme": "23.1.5",
-          "devextreme-angular": "23.1.5",
-          "@angular/forms": "16.2.5",
-       }
-     }}
-
-/> \*/}
-
-{/* options={{activeFile: '/src/index.html',visibleFiles: ['/src/index.html'],}} */}
+<Source of={buttonStories.Default} dark />
 
 ## Дизайн
 
@@ -86,55 +25,131 @@ import { Figma } from "@storybook/addon-designs/blocks";
   height="50%"
   collapsable
   defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1-4&t=VoqpA9EX7TuL7TZI-0"
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1-4"
 />
 
-## Примеры использования:
+## Примеры использования
 
-- [иконка слева](#иконка-слева)
-- [иконка слева и справа](#иконка-слева-и-справа)
-- [иконка без текста](#иконка-без-текста)
+- [Размеры кнопки](#размеры-кнопки)
+  - [Маленький размер](#маленький-размер)
+  - [Средний размер (по умолчанию)](#средний-размер)
+  - [Большой размер](#большой-размер)
+- [Типы кнопок](#типы-кнопок)
+  - [Normal](#normal)
+  - [Default](#default)
+  - [Success](#success)
+  - [Warning](#warning)
+  - [Danger](#danger)
+- [Режимы стилизации](#режимы-стилизации)
+  - [Contained](#contained)
+  - [Outlined](#outlined)
+  - [Text](#text)
+- [Активация состояния выбора кнопки](#активация-состояния-выбора-кнопки)
+- [Состояния кнопки](#состояния-кнопки)
+  - [Disabled](#disabled)
+  - [Selected](#selected)
+  - [Selected & Disabled](#selected-disabled)
+- [Иконки в кнопках](#иконки-в-кнопках)
+  - [Иконка слева](#иконка-слева)
+  - [Иконка слева и справа](#иконка-слева-и-справа)
+  - [Кнопка только с иконкой](#кнопка-только-с-иконкой)
 
-## Иконка слева
+### Размеры кнопки
 
-<code>leftIcon</code> принимает название иконки из стандартного набора, которая будет
-вставлена слева от текста
+#### Маленький размер
 
-<Story of={buttonStories.LeftIcon} />
+<Canvas of={buttonStories.SizeSmall} />
+<Source code={`<dx-button meButton text="Button" size="small"></dx-button>`} dark />
 
-<Source
-  code={`<dx-button meButton text="Button" leftIcon="arrowback"></dx-button>`}
-  language="html"
-  dark
-/>
+#### Средний размер (по умолчанию)
 
-## Иконка слева и справа
+<Canvas of={buttonStories.SizeMedium} />
+<Source code={`<dx-button meButton text="Button" size="medium"></dx-button>`} dark />
 
-<code>rightIcon</code> принимает название иконки из стандартного набора, которая
-будет вставлена справа от текста.
+#### Большой размер
 
-<Story of={buttonStories.LeftRightIcon} />
+<Canvas of={buttonStories.SizeLarge} />
+<Source code={`<dx-button meButton text="Button" size="large"></dx-button>`} dark />
 
-<Source
-  code={`<dx-button meButton text="Button" leftIcon="arrowback" rightIcon="arrowforward"></dx-button>`}
-  language="html"
-  dark
-/>
+### Типы кнопок
 
-## Иконка без текста
+#### Normal
 
-Принимает иконку для кнопки только с иконкой, без текста
+<Canvas of={buttonStories.TypeNormal} />
+<Source code={`<dx-button meButton text="Button" type="normal"></dx-button>`} dark />
 
-<Story of={buttonStories.IconOnly} />
+#### Default
 
+<Canvas of={buttonStories.TypeDefault} />
+<Source code={`<dx-button meButton text="Button" type="default"></dx-button>`} dark />
+
+#### Success
+
+<Canvas of={buttonStories.TypeSuccess} />
+<Source code={`<dx-button meButton text="Button" type="success"></dx-button>`} dark />
+
+#### Warning
+
+<Canvas of={buttonStories.TypeWarning} />
+<Source code={`<dx-button meButton text="Button" type="warning"></dx-button>`} dark />
+
+#### Danger
+
+<Canvas of={buttonStories.TypeDanger} />
+<Source code={`<dx-button meButton text="Button" type="danger"></dx-button>`} dark />
+
+### Режимы стилизации
+
+#### Contained
+
+<Canvas of={buttonStories.StylingModeContained} />
+<Source code={`<dx-button meButton text="Button" stylingMode="contained"></dx-button>`} dark />
+
+#### Outlined
+
+<Canvas of={buttonStories.StylingModeOutlined} />
+<Source code={`<dx-button meButton text="Button" stylingMode="outlined"></dx-button>`} dark />
+
+#### Text
+
+<Canvas of={buttonStories.StylingModeText} />
+<Source code={`<dx-button meButton text="Button" stylingMode="text"></dx-button>`} dark />
+
+### Активация состояния выбора кнопки
+
+<Canvas of={buttonStories.SelectionStateEnable} />
+<Source code={`<dx-button meButton text="Button" selectionStateEnable="true"></dx-button>`} dark />
+
+### Состояния кнопки
+
+#### Disabled
+
+<Canvas of={buttonStories.StateDisabled} />
+<Source code={`<dx-button meButton text="Button" disabled="true"></dx-button>`} dark />
+
+#### Selected
+
+<Canvas of={buttonStories.StateSelected} />
+<Source code={`<dx-button meButton text="Button" isSelected="true"></dx-button>`} dark />
+
+#### Selected & Disabled
+
+<Canvas of={buttonStories.StateSelectedAndDisabled} />
+<Source code={`<dx-button meButton text="Button" isSelected="true" disabled="true"></dx-button>`} dark />
+
+### Иконки в кнопках
+
+#### Иконка слева
+
+<Canvas of={buttonStories.ButtonWithLeftIcon} />
+<Source code={`<dx-button meButton text="Button" leftIcon="arrowback"></dx-button>`} dark />
+
+#### Иконка слева и справа
+
+<Canvas of={buttonStories.ButtonWithLeftAndRightIcons} />
+<Source code={`<dx-button meButton text="Button" leftIcon="arrowback" rightIcon="arrowforward"></dx-button>`} dark />
+
+#### Кнопка только с иконкой
+
+<Canvas of={buttonStories.ButtonWithIconOnly} />
 <Source code={`<dx-button meButton iconOnly="add"></dx-button>`} dark />
-
-{/* <Unstyled> */}
-
-<style>
-  {`
-      h2 {
-        border-bottom: none !important;
-    }
-`}
-</style>

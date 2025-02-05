@@ -1,47 +1,84 @@
-import { Meta, Story, Controls, Source } from "@storybook/blocks";
-import * as Stories from "./me-badge.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as meBadgeStories from "./me-badge.stories";
 
-<Meta of={Stories} />
+<Meta name="Badge Documentation" of={meBadgeStories} />
 
 # Badge
 
-Badge (бейдж) используется для отображения числовых индикаторов, таких как количество уведомлений, сообщений или других метрик.
+Компонент `me-badge` используется для отображения числовых индикаторов, таких как количество уведомлений, сообщений или других метрик.
+
+Свойства компонента:
+
+- `size` - Свойство влияет на размер компонента. Доступны два значения: `20` (*default*), `24` (*default*).
+- `color` - Свойство влияет на цветовую тему компонента. Доступны шести значений: `default` (*default*), `secondary`, `success`, `attention`, `error`.
+- `value` - Свойство влияет на отображение числового значения внутри компонента. Передается любое число. Если значение (*value*) не указано и не указано явно свойство `color`, то не компонент не отображается.
+
+<Canvas of={meBadgeStories.Default} />
+<Controls of={meBadgeStories.Default} />
+<Source of={meBadgeStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=2291-177348"
+/>
+
+## Примеры использования
+
+- [Основные примеры](#основные-примеры)
+- [Размеры](#размеры)
+- [Длинные числа](#длинные-числа)
+- [Все варианты](#все-варианты)
+- [Числа и цвета](#числа-и-цвета)
+- [Кастомизация](#кастомизация)
+- [Свойства компонента](#свойства-компонента)
+- [Использование в коде](#использование-в-коде)
+  - [Базовый пример](#базовый-пример)
+  - [С кастомными стилями](#с-кастомными-стилями)
 
 ## Основные примеры
 
-<Story of={Stories.BasicExamples} />
+Базовый бейдж доступен в пяти цветовых вариантах: `default`, `secondary`, `success`, `attention` и `error`.
 
-Базовый бейдж доступен в пяти цветовых вариантах: default, secondary, success, attention и error.
+<Canvas of={meBadgeStories.BasicExamples} />
+<Source of={meBadgeStories.BasicExamples} dark language="html" />
 
 ## Размеры
 
-<Story of={Stories.Sizes} />
+Бейдж имеет два размера: `20`, `24`
 
-Бейдж имеет два размера:
-- Small (20px)
-- Large (24px)
+<Canvas of={meBadgeStories.Sizes} />
+<Source of={meBadgeStories.Sizes} dark language="html" />
 
 ## Длинные числа
 
-<Story of={Stories.LongNumbers} />
+При отображении чисел больше `99` бейдж автоматически расширяется, сохраняя читаемость значения.
 
-При отображении чисел больше 99 бейдж автоматически расширяется, сохраняя читаемость значения.
+<Canvas of={meBadgeStories.LongNumbers} />
+<Source of={meBadgeStories.LongNumbers} dark language="html" />
+
 
 ## Все варианты
 
-<Story of={Stories.AllVariants} />
-
 Демонстрация всех возможных комбинаций размеров и цветов.
+
+<Canvas of={meBadgeStories.AllVariants} />
+<Source of={meBadgeStories.AllVariants} dark language="html" />
 
 ## Числа и цвета
 
-<Story of={Stories.NumbersAndColors} />
+<Canvas of={meBadgeStories.NumbersAndColors} />
+<Source of={meBadgeStories.NumbersAndColors} dark language="html" />
 
 Примеры отображения разных чисел для каждого цвета бейджа.
 
 ## Кастомизация
 
-<Story of={Stories.CustomStyles} />
+<Canvas of={meBadgeStories.CustomStyles} />
+<Source of={meBadgeStories.CustomStyles} dark language="html" />
 
 Бейдж можно кастомизировать с помощью пользовательских стилей.
 
@@ -69,17 +106,5 @@ Badge (бейдж) используется для отображения чис
   [customStyle]="{
     border: '2px solid var(--Controls-Content-In-Controls-Accent-Default)'
   }"
-></me-badge>
-`} />
-
-### Все свойства
-
-<Source
-  code={`
-<me-badge
-  [value]="100"           // Числовое значение
-  size="24"               // '20' | '24'
-  color="success"         // 'default' | 'secondary' | 'success' | 'attention' | 'error'
-  [customStyle]="{...}"   // Пользовательские CSS-стили
 ></me-badge>
 `} />

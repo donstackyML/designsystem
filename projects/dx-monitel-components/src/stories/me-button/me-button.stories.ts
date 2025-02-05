@@ -9,33 +9,12 @@ import { MeButtonDirective } from '../../public-api';
 
 export default {
   title: 'Components/Button',
-  // tags: ['autodocs'],
-  parameters: {
-    // docs: {
-    //   source: {
-    //     type: 'dynamic',
-    //   },
-    // },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1-4&t=VoqpA9EX7TuL7TZI-0',
-    },
-  },
   decorators: [
     moduleMetadata({
       declarations: [MeButtonDirective, DxButtonComponent],
     }),
   ],
   argTypes: {
-    type: {
-      control: 'select',
-      options: ['default', 'normal', 'success', 'warning', 'danger'],
-      description: `Определяет тип кнопки. В рамках дизайн-системы добавлен тип "warning".`,
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'default' },
-      },
-    },
     text: {
       control: 'text',
       description: 'Определяет текст кнопки.',
@@ -43,35 +22,52 @@ export default {
         defaultValue: { summary: '' },
       },
     },
+    type: {
+      control: 'select',
+      options: ['default', 'normal', 'success', 'warning', 'danger'],
+      description: `Определяет тип кнопки. В рамках дизайн-системы добавлен тип "warning".`,
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'normal' },
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
       description: 'Меняет размер кнопки.',
       table: {
-        // type: { summary: 'string', detail: 'detaiiiiils' }, //detail - выпадашка
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
-        // category: 'Категория', //разделяет на категории,
-        // subcategory: 'Подкатегория', //подкатегории
       },
     },
     stylingMode: {
       control: 'select',
       options: ['outlined', 'contained', 'text'],
       description: 'Определяет стиль кнопки.',
-      //В description можно добавить ссылку
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'contained' },
-        // category: 'Категория', //разделяет на категории,
       },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает кнопку.',
     },
     isSelected: {
       control: 'boolean',
-      description: 'Указывает имеет ли кнопка состояние selected ("вжатость").',
+      description: 'Указывает имеет ли кнопка состояние `selected` ("вжатость").',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    selectionStateEnable: {
+      control: 'boolean',
+      description:
+        'При передаче в свойство значения `true` разрешает кнопке иметь состояние `selected` (состояние "вжатости").',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     leftIcon: {
@@ -87,17 +83,7 @@ export default {
     leftIconColor: {
       control: 'text',
       description:
-        'Определяет цвет для иконки слева от текста. Имеет приоритет над свойством iconColor.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    leftIconName: {
-      control: 'text',
-      description: `Если необходимой иконки нет в стандартном наборе, но нужно чтобы она все равно меняла цвет
-       в завимости от темы, требуется положить подготовленные для светлой и темной темы иконки в соответствующие папки:
-        <code>assets/images/icons/light</code> <code>assets/images/icons/dark</code> и передать в свойсво название иконки, тогда иконка будет меняться автоматически при переключении темы.`,
+        'Определяет цвет для иконки слева от текста. Имеет приоритет над свойством `iconColor`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
@@ -125,18 +111,7 @@ export default {
     rightIconColor: {
       control: 'text',
       description:
-        'Определяет цвет для иконки справа от текста. Имеет приоритет над свойством iconColor.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    rightIconName: {
-      control: 'text',
-      description: `Если необходимой иконки нет в стандартном наборе, но нужно чтобы она все равно меняла цвет
-       в завимости от темы, требуется положить подготовленные для светлой и темной темы иконки в соответствующие папки:
-       <code>assets/images/icons/light</code> <code>assets/images/icons/dark</code>
-       и передать в свойсво название иконки, тогда иконка будет меняться автоматически при переключении темы.`,
+        'Определяет цвет для иконки справа от текста. Имеет приоритет над свойством `iconColor`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
@@ -145,19 +120,10 @@ export default {
     rightIconSize: {
       control: 'text',
       description:
-        'Определяет размер для иконки справа от текста. Без единиц измерения (по умолчанию пиксели). Имеет приоритет над iconSize.',
+        'Определяет размер для иконки справа от текста. Без единиц измерения (по умолчанию пиксели). Имеет приоритет над `iconSize`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
-      },
-    },
-    selectionStateEnable: {
-      control: 'boolean',
-      description:
-        'При передаче в свойство значения true разрешает кнопке иметь состояние selected (состояние "вжатости").',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
       },
     },
     iconColor: {
@@ -177,55 +143,134 @@ export default {
         defaultValue: { summary: '' },
       },
     },
-    disabled: {
-      control: 'boolean',
-      description: 'Отключает кнопку.',
-    },
+  },
+  args: {
+    type: 'normal',
+    text: 'Button',
+    size: 'medium',
+    stylingMode: 'contained',
+    disabled: false,
+    isSelected: false,
+    selectionStateEnable: false,
   },
   render: (args) => ({
     props: args,
     template: `<dx-button meButton ${argsToTemplate(args)}></dx-button>`,
   }),
-} as Meta<MeButtonDirective | DxButtonComponent>;
+} satisfies Meta<MeButtonDirective | DxButtonComponent>;
 
 type Story = StoryObj<MeButtonDirective | DxButtonComponent>;
 
 export const Default: Story = {
-  args: {
-    type: 'default',
-    text: 'Button',
-    size: 'medium',
-    // width: 100,
-    // isSelected: false,
-    stylingMode: 'contained',
+  args: { },
+};
 
-    leftIcon: '',
+export const SizeSmall: Story = {
+  args: {
+    size: 'small'
   },
 };
 
-export const LeftIcon: Story = {
+export const SizeMedium: Story = {
   args: {
-    type: 'normal',
-    text: 'Button',
-    size: 'medium',
+    size: 'medium'
+  },
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large'
+  },
+};
+
+export const TypeNormal: Story = {
+  args: {
+    type: "normal"
+  },
+};
+
+export const TypeDefault: Story = {
+  args: {
+    type: 'default',
+  },
+};
+
+export const TypeSuccess: Story = {
+  args: {
+    type: 'success',
+  },
+};
+
+export const TypeWarning: Story = {
+  args: {
+    type: 'warning',
+  },
+};
+
+export const TypeDanger: Story = {
+  args: {
+    type: 'danger',
+  },
+};
+
+export const StylingModeText: Story = {
+  args: {
+    stylingMode: 'text',
+  },
+};
+
+export const StylingModeOutlined: Story = {
+  args: {
+    stylingMode: 'outlined',
+  },
+};
+
+export const StylingModeContained: Story = {
+  args: {
     stylingMode: 'contained',
+  },
+};
+
+export const SelectionStateEnable: Story = {
+  args: {
+    selectionStateEnable: true
+  },
+};
+
+export const StateSelected: Story = {
+  args: {
+    isSelected: true
+  },
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const StateSelectedAndDisabled: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const ButtonWithLeftIcon: Story = {
+  args: {
     leftIcon: 'arrowback',
   },
 };
 
-export const LeftRightIcon: Story = {
+export const ButtonWithLeftAndRightIcons: Story = {
   args: {
-    type: 'normal',
-    text: 'Button',
-    size: 'medium',
-    stylingMode: 'contained',
     leftIcon: 'arrowback',
     rightIcon: 'arrowforward',
   },
 };
 
-export const IconOnly: Story = {
+export const ButtonWithIconOnly: Story = {
   args: {
+    text: '',
     iconOnly: 'add',
   },
 };

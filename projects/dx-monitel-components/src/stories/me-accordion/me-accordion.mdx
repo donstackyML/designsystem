@@ -1,22 +1,41 @@
-import { Meta, Controls, Source } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
 import * as accordionStories from "./me-accordion.stories";
-import { MeAccordionDirective } from "../../public-api";
 
-<Meta
-  title="Components/Accordion(RC)"
-  component={MeAccordionDirective}
-  of={accordionStories}
-/>
+<Meta name="Accordion Documentation" of={accordionStories} />
 
 # Accordion
 
 ## Директива meAccordion
 
-Директива `meAccordion`, применяемая к компоненту `<dx-accordion>`, стилизует его в соответствии с дизайн-системой, добавляет дополнительные свойства и предоставляет возможность гибкой настройки внешнего вида аккордеона.
+Директива `meAccordion`, применяемая к компоненту `dx-accordion`, изменяет его стиль в соответствии с дизайн-системой и добавляет свойства, такие как `size`, что позволяет гибко настраивать внешний вид аккордеона.
 
-[Документация по компоненту DevExtreme Accordion](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxAccordion/)
+Документация на сайте разработчика Devextreme:
 
-<Source of={accordionStories.Default} dark language="html" />
+- <a
+    href="https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxAccordion/api"
+    target="_blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Accordion/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+<Canvas of={accordionStories.Default} />
+<Controls of={accordionStories.Default} />
+<Source of={accordionStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=272-12555"
+/>
 
 ## Примеры использования
 
@@ -163,15 +182,3 @@ meAccordion
   dark
   language="html"
 />
-
-## Дополнительная информация
-
-При использовании компонента `<dx-accordion>` с директивой `meAccordion` обратите внимание на следующие моменты:
-
-    - Свойство `size` может принимать значения `small`, `medium` или `large`, влияя на размер аккордеона.
-    - Свойство `collapsible` определяет, можно ли свернуть все панели аккордеона.
-    - Свойство `multiple` позволяет одновременно открывать несколько панелей аккордеона.
-
-    ## Дизайн-система и Figma
-
-    Более подробную информацию о дизайне компонента можно найти в Figma:
