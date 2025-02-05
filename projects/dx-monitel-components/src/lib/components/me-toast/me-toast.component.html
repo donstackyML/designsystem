@@ -1,20 +1,39 @@
-<dx-toast meToast [(visible)]="visible" [size]="size" [type]="setToastType()" [position]="position" [displayTime]="displayTime">
+<dx-toast meToast #dxToast [(visible)]="visible" [size]="size" [type]="setToastType()" [position]="position" [displayTime]="displayTime">
   <div *dxTemplate="let data of 'content'" class="me-toast-content">
     <div class="me-toast-header">
       <me-icon [icon]="statusIcon()" class="me-toast-icon" [size]="size"></me-icon>
       <div class="me-toast-header-content">
-        <div class="me-toast-header-title"> {{ title }}</div>
+        <div class="me-toast-header-title">{{ title }}</div>
         <div class="me-toast-header-message">{{ message }}</div>
       </div>
-      <dx-button meButton iconOnly="close" size="small" stylingMode="text" class="me-toast-close-button"
-        (onClick)="handleClose()"></dx-button>
+      <dx-button
+        meButton
+        class="me-toast-close-button me-colors-alternate"
+        iconOnly="close"
+        size="small"
+        stylingMode="text"
+        type="normal"
+        (onClick)="handleClose()"
+      ></dx-button>
     </div>
     <hr class="me-toast-divider" />
     <div class="me-toast-actions">
-      <dx-button meButton text="Принять" [size]="actionButtonStyles().size" [type]="actionButtonStyles().type" stylingMode="contained"
-        (onClick)="handleAccept()"></dx-button>
-      <dx-button meButton text="Отменить" [size]="actionButtonStyles().size" [type]="actionButtonStyles().type" [stylingMode]="actionButtonStyles().cancelButtonStylingMode"
-        (onClick)="handleCancel()"></dx-button>
+      <dx-button
+        meButton
+        text="Принять"
+        [size]="actionButtonStyles().size"
+        [type]="actionButtonStyles().type"
+        stylingMode="contained"
+        (onClick)="handleAccept()"
+      ></dx-button>
+      <dx-button
+        meButton
+        text="Отменить"
+        [size]="actionButtonStyles().size"
+        [type]="actionButtonStyles().type"
+        [stylingMode]="actionButtonStyles().cancelButtonStylingMode"
+        (onClick)="handleCancel()"
+      ></dx-button>
     </div>
   </div>
 </dx-toast>

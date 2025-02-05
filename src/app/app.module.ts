@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
 import {
   MeAccordionModule,
@@ -65,6 +67,7 @@ import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
 import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
 import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
+import { MeToastComponent as MeToastDemoComponent } from './components/me-toast/me-toast.component';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
@@ -87,8 +90,6 @@ import { MePopoverDirective } from './directives/popover.directive';
 // import { MeSelectBoxDirective } from './directives/select-box.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 // import { MeTextBoxDirective } from './directives/text-box.directive';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { MeFormModule } from 'projects/dx-monitel-components/src/lib/directives/me-form/me-form.module';
 import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
 import { MeDataGridComponent } from './components/me-data-grid/me-data-grid.component';
@@ -150,6 +151,7 @@ import { MeToastDirective } from './directives/toast.directive';
     MeTreeViewComponent,
     // MeTreeViewDirective,
     MeToastDirective,
+    MeToastDemoComponent,
     // MeLoadIndicatorDirective,
     MeLoadingIndicatorComponent,
     // MeLoadPanelDirective,
