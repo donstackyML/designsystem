@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimationConfig } from 'devextreme/animation/fx';
 
 @Component({
-  selector: 'me-toast',
+  selector: 'me-toast-demo',
   templateUrl: './me-toast.component.html',
   styleUrls: ['./me-toast.component.css'],
 })

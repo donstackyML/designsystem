@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DxButtonModule, DxToastModule } from 'devextreme-angular';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { DxButtonModule, DxToastComponent, DxToastModule } from 'devextreme-angular';
 import { MeButtonModule } from '../../directives/me-button/me-button.module';
 import { MeToastModule } from '../../directives/me-toast/toast.module';
 
@@ -11,7 +11,7 @@ const ANIMATION_DURATION_MS = 400;
 @Component({
   selector: 'me-toast',
   templateUrl: './me-toast.component.html',
-  styleUrls: ['./me-toast.component.css'],
+  exportAs: "meToastControl",
   standalone: true,
   imports: [DxToastModule, MeButtonModule, DxButtonModule, MeIconComponent, MeToastModule],
 })
@@ -31,6 +31,8 @@ export class MeToastComponent {
   @Output() onAccept = new EventEmitter<string>();
   @Output() onCancel = new EventEmitter<void>();
   @Output() onClose = new EventEmitter<void>();
+
+  @ViewChild('dxToast') dxToast?: DxToastComponent;
 
   handleAccept() {
     this.onAccept.emit();
@@ -116,11 +118,11 @@ export class MeToastComponent {
     return this.type
   }
 
-  showToast(toastDirective: any) {
-    toastDirective.showToast();
+  public showToast() {
+    this.dxToast?.instance.show();
   }
 
-  hideToast(toastDirective: any) {
-    toastDirective.hideToast();
+  public hideToast() {
+    this.dxToast?.instance.hide();
   }
 }
