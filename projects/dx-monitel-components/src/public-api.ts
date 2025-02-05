@@ -16,7 +16,7 @@ export { MeToastComponent } from './lib/components/me-toast/me-toast.component';
 
 // Form and Input Directives
 export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';
-export { MeButtonGroupDirective } from './lib/directives/me-button-group/button-group.directive';
+export { MeButtonGroupDirective } from './lib/directives/me-button-group/me-button-group.directive';
 export { MeButtonDirective } from './lib/directives/me-button/me-button.directive';
 export { MeCalendarDirective } from './lib/directives/me-calendar/calendar.directive';
 export { MeCheckBoxDirective } from './lib/directives/me-check-box/check-box.directive';
@@ -67,7 +67,7 @@ export { MeLoadPanelDirective } from './lib/directives/me-load-panel/load-panel.
 
 // Form and Input Modules
 export { MeAutocompleteModule } from './lib/directives/me-autocomplete/me-autocomplete.module';
-export { MeButtonGroupModule } from './lib/directives/me-button-group/button-group.module';
+export { MeButtonGroupModule } from './lib/directives/me-button-group/me-button-group.module';
 export { MeButtonModule } from './lib/directives/me-button/me-button.module';
 export { MeCalendarModule } from './lib/directives/me-calendar/calendar.module';
 export { MeCheckBoxModule } from './lib/directives/me-check-box/me-check-box.module';

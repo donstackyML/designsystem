@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeButtonGroupDirective } from './button-group.directive';
+import { MeButtonGroupDirective } from './me-button-group.directive';
 
 @NgModule({
   declarations: [MeButtonGroupDirective],

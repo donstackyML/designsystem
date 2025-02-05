@@ -19,7 +19,7 @@ import { MeStatusBarComponent } from './components/me-status-bar/me-status-bar.c
 import { MeToastComponent } from './components/me-toast/me-toast.component';
 import { MeAccordionModule } from './directives/me-accordion/me-accordion.module';
 import { MeAutocompleteModule } from './directives/me-autocomplete/me-autocomplete.module';
-import { MeButtonGroupModule } from './directives/me-button-group/button-group.module';
+import { MeButtonGroupModule } from './directives/me-button-group/me-button-group.module';
 import { MeButtonModule } from './directives/me-button/me-button.module';
 import { MeCalendarModule } from './directives/me-calendar/calendar.module';
 import { MeCheckBoxModule } from './directives/me-check-box/me-check-box.module';
