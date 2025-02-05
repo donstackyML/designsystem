@@ -80,7 +80,7 @@ export default {
       description: 'Время отображения тоста в миллисекундах.',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: 10000 },
+        defaultValue: { summary: '10000' },
       },
     },
   },
@@ -89,11 +89,11 @@ export default {
     template: `<me-toast ${argsToTemplate(args)}
     (onAccept)="visible = false"
     (onCancel)="visible = false"
-    (handleClose)="visible = false"
+    (onClose)="visible = false"
     >
   </me-toast>`,
   }),
-} as Meta<typeof MeToastComponent>;
+} satisfies Meta<MeToastComponent>;
 
 type Story = StoryObj<MeToastComponent>;
 
