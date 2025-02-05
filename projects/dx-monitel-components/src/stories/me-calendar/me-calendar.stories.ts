@@ -4,44 +4,95 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { DxCalendarModule } from 'devextreme-angular';
+import { DxCalendarComponent } from 'devextreme-angular';
 import { MeCalendarDirective } from '../../public-api';
 
 export default {
-  title: 'Components/Calendar(RC)',
+  title: 'Components/Calendar',
   decorators: [
     moduleMetadata({
-      declarations: [MeCalendarDirective],
-      imports: [DxCalendarModule],
+      declarations: [MeCalendarDirective, DxCalendarComponent],
     }),
   ],
   argTypes: {
-    showWeekNumbers: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
+    value: {
+      control: 'date',
+      description: 'Объект или значение, указывающее дату и время, выбранные в календаре.',
+      table: {
+        type: { summary: 'Date' },
+        defaultValue: { summary: 'null' },
+      },
     },
     firstDayOfWeek: {
       control: { type: 'select' },
       options: [0, 1, 2, 3, 4, 5, 6],
-    },
-    zoomLevel: {
-      control: { type: 'select' },
-      options: ['month', 'year', 'decade', 'century'],
+      description: 'Первый день недели',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '1' },
+      },
     },
     weekNumberRule: {
       control: { type: 'select' },
       options: ['auto', 'firstDay', 'firstFourDays', 'fullWeek'],
+      description: 'Правило наименования недель',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
     },
+    showWeekNumbers: {
+      control: 'boolean',
+      description: 'Показывать номера недель',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    zoomLevel: {
+      control: { type: 'select' },
+      options: ['month', 'year', 'decade', 'century'],
+      description: 'Уровень масштабирования',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'month' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключение компонента',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    selectionMode: {
+      control: { type: 'select' },
+      options: ['range', 'single', 'none'],
+      description: 'Определяет режим выбора даты в календаре.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'none' },
+      },
+    },
+    showTodayButton: {
+      control: 'boolean',
+      description: 'Показывать кнопку "Сегодня"',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    }
   },
   args: {
-    showWeekNumbers: false,
+    value: undefined,
+    showWeekNumbers: true,
     disabled: false,
     firstDayOfWeek: 1,
+    selectionMode: 'single',
+    weekNumberRule: 'auto',
     zoomLevel: 'month',
-    weekNumberRule: 'firstDay',
-    value: new Date(),
+    showTodayButton: false
   },
   render: (args) => ({
     props: {
@@ -54,45 +105,95 @@ export default {
       (onValueChanged)="onDateValueChanged($event)"
     ></dx-calendar>`,
   }),
-} as Meta;
+} satisfies Meta<MeCalendarDirective | DxCalendarComponent>;
 
-type Story = StoryObj;
+type Story = StoryObj<MeCalendarDirective | DxCalendarComponent>;
 
 export const Default: Story = {
-  args: {
-    showWeekNumbers: false,
-    disabled: false,
-    firstDayOfWeek: 1,
-    zoomLevel: 'month',
-    weekNumberRule: 'firstDay',
-    value: new Date(),
-  },
+  args: {},
 };
 
 export const WithoutWeekNumbers: Story = {
   args: {
-    ...Default.args,
     showWeekNumbers: false,
   },
 };
 
-export const Disabled: Story = {
+export const WeekNumberRuleFirstDay: Story = {
   args: {
-    ...Default.args,
-    disabled: true,
+    weekNumberRule: 'firstDay',
+  },
+};
+
+export const WeekNumberRuleFirstFourDays: Story = {
+  args: {
+    weekNumberRule: 'firstFourDays',
+  },
+};
+
+export const WeekNumberRuleFullWeek: Story = {
+  args: {
+    weekNumberRule: 'fullWeek',
   },
 };
 
 export const CustomFirstDay: Story = {
   args: {
-    ...Default.args,
     firstDayOfWeek: 0,
   },
 };
 
-export const YearZoomLevel: Story = {
+export const SelectionModeSingle: Story = {
   args: {
-    ...Default.args,
+    selectionMode: 'single',
+  },
+};
+
+export const SelectionModeMultiple: Story = {
+  args: {
+    selectionMode: 'multiple',
+    value: undefined,
+    selectWeekOnClick: false,
+  },
+};
+
+export const SelectFullWeekOnClick: Story = {
+  args: {
+    selectWeekOnClick: true,
+    selectionMode: 'multiple',
+    value: undefined
+  },
+};
+
+export const SelectionModeRange: Story = {
+  args: {
+    selectionMode: 'range',
+    value: undefined
+  },
+};
+
+
+export const ZoomLevelMonth: Story = {
+  args: {
+    zoomLevel: 'month',
+  },
+};
+
+export const ZoomLevelYear: Story = {
+  args: {
     zoomLevel: 'year',
+  },
+};
+
+export const CalendarWithTodayButton: Story = {
+  args: {
+    zoomLevel: 'year',
+    showTodayButton: true,
+  },
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true,
   },
 };
