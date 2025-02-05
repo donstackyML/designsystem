@@ -1,4 +1,3 @@
-// me-sidebar-menu.component.ts
 import {
   Component,
   Input,
@@ -10,30 +9,29 @@ import {
   AfterViewInit,
   OnChanges,
   SimpleChanges,
-  ViewEncapsulation,
   Renderer2,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  CdkDrag,
+  CdkDragEnd,
+  CdkDragMove,
+  CdkDragStart,
+} from '@angular/cdk/drag-drop';
+import DevExpress from 'devextreme';
 import {
   DxTreeViewModule,
   DxButtonModule,
   DxContextMenuModule,
   DxScrollViewModule,
 } from 'devextreme-angular';
+import { DxContextMenuComponent } from 'devextreme-angular/ui/context-menu';
+import PositionConfig = DevExpress.PositionConfig;
+
 import { MeIconComponent } from '../me-icon/me-icon.component';
-import {
-  CdkDrag,
-  CdkDragDrop,
-  CdkDragEnd,
-  CdkDragMove,
-  CdkDragStart,
-} from '@angular/cdk/drag-drop';
 import { MeSidebarMenuItemComponent } from './me-sidebar-menu-item.component';
 import { MeSize } from '../../types/types';
 import { MeContextMenuModule } from '../../directives/me-context-menu/context-menu.module';
-import { DxContextMenuComponent } from 'devextreme-angular/ui/context-menu';
-import DevExpress from 'devextreme';
-import PositionConfig = DevExpress.PositionConfig;
 import { MeScrollViewModule } from '../../directives/me-scroll-view/scroll-view.module';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
@@ -478,13 +476,11 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     return this.width - (32 + 55) + 'px';
   }
 
-  togglePressed($event: MouseEvent) {
-    console.log('Pressed togller');
+  togglePressed() {
     this.toggleBtnPressed = true;
   }
 
-  togglePressedUp($event: MouseEvent) {
-    console.log('UNPressed togller');
+  togglePressedUp() {
     this.toggleBtnPressed = false;
   }
 }

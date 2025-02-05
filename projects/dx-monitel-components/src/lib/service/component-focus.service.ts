@@ -1,4 +1,4 @@
-import { ElementRef, NgZone, OnDestroy, Renderer2 } from '@angular/core';
+import { ElementRef, Injectable, NgZone, OnDestroy, Renderer2 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import {
   FocusInEventHandle,
@@ -7,6 +7,7 @@ import {
   KeyUpEventHandle,
 } from '../types/types';
 
+@Injectable()
 export class ComponentFocusService implements OnDestroy {
   private readonly container: any;
   private keydownSubs?: Subscription;
