@@ -33,6 +33,14 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
 
       --text-color: var(--Text-Alert);
       --toast-divider-color: var(--Dividers-Borders-On-Alert);
+
+      .me-toast-close-button {
+        @if $color == 'dark' {
+          @include light-theme();
+        } @else {
+          @include dark-theme();
+        }
+      }
     }
 
     &-warning {
