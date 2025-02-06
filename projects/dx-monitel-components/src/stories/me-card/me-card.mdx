@@ -1,26 +1,169 @@
-import { Meta, Story, Controls, Source } from "@storybook/blocks";
-import * as Stories from "./me-card.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as cardStories from "./me-card.stories";
 
-<Meta of={Stories} />
+<Meta name="Card Documentation" of={cardStories} />
 
 # Card
 
-Компонент `Card` представляет собой контейнер для отображения контента в виде карточки с возможностью настройки заголовка, содержимого и подвала.
+## Компонент `me-card`
 
-## Базовое использование
+Компонент `me-card` — это универсальный контейнер для отображения информации в виде карточки. Компонент использует архитектуру слотов, позволяющую гибко распределять контент по следующим областям:
 
-<Story of={Stories.ComplexCard} />
+- `card-header-left` — левая часть заголовка
+- `card-header-right` — правая часть заголовка
+- Основной контент — центральная область карточки
+- `card-footer` — подвал карточки
+
+<Canvas of={cardStories.SimpleCard} />
+<Controls of={cardStories.SimpleCard} />
+<Source of={cardStories.SimpleCard} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=594-34296"
+/>
+
+## Примеры использования
+
+- [Использование слотов](#использование-слотов)
+- [Базовое использование](#базовое-использование)
+- [Карточка с прокруткой](#карточка-с-прокруткой)
+- [Карточка с ограничением высоты и прокруткой контента](#карточка-с-ограничением-высоты-и-прокруткой-контента)
+- [Размеры карточки](#размеры-карточки)
+  - [Маленькая карточка](#маленькая-карточка)
+  - [Средняя карточка](#средняя-карточка)
+  - [Большая карточка](#большая-карточка)
+
+### Использование слотов
+
+<Source
+  code={`
+<me-card [size]="'medium'">
+  <ng-container card-header-left>
+    <!-- Содержимое левой части заголовка -->
+  </ng-container>
+
+  <ng-container card-header-right>
+    <!-- Содержимое правой части заголовка -->
+  </ng-container>
+
+  <!-- Основной контент -->
+  <div>
+    <p>Основное содержимое карточки</p>
+  </div>
+
+  <ng-container card-footer>
+    <!-- Содержимое подвала -->
+  </ng-container>
+</me-card>
+`}
+dark
+language="html"
+/>
+
+### Базовое использование
 
 В этом примере показана карточка со всеми основными элементами:
 - Заголовок с кнопками и чипами
 - Основной контент
 - Подвал с кнопками действий
 
-<Source of={Stories.ComplexCard} />
+<Story of={cardStories.ComplexCard} />
+<Source
+  code={`
+<me-card
+  [size]="size"
+  [showHeader]="showHeader"
+  [showFooter]="showFooter"
+>
+  <!-- Header -->
+  <ng-container card-header-left>
+    <dx-button
+      meButton class="header-card-icon"
+      iconOnly="public"
+      [stylingMode]="'text'"
+      [size]="size"
+      (onClick)="onSyncClick()"
+    ></dx-button>
+    <span>Заголовок карточки</span>
+  </ng-container>
 
-## Карточка с прокруткой
+  <ng-container card-header-right>
+    <me-chip class="card-header-btn"
+      [label]="chipProps.label"
+      [size]="size"
+      [count]="chipProps.count"
+      [selected]="chipProps.selected"
+      [removable]="chipProps.removable"
+      style="margin-right: 16px;"
+    ></me-chip>
+    <dx-button
+      meButton
+      iconOnly="cached"
+      [stylingMode]="'text'"
+      [size]="size"
+      (onClick)="onSyncClick()"
+    ></dx-button>
+    <dx-button
+      meButton
+      iconOnly="help"
+      [stylingMode]="'text'"
+      [size]="size"
+      (onClick)="onSyncClick()"
+    ></dx-button>
+    <dx-button
+      meButton
+      iconOnly="overflow"
+      [stylingMode]="'text'"
+      [size]="size"
+      (onClick)="onSyncClick()"
+    ></dx-button>
+  </ng-container>
 
-<Story of={Stories.ScrollableContent} />
+  <!-- Content -->
+  <p>
+    Это пример содержимого карточки с использованием различных компонентов.
+    Здесь может быть размещен любой контент, включая текст, кнопки, чипы и другие элементы.
+  </p>
+
+  <!-- Footer -->
+  <ng-container card-footer>
+    <dx-button
+      meButton
+      text="Добавить"
+      [stylingMode]="'normal'"
+      [size]="size"
+    ></dx-button>
+    <div class="card-footer-box">
+    <dx-button
+      meButton
+      text="Принять"
+      [stylingMode]="'normal'"
+      [size]="size"
+      type="default"
+    ></dx-button>
+    <dx-button
+      meButton
+      text="Отмена"
+      [stylingMode]="'normal'"
+      [size]="size"
+    ></dx-button>
+    </div>
+  </ng-container>
+</me-card>
+`}
+dark
+language="html"
+/>
+
+### Карточка с ограничением высоты и прокруткой контента
+
+<Story of={cardStories.LimitedAndScrollableContent} />
 
 Карточка с фиксированной высотой контента и прокруткой. Когда содержимое превышает указанную высоту, появляется полоса прокрутки.
 
@@ -37,33 +180,35 @@ import * as Stories from "./me-card.stories";
     <span>Карточка с прокруткой</span>
   </ng-container>
 
-    <!-- Scrollable Content -->
-    <div>
-      <p>Содержимое с прокруткой...</p>
-    </div>
+  <!-- Scrollable Content -->
+  <div>
+    <p>Содержимое с прокруткой...</p>
+  </div>
 
-    <!-- Footer -->
-    <ng-container card-footer>
-      <dx-button
-        meButton
-        text="Cancel"
-        [stylingMode]="'text'"
-      ></dx-button>
-      <dx-button
-        meButton
-        text="Save"
-        [stylingMode]="'contained'"
-      ></dx-button>
-    </ng-container>
-  </me-card>
-`} />
+  <!-- Footer -->
+  <ng-container card-footer>
+    <dx-button
+      meButton
+      text="Cancel"
+      [stylingMode]="'text'"
+    ></dx-button>
+    <dx-button
+      meButton
+      text="Save"
+      [stylingMode]="'contained'"
+    ></dx-button>
+  </ng-container>
+</me-card>
+`}
+dark
+language="html"
+/>
 
-## Карточка без ограничения высоты
-
-<Story of={Stories.UnlimitedContent} />
+### Карточка без ограничения высоты
 
 Карточка без ограничения высоты контента. Размер карточки адаптируется под содержимое.
 
+<Story of={cardStories.UnlimitedContent} />
 <Source
   code={`
 <me-card
@@ -76,68 +221,128 @@ import * as Stories from "./me-card.stories";
     <span>Карточка без ограничения высоты</span>
   </ng-container>
 
-    <!-- Content -->
-    <div>
-      <h3>Раздел</h3>
-      <p>Содержимое раздела...</p>
-    </div>
+  <!-- Content -->
+  <div>
+    <h3>Раздел</h3>
+    <p>Содержимое раздела...</p>
+  </div>
 
-    <!-- Footer -->
-    <ng-container card-footer>
-      <dx-button
-        meButton
-        text="Cancel"
-        [stylingMode]="'text'"
-      ></dx-button>
-      <dx-button
-        meButton
-        text="Save"
-        [stylingMode]="'contained'"
-      ></dx-button>
-    </ng-container>
-  </me-card>
-`} />
+  <!-- Footer -->
+  <ng-container card-footer>
+    <dx-button
+      meButton
+      text="Cancel"
+      [stylingMode]="'text'"
+    ></dx-button>
+    <dx-button
+      meButton
+      text="Save"
+      [stylingMode]="'contained'"
+    ></dx-button>
+  </ng-container>
+</me-card>
+`}
+dark
+language="html"
+/>
 
-## Свойства компонента
+### Размеры карточки
 
-<Controls />
+#### Маленькая карточка
 
-## Описание входных параметров
-
-- `size`: Размер карточки ('small' | 'medium' | 'large')
-- `showHeader`: Показывать ли заголовок карточки
-- `showFooter`: Показывать ли подвал карточки
-- `contentHeight`: Максимальная высота контента (например, '200px')
-
-## Слоты для контента
-
-Компонент предоставляет несколько слотов для размещения контента:
-
-1. `card-header-left` - левая часть заголовка
-2. `card-header-right` - правая часть заголовка
-3. Основной контент (без специального селектора)
-4. `card-footer` - подвал карточки
-
-Пример использования слотов:
-
+<Story of={cardStories.CardSizeSmall} />
 <Source
   code={`
-<me-card [size]="'medium'">
+<me-card size="small" [showHeader]="true" [showFooter]="true">
+  <!-- Заголовок -->
   <ng-container card-header-left>
-    <!-- Содержимое левой части заголовка -->
+    <span (click)="onHeaderClick()">Простой заголовок</span>
   </ng-container>
 
-    <ng-container card-header-right>
-      <!-- Содержимое правой части заголовка -->
-    </ng-container>
+  <!-- Основной контент -->
+  <p>
+    Это пример простого содержимого карточки, демонстрирующий базовую архитектуру слотов.
+    Здесь можно разместить любой текст или другой контент.
+  </p>
 
-    <!-- Основной контент -->
-    <div>
-      <p>Основное содержимое карточки</p>
-    </div>
+  <!-- Подвал -->
+  <ng-container card-footer>
+    <dx-button
+      meButton
+      text="Действие"
+      [stylingMode]="'normal'"
+      [size]="size"
+      (onClick)="onFooterClick()"
+    ></dx-button>
+  </ng-container>
+</me-card>
+`}
+dark
+language="html"
+/>
 
-    <ng-container card-footer>
-      <!-- Содержимое подвала -->
-    </ng-container>
-  </me-card>
-`} />
+#### Средняя карточка
+
+<Story of={cardStories.CardSizeMedium} />
+<Source
+  code={`
+<me-card size="small" [showHeader]="true" [showFooter]="true">
+  <!-- Заголовок -->
+  <ng-container card-header-left>
+    <span (click)="onHeaderClick()">Простой заголовок</span>
+  </ng-container>
+
+  <!-- Основной контент -->
+  <p>
+    Это пример простого содержимого карточки, демонстрирующий базовую архитектуру слотов.
+    Здесь можно разместить любой текст или другой контент.
+  </p>
+
+  <!-- Подвал -->
+  <ng-container card-footer>
+    <dx-button
+      meButton
+      text="Действие"
+      [stylingMode]="'normal'"
+      [size]="size"
+      (onClick)="onFooterClick()"
+    ></dx-button>
+  </ng-container>
+</me-card>
+`}
+dark
+language="html"
+/>
+
+#### Большая карточка
+
+<Story of={cardStories.CardSizeMedium} />
+<Source
+  code={`
+<me-card size="small" [showHeader]="true" [showFooter]="true">
+  <!-- Заголовок -->
+  <ng-container card-header-left>
+    <span (click)="onHeaderClick()">Простой заголовок</span>
+  </ng-container>
+
+  <!-- Основной контент -->
+  <p>
+    Это пример простого содержимого карточки, демонстрирующий базовую архитектуру слотов.
+    Здесь можно разместить любой текст или другой контент.
+  </p>
+
+  <!-- Подвал -->
+  <ng-container card-footer>
+    <dx-button
+      meButton
+      text="Действие"
+      [stylingMode]="'normal'"
+      [size]="size"
+      (onClick)="onFooterClick()"
+    ></dx-button>
+  </ng-container>
+</me-card>
+`}
+dark
+language="html"
+/>
