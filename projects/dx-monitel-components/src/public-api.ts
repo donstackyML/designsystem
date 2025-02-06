@@ -3,8 +3,8 @@
 export { MeBadgeComponent } from './lib/components/me-badge/me-badge.component';
 export { MeBreadcrumbsComponent } from './lib/components/me-breadcrumbs/me-breadcrumbs.component';
 export { MeCardComponent } from './lib/components/me-card/me-card.component';
-export { MeChipsContainerComponent } from './lib/components/me-chips-container/me-chips-container.component';
-export { MeChipComponent } from './lib/components/me-chips/me-chips.component';
+export { MeChipComponent } from './lib/components/me-chip/me-chip.component';
+export { MeChipsComponent } from './lib/components/me-chips/me-chips.component';
 export { MeFileUploaderComponent } from './lib/components/me-file-uploader/me-file-uploader.component';
 export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';

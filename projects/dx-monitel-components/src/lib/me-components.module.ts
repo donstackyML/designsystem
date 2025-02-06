@@ -7,8 +7,8 @@ import {
 } from '../public-api';
 import { MeBreadcrumbsComponent } from './components/me-breadcrumbs/me-breadcrumbs.component';
 import { MeCardComponent } from './components/me-card/me-card.component';
-import { MeChipsContainerComponent } from './components/me-chips-container/me-chips-container.component';
-import { MeChipComponent } from './components/me-chips/me-chips.component';
+import { MeChipComponent } from './components/me-chip/me-chip.component';
+import { MeChipsComponent } from './components/me-chips/me-chips.component';
 import { MeFileUploaderComponent } from './components/me-file-uploader/me-file-uploader.component';
 import { MeIconComponent } from './components/me-icon/me-icon.component';
 import { MePaginationComponent } from './components/me-pagination/me-pagination.component';
@@ -101,7 +101,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeBreadcrumbsComponent,
     MeDataGridModule,
     MeSkeletonComponent,
-    MeChipsContainerComponent,
+    MeChipsComponent,
     MeChipComponent,
     MeBadgeComponent,
     MeCardComponent,
@@ -158,7 +158,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeIconComponent,
     MeBreadcrumbsComponent,
     MeSkeletonComponent,
-    MeChipsContainerComponent,
+    MeChipsComponent,
     MeChipComponent,
     MeBadgeComponent,
     MeToastComponent,
