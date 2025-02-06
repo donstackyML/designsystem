@@ -2,7 +2,6 @@ import {
   Directive,
   HostListener,
   Renderer2,
-  inject,
   ElementRef,
   Input,
 } from '@angular/core';
