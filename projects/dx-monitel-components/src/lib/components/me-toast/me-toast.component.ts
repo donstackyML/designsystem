@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { DxButtonModule, DxToastComponent, DxToastModule } from 'devextreme-angular';
 import { MeButtonModule } from '../../directives/me-button/me-button.module';
-import { MeToastModule } from '../../directives/me-toast/toast.module';
+import { MeToastModule } from '../../directives/me-toast/me-toast.module';
 
 import { MeButtonStyle, MeButtonType, MeSize } from '../../types/types';
 import { MeIconComponent } from '../me-icon/me-icon.component';

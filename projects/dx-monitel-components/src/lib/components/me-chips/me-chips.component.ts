@@ -1,79 +1,122 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  HostListener,
-  ElementRef,
-} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeIconComponent } from '../me-icon/me-icon.component';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { KeyboardNavigationService } from '../../service/keyboard.service';
+import { MeChipComponent } from '../me-chip/me-chip.component';
+export interface MeChip {
+  label: string;
+  size: 'small' | 'medium' | 'large';
+  count?: number | null;
+  removable?: boolean;
+  disabled?: boolean;
+  active?: boolean;
+  selected?: boolean;
+}
 
 @Component({
-  selector: 'me-chip',
+  selector: 'me-chips, me-chips-container',
   standalone: true,
-  imports: [CommonModule, MeIconComponent],
+  imports: [CommonModule, MeChipComponent],
   template: `
-    <span
-      [class]="chipClasses"
-      class="chip"
-      [attr.tabindex]="disabled ? -1 : 0"
-      [attr.role]="'option'"
-      [attr.aria-selected]="selected"
-      [attr.aria-disabled]="disabled"
+    <div
+      class="me-chips-container"
+      tabindex="0"
+      #container
+      [attr.role]="'listbox'"
+      [attr.aria-multiselectable]="multiSelect"
     >
-      <span class="chip-label">
-        {{ label }}
-        <span *ngIf="count !== null" class="chip-count">{{ count }}</span>
-      </span>
-      <button
-        *ngIf="removable && !disabled"
-        (click)="onRemove.emit(); $event.stopPropagation()"
-        class="chip-remove-button"
-        aria-label="Удалить"
+      <me-chip
+        *ngFor="let chip of chips; let i = index"
+        [attr.role]="'option'"
+        [attr.aria-selected]="chip.selected"
+        [tabindex]="i === 0 ? 0 : -1"
+        [label]="chip.label"
+        [removable]="chip.removable ?? true"
+        [disabled]="chip.disabled ?? false"
+        [size]="chip.size"
+        [count]="chip.count"
+        [selected]="chip.selected ?? false"
+        (click)="toggleChipSelection(i)"
+        (onRemove)="removeChip(i)"
+        class="me-chip-item"
       >
-        <me-icon icon="close" [size]="size"></me-icon>
-      </button>
-    </span>
+      </me-chip>
+    </div>
   `,
 })
-export class MeChipComponent {
-  @Input() label: string = '';
-  @Input() removable: boolean = true;
-  @Input() disabled: boolean = false;
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() count: number | null = null;
-  @Input() selected = false;
-  @Input() tabindex: number = -1;
-  @Output() onRemove = new EventEmitter<void>();
+export class MeChipsComponent implements AfterViewInit, OnDestroy {
+  @Input() chips: MeChip[] = [];
+  @Input() multiSelect: boolean = false;
+  @Output() chipsChange = new EventEmitter<MeChip[]>();
+  @Output() selectionChange = new EventEmitter<MeChip[]>();
 
-  isFocused = false;
+  private selectedIndex: number | null = null;
 
-  @HostListener('focus')
-  onFocus() {
-    this.isFocused = true;
+  @ViewChild('container') containerRef!: ElementRef;
+
+  constructor(private keyboardNavigation: KeyboardNavigationService) { }
+
+  ngAfterViewInit() {
+    if (this.containerRef) {
+      this.keyboardNavigation.setupKeyboardNavigation(
+        this.containerRef,
+        '.me-chip-item',
+        (index) => this.toggleChipSelection(index),
+        (index) => this.removeChip(index)
+      );
+    }
   }
 
-  @HostListener('blur')
-  onBlur() {
-    this.isFocused = false;
+  ngOnDestroy() {
+    this.keyboardNavigation.destroy();
   }
 
-  get chipClasses(): string {
-    const classes = [this.size, 'chip-keyboard-navigable'];
+  toggleChipSelection(index: number): void {
+    if (!this.chips[index].disabled) {
+      if (this.multiSelect) {
+        this.chips = this.chips.map((chip, i) => ({
+          ...chip,
+          selected: i === index ? !chip.selected : chip.selected,
+        }));
+      } else {
+        const isCurrentlySelected = this.chips[index].selected;
 
-    if (this.disabled) {
-      classes.push('chip-disabled');
+        this.chips = this.chips.map((chip) => ({
+          ...chip,
+          selected: false,
+        }));
+
+        if (!isCurrentlySelected) {
+          this.chips = this.chips.map((chip, i) => ({
+            ...chip,
+            selected: i === index,
+          }));
+          this.selectedIndex = index;
+        } else {
+          this.selectedIndex = null;
+        }
+      }
+
+      this.chipsChange.emit(this.chips);
+      this.selectionChange.emit(this.chips.filter((chip) => chip.selected));
+    }
+  }
+
+  removeChip(index: number): void {
+    if (!this.multiSelect && index === this.selectedIndex) {
+      this.selectedIndex = null;
     }
 
-    if (this.selected) {
-      classes.push('chip-selected');
-    }
-
-    if (this.isFocused) {
-      classes.push('chip-focused');
-    }
-
-    return classes.join(' ');
+    this.chips.splice(index, 1);
+    this.chipsChange.emit(this.chips);
+    this.selectionChange.emit(this.chips.filter((chip) => chip.selected));
   }
 }

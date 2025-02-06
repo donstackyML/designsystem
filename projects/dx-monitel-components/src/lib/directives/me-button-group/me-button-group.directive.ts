@@ -1,14 +1,13 @@
 import {
   Directive,
   ElementRef,
-  HostBinding,
   OnInit,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 import { DxButtonGroupComponent } from 'devextreme-angular';
-import { MeIconStoreService } from '../../service/icon-store.service';
-import { MeControlDirective } from '../me-control/control.directive';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeIconStoreService } from '../../service/icon-store.service';
+import { MeControlDirective } from '../me-control/me-control.directive';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -17,8 +16,7 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 })
 export class MeButtonGroupDirective
   extends MeControlDirective
-  implements OnInit
-{
+  implements OnInit {
   private focusService: ComponentFocusService;
   constructor(
     private component: DxButtonGroupComponent,
@@ -82,16 +80,16 @@ export class MeButtonGroupDirective
           size: this.getIconSize(item.leftIconSize),
         })}
             ${this.iconStore.getIcon({
-              icon: item.icon,
-              color: item.iconColor,
-              size: this.getIconSize(item.iconSize),
-            })}
+          icon: item.icon,
+          color: item.iconColor,
+          size: this.getIconSize(item.iconSize),
+        })}
             ${this.getText(index)}
             ${this.iconStore.getIcon({
-              icon: item.rightIcon,
-              color: item.rightIconColor ? item.rightIconColor : item.iconColor,
-              size: this.getIconSize(item.rightIconSize),
-            })}</div>`;
+          icon: item.rightIcon,
+          color: item.rightIconColor ? item.rightIconColor : item.iconColor,
+          size: this.getIconSize(item.rightIconSize),
+        })}</div>`;
       }
 
       if (item.leftIcon || item.rightIcon) {

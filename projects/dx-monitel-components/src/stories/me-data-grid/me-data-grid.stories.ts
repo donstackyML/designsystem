@@ -3,7 +3,7 @@ import { DxDataGridModule } from 'devextreme-angular';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
-import { dataGridMockSourceData } from './data-grid-mock-source-data';
+import { dataGridMockSourceData } from './me-data-grid-mock-source-data';
 
 export default {
   title: 'Components/DataGrid(RC)',

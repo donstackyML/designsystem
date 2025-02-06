@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeIconDirective } from './icon.directive';
+import { NgModule } from '@angular/core';
+import { MeIconDirective } from './me-icon.directive';
 
 @NgModule({
   declarations: [MeIconDirective],
   imports: [CommonModule],
   exports: [MeIconDirective],
 })
-export class MeIconModule {}
+export class MeIconModule { }

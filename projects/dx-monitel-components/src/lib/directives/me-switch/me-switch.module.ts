@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeSwitchDirective } from './switch.directive';
+import { MeSwitchDirective } from './me-switch.directive';
 
 @NgModule({
   declarations: [MeSwitchDirective],

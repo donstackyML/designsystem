@@ -1,36 +1,57 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as contextmenuStories from "./me-context-menu.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as contextMenuStories from "./me-context-menu.stories";
 
-<Meta of={contextmenuStories} /> {/* Добавлен параметр of */}
+<Meta name="ContextMenu Documentation" of={contextMenuStories}/>
 
 # ContextMenu
 
-> ## Директива meContextMenu
->
-> Применение директивы `meContextMenu` к элементу `dx-context-menu` приводит его внешний вид в соответствие с дизайн-системой.
+## Директива meContextMenu
+
+Применение директивы `meContextMenu` к элементу `dx-context-menu` приводит его внешний вид в соответствие с дизайн-системой.
 
 Документация на сайте разработчика DevExtreme:
-- [API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxContextMenu/)
-- [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ContextMenu/Basics/MaterialBlueLight/)
 
-## Базовое использование
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxContextMenu/"
+    target="_blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ContextMenu/Basics/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
-<Canvas of={contextmenuStories.Default} />
+<Canvas name="Default" of={contextMenuStories.Default} />
+<Controls of={contextMenuStories.Default} />
+<Source of={contextMenuStories.Default} dark />
 
-<Controls of={contextmenuStories.Default} />
+## Дизайн
 
-## Выбранные элементы
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=745-25563"
+/>
 
-<Canvas of={contextmenuStories.SelectedItems} />
+## Примеры использования
 
-## Примеры кода
+- [Базовое использование](#базовое-использование)
+- [Использование кастомного темплейта](#использование-кастомного-темплейта)
+- [Примеры контента](#примеры-контента)
+  - [Контент с выбранными элементы](#контент-с-выбранными-элементы)
+  - [Контент с групповым разделением](#контент-с-групповым-разделением)
 
 ### Базовое использование
 
+<Canvas name="Base example" of={contextMenuStories.Default} />
 <Source
   code={`
-<dx-button meButton text="Right click" id="contextButton"></dx-button>
+<dx-button meButton text="Открыть контекстное меню (правая кнопка мыши)" id="contextButton"></dx-button>
 <dx-context-menu
   meContextMenu
   [dataSource]="dataSource"
@@ -40,7 +61,37 @@ import { Figma } from "@storybook/addon-designs/blocks";
   dark
 />
 
-### Выбранные элементы
+### Использование кастомного темплейта
+
+<Canvas name="Base example" of={contextMenuStories.WithCustomTemplates} />
+<Source
+  code={`
+<dx-button meButton text="Открыть контекстное меню (правая кнопка мыши)" id="contextMenuId"></dx-button>
+<dx-context-menu
+  meContextMenu
+  target="#contextMenuId"
+  >
+  <div *dxTemplate="let itemData of 'item'">
+    <div class="item-template-container">
+      <me-icon [icon]="itemData.icon" [size]="size"></me-icon>
+      <span class="dx-menu-item-text">{{ itemData.text }}</span>
+      <me-icon
+        *ngIf="itemData.items"
+        icon="chevron_right"
+        [size]="size"
+        style="margin-left: auto"
+      ></me-icon>
+    </div>
+  </div>
+</dx-context-menu>
+`}
+  language="html"
+  dark
+/>
+
+### Примеры контента
+
+#### Контент с выбранными элементы
 
 <Source
   code={`
@@ -54,29 +105,43 @@ const dataSource = [
     ]
   },
   { text: 'Add to Favorite', icon: 'favorite', selected: true }
-];`}
+];
+`}
   language="typescript"
   dark
 />
 
-## Дизайн
+#### Контент с групповым разделением
 
-<Figma
-  height="50%"
-  collapsable
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=745-25563&t=1Amx2NO5kVyJu99X-0"
+<Source
+  code={`
+const dataSource = [
+ {
+    text: 'Заголовок группы уровень 1',
+    beginGroup: true,
+  },
+  {
+    text: 'Share',
+    icon: 'public',
+    items: [
+      { icon: 'menu_book', text: 'Facebook', selected: true },
+      { icon: 'single_bed', text: 'Twitter' }
+    ]
+  },
+ {
+    text: 'Заголовок группы уровень 1',
+    beginGroup: true,
+  },
+  {
+    text: 'Share',
+    icon: 'public',
+    items: [
+      { icon: 'menu_book', text: 'Facebook', selected: true },
+      { icon: 'single_bed', text: 'Twitter' }
+    ]
+  },
+];
+`}
+  language="typescript"
+  dark
 />
-
-<style>
-  {`
-    h2 {
-      border-bottom: none !important;
-    }
-    a {
-      display: inline-block !important;
-    }
-    a p {
-      color: #029CFD !important;
-    }
-  `}
-</style>

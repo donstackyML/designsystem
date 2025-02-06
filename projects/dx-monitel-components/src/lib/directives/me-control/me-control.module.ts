@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeControlDirective } from './control.directive';
+import { MeControlDirective } from './me-control.directive';
 
 @NgModule({
   declarations: [MeControlDirective],

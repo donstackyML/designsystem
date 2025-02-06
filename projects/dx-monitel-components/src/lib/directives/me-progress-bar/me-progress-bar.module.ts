@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MeProgressBarDirective } from './progress-bar.directive';
+import { MeProgressBarDirective } from './me-progress-bar.directive';
 
 @NgModule({
   declarations: [MeProgressBarDirective],

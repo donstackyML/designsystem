@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeOverlayDirective } from './overlay.directive';
+import { NgModule } from '@angular/core';
+import { MeOverlayDirective } from './me-overlay.directive';
 
 @NgModule({
   declarations: [MeOverlayDirective],
   imports: [CommonModule],
   exports: [MeOverlayDirective],
 })
-export class MeOverlayModule {}
+export class MeOverlayModule { }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeTooltipDirective } from './tooltip.directive';
+import { MeTooltipDirective } from './me-tooltip.directive';
 
 @NgModule({
   declarations: [MeTooltipDirective],

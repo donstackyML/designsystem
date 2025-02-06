@@ -1,17 +1,29 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as checkBoxStories from "./me-check-box.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as checkBoxStories from "./me-check-box.stories";
 
 <Meta name="CheckBox Documentation" of={checkBoxStories} />
 
 # CheckBox
 
-## Директива meCheckBox
+## Директива `meCheckBox`
 
-Применение директивы <code>meCheckBox</code> к элементу <code>dx-check-box</code> приводит его размеры к значению <code>size=medium (20)</code>
-из дизайн-системы и предоставляет доступ к свойству <code>size</code>.
+Применение директивы `meCheckBox` к элементу `dx-check-box` приводит его размеры к значению `size="medium"` (20px) из дизайн-системы и предоставляет доступ к свойству `size`.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxCheckBox/)
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxCheckBox/api/"
+    target="_blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/CheckBox/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={checkBoxStories.Default} />
 <Controls of={checkBoxStories.Default} />
@@ -23,24 +35,169 @@ import { Figma } from "@storybook/addon-designs/blocks";
   height="50%"
   collapsable
   defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=38-9066&t=gC6C40DcbGAFZEUK-0"
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=38-9066"
 />
 
-<style>
-  {`
-      h2 {
-        border-bottom: none !important;
-    }
-`}
-</style>
 
-## Добавление лейбла и иконок
+## Примеры использования
 
-Чекбокс не поддерживает добавления лейбла и иконок, но можно добавить их через теги <code>label</code> и <code>icon</code>.
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера-по-умолчанию)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [Поведение с тремя состояниями](#поведение-с-тремя-состояниями)
+- [Состояния компонента](#состояния-компонента)
+  - [Disabled](#disabled)
+  - [ReadOnly](#readonly)
+  - [ReadOnly и Disabled одновременно](#readonly-и-disabled-одновременно)
+- [Чекбокс с текстом](#чекбокс-с-текстом)
+- [Чекбокс с иконкой и текстом](#чекбокс-с-иконкой-и-текстом)
+
+### Размеры компонента
+
+Компонент поддерживает три варианта размеров: **small**, **medium** (по умолчанию) и **large**.
+
+#### Компонент небольшого размера
+
+<Canvas of={checkBoxStories.SizeSmall} />
+
+<Source
+  code={`
+<dx-check-box
+  meCheckBox
+  size="small">
+</dx-check-box>
+  `}
+  dark
+  language="html"
+/>
+
+#### Компонент среднего размера (по умолчанию)
+
+<Canvas of={checkBoxStories.SizeMedium} />
+
+<Source
+  code={`
+<dx-check-box
+  meCheckBox
+  size="medium">
+</dx-check-box>
+  `}
+  dark
+  language="html"
+/>
+
+#### Компонент большого размера
+
+<Canvas of={checkBoxStories.SizeLarge} />
+
+<Source
+  code={`
+<dx-check-box
+  meCheckBox
+  size="large">
+</dx-check-box>
+  `}
+  dark
+  language="html"
+/>
+
+### Поведение с тремя состояниями
+
+При включённом свойстве `enableThreeStateBehavior` чекбокс может принимать неопределенное состояние (*indeterminate*).
+
+<Canvas of={checkBoxStories.ThreeStateBehavior} />
+<Source
+  code={`
+<dx-check-box
+  meCheckBox
+  [enableThreeStateBehavior]="true">
+</dx-check-box>
+  `}
+  dark
+  language="html"
+/>
+
+### Состояния компонента
+
+#### Disabled
+
+<Canvas of={checkBoxStories.StateDisabled} />
+<Source
+  code={`
+<dx-check-box
+  meCheckBox
+  [disabled]="true"
+  [value]="true">
+</dx-check-box>
+  `}
+  dark
+  language="html"
+/>
+
+#### ReadOnly
+
+<Canvas of={checkBoxStories.StateReadOnly} />
+<Source
+  code={`
+<dx-check-box
+  meCheckBox
+  [readOnly]="true"
+  [value]="true">
+</dx-check-box>
+  `}
+  dark
+  language="html"
+/>
+
+#### ReadOnly и Disabled одновременно
+
+<Canvas of={checkBoxStories.StateReadOnlyAndDisabled} />
+<Source
+  code={`
+<dx-check-box
+  meCheckBox
+  [readOnly]="true"
+  [disabled]="true"
+  [value]="true">
+</dx-check-box>
+  `}
+  dark
+  language="html"
+/>
+
+### Чекбокс с текстом
+
+<Canvas of={checkBoxStories.WithText} />
+<Source
+  code={`
+<dx-check-box
+  meCheckBox
+  text="Text">
+</dx-check-box>
+  `}
+  dark
+  language="html"
+/>
+
+
+### Чекбокс с иконкой и текстом
+
+Чекбокс не поддерживает добавление лейбла и иконок напрямую, но их можно разместить вместе с ним через обёртку с использованием тегов `label` и `me-icon`.
 
 <Canvas of={checkBoxStories.WithIconAndText} />
-<Source of={checkBoxStories.WithIconAndText} dark />
-
-## Примечание
-
-В самом компоненте `checkBox` нет состояния `indeterminate`.
+<Source
+  code={`
+<label meLabel labelDirection="row" width="300px">
+  <dx-check-box meCheckBox></dx-check-box>
+  <me-icon
+    icon="account_circle"
+    size="medium"
+    color="var(--Controls-Content-In-Controls-Main-Default)">
+  </me-icon>
+  <span>Text</span>
+</label>
+  `}
+  dark
+  language="html"
+/>

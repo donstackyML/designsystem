@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
 import {
   MeAccordionModule,
@@ -13,7 +13,7 @@ import {
   MeCardComponent,
   MeCheckBoxModule,
   MeChipComponent,
-  MeChipsContainerComponent,
+  MeChipsComponent,
   MeContextMenuModule,
   MeDataGridModule,
   MeDropDownButtonModule,
@@ -179,7 +179,7 @@ import { MeToastDirective } from './directives/toast.directive';
     MeIconComponent,
     MeToastComponent,
     MeChipComponent,
-    MeChipsContainerComponent,
+    MeChipsComponent,
     MeDataGridModule,
     MeFileUploaderModule,
     MePaginationComponent,
@@ -221,4 +221,4 @@ import { MeToastDirective } from './directives/toast.directive';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,15 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { addX20, mailX20, publicX20 } from '@monitel/me-icons';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { action } from '@storybook/addon-actions';
 import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
-import { registry } from '../../../.storybook/preview';
 import {
   MeButtonModule,
   MeCardComponent,
   MeChipComponent,
   MeDropDownButtonModule,
   MeIconComponent,
+  MeIconStoreService,
 } from '../../public-api';
+
+const iconStore = new MeIconStoreService();
 
 const dropDownItems = [
   { id: 1, name: 'Пункт меню 1' },
@@ -17,7 +19,7 @@ const dropDownItems = [
   { id: 3, name: 'Пункт меню 3' },
 ];
 
-const meta: Meta<MeCardComponent> = {
+export default {
   title: 'Components/Card',
   component: MeCardComponent,
   decorators: [
@@ -38,26 +40,82 @@ const meta: Meta<MeCardComponent> = {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Определяет размер карточки',
+      description: 'Определяет размер карточки.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
     },
     showHeader: {
       control: 'boolean',
-      description: 'Показывать ли заголовок',
+      description: 'Показывать заголовок.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     showFooter: {
       control: 'boolean',
-      description: 'Показывать ли футер',
+      description: 'Показывать футер.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    contentHeight: {
+      control: 'text',
+      description: 'Устанавливает максимальную высоту контента в значениях с которыми работает CSS, например: "auto", "200px", "100%", "fit-content".',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
     },
   },
   args: {
     size: 'medium',
     showHeader: true,
     showFooter: true,
+    contentHeight: 'auto'
   },
-};
+} satisfies Meta<MeCardComponent>;
 
-export default meta;
 type Story = StoryObj<MeCardComponent>;
+
+const simpleCardTemplate = `
+<me-card [size]="size" [showHeader]="true" [showFooter]="true">
+  <!-- Заголовок -->
+  <ng-container card-header-left>
+    <span (click)="onHeaderClick()">Простой заголовок</span>
+  </ng-container>
+
+  <!-- Основной контент -->
+  <p>
+    Это пример простого содержимого карточки, демонстрирующий базовую архитектуру слотов.
+    Здесь можно разместить любой текст или другой контент.
+  </p>
+
+  <!-- Подвал -->
+  <ng-container card-footer>
+    <dx-button
+      meButton
+      text="Действие"
+      [stylingMode]="'normal'"
+      [size]="size"
+      (onClick)="onFooterClick()"
+    ></dx-button>
+  </ng-container>
+</me-card>`;
+
+export const SimpleCard: Story = {
+  render: (args) => ({
+    props: {
+      ...args,
+      onHeaderClick: action('Заголовок нажат'),
+      onFooterClick: action('Кнопка подвала нажата')
+    },
+    template: simpleCardTemplate,
+  }),
+};
 
 export const ComplexCard: Story = {
   render: (args) => ({
@@ -72,12 +130,12 @@ export const ComplexCard: Story = {
       },
       dropDownItems,
       displayExpr: 'name',
-      onSyncClick: () => console.log('Sync clicked'),
-      onInfoClick: () => console.log('Info clicked'),
+      onSyncClick: action('Sync clicked'),
+      onInfoClick: action('Info clicked'),
       icons: {
-        sync: registry.getIcon(addX20),
-        info: registry.getIcon(mailX20),
-        more: registry.getIcon(publicX20),
+        sync: iconStore.getIcon({ icon: 'add', size: '24' }),
+        info: iconStore.getIcon({ icon: 'mail', size: '24' }),
+        more: iconStore.getIcon({ icon: 'public', size: '24' }),
       },
     },
     template: `
@@ -165,7 +223,7 @@ export const ComplexCard: Story = {
   }),
 };
 
-export const ScrollableContent: Story = {
+export const LimitedAndScrollableContent: Story = {
   args: {
     size: 'medium',
     showHeader: true,
@@ -184,12 +242,12 @@ export const ScrollableContent: Story = {
       },
       dropDownItems,
       displayExpr: 'name',
-      onSyncClick: () => console.log('Sync clicked'),
-      onInfoClick: () => console.log('Info clicked'),
+      onSyncClick: action('Sync clicked'),
+      onInfoClick: action('Info clicked'),
       icons: {
-        sync: registry.getIcon(addX20),
-        info: registry.getIcon(mailX20),
-        more: registry.getIcon(publicX20),
+        sync: iconStore.getIcon({ icon: 'add', size: '24' }),
+        info: iconStore.getIcon({ icon: 'mail', size: '24' }),
+        more: iconStore.getIcon({ icon: 'public', size: '24' }),
       },
     },
     template: `
@@ -295,11 +353,6 @@ export const ScrollableContent: Story = {
 };
 
 export const UnlimitedContent: Story = {
-  args: {
-    size: 'medium',
-    showHeader: true,
-    showFooter: true,
-  },
   render: (args) => ({
     props: {
       ...args,
@@ -312,12 +365,12 @@ export const UnlimitedContent: Story = {
       },
       dropDownItems,
       displayExpr: 'name',
-      onSyncClick: () => console.log('Sync clicked'),
-      onInfoClick: () => console.log('Info clicked'),
+      onSyncClick: action('Sync clicked'),
+      onInfoClick: action('Info clicked'),
       icons: {
-        sync: registry.getIcon(addX20),
-        info: registry.getIcon(mailX20),
-        more: registry.getIcon(publicX20),
+        sync: iconStore.getIcon({ icon: 'add', size: '24' }),
+        info: iconStore.getIcon({ icon: 'mail', size: '24' }),
+        more: iconStore.getIcon({ icon: 'public', size: '24' }),
       },
     },
     template: `
@@ -423,4 +476,47 @@ export const UnlimitedContent: Story = {
       },
     },
   },
+};
+
+
+export const CardSizeSmall: Story = {
+  args: {
+    size: 'small'
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      onHeaderClick: action('Заголовок нажат'),
+      onFooterClick: action('Кнопка подвала нажата')
+    },
+    template: simpleCardTemplate,
+  }),
+};
+
+export const CardSizeMedium: Story = {
+  args: {
+    size: 'medium'
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      onHeaderClick: action('Заголовок нажат'),
+      onFooterClick: action('Кнопка подвала нажата')
+    },
+    template: simpleCardTemplate,
+  }),
+};
+
+export const CardSizeLarge: Story = {
+  args: {
+    size: 'large'
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      onHeaderClick: action('Заголовок нажат'),
+      onFooterClick: action('Кнопка подвала нажата')
+    },
+    template: simpleCardTemplate,
+  }),
 };
