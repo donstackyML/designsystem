@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MeDateRangeBoxDirective } from './date-range-box.directive';
+import { MeDateRangeBoxDirective } from './me-date-range-box.directive';
 
 @NgModule({
   declarations: [MeDateRangeBoxDirective],

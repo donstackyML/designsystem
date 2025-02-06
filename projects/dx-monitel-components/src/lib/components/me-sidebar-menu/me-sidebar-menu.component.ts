@@ -1,39 +1,39 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChild,
-  ElementRef,
-  NgZone,
-  AfterViewInit,
-  OnChanges,
-  SimpleChanges,
-  Renderer2,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
   CdkDrag,
   CdkDragEnd,
   CdkDragMove,
   CdkDragStart,
 } from '@angular/cdk/drag-drop';
+import { CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnChanges,
+  Output,
+  Renderer2,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import DevExpress from 'devextreme';
 import {
-  DxTreeViewModule,
   DxButtonModule,
   DxContextMenuModule,
   DxScrollViewModule,
+  DxTreeViewModule,
 } from 'devextreme-angular';
 import { DxContextMenuComponent } from 'devextreme-angular/ui/context-menu';
 import PositionConfig = DevExpress.PositionConfig;
 
+import { MeContextMenuModule } from '../../directives/me-context-menu/me-context-menu.module';
+import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-view.module';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeSize } from '../../types/types';
 import { MeIconComponent } from '../me-icon/me-icon.component';
 import { MeSidebarMenuItemComponent } from './me-sidebar-menu-item.component';
-import { MeSize } from '../../types/types';
-import { MeContextMenuModule } from '../../directives/me-context-menu/context-menu.module';
-import { MeScrollViewModule } from '../../directives/me-scroll-view/scroll-view.module';
-import { ComponentFocusService } from '../../service/component-focus.service';
 
 export interface MeSidebarMenuItem {
   id: string;

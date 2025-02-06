@@ -1,11 +1,11 @@
 import { Directive, ElementRef, Inject, Input, Renderer2 } from '@angular/core';
+import { DxTextBoxComponent } from 'devextreme-angular';
 import {
-  MeTextEditorComponents,
   MeFieldStyle,
   MeLabelMode,
+  MeTextEditorComponents,
 } from '../../types/types';
-import { DxTextBoxComponent } from 'devextreme-angular';
-import { MeEditorDirective } from '../me-editor/editor.directive';
+import { MeEditorDirective } from '../me-editor/me-editor.directive';
 
 @Directive({
   selector: '[meTextEditor]',

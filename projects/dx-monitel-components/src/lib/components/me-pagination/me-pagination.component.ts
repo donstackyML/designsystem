@@ -1,31 +1,29 @@
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
-  OnInit,
   OnChanges,
+  OnInit,
   Output,
-  SimpleChanges,
-  ElementRef,
-  Renderer2,
-  ContentChildren,
   QueryList,
-  AfterViewInit,
-  ViewChildren,
+  Renderer2,
+  SimpleChanges,
   ViewChild,
+  ViewChildren
 } from '@angular/core';
 import {
   DxButtonComponent,
   DxButtonModule,
   DxDropDownButtonComponent,
-  DxDropDownButtonModule,
-  DxMenuComponent,
+  DxDropDownButtonModule
 } from 'devextreme-angular';
 import { ItemClickEvent } from 'devextreme/ui/drop_down_button';
-import { MeDropDownButtonModule } from '../../directives/me-drop-down-button/drop-down-button.module';
-import { MeSize } from '../../types/types';
+import { MeDropDownButtonModule } from '../../directives/me-drop-down-button/me-drop-down-button.module';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeSize } from '../../types/types';
 
 @Component({
   selector: 'me-pagination',
@@ -79,7 +77,7 @@ export class MePaginationComponent implements OnInit, OnChanges, AfterViewInit {
     this.focusService.addKeyUpEventHandle('Tab', (evt) => this.tabHandle(evt));
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 
   ngOnInit(): void {
     if (!this.itemsPerPageOptions?.length) {

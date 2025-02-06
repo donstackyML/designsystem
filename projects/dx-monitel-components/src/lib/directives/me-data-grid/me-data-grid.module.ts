@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MeDataGridDirective } from './data-grid.directive';
+import { MeDataGridDirective } from './me-data-grid.directive';
 
 @NgModule({
   declarations: [MeDataGridDirective],

@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxButtonComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
-import { MeControlDirective } from '../me-control/control.directive';
+import { MeControlDirective } from '../me-control/me-control.directive';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -48,21 +48,21 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
       this.component.template = `
         <div class="me-button-inner">
           ${this.iconStore.getIcon({
-            icon: this.leftIcon,
-            color: this.leftIconColor ? this.leftIconColor : this.iconColor,
-            size: this.getIconSize(this.leftIconSize),
-          })}
+        icon: this.leftIcon,
+        color: this.leftIconColor ? this.leftIconColor : this.iconColor,
+        size: this.getIconSize(this.leftIconSize),
+      })}
           ${this.iconStore.getIcon({
-            icon: this.iconOnly,
-            color: this.iconColor,
-            size: this.getIconSize(this.iconSize),
-          })}
+        icon: this.iconOnly,
+        color: this.iconColor,
+        size: this.getIconSize(this.iconSize),
+      })}
           ${this.getText()}
           ${this.iconStore.getIcon({
-            icon: this.rightIcon,
-            color: this.rightIconColor ? this.rightIconColor : this.iconColor,
-            size: this.getIconSize(this.rightIconSize),
-          })}
+        icon: this.rightIcon,
+        color: this.rightIconColor ? this.rightIconColor : this.iconColor,
+        size: this.getIconSize(this.rightIconSize),
+      })}
         </div>`;
     }
 

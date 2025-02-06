@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeDropDownButtonDirective } from './drop-down-button.directive';
+import { MeDropDownButtonDirective } from './me-drop-down-button.directive';
 
 @NgModule({
   declarations: [MeDropDownButtonDirective],

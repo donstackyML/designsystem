@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MeTextBoxDirective } from './text-box.directive';
+import { NgModule } from '@angular/core';
+import { MeTextBoxDirective } from './me-text-box.directive';
 
 @NgModule({
   declarations: [MeTextBoxDirective],
   imports: [CommonModule],
   exports: [MeTextBoxDirective],
 })
-export class MeTextBoxModule {}
+export class MeTextBoxModule { }

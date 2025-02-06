@@ -9,7 +9,7 @@ import { registry } from '../../../.storybook/preview';
 
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTabsModule } from 'devextreme-angular';
-import { Tab } from '../../lib/directives/me-tabs/tabs.directive';
+import { Tab } from '../../lib/directives/me-tabs/me-tabs.directive';
 import { MeTabsDirective } from '../../public-api';
 
 interface MeTabsProps {

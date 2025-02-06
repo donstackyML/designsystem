@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxScrollViewModule } from 'devextreme-angular';
-import { MeScrollViewDirective } from '../../lib/directives/me-scroll-view/scroll-view.directive';
+import { MeScrollViewDirective } from '../../lib/directives/me-scroll-view/me-scroll-view.directive';
 
 export default {
   title: 'Components/ScrollView(RC)',

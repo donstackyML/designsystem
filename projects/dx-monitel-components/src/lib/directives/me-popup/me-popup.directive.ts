@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DxPopupComponent } from 'devextreme-angular';
 import { MeSize } from '../../types/types';
-import { MeOverlayDirective } from '../me-overlay/overlay.directive';
+import { MeOverlayDirective } from '../me-overlay/me-overlay.directive';
 
 const POPUP_WIDTH_MEDIUM = '360';
 const POPUP_WIDTH_LARGE = '400';

@@ -7,10 +7,10 @@ import {
   Renderer2,
 } from '@angular/core';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
+import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeCommonType, MeScrollbarShowType } from '../../types/types';
-import { MeControlDirective } from '../me-control/control.directive';
-import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeControlDirective } from '../me-control/me-control.directive';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -25,8 +25,7 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 })
 export class MeDropDownButtonDirective
   extends MeControlDirective
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   @Input() icon: string = '';
   @Input() iconColor: string = '';
   @Input() iconSize: string = '';
@@ -90,11 +89,9 @@ export class MeDropDownButtonDirective
       this.renderer.addClass(this.element.nativeElement, 'dx-button-default');
     }
 
-    const popupWrapperClasses = `${
-      this.wrapperAttr['class'] || ''
-    } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${
-      this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
-    }`;
+    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''
+      } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+      }`;
 
     this.component.dropDownOptions = {
       wrapperAttr: {

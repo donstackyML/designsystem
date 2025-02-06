@@ -6,7 +6,7 @@ import {
   DxDateBoxModule,
   DxButtonModule,
 } from 'devextreme-angular';
-import { InputFieldsComponent } from './input-fields.component';
+import { InputFieldsComponent } from './me-input-fields.component';
 
 const meta: Meta<InputFieldsComponent> = {
   title: 'Components/InputFields',

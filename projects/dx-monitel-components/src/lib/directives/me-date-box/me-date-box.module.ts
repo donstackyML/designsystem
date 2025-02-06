@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MeDateBoxDirective } from './date-box.directive';
+import { MeDateBoxDirective } from './me-date-box.directive';
 import { CommonModule } from '@angular/common';
 
 @NgModule({

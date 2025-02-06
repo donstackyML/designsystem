@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MeSliderDirective } from './slider.directive';
+import { MeSliderDirective } from './me-slider.directive';
 import { CommonModule } from '@angular/common';
 
 @NgModule({

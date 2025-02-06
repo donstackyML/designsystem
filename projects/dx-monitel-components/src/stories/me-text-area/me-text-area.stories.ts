@@ -7,7 +7,7 @@ import {
   StoryObj,
 } from '@storybook/angular';
 
-import { MeTextAreaDirective } from '../../lib/directives/me-text-area/text-area.directive';
+import { MeTextAreaDirective } from '../../lib/directives/me-text-area/me-text-area.directive';
 
 export default {
   title: 'Components/TextArea(RC)',
