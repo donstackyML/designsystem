@@ -1,12 +1,11 @@
-import { DxDataGridModule } from 'devextreme-angular';
-
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { DxDataGridModule } from 'devextreme-angular';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
 import { dataGridMockSourceData } from './me-data-grid-mock-source-data';
 
 export default {
-  title: 'Components/DataGrid(RC)',
+  title: 'Components/DataGrid',
   component: MeBadgeComponent,
   decorators: [
     moduleMetadata({
@@ -16,61 +15,99 @@ export default {
   ],
   argTypes: {
     dataSource: {
-      control: 'text',
+      description: 'Данные для отображения',
     },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
       description: 'Размер компонента',
-    },
-    showPageSizeSelector: {
-      control: 'select',
-      options: [true, false],
-      description:
-        'Относится к Pagination. Показывать ли выбор количества строк на странице. Тэг `dxo-pager`',
-    },
-    displayMode: {
-      control: 'select',
-      options: ['compact', 'full'],
-      description: 'Относится к Pagination. Режим отображения PageSizeSelector',
-    },
-    pageSize: {
-      control: 'text',
-      description:
-        'Относится к Pagination. Разрешенные размеры страницы. Тэг `dxo-paging`',
-    },
-    showInfo: {
-      control: 'select',
-      options: [true, false],
-      description:
-        'Относится к Pagination. Показывать ли компонент информации о странице. Тэг `dxo-pager`',
-    },
-    infoText: {
-      control: 'text',
-      description:
-        'Относится к Pagination. Текст информации о странице. Тэг `dxo-pager`',
-    },
-    showNavigationButtons: {
-      control: 'select',
-      options: [true, false],
-      description:
-        'Относится к Pagination. Показывать кнопки навигации. Тэг `dxo-pager`',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      }
     },
     showBorders: {
       control: 'boolean',
       description: 'Показывать границы',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     allowColumnResizing: {
       control: 'boolean',
       description: 'Разрешает изменение размера столбцов',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     allowColumnReordering: {
       control: 'boolean',
       description: 'Разрешает изменение порядка столбцов',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     showRowLines: {
       control: 'boolean',
       description: 'Показывать линии строк',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    showPageSizeSelector: {
+      control: 'boolean',
+      description: 'Относится к Pagination. Показывать ли выбор количества строк на странице. Тэг `dxo-pager`',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    pageSize: {
+      control: 'number',
+      description: 'Относится к Pagination. Разрешенные размеры страницы. Тэг `dxo-paging`',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '20' },
+      },
+    },
+    displayMode: {
+      control: 'select',
+      options: ['adaptive', 'compact', 'full'],
+      description: 'Относится к Pagination. Режим отображения PageSizeSelector',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'Page {0} of {1} ({2} items)'" },
+      },
+    },
+    showInfo: {
+      control: 'boolean',
+      description:
+        'Относится к Pagination. Показывать ли компонент информации о странице. Тэг `dxo-pager`',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    infoText: {
+      control: 'text',
+      description: 'Относится к Pagination. Текст информации о странице. Тэг `dxo-pager`',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'Page {0} of {1} ({2} items)'" },
+      },
+    },
+    showNavigationButtons: {
+      control: 'boolean',
+      description:
+        'Относится к Pagination. Показывать кнопки навигации. Тэг `dxo-pager`',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
   },
   args: {
@@ -79,7 +116,7 @@ export default {
     allowColumnReordering: false,
     size: 'medium',
     showPageSizeSelector: true,
-    displayMode: 'full',
+    displayMode: 'adaptive',
     showInfo: true,
     infoText: 'Записей: {2}',
     showNavigationButtons: true,
@@ -93,7 +130,7 @@ export default {
 			<dx-data-grid
 				meDataGrid
 				id="gridContainer"
-				[(dataSource)]="dataSource"
+        [(dataSource)]="dataSource"
 				[size]="size"
 				[showBorders]="showBorders"
 			  [showRowLines]="showRowLines"
@@ -112,11 +149,13 @@ export default {
 				<dxo-group-panel [visible]="true"></dxo-group-panel>
 			</dx-data-grid>`,
   }),
-} as Meta;
+} satisfies Meta<MeDataGridDirective | DxDataGridModule>;
 
-export const DataGrid: StoryObj = {};
+type Story = StoryObj<MeDataGridDirective | DxDataGridModule>;
 
-export const WithCounter: StoryObj = {
+export const Default: Story = {};
+
+export const WithCounter: Story = {
   render: (args) => ({
     props: args,
     template: `<dx-data-grid
@@ -125,6 +164,8 @@ export const WithCounter: StoryObj = {
     [size]="size"
     [showBorders]="showBorders"
     [showRowLines]="showRowLines"
+    [allowColumnReordering]="allowColumnReordering"
+    [allowColumnResizing]="allowColumnResizing"
 >
   <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
   <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
@@ -139,4 +180,22 @@ export const WithCounter: StoryObj = {
   </div>
 </dx-data-grid>`,
   }),
+};
+
+export const SizeSmall: Story = {
+  args: {
+    size: 'small'
+  }
+};
+
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium'
+  }
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large'
+  }
 };
