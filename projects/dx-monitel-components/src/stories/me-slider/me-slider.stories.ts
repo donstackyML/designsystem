@@ -1,9 +1,9 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { DxSliderModule } from 'devextreme-angular';
 import { MeSliderDirective } from '../../public-api';
 
 export default {
-  title: 'Components/Slider(RC)',
+  title: 'Components/Slider',
   decorators: [
     moduleMetadata({
       declarations: [MeSliderDirective],
@@ -13,35 +13,70 @@ export default {
   argTypes: {
     value: {
       control: 'number',
+      description: 'Значение слайдера',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
     },
     min: {
       control: 'number',
+      description: 'Минимальное значение',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
     },
     max: {
       control: 'number',
+      description: 'Максимальное значение',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '100' },
+      },
     },
-    disabled: {
-      control: 'boolean',
-    },
+
     hoverStateEnabled: {
       control: 'boolean',
+      description: 'Состояние `hovered`',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
     },
     focusStateEnabled: {
       control: 'boolean',
+      description: 'Состояние `focused`',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
     },
     isValid: {
       control: 'boolean',
-      description: 'Состояние `invalid`',
+      description: 'Состояние валидации',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключение слайдера',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
   },
   args: {
     value: 50,
     min: 0,
     max: 100,
-    disabled: false,
     hoverStateEnabled: true,
     focusStateEnabled: true,
     isValid: true,
+    disabled: false,
   },
   render: (args) => ({
     props: args,
@@ -50,15 +85,9 @@ export default {
 						<div class="dx-field-value">
 							<dx-slider
 								meSlider
-								[min]="min"
-								[max]="max"
-								[(value)]="value"
-								[disabled]="disabled"
-								[hoverStateEnabled]="hoverStateEnabled"
-								[focusStateEnabled]="focusStateEnabled"
-								[isValid]="isValid"
-								>
-								</dx-slider>
+                ${argsToTemplate(args)}
+                >
+              </dx-slider>
 						</div>
 					</div>
 `,
@@ -77,27 +106,15 @@ export default {
 			`,
     ],
   }),
-} as Meta;
+} satisfies Meta<DxSliderModule | MeSliderDirective>;
 
-type Story = StoryObj;
+type Story = StoryObj<DxSliderModule | MeSliderDirective>;
 
 export const Default: Story = {
-  args: {
-    value: 50,
-    min: 0,
-    max: 100,
-    height: '75px',
-    disabled: false,
-    hoverStateEnabled: true,
-    focusStateEnabled: true,
-    isValid: true,
-  },
+  args: { }
 };
 
 export const WithLabelAndTooltip: Story = {
-  args: {
-    ...Default.args,
-  },
   render: (args) => ({
     props: args,
     template: `
@@ -142,4 +159,22 @@ export const WithLabelAndTooltip: Story = {
 			`,
     ],
   }),
+};
+
+export const ValidationStateIsValid: Story = {
+  args: {
+    isValid: true
+  }
+};
+
+export const ValidationStateIsInvalid: Story = {
+  args: {
+    isValid: false
+  }
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true
+  }
 };

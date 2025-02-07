@@ -342,6 +342,7 @@
   --Controls-Scrollbar-Drag: #ffffff7a;
   --Controls-Scrollbar-Hover: #ffffff3d;
   --Dividers-Borders-Focus: #7eb9ff;
+  --Dividers-Borders-Focus-Tabulation: #94C5FF;
   --Dividers-Borders-Long: #3f4044;
   --Dividers-Borders-On-Alert-border: #ffffff33;
   --Dividers-Borders-On-Alert: #18181a33;
@@ -516,6 +517,7 @@
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
   --Dividers-Borders-Focus: #7eb9ff;
+  --Dividers-Borders-Focus-Tabulation: #7EB9FF;
   --Dividers-Borders-Long: #dfe0ed;
   --Dividers-Borders-On-Alert-border: #18181a33;
   --Dividers-Borders-On-Alert: #ffffff33;
@@ -690,6 +692,7 @@
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
   --Dividers-Borders-Focus: #7eb9ff;
+  --Dividers-Borders-Focus-Tabulation: #7EB9FF;
   --Dividers-Borders-Long: #dfe0ed;
   --Dividers-Borders-On-Alert-border: #18181a33;
   --Dividers-Borders-On-Alert: #ffffff33;
@@ -864,6 +867,7 @@
   --Controls-Scrollbar-Drag: #ffffff7a;
   --Controls-Scrollbar-Hover: #ffffff3d;
   --Dividers-Borders-Focus: #7eb9ff;
+  --Dividers-Borders-Focus-Tabulation: #94C5FF;
   --Dividers-Borders-Long: #3f4044;
   --Dividers-Borders-On-Alert-border: #ffffff33;
   --Dividers-Borders-On-Alert: #18181a33;
@@ -17068,6 +17072,7 @@
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
   --Dividers-Borders-Focus: #7eb9ff;
+  --Dividers-Borders-Focus-Tabulation: #7EB9FF;
   --Dividers-Borders-Long: #dfe0ed;
   --Dividers-Borders-On-Alert-border: #18181a33;
   --Dividers-Borders-On-Alert: #ffffff33;
@@ -17545,6 +17550,7 @@
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
   --Dividers-Borders-Focus: #7eb9ff;
+  --Dividers-Borders-Focus-Tabulation: #7EB9FF;
   --Dividers-Borders-Long: #dfe0ed;
   --Dividers-Borders-On-Alert-border: #18181a33;
   --Dividers-Borders-On-Alert: #ffffff33;
@@ -18272,6 +18278,7 @@
   background: #27376e;
   border-color: #27376e;
 }
+
 .dx-invalid.dx-slider .dx-slider-handle {
   background-color: #bf002e;
 }
@@ -18301,11 +18308,21 @@
   background: #264fb8;
   border-color: #264fb8;
 }
+.me-slider.dx-slider.dx-widget.me-keyboard-focused {
+  --slider-handle-focus-color: var(--Dividers-Borders-Focus-Tabulation);
+}
+.me-slider.dx-slider.dx-widget.me-keyboard-focused.dx-invalid {
+  --slider-handle-focus-color: var(--Dividers-Borders-Focus);
+}
+.me-slider.dx-slider.dx-widget.me-keyboard-focused .dx-slider-handle.dx-state-focused:not(.dx-state-active) {
+  outline: 1px solid var(--slider-handle-focus-color);
+}
 .me-slider.dx-slider.dx-widget .dx-slider-handle {
-  margin-top: -6px;
+  margin-top: -5px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
+  border: none;
 }
 .me-slider.dx-slider.dx-widget .dx-slider-label {
   font-size: 14px;
@@ -18368,7 +18385,6 @@
 .me-slider.dx-slider.dx-widget.dx-state-disabled .dx-slider-label {
   color: #27376e;
 }
-
 .me-slider.dx-slider.dx-widget .dx-overlay-content {
   padding-top: 1px;
   overflow: visible;

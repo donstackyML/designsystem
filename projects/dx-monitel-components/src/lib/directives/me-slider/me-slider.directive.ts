@@ -5,6 +5,7 @@ import {
   Renderer2,
   inject,
 } from '@angular/core';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meSlider]',
@@ -16,6 +17,12 @@ export class MeSliderDirective {
   private renderer = inject(Renderer2);
   private element = inject(ElementRef);
 
+  focusService: ComponentFocusService;
+  constructor(
+  ) {
+    this.focusService = new ComponentFocusService(this.element, this.renderer);
+  }
+  
   private addClassSafely(selector: string, className: string) {
     const element = this.element.nativeElement.querySelector(selector);
     if (element) {
