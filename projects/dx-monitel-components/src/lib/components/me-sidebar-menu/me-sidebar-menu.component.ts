@@ -7,6 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -16,7 +17,7 @@ import {
   Output,
   Renderer2,
   SimpleChanges,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import DevExpress from 'devextreme';
 import {
@@ -70,100 +71,91 @@ interface TreeNode {
     MeScrollViewModule,
   ],
   templateUrl: 'me-sidebar-menu.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   @ViewChild('menuHeader') headerElement!: ElementRef;
   @ViewChild('menuBottom') bottomElement!: ElementRef;
-
   @ViewChild('dragHandleRight') dragHandleRight!: ElementRef;
   @ViewChild('subMenu') subMenu!: DxContextMenuComponent;
   @ViewChild('sidebar') sidebar!: ElementRef;
 
-  @Input() private _bottomItems: MeSidebarMenuItem[] = [];
-  @Input() title = 'Меню';
+  @Input() title: string = '';
   @Input() collapsed = false;
   @Input() floatMode = false;
   @Input() size: MeSize = 'medium';
-
-  // Иконки для настройки внешнего вида
-  @Input() toggleIcon = 'drag'; // Иконка кнопки сворачивания
-  @Input() expandedIcon = 'expand_less'; // Иконка развернутого пункта
-  @Input() collapsedIcon = 'expand_more'; // Иконка свернутого пункта
-
-  @Output() collapsedChange = new EventEmitter<boolean>();
-  @Output() itemSelected = new EventEmitter<MeSidebarMenuItem>();
-
+  @Input() toggleIcon = 'drag';
+  @Input() expandedIcon = 'expand_less';
+  @Input() collapsedIcon = 'expand_more';
   @Input() collapsedWidth = 86;
   @Input() expandedWidth = 336;
 
   private _items: MeSidebarMenuItem[] = [];
-  private _width = 336;
-  private _withStarted = 0;
-  private _transition = '';
-
-  nodes: TreeNode[] = [];
-  bottomNodes: TreeNode[] = [];
-  menuDatasource: any[] = [];
-  private focusService: ComponentFocusService;
-
-  nodeFlatList?: TreeNode[];
-  activeIndex = 0;
-  toggleBtnPressed = false;
-  get width(): number {
-    return this._width;
-  }
-
-  set width(value: number) {
-    this._width = value;
-  }
-
+  @Input()
   get items(): MeSidebarMenuItem[] {
     return this._items;
   }
-
   set items(value: MeSidebarMenuItem[]) {
-    this._items = value;
+    this._items = value || [];
     this.nodes = [];
-    if (value) {
+    if (this._items.length) {
       this.initNodes(this.nodes, this._items);
     }
   }
 
+  private _bottomItems: MeSidebarMenuItem[] = [];
+  @Input()
   get bottomItems(): MeSidebarMenuItem[] {
     return this._bottomItems;
   }
-
   set bottomItems(value: MeSidebarMenuItem[]) {
-    this._bottomItems = value;
+    this._bottomItems = value || [];
     this.bottomNodes = [];
-    if (value) {
+    if (this._bottomItems.length) {
       this.initNodes(this.bottomNodes, this._bottomItems);
     }
   }
 
+  private _width = 336;
+  @Input()
+  get width(): number {
+    return this._width;
+  }
+  set width(value: number) {
+    this._width = value;
+  }
+
+  @Output() collapsedChange = new EventEmitter<boolean>();
+  @Output() itemSelected = new EventEmitter<MeSidebarMenuItem>();
+
+  nodes: TreeNode[] = [];
+  bottomNodes: TreeNode[] = [];
+  nodeFlatList: TreeNode[] = [];
+  activeIndex = 0;
+  toggleBtnPressed = false;
+
+  public menuDatasource: any[] = [];
+
+  private _withStarted = 0;
+  private _transition = '';
+  private focusService: ComponentFocusService;
+
   constructor(
     private element: ElementRef,
     private ngZone: NgZone,
-    renderer: Renderer2
+    private renderer: Renderer2
   ) {
-    this.focusService = new ComponentFocusService(element, renderer);
-    this.focusService.addKeyUpEventHandle('Tab', (evt) =>
-      this.keyTabHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('ArrowDown', (evt) =>
-      this.keyDownHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('ArrowUp', (evt) =>
-      this.keyUpHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('Enter', (evt) =>
-      this.keyEnterHandle(evt)
-    );
+    this.focusService = new ComponentFocusService(this.element, this.renderer);
+    this.focusService.addKeyUpEventHandle('Tab', (evt) => this.keyTabHandle(evt));
+    this.focusService.addKeyUpEventHandle('ArrowDown', (evt) => this.keyDownHandle(evt));
+    this.focusService.addKeyUpEventHandle('ArrowUp', (evt) => this.keyUpHandle(evt));
+    this.focusService.addKeyUpEventHandle('Enter', (evt) => this.keyEnterHandle(evt));
     this.focusService.addFocusOutHandle((evt) => this.focusOutHandle(evt));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['collapsed']) {
+      this.stateUpdate();
     }
   }
 
@@ -171,12 +163,27 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     this.stateUpdate();
   }
 
-  updateDragHandler() {
+  private stateUpdate(): void {
+    this.toggleIcon = this.collapsed ? 'chevron_right' : 'chevron_left';
+    if (this.collapsed) {
+      this.width = this.collapsedWidth;
+      this.updateItemExpanded(this._items, false);
+    } else {
+      this.width = this.expandedWidth;
+    }
+    setTimeout(() => this.updateDragHandler(), 250);
+  }
+
+  updateDragHandler(): void {
     if (!this.collapsed) {
       const targetRect = this.resizeBoxElement.getBoundingClientRect();
       const translateX = targetRect.x + targetRect.width;
-      const translateY = -1 * targetRect.height;
-      this.dragHandleRightElement.style.transform = `translate(${translateX}px, ${translateY}px)`;
+      const translateY = -targetRect.height;
+      this.renderer.setStyle(
+        this.dragHandleRight.nativeElement,
+        'transform',
+        `translate(${translateX}px, ${translateY}px)`
+      );
     }
   }
 
@@ -192,135 +199,120 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     return this.dragHandleRight.nativeElement;
   }
 
-  setHandleTransform(
-    dragHandle: HTMLElement,
-    targetRect: ClientRect | DOMRect
-  ) {
+  setHandleTransform(dragHandle: HTMLElement, targetRect: DOMRect): void {
     const dragRect = dragHandle.getBoundingClientRect();
     const translateX = targetRect.width - dragRect.width;
-    dragHandle.style.transform = `translate(${translateX}px, 0)`;
+    this.renderer.setStyle(dragHandle, 'transform', `translate(${translateX}px, 0)`);
   }
 
-  toggleSidebar() {
+  toggleSidebar(): void {
     this.collapsed = !this.collapsed;
     this.stateUpdate();
     this.collapsedChange.emit(this.collapsed);
   }
+
   getHeight(): string {
-    // console.log("height: %o, %o, %o", this.headerElement.nativeElement, this.bottomElement.nativeElement, this.element.nativeElement)
-    // let top = this.headerElement.nativeElement.offsetHeight
-    // let bottom = this.bottomElement.nativeElement.offsetHeight
-    // return this.element.nativeElement.offsetHeight - (top + bottom) + 'px';
-    return this.element.nativeElement.offsetHeight + 'px';
+    return `${this.element.nativeElement.offsetHeight}px`;
   }
 
   getCurrentWidth(): number {
-    if (this.collapsed) {
-      return this.collapsedWidth;
-    } else {
-      return this._width;
-    }
+    return this.collapsed ? this.collapsedWidth : this._width;
   }
 
-  started($event: CdkDragStart) {
+  started(event: CdkDragStart): void {
     this._withStarted = this._width;
     this._transition = this.containerElement.style.transition;
-    this.containerElement.style.transition = 'none';
+    this.renderer.setStyle(this.containerElement, 'transition', 'none');
   }
 
-  ended($event: CdkDragEnd) {
+  ended(event: CdkDragEnd): void {
     this._withStarted = 0;
-    this.containerElement.style.transition = this._transition;
+    this.renderer.setStyle(this.containerElement, 'transition', this._transition);
   }
 
-  dragMove($event: CdkDragMove<any>) {
+  dragMove(event: CdkDragMove<any>): void {
     this.ngZone.runOutsideAngular(() => {
       this.resize(this.resizeBoxElement);
     });
   }
 
-  setAllHandleTransform() {
+  setAllHandleTransform(): void {
     const rect = this.resizeBoxElement.getBoundingClientRect();
     this.setHandleTransform(this.dragHandleRightElement, rect);
   }
 
-  resize(target: HTMLElement) {
+  resize(target: HTMLElement): void {
     const dragRect = this.dragHandleRightElement.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
-    let widthNew = dragRect.left - (targetRect.left - dragRect.width / 2);
-    if (widthNew <= this.collapsedWidth) {
+    const newWidth = dragRect.left - (targetRect.left - dragRect.width / 2);
+    if (newWidth <= this.collapsedWidth) {
       this.toggleSidebar();
     } else {
-      this.width = widthNew;
+      this.width = newWidth;
     }
   }
 
-  selectItem($event: MouseEvent, node: TreeNode) {
-    let item = node.item;
+  selectItem(event: MouseEvent, node: TreeNode): void {
+    const item = node.item;
     if (item.items && item.items.length > 0) {
       item.expanded = !item.expanded;
       this.updateFlatList();
     }
     if (this.collapsed && item.items && item.items.length > 0) {
-      let element = $event.target as Element;
-      element = element.parentElement as Element;
-      this.showPopup(element, item);
-    } else {
-      if (!item.items || item.items.length == 0) this.itemSelect(item);
+      const targetEl = (event.target as HTMLElement).closest('.me-sidebar_item');
+      if (targetEl) {
+        this.showPopup(targetEl, item);
+      }
+    } else if (!item.items || item.items.length === 0) {
+      this.itemSelect(item);
     }
   }
 
-  showPopup(elm: Element, item: MeSidebarMenuItem) {
-    let position: PositionConfig = { at: 'right top' };
+  showPopup(target: Element, item: MeSidebarMenuItem): void {
+    const position: PositionConfig = { at: 'right top' };
     this.subMenu.cssClass = 'me-sidebar-popup';
-    this.subMenu.target = elm;
+    this.subMenu.target = target;
     this.subMenu.position = position;
-    this.subMenu.dataSource = this.getDataSource(item);
+    this.subMenu.dataSource = item.items || [];
     this.subMenu.visible = true;
   }
 
-  private itemSelect(item: MeSidebarMenuItem) {
-    this.clearItemSelected(this.items);
-    this.clearItemSelected(this.bottomItems);
+  private itemSelect(item: MeSidebarMenuItem): void {
+    this.clearItemSelected(this._items);
+    this.clearItemSelected(this._bottomItems);
     item.selected = true;
-    if (!item.items || item.items.length == 0) {
-      this.itemSelected.emit(item);
-      if (item.action) {
-        item.action();
-      }
+    this.itemSelected.emit(item);
+    if (item.action) {
+      item.action();
     }
   }
 
-  private initNodes(
-    nodes: TreeNode[],
-    items: MeSidebarMenuItem[],
-    parent?: TreeNode
-  ) {
+  private initNodes(nodes: TreeNode[], items: MeSidebarMenuItem[], parent?: TreeNode): void {
     items.forEach((item) => {
-      let treeNode: TreeNode = {
-        item: item,
+      const treeNode: TreeNode = {
+        item,
         children: [],
-        parent: parent,
+        parent,
         active: false,
       };
       nodes.push(treeNode);
-      if (item.items && item.items.length > 0) {
+      if (item.items && item.items.length) {
         this.initNodes(treeNode.children, item.items, treeNode);
       }
     });
   }
 
   getMargin(node: TreeNode): number {
-    let parent = node.parent;
     let margin = 0;
-    while (parent) {
-      margin += 1;
-      parent = parent.parent;
+    let current = node.parent;
+    while (current) {
+      margin += 16;
+      current = current.parent;
     }
-    return margin * 16;
+    return margin;
   }
 
-  private updateItemExpanded(items: MeSidebarMenuItem[], expanded: boolean) {
+  private updateItemExpanded(items: MeSidebarMenuItem[], expanded: boolean): void {
     items.forEach((item) => {
       item.expanded = expanded;
       if (item.items) {
@@ -329,7 +321,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     });
   }
 
-  private clearItemSelected(items: MeSidebarMenuItem[]) {
+  private clearItemSelected(items: MeSidebarMenuItem[]): void {
     items.forEach((item) => {
       item.selected = false;
       if (item.items) {
@@ -338,121 +330,81 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     });
   }
 
-  private stateUpdate() {
-    this.toggleIcon = this.collapsed ? 'chevron_right' : 'chevron_left';
-    if (this.collapsed) {
-      this.width = this.collapsedWidth;
-      this.updateItemExpanded(this._items, false);
-    } else {
-      this.width = this.expandedWidth;
-    }
-    setTimeout(() => {
-      this.updateDragHandler();
-    }, 250);
-  }
-
-  private getDataSource(item: MeSidebarMenuItem): any[] {
-    if (item.items) {
-      return item.items;
-    } else {
-      return [];
-    }
-  }
-
-  selectSubmenuItem($event: Event) {
-    console.log('select by submenu %o', $event);
-  }
-
-  pressedNode($event: MouseEvent, node: TreeNode) {
-    this.focusService.clearKeyboardFocus();
-    node.active = true;
-  }
-
-  pressedEndNode($event: MouseEvent, node: TreeNode) {
-    node.active = false;
-  }
-
   getItemsMinHeight(): number {
-    let itemH = this.calculateItemsMinHeight(this._items);
-    let botItemH = this.calculateItemsMinHeight(this._bottomItems);
-    return 24 + itemH + botItemH;
+    const mainHeight = this.calculateItemsMinHeight(this._items);
+    const bottomHeight = this.calculateItemsMinHeight(this._bottomItems);
+    return 24 + mainHeight + bottomHeight;
   }
+
   calculateItemsMinHeight(items: MeSidebarMenuItem[]): number {
-    let heightAll = 0;
-    let count = 0;
+    let totalHeight = 0;
     items.forEach((item) => {
-      heightAll += 24;
-      count += 1;
+      totalHeight += 24;
       if (!this.collapsed && item.expanded && item.items) {
-        heightAll += this.calculateItemsMinHeight(item.items);
+        totalHeight += this.calculateItemsMinHeight(item.items);
       }
     });
-    return heightAll;
+    return totalHeight;
   }
 
-  updateFlatListNodes(list: TreeNode[], nodes: TreeNode[]) {
+  updateFlatList(): void {
+    this.nodeFlatList = [];
+    this.activeIndex = 0;
+    this.addNodesToFlatList(this.nodeFlatList, this.nodes);
+    this.addNodesToFlatList(this.nodeFlatList, this.bottomNodes);
+  }
+
+  private addNodesToFlatList(list: TreeNode[], nodes: TreeNode[]): void {
     nodes.forEach((node) => {
       list.push(node);
       if (node.children && node.item.expanded) {
-        this.updateFlatListNodes(list, node.children);
+        this.addNodesToFlatList(list, node.children);
       }
     });
   }
 
-  updateFlatList() {
-    this.nodeFlatList = [];
-    this.activeIndex = 0;
-    this.updateFlatListNodes(this.nodeFlatList, this.nodes);
-    this.updateFlatListNodes(this.nodeFlatList, this.bottomNodes);
-    console.log('FlatList %o', this.nodeFlatList);
-  }
-  private keyTabHandle(evt: KeyboardEvent) {
+  private keyTabHandle(evt: KeyboardEvent): void {
     this.updateFlatList();
     this.activeIndex = 0;
-    if (this.nodeFlatList) {
+    if (this.nodeFlatList.length) {
       this.nodeFlatList[this.activeIndex].active = true;
     }
   }
 
-  private keyDownHandle(evt: KeyboardEvent) {
-    if (this.nodeFlatList) {
+  private keyDownHandle(evt: KeyboardEvent): void {
+    if (this.nodeFlatList.length) {
       this.nodeFlatList[this.activeIndex].active = false;
-      if (this.nodeFlatList.length > this.activeIndex + 1) {
-        this.activeIndex += 1;
+      if (this.activeIndex < this.nodeFlatList.length - 1) {
+        this.activeIndex++;
         this.nodeFlatList[this.activeIndex].active = true;
       }
     }
   }
 
-  private keyUpHandle(evt: KeyboardEvent) {
-    if (this.nodeFlatList) {
+  private keyUpHandle(evt: KeyboardEvent): void {
+    if (this.nodeFlatList.length) {
       this.nodeFlatList[this.activeIndex].active = false;
       if (this.activeIndex > 0) {
-        this.activeIndex -= 1;
+        this.activeIndex--;
         this.nodeFlatList[this.activeIndex].active = true;
       }
     }
   }
 
-  private keyEnterHandle(evt: KeyboardEvent) {
-    if (this.collapsed) {
-      if (this.nodeFlatList && this.activeIndex < this.nodeFlatList.length) {
-        let node = this.nodeFlatList[this.activeIndex];
-        let elm = this.element.nativeElement.querySelector(
-          '.me-sidebar_item-active'
-        );
-        if (elm) {
-          this.showPopup(elm, node.item);
+  private keyEnterHandle(evt: KeyboardEvent): void {
+    if (this.nodeFlatList.length && this.activeIndex < this.nodeFlatList.length) {
+      const node = this.nodeFlatList[this.activeIndex];
+      if (this.collapsed) {
+        const activeElement = this.element.nativeElement.querySelector('.me-sidebar_item-active');
+        if (activeElement) {
+          this.showPopup(activeElement, node.item);
         }
-      }
-    } else {
-      if (this.nodeFlatList && this.activeIndex < this.nodeFlatList.length) {
-        let node = this.nodeFlatList[this.activeIndex];
+      } else {
         if (node.item.items) {
           node.item.expanded = !node.item.expanded;
-          let holderIdx = this.activeIndex;
+          const savedIndex = this.activeIndex;
           this.updateFlatList();
-          this.activeIndex = holderIdx;
+          this.activeIndex = savedIndex;
         } else {
           this.itemSelect(node.item);
           node.active = false;
@@ -462,25 +414,36 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  private focusOutHandle(evt: FocusEvent) {
-    if (this.nodeFlatList) {
-      if (this.nodeFlatList[this.activeIndex]) {
-        this.nodeFlatList[this.activeIndex].active = false;
-      }
-      this.nodeFlatList = [];
-      this.activeIndex = 0;
+  private focusOutHandle(evt: FocusEvent): void {
+    if (this.nodeFlatList[this.activeIndex]) {
+      this.nodeFlatList[this.activeIndex].active = false;
     }
+    this.nodeFlatList = [];
+    this.activeIndex = 0;
   }
 
-  getHeaderMaxWidth() {
-    return this.width - (32 + 55) + 'px';
+  pressedNode($event: MouseEvent, node: TreeNode) {
+    this.focusService.clearKeyboardFocus();
+    node.active = true;
   }
 
-  togglePressed() {
+  pressedEndNode(event: MouseEvent, node: TreeNode): void {
+    node.active = false;
+  }
+
+  selectSubmenuItem(event: Event): void {
+    console.log('select by submenu', event);
+  }
+
+  getHeaderMaxWidth(): string {
+    return `${this.width - (32 + 55)}px`;
+  }
+
+  togglePressed(): void {
     this.toggleBtnPressed = true;
   }
 
-  togglePressedUp() {
+  togglePressedUp(): void {
     this.toggleBtnPressed = false;
   }
 }

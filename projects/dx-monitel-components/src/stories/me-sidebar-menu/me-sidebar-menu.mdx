@@ -1,99 +1,148 @@
-import { Meta, Story, Controls, Source, Canvas } from '@storybook/blocks';
-import * as SidebarMenuStories from './me-sidebar-menu.stories';
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as sidebarStories from './me-sidebar-menu.stories';
 
-<Meta name="SidebarMenu Documentation" of={SidebarMenuStories} />
+<Meta name="Sidebar Documentation" of={sidebarStories} />
 
-# SidebarMenu
+# Sidebar
 
-SidebarMenu - компонент для создания бокового навигационного меню с возможностью сворачивания.
+## Компонент `me-sidebar`
 
-## Особенности
-
-- Древовидная структура
-- Поддержка сворачивания/разворачивания
-- Поиск по пунктам меню
-- Поддержка иконок и бейджей
-- Кастомные шаблоны элементов
-- Адаптивный дизайн
-
-## Примеры
-
-### Стандартный вид
-
-<Canvas of={SidebarMenuStories.Default} />
-
-### Свёрнутое состояние
-
-<Canvas of={SidebarMenuStories.Collapsed} />
-
-## Props
-
-<Controls />
+Компонент `me-sidebar` — это универсальный контейнер для отображения информации в виде карточки. Компонент использует архитектуру слотов, позволяющую гибко распределять контент по следующим областям:
 
 ## API
+
+### Слоты (ng-content)
+
+| Название слота    | Описание                                                                            |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| `meSidebarHeader` | Контейнер для верхней части меню, например, заголовка или иконок.                   |
+| `meSidebarSearch` | Слот для области поиска. Размещается между заголовком и основным списком элементов. |
 
 ### Интерфейс MeSidebarMenuItem
 
 <Source
   language="typescript"
   code={`
-interface MeSidebarMenuItem {
-  text: string;           // Текст пункта меню
-  icon?: string;          // Путь к SVG иконке
-  expanded?: boolean;     // Начальное состояние раскрытия
-  items?: MeSidebarMenuItem[]; // Дочерние элементы
-  badge?: number;         // Счетчик/бейдж
-  id?: string;           // Уникальный идентификатор
-  action?: () => void;  // Обработчик клика
+interface MeSidebarMenuItem =  {
+  id: string;
+  text: string;
+  icon?: string;
+  expanded?: boolean;
+  items?: MeSidebarMenuItem[];
+  badge?: number;
+  action?: () => {};
+  selected?: boolean;
+  pressed?: boolean;
 }
 `} />
 
-### Размеры
+<Controls of={sidebarStories.Default} />
 
-| Состояние  | Ширина | Примечание                  |
-|------------|--------|----------------------------|
-| Развернуто | 336px  | Показываются текст и иконки |
-| Свернуто   | 72px   | Показываются только иконки  |
+## Дизайн
 
-### События
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1581-1836"
+/>
 
-| Событие         | Тип                  | Описание                                |
-|-----------------|----------------------|-----------------------------------------|
-| itemSelected    | `EventEmitter`       | Срабатывает при выборе пункта меню      |
-| collapsedChange | `EventEmitter`       | Срабатывает при сворачивании/разворачивании |
+## Примеры использования
 
-### Настройка шаблонов
+- [Обычное использование](#обычное-использование)
+- [Кастомные заголовок и строка поиска через слоты](#кастомные-заголовок-и-строка-поиска-через-слоты)
+- [Свёрнутое состояние](#свёрнутое-состояние)
+- [Примеры использования контента](#примеры-использования-контента)
+  - [Обычный контент](#обычный-контент)
+  - [Использование с маршрутизацией](#использование-с-маршрутизацией)
+
+### Обычное использование
+
+<Canvas of={sidebarStories.Default} />
 
 <Source
-  language="typescript"
   code={`
-<me-sidebar-menu [items]="items">
-  <div *dxTemplate="let item of 'itemTemplate'">
-    <div class="custom-item">
-      <img [src]="item.icon" class="custom-icon"/>
-      <span class="custom-text">{{item.text}}</span>
-      <div *ngIf="item.badge" class="custom-badge">
-        {{item.badge}}
-      </div>
-    </div>
+ <me-sidebar
+    [items]="items"
+    [bottomItems]="bottomItems"
+    title="Меню"
+    collapsed="true"
+</me-sidebar>
+`}
+  language="html"
+  dark
+/>
+
+### Кастомные заголовок и строка поиска через слоты
+
+<Source
+  code={`
+<me-sidebar [items]="items" [collapsed]="false">
+  <div header>
+    <me-icon icon="menu" size="large"></me-icon>
+    <span class="sidebar-title">Мое меню</span>
   </div>
-</me-sidebar-menu>
-`} />
+  <div meSidebarHeader>
+    <input type="text" placeholder="Поиск..." />
+  </div>
+</me-sidebar>
+`}
+  language="html"
+  dark
+/>
 
-### Использование с маршрутизацией
+### Свёрнутое состояние
+
+<Canvas of={sidebarStories.Collapsed} />
+
+### Примеры использования контента
+
+#### Обычный контент
 
 <Source
-  language="typescript"
+
   code={`
-const MENU_ITEMS: MeSidebarMenuItem[] = [
+const menuItems: MeSidebarMenuItem[] = [
+  {
+    id: 'tasks',
+    text: 'Задачи',
+    icon: 'task',
+    expanded: true,
+    items: [
+      {
+        id: 'inbox',
+        text: 'Входящие',
+        icon: 'folder',
+      },
+      {
+        id: 'inprogress',
+        text: 'В работе',
+        icon: 'folder',
+        badge: 1,
+      },
+    ],
+  },
+  ...
+];
+`}
+  language="typescript"
+  dark
+/>
+
+#### Использование с маршрутизацией
+
+<Source
+  code={`
+const menuItems: MeSidebarMenuItem[] = [
   {
     text: 'Главная',
-    icon: 'home.svg',
+    icon: 'home',
     action: () => this.router.navigate(['/'])
   },
   {
     text: 'Проекты',
-    icon: 'projects.svg',
+    icon: 'projects',
     items: [
       {
         text: 'Список',
@@ -106,53 +155,7 @@ const MENU_ITEMS: MeSidebarMenuItem[] = [
     ]
   }
 ];
-`} />
-
-### CSS переменные
-
-<Source
-  language="scss"
-  code={`
-.me-sidebar {
-  --sidebar-bg: var(--dx-surface-bg);
-  --sidebar-border: var(--dx-border-color);
-  --sidebar-text: var(--dx-primary-text-color);
-  --sidebar-hover-bg: var(--dx-list-item-hover-bg);
-  --sidebar-active-bg: var(--dx-list-item-selected-bg);
-  --sidebar-badge-bg: var(--dx-accent-color);
-  --sidebar-badge-text: var(--dx-primary-text-color);
-}
-`} />
-
-### Лучшие практики
-
-1. **Иконки**
-   - Используйте SVG для лучшей масштабируемости
-   - Размер иконок: 24x24px
-   - Поддерживайте единый стиль иконок
-
-2. **Структура меню**
-   - Ограничивайте вложенность 2-3 уровнями
-   - Группируйте связанные пункты
-   - Используйте бейджи умеренно
-
-3. **Производительность**
-   - Включайте поиск только при необходимости
-   - Для больших меню используйте виртуальную прокрутку
-
-4. **Доступность**
-   - Используйте ARIA-атрибуты
-   - Обеспечьте навигацию с клавиатуры
-   - Поддерживайте контрастные цвета
-
-### Известные ограничения
-
-1. В свернутом состоянии:
-   - Поиск недоступен
-   - Всплывающие подсказки для иконок
-
-2. Технические:
-   - Максимальная ширина в развернутом состоянии: 336px
-   - Минимальная ширина в свернутом состоянии: 72px
-   - Максимальное количество уровней вложенности: 3
-
+`}
+  language="typescript"
+  dark
+/>
