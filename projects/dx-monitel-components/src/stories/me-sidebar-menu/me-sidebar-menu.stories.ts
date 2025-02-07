@@ -1,221 +1,283 @@
-// me-sidebar.stories.ts
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { DxTreeViewModule, DxButtonModule } from 'devextreme-angular';
+import { action } from '@storybook/addon-actions';
+import { DxTreeViewModule, DxButtonModule, DxTextBoxModule } from 'devextreme-angular';
+
 import {
   MeIconComponent,
   MeSidebarMenuComponent,
+  MeTextBoxDirective,
   MeTreeViewModule,
 } from '../../public-api';
-import { MeIconStoreService } from '../../../../../src/app/service/icon-store.service';
+import { meSidebarMenuBottomItems, meSidebarMenuDefaultItems } from './me-sidebar-menu-mock-data';
 
-interface MeSidebarMenuItem {
-  id: string;
-  text: string;
-  icon?: string;
-  badge?: number;
-  expanded?: boolean;
-  items?: MeSidebarMenuItem[];
-  selected?: boolean;
-}
-const iconStore = new MeIconStoreService();
-
-const meta: Meta<MeSidebarMenuComponent> = {
+export default {
   title: 'Components/Sidebar',
   component: MeSidebarMenuComponent,
   decorators: [
     moduleMetadata({
+      declarations: [MeTextBoxDirective],
       imports: [
         DxTreeViewModule,
         DxButtonModule,
         MeIconComponent,
-        MeIconComponent,
+        DxTextBoxModule,
         MeTreeViewModule,
       ],
     }),
   ],
   argTypes: {
-    collapsed: {
-      control: 'boolean',
-      description: 'Определяет, свернуто ли меню',
+    items: {
+      control: 'object',
+      description: 'Список основных элементов меню.',
+      table: {
+        type: { summary: 'MeSidebarMenuItem[]' },
+        defaultValue: { summary: '[]' },
+      },
+    },
+    bottomItems: {
+      control: 'object',
+      description: 'Список нижних элементов меню.',
+      table: {
+        type: { summary: 'MeSidebarMenuItem[]' },
+        defaultValue: { summary: '[]' },
+      },
     },
     title: {
       control: 'text',
-      description: 'Заголовок меню',
+      description: 'Заголовок меню.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
-    toggleIcon: {
-      control: 'text',
-      description: 'Иконка кнопки сворачивания',
-    },
-    expandedIcon: {
-      control: 'text',
-      description: 'Иконка развернутого пункта',
-    },
-    collapsedIcon: {
-      control: 'text',
-      description: 'Иконка свернутого пункта',
+    collapsed: {
+      control: 'boolean',
+      description: 'Состояние сворачивания меню.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     floatMode: {
       control: 'boolean',
-      description:
-        'Определяет режим раскрытия меню, над страницей или внутри страицы',
+      description: 'Включает режим плавающего меню.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description: 'Размер меню.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    toggleIcon: {
+      control: 'select',
+      options: ['', 'drag', 'arrowback'],
+      description: 'Принимает иконку для кнопки только с иконкой, без текста.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'drag' },
+      },
+    },
+    expandedIcon: {
+      control: 'select',
+      options: ['', 'expand_less', 'expand_more'],
+      description: 'Принимает иконку для кнопки только с иконкой, без текста.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'expand_less' },
+      },
+    },
+    collapsedIcon: {
+      control: 'select',
+      options: ['', 'expand_more', 'expand_less'],
+      description: 'Принимает иконку для кнопки только с иконкой, без текста.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'expand_more' },
+      },
+    },
+    collapsedWidth: {
+      control: 'number',
+      description: 'Ширина меню в свернутом состоянии.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '86' },
+      },
+    },
+    expandedWidth: {
+      control: 'number',
+      description: 'Ширина меню в развернутом состоянии.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '336' },
+      },
+    },
+    width: {
+      control: 'number',
+      description: 'Текущая ширина меню.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '336' },
+      },
     },
   },
   parameters: {
     layout: 'fullscreen',
   },
-};
-
-export default meta;
-type Story = StoryObj<MeSidebarMenuComponent>;
-
-const DEMO_ITEMS: MeSidebarMenuItem[] = [
-  {
-    id: 'tasks',
-    text: 'Задачи',
-    icon: 'task',
-    badge: 3,
-    expanded: true,
-    items: [
-      {
-        id: 'inbox',
-        text: 'Входящие',
-        icon: 'folder',
-        badge: 2,
-      },
-      {
-        id: 'inprogress',
-        text: 'В работе',
-        icon: 'folder',
-        badge: 1,
-      },
-    ],
-  },
-  {
-    id: 'path',
-    text: '/',
-    icon: 'folder',
-    expanded: true,
-    items: [
-      {
-        id: 'monitel',
-        text: 'Monitel',
-        icon: 'folder',
-        items: [
-          {
-            id: 'atp',
-            text: 'АТП',
-            icon: 'folder',
-            items: [
-              {
-                id: 'active',
-                text: 'Активные',
-                badge: 5,
-              },
-              {
-                id: 'archive',
-                text: 'Архив',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'downloads',
-    text: 'Загрузки',
-    icon: 'download',
-    badge: 5,
-  },
-  {
-    id: 'settings',
-    text: 'Настройки',
-    icon: 'settings',
-  },
-];
-
-const DEMO_BOTTOM_ITEMS: MeSidebarMenuItem[] = [
-  {
-    id: 'downloads',
-    text: 'Загрузки',
-    icon: 'download',
-    badge: 4,
-  },
-  {
-    id: 'settings',
-    text: 'Настройки',
-    icon: 'settings',
-  },
-];
-
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-     <div style="display: flex; height: 100%;">
-      <me-sidebar
-        [items]="items"
-        [bottomItems]="bottomItems"
-        [title]="title"
-        [collapsed]="collapsed"
-        [toggleIcon]="toggleIcon"
-        [expandedIcon]="expandedIcon"
-        [collapsedIcon]="collapsedIcon"
-        [floatMode]="floatMode"
-      >
-        <div header>
-          <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
-        </div>
-        <div search>
-          <me-search placeholder="Поиск..."></me-search>
-        </div>
-      </me-sidebar>
-      <div style="padding: 36px; color: var(--Text-Default)">
-          <p>Тестовая страница</p>
-          <span>
-          Группа исследователей из Миланского университета разработала обогащенный витаминами «коктейль» от похмелья, эффект которого основан на полезном действии имбиря, опунции, вишни и гинкго билоба. Результаты работы опубликованы в медицинском журнале The Lancet.
-          В исследовании приняли участие 214 представителей разных возрастных групп. Ученые применили инновационный трехэтапный протокол для тестирования воздействия растительных компонентов. Основной группе участников предложили напиток, состоящий из экстрактов имбиря, опунции, барбадосской вишни и гинкго билоба, дополненный минералами и витаминами группы B.
-          </span>
-       </div>
-      </div>
-    `,
-  }),
   args: {
-    items: DEMO_ITEMS,
-    bottomItems: DEMO_BOTTOM_ITEMS,
+    items: meSidebarMenuDefaultItems,
+    bottomItems: meSidebarMenuBottomItems,
     title: 'Меню',
     collapsed: false,
+    floatMode: false,
+    size: 'medium',
     toggleIcon: 'chevron_left',
     expandedIcon: 'expand_less',
     collapsedIcon: 'expand_more',
+    collapsedWidth: 86,
+    expandedWidth: 336,
+    width: 336,
   },
+  render: (args) => ({
+    props: {
+      ...args,
+      onItemSelected: action('onItemSelected'),
+      onCollapsedChange: action('onCollapsedChange'),
+    },
+    template: `
+      <div style="display: flex; height: 100%;">
+        <me-sidebar
+          [items]="items"
+          [bottomItems]="bottomItems"
+          [title]="title"
+          [collapsed]="collapsed"
+          [floatMode]="floatMode"
+          [size]="size"
+          [toggleIcon]="toggleIcon"
+          [expandedIcon]="expandedIcon"
+          [collapsedIcon]="collapsedIcon"
+          [collapsedWidth]="collapsedWidth"
+          [expandedWidth]="expandedWidth"
+          [width]="width"
+          (itemSelected)="onItemSelected($event)"
+          (collapsedChange)="onCollapsedChange($event)">
+        </me-sidebar>
+        <div style="padding: 36px; color: var(--Text-Default)">
+          <p>Тестовая страница</p>
+          <span>
+            Группа исследователей из Миланского университета разработала обогащенный витаминами «коктейль» от похмелья, эффект которого основан на полезном действии имбиря, опунции, вишни и гинкго билоба. Результаты работы опубликованы в медицинском журнале The Lancet.
+            В исследовании приняли участие 214 представителей разных возрастных групп. Ученые применили инновационный трехэтапный протокол для тестирования воздействия растительных компонентов. Основной группе участников предложили напиток, состоящий из экстрактов имбиря, опунции, барбадосской вишни и гинкго билоба, дополненный минералами и витаминами группы B.
+          </span>
+        </div>
+      </div>
+    `,
+  }),
+} satisfies Meta<MeSidebarMenuComponent>;
+
+type Story = StoryObj<MeSidebarMenuComponent>;
+
+export const Default: Story = {};
+
+export const WithCustomHeaderAndSearchBar: Story = {
+  args: {
+    title: ''
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      customTitle: 'Custom Title',
+      onItemSelected: action('onItemSelected'),
+      onCollapsedChange: action('onCollapsedChange'),
+    },
+    template: `
+      <div style="display: flex; height: 100%;">
+        <me-sidebar
+          [items]="items"
+          [bottomItems]="bottomItems"
+          [collapsed]="collapsed"
+          [floatMode]="floatMode"
+          [size]="size"
+          [title]="title"
+          [toggleIcon]="toggleIcon"
+          [expandedIcon]="expandedIcon"
+          [collapsedIcon]="collapsedIcon"
+          [collapsedWidth]="collapsedWidth"
+          [expandedWidth]="expandedWidth"
+          [width]="width"
+          (itemSelected)="onItemSelected($event)"
+          (collapsedChange)="onCollapsedChange($event)">
+          <div meSidebarHeader class="me-sidebar-custom-header">
+            <div class="me-title-header1">{{ customTitle }}</div>
+            <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
+          </div>
+          <div meSidebarSearch class="me-sidebar-search">
+            <dx-text-box meTextBox mode="search" labelMode="hidden" placeholder="Поиск..."></dx-text-box>
+          </div>
+        </me-sidebar>
+        <div style="padding: 36px; color: var(--Text-Default)">
+          <p>Тестовая страница</p>
+          <span>
+            Группа исследователей из Миланского университета разработала обогащенный витаминами «коктейль» от похмелья, эффект которого основан на полезном действии имбиря, опунции, вишни и гинкго билоба. Результаты работы опубликованы в медицинском журнале The Lancet.
+            В исследовании приняли участие 214 представителей разных возрастных групп. Ученые применили инновационный трехэтапный протокол для тестирования воздействия растительных компонентов. Основной группе участников предложили напиток, состоящий из экстрактов имбиря, опунции, барбадосской вишни и гинкго билоба, дополненный минералами и витаминами группы B.
+          </span>
+        </div>
+      </div>
+    `,
+    styles: [`
+    .me-sidebar-custom-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .me-sidebar-search {
+      padding-inline: 12px;
+      padding-block: 8px;
+      border-bottom: 1px solid #dfe0ed;
+    }
+  `]
+  })
 };
 
 export const Collapsed: Story = {
-  ...Default,
   args: {
-    ...Default.args,
     collapsed: true,
-    toggleIcon: 'chevron_right',
   },
 };
 
-// export const CustomIcons: Story = {
-//   ...Default,
-//   args: {
-//     ...Default.args,
-//     toggleIcon: 'menu',
-//     expandedIcon: 'keyboard_arrow_up',
-//     collapsedIcon: 'keyboard_arrow_down',
-//   },
-// };
-//
-// export const WithSelectedItem: Story = {
-//   ...Default,
-//   args: {
-//     ...Default.args,
-//     items: DEMO_ITEMS.map((item) =>
-//       item.id === 'tasks' ? { ...item, selected: true } : item
-//     ),
-//   },
-// };
+export const FloatMode = {
+  args: {
+    floatMode: true,
+  },
+};
+
+export const SmallSize = {
+  args: {
+    size: 'small',
+  },
+};
+
+export const MediumSize = {
+  args: {
+    size: 'medium',
+  },
+};
+
+export const LargeSize = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const CustomToggleIcon = {
+  args: {
+    toggleIcon: 'menu',
+  },
+};
