@@ -1,25 +1,15 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as SliderStories from "./me-slider.stories";
+import * as sliderStories from "./me-slider.stories";
 import { moduleMetadata } from "@storybook/angular";
 import { DxSliderModule } from "devextreme-angular";
 import { MeSliderDirective } from "../../public-api";
 import { Figma } from "@storybook/addon-designs/blocks";
 
-<Meta
-  title="Components/Slider(RC)"
-  component={MeSliderDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeSliderDirective],
-      imports: [DxSliderModule],
-    }),
-  ]}
-  of={SliderStories}
-/>
+<Meta name="Slider Documentation" of={sliderStories} />
 
 # Slider
 
-## Директива meSlider
+## Директива `meSlider`
 
 Применение директивы `meSlider` к элементу `dx-slider` изменяет внешний вид стандартного компонента с соответствие с дизайн системой.
 
@@ -38,24 +28,53 @@ import { Figma } from "@storybook/addon-designs/blocks";
     Демо
   </a>
 
-<Canvas name="Default" of={SliderStories.Default} />
-<Controls of={SliderStories.Default} />
-<Source of={SliderStories.Default} dark />
+<Controls of={sliderStories.Default} />
+
 
 ## Дизайн
 
 <Figma
   height="50%"
   collapsable
+  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1275-2794&node-type=canvas&t=ojMWhBsbdrfnHq7v-0"
 />
 
-## Примеры использования:
+## Примеры использования
+
+- [Базовое использование](#базовое-использование)
+- [Слайдер с Label и ToolTip](#слайдер-с-label-и-tooltip)
+
+### Базовое использование
+
+<Canvas of={sliderStories.Default} />
+<Source code='<dx-slider meSlider></dx-slider>'
+  language='html'
+  dark
+/>
 
 ### Слайдер с Label и ToolTip
 
-<Canvas name="WithLabel" of={SliderStories.WithLabelAndTooltip} />
+Для использования label и tooltip необходимо использовать `dxo-label` и `dxo-tooltip` внутри `dx-slider`
 
-#### Для использования label и tooltip необходимо использовать `dxo-label` и `dxo-tooltip` внутри `dx-slider`
-
-<Source of={SliderStories.WithLabelAndTooltip} dark language="html" />
+<Canvas name="WithLabel" of={sliderStories.WithLabelAndTooltip} />
+<Source
+  code={`
+<dx-slider
+  meSlider
+  >
+    <dxo-label
+      [visible]="true"
+      position="top"
+    ></dxo-label>
+      <dxo-tooltip
+    [enabled]="true"
+    [format]="format"
+    showMode="always"
+    position="bottom"
+  ></dxo-tooltip>
+</dx-slider>
+`}
+  language="html"
+  dark
+/>

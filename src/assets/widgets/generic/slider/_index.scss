@@ -6,8 +6,6 @@
 @use '../sizes' as *;
 @use '../../base/slider';
 
-// adduse
-
 $generic-slider-radius: 2px;
 
 .dx-slider {
@@ -21,13 +19,6 @@ $generic-slider-radius: 2px;
     &.dx-slider-handle {
       border: 1px solid $slider-handle-border-color;
       background: $slider-handle-active-bg;
-    }
-  }
-
-  .dx-state-focused {
-    &.dx-slider-handle:not(.dx-state-active) {
-      //border: 1px solid $slider-handle-focused-border-color;
-      // background: $slider-handle-focused-bg;
     }
   }
 
@@ -98,9 +89,6 @@ $generic-slider-radius: 2px;
     border-color: $slider-disabled-bg;
   }
 
-  .dx-slider-bar {
-    // opacity: 0.5;
-  }
 }
 
 .dx-invalid.dx-slider {
@@ -132,7 +120,6 @@ $generic-slider-radius: 2px;
   margin-left: math.div(-($generic-slider-width + 1px), 2);
 }
 
-//me-slider
 .me-slider.dx-slider.dx-widget {
   &:has(.dx-state-hover):not(.dx-invalid) {
     .dx-trackbar-range.dx-slider-range.dx-slider-range-visible {
@@ -147,11 +134,24 @@ $generic-slider-radius: 2px;
     }
   }
 
+  &.me-keyboard-focused {
+    --slider-handle-focus-color: var(--Dividers-Borders-Focus-Tabulation);
+
+    &.dx-invalid {
+      --slider-handle-focus-color: var(--Dividers-Borders-Focus);
+    }
+
+    .dx-slider-handle.dx-state-focused:not(.dx-state-active) {
+      outline: 1px solid var(--slider-handle-focus-color);
+    }
+  }
+
   .dx-slider-handle {
-    margin-top: -6px;
+    margin-top: -5px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
+    border: none;
   }
 
   .dx-slider-label {
@@ -228,11 +228,9 @@ $generic-slider-radius: 2px;
   &.dx-state-disabled {
     .dx-slider-label {
       color: $slider-disabled-bg;
-    }
   }
 }
 
-.me-slider.dx-slider.dx-widget {
   .dx-overlay-content {
     padding-top: 1px;
     overflow: visible;
