@@ -1,8 +1,9 @@
-import { Directive, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../service/icon-store.service';
 import { MeCommonType, MeScrollbarShowType } from '../types/types';
 import { MeControlDirective } from './control.directive';
+import { ComponentFocusService } from 'projects/dx-monitel-components/src/lib/service/component-focus.service';
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -23,8 +24,15 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
   @Input() useItemTextAsTitle: boolean = false;
   private customClasses: string = `me-dropdownbutton`;
 
-  constructor(private component: DxDropDownButtonComponent, private iconStore: MeIconStoreService) {
+  private focusService: ComponentFocusService;
+  constructor(
+    private component: DxDropDownButtonComponent,
+    private iconStore: MeIconStoreService,
+    private renderer: Renderer2,
+    private element: ElementRef
+  ) {
     super();
+    this.focusService = new ComponentFocusService(element, renderer);
   }
 
   ngOnInit(): void {
