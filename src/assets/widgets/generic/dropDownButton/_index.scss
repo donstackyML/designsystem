@@ -131,34 +131,50 @@
     .dx-button-content {
       font-weight: var(--base-regular-font-weight);
       gap: 4px;
+
       .dx-icon {
         align-content: center;
       }
+
       .dx-button-text {
         align-content: center;
       }
+
       .dx-icon.dx-icon-spindown {
         background: none;
         font-family: var(--me-icon-family);
       }
+
       .dx-icon.dx-icon-spindown::before {
         content: var(--me-icon-arrow-drop-down);
       }
     }
   }
 
+  &.me-keyboard-focused {
+
+   .dx-button.dx-state-focused {
+    z-index: 2;
+    outline: 2px solid var(--Dividers-Borders-Focus);
+    }
+  }
+
   // общие разделенные кнопки
   .dx-buttongroup {
     .dx-buttongroup-wrapper.dx-collection {
+
       // кнопка dropdown
       .dx-button.dx-buttongroup-item.dx-buttongroup-last-item.dx-dropdownbutton-toggle {
         max-width: max-content;
+
         .dx-button-content {
           padding-inline: 12px 16px;
+
           .dx-icon.dx-icon-spindown {
             background: none;
             font-family: var(--me-icon-family);
           }
+
           .dx-icon.dx-icon-spindown::before {
             content: var(--me-icon-arrow-drop-down);
           }
@@ -166,13 +182,15 @@
       }
     }
   }
+
   // contained
   .dx-buttongroup.dx-buttongroup-mode-contained {
     .dx-buttongroup-wrapper.dx-collection {
+
       // кнопка dropdown
-      .dx-button.dx-buttongroup-item.dx-buttongroup-last-item.dx-dropdownbutton-toggle {
+      .dx-button.dx-buttongroup-item.dx-dropdownbutton-action {
         .dx-button-content {
-          border-left: 1px solid var(--Dividers-Borders-Long);
+          border-right: 1px solid var(--Dividers-Borders-Long);
         }
       }
     }
@@ -181,9 +199,10 @@
   // outlined
   .dx-buttongroup.dx-buttongroup-mode-outlined {
     .dx-buttongroup-wrapper.dx-collection {
+
       // кнопка dropdown
-      .dx-button.dx-buttongroup-item.dx-buttongroup-last-item.dx-dropdownbutton-toggle {
-        border-left: 1px solid;
+      .dx-button.dx-buttongroup-item.dx-dropdownbutton-action {
+        border-right: 1px solid;
       }
     }
   }
@@ -191,17 +210,23 @@
   // text
   .dx-buttongroup.dx-buttongroup-mode-text {
     .dx-buttongroup-wrapper.dx-collection {
+
       // кнопка
       .dx-button.dx-buttongroup-item.dx-buttongroup-first-item.dx-dropdownbutton-action {
         margin-left: 0;
+
         &:not(.dx-buttongroup-first-item.dx-buttongroup-last-item) {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
       }
+
       // кнопка dropdown
+      .dx-button.dx-buttongroup-item.dx-buttongroup-last-item.dx-dropdownbutton-action {
+        border-right: 1px solid var(--Dividers-Borders-Long);
+      }
+
       .dx-button.dx-buttongroup-item.dx-buttongroup-last-item.dx-dropdownbutton-toggle {
-        border-left: 1px solid var(--Dividers-Borders-Long);
         margin-left: 0;
         &:not(.dx-buttongroup-first-item.dx-buttongroup-last-item) {
           border-top-left-radius: 0;
@@ -215,6 +240,7 @@
   &.me-dropdownbutton-small {
     .dx-buttongroup {
       .dx-buttongroup-wrapper.dx-collection {
+
         // кнопка
         .dx-button.dx-buttongroup-item.dx-buttongroup-first-item.dx-dropdownbutton-action {
           .dx-button-content {
@@ -222,13 +248,16 @@
             padding-inline: 12px 16px;
             font-size: 13px;
             line-height: 16px;
+
             .dx-icon {
               font-size: 13px;
             }
+
             .dx-icon-spindown {
               font-size: 18px;
             }
           }
+
           &.dx-button-mode-outlined {
             .dx-button-content {
               padding-block: 3px;
@@ -236,6 +265,7 @@
             }
           }
         }
+
         // кнопка dropdown
         .dx-button.dx-buttongroup-item.dx-buttongroup-last-item.dx-dropdownbutton-toggle {
           &.dx-button-mode-outlined {
@@ -244,13 +274,16 @@
               padding-left: 4px;
             }
           }
+
           .dx-button-content {
             padding: 4px;
+
             .dx-icon {
               font-size: 18px;
             }
           }
         }
+
         // смежные кнопки
         .dx-button.dx-buttongroup-item.dx-buttongroup-first-item.dx-buttongroup-last-item {
           .dx-button-content {
@@ -265,6 +298,7 @@
   &.me-dropdownbutton-medium {
     .dx-buttongroup {
       .dx-buttongroup-wrapper.dx-collection {
+
         // кнопка
         .dx-button.dx-buttongroup-item.dx-buttongroup-first-item.dx-dropdownbutton-action {
           .dx-button-content {
@@ -272,13 +306,16 @@
             padding-inline: 12px 16px;
             font-size: 14px;
             line-height: 20px;
+
             .dx-icon {
               font-size: 14px;
             }
+
             .dx-icon-spindown {
               font-size: 18px;
             }
           }
+
           &.dx-button-mode-outlined {
             .dx-button-content {
               padding-block: 5px;
@@ -286,6 +323,7 @@
             }
           }
         }
+
         // кнопка dropdown
         .dx-button.dx-buttongroup-item.dx-buttongroup-last-item.dx-dropdownbutton-toggle {
           &.dx-button-mode-outlined {
@@ -294,13 +332,16 @@
               padding-left: 6px;
             }
           }
+
           .dx-button-content {
             padding: 6px;
+
             .dx-icon {
               font-size: 18px;
             }
           }
         }
+
         // смежные кнопки
         .dx-button.dx-buttongroup-item.dx-buttongroup-first-item.dx-buttongroup-last-item {
           .dx-button-content {
@@ -315,6 +356,7 @@
   &.me-dropdownbutton-large {
     .dx-buttongroup {
       .dx-buttongroup-wrapper.dx-collection {
+
         // кнопка
         .dx-button.dx-buttongroup-item.dx-buttongroup-first-item.dx-dropdownbutton-action {
           .dx-button-content {
@@ -323,20 +365,24 @@
             font-size: 16px;
             line-height: 20px;
             gap: 8px;
+
             .dx-icon {
               font-size: 16px;
               width: 24px;
               height: 24px;
             }
+
             .dx-icon-spindown {
               font-size: 24px;
               height: 24px;
               width: 24px;
             }
+
             .dx-button-text {
               min-height: 24px;
             }
           }
+
           &.dx-button-mode-outlined {
             .dx-button-content {
               padding-block: 7px;
@@ -344,6 +390,7 @@
             }
           }
         }
+
         // кнопка dropdown
         .dx-button.dx-buttongroup-item.dx-buttongroup-last-item.dx-dropdownbutton-toggle {
           &.dx-button-mode-outlined {
@@ -352,8 +399,10 @@
               padding-left: 8px;
             }
           }
+
           .dx-button-content {
             padding: 8px;
+
             .dx-icon {
               font-size: 24px;
               height: 24px;
@@ -361,6 +410,7 @@
             }
           }
         }
+
         // смежные кнопки
         .dx-button.dx-buttongroup-item.dx-buttongroup-first-item.dx-buttongroup-last-item {
           .dx-button-content {
@@ -376,21 +426,25 @@
   .dx-overlay-content {
     border: none !important;
     box-shadow: none !important;
+
     .dx-popup-content.dx-dropdownbutton-content {
       padding: 0;
       margin: 4px 0 !important;
+
       .dx-list-items {
         display: flex;
         flex-direction: column;
         gap: 4px;
-        // padding-block: 4px;
+
         .dx-item.dx-list-item {
           padding: 4px 16px 4px 8px;
+
           .dx-item-content.dx-list-item-content {
             font-size: 13px;
             font-weight: var(--base-regular-font-weight);
             line-height: 16px;
           }
+
           &.dx-state-focused {
             box-shadow: none;
             // box-shadow: 0px 0px 0px 4px #7eb9ff;
@@ -420,7 +474,6 @@
               display: flex;
               flex-direction: column;
               gap: 4px;
-              // padding-block: 4px;
 
               .dx-item.dx-list-item {
                 border: none;
@@ -443,18 +496,10 @@
                   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
                 }
 
-                &.dx-state-focused {
-                  // background-color: var(--Action-Hover);
-                  // box-shadow: inset 0px 0px 0px 2px var(--Dividers-Borders-Focus);
-                }
-
                 &.dx-state-active {
                   background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
                 }
 
-                // &:not(:last-child) {
-                //   margin-bottom: 4px;
-                // }
               }
             }
           }
@@ -485,7 +530,6 @@
         .dx-list-items {
           .dx-item.dx-list-item {
             .dx-item-content.dx-list-item-content {
-              // padding: 4px 0;
               font-size: 13px;
               line-height: 16px;
 
@@ -495,10 +539,6 @@
                 font-size: 20px;
               }
             }
-
-            // &:not(:last-child) {
-            //   margin-bottom: 4px;
-            // }
           }
         }
       }
@@ -509,9 +549,7 @@
       .dx-scrollable-content {
         .dx-list-items {
           .dx-item.dx-list-item {
-            // padding: 2px 16px 2px 8px;
             .dx-item-content.dx-list-item-content {
-              // padding: 6px 0;
               font-size: 14px;
               line-height: 20px;
 
@@ -522,9 +560,6 @@
               }
             }
 
-            // &:not(:last-child) {
-            //   margin-bottom: 4px;
-            // }
           }
         }
       }
@@ -536,8 +571,8 @@
         .dx-list-items {
           .dx-item.dx-list-item {
             padding: 8px 20px 8px 12px;
+
             .dx-item-content.dx-list-item-content {
-              // padding: 6px 12px;
               font-size: 16px;
               line-height: 24px;
 
@@ -548,9 +583,6 @@
               }
             }
 
-            // &:not(:last-child) {
-            //   margin-bottom: 4px;
-            // }
           }
         }
       }
@@ -565,6 +597,7 @@
     pointer-events: none;
   }
 }
+
 .dx-context-menu .dx-menu-item .dx-submenu {
   position: fixed;
   z-index: 1003;
