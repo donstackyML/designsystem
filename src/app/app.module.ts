@@ -43,6 +43,7 @@ import {
   MeTooltipModule,
   MeTreeListModule,
   MeTreeViewModule,
+  MeDateBoxModule,
   MeFormModule,
   MeSidebarMenuComponent,
 } from '../../projects/dx-monitel-components/src/public-api';
@@ -183,6 +184,7 @@ import { MeToastDirective } from './directives/toast.directive';
     MeFormModule,
     MeTextBoxModule,
     MeSelectBoxModule,
+    MeDateBoxModule,
     MeCheckBoxModule,
     MeToolbarModule,
     MeTreeViewModule,

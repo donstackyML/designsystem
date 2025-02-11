@@ -65,13 +65,13 @@ export default {
       control: 'select',
       options: ['auto', 'always'],
       description:
-        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `text`, `icon`.',
+        'Режим отображения сообщения об ошибке. В рамках дизайн системы добавлены позиции: `text`, `icon`.',
     },
     validationMessagePosition: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
       description:
-        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `top`, `bottom`, `left`, `right`.',
+        'Режим отображения сообщения об ошибке. В рамках дизайн системы добавлены позиции: `top`, `bottom`, `left`, `right`.',
     },
     height: {
       control: 'text',
@@ -226,13 +226,11 @@ export const WithLabelRow: StoryObj = {
   render: (args) => ({
     props: args,
     template: `
-		<label meLabel
-		labelDirection="row"
-		[size]="size"
-		width="250px">
+		<label
+    >
 		Label*
 			<dx-tag-box
-			meTagBox
+
 			${argsToTemplate(args)}
 				></dx-tag-box>
 		</label>
