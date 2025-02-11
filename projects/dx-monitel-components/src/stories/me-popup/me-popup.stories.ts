@@ -11,7 +11,7 @@ import {
   DxScrollViewComponent,
   DxTemplateModule,
 } from 'devextreme-angular';
-import { MePopupComponent } from 'src/app/components/me-popup/me-popup.component';
+
 import {
   MeButtonDirective,
   MeIconDirective,
@@ -20,10 +20,9 @@ import {
 
 export default {
   title: 'Components/Popup',
-  // tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MePopupComponent],
+      declarations: [MePopupDirective],
       imports: [DxPopupModule],
     }),
   ],
@@ -285,7 +284,7 @@ export const IconDescription: Story = {
         MePopupDirective,
         MeButtonDirective,
         MeIconDirective,
-        MePopupComponent,
+        ,
       ],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
@@ -330,7 +329,7 @@ export const Button: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, MePopupComponent],
+      declarations: [MePopupDirective, MeButtonDirective, ],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -360,7 +359,7 @@ export const Buttons: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, MePopupComponent],
+      declarations: [MePopupDirective, MeButtonDirective, ],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -399,7 +398,7 @@ export const Dialog: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, MePopupComponent],
+      declarations: [MePopupDirective, MeButtonDirective, ],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -450,7 +449,7 @@ export const DialogLarge: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, MePopupComponent],
+      declarations: [MePopupDirective, MeButtonDirective, ],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
