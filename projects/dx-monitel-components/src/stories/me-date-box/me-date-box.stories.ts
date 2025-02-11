@@ -101,6 +101,10 @@ export default {
       control: 'boolean',
       description: 'Показ кнопки очистки.',
     },
+    isValid: {
+      control: 'boolean',
+      description: 'Определяет состояние компонента.',
+    },
     validationMessageMode: {
       control: 'select',
       options: ['auto', 'always'],
@@ -137,6 +141,7 @@ export default {
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
     description: 'description',
+    isValid: true
   },
   render: (args) => ({
     props: args,

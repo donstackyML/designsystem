@@ -13,8 +13,6 @@ import {
 
 import { MeSize } from '../../types/types';
 import { MeFormField } from '../me-form-item/me-form-field';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
-import { locale } from 'devextreme/localization';
 import { ComponentFocusService } from '../../service/component-focus.service';
 @Directive({
   selector: '[meDateBox]',
