@@ -1,0 +1,21 @@
+<div
+  class="me-menu-left_item"
+  [class.me-menu-left_item-collapsed]="collapsed"
+  [class.me-menu-left_item-uncollapsed]="!collapsed"
+  [class.me-menu-left_item-selected]="item.selected"
+  [class.me-menu-left_item-expanded]="item.expanded"
+  [class.me-menu-left_item-pressed]="isPressed()"
+  [class.me-menu-left_item-with-children]="item.items?.length"
+  *ngIf="item"
+>
+  <div class="me-menu-left_item-content" [ngStyle]="{ 'margin-left.px': offset }">
+    <me-icon *ngIf="item.icon" [icon]="item.icon" [size]="'medium'" class="me-menu-left_item-icon"></me-icon>
+    <span *ngIf="!collapsed" class="me-menu-left_item-text">{{ item.text }}</span>
+  </div>
+  <div class="me-menu-left_item-right">
+    <div *ngIf="item.badge" class="me-menu-left_item-badge">
+      {{ item.badge }}
+    </div>
+    <me-icon [icon]="item.expanded ? expandedIcon : collapsedIcon" [size]="size" *ngIf="item.items?.length && !collapsed"></me-icon>
+  </div>
+</div>

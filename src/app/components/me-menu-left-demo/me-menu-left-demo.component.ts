@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { meSidebarMenuBottomItems, meSidebarMenuDefaultItems } from './me-sidebar-menu-mock-data';
+import { meMenuLeftBottomItems, meMenuLeftDefaultItems } from './me-menu-left-demo-mock-data';
 
 import { MeSize } from 'src/app/types/types';
 
 @Component({
-  selector: 'me-sidebar-demo',
-  templateUrl: './me-sidebar-demo.component.html',
-  styleUrls: ['./me-sidebar-demo.component.scss']
+  selector: 'me-menu-left-demo',
+  templateUrl: './me-menu-left-demo.component.html',
+  styleUrls: ['./me-menu-left-demo.component.scss']
 })
-export class MeSidebarDemoComponent {
-  items = meSidebarMenuDefaultItems;
-  bottomItems = meSidebarMenuBottomItems;
+export class MeMenuLeftDemoComponent {
+  items = meMenuLeftDefaultItems;
+  bottomItems = meMenuLeftBottomItems;
   title = 'Меню';
   collapsed = false;
   floatMode = false;

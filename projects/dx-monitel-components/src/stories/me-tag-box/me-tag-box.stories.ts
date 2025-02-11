@@ -227,10 +227,13 @@ export const WithLabelRow: StoryObj = {
     props: args,
     template: `
 		<label
+    meLabel
+    labelDirection="row"
+    width="250px"
     >
 		Label*
 			<dx-tag-box
-
+      meTagBox
 			${argsToTemplate(args)}
 				></dx-tag-box>
 		</label>

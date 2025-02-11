@@ -11,8 +11,8 @@ import { MeChipComponent } from './components/me-chip/me-chip.component';
 import { MeChipsComponent } from './components/me-chips/me-chips.component';
 import { MeFileUploaderComponent } from './components/me-file-uploader/me-file-uploader.component';
 import { MeIconComponent } from './components/me-icon/me-icon.component';
+import { MeMenuLeftComponent } from './components/me-menu-left/me-menu-left.component';
 import { MePaginationComponent } from './components/me-pagination/me-pagination.component';
-import { MeSidebarMenuComponent } from './components/me-sidebar-menu/me-sidebar-menu.component';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeSkeletonComponent } from './components/me-skeleton/me-skeleton.component';
 import { MeStatusBarComponent } from './components/me-status-bar/me-status-bar.component';
@@ -112,7 +112,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeAutocompleteModule,
     MeFormModule,
     MeStatusBarComponent,
-    MeSidebarMenuComponent,
+    MeMenuLeftComponent,
     MeNumberBoxModule,
     MeFormItemModule,
   ],
@@ -170,7 +170,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeAutocompleteModule,
     MeFormModule,
     MeStatusBarComponent,
-    MeSidebarMenuComponent,
+    MeMenuLeftComponent,
     MeNumberBoxDirective,
     MeFormItemModule,
   ],

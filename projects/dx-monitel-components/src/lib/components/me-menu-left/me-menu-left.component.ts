@@ -34,29 +34,17 @@ import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-vi
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeSize } from '../../types/types';
 import { MeIconComponent } from '../me-icon/me-icon.component';
-import { MeSidebarMenuItemComponent } from './me-sidebar-menu-item.component';
-
-export interface MeSidebarMenuItem {
-  id: string;
-  text: string;
-  icon?: string;
-  expanded?: boolean;
-  items?: MeSidebarMenuItem[];
-  badge?: number;
-  action?: () => {};
-  selected?: boolean;
-  pressed?: boolean;
-}
+import { MeMenuLeftItem, MeMenuLeftItemComponent } from './me-menu-left-item.component';
 
 interface TreeNode {
   parent?: TreeNode;
   children: TreeNode[];
-  item: MeSidebarMenuItem;
+  item: MeMenuLeftItem;
   active: boolean;
 }
 
 @Component({
-  selector: 'me-sidebar',
+  selector: 'me-menu-left',
   standalone: true,
   imports: [
     CommonModule,
@@ -64,38 +52,40 @@ interface TreeNode {
     DxButtonModule,
     MeIconComponent,
     CdkDrag,
-    MeSidebarMenuItemComponent,
+    MeMenuLeftItemComponent,
     DxContextMenuModule,
     MeContextMenuModule,
     DxScrollViewModule,
     MeScrollViewModule,
   ],
-  templateUrl: 'me-sidebar-menu.component.html',
+  templateUrl: './me-menu-left.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
-  @ViewChild('menuHeader') headerElement!: ElementRef;
-  @ViewChild('menuBottom') bottomElement!: ElementRef;
+export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
+  @ViewChild('menuLeftHeader') menuLeftHeaderElement!: ElementRef;
+  @ViewChild('menuLeftBottom') menuLeftBottomElement!: ElementRef;
   @ViewChild('dragHandleRight') dragHandleRight!: ElementRef;
-  @ViewChild('subMenu') subMenu!: DxContextMenuComponent;
-  @ViewChild('sidebar') sidebar!: ElementRef;
+  @ViewChild('subMenu') subMenuComponent!: DxContextMenuComponent;
+  @ViewChild('menuLeft') menuLeftElement!: ElementRef;
 
   @Input() title: string = '';
-  @Input() collapsed = false;
-  @Input() floatMode = false;
+  @Input() collapsed: boolean = false;
+  @Input() floatMode: boolean = false;
+  @Input() resizeHandleVisible: boolean = true;
+  @Input() withHeader: boolean = true;
   @Input() size: MeSize = 'medium';
-  @Input() toggleIcon = 'drag';
-  @Input() expandedIcon = 'expand_less';
-  @Input() collapsedIcon = 'expand_more';
-  @Input() collapsedWidth = 86;
-  @Input() expandedWidth = 336;
+  @Input() toggleIcon: string = 'drag';
+  @Input() expandedIcon: string = 'expand_less';
+  @Input() collapsedIcon: string = 'expand_more';
+  @Input() collapsedWidth: number = 86;
+  @Input() expandedWidth: number = 336;
 
-  private _items: MeSidebarMenuItem[] = [];
+  private _items: MeMenuLeftItem[] = [];
   @Input()
-  get items(): MeSidebarMenuItem[] {
+  get items(): MeMenuLeftItem[] {
     return this._items;
   }
-  set items(value: MeSidebarMenuItem[]) {
+  set items(value: MeMenuLeftItem[]) {
     this._items = value || [];
     this.nodes = [];
     if (this._items.length) {
@@ -103,12 +93,12 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  private _bottomItems: MeSidebarMenuItem[] = [];
+  private _bottomItems: MeMenuLeftItem[] = [];
   @Input()
-  get bottomItems(): MeSidebarMenuItem[] {
+  get bottomItems(): MeMenuLeftItem[] {
     return this._bottomItems;
   }
-  set bottomItems(value: MeSidebarMenuItem[]) {
+  set bottomItems(value: MeMenuLeftItem[]) {
     this._bottomItems = value || [];
     this.bottomNodes = [];
     if (this._bottomItems.length) {
@@ -126,7 +116,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   }
 
   @Output() collapsedChange = new EventEmitter<boolean>();
-  @Output() itemSelected = new EventEmitter<MeSidebarMenuItem>();
+  @Output() itemSelected = new EventEmitter<MeMenuLeftItem>();
 
   nodes: TreeNode[] = [];
   bottomNodes: TreeNode[] = [];
@@ -178,11 +168,11 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     if (!this.collapsed) {
       const targetRect = this.resizeBoxElement.getBoundingClientRect();
       const translateX = targetRect.x + targetRect.width;
-      const translateY = -targetRect.height;
+
       this.renderer.setStyle(
         this.dragHandleRight.nativeElement,
         'transform',
-        `translate(${translateX}px, ${translateY}px)`
+        `translate(${translateX}px, 0px)`
       );
     }
   }
@@ -192,7 +182,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
   }
 
   get containerElement(): HTMLElement {
-    return this.sidebar.nativeElement;
+    return this.menuLeftElement.nativeElement;
   }
 
   get dragHandleRightElement(): HTMLElement {
@@ -205,7 +195,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     this.renderer.setStyle(dragHandle, 'transform', `translate(${translateX}px, 0)`);
   }
 
-  toggleSidebar(): void {
+  toggleMenuLeft(): void {
     this.collapsed = !this.collapsed;
     this.stateUpdate();
     this.collapsedChange.emit(this.collapsed);
@@ -246,7 +236,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     const targetRect = target.getBoundingClientRect();
     const newWidth = dragRect.left - (targetRect.left - dragRect.width / 2);
     if (newWidth <= this.collapsedWidth) {
-      this.toggleSidebar();
+      this.toggleMenuLeft();
     } else {
       this.width = newWidth;
     }
@@ -259,7 +249,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
       this.updateFlatList();
     }
     if (this.collapsed && item.items && item.items.length > 0) {
-      const targetEl = (event.target as HTMLElement).closest('.me-sidebar_item');
+      const targetEl = (event.target as HTMLElement).closest('.me-menu-left_item');
       if (targetEl) {
         this.showPopup(targetEl, item);
       }
@@ -268,16 +258,16 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  showPopup(target: Element, item: MeSidebarMenuItem): void {
+  showPopup(target: Element, item: MeMenuLeftItem): void {
     const position: PositionConfig = { at: 'right top' };
-    this.subMenu.cssClass = 'me-sidebar-popup';
-    this.subMenu.target = target;
-    this.subMenu.position = position;
-    this.subMenu.dataSource = item.items || [];
-    this.subMenu.visible = true;
+    this.subMenuComponent.cssClass = 'me-menu-left-popup';
+    this.subMenuComponent.target = target;
+    this.subMenuComponent.position = position;
+    this.subMenuComponent.dataSource = item.items || [];
+    this.subMenuComponent.visible = true;
   }
 
-  private itemSelect(item: MeSidebarMenuItem): void {
+  private itemSelect(item: MeMenuLeftItem): void {
     this.clearItemSelected(this._items);
     this.clearItemSelected(this._bottomItems);
     item.selected = true;
@@ -287,7 +277,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  private initNodes(nodes: TreeNode[], items: MeSidebarMenuItem[], parent?: TreeNode): void {
+  private initNodes(nodes: TreeNode[], items: MeMenuLeftItem[], parent?: TreeNode): void {
     items.forEach((item) => {
       const treeNode: TreeNode = {
         item,
@@ -312,7 +302,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     return margin;
   }
 
-  private updateItemExpanded(items: MeSidebarMenuItem[], expanded: boolean): void {
+  private updateItemExpanded(items: MeMenuLeftItem[], expanded: boolean): void {
     items.forEach((item) => {
       item.expanded = expanded;
       if (item.items) {
@@ -321,7 +311,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     });
   }
 
-  private clearItemSelected(items: MeSidebarMenuItem[]): void {
+  private clearItemSelected(items: MeMenuLeftItem[]): void {
     items.forEach((item) => {
       item.selected = false;
       if (item.items) {
@@ -336,7 +326,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     return 24 + mainHeight + bottomHeight;
   }
 
-  calculateItemsMinHeight(items: MeSidebarMenuItem[]): number {
+  calculateItemsMinHeight(items: MeMenuLeftItem[]): number {
     let totalHeight = 0;
     items.forEach((item) => {
       totalHeight += 24;
@@ -395,7 +385,7 @@ export class MeSidebarMenuComponent implements AfterViewInit, OnChanges {
     if (this.nodeFlatList.length && this.activeIndex < this.nodeFlatList.length) {
       const node = this.nodeFlatList[this.activeIndex];
       if (this.collapsed) {
-        const activeElement = this.element.nativeElement.querySelector('.me-sidebar_item-active');
+        const activeElement = this.element.nativeElement.querySelector('.me-menu-left_item-active');
         if (activeElement) {
           this.showPopup(activeElement, node.item);
         }

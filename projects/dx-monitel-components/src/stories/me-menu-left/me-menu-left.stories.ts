@@ -1,18 +1,18 @@
+import { action as menuLeftStories } from '@storybook/addon-actions';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
-import { DxTreeViewModule, DxButtonModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxTextBoxModule, DxTreeViewModule } from 'devextreme-angular';
 
 import {
   MeIconComponent,
-  MeSidebarMenuComponent,
+  MeMenuLeftComponent,
   MeTextBoxDirective,
   MeTreeViewModule,
 } from '../../public-api';
-import { meSidebarMenuBottomItems, meSidebarMenuDefaultItems } from './me-sidebar-menu-mock-data';
+import { meMenuLeftBottomItems, meMenuLeftDefaultItems } from './me-menu-left-mock-data';
 
 export default {
-  title: 'Components/Sidebar',
-  component: MeSidebarMenuComponent,
+  title: 'Components/MenuLeft',
+  component: MeMenuLeftComponent,
   decorators: [
     moduleMetadata({
       declarations: [MeTextBoxDirective],
@@ -30,7 +30,7 @@ export default {
       control: 'object',
       description: 'Список основных элементов меню.',
       table: {
-        type: { summary: 'MeSidebarMenuItem[]' },
+        type: { summary: 'MeMenuLeftItem[]' },
         defaultValue: { summary: '[]' },
       },
     },
@@ -38,7 +38,7 @@ export default {
       control: 'object',
       description: 'Список нижних элементов меню.',
       table: {
-        type: { summary: 'MeSidebarMenuItem[]' },
+        type: { summary: 'MeMenuLeftItem[]' },
         defaultValue: { summary: '[]' },
       },
     },
@@ -56,6 +56,22 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+      },
+    },
+    resizeHandleVisible: {
+      control: 'boolean',
+      description: 'Определяет, будет ли отображаться ручка изменения ширины меню.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    withHeader: {
+      control: 'boolean',
+      description: 'Определяет, будет ли отображаться заголовок меню.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
       },
     },
     floatMode: {
@@ -131,11 +147,13 @@ export default {
     layout: 'fullscreen',
   },
   args: {
-    items: meSidebarMenuDefaultItems,
-    bottomItems: meSidebarMenuBottomItems,
+    items: meMenuLeftDefaultItems,
+    bottomItems: meMenuLeftBottomItems,
     title: 'Меню',
     collapsed: false,
     floatMode: false,
+    withHeader: true,
+    resizeHandleVisible: true,
     size: 'medium',
     toggleIcon: 'chevron_left',
     expandedIcon: 'expand_less',
@@ -147,17 +165,19 @@ export default {
   render: (args) => ({
     props: {
       ...args,
-      onItemSelected: action('onItemSelected'),
-      onCollapsedChange: action('onCollapsedChange'),
+      onItemSelected: menuLeftStories('onItemSelected'),
+      onCollapsedChange: menuLeftStories('onCollapsedChange'),
     },
     template: `
       <div style="display: flex; height: 100%;">
-        <me-sidebar
+        <me-menu-left
           [items]="items"
           [bottomItems]="bottomItems"
           [title]="title"
           [collapsed]="collapsed"
           [floatMode]="floatMode"
+          [withHeader]="withHeader"
+          [resizeHandleVisible]="resizeHandleVisible"
           [size]="size"
           [toggleIcon]="toggleIcon"
           [expandedIcon]="expandedIcon"
@@ -167,7 +187,10 @@ export default {
           [width]="width"
           (itemSelected)="onItemSelected($event)"
           (collapsedChange)="onCollapsedChange($event)">
-        </me-sidebar>
+           <div meMenuLeftHeader>
+            <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
+          </div>
+        </me-menu-left>
         <div style="padding: 36px; color: var(--Text-Default)">
           <p>Тестовая страница</p>
           <span>
@@ -178,9 +201,9 @@ export default {
       </div>
     `,
   }),
-} satisfies Meta<MeSidebarMenuComponent>;
+} satisfies Meta<MeMenuLeftComponent>;
 
-type Story = StoryObj<MeSidebarMenuComponent>;
+type Story = StoryObj<MeMenuLeftComponent>;
 
 export const Default: Story = {};
 
@@ -192,16 +215,18 @@ export const WithCustomHeaderAndSearchBar: Story = {
     props: {
       ...args,
       customTitle: 'Custom Title',
-      onItemSelected: action('onItemSelected'),
-      onCollapsedChange: action('onCollapsedChange'),
+      onItemSelected: menuLeftStories('onItemSelected'),
+      onCollapsedChange: menuLeftStories('onCollapsedChange')
     },
     template: `
       <div style="display: flex; height: 100%;">
-        <me-sidebar
+        <me-menu-left
           [items]="items"
           [bottomItems]="bottomItems"
           [collapsed]="collapsed"
           [floatMode]="floatMode"
+          [withHeader]="withHeader"
+          [resizeHandleVisible]="resizeHandleVisible"
           [size]="size"
           [title]="title"
           [toggleIcon]="toggleIcon"
@@ -212,14 +237,14 @@ export const WithCustomHeaderAndSearchBar: Story = {
           [width]="width"
           (itemSelected)="onItemSelected($event)"
           (collapsedChange)="onCollapsedChange($event)">
-          <div meSidebarHeader class="me-sidebar-custom-header">
-            <div class="me-title-header1">{{ customTitle }}</div>
+          <div meMenuLeftHeader class="me-menu-left-custom-header" [class.me-menu-left--collapsed]="collapsed" >
+            <div class="me-menu-left-custom-header-title me-title-header1">{{ customTitle }}</div>
             <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
           </div>
-          <div meSidebarSearch class="me-sidebar-search">
+          <div meMenuLeftSearch class="me-menu-left-search">
             <dx-text-box meTextBox mode="search" labelMode="hidden" placeholder="Поиск..."></dx-text-box>
           </div>
-        </me-sidebar>
+        </me-menu-left>
         <div style="padding: 36px; color: var(--Text-Default)">
           <p>Тестовая страница</p>
           <span>
@@ -230,20 +255,40 @@ export const WithCustomHeaderAndSearchBar: Story = {
       </div>
     `,
     styles: [`
-    .me-sidebar-custom-header {
+    .me-menu-left-custom-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
       width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .me-sidebar-search {
+    .me-menu-left-custom-header-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .me-menu-left--collapsed .me-menu-left-custom-header-title {
+      display: none;
+    }
+    .me-menu-left--collapsed.me-menu-left-custom-header {
+      justify-content: center;
+    }
+    .me-menu-left-search {
       padding-inline: 12px;
       padding-block: 8px;
       border-bottom: 1px solid #dfe0ed;
     }
   `]
   })
+};
+
+export const WithoutHeader: Story = {
+  args: {
+    withHeader: false
+  }
 };
 
 export const Collapsed: Story = {
@@ -273,6 +318,11 @@ export const MediumSize = {
 export const LargeSize = {
   args: {
     size: 'large',
+  },
+};
+export const WithoutResizeHandle = {
+  args: {
+    resizeHandleVisible: false
   },
 };
 
