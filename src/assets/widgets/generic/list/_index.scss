@@ -48,6 +48,16 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
   $generic-base-inline-borderedwidget-top-padding +
   $generic-base-inline-borderedwidget-bottom-padding + 2 * $generic-base-border-width;
 
+.dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) {
+  box-shadow: none;
+  background-color: #b8bbca;
+
+  &:not(.dx-state-active, .dx-list-item-selected) {
+    background: transparent;
+    box-shadow: inset 0 2px 0 0 var(--Dividers-Borders-Focus), inset 0 -2px 0 0 var(--Dividers-Borders-Focus);
+  }
+}
+
 .dx-list-item-chevron {
   transform: rotate(0);
   border: none;
