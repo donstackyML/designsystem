@@ -653,9 +653,9 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   $label-offset-y: math.div(($border-width + $generic-base-font-size), 2);
   $label-default-transform: translate(0, 0);
 
-  @mixin dx-state($borderColor, $borderStyle) {
+  @mixin dx-state($borderColor, $borderStyle, $outline: none) {
     border: 0;
-    outline: none;
+    outline: $outline;
 
     .dx-texteditor-label {
       height: 100%;
@@ -826,7 +826,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       @include dx-state($texteditor-hover-border-color, solid);
 
       &.dx-invalid {
-        @include dx-state($texteditor-invalid-focused-border-color, solid);
+        @include dx-state($texteditor-invalid-focused-border-color, solid, '');
       }
     }
   }
@@ -891,7 +891,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     &.dx-invalid {
-      @include dx-state($texteditor-invalid-faded-border-color, solid);
+      @include dx-state($texteditor-invalid-faded-border-color, solid, '');
     }
 
     &.dx-state-readonly.dx-state-hover {
@@ -976,7 +976,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       @include dx-state($texteditor-focused-border-color, solid);
 
       &.dx-invalid {
-        @include dx-state($texteditor-invalid-focused-border-color, solid);
+        @include dx-state($texteditor-invalid-focused-border-color, solid, '');
       }
 
       .dx-placeholder {

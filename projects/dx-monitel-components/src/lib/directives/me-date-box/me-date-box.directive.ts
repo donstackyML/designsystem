@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 
 import type DevExpress from 'devextreme';
-import { DxDateBoxComponent } from 'devextreme-angular';
 import type { OpenedEvent } from 'devextreme/ui/date_box';
+import { DxDateBoxComponent } from 'devextreme-angular';
 
 import { ComponentFocusService } from '../../service/component-focus.service';
 import type { MeSize } from '../../types/types';
