@@ -9,14 +9,12 @@ import {
   Optional,
   QueryList,
   Self,
-  ViewChildren,
 } from '@angular/core';
+import type { FormLabelMode, LabelLocation } from 'devextreme/ui/form';
 import { DxFormComponent } from 'devextreme-angular/ui/form';
-import { MeFormItemDirective } from '../me-form-item/me-form-item.directive';
+
 import { FormDataFieldsService } from '../../service/form-datafields.service';
-import { FormLabelMode, LabelLocation } from 'devextreme/ui/form';
-import { LocationChangeEvent } from '@angular/common';
-import { fromEvent } from 'rxjs';
+import { MeFormItemDirective } from '../me-form-item/me-form-item.directive';
 
 type MeFormSize = 'small' | 'medium' | 'large';
 
@@ -47,17 +45,25 @@ export class MeFormDirective implements AfterViewInit, OnDestroy {
   @ContentChildren(MeFormItemDirective, { descendants: true })
   viewChildren!: QueryList<MeFormItemDirective>;
 
-  private readonly formService!: FormDataFieldsService;
+  private _formService: FormDataFieldsService;
   private resizeObserver: ResizeObserver;
 
   constructor(
     public element: ElementRef,
     @Host() @Self() @Optional() public hostFormComponent: DxFormComponent
   ) {
-    this.formService = new FormDataFieldsService();
-    this.resizeObserver = new ResizeObserver((entries) => {
+    this._formService = new FormDataFieldsService();
+    this.resizeObserver = new ResizeObserver(() => {
       this.syncLabelMode();
     });
+  }
+
+  get formService(): FormDataFieldsService {
+    return this._formService;
+  }
+
+  set formService(value: FormDataFieldsService) {
+    this._formService = value ?? new FormDataFieldsService();
   }
 
   ngOnDestroy(): void {
@@ -68,41 +74,27 @@ export class MeFormDirective implements AfterViewInit, OnDestroy {
     this.resizeObserver.observe(this.element.nativeElement);
 
     this.viewChildren.forEach((item) => {
-      item.formService = this.formService;
+      item.formService = this._formService;
     });
 
     this.hostFormComponent.onOptionChanged.subscribe((evt) => {
       switch (evt.name) {
         case 'labelMode':
           {
-            if (evt.value != 'outside') {
+            if (evt.value !== 'outside') {
               this.hostFormComponent.labelLocation = 'top';
             }
-            if (evt.previousValue == 'outside') {
+            if (evt.previousValue === 'outside') {
               this.syncLabelMode();
-              setTimeout(() => {
-                this.syncLabelMode();
-              }, 10);
+              setTimeout(() => this.syncLabelMode(), 10);
             } else {
               this.syncLabelMode();
             }
           }
           break;
         case 'labelLocation':
-          {
-            this.syncLabelMode();
-          }
-          break;
         case 'colCount':
-          {
-            this.syncLabelMode();
-          }
-          break;
         case 'showColonAfterLabel':
-          {
-            this.syncLabelMode();
-          }
-          break;
         case 'formData':
           {
             this.syncLabelMode();

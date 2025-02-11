@@ -1,21 +1,27 @@
-import { DxDateBoxComponent } from 'devextreme-angular';
-
 import {
   Directive,
   ElementRef,
   HostListener,
-  inject,
   Input,
   OnDestroy,
   OnInit,
   Renderer2,
 } from '@angular/core';
 
-import { MeSize } from '../../types/types';
-import { MeFormField } from '../me-form-item/me-form-field';
-import { FocusManagerService } from '../../service/keyboard-navigation.service';
-import { locale } from 'devextreme/localization';
+import type DevExpress from 'devextreme';
+import { DxDateBoxComponent } from 'devextreme-angular';
+import type { OpenedEvent } from 'devextreme/ui/date_box';
+
 import { ComponentFocusService } from '../../service/component-focus.service';
+import type { MeSize } from '../../types/types';
+import { MeFormField } from '../me-form-item/me-form-field';
+
+interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
+  _popup: {
+    _$bottom: HTMLElement[];
+  };
+}
+
 @Directive({
   selector: '[meDateBox]',
   host: {
@@ -33,10 +39,9 @@ import { ComponentFocusService } from '../../service/component-focus.service';
 })
 export class MeDateBoxDirective
   extends MeFormField
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   @Input() size: MeSize = 'medium';
-  @Input() description: string = ''; // Новое свойство description
+  @Input() description: string = '';
 
   private focusService: ComponentFocusService;
   constructor(
@@ -84,37 +89,42 @@ export class MeDateBoxDirective
     return this.size === 'small';
   }
 
-  @HostListener('onOpened', ['$event']) onOpened(e: any) {
-    // Переменные кнопок
-    const submitButton = e.component._popup._$bottom[0].querySelector(
-      '.dx-button.dx-popup-done'
-    );
-    const cancelButton = e.component._popup._$bottom[0].querySelector(
-      '.dx-button.dx-popup-cancel'
-    );
-    const todayButton = e.component._popup._$bottom[0].querySelector(
-      '.dx-button.dx-button-today'
-    );
+  @HostListener('onOpened', ['$event'])
+  onOpened(e: OpenedEvent) {
 
-    //Стилизуем классами кнопки
+    const dateBox = e.component as ExtendedDxDateBox;
 
-    //'Выбрать'
-    this.renderer.addClass(submitButton, 'me-button');
-    this.renderer.addClass(submitButton, `me-button-medium`);
-    this.renderer.addClass(submitButton, 'dx-button-default');
+    const bottomContainer = dateBox._popup?._$bottom?.[0];
 
-    //'Отмена'
-    this.renderer.addClass(cancelButton, 'me-button');
-    this.renderer.addClass(cancelButton, `me-button-medium`);
-    this.renderer.addClass(cancelButton, 'dx-button-mode-text');
-    this.renderer.addClass(cancelButton, 'dx-button-default');
+    if (!bottomContainer) {
+      return;
+    }
 
-    //'Сегодня'
-    this.renderer.addClass(todayButton, 'me-button');
-    this.renderer.addClass(todayButton, `me-button-medium`);
-    this.renderer.addClass(todayButton, 'dx-button-mode-text');
-    this.renderer.addClass(todayButton, 'dx-button-default');
+    const submitButton = bottomContainer.querySelector('.dx-button.dx-popup-done');
+    const cancelButton = bottomContainer.querySelector('.dx-button.dx-popup-cancel');
+    const todayButton = bottomContainer.querySelector('.dx-button.dx-button-today');
+
+    if (submitButton) {
+      this.renderer.addClass(submitButton, 'me-button');
+      this.renderer.addClass(submitButton, 'me-button-medium');
+      this.renderer.addClass(submitButton, 'dx-button-default');
+    }
+
+    if (cancelButton) {
+      this.renderer.addClass(cancelButton, 'me-button');
+      this.renderer.addClass(cancelButton, 'me-button-medium');
+      this.renderer.addClass(cancelButton, 'dx-button-mode-text');
+      this.renderer.addClass(cancelButton, 'dx-button-default');
+    }
+
+    if (todayButton) {
+      this.renderer.addClass(todayButton, 'me-button');
+      this.renderer.addClass(todayButton, 'me-button-medium');
+      this.renderer.addClass(todayButton, 'dx-button-mode-text');
+      this.renderer.addClass(todayButton, 'dx-button-default');
+    }
   }
+
 
   private keyEnterHandle(evt: KeyboardEvent) {
     if (this.component.pickerType != 'native') {

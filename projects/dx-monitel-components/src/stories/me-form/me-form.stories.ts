@@ -126,8 +126,6 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
           </div>
         </dxi-item>
         <dxi-item meFormItem dataField="email">
-<!--          <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>-->
-<!--          <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>-->
           <dxo-label text="Email"></dxo-label>
           <div *dxTemplate>
             <dx-text-box meTextBox [(value)]="formData.email" [size]="size" [readOnly]="readOnly" [disabled]="disabled"  showClearButton="true"></dx-text-box>
