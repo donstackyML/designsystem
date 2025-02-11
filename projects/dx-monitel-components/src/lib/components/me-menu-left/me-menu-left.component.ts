@@ -62,21 +62,23 @@ interface TreeNode {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
-  @ViewChild('menuHeader') headerElement!: ElementRef;
-  @ViewChild('menuBottom') bottomElement!: ElementRef;
+  @ViewChild('menuLeftHeader') menuLeftHeaderElement!: ElementRef;
+  @ViewChild('menuLeftBottom') menuLeftBottomElement!: ElementRef;
   @ViewChild('dragHandleRight') dragHandleRight!: ElementRef;
-  @ViewChild('subMenu') subMenu!: DxContextMenuComponent;
-  @ViewChild('menuLeft') menuLeft!: ElementRef;
+  @ViewChild('subMenu') subMenuComponent!: DxContextMenuComponent;
+  @ViewChild('menuLeft') menuLeftElement!: ElementRef;
 
   @Input() title: string = '';
-  @Input() collapsed = false;
-  @Input() floatMode = false;
+  @Input() collapsed: boolean = false;
+  @Input() floatMode: boolean = false;
+  @Input() resizeHandleVisible: boolean = true;
+  @Input() withHeader: boolean = true;
   @Input() size: MeSize = 'medium';
-  @Input() toggleIcon = 'drag';
-  @Input() expandedIcon = 'expand_less';
-  @Input() collapsedIcon = 'expand_more';
-  @Input() collapsedWidth = 86;
-  @Input() expandedWidth = 336;
+  @Input() toggleIcon: string = 'drag';
+  @Input() expandedIcon: string = 'expand_less';
+  @Input() collapsedIcon: string = 'expand_more';
+  @Input() collapsedWidth: number = 86;
+  @Input() expandedWidth: number = 336;
 
   private _items: MeMenuLeftItem[] = [];
   @Input()
@@ -166,11 +168,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     if (!this.collapsed) {
       const targetRect = this.resizeBoxElement.getBoundingClientRect();
       const translateX = targetRect.x + targetRect.width;
-      const translateY = -targetRect.height;
+
       this.renderer.setStyle(
         this.dragHandleRight.nativeElement,
         'transform',
-        `translate(${translateX}px, ${translateY}px)`
+        `translate(${translateX}px, 0px)`
       );
     }
   }
@@ -180,7 +182,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   get containerElement(): HTMLElement {
-    return this.menuLeft.nativeElement;
+    return this.menuLeftElement.nativeElement;
   }
 
   get dragHandleRightElement(): HTMLElement {
@@ -258,11 +260,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   showPopup(target: Element, item: MeMenuLeftItem): void {
     const position: PositionConfig = { at: 'right top' };
-    this.subMenu.cssClass = 'me-menu-left-popup';
-    this.subMenu.target = target;
-    this.subMenu.position = position;
-    this.subMenu.dataSource = item.items || [];
-    this.subMenu.visible = true;
+    this.subMenuComponent.cssClass = 'me-menu-left-popup';
+    this.subMenuComponent.target = target;
+    this.subMenuComponent.position = position;
+    this.subMenuComponent.dataSource = item.items || [];
+    this.subMenuComponent.visible = true;
   }
 
   private itemSelect(item: MeMenuLeftItem): void {

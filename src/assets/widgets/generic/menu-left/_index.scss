@@ -50,6 +50,7 @@
       justify-content: space-between;
       gap: 16px;
       flex: 1;
+      overflow: hidden;
 
       .notify_icon {
         color: $menu-left_header_icon_notification_color;
@@ -90,17 +91,20 @@
 
   .resize-handle {
     position: absolute;
+    top: 0;
+    bottom: 0;
     width: 8px;
     background: $menu-left_resize_handle_back;
-    cursor: e-resize;
-    opacity: 0;
+    cursor: ew-resize;
     transition: opacity 400ms ease-in-out;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
 
-    &:hover {
-      opacity: 1;
+  &:not(.me-menu-left-visible-resize-handle) {
+    .resize-handle {
+      display: none;
     }
   }
 
@@ -124,11 +128,27 @@
     border-top: 1px solid $menu-left_menu_divider_color;
   }
 
+  &:not(:has(.me-menu-left__header-hidden)) {
+    .me-menu-left__toggle {
+      bottom: -22px;
+      top: auto;
+    }
+  }
+  &:has(.me-menu-left__header-hidden) {
+    .me-menu-left__header-hidden {
+      height: 0;
+
+      .me-menu-left__header-content {
+        display: none;
+      }
+    }
+  }
+
   &__toggle {
     position: absolute;
     right: -14px;
-    bottom: -22px;
     width: 28px;
+    top: 22px;
     height: 28px;
     min-width: 28px;
     background: $menu-left_toggle_normal;

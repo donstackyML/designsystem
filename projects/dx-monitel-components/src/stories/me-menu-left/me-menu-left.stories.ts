@@ -58,6 +58,22 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    resizeHandleVisible: {
+      control: 'boolean',
+      description: 'Определяет, будет ли отображаться ручка изменения ширины меню.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    withHeader: {
+      control: 'boolean',
+      description: 'Определяет, будет ли отображаться заголовок меню.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
     floatMode: {
       control: 'boolean',
       description: 'Включает режим плавающего меню.',
@@ -136,6 +152,8 @@ export default {
     title: 'Меню',
     collapsed: false,
     floatMode: false,
+    withHeader: true,
+    resizeHandleVisible: true,
     size: 'medium',
     toggleIcon: 'chevron_left',
     expandedIcon: 'expand_less',
@@ -158,6 +176,8 @@ export default {
           [title]="title"
           [collapsed]="collapsed"
           [floatMode]="floatMode"
+          [withHeader]="withHeader"
+          [resizeHandleVisible]="resizeHandleVisible"
           [size]="size"
           [toggleIcon]="toggleIcon"
           [expandedIcon]="expandedIcon"
@@ -167,6 +187,9 @@ export default {
           [width]="width"
           (itemSelected)="onItemSelected($event)"
           (collapsedChange)="onCollapsedChange($event)">
+           <div meMenuLeftHeader>
+            <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
+          </div>
         </me-menu-left>
         <div style="padding: 36px; color: var(--Text-Default)">
           <p>Тестовая страница</p>
@@ -193,7 +216,7 @@ export const WithCustomHeaderAndSearchBar: Story = {
       ...args,
       customTitle: 'Custom Title',
       onItemSelected: menuLeftStories('onItemSelected'),
-      onCollapsedChange: menuLeftStories('onCollapsedChange'),
+      onCollapsedChange: menuLeftStories('onCollapsedChange')
     },
     template: `
       <div style="display: flex; height: 100%;">
@@ -202,6 +225,8 @@ export const WithCustomHeaderAndSearchBar: Story = {
           [bottomItems]="bottomItems"
           [collapsed]="collapsed"
           [floatMode]="floatMode"
+          [withHeader]="withHeader"
+          [resizeHandleVisible]="resizeHandleVisible"
           [size]="size"
           [title]="title"
           [toggleIcon]="toggleIcon"
@@ -212,8 +237,8 @@ export const WithCustomHeaderAndSearchBar: Story = {
           [width]="width"
           (itemSelected)="onItemSelected($event)"
           (collapsedChange)="onCollapsedChange($event)">
-          <div meMenuLeftHeader class="me-menu-left-custom-header">
-            <div class="me-title-header1">{{ customTitle }}</div>
+          <div meMenuLeftHeader class="me-menu-left-custom-header" [class.me-menu-left--collapsed]="collapsed" >
+            <div class="me-menu-left-custom-header-title me-title-header1">{{ customTitle }}</div>
             <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
           </div>
           <div meMenuLeftSearch class="me-menu-left-search">
@@ -236,6 +261,20 @@ export const WithCustomHeaderAndSearchBar: Story = {
       align-items: center;
       gap: 12px;
       width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .me-menu-left-custom-header-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .me-menu-left--collapsed .me-menu-left-custom-header-title {
+      display: none;
+    }
+    .me-menu-left--collapsed.me-menu-left-custom-header {
+      justify-content: center;
     }
     .me-menu-left-search {
       padding-inline: 12px;
@@ -244,6 +283,12 @@ export const WithCustomHeaderAndSearchBar: Story = {
     }
   `]
   })
+};
+
+export const WithoutHeader: Story = {
+  args: {
+    withHeader: false
+  }
 };
 
 export const Collapsed: Story = {
@@ -273,6 +318,11 @@ export const MediumSize = {
 export const LargeSize = {
   args: {
     size: 'large',
+  },
+};
+export const WithoutResizeHandle = {
+  args: {
+    resizeHandleVisible: false
   },
 };
 

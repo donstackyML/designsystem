@@ -22412,6 +22412,7 @@ input.dx-hidden {
   justify-content: space-between;
   gap: 16px;
   flex: 1;
+  overflow: hidden;
 }
 .me-menu-left__header-content .notify_icon {
   color: #ffffff;
@@ -22444,17 +22445,18 @@ input.dx-hidden {
 }
 .me-menu-left .resize-handle {
   position: absolute;
+  top: 0;
+  bottom: 0;
   width: 8px;
   background: #43444c;
-  cursor: e-resize;
-  opacity: 0;
+  cursor: ew-resize;
   transition: opacity 400ms ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.me-menu-left .resize-handle:hover {
-  opacity: 1;
+.me-menu-left:not(.me-menu-left-visible-resize-handle) .resize-handle {
+  display: none;
 }
 .me-menu-left .me-menu-left__list {
   padding: 0;
@@ -22472,11 +22474,21 @@ input.dx-hidden {
   margin-top: 2px;
   border-top: 1px solid #3f4044;
 }
+.me-menu-left:not(:has(.me-menu-left__header-hidden)) .me-menu-left__toggle {
+  bottom: -22px;
+  top: auto;
+}
+.me-menu-left:has(.me-menu-left__header-hidden) .me-menu-left__header-hidden {
+  height: 0;
+}
+.me-menu-left:has(.me-menu-left__header-hidden) .me-menu-left__header-hidden .me-menu-left__header-content {
+  display: none;
+}
 .me-menu-left__toggle {
   position: absolute;
   right: -14px;
-  bottom: -22px;
   width: 28px;
+  top: 22px;
   height: 28px;
   min-width: 28px;
   background: #43444c;
