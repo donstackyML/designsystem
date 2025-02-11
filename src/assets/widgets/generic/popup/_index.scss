@@ -155,31 +155,11 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   padding: 0;
 }
 
-// .me-popup .me-popup .dx-closebutton {
-//   padding: 5px;
-
-//   & .dx-button-content {
-//     display: flex;
-//     padding: 5px;
-//     height: auto;
-
-//     & .dx-icon-close {
-//       background-image: $popup-close-icon-image;
-//       background-position: center center;
-//       background-repeat: no-repeat;
-//       background-size: contain;
-//       width: 10px;
-//       height: 10px;
-//     }
-//   }
-// }
-
 .me-popup {
   .me-popup-header {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 4px 0;
     gap: 8px;
 
     & .dx-button.me-button {
@@ -201,12 +181,19 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     gap: 12px;
   }
 
+  .dx-toolbar-before,
+  .dx-toolbar-items-container {
+    position: static;
+  }
+
+
   & .dx-popup-bottom.dx-toolbar {
     & .dx-toolbar-center {
       justify-content: center;
     }
 
     & .dx-toolbar-items-container {
+      position: auto;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -255,10 +242,6 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   & .dx-popup-title {
     padding: 16px 12px 12px 20px;
 
-    // &.dx-has-close-button {
-    //   padding-bottom: 8px;
-    // }
-
     & .dx-toolbar-label {
       line-height: 24px;
       font-weight: 600;
@@ -273,14 +256,16 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
       display: flex;
       gap: 8px;
       height: 32px;
+      right: 12px;
+      top: 12px;
     }
 
     & .dx-toolbar-before {
-      height: 32px;
+      height: 24px;
     }
 
     & .dx-toolbar-items-container {
-      height: 32px;
+      height: 24px;
     }
   }
 
@@ -333,10 +318,6 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   & .dx-popup-title {
     padding: 20px 15px 16px 24px;
 
-    // &.dx-has-close-button {
-    //   padding-bottom: 11px;
-    // }
-
     & .dx-toolbar-label {
       font-size: 24px;
       line-height: 30px;
@@ -352,14 +333,16 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
       display: flex;
       gap: 8px;
       height: 40px;
+      right: 15px;
+      top: 15px;
     }
 
     & .dx-toolbar-before {
-      height: 40px;
+      height: 30px;
     }
 
     & .dx-toolbar-items-container {
-      height: 40px;
+      height: 30px;
     }
   }
 
@@ -440,74 +423,4 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   display: flex;
   margin-left: auto;
   gap: 8px;
-}
-
-.me-popup {
-  .me-popup-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-top: 4px;
-    gap: 8px;
-
-    & .dx-button.me-button {
-      margin-left: auto;
-      align-self: flex-start;
-      margin-top: -4px;
-    }
-
-    .me-popup-title {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-  }
-
-  & .dx-toolbar-after,
-  & .dx-toolbar-before,
-  & .dx-toolbar-center {
-    gap: 12px;
-  }
-
-  & .dx-popup-bottom.dx-toolbar {
-    & .dx-toolbar-center {
-      justify-content: center;
-    }
-
-    & .dx-toolbar-items-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      height: auto;
-      gap: 12px 12px;
-
-      & .dx-toolbar-after,
-      & .dx-toolbar-before,
-      & .dx-toolbar-center {
-        flex-wrap: wrap;
-        position: static;
-        padding: 0;
-        max-width: 100%;
-        display: flex;
-      }
-
-      & .dx-toolbar-center {
-        margin: 0 !important;
-      }
-
-      & .dx-toolbar-item {
-        max-width: 100%;
-
-        & .me-button-inner {
-          max-width: 100%;
-
-          & .dx-button-text {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-        }
-      }
-    }
-  }
 }
