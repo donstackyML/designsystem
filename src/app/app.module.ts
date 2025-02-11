@@ -16,13 +16,16 @@ import {
   MeChipsComponent,
   MeContextMenuModule,
   MeDataGridModule,
+  MeDateBoxModule,
   MeDropDownButtonModule,
   MeFileUploaderModule,
   MeFormItemModule,
+  MeFormModule,
   MeIconComponent,
   MeListModule,
   MeLoadIndicatorModule,
   MeLoadPanelModule,
+  MeMenuLeftComponent,
   MeMenuModule,
   MePaginationComponent,
   MePivotGridModule,
@@ -43,9 +46,6 @@ import {
   MeTooltipModule,
   MeTreeListModule,
   MeTreeViewModule,
-  MeDateBoxModule,
-  MeFormModule,
-  MeSidebarMenuComponent,
 } from '../../projects/dx-monitel-components/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -53,8 +53,8 @@ import { AppComponent } from './app.component';
 
 import { MeAccordionComponent } from './components/me-accordion/me-accordion.component';
 import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
-import { MeButtonComponent } from './components/me-button/me-button.component';
 import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
+import { MeButtonComponent } from './components/me-button/me-button.component';
 import { MeCalendarComponent } from './components/me-calendar/me-calendar.component';
 import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
@@ -64,17 +64,17 @@ import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-d
 import { MeFormComponent } from './components/me-form/me-form.component';
 import { MeIconResearchComponent } from './components/me-icon-research/me-icon-research.component';
 import { MeListComponent } from './components/me-list/me-list.component';
-import { MeLoadingIndicatorComponent } from './components/me-loading-indicator/me-loading-indicator.component';
 import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
+import { MeLoadingIndicatorComponent } from './components/me-loading-indicator/me-loading-indicator.component';
+import { MeMenuLeftDemoComponent } from './components/me-menu-left-demo/me-menu-left-demo.component';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
 import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
 import { MePopoverComponent } from './components/me-popover/me-popover.component';
 import { MePopupComponent } from './components/me-popup/me-popup.component';
 import { MeRadioGroupComponent } from './components/me-radio-group/me-radio-group.component';
 import { MeSelectBoxComponent } from './components/me-select-box/me-select-box.component';
-import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeSidepageDemo } from './components/me-sidepage-demo/me-sidepage.demo';
-import { MeSidebarDemoComponent } from './components/me-sidebar-demo/me-sidebar-demo.component';
+import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeSwitchComponent } from './components/me-switch/me-switch.component';
 import { MeTabPanelComponent } from './components/me-tab-panel/me-tab-panel.component';
 import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
@@ -122,7 +122,7 @@ import { MeToastDirective } from './directives/toast.directive';
     MePopupComponent,
     MeRadioGroupComponent,
     MeSelectBoxComponent,
-    MeSidebarDemoComponent,
+    MeMenuLeftDemoComponent,
     MeSidepageComponent,
     MeSidepageDemo,
     MeSwitchComponent,
@@ -150,7 +150,7 @@ import { MeToastDirective } from './directives/toast.directive';
   imports: [
     ReactiveFormsModule,
     BrowserModule,
-    MeSidebarMenuComponent,
+    MeMenuLeftComponent,
     AppRoutingModule,
     DevExtremeModule,
     DxDateBoxModule,

@@ -1,18 +1,18 @@
+import { action as menuLeftStories } from '@storybook/addon-actions';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
-import { DxTreeViewModule, DxButtonModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxTextBoxModule, DxTreeViewModule } from 'devextreme-angular';
 
 import {
   MeIconComponent,
-  MeSidebarMenuComponent,
+  MeMenuLeftComponent,
   MeTextBoxDirective,
   MeTreeViewModule,
 } from '../../public-api';
-import { meSidebarMenuBottomItems, meSidebarMenuDefaultItems } from './me-sidebar-menu-mock-data';
+import { meMenuLeftBottomItems, meMenuLeftDefaultItems } from './me-menu-left-mock-data';
 
 export default {
-  title: 'Components/Sidebar',
-  component: MeSidebarMenuComponent,
+  title: 'Components/MenuLeft',
+  component: MeMenuLeftComponent,
   decorators: [
     moduleMetadata({
       declarations: [MeTextBoxDirective],
@@ -30,7 +30,7 @@ export default {
       control: 'object',
       description: 'Список основных элементов меню.',
       table: {
-        type: { summary: 'MeSidebarMenuItem[]' },
+        type: { summary: 'MeMenuLeftItem[]' },
         defaultValue: { summary: '[]' },
       },
     },
@@ -38,7 +38,7 @@ export default {
       control: 'object',
       description: 'Список нижних элементов меню.',
       table: {
-        type: { summary: 'MeSidebarMenuItem[]' },
+        type: { summary: 'MeMenuLeftItem[]' },
         defaultValue: { summary: '[]' },
       },
     },
@@ -131,8 +131,8 @@ export default {
     layout: 'fullscreen',
   },
   args: {
-    items: meSidebarMenuDefaultItems,
-    bottomItems: meSidebarMenuBottomItems,
+    items: meMenuLeftDefaultItems,
+    bottomItems: meMenuLeftBottomItems,
     title: 'Меню',
     collapsed: false,
     floatMode: false,
@@ -147,12 +147,12 @@ export default {
   render: (args) => ({
     props: {
       ...args,
-      onItemSelected: action('onItemSelected'),
-      onCollapsedChange: action('onCollapsedChange'),
+      onItemSelected: menuLeftStories('onItemSelected'),
+      onCollapsedChange: menuLeftStories('onCollapsedChange'),
     },
     template: `
       <div style="display: flex; height: 100%;">
-        <me-sidebar
+        <me-menu-left
           [items]="items"
           [bottomItems]="bottomItems"
           [title]="title"
@@ -167,7 +167,7 @@ export default {
           [width]="width"
           (itemSelected)="onItemSelected($event)"
           (collapsedChange)="onCollapsedChange($event)">
-        </me-sidebar>
+        </me-menu-left>
         <div style="padding: 36px; color: var(--Text-Default)">
           <p>Тестовая страница</p>
           <span>
@@ -178,9 +178,9 @@ export default {
       </div>
     `,
   }),
-} satisfies Meta<MeSidebarMenuComponent>;
+} satisfies Meta<MeMenuLeftComponent>;
 
-type Story = StoryObj<MeSidebarMenuComponent>;
+type Story = StoryObj<MeMenuLeftComponent>;
 
 export const Default: Story = {};
 
@@ -192,12 +192,12 @@ export const WithCustomHeaderAndSearchBar: Story = {
     props: {
       ...args,
       customTitle: 'Custom Title',
-      onItemSelected: action('onItemSelected'),
-      onCollapsedChange: action('onCollapsedChange'),
+      onItemSelected: menuLeftStories('onItemSelected'),
+      onCollapsedChange: menuLeftStories('onCollapsedChange'),
     },
     template: `
       <div style="display: flex; height: 100%;">
-        <me-sidebar
+        <me-menu-left
           [items]="items"
           [bottomItems]="bottomItems"
           [collapsed]="collapsed"
@@ -212,14 +212,14 @@ export const WithCustomHeaderAndSearchBar: Story = {
           [width]="width"
           (itemSelected)="onItemSelected($event)"
           (collapsedChange)="onCollapsedChange($event)">
-          <div meSidebarHeader class="me-sidebar-custom-header">
+          <div meMenuLeftHeader class="me-menu-left-custom-header">
             <div class="me-title-header1">{{ customTitle }}</div>
             <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
           </div>
-          <div meSidebarSearch class="me-sidebar-search">
+          <div meMenuLeftSearch class="me-menu-left-search">
             <dx-text-box meTextBox mode="search" labelMode="hidden" placeholder="Поиск..."></dx-text-box>
           </div>
-        </me-sidebar>
+        </me-menu-left>
         <div style="padding: 36px; color: var(--Text-Default)">
           <p>Тестовая страница</p>
           <span>
@@ -230,14 +230,14 @@ export const WithCustomHeaderAndSearchBar: Story = {
       </div>
     `,
     styles: [`
-    .me-sidebar-custom-header {
+    .me-menu-left-custom-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
       width: 100%;
     }
-    .me-sidebar-search {
+    .me-menu-left-search {
       padding-inline: 12px;
       padding-block: 8px;
       border-bottom: 1px solid #dfe0ed;

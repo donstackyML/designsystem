@@ -1,6 +1,6 @@
-import { MeSidebarMenuItem } from '../../lib/components/me-sidebar-menu/me-sidebar-menu.component';
+import { MeMenuLeftItem } from '../../lib/components/me-menu-left/me-menu-left-item.component';
 
-export const meSidebarMenuDefaultItems: MeSidebarMenuItem[] = [
+export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'tasks',
     text: 'Задачи',
@@ -66,7 +66,7 @@ export const meSidebarMenuDefaultItems: MeSidebarMenuItem[] = [
   },
 ];
 
-export const meSidebarMenuBottomItems: MeSidebarMenuItem[] = [
+export const meMenuLeftBottomItems: MeMenuLeftItem[] = [
   {
     id: 'downloads',
     text: 'Загрузки',

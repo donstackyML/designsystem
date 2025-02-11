@@ -1,14 +1,14 @@
 import { Figma } from "@storybook/addon-designs/blocks";
 import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
-import * as sidebarStories from './me-sidebar-menu.stories';
+import * as menuLeftStories from './me-menu-left.stories';
 
-<Meta name="Sidebar Documentation" of={sidebarStories} />
+<Meta name="MenuLeft Documentation" of={menuLeftStories} />
 
-# Sidebar
+# Menu Left
 
-## Компонент `me-sidebar`
+## Компонент `me-menu-left`
 
-Компонент `me-sidebar` — это универсальный контейнер для отображения информации в виде карточки. Компонент использует архитектуру слотов, позволяющую гибко распределять контент по следующим областям:
+Компонент `me-menu-left` — это универсальный контейнер для отображения информации в виде карточки. Компонент использует архитектуру слотов, позволяющую гибко распределять контент по следующим областям:
 
 ## API
 
@@ -16,20 +16,20 @@ import * as sidebarStories from './me-sidebar-menu.stories';
 
 | Название слота    | Описание                                                                            |
 | ----------------- | ----------------------------------------------------------------------------------- |
-| `meSidebarHeader` | Контейнер для верхней части меню, например, заголовка или иконок.                   |
-| `meSidebarSearch` | Слот для области поиска. Размещается между заголовком и основным списком элементов. |
+| `meMenuLeftHeader` | Контейнер для верхней части меню, например, заголовка или иконок.                   |
+| `meMenuLeftSearch` | Слот для области поиска. Размещается между заголовком и основным списком элементов. |
 
-### Интерфейс MeSidebarMenuItem
+### Интерфейс MeMenuLeftItem
 
 <Source
   language="typescript"
   code={`
-interface MeSidebarMenuItem =  {
+interface MeMenuLeftItem =  {
   id: string;
   text: string;
   icon?: string;
   expanded?: boolean;
-  items?: MeSidebarMenuItem[];
+  items?: MeMenuLeftItem[];
   badge?: number;
   action?: () => {};
   selected?: boolean;
@@ -37,7 +37,7 @@ interface MeSidebarMenuItem =  {
 }
 `} />
 
-<Controls of={sidebarStories.Default} />
+<Controls of={menuLeftStories.Default} />
 
 ## Дизайн
 
@@ -59,16 +59,16 @@ interface MeSidebarMenuItem =  {
 
 ### Обычное использование
 
-<Canvas of={sidebarStories.Default} />
+<Canvas of={menuLeftStories.Default} />
 
 <Source
   code={`
- <me-sidebar
+ <me-menu-left
     [items]="items"
     [bottomItems]="bottomItems"
     title="Меню"
     collapsed="true"
-</me-sidebar>
+</me-menu-left>
 `}
   language="html"
   dark
@@ -78,15 +78,15 @@ interface MeSidebarMenuItem =  {
 
 <Source
   code={`
-<me-sidebar [items]="items" [collapsed]="false">
+<me-menu-left [items]="items" [collapsed]="false">
   <div header>
     <me-icon icon="menu" size="large"></me-icon>
-    <span class="sidebar-title">Мое меню</span>
+    <span class="menu-left-title">Мое меню</span>
   </div>
-  <div meSidebarHeader>
+  <div meMenuLeftHeader>
     <input type="text" placeholder="Поиск..." />
   </div>
-</me-sidebar>
+</me-menu-left>
 `}
   language="html"
   dark
@@ -94,7 +94,7 @@ interface MeSidebarMenuItem =  {
 
 ### Свёрнутое состояние
 
-<Canvas of={sidebarStories.Collapsed} />
+<Canvas of={menuLeftStories.Collapsed} />
 
 ### Примеры использования контента
 
@@ -103,7 +103,7 @@ interface MeSidebarMenuItem =  {
 <Source
 
   code={`
-const menuItems: MeSidebarMenuItem[] = [
+const menuItems: MeMenuLeftItem[] = [
   {
     id: 'tasks',
     text: 'Задачи',
@@ -134,7 +134,7 @@ const menuItems: MeSidebarMenuItem[] = [
 
 <Source
   code={`
-const menuItems: MeSidebarMenuItem[] = [
+const menuItems: MeMenuLeftItem[] = [
   {
     text: 'Главная',
     icon: 'home',
