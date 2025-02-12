@@ -34,7 +34,7 @@ export class MeFormItemDirective implements AfterViewInit {
     return this._formService;
   }
 
-  set formService(value: FormDataFieldsService) {
+  set formService(value: FormDataFieldsService | undefined) {
     this._formService = value;
     this._subscription?.unsubscribe();
     if (value) {
