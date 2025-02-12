@@ -113,7 +113,7 @@ import { MeButtonDirective, MePopoverDirective } from '../../public-api';
     `,
   ],
 })
-export class PopoverDemoComponent {
+class PopoverDemoComponent {
   @Input() triggerText: string = 'Наведите для показа поповера';
   @Input() size: string = 'medium';
   @Input() colorMode: string = 'dark';
@@ -324,7 +324,19 @@ export const DefaultWithCloseButton: Story = {
       <dx-popover
         mePopover
         target="#popoverTarget"
-        ${argsToTemplate(args)}
+        [size]="size"
+        [colorMode]="colorMode"
+        [showEvent]="showEvent"
+        [hideEvent]="hideEvent"
+        [width]="width"
+        [showTitle]="showTitle"
+        [title]="title"
+        [position]="position"
+        [shading]="shading"
+        [shadingColor]="shadingColor"
+        [showCloseButton]="showCloseButton"
+        [hideOnOutsideClick]="hideOnOutsideClick"
+        [enableBodyScroll]="enableBodyScroll"
       >
         <div *dxTemplate="let data of 'content'">
           {{ content }}
