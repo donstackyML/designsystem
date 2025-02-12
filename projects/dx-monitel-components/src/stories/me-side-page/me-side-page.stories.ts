@@ -15,7 +15,7 @@ import {
 } from '../../public-api';
 
 @Component({
-  selector: 'sidepage-demo',
+  selector: 'me-side-page-demo',
   template: `
     <me-sidepage
       #meSidePage
@@ -114,12 +114,18 @@ import {
       </div>
     </me-sidepage>
 
-    <dx-button
+   <main class='main-content'>
+     <dx-button
       meButton
       text="Открыть настройки"
       stylingMode="contained"
       (onClick)="toggleSidePage()"
-    ></dx-button>
+
+      ></dx-button>
+      <div class="big-content">
+        Какой-то контент на странице
+      </div>
+  </main>
   `,
   styles: [
     `
@@ -142,10 +148,28 @@ import {
       :host ::ng-deep .dx-menu-vertical .dx-menu-item-wrapper {
         width: 100%;
       }
+
+      .main-content {
+        height: calc(100dvh + 300px);
+
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .dx-widget.me-button {
+          align-self: flex-start;
+        }
+      }
+      .big-content {
+        background-color: rgba(240, 244, 255);
+        padding: 24px;
+        flex-grow: 1;
+        border-radius: 6px;
+      }
     `,
   ],
 })
-class SidePageComponent {
+class MeSidePageDemoComponent {
   @ViewChild('meSidePage', { static: false }) meSidePage!: MeSidepageComponent;
 
   @Input() hideOnOutsideClick: boolean = false;
@@ -196,14 +220,14 @@ class SidePageComponent {
 }
 
 export default {
-  title: 'Monitel Components/SidePage',
-  component: SidePageComponent,
+  title: 'Components/SidePage',
+  component: MeSidePageDemoComponent,
   decorators: [
     moduleMetadata({
       declarations: [
         DxButtonComponent,
         MeButtonDirective,
-        SidePageComponent,
+        MeSidePageDemoComponent,
         DxCheckBoxComponent,
         MeCheckBoxDirective,
         MeLabelDirective,
@@ -235,9 +259,9 @@ export default {
       description: 'Скрывает side page при клике вне компонента.',
     },
   },
-} as Meta<SidePageComponent>;
+} as Meta<MeSidePageDemoComponent>;
 
-type Story = StoryObj<SidePageComponent>;
+type Story = StoryObj<MeSidePageDemoComponent>;
 
 export const Default: Story = {
   args: {

@@ -131,8 +131,8 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
     this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
 
     if (this.position === 'right') {
-      this.startPosition = 'calc(100vw)';
-      this.endPosition = 'calc(100vw - 100%)';
+      this.startPosition = 'calc(100dvw)';
+      this.endPosition = 'calc(100dvw - 100%)';
     }
 
     this.renderer.setStyle(
@@ -203,13 +203,19 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
     this.isSidePageOpenChange.emit(this.isSidePageOpen);
   }
 
+  getScrollbarWidth() {
+    return window.innerWidth - document.documentElement.clientWidth;
+  }
+
   toggleSidePage(): void {
     if (this.isSidePageOpen) {
+      const scrollbarWidth = this.getScrollbarWidth();
       this.renderer.setStyle(
         this.element.nativeElement,
         'transform',
-        `translateX(${this.endPosition})`
+        `translateX(calc(${this.endPosition} - ${scrollbarWidth}px))`
       );
+
 
       this.renderer.addClass(this.element.nativeElement, 'me-sidepage-open');
 
@@ -240,6 +246,7 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
     this.overlay = this.renderer.createElement('div');
     this.renderer.addClass(this.overlay, 'me-overlay');
     this.renderer.setStyle(this.overlay, 'z-index', this.zIndexOverlay);
+    this.renderer.setStyle(this.overlay, 'position', 'fixed');
     this.renderer.appendChild(document.body, this.overlay);
   }
 
