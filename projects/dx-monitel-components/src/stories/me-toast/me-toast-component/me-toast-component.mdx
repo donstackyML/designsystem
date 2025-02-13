@@ -1,0 +1,132 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as toastComponentStories from "./me-toast-component.stories";
+
+<Meta
+  name="Toast Component Documentation"
+  of={toastComponentStories}
+/>
+
+# Toast
+
+## Компонент `me-toast`
+
+Компонент `me-toast` расширяет функциональность базового уведомления, предоставляемого директивой `meToast`, которая адаптирует компонент `dx-toast` под требования дизайн-системы. Он позволяет задавать заголовок через свойство `title` и использовать интерактивные кнопки с событиями `onAccept`, `onCancel` и `onClose`. При этом поддерживаются все свойства базового компонента, такие как `message`, `visible`, `type`, `size`, `showIcon`, `position` и `displayTime`. Используйте этот компонент, когда необходимо не только информировать пользователя, но и предоставлять ему возможность взаимодействия с уведомлением.
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxToast/api"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Toast/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+<Canvas name="Default" of={toastComponentStories.Default} />
+<Controls of={toastComponentStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=524-24751&m=dev"
+/>
+
+## Примеры использования
+
+- [Обычный информационный тост](#обычный-информационный-тост)
+- [Расширенный тост с заголовком](#расширенный-тост-с-заголовком)
+- [Интерактивный тост с кнопками действий](#интерактивный-тост-с-кнопками-действий)
+- [Тост с пользовательским контентом](#тост-с-пользовательским-контентом)
+
+### Обычный информационный тост
+
+Используется базовый тост без заголовка для простых уведомлений.
+
+<Canvas name="Default" of={toastComponentStories.ContentOnlyMessage} />
+<Source
+  code={`<dx-toast
+  meToast
+  [visible]="visible"
+  type="info"
+  message="Операция выполнена успешно"
+>
+</dx-toast>`}
+  dark
+  language="html"
+/>
+
+### Расширенный тост с заголовком
+
+Добавление заголовка делает уведомление более информативным.
+
+<Canvas name="Default" of={toastComponentStories.SizeSmall} />
+<Source
+  code={`<me-toast
+  [visible]="visible"
+  type="info"
+  message="Операция выполнена успешно"
+  title="Информация"
+>
+</me-toast>`}
+  dark
+  language="html"
+/>
+
+### Интерактивный тост с кнопками действий
+
+Предоставляет пользователю возможность принять или отменить действие непосредственно из уведомления.
+
+<Canvas name="Default" of={toastComponentStories.WithActionButtons} />
+<Source
+  code={`<me-toast
+  [visible]="visible"
+  type="warning"
+  message="Внимание! Требуется подтверждение."
+  title="Подтверждение"
+  showActionButtons="true"
+  (onAccept)="handleAccept()"
+  (onCancel)="handleCancel()"
+  (onClose)="handleClose()"
+>
+</me-toast>`}
+  dark
+  language="html"
+/>
+
+### Тост с пользовательским контентом
+
+Этот вариант уведомления позволяет полностью настроить его содержимое с помощью собственного шаблона. Для его использования необходимо задать свойству type значение custom и передать ссылку на шаблон через свойство template. Это решение идеально подходит для интеграции индивидуальных элементов управления и кастомизированных стилей в уведомление.
+
+<Canvas name="Default" of={toastComponentStories.CustomContent} />
+<Source
+  code={`
+<me-toast
+  type="custom"
+  [visible]="visible"
+  [template]="customTemplate"
+>
+</me-toast>
+
+<ng-template #customTemplate let-content="content">
+  <div class='custom-content'>
+    <h4 class="me-title-header2">{{ title }}</h4>
+    <p class="me-text-body2">{{ message }}</p>
+    <div class="actions">
+      <dx-button meButton text="Принять" (click)="handleAccept()"></dx-button>
+      <dx-button meButton text="Отмена" (click)="handleCancel()"></dx-button>
+    </div>
+  </div>
+</ng-template>`}
+  dark
+  language="html"
+/>

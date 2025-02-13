@@ -81,7 +81,7 @@ import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
 import { MeTagBoxComponent } from './components/me-tag-box/me-tag-box.component';
 import { MeTextAreaComponent } from './components/me-text-area/me-text-area.component';
 import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
-import { MeToastComponent as MeToastDemoComponent } from './components/me-toast/me-toast.component';
+import { MeToastDemoComponent } from './components/me-toast-demo/me-toast-demo.component';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';

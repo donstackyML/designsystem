@@ -1,0 +1,100 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as toastDirectiveStories from "./me-toast-directive.stories";
+
+<Meta
+  name="Toast Directive Documentation"
+  of={toastDirectiveStories}
+/>
+
+# Toast
+
+## Директива `meToast`
+
+Директива `meToast` адаптирует базовый компонент `dx-toast` под требования вашей дизайн-системы, добавляя новые свойства, такие как `size` и `showIcon`. По умолчанию иконка отключена (`showIcon: false`), размер уведомления — `small`, а тип — `info`. Эта директива предназначена для случаев, когда нужна минимальная кастомизация стандартного уведомления, сохраняя его базовую функциональность.
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxToast/api"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Toast/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+<Canvas name="Default" of={toastDirectiveStories.Default} />
+<Controls of={toastDirectiveStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=524-24751&m=dev"
+/>
+
+## Примеры использования
+
+### Базовый тост с информацией
+
+Используется стандартное уведомление для вывода сообщения об успешном выполнении операции.
+
+<Canvas name="Default" of={toastDirectiveStories.SizeSmall} />
+
+<Source
+  code={`<dx-toast
+  meToast
+  [visible]="visible"
+  type="info"
+  message="Операция выполнена успешно"
+>
+</dx-toast>`}
+  dark
+  language="html"
+/>
+
+### Тост с иконкой
+
+В этом примере уведомлению задается увеличенный размер и включается отображение иконки для повышения визуальной выразительности.
+
+<Canvas name="Default" of={toastDirectiveStories.WithIcon} />
+<Source
+  code={`<dx-toast
+  meToast
+  [visible]="visible"
+  type="warning"
+  message="Проверьте введенные данные"
+  size="large"
+  [showIcon]="true"
+>
+</dx-toast>`}
+  dark
+  language="html"
+/>
+
+### Тост большого размера
+
+В этом примере уведомлению задается увеличенный размер и включается отображение иконки для повышения визуальной выразительности.
+
+<Canvas name="Default" of={toastDirectiveStories.SizeLarge} />
+<Source
+  code={`<dx-toast
+  meToast
+  [visible]="visible"
+  type="warning"
+  message="Проверьте введенные данные"
+  size="large"
+  [showIcon]="true"
+>
+</dx-toast>`}
+  dark
+  language="html"
+/>
