@@ -1,12 +1,46 @@
-<dx-toast meToast #dxToast [(visible)]="visible" [size]="size" [type]="setToastType()" [position]="position" [displayTime]="displayTime">
-  <div *dxTemplate="let data of 'content'" class="me-toast-content">
+<dx-toast
+  #dxToast
+  meToast
+  [size]="size"
+  [width]="width"
+  [maxWidth]="maxWidth"
+  [minWidth]="minWidth"
+  [height]="height"
+  [maxHeight]="maxHeight"
+  [minHeight]="minHeight"
+  [type]="setToastType()"
+  [position]="position"
+  [visible]="visible"
+  [displayTime]="displayTime"
+  [closeOnClick]="closeOnClick"
+  [hideOnOutsideClick]="hideOnOutsideClick"
+  [closeOnSwipe]="closeOnSwipe"
+  [hoverStateEnabled]="hoverStateEnabled"
+  [animation]="animation"
+  (onContentReady)="onContentReady.emit($event)"
+  (onDisposing)="onDisposing.emit($event)"
+  (onHidden)="onHidden.emit($event)"
+  (onHiding)="onHiding.emit($event)"
+  (onInitialized)="onInitialized.emit($event)"
+  (onOptionChanged)="onOptionChanged.emit($event)"
+  (onShowing)="onShowing.emit($event)"
+  (onShown)="onShown.emit($event)"
+>
+  <div *dxTemplate="let item of 'content'">
+    <ng-template [ngTemplateOutlet]="template || defaultTemplate"></ng-template>
+  </div>
+</dx-toast>
+
+<ng-template #defaultTemplate let-item="content">
+  <div class="me-toast-content">
     <div class="me-toast-header">
-      <me-icon [icon]="statusIcon()" class="me-toast-icon" [size]="size"></me-icon>
+      <me-icon *ngIf="showIcon" [icon]="statusIcon()" class="me-toast-icon" [size]="size"></me-icon>
       <div class="me-toast-header-content">
-        <div class="me-toast-header-title">{{ title }}</div>
-        <div class="me-toast-header-message">{{ message }}</div>
+        <div *ngIf="title" class="me-toast-header-title">{{ title }}</div>
+        <div *ngIf="message" class="me-toast-header-message">{{ message }}</div>
       </div>
       <dx-button
+        *ngIf="showCloseButton"
         meButton
         class="me-toast-close-button"
         iconOnly="close"
@@ -16,24 +50,26 @@
         (onClick)="handleClose()"
       ></dx-button>
     </div>
-    <hr class="me-toast-divider" />
-    <div class="me-toast-actions">
-      <dx-button
-        meButton
-        text="Принять"
-        [size]="actionButtonStyles().size"
-        [type]="actionButtonStyles().type"
-        stylingMode="contained"
-        (onClick)="handleAccept()"
-      ></dx-button>
-      <dx-button
-        meButton
-        text="Отменить"
-        [size]="actionButtonStyles().size"
-        [type]="actionButtonStyles().type"
-        [stylingMode]="actionButtonStyles().cancelButtonStylingMode"
-        (onClick)="handleCancel()"
-      ></dx-button>
-    </div>
+    <ng-container *ngIf="showActionButtons">
+      <hr class="me-toast-divider" />
+      <div class="me-toast-actions">
+        <dx-button
+          meButton
+          text="Принять"
+          [size]="actionButtonStyles().size"
+          [type]="actionButtonStyles().type"
+          stylingMode="contained"
+          (onClick)="handleAccept()"
+        ></dx-button>
+        <dx-button
+          meButton
+          text="Отменить"
+          [size]="actionButtonStyles().size"
+          [type]="actionButtonStyles().type"
+          [stylingMode]="actionButtonStyles().cancelButtonStylingMode"
+          (onClick)="handleCancel()"
+        ></dx-button>
+      </div>
+    </ng-container>
   </div>
-</dx-toast>
+</ng-template>

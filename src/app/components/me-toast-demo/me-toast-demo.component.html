@@ -2,7 +2,9 @@
   <h1 class="wrapper__main-title dx-widget">Toast (RedCollar)</h1>
   <div class="toast-demo">
     <div class="buttons">
-      <dx-button text="Show Toast" (onClick)="showToast(toast)"></dx-button>
+      <dx-button text="Show Notification" (onClick)="showNotification()"></dx-button>
+      <dx-button text="Show Custom Toast" (onClick)="showToast(toast)"></dx-button>
+      <dx-button text="Show Toast Component" (onClick)="showToastComponent(toastComponent)"></dx-button>
       <dx-button text="Hide Toast" (onClick)="hideToast(toast)"></dx-button>
     </div>
     <div class="controls">
@@ -12,10 +14,15 @@
         [items]="positions"
         placeholder="Select position"
       ></dx-select-box>
+      <dx-select-box
+        [(value)]="toastType"
+        [items]="toastTypes"
+        placeholder="Toast type"
+      ></dx-select-box>
       <dx-number-box
         [(value)]="displayTime"
         [min]="500"
-        [max]="10000"
+        [max]="100000"
         [step]="500"
         placeholder="Display Time (ms)"
       ></dx-number-box>
@@ -45,5 +52,16 @@
         </div>
       </div>
     </dx-toast>
+
+    <me-toast
+      #toastComponent="meToastControl"
+      [displayTime]="displayTime"
+      [position]="position"
+      [animation]="animation"
+      [message]="message"
+      [type]="toastType"
+    >
+
+    </me-toast>
   </div>
 </div>
