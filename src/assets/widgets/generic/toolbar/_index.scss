@@ -11,7 +11,6 @@
 @use 'mixins' as *;
 @use '../../base/toolbar';
 
-// adduse
 @use '../dropDownMenu';
 
 .dx-toolbar-menu-section
@@ -128,8 +127,6 @@
 .dx-toolbar:not(.dx-popup-title) {
   background-color: $toolbar-bg;
   color: $toolbar-color;
-  // border: 1px solid $toolbar-border;
-  // border-radius: 6px;
 
   @include dx-toolbar-sizing(
     $generic-toolbar-height,
@@ -425,17 +422,23 @@
             border-bottom: 1px solid var(--Dividers-Borders-Short);
           }
 
-          .dx-dropdownbutton {
-            background: var(--Controls-BG-Secondary-Elements-BG-Default);
+          .dx-selectbox,
+          .dx-textbox {
+            width: 100%;
+
+            .dx-texteditor-container {
+              border-radius: 0px;
+              background-color: var(--input-background-color);
+            }
 
             &.dx-state-hover {
-              background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+              --input-background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
             }
+
             &.dx-state-focused {
-              background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
+              --input-background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
             }
           }
-
 
           .dx-item:has(.me-toolbar-separator) {
             width: calc(100% - 24px);
@@ -450,24 +453,13 @@
             .dx-template-wrapper {
               & > * {
                 border-radius: 0;
-                -webkit-border-radius: 0;
-                -moz-border-radius: 0;
-                -ms-border-radius: 0;
-                -o-border-radius: 0;
               }
 
               .dx-button {
                 border-radius: 0;
-                -webkit-border-radius: 0;
-                -moz-border-radius: 0;
-                -ms-border-radius: 0;
-                -o-border-radius: 0;
               }
             }
           }
-        .dx-selectbox {
-          width: 100%;
-        }
         }
       }
     }
