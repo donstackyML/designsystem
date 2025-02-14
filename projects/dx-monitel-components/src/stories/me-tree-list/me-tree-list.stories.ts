@@ -1,5 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxTreeListModule } from 'devextreme-angular';
+import { DxTreeListComponent, DxTreeListModule } from 'devextreme-angular';
 import { MeIconComponent, MeTreeListDirective } from '../../public-api';
 
 export default {
@@ -40,7 +40,6 @@ export default {
         'Определяет тип выделения. Используется с тэгом `<dxo-selection [mode]="multi"></dxo-selection>` внутри компонента',
     },
   },
-
   args: {
     dataSource: [
       {
@@ -521,11 +520,13 @@ export default {
   </dx-tree-list>
 		`,
   }),
-} as Meta;
+} as Meta<MeTreeListDirective | DxTreeListComponent>;
 
-export const TreeList: StoryObj = {};
+type Story = StoryObj<MeTreeListDirective | DxTreeListComponent>
 
-export const TreeListColumns: StoryObj = {
+export const TreeList: Story = {};
+
+export const TreeListColumns: Story = {
   render: (args) => ({
     props: args,
     template: `<dx-tree-list
@@ -539,7 +540,7 @@ export const TreeListColumns: StoryObj = {
   }),
 };
 
-export const TreeListButtons: StoryObj = {
+export const TreeListButtons: Story = {
   render: (args) => ({
     props: args,
     template: `
@@ -566,7 +567,7 @@ keyExpr="ID"
   }),
 };
 
-export const TreeListValidation: StoryObj = {
+export const TreeListValidation: Story = {
   render: (args) => ({
     props: args,
     template: `
@@ -591,4 +592,10 @@ keyExpr="ID"
 </dxi-column>
 </dx-tree-list>`,
   }),
+};
+
+export const WithNoData: Story = {
+  args: {
+    dataSource: []
+  }
 };
