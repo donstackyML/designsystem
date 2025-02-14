@@ -329,7 +329,7 @@ export const Button: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, ],
+      declarations: [MePopupDirective, MeButtonDirective,],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -359,7 +359,7 @@ export const Buttons: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, ],
+      declarations: [MePopupDirective, MeButtonDirective,],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -398,7 +398,7 @@ export const Dialog: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, ],
+      declarations: [MePopupDirective, MeButtonDirective, DxScrollViewComponent],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -449,7 +449,7 @@ export const DialogLarge: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, ],
+      declarations: [MePopupDirective, MeButtonDirective, DxScrollViewComponent],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],

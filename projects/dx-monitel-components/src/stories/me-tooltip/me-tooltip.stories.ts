@@ -168,7 +168,7 @@ export const WithAnimation: Story = {
   },
   render: (args) => ({
     template: `
-		<div style="background-color: grey; padding: 50px;">
+		<div style="padding: 150px 50px;">
       <dx-button
         [meTooltip]="meTooltip"
         [tooltipPosition]="tooltipPosition"

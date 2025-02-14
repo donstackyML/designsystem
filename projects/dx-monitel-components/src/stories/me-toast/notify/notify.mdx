@@ -1,0 +1,56 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as toastNotifyStories from "./notify.stories";
+
+<Meta
+  name="Notify Documentation"
+  of={toastNotifyStories}
+/>
+
+# Toast
+
+## Вызов тоста, через `notify`
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/Common/Utils/ui/#notifymessage_type_displayTime"
+    target="_blank"
+  >
+    API
+  </a>
+
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Button/PredefinedTypes/MaterialBlueLight/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=524-24751&m=dev"
+/>
+
+## Пример использования
+
+
+<Canvas name="Default" of={toastNotifyStories.Default} />
+
+<Source
+  code={`
+    notify({
+      displayTime: 4000,
+      message: 'Операция выполнена успешно',
+      type: 'info',
+      position: 'bottom center',
+      width: '260px',
+    })
+  `}
+  dark
+  language="typescript"
+/>
