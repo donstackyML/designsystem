@@ -5076,7 +5076,7 @@
   margin-top: 4px;
 }
 
-.dx-autocomplete.me-keyboard-focused.dx-state-focused {
+.me-autocomplete.dx-autocomplete.me-keyboard-focused.dx-state-focused {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
 }
@@ -13914,15 +13914,15 @@ input.dx-hidden {
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content {
   padding: 4px 0;
 }
-.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item:hover {
-  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item.dx-list-item-selected {
+  background-color: var(--Controls-Informative-BG-Selected-Element);
+  color: var(--Controls-Content-In-Controls-Main-Default);
 }
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item.dx-state-active {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
 }
-.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item.dx-list-item-selected {
-  background-color: var(--Controls-Informative-BG-Selected-Element);
-  color: var(--Controls-Content-In-Controls-Main-Default);
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item:hover:not(.dx-state-active) {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
 
 .dx-texteditor input[type=date]::-webkit-inner-spin-button {
@@ -20215,15 +20215,6 @@ input.dx-hidden {
   float: left;
 }
 
-.dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) {
-  box-shadow: none;
-  background-color: #b8bbca;
-}
-.dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item):not(.dx-state-active, .dx-list-item-selected) {
-  background: transparent;
-  box-shadow: inset 0 2px 0 0 var(--Dividers-Borders-Focus), inset 0 -2px 0 0 var(--Dividers-Borders-Focus);
-}
-
 .dx-list-item-chevron {
   transform: rotate(0);
   border: none;
@@ -20288,6 +20279,14 @@ input.dx-hidden {
   border-radius: 0;
 }
 
+.dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) {
+  box-shadow: inset 0 2px 0 0 var(--Dividers-Borders-Focus), inset 0 -2px 0 0 var(--Dividers-Borders-Focus);
+  background: none;
+}
+.dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item).dx-list-item-selected {
+  background-color: #b8bbca;
+}
+
 .dx-list {
   border: none;
 }
@@ -20328,8 +20327,6 @@ input.dx-hidden {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0A%3C!--%20Generator%3A%20Adobe%20Illustrator%2024.0.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200)%20%20--%3E%0A%3Csvg%20version%3D%221.1%22%20id%3D%22dx_l_3%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20style%3D%22enable-background%3Anew%200%200%2024%2024%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cpath%20style%3D%22fill%3A%2318181a%3B%22%20d%3D%22M12%2C2C6.5%2C2%2C2%2C6.5%2C2%2C12c0%2C5.5%2C4.5%2C10%2C10%2C10s10-4.5%2C10-10C22%2C6.5%2C17.5%2C2%2C12%2C2z%20M18%2C13H6v-2h12V13z%22%2F%3E%0A%3C%2Fsvg%3E%0A");
 }
 .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item), .dx-list:not(.dx-list-select-decorator-enabled).dx-list-collapsible-groups .dx-list-group-header.dx-state-focused:not(.me-list .dx-list-item), .dx-list.me-list .dx-list-item.dx-state-focused:not(.me-list .dx-list-item), .dx-list.me-list.dx-list-collapsible-groups .dx-list-group-header.dx-state-focused:not(.me-list .dx-list-item) {
-  background-color: #d8daea;
-  box-shadow: inset 0px 0px 0px 2px #7eb9ff, inset 0px 0px 0px 4px #ffffff;
   color: #fff;
 }
 .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) .dx-icon, .dx-list:not(.dx-list-select-decorator-enabled).dx-list-collapsible-groups .dx-list-group-header.dx-state-focused:not(.me-list .dx-list-item) .dx-icon, .dx-list.me-list .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) .dx-icon, .dx-list.me-list.dx-list-collapsible-groups .dx-list-group-header.dx-state-focused:not(.me-list .dx-list-item) .dx-icon {
@@ -20456,7 +20453,7 @@ input.dx-hidden {
 
 .dx-list-item,
 .dx-list .dx-empty-message {
-  border-top: 1px solid #dfe0ed;
+  border-top: none;
   color: #18181a;
 }
 .dx-list-item-separator-hidden .dx-list-item,
@@ -20467,11 +20464,14 @@ input.dx-hidden {
 
 .dx-list-item-content,
 .dx-list .dx-empty-message {
-  padding: 10px 10px;
+  padding: 8px 16px 8px 8px;
+  min-height: auto;
+  font-size: 13px;
+  line-height: 16px;
 }
 .me-list .dx-list-item-content,
 .me-list .dx-list .dx-empty-message {
-  padding: 8px;
+  padding: 0;
 }
 
 .me-list .dx-list-item-after-bag.dx-list-reorder-handle-container {
@@ -20736,8 +20736,6 @@ input.dx-hidden {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0A%3C!--%20Generator%3A%20Adobe%20Illustrator%2024.0.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200)%20%20--%3E%0A%3Csvg%20version%3D%221.1%22%20id%3D%22dx_l_3%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20style%3D%22enable-background%3Anew%200%200%2024%2024%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cpath%20style%3D%22fill%3A%2318181a%3B%22%20d%3D%22M12%2C2C6.5%2C2%2C2%2C6.5%2C2%2C12c0%2C5.5%2C4.5%2C10%2C10%2C10s10-4.5%2C10-10C22%2C6.5%2C17.5%2C2%2C12%2C2z%20M18%2C13H6v-2h12V13z%22%2F%3E%0A%3C%2Fsvg%3E%0A");
 }
 .dx-device-mobile .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item), .dx-device-mobile .dx-list:not(.dx-list-select-decorator-enabled).dx-list-collapsible-groups .dx-list-group-header.dx-state-focused:not(.me-list .dx-list-item), .dx-device-mobile .dx-list.me-list .dx-list-item.dx-state-focused:not(.me-list .dx-list-item), .dx-device-mobile .dx-list.me-list.dx-list-collapsible-groups .dx-list-group-header.dx-state-focused:not(.me-list .dx-list-item) {
-  background-color: #d8daea;
-  box-shadow: inset 0px 0px 0px 2px #7eb9ff, inset 0px 0px 0px 4px #ffffff;
   color: #fff;
 }
 .dx-device-mobile .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) .dx-icon, .dx-device-mobile .dx-list:not(.dx-list-select-decorator-enabled).dx-list-collapsible-groups .dx-list-group-header.dx-state-focused:not(.me-list .dx-list-item) .dx-icon, .dx-device-mobile .dx-list.me-list .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) .dx-icon, .dx-device-mobile .dx-list.me-list.dx-list-collapsible-groups .dx-list-group-header.dx-state-focused:not(.me-list .dx-list-item) .dx-icon {
@@ -20860,7 +20858,7 @@ input.dx-hidden {
 }
 .dx-device-mobile .dx-list-item,
 .dx-device-mobile .dx-list .dx-empty-message {
-  border-top: 1px solid #dfe0ed;
+  border-top: none;
   color: #18181a;
 }
 .dx-list-item-separator-hidden .dx-device-mobile .dx-list-item,
@@ -20870,11 +20868,14 @@ input.dx-hidden {
 }
 .dx-device-mobile .dx-list-item-content,
 .dx-device-mobile .dx-list .dx-empty-message {
-  padding: 10px 15px;
+  padding: 8px 16px 8px 8px;
+  min-height: auto;
+  font-size: 13px;
+  line-height: 16px;
 }
 .me-list .dx-device-mobile .dx-list-item-content,
 .me-list .dx-device-mobile .dx-list .dx-empty-message {
-  padding: 8px;
+  padding: 0;
 }
 .dx-device-mobile .me-list .dx-list-item-after-bag.dx-list-reorder-handle-container {
   width: 32px;
@@ -33220,9 +33221,6 @@ input.dx-hidden {
   margin-top: 0;
   padding: 0;
 }
-.me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-list.dx-list-select-decorator-enabled .dx-list-select-all:hover {
-  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
-}
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-checkbox-container {
   width: auto;
 }
@@ -33235,7 +33233,7 @@ input.dx-hidden {
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-small .dx-list-select-all .dx-list-select-all-checkbox, .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-medium .dx-list-select-all .dx-list-select-all-checkbox {
   margin-right: 0px;
-  width: 31px;
+  width: 26px;
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list .dx-list-item-content,
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list .dx-list-select-all-label {
@@ -33260,6 +33258,14 @@ input.dx-hidden {
   margin: 0;
   margin-bottom: 4px;
   border: none;
+}
+.me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-overlay-content .dx-popup-content .dx-scrollview-content .dx-item.dx-list-item:has(.dx-list-select-checkbox-container) {
+  display: flex;
+  align-items: center;
+}
+.me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-overlay-content .dx-popup-content .dx-scrollview-content .dx-item.dx-list-item:has(.dx-list-select-checkbox-container) .dx-list-select-checkbox-container {
+  display: flex;
+  width: auto;
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist .dx-overlay-content:has(.dx-toolbar.dx-popup-bottom) .dx-popup-content {
   margin: 4px 0 0 0;
@@ -33290,10 +33296,6 @@ input.dx-hidden {
 }
 .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list-group .dx-list-group-header, .me-tag-box.dx-overlay-wrapper.me-dropdownlist.me-dropdownlist-large .dx-list-group .dx-list-group-header * {
   font-size: 16px;
-}
-
-.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item:hover {
-  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
 
 .me-tag-box.me-inputs.dx-texteditor.dx-widget.dx-state-readonly:not(.dx-texteditor-empty).me-tag-box-small .dx-texteditor-container .dx-texteditor-buttons-container::before {

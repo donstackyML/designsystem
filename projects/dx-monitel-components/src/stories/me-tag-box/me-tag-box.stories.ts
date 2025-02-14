@@ -79,6 +79,9 @@ export default {
     width: {
       control: 'text',
     },
+    noDataText: {
+      control: 'text',
+    },
     hideSelectedItems: {
       control: 'boolean',
     },
@@ -120,9 +123,10 @@ export default {
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
     description: 'description',
+    noDataText: 'Не найдено',
   },
   render: (args) => ({
-    props: { ...args },
+    props: args,
     template: `
 		<dx-tag-box
 			meTagBox
