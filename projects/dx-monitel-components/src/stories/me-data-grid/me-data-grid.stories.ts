@@ -6,16 +6,20 @@ import { dataGridMockSourceData } from './me-data-grid-mock-source-data';
 
 export default {
   title: 'Components/DataGrid',
-  component: MeBadgeComponent,
   decorators: [
     moduleMetadata({
       declarations: [MeDataGridDirective],
-      imports: [DxDataGridModule],
+      imports: [DxDataGridModule, MeBadgeComponent],
     }),
   ],
   argTypes: {
     dataSource: {
+      control: 'object',
       description: 'Данные для отображения',
+      table: {
+        defaultValue: { summary: '[]' },
+        raw: true
+      }
     },
     size: {
       control: 'select',
@@ -32,6 +36,7 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+
       },
     },
     allowColumnResizing: {

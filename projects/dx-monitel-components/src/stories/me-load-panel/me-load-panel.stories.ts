@@ -57,7 +57,7 @@ export class LoadPanelDemoComponent {
 }
 
 const meta: Meta = {
-  title: 'Components/LoadPanel(RC)',
+  title: 'Components/LoadPanel',
   component: LoadPanelDemoComponent,
   decorators: [
     moduleMetadata({

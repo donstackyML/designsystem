@@ -10,7 +10,7 @@ import {
 import { MeTextAreaDirective } from '../../lib/directives/me-text-area/me-text-area.directive';
 
 export default {
-  title: 'Components/TextArea(RC)',
+  title: 'Components/TextArea',
   decorators: [
     moduleMetadata({
       declarations: [MeTextAreaDirective],

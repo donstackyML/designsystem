@@ -5134,7 +5134,7 @@ const Sales = [
 ];
 
 export default {
-  title: 'Components/PivotGrid(RC)',
+  title: 'Components/PivotGrid',
   decorators: [
     moduleMetadata({
       declarations: [MePivotGridDirective],

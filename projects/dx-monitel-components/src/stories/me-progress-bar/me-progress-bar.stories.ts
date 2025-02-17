@@ -3,7 +3,7 @@ import { DxProgressBarModule } from 'devextreme-angular';
 import { MeProgressBarDirective } from '../../public-api';
 
 export default {
-  title: 'Components/ProgressBar(RC)',
+  title: 'Components/ProgressBar',
   decorators: [
     moduleMetadata({
       declarations: [MeProgressBarDirective],

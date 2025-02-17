@@ -1,60 +1,138 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as DateRangeBoxStories from "./me-date-range-box.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as dateRangeBoxStories from "./me-date-range-box.stories";
 
-<Meta name="DateRangeBox Documentation" of={DateRangeBoxStories} />
+<Meta name="DateRangeBox Documentation" of={dateRangeBoxStories} />
 
 # DateRangeBox
 
-## Директива meDateRangeBox
+## Директива `meDateRangeBox`
 
+Применение директивы `meDateRangeBox` к элементу `dx-date-range-box` приводит его размеры к значению `size=medium` из дизайн-системы, а также приводит отступы в соответствие
+с дизайн-системой, добавляет свойство `size` и стилизует календарь.
 
-Применение директивы meDateRangeBox к элементу <code>dx-date-range-box</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
-с дизайн-системой, добавляет свойство <code>size</code>.
+Документация на сайте разработчика DevExtreme:
 
-Документация на сайте разработчика Devextreme:
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDateRangeBox/"
+    target="_blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DateRangeBox/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
-[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDateRangeBox/)
+<Canvas of={dateRangeBoxStories.Default} />
+<Controls of={dateRangeBoxStories.Default} />
 
-[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DateRangeBox/Overview/Light/)
-
-
-	<Canvas of={DateRangeBoxStories.Default} />
-	<Controls of={DateRangeBoxStories.Default} />
-
-	## Дизайн
+## Дизайн
 
 <Figma
   height="50%"
-			collapsable
+  collapsable
 	defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=uOtV7gZSB9RVNEJg-0"
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1467-48917&t=5bksBB57JCcxek5t-4"
 />
 
 ## Примеры использования:
 
-- [Размеры DateRangeBox](#размеры-daterangebox)
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера-по-умолчанию)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [Разные режимы положения лейбла](#разные-режимы-положения-лейбла)
+  - [Лейбл внешний (по умолчанию)](#лейбл-внешний)
+  - [Лейбл статичный](#лейбл-статичный)
+  - [Лейбл всплывающий](#лейбл-всплывающий)
+  - [Лейбл невидимый](#лейбл-невидимый)
 - [Мульти календарь](#мульти-календарь)
 - [Минимальная и максимальная дата](#минимальная-и-максимальная-дата)
 - [Положение Label](#положение-label)
 - [Валидация поля](#валидация-поля)
 - [Тип DateRangeBox](#тип-daterangebox)
-- [Ввод даты](#ввод-даты)
 - [Формат даты и времени](#формат-даты-и-времени)
 - [Настройка дат для выбора](#настройка-дат-для-выбора)
 
 ### Размеры DateRangeBox
+
 Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
 
+#### Компонент небольшого размера
+
+<Canvas of={dateRangeBoxStories.SizeSmall} />
 <Source
-	code={`<dx-date-range-box meDateRangeBox size="size"></dx-date-range-box>`}
-	language="html"
-	dark
+  code={`<dx-date-range-box meDateRangeBox size="small"></dx-date-range-box>`}
+  language="html"
+  dark
+/>
+
+#### Компонент среднего размера
+
+<Canvas of={dateRangeBoxStories.SizeMedium} />
+<Source
+  code={`<dx-date-range-box meDateRangeBox size="medium"></dx-date-range-box>`}
+  language="html"
+  dark
+/>
+
+#### Компонент большого размера
+
+<Canvas of={dateRangeBoxStories.SizeLarge} />
+<Source
+  code={`<dx-date-range-box meDateRangeBox size="large"></dx-date-range-box>`}
+  language="html"
+  dark
+/>
+
+### Разные режимы положения лейбла
+
+Настройте отображение лейбла с помощью параметров `startDateLabel`, `endDateLabel` и `labelMode`.
+
+#### Лейбл внешний
+
+<Canvas of={dateRangeBoxStories.LabelModeOutside} />
+<Source
+  code={`<dx-date-range-box meDateRangeBox labelMode="outside" startDateLabel="Начальная дата" endDateLabel="Конечная дата"></dx-date-range-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл статичный
+
+<Canvas of={dateRangeBoxStories.LabelModeStatic} />
+<Source
+  code={`<dx-date-range-box meDateRangeBox labelMode="static" startDateLabel="Начальная дата" endDateLabel="Конечная дата"></dx-date-range-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл всплывающий
+
+<Canvas of={dateRangeBoxStories.LabelModeFloating} />
+<Source
+  code={`<dx-date-range-box meDateRangeBox labelMode="floating" startDateLabel="Начальная дата" endDateLabel="Конечная дата"></dx-date-range-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл невидимый
+
+<Canvas of={dateRangeBoxStories.LabelModeHidden} />
+<Source
+  code={`<dx-date-range-box meDateRangeBox labelMode="hidden" startDateLabel="Начальная дата" endDateLabel="Конечная дата"></dx-date-range-box>`}
+  language="html"
+  dark
 />
 
 ### Мульти календарь
+
 Для отображения двойного календаря используйте параметр `multiView`.
 
+<Canvas of={dateRangeBoxStories.WithMultiView} />
 <Source
 	code={`<dx-date-range-box meDateRangeBox [multiView]="true"></dx-date-range-box>`}
 	language="html"
@@ -62,6 +140,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
 />
 
 ### Минимальная и максимальная дата
+
 Для установки минимальной и максимальной даты используются параметры `min` и `max`.
 
 <Source
@@ -71,15 +150,16 @@ import { Figma } from "@storybook/addon-designs/blocks";
 />
 
 ### Положение Label
+
 Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `static`, `floating`, `hidden`, `outside`. Для изменения самого Label внутри используйте параметр `label`
 
 <Source
-  code={`<dx-date-range-box meDateRangeBox labelMode="labelMode" label="label"></dx-date-range-box>`}
+  code={`<dx-date-range-box meDateRangeBox labelMode="labelMode" startDateLabel="Начальная дата" endDateLabel="Конечная дата"></dx-date-range-box>`}
   dark
   language="html"
 />
 
-Для того, чтобы установить label слева от элемента, используйте тэг обертку `label` с директивой `meLabel` и параметром `labelDirection="row"`, установив параметр `labelMode="hidden"` в <code>meDateRangeBox</code>.
+Для того, чтобы установить label слева от элемента, используйте тэг обертку `label` с директивой `meLabel` и параметром `labelDirection="row"`, установив параметр `labelMode="hidden"` в `meDateRangeBox`.
 
 <Source
 			code={`
@@ -90,10 +170,11 @@ labelDirection="row">
 	dark
 	language="html"
 />
-<Story of={DateRangeBoxStories.WithLabelRow} />
+<Story of={dateRangeBoxStories.WithLabelRow} />
 
 ### Валидация поля
-Для валидации используйте `<dx-validator>` внутри тэга `dx-date-range-box`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
+
+Для валидации используйте `<dx-validator>` внутри компонента `dx-date-range-box`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
 Не забудьте импортировать `DxTextAreaModule` и `DxValidatorModule`.
 Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
 Используйте параметр `validationMessagePosition` для изменения положения сообщения об ошибке. Варианты: `top`, `bottom`, `left`, `right`.
@@ -122,18 +203,6 @@ labelDirection="row">
 	code={`<dx-date-range-box meDateRangeBox
   type="type"
   showAnalogClock="true"
-></dx-date-range-box>`}
-	language="html"
-	dark
-/>
-
-
-## Ввод даты
-Установив параметр `acceptCustomValue=true` можно вводить дату вручную.
-
-<Source
-	code={`<dx-date-range-box meDateRangeBox
-  acceptCustomValue="true"
 ></dx-date-range-box>`}
 	language="html"
 	dark

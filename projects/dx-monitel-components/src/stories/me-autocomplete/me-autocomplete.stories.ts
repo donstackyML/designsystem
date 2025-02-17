@@ -17,10 +17,26 @@ export default {
     }),
   ],
   argTypes: {
+    label: {
+      control: 'text',
+      description: 'Текст, отображаемый в качестве лейбла.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Текст подсказки, отображаемый внутри поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
     size: {
-      control: { type: 'select' },
+      control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Меняет размер текстового поля.',
+      description: 'Изменяет размер текстового поля.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
@@ -29,27 +45,19 @@ export default {
     labelMode: {
       control: 'select',
       options: ['outside', 'static', 'floating', 'hidden'],
-      description: 'Определяет положение лейбла текстового поля.',
+      description: 'Указывает, где будет размещаться лейбл.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'outside' },
       },
     },
-    label: {
-      control: 'text',
-      description: 'Текст лейбла',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
     showClearButton: {
       control: 'boolean',
-      description: 'Показывать кнопку очистки',
+      description: 'Показывает кнопку для очистки поля.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     readOnly: {
       control: 'boolean',
@@ -155,50 +163,43 @@ export const SizeLarge: Story = {
 
 export const LabelModeFloating: Story = {
   args: {
-    size: 'medium',
     labelMode: 'floating',
   },
 };
 
 export const LabelModeOutside: Story = {
   args: {
-    size: 'medium',
     labelMode: 'outside',
   },
 };
 
 export const LabelModeStatic: Story = {
   args: {
-    size: 'medium',
     labelMode: 'static',
   },
 };
 
 export const LabelModeHidden: Story = {
   args: {
-    size: 'medium',
     labelMode: 'hidden',
   },
 };
 
-export const Disabled: Story = {
+export const StateDisabled: Story = {
   args: {
-    size: 'medium',
     disabled: true
   },
 };
 
-export const ReadOnly: Story = {
+export const StateReadOnly: Story = {
   args: {
-    size: 'medium',
     readOnly: true,
     value: 'Moscow'
   },
 };
 
-export const DisabledAndReadOnly: Story = {
+export const StateDisabledAndReadOnly: Story = {
   args: {
-    size: 'medium',
     readOnly: true,
     disabled: true,
     value: 'Moscow'
@@ -206,11 +207,6 @@ export const DisabledAndReadOnly: Story = {
 };
 
 export const WithLabelRow: Story = {
-  args: {
-    size: 'medium',
-    minSearchLength: 1,
-    dataSource: meAutocompleteMockData,
-  },
   render: (args) => ({
     props: args,
     template: `

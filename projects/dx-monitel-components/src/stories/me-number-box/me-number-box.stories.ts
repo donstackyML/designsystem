@@ -8,7 +8,7 @@ import { DxNumberBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { MeLabelDirective, MeNumberBoxDirective } from '../../public-api';
 
 export default {
-  title: 'Components/NumberBox(RC)',
+  title: 'Components/NumberBox',
   decorators: [
     moduleMetadata({
       declarations: [MeNumberBoxDirective, MeLabelDirective],

@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 import {
   Meta,
   StoryObj,
-  argsToTemplate,
-  moduleMetadata,
+  moduleMetadata
 } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
@@ -158,7 +157,7 @@ class PopoverDemoComponent {
 }
 
 const meta: Meta<PopoverDemoComponent> = {
-  title: 'Components/Popover(RC)',
+  title: 'Components/Popover',
   component: PopoverDemoComponent,
   decorators: [
     moduleMetadata({
