@@ -30,7 +30,7 @@ import { MeIconComponent } from '../me-icon/me-icon.component';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
 interface BreadcrumbItem {
-  text: string;
+  text?: string;
   url?: string;
   icon?: string;
   items?: BreadcrumbItem[];
@@ -55,6 +55,7 @@ export class MeBreadcrumbsComponent
   @Input() items: BreadcrumbItem[] = [];
   @Input() truncateFrom: 'left' | 'right' = 'right';
   @Input() size: 'small' | 'large' = 'small';
+  @Input() showDivider = true;
   @Output() itemClick = new EventEmitter<BreadcrumbItem>();
 
   @ViewChild('breadcrumbsContainer', { static: true })
@@ -107,10 +108,6 @@ export class MeBreadcrumbsComponent
   }
 
   ngAfterViewInit() {
-    console.log('BreadcrumbItems: %o', this.menuItems);
-    console.log('BreadcrumbItems leftBtn: %o', this.leftBtn);
-    console.log('BreadcrumbItems rightBtn: %o', this.rightBtn);
-
     this.setupResizeObserver();
     this.updateItems();
 
@@ -158,7 +155,7 @@ export class MeBreadcrumbsComponent
       tempContainer.innerHTML = `
         <div class="breadcrumb-item">
           ${item.icon ? `<i class="dx-icon-${item.icon}"></i>` : ''}
-          <span class="dx-menu-item-text">${item.text}</span>
+          ${item.text ? `<span class="dx-menu-item-text">${item.text}</span>`: ''}
           ${item.items?.length ? '<i class="dx-icon-chevron-down"></i>' : ''}
         </div>
       `;
@@ -239,7 +236,7 @@ export class MeBreadcrumbsComponent
 
   onSubmenuShowing(e: any) {
     const submenuContainer = e.submenuContainer;
-    console.log(submenuContainer, e);
+
     if (submenuContainer) {
       submenuContainer.classList.add('me-custom-submenu-class');
     }
