@@ -4,18 +4,21 @@ import {
   DxContextMenuModule,
   DxMenuModule,
 } from 'devextreme-angular';
-import { MeBreadcrumbsComponent } from '../../lib/components/me-breadcrumbs/me-breadcrumbs.component';
-import { MeIconStoreService } from '../../lib/service/icon-store.service';
-import { MeIconComponent } from '../../public-api';
+import {
+  MeBreadcrumbsComponent,
+  MeIconComponent,
+  MeIconStoreService
+} from '../../public-api';
 import {
   meBreadcrumbsMockData,
   meBreadcrumbsMockDataWithIcons,
+  meBreadcrumbsMockDataWithIconsOnly,
   meBreadcrumbsMockDataWithManyItems,
   meBreadcrumbsMockDataWithNestedItems,
-  meBreadcrumbsMockDataWithNestedItemsAndIcons
+  meBreadcrumbsMockDataWithNestedItemsAndIcons,
 } from './me-breadcrumbs-mock-data';
 
-const meta: Meta<MeBreadcrumbsComponent> = {
+export default {
   title: 'Components/Breadcrumbs',
   component: MeBreadcrumbsComponent,
   decorators: [
@@ -57,6 +60,14 @@ const meta: Meta<MeBreadcrumbsComponent> = {
         defaultValue: { summary: 'right' },
       },
     },
+    showDivider: {
+      control: 'boolean',
+      description: 'Определяет, будет ли отображаться разделитель между элементами.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
     itemClick: {
       action: 'itemClicked',
       table: {
@@ -68,19 +79,24 @@ const meta: Meta<MeBreadcrumbsComponent> = {
     truncateFrom: 'right',
     size: 'small',
     items: meBreadcrumbsMockData,
+    showDivider: true
   }
-};
+} satisfies Meta<MeBreadcrumbsComponent> ;
 
-export default meta;
 type Story = StoryObj<MeBreadcrumbsComponent>;
 
 export const Default: Story = {
   args: {},
 };
-
 export const WithIcons: Story = {
   args: {
     items: meBreadcrumbsMockDataWithIcons,
+  },
+};
+
+export const WithIconsOnly: Story = {
+  args: {
+    items: meBreadcrumbsMockDataWithIconsOnly,
   },
 };
 
@@ -93,6 +109,12 @@ export const WithDropdowns: Story = {
 export const WithIconsAndDropdowns: Story = {
   args: {
     items: meBreadcrumbsMockDataWithNestedItemsAndIcons,
+  },
+};
+
+export const WithoutDivider: Story = {
+  args: {
+    showDivider: false
   },
 };
 

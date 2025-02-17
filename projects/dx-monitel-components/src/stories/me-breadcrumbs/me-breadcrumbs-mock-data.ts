@@ -22,6 +22,14 @@ export const meBreadcrumbsMockDataWithIcons = [
   },
 ];
 
+export const meBreadcrumbsMockDataWithIconsOnly = [
+  { url: '/', icon: 'home' },
+  { url: '/products', icon: 'shopping_cart' },
+  { url: '/products/electronics', icon: 'devices' },
+  { url: '/products/electronics/computers', icon: 'computer' },
+  { url: '/products/electronics/computers/laptops', icon: 'laptop_mac' },
+];
+
 export const meBreadcrumbsMockDataWithManyItems = [
   { text: 'Home', url: '/', icon: 'home' },
   { text: 'Category 1', url: '/cat1', icon: 'category' },

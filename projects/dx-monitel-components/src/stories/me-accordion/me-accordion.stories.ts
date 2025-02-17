@@ -26,7 +26,7 @@ export default {
       description: 'Определяет, может ли аккордеон сворачиваться.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
       },
     },
     multiple: {
@@ -34,7 +34,7 @@ export default {
       description: 'Разрешает одновременное раскрытие нескольких секций.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
       },
     },
   },
@@ -73,7 +73,7 @@ export default {
       </dx-accordion>
     `,
   }),
-} as Meta<DxAccordionModule | MeAccordionDirective>;
+} satisfies Meta<DxAccordionModule | MeAccordionDirective>;
 
 type Story = StoryObj<DxAccordionModule | MeAccordionDirective>;
 
