@@ -1,9 +1,9 @@
 import {
   Directive,
-  HostListener,
-  Renderer2,
   ElementRef,
+  HostListener,
   Input,
+  Renderer2,
 } from '@angular/core';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeSize } from '../../types/types';
@@ -15,16 +15,21 @@ import { MeSize } from '../../types/types';
   },
 })
 export class MeContextMenuDirective {
-  private focusService: ComponentFocusService;
   @Input() size: MeSize = 'medium';
+  @Input() subMenuMaxHeight?: string = '';
+
+  private focusService: ComponentFocusService;
   constructor(element: ElementRef, private renderer: Renderer2) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
   @HostListener('onItemRendered', ['$event'])
   onItemRendered(event: any) {
-    this.renderer.addClass(
-      event.itemElement.parentElement.parentElement.parentElement,
-      'me-context-menu-submenu'
-    );
+    const contextMenuElement =
+      event.itemElement.parentElement.parentElement.parentElement;
+    this.renderer.addClass(contextMenuElement, 'me-context-menu-submenu');
+
+    if (this.subMenuMaxHeight) {
+      contextMenuElement.style.maxHeight = this.subMenuMaxHeight;
+    }
   }
 }

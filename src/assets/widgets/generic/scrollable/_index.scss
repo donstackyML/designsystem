@@ -53,11 +53,6 @@ $scrollbar-size: 15px;
     background-color: $scrollable-scrollbar-bg;
   }
 
-  &.dx-state-hover,
-  &.dx-scrollable-scrollbar-active {
-    background-color: $scrollable-scrollbar-active-bg;
-  }
-
   &.dx-scrollable-scrollbar-active .dx-scrollable-scroll-content {
     background-color: $scrollable-scroll-active-bg;
   }
@@ -82,11 +77,14 @@ $scrollbar-size: 15px;
   transition: none;
 }
 
+.dx-scrollable-scroll .dx-scrollable-scroll-content {
+  cursor: pointer;
+}
+
 .dx-scrollbar-vertical {
   .dx-scrollable-scroll {
     float: right;
     width: $scrollbar-size-thin;
-    cursor: pointer;
   }
 
   &.dx-scrollbar-hoverable {
@@ -203,6 +201,64 @@ $scrollbar-size: 15px;
         > .dx-scrollable-content {
           padding-bottom: $scrollbar-size-thin;
         }
+      }
+    }
+  }
+}
+
+.dx-scrollable-container {
+  .dx-state-hover {
+    background-color: transparent;
+  }
+
+  .dx-scrollable-scrollbar.dx-scrollbar-vertical {
+    width: auto;
+    padding: 0;
+    border-radius: 10px;
+
+    &.dx-state-hover,
+    &.dx-scrollable-scrollbar-active {
+      .dx-scrollable-scroll .dx-scrollable-scroll-content {
+        width: 8px;
+      }
+    }
+
+    .dx-scrollable-scroll {
+      padding: 0px 6px 0px 4px;
+      width: auto;
+
+      .dx-scrollable-scroll-content {
+        width: 4px;
+        transition: all 0.2s linear;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .dx-scrollable-scroll-content {
+    border-radius: 10px;
+  }
+
+  .dx-scrollable-scrollbar.dx-scrollbar-horizontal {
+    height: auto;
+    padding: 0;
+    border-radius: 10px;
+
+    &.dx-state-hover,
+    &.dx-scrollable-scrollbar-active {
+      .dx-scrollable-scroll .dx-scrollable-scroll-content {
+        height: 8px;
+      }
+    }
+
+    .dx-scrollable-scroll {
+      padding: 5px 4px;
+      height: auto;
+
+      .dx-scrollable-scroll-content {
+        height: 4px;
+        transition: all 0.2s linear;
+        border-radius: 10px;
       }
     }
   }

@@ -16,6 +16,7 @@ import {
   MeButtonDirective,
   MeIconDirective,
   MePopupDirective,
+  MeScrollViewModule,
 } from '../../public-api';
 
 export default {
@@ -280,12 +281,7 @@ export const IconDescription: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [
-        MePopupDirective,
-        MeButtonDirective,
-        MeIconDirective,
-        ,
-      ],
+      declarations: [MePopupDirective, MeButtonDirective, MeIconDirective, ,],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -329,7 +325,7 @@ export const Button: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective,],
+      declarations: [MePopupDirective, MeButtonDirective],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -359,7 +355,7 @@ export const Buttons: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective,],
+      declarations: [MePopupDirective, MeButtonDirective],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -398,8 +394,17 @@ export const Dialog: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, DxScrollViewComponent],
-      imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
+      declarations: [
+        MePopupDirective,
+        MeButtonDirective,
+        DxScrollViewComponent,
+      ],
+      imports: [
+        DxPopupModule,
+        DxTemplateModule,
+        DxButtonModule,
+        MeScrollViewModule,
+      ],
     }),
   ],
   render: (args) => ({
@@ -410,7 +415,7 @@ export const Dialog: Story = {
       <dxi-toolbar-item template="confirmButton" toolbar="bottom"> </dxi-toolbar-item>
       <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'content'">
-        <dx-scroll-view width="100%" height="100%">
+        <dx-scroll-view meScrollView width="100%" height="100%">
           <div class="me-flex-column">
             <h3 class="me-title-header1" style="margin: 0;">Заголовок</h3>
             <div class="me-text-body2">${lorem25}</div>
@@ -449,7 +454,11 @@ export const DialogLarge: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, MeButtonDirective, DxScrollViewComponent],
+      declarations: [
+        MePopupDirective,
+        MeButtonDirective,
+        DxScrollViewComponent,
+      ],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],

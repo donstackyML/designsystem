@@ -1,5 +1,15 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { DxButtonModule, DxToastComponent, DxToastModule } from 'devextreme-angular';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import {
+  DxButtonModule,
+  DxToastComponent,
+  DxToastModule,
+} from 'devextreme-angular';
 import { MeButtonModule } from '../../directives/me-button/me-button.module';
 import { MeToastModule } from '../../directives/me-toast/me-toast.module';
 
@@ -15,7 +25,7 @@ const ANIMATION_DURATION_MS = 400;
 @Component({
   selector: 'me-toast',
   templateUrl: './me-toast.component.html',
-  exportAs: "meToastControl",
+  exportAs: 'meToastControl',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,7 +33,7 @@ const ANIMATION_DURATION_MS = 400;
     MeButtonModule,
     DxButtonModule,
     MeIconComponent,
-    MeToastModule
+    MeToastModule,
   ],
 })
 export class MeToastComponent {
@@ -53,9 +63,9 @@ export class MeToastComponent {
     hide?: AnimationConfig;
     show?: AnimationConfig;
   } = {
-      show: { type: 'fade', duration: ANIMATION_DURATION_MS, from: 0, to: 1 },
-      hide: { type: 'fade', duration: ANIMATION_DURATION_MS, from: 1, to: 0 },
-    };
+    show: { type: 'fade', duration: ANIMATION_DURATION_MS, from: 0, to: 1 },
+    hide: { type: 'fade', duration: ANIMATION_DURATION_MS, from: 1, to: 0 },
+  };
 
   @Input() closeOnClick: boolean = false;
   @Input() hideOnOutsideClick: boolean | ((event: Event) => boolean) = false;
@@ -102,53 +112,53 @@ export class MeToastComponent {
   }
 
   actionButtonStyles(): {
-    type: any,
-    cancelButtonStylingMode: MeButtonStyle
-    size: MeSize
+    type: any;
+    cancelButtonStylingMode: MeButtonStyle;
+    size: MeSize;
   } {
-    let size: MeSize = 'small'
-    let type: MeButtonType = 'default'
-    let cancelButtonStylingMode: MeButtonStyle = 'text'
+    let size: MeSize = 'small';
+    let type: MeButtonType = 'default';
+    let cancelButtonStylingMode: MeButtonStyle = 'text';
 
     switch (this.size) {
       case 'large':
-        size = 'medium'
+        size = 'medium';
         break;
       default:
-        size = 'small'
+        size = 'small';
         break;
     }
 
     switch (this.type) {
       case 'success':
         type = 'success';
-        cancelButtonStylingMode = 'text'
-        break
+        cancelButtonStylingMode = 'text';
+        break;
       case 'error':
         type = 'danger';
-        cancelButtonStylingMode = 'text'
-        break
+        cancelButtonStylingMode = 'text';
+        break;
       case 'warning':
         type = 'warning';
         cancelButtonStylingMode = 'text';
-        break
+        break;
       case 'info-inverted':
         type = 'normal';
-        cancelButtonStylingMode = 'contained'
-        break
+        cancelButtonStylingMode = 'contained';
+        break;
       default:
         type = 'default';
-        cancelButtonStylingMode = 'text'
-        break
+        cancelButtonStylingMode = 'text';
+        break;
     }
     return {
       size,
       type,
-      cancelButtonStylingMode
-    }
+      cancelButtonStylingMode,
+    };
   }
   setToastType(): any {
-    return this.type
+    return this.type;
   }
 
   public showToast() {

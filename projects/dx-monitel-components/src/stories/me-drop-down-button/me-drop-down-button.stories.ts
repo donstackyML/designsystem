@@ -6,25 +6,10 @@ import {
 } from '@storybook/angular';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { MeDropDownButtonDirective } from '../../public-api';
-
-const items = [
-  {
-    id: 1,
-    name: 'Фиксированный диапазон времени',
-  },
-  {
-    id: 4,
-    name: 'Абсолютное время',
-  },
-  {
-    id: 2,
-    name: 'Относительное время, обн 10 сек.',
-  },
-  {
-    id: 3,
-    name: 'Пункт',
-  },
-];
+import {
+  meDropDownButtonMockData,
+  meDropDownButtonMockLargeData,
+} from './me-drop-down-button-mock-data';
 
 export default {
   title: 'Components/DropDownButton',
@@ -91,12 +76,11 @@ export default {
     icon: 'add',
     text: 'Button',
     displayExpr: 'name',
-    items: items,
+    items: meDropDownButtonMockData,
     size: 'medium',
     splitButton: true,
     type: 'default',
     stylingMode: 'outlined',
-    // showScrollbar: 'always',
   },
   render: (args) => ({
     props: args,
@@ -109,3 +93,9 @@ export default {
 type Story = StoryObj<DxDropDownButtonComponent | MeDropDownButtonDirective>;
 
 export const Default: Story = {};
+
+export const WithLargeData: Story = {
+  args: {
+    items: meDropDownButtonMockLargeData,
+  },
+};
