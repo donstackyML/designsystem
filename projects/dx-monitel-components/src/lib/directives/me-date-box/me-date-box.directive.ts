@@ -41,7 +41,6 @@ export class MeDateBoxDirective
   extends MeFormField
   implements OnInit, OnDestroy {
   @Input() size: MeSize = 'medium';
-  @Input() description: string = '';
 
   private focusService: ComponentFocusService;
   constructor(
