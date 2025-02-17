@@ -3,7 +3,7 @@ import { DxTreeListComponent, DxTreeListModule } from 'devextreme-angular';
 import { MeIconComponent, MeTreeListDirective } from '../../public-api';
 
 export default {
-  title: 'Components/TreeList(RC)',
+  title: 'Components/TreeList',
   component: MeIconComponent,
   decorators: [
     moduleMetadata({

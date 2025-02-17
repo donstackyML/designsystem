@@ -55,7 +55,7 @@ export default {
       description: 'Определяет состояние компонента.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
       },
     },
     isValid: {
@@ -63,7 +63,7 @@ export default {
       description: 'Определяет валидность компонента.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: true },
+        defaultValue: { summary: 'true' },
       },
     },
     label: {
@@ -98,7 +98,7 @@ export default {
       description: 'Определяет состояние только для чтения.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
       },
     },
     size: {
@@ -111,7 +111,7 @@ export default {
       },
     },
     dataSource: {
-      control: 'array',
+      control: 'object',
       description: 'Источник данных для элементов выпадающего списка.',
       table: {
         type: { summary: 'string[]' },
@@ -156,7 +156,7 @@ export default {
       '.select-box-desc { margin-top: 4px; }',
     ],
   }),
-} as Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
+} satisfies Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
 
 type Story = StoryObj<
   MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective

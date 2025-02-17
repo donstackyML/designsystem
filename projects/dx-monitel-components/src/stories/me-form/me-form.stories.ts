@@ -1,20 +1,20 @@
-import { moduleMetadata, Meta, StoryObj, StoryFn } from '@storybook/angular';
+import { Meta, StoryFn, StoryObj, moduleMetadata } from '@storybook/angular';
 import {
-  DxFormModule,
-  DxSelectBoxModule,
-  DxTextBoxModule,
   DxCheckBoxModule,
   DxDateBoxModule,
+  DxFormModule,
   DxNumberBoxModule,
+  DxSelectBoxModule,
+  DxTextBoxModule,
 } from 'devextreme-angular';
 import {
-  MeFormDirective,
-  MeTextBoxModule,
+  MeCheckBoxModule,
   MeDateBoxModule,
+  MeFormDirective,
+  MeFormItemModule,
   MeFormModule,
   MeSelectBoxModule,
-  MeFormItemModule,
-  MeCheckBoxModule,
+  MeTextBoxModule,
 } from '../../public-api';
 
 interface FormStoryArgs {
@@ -28,7 +28,7 @@ interface FormStoryArgs {
 }
 
 export default {
-  title: 'Components/Form(RC)',
+  title: 'Components/Form',
   component: MeFormDirective,
   decorators: [
     moduleMetadata({

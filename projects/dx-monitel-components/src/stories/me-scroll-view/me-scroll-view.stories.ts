@@ -3,7 +3,7 @@ import { DxScrollViewModule } from 'devextreme-angular';
 import { MeScrollViewDirective } from '../../lib/directives/me-scroll-view/me-scroll-view.directive';
 
 export default {
-  title: 'Components/ScrollView(RC)',
+  title: 'Components/ScrollView',
   decorators: [
     moduleMetadata({
       declarations: [MeScrollViewDirective],
