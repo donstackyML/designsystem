@@ -48,7 +48,7 @@ export default {
       description: 'Показывать кнопку очистки',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false }
+        defaultValue: { summary: 'false' }
       }
     },
     readOnly: {
@@ -56,7 +56,7 @@ export default {
       description: 'Определяет состояние только для чтения',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false }
+        defaultValue: { summary: 'false' }
       }
     },
     disabled: {
@@ -64,7 +64,7 @@ export default {
       description: 'Отключение компонента',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false }
+        defaultValue: { summary: 'false' }
       }
     },
     minSearchLength: {
@@ -80,7 +80,7 @@ export default {
       description: 'Определяет состояние валидности',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: true }
+        defaultValue: { summary: 'true' }
       }
     },
     dataSource: {
@@ -129,7 +129,7 @@ export default {
       <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
     `,
   }),
-} as Meta<DxAutocompleteModule | MeAutocompleteDirective>;
+} satisfies Meta<DxAutocompleteModule | MeAutocompleteDirective>;
 
 type Story = StoryObj<DxAutocompleteModule | MeAutocompleteDirective>;
 
