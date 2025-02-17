@@ -174,6 +174,62 @@ export const meContextMenuMockData = [
       {
         text: 'Пункт',
         icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+      },
+      {
+        text: 'Пункт',
+        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
         beginGroup: true,
         items: [
           {

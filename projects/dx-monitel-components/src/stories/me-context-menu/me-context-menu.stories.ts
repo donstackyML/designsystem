@@ -10,7 +10,11 @@ import {
   MeContextMenuDirective,
   MeIconComponent,
 } from '../../public-api';
-import { meContextMenuMockData, meContextMenuMockDataForTemplateExample, meContextMenuMockDataWithSelectedItems } from './me-context-menu-mock-data';
+import {
+  meContextMenuMockData,
+  meContextMenuMockDataForTemplateExample,
+  meContextMenuMockDataWithSelectedItems,
+} from './me-context-menu-mock-data';
 
 export default {
   title: 'Components/ContextMenu',
@@ -53,10 +57,19 @@ export default {
     },
     hoverStateEnabled: {
       control: 'boolean',
-      description: 'Определяет, может ли контекстное меню иметь состояние hover.',
+      description:
+        'Определяет, может ли контекстное меню иметь состояние hover.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+      },
+    },
+    subMenuMaxHeight: {
+      control: 'text',
+      description: 'Устанавливает максимальную высоту подменю.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '""' },
       },
     },
   },
@@ -75,13 +88,13 @@ export default {
         target="#contextMenuId"
         ${argsToTemplate(args)}>
     </dx-context-menu>`,
-  })
+  }),
 } as Meta<MeContextMenuDirective | DxContextMenuModule>;
 
 type Story = StoryObj<MeContextMenuDirective | DxContextMenuModule>;
 
 export const Default: Story = {
-  args: {}
+  args: {},
 };
 
 export const WithCustomTemplates: Story = {
@@ -115,5 +128,11 @@ export const WithCustomTemplates: Story = {
 export const SelectedItems: Story = {
   args: {
     dataSource: meContextMenuMockDataWithSelectedItems,
-  }
+  },
+};
+
+export const WithSubMenuMaxHeight: Story = {
+  args: {
+    subMenuMaxHeight: '200px',
+  },
 };

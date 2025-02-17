@@ -338,7 +338,7 @@
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
   --Dividers-Borders-Focus: #7eb9ff;
-  --Dividers-Borders-Focus-Tabulation: #7EB9FF;
+  --Dividers-Borders-Focus-Tabulation: #7eb9ff;
   --Dividers-Borders-Long: #dfe0ed;
   --Dividers-Borders-On-Alert-border: #18181a33;
   --Dividers-Borders-On-Alert: #ffffff33;
@@ -513,7 +513,7 @@
   --Controls-Scrollbar-Drag: #ffffff7a;
   --Controls-Scrollbar-Hover: #ffffff3d;
   --Dividers-Borders-Focus: #7eb9ff;
-  --Dividers-Borders-Focus-Tabulation: #94C5FF;
+  --Dividers-Borders-Focus-Tabulation: #94c5ff;
   --Dividers-Borders-Long: #3f4044;
   --Dividers-Borders-On-Alert-border: #ffffff33;
   --Dividers-Borders-On-Alert: #18181a33;
@@ -688,7 +688,7 @@
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
   --Dividers-Borders-Focus: #7eb9ff;
-  --Dividers-Borders-Focus-Tabulation: #7EB9FF;
+  --Dividers-Borders-Focus-Tabulation: #7eb9ff;
   --Dividers-Borders-Long: #dfe0ed;
   --Dividers-Borders-On-Alert-border: #18181a33;
   --Dividers-Borders-On-Alert: #ffffff33;
@@ -863,7 +863,7 @@
   --Controls-Scrollbar-Drag: #ffffff7a;
   --Controls-Scrollbar-Hover: #ffffff3d;
   --Dividers-Borders-Focus: #7eb9ff;
-  --Dividers-Borders-Focus-Tabulation: #94C5FF;
+  --Dividers-Borders-Focus-Tabulation: #94c5ff;
   --Dividers-Borders-Long: #3f4044;
   --Dividers-Borders-On-Alert-border: #ffffff33;
   --Dividers-Borders-On-Alert: #18181a33;
@@ -8311,19 +8311,6 @@
   padding: 3px 23px 5px 25px;
 }
 
-.me-context-menu-submenu .dx-scrollable-container .dx-scrollable-scroll-content {
-  border-radius: 10px;
-}
-.me-context-menu-submenu .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar {
-  width: auto;
-  padding: 0;
-}
-.me-context-menu-submenu .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar .dx-scrollable-scroll {
-  width: 8px;
-}
-.me-context-menu-submenu .dx-scrollable-container .dx-scrollable-scrollbar.dx-state-hover {
-  background: transparent;
-}
 .me-context-menu-submenu.dx-submenu {
   border-radius: 4px;
   border: none;
@@ -8332,10 +8319,6 @@
 .me-context-menu-submenu.dx-submenu .dx-scrollable-wrapper .dx-scrollable-container {
   border: 1px solid #dfe0ed;
   border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
 }
 .me-context-menu-submenu.dx-submenu .dx-menu-items-container {
   padding: 0;
@@ -10642,9 +10625,6 @@
 .me-scroll-view .dx-scrollbar-hoverable.dx-state-hover, .me-scroll-view .dx-scrollbar-hoverable.dx-scrollable-scrollbar-active {
   background-color: transparent;
 }
-.dx-scrollbar-hoverable.dx-state-hover, .dx-scrollbar-hoverable.dx-scrollable-scrollbar-active {
-  background-color: rgba(191.25, 191.25, 191.25, 0.2);
-}
 .dx-scrollbar-hoverable.dx-scrollable-scrollbar-active .dx-scrollable-scroll-content {
   background-color: rgba(24, 24, 26, 0.4784313725);
 }
@@ -10665,10 +10645,13 @@
   transition: none;
 }
 
+.dx-scrollable-scroll .dx-scrollable-scroll-content {
+  cursor: pointer;
+}
+
 .dx-scrollbar-vertical .dx-scrollable-scroll {
   float: right;
   width: 8px;
-  cursor: pointer;
 }
 .dx-scrollbar-vertical.dx-scrollbar-hoverable {
   width: 8px;
@@ -10745,6 +10728,47 @@
 }
 .dx-scrollable-scrollbars-alwaysvisible.dx-scrollable-horizontal > .dx-scrollable-wrapper > .dx-scrollable-container > .dx-scrollable-content, .dx-scrollable-scrollbars-alwaysvisible.dx-scrollable-both > .dx-scrollable-wrapper > .dx-scrollable-container > .dx-scrollable-content {
   padding-bottom: 8px;
+}
+
+.dx-scrollable-container .dx-state-hover {
+  background-color: transparent;
+}
+.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical {
+  width: auto;
+  padding: 0;
+  border-radius: 10px;
+}
+.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical.dx-state-hover .dx-scrollable-scroll .dx-scrollable-scroll-content, .dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical.dx-scrollable-scrollbar-active .dx-scrollable-scroll .dx-scrollable-scroll-content {
+  width: 8px;
+}
+.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll {
+  padding: 0px 6px 0px 4px;
+  width: auto;
+}
+.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll .dx-scrollable-scroll-content {
+  width: 4px;
+  transition: all 0.2s linear;
+  border-radius: 10px;
+}
+.dx-scrollable-container .dx-scrollable-scroll-content {
+  border-radius: 10px;
+}
+.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-horizontal {
+  height: auto;
+  padding: 0;
+  border-radius: 10px;
+}
+.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-horizontal.dx-state-hover .dx-scrollable-scroll .dx-scrollable-scroll-content, .dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-horizontal.dx-scrollable-scrollbar-active .dx-scrollable-scroll .dx-scrollable-scroll-content {
+  height: 8px;
+}
+.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-horizontal .dx-scrollable-scroll {
+  padding: 5px 4px;
+  height: auto;
+}
+.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-horizontal .dx-scrollable-scroll .dx-scrollable-scroll-content {
+  height: 4px;
+  transition: all 0.2s linear;
+  border-radius: 10px;
 }
 
 .dx-rtl .dx-scrollable .dx-scrollable-scroll,
@@ -16301,6 +16325,7 @@ input.dx-hidden {
   box-shadow: none !important;
 }
 .me-dropdown-button-popup .dx-overlay-content .dx-popup-content.dx-dropdownbutton-content {
+  max-height: inherit !important;
   padding: 0;
   margin: 4px 0 !important;
 }
@@ -16351,17 +16376,6 @@ input.dx-hidden {
 }
 .me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-list-items .dx-item.dx-list-item.dx-state-active {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Pressed);
-}
-.me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content .dx-scrollable-scrollbar.dx-scrollbar-vertical {
-  width: 8px;
-  right: 2px;
-}
-.me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content .dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll {
-  background-color: var(--Scrollbar);
-  opacity: 0.6;
-}
-.me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content .dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll:hover {
-  opacity: 1;
 }
 .me-dropdown-button-popup .dx-overlay-content.dx-popup-normal .dx-popup-content.dx-dropdownbutton-content.me-dropdownbutton-list-small .dx-scrollable-content .dx-list-items .dx-item.dx-list-item .dx-item-content.dx-list-item-content {
   font-size: 13px;
@@ -21145,16 +21159,6 @@ input.dx-hidden {
   display: block;
   text-align: center;
 }
-.me-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-scrollbar.dx-state-hover {
-  width: 8px;
-  background-color: transparent;
-}
-.me-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-scrollbar.dx-state-hover .dx-scrollable-scroll {
-  width: 8px;
-}
-.me-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-scrollbar .dx-scrollable-scroll .dx-scrollable-scroll-content {
-  border-radius: 10px;
-}
 .me-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-scrollview-content.dx-sortable .dx-list-switchable-delete-button-container .dx-widget.dx-button.dx-list-switchable-delete-button {
   margin-right: 48px;
 }
@@ -24546,28 +24550,6 @@ input.dx-hidden {
   margin-left: -6px;
 }
 
-.dx-scrollable-container .dx-state-hover {
-  background-color: transparent;
-}
-.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical {
-  width: auto;
-  padding: 0;
-  border-radius: 10px;
-}
-.dx-scrollable-container .dx-scrollable-scrollbar.dx-scrollbar-vertical .dx-scrollable-scroll {
-  width: 8px;
-  border-radius: 10px;
-}
-.dx-scrollable-container .dx-scrollable-scroll-content {
-  border-radius: 10px;
-}
-.dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-state-hover {
-  height: 8px;
-}
-.dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-state-hover .dx-scrollable-scroll {
-  height: 8px;
-}
-
 .me-pivot-grid.dx-pivotgrid .dx-icon-sorted {
   font-family: var(--me-symbols-family);
   rotate: 90deg;
@@ -24873,7 +24855,7 @@ input.dx-hidden {
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
   --Dividers-Borders-Focus: #7eb9ff;
-  --Dividers-Borders-Focus-Tabulation: #7EB9FF;
+  --Dividers-Borders-Focus-Tabulation: #7eb9ff;
   --Dividers-Borders-Long: #dfe0ed;
   --Dividers-Borders-On-Alert-border: #18181a33;
   --Dividers-Borders-On-Alert: #ffffff33;
@@ -25259,13 +25241,20 @@ input.dx-hidden {
 }
 
 .dx-popup-content {
-  padding: 20px;
+  --popup-content-padding: $generic-popup-content-padding;
+  padding: var(--popup-content-padding);
 }
 .me-popup-medium .dx-popup-content {
-  padding: 20px 20px 0;
+  --popup-content-padding: 20px 20px 0;
 }
 .me-popup-large .dx-popup-content {
-  padding: 24px 24px 0;
+  --popup-content-padding: 24px 24px 0;
+}
+.dx-popup-content:has(.dx-scrollable.dx-scrollview) {
+  padding: 0;
+}
+.dx-popup-content:has(.dx-scrollable.dx-scrollview) .dx-scrollview-content {
+  padding: var(--popup-content-padding);
 }
 .dx-popup-content > .dx-button {
   margin: 0 10px;
@@ -30273,7 +30262,7 @@ input.dx-hidden {
 }
 
 .me-scroll-view .dx-scrollable-container .dx-scrollable-scroll .dx-scrollable-scroll-content {
-  border-radius: 10px;
+  border-radius: 100px;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollable-scrollbar.dx-state-hover {
   background-color: transparent;
@@ -30285,17 +30274,13 @@ input.dx-hidden {
   background-color: var(--Scrollable-Scroll-Active-Bg);
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollable-scrollbar .dx-scrollable-scroll .dx-scrollable-scroll-content {
-  border-radius: 10px;
+  border-radius: 100px;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar {
   width: auto;
   padding-block: 0;
   padding-inline: 4px 6px;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar .dx-scrollable-scroll {
   padding: 0;
@@ -30304,62 +30289,34 @@ input.dx-hidden {
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar .dx-scrollable-scroll .dx-scrollable-scroll-content {
   width: 4px;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar.dx-state-hover, .me-scroll-view .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar.dx-scrollable-scrollbar-active {
-  padding-inline: 2px 4px;
+  padding-inline: 4px 6px;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar.dx-state-hover .dx-scrollable-scroll .dx-scrollable-scroll-content, .me-scroll-view .dx-scrollable-container .dx-scrollbar-vertical.dx-scrollable-scrollbar.dx-scrollable-scrollbar-active .dx-scrollable-scroll .dx-scrollable-scroll-content {
   width: 8px;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar {
   height: auto;
   padding-inline: 4px;
   padding-block: 5px;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar .dx-scrollable-scroll {
   padding: 0;
   height: auto;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar .dx-scrollable-scroll .dx-scrollable-scroll-content {
   height: 4px;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-state-hover, .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-scrollable-scrollbar-active {
   height: auto;
   padding-block: 3px;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-state-hover .dx-scrollable-scroll, .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-scrollable-scrollbar-active .dx-scrollable-scroll {
   height: auto;
@@ -30367,10 +30324,6 @@ input.dx-hidden {
 .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-state-hover .dx-scrollable-scroll .dx-scrollable-scroll-content, .me-scroll-view .dx-scrollable-container .dx-scrollbar-horizontal.dx-scrollable-scrollbar.dx-scrollable-scrollbar-active .dx-scrollable-scroll .dx-scrollable-scroll-content {
   height: 8px;
   transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
 }
 .me-scroll-view .dx-scrollable-container .dx-scrollview-content {
   color: #18181a;
@@ -33771,7 +33724,7 @@ input.dx-hidden {
   --Controls-Scrollbar-Drag: #ffffff7a;
   --Controls-Scrollbar-Hover: #ffffff3d;
   --Dividers-Borders-Focus: #7eb9ff;
-  --Dividers-Borders-Focus-Tabulation: #94C5FF;
+  --Dividers-Borders-Focus-Tabulation: #94c5ff;
   --Dividers-Borders-Long: #3f4044;
   --Dividers-Borders-On-Alert-border: #ffffff33;
   --Dividers-Borders-On-Alert: #18181a33;

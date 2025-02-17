@@ -2,15 +2,17 @@ import {
   AfterViewInit,
   Directive,
   ElementRef,
+  HostListener,
   Input,
   OnDestroy,
   OnInit,
   Renderer2,
 } from '@angular/core';
-import { MeOrientation, MeSize } from '../../types/types';
 import { DxMenuComponent } from 'devextreme-angular';
-import { ComponentFocusService } from '../../service/component-focus.service';
+import { DxMenuTypes } from 'devextreme-angular/ui/menu';
 import { SubmenuShowingEvent } from 'devextreme/ui/menu';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeOrientation, MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meMenu]',
@@ -19,6 +21,7 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
   @Input() cssClass?: string = '';
   @Input() size: MeSize = 'large';
   @Input() orientation: MeOrientation = 'horizontal';
+  @Input() subMenuMaxHeight?: string = '';
 
   private focusService: ComponentFocusService;
   constructor(
@@ -79,6 +82,14 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
 
     if (parentSubmenu) {
       parentSubmenu.classList.toggle('me-menu-child-submenu-open', force);
+    }
+  }
+
+  @HostListener('onSubmenuShowing', ['$event'])
+  onSubmenuShowing({ submenuContainer }: DxMenuTypes.SubmenuShowingEvent) {
+    console.log(submenuContainer, 'submenuContainer');
+    if (submenuContainer && this.subMenuMaxHeight) {
+      submenuContainer.style.maxHeight = this.subMenuMaxHeight;
     }
   }
 }

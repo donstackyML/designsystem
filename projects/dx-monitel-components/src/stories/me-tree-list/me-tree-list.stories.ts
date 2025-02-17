@@ -39,6 +39,14 @@ export default {
       description:
         'Определяет тип выделения. Используется с тэгом `<dxo-selection [mode]="multi"></dxo-selection>` внутри компонента',
     },
+    height: {
+      control: 'text',
+      description: 'Высота TreeList..',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
   },
   args: {
     dataSource: [
@@ -486,6 +494,7 @@ export default {
 				[allowColumnResizing]="allowColumnResizing"
 				[hoverStateEnabled]="hoverStateEnabled"
 				[disabled]="disabled"
+        [height]="height"
   		>
     <dxo-editing
       mode="row"
@@ -522,7 +531,7 @@ export default {
   }),
 } as Meta<MeTreeListDirective | DxTreeListComponent>;
 
-type Story = StoryObj<MeTreeListDirective | DxTreeListComponent>
+type Story = StoryObj<MeTreeListDirective | DxTreeListComponent>;
 
 export const TreeList: Story = {};
 
@@ -596,6 +605,12 @@ keyExpr="ID"
 
 export const WithNoData: Story = {
   args: {
-    dataSource: []
-  }
+    dataSource: [],
+  },
+};
+
+export const WithFixedHeight: Story = {
+  args: {
+    height: '300px',
+  },
 };

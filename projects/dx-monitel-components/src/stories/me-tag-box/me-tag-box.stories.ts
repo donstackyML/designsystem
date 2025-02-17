@@ -7,6 +7,8 @@ import {
 import { DxTagBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { MeLabelDirective, MeTagBoxDirective } from '../../public-api';
 
+const data = Array.from({ length: 25 }, (_, i) => `Пункт ${i + 1}`);
+
 export default {
   title: 'Components/TagBox(RC)',
   decorators: [
@@ -102,7 +104,7 @@ export default {
     },
   },
   args: {
-    items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
+    items: data,
     size: 'small',
     width: '400px',
     height: '',
@@ -152,13 +154,14 @@ export default {
 			}`,
     ],
   }),
-} as Meta;
+} satisfies Meta<DxTagBoxModule | MeTagBoxDirective>;
 
-export const Default: StoryObj = {};
+type Story = StoryObj<DxTagBoxModule | MeTagBoxDirective>;
 
-export const WithGroups: StoryObj = {
+export const Default: Story = {};
+
+export const WithGroups: Story = {
   args: {
-    ...Default.args,
     items: [
       {
         key: 'Group 1',
@@ -172,9 +175,8 @@ export const WithGroups: StoryObj = {
     grouped: true,
   },
 };
-export const WithGroupsAndIcons: StoryObj = {
+export const WithGroupsAndIcons: Story = {
   args: {
-    ...Default.args,
     items: [
       {
         key: 'Group 1',
@@ -222,9 +224,8 @@ export const WithGroupsAndIcons: StoryObj = {
   }),
 };
 
-export const WithLabelRow: StoryObj = {
+export const WithLabelRow: Story = {
   args: {
-    ...Default.args,
     labelMode: 'hidden',
   },
   render: (args) => ({

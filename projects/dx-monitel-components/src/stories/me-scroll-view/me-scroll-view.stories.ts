@@ -11,11 +11,6 @@ export default {
     }),
   ],
   argTypes: {
-    // size: {
-    //   control: 'select',
-    //   options: ['small', 'medium', 'large'],
-    //   description: 'Размер скролла',
-    // },
     height: {
       control: 'text',
     },

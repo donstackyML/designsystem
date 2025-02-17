@@ -18,7 +18,11 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
   border-radius: $toast-border-radius;
 }
 
-@mixin toast-icon($icon: var(--material-icon), $innerSize: var(--material-icon-inner-size), $color: var(--status-icon-color)) {
+@mixin toast-icon(
+  $icon: var(--material-icon),
+  $innerSize: var(--material-icon-inner-size),
+  $color: var(--status-icon-color)
+) {
   --material-icon-inner-size: 16px;
 
   font-family: var(--me-symbols-family);
@@ -50,7 +54,6 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
         display: flex;
         align-items: center;
         justify-content: center;
-
       }
     }
   }
@@ -90,11 +93,9 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
   }
 
   .dx-toast-info-inverted .me-toast-close-button {
-    @if $color =='dark' {
+    @if $color == 'dark' {
       @include light-theme();
-    }
-
-    @else {
+    } @else {
       @include dark-theme();
     }
   }
@@ -150,8 +151,6 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
 }
 
 .me-toast {
-
-
   &.me-toast-small {
     --toast-content-message-gap: 2px;
     --toast-message-font-size: 12px;
@@ -220,7 +219,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
         .me-toast-icon {
           color: var(--status-icon-color);
 
-          &>* {
+          & > * {
             color: inherit;
           }
         }
