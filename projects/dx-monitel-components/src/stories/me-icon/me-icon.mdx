@@ -1,34 +1,69 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
-import * as IconStories from "./me-icon.stories";
-import { MeIconComponent } from "../../public-api";
-import { moduleMetadata } from "@storybook/angular";
-import { iconOptions } from "./me-icon.stories";
+import { Meta, Canvas, Controls, Source } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as iconStories from "./me-icon.stories";
 
-<Meta
-  title="Компоненты/Icon(RC)"
-  component={MeIconComponent}
-  decorators={[
-    moduleMetadata({
-      imports: [MeIconComponent],
-    }),
-  ]}
-  of={IconStories}
+<Meta name="Icon Documentation" of={iconStories} />
+
+# Icon
+
+## Компонент `me-icon`
+
+Компонент `me-icon` предназначен для отображения иконок в вашем приложении. С его помощью можно легко интегрировать иконки, соответствующие дизайн-системе, и обеспечить единообразное оформление пользовательского интерфейса.
+
+<Canvas of={iconStories.Default} />
+<Controls of={iconStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/qOjoHG3m7v6eGujl5AUmnc/Icons?node-id=1671-162&p=f&t=bFd2gQEXE8irtNZG-0"
 />
 
-# MeIcon Component
+## Примеры использования
 
-## Примеры использования:
+- [Добавление иконки и цвета](#добавление-иконки-и-цвета)
+- [Размеры иконки](#размеры-иконки)
+  - [Небольшой размер](#небольшой-размер)
+  - [Средний размер (по умолчанию)](#средний-размер)
+  - [Большой размер](#большой-размер)b
 
-### Иконка по умолчанию
+### Добавление иконки и цвета
 
-<Story name="Default" of={IconStories.Default} />
+<Canvas of={iconStories.StarIconWithOrangeColor} />
+<Source
+  code={`<me-icon icon="star" color="#ff5722"></me-icon>`}
+  dark
+  language="html"
+/>
 
-<Controls of={IconStories.Default} />
+### Размеры иконки
 
-<Source of={IconStories.Default} dark />
+#### Небольшой размер
 
-### Список всех доступных иконок
+<Canvas of={iconStories.SizeSmall} />
+<Source
+  code={`<me-icon size="small"></me-icon>`}
+  dark
+  language="html"
+/>
 
-Чтобы выбрать иконку, вы можете использовать любой из следующих вариантов:
+#### Средний размер
 
-<Source of={IconStories.AllIcons} dark />
+<Canvas of={iconStories.SizeMedium} />
+<Source
+  code={`<me-icon size="medium"></me-icon>`}
+  dark
+  language="html"
+/>
+
+#### Большой размер
+
+<Canvas of={iconStories.SizeLarge} />
+<Source
+  code={`<me-icon size="large"></me-icon>`}
+  dark
+  language="html"
+/>

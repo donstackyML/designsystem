@@ -1,6 +1,6 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as dropDownButtonStories from "./me-drop-down-button.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as dropDownButtonStories from "./me-drop-down-button.stories";
 
 <Meta name="DropDownButton Documentation" of={dropDownButtonStories} />
 
@@ -8,12 +8,22 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Директива meDropDownButton
 
-Применение директивы <code>meDropDownButton</code> к элементу <code>dx-drop-down-button</code> приводит
-его размеры к значению <code>size = medium (32)</code> из дизайн-системы и предоставляет доступ к другим свойствам.
+Компонент `meDropDownButton` расширяет базовую функциональность элемента `dx-drop-down-button`, адаптируя его под требования дизайн-системы. Он устанавливает размеры (по умолчанию — `medium` или 32px), поддерживает стилизацию, добавление иконки и работу с выпадающим списком, а также предоставляет возможность использовать разделённую кнопку.
 
-[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDropDownButton/)
+Документация на сайте разработчика DevExtreme:
 
-[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DropDownButton/Overview/Light/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDropDownButton/"
+    target="_blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DropDownButton/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={dropDownButtonStories.Default} />
 <Controls of={dropDownButtonStories.Default} />
@@ -27,50 +37,195 @@ import { Figma } from "@storybook/addon-designs/blocks";
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1268-39848&t=VlGcgVhlLr8MKym1-0"
 />
 
-## Примеры использования
+# Примеры использования
 
-- [Стилизация кнопки](#стилизация-кнопки)
+В примерах показаны различные варианты настройки компонента:
+
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера-по-умолчанию)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [С разделительной кнопкой](#с-разделительной-кнопкой)
 - [Кнопка с иконкой](#кнопка-с-иконкой)
+- [Кнопка с текстом и иконкой](#кнопка-с-текстом-и-иконкой)
+- [Кнопка без стрелки](#кнопка-без-стрелки)
+- [Кнопка с разделённой функцией](#кнопка-с-разделённой-функцией)
+- [Кнопка с большим количеством данных](#кнопка-с-большим-количеством-данных)
+- [Кнопка с изменённым цветом иконки](#кнопка-с-изменённым-цветом-иконки)
+- [Состояние отключённой кнопки](#состояние-отключённой-кнопки)
+- [Данные для списка](#данные-для-списка)
+  - [Простой список](#простой-список)
 
-### Стилизация кнопки
+### Размеры компонента
 
-- Для настройки стиля кнопки используйте параметр <code>stylingMode</code>: `contained`, `outlined`, `text`.
-- Для настройки типа кнопки используйте параметр <code>type</code>: `default`, `normal`, `success`, `danger`.
-- Для настройки размера кнопки используйте параметр <code>size</code>: `small`, `medium`, `large`.
-- Для разделения кнопки используйте параметр <code>splitButton</code>: `true`, `false`.
+#### Компонент небольшого размера
 
+<Canvas name="Компонент небольшого размера" of={dropDownButtonStories.SizeSmall} />
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  size="small">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
 
-<Source code={
-`<dx-drop-down-button
+#### Компонент среднего размера
+
+<Canvas name="Компонент среднего размера (по умолчанию)" of={dropDownButtonStories.SizeMedium} />
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton>
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+#### Компонент большого размера
+
+<Canvas name="Компонент большого размера" of={dropDownButtonStories.SizeLarge} />
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  size="large">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+### С разделительной кнопкой
+
+<Canvas name="Стилизация кнопки" of={dropDownButtonStories.WithSplitButton} />
+<Source
+  code={`<dx-drop-down-button
   meDropDownButton
   [splitButton]="true"
-	[stylingMode]="'contained'"
-	[type]="'success'"
-	[size]="'small'">
->
-</dx-drop-down-button>
-`} dark />
+  [stylingMode]="'contained'"
+  [type]="'success'"
+  [size]="'small'">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
 
 ### Кнопка с иконкой
 
-Используйте параметр `icon` для установки иконки. Это свойство принимает одно из следующих значений:
+Добавьте иконку к кнопке с помощью параметра `icon`.
 
-- URL-адрес значка
-- Название значка, если значок находится в библиотеке значков DevExtreme
-- CSS-класс значка, если значок взят из внешней библиотеки значков (см. Внешние библиотеки значков)
-- Значок в формате Base64
-- Значок в формате SVG. Убедитесь, что источник надежный.
+<Canvas name="Кнопка с иконкой" of={dropDownButtonStories.WithIcon} />
 
-<Source code={
-`<dx-drop-down-button
+<Source
+  code={`<dx-drop-down-button
   meDropDownButton
   [icon]="'add'">
-</dx-drop-down-button>
-`} dark />
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+### Кнопка с текстом и иконкой
+
+Комбинированный вариант с текстом и иконкой делает кнопку более информативной.
+
+<Canvas name="Кнопка с текстом и иконкой" of={dropDownButtonStories.WithIcon} />
+
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  text="Добавить"
+  [icon]="'add'">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+### Кнопка без стрелки
+
+Отключите стрелку-индикатор с помощью параметра `showArrowIcon`.
+
+<Canvas name="Кнопка без стрелки" of={dropDownButtonStories.WithNoArrowIcon} />
+
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  text="No Arrow"
+  [showArrowIcon]="false">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+### Кнопка с разделённой функцией
+
+При использовании `splitButton` кнопка разделяется на две части: основное действие и вызов выпадающего списка.
+
+<Canvas name="Кнопка с разделённой функцией" of={dropDownButtonStories.WithSplitButton} />
+
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  text="Split Button"
+  [splitButton]="true">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+### Кнопка с большим количеством данных
+
+Передача большого массива данных в свойство `items` позволяет формировать выпадающий список с множеством вариантов.
+
+<Canvas name="Кнопка с большим количеством данных" of={dropDownButtonStories.WithLargeData} />
+
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  text="Большой список"
+  [items]="largeDataArray">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+### Кнопка с изменённым цветом иконки
+
+Параметр `iconColor` позволяет задать индивидуальный цвет для иконки.
+
+<Canvas name="Кнопка с изменённым цветом иконки" of={dropDownButtonStories.WithColoredIcon} />
+
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  text="Button"
+  [icon]="'add'"
+  iconColor="#ff0000">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+### Состояние отключённой кнопки
+
+Отключите кнопку с помощью параметра `disabled`, чтобы предотвратить её использование.
+
+<Canvas name="Состояние отключённой кнопки" of={dropDownButtonStories.StateDisabled} />
+
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  text="Disabled Button"
+  [disabled]="true">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
 
 ### Данные для списка
 
-```typescript
+#### Простой список
+
+<Source
+  code={`
 const items = [
   {
     id: 1,
@@ -89,36 +244,7 @@ const items = [
     name: 'Пункт',
   },
 ];
-```
-
-
-<style>
-  {`
-  h2 {
-    border-bottom: none !important;
-  }
-
-  a {
-    display: inline-block !important;
-  }
-
-  a p {
-    color: #029CFD !important;
-  }
-
-  table {
-    width: 100%;
-    margin: 20px 0;
-  }
-
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-
-  th {
-    background-color: #f5f5f5;
-  }
-`}
-</style>
+  `}
+  dark
+  language="typescript"
+/>

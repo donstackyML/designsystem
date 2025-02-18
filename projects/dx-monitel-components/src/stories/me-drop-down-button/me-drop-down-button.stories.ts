@@ -19,12 +19,30 @@ export default {
     }),
   ],
   argTypes: {
+    text: {
+      control: 'text',
+      description: 'Принимает текст кнопки.',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    items: {
+      control: 'object',
+      description: 'Принимает данные для выпадающего списка.',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'MeButtonGroupItem[]' },
+        defaultValue: { summary: '[]' },
+      },
+    },
     icon: {
       control: 'select',
       options: ['', 'add', 'arrowleft'],
-      description:
-        'Принимает название иконки из стандартного набора (или иконку, переданную строкой), которая будет вставлена слева от текста.',
+      description: 'Принимает название иконки из стандартного набора (или иконку, переданную строкой), которая будет вставлена слева от текста.',
       table: {
+        category: 'Контент и управление контентом',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
@@ -34,6 +52,7 @@ export default {
       options: ['small', 'medium', 'large'],
       description: 'Меняет размер dropDownButton и выпадающего меню.',
       table: {
+        category: 'Внешний вид и размеры',
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
       },
@@ -43,8 +62,9 @@ export default {
       options: ['contained', 'outlined', 'text'],
       description: 'Определяет стиль кнопки.',
       table: {
+        category: 'Внешний вид и размеры',
         type: { summary: 'string' },
-        defaultValue: { summary: 'outlined' },
+        defaultValue: { summary: 'contained' },
       },
     },
     type: {
@@ -52,19 +72,46 @@ export default {
       options: ['default', 'normal', 'success', 'danger'],
       description: 'Определяет тип кнопки.',
       table: {
+        category: 'Внешний вид и размеры',
         type: { summary: 'string' },
+        defaultValue: { summary: 'normal' },
+      },
+    },
+    iconColor: {
+      control: 'text',
+      description: 'Принимает цвет для иконки слева от текста.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
     splitButton: {
       control: 'boolean',
       description: 'При присвоении значения true разделяет кнопку на две.',
       table: {
+        category: 'Внешний вид и размеры',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
     },
-    items: {
-      description: 'Принимает данные для выпадающего списка',
+    showArrowIcon: {
+      control: 'boolean',
+      description: 'Показывает стрелку-индикатор кнопки.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает кнопку.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     displayExpr: {
       table: {
@@ -73,26 +120,112 @@ export default {
     },
   },
   args: {
-    icon: 'add',
+    icon: '',
     text: 'Button',
     displayExpr: 'name',
     items: meDropDownButtonMockData,
     size: 'medium',
-    splitButton: true,
-    type: 'default',
-    stylingMode: 'outlined',
+    type: 'normal',
+    stylingMode: 'contained',
+    splitButton: false,
+    disabled: false,
+    showArrowIcon: true
   },
   render: (args) => ({
     props: args,
-    template: `<dx-drop-down-button meDropDownButton ${argsToTemplate(
-      args
-    )}></dx-drop-down-button>`,
+    template: `<dx-drop-down-button meDropDownButton ${argsToTemplate(args)}></dx-drop-down-button>`,
   }),
-} as Meta<DxDropDownButtonComponent | MeDropDownButtonDirective>;
+} satisfies Meta<DxDropDownButtonComponent | MeDropDownButtonDirective>;
 
 type Story = StoryObj<DxDropDownButtonComponent | MeDropDownButtonDirective>;
 
 export const Default: Story = {};
+
+export const SizeSmall: Story = {
+  args: {
+    size: 'small'
+  }
+};
+
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium'
+  }
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large'
+  }
+};
+
+export const TypeDefault: Story = {
+  args: {
+    type: 'default'
+  }
+};
+
+export const TypeSuccess: Story = {
+  args: {
+    type: 'success'
+  }
+};
+
+export const TypeDanger: Story = {
+  args: {
+    type: 'danger'
+  }
+};
+
+export const StylingModeContained: Story = {
+  args: {
+    stylingMode: 'contained'
+  }
+};
+
+export const StylingModeOutlined: Story = {
+  args: {
+    stylingMode: 'outlined'
+  }
+};
+
+export const StylingModeText: Story = {
+  args: {
+    stylingMode: 'text'
+  }
+};
+
+export const WithSplitButton: Story = {
+  args: {
+    splitButton: true,
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    icon: 'add',
+  },
+};
+
+export const WithColoredIcon: Story = {
+  args: {
+    icon: 'add',
+    text: 'Button',
+    iconColor: "#ff0000"
+  },
+};
+
+export const WithNoArrowIcon: Story = {
+  args: {
+    showArrowIcon: false,
+  },
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
 
 export const WithLargeData: Story = {
   args: {

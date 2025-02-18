@@ -19,6 +19,7 @@ export default {
       control: 'text',
       description: 'Определяет текст кнопки.',
       table: {
+        type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
     },
@@ -52,6 +53,10 @@ export default {
     disabled: {
       control: 'boolean',
       description: 'Отключает кнопку.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     isSelected: {
       control: 'boolean',

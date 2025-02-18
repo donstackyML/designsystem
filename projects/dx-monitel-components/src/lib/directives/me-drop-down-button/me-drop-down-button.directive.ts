@@ -12,7 +12,7 @@ import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeControlDirective } from '../me-control/me-control.directive';
 
-const DEFAULT_ICON_COLOR = '#ffffff';
+const DEFAULT_ICON_COLOR = 'currentColor';
 
 @Directive({
   selector: '[meDropDownButton]',

@@ -1,25 +1,20 @@
 import {
   Component,
+  ElementRef,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
   ViewChild,
-  ElementRef,
   forwardRef,
 } from '@angular/core';
+import { DecimalPipe, NgForOf, NgIf } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  DecimalPipe,
-  NgForOf,
-  NgIf,
-  NgSwitch,
-  NgSwitchCase,
-} from '@angular/common';
 import {
   DxButtonModule,
   DxLoadIndicatorModule,
   DxProgressBarModule,
 } from 'devextreme-angular';
+
 import { MeIconComponent } from '../me-icon/me-icon.component';
 
 type FileStatus = 'ready' | 'uploading' | 'uploaded' | 'error';
@@ -34,115 +29,23 @@ interface FileWrapper {
 @Component({
   selector: 'me-file-uploader',
   templateUrl: './me-file-uploader.component.html',
+  styleUrls: ['./me-file-uploader.component.scss'],
   standalone: true,
+  imports: [
+    NgIf,
+    NgForOf,
+    DxLoadIndicatorModule,
+    DxButtonModule,
+    DxProgressBarModule,
+    DecimalPipe,
+    MeIconComponent,
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MeFileUploaderComponent),
       multi: true,
     },
-  ],
-  imports: [
-    NgIf,
-    NgForOf,
-    DxLoadIndicatorModule,
-    NgSwitchCase,
-    NgSwitch,
-    DxButtonModule,
-    DxProgressBarModule,
-    DecimalPipe,
-    MeIconComponent,
-  ],
-  styles: [
-    `
-      .file-uploader {
-        border: 1px dashed #d3d3d3;
-        border-radius: 4px;
-        padding: 20px;
-        font-family: 'Roboto', sans-serif;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .file-uploader.drag-over {
-        border-color: #1890ff;
-        background-color: #f0f8ff;
-      }
-
-      .file-uploader p {
-        margin-bottom: 15px;
-        color: #606060;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-      }
-
-      .file-list {
-        margin-top: 20px;
-      }
-
-      .file-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0;
-      }
-
-      .file-details {
-        display: flex;
-        align-items: center;
-      }
-
-      .file-info {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .file-name {
-        font-weight: 400;
-        font-size: 16px;
-        margin-bottom: 4px;
-      }
-
-      .file-size {
-        color: #8c8c8c;
-        font-weight: 400;
-        font-size: 12px;
-        margin-left: 10px;
-      }
-
-      .file-status {
-        display: block;
-        font-size: 12px;
-        font-weight: 400;
-        color: #ff4d4f;
-      }
-
-      .file-actions {
-        display: flex;
-        align-items: center;
-      }
-
-      .file-actions .me-icon-cancel {
-        color: #ff0000;
-        cursor: pointer;
-      }
-
-      .allowed-extensions {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        font-size: 12px;
-        color: #606060;
-        margin-top: 5px;
-      }
-
-      .allowed-extensions .extensions {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        color: #000000;
-      }
-    `,
   ],
 })
 export class MeFileUploaderComponent implements ControlValueAccessor {

@@ -1,4 +1,4 @@
-import { Meta, StoryFn, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import {
   DxCheckBoxModule,
   DxDateBoxModule,
@@ -16,16 +16,7 @@ import {
   MeSelectBoxModule,
   MeTextBoxModule,
 } from '../../public-api';
-
-interface FormStoryArgs {
-  size: 'small' | 'medium' | 'large';
-  labelMode: 'outside' | 'static' | 'floating' | 'hidden';
-  labelLocation: 'left' | 'top';
-  colCount: 'auto' | 1 | 2 | 3;
-  readOnly: boolean;
-  disabled: boolean;
-  showColonAfterLabel: boolean;
-}
+import { meFormFilledFormData, meFormInitialFormData } from './me-form-mock-data';
 
 export default {
   title: 'Components/Form',
@@ -54,62 +45,186 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
+      description: 'Определяет размер полей формы.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
     },
     labelMode: {
       control: 'select',
-      options: ['outside', 'static', 'floating', 'hidden'], // Добавлено 'static'
+      options: ['outside', 'static', 'floating', 'hidden'],
+      description: 'Указывает, где будет размещаться лейбл.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'outside' },
+      },
     },
     labelLocation: {
       control: 'radio',
       options: ['left', 'top'],
-    },
-    colCount: {
-      control: 'select',
-      options: ['auto', 1, 2, 3],
+      description: 'Определяет расположение лейбла.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'left' },
+      },
     },
     readOnly: {
       control: 'boolean',
+      description: 'Определяет состояние только для чтения',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
     },
     disabled: {
       control: 'boolean',
+      description: 'Отключает компонент.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     showColonAfterLabel: {
       control: 'boolean',
+      description: 'Определяет, будет ли отображаться двоеточие после лейбла.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
     },
-  },
-} as Meta<FormStoryArgs>;
-
-type Story = StoryObj<FormStoryArgs>;
-
-const Template: StoryFn<FormStoryArgs> = (args) => ({
-  props: {
-    ...args,
-    formData: {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@example.com',
-      phone: '+1 (555) 123-4567',
-      gender: 'male',
-      birthDate: new Date(1990, 0, 1),
-      occupation: '',
-      isSubscribed: false,
-      country: 'USA',
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, будет ли отображаться обязательный маркер.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
     },
-    genderOptions: ['male', 'female', 'other'],
-    countryOptions: ['USA', 'Canada', 'UK', 'Australia', 'Germany'],
+    colCount: {
+      control: 'number',
+      description: 'Определяет количество колонок.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'number | "auto"' },
+        defaultValue: { summary: '1' },
+      },
+    },
+    minColWidth: {
+      control: 'number',
+      description: 'Минимальная ширина колонки, используемая для расчета количества колонок в макете формы. Применяется только если свойство colCount имеет значение `"auto"`.',
+      table: {
+        category: 'Внешний вид и размеры',
+        type: { summary: 'number' },
+        defaultValue: { summary: '200' },
+      }
+    }
   },
-  template: `
+  args: {
+    size: 'medium',
+    labelMode: 'outside',
+    labelLocation: 'left',
+    readOnly: false,
+    disabled: false,
+    showColonAfterLabel: true,
+    showRequiredMark: true,
+    colCount: 1,
+    minColWidth: 200
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      formData: meFormInitialFormData,
+    },
+    template: `
+<div style="max-width: 800px; margin: 0 auto;">
+  <dx-form
+    meForm
+    ${argsToTemplate(args)}
+  >
+    <dxi-item meFormItem dataField="firstName">
+      <dxo-label text="First Name"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box
+          meTextBox
+          [(value)]="formData.firstName">
+        </dx-text-box>
+      </div>
+    </dxi-item>
+    <dxi-item meFormItem dataField="email">
+      <dxo-label text="Email"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box
+          meTextBox
+          [(value)]="formData.email">
+        </dx-text-box>
+      </div>
+    </dxi-item>
+  </dx-form>
+</div>
+    `
+  }),
+} satisfies Meta<DxFormModule | MeFormDirective>;
+
+type Story = StoryObj<DxFormModule | MeFormDirective>;
+
+export const Default: Story = {};
+
+export const WithFormData: Story = {
+  render: (args) => ({
+    props: {
+      ...args,
+      formData: meFormFilledFormData,
+    },
+    template: `
+<div style="max-width: 800px; margin: 0 auto;">
+  <dx-form
+    meForm
+    ${argsToTemplate(args)}
+  >
+    <dxi-item meFormItem dataField="firstName">
+      <dxo-label text="First Name"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box
+          meTextBox
+          [(value)]="formData.firstName">
+        </dx-text-box>
+      </div>
+    </dxi-item>
+    <dxi-item meFormItem dataField="email">
+      <dxo-label text="Email"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box
+          meTextBox
+          [(value)]="formData.email">
+        </dx-text-box>
+      </div>
+    </dxi-item>
+  </dx-form>
+</div>
+`})
+};
+
+export const MultipleFields: Story = {
+  render: (args) => ({
+    props: {
+      ...args,
+      formData: meFormInitialFormData,
+      genderOptions: ['male', 'female', 'other'],
+      countryOptions: ['Russia', 'USA', 'Canada', 'UK', 'Australia', 'Germany'],
+    },
+    template: `
     <div style="max-width: 800px; margin: 0 auto;">
       <dx-form
         meForm
-        [size]="size"
-        [formData]="formData"
-        [labelMode]="labelMode"
-        [labelLocation]="labelLocation"
-        [colCount]="colCount"
-        [showColonAfterLabel]="showColonAfterLabel"
-        [readOnly]="readOnly"
-        [disabled]="disabled"
+        ${argsToTemplate(args)}
       >
         <dxi-item meFormItem dataField="firstName">
           <dxi-validation-rule type="required" message="First Name is required"></dxi-validation-rule>
@@ -168,88 +283,189 @@ const Template: StoryFn<FormStoryArgs> = (args) => ({
         </dxi-item>
       </dx-form>
     </div>
-  `,
-});
-
-export const Default: Story = {
-  render: Template,
-  args: {
-    size: 'medium',
-    labelMode: 'floating',
-    labelLocation: 'top',
-    colCount: 2,
-    readOnly: false,
-    disabled: false,
-    showColonAfterLabel: true,
-  },
+  `
+  })
+};
+export const DynamicForm: Story = {
+  render: (args) => ({
+    props: {
+      ...args,
+      formData: {
+        hasDetails: false,
+        details: ''
+      },
+    },
+    template: `
+<div style="max-width: 800px; margin: 0 auto;">
+  <dx-form meForm [formData]="formData">
+    <dxi-item dataField="hasDetails">
+      <dxo-label text="Есть детали?"></dxo-label>
+      <div *dxTemplate>
+        <dx-check-box meCheckBox [(value)]="formData.hasDetails"></dx-check-box>
+      </div>
+    </dxi-item>
+    <dxi-item *ngIf="formData.hasDetails" dataField="details">
+      <dxo-label text="Детали"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box meTextBox [(value)]="formData.details"></dx-text-box>
+      </div>
+    </dxi-item>
+  </dx-form>
+</div>
+    `
+  })
 };
 
-export const SmallSize: Story = {
-  render: Template,
+
+export const SizeSmall: Story = {
   args: {
-    ...Default.args,
     size: 'small',
   },
 };
 
-export const LargeSize: Story = {
-  render: Template,
+export const SizeMedium: Story = {
   args: {
-    ...Default.args,
+    size: 'medium'
+  }
+}
+
+export const SizeLarge: Story = {
+  args: {
     size: 'large',
   },
 };
 
-export const FloatingLabels: Story = {
-  render: Template,
+export const LabelLocationLeft: Story = {
   args: {
-    ...Default.args,
-    labelMode: 'floating',
-  },
-};
-
-export const LeftLabels: Story = {
-  render: Template,
-  args: {
-    ...Default.args,
-    labelMode: 'outside', // Убедитесь, что labelMode соответствует доступным опциям
     labelLocation: 'left',
   },
 };
 
-export const SingleColumn: Story = {
-  render: Template,
+export const LabelLocationTop: Story = {
   args: {
-    ...Default.args,
-    colCount: 1,
+    labelLocation: 'top',
   },
 };
 
-export const ReadOnly: Story = {
-  render: Template,
+
+export const LabelModeFloating: Story = {
   args: {
-    ...Default.args,
-    readOnly: true,
+    labelMode: 'floating',
   },
 };
 
-export const Disabled: Story = {
-  render: Template,
+export const LabelModeOutside: Story = {
   args: {
-    ...Default.args,
-    disabled: true,
+    labelMode: 'outside',
   },
 };
 
-export const WithoutColon: Story = {
-  render: Template,
+export const LabelModeStatic: Story = {
   args: {
-    ...Default.args,
+    labelMode: 'static',
+  },
+};
+
+export const LabelModeHidden: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
+};
+
+export const LabelWithoutColon: Story = {
+  args: {
     showColonAfterLabel: false,
   },
 };
 
+export const TwoColumns: Story = {
+  args: {
+    colCount: 2,
+  },
+};
+
+export const AutoColumns: Story = {
+  args: {
+    colCount: 'auto',
+    minColWidth: 200
+  },
+};
+
+export const StateReadOnly: Story = {
+  args: {
+    readOnly: true,
+    formData: meFormFilledFormData,
+  },
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
+export const StateDisabledAndReadOnly: Story = {
+  args: {
+    disabled: true,
+    readonly: true
+  },
+};
+
 export const WithGrouping: Story = {
-  render: Template,
-  args: Default.args,
+  render: (args) => ({
+    props: args,
+    template: `<dx-form meForm [formData]="formData">
+  <dxi-item itemType="group" caption="Personal Info">
+    <dxi-item meFormItem dataField="firstName">
+      <dxo-label text="First Name"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box meTextBox></dx-text-box>
+      </div>
+    </dxi-item>
+    <dxi-item meFormItem dataField="lastName">
+      <dxo-label text="Last Name"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box meTextBox></dx-text-box>
+      </div>
+    </dxi-item>
+  </dxi-item>
+  <dxi-item itemType="group" caption="Contact Info">
+    <dxi-item meFormItem dataField="phone">
+      <dxo-label text="Phone"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box meTextBox></dx-text-box>
+      </div>
+    </dxi-item>
+    <dxi-item meFormItem dataField="email">
+      <dxo-label text="Email"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box meTextBox></dx-text-box>
+      </div>
+    </dxi-item>
+  </dxi-item>
+</dx-form>`
+  })
+};
+
+export const WithValidation: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+<dx-form meForm [formData]="formData">
+  <dxi-item dataField="email">
+    <dxi-validation-rule
+      type="required"
+      message="Email is required">
+    </dxi-validation-rule>
+    <dxi-validation-rule
+      type="email"
+      message="Invalid email format">
+    </dxi-validation-rule>
+    <div *dxTemplate>
+      <dx-text-box meTextBox></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+`
+  })
 };
