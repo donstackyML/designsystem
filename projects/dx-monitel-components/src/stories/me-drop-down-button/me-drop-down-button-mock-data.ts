@@ -13,7 +13,7 @@ export const meDropDownButtonMockData = [
   },
   {
     id: 3,
-    name: 'Пункт',
+    name: 'Пункт 1',
   },
 ];
 
@@ -32,7 +32,7 @@ export const meDropDownButtonMockLargeData = [
   },
   {
     id: 3,
-    name: 'Пункт',
+    name: 'Пункт 1',
   },
   {
     id: 5,
