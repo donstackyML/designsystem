@@ -1,6 +1,10 @@
 import { Directive, Input } from '@angular/core';
-import { MeButtonStyle, MeButtonType, MeSize } from '../../types/types';
-import { MeButtonGroupItem } from '../../types/types';
+import type {
+  MeButtonGroupItem,
+  MeButtonStyle,
+  MeButtonType,
+  MeSize
+} from '../../types/types';
 
 const LARGE_ICON_SIZE = '24';
 const DEFAULT_ICON_SIZE = '20';
