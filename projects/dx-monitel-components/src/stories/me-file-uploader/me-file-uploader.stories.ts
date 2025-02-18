@@ -1,4 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { MeFileUploaderComponent } from '../../public-api';
 
 export default {
@@ -10,9 +10,50 @@ export default {
     }),
   ],
   argTypes: {
+    labelText: {
+      control: 'text',
+      description: 'Текст метки для загрузчика',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Перетащите сюда файлы для загрузки или выберите на устройстве' },
+      },
+    },
+    selectButtonText: {
+      control: 'text',
+      description: 'Текст кнопки выбора файла',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Выбрать файлы' },
+      },
+    },
+    showFileList: {
+      control: 'boolean',
+      description: 'Показывать список выбранных файлов',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    multiple: {
+      control: 'boolean',
+      description: 'Разрешить выбор нескольких файлов',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     allowedFileExtensions: {
       control: 'object',
       description: 'Допустимые расширения файлов',
+      table: {
+        category: 'Валидация',
+        type: { summary: 'string[]' },
+        defaultValue: { summary: '[]' },
+      },
     },
     maxFileSize: {
       control: {
@@ -22,120 +63,118 @@ export default {
         step: 1024 * 1024,
       },
       description: 'Максимальный размер файла в байтах',
+      table: {
+        category: 'Валидация',
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
     },
     minFileSize: {
-      control: { type: 'number', min: 0, max: 10 * 1024 * 1024, step: 1024 },
+      control: {
+        type: 'number',
+        min: 0,
+        max: 10 * 1024 * 1024,
+        step: 1024
+      },
       description: 'Минимальный размер файла в байтах',
+      table: {
+        category: 'Валидация',
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
     },
-    multiple: {
-      control: 'boolean',
-      description: 'Разрешить выбор нескольких файлов',
+    fileAdded: {
+      action: 'fileAdded',
+      description: 'Вызывается при добавлении нового файла.',
+      table: {
+        category: 'События',
+        type: { summary: 'EventEmitter<File>' },
+      },
     },
-    labelText: {
-      control: 'text',
-      description: 'Текст метки для загрузчика',
+    fileRemoved: {
+      action: 'fileRemoved',
+      description: 'Вызывается при удалении файла.',
+      table: {
+        category: 'События',
+        type: { summary: 'EventEmitter<File>' },
+      },
     },
-    selectButtonText: {
-      control: 'text',
-      description: 'Текст кнопки выбора файла',
+    allFilesRemoved: {
+      action: 'allFilesRemoved',
+      description: 'Вызывается при удалении всех файлов.',
+      table: {
+        category: 'События',
+        type: { summary: 'EventEmitter<void>' },
+      },
     },
-    showFileList: {
-      control: 'boolean',
-      description: 'Показывать список выбранных файлов',
+    invalidFile: {
+      action: 'invalidFile',
+      description: 'Вызывается при добавлении недопустимого файла.',
+      table: {
+        category: 'События',
+        type: { summary: 'EventEmitter<{ file: File; error: string }>' },
+      },
     },
-    fileAdded: { action: 'fileAdded' },
-    fileRemoved: { action: 'fileRemoved' },
-    allFilesRemoved: { action: 'allFilesRemoved' },
-    invalidFile: { action: 'invalidFile' },
   },
   args: {
-    allowedFileExtensions: ['jpg', 'png', 'pdf'],
-    maxFileSize: 5 * 1024 * 1024, // 5MB
-    minFileSize: 1024, // 1KB
-    multiple: true,
-    labelText: 'Перетащите файлы сюда или нажмите для выбора',
+    labelText: 'Перетащите сюда файлы для загрузки или выберите на устройстве',
     selectButtonText: 'Выбрать файлы',
+    allowedFileExtensions: [],
+    multiple: false,
     showFileList: true,
+    maxFileSize: 0,
+    minFileSize: 0,
   },
-} as Meta<MeFileUploaderComponent>;
+  render: (args) => ({
+    props: args,
+    template: `<me-file-uploader ${argsToTemplate(args)}></me-file-uploader>`,
+  })
+} satisfies Meta<MeFileUploaderComponent>;
 
 type Story = StoryObj<MeFileUploaderComponent>;
 
-const Template: Story = {
-  render: (args) => ({
-    props: {
-      ...args,
-      onFileAdded: (e: any) => console.log('Файл добавлен', e),
-      onFileRemoved: (e: any) => console.log('Файл удален', e),
-      onAllFilesRemoved: (e: any) => console.log('Все файлы удалены', e),
-      onInvalidFile: (e: any) => console.log('Недопустимый файл', e),
-    },
-    template: `
-      <me-file-uploader
-        [allowedFileExtensions]="allowedFileExtensions"
-        [maxFileSize]="maxFileSize"
-        [minFileSize]="minFileSize"
-        [multiple]="multiple"
-        [labelText]="labelText"
-        [selectButtonText]="selectButtonText"
-        [showFileList]="showFileList"
-        (fileAdded)="onFileAdded($event)"
-        (fileRemoved)="onFileRemoved($event)"
-        (allFilesRemoved)="onAllFilesRemoved()"
-        (invalidFile)="onInvalidFile($event)"
-      >
-      </me-file-uploader>
-    `,
-  }),
-};
+export const Default: Story = {};
 
-export const Default: Story = {
-  ...Template,
-  args: {},
-};
-
-export const SingleFileUpload: Story = {
-  ...Template,
+export const WithFileSizeRestrictions: Story = {
   args: {
-    multiple: false,
-    labelText: 'Выберите один файл',
-  },
+    maxFileSize: 5 * 1024 * 1024, // 5MB
+    minFileSize: 1024, // 1KB
+  }
 };
 
-export const CustomFileTypes: Story = {
-  ...Template,
+export const WithFileExtensionRestriction: Story = {
   args: {
-    allowedFileExtensions: ['doc', 'docx', 'txt'],
-    labelText: 'Загрузите только документы',
-  },
+    allowedFileExtensions: ['jpg', 'png', 'pdf'],
+    labelText: 'Выберите файлы только с расширениями JPG, PNG или PDF',
+  }
 };
 
-export const LargeFileUpload: Story = {
-  ...Template,
-  args: {
-    maxFileSize: 100 * 1024 * 1024, // 100MB
-    minFileSize: 1 * 1024 * 1024, // 1MB
-    labelText: 'Загрузите большие файлы (1MB - 100MB)',
-  },
-};
 
-export const HideFileList: Story = {
-  ...Template,
+export const WithoutFileList: Story = {
   args: {
     showFileList: false,
   },
 };
 
-export const CustomButtonText: Story = {
-  ...Template,
+export const SingleFileUpload: Story = {
+  args: {
+    multiple: false,
+    labelText: 'Выберите один файл',
+  },
+}
+
+export const CustomSelectButtonText: Story = {
   args: {
     selectButtonText: 'Обзор файлов',
   },
 };
 
-export const CustomLabelText: Story = {
-  ...Template,
+export const CustomizableUploader: Story = {
   args: {
-    labelText: 'Перетащите файлы сюда или нажмите на кнопку ниже',
+    labelText:"Перетащите ваши файлы сюда или нажмите кнопку ниже",
+    selectButtonText:"Выбрать файлы",
+    allowedFileExtensions : ['jpg', 'png', 'pdf'],
+    maxFileSize : 5 * 1024 * 1024,
+    multiple : true,
   },
 };
