@@ -1,171 +1,425 @@
-import { Meta, Controls, Source, Story, Canvas } from "@storybook/addon-docs";
-import * as formStories from "./me-form.stories";
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as formStories from "./me-form.stories";
 
-<Meta
-  title="Components/Form(RC)"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true }
-    },
-    layout: 'centered',
-    docs: {
-      description: {
-        component: 'Компонент Form для создания форм ввода данных'
-      }
-    },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0'
-    }
-  }}
-/>
+<Meta name="Form Documentation" of={formStories} />
 
 # Form
 
-> ## Директива meForm
->
-> Директива `meForm` стилизует `dx-form` компонент в соответствии с дизайн-системой. Работает совместно с директивами `meTextBox`, `meSelectBox`, `meCheckBox` для стилизации полей ввода.
+## Директива `meForm`
+
+Директива `meForm` стилизует компонент `dx-form` в соответствии с требованиями дизайн-системы. Она работает совместно с такими директивами, как `meTextBox`, `meSelectBox` и `meCheckBox`, обеспечивая единый внешний вид и поведение для всех элементов формы.
 
 Документация на сайте разработчика DevExtreme:
-- [Form API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxForm/)
 
-<Canvas of={formStories.Default} />
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI*Components/dxForm/"
+    target="_blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Form/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
 <Controls of={formStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
+/>
 
 ## Примеры использования
 
+- [Базовая форма](#базовая-форма)
+- [Группировка полей](#группировка-полей)
+- [Валидация](#валидация)
+- [Форма с динамической логикой](#форма-с-динамической-логикой)
+- [Размеры формы](#размеры-формы)
+  - [Небольшой размер](#небольшой-размер)
+  - [Средний размер (по умолчанию)](#средний-размер)
+  - [Большой размер](#большой-размер)
+- [Разные режимы положения лейбла](#разные-режимы-положения-лейбла)
+  - [Лейбл слева (по умолчанию)](#лейбл-слева)
+  - [Лейбл сверху](#лейбл-сверху)
+  - [Лейбл внешний](#лейбл-внешний)
+  - [Лейбл статичный](#лейбл-статичный)
+  - [Лейбл всплывающий](#лейбл-всплывающий)
+  - [Лейбл невидимый](#лейбл-невидимый)
+
 ### Базовая форма
 
-```html
+*Этот пример демонстрирует простейшую форму, состоящую из двух полей: "First Name" и "Email". Здесь используются свойства `formData` для передачи данных, а также базовые директивы для стилизации полей (например, `meTextBox`).*
+
+<Canvas name="Базовая форма" of={formStories.Default} />
+
+<Source
+  code={`
 <dx-form
   meForm
   [formData]="formData"
-  [size]="'medium'"
-  [labelMode]="'floating'"
-  [colCount]="2"
 >
   <dxi-item dataField="firstName">
     <dxo-label text="First Name"></dxo-label>
     <div *dxTemplate>
-      <dx-text-box
-        meTextBox
-        [(value)]="formData.firstName">
-      </dx-text-box>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
     </div>
   </dxi-item>
   <dxi-item dataField="email">
     <dxo-label text="Email"></dxo-label>
     <div *dxTemplate>
-      <dx-text-box
-        meTextBox
-        [(value)]="formData.email">
-      </dx-text-box>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
     </div>
   </dxi-item>
 </dx-form>
-```
+  `}
+  dark
+  language="html"
+/>
 
 ### Группировка полей
 
-<Canvas of={formStories.WithGrouping} />
+*Для группировки полей используется свойство `itemType="group"` у компонента `dxi-item`. Дополнительно, можно задать заголовок группы с помощью свойства `caption`. В данном примере поля, относящиеся к персональным данным, объединены в группу с заголовком "Personal Info", а контактная информация — в группу "Contact Info".*
 
-```html
+<Canvas name="Группировка полей" of={formStories.WithGrouping} />
+
+<Source
+  code={`
 <dx-form meForm [formData]="formData">
+  <!-- Группа для персональной информации -->
   <dxi-item itemType="group" caption="Personal Info">
-    <dxi-item dataField="firstName">
+    <dxi-item meFormItem dataField="firstName">
       <dxo-label text="First Name"></dxo-label>
       <div *dxTemplate>
         <dx-text-box meTextBox></dx-text-box>
       </div>
     </dxi-item>
-    <dxi-item dataField="lastName">
+    <dxi-item meFormItem dataField="lastName">
       <dxo-label text="Last Name"></dxo-label>
       <div *dxTemplate>
         <dx-text-box meTextBox></dx-text-box>
       </div>
     </dxi-item>
   </dxi-item>
-
+  <!-- Группа для контактной информации -->
   <dxi-item itemType="group" caption="Contact Info">
-    <dxi-item dataField="email">...</dxi-item>
-    <dxi-item dataField="phone">...</dxi-item>
+    <dxi-item meFormItem dataField="phone">
+      <dxo-label text="Phone"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box meTextBox></dx-text-box>
+      </div>
+    </dxi-item>
+    <dxi-item meFormItem dataField="email">
+      <dxo-label text="Email"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box meTextBox></dx-text-box>
+      </div>
+    </dxi-item>
   </dxi-item>
 </dx-form>
-```
+  `}
+  dark
+  language="html"
+/>
 
 ### Валидация
 
-```html
+*В этом примере для поля "Email" настроены два правила валидации: `required` и `email`. Используя директиву `meForm`, вы можете легко интегрировать правила валидации через компоненты `dxi-validation-rule`, чтобы обеспечить корректность вводимых данных.*
+
+<Canvas name="Валидация" of={formStories.WithValidation} />
+
+<Source
+  code={`
 <dx-form meForm>
   <dxi-item dataField="email">
-    <dxi-validation-rule
-      type="required"
-      message="Email is required">
-    </dxi-validation-rule>
-    <dxi-validation-rule
-      type="email"
-      message="Invalid email format">
-    </dxi-validation-rule>
+    <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
+    <dxi-validation-rule type="email" message="Invalid email format"></dxi-validation-rule>
     <div *dxTemplate>
       <dx-text-box meTextBox></dx-text-box>
     </div>
   </dxi-item>
 </dx-form>
-```
-
-### Стили отображения
-
-<Canvas of={formStories.FloatingLabels} />
-
-```html
-<dx-form
-  meForm
-  [labelMode]="'floating'"
-  [labelLocation]="'top'"
->
-  <!-- Form items -->
-</dx-form>
-```
-
-### Различные размеры
-
-<Canvas of={formStories.SmallSize} />
-<Canvas of={formStories.LargeSize} />
-
-### Основные параметры:
-
-
-| Параметр | Тип | Описание |
-|----------|-----|-----------|
-| size | 'small' \| 'medium' \| 'large' | Размер компонентов формы |
-| labelMode | 'outside' \| 'static' \| 'floating' \| 'hidden' | Режим отображения меток |
-| labelLocation | 'left' \| 'top' | Расположение меток |
-| colCount | 'auto' \| number | Количество колонок |
-| disabled | boolean | Отключение формы |
-| readOnly | boolean | Режим только для чтения |
-| showColonAfterLabel | boolean | Отображение двоеточия после меток |
-## Дизайн
-
-<Figma
-  height="50%"
-  collapsable
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=333-2185&t=gC6C40DcbGAFZEUK-0"
+  `}
+  dark
+  language="html"
 />
 
-<style>
-  {`
-  h2 {
-    border-bottom: none !important;
-  }
+### Форма с динамической логикой
 
-  a {
-    display: inline-block !important;
-  }
+*Этот пример демонстрирует динамическое изменение структуры формы. При выборе опции "Есть детали?" (свойство `hasDetails`) с помощью чекбокса, появляется дополнительное поле "Детали". Для этого используется конструкция `*ngIf`, которая отображает элемент `dxi-item` только при выполнении условия.*
 
-  a p {
-    color: #029CFD !important;
-  }
-`}
-</style>
+<Canvas name="Динамическая форма" of={formStories.DynamicForm} />
+
+<Source
+  code={`
+<dx-form meForm [formData]="formData">
+  <dxi-item dataField="hasDetails">
+    <dxo-label text="Есть детали?"></dxo-label>
+    <div *dxTemplate>
+      <dx-check-box meCheckBox [(value)]="formData.hasDetails"></dx-check-box>
+    </div>
+  </dxi-item>
+  <!-- Поле "Детали" отображается только если hasDetails === true -->
+  <dxi-item *ngIf="formData.hasDetails" dataField="details">
+    <dxo-label text="Детали"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.details"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+### Размеры формы
+
+*Здесь показано, как изменяются размеры полей формы с помощью свойства `size`, которое принимает значения `small`, `medium` и `large`. Это позволяет адаптировать внешний вид формы к разным условиям использования.*
+
+#### Небольшой размер
+
+<Canvas name="Небольшой размер" of={formStories.SizeSmall} />
+
+<Source
+  code={`
+<dx-form meForm size="small">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+#### Средний размер
+
+<Canvas name="Средний размер" of={formStories.SizeMedium} />
+
+<Source
+  code={`
+<dx-form meForm size="medium">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+#### Большой размер
+
+<Canvas name="Большой размер" of={formStories.SizeLarge} />
+
+<Source
+  code={`
+<dx-form meForm size="large">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+### Разные режимы положения лейбла
+
+*В этом блоке показаны различные варианты отображения лейблов для полей формы. Это достигается с помощью свойств `labelMode` и `labelLocation`. Вы можете выбрать, где располагать лейбл: слева, сверху или полностью скрыть его.*
+
+#### Лейбл слева
+
+*Свойство `labelLocation="left"` размещает лейбл слева от поля ввода.*
+
+<Canvas name="Лейбл слева" of={formStories.LabelLocationLeft} />
+
+<Source
+  code={`
+<dx-form meForm labelLocation="left">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+#### Лейбл сверху
+
+*Установка `labelLocation="top"` размещает лейбл над полем ввода, что создает более вертикальное оформление.*
+
+<Canvas name="Лейбл сверху" of={formStories.LabelLocationLeft} />
+
+<Source
+  code={`
+<dx-form meForm labelLocation="top">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+#### Лейбл внешний
+
+*Свойство `labelMode="outside"` позволяет отображать лейблы вне области ввода, что подходит для некоторых дизайнерских решений.*
+
+<Canvas name="Лейбл внешний" of={formStories.LabelModeOutside} />
+
+<Source
+  code={`
+<dx-form meForm labelMode="outside">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+#### Лейбл статичный
+
+*В режиме `static` лейблы остаются фиксированными и не перемещаются при взаимодействии с полем ввода.*
+
+<Canvas name="Лейбл статичный" of={formStories.LabelModeStatic} />
+
+<Source
+  code={`
+<dx-form meForm labelMode="static">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+#### Лейбл всплывающий
+
+*При использовании `labelMode="floating"` лейблы поднимаются при фокусе на поле, создавая эффект «плавающего» заголовка.*
+
+<Canvas name="Лейбл всплывающий" of={formStories.LabelModeFloating} />
+
+<Source
+  code={`
+<dx-form meForm labelMode="floating">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
+
+#### Лейбл невидимый
+
+*При установке `labelMode="hidden"` лейблы не отображаются, что может использоваться для минималистичного дизайна, где метки выводятся отдельным способом или вовсе не требуются.*
+
+<Canvas name="Лейбл невидимый" of={formStories.LabelModeFloating} />
+
+<Source
+  code={`
+<dx-form meForm labelMode="hidden">
+  <dxi-item dataField="firstName">
+    <dxo-label text="First Name"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.firstName"></dx-text-box>
+    </div>
+  </dxi-item>
+  <dxi-item dataField="email">
+    <dxo-label text="Email"></dxo-label>
+    <div *dxTemplate>
+      <dx-text-box meTextBox [(value)]="formData.email"></dx-text-box>
+    </div>
+  </dxi-item>
+</dx-form>
+  `}
+  dark
+  language="html"
+/>
