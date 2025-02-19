@@ -148,7 +148,11 @@ import * as dateBoxStories from "./me-date-box.stories";
 
 <Source
   code={`
-<dx-date-box meDateBox>
+<dx-date-box
+  meDateBox
+  [(validationMessagePosition)]="validationMessagePosition"
+  [(validationMessagePosition)]="validationMessagePosition"
+  >
   <dx-validator>
     <dxi-validation-rule
       type="required"
@@ -167,7 +171,6 @@ import * as dateBoxStories from "./me-date-box.stories";
 - `date` — выбор даты (по умолчанию),
 - `datetime` — выбор даты и времени,
 - `time` — выбор времени.
-
 
 <Canvas of={dateBoxStories.PickerTypeCalendar} />
 <Source

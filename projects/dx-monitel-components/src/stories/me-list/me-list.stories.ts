@@ -5,157 +5,15 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 import { DxListModule } from 'devextreme-angular';
-import { MeIconStoreService } from 'src/app/service/icon-store.service';
+
 import { MeListDirective } from '../../public-api';
-
-const iconStore = new MeIconStoreService();
-// iconStore.getIcon({ icon: 'folder', size: 'size' }),
-
-const data = [
-  {
-    key: 'Prepare 2013 Financial',
-    text: 'Prepare 2013 Financial',
-    items: [
-      'Prepare 2013 Financial',
-      'Prepare 3013 Marketing',
-      'Update Personnel Files',
-      'Review Health ',
-      'Prepare 2013 Marketing Plan',
-    ],
-  },
-  {
-    key: 'Prepare 3013 Marketing',
-    text: 'Prepare 3013 Marketing',
-    items: [
-      'Prepare 2013 Financial',
-      'Prepare 3013 Marketing',
-      'Update Personnel Files',
-      'Review Health ',
-      'Prepare 2013 Marketing Plan',
-    ],
-  },
-  {
-    key: 'Update Personnel Files',
-    text: 'Update Personnel Files',
-    items: [
-      'Prepare 2013 Financial',
-      'Prepare 3013 Marketing',
-      'Update Personnel Files',
-      'Review Health ',
-      'Prepare 2013 Marketing Plan',
-    ],
-  },
-  {
-    key: 'Review Health',
-    text: 'Review Health',
-    items: [
-      'Prepare 2013 Financial',
-      'Prepare 3013 Marketing',
-      'Update Personnel Files',
-      'Review Health ',
-      'Prepare 2013 Marketing Plan',
-    ],
-  },
-  {
-    key: 'Prepare 2013 Marketing Plan',
-    text: 'Prepare 2013 Marketing Plan',
-    items: [
-      'Prepare 2013 Financial',
-      'Prepare 3013 Marketing',
-      'Update Personnel Files',
-      'Review Health ',
-      'Prepare 2013 Marketing Plan',
-    ],
-  },
-];
-
-const dataWithHeaders = [
-  {
-    key: 'Header 1',
-    text: 'Header 1',
-    items: [
-      'Prepare 2013 Financial',
-      'Prepare 3013 Marketing',
-      'Update Personnel Files',
-      'Review Health ',
-      'Prepare 2013 Marketing Plan',
-    ],
-  },
-  {
-    key: 'Header 2',
-    text: 'Header 2',
-    items: [
-      'Prepare 2013 Financial',
-      'Prepare 3013 Marketing',
-      'Update Personnel Files',
-      'Review Health ',
-      'Prepare 2013 Marketing Plan',
-    ],
-  },
-];
-
-const fruitsVegetables = [
-  {
-    key: 'Fruits',
-    description: 'fruits desc',
-    items: [
-      { name: 'Apples', count: 10 },
-      { name: 'Oranges', count: 12 },
-      { name: 'Lemons', count: 15 },
-    ],
-  },
-  {
-    key: 'Vegetables',
-    description: 'vegetables desc',
-    items: [
-      { name: 'Potatoes', count: 5 },
-      { name: 'Tomatoes', count: 9 },
-      { name: 'Turnips', count: 8 },
-    ],
-  },
-];
-
-const itemsWithImageAndDescription = [
-  {
-    name: 'Apples',
-    count: 10,
-    image: '../../../assets/images/image.png',
-    icon: 'favorites',
-    description: 'Vegetables are good for you too.',
-  },
-  {
-    name: 'Oranges',
-    count: 12,
-    image: '../../../assets/images/image.png',
-    icon: 'favorites',
-    description: 'Vegetables are good for you too.',
-  },
-  {
-    name: 'Lemons',
-    count: 15,
-    image: '../../../assets/images/image.png',
-    icon: 'favorites',
-    description: 'Vegetables are good for you too.',
-  },
-];
-
-const iconList = [
-  {
-    name: 'Apples',
-    count: 10,
-    icon: iconStore.getIcon({ icon: 'check', size: '24' }),
-  },
-  {
-    name: 'Oranges',
-    count: 10,
-    icon: iconStore.getIcon({ icon: 'check', size: '24' }),
-  },
-  {
-    name: 'Lemons',
-    count: 10,
-    icon: iconStore.getIcon({ icon: 'check', size: '24' }),
-  },
-];
+import {
+  meListDefaultMockData,
+  meListMockDataWithHeaderDescription,
+  meListMockDataWithHeaders,
+  meListMockDataWithIcons,
+  meListMockDataWithImageAndDescription
+} from './me-list-mock-data';
 
 export default {
   title: 'Components/List',
@@ -168,16 +26,35 @@ export default {
   argTypes: {
     dataSource: {
       description: 'Данные для отображения',
+      table: {
+        type: { summary: 'Array<any>' },
+        defaultValue: { summary: '[]' },
+      },
     },
     searchEnabled: {
       description: 'Разрешить поиск',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    searchMode: {
+      description: 'Режим поиска',
       control: 'select',
-      options: [true, false],
+      options: ['contains', 'startswith', 'equals'],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'contains' },
+      },
     },
     allowItemDeleting: {
       description: 'Разрешить удаление элементов',
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     itemDeleteMode: {
       description: 'Режим удаления элементов',
@@ -190,142 +67,324 @@ export default {
         'swipe',
         'toggle',
       ],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'context' },
+      },
     },
     disabled: {
       description: 'Отключить компонент',
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    selectByClick: {
+      description: 'Выбрать элемент при клике',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     grouped: {
       description: 'Группировать элементы',
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     collapsibleGroups: {
       description: 'Сворачивать группы',
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     selectionMode: {
+      description: 'Определяет способ выделения элементов',
+      control: 'select',
+      options: ['multiple', 'single', 'all', 'none'],
       table: {
-        disable: true,
+        type: { summary: 'string' },
+        defaultValue: { summary: 'none' },
       },
     },
     showSelectionControls: {
+      description: 'Показывать элементы управления выбором',
+      control: 'boolean',
       table: {
-        disable: true,
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    width: {
+      description: 'Ширина списка',
+      control: 'text',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    height: {
+      description: 'Высота списка',
+      control: 'text',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
       },
     },
   },
+  args: {
+    dataSource: meListDefaultMockData,
+    selectionMode: 'none',
+    selectByClick: false,
+    searchEnabled: false,
+    searchMode: 'contains',
+    showSelectionControls: true,
+    allowItemDeleting: false,
+    itemDeleteMode: 'static',
+    disabled: false,
+    grouped: false,
+    collapsibleGroups: false,
+    width: 436,
+    height: undefined
+  },
   render: (args) => ({
     props: args,
-    template: `<dx-list meList width="436px" height="300px" ${argsToTemplate(
-      args
-    )}>
-        <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
-    </dx-list>`,
+    template: `<dx-list meList ${argsToTemplate(args)}></dx-list>`,
   }),
-} as Meta<MeListDirective | DxListModule>;
+} satisfies Meta<MeListDirective | DxListModule>;
 
 type Story = StoryObj<MeListDirective | DxListModule>;
 
-export const Default: Story = {
+export const Default: Story = {};
+
+export const WithFixedHeight: Story = {
   args: {
-    dataSource: data,
-    selectionMode: 'all',
-    showSelectionControls: true,
-    allowItemDeleting: true,
-  },
+    height: 300
+  }
 };
 
-export const GroupedWithSearch: Story = {
+export const WithReordering: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+<dx-list meList ${argsToTemplate(args)}>
+  <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
+</dx-list>`,
+  })
+};
+
+export const DeletingModeStatic: Story = {
   args: {
-    dataSource: dataWithHeaders,
-    searchEnabled: true,
-    collapsibleGroups: true,
+    allowItemDeleting: true,
+    itemDeleteMode: 'static'
+  }
+};
+
+export const DeletingModeSlideButton: Story = {
+  args: {
+    allowItemDeleting: true,
+    itemDeleteMode: 'slideButton'
   },
   render: (args) => ({
     props: args,
     template: `
-		<dx-list meList width="436px" height="300px" grouped="true" ${argsToTemplate(
-      args
-    )}>
-        <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
-				    <div *dxTemplate="let item of 'data'">
-      <div>{{ item.key }}</div>
-    </div>
-    </dx-list>`,
-  }),
+<div class="delete-mode-context-example">
+  <p>Удаление элемента через кнопку, изначально спрятанную кнопку. Чтобы вызвать кнопку, зажмите и потяните в сторону элемент, а затем нажмите на кнопку "Удалить".</p>
+  <dx-list meList ${argsToTemplate(args)}></dx-list>
+</div>`,
+    styles: [`
+    .delete-mode-context-example {
+      color: var(--Text-Default);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+  `]
+  })
 };
 
-export const HeaderDescription: Story = {
+export const DeletingModeSlideItem: Story = {
   args: {
-    dataSource: fruitsVegetables,
+    allowItemDeleting: true,
+    itemDeleteMode: 'slideItem'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+<div class="delete-mode-context-example">
+  <p>Удаление элемента через кнопку изначально спрятанную кнопку. Чтобы вызвать кнопку, зажмите и потяните в левую сторону элемент, а затем нажмите на кнопку "Удалить".</p>
+  <dx-list meList ${argsToTemplate(args)}></dx-list>
+</div>`,
+    styles: [`
+    .delete-mode-context-example {
+      color: var(--Text-Default);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+  `]
+  })
+};
+
+export const DeletingModeSwipe: Story = {
+  args: {
+    allowItemDeleting: true,
+    itemDeleteMode: 'swipe'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+<div class="delete-mode-context-example">
+  <p>Удаление элемента через свайп. Зажмите и смахните элемент, чтобы удалить.</p>
+  <dx-list meList ${argsToTemplate(args)}></dx-list>
+</div>`,
+    styles: [`
+    .delete-mode-context-example {
+      color: var(--Text-Default);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+  `]
+  })
+};
+
+export const DeletingModeToggle: Story = {
+  args: {
+    allowItemDeleting: true,
+    itemDeleteMode: 'toggle',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+<div class="delete-mode-context-example">
+  <p>Удаление элемента через переключатель. Нажмите на кнопку-переключатель, чтобы включить/отключить режим удаления.</p>
+  <dx-list meList ${argsToTemplate(args)}></dx-list>
+</div>`,
+    styles: [`
+    .delete-mode-context-example {
+      color: var(--Text-Default);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+  `]
+  })
+};
+
+export const DeletingModeContext: Story = {
+  args: {
+    allowItemDeleting: true,
+    itemDeleteMode: 'context'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+<div class="delete-mode-context-example">
+  <p>Удаление элемента через контекстное меню. Нажмите правой кнопкой мыши на элемент, чтобы вызвать контекстное меню.</p>
+  <dx-list meList ${argsToTemplate(args)}></dx-list>
+</div>`,
+    styles: [`
+    .delete-mode-context-example {
+      color: var(--Text-Default);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+  `]
+  })
+};
+
+export const SelectionModeSingle: Story = {
+  args: {
+    selectionMode: 'single',
+    showSelectionControls: true
+  }
+};
+
+export const SelectionModeMultiple: Story = {
+  args: {
+    selectionMode: 'multiple',
+    showSelectionControls: true
+  }
+};
+
+export const SelectionModeAll: Story = {
+  args: {
+    selectionMode: 'all',
+    showSelectionControls: true
+  }
+};
+
+export const ContentWithIcons: Story = {
+  args: {
+    dataSource: meListMockDataWithIcons,
+    displayExpr: 'name',
+  },
+};
+
+export const ContentWithHeader: Story = {
+  args: {
+    dataSource: meListMockDataWithHeaderDescription,
+    grouped: true,
+    displayExpr: 'name',
+    searchExpr: 'name',
+  },
+};
+
+export const ContentGroupedWithSearch: Story = {
+  args: {
+    dataSource: meListMockDataWithHeaders,
+    searchEnabled: true,
+    collapsibleGroups: true,
+    grouped: true
+  },
+};
+
+export const ContentWithCustomTemplateForHeader: Story = {
+  args: {
+    dataSource: meListMockDataWithHeaderDescription,
     grouped: true,
     displayExpr: 'name',
     searchExpr: 'name',
   },
   render: (args) => ({
     props: args,
-    template: `<dx-list meList width="436px" ${argsToTemplate(args)}>
-    <div *dxTemplate="let group of 'group'">
-      <p class="me-title-header1" style="margin: 0">{{ group.key }}</p>
-      <p class="me-text-body2" style="margin: 0">{{ group.description }}</p>
-    </div>
-    </dx-list>`,
+    template: `
+<dx-list meList ${argsToTemplate(args)}>
+  <div *dxTemplate="let group of 'group'">
+    <p class="me-title-header2" style="margin: 0">{{ group.key }}</p>
+    <p class="me-text-caption" style="margin: 0">{{ group.description }}</p>
+  </div>
+</dx-list>`,
   }),
 };
 
-export const ListDescription: Story = {
+export const ContentWithCustomTemplateForListItem: Story = {
   args: {
-    dataSource: itemsWithImageAndDescription,
+    dataSource: meListMockDataWithImageAndDescription,
     displayExpr: 'name',
-    allowItemDeleting: true,
   },
   render: (args) => ({
     props: args,
     template: `
-		<dx-list meList width="436px" ${argsToTemplate(args)}>
-		<dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
-    <div *dxTemplate="let item of 'item'">
-      <div class="me-list-item-content">
-        <img alt="{{ item.name }}" src="{{ item.image }}" />
-        <div>
-          <div class="me-text-body2">{{ item.name }}</div>
-          <div class="me-text-caption">{{ item.description }}</div>
-        </div>
+<dx-list meList ${argsToTemplate(args)}>
+  <div *dxTemplate="let item of 'item'">
+    <div class="me-list-item-content">
+      <img alt="{{ item.name }}" src="{{ item.image }}" />
+      <div>
+        <div class="me-text-body2">{{ item.name }}</div>
+        <div class="me-text-caption">{{ item.description }}</div>
       </div>
     </div>
+  </div>
 </dx-list>
 `,
-  }),
-};
-
-export const IconList: Story = {
-  args: {
-    dataSource: iconList,
-    displayExpr: 'name',
-  },
-};
-
-export const MoreContent: Story = {
-  args: {
-    dataSource: itemsWithImageAndDescription,
-    displayExpr: 'name',
-  },
-  render: (args) => ({
-    props: args,
-    template: `<dx-list meList width="436px" ${argsToTemplate(args)}>
-    <div *dxTemplate="let item of 'item'">
-      <div class="me-list-item-content">
-        <img alt="{{ item.name }}" src="{{ item.image }}" />
-        <div>
-          <div class="me-text-body2">{{ item.name }}</div>
-          <div class="me-text-caption">{{ item.description }}</div>
-        </div>
-        <div class="me-list-item-more">More</div>
-      </div>
-    </div>
-</dx-list>`,
   }),
 };

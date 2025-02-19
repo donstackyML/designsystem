@@ -1,20 +1,17 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as loadPanelStories from "./me-load-panel.stories";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as loadPanelStories from "./me-load-panel.stories";
 
+<Meta name="LoadPanel Documentation" of={loadPanelStories} />
 
-<Meta
-  title="Components/MeLoadPanel"
-  of={loadPanelStories}
-/>
-
-# MeLoadPanel
+# LoadPanel
 
 ## Директива MeLoadPanel
 
 При директивы `MeLoadPanel` к элементу `dx-load-panel` приводит его внешний вид согласно дизайн-системе, добавляет новое свойство `size`, автоматически устанавливает затенение фона и дает возможность выбрать стиль и цветовую схему индикатора загрузки.
 
-Документация на сайте разработчика Devextreme:
+Документация на сайте разработчика DevExtreme:
+
 - <a
     href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxLoadPanel/"
     target="_blank"
@@ -31,23 +28,14 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 <Canvas of={loadPanelStories.Default} />
 <Controls of={loadPanelStories.Default} />
-<Source code={`
-<dx-load-panel 
-  [size]="size" 
-  [stylingMode]="stylingMode"
-  [color]="color"
-  [shading]="true"
-  [message]="message" 
-  [hideOnOutsideClick]="true"
-></dx-load-panel>
-`} dark />
+<Source of={loadPanelStories.Default} dark />
 
 ## Дизайн
 
 <Figma
   height="50%"
-			collapsable
-			defaultCollapsed
+  collapsable
+  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=569-23746&node-type=canvas&t=e2MIVE6oPmUHrREH-0"
 />
 
@@ -58,54 +46,54 @@ import { Figma } from "@storybook/addon-designs/blocks";
 - [Изменение текста панели](#изменение-текста-панели)
 - [Скрытие при клике вне](#скрытие-панели-при-клике-вне)
 
-## Размер панели загрузки
+### Размер панели загрузки
 
 Для изменения размера панели загрузки используйте параметр `size`. Возможные значения: `small`, `medium` и `large`.
 
 <Source
   code={`<dx-load-panel
   meLoadPanel
-  size="size"
+  [size]="size"
 ></dx-load-panel>`}
   dark
   language="html"
 />
 
-## Изменение стиля и цвета индикатора загрузки
+### Изменение стиля и цвета индикатора загрузки
 
 Для изменения стиля и цвета индикатора загрузки используйте параметры `stylingMode` и `color`. Возможные значения стиля: `circle`, `line`. Возможные значения цвета: `accent`, `default`, `normal`.
 
 <Source
   code={`<dx-load-panel
   meLoadPanel
-  stylingMode="stylingMode"
-  color="color"
+  [stylingMode]="stylingMode"
+  [color]="color"
 ></dx-load-panel>`}
   dark
   language="html"
 />
 
-## Изменение текста панели
+### Изменение текста панели
 
 Для изменения текста панели загрузки используйте параметр `message`.
 
 <Source
 	code={`<dx-load-panel
   meLoadPanel
-  message="message"
+  [message]="message"
 ></dx-load-panel>`}
 	dark
 	language="html"
 />
 
-## Скрытие панели при клике вне
+### Скрытие панели при клике вне
 
 Для скрытия панели загрузки при клике вне используйте параметр `hideOnOutsideClick`.
 
 <Source
 	code={`<dx-load-panel
   meLoadPanel
-  hideOnOutsideClick="hideOnOutsideClick"
+  [hideOnOutsideClick]="hideOnOutsideClick"
 ></dx-load-panel>`}
 	dark
 	language="html"

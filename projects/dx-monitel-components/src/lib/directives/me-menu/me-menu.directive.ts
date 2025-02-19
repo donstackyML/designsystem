@@ -19,9 +19,9 @@ import { MeOrientation, MeSize } from '../../types/types';
 })
 export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
   @Input() cssClass?: string = '';
-  @Input() size: MeSize = 'large';
+  @Input() size: Omit<MeSize, 'medium'> = 'large';
   @Input() orientation: MeOrientation = 'horizontal';
-  @Input() subMenuMaxHeight?: string = '';
+  @Input() subMenuMaxHeight?: string | number = '';
 
   private focusService: ComponentFocusService;
   constructor(
@@ -89,7 +89,9 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
   onSubmenuShowing({ submenuContainer }: DxMenuTypes.SubmenuShowingEvent) {
     console.log(submenuContainer, 'submenuContainer');
     if (submenuContainer && this.subMenuMaxHeight) {
-      submenuContainer.style.maxHeight = this.subMenuMaxHeight;
+      submenuContainer.style.maxHeight = typeof this.subMenuMaxHeight === 'number'
+        ? `${this.subMenuMaxHeight}px`
+        : this.subMenuMaxHeight;
     }
   }
 }

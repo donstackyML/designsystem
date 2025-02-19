@@ -1,23 +1,29 @@
-import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as listStories from "./me-list.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source } from "@storybook/addon-docs";
+import * as listStories from "./me-list.stories";
 
 <Meta name="List Documentation" of={listStories} />
 
 # List
 
-## Директива meList
+## Директива `meList`
 
-Применение директивы <code>meList</code> к элементу <code>dx-list</code> приводит его к отступы,
-цвета и размеры в соответствие с дизайн-системой.
+Применение директивы `meList` к элементу `dx-list` приводит его к отступы, цвета и размеры в соответствие с дизайн-системой.
 
-Добавление нетипичных для DevExtreme
-элементов производится через переопределение свойств [itemTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/Configuration/#itemTemplate)
-и [groupTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/Configuration/#groupTemplate).
+Документация на сайте разработчика DevExtreme:
 
-[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxList/)
-
-[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/List/ListEditingAndAPI/Light/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI*Components/dxList/"
+    target="*blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/List/ListEditingAndAPI/Light/"
+    target="*blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={listStories.Default} />
 <Controls of={listStories.Default} />
@@ -33,54 +39,93 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Примеры использования:
 
-- [добавление описания в заголовок группы](#добавление-описания-в-заголовок-группы)
-- [добавление описания и картинки в элемент списка](#добавление-описания-и-картинки-в-элемент-списка)
-- [работа с иконками](#работа-с-иконками)
-- [добавление дополнительного контента](#добавление-дополнительного-контента)
+- [Добавление описания в заголовок группы](#добавление-описания-в-заголовок-группы)
+- [Добавление описания и картинки в элемент списка](#добавление-описания-и-картинки-в-элемент-списка)
+- [Работа с иконками](#работа-с-иконками)
+- [Изменение фиксированной высоты списка](#изменение-фиксированной-высоты-списка)
+  - [Перетаскивание элементов (Reordering)](#перетаскивание-элементов-reordering)
+- [Режимы удаления элементов](#режимы-удаления-элементов)
+  - [Удаление через статичную кнопку](#удаление-через-статичную-кнопку)
+  - [Удаление через кнопку слайд](#удаление-через-кнопку-слайд)
+  - [Удаление через слайд элемента](#удаление-через-слайд-элемента)
+  - [Удаление через свайп](#удаление-через-свайп)
+  - [Удаление через переключатель (Toggle)](#удаление-через-переключатель-toggle)
+  - [Удаление через контекстное меню](#удаление-через-контекстное-меню)
+- [Режимы выбора элементов](#режимы-выбора-элементов)
+  - [Одиночный выбор](#одиночный-выбор)
+  - [Множественный выбор](#множественный-выбор)
+  - [Выбор всех элементов](#выбор-всех-элементов)
+  - [Группировка с поиском](#группировка-с-поиском)
 
-## Добавление описания в заголовок группы
+### Добавление описания в заголовок группы
 
-Порядок группировки описан в [разделе Grouping](https://js.devexpress.com/Angular/Documentation/Guide/UI_Components/List/Grouping/In_the_Data_Source/) для компонента List.
-Не забудьте указать свойство <code>[grouped]="true"</code>. Для сворачивающего списка нужно установить свойство <code>collapsibleGroups</code> в <code>true</code>.
-Для корректной работы данные должны быть подготовлены [соответствующим образом](https://js.devexpress.com/Angular/Documentation/Guide/UI_Components/List/Grouping/In_the_Data_Source/).
+*Этот пример демонстрирует группировку элементов. Чтобы группировать, необходимо установить свойство `grouped="true"`. Переопределение шаблона группы через `dxTemplate` c именем `'group'` и позволяет добавить описание группы (например, `group.description`).*
+*Также можно использовать свойство `collapsibleGroups` для создания сворачивающихся групп.*
+*Подробнее порядок группировки описан в [разделе Grouping](https://js.devexpress.com/Angular/Documentation/Guide/UI_Components/List/Grouping/In_the_Data_Source/) для компонента List.*
 
-Классы <code>me-title-header2</code> и <code>me-text-caption</code> находятся в библиотеке и применяют нужные стили для заголовка и описания.
-
-Для кастомизации заголовка и описания нужно добавить кастомный стиль для элементов в заголовке.
-
-На примере ниже установлены <code>margin: 0</code> для тега <code>p</code>
-
-<Canvas of={listStories.HeaderDescription} />
+<Canvas name="Добавление описания в заголовок группы" of={listStories.ContentWithCustomTemplateForHeader} />
 
 <Source
-  code={`<dx-list 
-  meList 
-  [dataSource]="itemsGrouped" 
-  displayExpr="name" 
-  [grouped]="true" 
-  searchExpr="name" 
-  width="436px" 
-  >
+  code={`
+<dx-list
+  meList
+  [dataSource]="dataSource"
+  displayExpr="name"
+  [grouped]="true"
+  [collapsibleGroups]="true"
+  searchExpr="name"
+  width="436px"
+>
+  <!-- Пользовательский шаблон заголовка группы -->
   <div *dxTemplate="let group of 'group'">
-    <p class="me-title-header2">{{ group.key }}</p>
-    <p class="me-text-caption">{{ group.description }}</p>
+    <p class="me-title-header2" style="margin: 0">{{ group.key }}</p>
+    <p class="me-text-caption" style="margin: 0">{{ group.description }}</p>
   </div>
-</dx-list>`}
+</dx-list>
+
+// Пример dataSource:
+const dataSource = [
+  {
+    key: 'Fruits',
+    description: 'Описание фруктов',
+    items: [
+      { name: 'Apples', count: 10 },
+      { name: 'Oranges', count: 12 },
+      { name: 'Lemons', count: 15 },
+    ],
+  },
+  {
+    key: 'Vegetables',
+    description: 'Описание овощей',
+    items: [
+      { name: 'Potatoes', count: 5 },
+      { name: 'Tomatoes', count: 9 },
+      { name: 'Turnips', count: 8 },
+    ],
+  },
+];
+  `}
+  language="typescript"
   dark
 />
 
-## Добавление описания и картинки в элемент списка
+### Добавление описания и картинки в элемент списка
 
-В свойстве <code>image</code> элемента списка следует хранить путь к картинке.
+*Здесь для каждого элемента списка используется пользовательский шаблон (`dxTemplate`) c именем `'item'`, который добавляет изображение и описание. Это позволяет обогатить стандартный вывод данных, сделав каждый пункт более информативным.*
 
-Класс <code>me-list-item-content</code> определяет структуру элемента и соответствующие отступы.
+*Этот пример демонстрирует использование пользовательского шаблона для передачи дополнительной информации о каждом элементе. Переопределение шаблона группы через `dxTemplate` c именем `'item'`.
+*Подробнее порядок группировки описан в [разделе CustomizeItemAppearance](https://js.devexpress.com/Angular/Documentation/Guide/UI_Components/List/Customize_Item_Appearance/) для компонента List.*
 
-Классы <code>me-text-body2</code> и <code>me-text-caption</code> добавляют соответствующие стили для заголовка и описания.
-
-<Canvas of={listStories.ListDescription} />
-
+<Canvas name="Добавление описания и картинки в элемент списка" of={listStories.ContentWithCustomTemplateForListItem} />
 <Source
-code={`<dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" width="436px">
+  code={`
+<dx-list
+  meList
+  [dataSource]="dataSource"
+  displayExpr="name"
+  width="436px"
+>
+  <!-- Пользовательский шаблон для элемента списка -->
   <div *dxTemplate="let item of 'item'">
     <div class="me-list-item-content">
       <img alt="{{ item.name }}" src="{{ item.image }}" />
@@ -90,78 +135,237 @@ code={`<dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="
       </div>
     </div>
   </div>
-</dx-list>`}
+</dx-list>
+
+// Пример dataSource:
+const dataSource = [
+  {
+    name: 'Apples',
+    image: '../../../assets/images/image.png',
+    description: 'Описание для яблок.',
+  },
+  {
+    name: 'Oranges',
+    image: '../../../assets/images/image.png',
+    description: 'Описание для апельсинов.',
+  },
+  {
+    name: 'Lemons',
+    image: '../../../assets/images/image.png',
+    description: 'Описание для лимонов.',
+  },
+];
+  `}
+  language="typescript"
   dark
 />
 
-## Работа с иконками
+### Работа с иконками
 
-Для добавления иконок из дизайн-системы необходимо:
+*В этом примере показано, как использовать иконки в элементах списка. Сначала необходимо подключить сервис иконок (например, через `iconStore.getIcon`), а затем передать полученную иконку в свойство `icon` элемента данных. Можно также задать цвет иконки с помощью свойства `color` в объекте опций.*
 
-1. Подключить сервис с иконками.
+<Canvas name="Работа с иконками" of={listStories.ContentWithIcons} />
 
 <Source
-  code={`constructor(private iconStore: MeIconStoreService) {}`}
+  code={`
+/* Пример использования иконок в данных списка */
+public itemsWithIcons: Item[] = [
+  {
+    name: 'Apples',
+    icon: iconStore.getIcon({ icon: 'check', size: '24', color: '#4caf50' }),
+  },
+  // другие элементы...
+];
+
+// В шаблоне:
+<dx-list
+  meList
+  [dataSource]="itemsWithIcons"
+  displayExpr="name">
+</dx-list>
+  `}
   dark
   language="js"
 />
 
-2. Получить нужную иконку в свойстве icon элемента.
+### Изменение фиксированной высоты списка
+
+*Пример демонстрирует, как задать фиксированную высоту для списка с помощью свойства `height`. Это полезно, если нужно ограничить область вывода списка и добавить прокрутку, если элементов много.*
+
+<Canvas name="С фиксированной высотой" of={listStories.WithFixedHeight} />
 
 <Source
-code={`public itemsWithIcons: Item[] = [
-{
-  name: 'Apples',
-  count: 10,
-  icon: this.iconStore.getIcon({ icon: 'check', size: '24' }),
-},
-// и так далее`}
-dark
-language="js"
-/>
-
-Обратите внимание, что в функции <code>getIcon</code> аргументом является объект с опциями, не забывайте фигурные скобки.
-Также можно изменить цвет иконки передав в объекте свойство <code>color</code>.
-
-Если нужной иконки нет в дизайн-системе, можно передать свою иконку строкой.
-
-DevExtreme автоматически вставит иконку, переданную в свойстве <code>icon</code>.
-
-<Canvas of={listStories.IconList} />
-
-# Добавление дополнительного контента
-
-Класс <code>me-list-item-more</code> добавляет стили для дополнительного контента.
-
-<Canvas of={listStories.MoreContent} />
-
-<Source
-  code={`  <dx-list meList [dataSource]="itemsWithImageAndDescription" displayExpr="name" [allowItemDeleting]="true" width="436px">
-    <div *dxTemplate="let item of 'item'">
-      <div class="me-list-item-content">
-        <img alt="{{ item.name }}" src="{{ item.image }}" />
-        <div>
-          <div class="me-text-body2">{{ item.name }}</div>
-          <div class="me-text-caption">{{ item.description }}</div>
-        </div>
-        <div class="me-list-item-more">More</div>
-      </div>
-    </div>
-</dx-list>`}
+  code={`
+<dx-list
+  meList
+  [dataSource]="dataSource"
+  height="300"
+>
+</dx-list>
+  `}
   dark
+  language="html"
 />
 
+#### Перетаскивание элементов (Reordering)
+
+*С помощью опции перетаскивания (`dxo-item-dragging` с `allowReordering="true"`) можно разрешить пользователю изменять порядок элементов в списке, что удобно для настройки приоритетов или сортировки.*
+
+<Canvas name="Перетаскивание элементов" of={listStories.WithReordering} />
+
 <Source
-  code={`<dx-list
-  height="100%"
-  [dataSource]="employees"
+  code={`
+<dx-list meList [dataSource]="dataSource">
+  <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+### Режимы удаления элементов
+
+*Компонент List поддерживает различные режимы удаления элементов, позволяющие выбрать наиболее удобный способ для пользователя. Примеры ниже демонстрируют несколько вариантов:*
+
+#### Удаление через статичную кнопку
+
+<Canvas name="Удаление: Статичный режим" of={listStories.DeletingModeStatic} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" [allowItemDeleting]="true" itemDeleteMode="static">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+#### Удаление через кнопку слайд
+
+<Canvas name="Удаление: Кнопка слайд" of={listStories.DeletingModeSlideButton} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" [allowItemDeleting]="true" itemDeleteMode="slideButton">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+#### Удаление через слайд элемента
+
+<Canvas name="Удаление: Слайд элемента" of={listStories.DeletingModeSlideItem} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" [allowItemDeleting]="true" itemDeleteMode="slideItem">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+#### Удаление через свайп
+
+<Canvas name="Удаление: Swipe" of={listStories.DeletingModeSwipe} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" [allowItemDeleting]="true" itemDeleteMode="swipe">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+#### Удаление через переключатель (Toggle)
+
+<Canvas name="Удаление: Toggle" of={listStories.DeletingModeToggle} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" [allowItemDeleting]="true" itemDeleteMode="toggle">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+#### Удаление через контекстное меню
+
+<Canvas name="Удаление: Контекстное меню" of={listStories.DeletingModeContext} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" [allowItemDeleting]="true" itemDeleteMode="context">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+### Режимы выбора элементов
+
+*Примеры демонстрируют различные режимы выделения элементов в списке. Для этого используется свойство `selectionMode` в сочетании с `showSelectionControls`.*
+
+#### Одиночный выбор
+
+<Canvas name="Выбор: Single" of={listStories.SelectionModeSingle} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" selectionMode="single" [showSelectionControls]="true">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+#### Множественный выбор
+
+<Canvas name="Выбор: Multiple" of={listStories.SelectionModeMultiple} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" selectionMode="multiple" [showSelectionControls]="true">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+#### Выбор всех элементов
+
+<Canvas name="Выбор: All" of={listStories.SelectionModeAll} />
+
+<Source
+  code={`
+<dx-list meList [dataSource]="dataSource" selectionMode="all" [showSelectionControls]="true">
+</dx-list>
+  `}
+  dark
+  language="html"
+/>
+
+#### Группировка с поиском
+
+*Этот пример демонстрирует комбинирование группировки и поиска. Используются свойства `grouped`, `collapsibleGroups` и `searchEnabled` для создания списка, где элементы группируются, а пользователь может искать нужные элементы.*
+
+<Canvas name="Группировка с поиском" of={listStories.ContentGroupedWithSearch} />
+
+<Source
+  code={`
+<dx-list
+  meList
+  [dataSource]="dataSource"
+  displayExpr="name"
   [grouped]="true"
   [collapsibleGroups]="true"
+  searchEnabled="true"
 >
-  <div *dxTemplate="let item of 'group'">
-    <div>Assigned: {{ item.key }}</div>
-  </div>
-</dx-list>`}
-dark
-language="html"
+</dx-list>
+  `}
+  dark
+  language="html"
 />

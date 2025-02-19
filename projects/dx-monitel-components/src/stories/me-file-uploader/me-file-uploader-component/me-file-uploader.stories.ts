@@ -1,8 +1,8 @@
 import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
-import { MeFileUploaderComponent } from '../../public-api';
+import { MeFileUploaderComponent } from '../../../public-api';
 
 export default {
-  title: 'Components/FileUploader',
+  title: 'Components/FileUploader/Component',
   component: MeFileUploaderComponent,
   decorators: [
     moduleMetadata({
