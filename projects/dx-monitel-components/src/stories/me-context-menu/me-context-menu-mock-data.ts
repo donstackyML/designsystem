@@ -6,6 +6,7 @@ export const meContextMenuMockData = [
   {
     text: 'Заголовок группы уровень 1',
     icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+    disabled: true,
     beginGroup: true,
   },
   {
@@ -524,14 +525,12 @@ export const meContextMenuMockData = [
       },
     ],
   },
-
   {
     text: 'Заголовок группы уровень 1',
     icon: iconStore.getIcon({ icon: 'public', size: '24' }),
     disabled: true,
     beginGroup: true,
   },
-
   {
     text: 'Пункт',
     icon: 'add',
