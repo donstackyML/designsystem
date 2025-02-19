@@ -17,7 +17,7 @@ locale(navigator.language);
 const linkDark = document.createElement('link');
 linkDark.setAttribute('rel', 'stylesheet');
 linkDark.setAttribute('type', 'text/css');
-linkDark.setAttribute('href', './bundles/dx.dark.css');
+linkDark.setAttribute('href', './assets/dx.dark.css');
 
 linkDark.disabled = true;
 
@@ -62,9 +62,9 @@ const preview: Preview = {
     darkMode: {
       dark: {
         ...themes.dark,
-        brandImage: './bundles/images/Logo1.png',
+        brandImage: './assets/images/Logo1.png',
       },
-      light: { ...themes.normal, brandImage: './bundles/images/logoSK.png' },
+      light: { ...themes.normal, brandImage: './assets/images/logoSK.png' },
       darkClass: 'lights-out',
       lightClass: 'lights-on',
       current: 'light',
