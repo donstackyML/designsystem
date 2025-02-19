@@ -1,56 +1,67 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as menuStories from "./me-menu.stories";
+import { Meta, Canvas, Controls, Source } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as menuStories from "./me-menu.stories";
 
-<Meta
-  title="Components/Menu"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true }
-    },
-    layout: 'centered',
-    docs: {
-      description: {
-        component: 'Компонент Menu для создания многоуровневого меню'
-      }
-    },
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=2517-147162&t=Dli8UZECKMfmQUCu-0'
-    }
-  }}
-/>
+<Meta name="Menu Documentation" of={menuStories} />
 
 # Menu
 
-> ## Директива meMenu
->
-> Применение директивы `meMenu` к элементу `dx-menu` стилизует компонент в соответствии с дизайн-системой. По умолчанию устанавливает `size = large (L)`.
+## Директива `meMenu`
 
-<Canvas of={menuStories.Default} />
+Директива `meMenu` применяется к элементу `dx-menu` и стилизует его в соответствии с требованиями дизайн-системы. По умолчанию устанавливается размер `large`. Компонент поддерживает гибкую настройку ориентации, режимов выделения и поведения подменю.
+
 <Controls of={menuStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=2517-147162&t=Dli8UZECKMfmQUCu-0"
+/>
 
 ## Примеры использования
 
+- [Базовое меню](#базовое-меню)
+- [Пример передаваемых данных](#пример-передаваемых-данных)
+- [Размеры меню](#размеры-меню)
+  - [Маленький размер](#маленький-размер)
+  - [Большой размер](#большой-размер)
+- [Режимы показа подменю](#режимы-показа-подменю)
+  - [Подменю по клику](#подменю-по-клику)
+  - [Подменю по наведению](#подменю-по-наведению)
+- [Ориентация меню](#ориентация-меню)
+  - [Горизонтальное меню](#горизонтальное-меню)
+  - [Вертикальное меню](#вертикальное-меню)
+- [Ограничение высоты подменю](#ограничение-высоты-подменю)
+
+
 ### Базовое меню
 
-```html
+*Пример базового меню с использованием заданного dataSource. Это горизонтальное меню отображает вложенные элементы (например, папки и под-папки) без дополнительной настройки подменю.*
+
+<Canvas name="Базовое меню" of={menuStories.Default} />
+
+<Source
+  language="html"
+  dark
+  code={`
 <dx-menu
   meMenu
-  [dataSource]="menuItems"
-  [orientation]="'horizontal'"
-  [size]="'large'"
-  showFirstSubmenuMode="onHover"
-  showSubmenuMode="onHover"
+  [dataSource]="dataSource"
 >
 </dx-menu>
-```
+`}
+/>
 
-### Данные для меню
+### Пример передаваемых данных
 
-```typescript
-const menuItems = [
+<Source
+  language="typescript"
+  dark
+  code={`
+const dataSource = [
   {
     icon: 'folder',
     text: 'Electronics',
@@ -79,101 +90,146 @@ const menuItems = [
     items: [/*...*/]
   }
 ];
-```
+`}
+/>
 
-### Вертикальное меню
+### Размеры меню
 
-```html
+*Меню может иметь разные размеры. Здесь показаны примеры меню с маленьким и большим размером, что влияет на размеры элементов и шрифты внутри меню.*
+
+#### Маленький размер
+
+<Canvas name="Маленький размер" of={menuStories.SizeSmall} />
+
+<Source
+  language="html"
+  dark
+  code={`
 <dx-menu
   meMenu
-  [dataSource]="menuItems"
-  [orientation]="'vertical'"
+  [dataSource]="dataSource"
+  [size]="'small'"
+>
+</dx-menu>
+`}
+/>
+
+#### Большой размер
+
+<Canvas name="Большой размер" of={menuStories.SizeLarge} />
+
+<Source
+  language="html"
+  dark
+  code={`
+<dx-menu
+  meMenu
+  [dataSource]="dataSource"
   [size]="'large'"
 >
 </dx-menu>
-```
-
-### С выделением элементов
-
-```html
-<dx-menu
-  meMenu
-  [dataSource]="menuItems"
-  [selectByClick]="true"
-  [selectionMode]="'single'"
->
-</dx-menu>
-```
-
-## API Reference
-
-### Основные параметры
-
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|--------------|-----------|
-| size | 'small' \| 'large' | 'large' | Размер меню и элементов |
-| orientation | 'vertical' \| 'horizontal' | 'horizontal' | Ориентация меню |
-| dataSource | array | [] | Данные для пунктов меню |
-| selectByClick | boolean | false | Выбор элементов по клику |
-| selectionMode | 'single' \| 'multiple' \| 'none' | 'none' | Режим выделения |
-| showFirstSubmenuMode | string | 'onHover' | Режим показа первого подменю |
-| showSubmenuMode | string | 'onHover' | Режим показа остальных подменю |
-
-### Структура dataSource
-
-| Свойство | Тип | Описание |
-|----------|-----|-----------|
-| text | string | Текст пункта меню |
-| icon | string | Иконка |
-| items | array | Дочерние пункты меню |
-| disabled | boolean | Отключение пункта |
-| visible | boolean | Видимость пункта |
-| beginGroup | boolean | Начало новой группы |
-
-### События
-
-- `onItemClick` - клик по пункту меню
-- `onSelectionChanged` - изменение выделения
-- `onSubmenuShowing` - показ подменю
-- `onSubmenuShown` - подменю показано
-- `onSubmenuHiding` - скрытие подменю
-- `onSubmenuHidden` - подменю скрыто
-
-## Дизайн
-
-<Figma
-  height="50%"
-  collapsable
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=2517-147162&t=Dli8UZECKMfmQUCu-0"
+`}
 />
 
-<style>
-  {`
-  h2 {
-    border-bottom: none !important;
-  }
+### Режимы показа подменю
 
-  a {
-    display: inline-block !important;
-  }
+*Меню поддерживает различные режимы отображения подменю, которые задаются через свойства `showFirstSubmenuMode` и `showSubmenuMode`. Ниже приведены два варианта: показ подменю по клику и по наведению.*
 
-  a p {
-    color: #029CFD !important;
-  }
+#### Подменю по клику
 
-  table {
-    width: 100%;
-    margin: 20px 0;
-  }
+*При установке режима `onClick` подменю показывается при клике на пункт меню. Для этого передаются объекты с настройками задержки отображения и скрытия подменю.*
 
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
+<Canvas name="Подменю по клику" of={menuStories.ShowSubMenuModeOnClick} />
 
-  th {
-    background-color: #f5f5f5;
-  }
+<Source
+  language="html"
+  dark
+  code={`
+<dx-menu
+  meMenu
+  [dataSource]="dataSource"
+  [showFirstSubmenuMode]="{ name: 'onClick', delay: { show: 50, hide: 300 } }"
+  [showSubmenuMode]="{ name: 'onClick', delay: { show: 50, hide: 300 } }"
+>
+</dx-menu>
 `}
-</style>
+/>
+
+#### Подменю по наведению
+
+*Режим `onHover` позволяет показывать подменю при наведении курсора на элемент меню.*
+
+<Canvas name="Подменю по наведению" of={menuStories.ShowSubMenuModeOnHover} />
+
+<Source
+  language="html"
+  dark
+  code={`
+<dx-menu
+  meMenu
+  [dataSource]="dataSource"
+  [showFirstSubmenuMode]="{ name: 'onHover', delay: { show: 50, hide: 300 } }"
+  [showSubmenuMode]="{ name: 'onHover', delay: { show: 50, hide: 300 } }"
+>
+</dx-menu>
+`}
+/>
+
+### Ориентация меню
+
+*Меню может быть расположено горизонтально или вертикально. Выбор ориентации задаётся через свойство `orientation`.*
+
+#### Горизонтальное меню
+
+<Canvas name="Горизонтальное меню" of={menuStories.OrientationHorizontal} />
+
+<Source
+  language="html"
+  dark
+  code={`
+<dx-menu
+  meMenu
+  [dataSource]="dataSource"
+  [orientation]="'horizontal'"
+>
+</dx-menu>
+`}
+/>
+
+#### Вертикальное меню
+
+*Пример вертикального меню приведён выше, где свойство `orientation="vertical"` задаёт вертикальное расположение элементов.*
+
+<Canvas name="Вертикальное меню" of={menuStories.OrientationVertical} />
+
+<Source
+  language="html"
+  dark
+  code={`
+<dx-menu
+  meMenu
+  [dataSource]="dataSource"
+  [orientation]="'vertical'"
+>
+</dx-menu>
+`}
+/>
+
+### Ограничение высоты подменю
+
+*Свойство `subMenuMaxHeight` устанавливает максимальную высоту подменю, что полезно для длинных списков, чтобы ограничить их размер и добавить прокрутку.*
+
+<Canvas name="Ограничение высоты подменю" of={menuStories.WithSubMenuMaxHeight} />
+
+<Source
+  language="html"
+  dark
+  code={`
+<dx-menu
+  meMenu
+  [dataSource]="dataSource"
+  [subMenuMaxHeight]="'200px'"
+>
+</dx-menu>
+`}
+/>
