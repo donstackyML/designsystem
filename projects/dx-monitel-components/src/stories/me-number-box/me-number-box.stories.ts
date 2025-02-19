@@ -16,80 +16,152 @@ export default {
     }),
   ],
   argTypes: {
-    disabled: {
-      control: 'boolean',
-    },
-    format: {
-      control: 'text',
-      description:
-        'Формат отображения числа. Пример: `#`, `#,##0.00`, `#,##0%`, `#0.## kg`, `($ #,##0.##)`.',
-    },
-    height: {
-      control: 'text',
-    },
     label: {
       control: 'text',
-      description: 'Текст label',
-    },
-    labelMode: {
-      control: 'select',
-      options: ['static', 'floating', 'hidden', 'outside'],
-      description: 'Режим отображения label',
-    },
-    max: {
-      control: 'number',
-      description: 'Максимальное значение',
-    },
-    min: {
-      control: 'number',
-      description: 'Минимальное значение',
+      description: 'Текст, отображаемый в качестве лейбла.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     placeholder: {
       control: 'text',
-    },
-    readOnly: {
-      control: 'boolean',
-    },
-    showClearButton: {
-      control: 'boolean',
-    },
-    showSpinButtons: {
-      control: 'boolean',
-      description: 'Показывать кнопки управления значениями.',
+      description: 'Текст подсказки, отображаемый внутри поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Размер компонента',
+      description: 'Изменяет размер компонента.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    labelMode: {
+      control: 'select',
+      options: ['outside', 'static', 'floating', 'hidden'],
+      description: 'Указывает, где будет размещаться лейбл.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'outside' },
+      },
+    },
+    showClearButton: {
+      control: 'boolean',
+      description: 'Показывает кнопку для очистки поля.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    readOnly: {
+      control: 'boolean',
+      description: 'Определяет состояние только для чтения',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает компонент и его элементы.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    format: {
+      control: 'text',
+      description: 'Формат отображения числа. Пример: `#`, `#,##0.00`, `#,##0%`, `#0.## kg`, `($ #,##0.##)`.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    max: {
+      control: 'number',
+      description: 'Максимальное значение',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    min: {
+      control: 'number',
+      description: 'Минимальное значение',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    showSpinButtons: {
+      control: 'boolean',
+      description: 'Показывать кнопки управления значениями.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     validationMessageMode: {
       control: 'select',
       options: ['auto', 'always'],
-      description:
-        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `text`, `icon`.',
+      description: 'Режим отображения сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
     },
     validationMessagePosition: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
-      description:
-        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `top`, `bottom`, `left`, `right`.',
+      description: 'Расположение сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'bottom' },
+      },
     },
     width: {
       control: 'text',
+      description: 'Ширина компонента.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    height: {
+      control: 'text',
+      description: 'Высота компонента.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
     },
   },
   args: {
-    size: 'small',
+    size: 'medium',
+    type: 'date',
     label: 'Label*',
+    placeholder: 'Select...',
     disabled: false,
     readOnly: false,
     isValid: true,
-    showClearButton: true,
-    showSpinButtons: true,
-    placeholder: 'Placeholder',
-    format: '#,##0.00',
-    max: 100,
-    min: 0,
+    showClearButton: false,
+    showSpinButtons: false,
+    format: '',
+    max: undefined,
+    min: undefined,
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
     value: null,
@@ -103,33 +175,120 @@ export default {
 			meNumberBox
 			${argsToTemplate(args)}
     >
-		<dx-validator>
-        <dxi-validation-rule
-            type="required"
-            message="Required"
-        >
-        </dxi-validation-rule>
-    </dx-validator>
-		</dx-number-box>
-    <div class='me-text-body2' *ngIf="size=='large'">description </div>
-    <div class='me-text-caption' *ngIf="size=='small'">description </div>
-    <div class='me-text-caption' *ngIf="size=='medium'">description </div>
-		`,
-    styles: [
-      `
-		.me-text-body2, .me-text-caption {
-			color: var(--Text-Secondary);
-			margin-top: 4px;
-		}`,
-    ],
+      <dx-validator>
+          <dxi-validation-rule
+              type="required"
+              message="Required"
+          >
+          </dxi-validation-rule>
+      </dx-validator>
+		</dx-number-box>`,
   }),
-} as Meta;
+} satisfies Meta<DxNumberBoxModule | MeNumberBoxDirective>;
+
+type Story = StoryObj<DxNumberBoxModule | MeNumberBoxDirective>
 
 export const Default: StoryObj = {};
 
+export const SizeSmall: Story = {
+  args: {
+    size: 'small',
+  },
+};
+
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium'
+  }
+}
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const LabelModeFloating: Story = {
+  args: {
+    labelMode: 'floating',
+  },
+};
+
+export const LabelModeOutside: Story = {
+  args: {
+    labelMode: 'outside',
+  },
+};
+
+export const LabelModeStatic: Story = {
+  args: {
+    labelMode: 'static',
+  },
+};
+
+export const LabelModeHidden: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const StateReadOnly: Story = {
+  args: {
+    readOnly: true,
+    value: '123'
+  },
+};
+
+export const WithMinMaxRestrictions: Story = {
+  args: {
+    min: 0,
+    max: 100
+  },
+};
+
+export const WithFormatting: Story = {
+  args: {
+    format: '#,##0.00'
+  },
+};
+
+export const WithSpinButtonsAndClearButton: Story = {
+  args: {
+    showSpinButtons: true,
+    showClearButton: true
+  },
+};
+
+export const WithDescription: Story = {
+  render: (args) => ({
+    props: {
+      ...args,
+      description: 'description',
+    },
+    template: `
+      <dx-number-box meNumberBox ${argsToTemplate(args)}></dx-number-box>
+      <div class='me-text-body2' *ngIf="size=='large'">description</div>
+      <div class='me-text-caption' *ngIf="size=='small'">description</div>
+      <div class='me-text-caption' *ngIf="size=='medium'">description</div>`,
+    styles: [
+      `
+      .me-text-body2, .me-text-caption {
+        color: var(--Text-Secondary);
+        margin-top: 4px;
+      }`,
+    ]
+  })
+};
+
 export const WithLabelRow: StoryObj = {
   args: {
-    ...Default.args,
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -138,19 +297,14 @@ export const WithLabelRow: StoryObj = {
 		labelDirection="row"
 		width="250px">
 		Label*
-			<dx-number-box
-			meNumberBox
-			${argsToTemplate(args)}
-				></dx-number-box>
+			<dx-number-box meNumberBox ${argsToTemplate(args)}></dx-number-box>
 		</label>
 		`,
   }),
 };
 
-export const WithCurrency: StoryObj = {
+export const WithCurrencyButton: StoryObj = {
   args: {
-    ...Default.args,
-    size: 'large',
     currencyButton: {
       text: '€',
       stylingMode: 'text',
@@ -167,10 +321,7 @@ export const WithCurrency: StoryObj = {
         }
       },
     },
-    label: 'Label*',
     labelMode: 'static',
-    placeholder: 'Placeholder',
-    format: '#,##0.00',
   },
   render: (args) => ({
     props: args,
@@ -184,7 +335,6 @@ export const WithCurrency: StoryObj = {
           [options]="currencyButton"
         ></dxi-button>
 			</dx-number-box>
-    <div class='me-text-body2'>description</div>
 		`,
     styles: [
       'label { justify-content: flex-start; }',
