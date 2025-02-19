@@ -10,10 +10,10 @@ import {
   MeButtonModule,
   MeFileUploaderDirective,
   MeProgressBarDirective,
-} from '../../public-api';
+} from '../../../public-api';
 
 export default {
-  title: 'Directives/FileUploader',
+  title: 'Components/FileUploader/Directive',
   component: MeFileUploaderDirective,
   decorators: [
     moduleMetadata({
@@ -48,20 +48,19 @@ export default {
       description: 'Заголовок для компонента',
     },
   },
-} as Meta<MeFileUploaderDirective>;
+  args: { 
+    size: 'medium', 
+    accept: 'image/*',
+    allowedFileExtensions: ['.jpg', '.jpeg', '.gif', '.png'],
+    title: 'Profile Settings',
+  }
+} satisfies Meta<DxFileUploaderModule |  MeFileUploaderDirective>;
 
-type Story = StoryObj<MeFileUploaderDirective>;
+type Story = StoryObj<DxFileUploaderModule | MeFileUploaderDirective>;
 
-const defaultArgs = {
-  size: 'medium' as const,
-  accept: 'image/*',
-  allowedFileExtensions: ['.jpg', '.jpeg', '.gif', '.png'],
-  title: 'Profile Settings',
-};
-
-// Form Upload
 export const FormUpload: Story = {
   render: (args) => ({
+    props: args,
     template: `
       <form class="dx-fieldset">
         <h2 class='form-title' *ngIf="title">{{ title }}</h2>
@@ -89,14 +88,13 @@ export const FormUpload: Story = {
         </div>
       </form>
     `,
-    props: args,
   }),
-  args: defaultArgs,
 };
 
 // Async Upload - Instantly
 export const AsyncUploadInstantly: Story = {
   render: (args) => ({
+    props: args,
     template: `
       <dx-file-uploader
         meFileUploader
@@ -108,9 +106,7 @@ export const AsyncUploadInstantly: Story = {
         [showFileList]="true"
       ></dx-file-uploader>
     `,
-    props: args,
   }),
-  args: defaultArgs,
 };
 
 // Async Upload with Buttons
@@ -128,7 +124,7 @@ export const AsyncUploadButtons: Story = {
     `,
     props: args,
   }),
-  args: defaultArgs,
+  
 };
 
 // Validation
@@ -157,7 +153,7 @@ export const ValidationExample: Story = {
 			`,
     ],
   }),
-  args: defaultArgs,
+  
 };
 
 // Chunk Uploading
@@ -175,12 +171,28 @@ export const ChunkUpload: Story = {
     `,
     props: args,
   }),
-  args: defaultArgs,
+  
 };
 
 // File Types Selection
 export const FileTypesSelection: Story = {
   render: (args) => ({
+    props: {
+      ...args,
+      selectedType: 'image/*',
+      fileTypes: [
+        { name: 'All types', value: '*' },
+        { name: 'Images', value: 'image/*' },
+        { name: 'Videos', value: 'video/*' },
+        { name: 'Documents', value: '.pdf,.doc,.docx' },
+      ],
+      allowedExtensions: {
+        '*': [],
+        'image/*': ['.jpg', '.jpeg', '.gif', '.png'],
+        'video/*': ['.mp4', '.avi', '.mov'],
+        '.pdf,.doc,.docx': ['.pdf', '.doc', '.docx'],
+      },
+    },
     template: `
       <div class="options">
         <div class="caption">File Type Options</div>
@@ -223,24 +235,8 @@ export const FileTypesSelection: Story = {
         }
       `,
     ],
-    props: {
-      ...args,
-      selectedType: 'image/*',
-      fileTypes: [
-        { name: 'All types', value: '*' },
-        { name: 'Images', value: 'image/*' },
-        { name: 'Videos', value: 'video/*' },
-        { name: 'Documents', value: '.pdf,.doc,.docx' },
-      ],
-      allowedExtensions: {
-        '*': [],
-        'image/*': ['.jpg', '.jpeg', '.gif', '.png'],
-        'video/*': ['.mp4', '.avi', '.mov'],
-        '.pdf,.doc,.docx': ['.pdf', '.doc', '.docx'],
-      },
-    },
   }),
-  args: defaultArgs,
+  
 };
 
 export const AdvancedCustomDropZone: Story = {
@@ -303,6 +299,15 @@ export const AdvancedCustomDropZone: Story = {
     };
 
     return {
+      props: {
+        ...args,
+        componentState,
+        onDropZoneEnter,
+        onDropZoneLeave,
+        onUploaded,
+        onProgress,
+        onUploadStarted,
+      },
       template: `
         <div class="widget-container flex-box">
           <span class="me-title-subheader1">Profile Picture</span>
@@ -344,15 +349,6 @@ export const AdvancedCustomDropZone: Story = {
           ></dx-file-uploader>
         </div>
       `,
-      props: {
-        ...args,
-        componentState,
-        onDropZoneEnter,
-        onDropZoneLeave,
-        onUploaded,
-        onProgress,
-        onUploadStarted,
-      },
       styles: [
         `
         .widget-container {
@@ -405,14 +401,12 @@ export const AdvancedCustomDropZone: Story = {
       ],
     };
   },
-  args: {
-    ...defaultArgs,
-  },
 };
 
 // Disabled State
 export const DisabledState: Story = {
   render: (args) => ({
+    props: args,
     template: `
       <dx-file-uploader
         meFileUploader
@@ -423,7 +417,5 @@ export const DisabledState: Story = {
         uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
       ></dx-file-uploader>
     `,
-    props: args,
   }),
-  args: defaultArgs,
 };
