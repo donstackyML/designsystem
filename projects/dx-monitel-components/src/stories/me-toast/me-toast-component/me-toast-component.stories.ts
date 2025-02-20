@@ -410,6 +410,14 @@ export const ContentOnlyMessage: Story = {
   },
 };
 
+export const LongTitleAndMessage: Story = {
+  args: {
+    title: 'Система успешно завершила обработку данных',
+    message: 'Ваши данные были успешно обработаны и сохранены в базе данных. Теперь вы можете перейти к следующему этапу.',
+    type: 'success'
+  },
+};
+
 export const CustomContent: Story = {
   args: {
     type: 'custom'

@@ -40,6 +40,7 @@ import {
       [maxHeight]="maxHeight"
       [minHeight]="minHeight"
       [type]="type"
+      [showIcon]="showIcon"
       [position]="position"
       [visible]="visible"
       [displayTime]="displayTime"
@@ -75,7 +76,6 @@ class MeToastDemoStorybookComponent {
 
   @Input() visible: boolean = false;
   @Input() showIcon: boolean = false;
-  @Input() icon: string = 'dx-icon-info';
 
   @Input() size?: MeSize = 'medium';
   @Input() height?: number | Function | string;
