@@ -76,6 +76,8 @@
     }
 
     &:has(.dx-texteditor-input-container .dx-texteditor-input-auto-resize) {
+      height: auto !important;
+      
       .dx-texteditor-container {
         min-height: var(--text-area-height);
       }
@@ -102,6 +104,12 @@
       .dx-texteditor-container {
         height: var(--text-area-height);
       }
+
+      &.me-text-area-custom-height {
+        .dx-texteditor-container {
+          height: inherit !important;
+        }
+      }
     }
 
     &:is(.dx-texteditor-label-outside),
@@ -126,6 +134,7 @@
       }
     }
   }
+
 
   .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder::before,
   .dx-texteditor-container {

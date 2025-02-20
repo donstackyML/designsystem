@@ -18,67 +18,140 @@ export default {
     }),
   ],
   argTypes: {
-    autoResizeEnabled: {
-      control: 'boolean',
-      description:
-        'Включает автоматическое изменение высоты компонента. По умолчанию `false`.',
-    },
-    activeStateEnabled: {
-      control: 'boolean',
-    },
-    height: {
+    label: {
       control: 'text',
+      description: 'Текст, отображаемый в качестве лейбла.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
-    width: {
+    placeholder: {
       control: 'text',
+      description: 'Текст подсказки, отображаемый внутри поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description:
-        'Определяет размер `текста`, `placeholder`, `label` в компоненте. В рамках дизайн системы добывлены размеры: `small`, `medium`, `large`.',
-    },
-    value: {
-      control: 'text',
-    },
-    label: {
-      control: 'text',
+      description: 'Изменяет размер текстового поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
     },
     labelMode: {
       control: 'select',
-      options: ['static', 'floating', 'outside', 'hidden'],
-      description:
-        'Определяет положение `label` в компоненте. В рамках дизайн системы добывлены позиции: `static`, `floating`, `outside`, `hidden`.',
+      options: ['outside', 'static', 'floating', 'hidden'],
+      description: 'Указывает, где будет размещаться лейбл.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'outside' },
+      },
     },
-    placeholder: {
-      control: 'text',
+    type: {
+      control: 'select',
+      options: ['date', 'datetime', 'time'],
+      description: 'Тип значения для отображения.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'date' },
+      },
+    },
+    showClearButton: {
+      control: 'boolean',
+      description: 'Показывает кнопку для очистки поля.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     readOnly: {
       control: 'boolean',
-      description: 'Отключает возможность изменения текста в компоненте.',
-    },
-    disabled: {
-      control: 'boolean',
+      description: 'Определяет состояние только для чтения',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
     },
     isValid: {
       control: 'boolean',
-      description: 'Валидность компонента.',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает компонент и его элементы.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    autoResizeEnabled: {
+      control: 'boolean',
+      description:
+        'Включает автоматическое изменение высоты компонента. По умолчанию `false`.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    activeStateEnabled: {
+      control: 'boolean',
+      description: 'Включает активное состояние компонента.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    value: {
+      control: 'text',
+      description: 'Значение поля.',
     },
     validationError: {
       control: 'text',
+      description: 'Текст ошибки валидации.',
     },
     validationMessageMode: {
       control: 'select',
       options: ['auto', 'always'],
-      description:
-        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `text`, `icon`.',
+      description: 'Режим отображения сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
     },
     validationMessagePosition: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
-      description:
-        'Режим отображения сообщения об ошибке. В рамках дизайн системы добывлены позиции: `top`, `bottom`, `left`, `right`.',
+      description: 'Расположение сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'bottom' },
+      },
     },
+    width: {
+      control: 'text',
+      description: 'Ширина компонента.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    height: {
+      control: 'text',
+      description: 'Высота компонента.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    }
   },
   args: {
     autoResizeEnabled: false,
@@ -120,18 +193,81 @@ export default {
 
 type Story = StoryObj;
 
-export const Default: Story = {
+export const Default: Story = { };
+
+export const SizeSmall: Story = {
   args: {
-    value: '',
-    width: '320px',
+    size: 'small',
   },
 };
 
-export const AutoResize: Story = {
+export const SizeMedium: Story = {
   args: {
-    ...Default.args,
+    size: 'medium'
+  }
+}
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const LabelModeFloating: Story = {
+  args: {
+    labelMode: 'floating',
+  },
+};
+
+export const LabelModeOutside: Story = {
+  args: {
+    labelMode: 'outside',
+  },
+};
+
+export const LabelModeStatic: Story = {
+  args: {
+    labelMode: 'static',
+  },
+};
+
+export const LabelModeHidden: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const StateReadOnly: Story = {
+  args: {
+    readOnly: true,
+    value: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+};
+
+export const StateDisabledAndReadOnly: Story = {
+  args: {
+    readOnly: true,
+    disabled: true,
+    value: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+};
+
+export const WithAutoResize: Story = {
+  args: {
     autoResizeEnabled: true,
     value:
       'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+};
+
+export const WithCustomHeight: Story = {
+  args: {
+    height: '190',
   },
 };
