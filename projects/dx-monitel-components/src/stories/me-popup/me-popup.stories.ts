@@ -377,7 +377,7 @@ export const Buttons: Story = {
 
 const lorem25 =
   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita id ad quasi? Suscipit natus corrupti enim impedit? Cum aliquid, qui eligendi eveniet sunt molestias aperiam?';
-export const Dialog: Story = {
+export const DialogMedium: Story = {
   args: {
     visible: true,
     size: 'medium',
@@ -494,7 +494,7 @@ export const DialogLarge: Story = {
 
 const words =
   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum enim, quos qui temporibus repellat architecto, ratione deleniti culpa adipisci beatae perferendis illo eum minima modi libero. Deleniti harum cum accusantium similique obcaecati quae, maxime dignissimos iusto repellat qui temporibus? Culpa quod eius officia pariatur soluta, deleniti tempore atque repellendus, non, eveniet ex repudiandae rerum distinctio autem eligendi consectetur quasi quia impedit ipsum inventore alias! Unde commodi ipsa, excepturi quibusdam nisi, quia vero nemo repudiandae blanditiis repellendus minus porro quasi dolores reiciendis placeat? Itaque commodi enim consectetur, recusandae blanditiis incidunt illum dolor quaerat, eum architecto possimus obcaecati omnis, nulla dignissimos corrupti.';
-export const Scroll: Story = {
+export const ScrollableContent: Story = {
   args: {
     visible: true,
     size: 'medium',
@@ -542,10 +542,10 @@ export const Toolbar: Story = {
     position: {
       my: 'center',
       at: 'center',
-      of: '#myWrapperTollbar',
+      of: '#myWrapperToolbar',
     },
     title: 'Заголовок',
-    container: '#myWrapperTollbar',
+    container: '#myWrapperToolbar',
   },
   decorators: [
     moduleMetadata({
@@ -561,7 +561,7 @@ export const Toolbar: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <div id="myWrapperTollbar" style="height: 350px; position: relative;">
+    <div id="myWrapperToolbar" style="height: 350px; position: relative;">
       <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
         <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
           </dxi-toolbar-item>
@@ -590,67 +590,6 @@ export const Toolbar: Story = {
         </div>
         <div *dxTemplate="let data of 'addButton'">
           <dx-button meButton text="Добавить"></dx-button>
-        </div>
-      </dx-popup>
-    </div>`,
-  }),
-};
-
-export const Size: Story = {
-  args: {
-    visible: true,
-    size: 'large',
-    position: {
-      my: 'center',
-      at: 'center',
-      of: '#myWrapperSize',
-    },
-    title: 'Заголовок',
-    container: '#myWrapperSize',
-  },
-  decorators: [
-    moduleMetadata({
-      declarations: [
-        MePopupDirective,
-        DxScrollViewComponent,
-        DxButtonComponent,
-        MeButtonDirective,
-      ],
-      imports: [DxPopupModule, DxTemplateModule],
-    }),
-  ],
-  render: (args) => ({
-    props: args,
-    template: `
-    <div id="myWrapperSize" style="min-height: 350px; position: relative;">
-      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
-        <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
-          </dxi-toolbar-item>
-        <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
-          </dxi-toolbar-item>
-        <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
-          </dxi-toolbar-item>
-        <dxi-toolbar-item template="addButton" toolbar="bottom" location="before">
-          </dxi-toolbar-item>
-
-        <div *dxTemplate="let data of 'content'">
-          <dx-scroll-view width="100%" height="100%">
-            ${words}
-          </dx-scroll-view>
-        </div>
-
-        <div *dxTemplate="let data of 'overflowButton'">
-          <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="24px" size="large">
-            </dx-button>
-        </div>
-        <div *dxTemplate="let data of 'confirmButton'">
-          <dx-button meButton text="Принять" type="default" size="large"></dx-button>
-        </div>
-        <div *dxTemplate="let data of 'cancelButton'">
-          <dx-button meButton text="Отмена" size="large"></dx-button>
-        </div>
-        <div *dxTemplate="let data of 'addButton'">
-          <dx-button meButton text="Добавить" size="large"></dx-button>
         </div>
       </dx-popup>
     </div>`,
@@ -712,6 +651,67 @@ export const SizeMedium: Story = {
         </div>
         <div *dxTemplate="let data of 'addButton'">
           <dx-button meButton text="Добавить" size="medium"></dx-button>
+        </div>
+      </dx-popup>
+    </div>`,
+  }),
+};
+
+export const SizeLarge: Story = {
+  args: {
+    visible: true,
+    size: 'large',
+    position: {
+      my: 'center',
+      at: 'center',
+      of: '#myWrapperSize',
+    },
+    title: 'Заголовок',
+    container: '#myWrapperSize',
+  },
+  decorators: [
+    moduleMetadata({
+      declarations: [
+        MePopupDirective,
+        DxScrollViewComponent,
+        DxButtonComponent,
+        MeButtonDirective,
+      ],
+      imports: [DxPopupModule, DxTemplateModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `
+    <div id="myWrapperSize" style="min-height: 350px; position: relative;">
+      <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
+        <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
+          </dxi-toolbar-item>
+        <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+          </dxi-toolbar-item>
+        <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+          </dxi-toolbar-item>
+        <dxi-toolbar-item template="addButton" toolbar="bottom" location="before">
+          </dxi-toolbar-item>
+
+        <div *dxTemplate="let data of 'content'">
+          <dx-scroll-view width="100%" height="100%">
+            ${words}
+          </dx-scroll-view>
+        </div>
+
+        <div *dxTemplate="let data of 'overflowButton'">
+          <dx-button meButton iconOnly="overflow" stylingMode="text" iconSize="24px" size="large">
+            </dx-button>
+        </div>
+        <div *dxTemplate="let data of 'confirmButton'">
+          <dx-button meButton text="Принять" type="default" size="large"></dx-button>
+        </div>
+        <div *dxTemplate="let data of 'cancelButton'">
+          <dx-button meButton text="Отмена" size="large"></dx-button>
+        </div>
+        <div *dxTemplate="let data of 'addButton'">
+          <dx-button meButton text="Добавить" size="large"></dx-button>
         </div>
       </dx-popup>
     </div>`,
