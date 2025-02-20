@@ -180,6 +180,15 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
   }
 
   &:has(.me-toast-content) {
+
+    &.me-toast-small {
+      --toast-content-right-offset: 32px;
+    }
+
+    &.me-toast-large {
+      --toast-content-right-offset: 40px;
+    }
+
     .dx-toast-icon {
       display: none;
     }
@@ -198,6 +207,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
         }
 
         .me-toast-header-content {
+          padding-right: var(--toast-content-right-offset);
           margin: 0;
           display: flex;
           flex-direction: column;

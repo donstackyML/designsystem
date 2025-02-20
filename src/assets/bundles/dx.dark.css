@@ -33861,6 +33861,12 @@ input.dx-hidden {
 .me-toast.me-toast-large .me-toast-header {
   gap: 10px;
 }
+.me-toast:has(.me-toast-content).me-toast-small {
+  --toast-content-right-offset: 32px;
+}
+.me-toast:has(.me-toast-content).me-toast-large {
+  --toast-content-right-offset: 40px;
+}
 .me-toast:has(.me-toast-content) .dx-toast-icon {
   display: none;
 }
@@ -33877,6 +33883,7 @@ input.dx-hidden {
   align-items: center;
 }
 .me-toast:has(.me-toast-content) .me-toast-content .me-toast-header .me-toast-header-content {
+  padding-right: var(--toast-content-right-offset);
   margin: 0;
   display: flex;
   flex-direction: column;
