@@ -154,7 +154,12 @@ export default {
       <div *dxTemplate>
         <dx-text-box
           meTextBox
-          [(value)]="formData.firstName">
+          [(value)]="formData.firstName"
+          [size]="size"
+          [readOnly]="readOnly"
+          [disabled]="disabled"
+          showClearButton="true"
+          >
         </dx-text-box>
       </div>
     </dxi-item>
@@ -163,7 +168,12 @@ export default {
       <div *dxTemplate>
         <dx-text-box
           meTextBox
-          [(value)]="formData.email">
+          [(value)]="formData.email"
+          [size]="size"
+          [readOnly]="readOnly"
+          [disabled]="disabled"
+          showClearButton="true"
+          >
         </dx-text-box>
       </div>
     </dxi-item>
@@ -286,6 +296,7 @@ export const MultipleFields: Story = {
   `
   })
 };
+
 export const DynamicForm: Story = {
   render: (args) => ({
     props: {
@@ -348,12 +359,6 @@ export const LabelLocationTop: Story = {
 };
 
 
-export const LabelModeFloating: Story = {
-  args: {
-    labelMode: 'floating',
-  },
-};
-
 export const LabelModeOutside: Story = {
   args: {
     labelMode: 'outside',
@@ -363,6 +368,12 @@ export const LabelModeOutside: Story = {
 export const LabelModeStatic: Story = {
   args: {
     labelMode: 'static',
+  },
+};
+
+export const LabelModeFloating: Story = {
+  args: {
+    labelMode: 'floating',
   },
 };
 
@@ -394,8 +405,47 @@ export const AutoColumns: Story = {
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    formData: meFormFilledFormData,
   },
+  render: (args) => ({
+    props: {
+      ...args,
+      formData: meFormFilledFormData,
+      readOnly: true
+    },
+    template: `
+<div style="max-width: 800px; margin: 0 auto;">
+  <dx-form
+    meForm
+    ${argsToTemplate(args)}
+  >
+    <dxi-item meFormItem dataField="firstName">
+      <dxo-label text="First Name"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box
+          meTextBox
+          [(value)]="formData.firstName"
+          [disabled]="disabled"
+          [readOnly]="readOnly"
+          >
+        </dx-text-box>
+      </div>
+    </dxi-item>
+    <dxi-item meFormItem dataField="email">
+      <dxo-label text="Email"></dxo-label>
+      <div *dxTemplate>
+        <dx-text-box
+          meTextBox
+          [(value)]="formData.email"
+          [disabled]="disabled"
+          [readOnly]="readOnly"
+          >
+        </dx-text-box>
+      </div>
+    </dxi-item>
+  </dx-form>
+</div>
+    `
+  })
 };
 
 export const StateDisabled: Story = {
@@ -406,9 +456,10 @@ export const StateDisabled: Story = {
 
 export const StateDisabledAndReadOnly: Story = {
   args: {
-    disabled: true,
-    readonly: true
+    readOnly: true,
+    disabled: true
   },
+  render: StateReadOnly.render
 };
 
 export const WithGrouping: Story = {
@@ -419,7 +470,7 @@ export const WithGrouping: Story = {
     <dxi-item meFormItem dataField="firstName">
       <dxo-label text="First Name"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox></dx-text-box>
+        <dx-text-box meTextBox вшы></dx-text-box>
       </div>
     </dxi-item>
     <dxi-item meFormItem dataField="lastName">
