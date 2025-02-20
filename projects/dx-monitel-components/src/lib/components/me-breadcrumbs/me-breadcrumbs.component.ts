@@ -55,7 +55,8 @@ export class MeBreadcrumbsComponent
   @Input() items: BreadcrumbItem[] = [];
   @Input() truncateFrom: 'left' | 'right' = 'right';
   @Input() size: 'small' | 'large' = 'small';
-  @Input() showDivider = true;
+  @Input() showDivider: boolean = true;
+
   @Output() itemClick = new EventEmitter<BreadcrumbItem>();
 
   @ViewChild('breadcrumbsContainer', { static: true })
@@ -97,12 +98,22 @@ export class MeBreadcrumbsComponent
     this.focusService.addFocusOutHandle((evt) => this.outFocusHandle(evt));
   }
 
+  private previousItemsLength = 0;
+
   ngOnInit() {
     this.renderer.addClass(this.elementRef.nativeElement, 'me-breadcrumbs');
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['items'] || changes['truncateFrom'] || changes['size']) {
+      this.updateItems();
+      this.previousItemsLength = this.items.length;
+    }
+  }
+
+  ngDoCheck() {
+    if (this.items && this.items.length !== this.previousItemsLength) {
+      this.previousItemsLength = this.items.length;
       this.updateItems();
     }
   }

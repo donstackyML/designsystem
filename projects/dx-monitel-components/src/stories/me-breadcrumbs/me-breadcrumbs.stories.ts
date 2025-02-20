@@ -1,4 +1,6 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import {
   DxButtonModule,
   DxContextMenuModule,
@@ -6,6 +8,7 @@ import {
 } from 'devextreme-angular';
 import {
   MeBreadcrumbsComponent,
+  MeButtonModule,
   MeIconComponent,
   MeIconStoreService
 } from '../../public-api';
@@ -20,7 +23,6 @@ import {
 
 export default {
   title: 'Components/Breadcrumbs',
-  component: MeBreadcrumbsComponent,
   decorators: [
     moduleMetadata({
       imports: [
@@ -80,14 +82,19 @@ export default {
     size: 'small',
     items: meBreadcrumbsMockData,
     showDivider: true
-  }
-} satisfies Meta<MeBreadcrumbsComponent> ;
+  },
+  render: (args) => ({
+    props: args,
+    template: `<me-breadcrumbs ${argsToTemplate(args)}></me-breadcrumbs>`,
+  })
+} satisfies Meta<MeBreadcrumbsComponent>;
 
 type Story = StoryObj<MeBreadcrumbsComponent>;
 
 export const Default: Story = {
   args: {},
 };
+
 export const WithIcons: Story = {
   args: {
     items: meBreadcrumbsMockDataWithIcons,
@@ -146,4 +153,99 @@ export const WithManyItems: Story = {
   args: {
     items: meBreadcrumbsMockDataWithManyItems
   },
+};
+
+export const WithFlexContainer: Story = {
+  args: {
+    items: meBreadcrumbsMockDataWithManyItems
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <div class="container">
+      <me-breadcrumbs ${argsToTemplate(args)}></me-breadcrumbs>
+    </div>
+    `,
+    styles: [
+      `
+      .container {
+        display: flex;
+        width: 800px;
+      }
+      `
+    ]
+  })
+};
+
+@Component({
+  selector: 'storybook-breadcrumbs-wrapper',
+  template: `
+    <div style="margin-bottom: 10px;">
+      <dx-button meButton text="Добавить хлебную крошку" (click)="addBreadcrumb()"></dx-button>
+    </div>
+    <me-breadcrumbs
+      [items]="breadcrumbs"
+      [truncateFrom]="truncateFrom"
+      [size]="size"
+      [showDivider]="showDivider"
+      (itemClick)="onItemClick($event)">
+    </me-breadcrumbs>
+  `,
+})
+class BreadcrumbsWrapperComponent {
+  @Input() items: any[] = [];
+  @Input() truncateFrom: 'left' | 'right' = 'right';
+  @Input() size: 'small' | 'large' = 'small';
+  @Input() showDivider = true;
+
+  breadcrumbs: any[] = [];
+
+  ngOnInit() {
+    this.breadcrumbs = [...this.items];
+  }
+
+  addBreadcrumb() {
+    this.breadcrumbs = [
+      ...this.breadcrumbs,
+      { text: `Новый элемент ${this.breadcrumbs.length + 1}`, url: `/new-${this.breadcrumbs.length + 1}` },
+    ];
+  }
+
+  onItemClick(item: any) {
+    console.log('Нажата хлебная крошка:', item);
+  }
+}
+
+export const DynamicItems: Story = {
+  decorators: [
+    moduleMetadata({
+      declarations: [BreadcrumbsWrapperComponent],
+      imports: [
+        CommonModule,
+        DxMenuModule,
+        MeBreadcrumbsComponent,
+        DxButtonModule,
+        MeButtonModule,
+        DxContextMenuModule,
+        MeIconComponent,
+      ],
+    }),
+  ],
+  args: {
+    items: [
+      { text: 'Главная', url: '/' },
+      { text: 'Категория', url: '/category' },
+    ],
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <storybook-breadcrumbs-wrapper
+      [items]="items"
+      [size]="size"
+      [showDivider]="showDivider"
+      [truncateFrom]="truncateFrom"
+      ></storybook-breadcrumbs-wrapper>
+    `,
+  }),
 };
