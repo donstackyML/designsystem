@@ -1,24 +1,32 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as selectBoxStories from "./me-select-box.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as selectBoxStories from "./me-select-box.stories";
 
 <Meta name="SelectBox Documentation" of={selectBoxStories} />
 
 # SelectBox
 
-## Директива meSelectBox, meLabel
+## Директива `meSelectBox`
 
-Применение директивы <code>meSelectBox</code> к элементу <code>dx-select-box</code> приводит его размеры
-к значению <code>size=medium (32)</code> из дизайн-системы, задает по-умолчанию <code>stylingMode=filled</code> и предоставляет доступ к другим свойствам.
+Применение директивы `meSelectBox` к компоненту `dx-select-box` приводит его размеры к значению `size="medium"` из дизайн-системы, а также приводит отступы в соответствие с дизайн-системой, добавляет свойство `size`.
 
-[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/)
+Документация на сайте разработчика DevExtreme:
 
-[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/SelectBox/Overview/Light/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/"
+    target="*blank"
+  >
+    API
+  </a>
+- <a
+    href="(https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/SelectBox/Overview/Light/)"
+    target="*blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={selectBoxStories.Default} />
-
 <Controls of={selectBoxStories.Default} />
-
 
 ## Дизайн
 
@@ -31,32 +39,197 @@ import { Figma } from "@storybook/addon-designs/blocks";
 
 ## Примеры использования:
 
-- [Определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля)
-- [Положение лейбла сверху](#положение-лейбла-сверху)
-- [Положение лейбла слева](#положение-лейбла-слева)
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера](#компонент-среднего-размера)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [Разные режимы положения лейбла](#разные-режимы-положения-лейбла)
+  - [Лейбл внешний](#лейбл-внешний)
+  - [Лейбл статичный](#лейбл-статичный)
+  - [Лейбл всплывающий](#лейбл-всплывающий)
+  - [Лейбл невидимый](#лейбл-невидимый)
+- [Изменение положения лейбла с помощью директивы meLabel](#изменение-положения-лейбла-с-помощью-директивы-melabel)
+  - [Положение лейбла сверху](#положение-лейбла-сверху)
+  - [Положение лейбла слева](#положение-лейбла-слева)
+- [Состояния readOnly и disabled](#состояния-readonly-и-disabled)
+  - [Состояние readOnly](#состояние-readonly)
+  - [Состояние disabled](#состояние-disabled)
+  - [Состояние readOnly и disabled](#состояние-readonly-и-disabled)
 - [Кастомные данные](#кастомные-данные)
 
-## Определение положения лейбла снаружи текстового поля
+## Размеры компонента
 
-Применение директивы <code>meLabel</code> позволяет определить положение лейбла снаружи текстового поля (сверху или слева).
+*Изменение размера текстового поля влияет на отступы, размер шрифта и общую компоновку. Свойство `size` принимает три значения:*
+- **small** – уменьшенный размер, подходит для компактных интерфейсов;
+- **medium** – стандартный размер (используется по умолчанию);
+- **large** – увеличенный размер, удобен для форм с более крупным текстом.
 
-<code>labelDirection</code> определяет положение лейбла снаружи текстового поля (сверху
-или слева).
+#### Компонент небольшого размера
 
-### Положение лейбла сверху
+<Canvas name="Компонент небольшого размера" of={selectBoxStories.SizeSmall} />
 
-Для положения `label` сверху используйте тэг <code>label</code> с директивой <code>meLabel</code> и установите параметр <code>labelDirection="column"</code>. Также установите необходимые стили выравнивания как <code>align-items: flex-start</code>.
+<Source
+  code={`<dx-select-box meSelectBox size="small"></dx-select-box>`}
+  language="html"
+  dark
+/>
 
-<Canvas of={selectBoxStories.WithLabelColumn} />
+#### Компонент среднего размера
 
-### Положение лейбла слева
+<Canvas name="Компонент среднего размера (по умолчанию)" of={selectBoxStories.SizeMedium} />
 
-Для положения `label` слева установите параметр <code>labelDirection="row"</code>.
+<Source
+  code={`<dx-select-box meSelectBox size="medium"></dx-select-box>`}
+  language="html"
+  dark
+/>
 
-<Canvas of={selectBoxStories.WithLabelRow} />
+#### Компонент большого размера
 
-<code>width</code> определяет размер текстового поля вместе с лейблом (используется
-в теге <code>label</code> для расположения <code>labelPosition="left"</code>)
+<Canvas name="Компонент большого размера" of={selectBoxStories.SizeLarge} />
+
+<Source
+  code={`<dx-select-box meSelectBox size="large"></dx-select-box>`}
+  language="html"
+  dark
+/>
+
+### Разные режимы положения лейбла
+
+*Директива `meSelectBox` позволяет настраивать отображение лейбла с помощью свойства `labelMode`. Это свойство определяет, как и где будет отображаться метка поля, что может помочь улучшить читаемость формы и соответствовать требованиям макета.*
+
+#### Лейбл внешний
+
+*При значении `labelMode="outside"` лейбл располагается вне поля ввода. Такой вариант часто используется для четкого отделения метки от контрола.*
+
+<Canvas name="Лейбл внешний" of={selectBoxStories.LabelModeOutside} />
+
+<Source
+  code={`<dx-select-box meSelectBox labelMode="outside" label="Label*"></dx-select-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл статичный
+
+*Режим `labelMode="static"` фиксирует положение лейбла, не изменяя его при взаимодействии с полем. Это полезно, если требуется постоянное отображение метки в одном месте.*
+
+<Canvas name="Лейбл статичный" of={selectBoxStories.LabelModeStatic} />
+
+<Source
+  code={`<dx-select-box meSelectBox labelMode="static" label="Label*"></dx-select-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл всплывающий
+
+*При использовании `labelMode="floating"` лейбл будет перемещаться, когда поле получает фокус. Это создает эффект «плавающего» заголовка, позволяющий экономить пространство внутри поля ввода.*
+
+<Canvas name="Лейбл всплывающий" of={selectBoxStories.LabelModeFloating} />
+
+<Source
+  code={`<dx-select-box meSelectBox labelMode="floating" label="Label*"></dx-select-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл невидимый
+
+*Если необходимо скрыть метку (например, при использовании вспомогательных элементов или когда метка выводится иным способом), установите `labelMode="hidden"`. В этом режиме лейбл не отображается в интерфейсе.*
+
+<Canvas name="Лейбл невидимый" of={selectBoxStories.LabelModeHidden} />
+
+<Source
+  code={`<dx-select-box meSelectBox labelMode="hidden" label="Label*"></dx-select-box>`}
+  language="html"
+  dark
+/>
+
+### Изменение положения лейбла с помощью директивы meLabel
+
+*Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.*
+
+#### Положение лейбла сверху
+
+*Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.*
+
+<Canvas name="Лейбл сверху" of={selectBoxStories.WithLabelColumn} />
+
+<Source
+  code={`
+<div meLabel labelDirection="column">
+  <span>Label*</span>
+  <dx-select-box meSelectBox></dx-select-box>
+</div>
+`}
+  language="html"
+  dark
+/>
+
+#### Положение лейбла слева
+
+*Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.*
+
+<Canvas name="Лейбл слева" of={selectBoxStories.WithLabelRow} />
+
+<Source
+  code={`
+<div meLabel labelDirection="row" width="250px" class="dx-widget">
+  <span>Label*</span>
+  <dx-select-box meSelectBox></dx-select-box>
+</div>
+`}
+  language="html"
+  dark
+/>
+
+### Состояния readOnly и disabled
+
+*Свойства `readOnly` и `disabled` позволяют управлять интерактивностью текстового поля. В режиме readOnly поле становится доступным для копирования, но редактирование невозможно, а в режиме disabled поле полностью неактивно и выглядит затенённым.*
+
+#### Состояние readOnly
+
+<Canvas name="Состояние readOnly" of={selectBoxStories.StateReadOnly} />
+
+<Source
+  code={`
+<dx-select-box
+  meSelectBox
+  readOnly="true"
+  value="Voltage Monitor VM-100">
+</dx-select-box>
+  `}
+  dark
+  language="html"
+/>
+
+#### Состояние disabled
+
+<Canvas name="Состояние disabled" of={selectBoxStories.StateDisabled} />
+
+<Source
+  code={`<dx-select-box meSelectBox disabled="true"></dx-select-box>`}
+  dark
+  language="html"
+/>
+
+#### Состояние readOnly и disabled
+
+<Canvas name="Состояние readOnly и disabled" of={selectBoxStories.StateDisabledAndReadOnly} />
+
+<Source
+  code={`
+<dx-select-box
+  meSelectBox
+  disabled="true"
+  readOnly="true"
+  value="Voltage Monitor VM-100"
+></dx-select-box>
+  `}
+  dark
+  language="html"
+/>
 
 ### Кастомные данные
 
@@ -73,11 +246,3 @@ import { Figma } from "@storybook/addon-designs/blocks";
   </div>
 </dx-select-box>
 `} dark language="html" />
-
-<style>
-{`
-    h2 {
-      border-bottom: none !important;
-    }
-`}
-</style>

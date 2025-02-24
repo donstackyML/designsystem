@@ -4,110 +4,37 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-
 import {
   DxSelectBoxComponent,
-  DxSelectBoxModule,
-  DxValidatorModule,
+  DxValidatorModule
 } from 'devextreme-angular';
-import { MeLabelDirective, MeSelectBoxDirective } from '../../public-api';
 
-const data = [
-  'HD Video Player',
-  'SuperHD Video Player',
-  'SuperPlasma 42',
-  'SuperPlasma 46',
-  'SuperPlasma 50',
-  'SuperPlasma 60',
-  'SuperPlasma 70',
-  'Home Theatre System HTS 700',
-  'Home Theatre System HTS 800',
-  'Home Theatre System HTS 900',
-  'Home Theatre System HTS 1000',
-  'Home Theatre System HTS 1100',
-  'Home Theatre System HTS 1200',
-  'Home Theatre System HTS 1300',
-  'Home Theatre System HTS 1400',
-  'Home Theatre System HTS 1500',
-  'Home Theatre System HTS 1600',
-  'Home Theatre System HTS 1700',
-  'Home Theatre System HTS 1800',
-  'Home Theatre System HTS 1900',
-  'Home Theatre System HTS 2000',
-  'Home Theatre System HTS 2100',
-  'Home Theatre System HTS 2200',
-  'Home Theatre System HTS 2300',
-  'Home Theatre System HTS 2400',
-  'Home Theatre System HTS 2500',
-];
+import { MeLabelDirective, MeSelectBoxDirective } from '../../public-api';
+import { meSelectBoxData } from './me-select-box-mock-data';
 
 export default {
   title: 'Components/Fields/SelectBox',
   decorators: [
     moduleMetadata({
-      declarations: [MeSelectBoxDirective, MeLabelDirective],
-      imports: [DxSelectBoxModule, DxValidatorModule],
+      imports: [DxValidatorModule],
+      declarations: [MeSelectBoxDirective, DxSelectBoxComponent, MeLabelDirective],
     }),
   ],
   argTypes: {
-    disabled: {
-      control: { type: 'boolean' },
-      description: 'Определяет состояние компонента.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    isValid: {
-      control: { type: 'boolean' },
-      description: 'Определяет валидность компонента.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     label: {
       control: 'text',
-      description:
-        'Указывает текстовую строку, используемую для аннотации значения поля ввода.',
+      description: 'Текст, отображаемый в качестве лейбла.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
-      },
-    },
-    labelMode: {
-      control: 'select',
-      options: ['static', 'floating', 'hidden', 'outside'],
-      description: 'Определяет положение лейбла текстового поля.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'static' },
       },
     },
     placeholder: {
       control: 'text',
-      description:
-        'Определяет подсказку, которая отображается в текстовом поле.',
+      description: 'Текст подсказки, отображаемый внутри поля.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
-      },
-    },
-    readOnly: {
-      control: { type: 'boolean' },
-      description: 'Определяет состояние только для чтения.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Принимает размер текстового поля.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'medium' },
       },
     },
     dataSource: {
@@ -116,6 +43,97 @@ export default {
       table: {
         type: { summary: 'string[]' },
         defaultValue: { summary: '[]' },
+      },
+    },
+    value: {
+      control: 'text',
+      description: 'Значение поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description: 'Изменяет размер текстового поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    labelMode: {
+      control: 'select',
+      options: ['outside', 'static', 'floating', 'hidden'],
+      description: 'Указывает, где будет размещаться лейбл.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'outside' },
+      },
+    },
+    showClearButton: {
+      control: 'boolean',
+      description: 'Показывает кнопку для очистки поля.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    readOnly: {
+      control: 'boolean',
+      description: 'Определяет состояние только для чтения',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает компонент и его элементы.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    grouped: {
+      control: 'boolean',
+      description: 'Определяет, использовать ли группировку элементов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    searchEnabled: {
+      control: 'boolean',
+      description: 'Разрешает поиск.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    searchMode: {
+      control: 'select',
+      options: ['contains', 'startswith'],
+      description: 'Выберите режим поиска.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'contains' },
+      },
+    },
+    minSearchLength: {
+      control: 'number',
+      description: 'Минимальная длина поиска.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
       },
     },
     showScrollbar: {
@@ -130,14 +148,20 @@ export default {
     },
   },
   args: {
+    label: 'Label*',
+    placeholder: 'Select...',
+    dataSource: meSelectBoxData,
     size: 'medium',
     showScrollbar: 'always',
     disabled: false,
     isValid: true,
     readOnly: false,
-    label: 'Label*',
-    placeholder: 'Select...',
-    dataSource: data,
+    grouped: false,
+    searchEnabled: false,
+    searchMode: 'contains',
+    minSearchLength: 0,
+    width: undefined,
+    height: undefined,
   },
   render: (args) => ({
     props: args,
@@ -149,53 +173,125 @@ export default {
           message="Required">
         </dxi-validation-rule>
     	</dx-validator>
-    </dx-select-box>
-		<p class='select-box-desc' >description</p>`,
-    styles: [
-      '.select-box-desc { color: #808084; font-size: 12px; line-height: 16px; font-family: Roboto; }',
-      '.select-box-desc { margin-top: 4px; }',
-    ],
+    </dx-select-box>`,
   }),
-} satisfies Meta<MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective>;
+} satisfies Meta<MeSelectBoxDirective | DxSelectBoxComponent>;
 
-type Story = StoryObj<
-  MeSelectBoxDirective | DxSelectBoxComponent | MeLabelDirective
->;
+type Story = StoryObj<MeSelectBoxDirective | DxSelectBoxComponent>;
 
-export const Default: Story = {
+export const Default: Story = {};
+
+export const SizeSmall: Story = {
   args: {
-    dataSource: data,
-    label: 'Label*',
+    size: 'small',
+  },
+};
+
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium'
+  }
+}
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const LabelModeFloating: Story = {
+  args: {
+    labelMode: 'floating',
+  },
+};
+
+export const LabelModeOutside: Story = {
+  args: {
     labelMode: 'outside',
   },
 };
 
-export const WithLabelColumn: Story = {
+export const LabelModeStatic: Story = {
+  args: {
+    labelMode: 'static',
+  },
+};
+
+export const LabelModeHidden: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
+};
+
+export const WithLabelRow: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
   render: (args) => ({
     props: args,
     template: `
-      <span meLabel
-        labelDirection="column"
-        style="align-items: flex-start;">
-        Label
-        <dx-select-box meSelectBox labelMode="hidden" [dataSource]="dataSource" [label]="label" [size]="size" [placeholder]="placeholder"></dx-select-box>
-      </span>
+    <div meLabel
+      labelDirection="row"
+      width="250px"
+      class="dx-widget"
+      >
+      <span>Label*</span>
+      <dx-select-box meSelectBox
+        ${argsToTemplate(args)}
+      >
+      </dx-select-box>
+    </div>
     `,
   }),
 };
 
-export const WithLabelRow: Story = {
+export const WithLabelColumn: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
   render: (args) => ({
     props: args,
     template: `
-      <span meLabel
-        labelDirection="row"
-        style="width: 250px;"
-      >
-        Label
-        <dx-select-box meSelectBox  [dataSource]="dataSource" labelMode="hidden" [label]="label" [size]="size" [placeholder]="placeholder"></dx-select-box>
-
-      </span>
-    `,
+		<div
+      meLabel
+		  labelDirection="column"
+      class="dx-widget"
+		>
+    <span>Label*</span>
+		<dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+		</div>`,
   }),
+}
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const StateReadOnly: Story = {
+  args: {
+    readOnly: true,
+    value: meSelectBoxData[0]
+  },
+};
+
+export const StateDisabledAndReadOnly: Story = {
+  args: {
+    readOnly: true,
+    disabled: true,
+    value: meSelectBoxData[0]
+  },
+};
+
+export const WithClearButton: Story = {
+  args: {
+    showClearButton: true,
+    value: meSelectBoxData[0]
+  },
+};
+export const WithSearch: Story = {
+  args: {
+    searchEnabled: true
+  },
 };
