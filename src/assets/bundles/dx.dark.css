@@ -24663,13 +24663,18 @@ input.dx-hidden {
 .me-popover .dx-overlay-content.dx-popup-normal {
   border-radius: 4px;
   overflow: visible;
-  padding: 16px;
+  padding: var(--tooltip-content-padding, 16px);
   --popover-background: var(--Background-Accent-in-the-content);
   --popover-color: var(--Text-Default);
   --popover-border: $border;
   background-color: var(--popover-background);
   color: var(--popover-color);
   border: 1px solid var(--popover-border);
+}
+.me-popover .dx-overlay-content.dx-popup-normal .dx-popup-content {
+  font-size: var(--tooltip-content-font-size, 14px);
+  font-weight: 400;
+  line-height: var(--tooltip-content-line-heigh, 20px);
 }
 .me-popover .dx-overlay-content.dx-popup-normal .dx-popup-title {
   color: var(--popover-color);
@@ -24687,6 +24692,7 @@ input.dx-hidden {
 .me-popover .dx-overlay-content.dx-popup-normal .dx-toolbar.dx-popup-title,
 .me-popover .dx-overlay-content.dx-popup-normal .dx-popup-title {
   border: none;
+  margin-bottom: var(--tooltip-text-content-gap, 4px);
 }
 .me-popover .dx-overlay-content.dx-popup-normal .dx-toolbar.dx-popup-title .dx-toolbar-items-container,
 .me-popover .dx-overlay-content.dx-popup-normal .dx-popup-title .dx-toolbar-items-container {
@@ -24765,12 +24771,6 @@ input.dx-hidden {
 }
 .me-popover .dx-overlay-content.dx-popup-normal .dx-template-wrapper.dx-popup-title {
   border-bottom: none;
-}
-.me-popover .dx-overlay-content.dx-popup-normal .dx-popup-content {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  text-align: left;
 }
 .me-popover .dx-overlay-content.dx-popup-normal .dx-toolbar.dx-popup-bottom {
   background-color: var(--popover-background);
@@ -24950,7 +24950,7 @@ input.dx-hidden {
   --Text-Tertiary: #717175;
 }
 
-.me-popover.me-popover-alternate .dx-overlay-content.dx-popup-normal {
+.me-popover.me-popover-color-mode-alternate .dx-overlay-content.dx-popup-normal {
   --popover-background: var(--Background-Accent-in-the-content);
   --popover-color: var(--Text-Default);
   --popover-border: $border;
@@ -24958,20 +24958,22 @@ input.dx-hidden {
   --popover-color: var(--Text-Default);
   --popover-border: $border;
 }
-
-.me-popover.me-popover-light .dx-overlay-content.dx-popup-normal {
+.me-popover.me-popover-color-mode-light .dx-overlay-content.dx-popup-normal {
   --popover-background: var(--Background-Accent-in-the-content);
   --popover-color: var(--Text-Default);
   --popover-border: $border;
 }
-
-.me-popover.me-popover-dark .dx-overlay-content.dx-popup-normal {
+.me-popover.me-popover-color-mode-dark .dx-overlay-content.dx-popup-normal {
   --popover-background: var(--Background-Accent-in-the-content);
   --popover-color: var(--Text-Default);
   --popover-border: $border;
 }
 
 .me-popover.me-popover-small {
+  --tooltip-content-padding: 12px;
+  --tooltip-content-font-size: 12px;
+  --tooltip-content-line-heigh: 16px;
+  --tooltip-text-content-gap: 2px;
   padding: 12px;
 }
 .me-popover.me-popover-small .dx-overlay-content > *:not(.dx-popover-arrow, :last-child) {
@@ -24994,14 +24996,15 @@ input.dx-hidden {
   font-size: 16px;
   line-height: 16px;
 }
-.me-popover.me-popover-small .dx-popup-content {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-}
 .me-popover.me-popover-small .dx-toolbar.dx-popup-bottom .dx-toolbar-items-container {
   min-height: 28px;
   height: 28px;
+}
+.me-popover.me-popover-medium {
+  --tooltip-content-padding: 16px;
+  --tooltip-content-font-size: 16px;
+  --tooltip-content-line-heigh: 20px;
+  --tooltip-text-content-gap: 4px;
 }
 .me-popover.me-popover-medium .dx-toolbar.dx-popup-title .dx-button.dx-button-has-icon .dx-button-content,
 .me-popover.me-popover-medium .dx-popup-title .dx-button.dx-button-has-icon .dx-button-content {
@@ -25019,6 +25022,10 @@ input.dx-hidden {
   height: 32px;
 }
 .me-popover.me-popover-large {
+  --tooltip-content-padding: 20px;
+  --tooltip-content-font-size: 16px;
+  --tooltip-content-line-heigh: 24px;
+  --tooltip-text-content-gap: 4px;
   padding: 20px;
 }
 .me-popover.me-popover-large .dx-toolbar.dx-popup-title .dx-item-content,
@@ -25036,11 +25043,6 @@ input.dx-hidden {
 .me-popover.me-popover-large .dx-toolbar.dx-popup-title .dx-button.dx-button-has-icon .dx-button-content .dx-icon.dx-icon-close,
 .me-popover.me-popover-large .dx-popup-title .dx-button.dx-button-has-icon .dx-button-content .dx-icon.dx-icon-close {
   font-size: 24px;
-  line-height: 24px;
-}
-.me-popover.me-popover-large .dx-popup-content {
-  font-size: 16px;
-  font-weight: 400;
   line-height: 24px;
 }
 .me-popover.me-popover-large .dx-toolbar.dx-popup-bottom .dx-toolbar-items-container {
@@ -26477,18 +26479,6 @@ input.dx-hidden {
   padding: 0;
 }
 
-/**
-* $name 10. Text color
-* $type color
-*/
-/**
-* $name 20. Background color
-* $type color
-*/
-/**
-* $name 30. Border color
-* $type color
-*/
 .dx-recurrence-repeat-end-wrapper {
   display: flex;
 }
@@ -34631,10 +34621,10 @@ input.dx-hidden {
 }
 
 .dx-tooltip-wrapper .dx-overlay-content {
-  border: 1px solid #3f4044;
-  background-color: #2e2e2f;
-  color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2196078431);
+  border: 1px solid var(--tooltip-border);
+  background-color: var(--tooltip-background);
+  color: var(--tooltip-color);
+  box-shadow: none;
   border-radius: 4px;
   overflow: visible;
 }
@@ -34654,7 +34644,7 @@ input.dx-hidden {
   transform-origin: top right;
 }
 .dx-tooltip-wrapper.dx-popover-wrapper.dx-position-left .dx-popover-arrow {
-  width: 10px;
+  width: 12px;
   height: 23px;
 }
 .dx-tooltip-wrapper.dx-popover-wrapper.dx-position-left .dx-popover-arrow::after {
@@ -34682,8 +34672,8 @@ input.dx-hidden {
   overflow: hidden;
 }
 .dx-tooltip-wrapper.dx-popover-wrapper .dx-popover-arrow::after {
-  border: 1px solid #3f4044;
-  background: #2e2e2f;
+  border: 1px solid var(--tooltip-border);
+  background: var(--tooltip-background);
   display: block;
   width: 16px;
   height: 16px;
@@ -34730,7 +34720,7 @@ input.dx-hidden {
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  color: var(--Text-Alert);
+  color: var(--tooltip-color);
   text-align: left;
   width: 100%;
 }
@@ -34741,7 +34731,7 @@ input.dx-hidden {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--Text-Alert);
+  color: var(--tooltip-color);
   opacity: 0.87;
   text-align: left;
   width: 100%;
@@ -34756,58 +34746,282 @@ input.dx-hidden {
   max-width: 390px;
 }
 
-.me-tooltip.me-tooltip-dark .dx-overlay-content {
-  border-color: var(--Background-Alert);
-  background-color: var(--Background-Alert);
-  color: var(--Text-Alert);
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content {
+  --tooltip-background: var(--Background-Accent-in-the-content);
+  --tooltip-color: var(--Text-Default);
+  --tooltip-border: $border;
+  border-color: var(--tooltip-border);
+  background-color: var(--tooltip-background);
+  color: var(--tooltip-color);
 }
-.me-tooltip.me-tooltip-dark .dx-overlay-content .dx-toolbar.dx-popup-title .dx-toolbar-items-container {
-  color: var(--Text-Alert);
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content .dx-toolbar.dx-popup-title .dx-toolbar-items-container {
+  color: var(--tooltip-color);
 }
-.me-tooltip.me-tooltip-dark .dx-overlay-content .dx-toolbar.dx-popup-bottom {
-  background-color: var(--Background-Alert);
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content .dx-toolbar.dx-popup-bottom {
+  background-color: var(--tooltip-background);
 }
-.me-tooltip.me-tooltip-dark .dx-overlay-content .me-tooltip-custom {
-  background-color: var(--Background-Alert);
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content .dx-popup-content {
+  font-size: var(--tooltip-content-font-size, 14px);
+  font-weight: 400;
+  line-height: var(--tooltip-content-line-heigh, 20px);
+  padding: var(--tooltip-content-padding, 16px);
 }
-.me-tooltip.me-tooltip-dark .dx-overlay-content .me-tooltip-title {
-  color: var(--Text-Alert);
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content .me-tooltip-custom {
+  background-color: var(--tooltip-background);
 }
-.me-tooltip.me-tooltip-dark .dx-overlay-content .me-tooltip-text {
-  color: var(--Text-Alert);
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content .me-tooltip-title {
+  color: var(--tooltip-color);
 }
-.me-tooltip.me-tooltip-dark .dx-overlay-content .me-tooltip-content {
-  color: var(--Text-Alert);
-  background-color: var(--Background-Alert);
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content .me-tooltip-text {
+  color: var(--tooltip-color);
 }
-.me-tooltip.me-tooltip-dark .dx-popover-arrow::after {
-  border-color: var(--Background-Alert);
-  background-color: var(--Background-Alert);
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content .me-tooltip-content {
+  color: var(--tooltip-color);
+  background-color: var(--tooltip-background);
+}
+.dx-tooltip-wrapper.dx-popover-wrapper .dx-popover-arrow::after {
+  border-color: var(--tooltip-background);
+  background-color: var(--tooltip-background);
 }
 
-.me-tooltip.me-tooltip-light .dx-overlay-content {
+.dx-tooltip-wrapper.dx-popover-wrapper.me-tooltip.me-tooltip-light .dx-overlay-content {
   border-color: var(--Dividers-Borders-Long);
   background-color: var(--Background-Accent-in-the-content);
   color: var(--Text-Default);
 }
-.me-tooltip.me-tooltip-light .dx-overlay-content .dx-toolbar.dx-popup-title .dx-toolbar-items-container {
+.dx-tooltip-wrapper.dx-popover-wrapper.me-tooltip.me-tooltip-light .dx-overlay-content .dx-toolbar.dx-popup-title .dx-toolbar-items-container {
   color: var(--Text-Default);
 }
-.me-tooltip.me-tooltip-light .dx-overlay-content .dx-toolbar.dx-popup-bottom {
+.dx-tooltip-wrapper.dx-popover-wrapper.me-tooltip.me-tooltip-light .dx-overlay-content .dx-toolbar.dx-popup-bottom {
   background-color: var(--Background-Accent-in-the-content);
 }
-.me-tooltip.me-tooltip-light .dx-popover-arrow::after {
+.dx-tooltip-wrapper.dx-popover-wrapper.me-tooltip.me-tooltip-light .dx-popover-arrow::after {
   border-color: var(--Dividers-Borders-Long);
   background-color: var(--Background-Accent-in-the-content);
 }
-.me-tooltip.me-tooltip-light .me-tooltip-text {
+.dx-tooltip-wrapper.dx-popover-wrapper.me-tooltip.me-tooltip-light .me-tooltip-text {
   color: var(--Text-Default);
 }
-.me-tooltip.me-tooltip-light .me-tooltip-title {
+.dx-tooltip-wrapper.dx-popover-wrapper.me-tooltip.me-tooltip-light .me-tooltip-title {
   color: var(--Text-Default);
 }
-.me-tooltip.me-tooltip-light .me-tooltip-content {
+.dx-tooltip-wrapper.dx-popover-wrapper.me-tooltip.me-tooltip-light .me-tooltip-content {
   background-color: var(--Background-Accent-in-the-content);
+}
+
+.me-tooltip.me-tooltip-small {
+  --tooltip-content-padding: 12px;
+  --tooltip-content-font-size: 12px;
+  --tooltip-content-line-heigh: 16px;
+}
+.me-tooltip.me-tooltip-medium {
+  --tooltip-content-padding: 16px;
+  --tooltip-content-font-size: 16px;
+  --tooltip-content-line-heigh: 20px;
+}
+.me-tooltip.me-tooltip-large {
+  --tooltip-content-padding: 20px;
+  --tooltip-content-font-size: 16px;
+  --tooltip-content-line-heigh: 24px;
+}
+
+.me-tooltip.me-tooltip-color-mode-default .dx-overlay-content.dx-popup-normal {
+  --tooltip-background: var(--Background-Accent-in-the-content);
+  --tooltip-color: var(--Text-Default);
+  --tooltip-border: $border;
+}
+.me-tooltip.me-tooltip-color-mode-alternate .dx-overlay-content.dx-popup-normal {
+  --tooltip-background: var(--Background-Accent-in-the-content);
+  --tooltip-color: var(--Text-Default);
+  --tooltip-border: $border;
+  --tooltip-background: var(--Background-Accent-in-the-content);
+  --tooltip-color: var(--Text-Default);
+  --tooltip-border: $border;
+}
+.me-tooltip.me-tooltip-color-mode-light .dx-overlay-content.dx-popup-normal {
+  --tooltip-background: var(--Background-Accent-in-the-content);
+  --tooltip-color: var(--Text-Default);
+  --tooltip-border: $border;
+}
+.me-tooltip.me-tooltip-color-mode-dark .dx-overlay-content.dx-popup-normal {
+  --tooltip-background: var(--Background-Accent-in-the-content);
+  --tooltip-color: var(--Text-Default);
+  --tooltip-border: $border;
+}
+
+.dx-tooltip-wrapper.dx-popover-wrapper:not(.me-tooltip) {
+  --Background-Accent-in-the-content: #ffffff;
+  --Background-Alert: #1d1e1f;
+  --Background-Attention: #fff1e0;
+  --Background-Canvas: #ecedf4;
+  --Background-Content: #ffffff;
+  --Background-Error: #ffe0e2;
+  --Background-Overlay: #0000004d;
+  --Background-Success: #e3ffe0;
+  --Background-Table-Row: #f1f2f8;
+  --button-danger-contained-icon-disabled-color: #ffffffbf;
+  --button-danger-icon-color: #d50f3f;
+  --button-danger-outlined-icon-disabled-color: #e5a5b5;
+  --button-danger-text-icon-disabled-color: #e5a5b5;
+  --button-default-contained-icon-disabled-color: #ffffffbf;
+  --button-default-icon-color: #3257dc;
+  --button-default-outlined-icon-disabled-color: #91aaea;
+  --button-default-text-icon-disabled-color: #91aaea;
+  --button-normal-bg-color: #ecedf3;
+  --button-normal-contained-icon-disabled-color: #18181a66;
+  --button-normal-icon-color: #18181a;
+  --button-normal-outlined-icon-disabled-color: #18181a66;
+  --button-normal-text-icon-disabled-color: #18181a66;
+  --button-success-contained-icon-disabled-color: #ffffffbf;
+  --button-success-icon-color: #00993d;
+  --button-success-outlined-icon-disabled-color: #a0cab1;
+  --button-success-text-icon-disabled-color: #a0cab1;
+  --button-warning-contained-icon-disabled-color: #ffffffbf;
+  --button-warning-icon-color: #fea500;
+  --button-warning-outlined-icon-disabled-color: #f6b880;
+  --button-warning-text-icon-disabled-color: #f6b880;
+  --Charts-Graphs-Aqua-Dark: #008e7d;
+  --Charts-Graphs-Aqua-Light: #66e0d1;
+  --Charts-Graphs-Aqua: #00cbb3;
+  --Charts-Graphs-Blue-Dark: #2e33b2;
+  --Charts-Graphs-Blue-Light: #8e92ff;
+  --Charts-Graphs-Blue: #4249ff;
+  --Charts-Graphs-Brown-Dark: #923c30;
+  --Charts-Graphs-Brown-Light: #e3998f;
+  --Charts-Graphs-Brown: #d05544;
+  --Charts-Graphs-Cyan-Dark: #0079ae;
+  --Charts-Graphs-Cyan-Light: #66cefb;
+  --Charts-Graphs-Cyan: #00adf8;
+  --Charts-Graphs-Default: #18181a;
+  --Charts-Graphs-Gray-Dark: #5a5a5c;
+  --Charts-Graphs-Gray-Light: #b3b3b5;
+  --Charts-Graphs-Gray: #808084;
+  --Charts-Graphs-Green-Dark: #0b8600;
+  --Charts-Graphs-Green-Light: #70d966;
+  --Charts-Graphs-Green: #10bf00;
+  --Charts-Graphs-Orange-Dark: #b27400;
+  --Charts-Graphs-Orange-Light: #fec966;
+  --Charts-Graphs-Orange: #fea500;
+  --Charts-Graphs-Pink-Dark: #a63ba8;
+  --Charts-Graphs-Pink-Light: #f498f6;
+  --Charts-Graphs-Pink: #ed54f0;
+  --Charts-Graphs-Red-Dark: #a7001e;
+  --Charts-Graphs-Red-Light: #f56680;
+  --Charts-Graphs-Red: #ef002b;
+  --Charts-Graphs-Violet-Dark: #5e2ab2;
+  --Charts-Graphs-Violet-Light: #b68aff;
+  --Charts-Graphs-Violet: #863cff;
+  --Charts-Graphs-Yellow-Dark: #ae9408;
+  --Charts-Graphs-Yellow-Light: #fbe56d;
+  --Charts-Graphs-Yellow: #f8d30b;
+  --Controls-Additional-Additional-Default-Gray: #808084;
+  --Controls-Additional-Additional-Disabled-Switch: #e6e7f0;
+  --Controls-Additional-Additional-Hover-Switch: #b4b6ba;
+  --Controls-Additional-Additional-Pressed-Switch: #bfc1d0;
+  --Controls-BG-Accent-Accent-BG-Default: #3257dc;
+  --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
+  --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
+  --Controls-BG-Accent-Accent-BG-Pressed: #2544b3;
+  --Controls-BG-Accent-Accent-BG-Ripple: #4167ed;
+  --Controls-BG-Accent-Attention-BG-Default: #fea500;
+  --Controls-BG-Accent-Attention-BG-Disabled: #f6ae6b;
+  --Controls-BG-Accent-Attention-BG-Hover: #ff881a;
+  --Controls-BG-Accent-Attention-BG-Pressed: #e76f00;
+  --Controls-BG-Accent-Attention-BG-Ripple: #ff8718;
+  --Controls-BG-Accent-Danger-BG-Default: #d50f3f;
+  --Controls-BG-Accent-Danger-BG-Disabled: #f19cb0;
+  --Controls-BG-Accent-Danger-BG-Hover: #e93d66;
+  --Controls-BG-Accent-Danger-BG-Pressed: #b80631;
+  --Controls-BG-Accent-Danger-BG-Ripple: #db2e57;
+  --Controls-BG-Accent-Success-BG-Default: #009b3e;
+  --Controls-BG-Accent-Success-BG-Disabled: #6dc48f;
+  --Controls-BG-Accent-Success-BG-Hover: #00c34e;
+  --Controls-BG-Accent-Success-BG-Pressed: #008033;
+  --Controls-BG-Accent-Success-BG-Ripple: #07a344;
+  --Controls-BG-Flat-Button-Attention-Hover: #f073001f;
+  --Controls-BG-Flat-Button-Attention-Pressed: #e76f0033;
+  --Controls-BG-Flat-Button-Attention-Ripple: #ff881a33;
+  --Controls-BG-Flat-Button-Danger-BG-Hover: #d50f3f1f;
+  --Controls-BG-Flat-Button-Danger-BG-Pressed: #c0002f33;
+  --Controls-BG-Flat-Button-Danger-BG-Ripple: #ff406e33;
+  --Controls-BG-Flat-Button-Main-BG-Hover: #3c65f81f;
+  --Controls-BG-Flat-Button-Main-BG-Pressed: #3c71f833;
+  --Controls-BG-Flat-Button-Main-BG-Ripple: #5182ff33;
+  --Controls-BG-Flat-Button-Success-BG-Hover: #00993d1f;
+  --Controls-BG-Flat-Button-Success-BG-Pressed: #00752f33;
+  --Controls-BG-Flat-Button-Success-BG-Ripple: #00df5933;
+  --Controls-BG-Secondary-Elements-BG-Default: #ecedf3;
+  --Controls-BG-Secondary-Elements-BG-Disabled: #dedfe6;
+  --Controls-BG-Secondary-Elements-BG-Hover: #d8daea;
+  --Controls-BG-Secondary-Elements-BG-Input-In-Focus: #3257dc1f;
+  --Controls-BG-Secondary-Elements-BG-Pressed: #bfc1d0;
+  --Controls-BG-Secondary-Elements-BG-Ripple: #e2e3e9;
+  --Controls-Content-In-Controls-Accent-Default: #3257dc;
+  --Controls-Content-In-Controls-Accent-Disabled: #91aaea;
+  --Controls-Content-In-Controls-Attention-Default: #fea500;
+  --Controls-Content-In-Controls-Attention-Disabled: #f6b880;
+  --Controls-Content-In-Controls-Danger-Default: #d50f3f;
+  --Controls-Content-In-Controls-Danger-Disabled: #e5a5b5;
+  --Controls-Content-In-Controls-Main-Default: #18181a;
+  --Controls-Content-In-Controls-Main-Disabled: #18181a66;
+  --Controls-Content-In-Controls-On-BG-Default: #ffffff;
+  --Controls-Content-In-Controls-On-BG-Disabled: #ffffffbf;
+  --Controls-Content-In-Controls-Success-Default: #00993d;
+  --Controls-Content-In-Controls-Success-Disabled: #a0cab1;
+  --Controls-Informative-BG-Notification: #6e86c3;
+  --Controls-Informative-BG-Selected-Element: #c4d8ff;
+  --Controls-Scrollbar-Default: #18181a1f;
+  --Controls-Scrollbar-Drag: #18181a7a;
+  --Controls-Scrollbar-Hover: #18181a3d;
+  --Dividers-Borders-Focus: #7eb9ff;
+  --Dividers-Borders-Focus-Tabulation: #7eb9ff;
+  --Dividers-Borders-Long: #dfe0ed;
+  --Dividers-Borders-On-Alert-border: #18181a33;
+  --Dividers-Borders-On-Alert: #ffffff33;
+  --Dividers-Borders-On-Bg: #18181a33;
+  --Dividers-Borders-Short: #d5d6df;
+  --Icon-Aqua: #00cbb3;
+  --Icon-Attention: #fea500;
+  --Icon-Blue: #4249ff;
+  --Icon-Brown: #d05544;
+  --icon-cyan-position: #00adf8;
+  --Icon-Default: #18181a;
+  --Icon-Error: #dd0035;
+  --icon-green-add: #10bf00;
+  --Icon-Pink: #ed54f0;
+  --icon-red-warning: #ef002b;
+  --Icon-Secondary: #808084;
+  --Icon-Success: #00993d;
+  --Icon-Violet: #863cff;
+  --Icon-Yellow: #f8d30b;
+  --me-icon-aqua: #00cbb3;
+  --me-icon-attention: #fea500;
+  --me-icon-blue: #4249ff;
+  --me-icon-brown: #d05544;
+  --me-icon-cyan: #00adf8;
+  --me-icon-default: #18181a;
+  --me-icon-error: #dd0035;
+  --me-icon-green: #10bf00;
+  --me-icon-pink: #ed54f0;
+  --me-icon-red: #ef002b;
+  --me-icon-secondary: #808084;
+  --me-icon-success: #00993d;
+  --me-icon-violet: #863cff;
+  --me-icon-yellow: #eac500;
+  --overlay-content-shadow-color: #00000038;
+  --Scrollable-Scroll-Active-Bg: #18181a7a;
+  --Scrollable-Scroll-Bg: #18181a1f;
+  --Scrollable-Scroll-Hover-Bg: #18181a3d;
+  --Text-Alert: #ffffff;
+  --Text-Attention: #fea500;
+  --Text-Default: #18181a;
+  --Text-Disabled: #18181a66;
+  --Text-Error: #dd0035;
+  --Text-Link: #0047ff;
+  --Text-Logo: #19213b;
+  --Text-Secondary: #808084;
+  --Text-Success: #00993d;
+  --Text-Tertiary: #717175;
 }
 
 .me-tooltip * {

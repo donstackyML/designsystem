@@ -1,41 +1,42 @@
 @use 'sass:color';
 @use '../sizes' as *;
 @use '../colors' as *;
-@use '../overlay/colors' as *;
 @use '../color' as extcolor;
 
-// adduse
-
-/**
-* $name 10. Text color
-* $type color
-*/
-$tooltip-color: null !default;
-
-/**
-* $name 20. Background color
-* $type color
-*/
-$tooltip-bg: null !default;
-
-/**
-* $name 30. Border color
-* $type color
-*/
-$tooltip-border-color: null !default;
-$tooltip-shadow-color: null !default;
 $tooltip-border-radius: $base-border-radius !default;
 
-@if $color == 'dark' {
-  $tooltip-color: $base-text-color !default;
-  $tooltip-bg: $base-bg !default;
-  $tooltip-border-color: $overlay-border-color !default;
-  $tooltip-shadow-color: $overlay-content-shadow-color !default;
+@mixin baseColors($border) {
+  --tooltip-background: var(--Background-Accent-in-the-content);
+  --tooltip-color: var(--Text-Default);
+  --tooltip-border: $border;
 }
 
-@if $color == 'light' {
-  $tooltip-color: $base-text-color !default;
-  $tooltip-bg: $base-bg !default;
-  $tooltip-border-color: $overlay-border-color !default;
-  $tooltip-shadow-color: color.change(darken($tooltip-bg, 100%), $alpha: 0.1) !default;
+@mixin standardColors {
+  @if $color =='dark' {
+    @include baseColors(var(--dividers-borders-long));
+  }
+
+  @else {
+    @include baseColors(transparent);
+  }
+}
+
+@mixin alternateColors {
+  @if $color =='dark' {
+    @include lightColors();
+    @include baseColors(transparent);
+  }
+
+  @else {
+    @include darkColors();
+    @include baseColors(var(--dividers-borders-long));
+  }
+}
+
+@mixin lightColors {
+  @include baseColors(var(--dividers-borders-long));
+}
+
+@mixin darkColors {
+  @include baseColors(transparent);
 }
