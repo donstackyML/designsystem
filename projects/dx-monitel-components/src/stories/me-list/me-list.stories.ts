@@ -12,7 +12,7 @@ import {
   meListMockDataWithHeaderDescription,
   meListMockDataWithHeaders,
   meListMockDataWithIcons,
-  meListMockDataWithImageAndDescription
+  meListMockDataWithImageAndDescription,
 } from './me-list-mock-data';
 
 export default {
@@ -137,6 +137,15 @@ export default {
         defaultValue: { summary: 'undefined' },
       },
     },
+    showScrollbar: {
+      control: 'select',
+      options: ['onHover', 'onScroll', 'always', 'never'],
+      description: 'Условия отображения скролла',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'onHover' },
+      },
+    },
   },
   args: {
     dataSource: meListDefaultMockData,
@@ -151,7 +160,8 @@ export default {
     grouped: false,
     collapsibleGroups: false,
     width: 436,
-    height: undefined
+    height: undefined,
+    showScrollbar: 'onHover',
   },
   render: (args) => ({
     props: args,
@@ -343,7 +353,8 @@ export const ContentGroupedWithSearch: Story = {
     dataSource: meListMockDataWithHeaders,
     searchEnabled: true,
     collapsibleGroups: true,
-    grouped: true
+    grouped: true,
+    height: 300,
   },
 };
 
