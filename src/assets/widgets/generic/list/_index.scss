@@ -636,10 +636,11 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
 
 .me-list {
   --list-item-padding: 8px;
+  --list-padding: 8px;
   --list-item-gap: 8px;
 
   height: auto;
-  padding: 8px;
+  padding: var(--list-padding);
   gap: 16px;
   display: flex;
   flex-direction: column;
@@ -783,6 +784,15 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
               line-height: 20px;
             }
           }
+        }
+      }
+
+      .dx-scrollable-scrollbar.dx-widget.dx-scrollbar-vertical {
+        right: calc(var(--list-padding) * -1);
+
+        .dx-scrollable-scroll {
+          padding: 0;
+          width: 8px;
         }
       }
     }

@@ -21161,9 +21161,10 @@ input.dx-hidden {
 
 .me-list {
   --list-item-padding: 8px;
+  --list-padding: 8px;
   --list-item-gap: 8px;
   height: auto;
-  padding: 8px;
+  padding: var(--list-padding);
   gap: 16px;
   display: flex;
   flex-direction: column;
@@ -21281,6 +21282,13 @@ input.dx-hidden {
   font-size: 14px;
   font-weight: var(--me-regular-font-weight);
   line-height: 20px;
+}
+.me-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-scrollbar.dx-widget.dx-scrollbar-vertical {
+  right: calc(var(--list-padding) * -1);
+}
+.me-list .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-scrollbar.dx-widget.dx-scrollbar-vertical .dx-scrollable-scroll {
+  padding: 0;
+  width: 8px;
 }
 .me-list .dx-list-switchable-delete-button-container .dx-list-switchable-delete-button {
   margin-right: 8px;
