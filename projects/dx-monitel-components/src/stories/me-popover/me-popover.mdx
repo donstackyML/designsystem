@@ -1,54 +1,71 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
-import * as PopoverStories from "./me-popover.stories";
+import * as popoverStories from "./me-popover.stories";
 
-<Meta title="Components/Popover(RC)" of={PopoverStories} />
+<Meta name="Popover Documentation" of={popoverStories} />
 
 # Popover
 
-## Директива mePopover
+## Директива `mePopover`
 
-Применение директивы `mePopover` к элементу <code>dx-popover</code> приводит его размеры к значению <code>size=medium</code> из дизайн-системы, а также приводит отступы в соответствие
-с дизайн-системой, добавляет свойство <code>size=medium (32)</code> и <code>colorMode=dark</code>.
+Применение директивы `mePopover` к элементу `dx-popover` приводит его размеры к значению `size="medium"` (*32px*) из дизайн-системы, а также приводит отступы в соответствие с дизайн-системой. Кроме того, директива добавляет свойства `size` и `colorMode`, позволяющие настроить внешний вид поповера.
 
-Документация на сайте разработчика Devextreme:
+Документация на сайте разработчика DevExtreme:
 
-- [Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPopover/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UIComponents/dxPopover/"
+    target="*blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Popover/Overview/Light/"
+    target="*blank"
+  >
+    Демо
+  </a>
 
-- [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Popover/Overview/Light/)
 
-<Canvas of={PopoverStories.Default} />
-<Controls of={PopoverStories.Default} />
-<Source of={PopoverStories.Default} dark />
+<Canvas of={popoverStories.Default} />
+<Controls of={popoverStories.Default} />
+<Source of={popoverStories.Default} dark />
 
 ## Дизайн
 
 <Figma
   height="50%"
-	collapsable
-	defaultCollapsed
+  collapsable
+  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=9146-198240&node-type=canvas&t=yiFk7FNXip9QT3Xt-0"
 />
 
-## Примеры использования:
+## Примеры использования
 
-## Размеры:
+- [Размеры поповера](#размеры-поповера)
+- [Цветовая схема поповера](#цветовая-схема-поповера)
+- [События показа и скрытия](#события-показа-и-скрытия)
+- [Добавление кнопок](#добавление-кнопок)
+- [Настраиваемость контента](#настраиваемость-контента)
 
-Для изменения размеров используется свойство <code>size</code>. Возможные значения: <code>small</code>, <code>medium</code>, <code>large</code>. По умолчанию <code>size="medium"</code>.
-<Source code={`<dx-popover mePopover size="medium"></dx-popover> `} language="html" dark/>
+### Размеры поповера
 
-## Цвет
+Для изменения размеров используется свойство `size`. Возможные значения: `small`, `medium`, `large` (по умолчанию — `medium`).
+<Source code={`<dx-popover mePopover size="small"></dx-popover>`} language="html" dark/>
 
-Для изменения цвета используется свойство <code>colorMode</code>. Возможные значения: <code>light</code>, <code>dark</code>. По умолчанию <code>colorMode="dark"</code>.
+### Цветовая схема поповера
 
-<Source code={`<dx-popover mePopover colorMode="light"></dx-popover> `} language="html" dark/>
+Свойство `colorMode` позволяет выбрать цветовую тему поповера. Возможные значения: `'default'`, `'alternate'`, `'light'`, `'dark'`. По умолчанию используется `default`.
+<Source code={`<dx-popover mePopover colorMode="default"></dx-popover>`} language="html" dark/>
 
-## События показа и скрытия:
-Для показа и скрытия поповера используются события <code>showEvent</code> и <code>hideEvent</code>.
-<Source code={`<dx-popover mePopover showEvent="click" hideEvent="click"></dx-popover> `} language="html" dark/>
+### События показа и скрытия
 
-## Добавление кнопок:
-Для добавления кнопок используется тэг `dxi-toolbar-item` в компоненте <code>dx-popover</code> c виджетом <code>dxButton</code> и остальными свойствами.
+Свойства `showEvent` и `hideEvent` определяют, при каком событии поповер будет показываться и скрываться. Например, можно установить оба события равными `"click"`, чтобы поповер открывался и закрывался по клику.
+
+<Source code={`<dx-popover mePopover showEvent="click" hideEvent="click"></dx-popover>`} language="html" dark/>
+
+### Добавление кнопок
+
+Чтобы добавить кнопки (например, для подтверждения или отмены действия) в нижнюю панель поповера, используется тег `dxi-toolbar-item` внутри компонента `dx-popover`. Пример ниже показывает, как вставить две кнопки, используя виджет `dxButton` и дополнительные свойства, такие как `cssClass` для индивидуальной стилизации.
 
 <Source code={`
 <dx-popover mePopover>
@@ -57,7 +74,7 @@ import * as PopoverStories from "./me-popover.stories";
       widget="dxButton"
       toolbar="bottom"
       location="after"
-			cssClass="popover-accept-button"
+      cssClass="popover-accept-button"
       [options]="acceptButton">
     </dxi-toolbar-item>
     <dxi-toolbar-item
@@ -67,54 +84,135 @@ import * as PopoverStories from "./me-popover.stories";
       [options]="cancelButton">
     </dxi-toolbar-item>
   </ng-container>
-</dx-popover>`} language="html" dark />
+</dx-popover>
+`} language="html" dark/>
 
-Чтобы стилизовать кнопку, добавте параметр <code>cssClass</code> и стилизуйте его в CSS-файле.
+### Настраиваемость контента
 
-## Добавление шаблонов заголовка и контента:
-Для добавления шаблонов заголовка и контента используются тэги `dxTemplate` в компоненте <code>dx-popover</code>.
+Поповер предоставляет широкие возможности по настройке контента. Вы можете не только задать простой текст, но и использовать собственные шаблоны для заголовка и основного содержимого. Это позволяет интегрировать в поповер сложные пользовательские интерфейсы, включающие изображения, кнопки и даже динамически генерируемый контент.
+
+#### Простой текст контента
+
+Если не требуется сложная разметка, можно просто передать текст через свойство `content`.
+
+<Source code={`<dx-popover mePopover content="Содержимое поповера"></dx-popover>`} language="html" dark/>
+
+#### Кастомизация заголовка с использованием шаблона
+
+Для более гибкой настройки заголовка используйте свойство `titleTemplate` вместе с директивой `dxTemplate` внутри компонента `dx-popover`. В этом примере заголовок заменяется пользовательским шаблоном, который может включать изображение и кнопку закрытия.
 
 <Source code={`
 <dx-popover
   mePopover
-  [showTitle]="showTitle"
+  [showTitle]="true"
   [title]="title"
-  >
+>
+  <!-- Пользовательский шаблон заголовка -->
   <div *dxTemplate="let data of 'title'">
-    <div class="tittle-wrapper">
-      <div class="tittle-template"></div>
+    <div class="title-wrapper">
+      <div class="title-template-wrapper">
+        <div class="title-template-image"></div>
+        <dx-button
+          meButton
+          [size]="size"
+          stylingMode="text"
+          type="normal"
+          iconOnly="close"
+        ></dx-button>
+      </div>
       <h3 class="me-title-header1" style="margin: 0;">
         {{ titleTemplate }}
       </h3>
     </div>
   </div>
+  <!-- Стандартный шаблон контента -->
   <div *dxTemplate="let data of 'content'">
     {{ content }}
   </div>
 </dx-popover>
-`} language="html" dark />
+`} language="html" dark/>
 
-Также стилизуются шаблоны отдельно:
+Также обратите внимание на возможность стилизации пользовательских шаблонов через CSS. Пример ниже демонстрирует, как задать стили для элементов заголовка:
 
 <Source code={`
-.tittle-wrapper {
+.title-wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.tittle-template {
+.title-template-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.title-template-image {
   width: 216px;
   height: 125px;
-  background: linear-gradient(
-    135deg,
-    #ff8a00 0%,
-    #9c4dff 50%,
-    #4a7dff 100%
-  );
+  background: linear-gradient(135deg, #ff8a00 0%, #9c4dff 50%, #4a7dff 100%);
   border-radius: 3px;
 }
-`} language="css" dark />
+.me-title-header1 {
+  color: var(--popover-color);
+}
+`} language="css" dark/>
 
-Пример кастомного использзования шаблонов:
+#### Пример комплексной настройки контента с панелью инструментов
 
-<Canvas of={PopoverStories.WithContent} />
+В данном примере демонстрируется полный кастомизированный поповер, где вместо стандартного заголовка используется пользовательский шаблон (с изображением и кнопкой закрытия), а также добавлена панель инструментов с кнопками действий. Такой подход позволяет создать полностью индивидуальный интерфейс для уведомлений или подтверждений.
+
+<Source code={`
+<dx-popover
+  mePopover
+  [showTitle]="true"
+  [title]="title"
+>
+  <!-- Кастомный шаблон заголовка -->
+  <ng-container *ngIf="titleTemplate">
+    <div *dxTemplate="let data of 'title'">
+      <div class="title-wrapper">
+        <div class="title-template-wrapper">
+          <div class="title-template-image"></div>
+          <dx-button
+            meButton
+            [size]="size"
+            stylingMode="text"
+            type="normal"
+            iconOnly="close"
+          ></dx-button>
+        </div>
+        <h3 class="me-title-header1" style="margin: 0;">
+          {{ titleTemplate }}
+        </h3>
+      </div>
+    </div>
+  </ng-container>
+  <!-- Стандартный шаблон контента -->
+  <div *dxTemplate="let data of 'content'">
+    {{ content }}
+  </div>
+  <!-- Панель инструментов -->
+  <ng-container *ngIf="showToolbarItems">
+    <dxi-toolbar-item toolbar="bottom" location="after">
+      <dx-button
+        meButton
+        [text]="acceptButton.text"
+        [size]="size"
+        stylingMode="filled"
+        type="default"
+        (click)="acceptButton.onClick()"
+      ></dx-button>
+    </dxi-toolbar-item>
+    <dxi-toolbar-item toolbar="bottom" location="after">
+      <dx-button
+        meButton
+        [text]="cancelButton.text"
+        [size]="size"
+        stylingMode="filled"
+        type="normal"
+        (click)="cancelButton.onClick()"
+      ></dx-button>
+    </dxi-toolbar-item>
+  </ng-container>
+</dx-popover>
+`} language="html" dark/>

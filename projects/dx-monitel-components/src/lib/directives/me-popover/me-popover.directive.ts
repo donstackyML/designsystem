@@ -39,7 +39,6 @@ export class MePopoverDirective implements AfterViewInit, OnChanges {
   private updateClasses(): void {
     const popoverElement = this.element.nativeElement;
 
-    // Удаляем все возможные классы, чтобы избежать накопления
     ['default', 'alternate', 'light', 'dark'].forEach((mode) =>
       this.renderer.removeClass(popoverElement, `me-colors-${mode}`)
     );
@@ -47,7 +46,6 @@ export class MePopoverDirective implements AfterViewInit, OnChanges {
       this.renderer.removeClass(popoverElement, `me-popover-${size}`)
     );
 
-    // Добавляем актуальные классы
     this.renderer.addClass(popoverElement, `me-popover-${this.size}`);
     this.renderer.addClass(popoverElement, `me-colors-${this.colorMode}`);
 
@@ -70,7 +68,7 @@ export class MePopoverDirective implements AfterViewInit, OnChanges {
     }
 
     this.component.instance.option('wrapperAttr', {
-      class: `me-popover me-popover-${this.size} me-popover-${this.colorMode} ${color}`,
+      class: `me-popover me-popover-${this.size} me-popover-color-mode-${this.colorMode} ${color}`,
     });
 
     this.component.toolbarItems.forEach((e: any) => {
