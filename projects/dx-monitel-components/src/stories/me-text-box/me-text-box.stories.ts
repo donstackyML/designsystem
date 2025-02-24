@@ -5,6 +5,7 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 import { DxButtonModule, DxTextBoxComponent } from 'devextreme-angular';
+
 import { MeLabelDirective, MeTextBoxDirective } from '../../public-api';
 
 export default {
@@ -16,35 +17,21 @@ export default {
     }),
   ],
   argTypes: {
-    disabled: {
-      control: { type: 'boolean' },
-      description: 'Определяет состояние компонента.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
-    isValid: {
-      control: { type: 'boolean' },
-      description: 'Определяет валидность компонента.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
     label: {
       control: 'text',
-      description:
-        'Указывает текстовую строку, используемую для аннотации значения поля ввода.',
+      description: 'Текст, отображаемый в качестве лейбла.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
     },
-    labelMode: {
-      control: 'select',
-      options: ['static', 'floating', 'hidden', 'outside'],
-      description: 'Определяет положение лейбла текстового поля.',
+    placeholder: {
+      control: 'text',
+      description: 'Текст подсказки, отображаемый внутри поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     mode: {
       control: 'select',
@@ -55,127 +42,275 @@ export default {
         defaultValue: { summary: 'text' },
       },
     },
-    placeholder: {
-      control: 'text',
-      description:
-        'Определяет подсказку, которая отображается в текстовом поле.',
-    },
-    readOnly: {
-      control: { type: 'boolean' },
-      description: 'Определяет состояние только для чтения.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
-    showClearButton: {
-      control: { type: 'boolean' },
-      description: 'Показ кнопки очистки.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Принимает размер текстового поля.',
+      description: 'Изменяет размер текстового поля.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
       },
     },
+    labelMode: {
+      control: 'select',
+      options: ['outside', 'static', 'floating', 'hidden'],
+      description: 'Указывает, где будет размещаться лейбл.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'outside' },
+      },
+    },
+    showClearButton: {
+      control: 'boolean',
+      description: 'Показывает кнопку для очистки поля.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    readOnly: {
+      control: 'boolean',
+      description: 'Определяет состояние только для чтения',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает компонент и его элементы.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    value: {
+      control: 'text',
+      description: 'Значение поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    mask: {
+      control: 'text',
+      description: 'Маска для ввода данных.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    maskInvalidMessage: {
+      control: 'text',
+      description: 'Сообщение об ошибке при неверном вводе по маске.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "Value is invalid" },
+      },
+    },
+    validationError: {
+      control: 'text',
+      description: 'Текст ошибки валидации.',
+      table: {
+        type: { summary: 'any' },
+        defaultValue: { summary: 'null' },
+      },
+    },
+    validationMessageMode: {
+      control: 'select',
+      options: ['auto', 'always'],
+      description: 'Режим отображения сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    validationMessagePosition: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+      description: 'Расположение сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'bottom' },
+      },
+    },
+    width: {
+      control: 'text',
+      description: 'Ширина компонента.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    height: {
+      control: 'text',
+      description: 'Высота компонента.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    }
   },
   args: {
-    size: 'medium',
-    mode: 'text',
-    // labelMode: 'static',
     label: 'Label*',
-    placeholder: 'Placeholder',
+    placeholder: 'Enter your text',
+    mode: 'text',
+    size: 'medium',
+    labelMode: 'outside',
+    showClearButton: false,
     readOnly: false,
     disabled: false,
     isValid: true,
-    showClearButton: true,
+    mask: "",
+    maskInvalidMessage: "Value is invalid",
+    validationError: '',
+    validationMessageMode: 'auto',
+    validationMessagePosition: 'bottom',
   },
   render: (args) => ({
     props: args,
     template: `<dx-text-box meTextBox ${argsToTemplate(args)}>
 		</dx-text-box>`,
   }),
-} as Meta<MeTextBoxDirective | DxTextBoxComponent | MeLabelDirective>;
+} satisfies Meta<MeTextBoxDirective | DxTextBoxComponent>;
 
-type Story = StoryObj<
-  MeTextBoxDirective | DxTextBoxComponent | MeLabelDirective
->;
+type Story = StoryObj<MeTextBoxDirective | DxTextBoxComponent>;
 
-export const Default: Story = {
-  args: {},
+export const Default: Story = {};
+
+export const SizeSmall: Story = {
+  args: {
+    size: 'small',
+  },
 };
 
-export const WithLabelColumn: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-		<label meLabel
-		labelDirection="column"
-		style="align-items: flex-start;"
-		>Label
-		<dx-text-box meTextBox labelMode="hidden" [label]="label" [size]="size" [placeholder]="placeholder"></dx-text-box>
-		</label>`,
-  }),
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium'
+  }
+}
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const LabelModeFloating: Story = {
+  args: {
+    labelMode: 'floating',
+  },
+};
+
+export const LabelModeOutside: Story = {
+  args: {
+    labelMode: 'outside',
+  },
+};
+
+export const LabelModeStatic: Story = {
+  args: {
+    labelMode: 'static',
+  },
+};
+
+export const LabelModeHidden: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
 };
 
 export const WithLabelRow: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
   render: (args) => ({
     props: args,
-    template: `<label meLabel labelDirection="row" width="250px">Label<dx-text-box meTextBox labelMode="hidden" [label]="label" [size]="size" [placeholder]="placeholder"></dx-text-box></label>`,
-  }),
-};
-
-export const WithTelMask: Story = {
-  render: (args) => ({
-    props: args,
-    template: `<dx-text-box meTextBox mask="+7 (000) 000-0000" ${argsToTemplate(
-      args
-    )}></dx-text-box>`,
-  }),
-};
-
-export const WithPasswordToggle: Story = {
-  render: (args) => ({
-    props: {
-      ...args,
-      passwordMode: 'password',
-      passwordButton: {
-        icon: 'eyeopen',
-        stylingMode: 'text',
-        onClick: function () {
-          this.passwordMode =
-            this.passwordMode === 'text' ? 'password' : 'text';
-        },
-      },
-    },
     template: `
-      <dx-text-box
-        meTextBox
+    <div meLabel
+      labelDirection="row"
+      class="dx-widget"
+      >
+      <span>Label*</span>
+      <dx-text-box meTextBox
         ${argsToTemplate(args)}
-        [mode]="passwordMode"
-        [(value)]="value"
-        placeholder="Enter password"
       >
       </dx-text-box>
+    </div>
     `,
   }),
+};
+
+export const WithLabelColumn: Story = {
   args: {
-    label: 'Password',
-    labelMode: 'floating',
+    labelMode: 'hidden'
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Текстовое поле для ввода пароля с возможностью переключения видимости пароля. Кнопка с иконкой глаза позволяет переключаться между режимами отображения и скрытия пароля.',
-      },
-    },
+  render: (args) => ({
+    props: args,
+    template: `
+		<div
+      meLabel
+		  labelDirection="column"
+		>
+    <span>Label*</span>
+		<dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>
+		</div>`,
+  }),
+}
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const StateReadOnly: Story = {
+  args: {
+    readOnly: true,
+    value: 'Lorem ipsum dolor sit amet consectetur.'
+  },
+};
+
+export const StateDisabledAndReadOnly: Story = {
+  args: {
+    readOnly: true,
+    disabled: true,
+    value: 'Lorem ipsum dolor sit amet consectetur.'
+  },
+};
+
+export const WithClearButton: Story = {
+  args: {
+    showClearButton: true,
+    value: '123'
+  },
+};
+
+export const ModeTelWithMask: Story = {
+  args: {
+    mode: 'tel',
+    mask: "+7 (000) 000-0000"
+  },
+};
+
+export const ModePassword: Story = {
+  args: {
+    mode: 'password',
+    placeholder: 'Введите пароль'
+  },
+};
+
+export const ModeSearch: Story = {
+  args: {
+    mode: 'search',
+    placeholder: 'Введите запрос для поиска'
   },
 };

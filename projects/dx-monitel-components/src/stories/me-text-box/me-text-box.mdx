@@ -1,22 +1,31 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as textBoxStories from "./me-text-box.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as textBoxStories from "./me-text-box.stories";
 
 <Meta name="TextBox Documentation" of={textBoxStories} />
 
 # TextBox
 
-## Директива meTextBox, meLabel
+## Директива `meTextBox`
 
-Применение директивы <code>meTextBox</code> к элементу <code>dx-text-box</code>
-приводит его размеры к значению <code>size=medium (32)</code> из дизайн-системы, задает по умолчанию <code>stylingMode=filled</code> и предоставляет доступ к другим свойствам.
+Применение директивы `meTextBox` к компоненту `dx-text-box` приводит его к оформлению, соответствующему дизайн-системе: задаются стандартные отступы, размеры (по умолчанию — `size="medium"`) и стилизация лейбла. Дополнительно доступны параметры для управления поведением компонента.
 
-[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTextBox/)
+Документация на сайте разработчика DevExtreme:
 
-[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TextBox/Overview/Light/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI*Components/dxTextBox/"
+    target="*blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TextBox/Overview/Light/"
+    target="*blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={textBoxStories.Default} />
-
 <Controls of={textBoxStories.Default} />
 
 ## Дизайн
@@ -28,54 +37,222 @@ import { Figma } from "@storybook/addon-designs/blocks";
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1263&t=gC6C40DcbGAFZEUK-0"
 />
 
-## Примеры использования:
+## Примеры использования
 
-- [Определение положения лейбла снаружи текстового поля](#определение-положения-лейбла-снаружи-текстового-поля)
-- [Положение лейбла сверху](#положение-лейбла-сверху)
-- [Положение лейбла слева](#положение-лейбла-слева)
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [Разные режимы положения лейбла](#разные-режимы-положения-лейбла)
+  - [Лейбл внешний (по умолчанию)](#лейбл-внешний)
+  - [Лейбл статичный](#лейбл-статичный)
+  - [Лейбл всплывающий](#лейбл-всплывающий)
+  - [Лейбл невидимый](#лейбл-невидимый)
+  - [Лейбл слева](#лейбл-слева)
+- [Изменение положения лейбла с помощью директивы meLabel](#изменение-положения-лейбла-с-помощью-директивы-melabel)
+  - [Положение лейбла сверху](#положение-лейбла-сверху)
+  - [Положение лейбла слева](#положение-лейбла-слева)
+- [Состояния readOnly и disabled](#состояния-readonly-и-disabled)
+  - [Состояние readOnly](#состояние-readonly)
+  - [Состояние disabled](#состояние-disabled)
+  - [Состояние readOnly и disabled](#состояние-readonly-и-disabled)
 - [Использование масок в текстовом поле](#использование-масок-в-текстовом-поле)
 - [Показ и скрытие пароля](#показ-и-скрытие-пароля)
 
-## Определение положения лейбла снаружи текстового поля
+### Размеры компонента
 
-Применение директивы <code>meLabel</code> позволяет определить положение лейбла снаружи текстового поля (сверху или слева).
+*Изменение размера текстового поля влияет на отступы, размер шрифта и общую компоновку. Свойство `size` принимает три значения:*
+- **small** – уменьшенный размер, подходит для компактных интерфейсов;
+- **medium** – стандартный размер (используется по умолчанию);
+- **large** – увеличенный размер, удобен для форм с более крупным текстом.
 
-<code>labelDirection</code> определяет положение лейбла снаружи текстового поля (сверху
-или слева).
+#### Компонент небольшого размера
 
-### Положение лейбла сверху
+<Canvas name="Компонент небольшого размера" of={textBoxStories.SizeSmall} />
 
-Для положения `label` сверху используйте тэг <code>label</code> с директивой <code>meLabel</code> и установите параметр <code>labelDirection="column"</code>. Также установите необходимые стили выравнивания как <code>align-items: flex-start</code>.
+<Source
+  code={`<dx-text-box meTextBox size="small"></dx-text-box>`}
+  language="html"
+  dark
+/>
 
-<Canvas of={textBoxStories.WithLabelColumn} />
+#### Компонент среднего размера
 
-### Положение лейбла слева
+<Canvas name="Компонент среднего размера (по умолчанию)" of={textBoxStories.SizeMedium} />
 
-Для положения `label` слева установите параметр <code>labelDirection="row"</code>.
+<Source
+  code={`<dx-text-box meTextBox size="medium"></dx-text-box>`}
+  language="html"
+  dark
+/>
 
-<Canvas of={textBoxStories.WithLabelRow} />
+#### Компонент большого размера
 
-<code>width</code> определяет размер текстового поля вместе с лейблом (используется
-в теге <code>label</code> для расположения <code>labelPosition="left"</code>)
+<Canvas name="Компонент большого размера" of={textBoxStories.SizeLarge} />
 
-<style>
-{`
-    h2 {
-      border-bottom: none !important;
-    }
+<Source
+  code={`<dx-text-box meTextBox size="large"></dx-text-box>`}
+  language="html"
+  dark
+/>
+
+### Разные режимы положения лейбла
+
+*Директива `meTextBox` позволяет настраивать отображение лейбла с помощью свойства `labelMode`. Это свойство определяет, как и где будет отображаться метка поля, что может помочь улучшить читаемость формы и соответствовать требованиям макета.*
+
+#### Лейбл внешний
+
+*При значении `labelMode="outside"` лейбл располагается вне поля ввода. Такой вариант часто используется для четкого отделения метки от контрола.*
+
+<Canvas name="Лейбл внешний" of={textBoxStories.LabelModeOutside} />
+
+<Source
+  code={`<dx-text-box meTextBox labelMode="outside" label="Label*"></dx-text-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл статичный
+
+*Режим `labelMode="static"` фиксирует положение лейбла, не изменяя его при взаимодействии с полем. Это полезно, если требуется постоянное отображение метки в одном месте.*
+
+<Canvas name="Лейбл статичный" of={textBoxStories.LabelModeStatic} />
+
+<Source
+  code={`<dx-text-box meTextBox labelMode="static" label="Label*"></dx-text-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл всплывающий
+
+*При использовании `labelMode="floating"` лейбл будет перемещаться, когда поле получает фокус. Это создает эффект «плавающего» заголовка, позволяющий экономить пространство внутри поля ввода.*
+
+<Canvas name="Лейбл всплывающий" of={textBoxStories.LabelModeFloating} />
+
+<Source
+  code={`<dx-text-box meTextBox labelMode="floating" label="Label*"></dx-text-box>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл невидимый
+
+*Если необходимо скрыть метку (например, при использовании вспомогательных элементов или когда метка выводится иным способом), установите `labelMode="hidden"`. В этом режиме лейбл не отображается в интерфейсе.*
+
+<Canvas name="Лейбл невидимый" of={textBoxStories.LabelModeHidden} />
+
+<Source
+  code={`<dx-text-box meTextBox labelMode="hidden" label="Label*"></dx-text-box>`}
+  language="html"
+  dark
+/>
+
+### Изменение положения лейбла с помощью директивы meLabel
+
+*Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.*
+
+#### Положение лейбла сверху
+
+*Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.*
+
+<Canvas name="Лейбл сверху" of={textBoxStories.WithLabelColumn} />
+
+<Source
+  code={`
+<div meLabel labelDirection="column">
+  <span>Label*</span>
+  <dx-text-box meTextBox></dx-text-box>
+</div>
 `}
-</style>
+  language="html"
+  dark
+/>
 
-`Description` добавляется самостоятельно разработчиком, так как `DevExtreme` не поддерживает данный элемент.
+#### Положение лейбла слева
+
+*Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.*
+
+<Canvas name="Лейбл слева" of={textBoxStories.WithLabelRow} />
+
+<Source
+  code={`
+<div meLabel labelDirection="row" width="250px" class="dx-widget">
+  <span>Label*</span>
+  <dx-text-box meTextBox></dx-text-box>
+</div>
+`}
+  language="html"
+  dark
+/>
+
+### Состояния readOnly и disabled
+
+*Свойства `readOnly` и `disabled` позволяют управлять интерактивностью текстового поля. В режиме readOnly поле становится доступным для копирования, но редактирование невозможно, а в режиме disabled поле полностью неактивно и выглядит затенённым.*
+
+#### Состояние readOnly
+
+<Canvas name="Состояние readOnly" of={textBoxStories.StateReadOnly} />
+
+<Source
+  code={`
+<dx-text-box
+  meTextBox
+  readOnly="true"
+  value="Lorem ipsum dolor sit amet consectetur.">
+</dx-text-box>
+  `}
+  dark
+  language="html"
+/>
+
+#### Состояние disabled
+
+<Canvas name="Состояние disabled" of={textBoxStories.StateDisabled} />
+
+<Source
+  code={`<dx-text-box meTextBox disabled="true"></dx-text-box>`}
+  dark
+  language="html"
+/>
+
+#### Состояние readOnly и disabled
+
+<Canvas name="Состояние readOnly и disabled" of={textBoxStories.StateDisabledAndReadOnly} />
+
+<Source
+  code={`
+<dx-text-box
+  meTextBox
+  disabled="true"
+  readOnly="true"
+  value="Lorem ipsum dolor sit amet consectetur."
+></dx-text-box>
+  `}
+  dark
+  language="html"
+/>
 
 ### Использование масок в текстовом поле
 
-Для маски, например телефона, используйте параметр <code>mask</code> в виде строки `"+7 (000) 000-0000"`.
+*Свойство `mask` позволяет задать маску для ввода данных, например, для ввода телефонного номера. Маска указывает, какие символы и в каком формате могут быть введены пользователем.*
 
-<Canvas of={textBoxStories.WithTelMask} />
+<Canvas name="Маска для телефона" of={textBoxStories.ModeTelWithMask} />
+
+<Source
+  code={`<dx-text-box meTextBox mask="+7 (000) 000-0000"></dx-text-box>`}
+  language="html"
+  dark
+/>
 
 ### Показ и скрытие пароля
 
-Для показа и скрытия пароля используется параметр <code>mode='password'</code>.
+*Для защиты конфиденциальных данных используйте режим `password`. При этом текст поля заменяется на символы-звёздочки, а пользователь может включить или выключить отображение введённого пароля.*
 
-<Canvas of={textBoxStories.WithPasswordToggle} />
+<Canvas name="Показ и скрытие пароля" of={textBoxStories.ModePassword} />
+
+<Source
+  code={`<dx-text-box meTextBox mode="password"></dx-text-box>`}
+  language="html"
+  dark
+/>
