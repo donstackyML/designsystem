@@ -254,6 +254,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     // labelMode: floating
 
     &.dx-texteditor-with-floating-label {
+
       &.dx-texteditor-empty:not(.dx-state-focused),
       &.dx-state-readonly.dx-texteditor-empty:not(.dx-state-focused),
       &.dx-state-readonly.dx-texteditor-empty.dx-state-focused {
@@ -347,6 +348,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &-readonly,
     &-disabled {
+
       .dx-numberbox-spin-container,
       .dx-clear-button-area {
         display: none;
@@ -525,6 +527,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
   &.dx-editor-outlined.dx-state-readonly.dx-state-hover,
   &.dx-editor-outlined.dx-state-readonly.dx-state-focused {
+
     &.dx-state-focused,
     &.dx-dropdowneditor-active,
     &:not(.dx-texteditor-empty) {
@@ -542,6 +545,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 }
 
 .me-inputs.dx-texteditor.dx-widget {
+
   &.me-number-box,
   &.me-date-range-box {
     &:not(.dx-texteditor-label-outside) {
@@ -577,6 +581,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &.me-inputs {
       .dx-texteditor-container {
+
         .dx-texteditor-input-container,
         .dx-placeholder {
           padding-left: var(--padding-inline);
@@ -626,6 +631,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     .dx-texteditor-buttons-container .dx-numberbox-spin-container {
+
       .dx-numberbox-spin-up,
       .dx-numberbox-spin-down {
         width: var(--number-box-spin-button-width);
@@ -649,5 +655,26 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       color: var(--Text-Error);
       border-radius: 3px;
     }
+  }
+}
+
+*:has(.me-inputs):has(.me-input-description) {
+  --description-font-size: 12px;
+  --description-line-height: 16px;
+
+  --input-fields-gap: 4px;
+
+  &:has(.me-inputs-large) {
+    --description-font-size: 14px;
+    --description-line-height: 20px;
+  }
+
+  .me-input-description {
+    font-size: var(--description-font-size);
+    line-height: var(--description-line-height);
+    margin-top: var(--input-fields-gap);
+    font-family: 'Roboto', sans-serif;
+
+    color: var(--Text-Secondary);
   }
 }
