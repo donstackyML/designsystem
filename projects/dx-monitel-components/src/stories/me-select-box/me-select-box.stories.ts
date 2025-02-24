@@ -42,7 +42,7 @@ const data = [
 ];
 
 export default {
-  title: 'Components/SelectBox',
+  title: 'Components/Fields/SelectBox',
   decorators: [
     moduleMetadata({
       declarations: [MeSelectBoxDirective, MeLabelDirective],

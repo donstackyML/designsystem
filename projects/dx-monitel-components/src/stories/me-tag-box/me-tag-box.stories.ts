@@ -10,7 +10,7 @@ import { MeLabelDirective, MeTagBoxDirective } from '../../public-api';
 const data = Array.from({ length: 25 }, (_, i) => `Пункт ${i + 1}`);
 
 export default {
-  title: 'Components/TagBox',
+  title: 'Components/Fields/TagBox',
   decorators: [
     moduleMetadata({
       declarations: [MeTagBoxDirective, MeLabelDirective],

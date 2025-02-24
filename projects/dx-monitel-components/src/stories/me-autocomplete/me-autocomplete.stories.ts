@@ -4,16 +4,16 @@ import {
   moduleMetadata,
   StoryObj,
 } from '@storybook/angular';
-import { DxAutocompleteModule, DxValidatorModule } from 'devextreme-angular';
+import { DxAutocompleteComponent, DxValidatorModule } from 'devextreme-angular';
 import { MeAutocompleteDirective, MeLabelDirective } from '../../public-api';
 import { meAutocompleteMockData } from './me-autocomplete-mock-data';
 
 export default {
-  title: 'Components/Autocomplete',
+  title: 'Components/Fields/Autocomplete',
   decorators: [
     moduleMetadata({
-      declarations: [MeAutocompleteDirective, MeLabelDirective],
-      imports: [DxAutocompleteModule, DxValidatorModule],
+      imports: [DxValidatorModule],
+      declarations: [MeAutocompleteDirective, DxAutocompleteComponent, MeLabelDirective],
     }),
   ],
   argTypes: {
@@ -80,7 +80,7 @@ export default {
       description: 'Минимальная длина поиска',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: 1 }
+        defaultValue: { summary: '1' }
       }
     },
     isValid: {
@@ -134,12 +134,12 @@ export default {
           </dxi-validation-rule>
         </dx-validator>
       </dx-autocomplete>
-      <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
+      <p class="me-input-description" *ngIf="description">{{ description }}</p>
     `,
   }),
-} satisfies Meta<DxAutocompleteModule | MeAutocompleteDirective>;
+} satisfies Meta<DxAutocompleteComponent | MeAutocompleteDirective>;
 
-type Story = StoryObj<DxAutocompleteModule | MeAutocompleteDirective>;
+type Story = StoryObj<DxAutocompleteComponent | MeAutocompleteDirective>;
 
 export const Default: Story = {};
 
@@ -210,7 +210,7 @@ export const WithLabelRow: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <label meLabel
+    <div meLabel
       labelDirection="row"
       style="max-width: 200px">
       Label*
@@ -231,7 +231,7 @@ export const WithLabelRow: Story = {
           }
         }"
       ></dx-autocomplete>
-    </label>
+    </div>
     `,
   }),
 };

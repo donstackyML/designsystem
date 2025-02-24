@@ -8,7 +8,7 @@ import { DxButtonModule, DxTextBoxComponent } from 'devextreme-angular';
 import { MeLabelDirective, MeTextBoxDirective } from '../../public-api';
 
 export default {
-  title: 'Components/TextBox',
+  title: 'Components/Fields/TextBox',
   decorators: [
     moduleMetadata({
       imports: [DxButtonModule],

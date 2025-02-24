@@ -8,7 +8,7 @@ import { DxDateRangeBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { MeDateRangeBoxDirective, MeLabelDirective } from '../../public-api';
 
 export default {
-  title: 'Components/DateRangeBox',
+  title: 'Components/Fields/DateRangeBox',
   decorators: [
     moduleMetadata({
       declarations: [MeDateRangeBoxDirective, MeLabelDirective],
