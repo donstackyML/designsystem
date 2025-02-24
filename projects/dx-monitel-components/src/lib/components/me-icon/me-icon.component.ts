@@ -48,11 +48,9 @@ export class MeIconComponent {
 
   press() {
     this.pressed = true;
-    console.log('icon press');
   }
 
   pressup() {
-    console.log('icon unpress');
     this.pressed = false;
   }
 }
