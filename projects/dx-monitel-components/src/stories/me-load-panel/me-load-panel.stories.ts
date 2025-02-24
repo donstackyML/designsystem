@@ -75,7 +75,7 @@ export default {
       },
     },
     shadingColor: {
-      description: 'Цвет Затемнение экрана',
+      description: 'Цвет затемнения экрана',
       control: 'text',
       table: {
         type: { summary: 'string' },

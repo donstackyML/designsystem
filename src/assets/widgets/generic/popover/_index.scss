@@ -14,7 +14,13 @@ $color: 'light' !default;
 .me-popover .dx-overlay-content.dx-popup-normal {
   border-radius: 4px;
   overflow: visible;
-  padding: 16px;
+  padding: var(--tooltip-content-padding, 16px);
+
+  .dx-popup-content {
+    font-size: var(--tooltip-content-font-size, 14px);
+    font-weight: 400;
+    line-height: var(--tooltip-content-line-heigh, 20px);
+  }
 
   @include standardColors;
 
@@ -31,17 +37,18 @@ $color: 'light' !default;
     border: 1px solid var(--popover-border);
   }
 
-  & > *:not(.dx-popover-arrow, :last-child) {
+  &>*:not(.dx-popover-arrow, :last-child) {
     margin-bottom: 16px;
   }
 
-  & > * {
+  &>* {
     padding: 0;
   }
 
   .dx-toolbar.dx-popup-title,
   .dx-popup-title {
     border: none;
+    margin-bottom: var(--tooltip-text-content-gap, 4px);
 
     .dx-toolbar-items-container {
       height: 100%;
@@ -55,8 +62,7 @@ $color: 'light' !default;
     }
 
     .dx-button.dx-closebutton {
-      @include dx-button-styling-variant(
-        transparent,
+      @include dx-button-styling-variant(transparent,
         transparent,
         $button-normal-color,
         $button-normal-text-bg-hover,
@@ -70,8 +76,7 @@ $color: 'light' !default;
         transparent,
         transparent,
         $button-normal-contained-border-disabled,
-        $button-group-normal-selected-bg
-      );
+        $button-group-normal-selected-bg );
 
       border: none;
       left: 0;
@@ -99,13 +104,6 @@ $color: 'light' !default;
     border-bottom: none;
   }
 
-  .dx-popup-content {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    text-align: left;
-  }
-
   .dx-toolbar.dx-popup-bottom {
     background-color: var(--popover-background);
 
@@ -115,16 +113,26 @@ $color: 'light' !default;
   }
 }
 
-.me-popover.me-popover-alternate .dx-overlay-content.dx-popup-normal {
-  @include alternateColors;
-}
+.me-popover {
+  &.me-popover-color-mode {
+    &-alternate {
+      .dx-overlay-content.dx-popup-normal {
+        @include alternateColors();
+      }
+    }
 
-.me-popover.me-popover-light .dx-overlay-content.dx-popup-normal {
-  @include lightColors;
-}
+    &-light {
+      .dx-overlay-content.dx-popup-normal {
+        @include lightColors();
+      }
+    }
 
-.me-popover.me-popover-dark .dx-overlay-content.dx-popup-normal {
-  @include darkColors;
+    &-dark {
+      .dx-overlay-content.dx-popup-normal {
+        @include darkColors();
+      }
+    }
+  }
 }
 
 @mixin close-button-size($iconWidth, $buttonWidth) {
@@ -142,12 +150,19 @@ $color: 'light' !default;
   }
 }
 
-//sizes
+
+// Sizes
+
 .me-popover {
   &.me-popover-small {
+    --tooltip-content-padding: 12px;
+    --tooltip-content-font-size: 12px;
+    --tooltip-content-line-heigh: 16px;
+    --tooltip-text-content-gap: 2px;
+
     padding: 12px;
 
-    .dx-overlay-content > *:not(.dx-popover-arrow, :last-child) {
+    .dx-overlay-content>*:not(.dx-popover-arrow, :last-child) {
       margin-bottom: 12px;
     }
 
@@ -162,12 +177,6 @@ $color: 'light' !default;
       @include close-button-size(16px, 28px);
     }
 
-    .dx-popup-content {
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 16px;
-    }
-
     .dx-toolbar.dx-popup-bottom {
       .dx-toolbar-items-container {
         min-height: 28px;
@@ -177,6 +186,11 @@ $color: 'light' !default;
   }
 
   &.me-popover-medium {
+    --tooltip-content-padding: 16px;
+    --tooltip-content-font-size: 16px;
+    --tooltip-content-line-heigh: 20px;
+    --tooltip-text-content-gap: 4px;
+
     .dx-toolbar.dx-popup-title,
     .dx-popup-title {
       @include close-button-size(16px, 32px);
@@ -191,6 +205,11 @@ $color: 'light' !default;
   }
 
   &.me-popover-large {
+    --tooltip-content-padding: 20px;
+    --tooltip-content-font-size: 16px;
+    --tooltip-content-line-heigh: 24px;
+    --tooltip-text-content-gap: 4px;
+
     padding: 20px;
 
     .dx-toolbar.dx-popup-title,
@@ -204,12 +223,6 @@ $color: 'light' !default;
       @include close-button-size(24px, 40px);
     }
 
-    .dx-popup-content {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-    }
-
     .dx-toolbar.dx-popup-bottom {
       .dx-toolbar-items-container {
         min-height: 40px;
@@ -219,7 +232,6 @@ $color: 'light' !default;
   }
 }
 
-//////////////////////////////////
 .me-popover {
   .dx-toolbar.dx-popup-title {
     .dx-toolbar-items-container {
@@ -247,10 +259,5 @@ $color: 'light' !default;
         }
       }
     }
-  }
-}
-
-.dx-item-content.dx-toolbar-item-content {
-  .dx-closebutton {
   }
 }

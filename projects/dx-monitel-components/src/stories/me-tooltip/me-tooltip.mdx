@@ -1,158 +1,248 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
-import * as tooltipStories from "./me-tooltip.stories";
-import { MeTooltipDirective } from "../../public-api";
-import { moduleMetadata } from "@storybook/angular";
+import { Canvas, Controls, Meta, Source } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as tooltipDirectiveStories from "./me-tooltip.stories";
 
-<Meta
-  title="Directives/Tooltip(RC)"
-  component={MeTooltipDirective}
-  decorators={[
-    moduleMetadata({
-      declarations: [MeTooltipDirective],
-    }),
-  ]}
-  of={tooltipStories}
-/>
+<Meta name="Tooltip Directive Documentation" of={tooltipDirectiveStories} />
 
 # Tooltip
 
-## Директива MeTooltip
+## Директива `meTooltip`
 
-Директива `MeTooltip` позволяет создавать информативные всплывающие подсказки для элементов пользовательского интерфейса.
+Директива `meTooltip` позволяет создавать информативные всплывающие подсказки для элементов пользовательского интерфейса. С её помощью можно:
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxTooltip/)
+- **Настроить контент:** Передавать простой текст или HTML-контент, позволяющий форматировать содержимое подсказки (например, выделять текст, добавлять списки, кнопки или изображения).
+- **Изменить размеры:** Свойство `tooltipSize` позволяет задать размеры тултипа (`small`, `medium`, `large`), что влияет на отступы и размер шрифтов.
+- **Настроить цветовую тему:** Свойство `tooltipColorMode` позволяет выбрать одну из цветовых тем (`default`, `alternate`, `light`, `dark`).
+- **Управлять позиционированием:** Свойство `tooltipPosition` задаёт положение тултипа относительно целевого элемента (например, `top`, `bottom`, `left` или `right`).
+- **Анимировать появление/исчезновение:** Свойства `tooltipShowAnimation` и `tooltipHideAnimation` позволяют настроить анимационные эффекты для тултипа.
 
+<Controls of={tooltipDirectiveStories.Default} />
 
-<Controls of={tooltipStories.Basic} />
+## Дизайн
 
-## Примеры использования:
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/qOjoHG3m7v6eGujl5AUmnc/Icons?node-id=1671-162&p=f&t=bFd2gQEXE8irtNZG-0"
+/>
 
-### Позиционирование
+## Примеры использования
 
-Тултип можно расположить в различных позициях относительно целевого элемента.
+- [Позиционирование тултипа](#позиционирование-тултипа)
+- [Анимация тултипа](#анимация-тултипа)
+- [Изменение размеров тултипа](#изменение-размеров-тултипа)
+  - [Небольшой размер](#небольшой-размер)
+  - [Средний размер](#средний-размер)
+  - [Большой размер](#большой-размер)
+- [Изменение цветовой схемы тултипа](#изменение-цветовой-схемы-тултипа)
+  - [Default](#default)
+  - [Alternate](#alternate)
+  - [Light](#light)
+  - [Dark](#dark)
+- [Настраиваемость контента тултипа](#настраиваемость-контента-тултипа)
+  - [Простой текстовый тултип](#простой-текстовый-тултип)
+  - [Тултип с HTML-контентом](#тултип-с-html-контентом)
+- [Тултип с изображением](#тултип-с-изображением)
+- [Тултип с ограничением максимальных размеров](#тултип-с-ограничением-максимальных-размеров)
 
-<Story of={tooltipStories.Basic} />
+### Позиционирование тултипа
 
+*Пример демонстрирует, как задать позицию тултипа относительно целевого элемента с помощью свойства `tooltipPosition`.*
+
+<Canvas name="Позиционирование тултипа" of={tooltipDirectiveStories.TooltipPositionTop} />
 <Source
-  code={`<button [meTooltip]="meTooltip" [tooltipPosition]="tooltipPosition">Тултип {{ tooltipPosition }}</button>`}
+  code={`<button [meTooltip]="'Это тултип'" [tooltipPosition]="'top'">
+  Тултип сверху
+</button>`}
   dark
   language="html"
 />
 
-### HTML-содержимое
+### Анимация тултипа
 
-Тултипы могут содержать форматированный HTML-текст.
+*Настройка анимации появления и скрытия тултипа производится с помощью свойств `tooltipShowAnimation` и `tooltipHideAnimation`. В примере тултип появляется с эффектом «pop» и исчезает с эффектом «fade».*
 
-<Story of={tooltipStories.HTMLContent} />
-
-<Source
-  code={`<button [meTooltip]="'<strong>Жирный текст</strong> и <em>курсив</em>'" [tooltipPosition]="tooltipPosition">HTML-тултип</button>`}
-  dark
-  language="html"
-/>
-
-### Анимация
-
-Тултипы могут иметь анимацию появления и исчезновения.
-
-<Story of={tooltipStories.WithAnimation} />
+<Canvas name="Анимация тултипа" of={tooltipDirectiveStories.WithAnimation} />
 
 <Source
-  code={`
-<button
-  [meTooltip]="meTooltip"
-  [tooltipPosition]="tooltipPosition"
-  [tooltipShowAnimation]="tooltipShowAnimation"
-  [tooltipHideAnimation]="tooltipHideAnimation">
+  code={`<button
+  [meTooltip]="'Анимированный тултип'"
+  [tooltipPosition]="'top'"
+  [tooltipShowAnimation]="{ type: 'pop', from: { scale: 0.5, opacity: 0 }, to: { scale: 1, opacity: 1 }, duration: 300 }"
+  [tooltipHideAnimation]="{ type: 'fade', from: { opacity: 1 }, to: { opacity: 0 }, duration: 300 }">
   Анимированный тултип
-</button>
-  `}
+</button>`}
   dark
   language="html"
 />
 
+### Изменение размеров тултипа
+
+*Свойство `tooltipSize` позволяет задавать размеры тултипа, что влияет на отступы и размер шрифтов внутри него.*
+
+#### Небольшой размер
+
+<Canvas name="Тултип small" of={tooltipDirectiveStories.SizeSmall} />
+
 <Source
-  code={`
-<button [meTooltip]="tooltipTemplate"
-        [tooltipPosition]="tooltipPosition"
-        [tooltipTemplateRef]="tooltipTemplate">
-  Тултип с кастомным шаблоном
-</button>
+  code={`<button [meTooltip]="'Тултип small'" [tooltipPosition]="'top'" [tooltipSize]="'small'">
+  Тултип small
+</button>`}
+  dark
+  language="html"
+/>
 
-  <!-- В компоненте: -->
+#### Средний размер
 
-tooltipTemplate = \`
+<Canvas name="Тултип medium" of={tooltipDirectiveStories.SizeMedium} />
 
-<div>
-  <h4>Заголовок тултипа</h4>
-  <p>Это пример тултипа с кастомной разметкой.</p>
-  <ul>
-    <li>Пункт 1</li>
-    <li>Пункт 2</li>
-  </ul>
-</div>
-\`; `} dark language="html" />
+<Source
+  code={`<button [meTooltip]="'Тултип medium'" [tooltipPosition]="'top'" [tooltipSize]="'medium'">
+  Тултип medium
+</button>`}
+  dark
+  language="html"
+/>
 
-## Свойства
+#### Большой размер
 
-<Controls of={tooltipStories.Basic} />
+<Canvas name="Тултип large" of={tooltipDirectiveStories.SizeLarge} />
+
+<Source
+  code={`<button [meTooltip]="'Тултип large'" [tooltipPosition]="'top'" [tooltipSize]="'large'">
+  Тултип large
+</button>`}
+  dark
+  language="html"
+/>
+
+### Изменение цветовой схемы тултипа
+
+*Свойство `tooltipColorMode` задаёт цветовую тему тултипа, позволяя адаптировать его под различные визуальные стили приложения.*
+
+#### Default
+
+<Canvas name="Тултип colorMode default" of={tooltipDirectiveStories.ColorModeDefault} />
+
+<Source
+  code={`<button [meTooltip]="'Тултип default'" [tooltipPosition]="'top'" [tooltipColorMode]="'default'">
+  Тултип default
+</button>`}
+  dark
+  language="html"
+/>
+
+#### Alternate
+
+<Canvas name="Тултип colorMode alternate" of={tooltipDirectiveStories.ColorModeAlternate} />
+
+<Source
+  code={`<button [meTooltip]="'Тултип alternate'" [tooltipPosition]="'top'" [tooltipColorMode]="'alternate'">
+  Тултип alternate
+</button>`}
+  dark
+  language="html"
+/>
+
+#### Light
+
+<Canvas name="Тултип colorMode light" of={tooltipDirectiveStories.ColorModeLight} />
+
+<Source
+  code={`<button [meTooltip]="'Тултип light'" [tooltipPosition]="'top'" [tooltipColorMode]="'light'">
+  Тултип light
+</button>`}
+  dark
+  language="html"
+/>
+
+#### Dark
+
+<Canvas name="Тултип colorMode dark" of={tooltipDirectiveStories.ColorModeDark} />
+
+<Source
+  code={`<button [meTooltip]="'Тултип dark'" [tooltipPosition]="'top'" [tooltipColorMode]="'dark'">
+  Тултип dark
+</button>`}
+  dark
+  language="html"
+/>
+
+### Настраиваемость контента тултипа
+
+*Популярность директивы **meTooltip** обусловлена её гибкостью в настройке контента. Вы можете передавать простой текст, использовать HTML-разметку или даже создавать полностью кастомизированные шаблоны для заголовка и основного содержимого тултипа. Такой подход позволяет интегрировать в тултип сложные элементы, такие как заголовки, изображения, списки и кнопки.*
+
+#### Простой текстовый тултип
+
+*Простой вариант, когда в тултип передаётся строка с текстом.*
+
+<Canvas name="Простой текстовый тултип" of={tooltipDirectiveStories.Default} />
+
+<Source
+  code={`<button [meTooltip]="'Это базовый тултип'" [tooltipPosition]="'top'">
+  Наведи для показа тултипа
+</button>`}
+  dark
+  language="html"
+/>
+
+#### Тултип с HTML-контентом
+
+*Тултип может отображать форматированный HTML, что позволяет использовать теги для выделения текста или добавления разметки прямо в содержимое подсказки.*
+
+<Canvas name="Тултип с HTML-контентом" of={tooltipDirectiveStories.WithHTMLContent} />
+
+<Source
+  code={`<button [meTooltip]="'<strong>Жирный текст</strong> и <em>курсив</em>'" [tooltipPosition]="'bottom'">
+  HTML-тултип
+</button>`}
+  dark
+  language="html"
+/>
+
 ### Тултип с изображением
 
-Вы можете создавать сложные тултипы, содержащие изображения, заголовки и форматированный текст.
+*В данном примере тултип отображает сложное содержимое с изображением. Это позволяет встроить в тултип визуальные элементы, такие как баннер или фотография, а также сопроводительный текст. Такой подход полезен, если нужно создать информативную подсказку с графикой.*
 
-<Story of={tooltipStories.ImageTooltip} />
-
+<Canvas name="Тултип с изображением" of={tooltipDirectiveStories.WithImageContent} />
 <Source
-  code={`
-<button
-  [meTooltip]="tooltipContent"
-  [tooltipPosition]="right"
-  [tooltipWidth]="300"
-  [tooltipClass]="me-custom-tooltip-wrapper">
-  Наведите для просмотра тултипа с изображением
-</button>
-
-  <!-- HTML контент для тултипа -->
-  <div class="me-tooltip-custom">
-    <div class="me-tooltip-image">
-      <img src="/bg-wave.jpg" alt="Wave" />
+  code={`<button
+  [meTooltip]="\`
+    <div class='me-tooltip-custom'>
+      <div class='me-tooltip-image'>
+        <img src='/assets/images/sample.jpg' alt='Sample Image' />
+      </div>
+      <div class='me-tooltip-content'>
+        <h1 class='me-tooltip-title'>Заголовок</h1>
+        <p class='me-tooltip-text'>
+          Трансформатор – это устройство, способное изменять напряжение переменного тока.
+        </p>
+      </div>
     </div>
-    <div class="me-tooltip-content">
-      <h1 class="me-tooltip-title">Заголовок</h1>
-      <p class="me-tooltip-text">
-        Трансформатор - это устройство, способное изменять
-        напряжение переменного тока
-      </p>
-    </div>
-  </div>
+  \`"
+  [tooltipPosition]="'right'"
+  [tooltipWidth]="390"
+  [tooltipClass]="'me-custom-tooltip-wrapper'">
+  Тултип с изображением
+</button>`}
+  dark
+  language="html"
+/>
 
-  <!-- Стили для тултипа -->
-  <style>
-  .me-tooltip-custom {
-    overflow: hidden;
-    background: #18181A;
-    color: #fff;
-  }
+### Тултип с ограничением максимальных размеров
 
-  .me-tooltip-image {
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-  }
+*В этом примере задано ограничение максимальной ширины и высоты тултипа. Это полезно для длинного текста, когда необходимо автоматически переносить строки или добавить прокрутку.*
 
-  .me-tooltip-title {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-  }
-
-  .me-tooltip-text {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-  }
-  </style>
-`}
+<Canvas name="Тултип с ограничением размеров" of={tooltipDirectiveStories.WithMaxDimensions} />
+<Source
+  code={`<button
+  [meTooltip]="'Это тултип с ограничением максимальных размеров. Длинный текст будет переноситься.'"
+  [tooltipPosition]="'top'"
+  [tooltipMaxWidth]="200"
+  [tooltipMaxHeight]="150">
+  Наведи для показа тултипа
+</button>`}
   dark
   language="html"
 />

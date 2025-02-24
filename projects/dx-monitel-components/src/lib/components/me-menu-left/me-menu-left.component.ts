@@ -167,12 +167,17 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   updateDragHandler(): void {
     if (!this.collapsed) {
       const targetRect = this.resizeBoxElement.getBoundingClientRect();
-      const translateX = targetRect.x + targetRect.width;
+      const translateX = targetRect.width;
 
       this.renderer.setStyle(
         this.dragHandleRight.nativeElement,
+        'opacity',
+        `1`
+      );
+      this.renderer.setStyle(
+        this.dragHandleRight.nativeElement,
         'transform',
-        `translate(${translateX}px, 0px)`
+        `translateX(${translateX}px)`
       );
     }
   }

@@ -3,16 +3,32 @@
 @use '../colors' as *;
 @use 'sizes' as *;
 @use '../sizes' as *;
+@use '../overlay/colors' as *;
 @use '../../base/tooltip';
 
 // adduse
 
+@mixin close-button-size($iconWidth, $buttonWidth) {
+  .dx-button.dx-button-has-icon {
+    .dx-button-content {
+      height: $buttonWidth;
+      width: $buttonWidth;
+      padding: calc(($buttonWidth - $iconWidth) / 2);
+
+      .dx-icon.dx-icon-close {
+        font-size: $iconWidth;
+        line-height: $iconWidth;
+      }
+    }
+  }
+}
+
 .dx-tooltip-wrapper {
   .dx-overlay-content {
-    border: 1px solid $tooltip-border-color;
-    background-color: $tooltip-bg;
-    color: $tooltip-color;
-    box-shadow: 0 2px 4px $tooltip-shadow-color;
+    border: 1px solid var(--tooltip-border);
+    background-color: var(--tooltip-background);
+    color: var(--tooltip-color);
+    box-shadow: none;
     border-radius: $tooltip-border-radius;
     overflow: visible;
   }
@@ -39,7 +55,7 @@
     }
 
     &.dx-position-left .dx-popover-arrow {
-      width: 10px;
+      width: 12px;
       height: 23px;
 
       &::after {
@@ -71,8 +87,8 @@
       overflow: hidden;
 
       &::after {
-        border: 1px solid $tooltip-border-color;
-        background: $tooltip-bg;
+        border: 1px solid var(--tooltip-border);
+        background: var(--tooltip-background);
         display: block;
         width: 16px;
         height: 16px;
@@ -91,14 +107,6 @@
   background-color: #ffffff;
   width: 100%;
   max-width: 390px;
-
-  //.me-tooltip-title {
-  //  color: $tooltip-color;
-  //}
-  //
-  //.me-tooltip-text {
-  //  color: $tooltip-color;
-  //}
 }
 
 .me-tooltip-image {
@@ -130,7 +138,7 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  color: var(--Text-Alert);
+  color: var(--tooltip-color);
   text-align: left;
   width: 100%;
 }
@@ -141,7 +149,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--Text-Alert);
+  color: var(--tooltip-color);
   opacity: 0.87;
   text-align: left;
   width: 100%;
@@ -156,45 +164,57 @@
   max-width: 390px;
 }
 
-.me-tooltip.me-tooltip-dark {
+.dx-tooltip-wrapper.dx-popover-wrapper {
   .dx-overlay-content {
-    border-color: var(--Background-Alert);
-    background-color: var(--Background-Alert);
-    color: var(--Text-Alert);
+    @include standardColors;
+
+    border-color: var(--tooltip-border);
+    background-color: var(--tooltip-background);
+    color: var(--tooltip-color);
 
     .dx-toolbar.dx-popup-title {
       .dx-toolbar-items-container {
-        color: var(--Text-Alert);
+        color: var(--tooltip-color);
       }
     }
+
     .dx-toolbar.dx-popup-bottom {
-      background-color: var(--Background-Alert);
+      background-color: var(--tooltip-background);
     }
+
+    .dx-popup-content {
+      font-size: var(--tooltip-content-font-size, 14px);
+      font-weight: 400;
+      line-height: var(--tooltip-content-line-heigh, 20px);
+      padding: var(--tooltip-content-padding, 16px);
+    }
+
     .me-tooltip-custom {
-      background-color: var(--Background-Alert);
+      background-color: var(--tooltip-background);
     }
 
     .me-tooltip-title {
-      color: var(--Text-Alert);
+      color: var(--tooltip-color);
     }
 
     .me-tooltip-text {
-      color: var(--Text-Alert);
+      color: var(--tooltip-color);
     }
 
     .me-tooltip-content {
-      color: var(--Text-Alert);
-      background-color: var(--Background-Alert);
+      color: var(--tooltip-color);
+      background-color: var(--tooltip-background);
     }
+
   }
 
   .dx-popover-arrow::after {
-    border-color: var(--Background-Alert);
-    background-color: var(--Background-Alert);
+    border-color: var(--tooltip-background);
+    background-color: var(--tooltip-background);
   }
 }
 
-.me-tooltip.me-tooltip-light {
+.dx-tooltip-wrapper.dx-popover-wrapper.me-tooltip.me-tooltip-light {
   .dx-overlay-content {
     border-color: var(--Dividers-Borders-Long);
     background-color: var(--Background-Accent-in-the-content);
@@ -205,6 +225,7 @@
         color: var(--Text-Default);
       }
     }
+
     .dx-toolbar.dx-popup-bottom {
       background-color: var(--Background-Accent-in-the-content);
     }
@@ -225,6 +246,64 @@
 
   .me-tooltip-content {
     background-color: var(--Background-Accent-in-the-content);
+  }
+}
+
+// Sizes
+.me-tooltip {
+  &.me-tooltip-small {
+    --tooltip-content-padding: 12px;
+    --tooltip-content-font-size: 12px;
+    --tooltip-content-line-heigh: 16px;
+  }
+
+  &.me-tooltip-medium {
+    --tooltip-content-padding: 16px;
+    --tooltip-content-font-size: 16px;
+    --tooltip-content-line-heigh: 20px;
+  }
+
+  &.me-tooltip-large {
+    --tooltip-content-padding: 20px;
+    --tooltip-content-font-size: 16px;
+    --tooltip-content-line-heigh: 24px;
+  }
+}
+
+// Color mode
+
+.me-tooltip {
+  &.me-tooltip-color-mode {
+    &-default {
+      .dx-overlay-content.dx-popup-normal {
+        @include standardColors;
+      }
+    }
+    &-alternate {
+      .dx-overlay-content.dx-popup-normal {
+        @include alternateColors;
+      }
+    }
+
+    &-light {
+      .dx-overlay-content.dx-popup-normal {
+        @include lightColors;
+      }
+    }
+
+    &-dark {
+      .dx-overlay-content.dx-popup-normal {
+        @include darkColors;
+      }
+    }
+  }
+}
+
+.dx-tooltip-wrapper.dx-popover-wrapper:not(.me-tooltip) {
+  @if $color == 'light' {
+    @include dark-theme();
+  } @else {
+    @include light-theme();
   }
 }
 

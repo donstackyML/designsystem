@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
-import { MeTooltipDirective } from '../../public-api';
 
-const meta: Meta<MeTooltipDirective> = {
-  title: 'Components/Tooltip',
+import { MeTooltipDirective } from'../../public-api';
+
+export default {
+  title: 'Components/Tooltip/Directive',
   component: MeTooltipDirective,
   decorators: [
     moduleMetadata({
@@ -16,7 +17,7 @@ const meta: Meta<MeTooltipDirective> = {
   argTypes: {
     meTooltip: {
       control: 'text',
-      description: 'Текст или HTML-контент тултипа',
+      description: 'Текст или HTML-контент тултипа, который будет отображаться, когда пользователь наведет курсор на целевой элемент',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
@@ -31,9 +32,27 @@ const meta: Meta<MeTooltipDirective> = {
         defaultValue: { summary: 'top' },
       },
     },
+    tooltipSize: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description: 'Размер поповера.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    tooltipColorMode: {
+      control: 'select',
+      options: ['light', 'dark', 'default', 'alternate'],
+      description: 'Цветовая тема поповера',
+      table: {
+        type: { summary: "'light' | 'dark' | 'default' | 'alternate'" },
+        defaultValue: { summary: 'default' },
+      },
+    },
     tooltipClass: {
       control: 'text',
-      description: 'Пользовательский CSS-класс для тултипа',
+      description: 'Пользовательский CSS-класс для тултипа, который может быть использован для настройки внешнего вида',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'me-tooltip' },
@@ -41,7 +60,7 @@ const meta: Meta<MeTooltipDirective> = {
     },
     tooltipWidth: {
       control: 'number',
-      description: 'Ширина тултипа',
+      description: 'Ширина тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
@@ -49,7 +68,7 @@ const meta: Meta<MeTooltipDirective> = {
     },
     tooltipMaxWidth: {
       control: 'number',
-      description: 'Максимальная ширина тултипа',
+      description: 'Максимальная ширина тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
@@ -57,7 +76,7 @@ const meta: Meta<MeTooltipDirective> = {
     },
     tooltipHeight: {
       control: 'number',
-      description: 'Высота тултипа',
+      description: 'Высота тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
@@ -65,7 +84,7 @@ const meta: Meta<MeTooltipDirective> = {
     },
     tooltipMaxHeight: {
       control: 'number',
-      description: 'Максимальная высота тултипа',
+      description: 'Максимальная высота тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
@@ -91,53 +110,140 @@ const meta: Meta<MeTooltipDirective> = {
         },
       },
     },
-    colorMode: {
-      control: 'select',
-      options: ['light', 'dark'],
-      description: 'Цветовая тема тултипа',
-      table: {
-        type: { summary: "'light' | 'dark'" },
-        defaultValue: { summary: 'dark' },
-      },
-    },
   },
-};
-
-export default meta;
-type Story = StoryObj<MeTooltipDirective>;
-
-export const Basic: Story = {
   args: {
     meTooltip: 'Это базовый тултип',
+    tooltipSize: "medium",
     tooltipPosition: 'top',
+    tooltipColorMode: 'dark',
+    tooltipWidth: 'auto',
+    tooltipMaxWidth: 'auto',
+    tooltipHeight: 'auto',
+    tooltipMaxHeight: 'auto',
+    tooltipShowAnimation: {
+      type: 'fade',
+      from: 0,
+      to: 1,
+      duration: 300,
+    },
+    tooltipHideAnimation: {
+      type: 'fade',
+      from: {
+        opacity: 1,
+      },
+      to: {
+        opacity: 0,
+      },
+      duration: 300,
+    },
   },
   render: (args) => ({
-    template: `
-      <dx-button
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition">
-        Базовый тултип
-      </dx-button>
-    `,
     props: args,
+    template: `
+      <div class="container">
+        <dx-button
+        meTooltip
+        ${argsToTemplate(args)}
+        >
+        Наведи, чтобы показался тултип
+        </dx-button>
+      </div>
+    `,
+    styles: [
+      `
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+      }
+      `
+    ]
   }),
+} satisfies Meta<MeTooltipDirective>;
+
+type Story = StoryObj<MeTooltipDirective>;
+
+export const Default: Story = {};
+
+export const ColorModeDefault: Story = {
+  args: {
+    tooltipColorMode: "default"
+  }
 };
 
-export const HTMLContent: Story = {
+export const ColorModeDark: Story = {
+  args: {
+    tooltipColorMode: "dark"
+  }
+};
+
+
+export const ColorModeLight: Story = {
+  args: {
+    tooltipColorMode: "light"
+  }
+};
+
+export const ColorModeAlternate: Story = {
+  args: {
+    tooltipColorMode: "alternate"
+  }
+};
+
+export const SizeSmall: Story = {
+  args: {
+    tooltipSize: 'small'
+  }
+};
+
+export const SizeMedium: Story = {
+  args: {
+    tooltipSize: 'medium'
+  }
+};
+
+export const SizeLarge: Story = {
+  args: {
+    tooltipSize: 'large'
+  }
+};
+
+export const TooltipPositionTop: Story = {
+  args: {
+    meTooltip: 'Тултип сверху',
+    tooltipPosition: 'top',
+  },
+};
+
+export const TooltipPositionBottom: Story = {
+  args: {
+    meTooltip: 'Тултип снизу',
+    tooltipPosition: 'bottom',
+  },
+};
+
+export const TooltipPositionLeft: Story = {
+  args: {
+    meTooltip: 'Тултип слева',
+    tooltipPosition: 'left',
+  },
+};
+
+export const TooltipPositionRight: Story = {
+  args: {
+    meTooltip: 'Тултип справа',
+    tooltipPosition: 'right',
+  },
+};
+
+export const WithHTMLContent: Story = {
   args: {
     meTooltip: '<strong>Жирный текст</strong> и <em>курсив</em>',
     tooltipPosition: 'bottom',
   },
-  render: (args) => ({
-    template: `
-      <dx-button
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition">
-        Тултип с HTML содержимым
-      </dx-button>
-    `,
-    props: args,
-  }),
 };
 
 export const WithAnimation: Story = {
@@ -159,56 +265,23 @@ export const WithAnimation: Story = {
       from: {
         opacity: 1,
       },
-
       to: {
         opacity: 0,
       },
       duration: 300,
     },
-  },
-  render: (args) => ({
-    template: `
-		<div style="padding: 150px 50px;">
-      <dx-button
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition"
-        [tooltipWidth]="tooltipWidth"
-        [tooltipMaxWidth]="tooltipMaxWidth"
-        [tooltipHeight]="tooltipHeight"
-        [tooltipMaxHeight]="tooltipMaxHeight"
-        [tooltipShowAnimation]="tooltipShowAnimation"
-        [tooltipHideAnimation]="tooltipHideAnimation">
-        Тултип с анимацией
-      </dx-button>
-		</div>
-    `,
-    props: args,
-  }),
+  }
 };
 
-export const ImageTooltip: Story = {
+export const WithImageContent: Story = {
   args: {
     tooltipPosition: 'right',
     tooltipWidth: undefined,
     tooltipMaxWidth: 390,
     tooltipClass: 'me-custom-tooltip-wrapper',
-    colorMode: 'light',
     meTooltip: `
       <div class="me-tooltip-custom">
-        <div class="me-tooltip-image">
-          <svg xmlns="http://www.w3.org/2000/svg" width="390" height="140" viewBox="0 0 390 140" fill="none" preserveAspectRatio="xMidYMid slice">
-            <path fill="url(#paint0_linear)" d="M0 0h390v140H0z"/>
-            <path d="M0 70c97.5 0 97.5 40 195 40S487.5 30 585 30" stroke="#4A7DFF" stroke-width="2"/>
-            <path d="M0 90c97.5 0 97.5-40 195-40s292.5 80 390 80" stroke="#8C62FF" stroke-width="2"/>
-            <defs>
-              <linearGradient id="paint0_linear" x1="0" y1="0" x2="390" y2="140" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="#FF8A00"/>
-                <stop offset="0.5" stop-color="#9C4DFF"/>
-                <stop offset="1" stop-color="#4A7DFF"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
+        <div class="me-tooltip-image"></div>
         <div class="me-tooltip-content">
           <h1 class="me-tooltip-title">Заголовок</h1>
           <p class="me-tooltip-text">Трансформатор - это устройство, способное изменять напряжение переменного тока</p>
@@ -216,22 +289,6 @@ export const ImageTooltip: Story = {
       </div>
     `,
   },
-  render: (args) => ({
-    template: `
-      <div style="padding: 50px;">
-        <dx-button
-          [meTooltip]="meTooltip"
-          [tooltipPosition]="tooltipPosition"
-          [tooltipWidth]="tooltipWidth"
-          [tooltipMaxWidth]="tooltipMaxWidth"
-          [tooltipClass]="tooltipClass"
-          [colorMode]="colorMode">
-          Тултип с изображением
-        </dx-button>
-      </div>
-    `,
-    props: args,
-  }),
 };
 
 export const WithMaxDimensions: Story = {
@@ -239,23 +296,10 @@ export const WithMaxDimensions: Story = {
     meTooltip:
       'Это тултип с ограничением максимальных размеров. Длинный текст будет автоматически переноситься на новую строку при достижении максимальной ширины.',
     tooltipPosition: 'top',
+    tooltipSize: 'small',
     tooltipWidth: undefined,
     tooltipMaxWidth: 200,
+    tooltipMaxHeight: 200,
     tooltipHeight: undefined,
-    tooltipMaxHeight: 150,
-  },
-  render: (args) => ({
-    template: `
-      <dx-button
-        [meTooltip]="meTooltip"
-        [tooltipPosition]="tooltipPosition"
-        [tooltipWidth]="tooltipWidth"
-        [tooltipMaxWidth]="tooltipMaxWidth"
-        [tooltipHeight]="tooltipHeight"
-        [tooltipMaxHeight]="tooltipMaxHeight">
-        Тултип с ограничением размеров
-      </dx-button>
-    `,
-    props: args,
-  }),
+  }
 };
