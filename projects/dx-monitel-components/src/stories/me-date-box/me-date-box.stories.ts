@@ -4,15 +4,15 @@ import {
   argsToTemplate,
   moduleMetadata,
 } from '@storybook/angular';
-import { DxDateBoxModule, DxValidatorModule } from 'devextreme-angular';
+import { DxDateBoxComponent, DxValidatorModule } from 'devextreme-angular';
 import { MeDateBoxDirective, MeLabelDirective } from '../../public-api';
 
 export default {
-  title: 'Components/DateBox',
+  title: 'Components/Fields/DateBox',
   decorators: [
     moduleMetadata({
-      declarations: [MeDateBoxDirective, MeLabelDirective],
-      imports: [DxDateBoxModule, DxValidatorModule],
+      imports: [DxValidatorModule],
+      declarations: [MeDateBoxDirective, DxDateBoxComponent, , MeLabelDirective],
     }),
   ],
   argTypes: {
@@ -232,7 +232,7 @@ export default {
     cancelButtonText: 'Отмена',
     dateOutOfRangeMessage: '',
     dateSerializationFormat: '',
-    disabledDates: '',
+    disabledDates: undefined,
     displayFormat: '',
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
@@ -256,9 +256,9 @@ export default {
     </dx-date-box>
   `,
   }),
-} satisfies Meta<DxDateBoxModule | MeDateBoxDirective>;
+} satisfies Meta<DxDateBoxComponent | MeDateBoxDirective>;
 
-type Story = StoryObj<DxDateBoxModule | MeDateBoxDirective>
+type Story = StoryObj<DxDateBoxComponent | MeDateBoxDirective>
 
 export const Default: Story = {};
 
@@ -377,18 +377,19 @@ export const WithDescription: Story = {
         </dxi-validation-rule>
       </dx-validator>
     </dx-date-box>
-    <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>`,
+    <p class="me-input-description" *ngIf="description">{{ description }}</p>`,
   })
 };
 
 export const WithLabelRow: Story = {
   args: {
-    ...Default.args,
     labelMode: 'hidden',
-    description: 'description',
   },
   render: (args) => ({
-    props: args,
+    props: {
+      ...args,
+      description: 'Description'
+    },
     template: `
     <div meLabel
       labelDirection="row"
@@ -399,7 +400,7 @@ export const WithLabelRow: Story = {
       >
       </dx-date-box>
     </div>
-    <p class='autocomplete-box-desc' *ngIf="description">{{ description }}</p>
+    <p class="me-input-description" *ngIf="description">{{ description }}</p>
     `,
   }),
 };

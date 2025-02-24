@@ -1,75 +1,208 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as TextAreaStories from "./me-text-area.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as textAreaStories from "./me-text-area.stories";
 
-
-<Meta
-  title="Components/TextArea"
-  of={TextAreaStories}
-/>
+<Meta name="TextArea Documentation" of={textAreaStories} />
 
 # TextArea
 
-## Директива meTextArea
+## Директива `meTextArea`
 
-Директива `meTextArea` расширяет функциональность стандартного компонента `textArea` DevExtreme, добавляя дополнительные настройки.
+Применение директивы `meTextArea` к компоненту `dx-text-area` приводит его к оформлению, соответствующему дизайн-системе: задаются стандартные отступы, размеры (по умолчанию — `size="medium"`) и стилизация лейбла. Дополнительно доступны параметры для управления поведением компонента.
 
-[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTextArea/)
+Документация на сайте разработчика DevExtreme:
 
-[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TextArea/Overview/Light/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTextArea/"
+    target="*blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TextArea/Overview/Light/"
+    target="*blank"
+  >
+    Демо
+  </a>
 
-<Canvas name="Default" of={TextAreaStories.Default} />
-<Controls of={TextAreaStories.Default} />
+<Canvas name="Default" of={textAreaStories.Default} />
+<Controls of={textAreaStories.Default} />
 
 ## Дизайн
 
 <Figma
   height="50%"
-  	collapsable
-  	defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17-1262&node-type=canvas&t=tmDOoMTrKt6lidAQ-0"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=489-15221&t=9EUvd1w8jEIQr6dE-4"
 />
 
 ## Примеры использования:
 
-- [Размеры TextArea](#размеры-textarea)
-- [Положение Label](#положение-label)
-- [Состояние ReadOnly и Disabled](#состояние-readonly-и-disabled)
-- [Контроль восоты и ширины](#контроль-высоты-и-ширины)
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [Разные режимы положения лейбла](#разные-режимы-положения-лейбла)
+  - [Лейбл внешний (по умолчанию)](#лейбл-внешний)
+  - [Лейбл статичный](#лейбл-статичный)
+  - [Лейбл всплывающий](#лейбл-всплывающий)
+  - [Лейбл невидимый](#лейбл-невидимый)
+  - [Лейбл слева](#лейбл-слева)
+- [Состояния readOnly и disabled](#состояния-readonly-и-disabled)
+  - [Состояние readOnly](#состояние-readonly)
+  - [Состояние disabled](#состояние-disabled)
+  - [Состояние readOnly и disabled](#состояние-readonly-и-disable)
+- [Контроль высоты и ширины](#контроль-высоты-и-ширины)
+  - [Фиксированная высота](#фиксированная-высота)
+  - [Автоматическая высота](#автоматическая-высота)
 - [Валидация поля](#валидация-поля)
 
-### Размеры TextArea
-Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
+### Размеры компонента
 
+Изменяйте размеры компонента с помощью параметра `size`. Доступны три варианта: `small`, `medium` и `large`.
+
+#### Компонент небольшого размера
+
+<Canvas of={textAreaStories.SizeSmall} />
 <Source
-  code={`<dx-text-area meTextArea size="size"></dx-text-area>`}
-  dark
+  code={`<dx-text-area meTextArea size="small"></dx-text-area>`}
   language="html"
+  dark
 />
 
-### Положение Label
-Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `top`, `inside`, `hidden`. Для изменения самого Label внутри используйте параметр `label`
+#### Компонент среднего размера
 
+<Canvas of={textAreaStories.SizeMedium} />
 <Source
-  code={`<dx-text-area meTextArea labelMode="labelMode" label="label"></dx-text-area>`}
-  dark
+  code={`<dx-text-area meTextArea size="medium"></dx-text-area>`}
   language="html"
+  dark
 />
 
-### Состояние ReadOnly и Disabled
+#### Компонент большого размера
+
+<Canvas of={textAreaStories.SizeLarge} />
+<Source
+  code={`<dx-text-area meTextArea size="large"></dx-text-area>`}
+  language="html"
+  dark
+/>
+
+### Разные режимы положения лейбла
+
+Настройте отображение лейбла с помощью параметров `label` и `labelMode`. Доступны режимы: `outside`, `static`, `floating` и `hidden`.
+
+#### Лейбл внешний
+
+<Canvas of={textAreaStories.LabelModeOutside} />
+<Source
+  code={`<dx-text-area meTextArea labelMode="outside" label="Label*"></dx-text-area>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл статичный
+
+<Canvas of={textAreaStories.LabelModeStatic} />
+<Source
+  code={`<dx-text-area meTextArea labelMode="static" label="Label*"></dx-text-area>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл всплывающий
+
+<Canvas of={textAreaStories.LabelModeFloating} />
+<Source
+  code={`<dx-text-area meTextArea labelMode="floating" label="Label*"></dx-text-area>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл невидимый
+
+<Canvas of={textAreaStories.LabelModeHidden} />
+<Source
+  code={`<dx-text-area meTextArea labelMode="hidden" label="Label*"></dx-text-area>`}
+  language="html"
+  dark
+/>
+
+#### Лейбл слева
+
+Чтобы разместить лейбл слева от элемента, оберните компонент `dx-data-box` с директивой `meTextArea` в контейнер с директивой `meLabel` и параметром `labelDirection="row"`, а для самого DateBox установите `labelMode="hidden"`:
+
+<Canvas of={textAreaStories.WithLabelRow} />
+<Source
+  code={`
+<div meLabel labelDirection="row" style="width: 250px;">
+  <span>Label*</span>
+  <dx-text-area meTextArea labelMode="hidden"></dx-text-area>
+</div>
+`}
+  language="html"
+  dark
+/>
+
+### Состояния readOnly и disabled
+
 Для изменения состояний используйте параметры `readOnly` и `disabled` со значениями `true` и `false`.
 
+#### Состояние readOnly
+
+<Canvas of={textAreaStories.StateReadOnly} />
 <Source
-  code={`<dx-text-area meTextArea readOnly="true" disabled="true"></dx-text-area>`}
+  code={`<dx-text-area
+    meTextArea
+    readOnly="true"
+    value="Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  ></dx-text-area>`}
   dark
   language="html"
 />
 
+#### Состояние disabled
 
-#### Контроль высоты и ширины
-Для изменения высоты и ширины используйте параметры `height` и `width`.
-Для автоматического изменения высоты и ширины используйте параметр `autoResizeEnabled`.	
+<Canvas of={textAreaStories.StateDisabled} />
+<Source
+  code={`<dx-text-area meTextArea disabled="true"></dx-text-area>`}
+  dark
+  language="html"
+/>
 
+#### Состояние readOnly и disabled
+
+<Canvas of={textAreaStories.StateDisabledAndReadOnly} />
+<Source
+  code={`<dx-text-area
+    meTextArea
+    disabled="true"
+    readOnly="true"
+    value="Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  ></dx-text-area>`}
+  dark
+  language="html"
+/>
+
+### Контроль высоты и ширины
+
+Для изменения высоты и ширины используйте параметры `height`, `width`.
+
+Для автоматического изменения высоты и ширины используйте параметр `autoResizeEnabled`.
+
+#### Фиксированная высота
+
+<Canvas of={textAreaStories.WithFixedHeight} />
+<Source
+  code={`<dx-text-area meTextArea height="190px"></dx-text-area>`}
+  dark
+  language="html"
+/>
+
+#### Автоматическая высота
+
+<Canvas of={textAreaStories.WithAutoResize} />
 <Source
   code={`<dx-text-area meTextArea autoResizeEnabled="true"></dx-text-area>`}
   dark
@@ -77,6 +210,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
 />
 
 ### Валидация поля
+
 Для валидации используйте `<dx-validator>` внутри тэга `dx-text-area`. Для добавления валидации используйте тэг `<dxi-validation-rule>` и параметры `type` и `message`.
 Не забудьте импортировать `DxTextAreaModule` и `DxValidatorModule`.
 Используйте параметры `validationMessageMode` для изменения режима отображения сообщения об ошибке. Варианты: `auto` и `always`.
@@ -87,7 +221,7 @@ import { Figma } from "@storybook/addon-designs/blocks";
   [(validationMessageMode)]="validationMessageMode"
   [(validationMessagePosition)]="validationMessagePosition">
   <dx-validator>
-    <dxi-validation-rule 
+    <dxi-validation-rule
     type="required"
     message="Required"
     ></dxi-validation-rule>
