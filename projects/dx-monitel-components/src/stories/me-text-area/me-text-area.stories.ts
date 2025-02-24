@@ -1,20 +1,23 @@
-import { DxTextAreaModule, DxValidatorModule } from 'devextreme-angular';
-
 import {
-  argsToTemplate,
   Meta,
-  moduleMetadata,
   StoryObj,
+  argsToTemplate,
+  moduleMetadata,
 } from '@storybook/angular';
+import { DxTextAreaComponent, DxValidatorModule } from 'devextreme-angular';
 
-import { MeTextAreaDirective } from '../../lib/directives/me-text-area/me-text-area.directive';
+import { MeLabelDirective, MeTextAreaDirective } from '../../public-api';
 
 export default {
   title: 'Components/Fields/TextArea',
   decorators: [
     moduleMetadata({
-      declarations: [MeTextAreaDirective],
-      imports: [DxTextAreaModule, DxValidatorModule],
+      imports: [DxValidatorModule],
+      declarations: [
+        MeTextAreaDirective,
+        DxTextAreaComponent,
+        MeLabelDirective
+      ],
     }),
   ],
   argTypes: {
@@ -50,23 +53,6 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'outside' },
-      },
-    },
-    type: {
-      control: 'select',
-      options: ['date', 'datetime', 'time'],
-      description: 'Тип значения для отображения.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'date' },
-      },
-    },
-    showClearButton: {
-      control: 'boolean',
-      description: 'Показывает кнопку для очистки поля.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
       },
     },
     readOnly: {
@@ -113,10 +99,18 @@ export default {
     value: {
       control: 'text',
       description: 'Значение поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     validationError: {
       control: 'text',
       description: 'Текст ошибки валидации.',
+      table: {
+        type: { summary: 'any' },
+        defaultValue: { summary: 'null' },
+      },
     },
     validationMessageMode: {
       control: 'select',
@@ -154,46 +148,45 @@ export default {
     }
   },
   args: {
-    autoResizeEnabled: false,
-    activeStateEnabled: true,
-    size: 'medium',
     label: 'Label*',
     placeholder: 'Enter your text',
+    size: 'medium',
+    labelMode: 'outside',
     readOnly: false,
     disabled: false,
     isValid: true,
+    autoResizeEnabled: false,
+    activeStateEnabled: true,
     validationError: '',
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
   },
   render: (args) => ({
-    props: {
-      ...args,
-    },
+    props: args,
     template: `
-		<div class="textarea-wrapper">
-			<dx-text-area
-			meTextArea
-      ${argsToTemplate(args)}
-			[inputAttr]="{ 'aria-label': 'Notes' }"
-			>
-			    <dx-validator>
-        <dxi-validation-rule
-            type="required"
-            message="Required"
+      <div class="textarea-wrapper">
+        <dx-text-area
+          meTextArea
+          [inputAttr]="{ 'aria-label': 'Notes' }"
+          ${argsToTemplate(args)}
         >
-        </dxi-validation-rule>
-    </dx-validator>
-			</dx-text-area>
-		</div>
-`,
+          <dx-validator>
+            <dxi-validation-rule
+              type="required"
+              message="Required"
+            >
+            </dxi-validation-rule>
+          </dx-validator>
+        </dx-text-area>
+      </div>
+    `,
     styles: ['.textarea-wrapper { padding-top: 20px; }'],
   }),
-} as Meta;
+} satisfies Meta<DxTextAreaComponent | MeTextAreaDirective>;
 
-type Story = StoryObj;
+type Story = StoryObj<DxTextAreaComponent | MeTextAreaDirective>;
 
-export const Default: Story = { };
+export const Default: Story = {};
 
 export const SizeSmall: Story = {
   args: {
@@ -266,8 +259,31 @@ export const WithAutoResize: Story = {
   },
 };
 
-export const WithCustomHeight: Story = {
+export const WithFixedHeight: Story = {
   args: {
-    height: '190',
+    height: '190px',
   },
+};
+
+export const WithLabelRow: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <div meLabel
+      labelDirection="row"
+      width="250px"
+      class="dx-widget"
+      >
+      <span>Label*</span>
+      <dx-text-area meTextArea
+        ${argsToTemplate(args)}
+      >
+      </dx-text-area>
+    </div>
+    <p class='me-input-description' *ngIf="description">{{ description }}</p>
+    `,
+  }),
 };
