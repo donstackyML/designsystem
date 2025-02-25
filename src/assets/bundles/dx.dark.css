@@ -334,6 +334,7 @@
   --Controls-Content-In-Controls-Success-Disabled: #387450;
   --Controls-Informative-BG-Notification: #476398;
   --Controls-Informative-BG-Selected-Element: #2c4483;
+  --Controls-Informative-Skeleton-Component: #353639;
   --Controls-Scrollbar-Default: #ffffff1f;
   --Controls-Scrollbar-Drag: #ffffff7a;
   --Controls-Scrollbar-Hover: #ffffff3d;
@@ -386,6 +387,7 @@
   --Text-Secondary: #a1a1a7;
   --Text-Success: #00b955;
   --Text-Tertiary: #bdbdc1;
+  --Skeleton-Animation-Gradient: linear-gradient(90deg, #1d1e21 25%, #353639 50%, #1d1e21 75%);
 }
 
 .me-colors-alternate {
@@ -509,6 +511,7 @@
   --Controls-Content-In-Controls-Success-Disabled: #a0cab1;
   --Controls-Informative-BG-Notification: #6e86c3;
   --Controls-Informative-BG-Selected-Element: #c4d8ff;
+  --Controls-Informative-Skeleton-Component: #f5f6fb;
   --Controls-Scrollbar-Default: #18181a1f;
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
@@ -561,6 +564,7 @@
   --Text-Secondary: #808084;
   --Text-Success: #00993d;
   --Text-Tertiary: #717175;
+  --Skeleton-Animation-Gradient: linear-gradient(90deg, #f5f6fb 25%, #e4e6ec 50%, #f5f6fb 75%);
 }
 
 .me-colors-light {
@@ -684,6 +688,7 @@
   --Controls-Content-In-Controls-Success-Disabled: #a0cab1;
   --Controls-Informative-BG-Notification: #6e86c3;
   --Controls-Informative-BG-Selected-Element: #c4d8ff;
+  --Controls-Informative-Skeleton-Component: #f5f6fb;
   --Controls-Scrollbar-Default: #18181a1f;
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
@@ -736,6 +741,7 @@
   --Text-Secondary: #808084;
   --Text-Success: #00993d;
   --Text-Tertiary: #717175;
+  --Skeleton-Animation-Gradient: linear-gradient(90deg, #f5f6fb 25%, #e4e6ec 50%, #f5f6fb 75%);
 }
 
 .me-colors-dark {
@@ -859,6 +865,7 @@
   --Controls-Content-In-Controls-Success-Disabled: #387450;
   --Controls-Informative-BG-Notification: #476398;
   --Controls-Informative-BG-Selected-Element: #2c4483;
+  --Controls-Informative-Skeleton-Component: #353639;
   --Controls-Scrollbar-Default: #ffffff1f;
   --Controls-Scrollbar-Drag: #ffffff7a;
   --Controls-Scrollbar-Hover: #ffffff3d;
@@ -911,6 +918,7 @@
   --Text-Secondary: #a1a1a7;
   --Text-Success: #00b955;
   --Text-Tertiary: #bdbdc1;
+  --Skeleton-Animation-Gradient: linear-gradient(90deg, #1d1e21 25%, #353639 50%, #1d1e21 75%);
 }
 
 /* flex */
@@ -24921,6 +24929,7 @@ input.dx-hidden {
   --Controls-Content-In-Controls-Success-Disabled: #a0cab1;
   --Controls-Informative-BG-Notification: #6e86c3;
   --Controls-Informative-BG-Selected-Element: #c4d8ff;
+  --Controls-Informative-Skeleton-Component: #f5f6fb;
   --Controls-Scrollbar-Default: #18181a1f;
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
@@ -24973,6 +24982,7 @@ input.dx-hidden {
   --Text-Secondary: #808084;
   --Text-Success: #00993d;
   --Text-Tertiary: #717175;
+  --Skeleton-Animation-Gradient: linear-gradient(90deg, #f5f6fb 25%, #e4e6ec 50%, #f5f6fb 75%);
 }
 
 .me-popover.me-popover-color-mode-alternate .dx-overlay-content.dx-popup-normal {
@@ -30661,54 +30671,66 @@ input.dx-hidden {
   box-shadow: none !important;
 }
 
-.skeleton {
+.me-skeleton-item {
   display: flex;
+}
+.me-skeleton-item-content {
+  background-color: var(--Controls-Informative-Skeleton-Component);
+  display: flex;
+  height: inherit;
   width: 100%;
 }
-
-.skeleton-content {
-  flex: 1;
+.me-skeleton-item__shape-rounded {
+  border-radius: 2px;
 }
-
-.skeleton-active .skeleton-avatar,
-.skeleton-active .skeleton-title,
-.skeleton-active .skeleton-row {
-  background: linear-gradient(90deg, #1d1e21 25%, #353639 50%, #1d1e21 75%);
+.me-skeleton-item__shape-circle {
+  border-radius: 50%;
+}
+.me-skeleton-item__shape-rectangle {
+  border-radius: 0%;
+}
+.me-skeleton-item-animated {
+  background: var(--Skeleton-Animation-Gradient);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
 }
 
-.skeleton-avatar {
-  flex-shrink: 0;
-  background-color: #353639;
-  margin-right: 16px;
+.me-skeleton {
+  --skeleton-bg: var(--Controls-Informative-Skeleton-Component);
+  --skeleton-gap: 8px;
+  --content-gap: var(--skeleton-gap);
+  --paragraph-gap: var(--skeleton-gap);
+  display: flex;
+  width: 100%;
+  gap: var(--skeleton-gap);
 }
-
-.skeleton-avatar-circle {
-  border-radius: 50%;
+.me-skeleton-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-gap);
+  flex: 1;
 }
-
-.skeleton-avatar-square {
-  border-radius: 4px;
-}
-
-.skeleton-title {
-  height: 16px;
-  background-color: #353639;
-  margin-bottom: 16px;
+.me-skeleton-title {
   width: 100%;
 }
-
-.skeleton-paragraph .skeleton-row {
+.me-skeleton-paragraph {
+  gap: var(--paragraph-gap);
+  display: flex;
+  flex-direction: column;
+}
+.me-skeleton-paragraph-row {
   height: 16px;
-  background-color: #353639;
-  margin-bottom: 12px;
   width: 100%;
 }
-
-.skeleton-round .skeleton-title,
-.skeleton-round .skeleton-row {
+.me-skeleton-round .me-skeleton-title, .me-skeleton-round .me-skeleton-row {
   border-radius: 4px;
+}
+.me-skeleton-active .me-skeleton-avatar,
+.me-skeleton-active .me-skeleton-title,
+.me-skeleton-active .me-skeleton-row {
+  background: var(--Skeleton-Animation-Gradient);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
 }
 
 @keyframes shimmer {
@@ -33789,6 +33811,7 @@ input.dx-hidden {
   --Controls-Content-In-Controls-Success-Disabled: #a0cab1;
   --Controls-Informative-BG-Notification: #6e86c3;
   --Controls-Informative-BG-Selected-Element: #c4d8ff;
+  --Controls-Informative-Skeleton-Component: #f5f6fb;
   --Controls-Scrollbar-Default: #18181a1f;
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
@@ -33841,6 +33864,7 @@ input.dx-hidden {
   --Text-Secondary: #808084;
   --Text-Success: #00993d;
   --Text-Tertiary: #717175;
+  --Skeleton-Animation-Gradient: linear-gradient(90deg, #f5f6fb 25%, #e4e6ec 50%, #f5f6fb 75%);
 }
 .dx-toast-wrapper .me-toast-header-message,
 .dx-toast-wrapper .dx-toast-message {
@@ -34995,6 +35019,7 @@ input.dx-hidden {
   --Controls-Content-In-Controls-Success-Disabled: #a0cab1;
   --Controls-Informative-BG-Notification: #6e86c3;
   --Controls-Informative-BG-Selected-Element: #c4d8ff;
+  --Controls-Informative-Skeleton-Component: #f5f6fb;
   --Controls-Scrollbar-Default: #18181a1f;
   --Controls-Scrollbar-Drag: #18181a7a;
   --Controls-Scrollbar-Hover: #18181a3d;
@@ -35047,6 +35072,7 @@ input.dx-hidden {
   --Text-Secondary: #808084;
   --Text-Success: #00993d;
   --Text-Tertiary: #717175;
+  --Skeleton-Animation-Gradient: linear-gradient(90deg, #f5f6fb 25%, #e4e6ec 50%, #f5f6fb 75%);
 }
 
 .me-tooltip * {

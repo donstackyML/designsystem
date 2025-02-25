@@ -15,6 +15,7 @@ import { MeMenuLeftComponent } from './components/me-menu-left/me-menu-left.comp
 import { MePaginationComponent } from './components/me-pagination/me-pagination.component';
 import { MeSidepageComponent } from './components/me-sidepage/me-sidepage.component';
 import { MeSkeletonComponent } from './components/me-skeleton/me-skeleton.component';
+import { MeSkeletonItemComponent } from './components/me-skeleton/me-skeleton-item/me-skeleton-item.component';
 import { MeStatusBarComponent } from './components/me-status-bar/me-status-bar.component';
 import { MeToastComponent } from './components/me-toast/me-toast.component';
 import { MeAccordionModule } from './directives/me-accordion/me-accordion.module';
@@ -56,6 +57,7 @@ import { MeToolbarModule } from './directives/me-toolbar/me-toolbar.module';
 import { MeTooltipModule } from './directives/me-tooltip/me-tooltip.module';
 import { MeTreeListModule } from './directives/me-tree-list/me-tree-list.module';
 import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -100,6 +102,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MeIconComponent,
     MeBreadcrumbsComponent,
     MeDataGridModule,
+    MeSkeletonItemComponent,
     MeSkeletonComponent,
     MeChipsComponent,
     MeChipComponent,
@@ -157,6 +160,7 @@ import { MeTreeViewModule } from './directives/me-tree-view/me-tree-view.module'
     MePaginationComponent,
     MeIconComponent,
     MeBreadcrumbsComponent,
+    MeSkeletonItemComponent,
     MeSkeletonComponent,
     MeChipsComponent,
     MeChipComponent,

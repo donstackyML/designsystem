@@ -11,6 +11,7 @@ export { MeMenuLeftComponent } from './lib/components/me-menu-left/me-menu-left.
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
+export { MeSkeletonItemComponent } from './lib/components/me-skeleton/me-skeleton-item/me-skeleton-item.component';
 export { MeStatusBarComponent } from './lib/components/me-status-bar/me-status-bar.component';
 export { MeToastComponent } from './lib/components/me-toast/me-toast.component';
 
