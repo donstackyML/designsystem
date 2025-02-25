@@ -1,5 +1,5 @@
 <div class="me-pagination" [ngClass]="[transparentBackground ? 'me-pagination--transparent' : 'me-pagination--filled', 'me-pagination--' + size]">
-  <div class="me-pagination__size-controls" [ngClass]="size">
+  <div class="me-pagination__size-controls" [ngClass]="[hasPageSizeControlButtons ? 'me-pagination__size-controls-visible' : '', size]">
     <ng-container *ngIf="useButtons; else dropDownTemplate">
       <dx-button
         *ngFor="let item of itemsPerPageOptions"

@@ -43,11 +43,15 @@ export class MePaginationComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() itemsPerPage: number = 10;
   @Input() currentPage: number = 1;
   @Input() maxVisiblePages: number = 7;
+
+  @Input() hasPageSizeControlButtons: boolean = true;
   @Input() useButtons: boolean = false;
   @Input() itemsPerPageOptions: number[] = [10, 50, 100];
-  @Input() size: MeSize = 'medium';
+
   @Input() transparentBackground: boolean = false;
   @Input() isDarkTheme: boolean = false;
+
+  @Input() size: MeSize = 'medium';
 
   @Output() pageChange = new EventEmitter<number>();
   @Output() itemsPerPageChange = new EventEmitter<number>();
