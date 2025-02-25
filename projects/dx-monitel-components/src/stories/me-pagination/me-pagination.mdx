@@ -1,36 +1,145 @@
-import { Meta, Story, Controls, Source } from "@storybook/addon-docs";
-import * as PaginationStories from "./me-pagination.stories";
-import { moduleMetadata } from "@storybook/angular";
-import { MePaginationComponent } from "../../public-api";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as paginationStories from "./me-pagination.stories";
 
-<Meta
-  title="Компоненты/Pagination(RC)"
-  component={MePaginationComponent}
-  decorators={[
-    moduleMetadata({
-      imports: [MePaginationComponent],
-    }),
-  ]}
-  of={PaginationStories}
-/>
+<Meta name="Pagination Documentation" of={paginationStories} />
 
 # Pagination
 
-## Компонент MePagination
+## Компонент `me-pagination`
 
-Компонент `MePagination` предоставляет удобный интерфейс для навигации по страницам данных, включая возможность выбора количества элементов на странице и отображение общего количества элементов.
+Компонент `me-pagination` предоставляет удобный интерфейс для навигации по страницам данных, включая возможность выбора количества элементов на странице и отображение общего количества элементов.
 
-<Story name="Default" of={PaginationStories.Default} />
-<Controls of={PaginationStories.Default} />
+<Canvas of={paginationStories.Default} />
+<Controls of={paginationStories.Default} />
 
-<Source of={PaginationStories.Default} dark />
+## Дизайн
 
-## Примеры использования:
+<Figma
+  height="50%"
+  collapsable
+	defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1448-20217"
+/>
+
+## Примеры использования
+
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера)
+  - [Компонент большого размера](#компонент-большого-размера)
+- [Использование кнопок контролирующих количество элементов на странице](#использование-кнопок-контролирующих-количество-элементов-на-странице)
+  - [Использование кнопки с выпадающим списком (по умолчанию)](#использование-кнопки-с-выпадающим-списком)
+  - [Использование группы кнопок](#использование-группы-кнопок)
+  - [Без использования контролирующих кнопок](#без-использования-контролирующих-кнопок)
+- [Много страниц](#много-страниц)
+- [Мало элементов](#мало-элементов)
+- [Пользовательское количество элементов на странице](#пользовательское-количество-элементов-на-странице)
+- [Последняя страница](#последняя-страница)
+- [Максимальное количество видимых страниц](#максимальное-количество-видимых-страниц)
+- [Обработка событий](#обработка-событий)
+- [Настройка пагинации для таблицы данных](#настройка-пагинации-для-таблицы-данных)
+
+### Размеры компонента
+
+Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium`, `large`.
+
+#### Компонент небольшого размера
+
+<Canvas of={paginationStories.SizeSmall} />
+<Source
+  code={`
+<me-pagination
+  totalItems="100"
+  size="small"
+>
+</me-pagination>`}
+  language="html"
+  dark
+/>
+
+#### Компонент среднего размера
+
+<Canvas of={paginationStories.SizeMedium} />
+<Source
+  code={`
+<me-pagination
+  totalItems="100"
+  size="medium"
+>
+</me-pagination>`}
+  language="html"
+  dark
+/>
+
+#### Компонент большого размера
+
+<Canvas of={paginationStories.SizeLarge} />
+<Source
+  code={`
+<me-pagination
+  totalItems="100"
+  size="large"
+>
+</me-pagination>`}
+  language="html"
+  dark
+/>
+
+### Использование кнопок контролирующих количество элементов на странице
+
+#### Использование кнопки с выпадающим списком
+
+*По умолчанию компонент предоставляет выпадающий список для выбора количества элементов на странице, но вы можете отключить его, установив параметр `useButtons` в `false`. Чтобы задать варианты количества элементов на странице, используйте параметр `itemsPerPageOptions`.*
+
+<Canvas name="PageSizeControlWithDropDownButton" of={paginationStories.PageSizeControlWithDropDownButton} />
+<Source
+  code={`
+<me-pagination
+  totalItems="100"
+  itemsPerPageOptions="[10, 20, 30]"
+>
+</me-pagination>`}
+  language="html"
+  dark
+/>
+
+#### Использование группы кнопок
+
+*Чтобы использовать группу кнопок, необходимо установить параметр `useButtons` в `true`. Для задания вариантов количества элементов на странице, используйте параметр `itemsPerPageOptions`.*
+
+<Canvas name="PageSizeControlWithButtons" of={paginationStories.PageSizeControlWithButtons} />
+<Source
+  code={`
+<me-pagination
+  totalItems="100"
+  itemsPerPageOptions="[10, 20, 30]"
+  useButtons="true"
+>
+</me-pagination>`}
+  language="html"
+  dark
+/>
+
+#### Без использования контролирующих кнопок
+
+*Если вам не нужно использовать кнопки контролирующих количество элементов на странице, установите параметр `hasPageSizeControlButtons` в `false`.*
+
+<Canvas name="WithoutPageSizeControlButtons" of={paginationStories.WithoutPageSizeControlButtons} />
+<Source
+  code={`
+<me-pagination
+  totalItems="100"
+  hasPageSizeControlButtons="false"
+>
+</me-pagination>`}
+  language="html"
+  dark
+/>
 
 ### Много страниц
 
-<Story name="ManyPages" of={PaginationStories.ManyPages} />
-
+<Canvas name="ManyPages" of={paginationStories.ManyPages} />
 <Source
   code={`<me-pagination [totalItems]="1000" [itemsPerPage]="20" [currentPage]="5" [maxVisiblePages]="7"></me-pagination>`}
   dark
@@ -39,7 +148,7 @@ import { MePaginationComponent } from "../../public-api";
 
 ### Мало элементов
 
-<Story name="FewItems" of={PaginationStories.FewItems} />
+<Canvas name="FewItems" of={paginationStories.FewItems} />
 
 <Source
   code={`<me-pagination [totalItems]="30" [itemsPerPage]="10" [currentPage]="1" [maxVisiblePages]="5"></me-pagination>`}
@@ -49,8 +158,7 @@ import { MePaginationComponent } from "../../public-api";
 
 ### Пользовательское количество элементов на странице
 
-<Story name="CustomItemsPerPage" of={PaginationStories.CustomItemsPerPage} />
-
+<Canvas name="CustomItemsPerPage" of={paginationStories.CustomItemsPerPage} />
 <Source
   code={`<me-pagination [totalItems]="500" [itemsPerPage]="50" [currentPage]="1" [maxVisiblePages]="5"></me-pagination>`}
   dark
@@ -59,8 +167,7 @@ import { MePaginationComponent } from "../../public-api";
 
 ### Последняя страница
 
-<Story name="LastPage" of={PaginationStories.LastPage} />
-
+<Canvas name="LastPage" of={paginationStories.LastPage} />
 <Source
   code={`<me-pagination [totalItems]="100" [itemsPerPage]="10" [currentPage]="10" [maxVisiblePages]="5"></me-pagination>`}
   dark
@@ -69,21 +176,16 @@ import { MePaginationComponent } from "../../public-api";
 
 ### Максимальное количество видимых страниц
 
-<Story name="MaxVisiblePages" of={PaginationStories.MaxVisiblePages} />
-
+<Canvas name="MaxVisiblePages" of={paginationStories.MaxVisiblePages} />
 <Source
   code={`<me-pagination [totalItems]="200" [itemsPerPage]="10" [currentPage]="5" [maxVisiblePages]="10"></me-pagination>`}
   dark
   language="html"
 />
 
-## Перечень свойств
+### Обработка событий
 
-<Controls story={PaginationStories.Default} />
-
-## Обработка событий
-
-Компонент Pagination поддерживает события для отслеживания изменений страницы и количества элементов на странице. Вот пример обработки этих событий:
+*Компонент Pagination поддерживает события для отслеживания изменений страницы и количества элементов на странице.*
 
 <Source
   code={`
@@ -96,27 +198,25 @@ import { MePaginationComponent } from "../../public-api";
   (itemsPerPageChange)="onItemsPerPageChange($event)"
 ></me-pagination>
 
-    // В вашем компоненте:
-    onPageChange(newPage: number) {
-      console.log('Страница изменена:', newPage);
-    }
+// В вашем компоненте:
+onPageChange(newPage: number) {
+  console.log('Страница изменена:', newPage);
+}
 
-    onItemsPerPageChange(newItemsPerPage: number) {
-      console.log('Изменено количество элементов на странице:', newItemsPerPage);
-    }
+onItemsPerPageChange(newItemsPerPage: number) {
+  console.log('Изменено количество элементов на странице:', newItemsPerPage);
+}
 
 `}
 dark
 language="typescript"
 />
 
-Это позволяет вам реагировать на изменения страницы и количества элементов на странице для обновления данных или выполнения других действий в вашем приложении.
+*Это позволяет вам реагировать на изменения страницы и количества элементов на странице для обновления данных или выполнения других действий в вашем приложении.*
 
 ### Настройка пагинации для таблицы данных
 
-<Story name="CustomItemsPerPage" of={PaginationStories.CustomItemsPerPage} />
-
-Вы можете использовать компонент пагинации вместе с таблицей данных для создания полнофункционального интерфейса навигации:
+*Вы можете использовать компонент пагинации вместе с таблицей данных для создания полнофункционального интерфейса навигации. Это может быть полезно, например, при отображении большого количества данных в таблице.*
 
 <Source
   code={`
@@ -138,4 +238,4 @@ language="typescript"
   language="html"
 />
 
-В этом примере мы создаем пагинацию для таблицы с 500 элементами, отображая по 50 элементов на странице. При изменении страницы или количества элементов на странице вы можете обновлять данные таблицы соответствующим образом.
+*В этом примере мы создаем пагинацию для таблицы с 500 элементами, отображая по 50 элементов на странице. При изменении страницы или количества элементов на странице вы можете обновлять данные таблицы соответствующим образом.*
