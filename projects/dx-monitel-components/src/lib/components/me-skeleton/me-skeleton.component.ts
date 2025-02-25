@@ -1,53 +1,66 @@
+import { NgClass, NgForOf, NgIf, NgStyle } from '@angular/common';
 import {
   Component,
+  ContentChild,
+  ElementRef,
+  HostBinding,
   Input,
-  OnInit,
   OnChanges,
+  OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { NgClass, NgForOf, NgIf, NgStyle } from '@angular/common';
+import { MeSkeletonItemComponent, type SkeletonItemProps, type SkeletonShape } from './me-skeleton-item/me-skeleton-item.component';
 
-export interface SkeletonAvatar {
+export interface SkeletonAvatar extends SkeletonItemProps {
   size?: number | 'large' | 'small' | 'default';
-  shape?: 'circle' | 'square';
 }
 
 export interface SkeletonTitle {
   width?: number | string;
+  height?: number | string;
 }
 
 export interface SkeletonParagraph {
   rows?: number;
   width?: number | string | Array<number | string>;
+  height?: number | string;
+  shape?: SkeletonShape;
+  gap?: string;
+}
+
+export interface SkeletonContentSettings {
+  gap?: string;
 }
 
 @Component({
   selector: 'me-skeleton',
-  standalone: true,
   templateUrl: './me-skeleton.component.html',
-  imports: [NgIf, NgClass, NgStyle, NgForOf],
+  standalone: true,
+  imports: [NgIf, NgStyle, NgForOf, MeSkeletonItemComponent],
 })
 export class MeSkeletonComponent implements OnInit, OnChanges {
-  private _active: boolean = false;
-  private _avatar: SkeletonAvatar | boolean = false;
-  private _loading: boolean = false;
-  private _paragraph: SkeletonParagraph | boolean = true;
-  private _title: SkeletonTitle | boolean = true;
-  private _round: boolean = false;
+  private _animated: boolean = false;
+  private _avatar: SkeletonAvatar | null = null;
+  private _loading: boolean = true;
+  private _paragraph: SkeletonParagraph | null = null;
+  private _title: SkeletonTitle | null = null;
+  private _shape: SkeletonShape = 'rounded';
 
-  @Input() set active(value: boolean) {
-    this._active = value;
+  @Input() set animated(value: boolean) {
+    this._animated = value;
     this.updateConfig();
   }
-  get active(): boolean {
-    return this._active;
+  get animated(): boolean {
+    return this._animated;
   }
 
-  @Input() set avatar(value: SkeletonAvatar | boolean) {
+  @Input() contentSettings: SkeletonContentSettings | null = null
+
+  @Input() set avatar(value: SkeletonAvatar | null) {
     this._avatar = value;
     this.updateConfig();
   }
-  get avatar(): SkeletonAvatar | boolean {
+  get avatar(): SkeletonAvatar | null {
     return this._avatar;
   }
 
@@ -59,34 +72,45 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
     return this._loading;
   }
 
-  @Input() set paragraph(value: SkeletonParagraph | boolean) {
+  @Input() set paragraph(value: SkeletonParagraph | null) {
     this._paragraph = value;
     this.updateConfig();
   }
-  get paragraph(): SkeletonParagraph | boolean {
+  get paragraph(): SkeletonParagraph | null {
     return this._paragraph;
   }
 
-  @Input() set title(value: SkeletonTitle | boolean) {
+  @Input() set title(value: SkeletonTitle | null) {
     this._title = value;
     this.updateConfig();
   }
-  get title(): SkeletonTitle | boolean {
+  get title(): SkeletonTitle | null {
     return this._title;
   }
 
-  @Input() set round(value: boolean) {
-    this._round = value;
+  @Input() set shape(value: SkeletonShape) {
+    this._shape = value;
     this.updateConfig();
   }
-  get round(): boolean {
-    return this._round;
+  get shape(): SkeletonShape {
+    return this._shape;
+  }
+
+  @ContentChild('customTitle', { read: ElementRef }) customTitle?: ElementRef;
+  @ContentChild('customParagraph', { read: ElementRef }) customParagraph?: ElementRef;
+
+  get hasCustomTitle(): boolean {
+    return !!this.customTitle;
+  }
+  get hasCustomParagraph(): boolean {
+    return !!this.customParagraph;
   }
 
   avatarClass: string = '';
-  avatarStyle: { [key: string]: string } = {};
+  avatarStyle: any = {};
   titleStyle: { [key: string]: string } = {};
   paragraphRows: Array<string> = [];
+  skeletonStyle: { [key: string]: string } = {};
 
   ngOnInit() {
     this.updateConfig();
@@ -102,17 +126,32 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
     this.setupAvatar();
     this.setupTitle();
     this.setupParagraph();
+    this.updateSkeletonStyle();
+  }
+
+  private updateSkeletonStyle(): void {
+    if (this.paragraph?.gap) {
+      this.skeletonStyle['--paragraph-gap'] = this.paragraph.gap;
+    }
+    if (this.contentSettings?.gap) {
+      this.skeletonStyle['--content-gap'] = this.contentSettings?.gap;
+    }
   }
 
   private setupAvatar(): void {
     if (this.avatar && typeof this.avatar === 'object') {
       this.avatarClass = this.avatar.shape
-        ? `skeleton-avatar-${this.avatar.shape}`
+        ? `me-skeleton-avatar-${this.avatar.shape}`
         : '';
       if (this.avatar.size) {
         this.avatarStyle = {
           width: this.getSize(this.avatar.size),
           height: this.getSize(this.avatar.size),
+        };
+      } else {
+        this.avatarStyle = {
+          width: this.avatar.width,
+          height: this.avatar.height
         };
       }
     } else {
@@ -122,12 +161,17 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
   }
 
   private setupTitle(): void {
-    if (this.title && typeof this.title === 'object' && this.title.width) {
+
+    if (this.title && typeof this.title === 'object') {
       this.titleStyle = {
         width:
           typeof this.title.width === 'number'
             ? `${this.title.width}px`
-            : this.title.width,
+            : this.title.width || '100%',
+        height:
+          typeof this.title.height === 'number'
+            ? `${this.title.height}px`
+            : this.title.height || '16px',
       };
     } else {
       this.titleStyle = {};
@@ -138,10 +182,12 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
     if (this.paragraph && typeof this.paragraph === 'object') {
       const rows = this.paragraph.rows || 3;
       if (Array.isArray(this.paragraph.width)) {
+
         this.paragraphRows = this.paragraph.width.map((width) =>
           typeof width === 'number' ? `${width}px` : width
-        );
-      } else {
+      );
+    } else {
+
         this.paragraphRows = Array(rows).fill('100%');
         if (this.paragraph.width) {
           this.paragraphRows[rows - 1] =

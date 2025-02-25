@@ -1,0 +1,109 @@
+import { Meta, Canvas, Controls, Source } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as skeletonItemStories from "./me-skeleton-item.stories";
+
+<Meta name="SkeletonItem Documentation" of={skeletonItemStories} />
+
+# SkeletonItem
+
+## Компонент `me-skeleton-item`
+
+Компонент `me-skeleton-item` предназначен для отображения заглушек (skeleton placeholders) в пользовательском интерфейсе во время загрузки контента.
+
+<Controls of={skeletonItemStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=835-1059"
+/>
+
+## Примеры использования
+
+### Базовый скелетон
+
+*Пример демонстрирует базовый скелетон с настройками по умолчанию. Используются стандартные значения: форма `rounded`, высота `8px`, ширина `100%` и анимация отключена.*
+
+<Canvas name="Базовый скелетон" of={skeletonItemStories.Default} />
+
+<Source
+  code={`<me-skeleton-item
+  shape="rounded"
+  height="8px"
+  width="100%"
+  [animated]="false">
+</me-skeleton-item>`}
+  language="html"
+  dark
+/>
+
+### Скелетон в форме круга
+
+*В этом примере скелетон принимает форму круга. Такой вариант часто используется для обозначения аватаров или круглых изображений. Здесь задаются одинаковые значения для ширины и высоты, что обеспечивает круглую форму.*
+
+<Canvas name="Скелетон в форме круга" of={skeletonItemStories.Circle} />
+
+<Source
+  code={`<me-skeleton-item
+  shape="circle"
+  height="50px"
+  width="50px"
+  [animated]="false">
+</me-skeleton-item>`}
+  language="html"
+  dark
+/>
+
+### Скелетон прямоугольной формы
+
+*Прямоугольный скелетон может использоваться для имитации загрузки блоков текста или изображений. В данном примере используется форма `rectangle` с заданными размерами.*
+
+<Canvas name="Скелетон прямоугольной формы" of={skeletonItemStories.Rectangle} />
+
+<Source
+  code={`<me-skeleton-item
+  shape="rectangle"
+  height="8px"
+  width="100%"
+  [animated]="false">
+</me-skeleton-item>`}
+  language="html"
+  dark
+/>
+
+### Анимированный скелетон
+
+*Включение анимации делает скелетон более динамичным и информативным, показывая пользователю, что происходит загрузка контента. В данном примере включена анимация с помощью свойства `animated`.*
+
+<Canvas name="Анимированный скелетон" of={skeletonItemStories.Animated} />
+
+<Source
+  code={`<me-skeleton-item
+  shape="rounded"
+  height="8px"
+  width="100%"
+  [animated]="true">
+</me-skeleton-item>`}
+  language="html"
+  dark
+/>
+
+### Скелетон с пользовательскими размерами
+
+*Этот пример демонстрирует настройку скелетона с изменёнными размерами. Здесь ширина задана как `200px`, а высота — `20px`, что позволяет адаптировать скелетон под конкретные макеты или компоненты.*
+
+<Canvas name="Скелетон с пользовательскими размерами" of={skeletonItemStories.CustomSize} />
+
+<Source
+  code={`<me-skeleton-item
+  shape="rounded"
+  height="20px"
+  width="200px"
+  [animated]="false">
+</me-skeleton-item>`}
+  language="html"
+  dark
+/>
