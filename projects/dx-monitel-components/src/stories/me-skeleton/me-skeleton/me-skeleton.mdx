@@ -1,0 +1,220 @@
+import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as skeletonStories from "./me-skeleton.stories";
+
+<Meta name="Skeleton Documentation" of={skeletonStories} />
+
+# Skeleton
+
+## Компонент `me-skeleton`
+
+Компонент `me-skeleton` предоставляет визуальную заглушку во время загрузки контента или для отображения отсутствующего контента.
+
+<Canvas of={skeletonStories.Default} />
+<Controls of={skeletonStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=835-1059"
+/>
+
+## Примеры использования
+
+- [С аватаром](#с-аватаром)
+- [Анимация](#анимация)
+- [Настраиваемый заголовок и параграфы](#настраиваемый-заголовок-и-параграфы)
+- [Закругленные углы](#закругленные-углы)
+- [Загрузка контента](#загрузка-контента)
+- [Комплексная комбинация](#комплексная-комбинация)
+- [Аватар отдельно](#аватар-отдельно)
+- [Прямоугольный аватар](#прямоугольный-аватар)
+- [Настройка межстрочного интервала](#настройка-межстрочного-интервала)
+- [Кастомный контент](#кастомный-контент)
+
+### С аватаром
+
+<Canvas of={skeletonStories.WithAvatar} />
+
+Свойство `avatar` может принимать объект с параметрами для настройки аватара. Возможны следующие свойства:
+
+| Свойство | Тип                                               | Описание                                                                                                      |
+|----------|---------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| size     | `number` \| `'large'` \| `'small'` \| `'default'`  | Предопределённый размер аватара. Если передано число, используется размер в пикселях.                           |
+| width    | `number` \| `string`                              | Задает произвольную ширину аватара. Приоритет выше, чем значение в `size`.                                      |
+| height   | `number` \| `string`                              | Задает произвольную высоту аватара. Приоритет выше, чем значение в `size`.                                      |
+| shape    | `'circle'` \| `'square'` \| `'rectangle'`         | Определяет форму аватара.                                                                                       |
+
+<Source
+  code={`<me-skeleton [avatar]="{ size: 'large', shape: 'circle' }"></me-skeleton>`}
+  dark
+  language="html"
+/>
+
+### Анимация
+
+<Canvas of={skeletonStories.ActiveAnimation} />
+
+<Source
+  code={`<me-skeleton [animated]="true"></me-skeleton>`}
+  dark
+  language="html"
+/>
+
+### Настраиваемый заголовок и параграфы
+
+Свойство `title` может принимать либо значение `true` для отображения заголовка с настройками по умолчанию, либо объект с параметрами.
+
+| Свойство | Тип                  | Описание                                                                                                                                                                  |
+|----------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| width    | `number` \| `string` | Определяет ширину заголовка. Если передано число, используется значение в пикселях; если строка – значение применяется напрямую.                                             |
+
+Свойство `paragraph` может принимать либо значение `true` для отображения текста по умолчанию, либо объект с параметрами:
+
+| Свойство | Тип                                                   | Описание                                                                                                                                                                                                                                                                                                                                                                                                |
+|----------|-------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| rows     | `number`                                              | Определяет количество строк.                                                                                                                                                                                                                                                                                                                                                                            |
+| width    | `number` \| `string` \| `(number \| string)[]`         | Определяет ширину строк. Если передан массив, его длина имеет приоритет над значением `rows`. При передаче числа или строки, последней строке применяется указанное значение, а для остальных используется 100%.                                                                                                                                                                                     |
+| height   | `number` \| `string`                                  | Определяет высоту строк. Если задано, применяется ко всем строкам.                                                                                                                                                                                                                                                                                                                                      |
+| gap      | `string`                                              | Межстрочный интервал, который устанавливается как CSS-переменная и переопределяет отступы, заданные в классах.                                                                                                                                                                                                                                                                                        |
+
+<Canvas of={skeletonStories.CustomTitleAndParagraph} />
+
+<Source
+  code={`
+<me-skeleton
+  [title]="{ width: '40%' }"
+  [paragraph]="{ rows: 4, width: ['100%', '90%', '80%', '60%'] }">
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+### Закругленные углы
+
+<Canvas of={skeletonStories.Rounded} />
+
+<Source
+  code={`
+<me-skeleton
+  [shape]="'rounded'"
+  [title]="{ width: '50%' }"
+  [paragraph]="{ rows: 3, width: ['100%', '80%', '60%'] }">
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+### Загрузка контента
+
+<Canvas of={skeletonStories.Loading} />
+
+<Source
+  code={`
+<me-skeleton [loading]="true">
+  <div>
+    <h4>Заголовок после загрузки</h4>
+    <p>Этот текст отображается после завершения загрузки.</p>
+  </div>
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+### Комплексная комбинация
+
+<Canvas of={skeletonStories.ComplexCombination} />
+
+<Source
+  code={`
+<me-skeleton
+  [animated]="true"
+  [avatar]="{ size: 'large', shape: 'circle' }"
+  [title]="{ width: '50%' }"
+  [paragraph]="{ rows: 4, width: '10%' }"
+  [shape]="'rounded'">
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+### Аватар отдельно
+
+<Canvas of={skeletonStories.AvatarOnly} />
+
+<Source
+  code={`
+<me-skeleton
+  [avatar]="{ width: '50px', height: '50px', shape: 'circle' }"
+  [title]="null"
+  [paragraph]="null">
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+Пример использования аватара отдельно от параграфа и заголовка, что позволяет использовать его, например, в качестве заменителя поля ввода или кнопки.
+
+### Прямоугольный аватар
+
+<Canvas of={skeletonStories.RectangleAvatar} />
+
+<Source
+  code={`
+<me-skeleton
+  [avatar]="{ width: '120px', height: '60px', shape: 'rectangle' }"
+  [title]="null"
+  [paragraph]="null">
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+Пример прямоугольного аватара с произвольными размерами, который может использоваться в качестве элемента управления.
+
+### Настройка межстрочного интервала
+
+<Canvas of={skeletonStories.ParagraphAndContentSpacing} />
+
+<Source
+  code={`
+<me-skeleton
+  [paragraph]="{ rows: 4, width: ['100%', '90%', '80%', '70%'], gap: '20px', height: '12px' }"
+  [title]="null"
+  [avatar]="null">
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+В этом примере свойство `gap` в объекте `paragraph` используется для задания межстрочного интервала, переопределяя отступы, заданные в классах.
+
+### Кастомный контент
+
+<Canvas of={skeletonStories.Custom} />
+
+<Source
+  code={`
+<me-skeleton [animated]="true" [title]="{ width: '50%' }" [shape]="'rounded'">
+  <div customParagraph class="custom-paragraph">
+    <me-skeleton-item [animated]="animated" width="100%"></me-skeleton-item>
+    <me-skeleton-item [animated]="animated" width="80%"></me-skeleton-item>
+    <me-skeleton-item [animated]="animated" width="20%"></me-skeleton-item>
+  </div>
+</me-skeleton>
+`}
+  dark
+  language="html"
+/>
+
+В этом примере используется контент-проекция через слот `customParagraph` и привязка к элементу с идентификатором `#customParagraph` для задания кастомного отображения параграфа.
