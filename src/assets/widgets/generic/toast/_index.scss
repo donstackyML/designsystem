@@ -20,15 +20,16 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
 
 @mixin toast-icon(
   $icon: var(--material-icon),
-  $innerSize: var(--material-icon-inner-size),
+  $innerSize: var(--material-icon-inner-size, 20px),
   $color: var(--status-icon-color)
 ) {
-  --material-icon-inner-size: 16px;
+  content: $icon;
 
   font-family: var(--me-symbols-family);
   font-size: $innerSize;
   line-height: $innerSize;
-  content: $icon;
+  font-weight: 300;
+  
   color: var(--status-icon-color);
 }
 
@@ -40,7 +41,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
     --toast-content-message-gap: 2px;
 
     --material-icon-size: 20px;
-    --material-icon-inner-size: 16px;
+    --material-icon-inner-size: 20px;
   }
 
   &:not(.me-toast),
@@ -158,7 +159,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
     --toast-title-font-size: 16px;
     --toast-title-line-height: 20px;
     --material-icon-size: 20px;
-    --material-icon-inner-size: 16px;
+    --material-icon-inner-size: 20px;
 
     .me-toast-header {
       gap: 8px;
@@ -172,7 +173,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
     --toast-title-font-size: 20px;
     --toast-title-line-height: 24px;
     --material-icon-size: 24px;
-    --material-icon-inner-size: 20px;
+    --material-icon-inner-size: 24px;
 
     .me-toast-header {
       gap: 10px;
