@@ -114,7 +114,8 @@ export default {
     shading: false,
     showEvent: 'mouseenter',
     hideEvent: 'mouseleave',
-    hideOnOutsideClick: false
+    hideOnOutsideClick: false,
+    demoTemplateText: 'Tooltip Content'
   },
   render: (args) => ({
     props: args,
@@ -129,7 +130,7 @@ export default {
           target="#tooltipId"
           ${argsToTemplate(args)}
         >
-          <div *dxTemplate="let data = data; of: 'content'">Tooltip Content</div>
+          <div *dxTemplate="let data = data; of: 'content'">{{ demoTemplateText }}</div>
         </dx-tooltip>
       </div>
     `,
@@ -272,5 +273,6 @@ export const WithMaxDimensions: Story = {
     maxWidth: 200,
     height: undefined,
     maxHeight: 150,
+    demoTemplateText: 'Длинное название пункта, которое занимает несколько строк'
   }
 };
