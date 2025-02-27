@@ -263,7 +263,6 @@ export const meMenuMockData = [
       },
     ],
   },
-
   {
     icon: argsIcon,
     text: 'Entertainment',
@@ -346,117 +345,208 @@ export const meMenuMockData = [
       },
     ],
   },
-
   {
     icon: argsIcon,
-    text: 'Healthcare & Living',
+    text: 'With groups',
     items: [
+
       {
+        text: 'Пункт',
         icon: argsIcon,
-        text: 'Sports & Outdoors',
         items: [
           {
-            icon: argsIcon,
-            text: 'Camping',
+            text: 'Заголовок группы уровень 3',
+            icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+            disabled: true,
+            beginGroup: true,
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Fitness',
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Football',
           },
           {
+            text: 'Пункт',
+            beginGroup: true,
             icon: argsIcon,
-            text: 'Cycling',
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Running',
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Sport Electronics',
           },
           {
-            icon: argsIcon,
-            text: 'Sport Apparel',
+            text: 'Заголовок группы уровень 3',
+            icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+            disabled: true,
+            beginGroup: true,
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Trainers & Tennis Shoes',
+            items: [
+              {
+                text: 'Пункт',
+                icon: argsIcon,
+              },
+            ],
+          },
+          {
+            text: 'Пункт',
+            icon: argsIcon,
+            items: [
+              {
+                text: 'Пункт',
+                icon: argsIcon,
+              },
+            ],
           },
         ],
       },
       {
-        icon: argsIcon,
-        text: 'Beauty',
-        items: [
-          {
-            icon: argsIcon,
-            text: 'Bath & Shower',
-          },
-          {
-            icon: argsIcon,
-            text: 'Skin Care',
-          },
-          {
-            icon: argsIcon,
-            text: 'Hair Care',
-          },
-          {
-            icon: argsIcon,
-            text: 'Nail Care',
-          },
-          {
-            icon: argsIcon,
-            text: 'Make-up',
-          },
-          {
-            icon: argsIcon,
-            text: 'Fragrance',
-          },
-          {
-            icon: argsIcon,
-            text: 'Salon & SPA Equipment',
-          },
-          {
-            icon: argsIcon,
-            text: 'Tools & Accessories',
-          },
-        ],
+        text: 'Заголовок группы уровень 2',
+        icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+        disabled: true,
+        beginGroup: true,
       },
       {
+        text: 'Пункт',
         icon: argsIcon,
-        text: 'Fashion',
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+        beginGroup: true,
         items: [
           {
-            icon: argsIcon,
-            text: 'Clothing',
+            text: 'Заголовок группы уровень 3',
+            icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+            disabled: true,
+            beginGroup: true,
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Jewellery',
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Shoes',
           },
           {
+            text: 'Пункт',
+            beginGroup: true,
             icon: argsIcon,
-            text: 'Handbags & Shoulder Bags',
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Watches',
           },
           {
+            text: 'Пункт',
             icon: argsIcon,
-            text: 'Accessories',
+          },
+          {
+            text: 'Заголовок группы уровень 3',
+            icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+            disabled: true,
+            beginGroup: true,
+          },
+          {
+            text: 'Пункт',
+            icon: argsIcon,
+            items: [
+              {
+                text: 'Пункт',
+                icon: argsIcon,
+              },
+            ],
+          },
+          {
+            text: 'Пункт',
+            icon: argsIcon,
+            items: [
+              {
+                text: 'Пункт',
+                icon: argsIcon,
+              },
+            ],
           },
         ],
       },
     ],
-  },
+  }
 ];

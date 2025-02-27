@@ -173,9 +173,21 @@ export const StylingModeText: Story = {
   },
 };
 
-export const DisabledState: Story = {
+export const DisabledStateForAllButtonsInGroup: Story = {
   args: {
     disabled: true
+  },
+};
+
+export const DisabledStateForSomeButtons: Story = {
+  args: {
+    items: [
+      { text: 'Первая', type: 'default' },
+      { text: 'Вторая', type: 'normal', disabled: true },
+      { text: 'Третья', type: 'success' },
+      { text: 'Четвертая', type: 'warning' as ButtonType },
+      { text: 'Пятая', type: 'danger' },
+    ],
   },
 };
 

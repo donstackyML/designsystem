@@ -4,15 +4,15 @@ import {
   argsToTemplate,
   moduleMetadata,
 } from '@storybook/angular';
-import { DxNumberBoxModule, DxValidatorModule } from 'devextreme-angular';
+import { DxNumberBoxComponent, DxValidatorModule } from 'devextreme-angular';
 import { MeLabelDirective, MeNumberBoxDirective } from '../../public-api';
 
 export default {
   title: 'Components/NumberBox',
   decorators: [
     moduleMetadata({
-      declarations: [MeNumberBoxDirective, MeLabelDirective],
-      imports: [DxNumberBoxModule, DxValidatorModule],
+      imports: [DxValidatorModule],
+      declarations: [DxNumberBoxComponent, MeNumberBoxDirective, MeLabelDirective],
     }),
   ],
   argTypes: {
@@ -151,7 +151,6 @@ export default {
   },
   args: {
     size: 'medium',
-    type: 'date',
     label: 'Label*',
     placeholder: 'Select...',
     disabled: false,
@@ -164,9 +163,9 @@ export default {
     min: undefined,
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
-    value: null,
-    height: null,
-    width: null,
+    value: undefined,
+    height: undefined,
+    width: undefined,
   },
   render: (args) => ({
     props: { ...args },
@@ -184,9 +183,9 @@ export default {
       </dx-validator>
 		</dx-number-box>`,
   }),
-} satisfies Meta<DxNumberBoxModule | MeNumberBoxDirective>;
+} satisfies Meta<DxNumberBoxComponent | MeNumberBoxDirective>;
 
-type Story = StoryObj<DxNumberBoxModule | MeNumberBoxDirective>
+type Story = StoryObj<DxNumberBoxComponent | MeNumberBoxDirective>
 
 export const Default: StoryObj = {};
 
@@ -241,7 +240,7 @@ export const StateDisabled: Story = {
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    value: '123'
+    value: 123
   },
 };
 

@@ -4,7 +4,7 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { DxMenuComponent, DxMenuModule } from 'devextreme-angular';
+import { DxMenuComponent } from 'devextreme-angular';
 import { MeMenuDirective } from '../../public-api';
 import { meMenuMockData } from './me-menu-mock-data';
 
@@ -12,8 +12,7 @@ export default {
   title: 'Components/Menu',
   decorators: [
     moduleMetadata({
-      imports: [DxMenuModule],
-      declarations: [MeMenuDirective],
+      declarations: [DxMenuComponent, MeMenuDirective],
     }),
   ],
   argTypes: {
@@ -44,8 +43,7 @@ export default {
       },
     },
     focusStateEnabled: {
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
       description: 'Определяет состояние `focused`.',
       table: {
         type: { summary: 'boolean' },
@@ -53,8 +51,7 @@ export default {
       },
     },
     hoverStateEnabled: {
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
       description: 'Определяет состояние `hovered`.',
       table: {
         type: { summary: 'boolean' },
@@ -62,8 +59,7 @@ export default {
       },
     },
     selectByClick: {
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
       description:
         'Указывает, будет ли выбран элемент, если пользователь нажмет на него.',
       table: {
