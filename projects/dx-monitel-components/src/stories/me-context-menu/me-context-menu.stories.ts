@@ -4,7 +4,7 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { DxButtonComponent, DxContextMenuModule } from 'devextreme-angular';
+import { DxButtonComponent, DxContextMenuComponent } from 'devextreme-angular';
 import {
   MeButtonDirective,
   MeContextMenuDirective,
@@ -20,12 +20,14 @@ export default {
   title: 'Components/ContextMenu',
   decorators: [
     moduleMetadata({
+      imports: [MeIconComponent],
       declarations: [
+        DxContextMenuComponent,
         MeContextMenuDirective,
         MeButtonDirective,
         DxButtonComponent,
+        DxContextMenuComponent,
       ],
-      imports: [DxContextMenuModule, MeIconComponent],
     }),
   ],
   argTypes: {
@@ -38,6 +40,15 @@ export default {
         },
       },
     },
+    selectByClick: {
+      control: 'boolean',
+      description:
+        'Указывает, будет ли выбран элемент, если пользователь нажмет на него.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     selectionMode: {
       control: 'select',
       options: ['single', 'multiple', 'all', 'none'],
@@ -45,23 +56,6 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'none' },
-      },
-    },
-    focusStateEnabled: {
-      control: 'boolean',
-      description: 'Определяет, может ли контекстное меню получать фокус.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    hoverStateEnabled: {
-      control: 'boolean',
-      description:
-        'Определяет, может ли контекстное меню иметь состояние hover.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
       },
     },
     subMenuMaxHeight: {
@@ -75,9 +69,10 @@ export default {
   },
   args: {
     dataSource: meContextMenuMockData,
-    selectionMode: 'multiple',
     focusStateEnabled: true,
     activeStateEnabled: true,
+    selectByClick: false,
+    selectionMode: 'none',
   },
   render: (args) => ({
     props: args,
@@ -89,9 +84,9 @@ export default {
         ${argsToTemplate(args)}>
     </dx-context-menu>`,
   }),
-} as Meta<MeContextMenuDirective | DxContextMenuModule>;
+} satisfies Meta<MeContextMenuDirective | DxContextMenuComponent>;
 
-type Story = StoryObj<MeContextMenuDirective | DxContextMenuModule>;
+type Story = StoryObj<MeContextMenuDirective | DxContextMenuComponent>;
 
 export const Default: Story = {
   args: {},
