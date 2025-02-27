@@ -5,109 +5,8 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 import { DxTreeViewComponent } from 'devextreme-angular';
-import { MeIconStoreService } from 'src/app/service/icon-store.service';
 import { MeTreeViewDirective } from '../../public-api';
-
-const iconStore = new MeIconStoreService();
-
-const data = [
-  {
-    id: '1',
-    text: 'Stores',
-    expanded: true,
-    icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),
-    items: [
-      {
-        id: '1_1',
-        text: 'Super Mart of the West',
-        expanded: true,
-        icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),
-        items: [
-          {
-            id: '1_1_1',
-            text: 'Video Players',
-            icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),
-            items: [
-              {
-                id: '1_1_1_1',
-                text: 'HD Video Player',
-              },
-              {
-                id: '1_1_1_2',
-                text: 'SuperHD Video Player',
-              },
-            ],
-          },
-          {
-            id: '1_1_2',
-            text: 'Televisions',
-            expanded: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),
-            items: [
-              {
-                id: '1_1_2_1',
-                text: 'SuperLCD 42',
-              },
-              {
-                id: '1_1_2_2',
-                text: 'SuperLED 42',
-              },
-              {
-                id: '1_1_2_3',
-                text: 'SuperLED 50',
-              },
-              {
-                id: '1_1_2_4',
-                text: 'SuperLCD 55',
-              },
-              {
-                id: '1_1_2_5',
-                text: 'SuperLCD 70',
-              },
-            ],
-          },
-          {
-            id: '1_1_4',
-            text: 'Projectors',
-            icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),
-            items: [
-              {
-                id: '1_1_4_1',
-                text: 'Projector Plus',
-              },
-              {
-                id: '1_1_4_2',
-                text: 'Projector PlusHD',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: '1_2',
-        text: 'Braeburn',
-        icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),
-        items: [
-          {
-            id: '1_2_1',
-            text: 'Video Players',
-            icon: iconStore.getIcon({ icon: 'folder', size: 'size' }),
-            items: [
-              {
-                id: '1_2_1_1',
-                text: 'HD Video Player',
-              },
-              {
-                id: '1_2_1_2',
-                text: 'SuperHD Video Player',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
+import { meTreeViewMockData } from './me-tree-view-mock-data';
 
 export default {
   title: 'Components/TreeView',
@@ -119,6 +18,10 @@ export default {
   argTypes: {
     dataSource: {
       description: 'Определяет ветви в дереве.',
+      table: {
+        type: { summary: 'any[]' },
+        defaultValue: { summary: '[]' },
+      },
     },
     size: {
       control: 'select',
@@ -129,27 +32,18 @@ export default {
         defaultValue: { summary: 'large' },
       },
     },
-    activeStateEnabled: {
-      control: 'boolean',
-      description: 'Определяет состояние при нажатии на элементы `TreeView`.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
     disabled: {
       control: 'boolean',
       description: 'Отключает `TreeView` и его элементы.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
       },
     },
     showCheckBoxesMode: {
       control: 'select',
       options: ['normal', 'selectAll', 'none'],
-      description:
-        'Определяет режим отображения чекбоксов `TreeView` и его элементов.',
+      description: 'Определяет режим отображения чекбоксов `TreeView` и его элементов.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'normal' },
@@ -157,44 +51,109 @@ export default {
     },
     selectionMode: {
       control: 'select',
-      options: ['none', 'single', 'multiple', 'all'],
-    },
-    focusStateEnabled: {
-      control: 'boolean',
-      description: 'Определяет состояние `focused` `TreeView` и его элементов.',
+      options: ['single', 'multiple'],
+      description: 'Определяет режим выбора элементов в `TreeView`.',
       table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        type: { summary: 'string' },
+        defaultValue: { summary: 'single' },
       },
     },
-    hoverStateEnabled: {
-      control: 'boolean',
-      description: 'Определяет состояние `hover` `TreeView` и его элементов.',
+    textTruncateBehavior: {
+      control: 'select',
+      options: ['truncate', 'wrap'],
+      description: 'Определяет поведение текста в `TreeView` и его элементах.',
       table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        type: { summary: 'string' },
+        defaultValue: { summary: 'wrap' },
       },
     },
+    searchEnabled: {
+      control: 'boolean',
+      description: 'Включает возможность поиска в `TreeView`.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    expandNodesRecursive: {
+      control: 'boolean',
+      description: 'Определяет, будут ли узлы раскрываться рекурсивно.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    }
   },
   args: {
-    dataSource: data,
+    dataSource: meTreeViewMockData,
     size: 'large',
-    activeStateEnabled: true,
     disabled: false,
     showCheckBoxesMode: 'normal',
     selectionMode: 'single',
-    focusStateEnabled: true,
-    hoverStateEnabled: true,
-    height: '300px',
+    textTruncateBehavior: 'wrap',
+    searchEnabled: false,
+    expandNodesRecursive: false,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-tree-view meTreeView ${argsToTemplate(
-      args
-    )}></dx-tree-view>`,
+    template: `<dx-tree-view meTreeView ${argsToTemplate(args)}></dx-tree-view>`,
   }),
-} as Meta<MeTreeViewDirective | DxTreeViewComponent>;
+} satisfies Meta<MeTreeViewDirective | DxTreeViewComponent>;
 
 type Story = StoryObj<MeTreeViewDirective | DxTreeViewComponent>;
 
 export const Default: Story = {};
+
+export const SizeSmall: Story = {
+  args: {
+    size: 'small',
+  }
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  }
+};
+
+export const TextOverflowBehaviorTruncateWithTooltip: Story = {
+  args: {
+    textTruncateBehavior: 'truncate'
+  }
+};
+
+export const TextOverflowBehaviorWrap: Story = {
+  args: {
+    textTruncateBehavior: 'wrap'
+  }
+};
+
+export const SelectionModeSingle: Story = {
+  args: {
+    selectionMode: 'single'
+  }
+};
+
+export const SelectionModeMultiple: Story = {
+  args: {
+    selectionMode: 'multiple'
+  }
+};
+
+export const WithSearch: Story = {
+  args: {
+    searchEnabled: true
+  }
+};
+
+export const DisabledState: Story = {
+  args: {
+    disabled: true
+  }
+};
+
+export const WithFixedHeight: Story = {
+  args: {
+    height: '300px',
+  }
+};

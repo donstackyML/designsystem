@@ -34826,6 +34826,7 @@ input.dx-hidden {
   font-weight: 400;
   line-height: var(--tooltip-content-line-heigh, 20px);
   padding: var(--tooltip-content-padding, 16px);
+  white-space: normal;
 }
 .dx-tooltip-wrapper.dx-popover-wrapper .dx-overlay-content .me-tooltip-custom {
   background-color: var(--tooltip-background);
@@ -38004,9 +38005,10 @@ input.dx-hidden {
 }
 
 .me-tree-view {
+  height: auto;
   display: flex;
+  flex-direction: column;
   padding: 8px;
-  gap: 4px;
 }
 .me-tree-view .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
 .me-tree-view .dx-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon {
@@ -38017,8 +38019,26 @@ input.dx-hidden {
   background-color: var(--Controls-BG-Accent-Accent-BG-Disabled);
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMiAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS40NjU2IDEuMzYwOUw0LjIzMjc5IDkuMTUwMDdMMCA0LjU5MTY3TDEuNDY1NTkgMy4yMzA3N0w0LjIzMjc5IDYuMjEwODRMMTAgMEwxMS40NjU2IDEuMzYwOVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K");
 }
+.me-tree-view.me-tree-view-truncate-text .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.me-tree-view.dx-treeview-with-search .dx-texteditor-input::placeholder {
+  color: transparent;
+}
+.me-tree-view.dx-treeview-with-search .dx-searchbox {
+  margin-bottom: 16px;
+}
+.me-tree-view.dx-treeview-with-search .dx-searchbox.dx-show-clear-button .dx-clear-button-area {
+  display: flex;
+  align-items: center;
+}
 .me-tree-view .dx-scrollable {
   width: -webkit-fill-available;
+}
+.me-tree-view .dx-scrollable:has(.dx-empty-message) .dx-scrollable-container {
+  padding: 8px;
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node {
   padding-left: 0;
@@ -38038,16 +38058,11 @@ input.dx-hidden {
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content .dx-icon {
   margin: 0;
-}
-.me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 .me-tree-view.me-tree-view-word-wrap .dx-treeview-item .dx-treeview-item-content > span {
   overflow: visible;

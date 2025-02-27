@@ -1,21 +1,31 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as treeViewStories from "./me-tree-view.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as treeViewStories from "./me-tree-view.stories";
 
 <Meta name="TreeView Documentation" of={treeViewStories} />
 
 # TreeView
 
-## Директива meTreeView
+## Директива `meTreeView`
 
-Применение директивы `meTreeView` к элементу `dx-tree-view` приводит его внешний вид в соответствие с дизайн-системой, его размеры к значению `size = large (24)` и предоставляет доступ к свойству `size`.
+Применение директивы `meTreeView` к элементу `dx-tree-view` приводит его внешний вид в соответствие с дизайн-системой, его размеры к значению `size = large` (*24px*) и предоставляет доступ к свойству `size`.
 
-Добавление нетипичных для DevExtreme
-элементов производится через переопределение свойств [itemTemplate](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#itemTemplate).
+Добавление нетипичных для DevExtreme элементов производится через переопределение свойств [`itemTemplate`](https://js.devexpress.com/Angular/Documentation/ApiReference/UI*Components/dxTreeView/Configuration/#itemTemplate).
 
-[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/)
+Документация на сайте разработчика DevExtreme:
 
-[Demo](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TreeView/HierarchicalDataStructure/Light/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI*Components/dxTreeView/"
+    target="*blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TreeView/HierarchicalDataStructure/Light/"
+    target="*blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={treeViewStories.Default} />
 <Controls of={treeViewStories.Default} />
@@ -26,46 +36,199 @@ import { Figma } from "@storybook/addon-designs/blocks";
   height="50%"
   collapsable
   defaultCollapsed
-  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=607-7610&node-type=canvas&t=MxuwBk9yX1p7sXoU-0"
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=607-7610&t=MxuwBk9yX1p7sXoU-0"
 />
+
+## Примеры использования
+
+- [Размеры компонента](#размеры-компонента)
+  - [Компонент небольшого размера](#компонент-небольшого-размера)
+  - [Компонент большого размера (по умолчанию)](#компонент-большого-размера-по-умолчанию)
+- [Настройка структуры данных](#настройка-структуры-данных)
+- [Группировка элементов](#группировка-элементов)
+- [Группировка элементов с иконками](#группировка-элементов-с-иконками)
+- [Настройка поведения текста](#настройка-поведения-текста)
+  - [Текст с обрезкой](#текст-с-обрезкой)
+  - [Текст с переносом](#текст-с-переносом)
+- [Режимы выбора элементов](#режимы-выбора-элементов)
+  - [Одиночный выбор](#одиночный-выбор)
+  - [Множественный выбор](#множественный-выбор)
+- [Поиск в дереве](#поиск-в-дереве)
+- [Отключение компонента](#отключение-компонента)
+- [Фиксированная высота дерева](#фиксированная-высота-дерева)
 
 ### Размеры компонента
 
-Директива `meTreeView` дает возможность регулировать размер компонента при помощи свойств `size`: `small` и `large`.
+*Свойство `size` позволяет выбрать размер дерева. В данном примере показаны два варианта:*
 
-<Source code={`
-<tree-view meTreeView size="small"></tree-view>
-`} dark language="html"/>
+#### Компонент небольшого размера
 
-### [DataStructure](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataStructure)
+<Canvas name="Компонент меленького размера" of={treeViewStories.SizeSmall} />
 
-Компонент пользовательского интерфейса ожидает, что данные будут иметь иерархическую структуру (`dataStructure: "tree"`). Каждый элемент данных содержит текст, уникальный идентификатор и массив `items`, если элемент данных включает подпункты:
+<Source
+  code={`<tree-view meTreeView size="small"></tree-view>`}
+  dark
+  language="html"
+/>
 
-<Source code={`
-var hierarchicalData = [{
-    id: '1',
-    text: 'Fruits',
-    items: [
-        { id: '1_1', text: 'Apples' },
-        { id: '1_2', text: 'Oranges' }
-    ]
+#### Компонент большого размера (по умолчанию)
+
+<Canvas name="Компонент большого размера" of={treeViewStories.SizeLarge} />
+
+<Source
+  code={`<tree-view meTreeView size="large"></tree-view>`}
+  dark
+  language="html"
+/>
+
+### Настройка структуры данных
+
+*TreeView ожидает иерархическую структуру данных, где каждый элемент должен иметь уникальный идентификатор, текст и, при наличии подпунктов, массив `items`. Это позволяет создавать сложные и многоуровневые деревья.*
+
+<Source
+  code={`
+const hierarchicalData = [{
+  id: '1',
+  text: 'Fruits',
+  items: [
+    { id: '1*1', text: 'Apples' },
+    { id: '1*2', text: 'Oranges' }
+  ]
 }, {
-    id: '2',
-    text: 'Vegetables',
-    items: [
-        { id: '2_1', text: 'Cucumbers' },
-        { id: '2_2', text: 'Tomatoes' }
-    ]
+  id: '2',
+  text: 'Vegetables',
+  items: [
+    { id: '2*1', text: 'Cucumbers' },
+    { id: '2*2', text: 'Tomatoes' }
+  ]
 }];
-`} dark language="js"/>
+  `}
+  dark
+  language="js"
+/>
 
-### [DataSource](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataSource)
+### Настройка поведения текста
 
-Привязывает компонент пользовательского интерфейса к данным.
+*Свойство `textTruncateBehavior` позволяет задать, как будет отображаться длинный текст элементов дерева. При значении `truncate` текст обрезается с добавлением многоточия, а при значении `wrap` — переносится на новую строку.*
 
-Тип: `String` | `Array<dxTreeViewItem>` | `Store` | `DataSource` | `DataSource Configuration` | `null`
+#### Текст с обрезкой
 
-Значение по умолчанию: `null`
+<Canvas name="Текст с обрезкой" of={treeViewStories.TextOverflowBehaviorTruncateWithTooltip} />
 
-`TreeView` работает с коллекциями объектов, которые могут иметь простую или иерархическую структуру. В зависимости от структуры объекты должны предоставлять разные поля данных.
+<Source
+  code={`
+<tree-view
+  meTreeView
+  [dataSource]="dataSource"
+  [textTruncateBehavior]="'truncate'">
+</tree-view>
+  `}
+  dark
+  language="html"
+/>
 
+#### Текст с переносом
+
+<Canvas name="Текст с переносом" of={treeViewStories.TextOverflowBehaviorWrap} />
+
+<Source
+  code={`
+<tree-view
+  meTreeView
+  [dataSource]="dataSource"
+  [textTruncateBehavior]="'wrap'">
+</tree-view>
+  `}
+  dark
+  language="html"
+/>
+
+### Режимы выбора элементов
+
+*Свойство `selectionMode` определяет, как пользователь может выбирать элементы в дереве. В примерах показаны режимы одиночного (`single`) и множественного (`multiple`) выбора.*
+
+#### Одиночный выбор
+
+<Canvas name="Одиночный выбор" of={treeViewStories.SelectionModeSingle} />
+
+<Source
+  code={`
+<tree-view
+  meTreeView
+  [dataSource]="dataSource"
+  [selectionMode]="'single'">
+</tree-view>
+  `}
+  dark
+  language="html"
+/>
+
+#### Множественный выбор
+
+<Canvas name="Множественный выбор" of={treeViewStories.SelectionModeMultiple} />
+
+<Source
+  code={`
+<tree-view
+  meTreeView
+  [dataSource]="dataSource"
+  [selectionMode]="'multiple'">
+</tree-view>
+  `}
+  dark
+  language="html"
+/>
+
+### Поиск в дереве
+
+*Свойство `searchEnabled` включает возможность поиска по элементам дерева, позволяя пользователю фильтровать данные по введённому запросу.*
+
+<Canvas name="Поиск в дереве" of={treeViewStories.WithSearch} />
+
+<Source
+  code={`
+<tree-view
+  meTreeView
+  [dataSource]="dataSource"
+  [searchEnabled]="true">
+</tree-view>
+  `}
+  dark
+  language="html"
+/>
+
+### Отключение компонента
+
+*Свойство `disabled` позволяет сделать дерево неинтерактивным. В этом режиме пользователь не может выбрать или раскрыть элементы дерева.*
+
+<Canvas name="Отключённое дерево" of={treeViewStories.DisabledState} />
+
+<Source
+  code={`
+<tree-view
+  meTreeView
+  [dataSource]="dataSource"
+  [disabled]="true">
+</tree-view>
+  `}
+  dark
+  language="html"
+/>
+
+### Фиксированная высота дерева
+
+*Задание фиксированной высоты с помощью свойства `height` ограничивает область отображения дерева и может добавить скролл, если элементов много.*
+
+<Canvas name="Фиксированная высота" of={treeViewStories.WithFixedHeight} />
+
+<Source
+  code={`
+<tree-view
+  meTreeView
+  [dataSource]="dataSource"
+  height="300px">
+</tree-view>
+  `}
+  dark
+  language="html"
+/>
