@@ -246,3 +246,79 @@ import * as tooltipDirectiveStories from "./me-tooltip.stories";
   dark
   language="html"
 />
+
+### Примеры с разными компонентами дизайн системы
+
+В этом примере демонстрируется использование тултипа с разными компонентами дизайн системы. Это может быть полезно, когда вам нужно добавить подсказки к различным типам элементов. В этом примере тултип отображается на кнопке, текстбоксе, чипе и прогресс баре.
+
+<Canvas name="Тултип с ограничением размеров у компонентов" of={tooltipDirectiveStories.WithSomeComponents} />
+<Source
+  code={`
+<div class="container">
+  <section>
+    <h2 class="me-title-header1">Кнопка с тултипом</h2>
+    <dx-button
+      meButton
+      text="Нажми меня"
+      size="small"
+      [meTooltip]="'Это кнопка, которая показывает подсказку при наведении.'"
+      [tooltipSize]="'small'"
+      [tooltipPosition]="'top'"
+      [tooltipColorMode]="'default'"
+      [tooltipWidth]="'200px'"
+    ></dx-button>
+  </section>
+
+  <section>
+    <h2 class="me-title-header1">Текстбокс с тултипом</h2>
+    <dx-text-box
+      meTextBox
+      placeholder="Введите текст..."
+      size="small"
+      [meTooltip]="'Подсказка: введите свое имя или сообщение здесь.'"
+      [tooltipSize]="'small'"
+      [tooltipPosition]="'right'"
+      [tooltipColorMode]="'default'"
+      [tooltipWidth]="'220px'"
+    ></dx-text-box>
+  </section>
+
+  <section>
+    <h2 class="me-title-header1">Чип с тултипом</h2>
+    <me-chip
+      label="Выбранные элементы"
+      size="small"
+      [removable]="false"
+      [meTooltip]="'Чип, который отображает количество элементов. Он может быть использован в различных списках.'"
+      [tooltipSize]="'small'"
+      [tooltipPosition]="'left'"
+      [tooltipColorMode]="'default'"
+      [tooltipWidth]="'120px'"
+    >
+    >
+    </me-chip>
+  </section>
+
+  <section>
+    <h2 class="me-title-header1">Прогресс бар с тултипом</h2>
+    <dx-progress-bar
+      meProgressBar
+      [value]="50"
+      size="small"
+      [height]="'20px'"
+      [width]="'100%'"
+      [showStatus]="true"
+      [meTooltip]="'Это индикатор прогресса, показывающий выполнение задачи.'"
+      [tooltipSize]="'small'"
+      [tooltipPosition]="'bottom'"
+      [tooltipColorMode]="'default'"
+      [tooltipWidth]="'250px'"
+    >
+    </dx-progress-bar>
+  </section>
+
+</div>
+  `}
+  dark
+  language="html"
+/>
