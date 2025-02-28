@@ -144,7 +144,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
       this.renderer.addClass(tooltipElement, this.tooltipClass);
     }
 
-    this.renderer.appendChild(this.element.nativeElement, tooltipElement);
+    this.renderer.appendChild(document.body, tooltipElement);
   }
 
   private updateTooltipContent() {

@@ -1,17 +1,18 @@
-import { CommonModule } from '@angular/common';
 import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
-import { DxButtonModule } from 'devextreme-angular/ui/button';
-import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
+import { DxButtonComponent } from 'devextreme-angular/ui/button';
 
-import { MeTooltipDirective } from'../../public-api';
+import { MeButtonDirective, MeChipComponent, MeProgressBarDirective, MeTextBoxDirective, MeTooltipDirective } from '../../public-api';
+import { DxProgressBarComponent, DxTextBoxComponent } from 'devextreme-angular';
 
 export default {
-  title: 'Components/Tooltip/Directive',
-  component: MeTooltipDirective,
+  title: 'Components/Tooltip/Tooltip Directive',
   decorators: [
     moduleMetadata({
-      declarations: [MeTooltipDirective],
-      imports: [DxTooltipModule, DxButtonModule, CommonModule],
+      declarations: [
+        MeTooltipDirective,
+        DxButtonComponent,
+        MeButtonDirective
+      ],
     }),
   ],
   argTypes: {
@@ -142,10 +143,11 @@ export default {
     template: `
       <div class="container">
         <dx-button
+        meButton
+        text="Наведи, чтобы показался тултип"
         meTooltip
         ${argsToTemplate(args)}
         >
-        Наведи, чтобы показался тултип
         </dx-button>
       </div>
     `,
@@ -302,4 +304,110 @@ export const WithMaxDimensions: Story = {
     tooltipMaxHeight: 200,
     tooltipHeight: undefined,
   }
+};
+
+export const WithSomeComponents: Story = {
+  decorators: [
+    moduleMetadata({
+      imports: [MeChipComponent],
+      declarations: [
+        MeTooltipDirective,
+        DxButtonComponent,
+        MeButtonDirective,
+        DxTextBoxComponent,
+        MeTextBoxDirective,
+        DxProgressBarComponent,
+        MeProgressBarDirective
+      ],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="container">
+        <section>
+          <h2 class="me-title-header1">Кнопка с тултипом</h2>
+          <dx-button
+            meButton
+            text="Нажми меня"
+            size="large"
+            [meTooltip]="'Это кнопка, которая показывает подсказку при наведении.'"
+            [tooltipSize]="'small'"
+            [tooltipPosition]="'top'"
+            [tooltipColorMode]="'default'"
+            [tooltipWidth]="'200px'"
+          ></dx-button>
+        </section>
+
+        <section>
+          <h2 class="me-title-header1">Текстбокс с тултипом</h2>
+          <dx-text-box
+            meTextBox
+            placeholder="Введите текст..."
+            [meTooltip]="'Подсказка: введите свое имя или сообщение здесь.'"
+            [tooltipSize]="'small'"
+            [tooltipPosition]="'right'"
+            [tooltipColorMode]="'default'"
+            [tooltipWidth]="'220px'"
+          ></dx-text-box>
+        </section>
+
+        <section>
+          <h2 class="me-title-header1">Чип с тултипом</h2>
+          <me-chip
+            label="Выбранные элементы"
+            [removable]="false"
+            [meTooltip]="'Чип, который отображает количество элементов. Он может быть использован в различных списках.'"
+            [tooltipSize]="'small'"
+            [tooltipPosition]="'left'"
+            [tooltipColorMode]="'default'"
+            [tooltipWidth]="'120px'"
+          >
+          >
+          </me-chip>
+        </section>
+
+        <section>
+          <h2 class="me-title-header1">Прогресс бар с тултипом</h2>
+          <dx-progress-bar
+            meProgressBar
+            [value]="50"
+            [size]="'medium'"
+            [height]="'20px'"
+            [width]="'100%'"
+            [showStatus]="true"
+            [meTooltip]="'Это индикатор прогресса, показывающий выполнение задачи.'"
+            [tooltipSize]="'small'"
+            [tooltipPosition]="'bottom'"
+            [tooltipColorMode]="'default'"
+            [tooltipWidth]="'250px'"
+          >
+          </dx-progress-bar>
+        </section>
+
+      </div>
+    `,
+styles: [
+      `
+      .container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+
+        section {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 20px;
+          width: 400px;
+        }
+      }
+      `
+    ]
+  })
 };
