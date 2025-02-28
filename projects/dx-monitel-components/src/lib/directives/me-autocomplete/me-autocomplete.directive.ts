@@ -1,7 +1,9 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DxAutocompleteComponent } from 'devextreme-angular';
-import { MeSize } from '../../types/types';
+
+import type { MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { DropDownOptionsService } from '../../service/drop-down-options.service';
 
 @Directive({
   selector: '[meAutocomplete]',
@@ -20,14 +22,14 @@ export class MeAutocompleteDirective implements OnInit {
   @Input() size: MeSize = 'medium';
   @Input() minSearchLength: number = 1;
   @Input() dataSource: any[] = [];
-  @Input() label?: string;
-  @Input() labelMode?: 'static' | 'floating' | 'hidden' | 'outside';
+  @Input() dropDownListMaxHeight: string | number = '300px';
 
   private focusService: ComponentFocusService;
   constructor(
     private component: DxAutocompleteComponent,
-    element: ElementRef,
-    renderer: Renderer2
+    private element: ElementRef,
+    private renderer: Renderer2,
+    private dropDownOptionsService: DropDownOptionsService,
   ) {
     this.component.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
@@ -46,26 +48,12 @@ export class MeAutocompleteDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setDropDownOptions();
-    this.component.instance.option('dropDownOptions', {
-      wrapperAttr: {
-        class: `me-dropdownlist me-dropdownlist-${this.size}`,
-      },
-    });
-  }
-
-  private setDropDownOptions(): void {
-    const popupWrapperClasses = `me-scroll-view me-autocomplete-${this.size}`;
-
-    this.component.dropDownOptions = {
-      ...this.component.dropDownOptions,
-      wrapperAttr: {
-        ...this.component.dropDownOptions?.wrapperAttr,
-        class: popupWrapperClasses,
-      },
-      maxHeight: 300,
-    };
-
-    this.component.dataSource = this.dataSource;
+    this.dropDownOptionsService.configureDropDownOptions(
+      this.component,
+      this.element,
+      this.renderer,
+      this.size,
+      this.dropDownListMaxHeight
+    );
   }
 }

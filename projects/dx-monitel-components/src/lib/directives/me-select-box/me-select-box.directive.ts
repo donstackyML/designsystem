@@ -1,17 +1,17 @@
-import { DxSelectBoxComponent, DxTextBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular';
 
 import {
   Directive,
   ElementRef,
-  inject,
   Input,
   OnInit,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 
-import { MeCommonType, MeScrollbarShowType, MeSize } from '../../types/types';
-import { MeFormField } from '../me-form-item/me-form-field';
+import type { MeCommonType, MeScrollbarShowType, MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { DropDownOptionsService } from '../../service/drop-down-options.service';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meSelectBox]',
@@ -37,12 +37,14 @@ export class MeSelectBoxDirective extends MeFormField implements OnInit {
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() wrapperAttr: MeCommonType = {};
   @Input() size: MeSize = 'medium';
+  @Input() dropDownListMaxHeight?: string | number;
 
   focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
     protected override component: DxSelectBoxComponent,
-    renderer: Renderer2
+    private renderer: Renderer2,
+    private dropDownOptionsService: DropDownOptionsService,
   ) {
     super(component);
     this.component.labelMode = 'outside';
@@ -50,20 +52,20 @@ export class MeSelectBoxDirective extends MeFormField implements OnInit {
   }
 
   ngOnInit(): void {
-    const popupWrapperClasses = `${
-      this.wrapperAttr['class'] || ''
-    } me-scroll-view me-dropdownlist me-dropdownlist-${this.size} ${
-      this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
-    }`;
+    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''
+      } ${this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+      }`;
+
+    this.dropDownOptionsService.configureDropDownOptions(
+      this.component,
+      this.element,
+      this.renderer,
+      this.size,
+      this.dropDownListMaxHeight,
+      popupWrapperClasses,
+    );
 
     this.component.wrapItemText = true;
-
-    this.component.dropDownOptions = {
-      wrapperAttr: {
-        ...this.wrapperAttr,
-        class: popupWrapperClasses,
-      },
-    };
   }
 
   get isSizeSmall() {

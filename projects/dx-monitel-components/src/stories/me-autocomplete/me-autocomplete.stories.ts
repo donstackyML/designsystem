@@ -91,6 +91,14 @@ export default {
         defaultValue: { summary: 'true' }
       }
     },
+    dropDownListMaxHeight: {
+      control: 'text',
+      description: 'Максимальная высота выпадающего списка',
+      table: {
+        type: { summary: 'string | number' },
+        defaultValue: { summary: '300px' }
+      }
+    },
     dataSource: {
       table: {
         disable: true
@@ -107,24 +115,15 @@ export default {
     disabled: false,
     readOnly: false,
     minSearchLength: 1,
+    dropDownListMaxHeight: '300px',
     dataSource: meAutocompleteMockData,
   },
   render: (args) => ({
     props: args,
     template: `
       <dx-autocomplete
-        id="autocomplete-element"
         meAutocomplete
         ${argsToTemplate(args)}
-        [dropDownOptions]="{
-          position: {
-            of: '#autocomplete-element',
-            my: 'top left',
-            at: 'bottom left',
-            offset: { y: 4 },
-            collision: 'fit flip'
-          }
-        }"
       >
         <dx-validator>
           <dxi-validation-rule
