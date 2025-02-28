@@ -1,17 +1,17 @@
 import {
-  AfterViewInit,
   Directive,
   ElementRef,
   HostListener,
   Input,
   OnDestroy,
   OnInit,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 import { DxTagBoxComponent } from 'devextreme-angular';
 
-import { MeSize } from '../../types/types';
+import { type MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { DropDownOptionsService } from '../../service/drop-down-options.service';
 
 @Directive({
   selector: '[meTagBox]',
@@ -29,13 +29,15 @@ import { ComponentFocusService } from '../../service/component-focus.service';
 })
 export class MeTagBoxDirective implements OnInit, OnDestroy {
   @Input() size: MeSize = 'medium';
-  @Input() description: string = ''; // Новое свойство description
+  @Input() description: string = '';
+  @Input() dropDownListMaxHeight?: string | number;
 
   private focusService: ComponentFocusService;
   constructor(
     private element: ElementRef,
     private renderer: Renderer2,
-    private component: DxTagBoxComponent
+    private component: DxTagBoxComponent,
+    private dropDownOptionsService: DropDownOptionsService,
   ) {
     this.component.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
@@ -48,11 +50,14 @@ export class MeTagBoxDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.component.instance.option('dropDownOptions', {
-      wrapperAttr: {
-        class: `me-dropdownlist me-dropdownlist-${this.size} me-tag-box`,
-      },
-    });
+    this.dropDownOptionsService.configureDropDownOptions(
+      this.component,
+      this.element,
+      this.renderer,
+      this.size,
+      this.dropDownListMaxHeight,
+      'me-tag-box'
+    );
   }
 
   get isSizeSmall() {
@@ -117,17 +122,15 @@ export class MeTagBoxDirective implements OnInit, OnDestroy {
     }
   }
 
-  // Установка цвета при фокусе
   onFocusIn() {
     const labelElement = this.element.nativeElement.querySelector(
       '.dx-texteditor-label'
     );
     if (labelElement) {
-      this.renderer.setStyle(labelElement, 'color', '#3257DC'); // Установите нужный цвет
+      this.renderer.setStyle(labelElement, 'color', '#3257DC');
     }
   }
 
-  // Снятие цвета при потере фокуса
   onFocusOut() {
     const labelElement = this.element.nativeElement.querySelector(
       '.dx-texteditor-label'
