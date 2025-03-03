@@ -32,15 +32,16 @@ export type MeTabsStylingMode = 'inside' | 'outside';
   },
 })
 export class MeTabsDirective implements OnInit {
-  @Input() customClass: string = '';
   @Input() position: 'top' | 'bottom' = 'top';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
   @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
-  @Input() width: string | number = 'auto';
   @Input() stretchTabs: boolean = false;
 
-  // Обновляем определение stylingMode
+  @Input() width: string | number = 'auto';
+
+  @Input() customClass: string = '';
+
   @Input() set stylingMode(value: MeTabsStylingMode) {
     this._stylingMode = value;
     this.internalStylingMode = value === 'inside' ? 'primary' : 'secondary';
@@ -70,11 +71,8 @@ export class MeTabsDirective implements OnInit {
       this.tabs.width = this.width;
     }
 
-    // Устанавливаем стиль для DevExtreme компонента
     if (this.tabs.instance) {
       this.tabs.instance.option('stylingMode', this.internalStylingMode);
     }
   }
-
-  ngAfterViewInit() {}
 }
