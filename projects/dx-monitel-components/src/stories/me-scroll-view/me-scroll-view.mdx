@@ -1,41 +1,38 @@
-import { Figma } from "@storybook/addon-designs/blocks";
 import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
-import * as ScrollViewStories from "./me-scroll-view.stories";
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as scrollViewStories from "./me-scroll-view.stories";
 
-
-<Meta title="Components/ScrollView" of={ScrollViewStories}/>
+<Meta name="ScrollView Documentation" of={scrollViewStories} />
 
 # ScrollView
 
-## Директива ScrollView
+## Директива `meScrollView`
 
-Директива `meScrollView` изменяет внешний вид стандартного компонента ScrollView DevExtreme.
+Директива **meScrollView** изменяет внешний вид компонента `dx-scroll-view` из DevExtreme, приводя его к оформлению согласно дизайн-системе. С её помощью можно настраивать размеры области контента, условия отображения скролла, направления прокрутки, а также включать эффект отскока. Дополнительные свойства позволяют использовать нативный скроллинг и управлять состоянием компонента (например, отключать его).
 
-Документация на сайте разработчика Devextreme:
+Документация на сайте разработчика DevExtreme
+
 - <a
-    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxScrollView/"
-    target="_blank"
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UIComponents/dxScrollView/"
+    target="blank"
   >
     API
   </a>
-
 - <a
     href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ScrollView/Overview/Light/"
-    target="_blank"
+    target="blank"
   >
     Демо
   </a>
 
-<Canvas name="Default" of={ScrollViewStories.Default} />
-<Controls of={ScrollViewStories.Default} />
-<Source of={ScrollViewStories.Default} dark language="html"/>
+<Controls of={scrollViewStories.Default} />
 
 ## Дизайн
 
 <Figma
   height="50%"
-			collapsable
-			defaultCollapsed
+  collapsable
+  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=72-19711&node-type=canvas&t=HNTeOZLS9eL4vS7N-0"
 />
 
@@ -43,58 +40,187 @@ import * as ScrollViewStories from "./me-scroll-view.stories";
 
 - [Размеры контента](#размеры-контента)
 - [Отображение скролла](#отображение-скролла)
+- [Направление скролла](#направление-скролла)
+  - [Горизонтальный скролл](#горизонтальный-скролл)
+  - [Вертикальный скролл](#вертикальный-скролл)
+  - [Скролл в обе стороны](#скролл-в-обе-стороны)
 - [Эффект отскока](#эффект-отскока)
-
+- [Отключение скролла](#отключение-скролла)
+- [Использование нативного скролла](#использование-нативного-скролла)
+  - [Нативный скролл](#нативный-скролл)
+  - [Не нативный скролл](#не-нативный-скролл)
 
 ### Размеры контента
 
-#### Для изменения размеров контента используется свойство `width` и `height`:
+В этом примере изменяются размеры области контента с помощью свойств `width` и `height`. Это позволяет задать конкретную ширину и высоту для области, в которой будет отображаться контент (например, текст).
+
+<Canvas name="Размеры контента" of={scrollViewStories.Default} />
 
 <Source
   code={`
-	<dx-scroll-view
-    meScrollView
-    [width]="width"
-    [height]="height"
-  >
-    <div>Content</div>
-  </dx-scroll-view>
-	`}
+<dx-scroll-view
+  meScrollView
+  [width]="'250px'"
+  [height]="'150px'"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
   dark
   language="html"
 />
 
 ### Отображение скролла
 
-Для условия отображения скролла используется свойство `showScrollbar`: `'onHover'`, `'onScroll'`, `'always'`, `'never'`;
-Для отображения направления скролла используется свойство `direction`:`'both'`, `'horizontal'`, `'vertical'`:
+Свойство `showScrollbar` управляет условиями отображения полос прокрутки. Возможные значения:
+- **onHover** – полосы прокрутки видны при наведении курсора;
+- **onScroll** – отображаются во время прокрутки;
+- **always** – всегда видны;
+- **never** – никогда не отображаются.
+
+<Canvas name="Отображение скролла" of={scrollViewStories.ShowScrollbarOnHover} />
 
 <Source
   code={`
-	<dx-scroll-view
-    meScrollView
-    [showScrollbar]="showScrollbar"
-    [direction]="direction"
-  >
-    <div>Content</div>
-  </dx-scroll-view>
-	`}
+<dx-scroll-view
+  meScrollView
+  [showScrollbar]="'onHover'"
+  [direction]="'vertical'"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
+  dark
+  language="html"
+/>
+
+### Направление скролла
+
+Свойство `direction` задаёт, в каком направлении доступна прокрутка. В примерах показаны три варианта:
+
+#### Горизонтальный скролл
+
+<Canvas name="Горизонтальный скролл" of={scrollViewStories.ScrollDirectionHorizontal} />
+
+<Source
+  code={`
+<dx-scroll-view
+  meScrollView
+  [direction]="'horizontal'"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
+  dark
+  language="html"
+/>
+
+#### Вертикальный скролл
+
+<Canvas name="Вертикальный скролл" of={scrollViewStories.ScrollDirectionVertical} />
+
+<Source
+  code={`
+<dx-scroll-view
+  meScrollView
+  [direction]="'vertical'"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
+  dark
+  language="html"
+/>
+
+#### Скролл в обе стороны
+
+<Canvas name="Скролл в обе стороны" of={scrollViewStories.ScrollDirectionBoth} />
+
+<Source
+  code={`
+<dx-scroll-view
+  meScrollView
+  [direction]="'both'"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
   dark
   language="html"
 />
 
 ### Эффект отскока
-Для эффекта отскока используется свойство `bounceEnabled`: `true`, `false`;
+
+Свойство `bounceEnabled` включает или отключает эффект отскока при достижении конца прокрутки. Это может сделать взаимодействие более естественным, особенно на мобильных устройствах.
+
+<Canvas name="Эффект отскока" of={scrollViewStories.WithBounceEffect} />
 
 <Source
-	code={`
-  <dx-scroll-view
-    meScrollView
-    [bounceEnabled]="bounceEnabled"
-  >
-    <div>Content</div>
-  </dx-scroll-view>
-	`}
-	dark
-	language="html"
+  code={`
+<dx-scroll-view
+  meScrollView
+  [bounceEnabled]="true"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
+  dark
+  language="html"
+/>
+
+### Отключение скролла
+
+Свойство `disabled` делает компонент неинтерактивным. В этом режиме пользователь не может прокручивать содержимое.
+
+<Canvas name="Отключённый скролл" of={scrollViewStories.Disabled} />
+
+<Source
+  code={`
+<dx-scroll-view
+  meScrollView
+  [disabled]="true"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
+  dark
+  language="html"
+/>
+
+### Использование нативного скролла
+
+Свойство `useNative` определяет, использовать ли нативный скроллинг. Это может быть полезно для оптимизации работы на определённых устройствах (например, для десктопов или мобильных платформ).
+
+#### Нативный скролл
+
+<Canvas name="Нативный скролл" of={scrollViewStories.WithNativeScrollBar} />
+
+<Source
+  code={`
+<dx-scroll-view
+  meScrollView
+  [useNative]="true"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
+  dark
+  language="html"
+/>
+
+#### Не нативный скролл
+
+<Canvas name="Не нативный скролл" of={scrollViewStories.WithoutNativeScrollBar} />
+
+<Source
+  code={`
+<dx-scroll-view
+  meScrollView
+  [useNative]="false"
+>
+  <div>Content</div>
+</dx-scroll-view>
+  `}
+  dark
+  language="html"
 />
