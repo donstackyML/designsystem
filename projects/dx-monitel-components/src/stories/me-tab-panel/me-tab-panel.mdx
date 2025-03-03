@@ -1,187 +1,257 @@
 import { Meta, Canvas, Controls, Source } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
 import * as tabPanelStories from "./me-tab-panel.stories";
 
-<Meta
-  title="Components/TabPanel"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: { hidden: true }
-    },
-    layout: 'centered',
-    docs: {
-      description: {
-        component: 'Компонент TabPanel для отображения содержимого во вкладках'
-      }
-    }
-  }}
-/>
+<Meta name="Tabs Documentation" of={tabPanelStories} />
 
 # TabPanel
 
-> ## Директива meTabPanel
->
-> Директива `meTabPanel` расширяет стандартный компонент `dx-tab-panel`, добавляя поддержку размеров и стилей из дизайн-системы.
+## Директива `meTabPanel`
+
+Директива `meTabPanel` расширяет стандартный компонент `dx-tab-panel`, добавляя поддержку размеров и стилей из дизайн-системы.
 
 <Canvas of={tabPanelStories.Default} />
 <Controls of={tabPanelStories.Default} />
 
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTabPanel/"
+    target="blank"
+  >
+    API
+  </a>
+- <a
+    href="(https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TabPanel/Overview/Light/)"
+    target="blank"
+  >
+    Демо
+  </a>
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=40-5890&m=dev"
+/>
+
 ## Примеры использования
 
-### Базовый TabPanel
+- [Размеры вкладок](#размеры-вкладок)
+  - [Компактный размер](#компактный-размер)
+  - [Средний размер (по умолчанию)](#средний-размер)
+  - [Большой размер](#большой-размер)
+- [Положение вкладок](#положение-вкладок)
+  - [Вкладки сверху (по умолчанию)](#вкладки-сверху)
+  - [Вкладки снизу](#вкладки-снизу)
+  - [Вкладки слева](#вкладки-слева)
+  - [Вкладки справа](#вкладки-справа)
+- [Положение иконок](#положение-иконок)
+  - [Иконка слева (по умолчанию)](#иконка-слева)
+  - [Иконка справа](#иконка-справа)
+  - [Иконка сверху](#иконка-сверху)
+  - [Иконка снизу](#иконка-снизу)
+- [Стилизация вкладок](#стилизация-вкладок)
+  - [Стилизация "inside" (по умолчанию)](#стилизация-inside)
+  - [Стилизация "outside"](#стилизация-outside)
+- [Прочие настройки](#прочие-настройки)
+  - [Отключение компонента](#отключение-компонента)
+  - [Включение свайпа](#включение-свайпа)
+  - [Выбор активной вкладки](#выбор-активной-вкладки)
+  - [Контент внутри tabPanel](#контент-внутри-tabpanel)
 
-```html
+### Размеры вкладок
+
+Изменение размера вкладок с помощью свойства `size`.
+
+#### Компактный размер
+
+<Canvas name="Компактный размер" of={tabPanelStories.SizeSmall} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel size="small" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Средний размер
+
+<Canvas name="Средний размер" of={tabPanelStories.SizeMedium} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel size="medium" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Большой размер
+
+<Canvas name="Большой размер" of={tabPanelStories.SizeLarge} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel size="large" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+### Положение вкладок
+
+Свойство `tabsPosition` задаёт положение вкладок относительно контента.
+
+#### Вкладки сверху
+
+<Canvas name="TabsPositionTop" of={tabPanelStories.TabsPositionTop} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel tabsPosition="top" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Вкладки снизу
+
+<Canvas name="TabsPositionBottom" of={tabPanelStories.TabsPositionBottom} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel tabsPosition="bottom" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Вкладки слева
+
+<Canvas name="TabsPositionLeft" of={tabPanelStories.TabsPositionLeft} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel tabsPosition="left" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Вкладки справа
+
+<Canvas name="TabsPositionRight" of={tabPanelStories.TabsPositionRight} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel tabsPosition="right" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+### Положение иконок
+
+Настройка расположения иконок внутри вкладок через свойство `iconPosition`.
+
+#### Иконка слева
+
+<Canvas name="IconPositionStart" of={tabPanelStories.IconPositionStart} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel iconPosition="start" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Иконка справа
+
+<Canvas name="IconPositionEnd" of={tabPanelStories.IconPositionEnd} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel iconPosition="end" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Иконка сверху
+
+<Canvas name="IconPositionTop" of={tabPanelStories.IconPositionTop} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel iconPosition="top" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Иконка снизу
+
+<Canvas name="IconPositionBottom" of={tabPanelStories.IconPositionBottom} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel iconPosition="bottom" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+### Стилизация вкладок
+
+Свойство `styling` позволяет выбирать между внутренней и внешней стилизацией вкладок.
+
+#### Стилизация "inside"
+
+<Canvas name="StylingInside" of={tabPanelStories.StylingInside} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel styling="inside" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Стилизация "outside"
+
+<Canvas name="StylingOutside" of={tabPanelStories.StylingOutside} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel styling="outside" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+### Прочие настройки
+
+#### Отключение компонента
+
+Свойство `disabled` делает компонент неинтерактивным.
+
+<Canvas name="Disabled" of={tabPanelStories.StateDisabled} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel [disabled]="true" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Включение свайпа
+
+Свойство `swipeEnabled` включает возможность смены вкладок свайпом.
+
+<Canvas name="SwipeEnabled" of={tabPanelStories.SwipeEnabled} />
+
+<Source
+  code={`<dx-tab-panel meTabPanel [swipeEnabled]="true" [dataSource]="defaultTabPanelData"></dx-tab-panel>`}
+  language="html"
+  dark
+/>
+
+#### Контент внутри tabPanel
+
+Контент каждой вкладки задается через директиву `dxTemplate`. Пример ниже показывает, как определяется содержимое вкладки:
+
+<Source
+  code={`
 <dx-tab-panel
   meTabPanel
-  [dataSource]="tabItems"
-  [size]="'medium'"
-  [styling]="'outside'"
+  [selectedIndex]="2"
+  [dataSource]="defaultTabPanelData"
 >
-  <div *dxTemplate="let item of 'item'">
+  <div *dxTemplate="let item of 'item'" class="me-tab-panel-demo-content-container">
     <div class="tabpanel-content">
-      {{ item.content }}
+      <p>{{ item.content }}</p>
     </div>
   </div>
 </dx-tab-panel>
-```
-
-### Вертикальные вкладки
-
-<Canvas of={tabPanelStories.VerticalTabs} />
-
-```html
-<dx-tab-panel
-  meTabPanel
-  [dataSource]="tabItems"
-  [tabsPosition]="'left'"
-  [height]="300"
->
-</dx-tab-panel>
-```
-
-### Разные позиции иконок
-
-<Canvas of={tabPanelStories.DifferentIconPositions} />
-
-```html
-<dx-tab-panel
-  meTabPanel
-  [dataSource]="tabItems"
-  [iconPosition]="'top'"
->
-</dx-tab-panel>
-```
-
-### Структура данных
-
-```typescript
-interface TabPanelItem {
-  title: string;          // Заголовок вкладки
-  icon: string;           // Иконка
-  content: string;        // Содержимое
-  disabled?: boolean;     // Отключение вкладки
-  visible?: boolean;      // Видимость вкладки
-}
-
-const tabItems = [
-  {
-    title: 'To Do',
-    icon: 'user',
-    content: 'Content for To Do tab'
-  },
-  // ...
-];
-```
-
-## API Reference
-
-### Основные параметры
-
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|--------------|-----------|
-| size | 'small' \| 'medium' \| 'large' | 'medium' | Размер компонента |
-| styling | 'inside' \| 'outside' | 'outside' | Стиль отображения |
-| tabsPosition | 'top' \| 'bottom' \| 'left' \| 'right' | 'top' | Позиция вкладок |
-| iconPosition | 'bottom' \| 'top' \| 'start' \| 'end' | 'start' | Позиция иконок |
-| height | number \| string | 'auto' | Высота панели |
-| width | number \| string | '100%' | Ширина панели |
-| selectedIndex | number | 0 | Индекс активной вкладки |
-
-### Состояния
-
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|--------------|-----------|
-| disabled | boolean | false | Отключение компонента |
-| activeStateEnabled | boolean | true | Состояние активности |
-| focusStateEnabled | boolean | true | Состояние фокуса |
-| hoverStateEnabled | boolean | true | Состояние наведения |
-| swipeEnabled | boolean | false | Переключение свайпом |
-
-### События
-
-- `onSelectionChanged` - при смене вкладки
-- `onTitleClick` - при клике на заголовок
-- `onTitleHold` - при удержании заголовка
-- `onTitleRendered` - после рендера заголовка
-
-### Стилизация
-
-#### CSS-классы
-
-```css
-/* Отступы контейнера */
-.my-tabpanel .dx-tabpanel-container {
-  padding: 20px;
-}
-
-/* Стили вкладок */
-.my-tabpanel .dx-tab {
-  padding: 10px 20px;
-}
-
-/* Активная вкладка */
-.my-tabpanel .dx-tab-selected {
-  background-color: #f0f0f0;
-}
-```
-
-#### CSS-переменные
-
-```css
-.my-tabpanel {
-  --me-tabpanel-container-padding: 20px;
-  --me-tabpanel-tab-padding: 10px 20px;
-  --me-tabpanel-selected-bg: #f0f0f0;
-}
-```
-
-<style>
-  {`
-  h2 {
-    border-bottom: none !important;
-  }
-
-  a {
-    display: inline-block !important;
-  }
-
-  a p {
-    color: #029CFD !important;
-  }
-
-  table {
-    width: 100%;
-    margin: 20px 0;
-  }
-
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-
-  th {
-    background-color: #f5f5f5;
-  }
 `}
-</style>
+  language="html"
+  dark
+/>
