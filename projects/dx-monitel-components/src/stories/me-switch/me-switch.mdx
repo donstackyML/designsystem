@@ -1,21 +1,32 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as switchStories from "./me-switch.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as switchStories from "./me-switch.stories";
 
 <Meta name="Switch Documentation" of={switchStories} />
 
 # Switch
 
-## Директива meSwitch
+## Директива `meSwitch`
 
-Применение директивы <code>meSwitch</code> к элементу <code>dx-switch</code>
-приводит его размеры к значению <code>size = medium (20)</code> из дизайн-системы и предоставляет доступ к свойству <code>size</code>.
+Применение директивы `meSwitch` к элементу `dx-switch` приводит его размеры к значению `size = medium` (20px) из дизайн-системы и предоставляет доступ к свойству `size`.
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSwitch/)
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSwitch/"
+    target="blank"
+  >
+    API
+  </a>
+- <a
+    href="(https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Switch/Overview/Light/)"
+    target="blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={switchStories.Default} />
 <Controls of={switchStories.Default} />
-<Source of={switchStories.Default} dark />
 
 ## Дизайн
 
@@ -26,17 +37,112 @@ import { Figma } from "@storybook/addon-designs/blocks";
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=40-276&t=gC6C40DcbGAFZEUK-0"
 />
 
-## Добавление лейбла
+## Примеры использования
+
+- [Размеры компонента](#размеры-компонента)
+    - [Компонент небольшого размера](#компонент-небольшого-размера)
+    - [Компонент среднего размера](#компонент-среднего-размера)
+    - [Компонент большого размера](#компонент-большого-размера)
+  - [Состояния readOnly и disabled](#состояния-readonly-и-disabled)
+    - [Состояние readOnly](#состояние-readonly)
+    - [Состояние disabled](#состояние-disabled)
+    - [Состояние readOnly и disabled](#состояние-readonly-и-disabled)
+- [Добавление лейбла](#добавление-лейбла)
+
+### Размеры компонента
+
+Изменение размера текстового поля влияет на отступы, размер шрифта и общую компоновку. Свойство `size` принимает три значения:
+- `small` – уменьшенный размер, подходит для компактных интерфейсов;
+- `medium` – стандартный размер (используется по умолчанию);
+- `large` – увеличенный размер, удобен для форм с более крупным текстом.
+
+#### Компонент небольшого размера
+
+<Canvas name="Компонент небольшого размера" of={switchStories.SizeSmall} />
+
+<Source
+  code={`<dx-switch meSwitch size="small"></dx-switch>`}
+  language="html"
+  dark
+/>
+
+#### Компонент среднего размера
+
+<Canvas name="Компонент среднего размера (по умолчанию)" of={switchStories.SizeMedium} />
+
+<Source
+  code={`<dx-switch meSwitch size="medium"></dx-switch>`}
+  language="html"
+  dark
+/>
+
+#### Компонент большого размера
+
+<Canvas name="Компонент большого размера" of={switchStories.SizeLarge} />
+
+<Source
+  code={`<dx-switch meSwitch size="large"></dx-switch>`}
+  language="html"
+  dark
+/>
+
+### Состояния readOnly и disabled
+
+*Свойства `readOnly` и `disabled` позволяют управлять интерактивностью текстового поля. В режиме readOnly поле становится доступным для копирования, но редактирование невозможно, а в режиме disabled поле полностью неактивно и выглядит затенённым.*
+
+#### Состояние readOnly
+
+<Canvas name="Состояние readOnly" of={switchStories.StateReadOnly} />
+
+<Source
+  code={`
+<dx-switch
+  meSwitch
+  readOnly="true">
+</dx-switch>
+  `}
+  dark
+  language="html"
+/>
+
+#### Состояние disabled
+
+<Canvas name="Состояние disabled" of={switchStories.StateDisabled} />
+
+<Source
+  code={`<dx-switch meSwitch disabled="true"></dx-switch>`}
+  dark
+  language="html"
+/>
+
+#### Состояние readOnly и disabled
+
+<Canvas name="Состояние readOnly и disabled" of={switchStories.StateDisabledAndReadOnly} />
+
+<Source
+  code={`
+<dx-switch
+  meSwitch
+  disabled="true"
+  readOnly="true"
+></dx-switch>
+  `}
+  dark
+  language="html"
+/>
+
+### Добавление лейбла
 
 Для того, чтобы установить label, используйте тэг обертку `label` с директивой `meLabel`.
 
 <Canvas of={switchStories.WithLabel} />
-<Source of={switchStories.WithLabel} dark />
-
-<style>
-  {`
-      h2 {
-        border-bottom: none !important;
-    }
+<Source
+  code={`
+<label meLabel labelDirection="row">
+  <span>Label</span>
+  <dx-switch meSwitch [(value)]="value"></dx-switch>
+</label>
 `}
-</style>
+  dark
+  language="html"
+/>
