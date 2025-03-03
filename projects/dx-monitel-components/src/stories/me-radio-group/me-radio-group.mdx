@@ -1,61 +1,183 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as radioGroupStories from "./me-radio-group.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as radioGroupStories from "./me-radio-group.stories";
 
 <Meta name="RadioGroup Documentation" of={radioGroupStories} />
 
 # RadioGroup
 
-## Директива meRadioGroup
+## Директива `meRadioGroup`
 
-Применение директивы <code>meRadioGroup</code> к элементу <code>dx-radio-group</code> предоставляет следующие возможности:
+Применение директивы `meRadioGroup` к элементу `dx-radio-group` приводит его внешний вид в соответствие с дизайн-системой, его размеры к значению `size="medium"` и предоставляет доступ к свойству `size`.
 
-- Установка размера через свойство <code>size</code> (small, medium, large)
-- Выбор расположения элементов через свойство <code>layout</code> (vertical, horizontal)
-- Подключение данных через свойство <code>dataSource</code>
-- Кастомизация отображения элементов через <code>itemTemplate</code>
+Документация на сайте разработчика DevExtreme:
 
-[Ссылка на API компонента DevExtreme](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxRadioGroup/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxRadioGroup/"
+    target="_blank"
+  >
+    API
+  </a>
 
-## Пример с иконками
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/RadioGroup/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
-Пример использования радиогруппы с иконками DevExtreme:
+<Canvas of={radioGroupStories.Default} />
+<Controls of={radioGroupStories.Default} />
 
-<Canvas of={radioGroupStories.WithIcons} />
-<Controls of={radioGroupStories.WithIcons} />
-<Source of={radioGroupStories.WithIcons} dark />
+## Примеры использования
 
-### Структура данных
+ [Размеры компонента](#размеры-компонента)
+  - [Размер маленький](#размер-маленький)
+  - [Размер средний (по умолчанию)](#размер-средний)
+  - [Размер большой](#размер-большой)
+- [Расположение компонента](#расположение-компонента)
+  - [Горизонтальное расположение](#горизонтальное-расположение)
+  - [Вертикальное расположение](#вертикальное-расположение)
+- [Пример с начальным значением](#пример-с-начальным-значением)
+- [Пример с кастомным шаблоном и компонентом с иконками](#пример-с-кастомным-шаблоном-и-компонентом-с-иконками)
+- [Структуры данных](#структуры-данных)
 
-```typescript
-const data = [
+### Размеры компонента
+
+Для изменения размеров используйте параметр `size`. Есть три варианта: `small`, `medium` (*по умолчанию*), `large`.
+
+#### Размер маленький
+
+<Canvas of={radioGroupStories.SizeSmall} />
+<Source
+  code={`<dx-radio-group meRadioGroup [items]="items" [(value)]="value" size="small"></dx-radio-group>`}
+  language="html"
+  dark
+/>
+
+#### Размер средний
+
+<Canvas of={radioGroupStories.SizeMedium} />
+<Source
+  code={`<dx-radio-group meRadioGroup [items]="items" [(value)]="value" size="medium"></dx-radio-group>`}
+  language="html"
+  dark
+/>
+
+#### Размер большой
+
+<Canvas of={radioGroupStories.SizeLarge} />
+<Source
+  code={`<dx-radio-group meRadioGroup [items]="items" [(value)]="value" size="large"></dx-radio-group>`}
+  language="html"
+  dark
+/>
+
+### Расположение компонента
+
+Для изменения расположения используйте параметр `layout`. Есть два варианта: `horizontal` (*по умолчанию*), `vertical`.
+
+#### Горизонтальное расположение
+
+<Canvas of={radioGroupStories.LayoutHorizontal} />
+<Source
+  code={`<dx-radio-group meRadioGroup [items]="items" [(value)]="value" layout="horizontal"></dx-radio-group>`}
+  language="html"
+  dark
+/>
+
+#### Вертикальное расположение
+
+<Canvas of={radioGroupStories.LayoutVertical} />
+<Source
+  code={`<dx-radio-group meRadioGroup [items]="items" [(value)]="value" layout="vertical"></dx-radio-group>`}
+  language="html"
+  dark
+/>
+
+### Пример с начальным значением
+
+<Canvas of={radioGroupStories.WithInitialValue} />
+<Source
+  code={`<dx-radio-group meRadioGroup [items]="items" [value]="items[0]"></dx-radio-group>`}
+  language="html"
+  dark
+/>
+
+### Пример с кастомным шаблоном и компонентом с иконками
+
+<Canvas of={radioGroupStories.CustomTemplateWithIcons} />
+<Source
+  code={`
+<dx-radio-group
+  meRadioGroup
+  [dataSource]="dataSource"
+  itemTemplate="radioTemplate"
+>
+  <div *dxTemplate="let item of 'radioTemplate'">
+    <div style="display: flex; align-items: end; gap: 4px;">
+      <me-icon
+        [icon]="item.icon"
+        size="medium"
+        [color]="'currentColor'"
+      ></me-icon>
+      {{ item.text }}
+    </div>
+  </div>
+</dx-radio-group>
+  `}
+  language="html"
+  dark
+/>
+
+
+### Структуры данных
+
+Items - это массив объектов, который является простым способом передачи данных в компонент. Используйте его, когда вам не нужно передавать дополнительные свойства или использовать кастомный шаблон. Items лучше использовать, когда вам не нужно передавать никаких данных кроме текста элемента.
+
+<Source
+  code={`
+const items = [
   {
-    text: 'Красный',
+    index: 1,
+    text: 'Воздушные линии электропередачи',
+  },
+  {
+    index: 2,
+    text: 'Кабельные линии электропередачи',
+  },
+  {
+    index: 3,
+    text: 'Трансформаторные подстанции',
+  },
+];
+`}
+  language="typescript"
+  dark
+/>
+
+DataSource - это массив объектов, который содержит дополнительные свойства, которые могут быть использованы в кастомном шаблоне. Используйте его, когда вам нужно передать дополнительные свойства или использовать кастомный шаблон. DataSource лучше использовать, когда вам нужно передать дополнительные данные, такие как иконки, или использовать кастомный шаблон.
+
+<Source
+  code={`
+const dataSource = [
+  {
+    index: 1,
+    text: 'Воздушные линии электропередачи',
     icon: 'home',
   },
   {
-    text: 'Зеленый',
-    icon: 'favorites',
+    index: 2,
+    text: 'Кабельные линии электропередачи',
+    icon: 'folder',
   },
   {
-    text: 'Синий',
-    icon: 'preferences',
+    index: 3,
+    text: 'Трансформаторные подстанции',
+    icon: 'info',
   },
 ];
-```
-Настройки компонента
-СвойствоТипПо умолчаниюОписаниеsize'small' | 'medium' | 'large''medium'Размер радиокнопокlayout'vertical' | 'horizontal''vertical'Расположение элементов группыdataSourceany[]-Массив данных для отображения
-Дизайн
-<Figma
-height="50%"
-collapsable
-defaultCollapsed
-url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=38-9464&t=gC6C40DcbGAFZEUK-0"
+`}
+  language="typescript"
+  dark
 />
-<style>
-  {`
-    h2 {
-      border-bottom: none !important;
-    }
-  `}
-</style>
