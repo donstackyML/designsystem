@@ -1,6 +1,17 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular';
+import { StatusBarItem } from '../../lib/components/me-status-bar/me-status-bar.component';
 import { MeIconComponent, MeStatusBarComponent } from '../../public-api';
+
+const defaultLeftItems: StatusBarItem[] = [
+  { text: 'Воткинская ГЭС' },
+  {
+    text: 'Раскраска схемы без учета ТП',
+    fill: true,
+    type: 'info',
+  },
+  { text: 'Режим исследования' },
+];
 
 export default {
   title: 'Components/Status Bar',
@@ -10,19 +21,61 @@ export default {
     }),
   ],
   argTypes: {
+    leftItems: {
+      control: 'object',
+      description: 'Левый набор элементов',
+      table: {
+        type: { summary: 'Array<MeStatusBarItem>' },
+        defaultValue: { summary: '[]' },
+      },
+    },
+    rightItems: {
+      control: 'object',
+      description: 'Правый набор элементов',
+      table: {
+        type: { summary: 'Array<MeStatusBarItem>' },
+        defaultValue: { summary: '[]' },
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'large'],
       description: 'Размер компонента',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'small'" },
+      },
     },
     showDivider: {
       control: 'boolean',
       description: 'Отображать разделители между элементами',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    transparent: {
+      control: 'boolean',
+      description: 'Прозрачный фон',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
   },
   args: {
-    size: 'large',
-    showDivider: true,
+    size: 'small',
+    showDivider: false,
+    transparent: false,
+    leftItems: defaultLeftItems,
+    rightItems: [
+      {
+        text: 'Отсутствует соединение с источником данных',
+        type: 'error',
+        showStatusIcon: true,
+        fill: true,
+      },
+    ],
   },
   render: (args) => ({
     props: { ...args },
@@ -35,43 +88,15 @@ export default {
       ></me-status-bar>
     `,
   }),
-} as Meta;
+} satisfies Meta<MeStatusBarComponent>;
 
-type Story = StoryObj;
+type Story = StoryObj<MeStatusBarComponent>;
 
-export const Default: Story = {
-  args: {
-    leftItems: [
-      { text: 'Воткинская ГЭС' },
-      {
-        text: 'Раскраска схемы без учета ТП',
-        fill: true,
-        type: 'info',
-      },
-      { text: 'Режим исследования', fill: true, type: 'warning' },
-    ],
-    rightItems: [
-      {
-        text: 'Отсутствует соединение с источником данных',
-        type: 'error',
-        showStatusIcon: true,
-        fill: true,
-      },
-    ],
-  },
-};
+export const Default: Story = {};
 
 export const ErrorStatus: Story = {
   args: {
-    leftItems: [
-      { text: 'Воткинская ГЭС' },
-      {
-        text: 'Раскраска схемы без учета ТП',
-        fill: true,
-        type: 'info',
-      },
-      { text: 'Режим исследования', fill: true, type: 'warning' },
-    ],
+    leftItems: defaultLeftItems,
     rightItems: [
       {
         text: 'Отсутствует соединение с источником данных',
@@ -85,15 +110,7 @@ export const ErrorStatus: Story = {
 
 export const SuccessStatus: Story = {
   args: {
-    leftItems: [
-      { text: 'Воткинская ГЭС' },
-      {
-        text: 'Раскраска схемы без учета ТП',
-        fill: true,
-        type: 'default',
-      },
-      { text: 'Режим исследования' },
-    ],
+    leftItems: defaultLeftItems,
     rightItems: [
       {
         text: 'Соединение с источником данных восстановлено',
@@ -107,15 +124,7 @@ export const SuccessStatus: Story = {
 
 export const WarningStatus: Story = {
   args: {
-    leftItems: [
-      { text: 'Воткинская ГЭС' },
-      {
-        text: 'Раскраска схемы без учета ТП',
-        fill: true,
-        type: 'default',
-      },
-      { text: 'Режим исследования' },
-    ],
+    leftItems: defaultLeftItems,
     rightItems: [
       {
         text: 'Соединение с источником данных восстановлено',
@@ -129,15 +138,7 @@ export const WarningStatus: Story = {
 
 export const InfoStatus: Story = {
   args: {
-    leftItems: [
-      { text: 'Воткинская ГЭС' },
-      {
-        text: 'Раскраска схемы без учета ТП',
-        fill: true,
-        type: 'default',
-      },
-      { text: 'Режим исследования' },
-    ],
+    leftItems: defaultLeftItems,
     rightItems: [
       {
         text: 'Новая информация',
@@ -147,8 +148,6 @@ export const InfoStatus: Story = {
     ],
   },
 };
-
-// Добавление иконок
 
 export const StatusIcons: Story = {
   args: {
@@ -192,34 +191,26 @@ export const CustomIconsWithColor: Story = {
   },
 };
 
-// Размеры
-
 export const SizeSmall: Story = {
   args: {
-    ...ErrorStatus.args,
     size: 'small',
   },
 };
 
 export const SizeLarge: Story = {
   args: {
-    ...ErrorStatus.args,
     size: 'large',
   },
 };
 
-// Разделитель
-
 export const WithDividers: Story = {
   args: {
-    ...ErrorStatus.args,
     showDivider: true,
   },
 };
 
 export const WithoutDividers: Story = {
   args: {
-    ...ErrorStatus.args,
     showDivider: false,
   },
 };
@@ -227,7 +218,7 @@ export const WithoutDividers: Story = {
 export const WithoutFill: Story = {
   args: {
     leftItems: [
-      { text: 'Воткинская ГЭС' },
+      { text: 'Воткинская ГЭС', fill: false, },
       {
         text: 'Раскраска схемы без учета ТП',
         fill: false,
@@ -248,13 +239,14 @@ export const WithoutFill: Story = {
 export const Readonly: Story = {
   args: {
     leftItems: [
-      { text: 'Воткинская ГЭС' },
+      { text: 'Воткинская ГЭС', readOnly: true, },
       {
         text: 'Раскраска схемы без учета ТП',
         fill: true,
         type: 'info',
+        readOnly: true,
       },
-      { text: 'Режим исследования', fill: true, type: 'success' },
+      { text: 'Режим исследования', fill: true, type: 'success', readOnly: true, },
     ],
     rightItems: [
       {
@@ -266,7 +258,7 @@ export const Readonly: Story = {
             'При заданном свойстве readonly этот текст в консоле не отобразится'
           );
         },
-        readonly: true,
+        readOnly: true,
       },
     ],
   },
