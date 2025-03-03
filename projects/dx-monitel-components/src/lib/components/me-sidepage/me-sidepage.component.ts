@@ -1,11 +1,12 @@
+import { NgIf } from '@angular/common';
 import {
   Component,
   ElementRef,
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   OnDestroy,
+  OnInit,
   Output,
   Renderer2,
   SimpleChanges,
@@ -13,85 +14,13 @@ import {
 } from '@angular/core';
 import { DxScrollViewModule } from 'devextreme-angular';
 import { MePosition } from '../../types/types';
-import { NgIf } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'me-sidepage',
   imports: [DxScrollViewModule, NgIf],
-  template: `
-    <div
-      #sidepage
-      class="me-sidepage me-scrollbar-visible me-scroll-view"
-      [style.z-index]="zIndex"
-    >
-      <ng-content select="[sidepage-header]"></ng-content>
-      <div class="me-sidepage-content">
-        <dx-scroll-view>
-          <ng-content select="[sidepage-content]"></ng-content>
-        </dx-scroll-view>
-      </div>
-      <ng-content select="[sidepage-footer]"></ng-content>
-      <div
-        *ngIf="isSidePageOpen"
-        class="resize-handle"
-        [class.resize-handle-right]="position === 'right'"
-        [class.resize-handle-left]="position === 'left'"
-        (mousedown)="onResizeStart($event)"
-      ></div>
-    </div>
-  `,
-  styles: [
-    `
-      :host {
-        display: block;
-      }
-
-      .me-sidepage {
-        position: fixed;
-        top: 0;
-        height: 100vh;
-        transition: transform 0.3s ease;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .me-sidepage.me-sidepage-left {
-        left: 0;
-      }
-
-      .me-sidepage.me-sidepage-right {
-        right: 0;
-      }
-
-      .me-sidepage-content {
-        height: 100%;
-        overflow: hidden;
-      }
-
-      .resize-handle {
-        position: absolute;
-        top: 0;
-        width: 4px;
-        height: 100%;
-        cursor: ew-resize;
-        background: transparent;
-        transition: background-color 0.2s;
-        z-index: 1;
-      }
-
-      .resize-handle:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-
-      .resize-handle-right {
-        left: 0;
-      }
-
-      .resize-handle-left {
-        right: 0;
-      }
-    `,
-  ],
+  templateUrl: './me-sidepage.component.html',
+  styleUrls: ['./me-sidepage.component.css']
 })
 export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
   @Input() hideOnOutsideClick: boolean = false;
@@ -210,12 +139,22 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
   toggleSidePage(): void {
     if (this.isSidePageOpen) {
       const scrollbarWidth = this.getScrollbarWidth();
-      this.renderer.setStyle(
-        this.element.nativeElement,
-        'transform',
-        `translateX(calc(${this.endPosition} - ${scrollbarWidth}px))`
-      );
 
+      if (this.position === 'right') {
+        this.renderer.setStyle(
+          this.element.nativeElement,
+          'transform',
+          `translateX(calc(${this.endPosition} - ${scrollbarWidth}px))`
+        );
+      }
+
+      if (this.position === 'left') {
+        this.renderer.setStyle(
+          this.element.nativeElement,
+          'transform',
+          `translateX(calc(${this.endPosition}px))`
+        );
+      }
 
       this.renderer.addClass(this.element.nativeElement, 'me-sidepage-open');
 
