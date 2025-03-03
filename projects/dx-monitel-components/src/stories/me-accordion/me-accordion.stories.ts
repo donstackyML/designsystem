@@ -1,5 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxAccordionModule } from 'devextreme-angular';
+import { DxAccordionComponent, DxAccordionModule } from 'devextreme-angular';
 import { MeAccordionDirective, MeIconComponent } from '../../public-api';
 import { meAccordionMockData } from './me-accordion-mock-data';
 
@@ -45,9 +45,7 @@ export default {
     multiple: false,
   },
   render: (args) => ({
-    props: {
-      ...args,
-    },
+    props: args,
     template: `
       <dx-accordion
         meAccordion
@@ -73,9 +71,9 @@ export default {
       </dx-accordion>
     `,
   }),
-} satisfies Meta<DxAccordionModule | MeAccordionDirective>;
+} satisfies Meta<DxAccordionComponent | MeAccordionDirective>;
 
-type Story = StoryObj<DxAccordionModule | MeAccordionDirective>;
+type Story = StoryObj<DxAccordionComponent | MeAccordionDirective>;
 
 export const Default: Story = {
   args: {}
