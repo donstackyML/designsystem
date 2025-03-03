@@ -1,15 +1,16 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { DxDataGridModule } from 'devextreme-angular';
+import { DxDataGridComponent, DxDataGridModule } from 'devextreme-angular';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
 import { dataGridMockSourceData } from './me-data-grid-mock-source-data';
+import { DxoPagerComponent, DxoPagingComponent } from 'devextreme-angular/ui/nested';
 
 export default {
   title: 'Components/DataGrid',
   decorators: [
     moduleMetadata({
-      declarations: [MeDataGridDirective],
       imports: [DxDataGridModule, MeBadgeComponent],
+      declarations: [MeDataGridDirective],
     }),
   ],
   argTypes: {
@@ -125,7 +126,7 @@ export default {
     showInfo: true,
     infoText: 'Записей: {2}',
     showNavigationButtons: true,
-    pageSize: '10',
+    pageSize: 10,
     showRowLines: true,
     showBorders: true,
   },
@@ -154,9 +155,9 @@ export default {
 				<dxo-group-panel [visible]="true"></dxo-group-panel>
 			</dx-data-grid>`,
   }),
-} satisfies Meta<MeDataGridDirective | DxDataGridModule>;
+} satisfies Meta<DxDataGridComponent | MeDataGridDirective | DxoPagerComponent | DxoPagingComponent>;
 
-type Story = StoryObj<MeDataGridDirective | DxDataGridModule>;
+type Story = StoryObj<DxDataGridComponent | MeDataGridDirective | DxoPagerComponent | DxoPagingComponent>;
 
 export const Default: Story = {};
 
