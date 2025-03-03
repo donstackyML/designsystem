@@ -7,118 +7,136 @@ import {
 } from '@monitel/me-icons';
 import { registry } from '../../../.storybook/preview';
 
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxTabsModule } from 'devextreme-angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import { DxTabsComponent, DxTabsModule } from 'devextreme-angular';
 import { Tab } from '../../lib/directives/me-tabs/me-tabs.directive';
 import { MeTabsDirective } from '../../public-api';
-
-interface MeTabsProps {
-  customClass: string;
-  position: 'top' | 'bottom';
-  size: 'small' | 'medium' | 'large';
-  stylingMode: 'inside' | 'outside';
-  orientation: 'horizontal' | 'vertical';
-  iconPosition: 'top' | 'start' | 'end' | 'bottom';
-  showNavButtons: boolean;
-  scrollByContent: boolean;
-  width: string | number;
-  height: string | number;
-  dataSource: Tab[];
-  rtlEnabled: boolean;
-  hoverStateEnabled: boolean;
-  disabled: boolean;
-}
-
-const meta: Meta<MeTabsProps> = {
-  title: 'Components/Tabs',
-  component: MeTabsDirective,
-  decorators: [
-    moduleMetadata({
-      declarations: [MeTabsDirective],
-      imports: [DxTabsModule],
-    }),
-  ],
-  render: (args: MeTabsProps) => ({
-    props: args,
-    template: `
-     <dx-tabs
-       meTabs
-       [position]="position"
-       [size]="size"
-       [stylingMode]="stylingMode"
-       [orientation]="orientation"
-       [iconPosition]="iconPosition"
-       [showNavButtons]="showNavButtons"
-       [scrollByContent]="scrollByContent"
-       [width]="width"
-			 [height]="height"
-       [dataSource]="dataSource"
-       [selectedIndex]="0"
-       [rtlEnabled]="rtlEnabled"
-       [hoverStateEnabled]="hoverStateEnabled"
-			 [disabled]="disabled"
-     ></dx-tabs>
-   `,
-  }),
-  argTypes: {
-    position: {
-      options: ['top', 'bottom'],
-      control: { type: 'select' },
-    },
-    size: {
-      options: ['small', 'medium', 'large'],
-      control: { type: 'select' },
-    },
-    stylingMode: {
-      options: ['inside', 'outside'],
-      control: { type: 'select' },
-    },
-    orientation: {
-      options: ['horizontal', 'vertical'],
-      control: { type: 'select' },
-    },
-    iconPosition: {
-      options: ['top', 'start', 'end', 'bottom'],
-      control: { type: 'select' },
-    },
-    showNavButtons: {
-      control: 'boolean',
-    },
-    scrollByContent: {
-      control: 'boolean',
-    },
-    width: {
-      control: 'text',
-    },
-    height: {
-      control: 'text',
-    },
-    rtlEnabled: {
-      control: 'boolean',
-    },
-    hoverStateEnabled: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-  },
-};
-
-export default meta;
-type Story = StoryObj<MeTabsProps>;
 
 const defaultTabsData: Tab[] = [
   { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
   { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
-  {
-    id: 3,
-    text: 'Tab 3',
-    icon: registry.getIcon(attachFileX20, 'var(--Icon-Error)'),
-  },
+  { id: 3, text: 'Tab 3', icon: registry.getIcon(attachFileX20) },
+  { id: 4, text: 'Tab 4', icon: registry.getIcon(homeX20) },
+  { id: 5, text: 'Tab 5', icon: registry.getIcon(addX20) },
 ];
 
-export const Default: Story = {
+export default {
+  title: 'Components/Tabs',
+  decorators: [
+    moduleMetadata({
+      declarations: [DxTabsComponent, MeTabsDirective],
+    }),
+  ],
+  argTypes: {
+    position: {
+      description: 'Определяет расположение вкладок относительно содержимого компонента.',
+      options: ['top', 'bottom'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'top'" },
+      },
+    },
+    size: {
+      description: 'Устанавливает размер вкладок.',
+      options: ['small', 'medium', 'large'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'medium'" },
+      },
+    },
+    stylingMode: {
+      description: 'Задает стиль отображения вкладок.',
+      options: ['inside', 'outside'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'inside'" },
+      },
+    },
+    orientation: {
+      description: 'Определяет ориентацию вкладок.',
+      options: ['horizontal', 'vertical'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'horizontal'" },
+      },
+    },
+    iconPosition: {
+      description: 'Устанавливает положение иконки внутри вкладок.',
+      options: ['top', 'start', 'end', 'bottom'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'start'" },
+      },
+    },
+    showNavButtons: {
+      description:
+        'Включает отображение кнопок навигации для прокрутки вкладок, если их число превышает доступное пространство.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    scrollByContent: {
+      description:
+        'Разрешает прокрутку вкладок путем перетаскивания содержимого, что полезно при переполнении области.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    stretchTabs: {
+      description:
+        'Заставляет вкладки растягиваться на всю ширину контейнера, что может улучшить их визуальное распределение в некоторых макетах.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    rtlEnabled: {
+      description:
+        'Включает режим отображения справа налево (RTL), что полезно для локализаций с языками, использующими RTL, например, иврит или арабский.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    disabled: {
+      description:
+        'Отключает вкладки, делая их неактивными для взаимодействия пользователя.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    width: {
+      description:
+        'Задает ширину компонента вкладок. Можно указать числовое значение или строку (например, "auto", "100%").',
+      control: 'text',
+      table: {
+        type: { summary: 'string | number' },
+        defaultValue: { summary: '"auto"' },
+      },
+    },
+    height: {
+      description:
+        'Задает высоту компонента вкладок. Можно указать числовое значение или строку. Если не задано, используется автоматическая высота.',
+      control: 'text',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+  },
   args: {
     position: 'top',
     size: 'medium',
@@ -132,65 +150,113 @@ export const Default: Story = {
     customClass: '',
     dataSource: defaultTabsData,
     rtlEnabled: false,
-    hoverStateEnabled: true,
     disabled: false,
+    stretchTabs: false,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+     <dx-tabs
+       meTabs
+       ${argsToTemplate(args)}
+     ></dx-tabs>
+   `,
+  }),
+} satisfies Meta<DxTabsModule | MeTabsDirective>;
+
+type Story = StoryObj<DxTabsModule | MeTabsDirective>;
+
+export const Default: Story = {};
+
+export const SizeSmall: Story = {
+  args: {
+    size: 'small',
   },
 };
 
-export const VerticalOrientation: Story = {
+export const SizeMedium: Story = {
   args: {
-    ...Default.args,
+    size: 'medium',
+  },
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const OrientationVertical: Story = {
+  args: {
     orientation: 'vertical',
   },
 };
 
-export const WithNavButtons: Story = {
+export const OrientationHorizontal: Story = {
   args: {
-    ...Default.args,
+    orientation: 'horizontal',
+  },
+};
+
+export const NavigationWithButtons: Story = {
+  args: {
     showNavButtons: true,
     width: '300px',
-    dataSource: [
-      { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
-      { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
-      { id: 3, text: 'Tab 3', icon: registry.getIcon(attachFileX20) },
-      { id: 4, text: 'Tab 4', icon: registry.getIcon(homeX20) },
-      { id: 5, text: 'Tab 5', icon: registry.getIcon(addX20) },
-    ],
   },
 };
 
-export const ScrollByContent: Story = {
+export const NavigationWithScroll: Story = {
   args: {
-    ...Default.args,
     scrollByContent: true,
     width: '300px',
-    dataSource: [
-      { id: 1, text: 'Tab 1', icon: registry.getIcon(publicX20) },
-      { id: 2, text: 'Tab 2', icon: registry.getIcon(mailX20) },
-      { id: 3, text: 'Tab 3', icon: registry.getIcon(attachFileX20) },
-      { id: 4, text: 'Tab 4', icon: registry.getIcon(homeX20) },
-      { id: 5, text: 'Tab 5', icon: registry.getIcon(addX20) },
-    ],
   },
 };
 
-export const DifferentIconPositions: Story = {
+export const IconPositionStart: Story = {
   args: {
-    ...Default.args,
+    iconPosition: 'start',
+  },
+};
+
+export const IconPositionEnd: Story = {
+  args: {
+    iconPosition: 'end',
+  },
+};
+
+export const IconPositionTop: Story = {
+  args: {
     iconPosition: 'top',
   },
 };
 
-export const OutsideStylingMode: Story = {
+export const IconPositionBottom: Story = {
   args: {
-    ...Default.args,
+    iconPosition: 'bottom',
+  },
+};
+
+export const StylingModeOutside: Story = {
+  args: {
     stylingMode: 'outside',
+  },
+};
+
+export const StylingModeInside: Story = {
+  args: {
+    stylingMode: 'inside',
   },
 };
 
 export const RightToLeft: Story = {
   args: {
-    ...Default.args,
     rtlEnabled: true,
+  },
+};
+
+export const StretchTabs: Story = {
+  args: {
+    stretchTabs: true,
+    width: '100vw'
   },
 };

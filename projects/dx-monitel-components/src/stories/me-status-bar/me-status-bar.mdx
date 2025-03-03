@@ -1,51 +1,49 @@
-import { Figma } from "@storybook/addon-designs/blocks";
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Figma } from "@storybook/addon-designs/blocks";
 import * as statusBarStories from './me-status-bar.stories';
 
-<Meta name="Status Bar Documentation" of={statusBarStories} />
+<Meta name="StatusBar Documentation" of={statusBarStories} />
 
 # StatusBar
 
-## Компонент me-status-bar
+## Компонент `me-status-bar`
 
-StatusBar - компонент для отображения статусной информации и навигационных элементов.
+Компонент `me-status-bar` предназначен для отображения информационных сообщений и уведомлений в виде строки статуса. Он позволяет отображать текст, иконки и фоновые заливки в зависимости от типа статуса. С помощью данного компонента можно визуально выделить ошибки, предупреждения, успех или информационные сообщения в пользовательском интерфейсе.
 
 <Canvas of={statusBarStories.Default} />
 <Controls of={statusBarStories.Default} />
-<Source of={statusBarStories.Default} dark />
+
+## API
+
+<Source
+  code={`
+type StatusType = 'error' | 'warning' | 'success' | 'info';
+
+interface StatusBarItem {
+  text: string;             // Текст элемента статуса
+  textColor?: string;       // Цвет текста
+  type?: StatusType;        // Тип статуса (error, warning, success, info)
+  icon?: string;            // Название или путь к иконке
+  iconColor?: string;       // Цвет иконки
+  showStatusIcon?: boolean; // Отображать ли иконку, соответствующую типу статуса
+  fill?: boolean;           // Использовать ли заливку фона за элементом
+  backgroundColor?: string; // Цвет фона элемента
+  readonly?: boolean;       // Режим только для чтения (элемент не кликабелен)
+  onClick?: () => void;     // Обработчик клика по элементу
+}
+  `}
+  dark
+  language="typescript"
+/>
 
 ## Дизайн
 
 <Figma
   height="50%"
   collapsable
+  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1395-40073&t=PsUcJpTrMn1vLPOD-4"
 />
-
-## API
-
-### StatusType
-```typescript
-type StatusType = 'error' | 'warning' | 'success' | 'info';
-```
-
-### StatusBarItem
-```typescript
-import {StatusType} from "./me-status-bar.component";
-
-interface StatusBarItem {
-  text: string;             // Текст
-  textColor?: string;       // Цвет текста
-  type?: StatusType;        // Тип статуса
-  icon?: string;            // Иконка
-  iconColor?: string;       // Цвет иконки
-  showStatusIcon?: boolean; // Показать иконку, которая соответствует типу статуса
-  fill?: boolean;           // Использовать заливку фона
-  backgroundColor?: string; // Цвет фона
-  readonly?: boolean;       // Только для чтения
-  onClick?: () => void;     // Обработчик события клика
-}
-```
 
 ## Примеры
 
@@ -62,220 +60,221 @@ interface StatusBarItem {
   - [С разделителями](#с-разделителями)
   - [Без разделителей](#без-разделителей)
 - [Размеры](#размеры)
-  - [Компактный размер - small](#компактный-размер)
-  - [Большой размер - large](#большой-размер)
+  - [Компактный размер](#компактный-размер)
+  - [Большой размер](#большой-размер)
+- [Readonly](#readonly)
 
-## Статусы
+### Статусы
 
-### Статус Error
+#### Статус Error
 
-<Canvas of={statusBarStories.ErrorStatus} />
+Элемент статуса с типом **error** показывает сообщение об ошибке. В примере слева отображаются элементы статуса, а справа – сообщение об отсутствии соединения с источником данных, которое выделено красной заливкой и иконкой ошибки.
 
-<Source code={`
+<Canvas name="Статус Error" of={statusBarStories.ErrorStatus} />
+
+<Source
+  code={`
 <me-status-bar
   [leftItems]="[
       { text: 'Воткинская ГЭС', icon: 'home' },
-      {
-        text: 'Раскраска схемы без учета ТП',
-        fill: true,
-        type: 'info',
-      },
-      { text: 'Режим исследования', fill: true, type: 'warning' },
+      { text: 'Раскраска схемы без учета ТП', fill: true, type: 'info' },
+      { text: 'Режим исследования', fill: true, type: 'warning' }
     ]"
   [rightItems]="[
-    {
-      icon: 'error',
-      text: 'Отсутствует соединение с источником данных',
-      fill: true,
-      type: 'error'
-    }
+    { icon: 'error', text: 'Отсутствует соединение с источником данных', fill: true, type: 'error' }
   ]"
   size="large"
-  [showDivider]="true"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="true">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>
 
+#### Статус Warning
 
-### Статус Warning
+Пример демонстрирует статус предупреждения. В этом варианте сообщение отображается с предупреждающей заливкой и соответствующей иконкой, чтобы привлечь внимание пользователя к потенциальной проблеме.
 
-<Canvas of={statusBarStories.WarningStatus} />
+<Canvas name="Статус Warning" of={statusBarStories.WarningStatus} />
 
-### Статус Success
+#### Статус Success
 
-<Canvas of={statusBarStories.SuccessStatus} />
+Элемент с типом **success** демонстрирует успешное состояние, например, восстановление соединения. Обычно такой элемент имеет зеленую заливку и соответствующую иконку.
 
-### Статус Info
+<Canvas name="Статус Success" of={statusBarStories.SuccessStatus} />
 
-<Canvas of={statusBarStories.InfoStatus} />
+#### Статус Info
 
-## Добавление иконок
+Статус **info** используется для отображения информационных сообщений. Пример ниже показывает, как можно использовать этот тип для вывода дополнительных сведений.
 
-### Иконки соответствующие типу статусов
+<Canvas name="Статус Info" of={statusBarStories.InfoStatus} />
 
-<Canvas of={statusBarStories.StatusIcons} />
+### Добавление иконок
 
-<Source code={`
+#### Иконки соответствующие типу статусов
+
+В этом примере компонент автоматически отображает стандартную иконку, соответствующую типу статуса, если задано свойство `showStatusIcon`.
+
+<Canvas name="Иконки соответствующие типу статусов" of={statusBarStories.StatusIcons} />
+
+<Source
+  code={`
 <me-status-bar
-  [leftItems]="[
-      { text: 'Воткинская ГЭС' },
-  ]"
+  [leftItems]="[{ text: 'Воткинская ГЭС' }]"
   [rightItems]="[
-    {
-      text: 'Отсутствует соединение с источником данных',
-      type: 'error',
-      showStatusIcon: true,
-      fill: true,
-    }
+    { text: 'Отсутствует соединение с источником данных', type: 'error', showStatusIcon: true, fill: true }
   ]"
   size="large"
-  [showDivider]="true"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="true">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>
 
-### Кастомные иконки
+#### Кастомные иконки
 
-<Canvas of={statusBarStories.CustomIcons} />
+Если стандартных иконок недостаточно, можно задать кастомную иконку с помощью свойства `icon`.
 
-<Source code={`
+<Canvas name="Кастомные иконки" of={statusBarStories.CustomIcons} />
+
+<Source
+  code={`
 <me-status-bar
-  [leftItems]="[
-      { text: 'Воткинская ГЭС', icon: 'home' },
-  ]"
+  [leftItems]="[{ text: 'Воткинская ГЭС', icon: 'home' }]"
   [rightItems]="[
-    {
-      text: 'Отсутствует соединение с источником данных',
-      type: 'error',
-      icon: 'error',
-      fill: true,
-    }
+    { text: 'Отсутствует соединение с источником данных', type: 'error', icon: 'error', fill: true }
   ]"
   size="large"
-  [showDivider]="true"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="true">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>
 
-### Управление цветом у иконок
+#### Управление цветом у иконок
 
-<Canvas of={statusBarStories.CustomIconsWithColor} />
+Для тонкой настройки внешнего вида можно изменить цвет иконки с помощью свойства `iconColor`.
 
-<Source code={`
+<Canvas name="Управление цветом у иконок" of={statusBarStories.CustomIconsWithColor} />
+
+<Source
+  code={`
 <me-status-bar
-  [leftItems]="[
-      { text: 'Воткинская ГЭС', icon: 'home', iconColor: '#f00' },
-  ]"
+  [leftItems]="[{ text: 'Воткинская ГЭС', icon: 'home', iconColor: '#ff0' }]"
   [rightItems]="[
-    {
-      text: 'Отсутствует соединение с источником данных',
-      type: 'error',
-      icon: 'error',
-      fill: true,
-    }
+    { text: 'Отсутствует соединение с источником данных', type: 'error', icon: 'error', fill: true }
   ]"
   size="large"
-  [showDivider]="true"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="true">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>
 
-## Разделители
+### Разделители
 
-### С разделителями
+#### С разделителями
 
-<Canvas of={statusBarStories.WithDividers} />
+Свойство `showDivider` позволяет отображать разделители между элементами StatusBar, что улучшает визуальное разделение блоков информации.
 
-<Source code={`
+<Canvas name="С разделителями" of={statusBarStories.WithDividers} />
+
+<Source
+  code={`
 <me-status-bar
-  [leftItems]="[
-      { text: 'Воткинская ГЭС' },
-  ]"
+  [leftItems]="[{ text: 'Воткинская ГЭС' }]"
   [rightItems]="[
-    {
-      text: 'Отсутствует соединение с источником данных',
-      type: 'error',
-      icon: 'error',
-      fill: true,
-    }
+    { text: 'Отсутствует соединение с источником данных', type: 'error', icon: 'error', fill: true }
   ]"
   size="large"
-  [showDivider]="true"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="true">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>
 
-### Без разделителей
+#### Без разделителей
 
-<Canvas of={statusBarStories.WithoutDividers} />
+Если разделители не требуются, установите свойство `showDivider` в `false`.
 
-<Source code={`
+<Canvas name="Без разделителей" of={statusBarStories.WithoutDividers} />
+
+<Source
+  code={`
 <me-status-bar
-  [leftItems]="[
-      { text: 'Воткинская ГЭС' },
-  ]"
+  [leftItems]="[{ text: 'Воткинская ГЭС' }]"
   [rightItems]="[
-    {
-      text: 'Отсутствует соединение с источником данных',
-      type: 'error',
-      icon: 'error',
-      fill: true,
-    }
+    { text: 'Отсутствует соединение с источником данных', type: 'error', icon: 'error', fill: true }
   ]"
   size="large"
-  [showDivider]="false"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="false">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>
 
-## Размеры
+### Размеры
 
-### Компактный размер
+#### Компактный размер
 
-<Canvas of={statusBarStories.SizeSmall} />
+Значение `size="small"` уменьшает размеры шрифта и иконок, что делает StatusBar более компактным.
 
-<Source code={`
+<Canvas name="Компактный размер" of={statusBarStories.SizeSmall} />
+
+<Source
+  code={`
 <me-status-bar
-  [leftItems]="[
-      { text: 'Воткинская ГЭС' },
-  ]"
+  [leftItems]="[{ text: 'Воткинская ГЭС' }]"
   [rightItems]="[
-    {
-      text: 'Отсутствует соединение с источником данных',
-      type: 'error',
-      icon: 'error',
-      fill: true,
-    }
+    { text: 'Отсутствует соединение с источником данных', type: 'error', icon: 'error', fill: true }
   ]"
   size="small"
-  [showDivider]="true"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="true">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>
 
-### Большой размер
+#### Большой размер
 
-<Canvas of={statusBarStories.SizeLarge} />
+При значении `size="large"` StatusBar отображается с увеличенными размерами элементов и шрифтов, что делает его более заметным.
 
-<Source code={`
+<Canvas name="Большой размер" of={statusBarStories.SizeLarge} />
+
+<Source
+  code={`
 <me-status-bar
-  [leftItems]="[
-      { text: 'Воткинская ГЭС' },
-  ]"
+  [leftItems]="[{ text: 'Воткинская ГЭС' }]"
   [rightItems]="[
-    {
-      text: 'Отсутствует соединение с источником данных',
-      type: 'error',
-      icon: 'error',
-      fill: true,
-    }
+    { text: 'Отсутствует соединение с источником данных', type: 'error', icon: 'error', fill: true }
   ]"
   size="large"
-  [showDivider]="true"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="true">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>
 
-## Readonly
+### Readonly
 
-<Canvas of={statusBarStories.Readonly} />
+В режиме readonly элементы StatusBar не реагируют на клики. В примере показано, как задать свойство `readonly` для элементов, чтобы предотвратить их взаимодействие.
 
-<Source code={`
+<Canvas name="Readonly" of={statusBarStories.Readonly} />
+
+<Source
+  code={`
 <me-status-bar
   [leftItems]="[
-      { text: 'Воткинская ГЭС' },
+      { text: 'Воткинская ГЭС', readonly: true },
+      { text: 'Раскраска схемы без учета ТП', fill: true, type: 'info', readonly: true },
+      { text: 'Режим исследования', fill: true, type: 'success', readonly: true }
   ]"
   [rightItems]="[
     {
@@ -283,13 +282,14 @@ interface StatusBarItem {
       type: 'error',
       icon: 'error',
       fill: true,
-      onClick: () => {
-          console.log('При заданном свойстве readonly этот текст в консоле не отобразится');
-      },
       readonly: true,
+      onClick: () => { console.log('Этот текст не отобразится в консоли, так как элемент readonly'); }
     }
   ]"
   size="large"
-  [showDivider]="true"
-></me-status-bar>
-`} dark language='html'/>
+  [showDivider]="true">
+</me-status-bar>
+  `}
+  dark
+  language="html"
+/>

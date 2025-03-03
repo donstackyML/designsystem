@@ -5,35 +5,26 @@ import {
   moduleMetadata,
 } from '@storybook/angular';
 import {
+  DxButtonGroupModule,
   DxButtonModule,
   DxDropDownButtonModule,
-  DxButtonGroupModule,
-  DxTemplateModule,
-  DxToolbarModule,
-  DxTextBoxModule,
   DxSelectBoxModule,
+  DxTemplateModule,
+  DxTextBoxModule,
+  DxToolbarComponent,
+  DxToolbarModule,
 } from 'devextreme-angular';
 import {
   MeButtonDirective,
   MeButtonGroupDirective,
   MeDropDownButtonDirective,
   MeIconStoreService,
-  MeToolbarDirective,
-  MeTextBoxDirective,
   MeSelectBoxDirective,
+  MeTextBoxDirective,
+  MeToolbarDirective,
 } from '../../public-api';
 
-// 1. Определяем интерфейс для аргументов
-interface ToolbarArgs {
-  dataSource: any;
-  size: 'small' | 'medium' | 'large';
-  background: boolean;
-  multiline: boolean;
-  disabled: boolean;
-}
-
-// 2. Определяем метаданные с использованием интерфейса
-const meta: Meta<ToolbarArgs> = {
+export default {
   title: 'Components/Toolbar',
   decorators: [
     moduleMetadata({
@@ -60,9 +51,9 @@ const meta: Meta<ToolbarArgs> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'] as const,
+      options: ['small', 'medium', 'large'],
       description:
-        'Меняет размер самого <code>toolbar</code> и размер кнопки <code>overflow</code> при переполнении.',
+        'Меняет размер самого `toolbar` и размер кнопки `overflow` при переполнении.',
       table: {
         type: { summary: `'small' | 'medium' | 'large'` },
         defaultValue: { summary: 'medium' },
@@ -86,28 +77,31 @@ const meta: Meta<ToolbarArgs> = {
         defaultValue: { summary: 'false' },
       },
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает панель инструментов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    width: {
+      control: 'text',
+      description: 'Ширина панели инструментов.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
   },
   args: {
     size: 'medium',
     background: false,
     multiline: false,
     disabled: false,
+    width: undefined
   },
-};
-
-export default meta;
-
-// 3. Определяем тип Story
-type Story = StoryObj<ToolbarArgs>;
-
-// 4. Определяем истории
-
-// История по умолчанию
-export const Default: Story = {
-  args: {
-    multiline: false,
-  },
-  render: (args: ToolbarArgs) => ({
+  render: (args) => ({
     props: {
       ...args,
       lineHeights: [
@@ -177,19 +171,8 @@ export const Default: Story = {
         },
       ],
     },
-    styles: [
-      `
-      .me-toolbar {
-        &:not(.dx-toolbar-multiline) {
-          div:has(> .search-item) {
-            max-width: calc(100% - 40px);
-          }
-        }
-      }
-      `,
-    ],
     template: `
-    <dx-toolbar meToolbar ${argsToTemplate(args)}>
+<dx-toolbar meToolbar ${argsToTemplate(args)}>
   <dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
     <div *dxTemplate>
       <dx-button [disabled]="disabled" meButton iconOnly="undo" text="Undo" [size]="size"></dx-button>
@@ -332,5 +315,62 @@ export const Default: Story = {
   </div>
 </dx-toolbar>
 `,
-  }),
+    styles: [
+      `
+      .me-toolbar {
+        &:not(.dx-toolbar-multiline) {
+          div:has(> .search-item) {
+            max-width: calc(100% - 40px);
+          }
+        }
+      }
+      `,
+    ]
+  })
+} satisfies Meta<DxToolbarComponent | MeToolbarDirective>;
+
+type Story = StoryObj<DxToolbarComponent | MeToolbarDirective>;
+
+export const Default: Story = {};
+
+export const SizeSmall: Story = {
+  args: {
+    size: 'small'
+  }
+};
+
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium'
+  }
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large'
+  }
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
+  }
+};
+
+export const Multiline: Story = {
+  args: {
+    multiline: true
+  }
+};
+
+export const WithBackground: Story = {
+  args: {
+    background: true
+  }
+};
+
+export const WithoutBackground: Story = {
+  args: {
+    background: false
+  }
 };

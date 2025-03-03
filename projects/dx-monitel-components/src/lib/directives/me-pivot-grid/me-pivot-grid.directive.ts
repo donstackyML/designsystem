@@ -6,10 +6,9 @@ import {
   Renderer2,
   inject,
 } from '@angular/core';
-import { DxPivotGridComponent, DxTreeListComponent } from 'devextreme-angular';
+import { DxPivotGridComponent } from 'devextreme-angular';
 import { MeIconComponent } from '../../../public-api';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { Element } from '@angular/compiler';
 
 @Directive({
   selector: '[mePivotGrid]',
@@ -33,23 +32,15 @@ export class MePivotGridDirective implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // this.changeColumnChooserIcon();
     this.loadPanelStyles();
-    // .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-virtual-content
-    let test = document.querySelector('.dx-pivotgrid-container');
-    let test2 = document.querySelectorAll(
+
+    const rows = document.querySelectorAll(
       '.dx-bottom-row .dx-area-row-cell .dx-pivotgrid-vertical-headers .dx-scrollable-content table:not(.dx-hidden) .dx-pivotgrid-vertical-headers tr'
     );
-    let t = test2[0];
-    t.setAttribute('tabindex', '1');
+    const firstRow = rows[0];
+    firstRow.setAttribute('tabindex', '1');
     // @ts-ignore
-    t.focus();
-    console.log('Horizontal %o', test);
-    console.log('Horizontal %o', test2);
-    let horizontal = this.element.nativeElement.querySelectorAll(
-      '.dx-pivotgrid-collapsed'
-    );
-    console.log('Horizontal %o', horizontal);
+    firstRow.focus();
   }
 
   private applyOptions() {
@@ -57,19 +48,19 @@ export class MePivotGridDirective implements OnInit, AfterViewInit {
     this.pivotGrid.tabIndex = 0;
   }
 
-  private changeColumnChooserIcon() {
-    const buttonContainer =
-      this.element.nativeElement.querySelector('.dx-button-content');
-    const icon = this.renderer.createElement('me-icon');
-    this.renderer.setAttribute(icon, 'icon', 'search');
-    this.renderer.setAttribute(icon, 'size', 'small');
-    this.renderer.appendChild(buttonContainer, icon);
+  // private changeColumnChooserIcon() {
+  //   const buttonContainer =
+  //     this.element.nativeElement.querySelector('.dx-button-content');
+  //   const icon = this.renderer.createElement('me-icon');
+  //   this.renderer.setAttribute(icon, 'icon', 'search');
+  //   this.renderer.setAttribute(icon, 'size', 'small');
+  //   this.renderer.appendChild(buttonContainer, icon);
 
-    this.renderer.removeChild(
-      buttonContainer,
-      this.element.nativeElement.querySelector('.dx-icon-columnchooser')
-    );
-  }
+  //   this.renderer.removeChild(
+  //     buttonContainer,
+  //     this.element.nativeElement.querySelector('.dx-icon-columnchooser')
+  //   );
+  // }
 
   private loadPanelStyles() {
     this.renderer.addClass(

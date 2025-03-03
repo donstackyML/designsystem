@@ -1,148 +1,163 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxProgressBarModule } from 'devextreme-angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import { DxProgressBarComponent } from 'devextreme-angular';
 import { MeProgressBarDirective } from '../../public-api';
 
 export default {
   title: 'Components/ProgressBar',
   decorators: [
     moduleMetadata({
-      declarations: [MeProgressBarDirective],
-      imports: [DxProgressBarModule],
+      declarations: [DxProgressBarComponent, MeProgressBarDirective],
     }),
   ],
   argTypes: {
     size: {
       control: 'select',
       options: ['small', 'medium'],
-      description: 'Размер прогрессбара',
+      description: 'Устанавливает размер прогрессбара.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
     },
     height: {
       control: 'text',
-      description: 'Занимаемая компонентом высота',
+      description: 'Устанавливает занимаемую компонентом высоту.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
     },
     width: {
       control: 'text',
-      description: 'Занимаемая компонентом ширина',
+      description: 'Устанавливает занимаемую компонентом ширину.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined%' },
+      },
     },
     showStatus: {
       control: 'boolean',
-      description: 'Показать статус прогресса',
+      description: 'Определяет, будет ли отображаться статус прогресса.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
     },
     value: {
       control: 'number',
-      description: 'Значение прогресса',
+      description: 'Устанавливает значение прогресса.',
+      table: {
+        type: { summary: 'number | false' },
+        defaultValue: { summary: '0' },
+      },
     },
   },
-
   args: {
-    size: 'small',
-    height: '15px',
-    width: '90%',
+    size: 'medium',
+    height: undefined,
+    width: undefined,
     showStatus: true,
-    value: 10,
+    value: 25,
   },
-
   render: (args: any) => ({
-    props: {
-      ...args,
-    },
+    props: args,
     template: `
 			<dx-progress-bar
 				meProgressBar
-				[(value)]="value"
-				[(size)]="size"
-				[(height)]="height"
-				[(width)]="width"
-				[(showStatus)]="showStatus"
+				${argsToTemplate(args)}
 			>
 			</dx-progress-bar>
 		`,
   }),
-} as Meta;
+} satisfies Meta<DxProgressBarComponent | MeProgressBarDirective>;
 
-type Story = StoryObj;
+type Story = StoryObj<DxProgressBarComponent | MeProgressBarDirective>;
 
-export const Default: Story = {
-  args: {},
+export const Default: Story = {};
+
+export const SizeSmall: Story = {
+  args: {
+    size: 'small',
+  }
 };
 
-export const WithSmallHeader: Story = {
-  args: {},
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium',
+  }
+};
+
+export const WithoutTextStatus: Story = {
+  args: {
+    showStatus: false
+  }
+};
+
+export const WithHeaderSizeSmall: Story = {
   render: (args: any) => ({
-    props: {
-      ...args,
-    },
+    props: args,
     template: `
 		<div class="form">
-		<div class="me-text-body2"> Time left 00:00:10 </div>
-			<dx-progress-bar
-				meProgressBar
-				#progressBar
-				id="progress-bar-status"
-				[(value)]="value"
-				[(size)]="size"
-				[(height)]="height"
-				[(width)]="width"
-				[(showStatus)]="showStatus"
-			>
-			</dx-progress-bar>
+      <div class="me-progress-bar-header me-text-body2">Time left 00:00:10</div>
+      <dx-progress-bar
+        meProgressBar
+        #progressBar
+        id="progress-bar-status"
+        ${argsToTemplate(args)}
+      >
+      </dx-progress-bar>
 		</div>
 		`,
     styles: [
       `
 		.form {
-			height: 100px;
 			text-align: center;
 			align-content: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
 		}
-		.me-text-body2 {
-			text-align: center;
-		}
-		#progress-bar-status {
-			display: inline-block;
-			padding-top: 2px;
-		}
+    .me-progress-bar-header {
+      text-align: center;
+    }
+    #progress-bar-status {
+      width: 100%;
+    }
 `,
     ],
   }),
 };
 
-export const WithMediumHeader: Story = {
-  args: {},
+export const WithHeaderSizeMedium: Story = {
   render: (args: any) => ({
-    props: {
-      ...args,
-    },
+    props: args,
     template: `
 		<div class="form">
-		<div class="me-text-body1"> Time left 00:00:10 </div>
-			<dx-progress-bar
-				meProgressBar
-				#progressBar
-				id="progress-bar-status"
-				[(value)]="value"
-				[(size)]="size"
-				[(height)]="height"
-				[(width)]="width"
-				[(showStatus)]="showStatus"
-			>
-			</dx-progress-bar>
+      <div class="me-progress-bar-header me-text-body1">Time left 00:00:10</div>
+      <dx-progress-bar
+        meProgressBar
+        #progressBar
+        id="progress-bar-status"
+        ${argsToTemplate(args)}
+      >
+      </dx-progress-bar>
 		</div>
 		`,
     styles: [
       `
 		.form {
-			height: 100px;
 			text-align: center;
 			align-content: center;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
 		}
-		.me-text-body1 {
-			text-align: center;
-		}
+    .me-progress-bar-header {
+      text-align: center;
+    }
 		#progress-bar-status {
-			display: inline-block;
-			padding-top: 4px;
-		}
+      width: 100%;
+    }
 `,
     ],
   }),

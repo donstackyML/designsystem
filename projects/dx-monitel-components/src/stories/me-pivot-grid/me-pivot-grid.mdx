@@ -1,24 +1,32 @@
-import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as PivotGridStories from "./me-pivot-grid.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source } from "@storybook/addon-docs";
+import * as pivotGridStories from "./me-pivot-grid.stories";
 
-<Meta
-  title="Components/PivotGrid"
-  of={PivotGridStories}
-/>
+<Meta name="PivotGrid Documentation" of={pivotGridStories} />
 
 # PivotGrid
 
-## Директива mePivotGrid
+## Директива `mePivotGrid`
 
-Применение директивы `mePivotGrid` изменяет внешний вид стандартного компонента `PivotGrid` DevExtreme в соответствие с дизайн системой.
+Применение директивы `mePivotGrid` к элементу `dx-pivot-grid` приводит его размеры и стиль в соответствие с дизайн-системой.
 
-[API](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPivotGrid/)
+Документация на сайте разработчика DevExtreme:
 
-[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/PivotGrid/Overview/Light/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPivotGrid/"
+    target="_blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/PivotGrid/Overview/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
 
-<Canvas name="Default" of={PivotGridStories.PivotGrid} />
-<Controls of={PivotGridStories.PivotGrid} />
+<Canvas name="Default" of={pivotGridStories.Default} />
+<Controls of={pivotGridStories.Default} />
 
 ## Дизайн
 
@@ -26,16 +34,22 @@ import { Figma } from "@storybook/addon-designs/blocks";
   height="50%"
   collapsable
   defaultCollapsed
-  url="https://www.figma.com/design/RKYvr3REXwOglog9PMcZLF/Components-(Copy)?node-id=1853-55218&node-type=canvas&t=1Nl0fnyw2NOsrNIM-0"
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=2211-296626&t=tHOo8DIGNB3glzFj-4"
 />
+
+## Примеры использования
+
+- [DataSource](#datasource)
+- [Добавление инструментов](#добавление-инструментов)
 
 ## [DataSource](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxPivotGrid/Configuration/#dataSource)
 
 `PivotGrid` привязывается к данным через [PivotGridDataSource](https://js.devexpress.com/Angular/Documentation/ApiReference/Data_Layer/PivotGridDataSource/), компонент, который позволяет вам сортировать, фильтровать, группировать и выполнять другие операции формирования данных.
 
-Чтобы привязать `PivotGrid` к данным, присвойте `PivotGridDataSource` свойству `DataSource` компонента. Также укажите массив `fields`[] для настройки полей `PivotGrid`. [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/PivotGrid/SimpleArray/MaterialBlueLight/).
+Чтобы привязать `PivotGrid` к данным, присвойте `PivotGridDataSource` свойству `DataSource` компонента. Также укажите массив `fields`[] для настройки полей `PivotGrid`. [Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/PivotGrid/SimpleArray/Light/).
 
-<Source code={`
+<Source
+  code={`
 const Sales = [
   {
     id: 10248,
@@ -63,7 +77,10 @@ const Sales = [
   },
   { ... }
 ]
-`} dark language="js"/>
+`}
+  dark
+  language="typescript"
+/>
 
 ## Добавление инструментов
 
@@ -71,7 +88,8 @@ PivotGrid имеет свои инструменты, такие как `field c
 
 Для использования инструментов вам необходимо добавить соответствующие тэги в компонент `PivotGrid`.
 
-<Source code={`
+<Source
+  code={`
 <pivot-grid mePivotGrid [dataSource]="Sales">
   <dxo-field-chooser [enabled]="true"></dxo-field-chooser>
   <dxo-scrolling mode="virtual"></dxo-scrolling>
@@ -83,4 +101,7 @@ PivotGrid имеет свои инструменты, такие как `field c
     [enabled]="true"
   ></dxo-load-panel>
 </pivot-grid>
-`} dark language="html"/>
+`}
+  dark
+  language="html"
+/>

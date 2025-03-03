@@ -2,205 +2,260 @@ import { Meta, Story, Canvas, Controls, Source } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
 import * as tabsStories from "./me-tabs.stories";
 
-<Meta title="Компоненты/Tabs(RC)" of={tabsStories} />
+<Meta name="Tabs Documentation" of={tabsStories} />
 
 # Tabs
 
-> ## Директива meTabs
->
-> Директива `meTabs` стилизует компонент `dx-tabs` в соответствии с дизайн-системой, добавляя поддержку различных размеров и стилей отображения.
+## Директива `meTabs`
+
+Директива `meTabs` стилизует компонент `dx-tabs` согласно дизайн-системе, позволяя изменять размер, ориентацию, стиль отображения и расположение иконок. Ниже приведены примеры, где для каждого варианта кратко указано, какое свойство используется для настройки.
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTabs/"
+    target="blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Tabs/Overview/Light/"
+    target="blank"
+  >
+    Демо
+  </a>
 
 <Canvas of={tabsStories.Default} />
 <Controls of={tabsStories.Default} />
-
-## Примеры использования
-
-### Базовые вкладки
-
-```html
-<dx-tabs
-  meTabs
-  [dataSource]="tabs"
-  [size]="'medium'"
-  [stylingMode]="'inside'"
->
-</dx-tabs>
-```
-
-### Структура данных
-
-```typescript
-import {registry} from "./preview";
-import {mailX20} from "./-mail_x20.icon";
-import {publicX20} from "./-public_x20.icon";
-interface Tab {
-  id: number;
-  text: string;
-  icon?: string;
-  disabled?: boolean;
-}
-
-const tabs = [
-  {
-    id: 1,
-    text: 'Tab 1',
-    icon: registry.getIcon(publicX20)
-  },
-  {
-    id: 2,
-    text: 'Tab 2',
-    icon: registry.getIcon(mailX20)
-  }
-];
-```
-
-### Вертикальная ориентация
-
-<Canvas of={tabsStories.VerticalOrientation} />
-
-```html
-<dx-tabs
-  meTabs
-  [orientation]="'vertical'"
-  [dataSource]="tabs"
->
-</dx-tabs>
-```
-
-### С кнопками навигации
-
-<Canvas of={tabsStories.WithNavButtons} />
-
-```html
-<dx-tabs
-  meTabs
-  [showNavButtons]="true"
-  [width]="'300px'"
-  [dataSource]="tabs"
->
-</dx-tabs>
-```
-
-### Прокрутка содержимого
-
-<Canvas of={tabsStories.ScrollByContent} />
-
-```html
-<dx-tabs
-  meTabs
-  [scrollByContent]="true"
-  [width]="'300px'"
-  [dataSource]="tabs"
->
-</dx-tabs>
-```
-
-### Позиции иконок
-
-<Canvas of={tabsStories.DifferentIconPositions} />
-
-```html
-<dx-tabs
-  meTabs
-  [iconPosition]="'top'"
-  [dataSource]="tabs"
->
-</dx-tabs>
-```
-
-### Внешний стиль
-
-<Canvas of={tabsStories.OutsideStylingMode} />
-
-```html
-<dx-tabs
-  meTabs
-  [stylingMode]="'outside'"
-  [dataSource]="tabs"
->
-</dx-tabs>
-```
-
-## API Reference
-
-### Основные параметры
-
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|--------------|-----------|
-| size | 'small' \| 'medium' \| 'large' | 'medium' | Размер вкладок |
-| position | 'top' \| 'bottom' | 'top' | Позиция вкладок |
-| stylingMode | 'inside' \| 'outside' | 'inside' | Стиль отображения |
-| orientation | 'horizontal' \| 'vertical' | 'horizontal' | Ориентация вкладок |
-| iconPosition | 'top' \| 'start' \| 'end' \| 'bottom' | 'start' | Позиция иконок |
-| width | string \| number | 'auto' | Ширина компонента |
-
-### Поведение
-
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|--------------|-----------|
-| showNavButtons | boolean | false | Кнопки навигации |
-| scrollByContent | boolean | false | Прокрутка содержимым |
-| rtlEnabled | boolean | false | Поддержка RTL |
-| hoverStateEnabled | boolean | true | Эффект наведения |
-
-### События
-
-- `onItemClick` - клик по вкладке
-- `onSelectionChanged` - изменение выбора
-- `onItemRendered` - после рендера вкладки
-
-### Стилизация
-
-```css
-/* Стили вкладок */
-.dx-tabs {
-  --me-tabs-item-padding: 8px 16px;
-  --me-tabs-item-gap: 8px;
-  --me-tabs-border-radius: 4px;
-}
-
-/* Активная вкладка */
-.dx-tab-selected {
-  --me-tabs-selected-bg: var(--Primary-Main);
-  --me-tabs-selected-color: white;
-}
-```
 
 ## Дизайн
 
 <Figma
   height="50%"
   collapsable
-  url="https://www.figma.com/..."
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=40-5890&m=dev"
 />
 
-<style>
-  {`
-  h2 {
-    border-bottom: none !important;
-  }
+## Примеры использования
 
-  a {
-    display: inline-block !important;
-  }
+- [Размеры вкладок](#размеры-вкладок)
+  - [Компактный размер](#компактный-размер)
+  - [Средний размер (по умолчанию)](#средний-размер)
+  - [Большой размер](#большой-размер)
+- [Ориентация вкладок](#ориентация-вкладок)
+  - [Горизонтальная ориентация (по умолчанию)](#горизонтальная-ориентация)
+  - [Вертикальная ориентация](#вертикальная-ориентация)
+- [Навигация](#навигация)
+  - [Навигация с кнопками](#навигация-с-кнопками)
+  - [Прокрутка по содержимому](#прокрутка-по-содержимому)
+- [Положение иконок](#положение-иконок)
+  - [Иконка слева (по умолчанию)](#иконка-слева)
+  - [Иконка справа](#иконка-справа)
+  - [Иконка сверху](#иконка-сверху)
+  - [Иконка снизу](#иконка-снизу)
+- [Стили отображения](#стили-отображения)
+  - [Стилизация "inside" (по умолчанию)](#стилизация-inside)
+  - [Стилизация "outside"](#стилизация-outside)
+- [Прочие настройки](#прочие-настройки)
+  - [Режим RTL](#режим-rtl)
+  - [Растяжение вкладок](#растяжение-вкладок)
 
-  a p {
-    color: #029CFD !important;
-  }
+### Размеры вкладок
 
-  table {
-    width: 100%;
-    margin: 20px 0;
-  }
+Примеры демонстрируют, как свойство **size** влияет на внешний вид вкладок.
 
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
+#### Компактный размер
 
-  th {
-    background-color: #f5f5f5;
-  }
-`}
-</style>
+Использование свойства `size="small"` для получения компактного варианта.
+
+<Canvas name="Компактный размер" of={tabsStories.SizeSmall} />
+
+<Source
+  code={`<dx-tabs meTabs size="small" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Средний размер
+
+Использование свойства `size="medium"` (значение по умолчанию).
+
+<Canvas name="Средний размер" of={tabsStories.SizeMedium} />
+
+<Source
+  code={`<dx-tabs meTabs size="medium" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Большой размер
+
+Использование свойства `size="large"` для увеличенного отображения.
+
+<Canvas name="Большой размер" of={tabsStories.SizeLarge} />
+
+<Source
+  code={`<dx-tabs meTabs size="large" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+### Ориентация вкладок
+
+Примеры демонстрируют изменение ориентации вкладок через свойство **orientation**.
+
+#### Горизонтальная ориентация
+
+Установка `orientation="horizontal"` (значение по умолчанию) располагает вкладки в строку.
+
+<Canvas name="Горизонтальная ориентация" of={tabsStories.OrientationHorizontal} />
+
+<Source
+  code={`<dx-tabs meTabs orientation="horizontal" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Вертикальная ориентация
+
+Установка `orientation="vertical"` располагает вкладки в колонку.
+
+<Canvas name="Вертикальная ориентация" of={tabsStories.OrientationVertical} />
+
+<Source
+  code={`<dx-tabs meTabs orientation="vertical" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+
+### Навигация
+
+В примерах ниже показаны два способа управления навигацией в компоненте: с помощью кнопок навигации и прокрутки по содержимому.
+
+#### Навигация с кнопками
+
+Свойство `showNavButtons="true"` включает кнопки для навигации, если вкладок много.
+
+<Canvas name="Навигация с кнопками" of={tabsStories.NavigationWithButtons} />
+
+<Source
+  code={`<dx-tabs meTabs showNavButtons="true" width="300px" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Прокрутка по содержимому
+
+Свойство `scrollByContent="true"` позволяет прокручивать вкладки путем перетаскивания содержимого.
+
+<Canvas name="Прокрутка по содержимому" of={tabsStories.NavigationWithScroll} />
+
+<Source
+  code={`<dx-tabs meTabs scrollByContent="true" width="300px" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+### Положение иконок
+
+Свойство **iconPosition** управляет расположением иконки относительно текста внутри вкладки.
+
+#### Иконка слева
+
+Использование `iconPosition="start"` размещает иконку слева от текста.
+
+<Canvas name="Иконка слева" of={tabsStories.IconPositionStart} />
+
+<Source
+  code={`<dx-tabs meTabs iconPosition="start" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Иконка справа
+
+Использование `iconPosition="end"` размещает иконку справа от текста.
+
+<Canvas name="Иконка справа" of={tabsStories.IconPositionEnd} />
+
+<Source
+  code={`<dx-tabs meTabs iconPosition="end" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Иконка сверху
+
+Использование `iconPosition="top"` размещает иконку над текстом.
+
+<Canvas name="Иконка сверху" of={tabsStories.IconPositionTop} />
+
+<Source
+  code={`<dx-tabs meTabs iconPosition="top" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Иконка снизу
+
+Использование `iconPosition="bottom"` размещает иконку под текстом.
+
+<Canvas name="Иконка снизу" of={tabsStories.IconPositionBottom} />
+
+<Source
+  code={`<dx-tabs meTabs iconPosition="bottom" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+### Стили отображения
+
+Свойство **stylingMode** позволяет переключать стили отображения вкладок между внутренней (`inside`) и внешней (`outside`) стилизацией.
+
+#### Стилизация "inside"
+
+<Canvas name="Стилизация inside" of={tabsStories.StylingModeInside} />
+
+<Source
+  code={`<dx-tabs meTabs stylingMode="inside" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Стилизация "outside"
+
+<Canvas name="Стилизация outside" of={tabsStories.StylingModeOutside} />
+
+<Source
+  code={`<dx-tabs meTabs stylingMode="outside" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+### Прочие настройки
+
+#### Режим RTL
+
+Свойство `rtlEnabled="true"` включает отображение справа налево, подходящее для языков с соответствующей локализацией.
+
+<Canvas name="Режим RTL" of={tabsStories.RightToLeft} />
+
+<Source
+  code={`<dx-tabs meTabs rtlEnabled="true" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>
+
+#### Растяжение вкладок
+
+Свойство `stretchTabs="true"` заставляет вкладки равномерно распределяться по всей ширине контейнера.
+
+<Canvas name="Растянутые вкладки" of={tabsStories.StretchTabs} />
+
+<Source
+  code={`<dx-tabs meTabs stretchTabs="true" width="100vw" [dataSource]="defaultTabsData"></dx-tabs>`}
+  language="html"
+  dark
+/>

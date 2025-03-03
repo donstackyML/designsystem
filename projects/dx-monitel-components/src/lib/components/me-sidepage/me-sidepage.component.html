@@ -6,4 +6,11 @@
     </dx-scroll-view>
   </div>
   <ng-content select="[sidepage-footer]"></ng-content>
+  <div
+    *ngIf="isSidePageOpen"
+    class="resize-handle"
+    [class.resize-handle-right]="position === 'right'"
+    [class.resize-handle-left]="position === 'left'"
+    (mousedown)="onResizeStart($event)"
+  ></div>
 </div>

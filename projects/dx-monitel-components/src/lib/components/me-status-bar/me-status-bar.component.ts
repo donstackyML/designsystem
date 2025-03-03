@@ -10,7 +10,7 @@ export interface StatusBarItem {
   showStatusIcon?: boolean;
   fill?: boolean;
   backgroundColor?: string;
-  readonly?: boolean;
+  readOnly?: boolean;
   onClick?: () => void;
 }
 

@@ -1,6 +1,6 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MeIconsModule } from '@monitel/me-icons-registry';
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { argsToTemplate, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import {
   DxButtonComponent,
   DxCheckBoxComponent,
@@ -11,6 +11,7 @@ import {
   MeCheckBoxDirective,
   MeLabelDirective,
   MeMenuDirective,
+  MePosition,
   MeSidepageComponent,
 } from '../../public-api';
 
@@ -26,6 +27,10 @@ import {
       [shading]="shading"
       [zIndex]="zIndex"
       [zIndexOverlay]="zIndexOverlay"
+      [minWidth]="minWidth"
+      [maxWidth]="maxWidth"
+      (isSidePageOpenChange)="isSidePageOpenChange.emit($event)"
+      (widthChange)="widthChange.emit($event)"
     >
       <div sidepage-header class="me-sidepage-header">
         <me-icon name="public_x24"></me-icon>
@@ -173,13 +178,17 @@ class MeSidePageDemoComponent {
   @ViewChild('meSidePage', { static: false }) meSidePage!: MeSidepageComponent;
 
   @Input() hideOnOutsideClick: boolean = false;
-  @Input() position: 'left' | 'right' = 'right';
-  @Input() width: string = '450px';
+  @Input() isSidePageOpen: boolean = false;
+  @Input() position: MePosition = 'left';
   @Input() shading: boolean = true;
   @Input() zIndex: string = '1505';
   @Input() zIndexOverlay: string = '1504';
+  @Input() width: string = '27vw';
+  @Input() minWidth: string = '250px';
+  @Input() maxWidth: string = '80vw';
 
-  isSidePageOpen: boolean = false;
+  @Output() isSidePageOpenChange = new EventEmitter<boolean>();
+  @Output() widthChange = new EventEmitter<string>();
 
   settings = {
     showHeaders: true,
@@ -221,7 +230,6 @@ class MeSidePageDemoComponent {
 
 export default {
   title: 'Components/SidePage',
-  component: MeSidePageDemoComponent,
   decorators: [
     moduleMetadata({
       declarations: [
@@ -239,37 +247,121 @@ export default {
   argTypes: {
     position: {
       control: 'inline-radio',
-      options: ['left', 'right'] as const,
+      options: ['left', 'right'],
       description: 'Определяет сторону с которой выезжает side page.',
       table: {
         type: { summary: '"left" | "right"' },
-        defaultValue: { summary: 'right' },
+        defaultValue: { summary: 'left' },
+      },
+    },
+    isSidePageOpen: {
+      control: 'boolean',
+      description: 'Определяет, является ли side page активным.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    hideOnOutsideClick: {
+      control: 'boolean',
+      description: 'Определяет, будет ли side page скрываться при клике вне компонента.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    shading: {
+      control: 'boolean',
+      description: 'Затеняет фон, когда компонент активен.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
       },
     },
     width: {
       control: 'text',
       description: 'Определяет ширину side page.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '27vw' },
+      },
     },
-    shading: {
-      control: 'boolean',
-      description: 'Затеняет фон, когда компонент активен',
+    minWidth: {
+      control: 'text',
+      description: 'Определяет минимальную ширину side page.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '250px' },
+      },
     },
-    hideOnOutsideClick: {
-      control: 'boolean',
-      description: 'Скрывает side page при клике вне компонента.',
+    maxWidth: {
+      control: 'text',
+      description: 'Определяет максимальную ширину side page.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '80vw' },
+      },
+    },
+    zIndex: {
+      control: 'text',
+      description: 'Определяет z-index side page.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '1505' },
+      },
+    },
+    zIndexOverlay: {
+      control: 'text',
+      description: 'Определяет z-index overlay.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '1504' },
+      },
+    },
+    isSidePageOpenChange: {
+      action: 'isSidePageOpenChange',
+      description: 'Вызывается при изменении состояния side page.',
+      table: {
+        type: { summary: '(isSidePageOpen: boolean) => void' },
+      },
+    },
+    widthChange: {
+      action: 'widthChange',
+      description: 'Вызывается при изменении ширины side page.',
+      table: {
+        type: { summary: '(width: string) => void' },
+      },
     },
   },
-} as Meta<MeSidePageDemoComponent>;
-
-type Story = StoryObj<MeSidePageDemoComponent>;
-
-export const Default: Story = {
   args: {
-    position: 'right',
-    width: '450px',
+    position: 'left',
     shading: true,
     hideOnOutsideClick: false,
-    zIndex: '1501',
-    zIndexOverlay: '1500',
+    zIndex: '1505',
+    zIndexOverlay: '1504',
+    isSidePageOpen: false,
+    width: '27vw',
+    minWidth: '250px',
+    maxWidth: '80vw'
   },
+  render: (args) => ({
+    props: args,
+    template: `<me-side-page-demo ${argsToTemplate(args)}></me-side-page-demo>`
+  })
+} satisfies Meta<MeSidepageComponent>;
+
+type Story = StoryObj<MeSidepageComponent>;
+
+export const Default: Story = {};
+
+export const PositionLeft: Story = {
+  args: {
+    position: 'left'
+  }
+};
+
+export const PositionRight: Story = {
+  args: {
+    position: 'right'
+  }
 };

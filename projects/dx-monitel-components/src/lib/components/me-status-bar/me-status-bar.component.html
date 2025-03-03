@@ -11,7 +11,7 @@
           [activeStateEnabled]="false"
           [hoverStateEnabled]="false"
           [focusStateEnabled]="false"
-          (onClick)="!item.readonly && item.onClick && item.onClick()"
+          (onClick)="!item.readOnly && item.onClick && item.onClick()"
         >
           <div *dxTemplate="let data of 'content'" [style]="getContentStyles(item)" class="me-status-bar__button-content">
             <me-icon *ngIf="item.icon || item.showStatusIcon" [icon]="getIcon(item)" [class]="'dx-icon'" [size]="size" [color]="item.iconColor"></me-icon>
@@ -34,7 +34,7 @@
         [activeStateEnabled]="false"
         [hoverStateEnabled]="false"
         [focusStateEnabled]="false"
-        (onClick)="!item.readonly && item.onClick && item.onClick()"
+        (onClick)="!item.readOnly && item.onClick && item.onClick()"
       >
         <div *dxTemplate="let data of 'content'" [style]="getContentStyles(item)" class="me-status-bar__button-content">
           <me-icon *ngIf="item.icon || item.showStatusIcon" [icon]="getIcon(item)" [class]="'dx-icon'" [size]="size" [color]="item.iconColor"></me-icon>

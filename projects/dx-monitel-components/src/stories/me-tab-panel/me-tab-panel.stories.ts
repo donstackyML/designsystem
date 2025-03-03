@@ -1,81 +1,10 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { homeX20, mailX20, addX20, attachFileX20, publicX20  } from '@monitel/me-icons';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { DxTabPanelModule } from 'devextreme-angular';
-import { MeTabPanelDirective } from '../../public-api';
-import { homeX20, mailX20, publicX20 } from '@monitel/me-icons';
 import { registry } from '../../../.storybook/preview';
-interface TabPanelItem {
-  title: string;
-  icon: string;
-  content: string;
-}
+import { MeTabPanelDirective } from '../../public-api';
 
-const meta: Meta = {
-  title: 'Components/TabPanel',
-  component: MeTabPanelDirective,
-  decorators: [
-    moduleMetadata({
-      declarations: [MeTabPanelDirective],
-      imports: [DxTabPanelModule],
-    }),
-  ],
-  render: (args) => ({
-    props: args,
-    template: `
-      <dx-tab-panel
-        meTabPanel
-        [dataSource]="dataSource"
-        [height]="height"
-				[tabsPosition]="tabsPosition"
-				[hoverStateEnabled]="hoverStateEnabled"
-				[focusStateEnabled]="focusStateEnabled"
-				[activeStateEnabled]="activeStateEnabled"
-				[disabled]="disabled"
-        [iconPosition]="iconPosition"
-        [selectedIndex]="selectedIndex"
-        [swipeEnabled]="swipeEnabled"
-        [width]="width"
-        [size]="size"
-				
-      >
-        <div *dxTemplate="let item of 'item'">
-          <div class="tabpanel-content">
-            <p>{{item.content}}</p>
-          </div>
-        </div>
-      </dx-tab-panel>
-    `,
-  }),
-  argTypes: {
-    iconPosition: {
-      options: ['bottom', 'top', 'start', 'end'],
-      control: { type: 'select' },
-    },
-    size: {
-      options: ['small', 'medium', 'large'],
-      control: { type: 'select' },
-    },
-    styling: {
-      options: ['inside', 'outside'],
-      control: { type: 'select' },
-    },
-    width: { control: 'text' },
-    height: { control: 'text' },
-    tabsPosition: {
-      options: ['top', 'bottom', 'left', 'right'],
-      control: { type: 'select' },
-    },
-    activeStateEnabled: { control: 'boolean' },
-    focusStateEnabled: { control: 'boolean' },
-    hoverStateEnabled: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-    swipeEnabled: { control: 'boolean' },
-    selectedIndex: { control: 'number' },
-  },
-};
-
-export default meta;
-
-const defaultTabPanelData: TabPanelItem[] = [
+const defaultTabPanelData = [
   {
     title: 'To Do',
     icon: registry.getIcon(homeX20),
@@ -91,35 +20,271 @@ const defaultTabPanelData: TabPanelItem[] = [
     icon: registry.getIcon(publicX20),
     content: 'This is the content for the Done tab.',
   },
+  {
+    title: 'Open',
+    icon: registry.getIcon(addX20),
+    content: 'This is the content for the Open tab.',
+  },
+  {
+    title: 'Not Started',
+    icon: registry.getIcon(attachFileX20),
+    content: 'This is the content for the Not Started tab.',
+  },
+  {
+    title: 'Active',
+    icon: registry.getIcon(publicX20),
+    content: 'This is the content for the Active tab.',
+  },
 ];
 
-export const Default: StoryObj = {
+export default {
+  title: 'Components/TabPanel',
+  decorators: [
+    moduleMetadata({
+      declarations: [MeTabPanelDirective],
+      imports: [DxTabPanelModule],
+    }),
+  ],
+  argTypes: {
+    iconPosition: {
+      description: 'Устанавливает положение иконки внутри вкладок.',
+      options: ['top', 'start', 'end', 'bottom'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'start'" },
+      },
+    },
+    size: {
+      description: 'Устанавливает размер вкладок.',
+      options: ['small', 'medium', 'large'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'medium'" },
+      },
+    },
+    styling: {
+      description: 'Определяет стиль вкладок.',
+      options: ['inside', 'outside'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'inside'" },
+      },
+    },
+    width: {
+      description: 'Ширина компонента.',
+      control: 'text',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    height: {
+      description: 'Высота компонента.',
+      control: 'text',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: '200' },
+      },
+    },
+    tabsPosition: {
+      description: 'Определяет положение вкладок.',
+      options: ['top', 'bottom', 'left', 'right'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "'top'" },
+      },
+    },
+    disabled: {
+      description: 'Указывает, будет ли компонент отображаться в состоянии disabled.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    swipeEnabled: {
+      description: 'Указывает, будет ли компонент отображаться с возможностью свайпа.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    selectedIndex: {
+      description: 'Указывает, какой индекс будет выбран.',
+      control: 'number',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
+    },
+  },
   args: {
     dataSource: defaultTabPanelData,
     size: 'medium',
-    tabsPosition: 'left',
-    iconPosition: 'left',
-    activeStateEnabled: true,
-    focusStateEnabled: true,
-    hoverStateEnabled: true,
+    tabsPosition: 'top',
+    iconPosition: 'start',
+    styling: 'inside',
     disabled: false,
-    height: 246,
-    width: 528,
+    height: 200,
+    width: undefined,
     selectedIndex: 0,
     swipeEnabled: false,
   },
-};
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-tab-panel
+        meTabPanel
+        ${argsToTemplate(args)}
+      >
+        <div *dxTemplate="let item of 'item'" class="me-tab-panel-demo-content-container">
+          <div class="tabpanel-content">
+            <p>{{item.content}}</p>
+          </div>
+        </div>
+      </dx-tab-panel>
+    `,
+    styles: [
+      `
+      .me-tab-panel-demo-content-container {
+        padding: 12px;
 
-export const VerticalTabs: StoryObj = {
+        p {
+          margin: 0
+        }
+      }
+      `
+    ]
+  })
+} satisfies Meta<DxTabPanelModule | MeTabPanelDirective>;
+
+type Story = StoryObj<DxTabPanelModule | MeTabPanelDirective>;
+
+export const Default: Story = {};
+
+export const SizeSmall: Story = {
   args: {
-    ...Default.args,
-    height: 300,
+    size: 'small',
   },
 };
 
-export const DifferentIconPositions: StoryObj = {
+export const SizeMedium: Story = {
   args: {
-    ...Default.args,
+    size: 'medium',
+  },
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const OrientationVertical: Story = {
+  args: {
+    orientation: 'vertical',
+  },
+};
+
+export const OrientationHorizontal: Story = {
+  args: {
+    orientation: 'horizontal',
+  },
+};
+
+export const TabsPositionTop: Story = {
+  args: {
+    tabsPosition: 'top',
+  },
+};
+
+export const TabsPositionBottom: Story = {
+  args: {
+    tabsPosition: 'bottom',
+  },
+};
+
+export const TabsPositionLeft: Story = {
+  args: {
+    tabsPosition: 'left',
+  },
+};
+
+export const TabsPositionRight: Story = {
+  args: {
+    tabsPosition: 'right',
+  },
+};
+
+export const NavigationWithButtons: Story = {
+  args: {
+    showNavButtons: true,
+    width: '300px',
+  },
+};
+
+export const NavigationWithScroll: Story = {
+  args: {
+    scrollByContent: true,
+    width: '300px',
+  },
+};
+
+export const IconPositionStart: Story = {
+  args: {
+    iconPosition: 'start',
+  },
+};
+
+export const IconPositionEnd: Story = {
+  args: {
+    iconPosition: 'end',
+  },
+};
+
+export const IconPositionTop: Story = {
+  args: {
     iconPosition: 'top',
+  },
+};
+
+export const IconPositionBottom: Story = {
+  args: {
+    iconPosition: 'bottom',
+  },
+};
+
+export const StylingOutside: Story = {
+  args: {
+    styling: 'outside',
+  },
+};
+
+export const StylingInside: Story = {
+  args: {
+    styling: 'inside',
+  },
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
+export const SwipeEnabled: Story = {
+  args: {
+    swipeEnabled: true,
+  },
+};
+
+export const RightToLeft: Story = {
+  args: {
+    rtlEnabled: true,
   },
 };
