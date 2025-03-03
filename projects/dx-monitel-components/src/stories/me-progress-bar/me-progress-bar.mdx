@@ -1,19 +1,17 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as ProgressBarStories from "./me-progress-bar.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as progressBarStories from "./me-progress-bar.stories";
 
-<Meta
-  title="Components/ProgressBar"
-  of={ProgressBarStories}
-/>
+<Meta name="ProgressBar Documentation" of={progressBarStories} />
 
 # ProgressBar
 
-## Директива meProgressBar
+## Директива `meProgressBar`
 
-Директива `meProgressBar` расширяет настройки и изменяет внешний вид стандартного компонента `ProgressBar DevExtreme`, добавляя дополнительные размеры.
+Применение директивы `meProgressBar` к элементу `dx-progress-bar` приводит его внешний вид в соответствие с дизайн-системой, его размеры к значению `size="medium"` и предоставляет доступ к свойству `size`.
 
-Документация на сайте разработчика Devextreme:
+Документация на сайте разработчика DevExtreme:
+
 - <a
     href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxProgressBar/"
     target="_blank"
@@ -22,134 +20,165 @@ import { Figma } from "@storybook/addon-designs/blocks";
   </a>
 
 - <a
-    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ProgressBar/Overview/MaterialBlueLight/"
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ProgressBar/Overview/Light/"
     target="_blank"
   >
     Демо
   </a>
 
-<Canvas of={ProgressBarStories.Default} />
-<Controls of={ProgressBarStories.Default} />
-<Source of={ProgressBarStories.Default} dark />
+<Canvas of={progressBarStories.Default} />
+<Controls of={progressBarStories.Default} />
 
 ## Дизайн
 
 <Figma
   height="50%"
-			collapsable
+  collapsable
   defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1268-40855&node-type=canvas&t=OMBUUOLxasu12o5m-0"
 />
 
 ## Примеры использования
 
-- [Размеры прогрессбара](#размеры-прогрессбара)
+- [Размеры компонента](#размеры-компонента)
+  - [Размер маленький](#размер-маленький)
+  - [Размер средний (по умолчанию)](#размер-средний)
 - [Статус прогресса](#статус-прогресса)
-- [Обложка прогрессбара Small](#обложка-прогрессбара)
-- [Обложка прогрессбара Medium](#medium)
+- [Заголовок в прогрессбаре](#заголовок-в-прогрессбаре)
+  - [Заголовок в прогрессбаре маленький](#заголовок-в-прогрессбаре-маленький)
+  - [Заголовок в прогрессбаре средний](#заголовок-в-прогрессбаре-средний)
 
+### Размеры компонента
 
-## Размеры прогрессбара
+Для изменения размеров используйте параметр `size`. Есть два варианта: `small`, `medium` (по умолчанию).
 
-Для изменения размера прогрессбара используйте `size`. Имеются два варианта размера: `small` и `medium`.
+#### Размер маленький
 
-<Source
-  code={`<dx-progress-bar meProgressBar [size]="size"></dx-progress-bar>`}
-  dark
-  language="html"
-/>
-
-## Статус прогресса
-
-Для отображения статуса прогресса используйте свойство `showStatus="true"`.
+<Canvas of={progressBarStories.SizeSmall} />
 
 <Source
-  code={`<dx-progress-bar meProgressBar [showStatus]="true"></dx-progress-bar>`}
-  dark
-  language="html"
-/>
-
-## Обложка прогрессбара
-
-Компонент DevExtreme ProgressBar не поддерживает обложку, поэтому обложка создается и стилизуется отдельно как в примере.
-
-## Small
-<Source
-			code={`
-  <div class="form">
-    <div class="me-text-body2"> Time left 00:00:10 </div>
-      <dx-progress-bar
-        meProgressBar
-        #progressBar
-        id="progress-bar-status"
-        [(value)]="value"
-        [(size)]="size"
-        [(height)]="height"
-        [(width)]="width"
-        [(showStatus)]="showStatus"
-      >
-      </dx-progress-bar>
-    </div>
+  code={`
+ <dx-progress-bar
+  meProgressBar
+  [(value)]="value"
+  size="small"
+>
 `}
   dark
   language="html"
 />
+
+#### Размер средний
+
+<Canvas of={progressBarStories.SizeMedium} />
+
 <Source
-			code={`
-  .form {
-      height: 100px;
-      text-align: center;
-      align-content: center;
-    }
-    .me-text-body2 {
-      text-align: center;
-    }
-    #progress-bar-status {
-      display: inline-block;
-      padding-top: 2px;
-    }
+  code={`
+ <dx-progress-bar
+  meProgressBar
+  [(value)]="value"
+  size="medium"
+>
+`}
+  dark
+  language="html"
+/>
+
+### Статус прогресса
+
+По умолчанию компонент `dx-progress-bar` отображает статус прогресса. Для того чтобы отключить его отображение используйте свойство `showStatus="false"`.
+
+<Canvas of={progressBarStories.WithoutTextStatus} />
+
+<Source
+  code={`<dx-progress-bar meProgressBar [showStatus]="false"></dx-progress-bar>`}
+  dark
+  language="html"
+/>
+
+### Заголовок в прогрессбаре
+
+Компонент `dx-progress-bar` не поддерживает добавление заголовка, поэтому заголовок создается и стилизуется отдельно как в примере.
+
+#### Заголовок в прогрессбаре маленький
+
+<Canvas of={progressBarStories.WithHeaderSizeSmall} />
+<Source
+  code={`
+<div class="form">
+  <div class="me-progress-bar-header me-text-body2">Time left 00:00:10</div>
+  <dx-progress-bar
+    meProgressBar
+    #progressBar
+    id="progress-bar-status"
+    [(value)]="value"
+    size="small"
+  >
+  </dx-progress-bar>
+</div>
+`}
+  dark
+  language="html"
+/>
+
+<Source
+  code={`
+.form {
+  text-align: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.me-progress-bar-header {
+  text-align: center;
+}
+#progress-bar-status {
+  width: 100%;
+}
 `}
   dark
   language="css"
 />
 
-## Medium
-<Source
-      code={`
-  <div class="form">
-    <div class="me-text-body1"> Time left 00:00:10 </div>
-      <dx-progress-bar
-        meProgressBar
-        #progressBar
-        id="progress-bar-status"
-        [(value)]="value"
-        [(size)]="size"
-        [(height)]="height"
-        [(width)]="width"
-        [(showStatus)]="showStatus"
-      >
-      </dx-progress-bar>
-    </div>
-`}
-	dark
-			language="html"
-/>
-<Source
-      code={`
+#### Заголовок в прогрессбаре средний
 
-  .form {
-      height: 100px;
-      text-align: center;
-      align-content: center;
-    }
-    .me-text-body1 {
-      text-align: center;
-    }
-    #progress-bar-status {
-      display: inline-block;
-      padding-top: 4px;
-    }
+<Canvas of={progressBarStories.WithHeaderSizeMedium} />
+
+<Source
+code={`
+<div class="form">
+  <div class="me-progress-bar-header me-text-body1">Time left 00:00:10</div>
+  <dx-progress-bar
+    meProgressBar
+    #progressBar
+    id="progress-bar-status"
+    [(value)]="value"
+    size="medium"
+  >
+  </dx-progress-bar>
+</div>
 `}
 	dark
-			language="css"
+  language="html"
+/>
+
+<Source
+  code={`
+.form {
+  text-align: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.me-progress-bar-header {
+  text-align: center;
+}
+#progress-bar-status {
+  width: 100%;
+}
+`}
+	dark
+  language="css"
 />
