@@ -1,12 +1,12 @@
 import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { MeFileUploaderComponent } from '../../../public-api';
+import { CommonModule } from '@angular/common';
 
 export default {
   title: 'Components/FileUploader/Component',
-  component: MeFileUploaderComponent,
   decorators: [
     moduleMetadata({
-      imports: [MeFileUploaderComponent],
+      imports: [CommonModule, MeFileUploaderComponent],
     }),
   ],
   argTypes: {
@@ -171,10 +171,10 @@ export const CustomSelectButtonText: Story = {
 
 export const CustomizableUploader: Story = {
   args: {
-    labelText:"Перетащите ваши файлы сюда или нажмите кнопку ниже",
-    selectButtonText:"Выбрать файлы",
-    allowedFileExtensions : ['jpg', 'png', 'pdf'],
-    maxFileSize : 5 * 1024 * 1024,
-    multiple : true,
+    labelText: "Перетащите ваши файлы сюда или нажмите кнопку ниже",
+    selectButtonText: "Выбрать файлы",
+    allowedFileExtensions: ['jpg', 'png', 'pdf'],
+    maxFileSize: 5 * 1024 * 1024,
+    multiple: true,
   },
 };

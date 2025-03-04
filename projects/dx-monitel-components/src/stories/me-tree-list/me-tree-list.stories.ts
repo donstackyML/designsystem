@@ -1,6 +1,9 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxTreeListComponent, DxTreeListModule } from 'devextreme-angular';
+import { DxTreeListModule } from 'devextreme-angular';
+import { DxoSelectionComponent } from 'devextreme-angular/ui/nested';
+
 import { MeIconComponent, MeTreeListDirective } from '../../public-api';
+import { meTreeListMockData } from './me-tree-list-mock-data';
 
 export default {
   title: 'Components/TreeList',
@@ -12,472 +15,135 @@ export default {
     }),
   ],
   argTypes: {
-    activeStateEnabled: {
-      control: 'select',
-      options: [true, false],
-    },
     allowColumnReordering: {
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
+      description: 'Определяет, могут ли столбцы быть переставлены.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     allowColumnResizing: {
-      control: 'select',
-      options: [true, false],
-    },
-    hoverStateEnabled: {
-      control: 'select',
-      options: [true, false],
-      description: 'Определяет состояние при наведении мыши на элемент',
+      control: 'boolean',
+      description: 'Определяет, могут ли столбцы быть изменены в размерах.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     showRowLines: {
-      control: 'select',
-      options: [true, false],
+      control: 'boolean',
+      description: 'Определяет, отображаются ли границы строк.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
     },
-    selectionMode: {
+    showColumnLines: {
+      control: 'boolean',
+      description: 'Определяет, отображаются ли вертикальные границы между столбцами.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    showBorders: {
+      control: 'boolean',
+      description: 'Определяет, отображаются ли границы.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    showColumnHeaders: {
+      control: 'boolean',
+      description: 'Определяет, отображаются ли заголовки столбцов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    wordWrapEnabled: {
+      control: 'boolean',
+      description: 'Определяет, будут ли переноситься строки.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    expandedRowKeys: {
+      control: 'object',
+      description: 'Массив ключей строк, которые должны быть отображены в развернутом виде.',
+      table: {
+        type: { summary: 'any[]' },
+        defaultValue: { summary: '[]' },
+      },
+    },
+    autoExpandAll: {
+      control: 'boolean',
+      description: 'Определяет, будут ли все строки отображаться в развернутом виде.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    dataStructure: {
       control: 'select',
-      options: ['single', 'multiple', 'none'],
-      description:
-        'Определяет тип выделения. Используется с тэгом `<dxo-selection [mode]="multi"></dxo-selection>` внутри компонента',
+      options: ['plain', 'tree'],
+      description: 'Определяет, как будет отображаться хранимая в TreeList структура.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'plain' },
+      },
     },
     height: {
       control: 'text',
-      description: 'Высота TreeList..',
+      description: 'Высота TreeList.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'auto' },
       },
     },
+    columnAutoWidth: {
+      control: 'boolean',
+      description: 'Определяет, будет ли TreeList автоматически изменять ширину столбцов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    selectionMode: {
+      control: 'select',
+      options: ['single', 'multiple', 'none'],
+      description:
+        'Определяет тип выделения. Используется внутри компонента `<dxo-selection [mode]="multi"></dxo-selection>`.',
+    },
+    editingIsEnabled: {
+      control: 'boolean',
+      description: 'Определяет, включено ли редактирование для компонента `<dxo-editing></dxo-editing>`.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
-    dataSource: [
-      {
-        ID: 1,
-        Head_ID: 0,
-        Full_Name: 'John Heart',
-        Prefix: 'Mr.',
-        Title: 'CEO',
-        City: 'Los Angeles',
-        State: 'California',
-        Email: 'jheart@dx-email.com',
-        Skype: 'jheart_DX_skype',
-        Mobile_Phone: '(213) 555-9392',
-        Birth_Date: '1964-03-16',
-        Hire_Date: '1995-01-15',
-      },
-      {
-        ID: 2,
-        Head_ID: 1,
-        Full_Name: 'Samantha Bright',
-        Prefix: 'Dr.',
-        Title: 'COO',
-        City: 'Los Angeles',
-        State: 'California',
-        Email: 'samanthab@dx-email.com',
-        Skype: 'samanthab_DX_skype',
-        Mobile_Phone: '(213) 555-2858',
-        Birth_Date: '1966-05-02',
-        Hire_Date: '2004-05-24',
-      },
-      {
-        ID: 3,
-        Head_ID: 1,
-        Full_Name: 'Arthur Miller',
-        Prefix: 'Mr.',
-        Title: 'CTO',
-        City: 'Denver',
-        State: 'Colorado',
-        Email: 'arthurm@dx-email.com',
-        Skype: 'arthurm_DX_skype',
-        Mobile_Phone: '(310) 555-8583',
-        Birth_Date: '1972-07-11',
-        Hire_Date: '2007-12-18',
-      },
-      {
-        ID: 4,
-        Head_ID: 1,
-        Full_Name: 'Robert Reagan',
-        Prefix: 'Mr.',
-        Title: 'CMO',
-        City: 'Bentonville',
-        State: 'Arkansas',
-        Email: 'robertr@dx-email.com',
-        Skype: 'robertr_DX_skype',
-        Mobile_Phone: '(818) 555-2387',
-        Birth_Date: '1974-09-07',
-        Hire_Date: '2002-11-08',
-      },
-      {
-        ID: 5,
-        Head_ID: 1,
-        Full_Name: 'Greta Sims',
-        Prefix: 'Ms.',
-        Title: 'HR Manager',
-        City: 'Atlanta',
-        State: 'Georgia',
-        Email: 'gretas@dx-email.com',
-        Skype: 'gretas_DX_skype',
-        Mobile_Phone: '(818) 555-6546',
-        Birth_Date: '1977-11-22',
-        Hire_Date: '1998-04-23',
-      },
-      {
-        ID: 6,
-        Head_ID: 3,
-        Full_Name: 'Brett Wade',
-        Prefix: 'Mr.',
-        Title: 'IT Manager',
-        City: 'Reno',
-        State: 'Nevada',
-        Email: 'brettw@dx-email.com',
-        Skype: 'brettw_DX_skype',
-        Mobile_Phone: '(626) 555-0358',
-        Birth_Date: '1968-12-01',
-        Hire_Date: '2009-03-06',
-      },
-      {
-        ID: 7,
-        Head_ID: 5,
-        Full_Name: 'Sandra Johnson',
-        Prefix: 'Mrs.',
-        Title: 'Controller',
-        City: 'Beaver',
-        State: 'Utah',
-        Email: 'sandraj@dx-email.com',
-        Skype: 'sandraj_DX_skype',
-        Mobile_Phone: '(562) 555-2082',
-        Birth_Date: '1974-11-15',
-        Hire_Date: '2005-05-11',
-      },
-      {
-        ID: 8,
-        Head_ID: 4,
-        Full_Name: 'Ed Holmes',
-        Prefix: 'Dr.',
-        Title: 'Sales Manager',
-        City: 'Malibu',
-        State: 'California',
-        Email: 'edwardh@dx-email.com',
-        Skype: 'edwardh_DX_skype',
-        Mobile_Phone: '(310) 555-1288',
-        Birth_Date: '1973-07-14',
-        Hire_Date: '2005-06-19',
-      },
-      {
-        ID: 9,
-        Head_ID: 3,
-        Full_Name: 'Barb Banks',
-        Prefix: 'Mrs.',
-        Title: 'Support Manager',
-        City: 'Phoenix',
-        State: 'Arizona',
-        Email: 'barbarab@dx-email.com',
-        Skype: 'barbarab_DX_skype',
-        Mobile_Phone: '(310) 555-3355',
-        Birth_Date: '1979-04-14',
-        Hire_Date: '2002-08-07',
-      },
-      {
-        ID: 10,
-        Head_ID: 2,
-        Full_Name: 'Kevin Carter',
-        Prefix: 'Mr.',
-        Title: 'Shipping Manager',
-        City: 'San Diego',
-        State: 'California',
-        Email: 'kevinc@dx-email.com',
-        Skype: 'kevinc_DX_skype',
-        Mobile_Phone: '(213) 555-2840',
-        Birth_Date: '1978-01-09',
-        Hire_Date: '2009-08-11',
-      },
-      {
-        ID: 11,
-        Head_ID: 5,
-        Full_Name: 'Cindy Stanwick',
-        Prefix: 'Ms.',
-        Title: 'HR Assistant',
-        City: 'Little Rock',
-        State: 'Arkansas',
-        Email: 'cindys@dx-email.com',
-        Skype: 'cindys_DX_skype',
-        Mobile_Phone: '(818) 555-6655',
-        Birth_Date: '1985-06-05',
-        Hire_Date: '2008-03-24',
-      },
-      {
-        ID: 12,
-        Head_ID: 8,
-        Full_Name: 'Sammy Hill',
-        Prefix: 'Mr.',
-        Title: 'Sales Assistant',
-        City: 'Pasadena',
-        State: 'California',
-        Email: 'sammyh@dx-email.com',
-        Skype: 'sammyh_DX_skype',
-        Mobile_Phone: '(626) 555-7292',
-        Birth_Date: '1984-02-17',
-        Hire_Date: '2012-02-01',
-      },
-      {
-        ID: 13,
-        Head_ID: 10,
-        Full_Name: 'Davey Jones',
-        Prefix: 'Mr.',
-        Title: 'Shipping Assistant',
-        City: 'Pasadena',
-        State: 'California',
-        Email: 'davidj@dx-email.com',
-        Skype: 'davidj_DX_skype',
-        Mobile_Phone: '(626) 555-0281',
-        Birth_Date: '1983-03-06',
-        Hire_Date: '2011-04-24',
-      },
-      {
-        ID: 14,
-        Head_ID: 10,
-        Full_Name: 'Victor Norris',
-        Prefix: 'Mr.',
-        Title: 'Shipping Assistant',
-        City: 'Little Rock',
-        State: 'Arkansas',
-        Email: 'victorn@dx-email.com',
-        Skype: 'victorn_DX_skype',
-        Mobile_Phone: '(213) 555-9278',
-        Birth_Date: '1986-07-23',
-        Hire_Date: '2012-07-23',
-      },
-      {
-        ID: 15,
-        Head_ID: 10,
-        Full_Name: 'Mary Stern',
-        Prefix: 'Ms.',
-        Title: 'Shipping Assistant',
-        City: 'Beaver',
-        State: 'Utah',
-        Email: 'marys@dx-email.com',
-        Skype: 'marys_DX_skype',
-        Mobile_Phone: '(818) 555-7857',
-        Birth_Date: '1982-04-08',
-        Hire_Date: '2012-08-12',
-      },
-      {
-        ID: 16,
-        Head_ID: 10,
-        Full_Name: 'Robin Cosworth',
-        Prefix: 'Mrs.',
-        Title: 'Shipping Assistant',
-        City: 'Los Angeles',
-        State: 'California',
-        Email: 'robinc@dx-email.com',
-        Skype: 'robinc_DX_skype',
-        Mobile_Phone: '(818) 555-0942',
-        Birth_Date: '1981-06-12',
-        Hire_Date: '2012-09-01',
-      },
-      {
-        ID: 17,
-        Head_ID: 9,
-        Full_Name: 'Kelly Rodriguez',
-        Prefix: 'Ms.',
-        Title: 'Support Assistant',
-        City: 'Boise',
-        State: 'Idaho',
-        Email: 'kellyr@dx-email.com',
-        Skype: 'kellyr_DX_skype',
-        Mobile_Phone: '(818) 555-9248',
-        Birth_Date: '1988-05-11',
-        Hire_Date: '2012-10-13',
-      },
-      {
-        ID: 18,
-        Head_ID: 9,
-        Full_Name: 'James Anderson',
-        Prefix: 'Mr.',
-        Title: 'Support Assistant',
-        City: 'Atlanta',
-        State: 'Georgia',
-        Email: 'jamesa@dx-email.com',
-        Skype: 'jamesa_DX_skype',
-        Mobile_Phone: '(323) 555-4702',
-        Birth_Date: '1987-01-29',
-        Hire_Date: '2012-10-18',
-      },
-      {
-        ID: 19,
-        Head_ID: 9,
-        Full_Name: 'Antony Remmen',
-        Prefix: 'Mr.',
-        Title: 'Support Assistant',
-        City: 'Boise',
-        State: 'Idaho',
-        Email: 'anthonyr@dx-email.com',
-        Skype: 'anthonyr_DX_skype',
-        Mobile_Phone: '(310) 555-6625',
-        Birth_Date: '1986-02-19',
-        Hire_Date: '2013-01-19',
-      },
-      {
-        ID: 20,
-        Head_ID: 8,
-        Full_Name: 'Olivia Peyton',
-        Prefix: 'Mrs.',
-        Title: 'Sales Assistant',
-        City: 'Atlanta',
-        State: 'Georgia',
-        Email: 'oliviap@dx-email.com',
-        Skype: 'oliviap_DX_skype',
-        Mobile_Phone: '(310) 555-2728',
-        Birth_Date: '1981-06-03',
-        Hire_Date: '2012-05-14',
-      },
-      {
-        ID: 21,
-        Head_ID: 6,
-        Full_Name: 'Taylor Riley',
-        Prefix: 'Mr.',
-        Title: 'Network Admin',
-        City: 'San Jose',
-        State: 'California',
-        Email: 'taylorr@dx-email.com',
-        Skype: 'taylorr_DX_skype',
-        Mobile_Phone: '(310) 555-7276',
-        Birth_Date: '1982-08-14',
-        Hire_Date: '2012-04-14',
-      },
-      {
-        ID: 22,
-        Head_ID: 6,
-        Full_Name: 'Amelia Harper',
-        Prefix: 'Mrs.',
-        Title: 'Network Admin',
-        City: 'Los Angeles',
-        State: 'California',
-        Email: 'ameliah@dx-email.com',
-        Skype: 'ameliah_DX_skype',
-        Mobile_Phone: '(213) 555-4276',
-        Birth_Date: '1983-11-19',
-        Hire_Date: '2011-02-10',
-      },
-      {
-        ID: 23,
-        Head_ID: 6,
-        Full_Name: 'Wally Hobbs',
-        Prefix: 'Mr.',
-        Title: 'Programmer',
-        City: 'Chatsworth',
-        State: 'California',
-        Email: 'wallyh@dx-email.com',
-        Skype: 'wallyh_DX_skype',
-        Mobile_Phone: '(818) 555-8872',
-        Birth_Date: '1984-12-24',
-        Hire_Date: '2011-02-17',
-      },
-      {
-        ID: 24,
-        Head_ID: 6,
-        Full_Name: 'Brad Jameson',
-        Prefix: 'Mr.',
-        Title: 'Programmer',
-        City: 'San Fernando',
-        State: 'California',
-        Email: 'bradleyj@dx-email.com',
-        Skype: 'bradleyj_DX_skype',
-        Mobile_Phone: '(818) 555-4646',
-        Birth_Date: '1988-10-12',
-        Hire_Date: '2011-03-02',
-      },
-      {
-        ID: 25,
-        Head_ID: 6,
-        Full_Name: 'Karen Goodson',
-        Prefix: 'Miss',
-        Title: 'Programmer',
-        City: 'South Pasadena',
-        State: 'California',
-        Email: 'kareng@dx-email.com',
-        Skype: 'kareng_DX_skype',
-        Mobile_Phone: '(626) 555-0908',
-        Birth_Date: '1987-04-26',
-        Hire_Date: '2011-03-14',
-      },
-      {
-        ID: 26,
-        Head_ID: 5,
-        Full_Name: 'Marcus Orbison',
-        Prefix: 'Mr.',
-        Title: 'Travel Coordinator',
-        City: 'Los Angeles',
-        State: 'California',
-        Email: 'marcuso@dx-email.com',
-        Skype: 'marcuso_DX_skype',
-        Mobile_Phone: '(213) 555-7098',
-        Birth_Date: '1982-03-02',
-        Hire_Date: '2005-05-19',
-      },
-      {
-        ID: 27,
-        Head_ID: 5,
-        Full_Name: 'Sandy Bright',
-        Prefix: 'Ms.',
-        Title: 'Benefits Coordinator',
-        City: 'Denver',
-        State: 'Colorado',
-        Email: 'sandrab@dx-email.com',
-        Skype: 'sandrab_DX_skype',
-        Mobile_Phone: '(818) 555-0524',
-        Birth_Date: '1983-09-11',
-        Hire_Date: '2005-06-04',
-      },
-      {
-        ID: 28,
-        Head_ID: 6,
-        Full_Name: 'Morgan Kennedy',
-        Prefix: 'Mrs.',
-        Title: 'Graphic Designer',
-        City: 'San Fernando Valley',
-        State: 'California',
-        Email: 'morgank@dx-email.com',
-        Skype: 'morgank_DX_skype',
-        Mobile_Phone: '(818) 555-8238',
-        Birth_Date: '1984-07-17',
-        Hire_Date: '2012-01-11',
-      },
-      {
-        ID: 29,
-        Head_ID: 28,
-        Full_Name: 'Violet Bailey',
-        Prefix: 'Ms.',
-        Title: 'Jr Graphic Designer',
-        City: 'La Canada',
-        State: 'California',
-        Email: 'violetb@dx-email.com',
-        Skype: 'violetb_DX_skype',
-        Mobile_Phone: '(818) 555-2478',
-        Birth_Date: '1985-06-10',
-        Hire_Date: '2012-01-19',
-      },
-      {
-        ID: 30,
-        Head_ID: 5,
-        Full_Name: 'Ken Samuelson',
-        Prefix: 'Dr.',
-        Title: 'Ombudsman',
-        City: 'St. Louis',
-        State: 'Missouri',
-        Email: 'kents@dx-email.com',
-        Skype: 'kents_DX_skype',
-        Mobile_Phone: '(562) 555-9282',
-        Birth_Date: '1972-09-11',
-        Hire_Date: '2009-04-22',
-      },
-    ],
-    activeStateEnabled: true,
+    dataSource: meTreeListMockData,
     allowColumnReordering: true,
     allowColumnResizing: true,
-    hoverStateEnabled: true,
     showRowLines: true,
-    selectionMode: 'multiple',
+    showColumnLines: true,
+    showBorders: true,
+    showColumnHeaders: true,
+    wordWrapEnabled: true,
+    dataStructure: 'plain',
+    columnAutoWidth: false,
+    autoExpandAll: true,
+    expandedRowKeys: [1, 2, 3],
     disabled: false,
+    height: undefined,
+    selectionMode: 'none',
+    editingIsEnabled: false
   },
   render: (args) => ({
     props: args,
@@ -487,16 +153,21 @@ export default {
 				[(dataSource)]="dataSource"
 				keyExpr="ID"
 				parentIdExpr="Head_ID"
-				[showRowLines]="showRowLines"
-				[expandedRowKeys]="[1, 2, 3, 4, 5]"
-				[activeStateEnabled]="activeStateEnabled"
 				[allowColumnReordering]="allowColumnReordering"
 				[allowColumnResizing]="allowColumnResizing"
-				[hoverStateEnabled]="hoverStateEnabled"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
 				[disabled]="disabled"
         [height]="height"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
   		>
     <dxo-editing
+      *ngIf="editingIsEnabled"
       mode="row"
       [allowUpdating]="true"
       [allowDeleting]="true"
@@ -518,7 +189,7 @@ export default {
     <dxi-column dataField="Hire_Date" dataType="date" [width]="120">
       <dxi-validation-rule type="required"></dxi-validation-rule>
     </dxi-column>
-    <dxi-column type="buttons">
+    <dxi-column *ngIf="editingIsEnabled" type="buttons">
       <dxi-button name="edit" icon="edit"></dxi-button>
       <dxi-button name="delete" icon="trash"></dxi-button>
       <dxi-button name="save" icon="save"></dxi-button>
@@ -529,77 +200,261 @@ export default {
   </dx-tree-list>
 		`,
   }),
-} as Meta<MeTreeListDirective | DxTreeListComponent>;
+} satisfies Meta<MeTreeListDirective | DxTreeListModule | DxoSelectionComponent>;
 
-type Story = StoryObj<MeTreeListDirective | DxTreeListComponent>;
+type Story = StoryObj<MeTreeListDirective | DxTreeListModule | DxoSelectionComponent>;
 
-export const TreeList: Story = {};
+export const Default: Story = {};
 
-export const TreeListColumns: Story = {
-  render: (args) => ({
-    props: args,
-    template: `<dx-tree-list
-  meTreeList
-  [dataSource]="[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]"
-	keyExpr="ID"
->
-<dxi-column dataField="Full_Name" caption="Name"></dxi-column>
-<dxi-column dataField="Title" caption="Position"></dxi-column>
-</dx-tree-list>`,
-  }),
-};
-
-export const TreeListButtons: Story = {
+export const WithColumns: Story = {
+  args: {
+    dataSource: [
+      { Full_Name: 'John Heart', Title: 'CEO', ID: 1 },
+      { Full_Name: 'Samantha Bright', Title: 'COO', ID: 2 },
+      { Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3 },
+      { Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4 },
+    ],
+  },
   render: (args) => ({
     props: args,
     template: `
-<dx-tree-list
-meTreeList
-[dataSource]="[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]"
-keyExpr="ID"
->
-    <dxo-editing
-      mode="row"
-      [allowUpdating]="true"
-      [allowDeleting]="true"
-      [allowAdding]="true"
-    >
-    </dxo-editing>
-	<dxi-column dataField="Full_Name" caption="Name"></dxi-column>
-	<dxi-column dataField="Title" caption="Position"></dxi-column>
-	<dxi-column type="buttons">
-		<dxi-button name="edit" icon="edit"></dxi-button>
-		<dxi-button name="save" icon="save"></dxi-button>
-		<dxi-button name="cancel" icon="undo"></dxi-button>
-</dxi-column>
-</dx-tree-list>`,
+      <dx-tree-list
+        meTreeList
+        [(dataSource)]="dataSource"
+        keyExpr="ID"
+        [allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[disabled]="disabled"
+        [height]="height"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
+      >
+        <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+        <dxi-column dataField="Title" caption="Position"></dxi-column>
+      </dx-tree-list>
+    `,
   }),
 };
 
-export const TreeListValidation: Story = {
+export const WithEditingButtons: Story = {
+  args: {
+    dataSource: [
+      { Full_Name: 'John Heart', Title: 'CEO', ID: 1 },
+      { Full_Name: 'Samantha Bright', Title: 'COO', ID: 2 },
+      { Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3 },
+      { Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4 }
+    ]
+  },
   render: (args) => ({
     props: args,
     template: `
-<dx-tree-list
-meTreeList
-[dataSource]="[{Full_Name: 'John Heart', Title: 'CEO', ID: 1}, {Full_Name: 'Samantha Bright', Title: 'COO', ID: 2}, {Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3}, {Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4}]"
-keyExpr="ID"
->
-    <dxo-editing
-      mode="row"
-      [allowUpdating]="true"
-      [allowDeleting]="true"
-      [allowAdding]="true"
-    >
-    </dxo-editing>
-	<dxi-column dataField="Full_Name" caption="Name"><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
-	<dxi-column dataField="Title" caption="Position"><dxi-validation-rule type="required"></dxi-validation-rule></dxi-column>
-	<dxi-column type="buttons">
-		<dxi-button name="edit" icon="edit"></dxi-button>
-		<dxi-button name="save" icon="save"></dxi-button>
-		<dxi-button name="cancel" icon="undo"></dxi-button>
-</dxi-column>
-</dx-tree-list>`,
+      <dx-tree-list
+        meTreeList
+        [dataSource]="dataSource"
+        keyExpr="ID"
+        [allowColumnReordering]="allowColumnReordering"
+        [allowColumnResizing]="allowColumnResizing"
+        [showRowLines]="showRowLines"
+        [showColumnLines]="showColumnLines"
+        [disabled]="disabled"
+        [height]="height"
+        [dataStructure]="dataStructure"
+        [columnAutoWidth]="columnAutoWidth"
+        [autoExpandAll]="autoExpandAll"
+        [expandedRowKeys]="expandedRowKeys"
+        [wordWrapEnabled]="wordWrapEnabled"
+        [showBorders]="showBorders"
+      >
+        <dxo-editing
+          mode="row"
+          [allowUpdating]="true"
+          [allowDeleting]="true"
+          [allowAdding]="true"
+        >
+        </dxo-editing>
+        <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+        <dxi-column dataField="Title" caption="Position"></dxi-column>
+        <dxi-column type="buttons">
+          <dxi-button name="edit" icon="edit"></dxi-button>
+          <dxi-button name="save" icon="save"></dxi-button>
+          <dxi-button name="cancel" icon="undo"></dxi-button>
+        </dxi-column>
+      </dx-tree-list>
+    `,
+  }),
+};
+
+export const WithValidation: Story = {
+  args: {
+    dataSource: [
+      { Full_Name: 'John Heart', Title: 'CEO', ID: 1 },
+      { Full_Name: 'Samantha Bright', Title: 'COO', ID: 2 },
+      { Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3 },
+      { Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4 }
+    ]
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-tree-list
+        meTreeList
+        [dataSource]="dataSource"
+        keyExpr="ID"
+        [allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[disabled]="disabled"
+        [height]="height"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
+      >
+        <dxo-editing
+          mode="row"
+          [allowUpdating]="true"
+          [allowDeleting]="true"
+          [allowAdding]="true"
+        ></dxo-editing>
+        <dxi-column dataField="Full_Name" caption="Name">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="Title" caption="Position">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column type="buttons">
+          <dxi-button name="edit" icon="edit"></dxi-button>
+          <dxi-button name="save" icon="save"></dxi-button>
+          <dxi-button name="cancel" icon="undo"></dxi-button>
+        </dxi-column>
+      </dx-tree-list>
+    `,
+  }),
+};
+
+export const WithHierarchy: Story = {
+  args: {
+    dataSource: [
+      { ID: 1, Full_Name: 'John Heart', Title: 'CEO', Head_ID: null },
+      { ID: 2, Full_Name: 'Samantha Bright', Title: 'COO', Head_ID: 1 },
+      { ID: 3, Full_Name: 'Robert Reagan', Title: 'CMO', Head_ID: 1 },
+      { ID: 4, Full_Name: 'Greta Sims', Title: 'HR Manager', Head_ID: 2 },
+    ],
+    autoExpandAll: true
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-tree-list
+        meTreeList
+        [(dataSource)]="dataSource"
+        keyExpr="ID"
+        parentIdExpr="Head_ID"
+        [allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[disabled]="disabled"
+        [height]="height"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
+      >
+        <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+        <dxi-column dataField="Title" caption="Position"></dxi-column>
+      </dx-tree-list>
+    `,
+  }),
+};
+
+export const WithSortingAndFiltering: Story = {
+  args: {
+    dataSource: [{ ID: 1, Full_Name: 'John Heart', Title: 'CEO' }, { ID: 2, Full_Name: 'Samantha Bright', Title: 'COO' }],
+    filterRow: {
+      visible: true
+    },
+    allowColumnReordering: true
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-tree-list
+        meTreeList
+        [dataSource]="dataSource"
+        keyExpr="ID"
+        [filterRow]="filterRow"
+        [allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[disabled]="disabled"
+        [height]="height"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
+      >
+        <dxi-column dataField="Full_Name" caption="Name" [allowSorting]="true"></dxi-column>
+        <dxi-column dataField="Title" caption="Position" [allowSorting]="true"></dxi-column>
+      </dx-tree-list>
+    `,
+  }),
+};
+
+export const WithCustomCells: Story = {
+  args: {
+    dataSource: [
+      { ID: 1, Full_Name: 'John Heart', Title: 'CEO', Status: 'active' },
+      { ID: 2, Full_Name: 'Samantha Bright', Title: 'COO', Status: 'active' },
+      { ID: 3, Full_Name: 'Robert Reagan', Title: 'CMO', Status: 'inactive' },
+      { ID: 4, Full_Name: 'Greta Sims', Title: 'HR Manager', Status: 'active' },
+    ],
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-tree-list
+        meTreeList
+        [dataSource]="dataSource"
+        keyExpr="ID"
+        [allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[disabled]="disabled"
+        [height]="height"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
+      >
+        <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+        <dxi-column dataField="Title" caption="Position"></dxi-column>
+        <dxi-column caption="Status" cellTemplate="statusTemplate"></dxi-column>
+
+        <div *dxTemplate="let cell of 'statusTemplate'">
+          <span [style.color]="cell.data.Status === 'active' ? 'green' : 'red'">
+            {{ cell.data.Status }}
+          </span>
+        </div>
+      </dx-tree-list>
+    `,
   }),
 };
 

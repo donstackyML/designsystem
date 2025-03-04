@@ -321,6 +321,27 @@ export const WithSomeComponents: Story = {
       ],
     }),
   ],
+  args: {
+    tooltipSize: "small",
+    tooltipColorMode: 'dark',
+    tooltipWidth: '220px',
+    tooltipShowAnimation: {
+      type: 'fade',
+      from: 0,
+      to: 1,
+      duration: 300,
+    },
+    tooltipHideAnimation: {
+      type: 'fade',
+      from: {
+        opacity: 1,
+      },
+      to: {
+        opacity: 0,
+      },
+      duration: 300,
+    },
+  },
   render: (args) => ({
     props: args,
     template: `
@@ -332,10 +353,10 @@ export const WithSomeComponents: Story = {
             text="Нажми меня"
             size="large"
             [meTooltip]="'Это кнопка, которая показывает подсказку при наведении.'"
-            [tooltipSize]="'small'"
+            [tooltipSize]="tooltipSize"
             [tooltipPosition]="'top'"
-            [tooltipColorMode]="'default'"
-            [tooltipWidth]="'200px'"
+            [tooltipColorMode]="tooltipColorMode"
+            [tooltipWidth]="tooltipWidth"
           ></dx-button>
         </section>
 
@@ -345,10 +366,10 @@ export const WithSomeComponents: Story = {
             meTextBox
             placeholder="Введите текст..."
             [meTooltip]="'Подсказка: введите свое имя или сообщение здесь.'"
-            [tooltipSize]="'small'"
+            [tooltipSize]="tooltipSize"
             [tooltipPosition]="'right'"
-            [tooltipColorMode]="'default'"
-            [tooltipWidth]="'220px'"
+            [tooltipColorMode]="tooltipColorMode"
+            [tooltipWidth]="tooltipWidth"
           ></dx-text-box>
         </section>
 
@@ -358,10 +379,10 @@ export const WithSomeComponents: Story = {
             label="Выбранные элементы"
             [removable]="false"
             [meTooltip]="'Чип, который отображает количество элементов. Он может быть использован в различных списках.'"
-            [tooltipSize]="'small'"
+            [tooltipSize]="tooltipSize"
             [tooltipPosition]="'left'"
-            [tooltipColorMode]="'default'"
-            [tooltipWidth]="'120px'"
+            [tooltipColorMode]="tooltipColorMode"
+            [tooltipWidth]="tooltipWidth"
           >
           >
           </me-chip>
@@ -377,10 +398,10 @@ export const WithSomeComponents: Story = {
             [width]="'100%'"
             [showStatus]="true"
             [meTooltip]="'Это индикатор прогресса, показывающий выполнение задачи.'"
-            [tooltipSize]="'small'"
+            [tooltipSize]="tooltipSize"
             [tooltipPosition]="'bottom'"
-            [tooltipColorMode]="'default'"
-            [tooltipWidth]="'250px'"
+            [tooltipColorMode]="tooltipColorMode"
+            [tooltipWidth]="tooltipWidth"
           >
           </dx-progress-bar>
         </section>

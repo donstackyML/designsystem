@@ -1,136 +1,218 @@
 import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as TreeListStories from "./me-tree-list.stories";
 import { Figma } from "@storybook/addon-designs/blocks";
+import * as treeListStories from "./me-tree-list.stories";
 
-<Meta
-  name="TreeList Documentation"
-  of={TreeListStories}
-/>
+<Meta name="TreeList Documentation" of={treeListStories} />
 
 # TreeList
 
-## Директива meTreeList
+## Директива `meTreeList`
 
-Применение директивы `meTreeList` к элементу `dx-tree-list` изменяет внешний вид стандартного компонента treeList DevExtreme в соответствие с дизайн системой.
+Директива `meTreeList` настраивает внешний вид компонента `dx-tree-list` согласно дизайн-системе. Компонент поддерживает как простое отображение, так и иерархические структуры с возможностью редактирования, валидации и выбора строк. Дополнительно можно настраивать отображение столбцов, поведение фильтрации и сортировки, а также использовать шаблоны для кастомизации ячеек.
 
-[API](https://js.devexpress.com/Angular/Documentation/23_1/ApiReference/UI_Components/dxTreeList/)
+Документация на сайте разработчика DevExtreme:
 
-[Демо](https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TreeList/Overview/Light/)
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeList/"
+    target="blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TreeList/Overview/Light/"
+    target="blank"
+  >
+    Демо
+  </a>
 
-<Canvas name="Default" of={TreeListStories.TreeList} />
-<Controls of={TreeListStories.TreeList} exclude={["dataSource"]} />
-
-## Дизайн
-
-<Figma
-  height="50%"
-  collapsable
-  defaultCollapsed
-  url="https://www.figma.com/design/RKYvr3REXwOglog9PMcZLF/Components-(Copy)?node-id=4431-163676&node-type=frame&t=4m2SISUYumG3whUY-0"
-/>
+<Canvas name="Default" of={treeListStories.Default} />
+<Controls of={treeListStories.Default} exclude={["dataSource", "selectionMode", "editingIsEnabled"]} />
 
 ## Примеры использования
 
-- [Колонки](#добавление-колонки)
-- [Кнопки](#кнопки-в-treelist)
-- [Валидация](#валидация-данных)
+- [Добавление колонки](#добавление-колонки)
+- [Кнопки в TreeList](#кнопки-в-treelist)
+- [Валидация данных](#валидация-данных)
+- [Режим выбора элементов](#режим-выбора-элементов)
+- [Иерархическая структура](#иерархическая-структура)
+- [Сортировка и фильтрация](#сортировка-и-фильтрация)
+- [Кастомные ячейки](#кастомные-ячейки)
+- [Отсутствие данных](#отсутствие-данных)
+- [Фиксированная высота](#фиксированная-высота)
+- [DataStructure](#datastructure)
 
-## Добавление колонки
+### Добавление колонки
 
-Для добавления новых колонок необходимо использовать свойство `dxi-column`, указывая свойство `dataField` и название колонки в `caption`.
+Для добавления новых столбцов используйте элемент `<dxi-column>`, указывая имя поля в `dataField` и заголовок в `caption`. Контент ячеек можно настраивать через шаблоны с помощью директивы `dxTemplate`.
 
 <Source
   code={`
-    <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+<dxi-column dataField="Full_Name" caption="Name"></dxi-column>
 `}
   dark
   language="html"
 />
-<Canvas of={TreeListStories.TreeListColumns} />
 
-## Кнопки в TreeList
+<Canvas name="Колонки" of={treeListStories.WithColumns} />
 
-Для добавления кнопок необходимо добавить колонку к кнопками `dxi-column` и указать аттрибут `type=buttons`. А дочерним элементом уставить сами кнопки `dxi-button`. Аттрибутом `name` указываем тип кнопки: `add` | `cancel` | `delete` | `edit` | `save` | `undelete`. Так же использовать `dxo-editing` с разрешениями для редактирования.
+### Кнопки в TreeList
 
-<Canvas of={TreeListStories.TreeListButtons} />
+Для добавления кнопок действий (редактирование, сохранение, удаление) используйте столбец с типом `buttons` и элементы `<dxi-button>`. Режим редактирования задается через `<dxo-editing>`.
 
-## Валидация данных
+<Canvas name="Кнопки" of={treeListStories.WithEditingButtons} />
 
-Для валидации данных необходимо использовать `dxi-validation-rule` и указать тип валидации.
+### Валидация данных
+
+Пример демонстрирует валидацию данных в столбце. Для этого в элементе `<dxi-column>` используется `<dxi-validation-rule>`, где можно указать тип валидации и сообщение об ошибке.
 
 <Source
   code={`
 <dxi-column dataField="Full_Name" caption="Name">
   <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>`}
+</dxi-column>
+`}
   dark
   language="html"
 />
-<Canvas of={TreeListStories.TreeListValidation} />
 
-## Selection mode
-Чтобы управлять возможностью выбора строк в `dxTreeList` необходимо использовать свойство `dxi-selection` с аттрибутом `mode=multi` или `single`.
+<Canvas name="Валидация" of={treeListStories.WithValidation} />
+
+### Режим выбора элементов
+
+Чтобы управлять возможностью выбора строк, используйте элемент `<dxo-selection>` с атрибутом `mode`, например, `"single"` или `"multiple"`.
 
 <Source
   code={`
 <dx-tree-list meTreeList>
-  <dxo-selection [mode]="multi"></dxo-selection>
+  <dxo-selection [mode]="'multiple'"></dxo-selection>
 </dx-tree-list>
 `}
   dark
   language="html"
 />
 
-## [DataStructure](https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/#dataStructure)
+### Иерархическая структура
 
-Компонент пользовательского интерфейса ожидает, что данные будут иметь простую структуру, где:
+Пример демонстрирует TreeList с вложенными узлами. Используйте свойства `parentIdExpr` и `keyExpr` для построения иерархии.
 
-- каждый элемент данных содержит `ParentID` и уникальный идентификатор
-- элементы данных самого высокого иерархического уровня имеют `ParentID`, равный `0`, `null` или `undefined`. Это указывает на то, что эти элементы данных происходят от корневого узла. Корневой узел не имеет визуального представления.
+<Canvas name="TreeList с иерархией" of={treeListStories.WithHierarchy} />
 
-<Source code={`
+<Source
+  code={`
+<dx-tree-list meTreeList
+  [(dataSource)]="dataSource"
+  keyExpr="ID"
+  parentIdExpr="Head_ID"
+  [autoExpandAll]="true">
+  <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+  <dxi-column dataField="Title" caption="Position"></dxi-column>
+</dx-tree-list>
+  `}
+  dark
+  language="html"
+/>
+
+### Сортировка и фильтрация
+
+Данный пример показывает, как включить строку фильтрации и разрешить сортировку столбцов. Это помогает пользователю быстрее находить нужные данные.
+
+<Canvas name="Сортировка и фильтрация" of={treeListStories.WithSortingAndFiltering} />
+
+<Source
+  code={`
+<dx-tree-list meTreeList
+  [dataSource]="dataSource"
+  keyExpr="ID"
+  [filterRow]="{ visible: true }"
+  [allowColumnReordering]="true">
+  <dxi-column dataField="Full_Name" caption="Name" [allowSorting]="true"></dxi-column>
+  <dxi-column dataField="Title" caption="Position" [allowSorting]="true"></dxi-column>
+</dx-tree-list>
+  `}
+  dark
+  language="html"
+/>
+
+### Кастомные ячейки
+
+Для кастомизации содержимого ячеек используйте директиву `dxTemplate`. В примере ниже показан кастомный шаблон для отображения статуса с изменением цвета.
+
+<Canvas name="Кастомные ячейки" of={treeListStories.WithCustomCells} />
+
+<Source
+  code={`
+<dx-tree-list meTreeList [dataSource]="dataSource" keyExpr="ID">
+  <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
+  <dxi-column dataField="Title" caption="Position"></dxi-column>
+  <dxi-column caption="Status" cellTemplate="statusTemplate"></dxi-column>
+
+  <div *dxTemplate="let cell of 'statusTemplate'">
+    <span [style.color]="cell.data.Status === 'active' ? 'green' : 'red'">
+      {{ cell.data.Status }}
+    </span>
+  </div>
+</dx-tree-list>
+  `}
+  dark
+  language="html"
+/>
+
+### Отсутствие данных
+
+Пример, когда `dataSource` пустой. Компонент корректно отображает пустое состояние.
+
+<Canvas name="Без данных" of={treeListStories.WithNoData} />
+
+<Source
+  code={`
+<dx-tree-list meTreeList [dataSource]="[]"></dx-tree-list>
+  `}
+  dark
+  language="html"
+/>
+
+### Фиксированная высота
+
+Пример с фиксированной высотой, что позволяет добавить вертикальную прокрутку при переполнении данных.
+
+<Canvas name="Фиксированная высота" of={treeListStories.WithFixedHeight} />
+
+<Source
+  code={`
+<dx-tree-list meTreeList [dataSource]="dataSource" height="300px"></dx-tree-list>
+  `}
+  dark
+  language="html"
+/>
+
+### DataStructure
+
+Свойство `dataStructure` определяет, как интерпретировать структуру данных, передаваемых в TreeList.
+
+При значении `plain` данные представлены в виде плоского массива, а при значении `tree` ожидается иерархическая структура, где каждый элемент имеет уникальный идентификатор и ссылку на родительский элемент (например, через `Head_ID`). Элементы верхнего уровня должны иметь `Head_ID`, равный `0`, `null` или `undefined`. Дополнительную информацию можно найти в [руководстве по группировке TreeList](https://js.devexpress.com/Angular/Documentation/Guide/UI_Components/TreeList/Grouping/).
+
+<Source
+  code={`
 var treeListData = [
-  { id: 1, parentId: 0 },
-  { id: 11, parentId: 1 },
-  { id: 12, parentId: 1 },
-  { id: 13, parentId: 1 },
-  { id: 131, parentId: 13 },
-  { id: 132, parentId: 13 },
-  { id: 133, parentId: 13 },
-  { id: 2, parentId: 0 }
+  { id: 1, parentId: 0, text: "Root 1" },
+  { id: 2, parentId: 1, text: "Child 1" },
+  { id: 3, parentId: 1, text: "Child 2" },
+  { id: 4, parentId: 0, text: "Root 2" },
 ];
-`} dark language="js" />
+  `}
+  dark
+  language="js"
+/>
 
-<Source code={`
-dataSource: [
-  {
-    ID: 1,
-    Head_ID: 0,
-    Full_Name: 'John Heart',
-    Prefix: 'Mr.',
-    Title: 'CEO',
-    City: 'Los Angeles',
-    State: 'California',
-    Email: 'jheart@dx-email.com',
-    Skype: 'jheart_DX_skype',
-    Mobile_Phone: '(213) 555-9392',
-    Birth_Date: '1964-03-16',
-    Hire_Date: '1995-01-15',
-  },
-  {
-    ID: 2,
-    Head_ID: 1,
-    Full_Name: 'Samantha Bright',
-    Prefix: 'Dr.',
-    Title: 'COO',
-    City: 'Los Angeles',
-    State: 'California',
-    Email: 'samanthab@dx-email.com',
-    Skype: 'samanthab_DX_skype',
-    Mobile_Phone: '(213) 555-2858',
-    Birth_Date: '1966-05-02',
-    Hire_Date: '2004-05-24',
-  },
-  {...}
-]
-`} dark language="js" />
+<Source
+  code={`
+<dx-tree-list
+  meTreeList
+  [dataSource]="dataSource"
+  keyExpr="ID"
+  parentIdExpr="Head_ID">
+</dx-tree-list>
+  `}
+  dark
+  language="html"
+/>

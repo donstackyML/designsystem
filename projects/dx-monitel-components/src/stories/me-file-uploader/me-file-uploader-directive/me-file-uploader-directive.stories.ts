@@ -1,6 +1,7 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import {
   DxButtonModule,
+  DxFileUploaderComponent,
   DxFileUploaderModule,
   DxProgressBarModule,
   DxSelectBoxModule,
@@ -10,11 +11,11 @@ import {
   MeButtonModule,
   MeFileUploaderDirective,
   MeProgressBarDirective,
+  MeTextBoxDirective
 } from '../../../public-api';
 
 export default {
   title: 'Components/FileUploader/Directive',
-  component: MeFileUploaderDirective,
   decorators: [
     moduleMetadata({
       imports: [
@@ -25,40 +26,165 @@ export default {
         DxProgressBarModule,
         MeButtonModule,
       ],
-      declarations: [MeFileUploaderDirective, MeProgressBarDirective],
+      declarations: [MeFileUploaderDirective, MeTextBoxDirective, MeProgressBarDirective],
     }),
   ],
   argTypes: {
+    labelText: {
+      control: 'text',
+      description: 'Текст метки для загрузчика',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'or Drop file here' },
+      },
+    },
+    selectButtonText: {
+      control: 'text',
+      description: 'Текст кнопки выбора файла',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Select File' },
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Размер компонента',
+      description: 'Размер загрузчика файлов',
+      table: {
+        category: 'Внешний вид',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    showFileList: {
+      control: 'boolean',
+      description: 'Показывать список выбранных файлов',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    multiple: {
+      control: 'boolean',
+      description: 'Разрешить выбор нескольких файлов',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     accept: {
       control: 'select',
       options: ['*', 'image/*', 'video/*', '.pdf,.doc,.docx'],
-      description: 'Тип принимаемых файлов',
+      description: 'Допустимые типы файлов для загрузки',
+      table: {
+        category: 'Валидация',
+        type: { summary: 'string' },
+        defaultValue: { summary: '""' },
+      },
     },
     allowedFileExtensions: {
       control: 'object',
       description: 'Допустимые расширения файлов',
+      table: {
+        category: 'Валидация',
+        type: { summary: 'string[]' },
+        defaultValue: { summary: '[]' },
+      },
     },
-    title: {
-      control: 'text',
-      description: 'Заголовок для компонента',
+    maxFileSize: {
+      control: {
+        type: 'number',
+        min: 0,
+        max: 100 * 1024 * 1024,
+        step: 1024 * 1024,
+      },
+      description: 'Максимальный размер файла в байтах',
+      table: {
+        category: 'Валидация',
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
     },
+    minFileSize: {
+      control: {
+        type: 'number',
+        min: 0,
+        max: 10 * 1024 * 1024,
+        step: 1024,
+      },
+      description: 'Минимальный размер файла в байтах',
+      table: {
+        category: 'Валидация',
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
+    },
+    uploadMode: {
+      control: 'select',
+      options: ['instantly', 'useButtons', 'useForm'],
+      description: 'Режим загрузки файлов',
+      table: {
+        category: 'Поведение',
+        type: { summary: 'instantly | useButtons | useForm' },
+        defaultValue: { summary: 'instantly' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключить загрузчик файлов',
+      table: {
+        category: 'Поведение',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    readOnly: {
+      control: 'boolean',
+      description: 'Режим только для чтения (без возможности загрузки файлов)',
+      table: {
+        category: 'Поведение',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    }
   },
-  args: { 
-    size: 'medium', 
+  args: {
+    size: 'medium',
     accept: 'image/*',
     allowedFileExtensions: ['.jpg', '.jpeg', '.gif', '.png'],
-    title: 'Profile Settings',
-  }
-} satisfies Meta<DxFileUploaderModule |  MeFileUploaderDirective>;
+    labelText: 'Перетащите сюда файлы для загрузки или выберите на устройстве',
+    selectButtonText: 'Выбрать файлы',
+    multiple: false,
+    showFileList: true,
+    maxFileSize: 0,
+    minFileSize: 0,
+    uploadMode: 'instantly',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-file-uploader
+        meFileUploader
+        ${argsToTemplate(args)}
+      ></dx-file-uploader>
+    `,
+  })
+} satisfies Meta<DxFileUploaderComponent | MeFileUploaderDirective>;
 
-type Story = StoryObj<DxFileUploaderModule | MeFileUploaderDirective>;
+type Story = StoryObj<DxFileUploaderComponent | MeFileUploaderDirective>;
 
-export const FormUpload: Story = {
+export const Default: Story = {};
+
+export const WithForm: Story = {
+  args: {
+    uploadMode: 'useForm',
+    labelText: '',
+    selectButtonText: 'Select photo'
+  },
   render: (args) => ({
     props: args,
     template: `
@@ -66,20 +192,16 @@ export const FormUpload: Story = {
         <h2 class='form-title' *ngIf="title">{{ title }}</h2>
         <div class="dx-field">
           <div class="dx-field-label">First Name:</div>
-          <dx-text-box class="dx-field-value" value="John"></dx-text-box>
+          <dx-text-box meTextBox size="small" class="dx-field-value" value="John"></dx-text-box>
         </div>
         <div class="dx-field">
           <div class="dx-field-label">Last Name:</div>
-          <dx-text-box class="dx-field-value" value="Smith"></dx-text-box>
+          <dx-text-box meTextBox size="small" class="dx-field-value" value="Smith"></dx-text-box>
         </div>
         <div id="fileuploader-container">
           <dx-file-uploader
             meFileUploader
-            selectButtonText="Select photo"
-            labelText=""
-            [accept]="accept"
-            [allowedFileExtensions]="allowedFileExtensions"
-            uploadMode="useForm"
+            ${argsToTemplate(args)}
           >
           </dx-file-uploader>
         </div>
@@ -88,10 +210,18 @@ export const FormUpload: Story = {
         </div>
       </form>
     `,
+    styles: [
+      `
+      .dx-fieldset {
+        margin: 0;
+        padding: 16px;
+        background: var(--Background-Content);
+      }
+      `
+    ]
   }),
 };
 
-// Async Upload - Instantly
 export const AsyncUploadInstantly: Story = {
   render: (args) => ({
     props: args,
@@ -109,42 +239,41 @@ export const AsyncUploadInstantly: Story = {
   }),
 };
 
-// Async Upload with Buttons
 export const AsyncUploadButtons: Story = {
+  args: {
+    uploadMode: "useButtons",
+    uploadUrl: "https://js.devexpress.com/Demos/NetCore/FileUploader/Upload",
+    multiple: true
+  },
   render: (args) => ({
+    props: args,
     template: `
       <dx-file-uploader
         meFileUploader
-        [multiple]="true"
-        [accept]="accept"
-        [allowedFileExtensions]="allowedFileExtensions"
-        uploadMode="useButtons"
-        uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
+        ${argsToTemplate(args)}
       ></dx-file-uploader>
     `,
-    props: args,
   }),
-  
 };
 
-// Validation
 export const ValidationExample: Story = {
+  args: {
+    uploadMode: "useButtons",
+    uploadUrl: "https://js.devexpress.com/Demos/NetCore/FileUploader/Upload",
+    maxFileSize: 4000,
+    multiple: true
+  },
   render: (args) => ({
+    props: args,
     template: `
       <dx-file-uploader
         meFileUploader
-        [multiple]="true"
-        [accept]="accept"
-        [allowedFileExtensions]="allowedFileExtensions"
-        uploadMode="useButtons"
-        uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
-        [maxFileSize]="4000000"
+        ${argsToTemplate(args)}
       ></dx-file-uploader>
       <div class="allowed-extensions me-text-caption">
         Allowed file extensions: <span class="me-action-med4"> {{ allowedFileExtensions.join(', ') }} </span>
       </div>
     `,
-    props: args,
     styles: [
       `
 			.allowed-extensions {
@@ -153,29 +282,33 @@ export const ValidationExample: Story = {
 			`,
     ],
   }),
-  
 };
 
-// Chunk Uploading
 export const ChunkUpload: Story = {
+  args: {
+    uploadMode: "instantly",
+    uploadUrl: "https://js.devexpress.com/Demos/WidgetsGalleryDataService/api/ChunkUpload",
+    multiple: true,
+    chunkSize: 200000
+  },
   render: (args) => ({
     template: `
       <dx-file-uploader
         meFileUploader
-        [accept]="accept"
-        [allowedFileExtensions]="allowedFileExtensions"
-        uploadUrl="https://js.devexpress.com/Demos/WidgetsGalleryDataService/api/ChunkUpload"
-        [chunkSize]="200000"
-        uploadMode="instantly"
+        ${argsToTemplate(args)}
       ></dx-file-uploader>
     `,
     props: args,
   }),
-  
+
 };
 
-// File Types Selection
 export const FileTypesSelection: Story = {
+  args: {
+    uploadMode: "instantly",
+    uploadUrl: "https://js.devexpress.com/Demos/NetCore/FileUploader/Upload",
+    multiple: true
+  },
   render: (args) => ({
     props: {
       ...args,
@@ -194,7 +327,7 @@ export const FileTypesSelection: Story = {
       },
     },
     template: `
-      <div class="options">
+      <div class="options dx-widget">
         <div class="caption">File Type Options</div>
         <div class="option">
           <span>File types:</span>
@@ -208,10 +341,9 @@ export const FileTypesSelection: Story = {
         </div>
         <dx-file-uploader
           meFileUploader
+          ${argsToTemplate(args)}
           [accept]="selectedType"
           [allowedFileExtensions]="allowedExtensions[selectedType] || []"
-          uploadMode="instantly"
-          uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
         ></dx-file-uploader>
       </div>
     `,
@@ -236,7 +368,18 @@ export const FileTypesSelection: Story = {
       `,
     ],
   }),
-  
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const StateReadonly: Story = {
+  args: {
+    readOnly: true
+  },
 };
 
 export const AdvancedCustomDropZone: Story = {
@@ -401,21 +544,4 @@ export const AdvancedCustomDropZone: Story = {
       ],
     };
   },
-};
-
-// Disabled State
-export const DisabledState: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <dx-file-uploader
-        meFileUploader
-        [disabled]="true"
-        [accept]="accept"
-        [allowedFileExtensions]="allowedFileExtensions"
-        uploadMode="instantly"
-        uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
-      ></dx-file-uploader>
-    `,
-  }),
 };
