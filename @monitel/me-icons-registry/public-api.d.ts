@@ -1,3 +1,3 @@
-export * from './lib/me-icons-registry.service';
-export * from './lib/me-icons.component';
-export * from './lib/me-icons.module';
+export * from './me-icons-registry.service';
+export * from './me-icons.component';
+export * from './me-icons.module';
