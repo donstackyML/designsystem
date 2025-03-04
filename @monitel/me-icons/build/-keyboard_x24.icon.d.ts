@@ -1,4 +1,4 @@
 export declare const keyboardX24: {
-  name: 'keyboard_x24';
-  data: string;
+    name: 'keyboard_x24';
+    data: string;
 };
