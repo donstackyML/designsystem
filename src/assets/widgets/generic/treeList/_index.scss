@@ -189,7 +189,8 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 
   &:has(.dx-treelist-nodata) {
     .dx-row > td:empty {
-      display: none;
+      visibility: hidden;
+      border: none;
     }
   }
 
@@ -250,10 +251,10 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
         border-radius: 3px 3px 0 0;
 
         .dx-treelist-table {
-          .dx-row.dx-column-lines.dx-header-row {
+          .dx-row.dx-header-row {
             min-height: 36px;
 
-            .dx-treelist-action {
+            td {
               align-content: center;
 
               &.dx-treelist-select-all {
@@ -270,6 +271,10 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 
               .dx-column-indicators {
                 display: flex;
+
+                &:has(.dx-sort.dx-sort-none) {
+                  display: none;
+                }
 
                 .dx-sort {
                   &::before {
@@ -513,10 +518,6 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
       box-shadow: 0px 4px 10px 0px #00000038;
       border: none;
       border-radius: 4px;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      -ms-border-radius: 4px;
-      -o-border-radius: 4px;
       overflow: hidden;
 
       .dx-popup-content.dx-dialog-content {
@@ -542,10 +543,6 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
             padding: 0;
             height: 40px;
             border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            -ms-border-radius: 4px;
-            -o-border-radius: 4px;
 
             .dx-button-content {
               padding: 8px 16px;
@@ -686,15 +683,4 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
       }
     }
   }
-
-  //:focus {
-  //  outline: 2px solid var(--Dividers-Borders-Focus);
-  //  outline-offset: 2px;
-  //}
-  //.dx-data-row {
-  //  .dx-focused {
-  //    outline: 2px solid var(--Dividers-Borders-Focus);
-  //    outline-offset: -2px;
-  //  }
-  //}
 }
