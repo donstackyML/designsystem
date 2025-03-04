@@ -53,7 +53,6 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Input() tooltipTemplateRef!: TemplateRef<any>;
 
   private tooltipComponentRef!: ComponentRef<DxTooltipComponent>;
-  private readonly ME_TOOLTIP_CLASS = 'me-tooltip';
   private sanitizer = inject(DomSanitizer);
 
   constructor(
@@ -64,7 +63,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.initializeTooltip();
-    this.configurePopover();
+    this.configureTooltipStyles();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -94,6 +93,9 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
       if (changes['tooltipContent'] || changes['tooltipTemplateRef']) {
         this.updateTooltipContent();
       }
+      if (changes['tooltipColorMode'] || changes['tooltipSize']) {
+        this.configureTooltipStyles();
+      }
     }
   }
 
@@ -120,7 +122,13 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
       this.viewContainerRef.createComponent(DxTooltipComponent);
     const instance = this.tooltipComponentRef.instance;
 
-    instance.target = this.element.nativeElement;
+    const hostElement = this.element.nativeElement;
+    if (!hostElement.id) {
+      hostElement.id = 'me-tooltip-target-' + Math.random().toString(36).slice(2, 11);
+    }
+
+    instance.target = `#${hostElement.id}`;
+
     instance.position = this.tooltipPosition;
     instance.width = this.tooltipWidth;
     instance.maxWidth = this.tooltipMaxWidth;
@@ -135,10 +143,6 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     this.updateTooltipContent();
 
     const tooltipElement = this.tooltipComponentRef.location.nativeElement;
-
-    this.renderer.addClass(tooltipElement, this.ME_TOOLTIP_CLASS);
-    this.renderer.addClass(tooltipElement, `me-tooltip-color-mode-${this.tooltipColorMode}`);
-    this.renderer.addClass(tooltipElement, `me-tooltip-${this.tooltipSize}`);
 
     if (this.tooltipClass) {
       this.renderer.addClass(tooltipElement, this.tooltipClass);
@@ -175,7 +179,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private configurePopover(): void {
+  private configureTooltipStyles(): void {
     let color: string | undefined = undefined;
 
     switch (this.tooltipColorMode) {
