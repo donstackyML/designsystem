@@ -7,44 +7,73 @@ export const meBreadcrumbsMockData = [
 ];
 
 export const meBreadcrumbsMockDataWithIcons = [
-  { text: 'Home', url: '/', icon: 'home' },
-  { text: 'Products', url: '/products', icon: 'shopping_cart' },
-  { text: 'Electronics', url: '/products/electronics', icon: 'devices' },
+  {
+    text: 'Home',
+    url: '/',
+    icon: 'home'
+  },
+  {
+    text: 'Products',
+    url: '/products',
+    icon: 'cart'
+  },
+  {
+    text: 'Electronics',
+    url: '/products/electronics',
+    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAJElEQVQoz2P8z4AfsDAwJELVzGfExmIiYAAD5QoYRx1JL0cCAJeiFh8Qq9chAAAAAElFTkSuQmCC'
+  },
   {
     text: 'Computers',
     url: '/products/electronics/computers',
-    icon: 'computer',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" d="M1 17v-1.5h18V17zm2.5-2.5q-.62 0-1.06-.44A1.45 1.45 0 0 1 2 13V4.5q0-.618.44-1.06Q2.883 3 3.5 3h13q.62 0 1.06.44.44.442.44 1.06V13q0 .619-.44 1.06-.44.44-1.06.44zm0-1.5h13V4.5h-13z"></path></svg>',
   },
   {
-    text: 'Laptops',
-    url: '/products/electronics/computers/laptops',
-    icon: 'laptop_mac',
+    text: 'Keyboards',
+    url: '/products/electronics/computers/keyboards',
+    icon: 'keyboard_x20',
   },
 ];
 
 export const meBreadcrumbsMockDataWithIconsOnly = [
-  { url: '/', icon: 'home' },
-  { url: '/products', icon: 'shopping_cart' },
-  { url: '/products/electronics', icon: 'devices' },
-  { url: '/products/electronics/computers', icon: 'computer' },
-  { url: '/products/electronics/computers/laptops', icon: 'laptop_mac' },
+  {
+    url: '/',
+    icon: 'home'
+  },
+  {
+
+    url: '/products',
+    icon: 'cart'
+  },
+  {
+    url: '/products/electronics',
+    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAJElEQVQoz2P8z4AfsDAwJELVzGfExmIiYAAD5QoYRx1JL0cCAJeiFh8Qq9chAAAAAElFTkSuQmCC'
+  },
+  {
+
+    url: '/products/electronics/computers',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" d="M1 17v-1.5h18V17zm2.5-2.5q-.62 0-1.06-.44A1.45 1.45 0 0 1 2 13V4.5q0-.618.44-1.06Q2.883 3 3.5 3h13q.62 0 1.06.44.44.442.44 1.06V13q0 .619-.44 1.06-.44.44-1.06.44zm0-1.5h13V4.5h-13z"></path></svg>',
+  },
+  {
+    url: '/products/electronics/computers/keyboards',
+    icon: 'keyboard_x20',
+  },
 ];
 
 export const meBreadcrumbsMockDataWithManyItems = [
   { text: 'Home', url: '/', icon: 'home' },
-  { text: 'Category 1', url: '/cat1', icon: 'category' },
-  { text: 'Category 2', url: '/cat1/cat2', icon: 'category' },
-  { text: 'Category 3', url: '/cat1/cat2/cat3', icon: 'category' },
-  { text: 'Category 4', url: '/cat1/cat2/cat3/cat4', icon: 'category' },
+  { text: 'Category 1', url: '/cat1', icon: 'repeat' },
+  { text: 'Category 2', url: '/cat1/cat2', icon: 'repeat' },
+  { text: 'Category 3', url: '/cat1/cat2/cat3', icon: 'repeat' },
+  { text: 'Category 4', url: '/cat1/cat2/cat3/cat4', icon: 'repeat' },
   {
     text: 'Category 5',
     url: '/cat1/cat2/cat3/cat4/cat5',
-    icon: 'category',
+    icon: 'repeat',
   },
   {
     text: 'Product',
     url: '/cat1/cat2/cat3/cat4/cat5/product',
-    icon: 'store',
+    icon: 'like',
   },
 ];
 
@@ -69,7 +98,6 @@ export const meBreadcrumbsMockDataWithNestedItems = [
       {
         text: 'Accessories',
         url: '/products/accessories',
-
       },
     ],
   },
@@ -91,12 +119,12 @@ export const meBreadcrumbsMockDataWithNestedItemsAndIcons = [
   },
   {
     text: 'Products',
-    icon: 'shopping_cart',
+    icon: 'public_x20',
     items: [
       {
         text: 'Laptops',
         url: '/products/laptops',
-        icon: 'laptop_mac',
+        icon: 'computer_x20',
       },
       {
         text: 'Tablets',
@@ -113,11 +141,11 @@ export const meBreadcrumbsMockDataWithNestedItemsAndIcons = [
   {
     text: 'Laptops',
     url: '/products/laptops',
-    icon: 'laptop_mac',
+    icon: 'computer_x20',
   },
   {
     text: 'Gaming Laptops',
     url: '/products/laptops/gaming',
-    icon: 'sports_esports',
+    icon: 'computer_x20',
   },
 ];

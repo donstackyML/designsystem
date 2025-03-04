@@ -26,8 +26,8 @@ import {
   DxButtonComponent,
   DxMenuComponent,
 } from 'devextreme-angular';
-import { MeIconComponent } from '../me-icon/me-icon.component';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeIconsModule } from '@monitel/me-icons-registry';
 
 interface BreadcrumbItem {
   text?: string;
@@ -42,10 +42,10 @@ interface BreadcrumbItem {
   standalone: true,
   imports: [
     CommonModule,
+    MeIconsModule,
     DxMenuModule,
     DxButtonModule,
     DxContextMenuModule,
-    MeIconComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -380,4 +380,14 @@ export class MeBreadcrumbsComponent
   }
 
   private outFocusHandle(evt: FocusEvent) {}
+
+  setIconSize(): number {
+    switch(this.size){
+      case 'small':
+        return 20;
+
+      case 'large':
+        return 24;
+    }
+  }
 }

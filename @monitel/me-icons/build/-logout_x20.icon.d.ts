@@ -1,4 +1,4 @@
 export declare const logoutX20: {
-  name: 'logout_x20';
-  data: string;
+    name: 'logout_x20';
+    data: string;
 };

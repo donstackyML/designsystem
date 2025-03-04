@@ -1,4 +1,4 @@
 export declare const autoplayX20: {
-  name: 'autoplay_x20';
-  data: string;
+    name: 'autoplay_x20';
+    data: string;
 };

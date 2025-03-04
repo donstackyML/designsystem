@@ -29,3 +29,11 @@ All notable changes to this project will be documented in this file.
 ### 0.0.6 (2024-10-16)
 
 Установлено provideIn: root для сервиса meIconRegistry.
+
+### 0.0.7 (2024-11-20)
+
+Добавлен класс me-icon
+
+### 0.0.9 (2024-12-11)
+
+Добавлен currentColor для path
