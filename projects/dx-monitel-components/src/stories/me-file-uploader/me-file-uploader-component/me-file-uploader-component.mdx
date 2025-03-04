@@ -1,8 +1,8 @@
 import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
-import * as fileUploaderStories from "./me-file-uploader.stories";
+import * as fileUploaderComponentStories from "./me-file-uploader-component.stories";
 
-<Meta name="FileUploader Documentation" of={fileUploaderStories} />
+<Meta name="FileUploader Component Documentation" of={fileUploaderComponentStories} />
 
 # FileUploader
 
@@ -10,7 +10,7 @@ import * as fileUploaderStories from "./me-file-uploader.stories";
 
 Компонент `me-file-uploader` предоставляет расширенную функциональность для загрузки файлов. Он поддерживает проверку типов файлов, ограничение по размеру, возможность множественной загрузки и настраиваемые тексты для метки и кнопки выбора. Используйте данный компонент для создания удобного и информативного интерфейса загрузки файлов, который соответствует требованиям вашей дизайн-системы.
 
-<Controls of={fileUploaderStories.Default} />
+<Controls of={fileUploaderComponentStories.Default} />
 
 ## Дизайн
 
@@ -34,7 +34,7 @@ import * as fileUploaderStories from "./me-file-uploader.stories";
 
 Для загрузки одного файла установите параметр `multiple` в значение `false`.
 
-<Canvas name="Загрузка одного файла" of={fileUploaderStories.SingleFileUpload} />
+<Canvas name="Загрузка одного файла" of={fileUploaderComponentStories.SingleFileUpload} />
 <Source
   code={`<me-file-uploader [multiple]="false" labelText="Выберите один файл"></me-file-uploader>`}
   dark
@@ -45,7 +45,7 @@ import * as fileUploaderStories from "./me-file-uploader.stories";
 
 Ограничьте загрузку только документами, например, с расширениями `jpg`, `png`, `pdf`.
 
-<Canvas name="Пользовательские типы файлов" of={fileUploaderStories.WithFileExtensionRestriction} />
+<Canvas name="Пользовательские типы файлов" of={fileUploaderComponentStories.WithFileExtensionRestriction} />
 <Source
   code={`
 <me-file-uploader
@@ -60,7 +60,7 @@ import * as fileUploaderStories from "./me-file-uploader.stories";
 
 Если вы не хотите отображать список выбранных файлов, установите параметр `showFileList` в значение `false`.
 
-<Canvas name="Скрытие списка файлов" of={fileUploaderStories.WithoutFileList} />
+<Canvas name="Скрытие списка файлов" of={fileUploaderComponentStories.WithoutFileList} />
 <Source
   code={`<me-file-uploader [showFileList]="false"></me-file-uploader>`}
   dark
@@ -71,7 +71,7 @@ import * as fileUploaderStories from "./me-file-uploader.stories";
 
 Настройте текст кнопки выбора файлов с помощью параметра `selectButtonText`.
 
-<Canvas name="Пользовательский текст кнопки" of={fileUploaderStories.CustomSelectButtonText} />
+<Canvas name="Пользовательский текст кнопки" of={fileUploaderComponentStories.CustomSelectButtonText} />
 <Source
   code={`<me-file-uploader selectButtonText="Обзор файлов"></me-file-uploader>`}
   dark
@@ -82,7 +82,7 @@ import * as fileUploaderStories from "./me-file-uploader.stories";
 
 Настройте загрузчик файлов с индивидуальными сообщениями, ограничениями по размерам, типами файлов и поддержкой множественной загрузки для создания удобного интерфейса.
 
-<Canvas name="Загрузка файлов с пользовательским интерфейсом" of={fileUploaderStories.CustomizableUploader} />
+<Canvas name="Загрузка файлов с пользовательским интерфейсом" of={fileUploaderComponentStories.CustomizableUploader} />
 <Source
   code={`
 <me-file-uploader

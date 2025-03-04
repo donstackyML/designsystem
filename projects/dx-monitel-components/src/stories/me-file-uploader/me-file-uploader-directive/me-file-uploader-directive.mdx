@@ -1,0 +1,346 @@
+import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as fileUploaderDirectiveStories from "./me-file-uploader-directive.stories";
+
+<Meta name="FileUploader Directive Documentation" of={fileUploaderDirectiveStories} />
+
+# FileUploader
+
+## Директива `meFileUploader`
+
+Директива `meFileUploader` стилизует компонент `dx-file-uploader` в соответствии с требованиями дизайн-системы и добавляет свойство `size` со значением `size="medium"` по умолчанию.
+
+<Controls of={fileUploaderDirectiveStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1311-23622&m=dev"
+/>
+
+## Примеры использования
+
+- [Базовое использование (AsyncUploadInstantly)](#базовое-использование-asyncuploadinstantly)
+- [Использование в форме](#использование-в-форме)
+- [Загрузка с кнопками (AsyncUploadButtons)](#загрузка-с-кнопками-asyncuploadbuttons)
+- [Валидация файлов](#валидация-файлов)
+- [Загрузка по частям (ChunkUpload)](#загрузка-по-частям-chunkupload)
+- [Выбор типов файлов](#выбор-типов-файлов)
+- [Состояния disabled и readOnly](#состояния-disabled-и-readonly)
+  - [Состояние disabled](#состояние-disabled)
+  - [Состояние readOnly](#состояние-readonly)
+- [Кастомная дроп-зона](#кастомная-дроп-зона)
+- [Обработка событий](#обработка-событий)
+
+### Базовое использование (AsyncUploadInstantly)
+
+Загрузка одного файла с немедленным началом загрузки.
+
+<Canvas name="AsyncUploadInstantly" of={fileUploaderDirectiveStories.AsyncUploadInstantly} />
+
+<Source
+  code={`
+<dx-file-uploader
+  meFileUploader
+  [multiple]="false"
+  accept="image/*"
+  [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png']"
+  uploadMode="instantly"
+  uploadUrl="your-upload-url"
+  [showFileList]="true">
+</dx-file-uploader>
+  `}
+  dark
+  language="html"
+/>
+
+### Использование в форме
+
+Интеграция FileUploader в форму для загрузки профиля с кастомной меткой и кнопкой.
+
+<Canvas name="FormUpload" of={fileUploaderDirectiveStories.WithForm} />
+
+<Source
+  code={`
+<form class="dx-fieldset" style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 4px;">
+  <h2 class="form-title" style="margin-bottom: 20px;">Update Profile</h2>
+
+  <!-- First Name Field -->
+  <div class="dx-field" style="margin-bottom: 15px;">
+    <div class="dx-field-label" style="margin-bottom: 5px;">First Name:</div>
+    <dx-text-box
+      meTextBox
+      [(value)]="formData.firstName"
+      placeholder="Enter your first name"
+      style="width: 100%;">
+    </dx-text-box>
+  </div>
+
+  <!-- Last Name Field -->
+  <div class="dx-field" style="margin-bottom: 15px;">
+    <div class="dx-field-label" style="margin-bottom: 5px;">Last Name:</div>
+    <dx-text-box
+      meTextBox
+      [(value)]="formData.lastName"
+      placeholder="Enter your last name"
+      style="width: 100%;">
+    </dx-text-box>
+  </div>
+
+  <!-- Profile Photo Uploader -->
+  <div class="dx-field" style="margin-bottom: 15px;">
+    <div class="dx-field-label" style="margin-bottom: 5px;">Profile Photo:</div>
+    <dx-file-uploader
+      meFileUploader
+      selectButtonText="Select photo"
+      labelText="Drag & drop your photo or click to select"
+      accept="image/*"
+      uploadMode="useForm"
+      [(value)]="formData.profilePhoto"
+      style="width: 100%;">
+    </dx-file-uploader>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-actions" style="text-align: right;">
+    <dx-button
+      meButton
+      type="default"
+      size="medium"
+      text="Update Profile"
+      (onClick)="updateProfile()">
+    </dx-button>
+  </div>
+</form>
+  `}
+  language="html"
+  dark
+/>
+
+### Загрузка с кнопками (AsyncUploadButtons)
+
+Настройка загрузки с ручным управлением: пользователь может выбрать несколько файлов, а загрузка запускается по нажатию кнопки.
+
+<Canvas name="AsyncUploadButtons" of={fileUploaderDirectiveStories.AsyncUploadButtons} />
+
+<Source
+  code={`
+<dx-file-uploader
+  meFileUploader
+  [multiple]="true"
+  accept="image/*"
+  [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png']"
+  uploadMode="useButtons"
+  uploadUrl="your-upload-url">
+</dx-file-uploader>
+  `}
+  dark
+  language="html"
+/>
+
+### Валидация файлов
+
+Пример проверки загружаемых файлов: ограничение по размеру, отображение ошибки, а также список разрешенных расширений.
+
+<Canvas name="ValidationExample" of={fileUploaderDirectiveStories.ValidationExample} />
+
+<Source
+  code={`
+<dx-file-uploader
+  meFileUploader
+  [multiple]="true"
+  accept="image/*"
+  [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png']"
+  uploadMode="useButtons"
+  [maxFileSize]="4000000"
+  uploadUrl="your-upload-url">
+</dx-file-uploader>
+  `}
+  dark
+  language="html"
+/>
+
+### Загрузка по частям (ChunkUpload)
+
+Загрузка файлов по частям позволяет эффективно работать с большими файлами. Размер чанка задается в байтах.
+
+<Canvas name="ChunkUpload" of={fileUploaderDirectiveStories.ChunkUpload} />
+
+<Source
+  code={`
+<dx-file-uploader
+  meFileUploader
+  accept="image/*"
+  [chunkSize]="200000"
+  uploadMode="instantly"
+  uploadUrl="your-chunk-upload-url">
+</dx-file-uploader>
+  `}
+  dark
+  language="html"
+/>
+
+### Выбор типов файлов
+
+Динамический выбор типа файлов. Компонент dx-select-box позволяет выбрать тип, после чего FileUploader ограничивает выбор файлов заданными расширениями.
+
+<Canvas name="FileTypesSelection" of={fileUploaderDirectiveStories.FileTypesSelection} />
+
+<Source
+  code={`
+<div class="options">
+  <div class="caption">File Type Options</div>
+  <div class="option">
+    <span>File types:</span>
+    <dx-select-box
+      [items]="fileTypes"
+      [(value)]="selectedType"
+      [inputAttr]="{ 'aria-label': 'File Type' }"
+      valueExpr="value"
+      displayExpr="name">
+    </dx-select-box>
+  </div>
+  <dx-file-uploader
+    meFileUploader
+    [accept]="selectedType"
+    [allowedFileExtensions]="allowedExtensions[selectedType] || []"
+    uploadMode="instantly"
+    uploadUrl="your-upload-url">
+  </dx-file-uploader>
+</div>
+  `}
+  dark
+  language="html"
+/>
+
+
+### Состояния disabled и readOnly
+
+Эти примеры демонстрируют, как перевести компонент FileUploader в режим отключенного состояния или только для чтения.
+
+#### Состояние disabled
+
+<Canvas name="DisabledState" of={fileUploaderDirectiveStories.StateDisabled} />
+
+<Source
+  code={`
+<dx-file-uploader
+  meFileUploader
+  [disabled]="true"
+  accept="image/*"
+  uploadMode="instantly"
+  uploadUrl="your-upload-url">
+</dx-file-uploader>
+  `}
+  dark
+  language="html"
+/>
+
+#### Состояние readOnly
+
+<Canvas name="StateReadonly" of={fileUploaderDirectiveStories.StateReadonly} />
+
+<Source
+  code={`
+<dx-file-uploader
+  meFileUploader
+  [readOnly]="true"
+  accept="image/*"
+  uploadMode="instantly"
+  uploadUrl="your-upload-url">
+</dx-file-uploader>
+  `}
+  dark
+  language="html"
+/>
+
+
+### Кастомная дроп-зона
+
+Создание кастомной дроп-зоны позволяет настроить внешний вид области перетаскивания файлов, добавить индикатор прогресса и предварительный просмотр загруженных изображений. В примере ниже зона определяется кастомным HTML-контентом, а события загрузки обрабатываются для обновления интерфейса.
+
+<Canvas name="AdvancedCustomDropZone" of={fileUploaderDirectiveStories.AdvancedCustomDropZone} />
+
+<Source
+  code={`
+<div class="widget-container flex-box">
+  <span>Profile Picture</span>
+  <div
+    id="dropzone-external"
+    class="flex-box"
+    [ngClass]="isDropZoneActive ? 'dropzone-active' : null">
+    <img id="dropzone-image" [src]="imageSource" *ngIf="imageSource" alt="" />
+    <div id="dropzone-text" class="flex-box" *ngIf="textVisible">
+      <span>Drag & Drop the desired file</span>
+      <span>…or click to browse for a file instead.</span>
+    </div>
+    <dx-progress-bar
+      meProgressBar
+      #uploadProgress
+      [min]="0"
+      [max]="100"
+      width="30%"
+      [showStatus]="false"
+      [visible]="progressVisible"
+      [value]="progressValue">
+    </dx-progress-bar>
+  </div>
+  <dx-file-uploader
+    dialogTrigger="#dropzone-external"
+    dropZone="#dropzone-external"
+    meFileUploader
+    [multiple]="false"
+    [allowedFileExtensions]="allowedFileExtensions"
+    uploadMode="instantly"
+    uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
+    [visible]="false"
+    (onDropZoneEnter)="onDropZoneEnter($event)"
+    (onDropZoneLeave)="onDropZoneLeave($event)"
+    (onUploaded)="onUploaded($event)"
+    (onProgress)="onProgress($event)"
+    (onUploadStarted)="onUploadStarted()">
+  </dx-file-uploader>
+</div>
+  `}
+  dark
+  language="html"
+/>
+
+### Обработка событий
+
+Пример демонстрирует обработку событий загрузки файлов, таких как начало загрузки, прогресс, успешная загрузка и ошибка.
+
+<Source
+  code={`
+<dx-file-uploader
+  meFileUploader
+  (onUploadStarted)="onUploadStarted($event)"
+  (onUploaded)="onUploaded($event)"
+  (onProgress)="onProgress($event)"
+  (onUploadError)="onUploadError($event)">
+</dx-file-uploader>
+
+// В компоненте:
+onUploadStarted(e) {
+  console.log('Upload started:', e);
+}
+
+onUploaded(e) {
+  console.log('File uploaded:', e);
+}
+
+onProgress(e) {
+  const progress = (e.bytesLoaded / e.bytesTotal) * 100;
+  console.log('Upload progress:', progress);
+}
+
+onUploadError(e) {
+  console.error('Upload error:', e);
+}
+  `}
+  dark
+  language="typescript"
+/>
