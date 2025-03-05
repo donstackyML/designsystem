@@ -29,8 +29,6 @@ export default {
         DxSelectBoxModule,
         DxTextBoxModule,
         DxCheckBoxModule,
-        DxDateBoxModule,
-        DxTextBoxModule,
         DxNumberBoxModule,
         DxDateBoxModule,
         MeTextBoxModule,
@@ -299,6 +297,20 @@ export const MultipleFields: Story = {
             <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-select-box>
           </div>
         </dxi-item>
+         <dxi-item meFormItem dataField="age">
+      <dxo-label text="Age"></dxo-label>
+      <div *dxTemplate>
+       <dx-number-box
+          meNumberBox
+          [(value)]="formData.age"
+          [size]="size"
+          [readOnly]="readOnly"
+          [disabled]="disabled"
+          showClearButton="true"
+        ></dx-number-box>
+
+      </div>
+    </dxi-item>
       </dx-form>
     </div>
   `

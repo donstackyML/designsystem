@@ -2,13 +2,13 @@ import {
   Directive,
   ElementRef,
   Input,
-  OnInit,
   Renderer2
 } from '@angular/core';
 import { DxNumberBoxComponent } from 'devextreme-angular';
 
+import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeSize } from '../../types/types';
-import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meNumberBox]',
@@ -23,23 +23,21 @@ import { MeFocusableDirective } from '../me-focusable/me-focusable.directive';
     '[class.me-inputs-medium]': 'isSizeMedium',
     '[class.me-inputs-small]': 'isSizeSmall',
   },
+  providers: [{ provide: MeFormField, useExisting: MeNumberBoxDirective }],
 })
-export class MeNumberBoxDirective
-  extends MeFocusableDirective
-  implements OnInit
-{
+export class MeNumberBoxDirective extends MeFormField {
   @Input() size: MeSize = 'medium';
 
+  private focusService: ComponentFocusService;
   constructor(
-    public override element: ElementRef,
-    private component: DxNumberBoxComponent,
-    override renderer: Renderer2
+    public element: ElementRef,
+    protected override component: DxNumberBoxComponent,
+    protected renderer: Renderer2
   ) {
-    super(element, renderer);
+    super(component);
     this.component.labelMode = 'outside';
+    this.focusService = new ComponentFocusService(element, renderer);
   }
-
-  ngOnInit(): void {}
 
   get isSizeSmall() {
     return this.size === 'small';
