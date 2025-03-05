@@ -60,7 +60,8 @@ import * as tabPanelStories from "./me-tab-panel.stories";
   - [Отключение компонента](#отключение-компонента)
   - [Включение свайпа](#включение-свайпа)
   - [Выбор активной вкладки](#выбор-активной-вкладки)
-  - [Контент внутри tabPanel](#контент-внутри-tabpanel)
+- [Контент внутри tabPanel](#контент-внутри-tabpanel)
+- [Контент внутри tabPanel со скроллом](#контент-внутри-tabpanel-со-скроллом)
 
 ### Размеры вкладок
 
@@ -234,7 +235,7 @@ import * as tabPanelStories from "./me-tab-panel.stories";
   dark
 />
 
-#### Контент внутри tabPanel
+### Контент внутри tabPanel
 
 Контент каждой вкладки задается через директиву `dxTemplate`. Пример ниже показывает, как определяется содержимое вкладки:
 
@@ -245,10 +246,32 @@ import * as tabPanelStories from "./me-tab-panel.stories";
   [selectedIndex]="2"
   [dataSource]="defaultTabPanelData"
 >
-  <div *dxTemplate="let item of 'item'" class="me-tab-panel-demo-content-container">
+  <div *dxTemplate="let item of 'item'">
     <div class="tabpanel-content">
       <p>{{ item.content }}</p>
     </div>
+  </div>
+</dx-tab-panel>
+`}
+  language="html"
+  dark
+/>
+
+### Контент внутри tabPanel со скроллом
+
+<Source
+  code={`
+<dx-tab-panel
+  meTabPanel
+  [selectedIndex]="2"
+  [dataSource]="defaultTabPanelData"
+>
+  <div *dxTemplate="let item of 'item'">
+    <dx-scroll-view meScrollView>
+      <div class="tabpanel-content">
+        <p>{{item.content}}</p>
+      </div>
+    </dx-scroll-view>
   </div>
 </dx-tab-panel>
 `}
