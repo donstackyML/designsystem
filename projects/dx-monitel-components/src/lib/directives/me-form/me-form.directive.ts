@@ -10,10 +10,10 @@ import {
   QueryList,
   Self,
 } from '@angular/core';
-import type { FormLabelMode, LabelLocation } from 'devextreme/ui/form';
 import { DxFormComponent } from 'devextreme-angular/ui/form';
+import type { FormLabelMode, LabelLocation } from 'devextreme/ui/form';
 
-import { FormDataFieldsService } from '../../service/form-datafields.service';
+import { FormDataFieldsService } from '../../service/form-data-fields.service';
 import { MeFormItemDirective } from '../me-form-item/me-form-item.directive';
 
 type MeFormSize = 'small' | 'medium' | 'large';

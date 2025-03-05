@@ -13,6 +13,7 @@ import {
   MeFormDirective,
   MeFormItemModule,
   MeFormModule,
+  MeNumberBoxModule,
   MeSelectBoxModule,
   MeTextBoxModule,
 } from '../../public-api';
@@ -28,12 +29,11 @@ export default {
         DxSelectBoxModule,
         DxTextBoxModule,
         DxCheckBoxModule,
-        DxDateBoxModule,
-        DxTextBoxModule,
         DxNumberBoxModule,
         DxDateBoxModule,
         MeTextBoxModule,
         MeDateBoxModule,
+        MeNumberBoxModule,
         MeFormModule,
         MeFormItemModule,
         MeSelectBoxModule,
@@ -177,6 +177,12 @@ export default {
         </dx-text-box>
       </div>
     </dxi-item>
+    <dxi-item meFormItem dataField="birthDate">
+      <dxo-label text="Age"></dxo-label>
+      <div *dxTemplate>
+        <dx-number-box meNumberBox [showSpinButtons]="true" [(value)]="formData.age" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-number-box>
+      </div>
+    </dxi-item>
   </dx-form>
 </div>
     `
@@ -291,9 +297,169 @@ export const MultipleFields: Story = {
             <dx-select-box meSelectBox [(value)]="formData.country" [items]="countryOptions" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-select-box>
           </div>
         </dxi-item>
+         <dxi-item meFormItem dataField="age">
+      <dxo-label text="Age"></dxo-label>
+      <div *dxTemplate>
+       <dx-number-box
+          meNumberBox
+          [(value)]="formData.age"
+          [size]="size"
+          [readOnly]="readOnly"
+          [disabled]="disabled"
+          showClearButton="true"
+        ></dx-number-box>
+
+      </div>
+    </dxi-item>
       </dx-form>
     </div>
   `
+  })
+};
+
+export const MultipleFieldsWithGroups: Story = {
+  args: {
+    colCount: 2
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      formData: meFormInitialFormData,
+      genderOptions: ['male', 'female', 'other'],
+      countryOptions: ['Russia', 'USA', 'Canada', 'UK', 'Australia', 'Germany'],
+    },
+    template: `
+    <div style="max-width: 800px; margin: 0 auto;">
+  <dx-form
+    meForm
+    ${argsToTemplate(args)}
+  >
+    <!-- Группа: First Name и Last Name -->
+    <dxi-item itemType="group" [colCount]="2">
+      <dxi-item meFormItem dataField="firstName">
+        <dxo-label text="First Name"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox></dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item meFormItem dataField="lastName">
+        <dxo-label text="Last Name"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box meTextBox></dx-text-box>
+        </div>
+      </dxi-item>
+    </dxi-item>
+
+    <!-- Группа: Email и Phone -->
+    <dxi-item itemType="group" [colCount]="2">
+      <dxi-item meFormItem dataField="email">
+        <dxo-label text="Email"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box
+            meTextBox
+            [(value)]="formData.email"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled"
+            showClearButton="true">
+          </dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item meFormItem dataField="phone">
+        <dxo-label text="Phone"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box
+            meTextBox
+            [(value)]="formData.phone"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled"
+            showClearButton="true">
+          </dx-text-box>
+        </div>
+      </dxi-item>
+    </dxi-item>
+
+    <!-- Группа: Gender и Birth Date -->
+    <dxi-item itemType="group" [colCount]="2">
+      <dxi-item meFormItem dataField="gender">
+        <dxo-label text="Gender"></dxo-label>
+        <div *dxTemplate>
+          <dx-select-box
+            meSelectBox
+            [(value)]="formData.gender"
+            [items]="genderOptions"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled">
+          </dx-select-box>
+        </div>
+      </dxi-item>
+      <dxi-item meFormItem dataField="birthDate">
+        <dxo-label text="Birth Date"></dxo-label>
+        <div *dxTemplate>
+          <dx-date-box
+            meDateBox
+            [(value)]="formData.birthDate"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled">
+          </dx-date-box>
+        </div>
+      </dxi-item>
+    </dxi-item>
+
+    <!-- Группа: Occupation и Subscribe -->
+    <dxi-item itemType="group" [colCount]="2">
+      <dxi-item meFormItem dataField="occupation">
+        <dxo-label text="Occupation"></dxo-label>
+        <div *dxTemplate>
+          <dx-text-box
+            meTextBox
+            [(value)]="formData.occupation"
+            [placeholder]="'placeholder'"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled"
+            showClearButton="true">
+          </dx-text-box>
+        </div>
+      </dxi-item>
+      <dxi-item meFormItem dataField="isSubscribed">
+        <div *dxTemplate>
+          <dx-check-box
+            meCheckBox
+            [(value)]="formData.isSubscribed"
+            text="Subscribe to newsletter"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled">
+          </dx-check-box>
+        </div>
+      </dxi-item>
+    </dxi-item>
+
+    <!-- Группа: Country и пустая ячейка -->
+    <dxi-item itemType="group" [colCount]="2">
+      <dxi-item meFormItem dataField="country">
+        <dxo-label text="Country"></dxo-label>
+        <div *dxTemplate>
+          <dx-select-box
+            meSelectBox
+            [(value)]="formData.country"
+            [items]="countryOptions"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled">
+          </dx-select-box>
+        </div>
+      </dxi-item>
+      <!-- Пустой элемент для заполнения второй колонки -->
+      <dxi-item></dxi-item>
+    </dxi-item>
+  </dx-form>
+</div>
+`
   })
 };
 

@@ -12,9 +12,9 @@ import {
   DxiItemComponent,
   DxoLabelComponent,
 } from 'devextreme-angular/ui/nested';
-import { FormDataFieldsService } from '../../service/form-datafields.service';
-import { Subscription } from 'rxjs';
 import { FormLabelMode, LabelLocation } from 'devextreme/ui/form';
+import { Subscription } from 'rxjs';
+import { FormDataFieldsService } from '../../service/form-data-fields.service';
 import { MeFormField } from './me-form-field';
 
 @Directive({
@@ -30,6 +30,10 @@ export class MeFormItemDirective implements AfterViewInit {
   private _subscription?: Subscription;
   private label?: string;
 
+  constructor(
+    @Host() @Self() @Optional() public hostFormItemComponent: DxiItemComponent
+  ) { }
+
   get formService(): FormDataFieldsService | undefined {
     return this._formService;
   }
@@ -43,10 +47,6 @@ export class MeFormItemDirective implements AfterViewInit {
       });
     }
   }
-
-  constructor(
-    @Host() @Self() @Optional() public hostFormItemComponent: DxiItemComponent
-  ) {}
 
   ngAfterViewInit(): void {
     this.label = this.dxLabel.text;
@@ -85,10 +85,10 @@ export class MeFormItemDirective implements AfterViewInit {
         break;
     }
 
-    this.viewChildren.forEach((txtBox) => {
-      txtBox.updateLabel(this.getFieldLabel(showColon));
-      txtBox.updateLabelMode(mode);
-      txtBox.updateLabelLocation(location);
+    this.viewChildren.forEach((field) => {
+      field.updateLabel(this.getFieldLabel(showColon));
+      field.updateLabelMode(mode);
+      field.updateLabelLocation(location);
     });
   }
 
