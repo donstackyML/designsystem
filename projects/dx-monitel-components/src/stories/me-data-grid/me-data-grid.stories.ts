@@ -1,9 +1,11 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxDataGridComponent, DxDataGridModule } from 'devextreme-angular';
+import { DxoPagerComponent, DxoPagingComponent, DxoSelectionComponent } from 'devextreme-angular/ui/nested';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
 import { dataGridMockSourceData } from './me-data-grid-mock-source-data';
-import { DxoPagerComponent, DxoPagingComponent } from 'devextreme-angular/ui/nested';
+
+type StoryProps = DxDataGridComponent | MeDataGridDirective | DxoPagerComponent | DxoPagingComponent | DxoSelectionComponent
 
 export default {
   title: 'Components/DataGrid',
@@ -31,13 +33,44 @@ export default {
         defaultValue: { summary: 'medium' },
       }
     },
-    showBorders: {
+    showRowLines: {
       control: 'boolean',
-      description: 'Показывать границы',
+      description: 'Определяет, отображаются ли границы строк.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-
+      },
+    },
+    showColumnLines: {
+      control: 'boolean',
+      description: 'Определяет, отображаются ли вертикальные границы между столбцами.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    showBorders: {
+      control: 'boolean',
+      description: 'Определяет, отображаются ли границы.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    showColumnHeaders: {
+      control: 'boolean',
+      description: 'Определяет, отображаются ли заголовки столбцов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    wordWrapEnabled: {
+      control: 'boolean',
+      description: 'Определяет, будут ли переноситься строки.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     allowColumnResizing: {
@@ -56,9 +89,9 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    showRowLines: {
+    columnAutoWidth: {
       control: 'boolean',
-      description: 'Показывать линии строк',
+      description: 'Определяет, будет ли TreeList автоматически изменять ширину столбцов.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -115,20 +148,90 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    selection: {
+      control: {
+        type: 'object',
+      },
+      description:
+        'Конфигурация режима выделения. Используется внутри компонента `<dxo-selection [mode]="multi"></dxo-selection>`.',
+      table: {
+        type: {
+          summary:
+            '{\n' +
+            '  allowSelectAll?: boolean;\n' +
+            '  deferred?: boolean;\n' +
+            '  mode?: SingleMultipleOrNone;\n' +
+            '  selectAllMode?: SelectAllMode;\n' +
+            '  showCheckBoxesMode?: SelectionColumnDisplayMode;\n' +
+            '}',
+        },
+        defaultValue: {
+          summary: '{}',
+        },
+      },
+    },
+    mode: {
+      control: 'select',
+      options: ['single', 'multiple', 'none'],
+      description:
+        'Определяет тип выделения. Используется внутри компонента `<dxo-selection [mode]="multi"></dxo-selection>`.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'none' },
+      },
+    },
+    allowSelectAll: {
+      control: 'boolean',
+      description:
+        'Определяет тип выделения. Используется внутри компонента `<dxo-selection [mode]="multi"></dxo-selection>`.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    selectAllMode: {
+      control: 'select',
+      options: ['allPages', 'page'],
+      description:
+        'Определяет способ выделения. Используется внутри компонента `<dxo-selection [mode]="multi"></dxo-selection>`.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'allPages' },
+      },
+    },
+    showCheckBoxesMode: {
+      control: 'select',
+      options: ['always', 'none', 'onClick', 'onLongTap'],
+      description: 'Указывает, в каких случаях отображаются чекбоксы.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'always' },
+      },
+    }
   },
   args: {
     dataSource: dataGridMockSourceData,
-    allowColumnResizing: false,
-    allowColumnReordering: false,
     size: 'medium',
-    showPageSizeSelector: true,
+    allowColumnReordering: false,
+    allowColumnResizing: false,
+    showRowLines: false,
+    showColumnLines: true,
+    showBorders: false,
+    showColumnHeaders: true,
+    wordWrapEnabled: false,
+    columnAutoWidth: false,
+    disabled: false,
+    selection: undefined,
+    mode: 'none',
+    selectAllMode: 'allPages',
+    allowSelectAll: true,
+    showCheckBoxesMode: 'always',
     displayMode: 'adaptive',
     showInfo: true,
     infoText: 'Записей: {2}',
     showNavigationButtons: true,
+    showPageSizeSelector: true,
     pageSize: 10,
-    showRowLines: true,
-    showBorders: true,
   },
   render: (args) => ({
     props: args,
@@ -138,11 +241,18 @@ export default {
 				id="gridContainer"
         [(dataSource)]="dataSource"
 				[size]="size"
-				[showBorders]="showBorders"
-			  [showRowLines]="showRowLines"
 				[allowColumnReordering]="allowColumnReordering"
-        [allowColumnResizing]="allowColumnResizing"
+				[allowColumnResizing]="allowColumnResizing"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[disabled]="disabled"
+				[columnAutoWidth]="columnAutoWidth"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
+        [selection]="selection"
 			>
+        <dxo-selection *ngIf="!selection" [mode]="mode" [allowSelectAll]="allowSelectAll" [selectAllMode]="selectAllMode" [showCheckBoxesMode]="showCheckBoxesMode"></dxo-selection>
 				<dxo-search-panel [visible]="true"></dxo-search-panel>
 				<dxo-paging [(pageSize)]="pageSize"></dxo-paging>
 				<dxo-pager
@@ -155,9 +265,9 @@ export default {
 				<dxo-group-panel [visible]="true"></dxo-group-panel>
 			</dx-data-grid>`,
   }),
-} satisfies Meta<DxDataGridComponent | MeDataGridDirective | DxoPagerComponent | DxoPagingComponent>;
+} satisfies Meta<StoryProps>;
 
-type Story = StoryObj<DxDataGridComponent | MeDataGridDirective | DxoPagerComponent | DxoPagingComponent>;
+type Story = StoryObj<StoryProps>;
 
 export const Default: Story = {};
 
@@ -168,11 +278,18 @@ export const WithCounter: Story = {
     meDataGrid
     [(dataSource)]="dataSource"
     [size]="size"
-    [showBorders]="showBorders"
-    [showRowLines]="showRowLines"
     [allowColumnReordering]="allowColumnReordering"
     [allowColumnResizing]="allowColumnResizing"
+    [showRowLines]="showRowLines"
+    [showColumnLines]="showColumnLines"
+    [disabled]="disabled"
+    [columnAutoWidth]="columnAutoWidth"
+    [wordWrapEnabled]="wordWrapEnabled"
+    [showBorders]="showBorders"
+    [showColumnHeaders]="showColumnHeaders"
+    [selection]="selection"
 >
+  <dxo-selection *ngIf="!selection" [mode]="mode" [allowSelectAll]="allowSelectAll" [selectAllMode]="selectAllMode" [showCheckBoxesMode]="showCheckBoxesMode"></dxo-selection>
   <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
   <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
   <dxi-column dataField="CompanyName"></dxi-column>
@@ -203,5 +320,21 @@ export const SizeMedium: Story = {
 export const SizeLarge: Story = {
   args: {
     size: 'large'
+  }
+};
+
+export const SelectionModeMultipleAndAll: Story = {
+  args: {
+    mode: 'multiple',
+    selectAllMode: 'allPages',
+    allowSelectAll: true,
+  }
+};
+
+export const SelectionModeSingle: Story = {
+  args: {
+    selection: {
+      mode: 'single'
+    }
   }
 };
