@@ -1,14 +1,16 @@
-import { homeX20, mailX20, addX20, attachFileX20, publicX20  } from '@monitel/me-icons';
+import { addX20, attachFileX20, homeX20, mailX20, publicX20 } from '@monitel/me-icons';
 import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
-import { DxTabPanelModule } from 'devextreme-angular';
+import { DxScrollViewModule, DxTabPanelComponent, DxTabPanelModule } from 'devextreme-angular';
 import { registry } from '../../../.storybook/preview';
-import { MeTabPanelDirective } from '../../public-api';
+import { MeScrollViewDirective, MeTabPanelDirective } from '../../public-api';
 
 const defaultTabPanelData = [
   {
     title: 'To Do',
     icon: registry.getIcon(homeX20),
-    content: 'This is the content for the To Do tab.',
+    content: `This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab.
+This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab.
+This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab. This is the content for the To Do tab.`,
   },
   {
     title: 'In Progress',
@@ -41,8 +43,8 @@ export default {
   title: 'Components/TabPanel',
   decorators: [
     moduleMetadata({
-      declarations: [MeTabPanelDirective],
-      imports: [DxTabPanelModule],
+      imports: [DxTabPanelModule, DxScrollViewModule],
+      declarations: [MeTabPanelDirective, MeScrollViewDirective],
     }),
   ],
   argTypes: {
@@ -89,6 +91,24 @@ export default {
         defaultValue: { summary: '200' },
       },
     },
+    showNavButtons: {
+      description:
+        'Включает отображение кнопок навигации для прокрутки вкладок, если их число превышает доступное пространство.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    scrollByContent: {
+      description:
+        'Разрешает прокрутку вкладок путем перетаскивания содержимого, что полезно при переполнении области.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     tabsPosition: {
       description: 'Определяет положение вкладок.',
       options: ['top', 'bottom', 'left', 'right'],
@@ -130,7 +150,7 @@ export default {
     iconPosition: 'start',
     styling: 'inside',
     disabled: false,
-    height: 200,
+    height: '200',
     width: undefined,
     selectedIndex: 0,
     swipeEnabled: false,
@@ -142,16 +162,18 @@ export default {
         meTabPanel
         ${argsToTemplate(args)}
       >
-        <div *dxTemplate="let item of 'item'" class="me-tab-panel-demo-content-container">
-          <div class="tabpanel-content">
-            <p>{{item.content}}</p>
-          </div>
+        <div *dxTemplate="let item of 'item'">
+          <dx-scroll-view meScrollView>
+            <div class="tabpanel-content">
+              <p>{{item.content}}</p>
+            </div>
+          </dx-scroll-view>
         </div>
       </dx-tab-panel>
     `,
     styles: [
       `
-      .me-tab-panel-demo-content-container {
+      .tabpanel-content {
         padding: 12px;
 
         p {
@@ -161,9 +183,9 @@ export default {
       `
     ]
   })
-} satisfies Meta<DxTabPanelModule | MeTabPanelDirective>;
+} satisfies Meta<DxTabPanelComponent | MeTabPanelDirective>;
 
-type Story = StoryObj<DxTabPanelModule | MeTabPanelDirective>;
+type Story = StoryObj<DxTabPanelComponent | MeTabPanelDirective>;
 
 export const Default: Story = {};
 
@@ -182,18 +204,6 @@ export const SizeMedium: Story = {
 export const SizeLarge: Story = {
   args: {
     size: 'large',
-  },
-};
-
-export const OrientationVertical: Story = {
-  args: {
-    orientation: 'vertical',
-  },
-};
-
-export const OrientationHorizontal: Story = {
-  args: {
-    orientation: 'horizontal',
   },
 };
 

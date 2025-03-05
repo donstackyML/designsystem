@@ -31947,17 +31947,17 @@ input.dx-hidden {
 .me-tabs-panel.dx-tabs-styling-mode-primary.dx-tabpanel-tabs-position-right .dx-tab.dx-tab-selected::after {
   left: -1px;
 }
-.me-tabs-panel.dx-tabpanel-tabs-position-top .dx-tabpanel-container {
-  border-radius: 0 0 4px 4px;
+.me-tabs-panel.dx-tabpanel-tabs-position-top {
+  --tab-panel-container-border-radius: 0 0 4px 4px;
 }
-.me-tabs-panel.dx-tabpanel-tabs-position-bottom .dx-tabpanel-container {
-  border-radius: 4px 4px 0 0;
+.me-tabs-panel.dx-tabpanel-tabs-position-bottom {
+  --tab-panel-container-border-radius: 4px 4px 0 0;
 }
-.me-tabs-panel.dx-tabpanel-tabs-position-left .dx-tabpanel-container {
-  border-radius: 0 4px 4px 0;
+.me-tabs-panel.dx-tabpanel-tabs-position-left {
+  --tab-panel-container-border-radius: 0 4px 4px 0;
 }
-.me-tabs-panel.dx-tabpanel-tabs-position-right .dx-tabpanel-container {
-  border-radius: 4px 0 0 4px;
+.me-tabs-panel.dx-tabpanel-tabs-position-right {
+  --tab-panel-container-border-radius: 4px 0 0 4px;
 }
 .me-tabs-panel .dx-tabpanel-container {
   border-style: solid;
@@ -31967,6 +31967,8 @@ input.dx-hidden {
   padding: var(--me-tabpanel-container-padding, 0);
   height: 100%;
   width: 100%;
+  overflow: hidden;
+  border-radius: var(--tab-panel-container-border-radius);
 }
 .me-tabs-panel .dx-item.dx-tab.dx-state-hover {
   background-color: var(--Controls-BG-Flat-Button-Main-BG-Hover);

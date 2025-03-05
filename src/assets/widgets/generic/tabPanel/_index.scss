@@ -85,16 +85,13 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
     border-radius: 0 4px 4px 0;
   }
 
-  &.dx-tabs-styling-mode-primary.dx-tabpanel-tabs-position-bottom
-    .dx-tab:not(.dx-tab-selected):after,
+  &.dx-tabs-styling-mode-primary.dx-tabpanel-tabs-position-bottom .dx-tab:not(.dx-tab-selected):after,
   &.dx-tabs-styling-mode-primary.dx-tabpanel-tabs-position-top .dx-tab:not(.dx-tab-selected):after {
     height: 0;
   }
 
-  &.dx-tabs-styling-mode-primary.dx-tabpanel-tabs-position-left
-    .dx-tab:not(.dx-tab-selected)::after,
-  &.dx-tabs-styling-mode-primary.dx-tabpanel-tabs-position-right
-    .dx-tab:not(.dx-tab-selected)::after {
+  &.dx-tabs-styling-mode-primary.dx-tabpanel-tabs-position-left .dx-tab:not(.dx-tab-selected)::after,
+  &.dx-tabs-styling-mode-primary.dx-tabpanel-tabs-position-right .dx-tab:not(.dx-tab-selected)::after {
     width: 0;
   }
 
@@ -114,27 +111,21 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
     left: -1px;
   }
 
-  &.dx-tabpanel-tabs-position-top {
-    .dx-tabpanel-container {
-      border-radius: 0 0 4px 4px;
+  &.dx-tabpanel-tabs-position {
+    &-top {
+      --tab-panel-container-border-radius: 0 0 4px 4px;
     }
-  }
 
-  &.dx-tabpanel-tabs-position-bottom {
-    .dx-tabpanel-container {
-      border-radius: 4px 4px 0 0;
+    &-bottom {
+      --tab-panel-container-border-radius: 4px 4px 0 0;
     }
-  }
 
-  &.dx-tabpanel-tabs-position-left {
-    .dx-tabpanel-container {
-      border-radius: 0 4px 4px 0;
+    &-left {
+      --tab-panel-container-border-radius: 0 4px 4px 0;
     }
-  }
 
-  &.dx-tabpanel-tabs-position-right {
-    .dx-tabpanel-container {
-      border-radius: 4px 0 0 4px;
+    &-right {
+      --tab-panel-container-border-radius: 4px 0 0 4px;
     }
   }
 
@@ -146,6 +137,8 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
     padding: var(--me-tabpanel-container-padding, 0);
     height: 100%;
     width: 100%;
+    overflow: hidden;
+    border-radius: var(--tab-panel-container-border-radius);
   }
 
   .dx-item.dx-tab {
@@ -237,6 +230,7 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
     .dx-item.dx-tab {
       .dx-item-content.dx-tab-content {
         .dx-tab-text {
+
           .dx-icon,
           .dx-tab-text-span {
             color: var(--Controls-Content-In-Controls-Disabled);
@@ -263,11 +257,13 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
     height: 6px;
     width: calc(100% - 2px);
   }
+
   &.dx-tabpanel-tabs-position-bottom .dx-tab.dx-tab-selected::after {
     top: -4px;
     height: 6px;
     width: calc(100% - 2px);
   }
+
   &.dx-tabpanel-tabs-position-left .dx-tab.dx-tab-selected::after {
     right: -4px;
     width: 6px;
