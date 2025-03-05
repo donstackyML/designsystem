@@ -395,7 +395,7 @@
 
   // Отступы между элементами формы
   .dx-field-item {
-    margin-bottom: 16px;
+    // margin-bottom: 16px;
   }
 
   // Валидационные сообщения
@@ -479,6 +479,58 @@
     .me-form-large .dx-selectbox .dx-texteditor-input {
       padding-top: 22px;
       /* Верхний padding для большой формы */
+    }
+  }
+}
+
+// Отступы между элементами формы
+
+.me-form {
+
+  &.me-form-small,
+  &.me-form-medium {
+    --row-gap-between-fields: 12px;
+    --column-gap-between-fields: 24px;
+
+    &:has(.dx-field-item-label-location-left) {
+      --row-gap-between-fields: 20px;
+      --column-gap-between-fields: 28px;
+    }
+  }
+
+  &.me-form-large {
+    --row-gap-between-fields: 16px;
+    --column-gap-between-fields: 32px;
+
+    &:has(.dx-field-item-label-location-left) {
+      --row-gap-between-fields: 24px;
+      --column-gap-between-fields: 36px;
+    }
+  }
+
+  .dx-layout-manager {
+    .dx-field-item:not(.dx-last-col) {
+      padding-right: 0;
+    }
+
+    .dx-field-item:not(.dx-first-col) {
+      padding-left: 0;
+    }
+
+    .dx-field-item:not(.dx-first-row) {
+      padding-top: 0;
+    }
+
+    .dx-form-group-content .dx-item-content.dx-box-item-content.dx-box-flex.dx-box.dx-widget.dx-collection {
+      gap: var(--row-gap-between-fields);
+    }
+
+    .dx-box-flex.dx-box.dx-widget.dx-collection {
+      row-gap: var(--row-gap-between-fields);
+    }
+
+    .dx-item-content.dx-box-flex {
+      column-gap: var(--column-gap-between-fields);
     }
   }
 }

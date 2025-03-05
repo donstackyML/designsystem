@@ -8,6 +8,7 @@ export const meFormInitialFormData = {
   occupation: '',
   isSubscribed: false,
   country: '',
+  age: null,
 }
 
 export const meFormFilledFormData = {
@@ -20,4 +21,5 @@ export const meFormFilledFormData = {
   occupation: 'Software Engineer',
   isSubscribed: false,
   country: 'Russia',
+  age: 22,
 }

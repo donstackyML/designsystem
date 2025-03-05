@@ -18378,9 +18378,6 @@ input.dx-hidden {
   display: inline-block !important;
   width: 100%;
 }
-.me-form .dx-field-item {
-  margin-bottom: 16px;
-}
 .me-form .dx-validation-message {
   color: var(--error-color, red);
   font-size: 12px;
@@ -18445,6 +18442,41 @@ input.dx-hidden {
 .me-form .dx-editor-outlined .me-form-large .dx-selectbox .dx-texteditor-input {
   padding-top: 22px;
   /* Верхний padding для большой формы */
+}
+
+.me-form.me-form-small, .me-form.me-form-medium {
+  --row-gap-between-fields: 12px;
+  --column-gap-between-fields: 24px;
+}
+.me-form.me-form-small:has(.dx-field-item-label-location-left), .me-form.me-form-medium:has(.dx-field-item-label-location-left) {
+  --row-gap-between-fields: 20px;
+  --column-gap-between-fields: 28px;
+}
+.me-form.me-form-large {
+  --row-gap-between-fields: 16px;
+  --column-gap-between-fields: 32px;
+}
+.me-form.me-form-large:has(.dx-field-item-label-location-left) {
+  --row-gap-between-fields: 24px;
+  --column-gap-between-fields: 36px;
+}
+.me-form .dx-layout-manager .dx-field-item:not(.dx-last-col) {
+  padding-right: 0;
+}
+.me-form .dx-layout-manager .dx-field-item:not(.dx-first-col) {
+  padding-left: 0;
+}
+.me-form .dx-layout-manager .dx-field-item:not(.dx-first-row) {
+  padding-top: 0;
+}
+.me-form .dx-layout-manager .dx-form-group-content .dx-item-content.dx-box-item-content.dx-box-flex.dx-box.dx-widget.dx-collection {
+  gap: var(--row-gap-between-fields);
+}
+.me-form .dx-layout-manager .dx-box-flex.dx-box.dx-widget.dx-collection {
+  row-gap: var(--row-gap-between-fields);
+}
+.me-form .dx-layout-manager .dx-item-content.dx-box-flex {
+  column-gap: var(--column-gap-between-fields);
 }
 
 /**
@@ -22384,9 +22416,6 @@ input.dx-hidden {
   color: var(--Controls-Content-In-Controls-Main-Default);
 }
 
-.me-inputs.dx-texteditor.dx-widget.me-number-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container {
-  margin-right: 4px;
-}
 .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-disabled .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-disabled .dx-texteditor-buttons-container {
   margin-right: var(--padding-inline);
 }
@@ -22428,6 +22457,9 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-state-hover, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-buttons-container .dx-state-active,
 .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-buttons-container .dx-state-hover {
   background: transparent;
+}
+.me-inputs.dx-texteditor.dx-widget.me-date-range-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container {
+  margin-right: 4px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box-small {
   --number-box-spin-button-height: 13px;
