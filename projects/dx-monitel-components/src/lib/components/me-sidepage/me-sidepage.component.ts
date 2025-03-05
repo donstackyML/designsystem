@@ -22,7 +22,7 @@ import { MePosition } from '../../types/types';
   templateUrl: './me-sidepage.component.html',
   styleUrls: ['./me-sidepage.component.css']
 })
-export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
+export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   @Input() hideOnOutsideClick: boolean = false;
   @Input() isSidePageOpen: boolean = false;
   @Input() position: MePosition = 'left';
@@ -46,7 +46,7 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
   private startX: number = 0;
   private startWidth: number = 0;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.renderer.addClass(
@@ -74,14 +74,6 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
     document.addEventListener('mouseup', this.onResizeEnd.bind(this));
   }
 
-  ngOnDestroy(): void {
-    document.removeEventListener('mousemove', this.onResizeMove.bind(this));
-    document.removeEventListener('mouseup', this.onResizeEnd.bind(this));
-    if (this.overlay) {
-      document.body.removeChild(this.overlay);
-    }
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     const isOpen = changes?.['isSidePageOpen'];
     if (
@@ -90,6 +82,15 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
     ) {
       this.toggleSidePage();
     }
+  }
+
+  ngOnDestroy(): void {
+    document.removeEventListener('mousemove', this.onResizeMove.bind(this));
+    document.removeEventListener('mouseup', this.onResizeEnd.bind(this));
+    if (this.overlay) {
+      document.body.removeChild(this.overlay);
+    }
+    this.enableBodyScroll();
   }
 
   onResizeStart(event: MouseEvent): void {
@@ -132,12 +133,39 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
     this.isSidePageOpenChange.emit(this.isSidePageOpen);
   }
 
-  getScrollbarWidth() {
+  getScrollbarWidth(): number {
     return window.innerWidth - document.documentElement.clientWidth;
+  }
+
+
+  private disableBodyScroll(): void {
+    const scrollbarWidth = this.getScrollbarWidth();
+    document.body.style.overflow = 'hidden';
+
+    if (window.CSS && CSS.supports('scrollbar-gutter', 'stable')) {
+      document.body.style.scrollbarGutter = 'stable';
+    } else {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+  }
+
+
+  private enableBodyScroll(): void {
+    document.body.style.overflow = '';
+    if (window.CSS && CSS.supports('scrollbar-gutter', 'stable')) {
+      document.body.style.scrollbarGutter = '';
+    } else {
+      document.body.style.paddingRight = '';
+    }
   }
 
   toggleSidePage(): void {
     if (this.isSidePageOpen) {
+      if (this.shading) {
+        this.disableBodyScroll();
+      }
+
+
       const scrollbarWidth = this.getScrollbarWidth();
 
       if (this.position === 'right') {
@@ -152,7 +180,7 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
         this.renderer.setStyle(
           this.element.nativeElement,
           'transform',
-          `translateX(calc(${this.endPosition}px))`
+          `translateX(${this.endPosition})`
         );
       }
 
@@ -165,6 +193,8 @@ export class MeSidepageComponent implements OnInit, OnChanges, OnDestroy {
         window.addEventListener('click', this.windowClick.bind(this), true);
       }
     } else {
+      this.enableBodyScroll();
+
       this.renderer.setStyle(
         this.element.nativeElement,
         'transform',

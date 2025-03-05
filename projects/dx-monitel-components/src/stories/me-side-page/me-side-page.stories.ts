@@ -12,7 +12,7 @@ import {
   MeLabelDirective,
   MeMenuDirective,
   MePosition,
-  MeSidepageComponent,
+  MeSidePageComponent,
 } from '../../public-api';
 
 @Component({
@@ -175,7 +175,7 @@ import {
   ],
 })
 class MeSidePageDemoComponent {
-  @ViewChild('meSidePage', { static: false }) meSidePage!: MeSidepageComponent;
+  @ViewChild('meSidePage', { static: false }) meSidePage!: MeSidePageComponent;
 
   @Input() hideOnOutsideClick: boolean = false;
   @Input() isSidePageOpen: boolean = false;
@@ -241,7 +241,7 @@ export default {
         MeLabelDirective,
         MeMenuDirective,
       ],
-      imports: [MeSidepageComponent, MeIconsModule, DxMenuModule],
+      imports: [MeSidePageComponent, MeIconsModule, DxMenuModule],
     }),
   ],
   argTypes: {
@@ -348,9 +348,9 @@ export default {
     props: args,
     template: `<me-side-page-demo ${argsToTemplate(args)}></me-side-page-demo>`
   })
-} satisfies Meta<MeSidepageComponent>;
+} satisfies Meta<MeSidePageComponent>;
 
-type Story = StoryObj<MeSidepageComponent>;
+type Story = StoryObj<MeSidePageComponent>;
 
 export const Default: Story = {};
 
@@ -363,5 +363,11 @@ export const PositionLeft: Story = {
 export const PositionRight: Story = {
   args: {
     position: 'right'
+  }
+};
+
+export const WithoutShadingAndFixedScroll: Story = {
+  args: {
+    shading: false
   }
 };

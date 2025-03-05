@@ -9,16 +9,16 @@ export { MeFileUploaderComponent } from './lib/components/me-file-uploader/me-fi
 export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MeMenuLeftComponent } from './lib/components/me-menu-left/me-menu-left.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
-export { MeSidepageComponent } from './lib/components/me-sidepage/me-sidepage.component';
-export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
+export { MeSidePageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonItemComponent } from './lib/components/me-skeleton/me-skeleton-item/me-skeleton-item.component';
+export { MeSkeletonComponent } from './lib/components/me-skeleton/me-skeleton.component';
 export { MeStatusBarComponent } from './lib/components/me-status-bar/me-status-bar.component';
 export { MeToastComponent } from './lib/components/me-toast/me-toast.component';
 
 // Form and Input Directives
 export { MeAutocompleteDirective } from './lib/directives/me-autocomplete/me-autocomplete.directive';
-export { MeButtonDirective } from './lib/directives/me-button/me-button.directive';
 export { MeButtonGroupDirective } from './lib/directives/me-button-group/me-button-group.directive';
+export { MeButtonDirective } from './lib/directives/me-button/me-button.directive';
 export { MeCalendarDirective } from './lib/directives/me-calendar/me-calendar.directive';
 export { MeCheckBoxDirective } from './lib/directives/me-check-box/me-check-box.directive';
 export { MeControlDirective } from './lib/directives/me-control/me-control.directive';
@@ -27,8 +27,8 @@ export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/me-d
 export { MeEditorDirective } from './lib/directives/me-editor/me-editor.directive';
 export { MeFileUploaderDirective } from './lib/directives/me-file-uploader/me-file-uploader.directive';
 export { MeFocusableDirective } from './lib/directives/me-focusable/me-focusable.directive';
-export { MeFormDirective } from './lib/directives/me-form/me-form.directive';
 export { MeFormItemDirective } from './lib/directives/me-form-item/me-form-item.directive';
+export { MeFormDirective } from './lib/directives/me-form/me-form.directive';
 export { MeIconDirective } from './lib/directives/me-icon/me-icon.directive';
 export { MeLabelDirective } from './lib/directives/me-label/me-label.directive';
 export { MeListDirective } from './lib/directives/me-list/me-list.directive';
@@ -118,9 +118,9 @@ export { MeLoadIndicatorModule } from './lib/directives/me-load-indicator/me-loa
 export { MeLoadPanelModule } from './lib/directives/me-load-panel/me-load-panel.module';
 
 // Services
+export { MeIconStoreService } from './lib/service/icon-store.service';
 export { FocusManagerService } from './lib/service/keyboard-navigation.service';
 export { KeyboardNavigationService } from './lib/service/keyboard.service';
-export { MeIconStoreService } from './lib/service/icon-store.service';
 export { ThemesService } from './lib/service/themes.service';
 
 // Types and Main Module
