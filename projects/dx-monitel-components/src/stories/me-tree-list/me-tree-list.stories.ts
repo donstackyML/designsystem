@@ -1,9 +1,11 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { DxTreeListModule } from 'devextreme-angular';
+import { DxTreeListComponent, DxTreeListModule } from 'devextreme-angular';
 import { DxoSelectionComponent } from 'devextreme-angular/ui/nested';
 
 import { MeIconComponent, MeTreeListDirective } from '../../public-api';
 import { meTreeListMockData } from './me-tree-list-mock-data';
+
+type StoryProps = MeTreeListDirective | DxTreeListComponent | DxoSelectionComponent | { editingIsEnabled: boolean };
 
 export default {
   title: 'Components/TreeList',
@@ -111,7 +113,7 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    selectionMode: {
+    mode: {
       control: 'select',
       options: ['single', 'multiple', 'none'],
       description:
@@ -128,20 +130,20 @@ export default {
   },
   args: {
     dataSource: meTreeListMockData,
-    allowColumnReordering: true,
-    allowColumnResizing: true,
+    allowColumnReordering: false,
+    allowColumnResizing: false,
     showRowLines: true,
     showColumnLines: true,
     showBorders: true,
     showColumnHeaders: true,
-    wordWrapEnabled: true,
+    wordWrapEnabled: false,
     dataStructure: 'plain',
     columnAutoWidth: false,
     autoExpandAll: true,
     expandedRowKeys: [1, 2, 3],
     disabled: false,
     height: undefined,
-    selectionMode: 'none',
+    mode: 'none',
     editingIsEnabled: false
   },
   render: (args) => ({
@@ -175,7 +177,7 @@ export default {
     >
     </dxo-editing>
 
-		<dxo-selection [mode]="selectionMode"></dxo-selection>
+		<dxo-selection [mode]="mode"></dxo-selection>
 
     <dxi-column dataField="Full_Name">
       <dxi-validation-rule type="required"></dxi-validation-rule>
@@ -200,9 +202,9 @@ export default {
   </dx-tree-list>
 		`,
   }),
-} satisfies Meta<MeTreeListDirective | DxTreeListModule | DxoSelectionComponent>;
+} satisfies Meta<StoryProps>;
 
-type Story = StoryObj<MeTreeListDirective | DxTreeListModule | DxoSelectionComponent>;
+type Story = StoryObj<StoryProps>;
 
 export const Default: Story = {};
 
