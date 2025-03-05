@@ -5,7 +5,7 @@ const iconStore = new MeIconStoreService();
 export const meContextMenuMockData = [
   {
     text: 'Заголовок группы уровень 1',
-    icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+    icon: 'bookmark',
     disabled: true,
     beginGroup: true,
   },
@@ -15,51 +15,51 @@ export const meContextMenuMockData = [
     items: [
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
 
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -72,7 +72,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -87,44 +87,44 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -137,7 +137,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -152,123 +152,123 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         beginGroup: true,
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -281,7 +281,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -301,50 +301,50 @@ export const meContextMenuMockData = [
     items: [
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -357,7 +357,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -372,44 +372,44 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -422,7 +422,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -437,67 +437,67 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         beginGroup: true,
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -510,7 +510,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -527,7 +527,7 @@ export const meContextMenuMockData = [
   },
   {
     text: 'Заголовок группы уровень 1',
-    icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+    icon: 'bookmark',
     disabled: true,
     beginGroup: true,
   },
@@ -537,50 +537,50 @@ export const meContextMenuMockData = [
     items: [
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -593,7 +593,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -608,45 +608,45 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
 
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -659,7 +659,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -674,67 +674,67 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         beginGroup: true,
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -747,7 +747,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -764,59 +764,59 @@ export const meContextMenuMockData = [
   },
   {
     text: 'Пункт',
-    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    icon: 'folder',
   },
   {
     text: 'Длинное название пункта',
-    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    icon: 'folder',
     beginGroup: true,
     items: [
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -829,7 +829,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -844,45 +844,45 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
 
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -895,7 +895,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -910,68 +910,68 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         beginGroup: true,
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
 
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -984,7 +984,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -1002,56 +1002,56 @@ export const meContextMenuMockData = [
 
   {
     text: 'Пункт',
-    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    icon: 'folder',
     beginGroup: true,
     items: [
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
 
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -1064,7 +1064,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -1079,44 +1079,44 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -1129,7 +1129,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -1144,68 +1144,68 @@ export const meContextMenuMockData = [
       },
       {
         text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+        icon: 'bookmark',
         disabled: true,
         beginGroup: true,
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
       },
       {
         text: 'Пункт',
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         beginGroup: true,
         items: [
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
             beginGroup: true,
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
           },
           {
             text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: '24' }),
+            icon: 'bookmark',
 
             disabled: true,
             beginGroup: true,
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -1218,7 +1218,7 @@ export const meContextMenuMockData = [
           },
           {
             text: 'Пункт',
-            icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+            icon: 'folder',
             items: [
               {
                 text: 'Пункт',
@@ -1235,7 +1235,7 @@ export const meContextMenuMockData = [
   },
   {
     text: 'Пункт',
-    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    icon: 'folder',
     disabled: true,
     beginGroup: true,
   },
@@ -1308,18 +1308,18 @@ export const meContextMenuMockDataWithSelectedItems = [
   },
   {
     text: 'More Options',
-    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    icon: 'folder',
     items: [
       {
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         text: 'Edit',
       },
       {
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         text: 'Delete',
       },
       {
-        icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+        icon: 'folder',
         text: 'View',
       },
     ],
