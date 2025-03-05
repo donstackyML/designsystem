@@ -7,11 +7,10 @@ import { meTreeListMockData } from './me-tree-list-mock-data';
 
 export default {
   title: 'Components/TreeList',
-  component: MeIconComponent,
   decorators: [
     moduleMetadata({
+      imports: [DxTreeListModule, MeIconComponent],
       declarations: [MeTreeListDirective],
-      imports: [DxTreeListModule],
     }),
   ],
   argTypes: {
@@ -165,6 +164,7 @@ export default {
 				[expandedRowKeys]="expandedRowKeys"
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
   		>
     <dxo-editing
       *ngIf="editingIsEnabled"
@@ -234,6 +234,7 @@ export const WithColumns: Story = {
 				[expandedRowKeys]="expandedRowKeys"
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
@@ -270,6 +271,7 @@ export const WithEditingButtons: Story = {
         [expandedRowKeys]="expandedRowKeys"
         [wordWrapEnabled]="wordWrapEnabled"
         [showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
       >
         <dxo-editing
           mode="row"
@@ -318,6 +320,7 @@ export const WithValidation: Story = {
 				[expandedRowKeys]="expandedRowKeys"
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
       >
         <dxo-editing
           mode="row"
@@ -371,6 +374,7 @@ export const WithHierarchy: Story = {
 				[expandedRowKeys]="expandedRowKeys"
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
@@ -407,6 +411,7 @@ export const WithSortingAndFiltering: Story = {
 				[expandedRowKeys]="expandedRowKeys"
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
       >
         <dxi-column dataField="Full_Name" caption="Name" [allowSorting]="true"></dxi-column>
         <dxi-column dataField="Title" caption="Position" [allowSorting]="true"></dxi-column>
@@ -443,6 +448,7 @@ export const WithCustomCells: Story = {
 				[expandedRowKeys]="expandedRowKeys"
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
