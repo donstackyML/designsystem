@@ -46,6 +46,7 @@ import {
   MeTooltipModule,
   MeTreeListModule,
   MeTreeViewModule,
+  MeIconsInitializerModule
 } from '../../projects/dx-monitel-components/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -97,6 +98,7 @@ import { MePopoverDirective } from './directives/popover.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
+import { MeBreadcrumbsDemoComponent } from './components/me-breadcrumbs-demo/me-breadcrumbs-demo.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +127,7 @@ import { MeToastDirective } from './directives/toast.directive';
     MeMenuLeftDemoComponent,
     MeSidepageComponent,
     MeSidepageDemo,
+    MeBreadcrumbsDemoComponent,
     MeSwitchComponent,
     MeTabPanelComponent,
     MeTabsComponent,
@@ -146,6 +149,7 @@ import { MeToastDirective } from './directives/toast.directive';
     MeSwitchDirective,
     MeTextEditorDirective,
     MeToastDirective,
+
   ],
   imports: [
     ReactiveFormsModule,
@@ -200,8 +204,8 @@ import { MeToastDirective } from './directives/toast.directive';
     MeTextAreaModule,
     MeTagBoxModule,
     MeFormItemModule,
+    MeIconsInitializerModule
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
