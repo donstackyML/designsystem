@@ -1,69 +1,52 @@
 import {
   Directive,
-  HostListener,
-  Input,
-  OnInit,
-  Renderer2,
-  inject,
   ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2
 } from '@angular/core';
 import { DxDateRangeBoxComponent } from 'devextreme-angular';
-import { MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meDateRangeBox]',
   host: {
     '[class.me-date-range-box]': 'true',
-    '[class.me-date-range-box-small]': 'isSizeSmall',
-    '[class.me-date-range-box-medium]': 'isSizeMedium',
-    '[class.me-date-range-box-large]': 'isSizeLarge',
-
-    '[class.me-inputs]': 'true',
-    '[class.me-inputs-small]': 'isSizeSmall',
-    '[class.me-inputs-medium]': 'isSizeMedium',
-    '[class.me-inputs-large]': 'isSizeLarge',
   },
+  providers: [{ provide: MeFormField, useExisting: MeDateRangeBoxDirective }],
 })
-export class MeDateRangeBoxDirective implements OnInit {
-  @Input() size: MeSize = 'medium';
+export class MeDateRangeBoxDirective
+  extends MeFormField
+  implements OnInit {
+
 
   private focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
-    protected component: DxDateRangeBoxComponent,
-    protected renderer: Renderer2
+    private dateRangeBox: DxDateRangeBoxComponent,
+
+    private renderer: Renderer2
   ) {
-    this.component.labelMode = 'outside';
+    super(dateRangeBox)
+    this.dateRangeBox.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
     this.focusService.addKeyUpEventHandle('Enter', (evt) =>
       this.enterHandle(evt)
     );
   }
   ngOnInit(): void {
-    this.component.instance.option('dropDownOptions', {
+    this.dateRangeBox.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-date-range-box-overlay`,
       },
     });
   }
 
-  get isSizeLarge() {
-    return this.size === 'large';
-  }
-
-  get isSizeMedium() {
-    return this.size === 'medium';
-  }
-
-  get isSizeSmall() {
-    return this.size === 'small';
-  }
-
   @HostListener('onOpened', ['$event']) onOpened(e: any) {
-    if (this.component.instance.option('applyValueMode') == 'useButtons') {
+    if (this.dateRangeBox.instance.option('applyValueMode') == 'useButtons') {
       const overlay: HTMLElement | null =
-        this.component.instance.content().parentElement;
+        this.dateRangeBox.instance.content().parentElement;
 
       // Переменные кнопок
       const submitButton = overlay?.querySelector('.dx-button.dx-popup-done');
@@ -91,6 +74,6 @@ export class MeDateRangeBoxDirective implements OnInit {
   }
 
   private enterHandle(evt: KeyboardEvent) {
-    this.component.instance.open();
+    this.dateRangeBox.instance.open();
   }
 }

@@ -76,14 +76,6 @@ export default {
         defaultValue: { summary: 'false' }
       }
     },
-    isValid: {
-      control: 'boolean',
-      description: 'Проверяет валидность данных.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     disabled: {
       control: 'boolean',
       description: 'Отключает компонент и его элементы.',
@@ -98,6 +90,22 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
+      },
+    },
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
       },
     },
     mask: {
@@ -157,10 +165,10 @@ export default {
         type: { summary: 'string | number | undefined' },
         defaultValue: { summary: 'undefined' },
       },
-    }
+    },
   },
   args: {
-    label: 'Label*',
+    label: 'Label',
     placeholder: 'Enter your text',
     mode: 'text',
     size: 'medium',
@@ -168,10 +176,11 @@ export default {
     showClearButton: false,
     readOnly: false,
     disabled: false,
+    showRequiredMark: false,
     isValid: true,
     mask: "",
     maskInvalidMessage: "Value is invalid",
-    validationError: '',
+    validationError: null,
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
   },
@@ -260,8 +269,8 @@ export const WithLabelColumn: Story = {
       meLabel
 		  labelDirection="column"
 		>
-    <span>Label*</span>
-		<dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>
+      <span>Label*</span>
+      <dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>
 		</div>`,
   }),
 }
@@ -284,6 +293,18 @@ export const StateDisabledAndReadOnly: Story = {
     readOnly: true,
     disabled: true,
     value: 'Lorem ipsum dolor sit amet consectetur.'
+  },
+};
+
+export const WithRequiredMark: Story = {
+  args: {
+    showRequiredMark: true
+  },
+};
+
+export const ValidationInvalid: Story = {
+  args: {
+    isValid: false
   },
 };
 

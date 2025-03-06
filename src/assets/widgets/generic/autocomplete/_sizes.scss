@@ -1,24 +1,25 @@
 @use '../sizes' as *;
 
-.dx-autocomplete {
-  &.me-autocomplete-small {
-    .dx-texteditor-input {
-      font-size: 13px;
-      padding: 4px 8px;
-    }
+.me-inputs.dx-autocomplete.me-autocomplete {
+  .dx-texteditor-input {
+    font-size: var(--me-autocomplete-font-size, 14px);
+    padding: var(--me-autocomplete-padding, 6px 12px);
   }
 
-  &.me-autocomplete-medium {
-    .dx-texteditor-input {
-      font-size: 14px;
-      padding: 6px 12px;
+  &.me-inputs {
+    &-small {
+      --me-autocomplete-font-size: 13px;
+      --me-autocomplete-padding: 4px 8px;
     }
-  }
 
-  &.me-autocomplete-large {
-    .dx-texteditor-input {
-      font-size: 16px;
-      padding: 8px 16px;
+    &-medium {
+      --me-autocomplete-font-size: 14px;
+      --me-autocomplete-padding: 6px 12px;
+    }
+
+    &-large {
+      --me-autocomplete-font-size: 16px;
+      --me-autocomplete-padding: 8px 16px;
     }
   }
 }

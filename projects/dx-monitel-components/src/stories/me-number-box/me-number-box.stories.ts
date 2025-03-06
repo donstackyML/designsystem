@@ -66,14 +66,6 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    isValid: {
-      control: 'boolean',
-      description: 'Проверяет валидность данных.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     disabled: {
       control: 'boolean',
       description: 'Отключает компонент и его элементы.',
@@ -114,6 +106,30 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    validationError: {
+      control: 'text',
+      description: 'Текст ошибки валидации.',
+      table: {
+        type: { summary: 'any' },
+        defaultValue: { summary: 'null' },
+      },
+    },
     validationMessageMode: {
       control: 'select',
       options: ['auto', 'always'],
@@ -151,16 +167,17 @@ export default {
   },
   args: {
     size: 'medium',
-    label: 'Label*',
+    label: 'Label',
     placeholder: 'Select...',
     disabled: false,
     readOnly: false,
-    isValid: true,
     showClearButton: false,
     showSpinButtons: false,
     format: '',
     max: undefined,
     min: undefined,
+    showRequiredMark: false,
+    isValid: true,
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
     value: undefined,
@@ -231,6 +248,23 @@ export const LabelModeHidden: Story = {
   },
 };
 
+export const WithLabelRow: StoryObj = {
+  args: {
+    labelMode: 'hidden',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <label meLabel
+    labelDirection="row"
+    width="250px">
+    Label*
+      <dx-number-box meNumberBox ${argsToTemplate(args)}></dx-number-box>
+    </label>
+    `,
+  }),
+};
+
 export const StateDisabled: Story = {
   args: {
     disabled: true
@@ -241,6 +275,18 @@ export const StateReadOnly: Story = {
   args: {
     readOnly: true,
     value: 123
+  },
+};
+
+export const WithRequiredMark: Story = {
+  args: {
+    showRequiredMark: true
+  },
+};
+
+export const ValidationInvalid: Story = {
+  args: {
+    isValid: false
   },
 };
 
@@ -285,22 +331,6 @@ export const WithDescription: Story = {
   })
 };
 
-export const WithLabelRow: StoryObj = {
-  args: {
-    labelMode: 'hidden',
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-		<label meLabel
-		labelDirection="row"
-		width="250px">
-		Label*
-			<dx-number-box meNumberBox ${argsToTemplate(args)}></dx-number-box>
-		</label>
-		`,
-  }),
-};
 
 export const WithCurrencyButton: StoryObj = {
   args: {

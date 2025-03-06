@@ -192,15 +192,6 @@ export default {
         defaultValue: { summary: 'false' }
       }
     },
-    isValid: {
-      control: 'boolean',
-      description: 'Проверяет валидность данных.',
-      table: {
-        category: 'Внешний вид и размеры',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     disabled: {
       control: 'boolean',
       description: 'Отключает компонент и его элементы.',
@@ -237,6 +228,56 @@ export default {
         defaultValue: { summary: 'undefined' },
       },
     },
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    invalidDateMessage: {
+      control: 'text',
+      description: 'Сообщение об ошибке для неверных дат.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Неверная дата.' },
+      },
+    },
+    validationError: {
+      control: 'text',
+      description: 'Текст ошибки валидации.',
+      table: {
+        type: { summary: 'any' },
+        defaultValue: { summary: 'null' },
+      },
+    },
+    validationMessageMode: {
+      control: 'select',
+      options: ['auto', 'always'],
+      description: 'Режим отображения сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    validationMessagePosition: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+      description: 'Расположение сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'bottom' },
+      },
+    },
     startDateOutOfRangeMessage: {
       control: 'text',
       description:
@@ -265,26 +306,6 @@ export default {
         defaultValue: { summary: 'Start value must be a date' },
       },
     },
-    validationMessageMode: {
-      control: 'select',
-      options: ['auto', 'always'],
-      description: 'Режим отображения сообщения об ошибке.',
-      table: {
-        category: 'Валидация',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'auto' },
-      },
-    },
-    validationMessagePosition: {
-      control: 'select',
-      options: ['auto', 'top', 'bottom', 'left', 'right'],
-      description: 'Позиция отображения сообщения об ошибке.',
-      table: {
-        category: 'Валидация',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'auto' },
-      },
-    },
   },
   args: {
     size: 'medium',
@@ -296,38 +317,40 @@ export default {
     applyValueMode: 'instantly',
     applyButtonText: 'Применить',
     cancelButtonText: 'Отмена',
-    validationMessageMode: 'auto',
-    validationMessagePosition: 'auto',
     dateSerializationFormat: 'yyyy-MM-dd',
     displayFormat: 'dd.MM.yyyy',
     startDate: null,
-    startDateLabel: 'Начальная дата*',
+    startDateLabel: 'Начальная дата',
     endDate: null,
-    endDateLabel: 'Конечная дата*',
+    endDateLabel: 'Конечная дата',
     max: '2025-12-31',
     min: '2025-01-01',
+    startDatePlaceholder: 'Начальная дата',
+    endDatePlaceholder: 'Конечная дата',
+    showRequiredMark: false,
+    isValid: true,
+    validationMessageMode: 'auto',
+    validationMessagePosition: 'auto',
     invalidEndDateMessage: 'Неверная дата окончания',
     invalidStartDateMessage: 'Неверная дата начала',
     startDateOutOfRangeMessage:
       'Начальная дата за пределами допустимых значений',
-    startDatePlaceholder: 'Начальная дата',
-    endDatePlaceholder: 'Конечная дата',
   },
   render: (args) => ({
     props: args,
     template: `
-			<dx-date-range-box meDateRangeBox
-				${argsToTemplate(args)}
-			>
-				<dx-validator>
+      <dx-date-range-box meDateRangeBox
+        ${argsToTemplate(args)}
+      >
+        <dx-validator>
           <dxi-validation-rule
               type="required"
-              message="Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required Required "
+              message="Пожалуйста, заполните это обязательное поле"
           >
           </dxi-validation-rule>
         </dx-validator>
-			</dx-date-range-box>
-		`,
+      </dx-date-range-box>
+    `,
   }),
 } satisfies Meta<DxDateRangeBoxModule | MeDateRangeBoxDirective>;
 
@@ -377,6 +400,27 @@ export const LabelModeHidden: Story = {
   },
 };
 
+export const WithLabelRow: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<label meLabel
+      labelDirection="row"
+      width="500px"
+    >
+		Label*
+			<dx-date-range-box meDateRangeBox
+				${argsToTemplate(args)}
+			>
+			</dx-date-range-box>
+		</label>
+		`,
+  }),
+};
+
 export const StateDisabled: Story = {
   args: {
     disabled: true
@@ -400,29 +444,20 @@ export const StateDisabledAndReadOnly: Story = {
   },
 };
 
+export const WithRequiredMark: Story = {
+  args: {
+    showRequiredMark: true
+  },
+};
+
+export const ValidationInvalid: Story = {
+  args: {
+    isValid: false
+  },
+};
+
 export const WithMultiView: Story = {
   args: {
     multiView: true
   },
-};
-
-export const WithLabelRow: Story = {
-  args: {
-    ...Default.args,
-    labelMode: 'hidden',
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-		<label meLabel
-		labelDirection="row"
-		width="500px">
-		Label*
-			<dx-date-range-box meDateRangeBox
-				${argsToTemplate(args)}
-			>
-			</dx-date-range-box>
-		</label>
-		`,
-  }),
 };

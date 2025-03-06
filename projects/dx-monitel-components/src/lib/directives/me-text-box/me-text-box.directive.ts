@@ -3,35 +3,23 @@ import {
   Directive,
   ElementRef,
   HostListener,
-  Input,
   OnInit,
   Renderer2,
 } from '@angular/core';
 import { DxTextBoxComponent } from 'devextreme-angular';
-import { MeSize } from 'projects/dx-monitel-components/me-components';
-import { MeFormField } from '../me-form-item/me-form-field';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meTextBox]',
   host: {
     '[class.me-textbox]': 'true',
-    '[class.me-textbox-small]': 'isSizeSmall',
-    '[class.me-textbox-medium]': 'isSizeMedium',
-    '[class.me-textbox-large]': 'isSizeLarge',
-
-    '[class.me-inputs]': 'true',
-    '[class.me-inputs-small]': 'isSizeSmall',
-    '[class.me-inputs-medium]': 'isSizeMedium',
-    '[class.me-inputs-large]': 'isSizeLarge',
   },
   providers: [{ provide: MeFormField, useExisting: MeTextBoxDirective }],
 })
 export class MeTextBoxDirective
   extends MeFormField
-  implements OnInit, AfterViewInit
-{
-  @Input() size: MeSize = 'medium';
+  implements OnInit, AfterViewInit {
   private passwordVisible = false;
   private isPasswordInput = false;
   private passwordToggleButton: HTMLElement | null = null;
@@ -50,24 +38,11 @@ export class MeTextBoxDirective
     this.isPasswordInput = this.textBox.instance.option('mode') === 'password';
   }
 
-  get isSizeSmall() {
-    return this.size === 'small';
-  }
-
-  get isSizeMedium() {
-    return this.size === 'medium';
-  }
-
-  get isSizeLarge() {
-    return this.size === 'large';
-  }
-
   ngAfterViewInit(): void {
     if (this.isPasswordInput) {
       this.createPasswordToggle();
       this.updatePasswordToggleVisibility();
 
-      // Добавляем слушатель события valueChanged
       this.textBox.instance.on('valueChanged', () => {
         this.updatePasswordToggleVisibility();
       });
@@ -81,7 +56,6 @@ export class MeTextBoxDirective
     this.renderer.addClass(this.passwordToggleButton, 'dx-button-mode-text');
     this.renderer.addClass(this.passwordToggleButton, 'dx-button-normal');
     this.renderer.addClass(this.passwordToggleButton, 'dx-button-has-icon');
-    // Изначально скрываем кнопку
     this.renderer.setStyle(this.passwordToggleButton, 'display', 'none');
 
     const iconElement = this.renderer.createElement('i');

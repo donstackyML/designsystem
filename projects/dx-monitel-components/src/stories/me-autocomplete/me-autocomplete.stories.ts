@@ -83,13 +83,47 @@ export default {
         defaultValue: { summary: '1' }
       }
     },
-    isValid: {
+    showRequiredMark: {
       control: 'boolean',
-      description: 'Определяет состояние валидности',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' }
-      }
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    validationError: {
+      control: 'text',
+      description: 'Текст ошибки валидации.',
+      table: {
+        type: { summary: 'any' },
+        defaultValue: { summary: 'null' },
+      },
+    },
+    validationMessageMode: {
+      control: 'select',
+      options: ['auto', 'always'],
+      description: 'Режим отображения сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    validationMessagePosition: {
+      control: 'select',
+      options: ['auto', 'top', 'bottom', 'left', 'right'],
+      description: 'Расположение сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
     },
     dropDownListMaxHeight: {
       control: 'text',
@@ -106,17 +140,21 @@ export default {
     },
   },
   args: {
+    dataSource: meAutocompleteMockData,
     size: 'medium',
     labelMode: 'outside',
-    label: 'City*',
+    label: 'City',
     placeholder: 'Enter city name',
     showClearButton: true,
-    isValid: true,
     disabled: false,
     readOnly: false,
+    showRequiredMark: false,
+    isValid: true,
+    validationError: null,
+    validationMessageMode: 'auto',
+    validationMessagePosition: 'auto',
     minSearchLength: 1,
     dropDownListMaxHeight: '300px',
-    dataSource: meAutocompleteMockData,
   },
   render: (args) => ({
     props: args,
@@ -184,27 +222,6 @@ export const LabelModeHidden: Story = {
   },
 };
 
-export const StateDisabled: Story = {
-  args: {
-    disabled: true
-  },
-};
-
-export const StateReadOnly: Story = {
-  args: {
-    readOnly: true,
-    value: 'Moscow'
-  },
-};
-
-export const StateDisabledAndReadOnly: Story = {
-  args: {
-    readOnly: true,
-    disabled: true,
-    value: 'Moscow'
-  },
-};
-
 export const WithLabelRow: Story = {
   render: (args) => ({
     props: args,
@@ -233,4 +250,37 @@ export const WithLabelRow: Story = {
     </div>
     `,
   }),
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true
+  },
+};
+
+export const StateReadOnly: Story = {
+  args: {
+    readOnly: true,
+    value: 'Moscow'
+  },
+};
+
+export const StateDisabledAndReadOnly: Story = {
+  args: {
+    readOnly: true,
+    disabled: true,
+    value: 'Moscow'
+  },
+};
+
+export const WithRequiredMark: Story = {
+  args: {
+    showRequiredMark: true
+  },
+};
+
+export const ValidationInvalid: Story = {
+  args: {
+    isValid: false
+  },
 };

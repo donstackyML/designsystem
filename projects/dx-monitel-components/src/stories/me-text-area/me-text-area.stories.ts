@@ -63,14 +63,6 @@ export default {
         defaultValue: { summary: 'false' }
       }
     },
-    isValid: {
-      control: 'boolean',
-      description: 'Проверяет валидность данных.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     disabled: {
       control: 'boolean',
       description: 'Отключает компонент и его элементы.',
@@ -102,6 +94,22 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
+      },
+    },
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
       },
     },
     validationError: {
@@ -148,18 +156,21 @@ export default {
     }
   },
   args: {
-    label: 'Label*',
+    label: 'Label',
     placeholder: 'Enter your text',
     size: 'medium',
     labelMode: 'outside',
     readOnly: false,
     disabled: false,
-    isValid: true,
     autoResizeEnabled: false,
     activeStateEnabled: true,
+    showRequiredMark: false,
+    isValid: true,
     validationError: '',
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
+    width: undefined,
+    height: undefined
   },
   render: (args) => ({
     props: args,
@@ -248,6 +259,18 @@ export const StateDisabledAndReadOnly: Story = {
     readOnly: true,
     disabled: true,
     value: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+};
+
+export const WithRequiredMark: Story = {
+  args: {
+    showRequiredMark: true
+  },
+};
+
+export const ValidationInvalid: Story = {
+  args: {
+    isValid: false
   },
 };
 
