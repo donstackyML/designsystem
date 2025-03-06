@@ -1,4 +1,3 @@
-// .storybook/preview.tsx
 import { Preview } from "@storybook/angular";
 
 const preview: Preview = {
@@ -15,7 +14,6 @@ const preview: Preview = {
 
 export default preview;
 
-// Добавляем глобальные стили
 const style = document.createElement("style");
 style.textContent = `
   .me-tooltip-custom {

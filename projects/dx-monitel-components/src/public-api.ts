@@ -123,6 +123,8 @@ export { FocusManagerService } from './lib/service/keyboard-navigation.service';
 export { KeyboardNavigationService } from './lib/service/keyboard.service';
 export { ThemesService } from './lib/service/themes.service';
 
-// Types and Main Module
-export * from './lib/me-components.module';
+// Modules
+export { MeComponentsModule } from './lib/modules/me-components.module';
+
+// Types
 export * from './lib/types/types';
