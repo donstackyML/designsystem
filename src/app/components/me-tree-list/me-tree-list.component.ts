@@ -431,5 +431,7 @@ export class MeTreeListComponent {
   activeStateEnabled = true;
   allowColumnReordering = true;
   allowColumnResizing = true;
-  showRowLines = true;
+  showRowLines = false;
+  showBorders = false;
+  showColumnLines = false;
 }

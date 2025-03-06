@@ -20,12 +20,11 @@ export class MeTreeListDirective implements AfterViewInit {
     private component: DxTreeListComponent,
     renderer: Renderer2
   ) {
+    this.component.showBorders = true;
+    this.component.showRowLines = true;
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
-  ngOnInit(): void {
-    this.applyInitialSettings();
-  }
   ngAfterViewInit(): void {
     this.element.nativeElement.setAttribute('tabindex', '0');
     let toolbarElm: Element =
@@ -37,10 +36,5 @@ export class MeTreeListDirective implements AfterViewInit {
         widgets.forEach((elm) => elm.setAttribute('tabindex', '1'));
       }
     }
-  }
-
-  private applyInitialSettings() {
-    this.component.instance.option('showBorders', true);
-    this.component.instance.option('showRowLines', true);
   }
 }
