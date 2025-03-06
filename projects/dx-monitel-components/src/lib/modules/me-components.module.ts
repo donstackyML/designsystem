@@ -62,6 +62,9 @@ import { MeTooltipModule } from '../directives/me-tooltip/me-tooltip.module';
 import { MeTreeListModule } from '../directives/me-tree-list/me-tree-list.module';
 import { MeTreeViewModule } from '../directives/me-tree-view/me-tree-view.module';
 
+// Modules
+
+import { MeIconsInitializerModule } from './me-icons-initializer.module'
 
 @NgModule({
   imports: [
@@ -83,6 +86,7 @@ import { MeTreeViewModule } from '../directives/me-tree-view/me-tree-view.module
     MeFormModule,
     MeIconModule,
     MeIconModule,
+    MeIconsInitializerModule,
     MeLabelModule,
     MeListModule,
     MeLoadIndicatorModule,
@@ -142,6 +146,7 @@ import { MeTreeViewModule } from '../directives/me-tree-view/me-tree-view.module
     MeFormModule,
     MeIconModule,
     MeIconModule,
+    MeIconsInitializerModule,
     MeLabelModule,
     MeListModule,
     MeLoadIndicatorModule,
