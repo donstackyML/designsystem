@@ -75,14 +75,6 @@ export default {
         defaultValue: { summary: 'false' }
       }
     },
-    isValid: {
-      control: 'boolean',
-      description: 'Проверяет валидность данных.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     disabled: {
       control: 'boolean',
       description: 'Отключает компонент и его элементы.',
@@ -139,14 +131,6 @@ export default {
         defaultValue: { summary: '' },
       },
     },
-    invalidDateMessage: {
-      control: 'text',
-      description: 'Сообщение об ошибке для неверных дат.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'Неверная дата.' },
-      },
-    },
     applyValueMode: {
       control: 'select',
       options: ['instantly', 'useButtons'],
@@ -181,6 +165,38 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    invalidDateMessage: {
+      control: 'text',
+      description: 'Сообщение об ошибке для неверных дат.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Неверная дата.' },
+      },
+    },
+    validationError: {
+      control: 'text',
+      description: 'Текст ошибки валидации.',
+      table: {
+        type: { summary: 'any' },
+        defaultValue: { summary: 'null' },
+      },
+    },
     validationMessageMode: {
       control: 'select',
       options: ['auto', 'always'],
@@ -192,11 +208,11 @@ export default {
     },
     validationMessagePosition: {
       control: 'select',
-      options: ['top', 'bottom', 'left', 'right'],
+      options: ['auto', 'top', 'bottom', 'left', 'right'],
       description: 'Расположение сообщений об ошибках.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'bottom' },
+        defaultValue: { summary: 'auto' },
       },
     },
     width: {
@@ -219,7 +235,7 @@ export default {
   args: {
     size: 'medium',
     type: 'date',
-    label: 'Label*',
+    label: 'Label',
     placeholder: 'Select...',
     disabled: false,
     readOnly: false,
@@ -234,9 +250,12 @@ export default {
     dateSerializationFormat: '',
     disabledDates: undefined,
     displayFormat: '',
-    validationMessageMode: 'auto',
-    validationMessagePosition: 'bottom',
+    showRequiredMark: false,
     isValid: true,
+    validationMessageMode: 'auto',
+    invalidDateMessage: 'Value must be a date or time',
+    validationError: null,
+    validationMessagePosition: 'auto',
     width: undefined,
     height: undefined
   },
@@ -304,6 +323,30 @@ export const LabelModeHidden: Story = {
   },
 };
 
+export const WithLabelRow: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      description: 'Description'
+    },
+    template: `
+    <div meLabel
+      labelDirection="row"
+      width="250px">
+      <span>Label*</span>
+      <dx-date-box meDateBox
+        ${argsToTemplate(args)}
+      >
+      </dx-date-box>
+    </div>
+    <p class="me-input-description" *ngIf="description">{{ description }}</p>
+    `,
+  }),
+};
+
 export const StateDisabled: Story = {
   args: {
     disabled: true
@@ -314,6 +357,18 @@ export const StateReadOnly: Story = {
   args: {
     readOnly: true,
     value: '1/1/2024'
+  },
+};
+
+export const WithRequiredMark: Story = {
+  args: {
+    showRequiredMark: true
+  },
+};
+
+export const ValidationInvalid: Story = {
+  args: {
+    isValid: false
   },
 };
 
@@ -379,28 +434,4 @@ export const WithDescription: Story = {
     </dx-date-box>
     <p class="me-input-description" *ngIf="description">{{ description }}</p>`,
   })
-};
-
-export const WithLabelRow: Story = {
-  args: {
-    labelMode: 'hidden',
-  },
-  render: (args) => ({
-    props: {
-      ...args,
-      description: 'Description'
-    },
-    template: `
-    <div meLabel
-      labelDirection="row"
-      width="250px">
-      <span>Label*</span>
-      <dx-date-box meDateBox
-        ${argsToTemplate(args)}
-      >
-      </dx-date-box>
-    </div>
-    <p class="me-input-description" *ngIf="description">{{ description }}</p>
-    `,
-  }),
 };

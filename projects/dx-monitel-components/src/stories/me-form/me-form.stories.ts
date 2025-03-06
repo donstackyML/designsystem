@@ -180,7 +180,14 @@ export default {
     <dxi-item meFormItem dataField="birthDate">
       <dxo-label text="Age"></dxo-label>
       <div *dxTemplate>
-        <dx-number-box meNumberBox [showSpinButtons]="true" [(value)]="formData.age" [size]="size" [readOnly]="readOnly" [disabled]="disabled"></dx-number-box>
+        <dx-number-box
+          meNumberBox
+          [showSpinButtons]="true"
+          [(value)]="formData.age"
+          [size]="size"
+          [readOnly]="readOnly"
+          [disabled]="disabled"
+        ></dx-number-box>
       </div>
     </dxi-item>
   </dx-form>
@@ -606,6 +613,19 @@ export const StateReadOnly: Story = {
           [readOnly]="readOnly"
           >
         </dx-text-box>
+      </div>
+    </dxi-item>
+    <dxi-item meFormItem dataField="birthDate">
+      <dxo-label text="Age"></dxo-label>
+      <div *dxTemplate>
+        <dx-number-box
+          meNumberBox
+          [showSpinButtons]="true"
+          [(value)]="formData.age"
+          [size]="size"
+          [readOnly]="readOnly"
+          [disabled]="disabled"
+        ></dx-number-box>
       </div>
     </dxi-item>
   </dx-form>

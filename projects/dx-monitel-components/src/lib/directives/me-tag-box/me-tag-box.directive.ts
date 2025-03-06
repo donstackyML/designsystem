@@ -9,37 +9,34 @@ import {
 } from '@angular/core';
 import { DxTagBoxComponent } from 'devextreme-angular';
 
-import { type MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meTagBox]',
   host: {
-    '[class.me-tag-box]': 'true',
-    '[class.me-tag-box-small]': 'isSizeSmall',
-    '[class.me-tag-box-medium]': 'isSizeMedium',
-    '[class.me-tag-box-large]': 'isSizeLarge',
-    '[class.me-inputs]': 'true',
-    '[class.me-inputs-small]': 'isSizeSmall',
-    '[class.me-inputs-medium]': 'isSizeMedium',
-    '[class.me-inputs-large]': 'isSizeLarge',
-    '[class.me-tag-box-tag-empty]': 'isNoTags',
+    '[class.me-tag-box]': 'true'
   },
+  providers: [{ provide: MeFormField, useExisting: MeTagBoxDirective }],
 })
-export class MeTagBoxDirective implements OnInit, OnDestroy {
-  @Input() size: MeSize = 'medium';
+export class MeTagBoxDirective
+  extends MeFormField
+  implements OnInit, OnDestroy {
+
   @Input() description: string = '';
   @Input() dropDownListMaxHeight?: string | number;
 
   private focusService: ComponentFocusService;
+
   constructor(
-    private element: ElementRef,
+    public element: ElementRef,
+    protected tagBox: DxTagBoxComponent,
     private renderer: Renderer2,
-    private component: DxTagBoxComponent,
     private dropDownOptionsService: DropDownOptionsService,
   ) {
-    this.component.labelMode = 'outside';
+    super(tagBox);
+    this.tagBox.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
     this.focusService.addFocusInHandle((evt: FocusEvent) => this.onFocusIn());
     this.focusService.addFocusOutHandle((evt: FocusEvent) => this.onFocusOut());
@@ -51,7 +48,7 @@ export class MeTagBoxDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dropDownOptionsService.configureDropDownOptions(
-      this.component,
+      this.tagBox,
       this.element,
       this.renderer,
       this.size,
@@ -60,20 +57,8 @@ export class MeTagBoxDirective implements OnInit, OnDestroy {
     );
   }
 
-  get isSizeSmall() {
-    return this.size === 'small';
-  }
-
-  get isSizeMedium() {
-    return this.size === 'medium';
-  }
-
-  get isSizeLarge() {
-    return this.size === 'large';
-  }
-
   isNoTags(): boolean {
-    let length = this.component.itemsChildren.length;
+    let length = this.tagBox.itemsChildren.length;
     debugger;
     console.log('Tags count: %o', length);
     return length == 0;

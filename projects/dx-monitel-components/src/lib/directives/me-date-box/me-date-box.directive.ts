@@ -2,18 +2,16 @@ import {
   Directive,
   ElementRef,
   HostListener,
-  Input,
   OnDestroy,
   OnInit,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 
 import type DevExpress from 'devextreme';
-import type { OpenedEvent } from 'devextreme/ui/date_box';
 import { DxDateBoxComponent } from 'devextreme-angular';
+import type { OpenedEvent } from 'devextreme/ui/date_box';
 
 import { ComponentFocusService } from '../../service/component-focus.service';
-import type { MeSize } from '../../types/types';
 import { MeFormField } from '../me-form-item/me-form-field';
 
 interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
@@ -26,21 +24,12 @@ interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
   selector: '[meDateBox]',
   host: {
     '[class.me-date-box]': 'true',
-    '[class.me-date-box-large]': 'isSizeLarge',
-    '[class.me-date-box-medium]': 'isSizeMedium',
-    '[class.me-date-box-small]': 'isSizeSmall',
-
-    '[class.me-inputs]': 'true',
-    '[class.me-inputs-large]': 'isSizeLarge',
-    '[class.me-inputs-medium]': 'isSizeMedium',
-    '[class.me-inputs-small]': 'isSizeSmall',
   },
   providers: [{ provide: MeFormField, useExisting: MeDateBoxDirective }],
 })
 export class MeDateBoxDirective
   extends MeFormField
   implements OnInit, OnDestroy {
-  @Input() size: MeSize = 'medium';
 
   private focusService: ComponentFocusService;
   constructor(
@@ -74,18 +63,6 @@ export class MeDateBoxDirective
         class: 'me-calendar-show-weeks-numbers',
       },
     });
-  }
-
-  get isSizeLarge() {
-    return this.size === 'large';
-  }
-
-  get isSizeMedium() {
-    return this.size === 'medium';
-  }
-
-  get isSizeSmall() {
-    return this.size === 'small';
   }
 
   @HostListener('onOpened', ['$event'])

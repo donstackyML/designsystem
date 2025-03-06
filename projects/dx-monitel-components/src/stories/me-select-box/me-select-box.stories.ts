@@ -87,14 +87,6 @@ export default {
         defaultValue: { summary: 'false' }
       }
     },
-    isValid: {
-      control: 'boolean',
-      description: 'Проверяет валидность данных.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     disabled: {
       control: 'boolean',
       description: 'Отключает компонент и его элементы.',
@@ -146,20 +138,66 @@ export default {
         defaultValue: { summary: 'always' },
       },
     },
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    validationError: {
+      control: 'text',
+      description: 'Текст ошибки валидации.',
+      table: {
+        type: { summary: 'any' },
+        defaultValue: { summary: 'null' },
+      },
+    },
+    validationMessageMode: {
+      control: 'select',
+      options: ['auto', 'always'],
+      description: 'Режим отображения сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    validationMessagePosition: {
+      control: 'select',
+      options: ['auto', 'top', 'bottom', 'left', 'right'],
+      description: 'Расположение сообщений об ошибках.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
   },
   args: {
-    label: 'Label*',
+    label: 'Label',
     placeholder: 'Select...',
     dataSource: meSelectBoxData,
     size: 'medium',
     showScrollbar: 'always',
     disabled: false,
-    isValid: true,
     readOnly: false,
     grouped: false,
     searchEnabled: false,
     searchMode: 'contains',
     minSearchLength: 0,
+    showRequiredMark: false,
+    isValid: true,
+    validationMessageMode: 'auto',
+    validationError: null,
+    validationMessagePosition: 'auto',
     width: undefined,
     height: undefined,
   },
@@ -281,6 +319,18 @@ export const StateDisabledAndReadOnly: Story = {
     readOnly: true,
     disabled: true,
     value: meSelectBoxData[0]
+  },
+};
+
+export const WithRequiredMark: Story = {
+  args: {
+    showRequiredMark: true
+  },
+};
+
+export const ValidationInvalid: Story = {
+  args: {
+    isValid: false
   },
 };
 

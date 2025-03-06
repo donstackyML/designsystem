@@ -382,6 +382,17 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
   }
 
+  // showRequiredMark: true
+
+  &.me-inputs-show-required-mark {
+    .dx-texteditor-label .dx-label span {
+      &::after {
+        content: '*';
+        color: var(--Controls-Content-In-Controls-Danger-Default);
+      }
+    }
+  }
+
   // isValid: false
 
   &.dx-invalid {
@@ -621,19 +632,21 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &.me-number-box {
-    &-small {
-      --number-box-spin-button-height: 13px;
-      --number-box-spin-button-width: 26px;
-    }
+    &.me-inputs {
+      &-small {
+        --number-box-spin-button-height: 13px;
+        --number-box-spin-button-width: 26px;
+      }
 
-    &-medium {
-      --number-box-spin-button-height: 15px;
-      --number-box-spin-button-width: 30px;
-    }
+      &-medium {
+        --number-box-spin-button-height: 15px;
+        --number-box-spin-button-width: 30px;
+      }
 
-    &-large {
-      --number-box-spin-button-height: 19px;
-      --number-box-spin-button-width: 38px;
+      &-large {
+        --number-box-spin-button-height: 19px;
+        --number-box-spin-button-width: 38px;
+      }
     }
 
     .dx-texteditor-buttons-container .dx-numberbox-spin-container {

@@ -4,7 +4,7 @@ import {
   argsToTemplate,
   moduleMetadata,
 } from '@storybook/angular';
-import { DxValidatorModule, DxTagBoxComponent } from 'devextreme-angular';
+import { DxTagBoxComponent, DxValidatorModule } from 'devextreme-angular';
 import { MeLabelDirective, MeTagBoxDirective } from '../../public-api';
 
 function generateItems(length: number): string[] {
@@ -18,7 +18,7 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [DxValidatorModule],
-      declarations: [MeTagBoxDirective, DxTagBoxComponent,  MeLabelDirective],
+      declarations: [MeTagBoxDirective, DxTagBoxComponent, MeLabelDirective],
     }),
   ],
   argTypes: {
@@ -88,14 +88,6 @@ export default {
         defaultValue: { summary: 'false' }
       }
     },
-    isValid: {
-      control: 'boolean',
-      description: 'Проверяет валидность данных.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     disabled: {
       control: 'boolean',
       description: 'Отключает компонент и его элементы.',
@@ -152,7 +144,7 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    selectAllMode : {
+    selectAllMode: {
       control: 'select',
       options: ['allPages', 'page'],
       description:
@@ -160,6 +152,22 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'page' },
+      },
+    },
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isValid: {
+      control: 'boolean',
+      description: 'Проверяет валидность данных.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
       },
     },
     noDataText: {
@@ -188,11 +196,11 @@ export default {
     },
     validationMessagePosition: {
       control: 'select',
-      options: ['top', 'bottom', 'left', 'right'],
+      options: ['auto', 'top', 'bottom', 'left', 'right'],
       description: 'Расположение сообщений об ошибках.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'bottom' },
+        defaultValue: { summary: 'auto' },
       },
     },
     width: {
@@ -213,14 +221,13 @@ export default {
     },
   },
   args: {
-    label: 'Label*',
+    label: 'Label',
     placeholder: 'Выберите...',
     items: defaultItems,
     size: 'small',
     labelMode: 'outside',
     showClearButton: false,
     disabled: false,
-    isValid: true,
     readOnly: false,
     applyValueMode: 'instantly',
     searchEnabled: true,
@@ -230,6 +237,8 @@ export default {
     showSelectionControls: false,
     selectAllMode: 'page',
     hideSelectedItems: false,
+    isValid: true,
+    showRequiredMark: false,
     noDataText: 'Не найдено',
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
@@ -358,6 +367,18 @@ export const StateDisabledAndReadOnly: Story = {
     readOnly: true,
     disabled: true,
     value: generateItems(3)
+  },
+};
+
+export const WithRequiredMark: Story = {
+  args: {
+    showRequiredMark: true
+  },
+};
+
+export const ValidationInvalid: Story = {
+  args: {
+    isValid: false
   },
 };
 

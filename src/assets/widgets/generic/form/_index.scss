@@ -21,6 +21,10 @@
     line-height: var(--label-line-height);
     position: relative;
     display: flex;
+
+    .dx-field-item-required-mark {
+      color: var(--Controls-Content-In-Controls-Danger-Default);
+    }
   }
 
   .dx-flex-layout.dx-label-v-align {
@@ -30,7 +34,7 @@
   }
 
   &.me-form-small {
-    .me-date-box-small {
+    .me-inputs-small.me-date-box {
       height: var(--input-height);
     }
 
@@ -70,7 +74,7 @@
   }
 
   &.me-form-medium {
-    .me-date-box-medium {
+    .me-inputs-medium.me-date-box {
       height: var(--input-height);
     }
 
@@ -110,7 +114,7 @@
   }
 
   &.me-form-large {
-    .me-date-box-large {
+    .me-inputs-large.me-date-box {
       height: var(--input-height);
     }
 
@@ -155,9 +159,9 @@
     }
   }
 
-  .me-textbox-large.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty,
-  .me-textbox-medium.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty,
-  .me-textbox-small.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty {
+  .me-textbox.me-inputs-large.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty,
+  .me-textbox.me-inputs-medium.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty,
+  .me-textbox.me-inputs-small.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty {
     .dx-texteditor-label {
       .dx-label {
         &:after {
@@ -167,8 +171,8 @@
     }
   }
 
-  .me-textbox-medium.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty.dx-state-focused,
-  .me-textbox-small.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty.dx-state-focused {
+  .me-textbox.me-inputs-medium.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty.dx-state-focused,
+  .me-textbox.me-inputs-small.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty.dx-state-focused {
     .dx-texteditor-label {
       .dx-label {
         span {
@@ -178,7 +182,7 @@
     }
   }
 
-  .me-textbox-large.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty.dx-state-focused {
+  .me-textbox.me-inputs-large.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty.dx-state-focused {
     .dx-texteditor-label {
       .dx-label {
         span {
@@ -188,7 +192,7 @@
     }
   }
 
-  .me-textbox-small.dx-texteditor-with-floating-label.dx-texteditor:not(.dx-texteditor-empty) {
+  .me-textbox.me-inputs-small.dx-texteditor-with-floating-label.dx-texteditor:not(.dx-texteditor-empty) {
     .dx-texteditor-label {
       .dx-label {
         span {
@@ -199,7 +203,7 @@
     }
   }
 
-  .me-textbox-medium.dx-texteditor-with-floating-label.dx-texteditor:not(.dx-texteditor-empty) {
+  .me-textbox.me-inputs-medium.dx-texteditor-with-floating-label.dx-texteditor:not(.dx-texteditor-empty) {
     .dx-texteditor-label {
       .dx-label {
         span {
@@ -210,7 +214,7 @@
     }
   }
 
-  .me-textbox-large.dx-texteditor-with-label {
+  .me-textbox.me-inputs-large.dx-texteditor-with-label {
     .dx-texteditor-label {
       left: 12px;
     }
@@ -256,11 +260,13 @@
 
   .dx-item-content.dx-box-item-content {
     &:has(.dx-field-item-label.dx-field-item-label-location-top, .dx-field-item-label.dx-field-item-label-location-left) {
-      .me-inputs.dx-texteditor.dx-widget {
+      .me-inputs.dx-texteditor.dx-widget:not(.dx-state-disabled, .dx-state-readonly) {
 
         &.me-number-box {
           .dx-texteditor-buttons-container {
-            margin-right: 1px;
+            &:has(.dx-numberbox-spin-button) {
+              margin-right: 1px;
+            }
           }
         }
       }
@@ -404,11 +410,6 @@
   .dx-dropdowneditor-input-wrapper {
     display: inline-block !important;
     width: 100%;
-  }
-
-  // Отступы между элементами формы
-  .dx-field-item {
-    // margin-bottom: 16px;
   }
 
   // Валидационные сообщения

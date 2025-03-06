@@ -1,55 +1,40 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxAutocompleteComponent } from 'devextreme-angular';
 
-import type { MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meAutocomplete]',
   host: {
     '[class.me-autocomplete]': 'true',
-    '[class.me-autocomplete-small]': 'isSizeSmall',
-    '[class.me-autocomplete-medium]': 'isSizeMedium',
-    '[class.me-autocomplete-large]': 'isSizeLarge',
-    '[class.me-inputs]': 'true',
-    '[class.me-inputs-small]': 'isSizeSmall',
-    '[class.me-inputs-medium]': 'isSizeMedium',
-    '[class.me-inputs-large]': 'isSizeLarge',
   },
+  providers: [{ provide: MeFormField, useExisting: MeAutocompleteDirective }],
 })
-export class MeAutocompleteDirective implements OnInit {
-  @Input() size: MeSize = 'medium';
+export class MeAutocompleteDirective
+  extends MeFormField
+  implements OnInit {
+
   @Input() minSearchLength: number = 1;
   @Input() dataSource: any[] = [];
   @Input() dropDownListMaxHeight: string | number = '300px';
 
   private focusService: ComponentFocusService;
   constructor(
-    private component: DxAutocompleteComponent,
     private element: ElementRef,
+    private autocomplete: DxAutocompleteComponent,
     private renderer: Renderer2,
     private dropDownOptionsService: DropDownOptionsService,
   ) {
-    this.component.labelMode = 'outside';
+    super(autocomplete)
+    this.autocomplete.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
-  }
-
-  get isSizeSmall(): boolean {
-    return this.size === 'small';
-  }
-
-  get isSizeMedium(): boolean {
-    return this.size === 'medium';
-  }
-
-  get isSizeLarge(): boolean {
-    return this.size === 'large';
   }
 
   ngOnInit(): void {
     this.dropDownOptionsService.configureDropDownOptions(
-      this.component,
+      this.autocomplete,
       this.element,
       this.renderer,
       this.size,

@@ -1,16 +1,18 @@
-import { Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DxTextAreaComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeFormField } from '../me-form-item/me-form-field';
 
-type MeSize = 'small' | 'medium' | 'large';
-
 @Directive({
   selector: '[meTextArea]',
+  host: {
+    '[class.me-text-area]': 'true',
+  },
   providers: [{ provide: MeFormField, useExisting: MeTextAreaDirective }],
 })
-export class MeTextAreaDirective extends MeFormField implements OnInit {
-  @Input() size: MeSize = 'medium';
+export class MeTextAreaDirective
+  extends MeFormField
+  implements OnInit {
   @Input() height: string | number = '';
 
   private focusService: ComponentFocusService;
@@ -37,10 +39,5 @@ export class MeTextAreaDirective extends MeFormField implements OnInit {
         'me-text-area-custom-height',
       );
     }
-  }
-
-  @HostBinding('class')
-  get hostClasses(): string {
-    return `me-text-area me-text-area-${this.size} me-inputs me-inputs-${this.size}`;
   }
 }
