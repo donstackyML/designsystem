@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MeAccordionComponent } from './components/me-accordion/me-accordion.component';
 import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
-import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
+import { MeBreadcrumbsDemoComponent } from './components/me-breadcrumbs-demo/me-breadcrumbs-demo.component';
 import { MeButtonComponent } from './components/me-button/me-button.component';
+import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
 import { MeCalendarComponent } from './components/me-calendar/me-calendar.component';
 import { MeCheckBoxComponent } from './components/me-check-box/me-check-box.component';
 import { MeContextMenuComponent } from './components/me-context-menu/me-context-menu.component';
@@ -12,10 +13,10 @@ import { MeDropDownButtonComponent } from './components/me-drop-down-button/me-d
 import { MeFormComponent } from './components/me-form/me-form.component';
 import { MeIconResearchComponent } from './components/me-icon-research/me-icon-research.component';
 import { MeListComponent } from './components/me-list/me-list.component';
-import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
 import { MeLoadingIndicatorComponent } from './components/me-loading-indicator/me-loading-indicator.component';
-import { MeMenuLeftDemoComponent } from './components/me-menu-left-demo/me-menu-left-demo.component';
+import { MeLoadPanelComponent } from './components/me-load-panel/me-load-panel.component';
 import { MeMenuComponent } from './components/me-menu/me-menu.component';
+import { MeMenuLeftDemoComponent } from './components/me-menu-left-demo/me-menu-left-demo.component';
 import { MePivotGridComponent } from './components/me-pivot-grid/me-pivot-grid.component';
 import { MePopoverComponent } from './components/me-popover/me-popover.component';
 import { MePopupComponent } from './components/me-popup/me-popup.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: '', component: TypographyComponent },
   { path: 'me-accordion', component: MeAccordionComponent },
   { path: 'me-autocomplete', component: MeAutocompleteComponent },
+  { path: 'me-breadcrumbs', component: MeBreadcrumbsDemoComponent },
   { path: 'me-button-group', component: MeButtonGroupComponent },
   { path: 'me-buttons', component: MeButtonComponent },
   { path: 'me-calendar', component: MeCalendarComponent },

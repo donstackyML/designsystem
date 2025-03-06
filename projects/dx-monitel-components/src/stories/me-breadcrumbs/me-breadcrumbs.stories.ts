@@ -10,7 +10,6 @@ import {
   MeBreadcrumbsComponent,
   MeButtonModule,
   MeIconComponent,
-  MeIconStoreService
 } from '../../public-api';
 import {
   meBreadcrumbsMockData,
@@ -32,7 +31,6 @@ export default {
         DxContextMenuModule,
         MeIconComponent,
       ],
-      providers: [MeIconStoreService],
     }),
   ],
   argTypes: {

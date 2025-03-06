@@ -1,13 +1,17 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import { moduleMetadata, type Preview } from '@storybook/angular';
+import { moduleMetadata, type Preview, type Decorator } from '@storybook/angular';
 import { themes } from '@storybook/theming';
 import { useDarkMode } from 'storybook-dark-mode';
-import 'style-loader!css-loader!./style.css';
-import docJson from '../documentation.json';
-import { MeIconsRegistry } from '@monitel/me-icons-registry';
-import { meIconSet } from '@monitel/me-icons';
+
 import ruMessages from 'devextreme/localization/messages/ru.json';
 import { locale, loadMessages } from 'devextreme/localization';
+
+import 'style-loader!css-loader!./style.css';
+
+import { MeIconsRegistry } from '@monitel/me-icons-registry';
+import { meIconSet } from '@monitel/me-icons';
+
+import docJson from '../documentation.json';
 
 setCompodocJson(docJson);
 
@@ -36,7 +40,7 @@ const themeWrapper = (Story: () => any) => {
 
 export const registry = new MeIconsRegistry();
 
-export const decorators = [
+export const decorators: Decorator[] = [
   themeWrapper,
   moduleMetadata({
     providers: [
