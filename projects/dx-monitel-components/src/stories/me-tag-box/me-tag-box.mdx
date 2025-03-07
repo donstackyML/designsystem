@@ -1,5 +1,5 @@
-import { Meta, Controls, Source, Canvas } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source } from "@storybook/addon-docs";
 import * as tagBoxStories from "./me-tag-box.stories";
 
 <Meta name="TagBox Documentation" of={tagBoxStories} />
@@ -13,14 +13,14 @@ import * as tagBoxStories from "./me-tag-box.stories";
 Документация на сайте разработчика DevExtreme:
 
 - <a
-    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI*Components/dxTagBox/"
-    target="*blank"
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UIComponents/dxTagBox/"
+    target="_blank"
   >
     API
   </a>
 - <a
     href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TagBox/Overview/Light/"
-    target="*blank"
+    target="_blank"
   >
     Демо
   </a>
@@ -55,6 +55,10 @@ import * as tagBoxStories from "./me-tag-box.stories";
   - [Состояние readOnly](#состояние-readonly)
   - [Состояние disabled](#состояние-disabled)
   - [Состояние readOnly и disabled](#состояние-readonly-и-disabled)
+- [Режимы применения значений](#режимы-применения-значений)
+  - [Применение значений мгновенно (ApplyInstantly)](#применение-значений-мгновенно-applyinstantly)
+  - [Применение значений по кнопке (ApplyWithButtons)](#применение-значений-по-кнопке-applywithbuttons)
+- [Режим выбора тегов](#режим-выбора-тегов)
 - [Валидация поля](#валидация-поля)
 - [Элементы контента](#элементы-контента)
   - [Группировка элементов](#группировка-элементов)
@@ -65,10 +69,10 @@ import * as tagBoxStories from "./me-tag-box.stories";
 
 ### Размеры компонента
 
-*Изменение размера текстового поля влияет на отступы, размер шрифта и общую компоновку. Свойство `size` принимает три значения:*
-- **small** – уменьшенный размер, подходит для компактных интерфейсов;
-- **medium** – стандартный размер (используется по умолчанию);
-- **large** – увеличенный размер, удобен для форм с более крупным текстом.
+Изменение размера текстового поля влияет на отступы, размер шрифта и общую компоновку. Свойство `size` принимает три значения:
+- small – уменьшенный размер, подходит для компактных интерфейсов;
+- medium – стандартный размер (используется по умолчанию);
+- large – увеличенный размер, удобен для форм с более крупным текстом.
 
 #### Компонент небольшого размера
 
@@ -102,70 +106,70 @@ import * as tagBoxStories from "./me-tag-box.stories";
 
 ### Разные режимы положения лейбла
 
-*Директива `meTagBox` позволяет настраивать отображение лейбла с помощью свойства `labelMode`. Это свойство определяет, как и где будет отображаться метка поля, что может помочь улучшить читаемость формы и соответствовать требованиям макета.*
+Директива `meTagBox` позволяет настраивать отображение лейбла с помощью свойства `labelMode`. Это свойство определяет, как и где будет отображаться метка поля, что может помочь улучшить читаемость формы и соответствовать требованиям макета.
 
 #### Лейбл внешний
 
-*При значении `labelMode="outside"` лейбл располагается вне поля ввода. Такой вариант часто используется для четкого отделения метки от контрола.*
+При значении `labelMode="outside"` лейбл располагается вне поля ввода. Такой вариант часто используется для четкого отделения метки от контрола.
 
 <Canvas name="Лейбл внешний" of={tagBoxStories.LabelModeOutside} />
 
 <Source
-  code={`<dx-tag-box meTagBox labelMode="outside" label="Label*"></dx-tag-box>`}
+  code={`<dx-tag-box meTagBox labelMode="outside" label="Label"></dx-tag-box>`}
   language="html"
   dark
 />
 
 #### Лейбл статичный
 
-*Режим `labelMode="static"` фиксирует положение лейбла, не изменяя его при взаимодействии с полем. Это полезно, если требуется постоянное отображение метки в одном месте.*
+Режим `labelMode="static"` фиксирует положение лейбла, не изменяя его при взаимодействии с полем. Это полезно, если требуется постоянное отображение метки в одном месте.
 
 <Canvas name="Лейбл статичный" of={tagBoxStories.LabelModeStatic} />
 
 <Source
-  code={`<dx-tag-box meTagBox labelMode="static" label="Label*"></dx-tag-box>`}
+  code={`<dx-tag-box meTagBox labelMode="static" label="Label"></dx-tag-box>`}
   language="html"
   dark
 />
 
 #### Лейбл всплывающий
 
-*При использовании `labelMode="floating"` лейбл будет перемещаться, когда поле получает фокус. Это создает эффект «плавающего» заголовка, позволяющий экономить пространство внутри поля ввода.*
+При использовании `labelMode="floating"` лейбл будет перемещаться, когда поле получает фокус. Это создает эффект «плавающего» заголовка, позволяющий экономить пространство внутри поля ввода.
 
 <Canvas name="Лейбл всплывающий" of={tagBoxStories.LabelModeFloating} />
 
 <Source
-  code={`<dx-tag-box meTagBox labelMode="floating" label="Label*"></dx-tag-box>`}
+  code={`<dx-tag-box meTagBox labelMode="floating" label="Label"></dx-tag-box>`}
   language="html"
   dark
 />
 
 #### Лейбл невидимый
 
-*Если необходимо скрыть метку (например, при использовании вспомогательных элементов или когда метка выводится иным способом), установите `labelMode="hidden"`. В этом режиме лейбл не отображается в интерфейсе.*
+Если необходимо скрыть метку (например, при использовании вспомогательных элементов или когда метка выводится иным способом), установите `labelMode="hidden"`. В этом режиме лейбл не отображается в интерфейсе.
 
 <Canvas name="Лейбл невидимый" of={tagBoxStories.LabelModeHidden} />
 
 <Source
-  code={`<dx-tag-box meTagBox labelMode="hidden" label="Label*"></dx-tag-box>`}
+  code={`<dx-tag-box meTagBox labelMode="hidden" label="Label"></dx-tag-box>`}
   language="html"
   dark
 />
 
 ### Изменение положения лейбла с помощью директивы meLabel
 
-*Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.*
+Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.
 
 #### Положение лейбла сверху
 
-*Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.*
+Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.
 
 <Canvas name="Лейбл сверху" of={tagBoxStories.WithLabelColumn} />
 
 <Source
   code={`
 <div meLabel labelDirection="column">
-  <span>Label*</span>
+  <span>Label</span>
   <dx-tag-box meTagBox></dx-tag-box>
 </div>
 `}
@@ -175,14 +179,14 @@ import * as tagBoxStories from "./me-tag-box.stories";
 
 #### Положение лейбла слева
 
-*Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.*
+Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.
 
 <Canvas name="Лейбл слева" of={tagBoxStories.WithLabelRow} />
 
 <Source
   code={`
 <div meLabel labelDirection="row" width="250px" class="dx-widget">
-  <span>Label*</span>
+  <span>Label</span>
   <dx-tag-box meTagBox></dx-tag-box>
 </div>
 `}
@@ -192,7 +196,7 @@ import * as tagBoxStories from "./me-tag-box.stories";
 
 ### Состояния readOnly и disabled
 
-*Свойства `readOnly` и `disabled` позволяют управлять интерактивностью текстового поля. В режиме readOnly поле становится доступным для копирования, но редактирование невозможно, а в режиме disabled поле полностью неактивно и выглядит затенённым.*
+Свойства `readOnly` и `disabled` позволяют управлять интерактивностью текстового поля. В режиме readOnly поле становится доступным для копирования, но редактирование невозможно, а в режиме disabled поле полностью неактивно и выглядит затенённым.
 
 #### Состояние readOnly
 
@@ -237,6 +241,66 @@ import * as tagBoxStories from "./me-tag-box.stories";
   language="html"
 />
 
+### Режимы применения значений
+
+_Свойство `applyValueMode` управляет тем, когда выбранные значения будут применяться к компоненту._
+
+#### Применение значений мгновенно (ApplyInstantly)
+
+При значении `applyValueMode="instantly"` выбранное значение применяется сразу после выбора без дополнительных подтверждений. Это удобно в сценариях, когда требуется моментальное обновление данных, например, при фильтрации или динамическом обновлении интерфейса.
+
+<Canvas name="ApplyInstantly" of={tagBoxStories.ApplyInstantly} />
+<Source
+  code={`
+<dx-tag-box
+  meTagBox
+  applyValueMode="instantly"
+  [dataSource]="items"
+  [value]="selectedValues"
+></dx-tag-box>
+  `}
+  language="html"
+  dark
+/>
+
+#### Применение значений по кнопке (ApplyWithButtons)
+
+При значении `applyValueMode="useButtons"` изменения применяются только после нажатия соответствующей кнопки, что позволяет пользователю сначала внести несколько изменений и затем подтвердить их. Это особенно полезно, когда требуется дополнительное подтверждение выбора, например, при редактировании сложных фильтров или данных, где изменения могут быть критичными.
+
+<Canvas name="ApplyWithButtons" of={tagBoxStories.ApplyWithButtons} />
+
+<Source
+  code={`
+<dx-tag-box
+  meTagBox
+  applyValueMode="useButtons"
+  [dataSource]="items"
+  [value]="selectedValues"
+></dx-tag-box>
+  `}
+  language="html"
+  dark
+/>
+
+### Режим выбора тегов
+
+Свойство `showSelectionControls` включает элементы управления выбором тегов, позволяя пользователю отмечать один или несколько тегов.
+
+<Canvas name="С выбором тегов" of={tagBoxStories.WithSelectionControls} />
+
+<Source
+  code={`
+<dx-tag-box
+  meTagBox
+  showSelectionControls="true"
+  [items]="items"
+  [value]="selectedValues"
+></dx-tag-box>
+  `}
+  language="html"
+  dark
+/>
+
 ### Валидация поля
 
 Чтобы добавить валидацию в компонент `<dx-tag-box>`, используйте вложенный компонент `<dx-validator>`, который содержит один или несколько элементов `<dxi-validation-rule>`. Каждый элемент `<dxi-validation-rule>` позволяет задать правило валидации, определяя его тип с помощью свойства `type` и сообщение об ошибке через свойство `message`. Не забудьте импортировать модуль `DxValidatorModule` в ваш модуль приложения. Дополнительно вы можете управлять режимом отображения сообщений об ошибке с помощью параметра `validationMessageMode` (варианты: `auto` и `always`), а также задавать их положение с помощью параметра `validationMessagePosition` (варианты: `top`, `bottom`, `left`, `right`).
@@ -263,7 +327,7 @@ import * as tagBoxStories from "./me-tag-box.stories";
 
 #### Группировка элементов
 
-*Данный пример демонстрирует группировку элементов в компоненте TagBox. Для этого используйте свойство `grouped` и передавайте массив групп, где каждая группа определяется ключом и списком элементов.*
+Компонент TagBox позволяет группировать элементы. Для этого используйте свойство `grouped` и передавайте данные в `dataSource`. Подробнее про группировку можно узнать в документации компонента TagBox [здесь](https://js.devexpress.com/Angular/Documentation/Guide/UIComponents/TagBox/Grouping/IntheDataSource/).
 
 <Canvas name="Группировка элементов" of={tagBoxStories.GroupedItems} />
 
@@ -271,11 +335,11 @@ import * as tagBoxStories from "./me-tag-box.stories";
   code={`
 <dx-tag-box
   meTagBox
-  [items]="[
-    { key: 'Group 1', items: ['Пункт 1', 'Пункт 2', 'Пункт 3'] },
-    { key: 'Group 2', items: ['Пункт 4', 'Пункт 5', 'Пункт 6'] }
-  ]"
-  [grouped]="true">
+  [dataSource]="dataSource"
+  [grouped]="true"
+  displayExpr="Name"
+  valueExpr="ID"
+>
 </dx-tag-box>
   `}
   dark
@@ -284,20 +348,17 @@ import * as tagBoxStories from "./me-tag-box.stories";
 
 #### Группировка элементов с иконками
 
-*В этом примере к заголовкам групп добавлены иконки. Для этого переопределяется шаблон группы через директиву `dxTemplate` и выводится иконка вместе с текстом заголовка.*
+В этом примере к заголовкам групп добавлены иконки. Для этого переопределяется шаблон группы через директиву `dxTemplate` и выводится иконка вместе с текстом заголовка. Подробнее про группировку можно узнать в документации компонента TagBox [здесь](https://js.devexpress.com/Angular/Documentation/Guide/UIComponents/TagBox/Grouping/IntheDataSource/).
 
-<Canvas name="Группировка элементов с иконками" of={tagBoxStories.GroupedItemsWithIcons} />
+<Canvas name="Группировка элементов с иконками" of={tagBoxStories.CustomTemplateWithGroupsHeaderIcon} />
 
 <Source
   code={`
 <dx-tag-box
   meTagBox
-  [items]="[
-    { key: 'Group 1', items: ['Пункт 1', 'Пункт 2', 'Пункт 3'] },
-    { key: 'Group 2', items: ['Пункт 4', 'Пункт 5', 'Пункт 6'] }
-  ]"
+  [dataSource]="dataSource"
   [grouped]="true">
-  <div *dxTemplate="let data of 'group'">
+  <div dxTemplate="let data of 'group'">
     <div class="custom-icon">
       <span class="dx-icon-globe icon"></span>
       {{ data.key }}
@@ -313,7 +374,7 @@ import * as tagBoxStories from "./me-tag-box.stories";
 
 #### Ограничение количества тегов
 
-*Свойство `maxDisplayedTags` позволяет ограничить количество тегов, отображаемых в поле. Если количество выбранных тегов превышает указанное значение, оставшиеся теги будут скрыты за дополнительным элементом с информацией о количестве.*
+Свойство `maxDisplayedTags` позволяет ограничить количество тегов, отображаемых в поле. Если количество выбранных тегов превышает указанное значение, оставшиеся теги будут скрыты за дополнительным элементом с информацией о количестве.
 
 <Canvas name="Ограничение количества тегов" of={tagBoxStories.WithMaxDisplayedTags} />
 
@@ -331,7 +392,7 @@ import * as tagBoxStories from "./me-tag-box.stories";
 
 #### Ограничение тегов без мульти-тега
 
-*Если вы хотите, чтобы скрывались теги без отображения группового элемента (multi-tag), установите свойство `showMultiTagOnly` в значение `false` вместе с `maxDisplayedTags`.*
+Если вы хотите, чтобы скрывались теги без отображения группового элемента (multi-tag), установите свойство `showMultiTagOnly` в значение `false` вместе с `maxDisplayedTags`.
 
 <Canvas name="Ограничение тегов без мульти-тега" of={tagBoxStories.WithMaxDisplayedTagsWithoutMultiTagOnly} />
 
