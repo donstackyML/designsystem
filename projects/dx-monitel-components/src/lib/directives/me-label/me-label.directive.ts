@@ -13,6 +13,7 @@ import {
   DxCheckBoxComponent,
   DxSelectBoxComponent,
   DxSwitchComponent,
+  DxTagBoxComponent,
   DxTextBoxComponent,
 } from 'devextreme-angular';
 import { MeEditorComponents, MeLabelDirection } from '../../types/types';
@@ -27,6 +28,7 @@ export class MeLabelDirective
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
   @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
   @ContentChild(DxSwitchComponent) switchComponent?: DxSwitchComponent;
+  @ContentChild(DxTagBoxComponent) tagBoxComponent?: DxTagBoxComponent;
   @Input() labelDirection: MeLabelDirection = 'row';
   @Input() width: string = '';
 
@@ -97,6 +99,7 @@ export class MeLabelDirective
     this.field ||= this.selectBoxComponent;
     this.field ||= this.checkBoxComponent;
     this.field ||= this.switchComponent;
+    this.field ||= this.tagBoxComponent;
   }
 
   private setupEventListener(): void {

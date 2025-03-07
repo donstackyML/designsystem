@@ -5,6 +5,7 @@ import {
   DxRadioGroupComponent,
   DxSelectBoxComponent,
   DxSwitchComponent,
+  DxTagBoxComponent,
   DxTextBoxComponent,
 } from 'devextreme-angular';
 import { dxButtonGroupItem } from 'devextreme/ui/button_group';
@@ -25,11 +26,12 @@ export type MeLabelDirection = 'column' | 'row';
 export type MeLabelMode = 'static' | 'floating';
 export type MeScrollbarShowType = 'always' | 'onHover';
 export type MeEditorComponents =
-  | DxTextBoxComponent
-  | DxSelectBoxComponent
   | DxCheckBoxComponent
   | DxRadioGroupComponent
-  | DxSwitchComponent;
+  | DxSelectBoxComponent
+  | DxSwitchComponent
+  | DxTagBoxComponent
+  | DxTextBoxComponent;
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 export type MeOverlayComponents = DxPopoverComponent | DxPopupComponent;
 export type MePosition = 'left' | 'right';
