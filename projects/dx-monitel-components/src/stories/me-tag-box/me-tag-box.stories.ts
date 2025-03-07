@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import {
   Meta,
   StoryObj,
@@ -5,7 +7,10 @@ import {
   moduleMetadata,
 } from '@storybook/angular';
 import { DxTagBoxComponent, DxValidatorModule } from 'devextreme-angular';
+import ArrayStore from 'devextreme/data/array_store';
+import DataSource from 'devextreme/data/data_source';
 import { MeLabelDirective, MeTagBoxDirective } from '../../public-api';
+import { meTagBoxMockDataWithCategories } from './me-tag-box-mock-data';
 
 function generateItems(length: number): string[] {
   return Array.from({ length }, (_, i) => `Пункт ${i + 1}`);
@@ -17,7 +22,7 @@ export default {
   title: 'Components/Fields/TagBox',
   decorators: [
     moduleMetadata({
-      imports: [DxValidatorModule],
+      imports: [DxValidatorModule, CommonModule],
       declarations: [MeTagBoxDirective, DxTagBoxComponent, MeLabelDirective],
     }),
   ],
@@ -39,10 +44,18 @@ export default {
       },
     },
     items: {
-      control: 'text',
+      control: 'object',
       description: 'Массив данных для отображения',
       table: {
-        type: { summary: 'Array<{ text: string; value: string }>' },
+        type: {
+          summary: 'Array<{ disabled?: boolean; html?: string; template?: any; text?: string; visible?: boolean; } | Array<any>>' },
+        defaultValue: { summary: '[]' },
+      },
+    },
+    dataSource: {
+      description: 'Данные для отображения',
+      table: {
+        type: { summary: 'Array<any>' },
         defaultValue: { summary: '[]' },
       },
     },
@@ -224,6 +237,7 @@ export default {
     label: 'Label',
     placeholder: 'Выберите...',
     items: defaultItems,
+    dataSource: null,
     size: 'small',
     labelMode: 'outside',
     showClearButton: false,
@@ -240,6 +254,7 @@ export default {
     isValid: true,
     showRequiredMark: false,
     noDataText: 'Не найдено',
+    validationError: '',
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
     width: '400px',
@@ -324,7 +339,7 @@ export const WithLabelRow: Story = {
     >
 		Label*
 			<dx-tag-box
-      meTagBox
+        meTagBox
 			${argsToTemplate(args)}
 				></dx-tag-box>
 		</div>
@@ -342,9 +357,10 @@ export const WithLabelColumn: Story = {
 		<div
       meLabel
       labelDirection="column"
+      class="dx-widget"
 		>
-    <span>Label*</span>
-    <dx-tag-box meTextBox ${argsToTemplate(args)}></dx-tag-box>
+      <span>Label*</span>
+      <dx-tag-box meTagBox ${argsToTemplate(args)}></dx-tag-box>
 		</div>`,
   }),
 }
@@ -376,80 +392,163 @@ export const WithRequiredMark: Story = {
   },
 };
 
-export const ValidationInvalid: Story = {
+export const WithSelectionControls: Story = {
   args: {
-    isValid: false
+    showSelectionControls: true
   },
 };
 
-export const GroupedItems: Story = {
+export const ApplyInstantly: Story = {
   args: {
-    items: [
-      {
-        key: 'Group 1',
-        items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
-      },
-      {
-        key: 'Group 2',
-        items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
-      },
-    ],
-    grouped: true,
+    applyValueMode: 'instantly'
   },
 };
 
-export const GroupedItemsWithIcons: Story = {
+export const ApplyWithButtons: Story = {
   args: {
-    items: [
-      {
-        key: 'Group 1',
-        items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
-      },
-      {
-        key: 'Group 2',
-        items: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'],
-      },
-    ],
-    grouped: true,
+    applyValueMode: 'useButtons'
   },
-  render: (args) => ({
-    props: { ...args },
-    template: `
-    <dx-tag-box
+};
+
+@Component({
+  selector: 'me-tag-box-grouped-items-demo',
+  template: `
+   <dx-tag-box
       meTagBox
-      ${argsToTemplate(args)}
+      [label]="label"
+      [placeholder]="placeholder"
+      [items]="items"
+      [size]="size"
+      [labelMode]="labelMode"
+      [showClearButton]="showClearButton"
+      [disabled]="disabled"
+      [readOnly]="readOnly"
+      [applyValueMode]="applyValueMode"
+      [searchEnabled]="searchEnabled"
+      [grouped]="grouped"
+      [maxDisplayedTags]="maxDisplayedTags"
+      [showMultiTagOnly]="showMultiTagOnly"
+      [showSelectionControls]="showSelectionControls"
+      [selectAllMode]="selectAllMode"
+      [hideSelectedItems]="hideSelectedItems"
+      [isValid]="isValid"
+      [showRequiredMark]="showRequiredMark"
+      [noDataText]="noDataText"
+      [validationMessageMode]="validationMessageMode"
+      [validationMessagePosition]="validationMessagePosition"
+      [width]="width"
+      [height]="height"
+      [dataSource]="dataSource"
+      displayExpr="Name"
+      valueExpr="ID"
     >
-      <dx-validator>
-        <dxi-validation-rule
-          type="required"
-          message="Required"
-        >
-        </dxi-validation-rule>
-      </dx-validator>
+    <ng-container *ngIf="hasIcons">
       <div *dxTemplate="let data of 'group'">
         <div class="custom-icon">
           <span class="dx-icon-globe icon"></span>
           {{ data.key }}
         </div>
       </div>
-    </dx-tag-box>
-    `,
-    styles: [
-      `
+    </ng-container>
+  </dx-tag-box>
+  `,
+  styles: [
+    `
       .me-text-body2, .me-text-caption {
         color: var(--Text-Secondary);
         margin-top: 4px;
       }
-      `,
-    ],
-  }),
+    .custom-icon {
+        display: flex;
+        gap: 4px;
+      }
+    `,
+  ]
+})
+class MeTagBoxGroupedItemsDemo {
+  @Input() label: string = 'Label';
+  @Input() placeholder: string = 'Выберите...';
+  @Input() items: any[] = defaultItems;
+  @Input() size: string = 'small';
+  @Input() labelMode: string = 'outside';
+  @Input() showClearButton: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() readOnly: boolean = false;
+  @Input() applyValueMode: string = 'instantly';
+  @Input() searchEnabled: boolean = true;
+  @Input() grouped: any = undefined;
+  @Input() maxDisplayedTags: any = undefined;
+  @Input() showMultiTagOnly: boolean = true;
+  @Input() showSelectionControls: boolean = false;
+  @Input() selectAllMode: string = 'page';
+  @Input() hideSelectedItems: boolean = false;
+  @Input() isValid: boolean = true;
+  @Input() showRequiredMark: boolean = false;
+  @Input() noDataText: string = 'Не найдено';
+  @Input() validationMessageMode: string = 'auto';
+  @Input() validationMessagePosition: string = 'top';
+  @Input() width: string = '400px';
+  @Input() height: string = '';
+
+  @Input() hasIcons = false;
+
+  loading = true;
+  dataSource = new DataSource({
+    store: new ArrayStore({
+      data: meTagBoxMockDataWithCategories,
+      key: 'Id',
+    }),
+    group: 'Category',
+  })
+}
+
+export const GroupedItems: Story = {
+  decorators: [
+    moduleMetadata({
+      declarations: [
+        MeTagBoxGroupedItemsDemo,
+      ],
+    }),
+  ],
+  args: {
+    grouped: true,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <me-tag-box-grouped-items-demo
+        ${argsToTemplate(args)}
+      ></me-tag-box-grouped-items-demo>
+    `,
+  })
+};
+
+export const CustomTemplateWithGroupsHeaderIcon: Story = {
+  decorators: [
+    moduleMetadata({
+      declarations: [
+        MeTagBoxGroupedItemsDemo,
+      ],
+    }),
+  ],
+  args: {
+    grouped: true,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <me-tag-box-grouped-items-demo
+        ${argsToTemplate(args)}
+        [hasIcons]="true"
+      ></me-tag-box-grouped-items-demo>
+    `,
+  })
 };
 
 export const WithMaxDisplayedTags: Story = {
   args: {
     maxDisplayedTags: 3,
     value: generateItems(7),
-
   },
 };
 
