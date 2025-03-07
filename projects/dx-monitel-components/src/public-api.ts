@@ -125,7 +125,7 @@ export { ThemesService } from './lib/service/themes.service';
 
 // Modules
 export { MeComponentsModule } from './lib/modules/me-components.module';
-export { MeIconsInitializerModule, initializeIcons } from './lib/modules/me-icons-initializer.module';
+export { MeIconsInitializerModule, initializeIconsFactory } from './lib/modules/me-icons-initializer.module';
 
 // Types
 export * from './lib/types/types';
