@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { keyboardX20 } from '@monitel/me-icons';
+import { MeIconsRegistry } from '@monitel/me-icons-registry';
 
 @Component({
   selector: 'me-breadcrumbs-demo',
@@ -6,7 +8,9 @@ import { Component } from '@angular/core';
 })
 export class MeBreadcrumbsDemoComponent {
 
-  constructor() {}
+  constructor(private meIconRegistry: MeIconsRegistry) {
+    meIconRegistry.registerIcons([keyboardX20]);
+  }
 
   items = [
     {
@@ -17,7 +21,7 @@ export class MeBreadcrumbsDemoComponent {
     {
       text: 'Products',
       url: '/products',
-      icon: 'cart'
+      icon: 'redo_x20'
     },
     {
       text: 'Electronics',
@@ -34,5 +38,5 @@ export class MeBreadcrumbsDemoComponent {
       url: '/products/electronics/computers/keyboards',
       icon: 'keyboard_x20',
     },
-]
+  ]
 }
