@@ -54,6 +54,9 @@ import * as autocompleteStories from "./me-autocomplete.stories";
   - [Лейбл статичный](#лейбл-статичный)
   - [Лейбл всплывающий](#лейбл-всплывающий)
   - [Лейбл невидимый](#лейбл-невидимый)
+- [Изменение положения лейбла с помощью директивы meLabel](#изменение-положения-лейбла-с-помощью-директивы-melabel)
+  - [Положение лейбла сверху](#положение-лейбла-сверху)
+  - [Положение лейбла слева](#положение-лейбла-слева)
 
 ### Размеры компонента
 
@@ -176,4 +179,38 @@ import * as autocompleteStories from "./me-autocomplete.stories";
 `}
   dark
   language="html"
+/>
+
+#### Положение лейбла сверху
+
+Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.
+
+<Canvas name="Лейбл сверху" of={autocompleteStories.WithLabelColumn} />
+
+<Source
+  code={`
+<div meLabel labelDirection="column">
+  <span>Label</span>
+  <dx-autocomplete meAutocomplete labelMode="hidden"></dx-autocomplete>
+</div>
+`}
+  language="html"
+  dark
+/>
+
+#### Положение лейбла слева
+
+Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.
+
+<Canvas name="Лейбл слева" of={autocompleteStories.WithLabelRow} />
+
+<Source
+  code={`
+<div meLabel labelDirection="row"  class="dx-widget">
+  <span>Label</span>
+  <dx-autocomplete meAutocomplete labelMode="hidden"></dx-autocomplete>
+</div>
+`}
+  language="html"
+  dark
 />

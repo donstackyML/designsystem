@@ -1,5 +1,5 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
 import * as textBoxStories from "./me-text-box.stories";
 
 <Meta name="TextBox Documentation" of={textBoxStories} />
@@ -13,14 +13,14 @@ import * as textBoxStories from "./me-text-box.stories";
 Документация на сайте разработчика DevExtreme:
 
 - <a
-    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI*Components/dxTextBox/"
-    target="*blank"
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UIComponents/dxTextBox/"
+    target="blank"
   >
     API
   </a>
 - <a
     href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/TextBox/Overview/Light/"
-    target="*blank"
+    target="blank"
   >
     Демо
   </a>
@@ -48,7 +48,6 @@ import * as textBoxStories from "./me-text-box.stories";
   - [Лейбл статичный](#лейбл-статичный)
   - [Лейбл всплывающий](#лейбл-всплывающий)
   - [Лейбл невидимый](#лейбл-невидимый)
-  - [Лейбл слева](#лейбл-слева)
 - [Изменение положения лейбла с помощью директивы meLabel](#изменение-положения-лейбла-с-помощью-директивы-melabel)
   - [Положение лейбла сверху](#положение-лейбла-сверху)
   - [Положение лейбла слева](#положение-лейбла-слева)
@@ -61,10 +60,10 @@ import * as textBoxStories from "./me-text-box.stories";
 
 ### Размеры компонента
 
-*Изменение размера текстового поля влияет на отступы, размер шрифта и общую компоновку. Свойство `size` принимает три значения:*
-- **small** – уменьшенный размер, подходит для компактных интерфейсов;
-- **medium** – стандартный размер (используется по умолчанию);
-- **large** – увеличенный размер, удобен для форм с более крупным текстом.
+Изменение размера текстового поля влияет на отступы, размер шрифта и общую компоновку. Свойство `size` принимает три значения:
+- small – уменьшенный размер, подходит для компактных интерфейсов;
+- medium – стандартный размер (используется по умолчанию);
+- large – увеличенный размер, удобен для форм с более крупным текстом.
 
 #### Компонент небольшого размера
 
@@ -98,71 +97,71 @@ import * as textBoxStories from "./me-text-box.stories";
 
 ### Разные режимы положения лейбла
 
-*Директива `meTextBox` позволяет настраивать отображение лейбла с помощью свойства `labelMode`. Это свойство определяет, как и где будет отображаться метка поля, что может помочь улучшить читаемость формы и соответствовать требованиям макета.*
+Директива `meTextBox` позволяет настраивать отображение лейбла с помощью свойства `labelMode`. Это свойство определяет, как и где будет отображаться метка поля, что может помочь улучшить читаемость формы и соответствовать требованиям макета.
 
 #### Лейбл внешний
 
-*При значении `labelMode="outside"` лейбл располагается вне поля ввода. Такой вариант часто используется для четкого отделения метки от контрола.*
+При значении `labelMode="outside"` лейбл располагается вне поля ввода. Такой вариант часто используется для четкого отделения метки от контрола.
 
 <Canvas name="Лейбл внешний" of={textBoxStories.LabelModeOutside} />
 
 <Source
-  code={`<dx-text-box meTextBox labelMode="outside" label="Label*"></dx-text-box>`}
+  code={`<dx-text-box meTextBox labelMode="outside" label="Label"></dx-text-box>`}
   language="html"
   dark
 />
 
 #### Лейбл статичный
 
-*Режим `labelMode="static"` фиксирует положение лейбла, не изменяя его при взаимодействии с полем. Это полезно, если требуется постоянное отображение метки в одном месте.*
+Режим `labelMode="static"` фиксирует положение лейбла, не изменяя его при взаимодействии с полем. Это полезно, если требуется постоянное отображение метки в одном месте.
 
 <Canvas name="Лейбл статичный" of={textBoxStories.LabelModeStatic} />
 
 <Source
-  code={`<dx-text-box meTextBox labelMode="static" label="Label*"></dx-text-box>`}
+  code={`<dx-text-box meTextBox labelMode="static" label="Label"></dx-text-box>`}
   language="html"
   dark
 />
 
 #### Лейбл всплывающий
 
-*При использовании `labelMode="floating"` лейбл будет перемещаться, когда поле получает фокус. Это создает эффект «плавающего» заголовка, позволяющий экономить пространство внутри поля ввода.*
+При использовании `labelMode="floating"` лейбл будет перемещаться, когда поле получает фокус. Это создает эффект «плавающего» заголовка, позволяющий экономить пространство внутри поля ввода.
 
 <Canvas name="Лейбл всплывающий" of={textBoxStories.LabelModeFloating} />
 
 <Source
-  code={`<dx-text-box meTextBox labelMode="floating" label="Label*"></dx-text-box>`}
+  code={`<dx-text-box meTextBox labelMode="floating" label="Label"></dx-text-box>`}
   language="html"
   dark
 />
 
 #### Лейбл невидимый
 
-*Если необходимо скрыть метку (например, при использовании вспомогательных элементов или когда метка выводится иным способом), установите `labelMode="hidden"`. В этом режиме лейбл не отображается в интерфейсе.*
+Если необходимо скрыть метку (например, при использовании вспомогательных элементов или когда метка выводится иным способом), установите `labelMode="hidden"`. В этом режиме лейбл не отображается в интерфейсе.
 
 <Canvas name="Лейбл невидимый" of={textBoxStories.LabelModeHidden} />
 
 <Source
-  code={`<dx-text-box meTextBox labelMode="hidden" label="Label*"></dx-text-box>`}
+  code={`<dx-text-box meTextBox labelMode="hidden" label="Label"></dx-text-box>`}
   language="html"
   dark
 />
 
 ### Изменение положения лейбла с помощью директивы meLabel
 
-*Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.*
+Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.
 
 #### Положение лейбла сверху
 
-*Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.*
+Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.
 
 <Canvas name="Лейбл сверху" of={textBoxStories.WithLabelColumn} />
 
 <Source
   code={`
 <div meLabel labelDirection="column">
-  <span>Label*</span>
-  <dx-text-box meTextBox></dx-text-box>
+  <span>Label</span>
+  <dx-text-box meTextBox labelMode="hidden"></dx-text-box>
 </div>
 `}
   language="html"
@@ -171,15 +170,15 @@ import * as textBoxStories from "./me-text-box.stories";
 
 #### Положение лейбла слева
 
-*Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.*
+Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.
 
 <Canvas name="Лейбл слева" of={textBoxStories.WithLabelRow} />
 
 <Source
   code={`
-<div meLabel labelDirection="row" width="250px" class="dx-widget">
-  <span>Label*</span>
-  <dx-text-box meTextBox></dx-text-box>
+<div meLabel labelDirection="row"  class="dx-widget">
+  <span>Label</span>
+  <dx-text-box meTextBox labelMode="hidden"></dx-text-box>
 </div>
 `}
   language="html"
@@ -188,7 +187,7 @@ import * as textBoxStories from "./me-text-box.stories";
 
 ### Состояния readOnly и disabled
 
-*Свойства `readOnly` и `disabled` позволяют управлять интерактивностью текстового поля. В режиме readOnly поле становится доступным для копирования, но редактирование невозможно, а в режиме disabled поле полностью неактивно и выглядит затенённым.*
+Свойства `readOnly` и `disabled` позволяют управлять интерактивностью текстового поля. В режиме readOnly поле становится доступным для копирования, но редактирование невозможно, а в режиме disabled поле полностью неактивно и выглядит затенённым.
 
 #### Состояние readOnly
 
@@ -235,7 +234,7 @@ import * as textBoxStories from "./me-text-box.stories";
 
 ### Использование масок в текстовом поле
 
-*Свойство `mask` позволяет задать маску для ввода данных, например, для ввода телефонного номера. Маска указывает, какие символы и в каком формате могут быть введены пользователем.*
+Свойство `mask` позволяет задать маску для ввода данных, например, для ввода телефонного номера. Маска указывает, какие символы и в каком формате могут быть введены пользователем.
 
 <Canvas name="Маска для телефона" of={textBoxStories.ModeTelWithMask} />
 
@@ -247,7 +246,7 @@ import * as textBoxStories from "./me-text-box.stories";
 
 ### Показ и скрытие пароля
 
-*Для защиты конфиденциальных данных используйте режим `password`. При этом текст поля заменяется на символы-звёздочки, а пользователь может включить или выключить отображение введённого пароля.*
+Для защиты конфиденциальных данных используйте режим `password`. При этом текст поля заменяется на символы-звёздочки, а пользователь может включить или выключить отображение введённого пароля.
 
 <Canvas name="Показ и скрытие пароля" of={textBoxStories.ModePassword} />
 

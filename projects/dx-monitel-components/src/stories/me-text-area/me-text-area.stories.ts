@@ -148,7 +148,7 @@ export default {
     },
     height: {
       control: 'text',
-      description: 'Высота компонента.',
+    description: 'Высота компонента.',
       table: {
         type: { summary: 'string | number | undefined' },
         defaultValue: { summary: 'undefined' },
@@ -241,6 +241,47 @@ export const LabelModeHidden: Story = {
   },
 };
 
+export const WithLabelRow: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <div
+      meLabel
+      labelDirection="row"
+    >
+      <span>Label</span>
+      <dx-text-area
+        meTextArea
+        ${argsToTemplate(args)}
+      ></dx-text-area>
+    </div>
+    `,
+  }),
+};
+
+export const WithLabelColumn: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<div
+      meLabel
+		  labelDirection="column"
+		>
+      <span>Label</span>
+      <dx-text-area
+        meTextArea
+        ${argsToTemplate(args)}
+      ></dx-text-area>
+		</div>`,
+  }),
+}
+
 export const StateDisabled: Story = {
   args: {
     disabled: true
@@ -286,27 +327,4 @@ export const WithFixedHeight: Story = {
   args: {
     height: '190px',
   },
-};
-
-export const WithLabelRow: Story = {
-  args: {
-    labelMode: 'hidden'
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-    <div meLabel
-      labelDirection="row"
-      width="250px"
-      class="dx-widget"
-      >
-      <span>Label*</span>
-      <dx-text-area meTextArea
-        ${argsToTemplate(args)}
-      >
-      </dx-text-area>
-    </div>
-    <p class='me-input-description' *ngIf="description">{{ description }}</p>
-    `,
-  }),
 };

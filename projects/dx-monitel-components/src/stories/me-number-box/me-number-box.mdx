@@ -1,5 +1,5 @@
-import { Canvas, Controls, Meta, Source } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source } from "@storybook/addon-docs";
 import * as numberBoxStories from "./me-number-box.stories";
 
 <Meta name="NumberBox Documentation" of={numberBoxStories} />
@@ -48,7 +48,9 @@ import * as numberBoxStories from "./me-number-box.stories";
   - [Лейбл статичный](#лейбл-статичный)
   - [Лейбл всплывающий](#лейбл-всплывающий)
   - [Лейбл невидимый](#лейбл-невидимый)
-  - [Лейбл слева](#лейбл-слева)
+- [Изменение положения лейбла с помощью директивы meLabel](#изменение-положения-лейбла-с-помощью-директивы-melabel)
+  - [Положение лейбла сверху](#положение-лейбла-сверху)
+  - [Положение лейбла слева](#положение-лейбла-слева)
 - [Форматирование](#форматирование)
 - [Добавление Description](#добавление-description)
 - [Валидация поля](#валидация-поля)
@@ -92,7 +94,7 @@ import * as numberBoxStories from "./me-number-box.stories";
 
 <Canvas of={numberBoxStories.LabelModeOutside} />
 <Source
-  code={`<dx-number-box meNumberBox labelMode="outside" label="Label*"></dx-number-box>`}
+  code={`<dx-number-box meNumberBox labelMode="outside" label="Label"></dx-number-box>`}
   language="html"
   dark
 />
@@ -101,7 +103,7 @@ import * as numberBoxStories from "./me-number-box.stories";
 
 <Canvas of={numberBoxStories.LabelModeStatic} />
 <Source
-  code={`<dx-number-box meNumberBox labelMode="static" label="Label*"></dx-number-box>`}
+  code={`<dx-number-box meNumberBox labelMode="static" label="Label"></dx-number-box>`}
   language="html"
   dark
 />
@@ -110,7 +112,7 @@ import * as numberBoxStories from "./me-number-box.stories";
 
 <Canvas of={numberBoxStories.LabelModeFloating} />
 <Source
-  code={`<dx-number-box meNumberBox labelMode="floating" label="Label*"></dx-number-box>`}
+  code={`<dx-number-box meNumberBox labelMode="floating" label="Label"></dx-number-box>`}
   language="html"
   dark
 />
@@ -119,20 +121,42 @@ import * as numberBoxStories from "./me-number-box.stories";
 
 <Canvas of={numberBoxStories.LabelModeHidden} />
 <Source
-  code={`<dx-number-box meNumberBox labelMode="hidden" label="Label*"></dx-number-box>`}
+  code={`<dx-number-box meNumberBox labelMode="hidden" label="Label"></dx-number-box>`}
   language="html"
   dark
 />
 
-#### Лейбл слева
+### Изменение положения лейбла с помощью директивы meLabel
 
-Чтобы разместить лейбл слева от элемента, оберните компонент `dx-number-box` с директивой `meNumberBox` в контейнер с директивой `meLabel` и параметром `labelDirection="row"`, а для самого NumberBox установите `labelMode="hidden"`:
+Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.
 
-<Canvas of={numberBoxStories.WithLabelRow} />
+#### Положение лейбла сверху
+
+Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.
+
+<Canvas name="Лейбл сверху" of={numberBoxStories.WithLabelColumn} />
+
 <Source
   code={`
-<div meLabel labelDirection="row">
-  <span>Label*</span>
+<div meLabel labelDirection="column">
+  <span>Label</span>
+  <dx-number-box meNumberBox labelMode="hidden"></dx-number-box>
+</div>
+`}
+  language="html"
+  dark
+/>
+
+#### Положение лейбла слева
+
+Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.
+
+<Canvas name="Лейбл слева" of={numberBoxStories.WithLabelRow} />
+
+<Source
+  code={`
+<div meLabel labelDirection="row"  class="dx-widget">
+  <span>Label</span>
   <dx-number-box meNumberBox labelMode="hidden"></dx-number-box>
 </div>
 `}

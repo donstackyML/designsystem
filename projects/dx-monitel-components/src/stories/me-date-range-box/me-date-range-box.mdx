@@ -1,5 +1,5 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
 import * as dateRangeBoxStories from "./me-date-range-box.stories";
 
 <Meta name="DateRangeBox Documentation" of={dateRangeBoxStories} />
@@ -48,9 +48,11 @@ import * as dateRangeBoxStories from "./me-date-range-box.stories";
   - [Лейбл статичный](#лейбл-статичный)
   - [Лейбл всплывающий](#лейбл-всплывающий)
   - [Лейбл невидимый](#лейбл-невидимый)
+- [Изменение положения лейбла с помощью директивы meLabel](#изменение-положения-лейбла-с-помощью-директивы-melabel)
+  - [Положение лейбла сверху](#положение-лейбла-сверху)
+  - [Положение лейбла слева](#положение-лейбла-слева)
 - [Мульти календарь](#мульти-календарь)
 - [Минимальная и максимальная дата](#минимальная-и-максимальная-дата)
-- [Положение Label](#положение-label)
 - [Валидация поля](#валидация-поля)
 - [Тип DateRangeBox](#тип-daterangebox)
 - [Формат даты и времени](#формат-даты-и-времени)
@@ -127,6 +129,44 @@ import * as dateRangeBoxStories from "./me-date-range-box.stories";
   dark
 />
 
+### Изменение положения лейбла с помощью директивы meLabel
+
+Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.
+
+#### Положение лейбла сверху
+
+Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.
+
+<Canvas name="Лейбл сверху" of={dateRangeBoxStories.WithLabelColumn} />
+
+<Source
+  code={`
+<div meLabel labelDirection="column">
+  <span>Label</span>
+  <dx-date-range-box meDateRangeBox labelMode="hidden"></dx-date-range-box>
+</div>
+`}
+  language="html"
+  dark
+/>
+
+#### Положение лейбла слева
+
+Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.
+
+<Canvas name="Лейбл слева" of={dateRangeBoxStories.WithLabelRow} />
+
+<Source
+  code={`
+<div meLabel labelDirection="row"  class="dx-widget">
+  <span>Label</span>
+  <dx-date-range-box meDateRangeBox labelMode="hidden"></dx-date-range-box>
+</div>
+`}
+  language="html"
+  dark
+/>
+
 ### Мульти календарь
 
 Для отображения двойного календаря используйте параметр `multiView`.
@@ -147,29 +187,6 @@ import * as dateRangeBoxStories from "./me-date-range-box.stories";
 	language="html"
 	dark
 />
-
-### Положение Label
-
-Для изменения положения Label используйте параметр `labelMode`. Есть три варианта: `static`, `floating`, `hidden`, `outside`. Для изменения самого Label внутри используйте параметр `label`
-
-<Source
-  code={`<dx-date-range-box meDateRangeBox labelMode="labelMode" startDateLabel="Начальная дата" endDateLabel="Конечная дата"></dx-date-range-box>`}
-  dark
-  language="html"
-/>
-
-Для того, чтобы установить label слева от элемента, используйте тэг обертку `label` с директивой `meLabel` и параметром `labelDirection="row"`, установив параметр `labelMode="hidden"` в `meDateRangeBox`.
-
-<Source
-			code={`
-<label meLabel
-labelDirection="row">
-  <dx-date-range-box meDateRangeBox labelMode="hidden"></dx-date-range-box>
-</label>`}
-	dark
-	language="html"
-/>
-<Story of={dateRangeBoxStories.WithLabelRow} />
 
 ### Валидация поля
 

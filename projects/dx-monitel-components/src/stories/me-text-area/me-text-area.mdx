@@ -48,7 +48,9 @@ import * as textAreaStories from "./me-text-area.stories";
   - [Лейбл статичный](#лейбл-статичный)
   - [Лейбл всплывающий](#лейбл-всплывающий)
   - [Лейбл невидимый](#лейбл-невидимый)
-  - [Лейбл слева](#лейбл-слева)
+- [Изменение положения лейбла с помощью директивы meLabel](#изменение-положения-лейбла-с-помощью-директивы-melabel)
+  - [Положение лейбла сверху](#положение-лейбла-сверху)
+  - [Положение лейбла слева](#положение-лейбла-слева)
 - [Состояния readOnly и disabled](#состояния-readonly-и-disabled)
   - [Состояние readOnly](#состояние-readonly)
   - [Состояние disabled](#состояние-disabled)
@@ -97,7 +99,7 @@ import * as textAreaStories from "./me-text-area.stories";
 
 <Canvas of={textAreaStories.LabelModeOutside} />
 <Source
-  code={`<dx-text-area meTextArea labelMode="outside" label="Label*"></dx-text-area>`}
+  code={`<dx-text-area meTextArea labelMode="outside" label="Label"></dx-text-area>`}
   language="html"
   dark
 />
@@ -106,7 +108,7 @@ import * as textAreaStories from "./me-text-area.stories";
 
 <Canvas of={textAreaStories.LabelModeStatic} />
 <Source
-  code={`<dx-text-area meTextArea labelMode="static" label="Label*"></dx-text-area>`}
+  code={`<dx-text-area meTextArea labelMode="static" label="Label"></dx-text-area>`}
   language="html"
   dark
 />
@@ -115,7 +117,7 @@ import * as textAreaStories from "./me-text-area.stories";
 
 <Canvas of={textAreaStories.LabelModeFloating} />
 <Source
-  code={`<dx-text-area meTextArea labelMode="floating" label="Label*"></dx-text-area>`}
+  code={`<dx-text-area meTextArea labelMode="floating" label="Label"></dx-text-area>`}
   language="html"
   dark
 />
@@ -124,20 +126,25 @@ import * as textAreaStories from "./me-text-area.stories";
 
 <Canvas of={textAreaStories.LabelModeHidden} />
 <Source
-  code={`<dx-text-area meTextArea labelMode="hidden" label="Label*"></dx-text-area>`}
+  code={`<dx-text-area meTextArea labelMode="hidden" label="Label"></dx-text-area>`}
   language="html"
   dark
 />
 
-#### Лейбл слева
+### Изменение положения лейбла с помощью директивы meLabel
 
-Чтобы разместить лейбл слева от элемента, оберните компонент `dx-data-box` с директивой `meTextArea` в контейнер с директивой `meLabel` и параметром `labelDirection="row"`, а для самого DateBox установите `labelMode="hidden"`:
+Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.
 
-<Canvas of={textAreaStories.WithLabelRow} />
+#### Положение лейбла сверху
+
+Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.
+
+<Canvas name="Лейбл сверху" of={textAreaStories.WithLabelColumn} />
+
 <Source
   code={`
-<div meLabel labelDirection="row" style="width: 250px;">
-  <span>Label*</span>
+<div meLabel labelDirection="column">
+  <span>Label</span>
   <dx-text-area meTextArea labelMode="hidden"></dx-text-area>
 </div>
 `}
@@ -145,6 +152,22 @@ import * as textAreaStories from "./me-text-area.stories";
   dark
 />
 
+#### Положение лейбла слева
+
+Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.
+
+<Canvas name="Лейбл слева" of={textAreaStories.WithLabelRow} />
+
+<Source
+  code={`
+<div meLabel labelDirection="row" width="250px" class="dx-widget">
+  <span>Label</span>
+  <dx-text-area meTextArea labelMode="hidden"></dx-text-area>
+</div>
+`}
+  language="html"
+  dark
+/>
 ### Состояния readOnly и disabled
 
 Для изменения состояний используйте параметры `readOnly` и `disabled` со значениями `true` и `false`.

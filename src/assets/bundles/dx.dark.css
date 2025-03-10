@@ -10379,43 +10379,6 @@
   gap: 8px;
 }
 
-.me-label {
-  font-size: 12px;
-  color: var(--Text-Default);
-  line-height: 16px;
-}
-.me-label:is(.me-flex-column) {
-  align-items: flex-start;
-}
-.me-label-invalid {
-  color: #fa6488;
-}
-.me-label-disabled {
-  color: rgba(255, 255, 255, 0.3019607843);
-}
-.me-label-large {
-  font-size: 14px;
-  line-height: 20px;
-}
-.me-label-row-small {
-  font-size: 13px;
-  line-height: 16px;
-  gap: 8px;
-}
-.me-label-row-medium {
-  font-size: 14px;
-  line-height: 20px;
-  gap: 8px;
-}
-.me-label-row-large {
-  font-size: 16px;
-  line-height: 20px;
-  gap: 10px;
-}
-.me-label-container {
-  cursor: pointer;
-}
-
 .me-date-box .dx-button-text {
   text-transform: uppercase;
 }
@@ -20006,6 +19969,51 @@ input.dx-hidden {
 .dx-table-resize-frame > .dx-draggable-dragging + .dx-htmleditor-highlighted-column,
 .dx-table-resize-frame > .dx-draggable-dragging + .dx-htmleditor-highlighted-row {
   background-color: rgba(53, 101, 226, 0.5);
+}
+
+.me-label {
+  font-size: var(--label-font-size, 12px);
+  line-height: var(--label-line-height, 16px);
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
+.me-label:is(.me-flex-column) {
+  align-items: flex-start;
+}
+.me-label:has(.me-inputs.dx-invalid):not(:has(.me-inputs.dx-state-disabled)) {
+  color: var(--Controls-Content-In-Controls-Danger-Default);
+}
+.me-label.me-label-direction-column {
+  --label-font-size: 12px;
+  --label-line-heigh: 16px;
+}
+.me-label.me-label-direction-column:has(.me-inputs-large) {
+  --label-font-size: 14px;
+  --label-line-heigh: 20px;
+}
+.me-label:has(.me-inputs-show-required-mark) span::after {
+  content: "*";
+  color: var(--Controls-Content-In-Controls-Danger-Default);
+}
+.me-label.me-label-direction-row {
+  gap: var(--field-gap, 8px);
+}
+.me-label.me-label-direction-row:has(.me-inputs-small) {
+  --label-font-size: 13px;
+  --label-line-height: 16px;
+  --field-gap: 8px;
+}
+.me-label.me-label-direction-row:has(.me-inputs-medium) {
+  --label-font-size: 14px;
+  --label-line-height: 20px;
+  --field-gap: 8px;
+}
+.me-label.me-label-direction-row:has(.me-inputs-large) {
+  --label-font-size: 16px;
+  --label-line-height: 20px;
+  --field-gap: 10px;
+}
+.me-label-container {
+  cursor: pointer;
 }
 
 .dx-list {
