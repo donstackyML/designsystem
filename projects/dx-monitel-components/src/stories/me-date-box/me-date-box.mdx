@@ -50,6 +50,9 @@ import * as dateBoxStories from "./me-date-box.stories";
   - [Лейбл статичный](#лейбл-статичный)
   - [Лейбл всплывающий](#лейбл-всплывающий)
   - [Лейбл невидимый](#лейбл-невидимый)
+- [Изменение положения лейбла с помощью директивы meLabel](#изменение-положения-лейбла-с-помощью-директивы-melabel)
+  - [Положение лейбла сверху](#положение-лейбла-сверху)
+  - [Положение лейбла слева](#положение-лейбла-слева)
 - [Валидация поля](#валидация-поля)
 - [Тип DateBox](#тип-datebox)
 - [Формат даты и времени](#формат-даты-и-времени)
@@ -94,7 +97,7 @@ import * as dateBoxStories from "./me-date-box.stories";
 
 <Canvas of={dateBoxStories.LabelModeOutside} />
 <Source
-  code={`<dx-date-box meDateBox labelMode="outside" label="Label*"></dx-date-box>`}
+  code={`<dx-date-box meDateBox labelMode="outside" label="Label"></dx-date-box>`}
   language="html"
   dark
 />
@@ -103,7 +106,7 @@ import * as dateBoxStories from "./me-date-box.stories";
 
 <Canvas of={dateBoxStories.LabelModeStatic} />
 <Source
-  code={`<dx-date-box meDateBox labelMode="static" label="Label*"></dx-date-box>`}
+  code={`<dx-date-box meDateBox labelMode="static" label="Label"></dx-date-box>`}
   language="html"
   dark
 />
@@ -112,7 +115,7 @@ import * as dateBoxStories from "./me-date-box.stories";
 
 <Canvas of={dateBoxStories.LabelModeFloating} />
 <Source
-  code={`<dx-date-box meDateBox labelMode="floating" label="Label*"></dx-date-box>`}
+  code={`<dx-date-box meDateBox labelMode="floating" label="Label"></dx-date-box>`}
   language="html"
   dark
 />
@@ -121,20 +124,42 @@ import * as dateBoxStories from "./me-date-box.stories";
 
 <Canvas of={dateBoxStories.LabelModeHidden} />
 <Source
-  code={`<dx-date-box meDateBox labelMode="hidden" label="Label*"></dx-date-box>`}
+  code={`<dx-date-box meDateBox labelMode="hidden" label="Label"></dx-date-box>`}
   language="html"
   dark
 />
 
-#### Лейбл слева
+### Изменение положения лейбла с помощью директивы meLabel
 
-Чтобы разместить лейбл слева от элемента, оберните компонент `dx-data-box` с директивой `meDateBox` в контейнер с директивой `meLabel` и параметром `labelDirection="row"`, а для самого DateBox установите `labelMode="hidden"`:
+Для вывода лейбла вне текстового поля можно использовать директиву `meLabel`. Это позволяет разместить метку отдельно от самого поля, задавая её положение с помощью свойства `labelDirection`.
 
-<Canvas of={dateBoxStories.WithLabelRow} />
+#### Положение лейбла сверху
+
+Чтобы лейбл располагался над текстовым полем, оберните компонент в контейнер с директивой `meLabel` и установите `labelDirection="column"`. Это позволяет создать вертикальное расположение, где метка находится сверху, а само поле — под ней.
+
+<Canvas name="Лейбл сверху" of={dateBoxStories.WithLabelColumn} />
+
 <Source
   code={`
-<div meLabel labelDirection="row" style="width: 250px;">
-  <span>Label*</span>
+<div meLabel labelDirection="column">
+  <span>Label</span>
+  <dx-date-box meDateBox labelMode="hidden"></dx-date-box>
+</div>
+`}
+  language="html"
+  dark
+/>
+
+#### Положение лейбла слева
+
+Чтобы разместить лейбл слева от текстового поля, используйте `labelDirection="row"`. Для корректного выравнивания задайте фиксированную ширину контейнера, например, через атрибут `width`.
+
+<Canvas name="Лейбл слева" of={dateBoxStories.WithLabelRow} />
+
+<Source
+  code={`
+<div meLabel labelDirection="row" class="dx-widget">
+  <span>Label</span>
   <dx-date-box meDateBox labelMode="hidden"></dx-date-box>
 </div>
 `}

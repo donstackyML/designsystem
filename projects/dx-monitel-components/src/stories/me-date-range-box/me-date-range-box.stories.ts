@@ -407,19 +407,39 @@ export const WithLabelRow: Story = {
   render: (args) => ({
     props: args,
     template: `
-		<label meLabel
+    <div
+      meLabel
       labelDirection="row"
-      width="500px"
     >
-		Label*
-			<dx-date-range-box meDateRangeBox
-				${argsToTemplate(args)}
-			>
-			</dx-date-range-box>
-		</label>
-		`,
+      <span>Label</span>
+      <dx-date-range-box
+        meDateRangeBox
+        ${argsToTemplate(args)}
+      ></dx-date-range-box>
+    </div>
+    `,
   }),
 };
+
+export const WithLabelColumn: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<div
+      meLabel
+		  labelDirection="column"
+		>
+      <span>Label</span>
+      <dx-date-range-box
+        meDateRangeBox
+        ${argsToTemplate(args)}
+      ></dx-date-range-box>
+		</div>`,
+  }),
+}
 
 export const StateDisabled: Story = {
   args: {

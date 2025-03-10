@@ -332,18 +332,17 @@ export const WithLabelRow: Story = {
   render: (args) => ({
     props: args,
     template: `
-		<div
+    <div
       meLabel
       labelDirection="row"
-      width="250px"
     >
-		Label*
-			<dx-tag-box
+      <span>Label</span>
+      <dx-tag-box
         meTagBox
-			${argsToTemplate(args)}
-				></dx-tag-box>
-		</div>
-		`,
+        ${argsToTemplate(args)}
+      ></dx-tag-box>
+    </div>
+    `,
   }),
 };
 
@@ -356,11 +355,13 @@ export const WithLabelColumn: Story = {
     template: `
 		<div
       meLabel
-      labelDirection="column"
-      class="dx-widget"
+		  labelDirection="column"
 		>
-      <span>Label*</span>
-      <dx-tag-box meTagBox ${argsToTemplate(args)}></dx-tag-box>
+      <span>Label</span>
+      <dx-tag-box
+        meTagBox
+        ${argsToTemplate(args)}
+      ></dx-tag-box>
 		</div>`,
   }),
 }

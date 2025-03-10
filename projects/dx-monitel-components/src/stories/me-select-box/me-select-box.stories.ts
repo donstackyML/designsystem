@@ -277,21 +277,20 @@ export const LabelModeHidden: Story = {
 
 export const WithLabelRow: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
     template: `
-    <div meLabel
+    <div
+      meLabel
       labelDirection="row"
-      width="250px"
-      class="dx-widget"
-      >
-      <span>Label*</span>
-      <dx-select-box meSelectBox
+    >
+      <span>Label</span>
+      <dx-select-box
+        meSelectBox
         ${argsToTemplate(args)}
-      >
-      </dx-select-box>
+      ></dx-select-box>
     </div>
     `,
   }),
@@ -307,10 +306,12 @@ export const WithLabelColumn: Story = {
 		<div
       meLabel
 		  labelDirection="column"
-      class="dx-widget"
 		>
-    <span>Label*</span>
-		<dx-select-box meSelectBox ${argsToTemplate(args)}></dx-select-box>
+      <span>Label</span>
+      <dx-select-box
+        meSelectBox
+        ${argsToTemplate(args)}
+      ></dx-select-box>
 		</div>`,
   }),
 }

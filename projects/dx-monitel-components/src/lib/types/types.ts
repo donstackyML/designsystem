@@ -1,12 +1,16 @@
 import {
+  DxAutocompleteComponent,
   DxCheckBoxComponent,
+  DxDateBoxComponent,
+  DxDateRangeBoxComponent,
   DxPopoverComponent,
   DxPopupComponent,
   DxRadioGroupComponent,
   DxSelectBoxComponent,
   DxSwitchComponent,
   DxTagBoxComponent,
-  DxTextBoxComponent,
+  DxTextAreaComponent,
+  DxTextBoxComponent
 } from 'devextreme-angular';
 import { dxButtonGroupItem } from 'devextreme/ui/button_group';
 
@@ -26,12 +30,16 @@ export type MeLabelDirection = 'column' | 'row';
 export type MeLabelMode = 'static' | 'floating';
 export type MeScrollbarShowType = 'always' | 'onHover';
 export type MeEditorComponents =
-  | DxCheckBoxComponent
-  | DxRadioGroupComponent
-  | DxSelectBoxComponent
-  | DxSwitchComponent
-  | DxTagBoxComponent
-  | DxTextBoxComponent;
+  DxAutocompleteComponent |
+  DxCheckBoxComponent |
+  DxDateBoxComponent |
+  DxDateRangeBoxComponent |
+  DxRadioGroupComponent |
+  DxSelectBoxComponent |
+  DxSwitchComponent |
+  DxTagBoxComponent |
+  DxTextAreaComponent |
+  DxTextBoxComponent;
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 export type MeOverlayComponents = DxPopoverComponent | DxPopupComponent;
 export type MePosition = 'left' | 'right';

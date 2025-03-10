@@ -248,22 +248,46 @@ export const LabelModeHidden: Story = {
   },
 };
 
-export const WithLabelRow: StoryObj = {
+export const WithLabelRow: Story = {
   args: {
     labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
     template: `
-    <label meLabel
-    labelDirection="row"
-    width="250px">
-    Label*
-      <dx-number-box meNumberBox ${argsToTemplate(args)}></dx-number-box>
-    </label>
+    <div
+      meLabel
+      labelDirection="row"
+    >
+      <span>Label</span>
+      <dx-number-box
+        meNumberBox
+        ${argsToTemplate(args)}
+      ></dx-number-box>
+    </div>
     `,
   }),
 };
+
+export const WithLabelColumn: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<div
+      meLabel
+		  labelDirection="column"
+		>
+      <span>Label</span>
+      <dx-number-box
+        meNumberBox
+        ${argsToTemplate(args)}
+      ></dx-number-box>
+		</div>`,
+  }),
+}
 
 export const StateDisabled: Story = {
   args: {

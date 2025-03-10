@@ -223,34 +223,45 @@ export const LabelModeHidden: Story = {
 };
 
 export const WithLabelRow: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
   render: (args) => ({
     props: args,
     template: `
-    <div meLabel
+    <div
+      meLabel
       labelDirection="row"
-      style="max-width: 200px">
-      Label*
+    >
+      <span>Label</span>
       <dx-autocomplete
-        id="autocomplete-element"
         meAutocomplete
-        [size]="size"
-        [dataSource]="dataSource"
-        [minSearchLength]="minSearchLength"
-        [placeholder]="placeholder"
-        [dropDownOptions]="{
-          position: {
-            of: '#autocomplete-element',
-            my: 'top left',
-            at: 'bottom left',
-            offset: { y: 4 },
-            collision: 'fit flip'
-          }
-        }"
+        ${argsToTemplate(args)}
       ></dx-autocomplete>
     </div>
     `,
   }),
 };
+
+export const WithLabelColumn: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<div
+      meLabel
+		  labelDirection="column"
+		>
+      <span>Label</span>
+      <dx-autocomplete
+        meAutocomplete
+        ${argsToTemplate(args)}
+      ></dx-autocomplete>
+		</div>`,
+  }),
+}
 
 export const StateDisabled: Story = {
   args: {

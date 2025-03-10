@@ -328,24 +328,43 @@ export const WithLabelRow: Story = {
     labelMode: 'hidden',
   },
   render: (args) => ({
-    props: {
-      ...args,
-      description: 'Description'
-    },
+    props: args,
     template: `
-    <div meLabel
+    <div
+      meLabel
       labelDirection="row"
-      width="250px">
-      <span>Label*</span>
-      <dx-date-box meDateBox
+    >
+      <span>Label</span>
+      <dx-date-box
+        meDateBox
         ${argsToTemplate(args)}
       >
       </dx-date-box>
     </div>
-    <p class="me-input-description" *ngIf="description">{{ description }}</p>
     `,
   }),
 };
+
+export const WithLabelColumn: Story = {
+  args: {
+    labelMode: 'hidden'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+		<div
+      meLabel
+		  labelDirection="column"
+		>
+      <span>Label</span>
+      <dx-date-box
+        meDateBox
+        ${argsToTemplate(args)}
+      >
+      </dx-date-box>
+		</div>`,
+  }),
+}
 
 export const StateDisabled: Story = {
   args: {

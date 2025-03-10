@@ -1,0 +1,59 @@
+.me-label {
+  font-size: var(--label-font-size, 12px);
+  line-height: var(--label-line-height, 16px);
+
+  color: var(--Controls-Content-In-Controls-Main-Default);
+
+  &:is(.me-flex-column) {
+    align-items: flex-start;
+  }
+
+  &:has(.me-inputs.dx-invalid):not(:has(.me-inputs.dx-state-disabled)) {
+    color: var(--Controls-Content-In-Controls-Danger-Default);
+  }
+
+  &.me-label-direction-column {
+    --label-font-size: 12px;
+    --label-line-heigh: 16px;
+
+    &:has(.me-inputs-large) {
+      --label-font-size: 14px;
+      --label-line-heigh: 20px;
+    }
+  }
+
+  &:has(.me-inputs-show-required-mark) {
+    span {
+      &::after {
+        content: '*';
+        color: var(--Controls-Content-In-Controls-Danger-Default);
+      }
+    }
+  }
+
+  &.me-label-direction-row {
+    gap: var(--field-gap, 8px);
+
+    &:has(.me-inputs-small) {
+      --label-font-size: 13px;
+      --label-line-height: 16px;
+      --field-gap: 8px;
+    }
+
+    &:has(.me-inputs-medium) {
+      --label-font-size: 14px;
+      --label-line-height: 20px;
+      --field-gap: 8px;
+    }
+
+    &:has(.me-inputs-large) {
+      --label-font-size: 16px;
+      --label-line-height: 20px;
+      --field-gap: 10px;
+    }
+  }
+
+  &-container {
+    cursor: pointer;
+  }
+}

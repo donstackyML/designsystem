@@ -10,10 +10,15 @@ import {
   Renderer2,
 } from '@angular/core';
 import {
+  DxAutocompleteComponent,
   DxCheckBoxComponent,
+  DxComponent,
+  DxDateBoxComponent,
+  DxDateRangeBoxComponent,
   DxSelectBoxComponent,
   DxSwitchComponent,
   DxTagBoxComponent,
+  DxTextAreaComponent,
   DxTextBoxComponent,
 } from 'devextreme-angular';
 import { MeEditorComponents, MeLabelDirection } from '../../types/types';
@@ -24,11 +29,16 @@ import { MeEditorComponents, MeLabelDirection } from '../../types/types';
 export class MeLabelDirective
   implements OnInit, AfterContentInit, AfterContentChecked, OnDestroy
 {
-  @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
-  @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
+  @ContentChild(DxAutocompleteComponent) autocompleteComponent?: DxAutocompleteComponent;
   @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
+  @ContentChild(DxDateBoxComponent) dateBoxComponent?: DxDateBoxComponent;
+  @ContentChild(DxDateRangeBoxComponent) dateRangeBoxComponent?: DxDateRangeBoxComponent;
+  @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
   @ContentChild(DxSwitchComponent) switchComponent?: DxSwitchComponent;
   @ContentChild(DxTagBoxComponent) tagBoxComponent?: DxTagBoxComponent;
+  @ContentChild(DxTextAreaComponent) textAreaComponent?: DxTextAreaComponent;
+  @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
+
   @Input() labelDirection: MeLabelDirection = 'row';
   @Input() width: string = '';
 
@@ -91,15 +101,19 @@ export class MeLabelDirective
   ngAfterContentInit(): void {
     this.initializeField();
     this.setupEventListener();
-    this.applySizeStyles();
+    this.applyClasses();
   }
 
   private initializeField(): void {
     this.field = this.textBoxComponent;
-    this.field ||= this.selectBoxComponent;
+    this.field ||= this.autocompleteComponent;
     this.field ||= this.checkBoxComponent;
+    this.field ||= this.dateBoxComponent;
+    this.field ||= this.dateRangeBoxComponent;
+    this.field ||= this.selectBoxComponent;
     this.field ||= this.switchComponent;
     this.field ||= this.tagBoxComponent;
+    this.field ||= this.textAreaComponent;
   }
 
   private setupEventListener(): void {
@@ -112,49 +126,17 @@ export class MeLabelDirective
     }
   }
 
-  private applySizeStyles(): void {
+  private applyClasses(): void {
     if (!this.field) return;
 
-    const size = this.field.elementAttr?.['size'] || '';
-
-    if (size && this.labelDirection === 'column' && size.includes('large')) {
-      this.renderer.addClass(this.element.nativeElement, 'me-label-large');
-    }
-
-    if (this.labelDirection === 'row' && size) {
-      if (size.includes('small')) {
-        this.renderer.addClass(
-          this.element.nativeElement,
-          'me-label-row-small'
-        );
-      }
-      if (size.includes('medium')) {
-        this.renderer.addClass(
-          this.element.nativeElement,
-          'me-label-row-medium'
-        );
-      }
-      if (size.includes('large')) {
-        this.renderer.addClass(
-          this.element.nativeElement,
-          'me-label-row-large'
-        );
-      }
-    }
+    setTimeout(() => {
+      const classes: DOMTokenList = (this.field as any).element.nativeElement.classList;
+      this.renderer.addClass(this.element.nativeElement, `me-label-direction-${this.labelDirection}`);
+    }, 0);
   }
 
   ngAfterContentChecked(): void {
-    this.updateValidationState();
     this.updateSwitchState();
-  }
-
-  private updateValidationState(): void {
-    if (!this.field?.isValid) {
-      this.renderer.addClass(this.element.nativeElement, 'me-label-invalid');
-    }
-    if (this.field?.isValid) {
-      this.renderer.removeClass(this.element.nativeElement, 'me-label-invalid');
-    }
   }
 
   private updateSwitchState(): void {

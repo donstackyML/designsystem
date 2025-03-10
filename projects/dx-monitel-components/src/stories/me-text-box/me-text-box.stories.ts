@@ -246,9 +246,8 @@ export const WithLabelRow: Story = {
     template: `
     <div meLabel
       labelDirection="row"
-      class="dx-widget"
       >
-      <span>Label*</span>
+      <span>Label</span>
       <dx-text-box meTextBox
         ${argsToTemplate(args)}
       >
@@ -269,7 +268,7 @@ export const WithLabelColumn: Story = {
       meLabel
 		  labelDirection="column"
 		>
-      <span>Label*</span>
+      <span>Label</span>
       <dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>
 		</div>`,
   }),
