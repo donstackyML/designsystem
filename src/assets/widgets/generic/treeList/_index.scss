@@ -337,6 +337,25 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
       }
     }
 
+    &:has(.dx-treelist-header-panel) {
+      .dx-treelist-headers .dx-treelist-content {
+        border-radius: 0;
+      }
+    }
+
+    &:has(.dx-treelist-headers.dx-hidden) {
+      .dx-treelist-rowsview {
+        border: none;
+      }
+    }
+
+    &:has(.dx-treelist-headers.dx-hidden):not(:has(tbody .dx-edit-row:first-child.dx-row-inserted)),
+    &:not(:has(.dx-treelist-headers)):not(:has(tbody .dx-edit-row:first-child.dx-row-inserted)) {
+      .dx-treelist-header-panel {
+        border: none;
+      }
+    }
+
     //table rows
     .dx-treelist-rowsview {
       border-radius: 0 0 3px 3px;
