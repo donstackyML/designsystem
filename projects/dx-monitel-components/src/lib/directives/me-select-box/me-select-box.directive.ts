@@ -1,13 +1,18 @@
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
 import {
+  AfterViewInit,
+  ComponentRef,
   Directive,
   ElementRef,
   Input,
   OnInit,
-  Renderer2
+  Renderer2,
+  SimpleChanges,
+  ViewContainerRef
 } from '@angular/core';
 
+import { MeIconComponent } from '@monitel/me-icons-registry';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
 import type { MeCommonType, MeScrollbarShowType } from '../../types/types';
@@ -17,7 +22,6 @@ import { MeFormField } from '../me-form-item/me-form-field';
   selector: '[meSelectBox]',
   host: {
     '[class.me-selectbox]': 'true',
-
     '[class.me-selectbox-label-mode-hidden]': 'isHidden',
     '[class.me-selectbox-label-mode-floating]': 'isFloating',
     '[class.me-selectbox-label-mode-outside]': 'isOutside',
@@ -27,17 +31,21 @@ import { MeFormField } from '../me-form-item/me-form-field';
 })
 export class MeSelectBoxDirective
   extends MeFormField
-  implements OnInit {
+  implements OnInit, AfterViewInit {
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() wrapperAttr: MeCommonType = {};
   @Input() dropDownListMaxHeight?: string | number;
+  @Input() leftIcon?: string = '';
 
-  focusService: ComponentFocusService;
+  private leftIconComponentRef: ComponentRef<MeIconComponent> | null = null;
+
+  private focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
     protected override component: DxSelectBoxComponent,
     private renderer: Renderer2,
     private dropDownOptionsService: DropDownOptionsService,
+    private viewContainerRef: ViewContainerRef,
   ) {
     super(component);
     this.component.labelMode = 'outside';
@@ -59,6 +67,34 @@ export class MeSelectBoxDirective
     );
 
     this.component.wrapItemText = true;
+  }
+
+  ngAfterViewInit() {
+    this.setLeftIcon();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.leftIconComponentRef && (changes['leftIcon'] || changes['size'])) {
+      if (this.leftIcon) {
+        this.leftIconComponentRef.setInput('name', this.leftIcon);
+        this.leftIconComponentRef.setInput('containerSize', this.size === 'large' ? 24 : 20);
+        this.leftIconComponentRef.changeDetectorRef.detectChanges();
+      }
+    }
+  }
+
+  private setLeftIcon() {
+    if (this.leftIcon) {
+      const textEditorContainer = this.element.nativeElement.querySelector('.dx-texteditor-container');
+      this.leftIconComponentRef = this.viewContainerRef.createComponent(MeIconComponent);
+
+      this.leftIconComponentRef.setInput('name', this.leftIcon);
+      this.leftIconComponentRef.setInput('containerSize', this.size === 'large' ? 24 : 20);
+      this.leftIconComponentRef.changeDetectorRef.detectChanges();
+
+      textEditorContainer.insertBefore(this.leftIconComponentRef.location.nativeElement, textEditorContainer.firstChild);
+      this.renderer.addClass(this.leftIconComponentRef.location.nativeElement, 'me-selectbox-left-icon');
+    }
   }
 
   get isFloating() {
