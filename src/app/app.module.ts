@@ -100,6 +100,7 @@ import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
 import { MeBreadcrumbsDemoComponent } from './components/me-breadcrumbs-demo/me-breadcrumbs-demo.component';
 import { breadcrumbsIconSet } from './components/me-breadcrumbs-demo/breadcrumbs-icon-set';
+import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box-demo-icon-set';
 
 @NgModule({
   declarations: [
@@ -205,7 +206,7 @@ import { breadcrumbsIconSet } from './components/me-breadcrumbs-demo/breadcrumbs
     MeTextAreaModule,
     MeTagBoxModule,
     MeFormItemModule,
-    MeIconsInitializerModule.forRoot(breadcrumbsIconSet),
+    MeIconsInitializerModule.forRoot([...breadcrumbsIconSet, ...meSelectBoxDemoIconSet]),
   ],
   bootstrap: [AppComponent],
 })

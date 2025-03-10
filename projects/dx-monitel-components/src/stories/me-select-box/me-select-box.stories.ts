@@ -6,6 +6,7 @@ import {
 } from '@storybook/angular';
 import {
   DxSelectBoxComponent,
+  DxTextBoxComponent,
   DxValidatorModule
 } from 'devextreme-angular';
 
@@ -17,7 +18,12 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [DxValidatorModule],
-      declarations: [MeSelectBoxDirective, DxSelectBoxComponent, MeLabelDirective],
+      declarations: [
+        MeSelectBoxDirective,
+        DxSelectBoxComponent,
+        MeLabelDirective,
+        DxTextBoxComponent
+      ],
     }),
   ],
   argTypes: {
@@ -180,6 +186,14 @@ export default {
         defaultValue: { summary: 'auto' },
       },
     },
+    leftIcon: {
+      control: 'text',
+      description: 'Иконка слева.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    }
   },
   args: {
     label: 'Label',
@@ -340,8 +354,15 @@ export const WithClearButton: Story = {
     value: meSelectBoxData[0]
   },
 };
+
 export const WithSearch: Story = {
   args: {
     searchEnabled: true
   },
+};
+
+export const WithLeftIcon: Story = {
+  args: {
+    leftIcon: 'account_circle_x20'
+  }
 };
