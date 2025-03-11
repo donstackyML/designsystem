@@ -47,7 +47,6 @@ import {
       [closeOnClick]="closeOnClick"
       [hideOnOutsideClick]="hideOnOutsideClick"
       [closeOnSwipe]="closeOnSwipe"
-      [hoverStateEnabled]="hoverStateEnabled"
       [animation]="animation"
       (onContentReady)="onContentReady.emit($event)"
       (onDisposing)="onDisposing.emit($event)"
@@ -96,7 +95,6 @@ class MeToastDemoStorybookComponent {
   @Input() closeOnClick?: boolean;
   @Input() hideOnOutsideClick?: boolean | ((event: Event) => boolean);
   @Input() closeOnSwipe?: boolean;
-  @Input() hoverStateEnabled?: boolean;
 
   @Output() onContentReady = new EventEmitter<void>();
   @Output() onDisposing = new EventEmitter<void>();
@@ -234,15 +232,6 @@ export default {
     closeOnSwipe: {
       control: 'boolean',
       description: 'Закрывает уведомление при свайпе.',
-      table: {
-        category: 'Отображение',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    hoverStateEnabled: {
-      control: 'boolean',
-      description: 'Включает или отключает состояние наведения для уведомления.',
       table: {
         category: 'Отображение',
         type: { summary: 'boolean' },
