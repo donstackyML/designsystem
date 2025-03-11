@@ -15,6 +15,7 @@ import {
   DxComponent,
   DxDateBoxComponent,
   DxDateRangeBoxComponent,
+  DxNumberBoxComponent,
   DxSelectBoxComponent,
   DxSwitchComponent,
   DxTagBoxComponent,
@@ -38,6 +39,7 @@ export class MeLabelDirective
   @ContentChild(DxTagBoxComponent) tagBoxComponent?: DxTagBoxComponent;
   @ContentChild(DxTextAreaComponent) textAreaComponent?: DxTextAreaComponent;
   @ContentChild(DxTextBoxComponent) textBoxComponent?: DxTextBoxComponent;
+  @ContentChild(DxNumberBoxComponent) numberBoxComponent?: DxNumberBoxComponent;
 
   @Input() labelDirection: MeLabelDirection = 'row';
   @Input() width: string = '';
@@ -114,6 +116,7 @@ export class MeLabelDirective
     this.field ||= this.switchComponent;
     this.field ||= this.tagBoxComponent;
     this.field ||= this.textAreaComponent;
+    this.field ||= this.numberBoxComponent;
   }
 
   private setupEventListener(): void {
@@ -127,12 +130,7 @@ export class MeLabelDirective
   }
 
   private applyClasses(): void {
-    if (!this.field) return;
-
-    setTimeout(() => {
-      const classes: DOMTokenList = (this.field as any).element.nativeElement.classList;
-      this.renderer.addClass(this.element.nativeElement, `me-label-direction-${this.labelDirection}`);
-    }, 0);
+    this.renderer.addClass(this.element.nativeElement, `me-label-direction-${this.labelDirection}`);
   }
 
   ngAfterContentChecked(): void {

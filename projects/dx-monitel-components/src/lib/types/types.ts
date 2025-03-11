@@ -3,6 +3,7 @@ import {
   DxCheckBoxComponent,
   DxDateBoxComponent,
   DxDateRangeBoxComponent,
+  DxNumberBoxComponent,
   DxPopoverComponent,
   DxPopupComponent,
   DxRadioGroupComponent,
@@ -34,6 +35,7 @@ export type MeEditorComponents =
   DxCheckBoxComponent |
   DxDateBoxComponent |
   DxDateRangeBoxComponent |
+  DxNumberBoxComponent |
   DxRadioGroupComponent |
   DxSelectBoxComponent |
   DxSwitchComponent |
