@@ -45,8 +45,7 @@ import * as dropDownButtonStories from "./me-drop-down-button.stories";
   - [Компонент небольшого размера](#компонент-небольшого-размера)
   - [Компонент среднего размера (по умолчанию)](#компонент-среднего-размера-по-умолчанию)
   - [Компонент большого размера](#компонент-большого-размера)
-- [С разделительной кнопкой](#с-разделительной-кнопкой)
-- [Кнопка с иконкой](#кнопка-с-иконкой)
+- [Кнопка только иконкой](#кнопка-только-иконкой)
 - [Кнопка с текстом и иконкой](#кнопка-с-текстом-и-иконкой)
 - [Кнопка без стрелки](#кнопка-без-стрелки)
 - [Кнопка с разделённой функцией](#кнопка-с-разделённой-функцией)
@@ -93,31 +92,18 @@ import * as dropDownButtonStories from "./me-drop-down-button.stories";
   language="html"
 />
 
-### С разделительной кнопкой
+### Кнопка только иконкой
 
-<Canvas name="Стилизация кнопки" of={dropDownButtonStories.WithSplitButton} />
-<Source
-  code={`<dx-drop-down-button
-  meDropDownButton
-  [splitButton]="true"
-  [stylingMode]="'contained'"
-  [type]="'success'"
-  [size]="'small'">
-</dx-drop-down-button>`}
-  dark
-  language="html"
-/>
-
-### Кнопка с иконкой
-
-Добавьте иконку к кнопке с помощью параметра `icon`.
+Чтобы использовать кнопку только с иконкой нужно с помощью параметра `icon` установить иконку и установить стрелку-индикатор используя параметр `[showArrowIcon]="false"`.
 
 <Canvas name="Кнопка с иконкой" of={dropDownButtonStories.WithIcon} />
 
 <Source
   code={`<dx-drop-down-button
   meDropDownButton
-  [icon]="'add'">
+  [icon]="'add'"
+  [showArrowIcon]="false"
+>
 </dx-drop-down-button>`}
   dark
   language="html"
@@ -127,7 +113,7 @@ import * as dropDownButtonStories from "./me-drop-down-button.stories";
 
 Комбинированный вариант с текстом и иконкой делает кнопку более информативной.
 
-<Canvas name="Кнопка с текстом и иконкой" of={dropDownButtonStories.WithIcon} />
+<Canvas name="Кнопка с текстом и иконкой" of={dropDownButtonStories.WithIconAndText} />
 
 <Source
   code={`<dx-drop-down-button

@@ -201,9 +201,26 @@ export const WithSplitButton: Story = {
   },
 };
 
+export const WithIconAndText: Story = {
+  args: {
+    icon: 'add',
+  },
+};
+
 export const WithIcon: Story = {
   args: {
     icon: 'add',
+    text: '',
+    showArrowIcon: false,
+  },
+};
+
+export const WithIconAndSplitButton: Story = {
+  args: {
+    icon: 'add',
+    text: '',
+    showArrowIcon: false,
+    splitButton: true,
   },
 };
 
