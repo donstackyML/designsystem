@@ -346,13 +346,27 @@ export const MultipleFieldsWithGroups: Story = {
       <dxi-item meFormItem dataField="firstName">
         <dxo-label text="First Name"></dxo-label>
         <div *dxTemplate>
-          <dx-text-box meTextBox></dx-text-box>
+          <dx-text-box
+            meTextBox
+            [(value)]="formData.firstName"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled"
+            showClearButton="true"
+          ></dx-text-box>
         </div>
       </dxi-item>
       <dxi-item meFormItem dataField="lastName">
         <dxo-label text="Last Name"></dxo-label>
         <div *dxTemplate>
-          <dx-text-box meTextBox></dx-text-box>
+          <dx-text-box
+            meTextBox
+            [(value)]="formData.lastName"
+            [size]="size"
+            [readOnly]="readOnly"
+            [disabled]="disabled"
+            showClearButton="true"
+          ></dx-text-box>
         </div>
       </dxi-item>
     </dxi-item>
