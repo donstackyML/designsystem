@@ -34,11 +34,13 @@
 <ng-template #defaultTemplate let-item="content">
   <div class="me-toast-content">
     <div class="me-toast-header">
-      <me-icon *ngIf="showIcon" [icon]="statusIcon()" class="me-toast-icon" [size]="size"></me-icon>
-      <div class="me-toast-header-content">
-        <div *ngIf="title" class="me-toast-header-title">{{ title }}</div>
-        <div *ngIf="message" class="me-toast-header-message">{{ message }}</div>
-      </div>
+     <div class="me-toast-header-content">
+       <me-icon *ngIf="showIcon" [icon]="statusIcon()" class="me-toast-icon" [size]="size"></me-icon>
+        <div class="me-toast-header-text-content">
+          <div *ngIf="title" class="me-toast-header-title">{{ title }}</div>
+          <div *ngIf="message" class="me-toast-header-message">{{ message }}</div>
+        </div>
+     </div>
       <dx-button
         *ngIf="showCloseButton"
         meButton

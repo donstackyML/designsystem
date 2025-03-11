@@ -33728,7 +33728,7 @@ input.dx-hidden {
 .dx-toast-wrapper:not(.me-toast) {
   --toast-message-line-height: 20px;
   --toast-message-font-size: 12px;
-  --toast-content-message-gap: 2px;
+  --toast-content-message-gap: 8px;
   --material-icon-size: 20px;
   --material-icon-inner-size: 20px;
 }
@@ -33953,6 +33953,7 @@ input.dx-hidden {
   font-size: var(--toast-message-font-size);
   line-height: var(--toast-message-line-height);
   font-weight: 400;
+  width: 100%;
 }
 .dx-toast-wrapper .dx-toast-message:empty {
   display: none;
@@ -33990,7 +33991,7 @@ input.dx-hidden {
 }
 
 .me-toast.me-toast-small {
-  --toast-content-message-gap: 2px;
+  --toast-content-message-gap: 8px;
   --toast-message-font-size: 12px;
   --toast-message-line-height: 16px;
   --toast-title-font-size: 16px;
@@ -33998,20 +33999,14 @@ input.dx-hidden {
   --material-icon-size: 20px;
   --material-icon-inner-size: 20px;
 }
-.me-toast.me-toast-small .me-toast-header {
-  gap: 8px;
-}
 .me-toast.me-toast-large {
-  --toast-content-message-gap: 4px;
+  --toast-content-message-gap: 10px;
   --toast-message-font-size: 14px;
   --toast-message-line-height: 20px;
   --toast-title-font-size: 20px;
   --toast-title-line-height: 24px;
   --material-icon-size: 24px;
   --material-icon-inner-size: 24px;
-}
-.me-toast.me-toast-large .me-toast-header {
-  gap: 10px;
 }
 .me-toast:has(.me-toast-content).me-toast-small {
   --toast-content-right-offset: 32px;
@@ -34031,17 +34026,24 @@ input.dx-hidden {
   display: flex;
   align-items: flex-start;
 }
+.me-toast:has(.me-toast-content) .me-toast-content .me-toast-header .me-toast-header-content {
+  gap: var(--toast-content-message-gap);
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding-right: var(--toast-content-right-offset);
+}
 .me-toast:has(.me-toast-content) .me-toast-content .me-toast-header:not(:has(.me-toast-header-title)):has(.me-toast-header-message) {
   align-items: center;
 }
-.me-toast:has(.me-toast-content) .me-toast-content .me-toast-header .me-toast-header-content {
-  padding-right: var(--toast-content-right-offset);
+.me-toast:has(.me-toast-content) .me-toast-content .me-toast-header .me-toast-header-text-content {
+  width: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--toast-content-message-gap);
 }
-.me-toast:has(.me-toast-content) .me-toast-content .me-toast-header .me-toast-header-content .me-toast-header-title {
+.me-toast:has(.me-toast-content) .me-toast-content .me-toast-header .me-toast-header-text-content .me-toast-header-title {
   font-size: var(--toast-title-font-size);
   line-height: var(--toast-title-line-height);
   font-weight: 600;

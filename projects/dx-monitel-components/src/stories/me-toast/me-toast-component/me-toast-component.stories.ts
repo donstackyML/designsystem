@@ -155,15 +155,6 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    hoverStateEnabled: {
-      control: 'boolean',
-      description: 'Включает или отключает состояние наведения для уведомления.',
-      table: {
-        category: 'Отображение',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
     width: {
       control: 'text',
       description: 'Ширина уведомления. Может быть числом или строкой. По умолчанию: "260px".',
@@ -320,7 +311,6 @@ export default {
     showCloseButton: true,
     showIcon: true,
     showActionButtons: false,
-    hoverStateEnabled: true,
     closeOnSwipe: false,
     hideOnOutsideClick: false,
     closeOnClick: false,

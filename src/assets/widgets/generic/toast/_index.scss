@@ -29,7 +29,6 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
   font-size: $innerSize;
   line-height: $innerSize;
   font-weight: 300;
-  
   color: var(--status-icon-color);
 }
 
@@ -38,7 +37,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
     --toast-message-line-height: 20px;
     --toast-message-font-size: 12px;
 
-    --toast-content-message-gap: 2px;
+    --toast-content-message-gap: 8px;
 
     --material-icon-size: 20px;
     --material-icon-inner-size: 20px;
@@ -106,6 +105,7 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
     font-size: var(--toast-message-font-size);
     line-height: var(--toast-message-line-height);
     font-weight: 400;
+    width: 100%;
   }
 
   .dx-toast-message {
@@ -153,31 +153,23 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
 
 .me-toast {
   &.me-toast-small {
-    --toast-content-message-gap: 2px;
+    --toast-content-message-gap: 8px;
     --toast-message-font-size: 12px;
     --toast-message-line-height: 16px;
     --toast-title-font-size: 16px;
     --toast-title-line-height: 20px;
     --material-icon-size: 20px;
     --material-icon-inner-size: 20px;
-
-    .me-toast-header {
-      gap: 8px;
-    }
   }
 
   &.me-toast-large {
-    --toast-content-message-gap: 4px;
+    --toast-content-message-gap: 10px;
     --toast-message-font-size: 14px;
     --toast-message-line-height: 20px;
     --toast-title-font-size: 20px;
     --toast-title-line-height: 24px;
     --material-icon-size: 24px;
     --material-icon-inner-size: 24px;
-
-    .me-toast-header {
-      gap: 10px;
-    }
   }
 
   &:has(.me-toast-content) {
@@ -203,12 +195,20 @@ $generic-toast-shadow: 0 4px 10px 0 $toast-shadow-color;
         display: flex;
         align-items: flex-start;
 
+        .me-toast-header-content {
+          gap: var(--toast-content-message-gap);
+          display: flex;
+          align-items: flex-start;
+          width: 100%;
+          padding-right: var(--toast-content-right-offset);
+        }
+
         &:not(:has(.me-toast-header-title)):has(.me-toast-header-message) {
           align-items: center;
         }
 
-        .me-toast-header-content {
-          padding-right: var(--toast-content-right-offset);
+        .me-toast-header-text-content {
+          width: 100%;
           margin: 0;
           display: flex;
           flex-direction: column;
