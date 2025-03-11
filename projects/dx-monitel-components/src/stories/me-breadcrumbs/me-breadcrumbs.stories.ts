@@ -168,6 +168,8 @@ export const WithFlexContainer: Story = {
       `
       .container {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 800px;
       }
       `
@@ -178,9 +180,7 @@ export const WithFlexContainer: Story = {
 @Component({
   selector: 'storybook-breadcrumbs-wrapper',
   template: `
-    <div style="margin-bottom: 10px;">
-      <dx-button meButton text="Добавить хлебную крошку" (click)="addBreadcrumb()"></dx-button>
-    </div>
+  <div class="container">
     <me-breadcrumbs
       [items]="breadcrumbs"
       [truncateFrom]="truncateFrom"
@@ -188,7 +188,29 @@ export const WithFlexContainer: Story = {
       [showDivider]="showDivider"
       (itemClick)="onItemClick($event)">
     </me-breadcrumbs>
+    <div class="button-group">
+      <dx-button meButton text="Добавить хлебную крошку" (click)="addBreadcrumb()"></dx-button>
+      <dx-button meButton text="Удалить последнюю" (click)="removeLastBreadcrumb()"></dx-button>
+    </div>
+  </div>
   `,
+  styles: [
+    `
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 900px;
+        gap: 10px;
+      }
+
+      .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      `
+  ]
 })
 class BreadcrumbsWrapperComponent {
   @Input() items: any[] = [];
@@ -207,6 +229,10 @@ class BreadcrumbsWrapperComponent {
       ...this.breadcrumbs,
       { text: `Новый элемент ${this.breadcrumbs.length + 1}`, url: `/new-${this.breadcrumbs.length + 1}` },
     ];
+  }
+
+  removeLastBreadcrumb() {
+    this.breadcrumbs = this.breadcrumbs.slice(0, this.breadcrumbs.length - 1);
   }
 
   onItemClick(item: any) {
@@ -229,20 +255,15 @@ export const DynamicItems: Story = {
       ],
     }),
   ],
-  args: {
-    items: [
-      { text: 'Главная', url: '/' },
-      { text: 'Категория', url: '/category' },
-    ],
-  },
   render: (args) => ({
     props: args,
     template: `
+
       <storybook-breadcrumbs-wrapper
-      [items]="items"
-      [size]="size"
-      [showDivider]="showDivider"
-      [truncateFrom]="truncateFrom"
+        [items]="items"
+        [size]="size"
+        [showDivider]="showDivider"
+        [truncateFrom]="truncateFrom"
       ></storybook-breadcrumbs-wrapper>
     `,
   }),
