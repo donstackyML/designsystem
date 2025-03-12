@@ -95,19 +95,23 @@ import * as popupStories from "./me-popup.stories";
 
 ## Добавление скролла
 
-Чтобы получить внутри окна скролл из дизайн-системы необходимо обернуть контент в компонент `scroll view`.
+Чтобы получить внутри окна скролл из дизайн-системы необходимо обернуть контент в компонент `dx-scroll-view`.
 
 <Canvas of={popupStories.ScrollableContent} />
 
-<Source code={`
+<Source
+  code={`
 <dx-popup mePopup>
     <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
-        <!-- Ваш контент -->
+          <!-- Ваш контент -->
         </dx-scroll-view>
     </div>
 </dx-popup>
-`} dark language='html'/>
+`}
+  dark
+  language='html'
+/>
 
 ## Добавление кнопки в подвал
 
@@ -158,7 +162,7 @@ import * as popupStories from "./me-popup.stories";
 Для добавления элементов в туллбар необходимо воспользоваться `dxi-toolbar-item` [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Specify_Toolbar_Items/). Для добавления контента используется свойство `contentTemplate` [как пользоваться](https://js.devexpress.com/Angular/Documentation/21_2/Guide/UI_Components/Popup/Customize_the_Appearance/Customize_the_Content/#Specifying_the_Content_Template).
 В дизайн-системе для размера `medium` используются кнопки с размером `medium`, для размера `large` соответственно кнопки одноименного размера.
 
-<Canvas of={popupStories.Toolbar} />
+<Canvas of={popupStories.ScrollableContentWithButtons} />
 
 <Source
   code={`<dx-popup mePopup [showTitle]="true" title="Заголовок">
