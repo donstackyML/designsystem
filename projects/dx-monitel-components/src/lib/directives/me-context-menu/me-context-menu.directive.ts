@@ -22,6 +22,7 @@ export class MeContextMenuDirective {
   constructor(element: ElementRef, private renderer: Renderer2) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
+
   @HostListener('onItemRendered', ['$event'])
   onItemRendered(event: any) {
     const contextMenuElement =
@@ -30,6 +31,12 @@ export class MeContextMenuDirective {
 
     if (this.subMenuMaxHeight) {
       contextMenuElement.style.maxHeight = this.subMenuMaxHeight;
+    }
+
+    const menuItemElement = event.itemElement.closest('.dx-menu-item-wrapper .dx-item.dx-menu-item');
+
+    if (menuItemElement && event.itemData?.disabled && event.itemData?.beginGroup) {
+      this.renderer.addClass(menuItemElement, 'me-menu-item-title');
     }
   }
 }

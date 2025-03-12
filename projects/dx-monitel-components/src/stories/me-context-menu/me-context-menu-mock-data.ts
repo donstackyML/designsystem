@@ -1237,7 +1237,6 @@ export const meContextMenuMockData = [
     text: 'Пункт',
     icon: 'folder',
     disabled: true,
-    beginGroup: true,
   },
 ];
 

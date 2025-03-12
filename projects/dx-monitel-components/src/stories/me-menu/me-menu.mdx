@@ -35,7 +35,9 @@ import * as menuStories from "./me-menu.stories";
   - [Горизонтальное меню](#горизонтальное-меню)
   - [Вертикальное меню](#вертикальное-меню)
 - [Ограничение высоты подменю](#ограничение-высоты-подменю)
-
+- [Примеры контента](#примеры-контента)
+  - [Контент](#контент)
+  - [Контент с групповым разделением](#контент-с-групповым-разделением)
 
 ### Базовое меню
 
@@ -232,4 +234,85 @@ const dataSource = [
 >
 </dx-menu>
 `}
+/>
+
+
+### Примеры контента
+
+#### Контент
+
+<Source
+  code={`
+const dataSource = [
+  {
+    text: 'Кнопка меню',
+    items: [
+      {
+        text: 'Пункт меню',
+        icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+      },
+      {
+        text: 'Пункт меню',
+      },
+      {
+        text: 'Пункт меню',
+      },
+      {
+        text: 'Пункт меню',
+        icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+      },
+      {
+        text: 'Пункт меню',
+      },
+      {
+        text: 'Пункт меню',
+      },
+    ],
+  }
+];
+`}
+  language="typescript"
+  dark
+/>
+
+#### Контент с групповым разделением
+
+Чтобы элемент использовался в качестве заголовка группы, обязательно указывайте `beginGroup: true` и `disabled: true`.
+
+<Source
+  code={`
+const dataSource = [
+  {
+    text: 'With groups',
+    items: [
+      {
+        text: 'Заголовок группы уровень 1',
+        icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+        disabled: true,
+        beginGroup: true,
+      },
+      {
+        text: 'Пункт',
+      },
+      {
+        text: 'Пункт',
+      },
+      {
+        text: 'Заголовок группы уровень 1',
+        icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+        disabled: true,
+        beginGroup: true,
+      },
+      {
+        text: 'Пункт',
+      },
+      {
+        text: 'Пункт',
+      },
+    ],
+  }
+];
+`}
+  language="typescript"
+  dark
 />
