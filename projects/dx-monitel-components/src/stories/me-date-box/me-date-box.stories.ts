@@ -425,7 +425,7 @@ export const PickerTypeNative: Story = {
   },
 };
 
-export const WithAnalogClock: Story = {
+export const DateAndTime: Story = {
   args: {
     pickerType: 'calendar',
     type: 'datetime',
