@@ -42,22 +42,6 @@ export default {
         defaultValue: { summary: 'horizontal' },
       },
     },
-    focusStateEnabled: {
-      control: 'boolean',
-      description: 'Определяет состояние `focused`.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    hoverStateEnabled: {
-      control: 'boolean',
-      description: 'Определяет состояние `hovered`.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
     selectByClick: {
       control: 'boolean',
       description:
@@ -171,8 +155,6 @@ export default {
     dataSource: meMenuMockData,
     size: 'large',
     orientation: 'horizontal',
-    focusStateEnabled: true,
-    hoverStateEnabled: true,
     hideSubmenuOnMouseLeave: true,
     showSubmenuMode: { name: 'onClick', delay: { show: 50, hide: 300 } },
     showFirstSubmenuMode: { name: 'onClick', delay: { show: 50, hide: 300 } },

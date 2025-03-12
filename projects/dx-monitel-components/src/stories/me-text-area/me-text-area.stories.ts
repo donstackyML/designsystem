@@ -80,14 +80,6 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    activeStateEnabled: {
-      control: 'boolean',
-      description: 'Включает активное состояние компонента.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     value: {
       control: 'text',
       description: 'Значение поля.',
@@ -163,7 +155,6 @@ export default {
     readOnly: false,
     disabled: false,
     autoResizeEnabled: false,
-    activeStateEnabled: true,
     showRequiredMark: false,
     isValid: true,
     validationError: '',

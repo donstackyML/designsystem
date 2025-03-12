@@ -69,8 +69,6 @@ export default {
   },
   args: {
     dataSource: meContextMenuMockData,
-    focusStateEnabled: true,
-    activeStateEnabled: true,
     selectByClick: false,
     selectionMode: 'none',
   },

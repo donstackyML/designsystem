@@ -191,11 +191,6 @@ export default {
         disable: true,
       },
     },
-    focusStateEnabled: {
-      table: {
-        disable: true,
-      },
-    },
     container: {
       table: {
         disable: true,
@@ -211,7 +206,6 @@ export default {
     resizeEnabled: true,
     shading: true,
     animation: {},
-    focusStateEnabled: false,
     minHeight: '280px',
     maxHeight: '80vh',
     minWidth: '225px',

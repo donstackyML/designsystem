@@ -35,23 +35,6 @@ export default {
         defaultValue: { summary: '100' },
       },
     },
-
-    hoverStateEnabled: {
-      control: 'boolean',
-      description: 'Состояние `hovered`',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
-    focusStateEnabled: {
-      control: 'boolean',
-      description: 'Состояние `focused`',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
     isValid: {
       control: 'boolean',
       description: 'Состояние валидации',
@@ -73,8 +56,6 @@ export default {
     value: 50,
     min: 0,
     max: 100,
-    hoverStateEnabled: true,
-    focusStateEnabled: true,
     isValid: true,
     disabled: false,
   },
@@ -127,8 +108,6 @@ export const WithLabelAndTooltip: Story = {
 					[(value)]="value"
 					[height]="height"
 					[disabled]="disabled"
-					[hoverStateEnabled]="hoverStateEnabled"
-					[focusStateEnabled]="focusStateEnabled"
 					[isValid]="isValid">
 						<dxo-label
 							[visible]="true"
