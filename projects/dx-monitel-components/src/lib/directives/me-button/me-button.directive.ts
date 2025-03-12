@@ -7,6 +7,16 @@ const DEFAULT_ICON_COLOR = '#ffffff';
 
 @Directive({
   selector: '[meButton]',
+  host: {
+    '[class.me-button]': 'true',
+    '[class.me-button-small]': 'size === "small"',
+    '[class.me-button-medium]': 'size === "medium"',
+    '[class.me-button-large]': 'size === "large"',
+    '[class.me-button-warning]': 'type === "warning"',
+    '[class.me-button-icon-only]': '!!iconOnly',
+    '[class.me-button-icon]': 'leftIcon || rightIcon',
+    '[class.me-state-selected]': 'isSelected'
+  }
 })
 export class MeButtonDirective extends MeControlDirective implements OnInit {
   @Input() leftIcon: string = '';
@@ -38,7 +48,6 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
       } else {
         this.iconColor = DEFAULT_ICON_COLOR;
       }
-
       if (this.disabled) {
         this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
       }
@@ -49,7 +58,7 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
         <div class="me-button-inner">
           ${this.iconStore.getIcon({
         icon: this.leftIcon,
-        color: this.leftIconColor ? this.leftIconColor : this.iconColor,
+        color: this.leftIconColor || this.iconColor,
         size: this.getIconSize(this.leftIconSize),
       })}
           ${this.iconStore.getIcon({
@@ -60,49 +69,15 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
           ${this.getText()}
           ${this.iconStore.getIcon({
         icon: this.rightIcon,
-        color: this.rightIconColor ? this.rightIconColor : this.iconColor,
+        color: this.rightIconColor || this.iconColor,
         size: this.getIconSize(this.rightIconSize),
       })}
         </div>`;
     }
 
-    this.renderer.addClass(this.element.nativeElement, `me-button`);
-    this.renderer.addClass(
-      this.element.nativeElement,
-      `me-button-${this.size}`
-    );
-
-    if (this.type === 'warning') {
-      this.renderer.addClass(this.element.nativeElement, `me-button-warning`);
-    }
-
-    if (this.iconOnly) {
-      this.renderer.addClass(this.element.nativeElement, `me-button-icon-only`);
-    }
-
-    if (this.leftIcon || this.rightIcon) {
-      this.renderer.addClass(this.element.nativeElement, `me-button-icon`);
-    }
-
-    if (this.isSelected) {
-      this.renderer.addClass(this.element.nativeElement, `me-state-selected`);
-    }
-
     if (this.selectionStateEnable) {
       this.renderer.listen(this.element.nativeElement, 'click', () => {
         this.isSelected = !this.isSelected;
-
-        if (this.isSelected) {
-          this.renderer.addClass(
-            this.element.nativeElement,
-            `me-state-selected`
-          );
-        } else {
-          this.renderer.removeClass(
-            this.element.nativeElement,
-            `me-state-selected`
-          );
-        }
       });
     }
   }
