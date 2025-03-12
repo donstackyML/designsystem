@@ -8,6 +8,7 @@ import {
   DxButtonGroupModule,
   DxButtonModule,
   DxDropDownButtonModule,
+  DxPopupModule,
   DxSelectBoxModule,
   DxTemplateModule,
   DxTextBoxModule,
@@ -19,160 +20,25 @@ import {
   MeButtonGroupDirective,
   MeDropDownButtonDirective,
   MeIconStoreService,
+  MePopupDirective,
   MeSelectBoxDirective,
   MeTextBoxDirective,
   MeToolbarDirective,
 } from '../../public-api';
 
-export default {
-  title: 'Components/Toolbar',
-  decorators: [
-    moduleMetadata({
-      declarations: [
-        MeButtonDirective,
-        MeButtonGroupDirective,
-        MeDropDownButtonDirective,
-        MeSelectBoxDirective,
-        MeTextBoxDirective,
-        MeToolbarDirective,
-      ],
-      imports: [
-        DxButtonGroupModule,
-        DxButtonModule,
-        DxDropDownButtonModule,
-        DxSelectBoxModule,
-        DxTemplateModule,
-        DxTextBoxModule,
-        DxToolbarModule,
-      ],
-      providers: [MeIconStoreService],
-    }),
-  ],
-  argTypes: {
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-      description:
-        'Меняет размер самого `toolbar` и размер кнопки `overflow` при переполнении.',
-      table: {
-        type: { summary: `'small' | 'medium' | 'large'` },
-        defaultValue: { summary: 'medium' },
-      },
-    },
-    background: {
-      control: 'boolean',
-      description:
-        'При установке значения true добавляет фон, бордер и скругления.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    multiline: {
-      control: 'boolean',
-      description:
-        'Указывает, будет ли панель инструментов располагать элементы в несколько строк, если их общая ширина превышает ширину панели инструментов.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Отключает панель инструментов.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    width: {
-      control: 'text',
-      description: 'Ширина панели инструментов.',
-      table: {
-        type: { summary: 'string | number | undefined' },
-        defaultValue: { summary: 'undefined' },
-      },
-    },
-  },
-  args: {
-    size: 'medium',
-    background: false,
-    multiline: false,
-    disabled: false,
-    width: undefined
-  },
-  render: (args) => ({
-    props: {
-      ...args,
-      lineHeights: [
-        { text: '1.0', value: 1.0 },
-        { text: '1.15', value: 1.15 },
-        { text: '1.5', value: 1.5 },
-        { text: '2.0', value: 2.0 },
-      ],
-      fontFamilies: [
-        { text: 'Arial', value: 'Arial' },
-        { text: 'Courier New', value: 'Courier New' },
-        { text: 'Georgia', value: 'Georgia' },
-        { text: 'Times New Roman', value: 'Times New Roman' },
-      ],
-      headings: [
-        { text: 'Normal Text', value: 'p' },
-        { text: 'Heading 1', value: 'h1' },
-        { text: 'Heading 2', value: 'h2' },
-        { text: 'Heading 3', value: 'h3' },
-      ],
-      buttonGroupIcons: [
-        { icon: 'format_bold', type: 'normal', hint: 'Bold', style: 'bold' },
-        {
-          icon: 'format_italic',
-          type: 'normal',
-          style: 'italic',
-        },
-        {
-          icon: 'format_underlined',
-          type: 'normal',
-          style: 'underlined',
-        },
-        {
-          icon: 'strikethrough_s',
-          type: 'normal',
-          style: 'strikethrough',
-        },
-      ],
-      buttonGroupMenu: [
-        {
-          type: 'normal',
-          text: 'Bold',
-          alignment: 'left',
-          leftIcon: 'format_bold',
-          style: 'bold',
-        },
-        {
-          type: 'normal',
-          text: 'Italic',
-          alignment: 'left',
-          leftIcon: 'format_italic',
-          style: 'italic',
-        },
-        {
-          type: 'normal',
-          text: 'Underline',
-          alignment: 'left',
-          leftIcon: 'format_underlined',
-          style: 'underlined',
-        },
-        {
-          type: 'normal',
-          text: 'Strike',
-          alignment: 'left',
-          leftIcon: 'strikethrough_s',
-          style: 'strikethrough',
-        },
-      ],
-    },
-    template: `
-<dx-toolbar meToolbar ${argsToTemplate(args)}>
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'me-toolbar-storybook-demo',
+  template: `
+<dx-toolbar
+  meToolbar
+  [size]="size"
+  [background]="background"
+  [multiline]="multiline"
+  [disabled]="disabled"
+  [width]="width"
+>
   <dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
     <div *dxTemplate>
       <dx-button [disabled]="disabled" meButton iconOnly="undo" text="Undo" [size]="size"></dx-button>
@@ -313,19 +179,147 @@ export default {
       keyExpr="style"
     ></dx-button-group>
   </div>
-</dx-toolbar>
-`,
-    styles: [
-      `
-      .me-toolbar {
-        &:not(.dx-toolbar-multiline) {
-          div:has(> .search-item) {
-            max-width: calc(100% - 40px);
-          }
+</dx-toolbar>`,
+  styles: [`
+    .me-toolbar {
+      &:not(.dx-toolbar-multiline) {
+        div:has(> .search-item) {
+          max-width: calc(100% - 40px);
         }
       }
-      `,
-    ]
+    }
+
+  `],
+
+})
+class ToolbarStoryComponent {
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() background = false;
+  @Input() multiline = false;
+  @Input() disabled = false;
+  @Input() width: string | number | undefined;
+
+  lineHeights = [
+    { text: '1.0', value: 1.0 },
+    { text: '1.15', value: 1.15 },
+    { text: '1.5', value: 1.5 },
+    { text: '2.0', value: 2.0 }
+  ];
+
+  fontFamilies = [
+    { text: 'Arial', value: 'Arial' },
+    { text: 'Courier New', value: 'Courier New' },
+    { text: 'Georgia', value: 'Georgia' },
+    { text: 'Times New Roman', value: 'Times New Roman' }
+  ];
+
+  headings = [
+    { text: 'Normal Text', value: 'p' },
+    { text: 'Heading 1', value: 'h1' },
+    { text: 'Heading 2', value: 'h2' },
+    { text: 'Heading 3', value: 'h3' }
+  ];
+
+  buttonGroupIcons = [
+    { icon: 'format_bold', type: 'normal', hint: 'Bold', style: 'bold' },
+    { icon: 'format_italic', type: 'normal', style: 'italic' },
+    { icon: 'format_underlined', type: 'normal', style: 'underlined' },
+    { icon: 'strikethrough_s', type: 'normal', style: 'strikethrough' }
+  ];
+
+  buttonGroupMenu = [
+    { type: 'normal', text: 'Bold', alignment: 'left', leftIcon: 'format_bold', style: 'bold' },
+    { type: 'normal', text: 'Italic', alignment: 'left', leftIcon: 'format_italic', style: 'italic' },
+    { type: 'normal', text: 'Underline', alignment: 'left', leftIcon: 'format_underlined', style: 'underlined' },
+    { type: 'normal', text: 'Strike', alignment: 'left', leftIcon: 'strikethrough_s', style: 'strikethrough' }
+  ];
+}
+
+
+export default {
+  title: 'Components/Toolbar',
+  decorators: [
+    moduleMetadata({
+      declarations: [
+        MeButtonDirective,
+        MeButtonGroupDirective,
+        MeDropDownButtonDirective,
+        MeSelectBoxDirective,
+        MeTextBoxDirective,
+        MeToolbarDirective,
+        ToolbarStoryComponent
+      ],
+      imports: [
+        DxButtonGroupModule,
+        DxButtonModule,
+        DxDropDownButtonModule,
+        DxSelectBoxModule,
+        DxTemplateModule,
+        DxTextBoxModule,
+        DxToolbarModule,
+      ],
+      providers: [MeIconStoreService],
+    }),
+  ],
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description:
+        'Меняет размер самого `toolbar` и размер кнопки `overflow` при переполнении.',
+      table: {
+        type: { summary: `'small' | 'medium' | 'large'` },
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    background: {
+      control: 'boolean',
+      description:
+        'При установке значения true добавляет фон, бордер и скругления.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    multiline: {
+      control: 'boolean',
+      description:
+        'Указывает, будет ли панель инструментов располагать элементы в несколько строк, если их общая ширина превышает ширину панели инструментов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает панель инструментов.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    width: {
+      control: 'text',
+      description: 'Ширина панели инструментов.',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+  },
+  args: {
+    size: 'medium',
+    background: false,
+    multiline: false,
+    disabled: false,
+    width: undefined
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+<me-toolbar-storybook-demo ${argsToTemplate(args)}>
+</me-toolbar-storybook-demo>
+`,
   })
 } satisfies Meta<DxToolbarComponent | MeToolbarDirective>;
 
@@ -373,4 +367,36 @@ export const WithoutBackground: Story = {
   args: {
     background: false
   }
+};
+
+export const WithinPopup: Story = {
+  decorators: [
+    moduleMetadata({
+      declarations: [MePopupDirective],
+      imports: [DxPopupModule],
+    }),
+  ],
+  render: (args) => ({
+    props: args,
+    template: `
+    <dx-popup mePopup width='70dvw' [visible]="true">
+      <div *dxTemplate="let data of 'content'">
+        <me-toolbar-storybook-demo ${argsToTemplate(args)}></me-toolbar-storybook-demo>
+      </div>
+    </dx-popup>
+    `,
+    styles: [
+      `
+      .container {
+        display: flex;
+        width: 100%;
+
+        & > * {
+          width: 100%;
+          flex-grow: 1;
+        }
+      }
+      `
+    ]
+  })
 };

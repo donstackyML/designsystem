@@ -254,9 +254,10 @@ export const Title: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<div id="myWrapperTitle" style="min-height: 350px; position: relative;"><dx-popup mePopup ${argsToTemplate(
-      args
-    )}></dx-popup></div>`,
+    template: `
+      <div id="myWrapperTitle" style="min-height: 350px; position: relative;">
+        <dx-popup mePopup ${argsToTemplate(args)}></dx-popup>
+      </div>`,
   }),
 };
 
@@ -502,7 +503,7 @@ export const ScrollableContent: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, DxScrollViewComponent],
+      declarations: [MePopupDirective, DxScrollViewComponent, MeButtonDirective],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -511,25 +512,17 @@ export const ScrollableContent: Story = {
     template: `
     <div id="myWrapperScroll" style="height: 350px; position: relative;">
       <dx-popup mePopup height='200px' width='360px' ${argsToTemplate(args)}>
-      <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"></dxi-toolbar-item>
-     <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"></dxi-toolbar-item>
         <div *dxTemplate="let data of 'content'">
           <dx-scroll-view width="100%" height="100%">
-          ${words}
+            ${words}
           </dx-scroll-view>
-        </div>
-        <div *dxTemplate="let data of 'addButton'">
-          <dx-button meButton type="default" text="Добавить"></dx-button>
-        </div>
-        <div *dxTemplate="let data of 'cancelButton'">
-          <dx-button meButton text="Отмена"></dx-button>
         </div>
       </dx-popup>
     </div>`,
   }),
 };
 
-export const Toolbar: Story = {
+export const ScrollableContentWithButtons: Story = {
   args: {
     visible: true,
     size: 'medium',
@@ -573,7 +566,7 @@ export const Toolbar: Story = {
         </div>
 
         <div *dxTemplate="let data of 'overflowButton'">
-        <dx-button meButton iconOnly="overflow" stylingMode="text">
+          <dx-button meButton iconOnly="overflow" stylingMode="text">
           </dx-button>
         </div>
         <div *dxTemplate="let data of 'confirmButton'">
