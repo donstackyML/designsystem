@@ -128,11 +128,13 @@
   }
 }
 
-//me-data-grid
 .me-data-grid {
-  .dx-datagrid-borders .dx-datagrid-rowsview,
-  .dx-datagrid-headers + .dx-datagrid-rowsview {
-    border-top: none;
+
+  &:has(.dx-datagrid-headers:not(.dx-hidden)) {
+    .dx-datagrid-borders .dx-datagrid-rowsview,
+    .dx-datagrid-headers+.dx-datagrid-rowsview {
+      border-top: none;
+    }
   }
 
   td:not(:last-child) {
@@ -151,9 +153,8 @@
     //header-panel
     .dx-datagrid-header-panel {
       min-height: 28px;
-      margin: 0 0 16px 0;
-      padding: 0;
-      border: none;
+      padding: 0 0 16px 0;
+      // border: none;
 
       .dx-toolbar {
         margin: 0;
@@ -353,7 +354,7 @@
         }
 
         .dx-light-pages {
-          & > * {
+          &>* {
             padding: 0;
             margin: 2px;
             text-align: center;
@@ -451,7 +452,7 @@
   }
 
   .dx-row.dx-column-lines.dx-header-row {
-    & > td {
+    &>td {
       padding: 8px;
       gap: 4px;
       vertical-align: middle;
@@ -495,31 +496,31 @@
       line-height: 16px;
 
       .dx-command-select {
-          width: auto;
-          padding: 8px !important;
-          min-width: 100%;
-          max-width: 100%;
-          align-items: center;
-          justify-content: center;
-          height: 100%;
-          width: 1%;
-          white-space: nowrap;
+        width: auto;
+        padding: 8px !important;
+        min-width: 100%;
+        max-width: 100%;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 1%;
+        white-space: nowrap;
 
-          .dx-select-checkbox {
-            width: 20px;
-            display: inline-flex;
-            padding-bottom: 0;
+        .dx-select-checkbox {
+          width: 20px;
+          display: inline-flex;
+          padding-bottom: 0;
 
-            .dx-checkbox-container {
-              display: flex;
+          .dx-checkbox-container {
+            display: flex;
 
-              .dx-checkbox-icon {
-                width: 20px;
-                height: 20px;
-              }
+            .dx-checkbox-icon {
+              width: 20px;
+              height: 20px;
             }
           }
         }
+      }
 
       .dx-command-expand {
         padding: 0;
@@ -535,7 +536,7 @@
         }
       }
 
-      & > td {
+      &>td {
         padding: 5px 8px;
         vertical-align: middle;
       }
@@ -560,10 +561,10 @@
   //small
   &.me-data-grid-small {
     .dx-datagrid {
+
       //header panel
       .dx-datagrid-header-panel {
         min-height: 28px;
-        padding: 0;
 
         .dx-toolbar {
           .dx-toolbar-items-container {
@@ -599,11 +600,12 @@
             }
 
             .dx-toolbar-after {
+
               //search
               .dx-datagrid-search-panel {
                 height: 28px;
 
-                & > * {
+                &>* {
                   font-size: 13px;
                   font-weight: 400;
                 }
@@ -662,7 +664,7 @@
               min-height: 28px;
               height: 28px;
 
-              & > div {
+              &>div {
                 height: 28px;
                 margin-block: 0;
 
@@ -677,7 +679,7 @@
               }
 
               .dx-light-pages {
-                & > * {
+                &>* {
                   min-width: 32px;
                   height: 28px;
                   margin: 2px;
@@ -704,10 +706,10 @@
   //medium
   &.me-data-grid-medium {
     .dx-datagrid {
+
       //header panel
       .dx-datagrid-header-panel {
         min-height: 32px;
-        padding: 0;
 
         .dx-toolbar {
           .dx-toolbar-items-container {
@@ -747,11 +749,12 @@
             }
 
             .dx-toolbar-after {
+
               //search
               .dx-datagrid-search-panel {
                 height: 32px;
 
-                & > * {
+                &>* {
                   font-size: 14px;
                   font-weight: 400;
                 }
@@ -811,7 +814,7 @@
               min-height: 32px;
               height: 32px;
 
-              & > div {
+              &>div {
                 height: 32px;
                 margin-block: 0;
 
@@ -826,7 +829,7 @@
               }
 
               .dx-light-pages {
-                & > * {
+                &>* {
                   min-width: 36px;
                   height: 32px;
                   margin: 2px;
@@ -853,10 +856,10 @@
   //large
   &.me-data-grid-large {
     .dx-datagrid {
+
       //header panel
       .dx-datagrid-header-panel {
         min-height: 40px;
-        padding: 0;
 
         .dx-toolbar {
           .dx-toolbar-items-container {
@@ -896,11 +899,12 @@
             }
 
             .dx-toolbar-after {
+
               //search
               .dx-datagrid-search-panel {
                 height: 40px;
 
-                & > * {
+                &>* {
                   font-size: 18px;
                   font-weight: 400;
                 }
@@ -980,7 +984,7 @@
               min-height: 40px;
               height: 40px;
 
-              & > div {
+              &>div {
                 height: 40px;
                 margin-block: 0;
 
@@ -995,7 +999,7 @@
               }
 
               .dx-light-pages {
-                & > * {
+                &>* {
                   min-width: 44px;
                   height: 40px;
                   margin: 2px;
