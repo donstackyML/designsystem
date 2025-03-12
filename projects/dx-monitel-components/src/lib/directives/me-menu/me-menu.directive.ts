@@ -27,7 +27,7 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private element: ElementRef,
     private component: DxMenuComponent,
-    renderer: Renderer2
+    private renderer: Renderer2
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
@@ -87,11 +87,21 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
 
   @HostListener('onSubmenuShowing', ['$event'])
   onSubmenuShowing({ submenuContainer }: DxMenuTypes.SubmenuShowingEvent) {
-    console.log(submenuContainer, 'submenuContainer');
+
     if (submenuContainer && this.subMenuMaxHeight) {
       submenuContainer.style.maxHeight = typeof this.subMenuMaxHeight === 'number'
         ? `${this.subMenuMaxHeight}px`
         : this.subMenuMaxHeight;
+    }
+  }
+
+
+  @HostListener('onItemRendered', ['$event'])
+  onItemRendered(event: any) {
+    const menuItemElement = event.itemElement.closest('.dx-menu-item-wrapper .dx-item.dx-menu-item');
+
+    if (menuItemElement && event.itemData?.disabled && event.itemData?.beginGroup) {
+      this.renderer.addClass(menuItemElement, 'me-menu-item-title');
     }
   }
 }

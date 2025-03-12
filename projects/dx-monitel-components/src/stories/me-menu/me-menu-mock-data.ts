@@ -12,6 +12,7 @@ export const meMenuMockData = [
       {
         icon: argsIcon,
         text: 'Computers',
+        disabled: true,
         items: [
           {
             icon: argsIcon,
@@ -346,16 +347,30 @@ export const meMenuMockData = [
     ],
   },
   {
-    icon: argsIcon,
     text: 'With groups',
+    icon: argsIcon,
     items: [
-
+      {
+        text: 'Заголовок группы уровень 1',
+        icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+        disabled: true,
+        beginGroup: true,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+      },
+      {
+        text: 'Пункт',
+        icon: argsIcon,
+        disabled: true,
+      },
       {
         text: 'Пункт',
         icon: argsIcon,
         items: [
           {
-            text: 'Заголовок группы уровень 3',
+            text: 'Заголовок группы уровень 2',
             icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
             disabled: true,
             beginGroup: true,
@@ -371,6 +386,7 @@ export const meMenuMockData = [
           {
             text: 'Пункт',
             beginGroup: true,
+            disabled: true,
             icon: argsIcon,
           },
           {
@@ -410,87 +426,10 @@ export const meMenuMockData = [
         ],
       },
       {
-        text: 'Заголовок группы уровень 2',
-        icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+        text: 'Пункт',
+        icon: argsIcon,
+        beginGroup: true,
         disabled: true,
-        beginGroup: true,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-      },
-      {
-        text: 'Пункт',
-        icon: argsIcon,
-        beginGroup: true,
         items: [
           {
             text: 'Заголовок группы уровень 3',
@@ -509,6 +448,7 @@ export const meMenuMockData = [
           {
             text: 'Пункт',
             beginGroup: true,
+            disabled: true,
             icon: argsIcon,
           },
           {
