@@ -3,7 +3,7 @@ import { DxDataGridComponent, DxDataGridModule } from 'devextreme-angular';
 import { DxoPagerComponent, DxoPagingComponent, DxoSelectionComponent } from 'devextreme-angular/ui/nested';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../public-api';
-import { dataGridMockSourceData } from './me-data-grid-mock-source-data';
+import { dataGridMockSourceData, dataGridMockSourceDataWithGroup } from './me-data-grid-mock-source-data';
 
 type StoryProps = DxDataGridComponent | MeDataGridDirective | DxoPagerComponent | DxoPagingComponent | DxoSelectionComponent
 
@@ -337,4 +337,43 @@ export const SelectionModeSingle: Story = {
       mode: 'single'
     }
   }
+};
+
+export const WithContentGrouping: Story = {
+  args: {
+    dataSource: dataGridMockSourceDataWithGroup,
+  },
+  render: (args) => ({
+  props: args,
+  template: `
+<dx-data-grid
+  id="gridContainer"
+  meDataGrid
+  [(dataSource)]="dataSource"
+  [size]="size"
+  [allowColumnReordering]="allowColumnReordering"
+  [allowColumnResizing]="allowColumnResizing"
+  [showRowLines]="showRowLines"
+  [showColumnLines]="showColumnLines"
+  [disabled]="disabled"
+  [columnAutoWidth]="columnAutoWidth"
+  [wordWrapEnabled]="wordWrapEnabled"
+  [showBorders]="showBorders"
+  [showColumnHeaders]="showColumnHeaders"
+  [selection]="selection"
+  [keyExpr]="'ID'"
+>
+  <dxi-column dataField="CompanyName"></dxi-column>
+  <dxi-column dataField="Phone"></dxi-column>
+  <dxi-column dataField="Fax"></dxi-column>
+  <dxi-column dataField="City"></dxi-column>
+  <dxi-column dataField="State" [groupIndex]="0"></dxi-column>
+
+  <dxo-search-panel [visible]="true"></dxo-search-panel>
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [visible]="true"></dxo-pager>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+</dx-data-grid>`
+  })
 };
