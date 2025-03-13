@@ -385,8 +385,6 @@ export const meMenuMockData = [
           },
           {
             text: 'Пункт',
-            beginGroup: true,
-            disabled: true,
             icon: argsIcon,
           },
           {
@@ -398,7 +396,7 @@ export const meMenuMockData = [
             icon: argsIcon,
           },
           {
-            text: 'Заголовок группы уровень 3',
+            text: 'Заголовок группы уровень 2',
             icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
             disabled: true,
             beginGroup: true,
@@ -417,6 +415,32 @@ export const meMenuMockData = [
             text: 'Пункт',
             icon: argsIcon,
             items: [
+              {
+                text: 'Заголовок группы уровень 3',
+                icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+                disabled: true,
+                beginGroup: true,
+              },
+              {
+                text: 'Пункт',
+                icon: argsIcon,
+                items: [
+                  {
+                    text: 'Пункт',
+                    icon: argsIcon,
+                  },
+                ],
+              },
+              {
+                text: 'Пункт',
+                icon: argsIcon,
+                items: [
+                  {
+                    text: 'Пункт',
+                    icon: argsIcon,
+                  },
+                ],
+              },
               {
                 text: 'Пункт',
                 icon: argsIcon,
@@ -428,11 +452,9 @@ export const meMenuMockData = [
       {
         text: 'Пункт',
         icon: argsIcon,
-        beginGroup: true,
-        disabled: true,
         items: [
           {
-            text: 'Заголовок группы уровень 3',
+            text: 'Заголовок группы уровень 2',
             icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
             disabled: true,
             beginGroup: true,
@@ -447,8 +469,6 @@ export const meMenuMockData = [
           },
           {
             text: 'Пункт',
-            beginGroup: true,
-            disabled: true,
             icon: argsIcon,
           },
           {
@@ -459,32 +479,7 @@ export const meMenuMockData = [
             text: 'Пункт',
             icon: argsIcon,
           },
-          {
-            text: 'Заголовок группы уровень 3',
-            icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
-            disabled: true,
-            beginGroup: true,
-          },
-          {
-            text: 'Пункт',
-            icon: argsIcon,
-            items: [
-              {
-                text: 'Пункт',
-                icon: argsIcon,
-              },
-            ],
-          },
-          {
-            text: 'Пункт',
-            icon: argsIcon,
-            items: [
-              {
-                text: 'Пункт',
-                icon: argsIcon,
-              },
-            ],
-          },
+
         ],
       },
     ],
