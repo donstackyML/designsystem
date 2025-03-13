@@ -249,6 +249,8 @@
   }
 
   &.me-toolbar-background {
+    --toolbar-container-padding: 8px;
+
     border-radius: 4px;
     border: 1px solid $toolbar-border;
     background-color: $toolbar-bg;
@@ -256,7 +258,10 @@
 
   &:not(.dx-popup-title) {
     --toolbar-items-gap: 4px;
-    --toolbar-container-padding: 8px;
+    
+    &:not(.me-toolbar-background) {
+      --toolbar-container-padding: 0px;
+    }
 
     .dx-toolbar-items-container {
       height: auto;
