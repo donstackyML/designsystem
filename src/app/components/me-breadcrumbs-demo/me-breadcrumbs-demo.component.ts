@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { keyboardX20 } from '@monitel/me-icons';
 import { MeIconsRegistry } from '@monitel/me-icons-registry';
+import { BreadcrumbItem } from '../../../../projects/dx-monitel-components/src/public-api';
 
 @Component({
   selector: 'me-breadcrumbs-demo',
@@ -39,4 +40,8 @@ export class MeBreadcrumbsDemoComponent {
       icon: 'keyboard_x20',
     },
   ]
+
+  onBreadcrumbItemClick(event: BreadcrumbItem) {
+    console.log('Нажат элемент:', event);
+  }
 }

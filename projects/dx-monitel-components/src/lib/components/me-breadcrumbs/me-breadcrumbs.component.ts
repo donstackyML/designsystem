@@ -28,8 +28,10 @@ import {
 } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeIconsModule } from '@monitel/me-icons-registry';
+import type { ItemClickEvent as MenuItemClickEvent } from 'devextreme/ui/menu';
+import type { ItemClickEvent as ContextMenuItemClickEvent } from 'devextreme/ui/context_menu';
 
-interface BreadcrumbItem {
+export interface BreadcrumbItem {
   text?: string;
   url?: string;
   icon?: string;
@@ -222,11 +224,9 @@ export class MeBreadcrumbsComponent
     this.cdr.markForCheck();
   }
 
-  onItemClick(e: any): void {
-    const clickedItem = e.itemData as BreadcrumbItem;
-    if (clickedItem.url) {
-      this.itemClick.emit(clickedItem);
-    }
+  onItemClick(e: MenuItemClickEvent): void {
+    const clickedItem = e.itemData;
+    this.itemClick.emit(clickedItem);
   }
 
   onContextMenuPositioning(e: any) {
@@ -284,11 +284,9 @@ export class MeBreadcrumbsComponent
     }
   }
 
-  onOverflowItemClick(e: any): void {
+  onOverflowItemClick(e: ContextMenuItemClickEvent): void {
     const clickedItem = e.itemData as BreadcrumbItem;
-    if (clickedItem.url) {
-      this.itemClick.emit(clickedItem);
-    }
+    this.itemClick.emit(clickedItem);
     this.overflowMenu.instance.hide().then();
   }
 
