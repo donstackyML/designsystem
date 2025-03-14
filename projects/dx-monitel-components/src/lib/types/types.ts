@@ -70,3 +70,5 @@ export type FocusInEventHandle = (evt: FocusEvent) => void;
 export type FocusOutEventHandle = (evt: FocusEvent) => void;
 
 export type KeyUpEventHandle = (evt: KeyboardEvent) => void;
+
+export { BreadcrumbItem } from '../components/me-breadcrumbs/me-breadcrumbs.component';

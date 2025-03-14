@@ -147,18 +147,25 @@ import * as breadcrumbsStories from "./me-breadcrumbs.stories";
 
 ### Обработка событий
 
-Компонент `MeBreadcrumbs` поддерживает событие `itemClick` для обработки кликов по элементам:
+При клике по элементу хлебных крошек срабатывает событие `itemClick`, типом для `$event` является `BreadcrumbItem`. Это позволяет получить детальную информацию о нажатом элементе, например, его текст или ссылку.
 
 <Source
   code={`
 <me-breadcrumbs
   [items]="breadcrumbsItems"
-  (itemClick)="onBreadcrumbItemClick($event)"
-></me-breadcrumbs>
+  (itemClick)="onBreadcrumbItemClick($event)">
+</me-breadcrumbs>
+
+// В вашем компоненте:
+// Тип $event: BreadcrumbItem
+onBreadcrumbItemClick(event: BreadcrumbItem) {
+  console.log('Нажат элемент:', event);
+}
   `}
   dark
   language="html"
 />
+
 
 ### Пример использования
 
