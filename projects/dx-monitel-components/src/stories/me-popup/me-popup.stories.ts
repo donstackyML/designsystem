@@ -27,12 +27,6 @@ export default {
       imports: [DxPopupModule],
     }),
   ],
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=568-31799&t=AcVCK3Dt91yWxh5R-0',
-    },
-  },
   argTypes: {
     size: {
       control: 'select',
@@ -561,7 +555,12 @@ export const ScrollableContentWithButtons: Story = {
 
         <div *dxTemplate="let data of 'content'">
           <dx-scroll-view width="100%" height="100%">
-            ${words}
+            <div class="me-flex-column">
+              <div>
+                ${words}
+              </div>
+              <dx-button meButton text="Button"></dx-button>
+            </div>
           </dx-scroll-view>
         </div>
 
@@ -580,6 +579,21 @@ export const ScrollableContentWithButtons: Story = {
         </div>
       </dx-popup>
     </div>`,
+
+    styles: [
+      `
+      .me-flex-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+
+        .me-button {
+          align-self: flex-start;
+        }
+      }
+      `
+    ]
   }),
 };
 

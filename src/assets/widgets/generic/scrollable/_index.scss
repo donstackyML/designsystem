@@ -10,7 +10,8 @@ $scrollbar-size-thin: 8px;
 $scrollbar-size: 15px;
 
 .dx-scrollable-content {
-  -webkit-transform: none; // stylelint-disable-line property-no-vendor-prefix
+  transform: none;
+  -webkit-transform: none;
 }
 
 .dx-scrollable-scroll {
@@ -207,14 +208,16 @@ $scrollbar-size: 15px;
 }
 
 .dx-scrollable-container {
-  .dx-state-hover {
-    background-color: transparent;
-  }
+
 
   .dx-scrollable-scrollbar.dx-scrollbar-vertical {
     width: auto;
     padding: 0;
     border-radius: 10px;
+
+    &.dx-state-hover {
+      background-color: transparent;
+    }
 
     &.dx-state-hover,
     &.dx-scrollable-scrollbar-active {
@@ -243,6 +246,10 @@ $scrollbar-size: 15px;
     height: auto;
     padding: 0;
     border-radius: 10px;
+
+    &.dx-state-hover {
+      background-color: transparent;
+    }
 
     &.dx-state-hover,
     &.dx-scrollable-scrollbar-active {
