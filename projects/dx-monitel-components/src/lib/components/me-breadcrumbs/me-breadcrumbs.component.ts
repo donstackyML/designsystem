@@ -293,7 +293,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   onSubmenuShowing(e: any) {
     const submenuContainer = e.submenuContainer;
     if (submenuContainer) {
-      submenuContainer.classList.add('me-custom-submenu-class');
+      submenuContainer.classList.add('me-custom-submenu');
     }
   }
 
