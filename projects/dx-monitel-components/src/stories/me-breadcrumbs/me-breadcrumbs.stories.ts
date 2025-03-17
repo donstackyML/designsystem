@@ -45,7 +45,8 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'large'],
-      description: 'Изменяет размер компонента элементов, которыми управляет компонент `me-breadcrumbs`.',
+      description:
+        'Изменяет размер компонента элементов, которыми управляет компонент `me-breadcrumbs`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'small' },
@@ -54,7 +55,8 @@ export default {
     truncateFrom: {
       control: 'select',
       options: ['left', 'right'],
-      description: 'Определяет, с какой стороны будет происходить усечение элементов компонента `me-breadcrumbs`.',
+      description:
+        'Определяет, с какой стороны будет происходить усечение элементов компонента `me-breadcrumbs`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'right' },
@@ -68,23 +70,63 @@ export default {
         defaultValue: { summary: 'true' },
       },
     },
+    displayExpr: {
+      control: 'text',
+      description:
+        'Имя поля, используемого для отображения текста хлебной крошки. По умолчанию "text".',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'text' },
+      },
+    },
+    iconExpr: {
+      control: 'text',
+      description:
+        'Имя поля, используемого для отображения иконки хлебной крошки. По умолчанию "icon".',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'icon' },
+      },
+    },
+    itemsExpr: {
+      control: 'text',
+      description:
+        'Имя поля, используемого для вложенных элементов хлебных крошек. По умолчанию "items".',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'items' },
+      },
+    },
+    urlExpr: {
+      control: 'text',
+      description:
+        'Имя поля, используемого для ссылки хлебной крошки. По умолчанию "url".',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'url' },
+      },
+    },
     itemClick: {
       action: 'itemClicked',
       table: {
-        disable: true
-      }
-    }
+        disable: true,
+      },
+    },
   },
   args: {
     truncateFrom: 'right',
     size: 'small',
     items: meBreadcrumbsMockData,
-    showDivider: true
+    showDivider: true,
+    displayExpr: 'text',
+    iconExpr: 'icon',
+    itemsExpr: 'items',
+    urlExpr: 'url',
   },
   render: (args) => ({
     props: args,
     template: `<me-breadcrumbs ${argsToTemplate(args)}></me-breadcrumbs>`,
-  })
+  }),
 } satisfies Meta<MeBreadcrumbsComponent>;
 
 type Story = StoryObj<MeBreadcrumbsComponent>;
@@ -119,7 +161,7 @@ export const WithIconsAndDropdowns: Story = {
 
 export const WithoutDivider: Story = {
   args: {
-    showDivider: false
+    showDivider: false,
   },
 };
 
@@ -149,20 +191,20 @@ export const TruncateFromRight: Story = {
 
 export const WithManyItems: Story = {
   args: {
-    items: meBreadcrumbsMockDataWithManyItems
+    items: meBreadcrumbsMockDataWithManyItems,
   },
 };
 
 export const WithFlexContainer: Story = {
   args: {
-    items: meBreadcrumbsMockDataWithManyItems
+    items: meBreadcrumbsMockDataWithManyItems,
   },
   render: (args) => ({
     props: args,
     template: `
-    <div class="container">
-      <me-breadcrumbs ${argsToTemplate(args)}></me-breadcrumbs>
-    </div>
+      <div class="container">
+        <me-breadcrumbs ${argsToTemplate(args)}></me-breadcrumbs>
+      </div>
     `,
     styles: [
       `
@@ -172,27 +214,32 @@ export const WithFlexContainer: Story = {
         align-items: center;
         width: 800px;
       }
-      `
-    ]
-  })
+      `,
+    ],
+  }),
 };
 
 @Component({
   selector: 'storybook-breadcrumbs-wrapper',
   template: `
-  <div class="container">
-    <me-breadcrumbs
-      [items]="breadcrumbs"
-      [truncateFrom]="truncateFrom"
-      [size]="size"
-      [showDivider]="showDivider"
-      (itemClick)="onItemClick($event)">
-    </me-breadcrumbs>
-    <div class="button-group">
-      <dx-button meButton text="Добавить хлебную крошку" (click)="addBreadcrumb()"></dx-button>
-      <dx-button meButton text="Удалить последнюю" (click)="removeLastBreadcrumb()"></dx-button>
+    <div class="container">
+      <me-breadcrumbs
+        [items]="breadcrumbs"
+        [truncateFrom]="truncateFrom"
+        [size]="size"
+        [showDivider]="showDivider"
+        [displayExpr]="displayExpr"
+        [iconExpr]="iconExpr"
+        [itemsExpr]="itemsExpr"
+        [urlExpr]="urlExpr"
+        (itemClick)="onItemClick($event)"
+      >
+      </me-breadcrumbs>
+      <div class="button-group">
+        <dx-button meButton text="Добавить хлебную крошку" (click)="addBreadcrumb()"></dx-button>
+        <dx-button meButton text="Удалить последнюю" (click)="removeLastBreadcrumb()"></dx-button>
+      </div>
     </div>
-  </div>
   `,
   styles: [
     `
@@ -203,20 +250,23 @@ export const WithFlexContainer: Story = {
         width: 900px;
         gap: 10px;
       }
-
       .button-group {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
       }
-      `
-  ]
+    `,
+  ],
 })
 class BreadcrumbsWrapperComponent {
   @Input() items: any[] = [];
   @Input() truncateFrom: 'left' | 'right' = 'right';
   @Input() size: 'small' | 'large' = 'small';
   @Input() showDivider = true;
+  @Input() displayExpr: string = 'text';
+  @Input() iconExpr: string = 'icon';
+  @Input() itemsExpr: string = 'items';
+  @Input() urlExpr: string = 'url';
 
   breadcrumbs: any[] = [];
 
@@ -258,13 +308,43 @@ export const DynamicItems: Story = {
   render: (args) => ({
     props: args,
     template: `
-
       <storybook-breadcrumbs-wrapper
         [items]="items"
         [size]="size"
         [showDivider]="showDivider"
         [truncateFrom]="truncateFrom"
+        [displayExpr]="displayExpr"
+        [iconExpr]="iconExpr"
+        [itemsExpr]="itemsExpr"
+        [urlExpr]="urlExpr"
       ></storybook-breadcrumbs-wrapper>
     `,
   }),
+};
+
+export const WithCustomFields: Story = {
+  args: {
+    items: [
+      {
+        name: 'Главная',
+        link: '/',
+        iconData: 'home',
+      },
+      {
+        name: 'Продукты',
+        link: '/products',
+        links: [
+          {
+            name: 'Электроника',
+            link: '/products/electronics',
+            iconData: 'computer_x20',
+          },
+        ],
+      },
+    ],
+    displayExpr: 'name',
+    itemsExpr: 'links',
+    iconExpr: 'iconData',
+    urlExpr: 'link',
+  },
 };
