@@ -88,26 +88,66 @@ export const meBreadcrumbsMockDataWithNestedItems = [
       {
         text: 'Laptops',
         url: '/products/laptops',
-
+        items: [
+          {
+            text: 'Gaming Laptops',
+            url: '/products/laptops/gaming',
+            items: [
+              {
+                text: 'High Performance',
+                url: '/products/laptops/gaming/high-performance',
+                items: [
+                  {
+                    text: 'Ultra Settings',
+                    url: '/products/laptops/gaming/high-performance/ultra-settings',
+                  },
+                  {
+                    text: 'Ray Tracing',
+                    url: '/products/laptops/gaming/high-performance/ray-tracing',
+                  },
+                ],
+              },
+              {
+                text: 'Budget Friendly',
+                url: '/products/laptops/gaming/budget',
+              },
+            ],
+          },
+          {
+            text: 'Business Laptops',
+            url: '/products/laptops/business',
+          },
+        ],
       },
       {
         text: 'Tablets',
         url: '/products/tablets',
-
+        items: [
+          {
+            text: 'Android Tablets',
+            url: '/products/tablets/android',
+          },
+          {
+            text: 'iPads',
+            url: '/products/tablets/ipads',
+          },
+        ],
       },
       {
         text: 'Accessories',
         url: '/products/accessories',
+        items: [
+          {
+            text: 'Keyboards',
+            url: '/products/accessories/keyboards',
+          },
+          {
+            text: 'Mice',
+            url: '/products/accessories/mice',
+          },
+        ],
       },
     ],
-  },
-  {
-    text: 'Laptops',
-    url: '/products/laptops',
-  },
-  {
-    text: 'Gaming Laptops',
-    url: '/products/laptops/gaming',
   },
 ];
 

@@ -17,6 +17,7 @@ import * as breadcrumbsStories from "./me-breadcrumbs.stories";
 <Figma
   height="50%"
   collapsable
+  defaultCollapsed
   url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1348-42368"
 />
 
@@ -30,8 +31,9 @@ import * as breadcrumbsStories from "./me-breadcrumbs.stories";
 - [Направление сокращения хлебных крошек](#направление-сокращения-хлебных-крошек)
   - [Сокращение справа](#сокращение-справа)
   - [Сокращение слева](#сокращение-слева)
-- [Хлебные крошки с большим кол-вом элементов](#хлебные-крошки-с-большим-кол-вом-элементов)
+- [Хлебные крошки с большим количеством элементов](#хлебные-крошки-с-большим-количеством-элементов)
 - [Обработка событий](#обработка-событий)
+- [Кастомные названия полей](#кастомные-названия-полей)
 - [Пример использования](#пример-использования)
 
 ## С иконками
@@ -115,7 +117,7 @@ import * as breadcrumbsStories from "./me-breadcrumbs.stories";
 
 #### Сокращение слева
 
-По умолчанию, при нехватке места элементы сокращаются справа. Вы можете изменить это поведение, установив свойство `truncateFrom="left"`:
+При нехватке места элементы могут сокращаться слева, если задано свойство `truncateFrom="left"`:
 
 <Canvas of={breadcrumbsStories.TruncateFromLeft} />
 <Source
@@ -129,7 +131,7 @@ import * as breadcrumbsStories from "./me-breadcrumbs.stories";
   language="html"
 />
 
-### Хлебные крошки с большим кол-вом элементов
+### Хлебные крошки с большим количеством элементов
 
 Компонент автоматически адаптируется к большому количеству элементов:
 
@@ -166,6 +168,50 @@ onBreadcrumbItemClick(event: BreadcrumbItem) {
   language="html"
 />
 
+### Кастомные названия полей
+
+Если структура передаваемых данных отличается от стандартной (например, вместо `text`, `icon`, `items`, `url` используются `name`, `iconData`, `links`, `link`), вы можете настроить компонент с помощью следующих свойств:
+
+- **displayExpr** — имя поля для отображения текста. По умолчанию: `"text"`.
+- **iconExpr** — имя поля для отображения иконки. По умолчанию: `"icon"`.
+- **itemsExpr** — имя поля для вложенных элементов. По умолчанию: `"items"`.
+- **urlExpr** — имя поля для ссылки. По умолчанию: `"url"`.
+
+Пример использования с кастомными названиями полей:
+
+<Canvas of={breadcrumbsStories.WithCustomFields} />
+
+<Source
+  code={`
+<me-breadcrumbs
+  [items]="[
+    {
+      name: 'Главная',
+      link: '/',
+      iconData: 'home'
+    },
+    {
+      name: 'Продукты',
+      link: '/products',
+      iconData: 'shop',
+      links: [
+        {
+          name: 'Электроника',
+          link: '/products/electronics',
+          iconData: 'tv'
+        }
+      ]
+    }
+  ]"
+  displayExpr="name"
+  iconExpr="iconData"
+  itemsExpr="links"
+  urlExpr="link"
+></me-breadcrumbs>
+  `}
+  dark
+  language="html"
+/>
 
 ### Пример использования
 
