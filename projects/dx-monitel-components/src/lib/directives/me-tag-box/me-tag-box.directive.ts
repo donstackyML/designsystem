@@ -8,6 +8,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { DxTagBoxComponent } from 'devextreme-angular';
+import { Subscription, fromEvent } from 'rxjs';
 
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
@@ -28,6 +29,9 @@ export class MeTagBoxDirective
   @Input() dropDownListMaxHeight?: string | number;
 
   private focusService: ComponentFocusService;
+  private isKeyboardNavigation = false;
+  private globalKeydownSub!: Subscription;
+  private globalMousedownSub!: Subscription;
 
   constructor(
     public element: ElementRef,
@@ -38,15 +42,17 @@ export class MeTagBoxDirective
     super(tagBox);
     this.tagBox.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
-    this.focusService.addFocusInHandle((evt: FocusEvent) => this.onFocusIn());
-    this.focusService.addFocusOutHandle((evt: FocusEvent) => this.onFocusOut());
-  }
-
-  ngOnDestroy(): void {
-    this.focusService.ngOnDestroy();
   }
 
   ngOnInit(): void {
+    this.globalKeydownSub = fromEvent<KeyboardEvent>(window, 'keydown').subscribe(() => {
+      this.isKeyboardNavigation = true;
+    });
+
+    this.globalMousedownSub = fromEvent<MouseEvent>(window, 'mousedown').subscribe(() => {
+      this.isKeyboardNavigation = false;
+    });
+
     this.dropDownOptionsService.configureDropDownOptions(
       this.tagBox,
       this.element,
@@ -57,32 +63,45 @@ export class MeTagBoxDirective
     );
   }
 
-  isNoTags(): boolean {
-    let length = this.tagBox.itemsChildren.length;
-    debugger;
-    console.log('Tags count: %o', length);
-    return length == 0;
+  ngOnDestroy(): void {
+    this.focusService.ngOnDestroy();
+    this.globalKeydownSub?.unsubscribe();
+    this.globalMousedownSub?.unsubscribe();
   }
 
   @HostListener('onOpened', ['$event'])
   onOpened(e: any) {
-    if (!e.component?._list?.element()) {
+    const listInstance = e.component?._list;
+
+    if (!listInstance) {
       return;
     }
+    const listElement = listInstance.element();
 
-    const listElement = e.component._list.element();
+    listInstance.option('onFocusedItemChanged', (focusEvent: any) => {
+      if (!this.isKeyboardNavigation && focusEvent?.element) {
+        listElement.classList.add('me-keyboard-focused');
+      }
+    });
+
+    const originalOnItemClick = listInstance.option('onItemClick');
+
+    listInstance.option('onItemClick', (clickEvent: any) => {
+      if (originalOnItemClick) {
+        originalOnItemClick(clickEvent);
+      }
+      if (!this.isKeyboardNavigation && clickEvent?.itemElement) {
+        listElement.classList.remove('me-keyboard-focused');
+      }
+    });
+
     const popupContainer = listElement.parentElement?.parentElement;
-
     if (!popupContainer) {
       return;
     }
 
-    const submitButton = popupContainer.querySelector(
-      '.dx-button.dx-popup-done'
-    );
-    const cancelButton = popupContainer.querySelector(
-      '.dx-button.dx-popup-cancel'
-    );
+    const submitButton = popupContainer.querySelector('.dx-button.dx-popup-done');
+    const cancelButton = popupContainer.querySelector('.dx-button.dx-popup-cancel');
 
     if (submitButton) {
       this.renderer.addClass(submitButton, 'me-button');
@@ -104,24 +123,6 @@ export class MeTagBoxDirective
       if (cancelText) {
         cancelText.innerHTML = 'Отмена';
       }
-    }
-  }
-
-  onFocusIn() {
-    const labelElement = this.element.nativeElement.querySelector(
-      '.dx-texteditor-label'
-    );
-    if (labelElement) {
-      this.renderer.setStyle(labelElement, 'color', '#3257DC');
-    }
-  }
-
-  onFocusOut() {
-    const labelElement = this.element.nativeElement.querySelector(
-      '.dx-texteditor-label'
-    );
-    if (labelElement) {
-      this.renderer.removeStyle(labelElement, 'color');
     }
   }
 }
