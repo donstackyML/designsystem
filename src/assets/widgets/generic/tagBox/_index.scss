@@ -601,6 +601,10 @@
   }
 
   .dx-list {
+    &:not(.me-keyboard-focused):not(.dx-list-select-decorator-enabled) .dx-list-item.dx-state-focused:not(.me-list .dx-list-item) {
+      box-shadow: none;
+    }
+
     .dx-list-items {
       gap: 4px;
       display: flex;
@@ -720,9 +724,16 @@
         border-color: var(--Dividers-Borders-Long);
 
         .dx-toolbar-items-container {
+          height: fit-content;
+
           .dx-toolbar-center {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            height: fit-content;
+
             .dx-item {
-              padding-right: 12px;
+              padding-right: 0px;
             }
           }
         }
