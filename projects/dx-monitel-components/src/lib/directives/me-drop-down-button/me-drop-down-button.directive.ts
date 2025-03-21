@@ -98,6 +98,13 @@ export class MeDropDownButtonDirective
         ...this.wrapperAttr,
         class: `${popupWrapperClasses} me-dropdown-button-popup`,
       },
+      position: {
+        my: 'left top',
+        at: 'left bottom',
+        offset: { y: 4 },
+        collision: 'fit flip',
+        of: this.element.nativeElement
+      },
       ...this.dropDownOptions,
       contentTemplate: (contentElement: any) => {
         contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
