@@ -224,6 +224,7 @@
       // кнопка
       .dx-button.dx-buttongroup-item.dx-buttongroup-first-item.dx-dropdownbutton-action {
         .dx-button-content {
+          align-items: center;
           padding-block: var(--dropdownbutton-padding-block);
           padding-inline: var(--dropdownbutton-padding-inline);
           gap: var(--dropdownbutton-gap, 4px);
@@ -389,8 +390,6 @@
           &.dx-button-mode-outlined {
             --dropdownbutton-padding-block: 7px;
             --dropdownbutton-padding-inline: 15px;
-
-
           }
 
           &.dx-button-has-icon:not(:has(.dx-icon.dx-icon-spindown.dx-icon-right)) {
@@ -453,15 +452,12 @@
     .dx-popup-content.dx-dropdownbutton-content {
       max-height: inherit !important;
       padding: 0;
-      margin: 4px 0 !important;
 
       .dx-list-items {
         display: flex;
         flex-direction: column;
-        gap: 4px;
 
         .dx-item.dx-list-item {
-          padding: 4px 16px 4px 8px;
 
           .dx-item-content.dx-list-item-content {
             font-size: 13px;
@@ -489,13 +485,44 @@
         .dx-scrollable-container {
           .dx-scrollable-content {
             .dx-list-items {
+              --divider-height: 9px;
+
               display: flex;
               flex-direction: column;
-              gap: 4px;
+              gap: calc(var(--divider-height));
 
               .dx-item.dx-list-item {
+
+                overflow: visible;
+                min-height: 28px;
+                align-items: center;
+                display: flex;
                 border: none;
                 background: transparent;
+                position: relative;
+                padding-inline: var(--list-item-padding-inline);
+                padding-block: var(--list-item-padding-block);
+
+                &:not(:last-of-type) {
+                  &::after {
+                    --divider-margin-block: 4px;
+                    --divider-inline-offset: 8px;
+                    --divider-height: 1px;
+
+                    content: '';
+
+                    position: absolute;
+                    top: 100%;
+                    left: var(--divider-inline-offset);
+                    right: var(--divider-inline-offset);
+
+                    display: flex;
+                    height: var(--divider-height);
+                    margin-block: var(--divider-margin-block);
+
+                    background: var(--Dividers-Borders-Short);
+                  }
+                }
 
                 .dx-item-content.dx-list-item-content {
                   display: flex;
@@ -503,6 +530,12 @@
                   gap: 8px;
                   padding: 0;
                   font-weight: var(--me-medium-font-weight);
+
+                  &::before {
+                    display: none;
+                    content: none;
+                  }
+
 
                   .dx-icon {
                     margin: 0;
@@ -529,6 +562,9 @@
       .dx-scrollable-content {
         .dx-list-items {
           .dx-item.dx-list-item {
+            --list-item-padding-block: 4px;
+            --list-item-padding-inline: 8px 16px;
+
             .dx-item-content.dx-list-item-content {
               font-size: 13px;
               line-height: 16px;
@@ -549,6 +585,9 @@
       .dx-scrollable-content {
         .dx-list-items {
           .dx-item.dx-list-item {
+            --list-item-padding-block: 4px;
+            --list-item-padding-inline: 8px 16px;
+
             .dx-item-content.dx-list-item-content {
               font-size: 14px;
               line-height: 20px;
@@ -566,10 +605,12 @@
 
     // Стили для большого размера
     &.me-dropdownbutton-list-large {
+
       .dx-scrollable-content {
         .dx-list-items {
           .dx-item.dx-list-item {
-            padding: 8px 20px 8px 12px;
+            --list-item-padding-inline: 12px 20px;
+            --list-item-padding-block: 8px;
 
             .dx-item-content.dx-list-item-content {
               font-size: 16px;
