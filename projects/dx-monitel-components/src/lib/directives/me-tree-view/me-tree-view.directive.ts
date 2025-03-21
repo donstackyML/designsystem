@@ -4,6 +4,7 @@ import {
   ElementRef,
   HostListener,
   Input,
+  OnDestroy,
   Renderer2,
   ViewContainerRef
 } from '@angular/core';
@@ -20,7 +21,7 @@ import { MeSize } from '../../types/types';
     '[class.me-tree-view-truncate-text]': 'truncateText',
   },
 })
-export class MeTreeViewDirective implements AfterViewInit {
+export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'large';
   @Input() textTruncateBehavior: 'truncate' | 'wrap' = 'wrap';
 
@@ -31,7 +32,7 @@ export class MeTreeViewDirective implements AfterViewInit {
     private element: ElementRef,
     private component: DxTreeViewComponent,
     private renderer: Renderer2,
-    private viewContainerRef: ViewContainerRef,
+    private viewContainerRef: ViewContainerRef
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
@@ -75,10 +76,15 @@ export class MeTreeViewDirective implements AfterViewInit {
           tooltipInstance.position = 'bottom';
           tooltipInstance.showEvent = 'mouseenter';
           tooltipInstance.hideEvent = 'mouseleave';
-          tooltipInstance.maxWidth = this.element.nativeElement.offsetWidth > 300 ? this.element.nativeElement.offsetWidth / 2 : '200px';
+          tooltipInstance.maxWidth = this.element.nativeElement.offsetWidth > 300
+            ? this.element.nativeElement.offsetWidth / 2
+            : '200px';
           tooltipInstance.contentTemplate = () => span.innerText;
 
           tooltipComponentRef.changeDetectorRef.detectChanges();
+
+          this.renderer.appendChild(document.body, tooltipComponentRef.location.nativeElement);
+
           this.tooltipRefs.set(tooltipTarget, tooltipComponentRef);
         }
       }
@@ -98,9 +104,6 @@ export class MeTreeViewDirective implements AfterViewInit {
     return this.size === 'large';
   }
   get truncateText() {
-    if (this.textTruncateBehavior === 'truncate') {
-      return true
-    }
-    return false
+    return this.textTruncateBehavior === 'truncate';
   }
 }
