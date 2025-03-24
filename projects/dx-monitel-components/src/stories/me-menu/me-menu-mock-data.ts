@@ -85,6 +85,28 @@ export const meMenuMockData = [
           {
             icon: argsIcon,
             text: 'Home & Office Phones',
+            items: [
+              {
+                icon: argsIcon,
+                text: 'Home & Office Phones',
+              },
+              {
+                icon: argsIcon,
+                text: 'Smart Phones & PDAs',
+              },
+              {
+                icon: argsIcon,
+                text: 'Senior Cell Phones',
+              },
+              {
+                icon: argsIcon,
+                text: 'Mobile Broadband Devices',
+              },
+              {
+                icon: argsIcon,
+                text: 'Cell Phone Accessories',
+              },
+            ]
           },
           {
             icon: argsIcon,

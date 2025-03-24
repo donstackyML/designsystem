@@ -30,6 +30,7 @@ import {
 import type { ItemClickEvent as ContextMenuItemClickEvent } from 'devextreme/ui/context_menu';
 import type { ItemClickEvent as MenuItemClickEvent } from 'devextreme/ui/menu';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeMenuModule } from '../../directives/me-menu/me-menu.module';
 
 export interface BreadcrumbItem {
   text?: string;
@@ -46,6 +47,7 @@ export interface BreadcrumbItem {
     CommonModule,
     MeIconsModule,
     DxMenuModule,
+    MeMenuModule,
     DxButtonModule,
     DxContextMenuModule,
   ],

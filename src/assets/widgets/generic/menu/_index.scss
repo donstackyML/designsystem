@@ -353,6 +353,7 @@
 
 .me-menu-submenu {
   border: 1px solid $base-border-color;
+  border-radius: var(--Inside-Elements);
 
   .dx-menu-item {
     &:not(.dx-state-disabled).dx-state-focused {
@@ -382,6 +383,7 @@
   }
 
   &.dx-submenu {
+
     .dx-menu-items-container {
       padding: 0;
       display: flex;
@@ -428,7 +430,6 @@
   }
 
   &.me-menu-submenu-small {
-    border-radius: 3px;
 
     .dx-menu-items-container {
       padding-block: 4px;
@@ -463,7 +464,6 @@
   }
 
   &.me-menu-submenu-large {
-    border-radius: 4px;
 
     .dx-menu-items-container {
       padding-block: 2px;
@@ -568,10 +568,11 @@
 
 .me-context-menu.dx-context-menu .dx-submenu {
   border: none;
+  max-height: calc(100% - 2px);
+  box-shadow: inset 0 0 0 1px $base-border-color, 0px 5px 8px 0px #00000033;
 
-  .dx-scrollable-content {
-    box-shadow: inset 0px 0px 0px 1px $base-border-color;
-    border-radius: 4px;
+  .dx-menu-items-container {
+    padding: 1px;
   }
 }
 
@@ -579,6 +580,5 @@
   .dx-menu-item.dx-state-focused {
     outline: 2px solid var(--Dividers-Borders-Focus);
     outline-offset: 2px;
-    background-color: transparent;
   }
 }

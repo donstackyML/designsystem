@@ -1276,21 +1276,6 @@ export const meContextMenuMockDataWithSelectedItems = [
         text: 'Facebook',
         selected: true,
       },
-      {
-        icon: 'share',
-        text: 'Twitter',
-        selected: true,
-      },
-      {
-        icon: 'share',
-        text: 'Instagram',
-        selected: true,
-      },
-      {
-        icon: 'share',
-        text: 'Pinterest',
-        selected: true,
-      },
     ],
   },
   {
