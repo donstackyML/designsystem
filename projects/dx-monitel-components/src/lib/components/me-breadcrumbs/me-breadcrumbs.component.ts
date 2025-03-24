@@ -89,6 +89,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   private resizeObserver!: ResizeObserver;
   private breadcrumbWidths: number[] = [];
   private focusService: ComponentFocusService;
+  private isOpenedSubmenu = false;
 
   private keyNavigationIdx = -1;
   private keyItemNavigationIdx = -1;
@@ -120,7 +121,6 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     this.focusService.addKeyUpEventHandle('ArrowRight', (evt) =>
       this.rightHandle(evt)
     );
-    this.focusService.addFocusOutHandle((evt) => this.outFocusHandle(evt));
   }
 
   ngOnInit() {
@@ -297,6 +297,15 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     if (submenuContainer) {
       submenuContainer.classList.add('me-custom-submenu');
     }
+    this.focusService.clearKeyboardFocus();
+
+    this.isOpenedSubmenu = true;
+  }
+
+  onSubmenuHiding(e: any) {
+    if ((e.submenu?._shownSubmenus?.length === 0 || typeof e.submenu?._shownSubmenus === 'undefined') && e.submenu._isHidden) {
+      this.isOpenedSubmenu = false;
+    }
   }
 
   showOverflowMenu(position: 'left' | 'right', event: any) {
@@ -326,6 +335,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   }
 
   private tabHandle(evt: KeyboardEvent) {
+    if (this.isOpenedSubmenu) return;
     let container = this.breadcrumbsContainer.nativeElement;
     let btnLeft = container.querySelector('.breadcrumbs__left-btn');
     let btnRight = container.querySelector('.breadcrumbs__right-btn');
@@ -368,6 +378,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   }
 
   private leftHandle(evt: KeyboardEvent) {
+    if (this.isOpenedSubmenu) return;
     let items: any = [];
     this.menuItems.forEach((cmp) => items.push(cmp.instance.element()));
     if (this.keyItemNavigationIdx < 0) {
@@ -385,6 +396,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   }
 
   private rightHandle(evt: KeyboardEvent) {
+    if (this.isOpenedSubmenu) return;
     let items: any = [];
     this.menuItems.forEach((cmp) => items.push(cmp.instance.element()));
     if (this.keyItemNavigationIdx < 0) {
@@ -400,8 +412,6 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     evt.preventDefault();
     this.focusService.holdKeyboardFocus();
   }
-
-  private outFocusHandle(evt: FocusEvent) { }
 
   setIconSize(): number {
     switch (this.size) {
