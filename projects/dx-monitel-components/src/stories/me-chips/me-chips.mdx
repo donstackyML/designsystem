@@ -2,18 +2,7 @@ import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
 import * as chipsStories from "./me-chips.stories";
 
-<Meta
-  name="Chips Documentation"
-  of={chipsStories}
-  parameters={{
-      docs: {
-        description: {
-          component:
-            "Компоненты `me-chips` и `me-chip` с поддержкой удаления элементов. Чипы становятся активными при клике.",
-        },
-      },
-    }}
-/>
+<Meta name="Chips Documentation" of={chipsStories} />
 
 # Chips
 
@@ -23,7 +12,6 @@ import * as chipsStories from "./me-chips.stories";
 
 <Canvas name="Default" of={chipsStories.Default} />
 <Controls of={chipsStories.Default} />
-<Source of={chipsStories.Default} dark />
 
 ## Дизайн
 
@@ -55,7 +43,7 @@ import * as chipsStories from "./me-chips.stories";
 
 ### Множество чипов
 
-<Canvas name="Many Chips"  of={chipsStories.Default} />
+<Canvas name="Many Chips"  of={chipsStories.MultiSelect} />
 <Source
   code={`
 <me-chips
@@ -165,5 +153,5 @@ onChipRemove() {
 }
 `}
 dark
-language="typescript"
+language="html"
 />
