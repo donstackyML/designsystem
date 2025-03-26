@@ -169,12 +169,12 @@ export const meBreadcrumbsMockDataWithNestedItemsAndIcons = [
       {
         text: 'Tablets',
         url: '/products/tablets',
-        icon: 'tablet_mac',
+        icon: 'speaker_notes_x20',
       },
       {
         text: 'Accessories',
         url: '/products/accessories',
-        icon: 'headset',
+        icon: 'speaker_notes_x20',
       },
     ],
   },

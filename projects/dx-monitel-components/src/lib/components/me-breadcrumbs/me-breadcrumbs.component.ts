@@ -29,8 +29,8 @@ import {
 } from 'devextreme-angular';
 import type { ItemClickEvent as ContextMenuItemClickEvent } from 'devextreme/ui/context_menu';
 import type { ItemClickEvent as MenuItemClickEvent } from 'devextreme/ui/menu';
-import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeMenuModule } from '../../directives/me-menu/me-menu.module';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 export interface BreadcrumbItem {
   text?: string;
@@ -55,51 +55,42 @@ export interface BreadcrumbItem {
 })
 export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestroy, OnInit {
   @Input() items: any[] = [];
-
   @Input() displayExpr: string = 'text';
   @Input() iconExpr: string = 'icon';
   @Input() itemsExpr: string = 'items';
   @Input() urlExpr: string = 'url';
-
   @Input() truncateFrom: 'left' | 'right' = 'right';
   @Input() size: 'small' | 'large' = 'small';
   @Input() showDivider: boolean = true;
 
   @Output() itemClick = new EventEmitter<BreadcrumbItem>();
 
-  @ViewChild('breadcrumbsContainer', { static: true })
-  breadcrumbsContainer!: ElementRef;
-  @ViewChild('overflowMenu', { static: true })
-  overflowMenu!: DxContextMenuComponent;
-  @ViewChildren(DxMenuComponent)
-  menuItems!: QueryList<DxMenuComponent>;
-  @ViewChild('leftBtn', { static: true })
-  leftBtn?: DxButtonComponent;
-  @ViewChild('rightBtn', { static: true })
-  rightBtn?: DxButtonComponent;
+  @ViewChild('breadcrumbsContainer', { static: true }) breadcrumbsContainer!: ElementRef;
+  @ViewChild('overflowMenu', { static: true }) overflowMenu!: DxContextMenuComponent;
+  @ViewChildren(DxMenuComponent) menuItems!: QueryList<DxMenuComponent>;
+  @ViewChild('leftBtn', { static: true }) leftBtn?: DxButtonComponent;
+  @ViewChild('rightBtn', { static: true }) rightBtn?: DxButtonComponent;
+  @ViewChildren('breadcrumbItem') breadcrumbItems!: QueryList<ElementRef>;
 
-  private normalizedItems: BreadcrumbItem[] = [];
-
-  visibleItems: BreadcrumbItem[] = [];
+  normalizedItems: BreadcrumbItem[] = [];
   overflowItems: BreadcrumbItem[] = [];
   overflowLeft = false;
   overflowRight = false;
   overflowMenuTarget: HTMLElement | null = null;
-
-  private resizeObserver!: ResizeObserver;
-  private breadcrumbWidths: number[] = [];
-  private focusService: ComponentFocusService;
-  private isOpenedSubmenu = false;
-
-  private keyNavigationIdx = -1;
-  private keyItemNavigationIdx = -1;
-  private previousItemsLength = 0;
 
   contextMenuPosition: any = {
     my: 'top left',
     at: 'bottom left',
     offset: { x: 0, y: 5 },
   };
+
+  private resizeObserver!: ResizeObserver;
+  private focusService: ComponentFocusService;
+  private isOpenedSubmenu = false;
+  private keyNavigationIdx = -1;
+  private keyItemNavigationIdx = -1;
+  private previousItemsLength = 0;
+  private updateVisibleItemsScheduled = false;
 
   private overflowMenuOptions = {
     wrapperAttr: {
@@ -115,12 +106,8 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   ) {
     this.focusService = new ComponentFocusService(elementRef, renderer);
     this.focusService.addKeyUpEventHandle('Tab', (evt) => this.tabHandle(evt));
-    this.focusService.addKeyUpEventHandle('ArrowLeft', (evt) =>
-      this.leftHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('ArrowRight', (evt) =>
-      this.rightHandle(evt)
-    );
+    this.focusService.addKeyUpEventHandle('ArrowLeft', (evt) => this.leftHandle(evt));
+    this.focusService.addKeyUpEventHandle('ArrowRight', (evt) => this.rightHandle(evt));
   }
 
   ngOnInit() {
@@ -128,15 +115,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (
-      changes['items'] ||
-      changes['truncateFrom'] ||
-      changes['size'] ||
-      changes['displayExpr'] ||
-      changes['iconExpr'] ||
-      changes['itemsExpr'] ||
-      changes['urlExpr']
-    ) {
+    if (changes['items'] || changes['truncateFrom'] || changes['size']) {
       this.updateItems();
       this.previousItemsLength = this.items.length;
     }
@@ -167,102 +146,12 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     );
   }
 
-  private setupResizeObserver() {
-    this.resizeObserver = new ResizeObserver(() => {
-      this.zone.run(() => {
-        this.updateVisibleItems();
-      });
-    });
-    this.resizeObserver.observe(this.breadcrumbsContainer.nativeElement);
-  }
-
-  private updateItems() {
-    this.normalizedItems = this.normalizeItems(this.items);
-    this.visibleItems = [...this.normalizedItems];
-    this.calculateBreadcrumbWidths();
-    this.updateVisibleItems();
-  }
-
-  private normalizeItems(items: any[]): BreadcrumbItem[] {
-    return items.map((item: any) => {
-      const normalized: BreadcrumbItem = {
-        text: item[this.displayExpr],
-        url: item[this.urlExpr],
-        icon: item[this.iconExpr],
-      };
-      if (item[this.itemsExpr] && Array.isArray(item[this.itemsExpr])) {
-        normalized.items = this.normalizeItems(item[this.itemsExpr]);
-      }
-      return normalized;
-    });
-  }
-
-  private calculateBreadcrumbWidths() {
-    this.breadcrumbWidths = [];
-    const tempContainer = document.createElement('div');
-    tempContainer.style.visibility = 'hidden';
-    tempContainer.style.position = 'absolute';
-    tempContainer.style.whiteSpace = 'nowrap';
-    tempContainer.style.fontSize = getComputedStyle(
-      this.breadcrumbsContainer.nativeElement
-    ).fontSize;
-    document.body.appendChild(tempContainer);
-
-    this.normalizedItems.forEach((item) => {
-      tempContainer.innerHTML = `
-        <div class="breadcrumb-item">
-          ${item.icon ? `<i class="dx-icon-${item.icon}"></i>` : ''}
-          ${item.text ? `<span class="dx-menu-item-text">${item.text}</span>` : ''}
-          ${item.items?.length ? '<i class="dx-icon-chevron-down"></i>' : ''}
-        </div>
-      `;
-      const width = tempContainer.offsetWidth;
-      this.breadcrumbWidths.push(width * 2);
-    });
-
-    document.body.removeChild(tempContainer);
-  }
-
-  private updateVisibleItems() {
-    const containerWidth = this.breadcrumbsContainer.nativeElement.offsetWidth;
-    const overflowButtonWidth = this.size === 'small' ? 24 : 32;
-    let availableWidth = containerWidth - overflowButtonWidth;
-
-    const totalItems = this.normalizedItems.length;
-    let start = 0;
-    let end = totalItems;
-
-    if (this.truncateFrom === 'left') {
-      for (let i = totalItems - 1; i >= 0; i--) {
-        const width = this.breadcrumbWidths[i];
-        if (availableWidth - width >= 0) {
-          availableWidth -= width;
-          start = i;
-        } else {
-          break;
-        }
-      }
-      this.visibleItems = this.normalizedItems.slice(start, end);
-      this.overflowItems = this.normalizedItems.slice(0, start);
-      this.overflowLeft = this.overflowItems.length > 0;
-      this.overflowRight = false;
-    } else {
-      for (let i = 0; i < totalItems; i++) {
-        const width = this.breadcrumbWidths[i];
-        if (availableWidth - width >= 0) {
-          availableWidth -= width;
-          end = i + 1;
-        } else {
-          break;
-        }
-      }
-      this.visibleItems = this.normalizedItems.slice(0, end);
-      this.overflowItems = this.normalizedItems.slice(end, totalItems);
-      this.overflowLeft = false;
-      this.overflowRight = this.overflowItems.length > 0;
+  ngOnDestroy() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver.unobserve(this.elementRef.nativeElement.parentElement);
     }
-
-    this.cdr.markForCheck();
+    this.focusService.ngOnDestroy();
   }
 
   onItemClick(e: MenuItemClickEvent): void {
@@ -274,6 +163,25 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     const clickedItem = e.itemData as BreadcrumbItem;
     this.itemClick.emit(clickedItem);
     this.overflowMenu.instance.hide().then();
+  }
+
+  showOverflowMenu(position: 'left' | 'right', event: any) {
+    this.overflowMenuTarget = event.element as HTMLElement;
+    if (this.overflowMenuTarget) {
+      this.contextMenuPosition = {
+        my: position === 'left' ? 'top left' : 'top right',
+        at: position === 'left' ? 'bottom left' : 'bottom right',
+        of: this.overflowMenuTarget,
+        offset: { x: 0, y: 5 },
+      };
+
+      this.overflowMenu.instance.option({
+        position: this.contextMenuPosition,
+        ...this.overflowMenuOptions,
+      });
+
+      this.overflowMenu.instance.show();
+    }
   }
 
   onContextMenuPositioning(e: any) {
@@ -298,7 +206,6 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
       submenuContainer.classList.add('me-custom-submenu');
     }
     this.focusService.clearKeyboardFocus();
-
     this.isOpenedSubmenu = true;
   }
 
@@ -308,30 +215,98 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     }
   }
 
-  showOverflowMenu(position: 'left' | 'right', event: any) {
-    this.overflowMenuTarget = event.element as HTMLElement;
-    if (this.overflowMenuTarget) {
-      this.contextMenuPosition = {
-        my: position === 'left' ? 'top left' : 'top right',
-        at: position === 'left' ? 'bottom left' : 'bottom right',
-        of: this.overflowMenuTarget,
-        offset: { x: 0, y: 5 },
-      };
+  setIconSize(): number {
+    return this.size === 'small' ? 20 : 24;
+  }
 
-      this.overflowMenu.instance.option({
-        position: this.contextMenuPosition,
-        ...this.overflowMenuOptions,
+  private setupResizeObserver() {
+    this.resizeObserver = new ResizeObserver(() => {
+      this.zone.run(() => {
+        this.updateVisibleItems();
       });
+    });
 
-      this.overflowMenu.instance.show();
+    if (this.elementRef.nativeElement?.parentElement) {
+      this.resizeObserver.observe(this.elementRef.nativeElement?.parentElement);
     }
   }
 
-  ngOnDestroy() {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
+  private scheduleUpdateVisibleItems() {
+    if (this.updateVisibleItemsScheduled) return;
+    this.updateVisibleItemsScheduled = true;
+    requestAnimationFrame(() => {
+      this.updateVisibleItems();
+      this.updateVisibleItemsScheduled = false;
+    });
+  }
+
+  private updateItems() {
+    const newNormalizedItems = this.normalizeItems(this.items);
+    const isDifferentLength = newNormalizedItems.length !== this.normalizedItems.length;
+    const isDifferentContent = JSON.stringify(newNormalizedItems) !== JSON.stringify(this.normalizedItems);
+
+    if (isDifferentLength || isDifferentContent) {
+      this.normalizedItems = newNormalizedItems;
+      this.scheduleUpdateVisibleItems();
     }
-    this.focusService.ngOnDestroy();
+  }
+
+  private normalizeItems(items: any[]): BreadcrumbItem[] {
+    return items.map((item: any) => {
+      const normalized: BreadcrumbItem = {
+        text: item[this.displayExpr],
+        url: item[this.urlExpr],
+        icon: item[this.iconExpr],
+      };
+      if (item[this.itemsExpr] && Array.isArray(item[this.itemsExpr])) {
+        normalized.items = this.normalizeItems(item[this.itemsExpr]);
+      }
+      return normalized;
+    });
+  }
+
+  private updateVisibleItems(): void {
+    const containerEl = this.breadcrumbsContainer.nativeElement as HTMLElement;
+    this.breadcrumbItems.forEach((itemRef) => {
+      this.renderer.removeClass(itemRef.nativeElement, 'hidden-breadcrumb');
+    });
+
+    this.overflowItems = [];
+    this.overflowLeft = false;
+    this.overflowRight = false;
+
+    const isOverflown = (element: HTMLElement): boolean =>
+      element.scrollWidth > element.clientWidth;
+
+    if (isOverflown(containerEl)) {
+      if (this.truncateFrom === 'right') {
+        const itemsArr = this.breadcrumbItems.toArray();
+        while (isOverflown(containerEl) && itemsArr.length > 1) {
+          const removedEl = itemsArr.pop();
+          if (removedEl) {
+            this.renderer.addClass(removedEl.nativeElement, 'hidden-breadcrumb');
+            const index = itemsArr.length;
+            if (this.normalizedItems[index]) {
+              this.overflowItems.unshift(this.normalizedItems[index]);
+            }
+          }
+        }
+        this.overflowRight = this.overflowItems.length > 0;
+      } else {
+        const itemsArr = this.breadcrumbItems.toArray();
+        while (isOverflown(containerEl) && itemsArr.length > 1) {
+          const removedEl = itemsArr.shift();
+          if (removedEl) {
+            this.renderer.addClass(removedEl.nativeElement, 'hidden-breadcrumb');
+            if (this.normalizedItems.length > 0) {
+              this.overflowItems.push(this.normalizedItems[0]);
+            }
+          }
+        }
+        this.overflowLeft = this.overflowItems.length > 0;
+      }
+    }
+    this.cdr.markForCheck();
   }
 
   private tabHandle(evt: KeyboardEvent) {
@@ -340,13 +315,10 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     let btnLeft = container.querySelector('.breadcrumbs__left-btn');
     let btnRight = container.querySelector('.breadcrumbs__right-btn');
     let items: any = [];
-    if (btnLeft) {
-      items.push(btnLeft);
-    }
+    if (btnLeft) items.push(btnLeft);
     this.menuItems.forEach((cmp) => items.push(cmp.instance.element()));
-    if (btnRight) {
-      items.push(btnRight);
-    }
+    if (btnRight) items.push(btnRight);
+
     if (this.keyNavigationIdx < 0) {
       this.keyNavigationIdx = 0;
     } else {
@@ -356,19 +328,13 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
         return;
       }
     }
+
     if (btnLeft) {
-      if (this.keyItemNavigationIdx < this.menuItems.length) {
-        this.keyItemNavigationIdx = this.keyNavigationIdx - 1;
-      } else {
-        this.keyItemNavigationIdx = -1;
-      }
+      this.keyItemNavigationIdx = this.keyNavigationIdx < this.menuItems.length + 1 ? this.keyNavigationIdx - 1 : -1;
     } else {
-      if (this.keyNavigationIdx < this.menuItems.length) {
-        this.keyItemNavigationIdx = this.keyNavigationIdx;
-      } else {
-        this.keyItemNavigationIdx = -1;
-      }
+      this.keyItemNavigationIdx = this.keyNavigationIdx < this.menuItems.length ? this.keyNavigationIdx : -1;
     }
+
     items.forEach((elm: { tabIndex: number }) => (elm.tabIndex = 0));
     let elm = items[this.keyNavigationIdx];
     elm.tabIndex = 0;
@@ -411,14 +377,5 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     elm.focus();
     evt.preventDefault();
     this.focusService.holdKeyboardFocus();
-  }
-
-  setIconSize(): number {
-    switch (this.size) {
-      case 'small':
-        return 20;
-      case 'large':
-        return 24;
-    }
   }
 }

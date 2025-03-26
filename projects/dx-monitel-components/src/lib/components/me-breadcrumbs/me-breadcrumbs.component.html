@@ -1,40 +1,37 @@
-<nav class="breadcrumbs" [ngClass]="'breadcrumbs-' + size" aria-label="Breadcrumbs" #breadcrumbsContainer>
+<nav #breadcrumbsContainer class="breadcrumbs" [ngClass]="'breadcrumbs-' + size" aria-label="Breadcrumbs">
   <dx-button #leftBtn class="breadcrumbs__left-btn" *ngIf="overflowLeft" stylingMode="text" (onClick)="showOverflowMenu('left', $event)">
     <me-icon name="more_horiz_x20"></me-icon>
   </dx-button>
 
-  <ng-container *ngFor="let item of visibleItems; let isLast = last">
-    <dx-menu
-      meMenu
-      [dataSource]="[item]"
-      [showFirstSubmenuMode]="{
-        name: 'onClick',
-        delay: { show: 0, hide: 300 }
-      }"
-      orientation="horizontal"
-      [hideSubmenuOnMouseLeave]="false"
-      (onItemClick)="onItemClick($event)"
-      class="breadcrumb-menu"
-      [ngClass]="'menu-item-' + size"
-      (onSubmenuShowing)="onSubmenuShowing($event)"
-      (onSubmenuHiding)="onSubmenuHiding($event)"
-    >
-      <div *dxTemplate="let data of 'item'" class="menu-item" [ngClass]="'menu-item-' + size">
-        <me-icon *ngIf="data.icon" [name]="data.icon" [containerSize]="setIconSize()"></me-icon>
-        <span *ngIf="data.text" class="dx-menu-item-text">{{ data.text }}</span>
-        <i *ngIf="data.items?.length" class="dx-icon-spindown"></i>
-      </div>
-    </dx-menu>
-    <span *ngIf="!isLast && showDivider" class="divider"></span>
+  <ng-container *ngFor="let item of normalizedItems">
+    <div #breadcrumbItem class="breadcrumb" [ngClass]="{'breadcrumb-with-divider': showDivider}">
+      <dx-menu
+        meMenu
+        [dataSource]="[item]"
+        [showFirstSubmenuMode]="{ name: 'onClick', delay: { show: 0, hide: 300 } }"
+        orientation="horizontal"
+        [hideSubmenuOnMouseLeave]="false"
+        (onItemClick)="onItemClick($event)"
+        class="breadcrumb-menu"
+        [ngClass]="'menu-item-' + size"
+        (onSubmenuShowing)="onSubmenuShowing($event)"
+        (onSubmenuHiding)="onSubmenuHiding($event)"
+      >
+        <div *dxTemplate="let data of 'item'" class="menu-item" [ngClass]="'menu-item-' + size">
+          <me-icon *ngIf="data.icon" [name]="data.icon" [containerSize]="setIconSize()"></me-icon>
+          <span *ngIf="data.text" class="dx-menu-item-text">{{ data.text }}</span>
+          <i *ngIf="data.items?.length" class="dx-icon-spindown"></i>
+        </div>
+      </dx-menu>
+    </div>
   </ng-container>
-
   <dx-button #rightBtn *ngIf="overflowRight" class="breadcrumbs__right-btn" stylingMode="text" (onClick)="showOverflowMenu('right', $event)">
     <me-icon name="more_horiz_x20"></me-icon>
   </dx-button>
 </nav>
 <dx-context-menu
-  class="context-menu"
   #overflowMenu
+  class="context-menu"
   [dataSource]="overflowItems"
   [position]="contextMenuPosition"
   (onPositioning)="onContextMenuPositioning($event)"

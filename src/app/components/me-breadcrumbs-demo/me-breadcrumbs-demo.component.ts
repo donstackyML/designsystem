@@ -6,6 +6,11 @@ import { BreadcrumbItem } from '../../../../projects/dx-monitel-components/src/p
 @Component({
   selector: 'me-breadcrumbs-demo',
   templateUrl: './me-breadcrumbs-demo.component.html',
+  styles: [
+    `:host {
+        display: block;
+    }`
+  ]
 })
 export class MeBreadcrumbsDemoComponent {
 
