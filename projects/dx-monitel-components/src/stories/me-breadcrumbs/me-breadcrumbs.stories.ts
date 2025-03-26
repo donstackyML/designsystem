@@ -126,6 +126,13 @@ export default {
   render: (args) => ({
     props: args,
     template: `<me-breadcrumbs ${argsToTemplate(args)}></me-breadcrumbs>`,
+    styles: [
+      `
+        :host {
+          display: block;
+        }
+      `
+    ]
   }),
 } satisfies Meta<MeBreadcrumbsComponent>;
 
@@ -210,9 +217,6 @@ export const WithFlexContainer: Story = {
       `
       .container {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 800px;
       }
       `,
     ],
@@ -247,7 +251,7 @@ export const WithFlexContainer: Story = {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 900px;
+        max-width: 900px;
         gap: 10px;
       }
       .button-group {
