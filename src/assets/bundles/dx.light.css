@@ -6683,7 +6683,7 @@
   height: 45px;
   width: 100%;
 }
-.dx-calendar.dx-calendar-with-footer .dx-calendar-footer .dx-button {
+.dx-calendar.dx-calendar-with-footer .dx-calendar-footer .dx-button:not(.dx-calendar-today-button) {
   background: none;
 }
 .dx-calendar.dx-calendar-range {
@@ -6751,18 +6751,21 @@
 
 .dx-calendar-caption-button,
 .dx-calendar-navigator-previous-month,
-.dx-calendar-navigator-next-view {
+.dx-calendar-navigator-next-view,
+.dx-calendar-today-button {
   background: none;
   border: none;
 }
 .dx-calendar-caption-button.dx-state-hover,
 .dx-calendar-navigator-previous-month.dx-state-hover,
-.dx-calendar-navigator-next-view.dx-state-hover {
+.dx-calendar-navigator-next-view.dx-state-hover,
+.dx-calendar-today-button.dx-state-hover {
   background: rgba(60, 101, 248, 0.1215686275);
 }
 .dx-calendar-caption-button.dx-state-active,
 .dx-calendar-navigator-previous-month.dx-state-active,
-.dx-calendar-navigator-next-view.dx-state-active {
+.dx-calendar-navigator-next-view.dx-state-active,
+.dx-calendar-today-button.dx-state-active {
   background: rgba(60, 113, 248, 0.2);
 }
 
@@ -6901,9 +6904,18 @@
   padding: 2px 8px 8px 8px;
   border: 1px solid #dfe0ed;
   border-radius: 4px;
-  height: 292px;
+  min-height: 292px;
   width: 288px;
   box-shadow: var(--select-box-box-shadow);
+}
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-today-button .dx-button-content, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-today-button .dx-button-content, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-today-button .dx-button-content, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-today-button .dx-button-content,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-today-button .dx-button-content,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-today-button .dx-button-content,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-today-button .dx-button-content,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-today-button .dx-button-content {
+  align-items: center;
+  max-height: 32px;
+  padding: 8px 12px;
 }
 .me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body,
 .dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body,

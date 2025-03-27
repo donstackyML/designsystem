@@ -185,9 +185,8 @@ export const ZoomLevelYear: Story = {
   },
 };
 
-export const CalendarWithTodayButton: Story = {
+export const WithTodayButton: Story = {
   args: {
-    zoomLevel: 'year',
     showTodayButton: true,
   },
 };

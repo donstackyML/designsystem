@@ -39,7 +39,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
       height: $generic-calendar-footer-height;
       width: 100%;
 
-      .dx-button {
+      .dx-button:not(.dx-calendar-today-button) {
         background: none;
       }
     }
@@ -64,7 +64,6 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
     height: 100%;
     border-radius: 0;
     display: table-cell;
-    // border-color: $calendar-navigator-border-color;
 
     .dx-icon {
       font-size: $generic-calendar-navigator-fontsize;
@@ -126,7 +125,9 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
 
 .dx-calendar-caption-button,
 .dx-calendar-navigator-previous-month,
-.dx-calendar-navigator-next-view {
+.dx-calendar-navigator-next-view,
+.dx-calendar-today-button
+{
   background: none;
   border: none;
 
@@ -221,7 +222,6 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
   border-radius: $calendar-cell-contoured-border-radius;
 
   &.dx-calendar-today {
-    // font-weight: bold;
     box-shadow: inset 0 0 0 2px $calendar-cell-selected-bg;
   }
 
@@ -311,9 +311,17 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
     padding: 2px 8px 8px 8px;
     border: 1px solid $calendar-border-color;
     border-radius: 4px;
-    height: 292px;
+    min-height: 292px;
     width: 288px;
     box-shadow: var(--select-box-box-shadow);
+
+    .dx-calendar-today-button {
+      .dx-button-content {
+        max-height: 32px;
+        padding: 8px 12px;
+        align-items: center;
+      }
+    }
 
     .dx-calendar-body {
       top: $generic-calendar-body-top;
