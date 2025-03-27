@@ -135,6 +135,8 @@
 
 :root {
   --Inside-Elements: 3px;
+  --modal-shadow-color: rgba(0, 0, 0, 0.22);
+  --modal-shadow: 0px 4px 10px 0px var(--modal-shadow-color);
 }
 
 /**
@@ -25391,8 +25393,12 @@ input.dx-hidden {
   width: auto;
 }
 
+.dx-popup-wrapper > .dx-overlay-content {
+  box-shadow: var(--modal-shadow);
+}
+
 .dx-popup-wrapper.me-popup > .dx-overlay-content {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2196078431);
+  box-shadow: 0 4px 10px var(--modal-shadow-color);
   border-radius: 4px;
 }
 .dx-popup-wrapper > .dx-overlay-content {
@@ -30772,7 +30778,7 @@ input.dx-hidden {
   justify-content: space-between;
 }
 .me-sidepage.me-sidepage-open {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2196078431);
+  box-shadow: 0 4px 10px var(--modal-shadow-color);
   border-radius: 0;
 }
 .me-sidepage .dx-popup-wrapper.me-popup > .dx-overlay-content {
@@ -37773,7 +37779,7 @@ input.dx-hidden {
 .dx-dialog.dx-overlay.dx-popup .dx-dialog-wrapper.dx-dialog-root.dx-overlay-shader .dx-overlay-content {
   width: 340px;
   background: var(--Background-Content);
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2196078431);
+  box-shadow: var(--modal-shadow);
   border: none;
   border-radius: 4px;
   overflow: hidden;
