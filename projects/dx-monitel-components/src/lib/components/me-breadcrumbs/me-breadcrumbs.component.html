@@ -4,7 +4,7 @@
   </dx-button>
 
   <ng-container *ngFor="let item of normalizedItems">
-    <div #breadcrumbItem class="breadcrumb" [ngClass]="{'breadcrumb-with-divider': showDivider}">
+    <div #breadcrumbItem class="breadcrumb" [ngClass]="{ 'breadcrumb-with-divider': showDivider }">
       <dx-menu
         meMenu
         [dataSource]="[item]"
@@ -34,10 +34,18 @@
   class="context-menu"
   [dataSource]="overflowItems"
   [position]="contextMenuPosition"
+  [activeStateEnabled]="true"
   (onPositioning)="onContextMenuPositioning($event)"
   (onItemClick)="onOverflowItemClick($event)"
 >
-  <div *dxTemplate="let data of 'item'" class="context-menu-item" [ngClass]="'context-menu-item-' + size">
+  <div
+    *dxTemplate="let data of 'item'"
+    class="context-menu-item"
+    [ngClass]="'context-menu-item-' + size"
+    (mousedown)="onContextMenuItemMouseDown($event)"
+    (mouseup)="onContextMenuItemMouseUp($event)"
+    (mouseleave)="onContextMenuItemMouseUp($event)"
+  >
     <me-icon *ngIf="data.icon" [name]="data.icon" [containerSize]="setIconSize()"></me-icon>
     <span>{{ data.text }}</span>
     <i *ngIf="data.items?.length" class="dx-icon-spindown"></i>

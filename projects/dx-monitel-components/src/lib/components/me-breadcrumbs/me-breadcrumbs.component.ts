@@ -146,6 +146,16 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     );
   }
 
+  onContextMenuItemMouseDown(event: MouseEvent): void {
+    const target = event.currentTarget as HTMLElement;
+    this.renderer.addClass(target, 'me-state-active');
+  }
+
+  onContextMenuItemMouseUp(event: MouseEvent): void {
+    const target = event.currentTarget as HTMLElement;
+    this.renderer.removeClass(target, 'me-state-active');
+  }
+
   ngOnDestroy() {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
@@ -160,8 +170,20 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   }
 
   onOverflowItemClick(e: ContextMenuItemClickEvent): void {
+    console.log('object');
     const clickedItem = e.itemData as BreadcrumbItem;
     this.itemClick.emit(clickedItem);
+
+    // Получаем элемент, на который кликнули
+    const targetElement = e.event?.target as HTMLElement;
+    // Добавляем класс 'dx-state-active'
+    this.renderer.addClass(targetElement, 'dx-state-active');
+
+    // Если нужно, можно убрать класс через небольшой интервал времени
+    setTimeout(() => {
+      this.renderer.removeClass(targetElement, 'dx-state-active');
+    }, 300);
+
     this.overflowMenu.instance.hide().then();
   }
 

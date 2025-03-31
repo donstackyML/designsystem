@@ -277,16 +277,16 @@
   }
 
   .dx-menu-item {
-    &.dx-state-hover {
-      background-color: transparent;
-    }
-
     &:not(.dx-state-disabled).dx-state-focused {
       box-shadow: inset 0px 0px 0px 2px var(--Dividers-Borders-Focus);
     }
 
-    &.dx-menu-item.dx-state-hover {
+    &.dx-state-hover {
       background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+
+      &:has(.me-state-active) {
+        background: var(--Controls-BG-Secondary-Elements-BG-Selected);
+      }
     }
   }
 }
