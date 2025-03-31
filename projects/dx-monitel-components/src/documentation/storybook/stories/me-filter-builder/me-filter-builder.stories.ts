@@ -182,7 +182,7 @@ export const filterFields: Field[] = [
 })
 class StoryWrapperComponent {
   fields = filterFields;
-  filterValue: any = [['department', 'anyof', ['HR']]];
+  filterValue: any = [['department', 'anyof', ['Engineering']], ['tags', 'contains', 'developer']];
   data = mockData;
   departments = departments;
   sexOptions = ['male', 'female'];
