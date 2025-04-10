@@ -1,14 +1,9 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeIconStoreService } from '../../service/icon-store.service';
+
+import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
 import { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeControlDirective } from '../me-control/me-control.directive';
 
@@ -32,6 +27,7 @@ export class MeDropDownButtonDirective
   @Input() wrapperAttr: MeCommonType = {};
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() dropDownOptions: MeCommonType = {};
+  @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
 
   private focusService: ComponentFocusService;
 
@@ -39,7 +35,8 @@ export class MeDropDownButtonDirective
     private element: ElementRef,
     private component: DxDropDownButtonComponent,
     private renderer: Renderer2,
-    private iconStore: MeIconStoreService
+    private iconStore: MeIconStoreService,
+    private dividerService: NestedListItemDividerService
   ) {
     super();
     this.focusService = new ComponentFocusService(element, renderer);
@@ -62,35 +59,53 @@ export class MeDropDownButtonDirective
   }
 
   ngOnInit(): void {
+    this.setIconColor();
+    this.addClasses();
+    this.setIconSize();
+    this.setComponentIcon();
+    this.setDropDownOptions();
+  }
+
+  private setIconColor(): void {
     if (!this.iconColor) {
-      if (this.stylingMode !== 'contained') {
-        this.iconColor = `var(--button-${this.component.type}-icon-color)`;
-      } else {
-        this.iconColor = DEFAULT_ICON_COLOR;
-      }
+      this.iconColor = this.stylingMode !== 'contained'
+        ? `var(--button-${this.component.type}-icon-color)`
+        : DEFAULT_ICON_COLOR;
+
       if (this.disabled) {
         this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
       }
     }
+  }
+
+  private addClasses(): void {
     this.renderer.addClass(this.element.nativeElement, 'me-dropdownbutton');
     this.renderer.addClass(
       this.element.nativeElement,
       `me-dropdownbutton-${this.size}`
     );
+
+    if (this.type === 'default') {
+      this.renderer.addClass(this.element.nativeElement, 'dx-button-default');
+    }
+  }
+
+  private setIconSize(): void {
     if (this.isSizeLarge) {
       this.iconSize = 'large';
     }
+  }
+
+  private setComponentIcon(): void {
     this.component.icon = this.iconStore.getIcon({
       icon: this.icon,
       color: this.iconColor,
       size: this.getIconSize(this.iconSize),
     });
-    if (this.type === 'default') {
-      this.renderer.addClass(this.element.nativeElement, 'dx-button-default');
-    }
+  }
 
-    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''
-      } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+  private setDropDownOptions(): void {
+    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''} me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${this.showScrollbar === 'always' ? 'me-scrollbar-visible' : ''
       }`;
 
     this.component.dropDownOptions = {
@@ -103,12 +118,20 @@ export class MeDropDownButtonDirective
         at: 'left bottom',
         offset: { y: 4 },
         collision: 'fit flip',
-        of: this.element.nativeElement
+        of: this.element.nativeElement,
       },
       ...this.dropDownOptions,
-      contentTemplate: (contentElement: any) => {
-        contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
-      },
+      contentTemplate: this.createContentTemplate.bind(this),
     };
+  }
+
+  private createContentTemplate(contentElement: HTMLElement): void {
+    contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
+    this.dividerService.addDividers(
+      contentElement,
+      '.dx-list-item',
+      this.dividersVisibility,
+      this.component.items || this.component.dataSource || []
+    );
   }
 }

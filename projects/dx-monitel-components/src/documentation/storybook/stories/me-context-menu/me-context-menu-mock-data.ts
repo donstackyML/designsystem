@@ -157,63 +157,63 @@ export const meContextMenuMockData = [
         beginGroup: true,
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 1',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 2',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 3',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 4',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 5',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 6',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 7',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 8',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 9',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 10',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 11',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 12',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 13',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт ',
         icon: 'folder',
       },
       {
-        text: 'Пункт',
+        text: 'Пункт 5',
         icon: 'folder',
       },
       {
@@ -1310,5 +1310,43 @@ export const meContextMenuMockDataWithSelectedItems = [
   },
   {
     text: 'Settings',
+  },
+];
+
+export const meContextMenuMockDataWithDividers = [
+  {
+    text: 'Electronics',
+    hasDivider: true,
+    items: [
+      { text: 'Computers', hasDivider: true },
+      { text: 'Phones', hasDivider: false },
+      { text: 'Tablets', hasDivider: false },
+      { text: 'Cameras', hasDivider: true },
+      { text: 'Accessories', hasDivider: true },
+    ],
+  },
+  {
+    text: 'Entertainment',
+    hasDivider: false,
+    items: [
+      { text: 'Films & Music', hasDivider: true },
+      { text: 'Games & Toys', hasDivider: false },
+      { text: 'Books', hasDivider: true },
+      { text: 'Streaming Services', hasDivider: false },
+      { text: 'Board Games', hasDivider: true },
+    ],
+  },
+  {
+    text: 'Home Appliances',
+    items: [
+      { text: 'Kitchen', hasDivider: true },
+      { text: 'Laundry', hasDivider: false },
+      { text: 'Cleaning', hasDivider: false },
+      { text: 'Smart Home', hasDivider: false },
+      { text: 'Lighting', hasDivider: true },
+      { text: 'Lighting', hasDivider: true },
+      { text: 'Lighting', hasDivider: true },
+      { text: 'Lighting', hasDivider: false },
+    ],
   },
 ];

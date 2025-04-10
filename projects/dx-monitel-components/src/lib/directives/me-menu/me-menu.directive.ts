@@ -12,6 +12,7 @@ import { DxMenuComponent } from 'devextreme-angular';
 import { DxMenuTypes } from 'devextreme-angular/ui/menu';
 import { SubmenuShowingEvent } from 'devextreme/ui/menu';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
 import { MeOrientation, MeSize } from '../../types/types';
 
 @Directive({
@@ -22,17 +23,19 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
   @Input() size: Omit<MeSize, 'medium'> = 'large';
   @Input() orientation: MeOrientation = 'horizontal';
   @Input() subMenuMaxHeight?: string | number = '';
+  @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
 
   private focusService: ComponentFocusService;
   constructor(
     private element: ElementRef,
     private component: DxMenuComponent,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private dividerService: NestedListItemDividerService
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 
   ngOnDestroy(): void {
     this.focusService.ngOnDestroy();
@@ -86,15 +89,23 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
   }
 
   @HostListener('onSubmenuShowing', ['$event'])
-  onSubmenuShowing({ submenuContainer }: DxMenuTypes.SubmenuShowingEvent) {
+  onSubmenuShowing({ submenuContainer, itemData }: DxMenuTypes.SubmenuShowingEvent) {
 
     if (submenuContainer && this.subMenuMaxHeight) {
       submenuContainer.style.maxHeight = typeof this.subMenuMaxHeight === 'number'
         ? `${this.subMenuMaxHeight}px`
         : this.subMenuMaxHeight;
     }
-  }
 
+    if (submenuContainer && itemData?.items) {
+      this.dividerService.addDividers(
+        submenuContainer,
+        '.dx-menu-item-wrapper',
+        this.dividersVisibility,
+        itemData.items
+      );
+    }
+  }
 
   @HostListener('onItemRendered', ['$event'])
   onItemRendered(event: any) {

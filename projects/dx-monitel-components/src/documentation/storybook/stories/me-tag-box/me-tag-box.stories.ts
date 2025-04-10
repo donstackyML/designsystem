@@ -10,7 +10,7 @@ import { DxTagBoxComponent, DxValidatorModule } from 'devextreme-angular';
 import ArrayStore from 'devextreme/data/array_store';
 import DataSource from 'devextreme/data/data_source';
 import { MeLabelDirective, MeTagBoxDirective } from '../../../../public-api';
-import { meTagBoxMockDataWithCategories } from './me-tag-box-mock-data';
+import { meTagBoxMockDataWithCategories, meTagBoxMockDataWithDividers } from './me-tag-box-mock-data';
 
 function generateItems(length: number): string[] {
   return Array.from({ length }, (_, i) => `Пункт ${i + 1}`);
@@ -48,7 +48,8 @@ export default {
       description: 'Массив данных для отображения',
       table: {
         type: {
-          summary: 'Array<{ disabled?: boolean; html?: string; template?: any; text?: string; visible?: boolean; } | Array<any>>' },
+          summary: 'Array<{ disabled?: boolean; html?: string; template?: any; text?: string; visible?: boolean; } | Array<any>>'
+        },
         defaultValue: { summary: '[]' },
       },
     },
@@ -107,6 +108,15 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+      },
+    },
+    dividersVisibility: {
+      control: 'select',
+      options: ['auto', 'all', 'none'],
+      description: 'Определяет видимость разделителей в выпадающем меню.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
       },
     },
     grouped: {
@@ -384,6 +394,30 @@ export const StateDisabledAndReadOnly: Story = {
     readOnly: true,
     disabled: true,
     value: generateItems(3)
+  },
+};
+
+export const DividersVisibilityNone: Story = {
+  args: {
+    dataSource: meTagBoxMockDataWithDividers,
+    dividersVisibility: 'none',
+    displayExpr: 'name',
+  },
+};
+
+export const DividersVisibilityAll: Story = {
+  args: {
+    dataSource: meTagBoxMockDataWithDividers,
+    dividersVisibility: 'all',
+    displayExpr: 'name',
+  },
+};
+
+export const DividersVisibilityByContent: Story = {
+  args: {
+    dataSource: meTagBoxMockDataWithDividers,
+    dividersVisibility: 'auto',
+    displayExpr: 'name',
   },
 };
 

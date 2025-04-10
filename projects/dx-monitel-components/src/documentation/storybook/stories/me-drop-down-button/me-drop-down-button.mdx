@@ -52,6 +52,10 @@ import * as dropDownButtonStories from "./me-drop-down-button.stories";
 - [Кнопка с большим количеством данных](#кнопка-с-большим-количеством-данных)
 - [Кнопка с изменённым цветом иконки](#кнопка-с-изменённым-цветом-иконки)
 - [Состояние отключённой кнопки](#состояние-отключённой-кнопки)
+- [Видимость разделителей](#видимость-разделителей)
+  - [Без разделителей](#без-разделителей)
+  - [Все разделители](#все-разделители)
+  - [Добавление разделителей в элементы списка](#добавление-разделителей-в-элементы-списка)
 - [Данные для списка](#данные-для-списка)
   - [Простой список](#простой-список)
 
@@ -202,6 +206,82 @@ import * as dropDownButtonStories from "./me-drop-down-button.stories";
   text="Disabled Button"
   [disabled]="true">
 </dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+### Видимость разделителей
+
+Свойство `dividersVisibility` определяет видимость разделителей в выпадающем меню:
+
+- `none` — разделители отсутствуют.
+- `all` — разделители отображаются между всеми элементами.
+- `auto` — разделители отображаются автоматически, в зависимости от данных.
+
+#### Без разделителей
+
+<Canvas name="DividersVisibilityNone" of={dropDownButtonStories.DividersVisibilityNone} />
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  [dividersVisibility]="'none'"
+  [items]="items">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+#### Все разделители
+
+<Canvas name="DividersVisibilityAll" of={dropDownButtonStories.DividersVisibilityAll} />
+<Source
+  code={`<dx-drop-down-button
+  meDropDownButton
+  [dividersVisibility]="'all'"
+  [items]="items">
+</dx-drop-down-button>`}
+  dark
+  language="html"
+/>
+
+#### Добавление разделителей в элементы списка
+
+Чтобы добавить разделитель между элементами списка, используйте свойство `hasDivider`. Если у элемента списка это свойство установлено в `true`, то после него будет добавлен разделитель.
+
+Пример данных с использованием `hasDivider`:
+
+<Canvas name="DividersVisibilityByContent" of={dropDownButtonStories.DividersVisibilityByContent} />
+<Source
+  code={`
+<dx-drop-down-button
+  meDropDownButton
+  [dividersVisibility]="'auto'"
+  [items]="items">
+</dx-drop-down-button>
+
+const items = [
+  {
+    id: 1,
+    name: 'Фиксированный диапазон времени',
+    hasDivider: true
+  },
+  {
+    id: 4,
+    name: 'Абсолютное время',
+    hasDivider: false
+  },
+  {
+    id: 2,
+    name: 'Относительное время, обн 10 сек.',
+    hasDivider: true
+  },
+  {
+    id: 3,
+    name: 'Пункт 1',
+    hasDivider: false
+  },
+];
+  `}
   dark
   language="html"
 />

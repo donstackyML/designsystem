@@ -10,9 +10,11 @@ import {
   MeContextMenuDirective,
   MeIconComponent,
 } from '../../../../public-api';
+import { meMenuMockDataWithGroup } from '../me-menu/me-menu-mock-data';
 import {
   meContextMenuMockData,
   meContextMenuMockDataForTemplateExample,
+  meContextMenuMockDataWithDividers,
   meContextMenuMockDataWithSelectedItems,
 } from './me-context-menu-mock-data';
 
@@ -66,11 +68,21 @@ export default {
         defaultValue: { summary: '""' },
       },
     },
+    dividersVisibility: {
+      control: 'select',
+      options: ['auto', 'all', 'none'],
+      description: 'Определяет видимость разделителей в выпадающем меню.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
   },
   args: {
     dataSource: meContextMenuMockData,
     selectByClick: false,
     selectionMode: 'none',
+    dividersVisibility: 'auto'
   },
   render: (args) => ({
     props: args,
@@ -127,5 +139,24 @@ export const SelectedItems: Story = {
 export const WithSubMenuMaxHeight: Story = {
   args: {
     subMenuMaxHeight: '200px',
+  },
+};
+
+
+export const DividersVisibilityNone: Story = {
+  args: {
+    dividersVisibility: 'none',
+  },
+};
+
+export const DividersVisibilityAll: Story = {
+  args: {
+    dividersVisibility: 'all',
+  },
+};
+
+export const DividersVisibilityByContent: Story = {
+  args: {
+    dataSource: meContextMenuMockDataWithDividers
   },
 };
