@@ -16,24 +16,12 @@ $badge-error-bg: null !default;
 @if $color =='light' {
   $badge-text-color: var(--Controls-Content-In-Controls-On-BG-Default); // #ffffff
   $badge-font-family: var(--font-family);
-
-  $badge-default-bg: var(--Controls-Informative-BG-Notification); // #6E86C3
-  $badge-secondary-bg: var(--Controls-BG-Accent-Accent-BG-Default); // #3257DC
-  $badge-success-bg: var(--me-icon-success); // #00993d
-  $badge-attention-bg: var(--me-icon-attention); // #fea500
-  $badge-error-bg: var(--me-icon-error); // #dd0035
 }
 
 // Темная тема
 @if $color =='dark' {
   $badge-text-color: var(--Controls-Content-In-Controls-On-BG-Default); // #ffffff
   $badge-font-family: var(--font-family);
-
-  $badge-default-bg: var(--Controls-Informative-BG-Notification);
-  $badge-secondary-bg: var(--Controls-BG-Accent-Accent-BG-Default);
-  $badge-success-bg: var(--me-icon-success); // #00993d
-  $badge-attention-bg: var(--me-icon-attention); // #fea500
-  $badge-error-bg: var(--me-icon-error); // #dd0035
 }
 
 // Базовые стили бейджа
@@ -88,23 +76,33 @@ $badge-error-bg: null !default;
 
   // Цвета
   &.color-default {
-    background-color: $badge-default-bg;
+    background-color: var(--Badge-Blue-Gray);
   }
 
   &.color-secondary {
-    background-color: $badge-secondary-bg;
+    background-color: var(--Badge-Blue);
   }
 
   &.color-success {
-    background-color: $badge-success-bg;
+    background-color: var(--Badge-Green);
+  }
+
+  &.color-success-light {
+    background-color: var(--Badge-Green-Light);
+    color: var(--Text-Default);
   }
 
   &.color-attention {
-    background-color: $badge-attention-bg;
+    background-color: var(--Badge-Yellow);
+  }
+
+  &.color-attention-light {
+    background-color: var(--Badge-Yellow-Light);
+    color: var(--Text-Default);
   }
 
   &.color-error {
-    background-color: $badge-error-bg;
+    background-color: var(--Badge-Red);
   }
 }
 
