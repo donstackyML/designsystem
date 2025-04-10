@@ -773,11 +773,36 @@ $generic-list-search-editor-height: round($generic-base-line-height * $generic-b
               }
             }
 
+            &.dividers-visibility-all {
+
+              &:not(:has(.dx-list-group)) {
+                .dx-item.dx-list-item:not(:last-child) {
+                  border-bottom: 1px solid var(--Dividers-Borders-Long);
+                }
+              }
+
+              &:has(.dx-list-group) {
+                .dx-list-group .dx-item.dx-list-item {
+                  border-bottom: 1px solid var(--Dividers-Borders-Long);
+                }
+                .dx-list-group-header {
+                  border-bottom: 1px solid var(--Dividers-Borders-Long);
+                }
+              }
+
+              .dx-list-group:last-child .dx-list-group-body .dx-item.dx-list-item:last-child {
+                border-bottom: none
+              }
+            }
+
             .dx-item.dx-list-item {
               padding: var(--list-item-padding);
               gap: var(--list-item-gap);
               border-top: 0;
-              border-bottom: 1px solid var(--Dividers-Borders-Long);
+
+              &.me-list-item-with-bottom-divider {
+                border-bottom: 1px solid var(--Dividers-Borders-Long);
+              }
 
               &.dx-list-slide-menu-wrapper {
                 .dx-list-slide-menu-content {

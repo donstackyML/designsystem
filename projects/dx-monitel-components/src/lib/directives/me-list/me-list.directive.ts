@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 import { DxListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
@@ -15,7 +15,7 @@ import { MeSize } from '../../types/types';
 })
 export class MeListDirective implements AfterViewInit {
   @Input() size: MeSize = 'medium';
-  @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
+  @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'all';
 
   private focusService: ComponentFocusService;
   constructor(
@@ -36,18 +36,12 @@ export class MeListDirective implements AfterViewInit {
     if (!contentElement) return;
 
     this.dividerService.addDividersClass(contentElement, this.dividersVisibility);
+  }
 
-    const listItems = contentElement?.querySelectorAll('.dx-list-item');
-    const items = this.component.items || this.component.dataSource || [];
-
-    if (listItems?.length) {
-      this.dividerService.addDividers(
-        contentElement,
-        '.dx-list-item',
-        this.dividersVisibility,
-        items,
-        true
-      );
+  @HostListener('onItemRendered', ['$event'])
+  onItemRendered({ itemData, itemElement }: any) {
+    if (itemData.hasDivider && this.dividersVisibility === 'auto') {
+      this.dividerService.addDividerToItem(itemElement, true)
     }
   }
 
