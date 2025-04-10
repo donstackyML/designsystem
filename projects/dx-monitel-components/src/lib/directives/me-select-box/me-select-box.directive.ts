@@ -5,6 +5,7 @@ import {
   ComponentRef,
   Directive,
   ElementRef,
+  HostListener,
   Input,
   OnInit,
   Renderer2,
@@ -15,6 +16,7 @@ import {
 import { MeIconComponent } from '@monitel/me-icons-registry';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
+import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
 import type { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeFormField } from '../me-form-item/me-form-field';
 
@@ -36,6 +38,7 @@ export class MeSelectBoxDirective
   @Input() wrapperAttr: MeCommonType = {};
   @Input() dropDownListMaxHeight?: string | number;
   @Input() leftIcon?: string = '';
+  @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
 
   private leftIconComponentRef: ComponentRef<MeIconComponent> | null = null;
 
@@ -46,6 +49,7 @@ export class MeSelectBoxDirective
     private renderer: Renderer2,
     private dropDownOptionsService: DropDownOptionsService,
     private viewContainerRef: ViewContainerRef,
+    private dividerService: NestedListItemDividerService
   ) {
     super(component);
     this.component.labelMode = 'outside';
@@ -67,6 +71,24 @@ export class MeSelectBoxDirective
     );
 
     this.component.wrapItemText = true;
+  }
+
+  @HostListener('onOpened', ['$event'])
+  onOpened(e: any) {
+
+    const listInstance = e.component?._list;
+
+    if (!listInstance) {
+      return;
+    }
+    const listElement = listInstance.element();
+
+    this.dividerService.addDividers(
+      listElement,
+      '.dx-list-item',
+      this.dividersVisibility,
+      this.component.items || this.component.dataSource || []
+    );
   }
 
   ngAfterViewInit() {

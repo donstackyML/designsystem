@@ -6,6 +6,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
 import { MeSize } from '../../types/types';
 
 @Directive({
@@ -17,26 +18,64 @@ import { MeSize } from '../../types/types';
 export class MeContextMenuDirective {
   @Input() size: MeSize = 'medium';
   @Input() subMenuMaxHeight?: string = '';
+  @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
 
   private focusService: ComponentFocusService;
-  constructor(element: ElementRef, private renderer: Renderer2) {
+  constructor(
+    private element: ElementRef,
+    private renderer: Renderer2,
+    private dividerService: NestedListItemDividerService
+  ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
   @HostListener('onItemRendered', ['$event'])
   onItemRendered(event: any) {
+
+    const contextListElement =
+      event.itemElement.parentElement.parentElement as HTMLElement;
+
     const contextMenuElement =
-      event.itemElement.parentElement.parentElement.parentElement;
+      contextListElement?.parentElement as HTMLElement;
+
     this.renderer.addClass(contextMenuElement, 'me-context-menu-submenu');
 
     if (this.subMenuMaxHeight) {
       contextMenuElement.style.maxHeight = this.subMenuMaxHeight;
     }
 
-    const menuItemElement = event.itemElement.closest('.dx-menu-item-wrapper .dx-item.dx-menu-item');
+    const closestMenuItemElement = event.itemElement.closest('.dx-menu-item-wrapper .dx-item.dx-menu-item') as Element;
+    const closestMenuItemWrapperElement = event.itemElement.closest('.dx-menu-item-wrapper') as Element;
 
-    if (menuItemElement && event.itemData?.disabled && event.itemData?.beginGroup) {
-      this.renderer.addClass(menuItemElement, 'me-menu-item-title');
+    if (closestMenuItemElement && event.itemData?.disabled && event.itemData?.beginGroup) {
+      this.renderer.addClass(closestMenuItemElement, 'me-menu-item-title');
+    }
+
+
+    this.dividerService.addDividersClass(contextListElement, this.dividersVisibility)
+
+    if (this.dividersVisibility !== 'none') {
+      if (closestMenuItemWrapperElement) {
+        if (this.dividersVisibility === 'all') {
+
+          this.dividerService.addDividerToItem(
+            closestMenuItemWrapperElement
+          )
+        } else if (this.dividersVisibility === 'auto' && event.itemData?.hasDivider) {
+          this.dividerService.addDividerToItem(
+            closestMenuItemWrapperElement
+          )
+        }
+      }
+
+      const separators = contextListElement.querySelectorAll('.me-list-item-separator');
+
+      separators.forEach((separator: Element) => {
+        const nextSibling = separator.nextElementSibling;
+        if (nextSibling && nextSibling.classList.contains('dx-menu-separator')) {
+          separator.parentElement?.removeChild(separator);
+        }
+      });
     }
   }
 }

@@ -55,6 +55,10 @@ import * as tagBoxStories from "./me-tag-box.stories";
   - [Состояние readOnly](#состояние-readonly)
   - [Состояние disabled](#состояние-disabled)
   - [Состояние readOnly и disabled](#состояние-readonly-и-disabled)
+- [Видимость разделителей](#видимость-разделителей)
+  - [Без разделителей](#без-разделителей)
+  - [Все разделители](#все-разделители)
+  - [Добавление разделителей в элементы списка](#добавление-разделителей-в-элементы-списка)
 - [Режимы применения значений](#режимы-применения-значений)
   - [Применение значений мгновенно (ApplyInstantly)](#применение-значений-мгновенно-applyinstantly)
   - [Применение значений по кнопке (ApplyWithButtons)](#применение-значений-по-кнопке-applywithbuttons)
@@ -241,9 +245,73 @@ import * as tagBoxStories from "./me-tag-box.stories";
   language="html"
 />
 
+### Видимость разделителей
+
+Свойство `dividersVisibility` определяет видимость разделителей в выпадающем меню:
+
+- `none` — разделители отсутствуют.
+- `all` — разделители отображаются между всеми элементами.
+- `auto` — разделители отображаются автоматически, в зависимости от данных.
+
+#### Без разделителей
+
+<Canvas name="DividersVisibilityNone" of={tagBoxStories.DividersVisibilityNone} />
+<Source
+  code={`<dx-tag-box
+  meTagBox
+  [dividersVisibility]="'none'"
+  [dataSource]="dataSource">
+</dx-tag-box>`}
+  dark
+  language="html"
+/>
+
+#### Все разделители
+
+<Canvas name="DividersVisibilityAll" of={tagBoxStories.DividersVisibilityAll} />
+<Source
+  code={`<dx-tag-box
+  meTagBox
+  [dividersVisibility]="'all'"
+  [dataSource]="dataSource">
+</dx-tag-box>`}
+  dark
+  language="html"
+/>
+
+#### Добавление разделителей в элементы списка
+
+Чтобы добавить разделитель между элементами списка, используйте свойство `hasDivider`. Если у элемента списка это свойство установлено в `true`, то после него будет добавлен разделитель.
+
+Пример данных с использованием `hasDivider`:
+
+<Canvas name="DividersVisibilityByContent" of={tagBoxStories.DividersVisibilityByContent} />
+<Source
+  code={`
+<dx-tag-box
+  meTagBox
+  [dividersVisibility]="'auto'"
+  [dataSource]="dataSource">
+</dx-tag-box>
+
+const dataSource = [
+  { id: 1, name: 'HD Video Player', hasDivider: true },
+  { id: 2, name: 'SuperHD Player', hasDivider: false },
+  { id: 3, name: 'SuperPlasma 50', hasDivider: true },
+  { id: 4, name: 'SuperLED 50', hasDivider: false },
+  { id: 5, name: 'SuperLCD 55', hasDivider: true },
+  { id: 6, name: 'DesktopLED 21', hasDivider: false },
+  { id: 7, name: 'DesktopLCD 19', hasDivider: true },
+  { id: 8, name: 'Projector Plus', hasDivider: false },
+];
+  `}
+  dark
+  language="html"
+/>
+
 ### Режимы применения значений
 
-_Свойство `applyValueMode` управляет тем, когда выбранные значения будут применяться к компоненту._
+Свойство `applyValueMode` управляет тем, когда выбранные значения будут применяться к компоненту.
 
 #### Применение значений мгновенно (ApplyInstantly)
 

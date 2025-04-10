@@ -6,6 +6,7 @@
 @use '../../base/icons' as *;
 @use '../button/sizes' as *;
 @use '../common/mixins' as *;
+@use '../list/mixins' as *;
 @use '../../base/dropDownButton';
 
 // adduse
@@ -484,11 +485,15 @@
         .dx-scrollable-container {
           .dx-scrollable-content {
             .dx-list-items {
-              --divider-height: 9px;
-
+              --divider-inline-offset: 8px;
+              
               display: flex;
               flex-direction: column;
-              gap: calc(var(--divider-height));
+
+              .me-list-item-separator {
+                @include list-item-divider;
+                margin-inline: var(--divider-inline-offset);
+              }
 
               .dx-item.dx-list-item {
 
@@ -502,26 +507,6 @@
                 padding-inline: var(--list-item-padding-inline);
                 padding-block: var(--list-item-padding-block);
 
-                &:not(:last-of-type) {
-                  &::after {
-                    --divider-margin-block: 4px;
-                    --divider-inline-offset: 8px;
-                    --divider-height: 1px;
-
-                    content: '';
-
-                    position: absolute;
-                    top: 100%;
-                    left: var(--divider-inline-offset);
-                    right: var(--divider-inline-offset);
-
-                    display: flex;
-                    height: var(--divider-height);
-                    margin-block: var(--divider-margin-block);
-
-                    background: var(--Dividers-Borders-Short);
-                  }
-                }
 
                 .dx-item-content.dx-list-item-content {
                   display: flex;
