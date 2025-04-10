@@ -42,6 +42,10 @@ import * as contextMenuStories from "./me-context-menu.stories";
 
 - [Базовое использование](#базовое-использование)
 - [Использование кастомного темплейта](#использование-кастомного-темплейта)
+- [Видимость разделителей](#видимость-разделителей)
+  - [Без разделителей](#без-разделителей)
+  - [Все разделители](#все-разделители)
+  - [Добавление разделителей в элементы списка](#добавление-разделителей-в-элементы-списка)
 - [Примеры контента](#примеры-контента)
   - [Контент с выбранными элементы](#контент-с-выбранными-элементы)
   - [Контент с групповым разделением](#контент-с-групповым-разделением)
@@ -74,7 +78,7 @@ import * as contextMenuStories from "./me-context-menu.stories";
   <div *dxTemplate="let itemData of 'item'">
     <div class="item-template-container">
       <me-icon [icon]="itemData.icon" [size]="size"></me-icon>
-      <span class="dx-menu-item-text">{{ itemData.text }}</span>
+      <span class="dx-context-menu-item-text">{{ itemData.text }}</span>
       <me-icon
         *ngIf="itemData.items"
         icon="chevron_right"
@@ -88,6 +92,78 @@ import * as contextMenuStories from "./me-context-menu.stories";
   language="html"
   dark
 />
+
+### Видимость разделителей
+
+Свойство `dividersVisibility` определяет видимость разделителей в меню:
+
+- `none` — разделители отсутствуют.
+- `all` — разделители отображаются между всеми элементами.
+- `auto` — разделители отображаются автоматически, в зависимости от данных.
+
+#### Без разделителей
+
+<Canvas name="DividersVisibilityNone" of={contextMenuStories.DividersVisibilityNone} />
+<Source
+  code={`<dx-context-menu
+  meContextMenu
+  [dividersVisibility]="'none'"
+  [dataSource]="dataSource">
+</dx-context-menu>`}
+  dark
+  language="html"
+/>
+
+#### Все разделители
+
+<Canvas name="DividersVisibilityAll" of={contextMenuStories.DividersVisibilityAll} />
+<Source
+  code={`<dx-context-menu
+  meContextMenu
+  [dividersVisibility]="'all'"
+  [dataSource]="dataSource">
+</dx-context-menu>`}
+  dark
+  language="html"
+/>
+
+#### Добавление разделителей в элементы списка
+
+Чтобы добавить разделитель между элементами списка, используйте свойство `hasDivider`. Если у элемента списка это свойство установлено в `true`, то после него будет добавлен разделитель.
+
+Пример данных с использованием `hasDivider`:
+
+<Canvas name="DividersVisibilityByContent" of={contextMenuStories.DividersVisibilityByContent} />
+<Source
+  code={`<dx-context-menu
+  meContextMenu
+  [dividersVisibility]="'auto'"
+  [dataSource]="dataSource">
+</dx-context-menu>
+
+const dataSource = [
+  {
+    text: 'Electronics',
+    hasDivider: true,
+    items: [
+      { text: 'Computers', hasDivider: true },
+      { text: 'Phones', hasDivider: false },
+    ],
+  },
+  {
+    text: 'Entertainment',
+    hasDivider: false,
+    items: [
+      { text: 'Films & Music', hasDivider: true },
+      { text: 'Games & Toys', hasDivider: false },
+    ],
+  },
+];
+`}
+  dark
+  language="html"
+/>
+
 
 ### Примеры контента
 

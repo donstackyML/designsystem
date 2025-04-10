@@ -5,6 +5,7 @@
 @use '../sizes' as *;
 @use '../../base/icons' as *;
 @use '../textEditor' as *;
+@use '../list/mixins' as *;
 @use '../common/sizes' as *;
 @use '../../base/tagBox';
 
@@ -606,9 +607,17 @@
     }
 
     .dx-list-items {
-      gap: 4px;
       display: flex;
       flex-direction: column;
+
+      .dx-list-items {
+        --divider-inline-offset: 8px;
+        
+        .me-list-item-separator {
+          @include list-item-divider();
+          margin-inline: var(--divider-inline-offset);
+        }
+      }
     }
 
     &.dx-list-select-decorator-enabled {

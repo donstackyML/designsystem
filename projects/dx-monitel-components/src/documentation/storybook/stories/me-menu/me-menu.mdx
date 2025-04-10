@@ -1,5 +1,5 @@
-import { Meta, Canvas, Controls, Source } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source } from "@storybook/addon-docs";
 import * as menuStories from "./me-menu.stories";
 
 <Meta name="Menu Documentation" of={menuStories} />
@@ -11,6 +11,22 @@ import * as menuStories from "./me-menu.stories";
 Директива `meMenu` применяется к элементу `dx-menu` и стилизует его в соответствии с требованиями дизайн-системы. По умолчанию устанавливается размер `large`. Компонент поддерживает гибкую настройку ориентации, режимов выделения и поведения подменю.
 
 <Controls of={menuStories.Default} />
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+    href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxMenu/"
+    target="_blank"
+  >
+    API
+  </a>
+- <a
+    href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/Menu/Basics/Light/"
+    target="_blank"
+  >
+    Демо
+  </a>
+
 
 ## Дизайн
 
@@ -35,6 +51,10 @@ import * as menuStories from "./me-menu.stories";
   - [Горизонтальное меню](#горизонтальное-меню)
   - [Вертикальное меню](#вертикальное-меню)
 - [Ограничение высоты подменю](#ограничение-высоты-подменю)
+- [Видимость разделителей](#видимость-разделителей)
+  - [Без разделителей](#без-разделителей)
+  - [Все разделители](#все-разделители)
+  - [Добавление разделителей в элементы списка](#добавление-разделителей-в-элементы-списка)
 - [Примеры контента](#примеры-контента)
   - [Контент](#контент)
   - [Контент с групповым разделением](#контент-с-групповым-разделением)
@@ -215,6 +235,100 @@ const dataSource = [
 >
 </dx-menu>
 `}
+/>
+
+### Видимость разделителей
+
+Свойство `dividersVisibility` определяет видимость разделителей в меню:
+
+- `none` — разделители отсутствуют.
+- `all` — разделители отображаются между всеми элементами.
+- `auto` — разделители отображаются автоматически, в зависимости от данных.
+
+#### Без разделителей
+
+<Canvas name="DividersVisibilityNone" of={menuStories.DividersVisibilityNone} />
+<Source
+  code={`<dx-menu
+  meMenu
+  [dividersVisibility]="'none'"
+  [dataSource]="dataSource">
+</dx-menu>`}
+  dark
+  language="html"
+/>
+
+#### Все разделители
+
+<Canvas name="DividersVisibilityAll" of={menuStories.DividersVisibilityAll} />
+<Source
+  code={`<dx-menu
+  meMenu
+  [dividersVisibility]="'all'"
+  [dataSource]="dataSource">
+</dx-menu>`}
+  dark
+  language="html"
+/>
+
+#### Добавление разделителей в элементы списка
+
+Чтобы добавить разделитель между элементами списка, используйте свойство `hasDivider`. Если у элемента списка это свойство установлено в `true`, то после него будет добавлен разделитель.
+
+Пример данных с использованием `hasDivider`:
+
+<Canvas name="DividersVisibilityByContent" of={menuStories.WithGroupAndDividers} />
+<Source
+  code={`<dx-menu
+  meMenu
+  [dividersVisibility]="'auto'"
+  [dataSource]="dataSource">
+</dx-menu>
+
+const dataSource = [
+  {
+    text: 'With groups',
+    icon: argsIcon,
+    hasDivider: true,
+    items: [
+      {
+        text: 'Group Header Level 1',
+        icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+        disabled: true,
+        beginGroup: true,
+        hasDivider: true,
+      },
+      {
+        text: 'Item 1',
+        icon: argsIcon,
+      },
+      {
+        text: 'Item 2',
+        icon: argsIcon,
+        items: [
+          {
+            text: 'Group Header Level 2',
+            icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
+            disabled: true,
+            beginGroup: true,
+          },
+          {
+            text: 'Sub-item 1',
+            icon: argsIcon,
+          },
+          {
+            text: 'Sub-item 2',
+            icon: argsIcon,
+          },
+        ],
+      },
+    ],
+  },
+];
+
+`}
+  dark
+  language="html"
 />
 
 ### Ограничение высоты подменю

@@ -12,6 +12,7 @@ import { Subscription, fromEvent } from 'rxjs';
 
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
+import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
 import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
@@ -27,6 +28,7 @@ export class MeTagBoxDirective
 
   @Input() description: string = '';
   @Input() dropDownListMaxHeight?: string | number;
+  @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
 
   private focusService: ComponentFocusService;
   private isKeyboardNavigation = false;
@@ -38,6 +40,7 @@ export class MeTagBoxDirective
     protected tagBox: DxTagBoxComponent,
     private renderer: Renderer2,
     private dropDownOptionsService: DropDownOptionsService,
+    private dividerService: NestedListItemDividerService
   ) {
     super(tagBox);
     this.tagBox.labelMode = 'outside';
@@ -77,6 +80,13 @@ export class MeTagBoxDirective
       return;
     }
     const listElement = listInstance.element();
+
+    this.dividerService.addDividers(
+      listElement,
+      '.dx-list-item',
+      this.dividersVisibility,
+      this.tagBox.items || this.tagBox.dataSource || []
+    );
 
     listInstance.option('onFocusedItemChanged', (focusEvent: any) => {
       if (!this.isKeyboardNavigation && focusEvent?.element) {

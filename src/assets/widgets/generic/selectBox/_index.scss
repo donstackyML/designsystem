@@ -2,6 +2,7 @@
 @use '../sizes' as *;
 @use '../colors' as *;
 @use '../../base/selectBox';
+@use '../list/mixins' as *;
 @use '../common/mixins' as *;
 
 .select-box-desc {
@@ -26,6 +27,7 @@
       }
     }
   }
+
   &.dx-state-readonly {
     .dx-dropdowneditor-input-wrapper {
       .dx-texteditor-container {
@@ -224,10 +226,21 @@
 }
 
 .me-dropdownlist.dx-selectbox-popup-wrapper {
+  .dx-list {
+
+    .dx-list-items {
+      --divider-inline-offset: 8px;
+
+      .me-list-item-separator {
+        @include list-item-divider();
+        margin-inline: var(--divider-inline-offset);
+      }
+    }
+  }
+
   .dx-list-items {
     display: flex;
     flex-direction: column;
-    gap: 4px;
 
     .dx-item-content {
       gap: 0;

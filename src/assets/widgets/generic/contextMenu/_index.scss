@@ -7,10 +7,9 @@
 @use '../menuBase/sizes' as *;
 @use '../menu/colors' as *;
 @use '../../base/contextMenu';
-
-// adduse
+@use '../list/mixins' as *;
 @use '../overlay';
-@use '../menuBase' as *; // need as private
+@use '../menuBase' as *;
 
 $generic-menu-popup-border: 1px solid $menu-popup-border-color;
 
@@ -60,6 +59,8 @@ $generic-menu-popup-border: 1px solid $menu-popup-border-color;
 }
 
 .me-context-menu-submenu {
+  --divider-inline-offset: 12px;
+
   &.dx-submenu {
     border: none;
     max-height: calc(100% - 2px);
@@ -69,6 +70,30 @@ $generic-menu-popup-border: 1px solid $menu-popup-border-color;
       padding: 1px;
       display: flex;
       flex-direction: column;
+
+      .me-list-item-separator {
+        @include list-item-divider();
+        margin-inline: var(--divider-inline-offset);
+      }
+
+      &.dividers-visibility {
+
+        &-none {
+
+          .me-list-item-separator,
+          .dx-menu-separator {
+            display: none;
+          }
+        }
+
+        &-all {
+          .me-list-item-separator {
+            &:last-child {
+              display: none;
+            }
+          }
+        }
+      }
 
       .dx-menu-separator {
         margin: 4px 12px;

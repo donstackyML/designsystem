@@ -6,7 +6,7 @@ import {
 } from '@storybook/angular';
 import { DxMenuComponent } from 'devextreme-angular';
 import { MeMenuDirective } from '../../../../public-api';
-import { meMenuMockData } from './me-menu-mock-data';
+import { meMenuMockData, meMenuMockDataWithDividers, meMenuMockDataWithGroup } from './me-menu-mock-data';
 
 export default {
   title: 'Components/Menu',
@@ -150,11 +150,21 @@ export default {
         type: { summary: 'function' },
       },
     },
+    dividersVisibility: {
+      control: 'select',
+      options: ['auto', 'all', 'none'],
+      description: 'Определяет видимость разделителей в выпадающем меню.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
   },
   args: {
     dataSource: meMenuMockData,
     size: 'large',
     orientation: 'horizontal',
+    dividersVisibility: 'auto',
     hideSubmenuOnMouseLeave: true,
     showSubmenuMode: { name: 'onClick', delay: { show: 50, hide: 300 } },
     showFirstSubmenuMode: { name: 'onClick', delay: { show: 50, hide: 300 } },
@@ -224,5 +234,25 @@ export const OrientationVertical: Story = {
 export const WithSubMenuMaxHeight: Story = {
   args: {
     subMenuMaxHeight: '200px',
+  },
+};
+
+export const DividersVisibilityNone: Story = {
+  args: {
+    dividersVisibility: 'none',
+    dataSource: meMenuMockDataWithDividers,
+  },
+};
+
+export const DividersVisibilityAll: Story = {
+  args: {
+    dividersVisibility: 'all',
+    dataSource: meMenuMockDataWithDividers,
+  },
+};
+
+export const WithGroupAndDividers: Story = {
+  args: {
+    dataSource: meMenuMockDataWithGroup
   },
 };

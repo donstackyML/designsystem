@@ -11,7 +11,7 @@ import {
 } from 'devextreme-angular';
 
 import { MeLabelDirective, MeSelectBoxDirective } from '../../../../public-api';
-import { meSelectBoxData } from './me-select-box-mock-data';
+import { meSelectBoxData, meSelectBoxDataWithDividers } from './me-select-box-mock-data';
 
 export default {
   title: 'Components/Fields/SelectBox',
@@ -83,6 +83,15 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+      },
+    },
+    dividersVisibility: {
+      control: 'select',
+      options: ['auto', 'all', 'none'],
+      description: 'Определяет видимость разделителей в выпадающем меню.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
       },
     },
     readOnly: {
@@ -201,6 +210,7 @@ export default {
     dataSource: meSelectBoxData,
     size: 'medium',
     showScrollbar: 'always',
+    displayExpr: 'name',
     disabled: false,
     readOnly: false,
     grouped: false,
@@ -366,4 +376,28 @@ export const WithLeftIcon: Story = {
   args: {
     leftIcon: 'account_circle_x20'
   }
+};
+
+export const DividersVisibilityNone: Story = {
+  args: {
+    dataSource: meSelectBoxDataWithDividers,
+    dividersVisibility: 'none',
+    displayExpr: 'name',
+  },
+};
+
+export const DividersVisibilityAll: Story = {
+  args: {
+    dataSource: meSelectBoxDataWithDividers,
+    dividersVisibility: 'all',
+    displayExpr: 'name',
+  },
+};
+
+export const DividersVisibilityByContent: Story = {
+  args: {
+    dataSource: meSelectBoxDataWithDividers,
+    displayExpr: 'name',
+    dividersVisibility: 'auto',
+  },
 };
