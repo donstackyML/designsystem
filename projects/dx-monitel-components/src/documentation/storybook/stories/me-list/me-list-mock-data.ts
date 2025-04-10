@@ -2,48 +2,37 @@ import { MeIconStoreService } from '../../../../public-api';
 
 const iconStore = new MeIconStoreService();
 
-export const meListDefaultMockData = [
-  {
-    key: 'Prepare 2013 Financial',
-    text: 'Prepare 2013 Financial',
-  },
-  {
-    key: 'Prepare 3013 Marketing',
-    text: 'Prepare 3013 Marketing',
-  },
-  {
-    key: 'Update Personnel Files',
-    text: 'Update Personnel Files',
-  },
-  {
-    key: 'Review Health',
-    text: 'Review Health',
-  },
-  {
-    key: 'Prepare 2013 Marketing Plan',
-    text: 'Prepare 2013 Marketing Plan',
-  },
-  {
-    key: 'Conduct Employee Training',
-    text: 'Conduct Employee Training',
-  },
-  {
-    key: 'Develop New Product Line',
-    text: 'Develop New Product Line',
-  },
-  {
-    key: 'Analyze Market Trends',
-    text: 'Analyze Market Trends',
-  },
-  {
-    key: 'Expand Overseas Operations',
-    text: 'Expand Overseas Operations',
-  },
-  {
-    key: 'Improve Customer Service',
-    text: 'Improve Customer Service',
-  },
-];
+function createMeListDefaultMockData() {
+  const items = [
+    'Prepare 2013 Financial',
+    'Prepare 3013 Marketing',
+    'Update Personnel Files',
+    'Review Health',
+    'Prepare 2013 Marketing Plan',
+    'Conduct Employee Training',
+    'Develop New Product Line',
+    'Analyze Market Trends',
+    'Expand Overseas Operations',
+    'Improve Customer Service',
+  ];
+
+  return items.map((item) => ({
+    key: item,
+    text: item,
+  }));
+}
+
+function createMeListDefaultMockDataWithDividers() {
+  const items = createMeListDefaultMockData();
+
+  return items.map((item, index) => ({
+    ...item,
+    hasDivider: index % 3 === 0,
+  }));
+}
+
+export const meListDefaultMockData = createMeListDefaultMockData();
+export const meListDefaultMockDataWithDividers = createMeListDefaultMockDataWithDividers();
 
 export const meListMockDataWithHeaders = [
   {
