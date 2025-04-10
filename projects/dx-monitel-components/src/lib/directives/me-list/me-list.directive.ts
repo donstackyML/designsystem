@@ -1,6 +1,7 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
-import { ComponentFocusService } from '../../service/component-focus.service';
+import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { DxListComponent } from 'devextreme-angular';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { ListItemDividerService } from '../../service/list-item-divider.service';
 import { MeSize } from '../../types/types';
 
 @Directive({
@@ -12,20 +13,42 @@ import { MeSize } from '../../types/types';
     '[class.me-list-large]': 'isSizeLarge',
   },
 })
-export class MeListDirective {
+export class MeListDirective implements AfterViewInit {
   @Input() size: MeSize = 'medium';
+  @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
 
   private focusService: ComponentFocusService;
   constructor(
     private element: ElementRef,
     private component: DxListComponent,
-    renderer: Renderer2
+    private renderer: Renderer2,
+    private dividerService: ListItemDividerService
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
     this.focusService.addKeyUpEventHandle('Escape', (evt) =>
       this.escapeHandle(evt)
     );
     this.focusService.addKeyUpEventHandle('Tab', (evt) => this.tabHandle(evt));
+  }
+
+  ngAfterViewInit(): void {
+    const contentElement = this.element.nativeElement.querySelector('.dx-list-items');
+    if (!contentElement) return;
+
+    this.dividerService.addDividersClass(contentElement, this.dividersVisibility);
+
+    const listItems = contentElement?.querySelectorAll('.dx-list-item');
+    const items = this.component.items || this.component.dataSource || [];
+
+    if (listItems?.length) {
+      this.dividerService.addDividers(
+        contentElement,
+        '.dx-list-item',
+        this.dividersVisibility,
+        items,
+        true
+      );
+    }
   }
 
   get isSizeSmall() {

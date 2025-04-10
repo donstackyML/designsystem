@@ -71,7 +71,7 @@ export default {
     dividersVisibility: {
       control: 'select',
       options: ['auto', 'all', 'none'],
-      description: 'Определяет видимость разделителей в выпадающем меню.',
+      description: 'Определяет видимость разделителей у элементов списка в выпадающем меню',
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'string' },
