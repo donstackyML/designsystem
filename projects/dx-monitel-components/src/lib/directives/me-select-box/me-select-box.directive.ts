@@ -16,7 +16,7 @@ import {
 import { MeIconComponent } from '@monitel/me-icons-registry';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
-import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
+import { ListItemDividerService } from '../../service/list-item-divider.service';
 import type { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeFormField } from '../me-form-item/me-form-field';
 
@@ -49,7 +49,7 @@ export class MeSelectBoxDirective
     private renderer: Renderer2,
     private dropDownOptionsService: DropDownOptionsService,
     private viewContainerRef: ViewContainerRef,
-    private dividerService: NestedListItemDividerService
+    private dividerService: ListItemDividerService
   ) {
     super(component);
     this.component.labelMode = 'outside';

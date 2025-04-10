@@ -3,7 +3,7 @@ import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeIconStoreService } from '../../service/icon-store.service';
 
-import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
+import { ListItemDividerService } from '../../service/list-item-divider.service';
 import { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeControlDirective } from '../me-control/me-control.directive';
 
@@ -36,7 +36,7 @@ export class MeDropDownButtonDirective
     private component: DxDropDownButtonComponent,
     private renderer: Renderer2,
     private iconStore: MeIconStoreService,
-    private dividerService: NestedListItemDividerService
+    private dividerService: ListItemDividerService
   ) {
     super();
     this.focusService = new ComponentFocusService(element, renderer);

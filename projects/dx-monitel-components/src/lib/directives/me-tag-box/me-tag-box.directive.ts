@@ -12,7 +12,7 @@ import { Subscription, fromEvent } from 'rxjs';
 
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
-import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
+import { ListItemDividerService } from '../../service/list-item-divider.service';
 import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
@@ -40,7 +40,7 @@ export class MeTagBoxDirective
     protected tagBox: DxTagBoxComponent,
     private renderer: Renderer2,
     private dropDownOptionsService: DropDownOptionsService,
-    private dividerService: NestedListItemDividerService
+    private dividerService: ListItemDividerService
   ) {
     super(tagBox);
     this.tagBox.labelMode = 'outside';
