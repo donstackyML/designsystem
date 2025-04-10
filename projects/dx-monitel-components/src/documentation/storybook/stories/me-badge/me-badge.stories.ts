@@ -182,3 +182,17 @@ export const CustomStyles: Story = {
     `,
   }),
 };
+
+
+export const SplitValueExample: Story = {
+  render: () => ({
+    template: `
+      <div style="display: flex; gap: 16px;">
+        <me-badge [value]="5" color="default"></me-badge>
+        <me-badge [value]="5" leftValue="left" color="default"></me-badge>
+        <me-badge [value]="5" rightValue="right" color="default"></me-badge>
+        <me-badge value="center" leftValue="left" rightValue="right" color="default"></me-badge>
+      </div>
+    `,
+  }),
+}

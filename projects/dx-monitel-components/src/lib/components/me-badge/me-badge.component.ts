@@ -7,7 +7,9 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div [class]="badgeClasses" [ngStyle]="style">
+      <span *ngIf="leftValue">{{ leftValue }}</span>
       <span class="badge-content">{{ displayValue }}</span>
+      <span *ngIf="rightValue">{{ rightValue }}</span>
     </div>
   `,
 })
@@ -15,10 +17,12 @@ export class MeBadgeComponent implements OnChanges {
   @Input() size: '20' | '24' = '20';
   @Input() color: 'default' | 'secondary' | 'success' | 'attention' | 'error' =
     'default';
-  @Input() value: number | null = null;
+  @Input() value: string | number | null = null;
+  @Input() leftValue?: string | number = '';
+  @Input() rightValue?: string | number = '';
   @Input() customStyle: { [key: string]: string } = {};
 
-  displayValue: string | number = '';
+  displayValue: string = '';
   badgeClasses: string = '';
   style: { [key: string]: string } = {};
 
@@ -27,7 +31,8 @@ export class MeBadgeComponent implements OnChanges {
   }
 
   private updateStyles() {
-    const isExtended = this.value !== null && this.value > 99;
+    this.displayValue = this.formatValue(this.value);
+    const isExtended = this.displayValue.length > 2 || this.rightValue || this.leftValue;
 
     // Формируем строку классов
     this.badgeClasses = [
@@ -39,11 +44,10 @@ export class MeBadgeComponent implements OnChanges {
       .filter(Boolean)
       .join(' ');
 
-    this.displayValue = this.formatValue(this.value);
     this.style = { ...this.customStyle };
   }
 
-  private formatValue(value: number | null): string | number {
+  private formatValue(value: string| number | null): string {
     if (value === null) return '';
     return value.toString();
   }
