@@ -8,6 +8,7 @@ import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { MeDropDownButtonDirective } from '../../../../public-api';
 import {
   meDropDownButtonMockData,
+  meDropDownButtonMockDataWithDividers,
   meDropDownButtonMockLargeData,
 } from './me-drop-down-button-mock-data';
 
@@ -67,6 +68,25 @@ export default {
         defaultValue: { summary: 'contained' },
       },
     },
+    dividersVisibility: {
+      control: 'select',
+      options: ['auto', 'all', 'none'],
+      description: 'Определяет видимость разделителей в выпадающем меню.',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    useSelectMode: {
+      control: 'boolean',
+      description: 'Включает режим выбора элемента из выпадающего списка.',
+      table: {
+        category: 'Контент и управление контентом',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     type: {
       control: 'select',
       options: ['default', 'normal', 'success', 'danger'],
@@ -123,13 +143,15 @@ export default {
     icon: '',
     text: 'Button',
     displayExpr: 'name',
-    items: meDropDownButtonMockData,
+    dataSource: meDropDownButtonMockData,
     size: 'medium',
     type: 'normal',
     stylingMode: 'contained',
     splitButton: false,
     disabled: false,
-    showArrowIcon: true
+    showArrowIcon: true,
+    dividersVisibility: 'auto',
+    useSelectMode: false
   },
   render: (args) => ({
     props: args,
@@ -247,5 +269,24 @@ export const StateDisabled: Story = {
 export const WithLargeData: Story = {
   args: {
     items: meDropDownButtonMockLargeData,
+  },
+};
+
+export const DividersVisibilityNone: Story = {
+  args: {
+    dividersVisibility: 'none',
+  },
+};
+
+export const DividersVisibilityAll: Story = {
+  args: {
+    dividersVisibility: 'all',
+  },
+};
+
+export const DividersVisibilityByContent: Story = {
+  args: {
+    dividersVisibility: 'auto',
+    dataSource: meDropDownButtonMockDataWithDividers
   },
 };

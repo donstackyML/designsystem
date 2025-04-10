@@ -5,9 +5,8 @@
 @use '../sizes' as *;
 @use '../menuBase/sizes' as *;
 @use '../../base/icons' as *;
-
-// adduse
 @use '../menuBase' as *;
+@use '../list/mixins' as *;
 @use '../../base/menu';
 
 .dx-context-menu-container-border {
@@ -149,10 +148,17 @@
 }
 
 .me-menu {
+  --divider-inline-offset: 12px;
+
   .dx-scrollable-native {
     &.dx-scrollable-native-generic {
       overflow: visible;
     }
+  }
+
+  .me-list-item-separator {
+    @include list-item-divider();
+    margin-inline: var(--divider-inline-offset);
   }
 
   .dx-menu-horizontal {

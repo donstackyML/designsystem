@@ -75,3 +75,14 @@ export const meTagBoxMockDataWithCategories = [{
   Name: 'ExcelRemote IP',
   Category: 'Automation',
 }];
+
+export const meTagBoxMockDataWithDividers = [
+  { id: 1, name: 'HD Video Player', hasDivider: true },
+  { id: 2, name: 'SuperHD Player', hasDivider: false },
+  { id: 3, name: 'SuperPlasma 50', hasDivider: true },
+  { id: 4, name: 'SuperLED 50', hasDivider: false },
+  { id: 5, name: 'SuperLCD 55', hasDivider: true },
+  { id: 6, name: 'DesktopLED 21', hasDivider: false },
+  { id: 7, name: 'DesktopLCD 19', hasDivider: true },
+  { id: 8, name: 'Projector Plus', hasDivider: false },
+];

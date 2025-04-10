@@ -14,13 +14,13 @@ import * as selectBoxStories from "./me-select-box.stories";
 
 - <a
     href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxSelectBox/"
-    target="blank"
+    target="_blank"
   >
     API
   </a>
 - <a
     href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/SelectBox/Overview/Light/"
-    target="blank"
+    target="_blank"
   >
     Демо
   </a>
@@ -56,6 +56,10 @@ import * as selectBoxStories from "./me-select-box.stories";
   - [Состояние readOnly](#состояние-readonly)
   - [Состояние disabled](#состояние-disabled)
   - [Состояние readOnly и disabled](#состояние-readonly-и-disabled)
+- [Видимость разделителей](#видимость-разделителей)
+  - [Без разделителей](#без-разделителей)
+  - [Все разделители](#все-разделители)
+  - [Добавление разделителей в элементы списка](#добавление-разделителей-в-элементы-списка)
 - [Кастомные данные](#кастомные-данные)
 
 ### Размеры компонента
@@ -245,6 +249,73 @@ import * as selectBoxStories from "./me-select-box.stories";
   value="Voltage Monitor VM-100"
 ></dx-select-box>
   `}
+  dark
+  language="html"
+/>
+
+### Видимость разделителей
+
+Свойство `dividersVisibility` определяет видимость разделителей в выпадающем меню:
+
+- `none` — разделители отсутствуют.
+- `all` — разделители отображаются между всеми элементами.
+- `auto` — разделители отображаются автоматически, в зависимости от данных.
+
+#### Без разделителей
+
+<Canvas name="DividersVisibilityNone" of={selectBoxStories.DividersVisibilityNone} />
+<Source
+  code={`<dx-select-box
+  meSelectBox
+  [dividersVisibility]="'none'"
+  [dataSource]="dataSource">
+</dx-select-box>`}
+  dark
+  language="html"
+/>
+
+#### Все разделители
+
+<Canvas name="DividersVisibilityAll" of={selectBoxStories.DividersVisibilityAll} />
+<Source
+  code={`<dx-select-box
+  meSelectBox
+  [dividersVisibility]="'all'"
+  [dataSource]="dataSource">
+</dx-select-box>`}
+  dark
+  language="html"
+/>
+
+#### Добавление разделителей в элементы списка
+
+Чтобы добавить разделитель между элементами списка, используйте свойство `hasDivider`. Если у элемента списка это свойство установлено в `true`, то после него будет добавлен разделитель.
+
+Пример данных с использованием `hasDivider`:
+
+<Canvas name="DividersVisibilityByContent" of={selectBoxStories.DividersVisibilityByContent} />
+<Source
+  code={`<dx-select-box
+  meSelectBox
+  [dividersVisibility]="'auto'"
+  [dataSource]="dataSource">
+</dx-select-box>
+
+const dataSource = [
+  { name: 'Voltage Monitor VM-100', hasDivider: true },
+  { name: 'Voltage Monitor VM-200', hasDivider: false },
+  { name: 'Current Monitor CM-100', hasDivider: true },
+  { name: 'Current Monitor CM-200', hasDivider: false },
+  { name: 'Power Analyzer PA-100', hasDivider: true },
+  { name: 'Power Analyzer PA-200', hasDivider: false },
+  { name: 'Energy Meter EM-100', hasDivider: true },
+  { name: 'Energy Meter EM-200', hasDivider: false },
+  { name: 'Smart Meter SM-100', hasDivider: true },
+  { name: 'Smart Meter SM-200', hasDivider: false },
+  { name: 'Frequency Monitor FM-100', hasDivider: true },
+  { name: 'Frequency Monitor FM-200', hasDivider: false },
+];
+`}
   dark
   language="html"
 />

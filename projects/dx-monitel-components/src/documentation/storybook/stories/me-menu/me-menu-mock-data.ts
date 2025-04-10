@@ -367,20 +367,26 @@ export const meMenuMockData = [
         ],
       },
     ],
-  },
+  }
+];
+
+export const meMenuMockDataWithGroup = [
   {
     text: 'With groups',
     icon: argsIcon,
+    hasDivider: true,
     items: [
       {
         text: 'Заголовок группы уровень 1',
         icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
         disabled: true,
         beginGroup: true,
+        hasDivider: true,
       },
       {
         text: 'Пункт',
         icon: argsIcon,
+        hasDivider: true,
       },
       {
         text: 'Пункт',
@@ -390,6 +396,7 @@ export const meMenuMockData = [
       {
         text: 'Пункт',
         icon: argsIcon,
+        hasDivider: true,
         items: [
           {
             text: 'Заголовок группы уровень 2',
@@ -404,6 +411,7 @@ export const meMenuMockData = [
           {
             text: 'Пункт',
             icon: argsIcon,
+            hasDivider: true,
           },
           {
             text: 'Пункт',
@@ -422,6 +430,7 @@ export const meMenuMockData = [
             icon: iconStore.getIcon({ icon: 'public', size: 'size' }),
             disabled: true,
             beginGroup: true,
+            hasDivider: true,
           },
           {
             text: 'Пункт',
@@ -466,6 +475,7 @@ export const meMenuMockData = [
               {
                 text: 'Пункт',
                 icon: argsIcon,
+                hasDivider: true,
               },
             ],
           },
@@ -484,6 +494,7 @@ export const meMenuMockData = [
           {
             text: 'Пункт',
             icon: argsIcon,
+            hasDivider: true,
           },
           {
             text: 'Пункт',
@@ -500,10 +511,77 @@ export const meMenuMockData = [
           {
             text: 'Пункт',
             icon: argsIcon,
+            hasDivider: true,
           },
-
-        ],
+        ]
       },
     ],
   }
+];
+
+export const meMenuMockDataWithDividers = [
+  {
+    text: 'Electronics',
+    hasDivider: true,
+    items: [
+      { text: 'Computers', hasDivider: true },
+      { text: 'Phones', hasDivider: false },
+      { text: 'Tablets', hasDivider: true },
+      { text: 'Monitors', hasDivider: false },
+      { text: 'Printers', hasDivider: true },
+      { text: 'Scanners', hasDivider: false },
+      { text: 'Servers', hasDivider: true },
+      { text: 'Network Devices', hasDivider: false },
+      { text: 'Warranties', hasDivider: true },
+      { text: 'Projectors & Screens', hasDivider: false },
+    ],
+  },
+  {
+    text: 'Entertainment',
+    hasDivider: false,
+    items: [
+      { text: 'Films & Music', hasDivider: true },
+      { text: 'Games & Toys', hasDivider: false },
+      { text: 'TV Shows', hasDivider: false },
+      { text: 'DVD', hasDivider: false },
+      { text: 'Blu-ray', hasDivider: true },
+      { text: 'CD', hasDivider: false },
+      { text: 'Vinyl', hasDivider: true },
+      { text: 'Cassette', hasDivider: false },
+      { text: 'Musical Instruments', hasDivider: true },
+      { text: 'DJ Equipment', hasDivider: true },
+    ],
+  },
+  {
+    text: 'Home Appliances',
+    hasDivider: true,
+    items: [
+      { text: 'Air Conditioners', hasDivider: true },
+      { text: 'Coffee Machines', hasDivider: false },
+      { text: 'Fans', hasDivider: true },
+      { text: 'Lamps', hasDivider: false },
+      { text: 'Microwaves', hasDivider: true },
+      { text: 'Refrigerators', hasDivider: false },
+      { text: 'Washers & Dryers', hasDivider: true },
+      { text: 'Water Heaters', hasDivider: false },
+      { text: 'Vacuum', hasDivider: true },
+      { text: 'Steaming & Ironing', hasDivider: true },
+    ],
+  },
+  {
+    text: 'Audio',
+    hasDivider: false,
+    items: [
+      { text: 'Boomboxes', hasDivider: true },
+      { text: 'DVD & CD Player Bags', hasDivider: false },
+      { text: 'Hi-Fi & Home Audio Accessories', hasDivider: true },
+      { text: 'Media Streaming Devices', hasDivider: false },
+      { text: 'MP3 & Digital Media Players', hasDivider: true },
+      { text: 'MP3 Player Accessories', hasDivider: false },
+      { text: 'Personal Cassette Players', hasDivider: true },
+      { text: 'Personal CD Players', hasDivider: false },
+      { text: 'Compact Stereos', hasDivider: true },
+      { text: 'Speakers', hasDivider: false },
+    ],
+  },
 ];

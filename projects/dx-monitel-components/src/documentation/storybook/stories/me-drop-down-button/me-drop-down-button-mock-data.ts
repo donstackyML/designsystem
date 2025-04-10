@@ -17,6 +17,29 @@ export const meDropDownButtonMockData = [
   },
 ];
 
+export const meDropDownButtonMockDataWithDividers = [
+  {
+    id: 1,
+    name: 'Фиксированный диапазон времени',
+    hasDivider: true
+  },
+  {
+    id: 4,
+    name: 'Абсолютное время',
+    hasDivider: false
+  },
+  {
+    id: 2,
+    name: 'Относительное время, обн 10 сек.',
+    hasDivider: true
+  },
+  {
+    id: 3,
+    name: 'Пункт 1',
+    hasDivider: true
+  },
+];
+
 export const meDropDownButtonMockLargeData = [
   {
     id: 1,

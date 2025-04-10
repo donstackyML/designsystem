@@ -7,6 +7,9 @@ import {
 import { DxTreeViewComponent } from 'devextreme-angular';
 import { MeTreeViewDirective } from '../../../../public-api';
 import { meTreeViewMockData } from './me-tree-view-mock-data';
+import { Component } from '@angular/core';
+import DataSource from 'devextreme/data/data_source';
+import ODataStore from 'devextreme/data/odata/store';
 
 export default {
   title: 'Components/TreeView',
@@ -93,6 +96,7 @@ export default {
     textTruncateBehavior: 'wrap',
     searchEnabled: false,
     expandNodesRecursive: false,
+    virtualModeEnabled: true
   },
   render: (args) => ({
     props: args,
@@ -156,4 +160,40 @@ export const WithFixedHeight: Story = {
   args: {
     height: '300px',
   }
+};
+
+@Component({
+  selector: 'tree-view-with-virtual-mode-demo',
+  template: `
+  <dx-tree-view meTreeView  dataStructure="plain"
+  keyExpr="Id"
+  displayExpr="Name"
+  parentIdExpr="CategoryId"
+  hasItemsExpr="IsGroup"
+  [virtualModeEnabled]="true" [dataSource]="dataSource"></dx-tree-view>`,
+})
+class TreeViewDemo {
+  dataSource = new DataSource({
+    store: new ODataStore({
+      version: 2,
+      url: 'https://js.devexpress.com/Demos/WidgetsGallery/odata/HierarchicalItems',
+    }),
+  });
+}
+
+export const WithVirtualMode: Story = {
+  decorators: [
+    moduleMetadata({
+      declarations: [
+        TreeViewDemo,
+      ],
+    }),
+  ],
+
+  render: (args) => ({
+    props: args,
+    template: `
+      <tree-view-with-virtual-mode-demo></tree-view-with-virtual-mode-demo>
+    `,
+  })
 };
