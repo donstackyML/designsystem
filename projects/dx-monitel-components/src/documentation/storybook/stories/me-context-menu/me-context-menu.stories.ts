@@ -10,7 +10,6 @@ import {
   MeContextMenuDirective,
   MeIconComponent,
 } from '../../../../public-api';
-import { meMenuMockDataWithGroup } from '../me-menu/me-menu-mock-data';
 import {
   meContextMenuMockData,
   meContextMenuMockDataForTemplateExample,
@@ -71,7 +70,7 @@ export default {
     dividersVisibility: {
       control: 'select',
       options: ['auto', 'all', 'none'],
-      description: 'Определяет видимость разделителей в выпадающем меню.',
+      description: 'Определяет видимость разделителей у элементов списка в выпадающем меню',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'auto' },

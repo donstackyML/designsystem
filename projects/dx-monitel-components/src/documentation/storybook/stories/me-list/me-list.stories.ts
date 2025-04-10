@@ -9,6 +9,7 @@ import { DxListModule } from 'devextreme-angular';
 import { MeListDirective } from '../../../../public-api';
 import {
   meListDefaultMockData,
+  meListDefaultMockDataWithDividers,
   meListMockDataWithHeaderDescription,
   meListMockDataWithHeaders,
   meListMockDataWithIcons,
@@ -146,6 +147,15 @@ export default {
         defaultValue: { summary: 'onHover' },
       },
     },
+    dividersVisibility: {
+      control: 'select',
+      options: ['all', 'auto', 'none'],
+      description: 'Определяет видимость разделителей у элементов списка.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'all' },
+      },
+    },
   },
   args: {
     dataSource: meListDefaultMockData,
@@ -162,6 +172,7 @@ export default {
     width: 436,
     height: undefined,
     showScrollbar: 'onHover',
+    dividersVisibility: 'all'
   },
   render: (args) => ({
     props: args,
@@ -330,6 +341,25 @@ export const SelectionModeAll: Story = {
     selectionMode: 'all',
     showSelectionControls: true
   }
+};
+
+export const DividersVisibilityNone: Story = {
+  args: {
+    dividersVisibility: 'none',
+  },
+};
+
+export const DividersVisibilityAll: Story = {
+  args: {
+    dividersVisibility: 'all',
+  },
+};
+
+export const DividersVisibilityByContent: Story = {
+  args: {
+    dividersVisibility: 'auto',
+    dataSource: meListDefaultMockDataWithDividers
+  },
 };
 
 export const ContentWithIcons: Story = {

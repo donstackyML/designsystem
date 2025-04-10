@@ -12,7 +12,7 @@ import { DxMenuComponent } from 'devextreme-angular';
 import { DxMenuTypes } from 'devextreme-angular/ui/menu';
 import { SubmenuShowingEvent } from 'devextreme/ui/menu';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { NestedListItemDividerService } from '../../service/nested-list-item-divider.service';
+import { ListItemDividerService } from '../../service/list-item-divider.service';
 import { MeOrientation, MeSize } from '../../types/types';
 
 @Directive({
@@ -30,7 +30,7 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
     private element: ElementRef,
     private component: DxMenuComponent,
     private renderer: Renderer2,
-    private dividerService: NestedListItemDividerService
+    private dividerService: ListItemDividerService
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
