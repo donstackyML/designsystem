@@ -172,7 +172,9 @@ export default {
     width: 436,
     height: undefined,
     showScrollbar: 'onHover',
-    dividersVisibility: 'all'
+    dividersVisibility: 'all',
+    searchExpr: 'text',
+    keyExpr: 'key'
   },
   render: (args) => ({
     props: args,
@@ -365,7 +367,6 @@ export const DividersVisibilityByContent: Story = {
 export const ContentWithIcons: Story = {
   args: {
     dataSource: meListMockDataWithIcons,
-    displayExpr: 'name',
   },
 };
 
@@ -373,8 +374,7 @@ export const ContentWithHeader: Story = {
   args: {
     dataSource: meListMockDataWithHeaderDescription,
     grouped: true,
-    displayExpr: 'name',
-    searchExpr: 'name',
+    searchExpr: 'text',
   },
 };
 
@@ -385,6 +385,7 @@ export const ContentGroupedWithSearch: Story = {
     collapsibleGroups: true,
     grouped: true,
     height: 300,
+    searchExpr: 'text',
   },
 };
 
@@ -392,8 +393,7 @@ export const ContentWithCustomTemplateForHeader: Story = {
   args: {
     dataSource: meListMockDataWithHeaderDescription,
     grouped: true,
-    displayExpr: 'name',
-    searchExpr: 'name',
+    searchExpr: 'text',
   },
   render: (args) => ({
     props: args,
@@ -410,7 +410,6 @@ export const ContentWithCustomTemplateForHeader: Story = {
 export const ContentWithCustomTemplateForListItem: Story = {
   args: {
     dataSource: meListMockDataWithImageAndDescription,
-    displayExpr: 'name',
   },
   render: (args) => ({
     props: args,

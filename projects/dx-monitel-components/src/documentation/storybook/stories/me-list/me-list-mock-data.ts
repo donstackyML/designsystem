@@ -97,39 +97,39 @@ export const meListMockDataWithHeaderDescription = [
     key: 'Fruits',
     description: 'fruits desc',
     items: [
-      { name: 'Apples', count: 10 },
-      { name: 'Oranges', count: 12 },
-      { name: 'Lemons', count: 15 },
+      { text: 'Apples', count: 10 },
+      { text: 'Oranges', count: 12 },
+      { text: 'Lemons', count: 15 },
     ],
   },
   {
     key: 'Vegetables',
     description: 'vegetables desc',
     items: [
-      { name: 'Potatoes', count: 5 },
-      { name: 'Tomatoes', count: 9 },
-      { name: 'Turnips', count: 8 },
+      { text: 'Potatoes', count: 5 },
+      { text: 'Tomatoes', count: 9 },
+      { text: 'Turnips', count: 8 },
     ],
   },
 ];
 
 export const meListMockDataWithImageAndDescription = [
   {
-    name: 'Apples',
+    text: 'Apples',
     count: 10,
     image: '../../../assets/images/image.png',
     icon: 'favorites',
     description: 'Vegetables are good for you too.',
   },
   {
-    name: 'Oranges',
+    text: 'Oranges',
     count: 12,
     image: '../../../assets/images/image.png',
     icon: 'favorites',
     description: 'Vegetables are good for you too.',
   },
   {
-    name: 'Lemons',
+    text: 'Lemons',
     count: 15,
     image: '../../../assets/images/image.png',
     icon: 'favorites',
@@ -139,17 +139,17 @@ export const meListMockDataWithImageAndDescription = [
 
 export const meListMockDataWithIcons = [
   {
-    name: 'Apples',
+    text: 'Apples',
     count: 10,
     icon: iconStore.getIcon({ icon: 'check', size: '24' }),
   },
   {
-    name: 'Oranges',
+    text: 'Oranges',
     count: 10,
     icon: iconStore.getIcon({ icon: 'check', size: '24' }),
   },
   {
-    name: 'Lemons',
+    text: 'Lemons',
     count: 10,
     icon: iconStore.getIcon({ icon: 'check', size: '24' }),
   },
