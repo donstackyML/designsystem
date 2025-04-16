@@ -8,7 +8,7 @@ import { BreadcrumbItem } from '../../../../projects/dx-monitel-components/src/p
   templateUrl: './me-breadcrumbs-demo.component.html',
   styles: [
     `:host {
-        display: block;
+      display: block;
     }`
   ]
 })
@@ -18,7 +18,7 @@ export class MeBreadcrumbsDemoComponent {
     meIconRegistry.registerIcons([keyboardX20]);
   }
 
-  items = [
+  items: any[] = [
     {
       text: 'Home',
       url: '/',
@@ -45,6 +45,15 @@ export class MeBreadcrumbsDemoComponent {
       icon: 'keyboard_x20',
     },
   ]
+
+  addItem() {
+    this.items.push({
+      text: `Home ${this.items.length}`,
+      url: `/home${this.items.length}`,
+      additional: `add_${this.items.length}`,
+      icon: 'home'
+    },)
+  }
 
   onBreadcrumbItemClick(event: BreadcrumbItem) {
     console.log('Нажат элемент:', event);
