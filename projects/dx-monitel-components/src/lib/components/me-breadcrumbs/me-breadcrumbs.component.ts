@@ -168,12 +168,21 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
 
   onItemClick(e: MenuItemClickEvent): void {
     const clickedItem = e.itemData;
-    this.itemClick.emit(clickedItem);
+    this.itemClick.emit(this.getOriginalItem(clickedItem));
+  }
+
+  private getOriginalItem(item: any) {
+    const originalItem = this.items.find(el => (
+      el[this.displayExpr] === item?.text &&
+      el[this.urlExpr] === item?.url &&
+      el[this.iconExpr] === item?.icon
+    ));
+    return originalItem;
   }
 
   onOverflowItemClick(e: ContextMenuItemClickEvent): void {
     const clickedItem = e.itemData as BreadcrumbItem;
-    this.itemClick.emit(clickedItem);
+    this.itemClick.emit(this.getOriginalItem(clickedItem));
 
     // Получаем элемент, на который кликнули
     const targetElement = e.event?.target as HTMLElement;

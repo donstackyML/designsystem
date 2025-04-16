@@ -18,7 +18,7 @@ export class MeBreadcrumbsDemoComponent {
     meIconRegistry.registerIcons([keyboardX20]);
   }
 
-  items = [
+  items: any[] = [
     {
       text: 'Home',
       url: '/',
@@ -50,6 +50,7 @@ export class MeBreadcrumbsDemoComponent {
     this.items.push({
       text: `Home ${this.items.length}`,
       url: `/home${this.items.length}`,
+      additional: `add_${this.items.length}`,
       icon: 'home'
     },)
   }
