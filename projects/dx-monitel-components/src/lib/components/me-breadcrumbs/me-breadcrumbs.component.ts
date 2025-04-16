@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -125,6 +126,7 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
     if (this.items && this.items.length !== this.previousItemsLength) {
       this.previousItemsLength = this.items.length;
       this.updateItems();
+      this.updateVisibleItems();
     }
   }
 
@@ -170,7 +172,6 @@ export class MeBreadcrumbsComponent implements AfterViewInit, OnChanges, OnDestr
   }
 
   onOverflowItemClick(e: ContextMenuItemClickEvent): void {
-    console.log('object');
     const clickedItem = e.itemData as BreadcrumbItem;
     this.itemClick.emit(clickedItem);
 
