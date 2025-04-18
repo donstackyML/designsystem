@@ -21,7 +21,7 @@ export default {
     },
     color: {
       control: 'select',
-      options: ['default', 'secondary', 'success', 'attention', 'error'],
+      options: ['default', 'secondary', 'success', 'success-light', 'attention', 'attention-light', 'error'],
       description: 'Цветовая тема бейджа',
       table: {
         type: { summary: 'string' },
