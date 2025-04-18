@@ -12,11 +12,11 @@ export default {
   argTypes: {
     size: {
       control: 'select',
-      options: ['20', '24'],
+      options: ['16', '20'],
       description: 'Размер бейджа',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '20' },
+        defaultValue: { summary: '16' },
       },
     },
     color: {
@@ -44,7 +44,7 @@ type Story = StoryObj<MeBadgeComponent>;
 export const Default: Story = {
   args: {
     value: 1,
-    size: '20',
+    size: '16',
     color: 'default'
   },
   render: (args) => ({
@@ -74,8 +74,8 @@ export const Sizes: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 16px; align-items: center;">
+        <me-badge [value]="8" size="16" color="default"></me-badge>
         <me-badge [value]="8" size="20" color="default"></me-badge>
-        <me-badge [value]="8" size="24" color="default"></me-badge>
       </div>
     `,
   }),
@@ -102,6 +102,20 @@ export const AllVariants: Story = {
       <div style="display: flex; flex-direction: column; gap: 24px;">
         <!-- Size 20 -->
         <div>
+          <h4 class="badge-title" style="margin-bottom: 12px;">Size: 16px</h4>
+          <div style="display: flex; gap: 16px; align-items: center;">
+            <me-badge [value]="5" size="16" color="default"></me-badge>
+            <me-badge [value]="5" size="16" color="secondary"></me-badge>
+            <me-badge [value]="5" size="16" color="success"></me-badge>
+            <me-badge [value]="5" size="16" color="success-light"></me-badge>
+            <me-badge [value]="5" size="16" color="attention"></me-badge>
+            <me-badge [value]="5" size="16" color="attention-light"></me-badge>
+            <me-badge [value]="5" size="16" color="error"></me-badge>
+          </div>
+        </div>
+
+        <!-- Size 24 -->
+        <div>
           <h4 class="badge-title" style="margin-bottom: 12px;">Size: 20px</h4>
           <div style="display: flex; gap: 16px; align-items: center;">
             <me-badge [value]="5" size="20" color="default"></me-badge>
@@ -111,20 +125,6 @@ export const AllVariants: Story = {
             <me-badge [value]="5" size="20" color="attention"></me-badge>
             <me-badge [value]="5" size="20" color="attention-light"></me-badge>
             <me-badge [value]="5" size="20" color="error"></me-badge>
-          </div>
-        </div>
-
-        <!-- Size 24 -->
-        <div>
-          <h4 class="badge-title" style="margin-bottom: 12px;">Size: 24px</h4>
-          <div style="display: flex; gap: 16px; align-items: center;">
-            <me-badge [value]="5" size="24" color="default"></me-badge>
-            <me-badge [value]="5" size="24" color="secondary"></me-badge>
-            <me-badge [value]="5" size="24" color="success"></me-badge>
-            <me-badge [value]="5" size="24" color="success-light"></me-badge>
-            <me-badge [value]="5" size="24" color="attention"></me-badge>
-            <me-badge [value]="5" size="24" color="attention-light"></me-badge>
-            <me-badge [value]="5" size="24" color="error"></me-badge>
           </div>
         </div>
       </div>

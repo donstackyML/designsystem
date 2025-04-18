@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   `,
 })
 export class MeBadgeComponent implements OnChanges {
-  @Input() size: '20' | '24' = '20';
+  @Input() size: '20' | '16' = '16';
   @Input() color: 'default' | 'secondary' | 'success' | 'success-light' | 'attention' | 'attention-light' | 'error' =
     'default';
   @Input() value: string | number | null = null;
