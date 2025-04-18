@@ -31,6 +31,9 @@ export class MeDropDownButtonDirective
 
   private focusService: ComponentFocusService;
 
+  private removeMouseupListener?: () => void;
+
+
   constructor(
     private element: ElementRef,
     private component: DxDropDownButtonComponent,
@@ -40,6 +43,15 @@ export class MeDropDownButtonDirective
   ) {
     super();
     this.focusService = new ComponentFocusService(element, renderer);
+
+    renderer.listen(element.nativeElement, 'mousedown', (e) => {
+      const button = element.nativeElement.querySelector('.dx-button');
+      renderer.addClass(button, 'dx-state-active')
+      this.removeMouseupListener = renderer.listen(document, 'mouseup', () => {
+        renderer.removeClass(button, 'dx-state-active');
+        this.removeMouseupListener?.();
+      })
+    })
   }
 
   ngOnDestroy(): void {
