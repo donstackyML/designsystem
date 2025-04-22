@@ -10,7 +10,10 @@ import { DxTagBoxComponent, DxValidatorModule } from 'devextreme-angular';
 import ArrayStore from 'devextreme/data/array_store';
 import DataSource from 'devextreme/data/data_source';
 import { MeLabelDirective, MeTagBoxDirective } from '../../../../public-api';
-import { meTagBoxMockDataWithCategories, meTagBoxMockDataWithDividers } from './me-tag-box-mock-data';
+import {
+  meTagBoxMockDataWithCategories,
+  meTagBoxMockDataWithDividers,
+} from './me-tag-box-mock-data';
 
 function generateItems(length: number): string[] {
   return Array.from({ length }, (_, i) => `Пункт ${i + 1}`);
@@ -48,7 +51,8 @@ export default {
       description: 'Массив данных для отображения',
       table: {
         type: {
-          summary: 'Array<{ disabled?: boolean; html?: string; template?: any; text?: string; visible?: boolean; } | Array<any>>'
+          summary:
+            'Array<{ disabled?: boolean; html?: string; template?: any; text?: string; visible?: boolean; } | Array<any>>',
         },
         defaultValue: { summary: '[]' },
       },
@@ -99,8 +103,8 @@ export default {
       description: 'Определяет состояние только для чтения',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
@@ -113,7 +117,8 @@ export default {
     dividersVisibility: {
       control: 'select',
       options: ['auto', 'all', 'none'],
-      description: 'Определяет видимость разделителей у элементов списка в выпадающем меню',
+      description:
+        'Определяет видимость разделителей у элементов списка в выпадающем меню',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'auto' },
@@ -197,7 +202,7 @@ export default {
       control: 'text',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: "No data to display" },
+        defaultValue: { summary: 'No data to display' },
       },
     },
     validationError: {
@@ -301,9 +306,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -358,7 +363,7 @@ export const WithLabelRow: Story = {
 
 export const WithLabelColumn: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -374,18 +379,18 @@ export const WithLabelColumn: Story = {
       ></dx-tag-box>
 		</div>`,
   }),
-}
+};
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    value: generateItems(3)
+    value: generateItems(3),
   },
 };
 
@@ -393,7 +398,7 @@ export const StateDisabledAndReadOnly: Story = {
   args: {
     readOnly: true,
     disabled: true,
-    value: generateItems(3)
+    value: generateItems(3),
   },
 };
 
@@ -423,32 +428,32 @@ export const DividersVisibilityByContent: Story = {
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
+    showRequiredMark: true,
   },
 };
 
 export const WithSelectionControls: Story = {
   args: {
-    showSelectionControls: true
+    showSelectionControls: true,
   },
 };
 
 export const ApplyInstantly: Story = {
   args: {
-    applyValueMode: 'instantly'
+    applyValueMode: 'instantly',
   },
 };
 
 export const ApplyWithButtons: Story = {
   args: {
-    applyValueMode: 'useButtons'
+    applyValueMode: 'useButtons',
   },
 };
 
 @Component({
   selector: 'me-tag-box-grouped-items-demo',
   template: `
-   <dx-tag-box
+    <dx-tag-box
       meTagBox
       [label]="label"
       [placeholder]="placeholder"
@@ -477,28 +482,29 @@ export const ApplyWithButtons: Story = {
       displayExpr="Name"
       valueExpr="ID"
     >
-    <ng-container *ngIf="hasIcons">
-      <div *dxTemplate="let data of 'group'">
-        <div class="custom-icon">
-          <span class="dx-icon-globe icon"></span>
-          {{ data.key }}
+      <ng-container *ngIf="hasIcons">
+        <div *dxTemplate="let data of 'group'">
+          <div class="custom-icon">
+            <span class="dx-icon-globe icon"></span>
+            {{ data.key }}
+          </div>
         </div>
-      </div>
-    </ng-container>
-  </dx-tag-box>
+      </ng-container>
+    </dx-tag-box>
   `,
   styles: [
     `
-      .me-text-body2, .me-text-caption {
+      .me-text-body2,
+      .me-text-caption {
         color: var(--Text-Secondary);
         margin-top: 4px;
       }
-    .custom-icon {
+      .custom-icon {
         display: flex;
         gap: 4px;
       }
     `,
-  ]
+  ],
 })
 class MeTagBoxGroupedItemsDemo {
   @Input() label: string = 'Label';
@@ -534,15 +540,13 @@ class MeTagBoxGroupedItemsDemo {
       key: 'Id',
     }),
     group: 'Category',
-  })
+  });
 }
 
 export const GroupedItems: Story = {
   decorators: [
     moduleMetadata({
-      declarations: [
-        MeTagBoxGroupedItemsDemo,
-      ],
+      declarations: [MeTagBoxGroupedItemsDemo],
     }),
   ],
   args: {
@@ -555,15 +559,13 @@ export const GroupedItems: Story = {
         ${argsToTemplate(args)}
       ></me-tag-box-grouped-items-demo>
     `,
-  })
+  }),
 };
 
 export const CustomTemplateWithGroupsHeaderIcon: Story = {
   decorators: [
     moduleMetadata({
-      declarations: [
-        MeTagBoxGroupedItemsDemo,
-      ],
+      declarations: [MeTagBoxGroupedItemsDemo],
     }),
   ],
   args: {
@@ -577,7 +579,7 @@ export const CustomTemplateWithGroupsHeaderIcon: Story = {
         [hasIcons]="true"
       ></me-tag-box-grouped-items-demo>
     `,
-  })
+  }),
 };
 
 export const WithMaxDisplayedTags: Story = {
@@ -591,6 +593,6 @@ export const WithMaxDisplayedTagsWithoutMultiTagOnly: Story = {
   args: {
     maxDisplayedTags: 3,
     value: generateItems(7),
-    showMultiTagOnly: false
+    showMultiTagOnly: false,
   },
 };

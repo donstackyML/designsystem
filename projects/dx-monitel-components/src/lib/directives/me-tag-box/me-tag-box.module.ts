@@ -7,4 +7,4 @@ import { MeTagBoxDirective } from './me-tag-box.directive';
   imports: [CommonModule],
   exports: [MeTagBoxDirective],
 })
-export class MeTagBoxModule { }
+export class MeTagBoxModule {}

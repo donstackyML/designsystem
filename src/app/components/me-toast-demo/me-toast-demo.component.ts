@@ -29,13 +29,7 @@ export class MeToastDemoComponent {
     'bottom right',
     'center',
   ];
-  toastTypes = [
-    'info',
-    'info-inverted',
-    'success',
-    'warning',
-    'error',
-  ];
+  toastTypes = ['info', 'info-inverted', 'success', 'warning', 'error'];
 
   icons = [
     { text: 'Info', icon: 'dx-icon-info' },
@@ -50,7 +44,7 @@ export class MeToastDemoComponent {
       type: this.toastType,
       position: this.position,
       width: '260px',
-    })
+    });
   }
   showToast(toastDirective: any) {
     toastDirective.showToast();

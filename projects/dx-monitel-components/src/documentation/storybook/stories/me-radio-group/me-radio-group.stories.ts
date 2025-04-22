@@ -1,7 +1,15 @@
-import { moduleMetadata, type Meta, type StoryObj, argsToTemplate } from '@storybook/angular';
+import {
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
+  argsToTemplate,
+} from '@storybook/angular';
 import { DxRadioGroupComponent, DxRadioGroupModule } from 'devextreme-angular';
 import { MeIconComponent, MeRadioGroupDirective } from '../../../../public-api';
-import { meRadioGroupMockData, meRadioGroupMockDataWithIcons } from './me-radio-group-mock-data';
+import {
+  meRadioGroupMockData,
+  meRadioGroupMockDataWithIcons,
+} from './me-radio-group-mock-data';
 
 export default {
   title: 'Components/RadioGroup',
@@ -85,67 +93,67 @@ export default {
       >
       </dx-radio-group>
     `,
-  })
+  }),
 } satisfies Meta<DxRadioGroupComponent | MeRadioGroupDirective>;
 
 type Story = StoryObj<DxRadioGroupComponent | MeRadioGroupDirective>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
-  }
-}
+    size: 'small',
+  },
+};
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
-  }
-}
+    size: 'large',
+  },
+};
 
 export const LayoutVertical: Story = {
   args: {
-    layout: 'vertical'
-  }
-}
+    layout: 'vertical',
+  },
+};
 
 export const LayoutHorizontal: Story = {
   args: {
-    layout: 'horizontal'
-  }
-}
+    layout: 'horizontal',
+  },
+};
 
 export const StateReadOnly: Story = {
   args: {
-    readOnly: true
-  }
-}
+    readOnly: true,
+  },
+};
 
 export const StateDisable: Story = {
   args: {
-    disabled: true
-  }
-}
+    disabled: true,
+  },
+};
 
 export const StateReadOnlyAndDisable: Story = {
   args: {
     readOnly: true,
     disabled: true,
-  }
-}
+  },
+};
 
 export const WithInitialValue: Story = {
   args: {
-    value: meRadioGroupMockData[0]
-  }
-}
+    value: meRadioGroupMockData[0],
+  },
+};
 
 export const CustomTemplateWithIcons: Story = {
   args: {

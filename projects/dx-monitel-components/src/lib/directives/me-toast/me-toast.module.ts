@@ -7,4 +7,4 @@ import { MeToastDirective } from './me-toast.directive';
   imports: [CommonModule],
   exports: [MeToastDirective],
 })
-export class MeToastModule { }
+export class MeToastModule {}

@@ -10,7 +10,10 @@ export class ListItemDividerService {
     if (addClassOnly) {
       itemElement.classList.add('me-list-item-with-bottom-divider');
     } else {
-      const existingDivider = itemElement.nextElementSibling?.classList.contains('me-list-item-divider');
+      const existingDivider =
+        itemElement.nextElementSibling?.classList.contains(
+          'me-list-item-divider'
+        );
 
       if (!existingDivider) {
         const Divider = document.createElement('li');
@@ -20,7 +23,10 @@ export class ListItemDividerService {
     }
   }
 
-  addDividersClass(contentElement: Element, dividersVisibility: DividersVisibility) {
+  addDividersClass(
+    contentElement: Element,
+    dividersVisibility: DividersVisibility
+  ) {
     contentElement.classList.add(`dividers-visibility-${dividersVisibility}`);
   }
 
@@ -34,7 +40,13 @@ export class ListItemDividerService {
     this.addDividersClass(contentElement, dividersVisibility);
 
     if (dividersVisibility !== 'none' && items.length) {
-      this.addDividersToList(contentElement, selector, items, dividersVisibility, addClassOnly);
+      this.addDividersToList(
+        contentElement,
+        selector,
+        items,
+        dividersVisibility,
+        addClassOnly
+      );
     }
   }
 

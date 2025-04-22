@@ -17,7 +17,7 @@ import {
   Output,
   Renderer2,
   SimpleChanges,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import DevExpress from 'devextreme';
 import {
@@ -34,7 +34,10 @@ import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-vi
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeSize } from '../../types/types';
 import { MeIconComponent } from '../me-icon/me-icon.component';
-import { MeMenuLeftItem, MeMenuLeftItemComponent } from './me-menu-left-item.component';
+import {
+  MeMenuLeftItem,
+  MeMenuLeftItemComponent,
+} from './me-menu-left-item.component';
 
 interface TreeNode {
   parent?: TreeNode;
@@ -136,10 +139,18 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     private renderer: Renderer2
   ) {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
-    this.focusService.addKeyUpEventHandle('Tab', (evt) => this.keyTabHandle(evt));
-    this.focusService.addKeyUpEventHandle('ArrowDown', (evt) => this.keyDownHandle(evt));
-    this.focusService.addKeyUpEventHandle('ArrowUp', (evt) => this.keyUpHandle(evt));
-    this.focusService.addKeyUpEventHandle('Enter', (evt) => this.keyEnterHandle(evt));
+    this.focusService.addKeyUpEventHandle('Tab', (evt) =>
+      this.keyTabHandle(evt)
+    );
+    this.focusService.addKeyUpEventHandle('ArrowDown', (evt) =>
+      this.keyDownHandle(evt)
+    );
+    this.focusService.addKeyUpEventHandle('ArrowUp', (evt) =>
+      this.keyUpHandle(evt)
+    );
+    this.focusService.addKeyUpEventHandle('Enter', (evt) =>
+      this.keyEnterHandle(evt)
+    );
     this.focusService.addFocusOutHandle((evt) => this.focusOutHandle(evt));
   }
 
@@ -197,7 +208,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   setHandleTransform(dragHandle: HTMLElement, targetRect: DOMRect): void {
     const dragRect = dragHandle.getBoundingClientRect();
     const translateX = targetRect.width - dragRect.width;
-    this.renderer.setStyle(dragHandle, 'transform', `translate(${translateX}px, 0)`);
+    this.renderer.setStyle(
+      dragHandle,
+      'transform',
+      `translate(${translateX}px, 0)`
+    );
   }
 
   toggleMenuLeft(): void {
@@ -222,7 +237,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   ended(event: CdkDragEnd): void {
     this._withStarted = 0;
-    this.renderer.setStyle(this.containerElement, 'transition', this._transition);
+    this.renderer.setStyle(
+      this.containerElement,
+      'transition',
+      this._transition
+    );
   }
 
   dragMove(event: CdkDragMove<any>): void {
@@ -254,7 +273,9 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       this.updateFlatList();
     }
     if (this.collapsed && item.items && item.items.length > 0) {
-      const targetEl = (event.target as HTMLElement).closest('.me-menu-left_item');
+      const targetEl = (event.target as HTMLElement).closest(
+        '.me-menu-left_item'
+      );
       if (targetEl) {
         this.showPopup(targetEl, item);
       }
@@ -282,7 +303,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  private initNodes(nodes: TreeNode[], items: MeMenuLeftItem[], parent?: TreeNode): void {
+  private initNodes(
+    nodes: TreeNode[],
+    items: MeMenuLeftItem[],
+    parent?: TreeNode
+  ): void {
     items.forEach((item) => {
       const treeNode: TreeNode = {
         item,
@@ -387,10 +412,15 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   private keyEnterHandle(evt: KeyboardEvent): void {
-    if (this.nodeFlatList.length && this.activeIndex < this.nodeFlatList.length) {
+    if (
+      this.nodeFlatList.length &&
+      this.activeIndex < this.nodeFlatList.length
+    ) {
       const node = this.nodeFlatList[this.activeIndex];
       if (this.collapsed) {
-        const activeElement = this.element.nativeElement.querySelector('.me-menu-left_item-active');
+        const activeElement = this.element.nativeElement.querySelector(
+          '.me-menu-left_item-active'
+        );
         if (activeElement) {
           this.showPopup(activeElement, node.item);
         }

@@ -7,4 +7,4 @@ import { MeLabelDirective } from './me-label.directive';
   imports: [CommonModule],
   exports: [MeLabelDirective],
 })
-export class MeLabelModule { }
+export class MeLabelModule {}

@@ -10,9 +10,7 @@ import { MeFormField } from '../me-form-item/me-form-field';
   },
   providers: [{ provide: MeFormField, useExisting: MeTextAreaDirective }],
 })
-export class MeTextAreaDirective
-  extends MeFormField
-  implements OnInit {
+export class MeTextAreaDirective extends MeFormField implements OnInit {
   @Input() height: string | number = '';
 
   private focusService: ComponentFocusService;
@@ -25,19 +23,16 @@ export class MeTextAreaDirective
     this.component.labelMode = 'outside';
 
     if (this.component.autoResizeEnabled) {
-      this.component.height = 'auto'
+      this.component.height = 'auto';
     }
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
   ngOnInit(): void {
-    const container = this.element.nativeElement
+    const container = this.element.nativeElement;
 
     if (this.height && container) {
-      this.renderer.addClass(
-        container,
-        'me-text-area-custom-height',
-      );
+      this.renderer.addClass(container, 'me-text-area-custom-height');
     }
   }
 }

@@ -32,7 +32,8 @@ function createMeListDefaultMockDataWithDividers() {
 }
 
 export const meListDefaultMockData = createMeListDefaultMockData();
-export const meListDefaultMockDataWithDividers = createMeListDefaultMockDataWithDividers();
+export const meListDefaultMockDataWithDividers =
+  createMeListDefaultMockDataWithDividers();
 
 export const meListMockDataWithHeaders = [
   {

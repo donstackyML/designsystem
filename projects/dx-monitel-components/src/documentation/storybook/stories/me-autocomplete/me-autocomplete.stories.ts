@@ -5,7 +5,10 @@ import {
   StoryObj,
 } from '@storybook/angular';
 import { DxAutocompleteComponent, DxValidatorModule } from 'devextreme-angular';
-import { MeAutocompleteDirective, MeLabelDirective } from '../../../../public-api';
+import {
+  MeAutocompleteDirective,
+  MeLabelDirective,
+} from '../../../../public-api';
 import { meAutocompleteMockData } from './me-autocomplete-mock-data';
 
 export default {
@@ -13,7 +16,11 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [DxValidatorModule],
-      declarations: [MeAutocompleteDirective, DxAutocompleteComponent, MeLabelDirective],
+      declarations: [
+        MeAutocompleteDirective,
+        DxAutocompleteComponent,
+        MeLabelDirective,
+      ],
     }),
   ],
   argTypes: {
@@ -64,24 +71,24 @@ export default {
       description: 'Определяет состояние только для чтения',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
       description: 'Отключение компонента',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     minSearchLength: {
       control: { type: 'number', min: 0, max: 10 },
       description: 'Минимальная длина поиска',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: '1' }
-      }
+        defaultValue: { summary: '1' },
+      },
     },
     showRequiredMark: {
       control: 'boolean',
@@ -130,13 +137,13 @@ export default {
       description: 'Максимальная высота выпадающего списка',
       table: {
         type: { summary: 'string | number' },
-        defaultValue: { summary: '300px' }
-      }
+        defaultValue: { summary: '300px' },
+      },
     },
     dataSource: {
       table: {
-        disable: true
-      }
+        disable: true,
+      },
     },
   },
   args: {
@@ -188,9 +195,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -245,7 +252,7 @@ export const WithLabelRow: Story = {
 
 export const WithLabelColumn: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -261,18 +268,18 @@ export const WithLabelColumn: Story = {
       ></dx-autocomplete>
 		</div>`,
   }),
-}
+};
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    value: 'Moscow'
+    value: 'Moscow',
   },
 };
 
@@ -280,18 +287,18 @@ export const StateDisabledAndReadOnly: Story = {
   args: {
     readOnly: true,
     disabled: true,
-    value: 'Moscow'
+    value: 'Moscow',
   },
 };
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
+    showRequiredMark: true,
   },
 };
 
 export const ValidationInvalid: Story = {
   args: {
-    isValid: false
+    isValid: false,
   },
 };

@@ -1,4 +1,11 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  Renderer2,
+} from '@angular/core';
 import { DxListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
@@ -32,16 +39,20 @@ export class MeListDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const contentElement = this.element.nativeElement.querySelector('.dx-list-items');
+    const contentElement =
+      this.element.nativeElement.querySelector('.dx-list-items');
     if (!contentElement) return;
 
-    this.dividerService.addDividersClass(contentElement, this.dividersVisibility);
+    this.dividerService.addDividersClass(
+      contentElement,
+      this.dividersVisibility
+    );
   }
 
   @HostListener('onItemRendered', ['$event'])
   onItemRendered({ itemData, itemElement }: any) {
     if (itemData.hasDivider && this.dividersVisibility === 'auto') {
-      this.dividerService.addDividerToItem(itemElement, true)
+      this.dividerService.addDividerToItem(itemElement, true);
     }
   }
 

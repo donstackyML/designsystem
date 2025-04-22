@@ -30,10 +30,12 @@ import { MeEditorComponents, MeLabelDirection } from '../../types/types';
 export class MeLabelDirective
   implements OnInit, AfterContentInit, AfterContentChecked, OnDestroy
 {
-  @ContentChild(DxAutocompleteComponent) autocompleteComponent?: DxAutocompleteComponent;
+  @ContentChild(DxAutocompleteComponent)
+  autocompleteComponent?: DxAutocompleteComponent;
   @ContentChild(DxCheckBoxComponent) checkBoxComponent?: DxCheckBoxComponent;
   @ContentChild(DxDateBoxComponent) dateBoxComponent?: DxDateBoxComponent;
-  @ContentChild(DxDateRangeBoxComponent) dateRangeBoxComponent?: DxDateRangeBoxComponent;
+  @ContentChild(DxDateRangeBoxComponent)
+  dateRangeBoxComponent?: DxDateRangeBoxComponent;
   @ContentChild(DxSelectBoxComponent) selectBoxComponent?: DxSelectBoxComponent;
   @ContentChild(DxSwitchComponent) switchComponent?: DxSwitchComponent;
   @ContentChild(DxTagBoxComponent) tagBoxComponent?: DxTagBoxComponent;
@@ -130,7 +132,10 @@ export class MeLabelDirective
   }
 
   private applyClasses(): void {
-    this.renderer.addClass(this.element.nativeElement, `me-label-direction-${this.labelDirection}`);
+    this.renderer.addClass(
+      this.element.nativeElement,
+      `me-label-direction-${this.labelDirection}`
+    );
   }
 
   ngAfterContentChecked(): void {

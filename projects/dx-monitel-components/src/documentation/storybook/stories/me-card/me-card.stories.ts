@@ -64,7 +64,8 @@ export default {
     },
     contentHeight: {
       control: 'text',
-      description: 'Устанавливает максимальную высоту контента в значениях с которыми работает CSS, например: "auto", "200px", "100%", "fit-content".',
+      description:
+        'Устанавливает максимальную высоту контента в значениях с которыми работает CSS, например: "auto", "200px", "100%", "fit-content".',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'auto' },
@@ -75,7 +76,7 @@ export default {
     size: 'medium',
     showHeader: true,
     showFooter: true,
-    contentHeight: 'auto'
+    contentHeight: 'auto',
   },
 } satisfies Meta<MeCardComponent>;
 
@@ -111,7 +112,7 @@ export const SimpleCard: Story = {
     props: {
       ...args,
       onHeaderClick: action('Заголовок нажат'),
-      onFooterClick: action('Кнопка подвала нажата')
+      onFooterClick: action('Кнопка подвала нажата'),
     },
     template: simpleCardTemplate,
   }),
@@ -478,16 +479,15 @@ export const UnlimitedContent: Story = {
   },
 };
 
-
 export const CardSizeSmall: Story = {
   args: {
-    size: 'small'
+    size: 'small',
   },
   render: (args) => ({
     props: {
       ...args,
       onHeaderClick: action('Заголовок нажат'),
-      onFooterClick: action('Кнопка подвала нажата')
+      onFooterClick: action('Кнопка подвала нажата'),
     },
     template: simpleCardTemplate,
   }),
@@ -495,13 +495,13 @@ export const CardSizeSmall: Story = {
 
 export const CardSizeMedium: Story = {
   args: {
-    size: 'medium'
+    size: 'medium',
   },
   render: (args) => ({
     props: {
       ...args,
       onHeaderClick: action('Заголовок нажат'),
-      onFooterClick: action('Кнопка подвала нажата')
+      onFooterClick: action('Кнопка подвала нажата'),
     },
     template: simpleCardTemplate,
   }),
@@ -509,13 +509,13 @@ export const CardSizeMedium: Story = {
 
 export const CardSizeLarge: Story = {
   args: {
-    size: 'large'
+    size: 'large',
   },
   render: (args) => ({
     props: {
       ...args,
       onHeaderClick: action('Заголовок нажат'),
-      onFooterClick: action('Кнопка подвала нажата')
+      onFooterClick: action('Кнопка подвала нажата'),
     },
     template: simpleCardTemplate,
   }),

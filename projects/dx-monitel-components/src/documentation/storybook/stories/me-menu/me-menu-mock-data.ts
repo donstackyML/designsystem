@@ -106,7 +106,7 @@ export const meMenuMockData = [
                 icon: argsIcon,
                 text: 'Cell Phone Accessories',
               },
-            ]
+            ],
           },
           {
             icon: argsIcon,
@@ -367,7 +367,7 @@ export const meMenuMockData = [
         ],
       },
     ],
-  }
+  },
 ];
 
 export const meMenuMockDataWithGroup = [
@@ -513,10 +513,10 @@ export const meMenuMockDataWithGroup = [
             icon: argsIcon,
             hasDivider: true,
           },
-        ]
+        ],
       },
     ],
-  }
+  },
 ];
 
 export const meMenuMockDataWithDividers = [

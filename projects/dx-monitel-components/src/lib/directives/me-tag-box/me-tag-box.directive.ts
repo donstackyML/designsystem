@@ -5,7 +5,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
 import { DxTagBoxComponent } from 'devextreme-angular';
 import { Subscription, fromEvent } from 'rxjs';
@@ -18,14 +18,14 @@ import { MeFormField } from '../me-form-item/me-form-field';
 @Directive({
   selector: '[meTagBox]',
   host: {
-    '[class.me-tag-box]': 'true'
+    '[class.me-tag-box]': 'true',
   },
   providers: [{ provide: MeFormField, useExisting: MeTagBoxDirective }],
 })
 export class MeTagBoxDirective
   extends MeFormField
-  implements OnInit, OnDestroy {
-
+  implements OnInit, OnDestroy
+{
   @Input() description: string = '';
   @Input() dropDownListMaxHeight?: string | number;
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
@@ -48,11 +48,17 @@ export class MeTagBoxDirective
   }
 
   ngOnInit(): void {
-    this.globalKeydownSub = fromEvent<KeyboardEvent>(window, 'keydown').subscribe(() => {
+    this.globalKeydownSub = fromEvent<KeyboardEvent>(
+      window,
+      'keydown'
+    ).subscribe(() => {
       this.isKeyboardNavigation = true;
     });
 
-    this.globalMousedownSub = fromEvent<MouseEvent>(window, 'mousedown').subscribe(() => {
+    this.globalMousedownSub = fromEvent<MouseEvent>(
+      window,
+      'mousedown'
+    ).subscribe(() => {
       this.isKeyboardNavigation = false;
     });
 
@@ -110,8 +116,12 @@ export class MeTagBoxDirective
       return;
     }
 
-    const submitButton = popupContainer.querySelector('.dx-button.dx-popup-done');
-    const cancelButton = popupContainer.querySelector('.dx-button.dx-popup-cancel');
+    const submitButton = popupContainer.querySelector(
+      '.dx-button.dx-popup-done'
+    );
+    const cancelButton = popupContainer.querySelector(
+      '.dx-button.dx-popup-cancel'
+    );
 
     if (submitButton) {
       this.renderer.addClass(submitButton, 'me-button');

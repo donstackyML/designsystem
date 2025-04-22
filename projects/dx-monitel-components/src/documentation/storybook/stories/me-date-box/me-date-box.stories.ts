@@ -12,7 +12,12 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [DxValidatorModule],
-      declarations: [MeDateBoxDirective, DxDateBoxComponent, , MeLabelDirective],
+      declarations: [
+        MeDateBoxDirective,
+        DxDateBoxComponent,
+        ,
+        MeLabelDirective,
+      ],
     }),
   ],
   argTypes: {
@@ -72,8 +77,8 @@ export default {
       description: 'Определяет состояние только для чтения',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
@@ -230,7 +235,7 @@ export default {
         type: { summary: 'string | number | undefined' },
         defaultValue: { summary: 'undefined' },
       },
-    }
+    },
   },
   args: {
     size: 'medium',
@@ -257,7 +262,7 @@ export default {
     validationError: null,
     validationMessagePosition: 'auto',
     width: undefined,
-    height: undefined
+    height: undefined,
   },
   render: (args) => ({
     props: args,
@@ -277,7 +282,7 @@ export default {
   }),
 } satisfies Meta<DxDateBoxComponent | MeDateBoxDirective>;
 
-type Story = StoryObj<DxDateBoxComponent | MeDateBoxDirective>
+type Story = StoryObj<DxDateBoxComponent | MeDateBoxDirective>;
 
 export const Default: Story = {};
 
@@ -289,9 +294,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -347,7 +352,7 @@ export const WithLabelRow: Story = {
 
 export const WithLabelColumn: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -364,30 +369,30 @@ export const WithLabelColumn: Story = {
       </dx-date-box>
 		</div>`,
   }),
-}
+};
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    value: '1/1/2024'
+    value: '1/1/2024',
   },
 };
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
+    showRequiredMark: true,
   },
 };
 
 export const ValidationInvalid: Story = {
   args: {
-    isValid: false
+    isValid: false,
   },
 };
 
@@ -395,7 +400,7 @@ export const StateDisabledAndReadOnly: Story = {
   args: {
     readOnly: true,
     disabled: true,
-    value: '1/1/2024'
+    value: '1/1/2024',
   },
 };
 
@@ -414,14 +419,14 @@ export const PickerTypeRollers: Story = {
 export const PickerTypeList: Story = {
   args: {
     pickerType: 'list',
-    type: 'time'
+    type: 'time',
   },
 };
 
 export const PickerTypeNative: Story = {
   args: {
     pickerType: 'native',
-    acceptCustomValue: true
+    acceptCustomValue: true,
   },
 };
 
@@ -429,7 +434,7 @@ export const DateAndTime: Story = {
   args: {
     pickerType: 'calendar',
     type: 'datetime',
-    showAnalogClock: true
+    showAnalogClock: true,
   },
 };
 
@@ -452,5 +457,5 @@ export const WithDescription: Story = {
       </dx-validator>
     </dx-date-box>
     <p class="me-input-description" *ngIf="description">{{ description }}</p>`,
-  })
+  }),
 };

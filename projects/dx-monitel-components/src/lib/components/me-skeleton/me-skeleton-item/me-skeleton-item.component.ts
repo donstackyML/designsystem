@@ -1,9 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-  Component,
-  HostBinding,
-  Input
-} from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 export type SkeletonShape = 'circle' | 'rounded' | 'rectangle';
 
@@ -21,14 +17,16 @@ export interface SkeletonItemProps {
   imports: [NgClass],
 })
 export class MeSkeletonItemComponent {
-  @Input() shape?: SkeletonShape = 'rounded'
+  @Input() shape?: SkeletonShape = 'rounded';
   @Input() animated?: boolean = false;
 
   @HostBinding('style.width')
-  @Input() width?: number | string = '100%'
+  @Input()
+  width?: number | string = '100%';
 
   @HostBinding('style.height')
-  @Input() height?: number | string = '8px'
+  @Input()
+  height?: number | string = '8px';
 
   @HostBinding('class')
   get hostClasses(): string {

@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { MeFileUploaderComponent } from '../../../../../public-api';
 import { CommonModule } from '@angular/common';
 
@@ -16,7 +21,10 @@ export default {
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'string' },
-        defaultValue: { summary: 'Перетащите сюда файлы для загрузки или выберите на устройстве' },
+        defaultValue: {
+          summary:
+            'Перетащите сюда файлы для загрузки или выберите на устройстве',
+        },
       },
     },
     selectButtonText: {
@@ -74,7 +82,7 @@ export default {
         type: 'number',
         min: 0,
         max: 10 * 1024 * 1024,
-        step: 1024
+        step: 1024,
       },
       description: 'Минимальный размер файла в байтах',
       table: {
@@ -128,7 +136,7 @@ export default {
   render: (args) => ({
     props: args,
     template: `<me-file-uploader ${argsToTemplate(args)}></me-file-uploader>`,
-  })
+  }),
 } satisfies Meta<MeFileUploaderComponent>;
 
 type Story = StoryObj<MeFileUploaderComponent>;
@@ -139,16 +147,15 @@ export const WithFileSizeRestrictions: Story = {
   args: {
     maxFileSize: 5 * 1024 * 1024, // 5MB
     minFileSize: 1024, // 1KB
-  }
+  },
 };
 
 export const WithFileExtensionRestriction: Story = {
   args: {
     allowedFileExtensions: ['jpg', 'png', 'pdf'],
     labelText: 'Выберите файлы только с расширениями JPG, PNG или PDF',
-  }
+  },
 };
-
 
 export const WithoutFileList: Story = {
   args: {
@@ -161,7 +168,7 @@ export const SingleFileUpload: Story = {
     multiple: false,
     labelText: 'Выберите один файл',
   },
-}
+};
 
 export const CustomSelectButtonText: Story = {
   args: {
@@ -171,8 +178,8 @@ export const CustomSelectButtonText: Story = {
 
 export const CustomizableUploader: Story = {
   args: {
-    labelText: "Перетащите ваши файлы сюда или нажмите кнопку ниже",
-    selectButtonText: "Выбрать файлы",
+    labelText: 'Перетащите ваши файлы сюда или нажмите кнопку ниже',
+    selectButtonText: 'Выбрать файлы',
     allowedFileExtensions: ['jpg', 'png', 'pdf'],
     maxFileSize: 5 * 1024 * 1024,
     multiple: true,

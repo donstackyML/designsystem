@@ -7,4 +7,4 @@ import { MeEditorDirective } from './me-editor.directive';
   imports: [CommonModule],
   exports: [MeEditorDirective],
 })
-export class MeEditorModule { }
+export class MeEditorModule {}

@@ -13,7 +13,8 @@ export default {
   argTypes: {
     chips: {
       control: 'object',
-      description: 'Массив объектов чипов, которые будут отображаться в компоненте.',
+      description:
+        'Массив объектов чипов, которые будут отображаться в компоненте.',
       table: {
         type: { summary: 'MeChip[]' },
         defaultValue: { summary: '[]' },
@@ -29,7 +30,8 @@ export default {
     },
     chipsChange: {
       action: 'chipsChange',
-      description: 'Событие, вызываемое при изменении списка чипов (например, удалении).',
+      description:
+        'Событие, вызываемое при изменении списка чипов (например, удалении).',
       table: {
         type: { summary: 'EventEmitter<MeChip[]>' },
       },
@@ -70,7 +72,7 @@ export default {
       (selectionChange)="onSelectionChange($event)"
     >
     </me-chips>`,
-  })
+  }),
 } satisfies Meta<MeChipsComponent>;
 
 type Story = StoryObj<MeChipsComponent>;
@@ -85,9 +87,7 @@ export const MultiSelect: Story = {
 
 export const SingleChip: Story = {
   args: {
-    chips: [
-      { label: 'Одиночный чип', size: 'medium', count: 1 }
-    ]
+    chips: [{ label: 'Одиночный чип', size: 'medium', count: 1 }],
   },
 };
 
@@ -114,10 +114,23 @@ export const Preselected: Story = {
 export const LongNames: Story = {
   args: {
     chips: [
-      { label: 'Очень длинное название чипа, которое не помещается', size: 'medium', selected: false },
-      { label: 'Еще одно длинное название, превышающее обычную длину', size: 'medium', selected: false },
+      {
+        label: 'Очень длинное название чипа, которое не помещается',
+        size: 'medium',
+        selected: false,
+      },
+      {
+        label: 'Еще одно длинное название, превышающее обычную длину',
+        size: 'medium',
+        selected: false,
+      },
       { label: 'Короткое', size: 'medium', selected: false },
-      { label: 'Чрезвычайно длинное название чипа, которое точно выходит за пределы контейнера', size: 'medium', selected: false },
+      {
+        label:
+          'Чрезвычайно длинное название чипа, которое точно выходит за пределы контейнера',
+        size: 'medium',
+        selected: false,
+      },
     ],
   },
 };
@@ -140,6 +153,6 @@ export const SizesVariants: Story = {
       { label: 'Small Chip', size: 'small', count: 1, selected: false },
       { label: 'Medium Chip', size: 'medium', count: 2, selected: false },
       { label: 'Large Chip', size: 'large', count: 3, selected: false },
-    ]
-  }
+    ],
+  },
 };

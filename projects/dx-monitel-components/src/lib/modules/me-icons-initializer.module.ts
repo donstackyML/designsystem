@@ -1,11 +1,18 @@
-
-import { NgModule, ModuleWithProviders, APP_INITIALIZER, InjectionToken } from '@angular/core';
+import {
+  NgModule,
+  ModuleWithProviders,
+  APP_INITIALIZER,
+  InjectionToken,
+} from '@angular/core';
 import { MeIconsRegistry } from '@monitel/me-icons-registry';
 import { meIconSet } from '@monitel/me-icons';
 
 export const ICONS = new InjectionToken<any[]>('icons');
 
-export function initializeIconsFactory(registry: MeIconsRegistry, icons: any[]): () => void {
+export function initializeIconsFactory(
+  registry: MeIconsRegistry,
+  icons: any[]
+): () => void {
   return () => registry.registerIcons(icons);
 }
 
@@ -19,15 +26,13 @@ export function initializeIconsFactory(registry: MeIconsRegistry, icons: any[]):
       deps: [MeIconsRegistry, ICONS],
       multi: true,
     },
-  ]
+  ],
 })
 export class MeIconsInitializerModule {
   static forRoot(icons: any[]): ModuleWithProviders<MeIconsInitializerModule> {
     return {
       ngModule: MeIconsInitializerModule,
-      providers: [
-        { provide: ICONS, useValue: icons }
-      ]
+      providers: [{ provide: ICONS, useValue: icons }],
     };
   }
 }

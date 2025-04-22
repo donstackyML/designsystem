@@ -7,11 +7,14 @@ import {
 import {
   DxSelectBoxComponent,
   DxTextBoxComponent,
-  DxValidatorModule
+  DxValidatorModule,
 } from 'devextreme-angular';
 
 import { MeLabelDirective, MeSelectBoxDirective } from '../../../../public-api';
-import { meSelectBoxData, meSelectBoxDataWithDividers } from './me-select-box-mock-data';
+import {
+  meSelectBoxData,
+  meSelectBoxDataWithDividers,
+} from './me-select-box-mock-data';
 
 export default {
   title: 'Components/Fields/SelectBox',
@@ -22,7 +25,7 @@ export default {
         MeSelectBoxDirective,
         DxSelectBoxComponent,
         MeLabelDirective,
-        DxTextBoxComponent
+        DxTextBoxComponent,
       ],
     }),
   ],
@@ -88,7 +91,8 @@ export default {
     dividersVisibility: {
       control: 'select',
       options: ['auto', 'all', 'none'],
-      description: 'Определяет видимость разделителей у элементов списка в выпадающем меню',
+      description:
+        'Определяет видимость разделителей у элементов списка в выпадающем меню',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'auto' },
@@ -99,8 +103,8 @@ export default {
       description: 'Определяет состояние только для чтения',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
@@ -202,7 +206,7 @@ export default {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
-    }
+    },
   },
   args: {
     label: 'Label',
@@ -251,9 +255,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -308,7 +312,7 @@ export const WithLabelRow: Story = {
 
 export const WithLabelColumn: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -324,18 +328,18 @@ export const WithLabelColumn: Story = {
       ></dx-select-box>
 		</div>`,
   }),
-}
+};
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    value: meSelectBoxData[0]
+    value: meSelectBoxData[0],
   },
 };
 
@@ -343,39 +347,39 @@ export const StateDisabledAndReadOnly: Story = {
   args: {
     readOnly: true,
     disabled: true,
-    value: meSelectBoxData[0]
+    value: meSelectBoxData[0],
   },
 };
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
+    showRequiredMark: true,
   },
 };
 
 export const ValidationInvalid: Story = {
   args: {
-    isValid: false
+    isValid: false,
   },
 };
 
 export const WithClearButton: Story = {
   args: {
     showClearButton: true,
-    value: meSelectBoxData[0]
+    value: meSelectBoxData[0],
   },
 };
 
 export const WithSearch: Story = {
   args: {
-    searchEnabled: true
+    searchEnabled: true,
   },
 };
 
 export const WithLeftIcon: Story = {
   args: {
-    leftIcon: 'account_circle_x20'
-  }
+    leftIcon: 'account_circle_x20',
+  },
 };
 
 export const DividersVisibilityNone: Story = {

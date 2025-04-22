@@ -1,9 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  Meta,
-  StoryObj,
-  moduleMetadata
-} from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
 import { AnimationConfig } from 'devextreme/animation/fx';
@@ -16,7 +12,12 @@ import { PositionConfig } from 'devextreme/animation/position';
   template: `
     <div class="dx-widget container">
       <a *ngIf="showEvent !== 'click'" id="popoverTarget">{{ triggerText }}</a>
-      <dx-button *ngIf="showEvent === 'click'" meButton [text]="triggerText" id="popoverTarget"></dx-button>
+      <dx-button
+        *ngIf="showEvent === 'click'"
+        meButton
+        [text]="triggerText"
+        id="popoverTarget"
+      ></dx-button>
       <dx-popover
         mePopover
         target="#popoverTarget"
@@ -86,8 +87,8 @@ import { PositionConfig } from 'devextreme/animation/position';
     </div>
   `,
   styles: [
-
-    ` .container {
+    `
+      .container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -131,9 +132,15 @@ class PopoverDemoComponent {
   @Input() triggerText: string = 'Наведите для показа поповера';
   @Input() size: string = 'medium';
   @Input() colorMode: 'default' | 'alternate' | 'light' | 'dark' = 'default';
-  @Input() showEvent?: string | { name?: string, delay?: number } = 'mouseenter';
-  @Input() hideEvent?: string | { name?: string, delay?: number } = 'mouseleave';
-  @Input() position: Position | PositionConfig = { my: 'top', at: 'bottom', collision: 'fit flip' };
+  @Input() showEvent?: string | { name?: string; delay?: number } =
+    'mouseenter';
+  @Input() hideEvent?: string | { name?: string; delay?: number } =
+    'mouseleave';
+  @Input() position: Position | PositionConfig = {
+    my: 'top',
+    at: 'bottom',
+    collision: 'fit flip',
+  };
   @Input() width: number | string = 'auto';
   @Input() maxWidth: number | string | null = null;
   @Input() minWidth: number | string | null = null;
@@ -151,9 +158,9 @@ class PopoverDemoComponent {
   @Input() enableBodyScroll: boolean = true;
   @Input() showToolbarItems: boolean = false;
 
-  @Input() animation: { hide: AnimationConfig, show: AnimationConfig } = {
+  @Input() animation: { hide: AnimationConfig; show: AnimationConfig } = {
     hide: { type: 'fade', to: 0 },
-    show: { type: 'fade', from: 0, to: 1 }
+    show: { type: 'fade', from: 0, to: 1 },
   };
 
   acceptButton = {
@@ -212,7 +219,9 @@ export default {
       options: ['mouseenter', 'click', 'focus'],
       description: 'Событие, при котором поповер будет показываться.',
       table: {
-        type: { summary: 'string | { name?: string, delay?: number } | undefined' },
+        type: {
+          summary: 'string | { name?: string, delay?: number } | undefined',
+        },
         defaultValue: { summary: 'mouseenter' },
       },
     },
@@ -221,7 +230,9 @@ export default {
       options: ['mouseleave', 'click', 'blur'],
       description: 'Событие, при котором поповер будет скрываться.',
       table: {
-        type: { summary: 'string | { name?: string, delay?: number } | undefined' },
+        type: {
+          summary: 'string | { name?: string, delay?: number } | undefined',
+        },
         defaultValue: { summary: 'mouseleave' },
       },
     },
@@ -231,7 +242,10 @@ export default {
       description: 'Позиция поповера относительно целевого элемента.',
       table: {
         type: { summary: "'top', 'bottom', 'left', 'right' | PositionConfig" },
-        defaultValue: { summary: "{ my: 'top center', at: 'bottom center', collision: 'fit flip' }" },
+        defaultValue: {
+          summary:
+            "{ my: 'top center', at: 'bottom center', collision: 'fit flip' }",
+        },
       },
     },
     showTitle: {
@@ -311,7 +325,7 @@ export default {
           {
             hide: { type: 'fade', to: 0 },
             show: { type: 'fade', from: 0, to: 1 }
-          }`
+          }`,
         },
       },
     },
@@ -378,9 +392,9 @@ export default {
     shadingColor: '',
     animation: {
       hide: { type: 'fade', to: 0 },
-      show: { type: 'fade', from: 0, to: 1 }
+      show: { type: 'fade', from: 0, to: 1 },
     },
-  }
+  },
 } satisfies Meta<PopoverDemoComponent>;
 
 type Story = StoryObj<PopoverDemoComponent>;
@@ -389,52 +403,51 @@ export const Default: Story = {};
 
 export const ColorModeDefault: Story = {
   args: {
-    colorMode: "default"
-  }
+    colorMode: 'default',
+  },
 };
 
 export const ColorModeDark: Story = {
   args: {
-    colorMode: "dark"
-  }
+    colorMode: 'dark',
+  },
 };
-
 
 export const ColorModeLight: Story = {
   args: {
-    colorMode: "light"
-  }
+    colorMode: 'light',
+  },
 };
 
 export const ColorModeAlternate: Story = {
   args: {
-    colorMode: "alternate"
-  }
+    colorMode: 'alternate',
+  },
 };
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
-  }
+    size: 'small',
+  },
 };
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
+    size: 'medium',
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const ContentWithTitle: Story = {
   args: {
     title: 'Заголовок',
-    showTitle: true
-  }
+    showTitle: true,
+  },
 };
 
 export const ContentWithTitleAndCloseButton: Story = {

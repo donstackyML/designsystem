@@ -7,4 +7,4 @@ import { MeOverlayDirective } from './me-overlay.directive';
   imports: [CommonModule],
   exports: [MeOverlayDirective],
 })
-export class MeOverlayModule { }
+export class MeOverlayModule {}

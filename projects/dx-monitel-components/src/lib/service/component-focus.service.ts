@@ -1,4 +1,10 @@
-import { ElementRef, Injectable, NgZone, OnDestroy, Renderer2 } from '@angular/core';
+import {
+  ElementRef,
+  Injectable,
+  NgZone,
+  OnDestroy,
+  Renderer2,
+} from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import {
   FocusInEventHandle,

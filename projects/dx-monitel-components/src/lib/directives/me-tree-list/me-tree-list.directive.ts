@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  Renderer2,
-} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
 import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 

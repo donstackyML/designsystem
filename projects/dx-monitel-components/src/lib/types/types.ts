@@ -11,7 +11,7 @@ import {
   DxSwitchComponent,
   DxTagBoxComponent,
   DxTextAreaComponent,
-  DxTextBoxComponent
+  DxTextBoxComponent,
 } from 'devextreme-angular';
 import { dxButtonGroupItem } from 'devextreme/ui/button_group';
 
@@ -31,17 +31,17 @@ export type MeLabelDirection = 'column' | 'row';
 export type MeLabelMode = 'static' | 'floating';
 export type MeScrollbarShowType = 'always' | 'onHover';
 export type MeEditorComponents =
-  DxAutocompleteComponent |
-  DxCheckBoxComponent |
-  DxDateBoxComponent |
-  DxDateRangeBoxComponent |
-  DxNumberBoxComponent |
-  DxRadioGroupComponent |
-  DxSelectBoxComponent |
-  DxSwitchComponent |
-  DxTagBoxComponent |
-  DxTextAreaComponent |
-  DxTextBoxComponent;
+  | DxAutocompleteComponent
+  | DxCheckBoxComponent
+  | DxDateBoxComponent
+  | DxDateRangeBoxComponent
+  | DxNumberBoxComponent
+  | DxRadioGroupComponent
+  | DxSelectBoxComponent
+  | DxSwitchComponent
+  | DxTagBoxComponent
+  | DxTextAreaComponent
+  | DxTextBoxComponent;
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 export type MeOverlayComponents = DxPopoverComponent | DxPopupComponent;
 export type MePosition = 'left' | 'right';

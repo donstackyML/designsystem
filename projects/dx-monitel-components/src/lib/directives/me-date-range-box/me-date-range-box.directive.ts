@@ -3,7 +3,7 @@ import {
   ElementRef,
   HostListener,
   OnInit,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
 import { DxDateRangeBoxComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
@@ -16,11 +16,7 @@ import { MeFormField } from '../me-form-item/me-form-field';
   },
   providers: [{ provide: MeFormField, useExisting: MeDateRangeBoxDirective }],
 })
-export class MeDateRangeBoxDirective
-  extends MeFormField
-  implements OnInit {
-
-
+export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
   private focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
@@ -28,7 +24,7 @@ export class MeDateRangeBoxDirective
 
     private renderer: Renderer2
   ) {
-    super(dateRangeBox)
+    super(dateRangeBox);
     this.dateRangeBox.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
     this.focusService.addKeyUpEventHandle('Enter', (evt) =>

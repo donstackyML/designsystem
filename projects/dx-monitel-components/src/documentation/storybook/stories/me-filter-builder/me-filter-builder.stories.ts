@@ -1,10 +1,34 @@
 import { Component, Input } from '@angular/core';
-import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { DxDataGridModule, DxFilterBuilderComponent, DxFilterBuilderModule, DxRadioGroupModule, DxTagBoxModule } from 'devextreme-angular';
+import {
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
+import {
+  DxDataGridModule,
+  DxFilterBuilderComponent,
+  DxFilterBuilderModule,
+  DxRadioGroupModule,
+  DxTagBoxModule,
+} from 'devextreme-angular';
 import { Field } from 'devextreme/ui/filter_builder';
-import { MeDataGridDirective, MeLoadIndicatorDirective, MeRadioGroupDirective, MeTagBoxDirective } from '../../../../public-api';
-import { anyOfOperation, isNoneOfOperation } from './me-filter-builder-custom-operations';
-import { filterFields as baseFilterFields, departments, mockData, tags } from './me-filter-builder-mock-data';
+import {
+  MeDataGridDirective,
+  MeLoadIndicatorDirective,
+  MeRadioGroupDirective,
+  MeTagBoxDirective,
+} from '../../../../public-api';
+import {
+  anyOfOperation,
+  isNoneOfOperation,
+} from './me-filter-builder-custom-operations';
+import {
+  filterFields as baseFilterFields,
+  departments,
+  mockData,
+  tags,
+} from './me-filter-builder-mock-data';
 
 export default {
   title: 'Components(WIP)/FilterBuilder',
@@ -16,7 +40,8 @@ export default {
   ],
   argTypes: {
     fields: {
-      description: 'Указывает массив полей для построения критериев фильтрации.',
+      description:
+        'Указывает массив полей для построения критериев фильтрации.',
       control: 'object',
       table: {
         type: { summary: 'Array<Object>' },
@@ -56,7 +81,8 @@ export default {
       },
     },
     onValueChanged: {
-      description: 'Функция, которая выполняется после изменения выражения фильтрации.',
+      description:
+        'Функция, которая выполняется после изменения выражения фильтрации.',
       action: 'valueChanged',
       table: {
         type: { summary: '(e: { value: any }) => void' },
@@ -68,7 +94,7 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      }
+      },
     },
   },
   args: {
@@ -92,30 +118,37 @@ type Story = StoryObj<DxFilterBuilderComponent>;
 export const Default: Story = {};
 
 export const filterFields: Field[] = [
-  { dataField: "id", dataType: "number" },
-  { dataField: "name", dataType: "string" },
-  { dataField: "age", dataType: "number" },
-  { dataField: "birthdate", dataType: "date" },
-  { dataField: "isActive", dataType: "boolean" },
+  { dataField: 'id', dataType: 'number' },
+  { dataField: 'name', dataType: 'string' },
+  { dataField: 'age', dataType: 'number' },
+  { dataField: 'birthdate', dataType: 'date' },
+  { dataField: 'isActive', dataType: 'boolean' },
   {
-    dataField: "gender", dataType: "string", editorTemplate: 'radioGroupTemplate', lookup: {
-      dataSource: ['male', 'female']
-    }
+    dataField: 'gender',
+    dataType: 'string',
+    editorTemplate: 'radioGroupTemplate',
+    lookup: {
+      dataSource: ['male', 'female'],
+    },
   },
   {
-    dataField: "tags",
-    dataType: "object",
+    dataField: 'tags',
+    dataType: 'object',
     filterOperations: ['contains', 'notcontains'],
     lookup: {
       dataSource: tags,
-      valueExpr: "name",
-      displayExpr: "name",
+      valueExpr: 'name',
+      displayExpr: 'name',
     },
   },
-  { dataField: "department", dataType: "string", filterOperations: ['anyof', 'noneof'], },
-  { dataField: "address.city", dataType: "string" },
-  { dataField: "address.zip", dataType: "string" },
-  { dataField: "salary", dataType: "number" },
+  {
+    dataField: 'department',
+    dataType: 'string',
+    filterOperations: ['anyof', 'noneof'],
+  },
+  { dataField: 'address.city', dataType: 'string' },
+  { dataField: 'address.zip', dataType: 'string' },
+  { dataField: 'salary', dataType: 'number' },
 ];
 
 @Component({
@@ -130,7 +163,7 @@ export const filterFields: Field[] = [
       [allowHierarchicalFields]="allowHierarchicalFields"
       (onValueChanged)="onFilterChanged($event)"
       class="me-filter-builder"
-      >
+    >
       <dx-tag-box
         *dxTemplate="let condition of 'tagBoxTemplate'"
         meTagBox
@@ -142,7 +175,7 @@ export const filterFields: Field[] = [
         style="min-width: 200px;"
       >
       </dx-tag-box>
-       <dx-radio-group
+      <dx-radio-group
         *dxTemplate="let condition of 'radioGroupTemplate'"
         meRadioGroup
         [items]="sexOptions"
@@ -158,11 +191,15 @@ export const filterFields: Field[] = [
       [dataSource]="data"
       [filterValue]="filterValue"
       height="60dvh"
-      style="margin-top: 20px;">
+      style="margin-top: 20px;"
+    >
       <dxo-paging pageSize="10"></dxo-paging>
-      <dxi-column *ngFor="let column of columns"
-      [dataField]="column.dataField"
-      [cellTemplate]="column.dataField === 'tags' ? 'tagsTemplate' : undefined"
+      <dxi-column
+        *ngFor="let column of columns"
+        [dataField]="column.dataField"
+        [cellTemplate]="
+          column.dataField === 'tags' ? 'tagsTemplate' : undefined
+        "
       >
       </dxi-column>
 
@@ -173,16 +210,18 @@ export const filterFields: Field[] = [
           [readOnly]="true"
           [showSelectionControls]="false"
           [searchEnabled]="false"
-          >
+        >
         </dx-tag-box>
       </div>
-
     </dx-data-grid>
   `,
 })
 class StoryWrapperComponent {
   fields = filterFields;
-  filterValue: any = [['department', 'anyof', ['Engineering']], ['tags', 'contains', 'developer']];
+  filterValue: any = [
+    ['department', 'anyof', ['Engineering']],
+    ['tags', 'contains', 'developer'],
+  ];
   data = mockData;
   departments = departments;
   sexOptions = ['male', 'female'];
@@ -204,8 +243,18 @@ class StoryWrapperComponent {
 export const WithDataGrid: StoryObj<StoryWrapperComponent> = {
   decorators: [
     moduleMetadata({
-      imports: [DxFilterBuilderModule, DxDataGridModule, DxTagBoxModule, DxRadioGroupModule],
-      declarations: [StoryWrapperComponent, MeDataGridDirective, MeTagBoxDirective, MeRadioGroupDirective],
+      imports: [
+        DxFilterBuilderModule,
+        DxDataGridModule,
+        DxTagBoxModule,
+        DxRadioGroupModule,
+      ],
+      declarations: [
+        StoryWrapperComponent,
+        MeDataGridDirective,
+        MeTagBoxDirective,
+        MeRadioGroupDirective,
+      ],
     }),
   ],
   render: (args) => ({

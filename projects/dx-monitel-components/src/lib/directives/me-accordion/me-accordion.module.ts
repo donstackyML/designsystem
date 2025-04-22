@@ -7,4 +7,4 @@ import { MeAccordionDirective } from './me-accordion.directive';
   imports: [CommonModule],
   exports: [MeAccordionDirective],
 })
-export class MeAccordionModule { }
+export class MeAccordionModule {}

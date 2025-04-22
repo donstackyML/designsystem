@@ -1,8 +1,26 @@
-import { addX20, attachFileX20, homeX20, mailX20, publicX20 } from '@monitel/me-icons';
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
-import { DxScrollViewModule, DxTabPanelComponent, DxTabPanelModule } from 'devextreme-angular';
+import {
+  addX20,
+  attachFileX20,
+  homeX20,
+  mailX20,
+  publicX20,
+} from '@monitel/me-icons';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
+import {
+  DxScrollViewModule,
+  DxTabPanelComponent,
+  DxTabPanelModule,
+} from 'devextreme-angular';
 import { registry } from '../../../../../.storybook/preview';
-import { MeScrollViewDirective, MeTabPanelDirective } from '../../../../public-api';
+import {
+  MeScrollViewDirective,
+  MeTabPanelDirective,
+} from '../../../../public-api';
 
 const defaultTabPanelData = [
   {
@@ -119,7 +137,8 @@ export default {
       },
     },
     disabled: {
-      description: 'Указывает, будет ли компонент отображаться в состоянии disabled.',
+      description:
+        'Указывает, будет ли компонент отображаться в состоянии disabled.',
       control: 'boolean',
       table: {
         type: { summary: 'boolean' },
@@ -127,7 +146,8 @@ export default {
       },
     },
     swipeEnabled: {
-      description: 'Указывает, будет ли компонент отображаться с возможностью свайпа.',
+      description:
+        'Указывает, будет ли компонент отображаться с возможностью свайпа.',
       control: 'boolean',
       table: {
         type: { summary: 'boolean' },
@@ -180,9 +200,9 @@ export default {
           margin: 0
         }
       }
-      `
-    ]
-  })
+      `,
+    ],
+  }),
 } satisfies Meta<DxTabPanelComponent | MeTabPanelDirective>;
 
 type Story = StoryObj<DxTabPanelComponent | MeTabPanelDirective>;

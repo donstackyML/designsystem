@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxProgressBarComponent } from 'devextreme-angular';
 import { MeProgressBarDirective } from '../../../../public-api';
 
@@ -78,19 +83,19 @@ export const Default: Story = {};
 export const SizeSmall: Story = {
   args: {
     size: 'small',
-  }
+  },
 };
 
 export const SizeMedium: Story = {
   args: {
     size: 'medium',
-  }
+  },
 };
 
 export const WithoutTextStatus: Story = {
   args: {
-    showStatus: false
-  }
+    showStatus: false,
+  },
 };
 
 export const WithHeaderSizeSmall: Story = {

@@ -4,7 +4,7 @@ import {
   HostListener,
   OnDestroy,
   OnInit,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
 
 import type DevExpress from 'devextreme';
@@ -29,8 +29,8 @@ interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
 })
 export class MeDateBoxDirective
   extends MeFormField
-  implements OnInit, OnDestroy {
-
+  implements OnInit, OnDestroy
+{
   private focusService: ComponentFocusService;
   constructor(
     public element: ElementRef,
@@ -67,7 +67,6 @@ export class MeDateBoxDirective
 
   @HostListener('onOpened', ['$event'])
   onOpened(e: OpenedEvent) {
-
     const dateBox = e.component as ExtendedDxDateBox;
 
     const bottomContainer = dateBox._popup?._$bottom?.[0];
@@ -76,9 +75,15 @@ export class MeDateBoxDirective
       return;
     }
 
-    const submitButton = bottomContainer.querySelector('.dx-button.dx-popup-done');
-    const cancelButton = bottomContainer.querySelector('.dx-button.dx-popup-cancel');
-    const todayButton = bottomContainer.querySelector('.dx-button.dx-button-today');
+    const submitButton = bottomContainer.querySelector(
+      '.dx-button.dx-popup-done'
+    );
+    const cancelButton = bottomContainer.querySelector(
+      '.dx-button.dx-popup-cancel'
+    );
+    const todayButton = bottomContainer.querySelector(
+      '.dx-button.dx-button-today'
+    );
 
     if (submitButton) {
       this.renderer.addClass(submitButton, 'me-button');
@@ -100,7 +105,6 @@ export class MeDateBoxDirective
       this.renderer.addClass(todayButton, 'dx-button-default');
     }
   }
-
 
   private keyEnterHandle(evt: KeyboardEvent) {
     if (this.component.pickerType != 'native') {

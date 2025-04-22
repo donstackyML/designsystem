@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import {
   DxButtonModule,
   DxContextMenuModule,
@@ -64,7 +69,8 @@ export default {
     },
     showDivider: {
       control: 'boolean',
-      description: 'Определяет, будет ли отображаться разделитель между элементами.',
+      description:
+        'Определяет, будет ли отображаться разделитель между элементами.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -131,8 +137,8 @@ export default {
         :host {
           display: block;
         }
-      `
-    ]
+      `,
+    ],
   }),
 } satisfies Meta<MeBreadcrumbsComponent>;
 
@@ -240,8 +246,16 @@ export const WithFlexContainer: Story = {
       >
       </me-breadcrumbs>
       <div class="button-group">
-        <dx-button meButton text="Добавить хлебную крошку" (click)="addBreadcrumb()"></dx-button>
-        <dx-button meButton text="Удалить последнюю" (click)="removeLastBreadcrumb()"></dx-button>
+        <dx-button
+          meButton
+          text="Добавить хлебную крошку"
+          (click)="addBreadcrumb()"
+        ></dx-button>
+        <dx-button
+          meButton
+          text="Удалить последнюю"
+          (click)="removeLastBreadcrumb()"
+        ></dx-button>
       </div>
     </div>
   `,
@@ -281,7 +295,10 @@ class BreadcrumbsWrapperComponent {
   addBreadcrumb() {
     this.breadcrumbs = [
       ...this.breadcrumbs,
-      { text: `Новый элемент ${this.breadcrumbs.length + 1}`, url: `/new-${this.breadcrumbs.length + 1}` },
+      {
+        text: `Новый элемент ${this.breadcrumbs.length + 1}`,
+        url: `/new-${this.breadcrumbs.length + 1}`,
+      },
     ];
   }
 

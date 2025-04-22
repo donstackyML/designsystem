@@ -31,4 +31,4 @@ export const meAutocompleteMockData = [
   'Vienna',
   'Voronezh',
   'Warsaw',
-]
+];

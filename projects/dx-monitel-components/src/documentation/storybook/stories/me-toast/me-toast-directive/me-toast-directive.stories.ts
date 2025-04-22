@@ -4,10 +4,7 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import {
-  DxButtonModule,
-  DxToastModule
-} from 'devextreme-angular';
+import { DxButtonModule, DxToastModule } from 'devextreme-angular';
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AnimationConfig } from 'devextreme/animation/fx';
@@ -16,16 +13,23 @@ import { ToastType } from 'devextreme/ui/toast';
 import {
   MeButtonModule,
   MeSize,
-  MeToastModule
+  MeToastModule,
 } from '../../../../../public-api';
 @Component({
   selector: 'me-toast-directive-storybook-demo',
   imports: [DxButtonModule, MeButtonModule, DxToastModule, MeToastModule],
   standalone: true,
-  template: `
-    <div class='flex'>
-      <dx-button text="Открыть тост" meButton (onClick)="showToast(toast)"></dx-button>
-      <dx-button text="Закрыть тост" meButton (onClick)="hideToast(toast)"></dx-button>
+  template: ` <div class="flex">
+      <dx-button
+        text="Открыть тост"
+        meButton
+        (onClick)="showToast(toast)"
+      ></dx-button>
+      <dx-button
+        text="Закрыть тост"
+        meButton
+        (onClick)="hideToast(toast)"
+      ></dx-button>
     </div>
 
     <dx-toast
@@ -57,8 +61,7 @@ import {
       (onShowing)="onShowing.emit($event)"
       (onShown)="onShown.emit($event)"
     >
-    </dx-toast>`
-  ,
+    </dx-toast>`,
   styles: [
     `
       .flex {
@@ -66,7 +69,7 @@ import {
         gap: 10px;
       }
     `,
-  ]
+  ],
 })
 class MeToastDemoStorybookComponent {
   @Input() message: string = 'This is a toast notification!';
@@ -89,9 +92,9 @@ class MeToastDemoStorybookComponent {
     hide?: AnimationConfig;
     show?: AnimationConfig;
   } = {
-      show: { type: 'fade', duration: 400, from: 0, to: 1 },
-      hide: { type: 'fade', duration: 400, from: 1, to: 0 },
-    };
+    show: { type: 'fade', duration: 400, from: 0, to: 1 },
+    hide: { type: 'fade', duration: 400, from: 1, to: 0 },
+  };
   @Input() closeOnClick?: boolean;
   @Input() hideOnOutsideClick?: boolean | ((event: Event) => boolean);
   @Input() closeOnSwipe?: boolean;
@@ -121,7 +124,12 @@ class MeToastDemoStorybookComponent {
 export default {
   decorators: [
     moduleMetadata({
-      imports: [DxToastModule, DxButtonModule, MeButtonModule, MeToastDemoStorybookComponent],
+      imports: [
+        DxToastModule,
+        DxButtonModule,
+        MeButtonModule,
+        MeToastDemoStorybookComponent,
+      ],
     }),
   ],
   title: 'Components/Toast/Directive',
@@ -129,7 +137,8 @@ export default {
     type: {
       control: 'select',
       options: ['success', 'info', 'warning', 'error', 'info-inverted'],
-      description: 'Определяет визуальный стиль уведомления, влияя на цветовую схему и значок.',
+      description:
+        'Определяет визуальный стиль уведомления, влияя на цветовую схему и значок.',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'string' },
@@ -139,7 +148,8 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'large'],
-      description: 'Задает размер тоста: "small" для компактного вида или "large" для более выразительного уведомления.',
+      description:
+        'Задает размер тоста: "small" для компактного вида или "large" для более выразительного уведомления.',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'string' },
@@ -157,7 +167,8 @@ export default {
     },
     showIcon: {
       control: 'boolean',
-      description: 'Определяет, отображается ли иконка уведомления. По умолчанию: true.',
+      description:
+        'Определяет, отображается ли иконка уведомления. По умолчанию: true.',
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'boolean' },
@@ -176,7 +187,8 @@ export default {
     },
     visible: {
       control: 'boolean',
-      description: 'Управляет отображением тоста. Если значение `false`, уведомление скрыто.',
+      description:
+        'Управляет отображением тоста. Если значение `false`, уведомление скрыто.',
       table: {
         category: 'Отображение',
         type: { summary: 'boolean' },
@@ -203,7 +215,8 @@ export default {
     },
     displayTime: {
       control: { type: 'number' },
-      description: 'Время отображения тоста в миллисекундах, после которого уведомление скрывается.',
+      description:
+        'Время отображения тоста в миллисекундах, после которого уведомление скрывается.',
       table: {
         category: 'Отображение',
         type: { summary: 'number' },
@@ -240,7 +253,8 @@ export default {
     },
     width: {
       control: 'text',
-      description: 'Ширина уведомления. Может быть числом или строкой. По умолчанию: "260px".',
+      description:
+        'Ширина уведомления. Может быть числом или строкой. По умолчанию: "260px".',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'number | string' },
@@ -295,7 +309,8 @@ export default {
     },
     onContentReady: {
       action: 'contentReady',
-      description: 'Вызывается, когда содержимое уведомления полностью загружено и готово к отображению.',
+      description:
+        'Вызывается, когда содержимое уведомления полностью загружено и готово к отображению.',
       table: {
         category: 'События',
         type: { summary: 'EventEmitter<void>' },
@@ -356,7 +371,7 @@ export default {
         category: 'События',
         type: { summary: 'EventEmitter<void>' },
       },
-    }
+    },
   },
   args: {
     size: 'small',
@@ -369,20 +384,22 @@ export default {
   },
   render: (args) => ({
     props: args,
-    template: `<me-toast-directive-storybook-demo ${argsToTemplate(args)}></me-toast-directive-storybook-demo>`,
-  })
+    template: `<me-toast-directive-storybook-demo ${argsToTemplate(
+      args
+    )}></me-toast-directive-storybook-demo>`,
+  }),
 } satisfies Meta<MeToastDemoStorybookComponent>;
 
 type Story = StoryObj<MeToastDemoStorybookComponent>;
 
 export const Default: Story = {
-  args: {}
+  args: {},
 };
 
 export const SizeSmall: Story = {
   args: {
     size: 'small',
-  }
+  },
 };
 
 export const SizeLarge: Story = {
@@ -424,8 +441,8 @@ export const TypeInfoInverted: Story = {
 export const WithIcon: Story = {
   args: {
     showIcon: true,
-    type: "warning",
-    message: "Проверьте введенные данные",
-    size: "large",
+    type: 'warning',
+    message: 'Проверьте введенные данные',
+    size: 'large',
   },
 };
