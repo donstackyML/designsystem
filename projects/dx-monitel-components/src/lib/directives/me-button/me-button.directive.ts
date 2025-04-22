@@ -1,4 +1,11 @@
-import {Directive, ElementRef, Input, OnInit, Renderer2, SimpleChanges} from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  SimpleChanges,
+} from '@angular/core';
 import { DxButtonComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeControlDirective } from '../me-control/me-control.directive';
@@ -15,8 +22,8 @@ const DEFAULT_ICON_COLOR = '#ffffff';
     '[class.me-button-warning]': 'type === "warning"',
     '[class.me-button-icon-only]': '!!iconOnly',
     '[class.me-button-icon]': 'leftIcon || rightIcon',
-    '[class.me-state-selected]': 'isSelected'
-  }
+    '[class.me-state-selected]': 'isSelected',
+  },
 })
 export class MeButtonDirective extends MeControlDirective implements OnInit {
   @Input() leftIcon: string = '';
@@ -72,21 +79,21 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
       this.component.template = `
         <div class="me-button-inner">
           ${this.iconStore.getIcon({
-        icon: this.leftIcon,
-        color: this.leftIconColor || this.iconColor,
-        size: this.getIconSize(this.leftIconSize),
-      })}
+            icon: this.leftIcon,
+            color: this.leftIconColor || this.iconColor,
+            size: this.getIconSize(this.leftIconSize),
+          })}
           ${this.iconStore.getIcon({
-        icon: this.iconOnly,
-        color: this.iconColor,
-        size: this.getIconSize(this.iconSize),
-      })}
+            icon: this.iconOnly,
+            color: this.iconColor,
+            size: this.getIconSize(this.iconSize),
+          })}
           ${this.getText()}
           ${this.iconStore.getIcon({
-        icon: this.rightIcon,
-        color: this.rightIconColor || this.iconColor,
-        size: this.getIconSize(this.rightIconSize),
-      })}
+            icon: this.rightIcon,
+            color: this.rightIconColor || this.iconColor,
+            size: this.getIconSize(this.rightIconSize),
+          })}
         </div>`;
     }
   }

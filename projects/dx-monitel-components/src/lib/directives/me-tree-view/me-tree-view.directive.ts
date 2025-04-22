@@ -6,7 +6,7 @@ import {
   Input,
   OnDestroy,
   Renderer2,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { DxTooltipComponent, DxTreeViewComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
@@ -42,8 +42,12 @@ export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
 
     setTimeout(() => this.updateTooltips(), 0);
 
-    this.component.onItemExpanded.subscribe(() => setTimeout(() => this.updateTooltips(), 0));
-    this.component.onItemCollapsed.subscribe(() => setTimeout(() => this.updateTooltips(), 0));
+    this.component.onItemExpanded.subscribe(() =>
+      setTimeout(() => this.updateTooltips(), 0)
+    );
+    this.component.onItemCollapsed.subscribe(() =>
+      setTimeout(() => this.updateTooltips(), 0)
+    );
   }
 
   @HostListener('window:resize')
@@ -62,28 +66,38 @@ export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
 
     this.clearTooltips();
 
-    const spans: NodeListOf<HTMLElement> = this.element.nativeElement
-      .querySelectorAll('.dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content span');
+    const spans: NodeListOf<HTMLElement> =
+      this.element.nativeElement.querySelectorAll(
+        '.dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content span'
+      );
 
-    spans.forEach(span => {
+    spans.forEach((span) => {
       if (span.offsetWidth < span.scrollWidth) {
-        const tooltipTarget = span.closest('.dx-item.dx-treeview-item') as HTMLElement;
+        const tooltipTarget = span.closest(
+          '.dx-item.dx-treeview-item'
+        ) as HTMLElement;
         if (tooltipTarget && !this.tooltipRefs.has(tooltipTarget)) {
-          const tooltipComponentRef = this.viewContainerRef.createComponent(DxTooltipComponent);
-          const tooltipInstance = tooltipComponentRef.instance as DxTooltipComponent;
+          const tooltipComponentRef =
+            this.viewContainerRef.createComponent(DxTooltipComponent);
+          const tooltipInstance =
+            tooltipComponentRef.instance as DxTooltipComponent;
 
           tooltipInstance.target = tooltipTarget;
           tooltipInstance.position = 'bottom';
           tooltipInstance.showEvent = 'mouseenter';
           tooltipInstance.hideEvent = 'mouseleave';
-          tooltipInstance.maxWidth = this.element.nativeElement.offsetWidth > 300
-            ? this.element.nativeElement.offsetWidth / 2
-            : '200px';
+          tooltipInstance.maxWidth =
+            this.element.nativeElement.offsetWidth > 300
+              ? this.element.nativeElement.offsetWidth / 2
+              : '200px';
           tooltipInstance.contentTemplate = () => span.innerText;
 
           tooltipComponentRef.changeDetectorRef.detectChanges();
 
-          this.renderer.appendChild(document.body, tooltipComponentRef.location.nativeElement);
+          this.renderer.appendChild(
+            document.body,
+            tooltipComponentRef.location.nativeElement
+          );
 
           this.tooltipRefs.set(tooltipTarget, tooltipComponentRef);
         }
@@ -92,7 +106,7 @@ export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
   }
 
   private clearTooltips(): void {
-    this.tooltipRefs.forEach(ref => ref.destroy());
+    this.tooltipRefs.forEach((ref) => ref.destroy());
     this.tooltipRefs.clear();
   }
 

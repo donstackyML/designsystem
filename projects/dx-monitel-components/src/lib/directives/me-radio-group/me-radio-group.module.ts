@@ -7,4 +7,4 @@ import { MeRadioGroupDirective } from './me-radio-group.directive';
   imports: [CommonModule],
   exports: [MeRadioGroupDirective],
 })
-export class MeRadioGroupModule { }
+export class MeRadioGroupModule {}

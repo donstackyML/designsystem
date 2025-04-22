@@ -19,7 +19,8 @@ import { MeFormField } from '../me-form-item/me-form-field';
 })
 export class MeTextBoxDirective
   extends MeFormField
-  implements OnInit, AfterViewInit {
+  implements OnInit, AfterViewInit
+{
   private passwordVisible = false;
   private isPasswordInput = false;
   private passwordToggleButton: HTMLElement | null = null;

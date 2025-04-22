@@ -7,4 +7,4 @@ import { MeTreeViewDirective } from './me-tree-view.directive';
   imports: [CommonModule],
   exports: [MeTreeViewDirective],
 })
-export class MeTreeViewModule { }
+export class MeTreeViewModule {}

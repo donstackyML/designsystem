@@ -71,14 +71,14 @@ export default {
         type: { summary: 'string | number | undefined' },
         defaultValue: { summary: 'undefined' },
       },
-    }
+    },
   },
   args: {
     size: 'medium',
     disabled: false,
     readOnly: false,
-    switchedOnText: "",
-    switchedOffText: "",
+    switchedOnText: '',
+    switchedOffText: '',
     width: undefined,
     height: undefined,
   },
@@ -94,20 +94,20 @@ export const Default: Story = {};
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
-  }
+    size: 'small',
+  },
 };
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
+    size: 'medium',
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const StateDisabled: Story = {

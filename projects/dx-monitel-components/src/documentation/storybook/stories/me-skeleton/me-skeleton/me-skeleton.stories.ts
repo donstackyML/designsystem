@@ -1,6 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
-import { MeSkeletonComponent, MeSkeletonItemComponent } from '../../../../../public-api';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
+import {
+  MeSkeletonComponent,
+  MeSkeletonItemComponent,
+} from '../../../../../public-api';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,7 +20,8 @@ import { CommonModule } from '@angular/common';
       [loading]="loading"
       [paragraph]="paragraph"
       [title]="title"
-      [shape]="shape">
+      [shape]="shape"
+    >
     </me-skeleton>
     <div *ngIf="!loading" style="margin-top: 16px;">
       Это содержимое, которое отображается после завершения загрузки.
@@ -39,7 +48,7 @@ export default {
   title: 'Components/Skeleton/Skeleton',
   decorators: [
     moduleMetadata({
-      imports: [MeSkeletonComponent, MeSkeletonItemComponent, CommonModule]
+      imports: [MeSkeletonComponent, MeSkeletonItemComponent, CommonModule],
     }),
   ],
   argTypes: {
@@ -154,7 +163,7 @@ export const Loading: Story = {
   decorators: [
     moduleMetadata({
       imports: [MeSkeletonComponent, MeSkeletonItemComponent],
-      declarations: [SkeletonLoadingWrapperComponent]
+      declarations: [SkeletonLoadingWrapperComponent],
     }),
   ],
   args: {
@@ -165,7 +174,9 @@ export const Loading: Story = {
     shape: 'rounded',
   },
   render: (args) => ({
-    template: `<skeleton-loading-wrapper ${argsToTemplate(args, { exclude: ['loading']})} ></skeleton-loading-wrapper>`,
+    template: `<skeleton-loading-wrapper ${argsToTemplate(args, {
+      exclude: ['loading'],
+    })} ></skeleton-loading-wrapper>`,
     props: args,
   }),
 };
@@ -185,7 +196,7 @@ export const Custom: Story = {
     animated: true,
     title: { width: '50%' },
     shape: 'rounded',
-    paragraph: null
+    paragraph: null,
   },
   render: (args) => ({
     props: args,

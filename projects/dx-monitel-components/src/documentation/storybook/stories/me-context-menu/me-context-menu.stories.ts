@@ -70,7 +70,8 @@ export default {
     dividersVisibility: {
       control: 'select',
       options: ['auto', 'all', 'none'],
-      description: 'Определяет видимость разделителей у элементов списка в выпадающем меню',
+      description:
+        'Определяет видимость разделителей у элементов списка в выпадающем меню',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'auto' },
@@ -81,7 +82,7 @@ export default {
     dataSource: meContextMenuMockData,
     selectByClick: false,
     selectionMode: 'none',
-    dividersVisibility: 'auto'
+    dividersVisibility: 'auto',
   },
   render: (args) => ({
     props: args,
@@ -141,7 +142,6 @@ export const WithSubMenuMaxHeight: Story = {
   },
 };
 
-
 export const DividersVisibilityNone: Story = {
   args: {
     dividersVisibility: 'none',
@@ -156,6 +156,6 @@ export const DividersVisibilityAll: Story = {
 
 export const DividersVisibilityByContent: Story = {
   args: {
-    dataSource: meContextMenuMockDataWithDividers
+    dataSource: meContextMenuMockDataWithDividers,
   },
 };

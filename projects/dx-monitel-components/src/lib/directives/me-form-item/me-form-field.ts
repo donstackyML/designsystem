@@ -17,7 +17,7 @@ export class MeFormField {
   @Input() size: MeSize = 'medium';
   @Input() showRequiredMark: boolean = false;
 
-  constructor(protected component: DxComponent) { }
+  constructor(protected component: DxComponent) {}
 
   updateLabel(label: string) {
     this.component.instance.option('label', label);
@@ -30,7 +30,6 @@ export class MeFormField {
   updateLabelLocation(location: LabelLocation) {
     this.component.instance.option('labelLocation', location);
   }
-
 
   get isSizeSmall() {
     return this.size === 'small';

@@ -46,7 +46,7 @@ import {
   MeTooltipModule,
   MeTreeListModule,
   MeTreeViewModule,
-  MeIconsInitializerModule
+  MeIconsInitializerModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -151,7 +151,6 @@ import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box
     MeSwitchDirective,
     MeTextEditorDirective,
     MeToastDirective,
-
   ],
   imports: [
     ReactiveFormsModule,
@@ -210,4 +209,4 @@ import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

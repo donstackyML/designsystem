@@ -32,7 +32,7 @@ export class MeFormItemDirective implements AfterViewInit {
 
   constructor(
     @Host() @Self() @Optional() public hostFormItemComponent: DxiItemComponent
-  ) { }
+  ) {}
 
   get formService(): FormDataFieldsService | undefined {
     return this._formService;

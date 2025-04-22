@@ -9,7 +9,7 @@ export const meFormInitialFormData = {
   isSubscribed: false,
   country: '',
   age: null,
-}
+};
 
 export const meFormFilledFormData = {
   firstName: 'John',
@@ -22,4 +22,4 @@ export const meFormFilledFormData = {
   isSubscribed: false,
   country: 'Russia',
   age: 22,
-}
+};

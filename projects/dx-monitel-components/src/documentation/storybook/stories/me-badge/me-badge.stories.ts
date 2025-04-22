@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { MeBadgeComponent } from '../../../../public-api';
 
 export default {
@@ -21,7 +26,15 @@ export default {
     },
     color: {
       control: 'select',
-      options: ['default', 'secondary', 'success', 'success-light', 'attention', 'attention-light', 'error'],
+      options: [
+        'default',
+        'secondary',
+        'success',
+        'success-light',
+        'attention',
+        'attention-light',
+        'error',
+      ],
       description: 'Цветовая тема бейджа',
       table: {
         type: { summary: 'string' },
@@ -45,13 +58,13 @@ export const Default: Story = {
   args: {
     value: 1,
     size: '16',
-    color: 'default'
+    color: 'default',
   },
   render: (args) => ({
     props: args,
     template: `<me-badge ${argsToTemplate(args)}></me-badge>`,
-  })
-}
+  }),
+};
 
 export const BasicExamples: Story = {
   render: () => ({
@@ -68,7 +81,6 @@ export const BasicExamples: Story = {
     `,
   }),
 };
-
 
 export const Sizes: Story = {
   render: () => ({
@@ -189,7 +201,6 @@ export const CustomStyles: Story = {
   }),
 };
 
-
 export const SplitValueExample: Story = {
   render: () => ({
     template: `
@@ -201,4 +212,4 @@ export const SplitValueExample: Story = {
       </div>
     `,
   }),
-}
+};

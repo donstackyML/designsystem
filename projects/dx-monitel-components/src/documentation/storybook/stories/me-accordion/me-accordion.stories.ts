@@ -76,7 +76,7 @@ export default {
 type Story = StoryObj<DxAccordionComponent | MeAccordionDirective>;
 
 export const Default: Story = {
-  args: {}
+  args: {},
 };
 
 export const SizeSmall: Story = {
@@ -99,13 +99,13 @@ export const SizeLarge: Story = {
 
 export const Collapsible: Story = {
   args: {
-    collapsible: true
+    collapsible: true,
   },
 };
 
 export const Multiple: Story = {
   args: {
-    multiple: true
+    multiple: true,
   },
 };
 

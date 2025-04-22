@@ -20,7 +20,7 @@ import { MePosition } from '../../types/types';
   selector: 'me-sidepage',
   imports: [DxScrollViewModule, NgIf],
   templateUrl: './me-sidepage.component.html',
-  styleUrls: ['./me-sidepage.component.css']
+  styleUrls: ['./me-sidepage.component.css'],
 })
 export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   @Input() hideOnOutsideClick: boolean = false;
@@ -46,7 +46,7 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   private startX: number = 0;
   private startWidth: number = 0;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.renderer.addClass(
@@ -137,7 +137,6 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
     return window.innerWidth - document.documentElement.clientWidth;
   }
 
-
   private disableBodyScroll(): void {
     const scrollbarWidth = this.getScrollbarWidth();
     document.body.style.overflow = 'hidden';
@@ -148,7 +147,6 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
   }
-
 
   private enableBodyScroll(): void {
     document.body.style.overflow = '';
@@ -164,7 +162,6 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
       if (this.shading) {
         this.disableBodyScroll();
       }
-
 
       const scrollbarWidth = this.getScrollbarWidth();
 

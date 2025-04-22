@@ -1,24 +1,32 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxButtonComponent } from 'devextreme-angular/ui/button';
 
-import { MeButtonDirective, MeChipComponent, MeProgressBarDirective, MeTextBoxDirective, MeTooltipDirective } from '../../../../public-api';
+import {
+  MeButtonDirective,
+  MeChipComponent,
+  MeProgressBarDirective,
+  MeTextBoxDirective,
+  MeTooltipDirective,
+} from '../../../../public-api';
 import { DxProgressBarComponent, DxTextBoxComponent } from 'devextreme-angular';
 
 export default {
   title: 'Components/Tooltip/Tooltip Directive',
   decorators: [
     moduleMetadata({
-      declarations: [
-        MeTooltipDirective,
-        DxButtonComponent,
-        MeButtonDirective
-      ],
+      declarations: [MeTooltipDirective, DxButtonComponent, MeButtonDirective],
     }),
   ],
   argTypes: {
     meTooltip: {
       control: 'text',
-      description: 'Текст или HTML-контент тултипа, который будет отображаться, когда пользователь наведет курсор на целевой элемент',
+      description:
+        'Текст или HTML-контент тултипа, который будет отображаться, когда пользователь наведет курсор на целевой элемент',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
@@ -53,7 +61,8 @@ export default {
     },
     tooltipClass: {
       control: 'text',
-      description: 'Пользовательский CSS-класс для тултипа, который может быть использован для настройки внешнего вида',
+      description:
+        'Пользовательский CSS-класс для тултипа, который может быть использован для настройки внешнего вида',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'me-tooltip' },
@@ -61,7 +70,8 @@ export default {
     },
     tooltipWidth: {
       control: 'number',
-      description: 'Ширина тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
+      description:
+        'Ширина тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
@@ -69,7 +79,8 @@ export default {
     },
     tooltipMaxWidth: {
       control: 'number',
-      description: 'Максимальная ширина тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
+      description:
+        'Максимальная ширина тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
@@ -77,7 +88,8 @@ export default {
     },
     tooltipHeight: {
       control: 'number',
-      description: 'Высота тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
+      description:
+        'Высота тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
@@ -85,7 +97,8 @@ export default {
     },
     tooltipMaxHeight: {
       control: 'number',
-      description: 'Максимальная высота тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
+      description:
+        'Максимальная высота тултипа, может быть указана в пикселях (number) или как строка (например, "100px")',
       table: {
         type: { summary: 'number | string | undefined' },
         defaultValue: { summary: 'auto' },
@@ -114,7 +127,7 @@ export default {
   },
   args: {
     meTooltip: 'Это базовый тултип',
-    tooltipSize: "medium",
+    tooltipSize: 'medium',
     tooltipPosition: 'top',
     tooltipColorMode: 'dark',
     tooltipWidth: 'auto',
@@ -161,8 +174,8 @@ export default {
         width: 100%;
         padding: 20px;
       }
-      `
-    ]
+      `,
+    ],
   }),
 } satisfies Meta<MeTooltipDirective>;
 
@@ -172,45 +185,44 @@ export const Default: Story = {};
 
 export const ColorModeDefault: Story = {
   args: {
-    tooltipColorMode: "default"
-  }
+    tooltipColorMode: 'default',
+  },
 };
 
 export const ColorModeDark: Story = {
   args: {
-    tooltipColorMode: "dark"
-  }
+    tooltipColorMode: 'dark',
+  },
 };
-
 
 export const ColorModeLight: Story = {
   args: {
-    tooltipColorMode: "light"
-  }
+    tooltipColorMode: 'light',
+  },
 };
 
 export const ColorModeAlternate: Story = {
   args: {
-    tooltipColorMode: "alternate"
-  }
+    tooltipColorMode: 'alternate',
+  },
 };
 
 export const SizeSmall: Story = {
   args: {
-    tooltipSize: 'small'
-  }
+    tooltipSize: 'small',
+  },
 };
 
 export const SizeMedium: Story = {
   args: {
-    tooltipSize: 'medium'
-  }
+    tooltipSize: 'medium',
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
-    tooltipSize: 'large'
-  }
+    tooltipSize: 'large',
+  },
 };
 
 export const TooltipPositionTop: Story = {
@@ -272,7 +284,7 @@ export const WithAnimation: Story = {
       },
       duration: 300,
     },
-  }
+  },
 };
 
 export const WithImageContent: Story = {
@@ -303,7 +315,7 @@ export const WithMaxDimensions: Story = {
     tooltipMaxWidth: 200,
     tooltipMaxHeight: 200,
     tooltipHeight: undefined,
-  }
+  },
 };
 
 export const WithSomeComponents: Story = {
@@ -317,12 +329,12 @@ export const WithSomeComponents: Story = {
         DxTextBoxComponent,
         MeTextBoxDirective,
         DxProgressBarComponent,
-        MeProgressBarDirective
+        MeProgressBarDirective,
       ],
     }),
   ],
   args: {
-    tooltipSize: "small",
+    tooltipSize: 'small',
     tooltipColorMode: 'dark',
     tooltipWidth: '220px',
     tooltipShowAnimation: {
@@ -408,7 +420,7 @@ export const WithSomeComponents: Story = {
 
       </div>
     `,
-styles: [
+    styles: [
       `
       .container {
         display: flex;
@@ -428,7 +440,7 @@ styles: [
           width: 400px;
         }
       }
-      `
-    ]
-  })
+      `,
+    ],
+  }),
 };

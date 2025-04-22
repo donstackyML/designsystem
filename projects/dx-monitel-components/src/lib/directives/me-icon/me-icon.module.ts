@@ -7,4 +7,4 @@ import { MeIconDirective } from './me-icon.directive';
   imports: [CommonModule],
   exports: [MeIconDirective],
 })
-export class MeIconModule { }
+export class MeIconModule {}

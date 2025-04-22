@@ -3,9 +3,13 @@ export const anyOfOperation = {
   caption: 'Is any of',
   icon: 'check',
   editorTemplate: 'tagBoxTemplate',
-  calculateFilterExpression: (filterValue: string[], field: Record<string, unknown>) => filterValue?.flatMap(
-    (value) => [[field['dataField'], '=', value], 'or'],
-  ).slice(0, -1),
+  calculateFilterExpression: (
+    filterValue: string[],
+    field: Record<string, unknown>
+  ) =>
+    filterValue
+      ?.flatMap((value) => [[field['dataField'], '=', value], 'or'])
+      .slice(0, -1),
 } as const;
 
 export const isNoneOfOperation = {
@@ -13,7 +17,11 @@ export const isNoneOfOperation = {
   caption: 'Is none of',
   icon: 'close',
   editorTemplate: 'tagBoxTemplate',
-  calculateFilterExpression: (filterValue: string[], field: Record<string, unknown>) => filterValue?.flatMap(
-    (value) => [[field['dataField'], '<>', value], 'and'],
-  ).slice(0, -1),
+  calculateFilterExpression: (
+    filterValue: string[],
+    field: Record<string, unknown>
+  ) =>
+    filterValue
+      ?.flatMap((value) => [[field['dataField'], '<>', value], 'and'])
+      .slice(0, -1),
 } as const;

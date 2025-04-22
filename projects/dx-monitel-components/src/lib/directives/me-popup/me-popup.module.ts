@@ -7,4 +7,4 @@ import { MePopupDirective } from './me-popup.directive';
   imports: [CommonModule],
   exports: [MePopupDirective],
 })
-export class MePopupModule { }
+export class MePopupModule {}

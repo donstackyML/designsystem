@@ -18,11 +18,10 @@ export class MeSliderDirective {
   private element = inject(ElementRef);
 
   focusService: ComponentFocusService;
-  constructor(
-  ) {
+  constructor() {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
   }
-  
+
   private addClassSafely(selector: string, className: string) {
     const element = this.element.nativeElement.querySelector(selector);
     if (element) {

@@ -64,7 +64,7 @@ import { MeTreeViewModule } from '../directives/me-tree-view/me-tree-view.module
 
 // Modules
 
-import { MeIconsInitializerModule } from './me-icons-initializer.module'
+import { MeIconsInitializerModule } from './me-icons-initializer.module';
 
 @NgModule({
   imports: [
@@ -186,6 +186,6 @@ import { MeIconsInitializerModule } from './me-icons-initializer.module'
     MeSkeletonItemComponent,
     MeStatusBarComponent,
     MeToastComponent,
-  ]
+  ],
 })
-export class MeComponentsModule { }
+export class MeComponentsModule {}

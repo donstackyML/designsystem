@@ -30,7 +30,8 @@ export default {
     value: {
       control: 'select',
       options: [undefined, false, true, null],
-      description: 'Значение чекбокса. `true` - включен, `false` - выключен, `null` - неопределенное (*indeterminate*).',
+      description:
+        'Значение чекбокса. `true` - включен, `false` - выключен, `null` - неопределенное (*indeterminate*).',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -71,7 +72,8 @@ export default {
     },
     enableThreeStateBehavior: {
       control: 'boolean',
-      description: 'Указывает, могут ли пользователи устанавливать состояние неопределенное (*indeterminate*).',
+      description:
+        'Указывает, могут ли пользователи устанавливать состояние неопределенное (*indeterminate*).',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -93,7 +95,7 @@ export default {
     disabled: false,
     readOnly: false,
     isValid: true,
-    enableThreeStateBehavior: false
+    enableThreeStateBehavior: false,
   },
   render: (args) => ({
     props: args,
@@ -106,30 +108,30 @@ export default {
 type Story = StoryObj<MeCheckBoxDirective | DxCheckBoxComponent>;
 
 export const Default: Story = {
-  args: { },
+  args: {},
 };
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
+    size: 'small',
   },
 };
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
+    size: 'medium',
   },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
+    size: 'large',
   },
 };
 
 export const ThreeStateBehavior: Story = {
   args: {
-    enableThreeStateBehavior: true
+    enableThreeStateBehavior: true,
   },
 };
 
@@ -157,8 +159,8 @@ export const StateReadOnlyAndDisabled: Story = {
 
 export const WithText: Story = {
   args: {
-    text: 'Text'
-  }
+    text: 'Text',
+  },
 };
 
 export const WithIconAndText: Story = {
@@ -166,9 +168,7 @@ export const WithIconAndText: Story = {
     props: args,
     template: `
 <label meLabel labelDirection="row" width="300px">
-  <dx-check-box meCheckBox ${argsToTemplate(
-    args
-  )}></dx-check-box>
+  <dx-check-box meCheckBox ${argsToTemplate(args)}></dx-check-box>
   <me-icon icon="account_circle" size="medium" color="var(--Controls-Content-In-Controls-Main-Default)"></me-icon>
   <span>Text</span>
 </label>

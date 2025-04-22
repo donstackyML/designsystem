@@ -42,7 +42,9 @@ export default {
       description: 'Использовать native-скролла.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true (десктоп, кроме Mac), false (в остальных случаях)' },
+        defaultValue: {
+          summary: 'true (десктоп, кроме Mac), false (в остальных случаях)',
+        },
       },
     },
     bounceEnabled: {
@@ -106,66 +108,66 @@ export const Default: Story = {};
 
 export const ScrollDirectionHorizontal: Story = {
   args: {
-    direction: 'horizontal'
-  }
+    direction: 'horizontal',
+  },
 };
 
 export const ScrollDirectionVertical: Story = {
   args: {
-    direction: 'vertical'
-  }
+    direction: 'vertical',
+  },
 };
 
 export const ScrollDirectionBoth: Story = {
   args: {
-    direction: 'both'
-  }
+    direction: 'both',
+  },
 };
 
 export const HideScrollbar: Story = {
   args: {
-    showScrollbar: 'never'
-  }
+    showScrollbar: 'never',
+  },
 };
 
 export const ShowScrollbarOnHover: Story = {
   args: {
-    showScrollbar: 'onHover'
-  }
+    showScrollbar: 'onHover',
+  },
 };
 
 export const ShowScrollbarOnScroll: Story = {
   args: {
-    showScrollbar: 'onScroll'
-  }
+    showScrollbar: 'onScroll',
+  },
 };
 
 export const ShowScrollbarAlways: Story = {
   args: {
-    showScrollbar: 'always'
-  }
+    showScrollbar: 'always',
+  },
 };
 
 export const Disabled: Story = {
   args: {
-    disabled: true
-  }
+    disabled: true,
+  },
 };
 
 export const WithNativeScrollBar: Story = {
   args: {
-    useNative: true
-  }
+    useNative: true,
+  },
 };
 
 export const WithoutNativeScrollBar: Story = {
   args: {
-    useNative: false
-  }
+    useNative: false,
+  },
 };
 
 export const WithBounceEffect: Story = {
   args: {
-    bounceEnabled: true
-  }
+    bounceEnabled: true,
+  },
 };

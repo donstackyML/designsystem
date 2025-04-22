@@ -14,16 +14,22 @@
 // adduse
 
 $generic-texteditor-border-width: $generic-base-border-width;
-$generic-texteditor-input-padding: $generic-base-inline-borderedwidget-top-padding $generic-base-inline-borderedwidget-horizontal-padding $generic-base-inline-borderedwidget-bottom-padding;
+$generic-texteditor-input-padding: $generic-base-inline-borderedwidget-top-padding
+  $generic-base-inline-borderedwidget-horizontal-padding
+  $generic-base-inline-borderedwidget-bottom-padding;
 
-$generic-texteditor-input-height: round($generic-base-line-height * $generic-base-font-size) + $generic-base-inline-borderedwidget-top-padding + $generic-base-inline-borderedwidget-bottom-padding;
+$generic-texteditor-input-height: round($generic-base-line-height * $generic-base-font-size) +
+  $generic-base-inline-borderedwidget-top-padding +
+  $generic-base-inline-borderedwidget-bottom-padding;
 
 $generic-texteditor-icon-container-size: $generic-base-inline-borderedwidget-inner-size;
 $generic-texteditor-icon-size: $generic-base-icon-size;
 
-$generic-texteditor-clear-icon-size: $generic-texteditor-icon-size + $generic-texteditor-clear-icon-oversize;
+$generic-texteditor-clear-icon-size: $generic-texteditor-icon-size +
+  $generic-texteditor-clear-icon-oversize;
 
-$generic-texteditor-invalid-badge-size: $generic-invalid-badge-size + 2 * $generic-invalid-badge-horizontal-padding;
+$generic-texteditor-invalid-badge-size: $generic-invalid-badge-size + 2 *
+  $generic-invalid-badge-horizontal-padding;
 
 $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms,
   transform 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms, top 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
@@ -52,14 +58,13 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   right: $generic-invalid-badge-halfhorizontal-padding;
 
   @at-root #{selector-append(".dx-rtl", &)},
-  .dx-rtl & {
+    .dx-rtl & {
     left: $generic-invalid-badge-halfhorizontal-padding;
     right: auto;
   }
 }
 
 @mixin validation-icon-position() {
-
   &.dx-invalid,
   &.dx-valid {
     @include texteditor-input-padding();
@@ -84,7 +89,12 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 }
 
-.dx-form .dx-item>.dx-item-content>.dx-field-item>.dx-field-item-content>.dx-editor-outlined {
+.dx-form
+  .dx-item
+  > .dx-item-content
+  > .dx-field-item
+  > .dx-field-item-content
+  > .dx-editor-outlined {
   background-color: $texteditor-filled-bg;
   border-color: transparent;
 
@@ -165,7 +175,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
   &.dx-state-focused:not(.dx-state-readonly),
   &.dx-state-active:not(.dx-state-readonly) {
-
     &.dx-editor-filled,
     &.dx-editor-underlined,
     &.dx-editor-outlined {
@@ -290,7 +299,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &-medium {
-
     & input,
     & textarea {
       line-height: 20px;
@@ -299,7 +307,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &-small {
-
     & input,
     & textarea {
       font-size: 13px;
@@ -322,7 +329,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &-large {
-
     & input,
     & textarea {
       line-height: 20px;
@@ -420,7 +426,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   $input-vertical-diff: $generic-base-inline-borderedwidget-top-padding - 1;
 
   .dx-texteditor-label {
-
     .dx-label-after,
     .dx-label-before {
       display: block;
@@ -430,7 +435,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &.me-texteditor-with-label .dx-texteditor-label {
-
     .dx-label-after,
     .dx-label-before {
       min-width: 8px;
@@ -438,7 +442,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &.me-editor-large.me-texteditor-with-label .dx-texteditor-label {
-
     .dx-label-after,
     .dx-label-before {
       min-width: 12px;
@@ -450,7 +453,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     position: relative;
 
     &.me-editor-small {
-
       .dx-texteditor-input,
       &.dx-lookup .dx-lookup-field {
         padding: 16px 7px 2px;
@@ -458,7 +460,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     &.me-editor-medium {
-
       .dx-texteditor-input,
       &.dx-lookup .dx-lookup-field {
         padding: 16px 7px 2px;
@@ -466,7 +467,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     &.me-editor-large {
-
       .dx-texteditor-input,
       &.dx-lookup .dx-lookup-field {
         padding: 21.5px 11px 4.5px;
@@ -556,7 +556,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &.dx-texteditor-with-floating-label {
-
     &.dx-texteditor-empty,
     &.dx-lookup-empty,
     &.dx-texteditor-empty.dx-state-readonly,
@@ -767,7 +766,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       }
 
       &.dx-texteditor-with-floating-label {
-
         &.me-inputs-small,
         &.me-inputs-medium {
           --label-indent: 3px;
@@ -838,7 +836,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &.dx-texteditor-with-floating-label {
-
     &.dx-texteditor-empty,
     &.dx-lookup-empty {
       @include dx-state-empty($texteditor-border-color, solid);
@@ -1037,7 +1034,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   }
 
   &.dx-texteditor-with-floating-label {
-
     &.dx-texteditor-empty,
     &.dx-lookup-empty,
     &.dx-texteditor-empty.dx-state-readonly,
@@ -1143,7 +1139,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     .dx-texteditor-buttons-container {
-      >.dx-button {
+      > .dx-button {
         &:first-child {
           margin-left: 0;
         }
@@ -1154,7 +1150,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       }
 
       @at-root #{selector-append(".dx-rtl", &)} {
-        >.dx-button {
+        > .dx-button {
           &:first-child {
             margin-left: $generic-editor-custom-button-margin;
             margin-right: 0;
@@ -1206,7 +1202,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 .dx-editor-filled {
   .dx-texteditor-buttons-container {
     &:first-child {
-      >.dx-button {
+      > .dx-button {
         &:last-child {
           margin-right: 0;
         }
@@ -1214,7 +1210,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     &:last-child {
-      >.dx-button {
+      > .dx-button {
         &:first-child {
           margin-left: 0;
         }
@@ -1223,7 +1219,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     @at-root #{selector-append(".dx-rtl", &)} {
       &:first-child {
-        >.dx-button {
+        > .dx-button {
           &:first-child {
             margin-left: $generic-editor-custom-button-margin;
             margin-right: $generic-editor-custom-button-margin;
@@ -1242,7 +1238,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       }
 
       &:last-child {
-        >.dx-button {
+        > .dx-button {
           &:first-child {
             margin-left: $generic-editor-custom-button-margin;
             margin-right: 0;
@@ -1259,7 +1255,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 }
 
 .dx-valid.dx-texteditor {
-
   &.dx-editor-filled,
   &.dx-editor-underlined,
   &.dx-editor-outlined {
@@ -1272,7 +1267,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 }
 
 .dx-validation-pending.dx-texteditor {
-
   &.dx-editor-filled,
   &.dx-editor-underlined,
   &.dx-editor-outlined {
@@ -1285,7 +1279,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 }
 
 .dx-rtl {
-
   .dx-placeholder,
   .dx-placeholder::before {
     right: 0;

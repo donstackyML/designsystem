@@ -3,10 +3,10 @@ import { Properties as dxPopupOptions } from 'devextreme/ui/popup';
 import { MeCommonType } from '../types/types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DropDownOptionsService {
-  constructor() { }
+  constructor() {}
 
   public configureDropDownOptions(
     component: { dropDownOptions?: dxPopupOptions },
@@ -15,8 +15,8 @@ export class DropDownOptionsService {
     size: 'small' | 'medium' | 'large' = 'medium',
     dropDownListMaxHeight?: string | number,
     additionalClass?: string,
-    wrapperClass?: string ,
-    wrapperAttr: MeCommonType =  {},
+    wrapperClass?: string,
+    wrapperAttr: MeCommonType = {}
   ): void {
     const uuid = self.crypto.randomUUID();
 
@@ -34,7 +34,7 @@ export class DropDownOptionsService {
         at: 'left bottom',
         offset: { y: 4 },
         collision: 'fit flip',
-        of: hostElement.nativeElement
+        of: hostElement.nativeElement,
       },
       ...component.dropDownOptions,
       wrapperAttr: {

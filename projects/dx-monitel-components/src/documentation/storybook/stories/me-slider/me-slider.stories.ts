@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxSliderModule } from 'devextreme-angular';
 import { MeSliderDirective } from '../../../../public-api';
 
@@ -92,7 +97,7 @@ export default {
 type Story = StoryObj<DxSliderModule | MeSliderDirective>;
 
 export const Default: Story = {
-  args: { }
+  args: {},
 };
 
 export const WithLabelAndTooltip: Story = {
@@ -142,18 +147,18 @@ export const WithLabelAndTooltip: Story = {
 
 export const ValidationStateIsValid: Story = {
   args: {
-    isValid: true
-  }
+    isValid: true,
+  },
 };
 
 export const ValidationStateIsInvalid: Story = {
   args: {
-    isValid: false
-  }
+    isValid: false,
+  },
 };
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
-  }
+    disabled: true,
+  },
 };

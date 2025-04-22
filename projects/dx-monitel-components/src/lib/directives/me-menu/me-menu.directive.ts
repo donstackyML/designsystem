@@ -35,7 +35,7 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {}
 
   ngOnDestroy(): void {
     this.focusService.ngOnDestroy();
@@ -89,12 +89,15 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
   }
 
   @HostListener('onSubmenuShowing', ['$event'])
-  onSubmenuShowing({ submenuContainer, itemData }: DxMenuTypes.SubmenuShowingEvent) {
-
+  onSubmenuShowing({
+    submenuContainer,
+    itemData,
+  }: DxMenuTypes.SubmenuShowingEvent) {
     if (submenuContainer && this.subMenuMaxHeight) {
-      submenuContainer.style.maxHeight = typeof this.subMenuMaxHeight === 'number'
-        ? `${this.subMenuMaxHeight}px`
-        : this.subMenuMaxHeight;
+      submenuContainer.style.maxHeight =
+        typeof this.subMenuMaxHeight === 'number'
+          ? `${this.subMenuMaxHeight}px`
+          : this.subMenuMaxHeight;
     }
 
     if (submenuContainer && itemData?.items) {
@@ -109,9 +112,15 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
 
   @HostListener('onItemRendered', ['$event'])
   onItemRendered(event: any) {
-    const menuItemElement = event.itemElement.closest('.dx-menu-item-wrapper .dx-item.dx-menu-item');
+    const menuItemElement = event.itemElement.closest(
+      '.dx-menu-item-wrapper .dx-item.dx-menu-item'
+    );
 
-    if (menuItemElement && event.itemData?.disabled && event.itemData?.beginGroup) {
+    if (
+      menuItemElement &&
+      event.itemData?.disabled &&
+      event.itemData?.beginGroup
+    ) {
       this.renderer.addClass(menuItemElement, 'me-menu-item-title');
     }
   }

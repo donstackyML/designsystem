@@ -1,6 +1,10 @@
 import { action as menuLeftStories } from '@storybook/addon-actions';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { DxButtonModule, DxTextBoxModule, DxTreeViewModule } from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxTextBoxModule,
+  DxTreeViewModule,
+} from 'devextreme-angular';
 
 import {
   MeIconComponent,
@@ -8,7 +12,10 @@ import {
   MeTextBoxDirective,
   MeTreeViewModule,
 } from '../../../../public-api';
-import { meMenuLeftBottomItems, meMenuLeftDefaultItems } from './me-menu-left-mock-data';
+import {
+  meMenuLeftBottomItems,
+  meMenuLeftDefaultItems,
+} from './me-menu-left-mock-data';
 
 export default {
   title: 'Components/MenuLeft',
@@ -60,7 +67,8 @@ export default {
     },
     resizeHandleVisible: {
       control: 'boolean',
-      description: 'Определяет, будет ли отображаться ручка изменения ширины меню.',
+      description:
+        'Определяет, будет ли отображаться ручка изменения ширины меню.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -209,14 +217,14 @@ export const Default: Story = {};
 
 export const WithCustomHeaderAndSearchBar: Story = {
   args: {
-    title: ''
+    title: '',
   },
   render: (args) => ({
     props: {
       ...args,
       customTitle: 'Custom Title',
       onItemSelected: menuLeftStories('onItemSelected'),
-      onCollapsedChange: menuLeftStories('onCollapsedChange')
+      onCollapsedChange: menuLeftStories('onCollapsedChange'),
     },
     template: `
       <div style="display: flex; height: 100%;">
@@ -254,7 +262,8 @@ export const WithCustomHeaderAndSearchBar: Story = {
         </div>
       </div>
     `,
-    styles: [`
+    styles: [
+      `
     .me-menu-left-custom-header {
       display: flex;
       justify-content: space-between;
@@ -281,14 +290,15 @@ export const WithCustomHeaderAndSearchBar: Story = {
       padding-block: 8px;
       border-bottom: 1px solid #dfe0ed;
     }
-  `]
-  })
+  `,
+    ],
+  }),
 };
 
 export const WithoutHeader: Story = {
   args: {
-    withHeader: false
-  }
+    withHeader: false,
+  },
 };
 
 export const Collapsed: Story = {
@@ -322,7 +332,7 @@ export const LargeSize = {
 };
 export const WithoutResizeHandle = {
   args: {
-    resizeHandleVisible: false
+    resizeHandleVisible: false,
   },
 };
 

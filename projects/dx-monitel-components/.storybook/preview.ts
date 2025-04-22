@@ -1,5 +1,9 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import { moduleMetadata, type Preview, type Decorator } from '@storybook/angular';
+import {
+  moduleMetadata,
+  type Preview,
+  type Decorator,
+} from '@storybook/angular';
 import { themes } from '@storybook/theming';
 import { useDarkMode } from 'storybook-dark-mode';
 

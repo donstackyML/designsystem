@@ -1,4 +1,9 @@
-import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import {
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
 import { DxLoadIndicatorModule } from 'devextreme-angular';
 import { MeLoadIndicatorDirective } from '../../../../public-api';
 
@@ -70,7 +75,7 @@ export default {
     stylingMode: 'circle',
     height: undefined,
     width: undefined,
-    indicatorSrc: ''
+    indicatorSrc: '',
   },
   render: (args) => ({
     props: args,
@@ -95,10 +100,10 @@ export default {
         border-radius: 4px;
         border: 1px dashed #9747ff
       }
-      `
-    ]
+      `,
+    ],
   }),
-} satisfies Meta<DxLoadIndicatorModule  | MeLoadIndicatorDirective>;
+} satisfies Meta<DxLoadIndicatorModule | MeLoadIndicatorDirective>;
 
 type Story = StoryObj<DxLoadIndicatorModule | MeLoadIndicatorDirective>;
 
@@ -113,49 +118,48 @@ export const WithCustomImage: Story = {
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
-  }
+    size: 'small',
+  },
 };
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
+    size: 'medium',
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const StylingModeCircle: Story = {
   args: {
-    stylingMode: 'circle'
-  }
+    stylingMode: 'circle',
+  },
 };
 
 export const StylingModeLine: Story = {
   args: {
-    stylingMode: 'line'
-  }
+    stylingMode: 'line',
+  },
 };
-
 
 export const ColorDefault: Story = {
   args: {
-    color: 'default'
-  }
+    color: 'default',
+  },
 };
 
 export const ColorNormal: Story = {
   args: {
-    color: 'normal'
-  }
+    color: 'normal',
+  },
 };
 
 export const ColorAccent: Story = {
   args: {
-    color: 'accent'
-  }
+    color: 'accent',
+  },
 };

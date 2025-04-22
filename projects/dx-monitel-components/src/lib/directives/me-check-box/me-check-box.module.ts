@@ -7,4 +7,4 @@ import { MeCheckBoxDirective } from './me-check-box.directive';
   imports: [CommonModule],
   exports: [MeCheckBoxDirective],
 })
-export class MeCheckBoxModule { }
+export class MeCheckBoxModule {}

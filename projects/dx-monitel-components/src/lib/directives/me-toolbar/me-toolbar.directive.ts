@@ -1,4 +1,12 @@
-import {Directive, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges} from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  Renderer2,
+  SimpleChanges,
+} from '@angular/core';
 import { MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
@@ -30,7 +38,9 @@ export class MeToolbarDirective implements OnInit, OnChanges {
   }
 
   protected getMenuButtonElement() {
-    return this.element.nativeElement.querySelector('.dx-toolbar-button.dx-toolbar-menu-container > .dx-button');
+    return this.element.nativeElement.querySelector(
+      '.dx-toolbar-button.dx-toolbar-menu-container > .dx-button'
+    );
   }
 
   ngAfterViewInit() {
@@ -44,9 +54,15 @@ export class MeToolbarDirective implements OnInit, OnChanges {
     if ('size' in changes) {
       const menuButton = this.getMenuButtonElement();
       if (!changes['size'].firstChange) {
-        this.renderer.removeClass(menuButton, `me-button-${changes['size'].previousValue}`);
+        this.renderer.removeClass(
+          menuButton,
+          `me-button-${changes['size'].previousValue}`
+        );
       }
-      this.renderer.addClass(menuButton, `me-button-${changes['size'].currentValue}`);
+      this.renderer.addClass(
+        menuButton,
+        `me-button-${changes['size'].currentValue}`
+      );
     }
   }
 }

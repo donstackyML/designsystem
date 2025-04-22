@@ -218,7 +218,7 @@ export const WithoutDividers: Story = {
 export const WithoutFill: Story = {
   args: {
     leftItems: [
-      { text: 'Воткинская ГЭС', fill: false, },
+      { text: 'Воткинская ГЭС', fill: false },
       {
         text: 'Раскраска схемы без учета ТП',
         fill: false,
@@ -239,14 +239,19 @@ export const WithoutFill: Story = {
 export const Readonly: Story = {
   args: {
     leftItems: [
-      { text: 'Воткинская ГЭС', readOnly: true, },
+      { text: 'Воткинская ГЭС', readOnly: true },
       {
         text: 'Раскраска схемы без учета ТП',
         fill: true,
         type: 'info',
         readOnly: true,
       },
-      { text: 'Режим исследования', fill: true, type: 'success', readOnly: true, },
+      {
+        text: 'Режим исследования',
+        fill: true,
+        type: 'success',
+        readOnly: true,
+      },
     ],
     rightItems: [
       {

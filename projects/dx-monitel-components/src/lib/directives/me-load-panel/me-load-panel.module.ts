@@ -7,4 +7,4 @@ import { MeLoadPanelDirective } from './me-load-panel.directive';
   imports: [CommonModule],
   exports: [MeLoadPanelDirective],
 })
-export class MeLoadPanelModule { }
+export class MeLoadPanelModule {}
