@@ -665,7 +665,7 @@ export const StateDisabledAndReadOnly: Story = {
 export const WithGrouping: Story = {
   render: (args) => ({
     props: args,
-    template: `<dx-form meForm [formData]="formData">
+    template: `<dx-form meForm [formData]="formData" ${argsToTemplate(args)}>
   <dxi-item itemType="group" caption="Personal Info">
     <dxi-item meFormItem dataField="firstName">
       <dxo-label text="First Name"></dxo-label>
