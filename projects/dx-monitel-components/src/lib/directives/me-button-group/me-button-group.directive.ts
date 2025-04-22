@@ -8,6 +8,7 @@ import { DxButtonGroupComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeControlDirective } from '../me-control/me-control.directive';
+import {MeButtonGroupItem} from "src/app/types/types";
 
 const DEFAULT_ICON_COLOR = '#ffffff';
 
@@ -28,15 +29,32 @@ export class MeButtonGroupDirective
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
+  ngOnChanges(changes: any) {
+    if ('size' in changes) {
+      this.setItems();
+    }
+  }
+
   ngOnInit(): void {
+    this.setItems();
+  }
+
+  protected getIconColor(item: MeButtonGroupItem) {
+    if (item.iconColor) return item.iconColor;
+    if (this.disabled) return `var(--button-${item.meType}-${this.stylingMode}-icon-disabled-color)`;
+    if (this.stylingMode === 'contained' && item.meType !== 'normal') return DEFAULT_ICON_COLOR;
+
+    return `var(--button-${item.meType}-icon-color)`;
+  }
+
+  protected setItems() {
     this.component.items = this.items.map((item, index) => {
-      // Преобразуем существующие типы в meType
-      if (!item.meType) {
-        if (item.warningType) {
-          item.meType = 'warning';
-        } else {
-          item.meType = item.type || 'normal';
-        }
+      const itemClasses = ['me-button',`me-button-${this.size}`]
+      const returnedItem = {
+        ...item,
+        // Преобразуем существующие типы в meType
+        meType: item.meType ?? (item.warningType ? 'warning' : (item.type ?? 'normal')),
+        elementAttr: item.elementAttr ? {...item.elementAttr} : {},
       }
 
       this.renderer.addClass(this.element.nativeElement, `me-button`);
@@ -45,88 +63,48 @@ export class MeButtonGroupDirective
         `me-button-${this.size}`
       );
 
-      if (item.meType === 'warning') {
-        item.elementAttr = {
-          ...item.elementAttr,
-          class: item.elementAttr?.['class']
-            ? item.elementAttr?.['class'] + ' me-button-warning'
-            : 'me-button-warning',
-        };
-      }
-
       // Определение цвета иконки
-      if (!item.iconColor) {
-        if (this.stylingMode !== 'contained' || item.meType === 'normal') {
-          if (item.meType === 'warning' && this.stylingMode !== 'contained') {
-            item.iconColor = `var(--button-warning-icon-color)`;
-          } else if (item.meType === 'warning') {
-            item.iconColor = DEFAULT_ICON_COLOR;
-          } else {
-            item.iconColor = `var(--button-${item.meType}-icon-color)`;
-          }
-        } else {
-          item.iconColor = DEFAULT_ICON_COLOR;
-        }
+      returnedItem.iconColor = this.getIconColor(returnedItem);
 
-        if (this.disabled) {
-          item.iconColor = `var(--button-${item.meType}-${this.stylingMode}-icon-disabled-color)`;
-        }
+      if (!returnedItem.template) {
+        returnedItem.template = `
+        <div class="me-button-inner">
+          ${this.iconStore.getIcon({
+            icon: returnedItem.leftIcon,
+            color: returnedItem.leftIconColor ? returnedItem.leftIconColor : returnedItem.iconColor,
+            size: this.getIconSize(returnedItem.leftIconSize),
+          })}
+          ${this.iconStore.getIcon({
+            icon: returnedItem.icon,
+            color: returnedItem.iconColor,
+            size: this.getIconSize(returnedItem.iconSize),
+          })}
+          ${this.getText(index)}
+          ${this.iconStore.getIcon({
+            icon: returnedItem.rightIcon,
+            color: returnedItem.rightIconColor ? returnedItem.rightIconColor : returnedItem.iconColor,
+            size: this.getIconSize(returnedItem.rightIconSize),
+          })}
+        </div>`;
       }
 
-      if (!item.template) {
-        item.template = `<div class="me-button-inner">${this.iconStore.getIcon({
-          icon: item.leftIcon,
-          color: item.leftIconColor ? item.leftIconColor : item.iconColor,
-          size: this.getIconSize(item.leftIconSize),
-        })}
-            ${this.iconStore.getIcon({
-          icon: item.icon,
-          color: item.iconColor,
-          size: this.getIconSize(item.iconSize),
-        })}
-            ${this.getText(index)}
-            ${this.iconStore.getIcon({
-          icon: item.rightIcon,
-          color: item.rightIconColor ? item.rightIconColor : item.iconColor,
-          size: this.getIconSize(item.rightIconSize),
-        })}</div>`;
+
+      if (returnedItem.elementAttr?.['class']) {
+        itemClasses.push(item.elementAttr?.['class']);
+      }
+      if (returnedItem.leftIcon || returnedItem.rightIcon) {
+        itemClasses.push('me-button-icon')
+      }
+      if (returnedItem.warningType) {
+        itemClasses.push('me-button-warning')
+      }
+      if (returnedItem.icon) {
+        itemClasses.push('me-button-icon-only')
       }
 
-      if (item.leftIcon || item.rightIcon) {
-        item.elementAttr = {
-          ...item.elementAttr,
-          class: item.elementAttr?.['class']
-            ? item.elementAttr?.['class'] + ' me-button-icon'
-            : 'me-button-icon',
-        };
-      }
+      returnedItem.elementAttr['class'] = itemClasses.join(' ');
 
-      item.elementAttr = {
-        ...item.elementAttr,
-        class: item.elementAttr?.['class']
-          ? item.elementAttr?.['class'] + ` me-button me-button-${this.size}`
-          : `me-button me-button-${this.size}`,
-      };
-
-      if (item.warningType) {
-        item.elementAttr = {
-          ...item.elementAttr,
-          class: item.elementAttr?.['class']
-            ? item.elementAttr?.['class'] + ' me-button-warning'
-            : 'me-button-warning',
-        };
-      }
-
-      if (item.icon) {
-        item.elementAttr = {
-          ...item.elementAttr,
-          class: item.elementAttr?.['class']
-            ? item.elementAttr?.['class'] + ' me-button-icon-only'
-            : 'me-button-icon-only',
-        };
-      }
-
-      return item;
+      return returnedItem;
     });
   }
 }

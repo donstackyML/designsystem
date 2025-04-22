@@ -39,9 +39,9 @@ import { Component, Input } from '@angular/core';
   [disabled]="disabled"
   [width]="width"
 >
-  <dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">
+  <dxi-item location="before" widget="dxButton" locateInMenu="auto">
     <div *dxTemplate>
-      <dx-button [disabled]="disabled" meButton iconOnly="undo" text="Undo" [size]="size"></dx-button>
+      <dx-button [disabled]="disabled" meButton leftIcon="undo" text="Undo" [size]="size"></dx-button>
     </div>
   </dxi-item>
   <dxi-item location="before" widget="dxButton" locateInMenu="auto" showText="inMenu">

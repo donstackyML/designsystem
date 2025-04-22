@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import {Directive, ElementRef, Input, OnInit, Renderer2, SimpleChanges} from '@angular/core';
 import { DxButtonComponent } from 'devextreme-angular';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeControlDirective } from '../me-control/me-control.directive';
@@ -41,6 +41,11 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
     super();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if ('size' in changes) {
+      this.setTemplate();
+    }
+  }
   ngOnInit(): void {
     if (!this.iconColor) {
       if (this.stylingMode !== 'contained' || this.type === 'normal') {
@@ -53,6 +58,16 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
       }
     }
 
+    this.setTemplate();
+
+    if (this.selectionStateEnable) {
+      this.renderer.listen(this.element.nativeElement, 'click', () => {
+        this.isSelected = !this.isSelected;
+      });
+    }
+  }
+
+  protected setTemplate() {
     if (this.template === 'content') {
       this.component.template = `
         <div class="me-button-inner">
@@ -73,12 +88,6 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
         size: this.getIconSize(this.rightIconSize),
       })}
         </div>`;
-    }
-
-    if (this.selectionStateEnable) {
-      this.renderer.listen(this.element.nativeElement, 'click', () => {
-        this.isSelected = !this.isSelected;
-      });
     }
   }
 }
