@@ -3,7 +3,7 @@ import type {
   MeButtonGroupItem,
   MeButtonStyle,
   MeButtonType,
-  MeSize
+  MeSize,
 } from '../../types/types';
 
 const LARGE_ICON_SIZE = '24';

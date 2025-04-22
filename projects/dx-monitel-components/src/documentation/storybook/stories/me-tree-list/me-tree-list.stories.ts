@@ -5,7 +5,11 @@ import { DxoSelectionComponent } from 'devextreme-angular/ui/nested';
 import { MeIconComponent, MeTreeListDirective } from '../../../../public-api';
 import { meTreeListMockData } from './me-tree-list-mock-data';
 
-type StoryProps = MeTreeListDirective | DxTreeListComponent | DxoSelectionComponent | { editingIsEnabled: boolean };
+type StoryProps =
+  | MeTreeListDirective
+  | DxTreeListComponent
+  | DxoSelectionComponent
+  | { editingIsEnabled: boolean };
 
 export default {
   title: 'Components/TreeList',
@@ -42,7 +46,8 @@ export default {
     },
     showColumnLines: {
       control: 'boolean',
-      description: 'Определяет, отображаются ли вертикальные границы между столбцами.',
+      description:
+        'Определяет, отображаются ли вертикальные границы между столбцами.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -74,7 +79,8 @@ export default {
     },
     expandedRowKeys: {
       control: 'object',
-      description: 'Массив ключей строк, которые должны быть отображены в развернутом виде.',
+      description:
+        'Массив ключей строк, которые должны быть отображены в развернутом виде.',
       table: {
         type: { summary: 'any[]' },
         defaultValue: { summary: '[]' },
@@ -82,7 +88,8 @@ export default {
     },
     autoExpandAll: {
       control: 'boolean',
-      description: 'Определяет, будут ли все строки отображаться в развернутом виде.',
+      description:
+        'Определяет, будут ли все строки отображаться в развернутом виде.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -91,7 +98,8 @@ export default {
     dataStructure: {
       control: 'select',
       options: ['plain', 'tree'],
-      description: 'Определяет, как будет отображаться хранимая в TreeList структура.',
+      description:
+        'Определяет, как будет отображаться хранимая в TreeList структура.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'plain' },
@@ -107,7 +115,8 @@ export default {
     },
     columnAutoWidth: {
       control: 'boolean',
-      description: 'Определяет, будет ли TreeList автоматически изменять ширину столбцов.',
+      description:
+        'Определяет, будет ли TreeList автоматически изменять ширину столбцов.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -121,7 +130,8 @@ export default {
     },
     editingIsEnabled: {
       control: 'boolean',
-      description: 'Определяет, включено ли редактирование для компонента `<dxo-editing></dxo-editing>`.',
+      description:
+        'Определяет, включено ли редактирование для компонента `<dxo-editing></dxo-editing>`.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -144,7 +154,7 @@ export default {
     disabled: false,
     height: undefined,
     mode: 'none',
-    editingIsEnabled: false
+    editingIsEnabled: false,
   },
   render: (args) => ({
     props: args,
@@ -251,8 +261,8 @@ export const WithEditingButtons: Story = {
       { Full_Name: 'John Heart', Title: 'CEO', ID: 1 },
       { Full_Name: 'Samantha Bright', Title: 'COO', ID: 2 },
       { Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3 },
-      { Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4 }
-    ]
+      { Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4 },
+    ],
   },
   render: (args) => ({
     props: args,
@@ -300,8 +310,8 @@ export const WithValidation: Story = {
       { Full_Name: 'John Heart', Title: 'CEO', ID: 1 },
       { Full_Name: 'Samantha Bright', Title: 'COO', ID: 2 },
       { Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3 },
-      { Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4 }
-    ]
+      { Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4 },
+    ],
   },
   render: (args) => ({
     props: args,
@@ -354,7 +364,7 @@ export const WithHierarchy: Story = {
       { ID: 3, Full_Name: 'Robert Reagan', Title: 'CMO', Head_ID: 1 },
       { ID: 4, Full_Name: 'Greta Sims', Title: 'HR Manager', Head_ID: 2 },
     ],
-    autoExpandAll: true
+    autoExpandAll: true,
   },
   render: (args) => ({
     props: args,
@@ -387,11 +397,14 @@ export const WithHierarchy: Story = {
 
 export const WithSortingAndFiltering: Story = {
   args: {
-    dataSource: [{ ID: 1, Full_Name: 'John Heart', Title: 'CEO' }, { ID: 2, Full_Name: 'Samantha Bright', Title: 'COO' }],
+    dataSource: [
+      { ID: 1, Full_Name: 'John Heart', Title: 'CEO' },
+      { ID: 2, Full_Name: 'Samantha Bright', Title: 'COO' },
+    ],
     filterRow: {
-      visible: true
+      visible: true,
     },
-    allowColumnReordering: true
+    allowColumnReordering: true,
   },
   render: (args) => ({
     props: args,

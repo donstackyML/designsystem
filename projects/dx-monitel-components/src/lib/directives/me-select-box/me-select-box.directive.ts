@@ -10,7 +10,7 @@ import {
   OnInit,
   Renderer2,
   SimpleChanges,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 
 import { MeIconComponent } from '@monitel/me-icons-registry';
@@ -33,7 +33,8 @@ import { MeFormField } from '../me-form-item/me-form-field';
 })
 export class MeSelectBoxDirective
   extends MeFormField
-  implements OnInit, AfterViewInit {
+  implements OnInit, AfterViewInit
+{
   @Input() showScrollbar: MeScrollbarShowType = 'always';
   @Input() wrapperAttr: MeCommonType = {};
   @Input() dropDownListMaxHeight?: string | number;
@@ -57,9 +58,9 @@ export class MeSelectBoxDirective
   }
 
   ngOnInit(): void {
-    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''
-      } ${this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
-      }`;
+    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''} ${
+      this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
+    }`;
 
     this.dropDownOptionsService.configureDropDownOptions(
       this.component,
@@ -67,7 +68,7 @@ export class MeSelectBoxDirective
       this.renderer,
       this.size,
       this.dropDownListMaxHeight,
-      popupWrapperClasses,
+      popupWrapperClasses
     );
 
     this.component.wrapItemText = true;
@@ -75,7 +76,6 @@ export class MeSelectBoxDirective
 
   @HostListener('onOpened', ['$event'])
   onOpened(e: any) {
-
     const listInstance = e.component?._list;
 
     if (!listInstance) {
@@ -99,7 +99,10 @@ export class MeSelectBoxDirective
     if (this.leftIconComponentRef && (changes['leftIcon'] || changes['size'])) {
       if (this.leftIcon) {
         this.leftIconComponentRef.setInput('name', this.leftIcon);
-        this.leftIconComponentRef.setInput('containerSize', this.size === 'large' ? 24 : 20);
+        this.leftIconComponentRef.setInput(
+          'containerSize',
+          this.size === 'large' ? 24 : 20
+        );
         this.leftIconComponentRef.changeDetectorRef.detectChanges();
       }
     }
@@ -107,15 +110,27 @@ export class MeSelectBoxDirective
 
   private setLeftIcon() {
     if (this.leftIcon) {
-      const textEditorContainer = this.element.nativeElement.querySelector('.dx-texteditor-container');
-      this.leftIconComponentRef = this.viewContainerRef.createComponent(MeIconComponent);
+      const textEditorContainer = this.element.nativeElement.querySelector(
+        '.dx-texteditor-container'
+      );
+      this.leftIconComponentRef =
+        this.viewContainerRef.createComponent(MeIconComponent);
 
       this.leftIconComponentRef.setInput('name', this.leftIcon);
-      this.leftIconComponentRef.setInput('containerSize', this.size === 'large' ? 24 : 20);
+      this.leftIconComponentRef.setInput(
+        'containerSize',
+        this.size === 'large' ? 24 : 20
+      );
       this.leftIconComponentRef.changeDetectorRef.detectChanges();
 
-      textEditorContainer.insertBefore(this.leftIconComponentRef.location.nativeElement, textEditorContainer.firstChild);
-      this.renderer.addClass(this.leftIconComponentRef.location.nativeElement, 'me-selectbox-left-icon');
+      textEditorContainer.insertBefore(
+        this.leftIconComponentRef.location.nativeElement,
+        textEditorContainer.firstChild
+      );
+      this.renderer.addClass(
+        this.leftIconComponentRef.location.nativeElement,
+        'me-selectbox-left-icon'
+      );
     }
   }
 

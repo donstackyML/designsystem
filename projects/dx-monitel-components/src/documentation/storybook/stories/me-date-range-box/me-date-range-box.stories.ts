@@ -5,7 +5,10 @@ import {
   moduleMetadata,
 } from '@storybook/angular';
 import { DxDateRangeBoxModule, DxValidatorModule } from 'devextreme-angular';
-import { MeDateRangeBoxDirective, MeLabelDirective } from '../../../../public-api';
+import {
+  MeDateRangeBoxDirective,
+  MeLabelDirective,
+} from '../../../../public-api';
 
 export default {
   title: 'Components/Fields/DateRangeBox',
@@ -189,8 +192,8 @@ export default {
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
@@ -354,7 +357,7 @@ export default {
   }),
 } satisfies Meta<DxDateRangeBoxModule | MeDateRangeBoxDirective>;
 
-type Story = StoryObj<DxDateRangeBoxModule | MeDateRangeBoxDirective>
+type Story = StoryObj<DxDateRangeBoxModule | MeDateRangeBoxDirective>;
 
 export const Default: Story = {};
 
@@ -366,9 +369,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -423,7 +426,7 @@ export const WithLabelRow: Story = {
 
 export const WithLabelColumn: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -439,11 +442,11 @@ export const WithLabelColumn: Story = {
       ></dx-date-range-box>
 		</div>`,
   }),
-}
+};
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
@@ -451,7 +454,7 @@ export const StateReadOnly: Story = {
   args: {
     readOnly: true,
     startDate: '1/1/2025',
-    endDate: '1/31/2025'
+    endDate: '1/31/2025',
   },
 };
 
@@ -460,24 +463,24 @@ export const StateDisabledAndReadOnly: Story = {
     readOnly: true,
     disabled: true,
     startDate: '1/1/2025',
-    endDate: '1/31/2025'
+    endDate: '1/31/2025',
   },
 };
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
+    showRequiredMark: true,
   },
 };
 
 export const ValidationInvalid: Story = {
   args: {
-    isValid: false
+    isValid: false,
   },
 };
 
 export const WithMultiView: Story = {
   args: {
-    multiView: true
+    multiView: true,
   },
 };

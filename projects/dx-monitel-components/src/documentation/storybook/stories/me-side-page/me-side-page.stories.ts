@@ -1,6 +1,17 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MeIconsModule } from '@monitel/me-icons-registry';
-import { argsToTemplate, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import {
+  argsToTemplate,
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
 import {
   DxButtonComponent,
   DxCheckBoxComponent,
@@ -119,18 +130,15 @@ import {
       </div>
     </me-sidepage>
 
-   <main class='main-content'>
-     <dx-button
-      meButton
-      text="Открыть настройки"
-      stylingMode="contained"
-      (onClick)="toggleSidePage()"
-
+    <main class="main-content">
+      <dx-button
+        meButton
+        text="Открыть настройки"
+        stylingMode="contained"
+        (onClick)="toggleSidePage()"
       ></dx-button>
-      <div class="big-content">
-        Какой-то контент на странице
-      </div>
-  </main>
+      <div class="big-content">Какой-то контент на странице</div>
+    </main>
   `,
   styles: [
     `
@@ -264,7 +272,8 @@ export default {
     },
     hideOnOutsideClick: {
       control: 'boolean',
-      description: 'Определяет, будет ли side page скрываться при клике вне компонента.',
+      description:
+        'Определяет, будет ли side page скрываться при клике вне компонента.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -342,12 +351,12 @@ export default {
     isSidePageOpen: false,
     width: '27vw',
     minWidth: '250px',
-    maxWidth: '80vw'
+    maxWidth: '80vw',
   },
   render: (args) => ({
     props: args,
-    template: `<me-side-page-demo ${argsToTemplate(args)}></me-side-page-demo>`
-  })
+    template: `<me-side-page-demo ${argsToTemplate(args)}></me-side-page-demo>`,
+  }),
 } satisfies Meta<MeSidePageComponent>;
 
 type Story = StoryObj<MeSidePageComponent>;
@@ -356,18 +365,18 @@ export const Default: Story = {};
 
 export const PositionLeft: Story = {
   args: {
-    position: 'left'
-  }
+    position: 'left',
+  },
 };
 
 export const PositionRight: Story = {
   args: {
-    position: 'right'
-  }
+    position: 'right',
+  },
 };
 
 export const WithoutShadingAndFixedScroll: Story = {
   args: {
-    shading: false
-  }
+    shading: false,
+  },
 };

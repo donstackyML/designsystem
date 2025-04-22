@@ -62,7 +62,7 @@ export class MeChipsComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('container') containerRef!: ElementRef;
 
-  constructor(private keyboardNavigation: KeyboardNavigationService) { }
+  constructor(private keyboardNavigation: KeyboardNavigationService) {}
 
   ngAfterViewInit() {
     if (this.containerRef) {

@@ -41,7 +41,8 @@ export default {
     icon: {
       control: 'select',
       options: ['', 'add', 'arrowleft'],
-      description: 'Принимает название иконки из стандартного набора (или иконку, переданную строкой), которая будет вставлена слева от текста.',
+      description:
+        'Принимает название иконки из стандартного набора (или иконку, переданную строкой), которая будет вставлена слева от текста.',
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'string' },
@@ -71,7 +72,8 @@ export default {
     dividersVisibility: {
       control: 'select',
       options: ['auto', 'all', 'none'],
-      description: 'Определяет видимость разделителей у элементов списка в выпадающем меню',
+      description:
+        'Определяет видимость разделителей у элементов списка в выпадающем меню',
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'string' },
@@ -151,11 +153,13 @@ export default {
     disabled: false,
     showArrowIcon: true,
     dividersVisibility: 'auto',
-    useSelectMode: false
+    useSelectMode: false,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-drop-down-button meDropDownButton ${argsToTemplate(args)}></dx-drop-down-button>`,
+    template: `<dx-drop-down-button meDropDownButton ${argsToTemplate(
+      args
+    )}></dx-drop-down-button>`,
   }),
 } satisfies Meta<DxDropDownButtonComponent | MeDropDownButtonDirective>;
 
@@ -165,56 +169,56 @@ export const Default: Story = {};
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
-  }
+    size: 'small',
+  },
 };
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
+    size: 'medium',
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const TypeDefault: Story = {
   args: {
-    type: 'default'
-  }
+    type: 'default',
+  },
 };
 
 export const TypeSuccess: Story = {
   args: {
-    type: 'success'
-  }
+    type: 'success',
+  },
 };
 
 export const TypeDanger: Story = {
   args: {
-    type: 'danger'
-  }
+    type: 'danger',
+  },
 };
 
 export const StylingModeContained: Story = {
   args: {
-    stylingMode: 'contained'
-  }
+    stylingMode: 'contained',
+  },
 };
 
 export const StylingModeOutlined: Story = {
   args: {
-    stylingMode: 'outlined'
-  }
+    stylingMode: 'outlined',
+  },
 };
 
 export const StylingModeText: Story = {
   args: {
-    stylingMode: 'text'
-  }
+    stylingMode: 'text',
+  },
 };
 
 export const WithSplitButton: Story = {
@@ -250,7 +254,7 @@ export const WithColoredIcon: Story = {
   args: {
     icon: 'add',
     text: 'Button',
-    iconColor: "#ff0000"
+    iconColor: '#ff0000',
   },
 };
 
@@ -287,6 +291,6 @@ export const DividersVisibilityAll: Story = {
 export const DividersVisibilityByContent: Story = {
   args: {
     dividersVisibility: 'auto',
-    dataSource: meDropDownButtonMockDataWithDividers
+    dataSource: meDropDownButtonMockDataWithDividers,
   },
 };

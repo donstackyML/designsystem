@@ -497,7 +497,11 @@ export const ScrollableContent: Story = {
   },
   decorators: [
     moduleMetadata({
-      declarations: [MePopupDirective, DxScrollViewComponent, MeButtonDirective],
+      declarations: [
+        MePopupDirective,
+        DxScrollViewComponent,
+        MeButtonDirective,
+      ],
       imports: [DxPopupModule, DxTemplateModule, DxButtonModule],
     }),
   ],
@@ -592,8 +596,8 @@ export const ScrollableContentWithButtons: Story = {
           align-self: flex-start;
         }
       }
-      `
-    ]
+      `,
+    ],
   }),
 };
 

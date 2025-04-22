@@ -12,10 +12,7 @@ import { MeFormField } from '../me-form-item/me-form-field';
   },
   providers: [{ provide: MeFormField, useExisting: MeAutocompleteDirective }],
 })
-export class MeAutocompleteDirective
-  extends MeFormField
-  implements OnInit {
-
+export class MeAutocompleteDirective extends MeFormField implements OnInit {
   @Input() minSearchLength: number = 1;
   @Input() dataSource: any[] = [];
   @Input() dropDownListMaxHeight: string | number = '300px';
@@ -25,9 +22,9 @@ export class MeAutocompleteDirective
     private element: ElementRef,
     private autocomplete: DxAutocompleteComponent,
     private renderer: Renderer2,
-    private dropDownOptionsService: DropDownOptionsService,
+    private dropDownOptionsService: DropDownOptionsService
   ) {
-    super(autocomplete)
+    super(autocomplete);
     this.autocomplete.labelMode = 'outside';
     this.focusService = new ComponentFocusService(element, renderer);
   }

@@ -6,7 +6,10 @@ import {
 } from '@storybook/angular';
 import { DxButtonGroupComponent } from 'devextreme-angular';
 import { ButtonType } from 'devextreme/common';
-import { MeButtonGroupDirective, MeButtonGroupItem } from '../../../../public-api';
+import {
+  MeButtonGroupDirective,
+  MeButtonGroupItem,
+} from '../../../../public-api';
 
 interface ButtonGroupComponent {
   items?: MeButtonGroupItem[];
@@ -68,7 +71,7 @@ export default {
     ],
     size: 'medium',
     stylingMode: 'contained',
-    disabled: false
+    disabled: false,
   },
   render: (args) => ({
     props: args,
@@ -84,7 +87,7 @@ export default {
 type Story = StoryObj<ButtonGroupComponent | MeButtonGroupDirective>;
 
 export const Default: Story = {
-  args: {}
+  args: {},
 };
 
 export const WithLeftSideIcons: Story = {
@@ -140,42 +143,42 @@ export const IconsOnly: Story = {
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
+    size: 'small',
   },
 };
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
+    size: 'medium',
   },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
+    size: 'large',
   },
 };
 
 export const StylingModeContained: Story = {
   args: {
-    stylingMode: 'contained'
+    stylingMode: 'contained',
   },
 };
 
 export const StylingModeOutlined: Story = {
   args: {
-    stylingMode: 'outlined'
+    stylingMode: 'outlined',
   },
 };
 
 export const StylingModeText: Story = {
   args: {
-    stylingMode: 'text'
+    stylingMode: 'text',
   },
 };
 
 export const DisabledStateForAllButtonsInGroup: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 

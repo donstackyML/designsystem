@@ -33,7 +33,8 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Input() tooltipMaxHeight: number | string = 'auto';
 
   @Input() tooltipSize: MeSize = 'medium';
-  @Input() tooltipColorMode: 'default' | 'alternate' | 'light' | 'dark' = 'default';
+  @Input() tooltipColorMode: 'default' | 'alternate' | 'light' | 'dark' =
+    'default';
 
   @Input() tooltipClass: string = 'me-tooltip';
 
@@ -124,7 +125,8 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
 
     const hostElement = this.element.nativeElement;
     if (!hostElement.id) {
-      hostElement.id = 'me-tooltip-target-' + Math.random().toString(36).slice(2, 11);
+      hostElement.id =
+        'me-tooltip-target-' + Math.random().toString(36).slice(2, 11);
     }
 
     instance.target = `#${hostElement.id}`;
@@ -185,7 +187,7 @@ export class MeTooltipDirective implements OnInit, OnDestroy, OnChanges {
     switch (this.tooltipColorMode) {
       case 'light':
       case 'dark':
-      color = `me-colors-${this.tooltipColorMode}`;
+        color = `me-colors-${this.tooltipColorMode}`;
         break;
       case 'default':
         color = `me-colors-alternate`;

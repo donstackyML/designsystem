@@ -17,7 +17,8 @@ export default {
   argTypes: {
     value: {
       control: 'date',
-      description: 'Объект или значение, указывающее дату и время, выбранные в календаре.',
+      description:
+        'Объект или значение, указывающее дату и время, выбранные в календаре.',
       table: {
         type: { summary: 'Date' },
         defaultValue: { summary: 'null' },
@@ -82,7 +83,7 @@ export default {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
-    }
+    },
   },
   args: {
     value: undefined,
@@ -92,7 +93,7 @@ export default {
     selectionMode: 'single',
     weekNumberRule: 'auto',
     zoomLevel: 'month',
-    showTodayButton: false
+    showTodayButton: false,
   },
   render: (args) => ({
     props: {
@@ -161,17 +162,16 @@ export const SelectFullWeekOnClick: Story = {
   args: {
     selectWeekOnClick: true,
     selectionMode: 'multiple',
-    value: undefined
+    value: undefined,
   },
 };
 
 export const SelectionModeRange: Story = {
   args: {
     selectionMode: 'range',
-    value: undefined
+    value: undefined,
   },
 };
-
 
 export const ZoomLevelMonth: Story = {
   args: {

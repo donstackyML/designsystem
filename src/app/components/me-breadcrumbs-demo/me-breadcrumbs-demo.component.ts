@@ -7,13 +7,14 @@ import { BreadcrumbItem } from '../../../../projects/dx-monitel-components/src/p
   selector: 'me-breadcrumbs-demo',
   templateUrl: './me-breadcrumbs-demo.component.html',
   styles: [
-    `:host {
-      display: block;
-    }`
-  ]
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
 })
 export class MeBreadcrumbsDemoComponent {
-
   constructor(private meIconRegistry: MeIconsRegistry) {
     meIconRegistry.registerIcons([keyboardX20]);
   }
@@ -22,17 +23,17 @@ export class MeBreadcrumbsDemoComponent {
     {
       text: 'Home',
       url: '/',
-      icon: 'home'
+      icon: 'home',
     },
     {
       text: 'Products',
       url: '/products',
-      icon: 'redo_x20'
+      icon: 'redo_x20',
     },
     {
       text: 'Electronics',
       url: '/products/electronics',
-      icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAJElEQVQoz2P8z4AfsDAwJELVzGfExmIiYAAD5QoYRx1JL0cCAJeiFh8Qq9chAAAAAElFTkSuQmCC'
+      icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAJElEQVQoz2P8z4AfsDAwJELVzGfExmIiYAAD5QoYRx1JL0cCAJeiFh8Qq9chAAAAAElFTkSuQmCC',
     },
     {
       text: 'Computers',
@@ -44,15 +45,15 @@ export class MeBreadcrumbsDemoComponent {
       url: '/products/electronics/computers/keyboards',
       icon: 'keyboard_x20',
     },
-  ]
+  ];
 
   addItem() {
     this.items.push({
       text: `Home ${this.items.length}`,
       url: `/home${this.items.length}`,
       additional: `add_${this.items.length}`,
-      icon: 'home'
-    },)
+      icon: 'home',
+    });
   }
 
   onBreadcrumbItemClick(event: BreadcrumbItem) {

@@ -7,4 +7,4 @@ import { MeTextBoxDirective } from './me-text-box.directive';
   imports: [CommonModule],
   exports: [MeTextBoxDirective],
 })
-export class MeTextBoxModule { }
+export class MeTextBoxModule {}

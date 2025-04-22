@@ -31,12 +31,10 @@ export class MeContextMenuDirective {
 
   @HostListener('onItemRendered', ['$event'])
   onItemRendered(event: any) {
+    const contextListElement = event.itemElement.parentElement
+      .parentElement as HTMLElement;
 
-    const contextListElement =
-      event.itemElement.parentElement.parentElement as HTMLElement;
-
-    const contextMenuElement =
-      contextListElement?.parentElement as HTMLElement;
+    const contextMenuElement = contextListElement?.parentElement as HTMLElement;
 
     this.renderer.addClass(contextMenuElement, 'me-context-menu-submenu');
 
@@ -44,35 +42,48 @@ export class MeContextMenuDirective {
       contextMenuElement.style.maxHeight = this.subMenuMaxHeight;
     }
 
-    const closestMenuItemElement = event.itemElement.closest('.dx-menu-item-wrapper .dx-item.dx-menu-item') as Element;
-    const closestMenuItemWrapperElement = event.itemElement.closest('.dx-menu-item-wrapper') as Element;
+    const closestMenuItemElement = event.itemElement.closest(
+      '.dx-menu-item-wrapper .dx-item.dx-menu-item'
+    ) as Element;
+    const closestMenuItemWrapperElement = event.itemElement.closest(
+      '.dx-menu-item-wrapper'
+    ) as Element;
 
-    if (closestMenuItemElement && event.itemData?.disabled && event.itemData?.beginGroup) {
+    if (
+      closestMenuItemElement &&
+      event.itemData?.disabled &&
+      event.itemData?.beginGroup
+    ) {
       this.renderer.addClass(closestMenuItemElement, 'me-menu-item-title');
     }
 
-
-    this.dividerService.addDividersClass(contextListElement, this.dividersVisibility)
+    this.dividerService.addDividersClass(
+      contextListElement,
+      this.dividersVisibility
+    );
 
     if (this.dividersVisibility !== 'none') {
       if (closestMenuItemWrapperElement) {
         if (this.dividersVisibility === 'all') {
-
-          this.dividerService.addDividerToItem(
-            closestMenuItemWrapperElement
-          )
-        } else if (this.dividersVisibility === 'auto' && event.itemData?.hasDivider) {
-          this.dividerService.addDividerToItem(
-            closestMenuItemWrapperElement
-          )
+          this.dividerService.addDividerToItem(closestMenuItemWrapperElement);
+        } else if (
+          this.dividersVisibility === 'auto' &&
+          event.itemData?.hasDivider
+        ) {
+          this.dividerService.addDividerToItem(closestMenuItemWrapperElement);
         }
       }
 
-      const separators = contextListElement.querySelectorAll('.me-list-item-divider');
+      const separators = contextListElement.querySelectorAll(
+        '.me-list-item-divider'
+      );
 
       separators.forEach((separator: Element) => {
         const nextSibling = separator.nextElementSibling;
-        if (nextSibling && nextSibling.classList.contains('dx-menu-separator')) {
+        if (
+          nextSibling &&
+          nextSibling.classList.contains('dx-menu-separator')
+        ) {
           separator.parentElement?.removeChild(separator);
         }
       });

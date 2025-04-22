@@ -46,7 +46,8 @@ export default {
     showCheckBoxesMode: {
       control: 'select',
       options: ['normal', 'selectAll', 'none'],
-      description: 'Определяет режим отображения чекбоксов `TreeView` и его элементов.',
+      description:
+        'Определяет режим отображения чекбоксов `TreeView` и его элементов.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'normal' },
@@ -85,7 +86,7 @@ export default {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
-    }
+    },
   },
   args: {
     dataSource: meTreeViewMockData,
@@ -96,11 +97,13 @@ export default {
     textTruncateBehavior: 'wrap',
     searchEnabled: false,
     expandNodesRecursive: false,
-    virtualModeEnabled: true
+    virtualModeEnabled: true,
   },
   render: (args) => ({
     props: args,
-    template: `<dx-tree-view meTreeView ${argsToTemplate(args)}></dx-tree-view>`,
+    template: `<dx-tree-view meTreeView ${argsToTemplate(
+      args
+    )}></dx-tree-view>`,
   }),
 } satisfies Meta<MeTreeViewDirective | DxTreeViewComponent>;
 
@@ -111,66 +114,69 @@ export const Default: Story = {};
 export const SizeSmall: Story = {
   args: {
     size: 'small',
-  }
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
     size: 'large',
-  }
+  },
 };
 
 export const TextOverflowBehaviorTruncateWithTooltip: Story = {
   args: {
-    textTruncateBehavior: 'truncate'
-  }
+    textTruncateBehavior: 'truncate',
+  },
 };
 
 export const TextOverflowBehaviorWrap: Story = {
   args: {
-    textTruncateBehavior: 'wrap'
-  }
+    textTruncateBehavior: 'wrap',
+  },
 };
 
 export const SelectionModeSingle: Story = {
   args: {
-    selectionMode: 'single'
-  }
+    selectionMode: 'single',
+  },
 };
 
 export const SelectionModeMultiple: Story = {
   args: {
-    selectionMode: 'multiple'
-  }
+    selectionMode: 'multiple',
+  },
 };
 
 export const WithSearch: Story = {
   args: {
-    searchEnabled: true
-  }
+    searchEnabled: true,
+  },
 };
 
 export const DisabledState: Story = {
   args: {
-    disabled: true
-  }
+    disabled: true,
+  },
 };
 
 export const WithFixedHeight: Story = {
   args: {
     height: '300px',
-  }
+  },
 };
 
 @Component({
   selector: 'tree-view-with-virtual-mode-demo',
-  template: `
-  <dx-tree-view meTreeView  dataStructure="plain"
-  keyExpr="Id"
-  displayExpr="Name"
-  parentIdExpr="CategoryId"
-  hasItemsExpr="IsGroup"
-  [virtualModeEnabled]="true" [dataSource]="dataSource"></dx-tree-view>`,
+  template: ` <dx-tree-view
+    meTreeView
+    dataStructure="plain"
+    keyExpr="Id"
+    displayExpr="Name"
+    parentIdExpr="CategoryId"
+    hasItemsExpr="IsGroup"
+    [virtualModeEnabled]="true"
+    [dataSource]="dataSource"
+  ></dx-tree-view>`,
 })
 class TreeViewDemo {
   dataSource = new DataSource({
@@ -184,9 +190,7 @@ class TreeViewDemo {
 export const WithVirtualMode: Story = {
   decorators: [
     moduleMetadata({
-      declarations: [
-        TreeViewDemo,
-      ],
+      declarations: [TreeViewDemo],
     }),
   ],
 
@@ -195,5 +199,5 @@ export const WithVirtualMode: Story = {
     template: `
       <tree-view-with-virtual-mode-demo></tree-view-with-virtual-mode-demo>
     `,
-  })
+  }),
 };

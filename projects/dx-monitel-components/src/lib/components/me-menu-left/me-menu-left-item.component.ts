@@ -1,10 +1,5 @@
 import { NgIf, NgStyle } from '@angular/common';
-import {
-  Component,
-  Input,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MeSize } from '../../types/types';
 import { MeIconComponent } from '../me-icon/me-icon.component';
 
@@ -36,11 +31,11 @@ export class MeMenuLeftItemComponent implements OnInit, OnDestroy {
 
   @Input() pressed = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  ngOnDestroy(): void { }
+  ngOnDestroy(): void {}
 
   isPressed(): boolean {
     return this.pressed;

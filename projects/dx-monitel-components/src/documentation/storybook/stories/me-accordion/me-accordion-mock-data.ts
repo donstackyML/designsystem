@@ -17,6 +17,4 @@ export const meAccordionMockData = [
     content: `Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis`,
     icon: 'folder',
   },
-]
-
-
+];

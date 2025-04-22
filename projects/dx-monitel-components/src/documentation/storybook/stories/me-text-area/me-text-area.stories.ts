@@ -16,7 +16,7 @@ export default {
       declarations: [
         MeTextAreaDirective,
         DxTextAreaComponent,
-        MeLabelDirective
+        MeLabelDirective,
       ],
     }),
   ],
@@ -60,8 +60,8 @@ export default {
       description: 'Определяет состояние только для чтения',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
@@ -140,12 +140,12 @@ export default {
     },
     height: {
       control: 'text',
-    description: 'Высота компонента.',
+      description: 'Высота компонента.',
       table: {
         type: { summary: 'string | number | undefined' },
         defaultValue: { summary: 'undefined' },
       },
-    }
+    },
   },
   args: {
     label: 'Label',
@@ -161,7 +161,7 @@ export default {
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
     width: undefined,
-    height: undefined
+    height: undefined,
   },
   render: (args) => ({
     props: args,
@@ -198,9 +198,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -255,7 +255,7 @@ export const WithLabelRow: Story = {
 
 export const WithLabelColumn: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -271,18 +271,19 @@ export const WithLabelColumn: Story = {
       ></dx-text-area>
 		</div>`,
   }),
-}
+};
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    value: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    value:
+      'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
 };
 
@@ -290,19 +291,20 @@ export const StateDisabledAndReadOnly: Story = {
   args: {
     readOnly: true,
     disabled: true,
-    value: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    value:
+      'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
 };
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
+    showRequiredMark: true,
   },
 };
 
 export const ValidationInvalid: Story = {
   args: {
-    isValid: false
+    isValid: false,
   },
 };
 

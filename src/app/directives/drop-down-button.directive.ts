@@ -29,7 +29,7 @@ export class MeDropDownButtonDirective extends MeControlDirective implements OnI
     private component: DxDropDownButtonComponent,
     private iconStore: MeIconStoreService,
     private renderer: Renderer2,
-    private element: ElementRef
+    private element: ElementRef,
   ) {
     super();
     this.focusService = new ComponentFocusService(element, renderer);

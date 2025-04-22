@@ -12,14 +12,20 @@ export default {
   title: 'Components/Toast/Component',
   decorators: [
     moduleMetadata({
-      imports: [MeToastComponent, DxToastModule, DxButtonModule, MeButtonModule],
+      imports: [
+        MeToastComponent,
+        DxToastModule,
+        DxButtonModule,
+        MeButtonModule,
+      ],
     }),
   ],
   argTypes: {
     type: {
       control: 'select',
       options: ['success', 'info', 'warning', 'error', 'info-inverted'],
-      description: 'Определяет визуальный стиль уведомления, влияя на цветовую схему и значок.',
+      description:
+        'Определяет визуальный стиль уведомления, влияя на цветовую схему и значок.',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'string' },
@@ -29,7 +35,8 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'large'],
-      description: 'Задает размер тоста: "small" для компактного вида или "large" для более выразительного уведомления.',
+      description:
+        'Задает размер тоста: "small" для компактного вида или "large" для более выразительного уведомления.',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'string' },
@@ -47,7 +54,8 @@ export default {
     },
     title: {
       control: 'text',
-      description: 'Заголовок уведомления. Если не задан, заголовок не отображается.',
+      description:
+        'Заголовок уведомления. Если не задан, заголовок не отображается.',
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'string' },
@@ -56,7 +64,8 @@ export default {
     },
     showIcon: {
       control: 'boolean',
-      description: 'Определяет, отображается ли иконка уведомления. По умолчанию: true.',
+      description:
+        'Определяет, отображается ли иконка уведомления. По умолчанию: true.',
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'boolean' },
@@ -65,7 +74,8 @@ export default {
     },
     showCloseButton: {
       control: 'boolean',
-      description: 'Отображает кнопку закрытия уведомления. По умолчанию: true.',
+      description:
+        'Отображает кнопку закрытия уведомления. По умолчанию: true.',
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'boolean' },
@@ -74,7 +84,8 @@ export default {
     },
     showActionButtons: {
       control: 'boolean',
-      description: 'Отображает дополнительные кнопки действий (например, Accept/Cancel). По умолчанию: false.',
+      description:
+        'Отображает дополнительные кнопки действий (например, Accept/Cancel). По умолчанию: false.',
       table: {
         category: 'Контент и управление контентом',
         type: { summary: 'boolean' },
@@ -93,7 +104,8 @@ export default {
     },
     visible: {
       control: 'boolean',
-      description: 'Управляет отображением тоста. Если значение `false`, уведомление скрыто.',
+      description:
+        'Управляет отображением тоста. Если значение `false`, уведомление скрыто.',
       table: {
         category: 'Отображение',
         type: { summary: 'boolean' },
@@ -120,7 +132,8 @@ export default {
     },
     displayTime: {
       control: { type: 'number' },
-      description: 'Время отображения тоста в миллисекундах, после которого уведомление скрывается.',
+      description:
+        'Время отображения тоста в миллисекундах, после которого уведомление скрывается.',
       table: {
         category: 'Отображение',
         type: { summary: 'number' },
@@ -157,7 +170,8 @@ export default {
     },
     width: {
       control: 'text',
-      description: 'Ширина уведомления. Может быть числом или строкой. По умолчанию: "260px".',
+      description:
+        'Ширина уведомления. Может быть числом или строкой. По умолчанию: "260px".',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'number | string' },
@@ -212,7 +226,8 @@ export default {
     },
     onContentReady: {
       action: 'contentReady',
-      description: 'Вызывается, когда содержимое уведомления полностью загружено и готово к отображению.',
+      description:
+        'Вызывается, когда содержимое уведомления полностью загружено и готово к отображению.',
       table: {
         category: 'События',
         type: { summary: 'EventEmitter<void>' },
@@ -276,7 +291,8 @@ export default {
     },
     onAccept: {
       action: 'accept',
-      description: 'Вызывается при подтверждении уведомления (например, при клике на кнопку "Принять").',
+      description:
+        'Вызывается при подтверждении уведомления (например, при клике на кнопку "Принять").',
       table: {
         category: 'События',
         type: { summary: 'EventEmitter<string>' },
@@ -284,7 +300,8 @@ export default {
     },
     onCancel: {
       action: 'cancel',
-      description: 'Вызывается при отмене уведомления (например, при клике на кнопку "Отмена").',
+      description:
+        'Вызывается при отмене уведомления (например, при клике на кнопку "Отмена").',
       table: {
         category: 'События',
         type: { summary: 'EventEmitter<void>' },
@@ -337,19 +354,19 @@ export default {
         gap: 10px;
       }
     `,
-    ]
+    ],
   }),
 } satisfies Meta<MeToastComponent>;
 
 type Story = StoryObj<MeToastComponent>;
 
 export const Default: Story = {
-  args: {}
+  args: {},
 };
 export const SizeSmall: Story = {
   args: {
     size: 'small',
-  }
+  },
 };
 
 export const SizeLarge: Story = {
@@ -390,27 +407,28 @@ export const TypeInfoInverted: Story = {
 
 export const ContentOnlyTitle: Story = {
   args: {
-    message: undefined
+    message: undefined,
   },
 };
 
 export const ContentOnlyMessage: Story = {
   args: {
-    title: undefined
+    title: undefined,
   },
 };
 
 export const LongTitleAndMessage: Story = {
   args: {
     title: 'Система успешно завершила обработку данных',
-    message: 'Ваши данные были успешно обработаны и сохранены в базе данных. Теперь вы можете перейти к следующему этапу.',
-    type: 'success'
+    message:
+      'Ваши данные были успешно обработаны и сохранены в базе данных. Теперь вы можете перейти к следующему этапу.',
+    type: 'success',
   },
 };
 
 export const CustomContent: Story = {
   args: {
-    type: 'custom'
+    type: 'custom',
   },
   render: (args) => ({
     props: args,
@@ -463,16 +481,15 @@ export const CustomContent: Story = {
         margin: 0;
       }
     `,
-    ]
+    ],
   }),
 };
-
 
 export const WithActionButtons: Story = {
   args: {
     showActionButtons: true,
-    type: "warning",
-    message: "Внимание! Требуется подтверждение.",
-    title: "Подтверждение",
+    type: 'warning',
+    message: 'Внимание! Требуется подтверждение.',
+    title: 'Подтверждение',
   },
 };

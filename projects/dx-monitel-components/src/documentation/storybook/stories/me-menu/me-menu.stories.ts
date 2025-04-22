@@ -6,7 +6,11 @@ import {
 } from '@storybook/angular';
 import { DxMenuComponent } from 'devextreme-angular';
 import { MeMenuDirective } from '../../../../public-api';
-import { meMenuMockData, meMenuMockDataWithDividers, meMenuMockDataWithGroup } from './me-menu-mock-data';
+import {
+  meMenuMockData,
+  meMenuMockDataWithDividers,
+  meMenuMockDataWithGroup,
+} from './me-menu-mock-data';
 
 export default {
   title: 'Components/Menu',
@@ -88,17 +92,21 @@ export default {
       control: 'object',
       description: 'Устанавливает режим показа первого подменю.',
       table: {
-        type: { summary: "object | `onClick` | `onHover`", },
-        defaultValue: { summary: "{ name: 'onClick', delay: { show: 50, hide: 300 } }" },
-      }
+        type: { summary: 'object | `onClick` | `onHover`' },
+        defaultValue: {
+          summary: "{ name: 'onClick', delay: { show: 50, hide: 300 } }",
+        },
+      },
     },
     showSubmenuMode: {
       control: 'object',
       description: 'Устанавливает режим показа подменю.',
       table: {
-        type: { summary: "object | `onClick` | `onHover`", },
-        defaultValue: { summary: "{ name: 'onClick', delay: { show: 50, hide: 300 } }" },
-      }
+        type: { summary: 'object | `onClick` | `onHover`' },
+        defaultValue: {
+          summary: "{ name: 'onClick', delay: { show: 50, hide: 300 } }",
+        },
+      },
     },
     hideSubmenuOnMouseLeave: {
       control: 'boolean',
@@ -153,7 +161,8 @@ export default {
     dividersVisibility: {
       control: 'select',
       options: ['auto', 'all', 'none'],
-      description: 'Определяет видимость разделителей у элементов списка в выпадающем меню',
+      description:
+        'Определяет видимость разделителей у элементов списка в выпадающем меню',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'auto' },
@@ -195,40 +204,40 @@ export const Default: Story = {};
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
-  }
+    size: 'small',
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const ShowSubMenuModeOnClick: Story = {
   args: {
     showFirstSubmenuMode: 'onClick',
-    showSubmenuMode: 'onClick'
-  }
+    showSubmenuMode: 'onClick',
+  },
 };
 
 export const ShowSubMenuModeOnHover: Story = {
   args: {
     showFirstSubmenuMode: 'onHover',
-    showSubmenuMode: 'onHover'
-  }
+    showSubmenuMode: 'onHover',
+  },
 };
 
 export const OrientationHorizontal: Story = {
   args: {
-    orientation: 'horizontal'
-  }
+    orientation: 'horizontal',
+  },
 };
 
 export const OrientationVertical: Story = {
   args: {
-    orientation: 'vertical'
-  }
+    orientation: 'vertical',
+  },
 };
 
 export const WithSubMenuMaxHeight: Story = {
@@ -253,6 +262,6 @@ export const DividersVisibilityAll: Story = {
 
 export const WithGroupAndDividers: Story = {
   args: {
-    dataSource: meMenuMockDataWithGroup
+    dataSource: meMenuMockDataWithGroup,
   },
 };

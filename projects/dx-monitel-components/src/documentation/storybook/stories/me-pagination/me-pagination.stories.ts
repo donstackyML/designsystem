@@ -1,6 +1,14 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxButtonModule, DxSelectBoxModule } from 'devextreme-angular';
-import { MePaginationComponent, MeSelectBoxModule } from '../../../../public-api';
+import {
+  MePaginationComponent,
+  MeSelectBoxModule,
+} from '../../../../public-api';
 
 export default {
   title: 'Components/Pagination',
@@ -75,7 +83,8 @@ export default {
     },
     useButtons: {
       control: { type: 'boolean' },
-      description: 'Использовать кнопки вместо выпадающего списка для выбора количества элементов на странице',
+      description:
+        'Использовать кнопки вместо выпадающего списка для выбора количества элементов на странице',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -127,7 +136,7 @@ export default {
     template: `
       <me-pagination ${argsToTemplate(args)}></me-pagination>
     `,
-  })
+  }),
 } satisfies Meta<MePaginationComponent>;
 
 type Story = StoryObj<MePaginationComponent>;
@@ -155,26 +164,26 @@ export const SizeLarge: Story = {
 export const PageSizeControlWithDropDownButton: Story = {
   args: {
     useButtons: false,
-    itemsPerPageOptions: [10, 20, 30]
+    itemsPerPageOptions: [10, 20, 30],
   },
 };
 
 export const PageSizeControlWithButtons: Story = {
   args: {
     useButtons: true,
-    itemsPerPageOptions: [10, 20, 30]
+    itemsPerPageOptions: [10, 20, 30],
   },
 };
 
 export const WithoutPageSizeControlButtons: Story = {
   args: {
-    hasPageSizeControlButtons: false
+    hasPageSizeControlButtons: false,
   },
 };
 
 export const WithoutBackground: Story = {
   args: {
-    transparentBackground: true
+    transparentBackground: true,
   },
 };
 
@@ -223,7 +232,6 @@ export const MaxVisiblePages: Story = {
     maxVisiblePages: 10,
   },
 };
-
 
 export const CustomItemsOptions: Story = {
   args: {

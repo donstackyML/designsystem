@@ -7,4 +7,4 @@ import { MeSelectBoxDirective } from './me-select-box.directive';
   imports: [CommonModule],
   exports: [MeSelectBoxDirective],
 })
-export class MeSelectBoxModule { }
+export class MeSelectBoxModule {}

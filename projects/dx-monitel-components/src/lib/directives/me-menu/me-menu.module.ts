@@ -7,4 +7,4 @@ import { MeMenuDirective } from './me-menu.directive';
   imports: [CommonModule],
   exports: [MeMenuDirective],
 })
-export class MeMenuModule { }
+export class MeMenuModule {}

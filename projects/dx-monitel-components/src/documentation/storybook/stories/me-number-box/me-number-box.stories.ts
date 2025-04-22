@@ -12,7 +12,11 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [DxValidatorModule],
-      declarations: [DxNumberBoxComponent, MeNumberBoxDirective, MeLabelDirective],
+      declarations: [
+        DxNumberBoxComponent,
+        MeNumberBoxDirective,
+        MeLabelDirective,
+      ],
     }),
   ],
   argTypes: {
@@ -76,7 +80,8 @@ export default {
     },
     format: {
       control: 'text',
-      description: 'Формат отображения числа. Пример: `#`, `#,##0.00`, `#,##0%`, `#0.## kg`, `($ #,##0.##)`.',
+      description:
+        'Формат отображения числа. Пример: `#`, `#,##0.00`, `#,##0%`, `#0.## kg`, `($ #,##0.##)`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
@@ -202,7 +207,7 @@ export default {
   }),
 } satisfies Meta<DxNumberBoxComponent | MeNumberBoxDirective>;
 
-type Story = StoryObj<DxNumberBoxComponent | MeNumberBoxDirective>
+type Story = StoryObj<DxNumberBoxComponent | MeNumberBoxDirective>;
 
 export const Default: StoryObj = {};
 
@@ -214,9 +219,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -271,7 +276,7 @@ export const WithLabelRow: Story = {
 
 export const WithLabelColumn: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -287,50 +292,50 @@ export const WithLabelColumn: Story = {
       ></dx-number-box>
 		</div>`,
   }),
-}
+};
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    value: 123
+    value: 123,
   },
 };
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
+    showRequiredMark: true,
   },
 };
 
 export const ValidationInvalid: Story = {
   args: {
-    isValid: false
+    isValid: false,
   },
 };
 
 export const WithMinMaxRestrictions: Story = {
   args: {
     min: 0,
-    max: 100
+    max: 100,
   },
 };
 
 export const WithFormatting: Story = {
   args: {
-    format: '#,##0.00'
+    format: '#,##0.00',
   },
 };
 
 export const WithSpinButtonsAndClearButton: Story = {
   args: {
     showSpinButtons: true,
-    showClearButton: true
+    showClearButton: true,
   },
 };
 
@@ -351,10 +356,9 @@ export const WithDescription: Story = {
         color: var(--Text-Secondary);
         margin-top: 4px;
       }`,
-    ]
-  })
+    ],
+  }),
 };
-
 
 export const WithCurrencyButton: StoryObj = {
   args: {
