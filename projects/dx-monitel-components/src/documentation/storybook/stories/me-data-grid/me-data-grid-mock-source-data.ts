@@ -577,7 +577,6 @@ export const dataGridMockSourceData = [
   },
 ];
 
-
 export const dataGridMockSourceDataWithGroup = [
   {
     ID: '1',

@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import {
   DxCheckBoxModule,
   DxDateBoxModule,
@@ -17,7 +22,10 @@ import {
   MeSelectBoxModule,
   MeTextBoxModule,
 } from '../../../../public-api';
-import { meFormFilledFormData, meFormInitialFormData } from './me-form-mock-data';
+import {
+  meFormFilledFormData,
+  meFormInitialFormData,
+} from './me-form-mock-data';
 
 export default {
   title: 'Components/Form',
@@ -78,8 +86,8 @@ export default {
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
@@ -119,13 +127,14 @@ export default {
     },
     minColWidth: {
       control: 'number',
-      description: 'Минимальная ширина колонки, используемая для расчета количества колонок в макете формы. Применяется только если свойство colCount имеет значение `"auto"`.',
+      description:
+        'Минимальная ширина колонки, используемая для расчета количества колонок в макете формы. Применяется только если свойство colCount имеет значение `"auto"`.',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'number' },
         defaultValue: { summary: '200' },
-      }
-    }
+      },
+    },
   },
   args: {
     size: 'medium',
@@ -136,7 +145,7 @@ export default {
     showColonAfterLabel: true,
     showRequiredMark: true,
     colCount: 1,
-    minColWidth: 200
+    minColWidth: 200,
   },
   render: (args) => ({
     props: {
@@ -192,7 +201,7 @@ export default {
     </dxi-item>
   </dx-form>
 </div>
-    `
+    `,
   }),
 } satisfies Meta<DxFormModule | MeFormDirective>;
 
@@ -232,7 +241,8 @@ export const WithFormData: Story = {
     </dxi-item>
   </dx-form>
 </div>
-`})
+`,
+  }),
 };
 
 export const MultipleFields: Story = {
@@ -320,13 +330,13 @@ export const MultipleFields: Story = {
     </dxi-item>
       </dx-form>
     </div>
-  `
-  })
+  `,
+  }),
 };
 
 export const MultipleFieldsWithGroups: Story = {
   args: {
-    colCount: 2
+    colCount: 2,
   },
   render: (args) => ({
     props: {
@@ -480,8 +490,8 @@ export const MultipleFieldsWithGroups: Story = {
     </dxi-item>
   </dx-form>
 </div>
-`
-  })
+`,
+  }),
 };
 
 export const DynamicForm: Story = {
@@ -490,7 +500,7 @@ export const DynamicForm: Story = {
       ...args,
       formData: {
         hasDetails: false,
-        details: ''
+        details: '',
       },
     },
     template: `
@@ -510,10 +520,9 @@ export const DynamicForm: Story = {
     </dxi-item>
   </dx-form>
 </div>
-    `
-  })
+    `,
+  }),
 };
-
 
 export const SizeSmall: Story = {
   args: {
@@ -523,9 +532,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -544,7 +553,6 @@ export const LabelLocationTop: Story = {
     labelLocation: 'top',
   },
 };
-
 
 export const LabelModeOutside: Story = {
   args: {
@@ -585,7 +593,7 @@ export const TwoColumns: Story = {
 export const AutoColumns: Story = {
   args: {
     colCount: 'auto',
-    minColWidth: 200
+    minColWidth: 200,
   },
 };
 
@@ -597,7 +605,7 @@ export const StateReadOnly: Story = {
     props: {
       ...args,
       formData: meFormFilledFormData,
-      readOnly: true
+      readOnly: true,
     },
     template: `
 <div style="max-width: 800px; margin: 0 auto;">
@@ -644,8 +652,8 @@ export const StateReadOnly: Story = {
     </dxi-item>
   </dx-form>
 </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const StateDisabled: Story = {
@@ -657,9 +665,9 @@ export const StateDisabled: Story = {
 export const StateDisabledAndReadOnly: Story = {
   args: {
     readOnly: true,
-    disabled: true
+    disabled: true,
   },
-  render: StateReadOnly.render
+  render: StateReadOnly.render,
 };
 
 export const WithGrouping: Story = {
@@ -694,8 +702,8 @@ export const WithGrouping: Story = {
       </div>
     </dxi-item>
   </dxi-item>
-</dx-form>`
-  })
+</dx-form>`,
+  }),
 };
 
 export const WithValidation: Story = {
@@ -717,6 +725,6 @@ export const WithValidation: Story = {
     </div>
   </dxi-item>
 </dx-form>
-`
-  })
+`,
+  }),
 };

@@ -6,7 +6,7 @@ import { MeSize } from 'src/app/types/types';
 @Component({
   selector: 'me-menu-left-demo',
   templateUrl: './me-menu-left-demo.component.html',
-  styleUrls: ['./me-menu-left-demo.component.scss']
+  styleUrls: ['./me-menu-left-demo.component.scss'],
 })
 export class MeMenuLeftDemoComponent {
   items = meMenuLeftDefaultItems;

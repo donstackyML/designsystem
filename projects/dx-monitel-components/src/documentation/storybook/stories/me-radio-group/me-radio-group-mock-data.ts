@@ -11,7 +11,7 @@ export const meRadioGroupMockData = [
     index: 3,
     text: 'Трансформаторные подстанции',
   },
-]
+];
 
 export const meRadioGroupMockDataWithIcons = [
   {
@@ -29,4 +29,4 @@ export const meRadioGroupMockDataWithIcons = [
     text: 'Трансформаторные подстанции',
     icon: 'info',
   },
-]
+];

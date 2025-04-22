@@ -1,11 +1,23 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { DxDataGridComponent, DxDataGridModule } from 'devextreme-angular';
-import { DxoPagerComponent, DxoPagingComponent, DxoSelectionComponent } from 'devextreme-angular/ui/nested';
+import {
+  DxoPagerComponent,
+  DxoPagingComponent,
+  DxoSelectionComponent,
+} from 'devextreme-angular/ui/nested';
 
 import { MeBadgeComponent, MeDataGridDirective } from '../../../../public-api';
-import { dataGridMockSourceData, dataGridMockSourceDataWithGroup } from './me-data-grid-mock-source-data';
+import {
+  dataGridMockSourceData,
+  dataGridMockSourceDataWithGroup,
+} from './me-data-grid-mock-source-data';
 
-type StoryProps = DxDataGridComponent | MeDataGridDirective | DxoPagerComponent | DxoPagingComponent | DxoSelectionComponent
+type StoryProps =
+  | DxDataGridComponent
+  | MeDataGridDirective
+  | DxoPagerComponent
+  | DxoPagingComponent
+  | DxoSelectionComponent;
 
 export default {
   title: 'Components/DataGrid',
@@ -21,8 +33,8 @@ export default {
       description: 'Данные для отображения',
       table: {
         defaultValue: { summary: '[]' },
-        raw: true
-      }
+        raw: true,
+      },
     },
     size: {
       control: 'select',
@@ -31,7 +43,7 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'medium' },
-      }
+      },
     },
     showRowLines: {
       control: 'boolean',
@@ -43,7 +55,8 @@ export default {
     },
     showColumnLines: {
       control: 'boolean',
-      description: 'Определяет, отображаются ли вертикальные границы между столбцами.',
+      description:
+        'Определяет, отображаются ли вертикальные границы между столбцами.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -91,7 +104,8 @@ export default {
     },
     columnAutoWidth: {
       control: 'boolean',
-      description: 'Определяет, будет ли TreeList автоматически изменять ширину столбцов.',
+      description:
+        'Определяет, будет ли TreeList автоматически изменять ширину столбцов.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -99,7 +113,8 @@ export default {
     },
     showPageSizeSelector: {
       control: 'boolean',
-      description: 'Относится к Pagination. Показывать ли выбор количества строк на странице. Тэг `dxo-pager`',
+      description:
+        'Относится к Pagination. Показывать ли выбор количества строк на странице. Тэг `dxo-pager`',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -107,7 +122,8 @@ export default {
     },
     pageSize: {
       control: 'number',
-      description: 'Относится к Pagination. Разрешенные размеры страницы. Тэг `dxo-paging`',
+      description:
+        'Относится к Pagination. Разрешенные размеры страницы. Тэг `dxo-paging`',
       table: {
         type: { summary: 'number' },
         defaultValue: { summary: '20' },
@@ -133,7 +149,8 @@ export default {
     },
     infoText: {
       control: 'text',
-      description: 'Относится к Pagination. Текст информации о странице. Тэг `dxo-pager`',
+      description:
+        'Относится к Pagination. Текст информации о странице. Тэг `dxo-pager`',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: "'Page {0} of {1} ({2} items)'" },
@@ -207,7 +224,7 @@ export default {
         type: { summary: 'string' },
         defaultValue: { summary: 'always' },
       },
-    }
+    },
   },
   args: {
     dataSource: dataGridMockSourceData,
@@ -307,20 +324,20 @@ export const WithCounter: Story = {
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
-  }
+    size: 'small',
+  },
 };
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
+    size: 'medium',
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const SelectionModeMultipleAndAll: Story = {
@@ -328,15 +345,15 @@ export const SelectionModeMultipleAndAll: Story = {
     mode: 'multiple',
     selectAllMode: 'allPages',
     allowSelectAll: true,
-  }
+  },
 };
 
 export const SelectionModeSingle: Story = {
   args: {
     selection: {
-      mode: 'single'
-    }
-  }
+      mode: 'single',
+    },
+  },
 };
 
 export const WithContentGrouping: Story = {
@@ -344,8 +361,8 @@ export const WithContentGrouping: Story = {
     dataSource: dataGridMockSourceDataWithGroup,
   },
   render: (args) => ({
-  props: args,
-  template: `
+    props: args,
+    template: `
 <dx-data-grid
   id="gridContainer"
   meDataGrid
@@ -374,6 +391,6 @@ export const WithContentGrouping: Story = {
   <dxo-pager [visible]="true"></dxo-pager>
   <dxo-group-panel [visible]="true"></dxo-group-panel>
   <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-</dx-data-grid>`
-  })
+</dx-data-grid>`,
+  }),
 };

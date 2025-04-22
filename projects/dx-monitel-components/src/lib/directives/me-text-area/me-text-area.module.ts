@@ -7,4 +7,4 @@ import { MeTextAreaDirective } from './me-text-area.directive';
   imports: [CommonModule],
   exports: [MeTextAreaDirective],
 })
-export class MeTextAreaModule { }
+export class MeTextAreaModule {}

@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxTooltipModule } from 'devextreme-angular/ui/tooltip';
 
@@ -16,8 +21,13 @@ export default {
       options: ['top', 'bottom', 'left', 'right'],
       description: 'Позиция тултипа относительно целевого элемента',
       table: {
-        type: { summary: "'top' | 'bottom' | 'left' | 'right' | PositionConfig" },
-        defaultValue: { summary: "{ my: 'top center', at: 'bottom center', collision: 'fit flip' }" },
+        type: {
+          summary: "'top' | 'bottom' | 'left' | 'right' | PositionConfig",
+        },
+        defaultValue: {
+          summary:
+            "{ my: 'top center', at: 'bottom center', collision: 'fit flip' }",
+        },
       },
     },
     class: {
@@ -82,7 +92,7 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'mouseleave' },
-      }
+      },
     },
     hideOnOutsideClick: {
       description: 'Скрытие тултипа при клике вне его',
@@ -90,8 +100,8 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      }
-    }
+      },
+    },
   },
   args: {
     position: { my: 'top center', at: 'bottom center', collision: 'fit flip' },
@@ -103,19 +113,19 @@ export default {
       show: {
         type: 'fade',
         from: 0,
-        to: 1
+        to: 1,
       },
       hide: {
         type: 'fade',
         from: 1,
-        to: 0
-      }
+        to: 0,
+      },
     },
     shading: false,
     showEvent: 'mouseenter',
     hideEvent: 'mouseleave',
     hideOnOutsideClick: false,
-    demoTemplateText: 'Tooltip Content'
+    demoTemplateText: 'Tooltip Content',
   },
   render: (args) => ({
     props: args,
@@ -144,8 +154,8 @@ export default {
         width: 100dvw;
         padding: 20px;
       }
-      `
-    ]
+      `,
+    ],
   }),
 } satisfies Meta<DxTooltipModule>;
 
@@ -200,9 +210,9 @@ export const WithAnimation: Story = {
           opacity: 0,
         },
         duration: 300,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 export const WithImageContent: Story = {
@@ -261,9 +271,9 @@ export const WithImageContent: Story = {
         width: 100dvw;
         padding: 20px;
       }
-      `
-    ]
-  })
+      `,
+    ],
+  }),
 };
 
 export const WithMaxDimensions: Story = {
@@ -273,6 +283,7 @@ export const WithMaxDimensions: Story = {
     maxWidth: 200,
     height: undefined,
     maxHeight: 150,
-    demoTemplateText: 'Длинное название пункта, которое занимает несколько строк'
-  }
+    demoTemplateText:
+      'Длинное название пункта, которое занимает несколько строк',
+  },
 };

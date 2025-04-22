@@ -60,7 +60,8 @@ export default {
     },
     isSelected: {
       control: 'boolean',
-      description: 'Указывает имеет ли кнопка состояние `selected` ("вжатость").',
+      description:
+        'Указывает имеет ли кнопка состояние `selected` ("вжатость").',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -167,30 +168,30 @@ export default {
 type Story = StoryObj<MeButtonDirective | DxButtonComponent>;
 
 export const Default: Story = {
-  args: { },
+  args: {},
 };
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
+    size: 'small',
   },
 };
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
+    size: 'medium',
   },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
+    size: 'large',
   },
 };
 
 export const TypeNormal: Story = {
   args: {
-    type: "normal"
+    type: 'normal',
   },
 };
 
@@ -238,25 +239,25 @@ export const StylingModeContained: Story = {
 
 export const SelectionStateEnable: Story = {
   args: {
-    selectionStateEnable: true
+    selectionStateEnable: true,
   },
 };
 
 export const StateSelected: Story = {
   args: {
-    isSelected: true
+    isSelected: true,
   },
 };
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateSelectedAndDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 

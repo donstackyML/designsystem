@@ -15,8 +15,14 @@ import { CommonModule } from '@angular/common';
 })
 export class MeBadgeComponent implements OnChanges {
   @Input() size: '20' | '16' = '16';
-  @Input() color: 'default' | 'secondary' | 'success' | 'success-light' | 'attention' | 'attention-light' | 'error' =
-    'default';
+  @Input() color:
+    | 'default'
+    | 'secondary'
+    | 'success'
+    | 'success-light'
+    | 'attention'
+    | 'attention-light'
+    | 'error' = 'default';
   @Input() value: string | number | null = null;
   @Input() leftValue?: string | number = '';
   @Input() rightValue?: string | number = '';
@@ -32,7 +38,8 @@ export class MeBadgeComponent implements OnChanges {
 
   private updateStyles() {
     this.displayValue = this.formatValue(this.value);
-    const isExtended = this.displayValue.length > 2 || this.rightValue || this.leftValue;
+    const isExtended =
+      this.displayValue.length > 2 || this.rightValue || this.leftValue;
 
     // Формируем строку классов
     this.badgeClasses = [
@@ -47,7 +54,7 @@ export class MeBadgeComponent implements OnChanges {
     this.style = { ...this.customStyle };
   }
 
-  private formatValue(value: string| number | null): string {
+  private formatValue(value: string | number | null): string {
     if (value === null) return '';
     return value.toString();
   }

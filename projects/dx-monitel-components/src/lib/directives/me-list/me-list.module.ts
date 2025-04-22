@@ -7,4 +7,4 @@ import { MeListDirective } from './me-list.directive';
   imports: [CommonModule],
   exports: [MeListDirective],
 })
-export class MeListModule { }
+export class MeListModule {}

@@ -73,8 +73,8 @@ export default {
       description: 'Определяет состояние только для чтения',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
@@ -121,7 +121,7 @@ export default {
       description: 'Сообщение об ошибке при неверном вводе по маске.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: "Value is invalid" },
+        defaultValue: { summary: 'Value is invalid' },
       },
     },
     validationError: {
@@ -178,8 +178,8 @@ export default {
     disabled: false,
     showRequiredMark: false,
     isValid: true,
-    mask: "",
-    maskInvalidMessage: "Value is invalid",
+    mask: '',
+    maskInvalidMessage: 'Value is invalid',
     validationError: null,
     validationMessageMode: 'auto',
     validationMessagePosition: 'bottom',
@@ -203,9 +203,9 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
-}
+    size: 'medium',
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
@@ -239,7 +239,7 @@ export const LabelModeHidden: Story = {
 
 export const WithLabelRow: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -259,7 +259,7 @@ export const WithLabelRow: Story = {
 
 export const WithLabelColumn: Story = {
   args: {
-    labelMode: 'hidden'
+    labelMode: 'hidden',
   },
   render: (args) => ({
     props: args,
@@ -272,18 +272,18 @@ export const WithLabelColumn: Story = {
       <dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>
 		</div>`,
   }),
-}
+};
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-    value: 'Lorem ipsum dolor sit amet consectetur.'
+    value: 'Lorem ipsum dolor sit amet consectetur.',
   },
 };
 
@@ -291,46 +291,46 @@ export const StateDisabledAndReadOnly: Story = {
   args: {
     readOnly: true,
     disabled: true,
-    value: 'Lorem ipsum dolor sit amet consectetur.'
+    value: 'Lorem ipsum dolor sit amet consectetur.',
   },
 };
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
+    showRequiredMark: true,
   },
 };
 
 export const ValidationInvalid: Story = {
   args: {
-    isValid: false
+    isValid: false,
   },
 };
 
 export const WithClearButton: Story = {
   args: {
     showClearButton: true,
-    value: '123'
+    value: '123',
   },
 };
 
 export const ModeTelWithMask: Story = {
   args: {
     mode: 'tel',
-    mask: "+7 (000) 000-0000"
+    mask: '+7 (000) 000-0000',
   },
 };
 
 export const ModePassword: Story = {
   args: {
     mode: 'password',
-    placeholder: 'Введите пароль'
+    placeholder: 'Введите пароль',
   },
 };
 
 export const ModeSearch: Story = {
   args: {
     mode: 'search',
-    placeholder: 'Введите запрос для поиска'
+    placeholder: 'Введите запрос для поиска',
   },
 };

@@ -174,7 +174,7 @@ export default {
     showScrollbar: 'onHover',
     dividersVisibility: 'all',
     searchExpr: 'text',
-    keyExpr: 'key'
+    keyExpr: 'key',
   },
   render: (args) => ({
     props: args,
@@ -188,8 +188,8 @@ export const Default: Story = {};
 
 export const WithFixedHeight: Story = {
   args: {
-    height: 300
-  }
+    height: 300,
+  },
 };
 
 export const WithReordering: Story = {
@@ -199,20 +199,20 @@ export const WithReordering: Story = {
 <dx-list meList ${argsToTemplate(args)}>
   <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
 </dx-list>`,
-  })
+  }),
 };
 
 export const DeletingModeStatic: Story = {
   args: {
     allowItemDeleting: true,
-    itemDeleteMode: 'static'
-  }
+    itemDeleteMode: 'static',
+  },
 };
 
 export const DeletingModeSlideButton: Story = {
   args: {
     allowItemDeleting: true,
-    itemDeleteMode: 'slideButton'
+    itemDeleteMode: 'slideButton',
   },
   render: (args) => ({
     props: args,
@@ -221,21 +221,23 @@ export const DeletingModeSlideButton: Story = {
   <p>Удаление элемента через кнопку, изначально спрятанную кнопку. Чтобы вызвать кнопку, зажмите и потяните в сторону элемент, а затем нажмите на кнопку "Удалить".</p>
   <dx-list meList ${argsToTemplate(args)}></dx-list>
 </div>`,
-    styles: [`
+    styles: [
+      `
     .delete-mode-context-example {
       color: var(--Text-Default);
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
-  `]
-  })
+  `,
+    ],
+  }),
 };
 
 export const DeletingModeSlideItem: Story = {
   args: {
     allowItemDeleting: true,
-    itemDeleteMode: 'slideItem'
+    itemDeleteMode: 'slideItem',
   },
   render: (args) => ({
     props: args,
@@ -244,21 +246,23 @@ export const DeletingModeSlideItem: Story = {
   <p>Удаление элемента через кнопку изначально спрятанную кнопку. Чтобы вызвать кнопку, зажмите и потяните в левую сторону элемент, а затем нажмите на кнопку "Удалить".</p>
   <dx-list meList ${argsToTemplate(args)}></dx-list>
 </div>`,
-    styles: [`
+    styles: [
+      `
     .delete-mode-context-example {
       color: var(--Text-Default);
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
-  `]
-  })
+  `,
+    ],
+  }),
 };
 
 export const DeletingModeSwipe: Story = {
   args: {
     allowItemDeleting: true,
-    itemDeleteMode: 'swipe'
+    itemDeleteMode: 'swipe',
   },
   render: (args) => ({
     props: args,
@@ -267,15 +271,17 @@ export const DeletingModeSwipe: Story = {
   <p>Удаление элемента через свайп. Зажмите и смахните элемент, чтобы удалить.</p>
   <dx-list meList ${argsToTemplate(args)}></dx-list>
 </div>`,
-    styles: [`
+    styles: [
+      `
     .delete-mode-context-example {
       color: var(--Text-Default);
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
-  `]
-  })
+  `,
+    ],
+  }),
 };
 
 export const DeletingModeToggle: Story = {
@@ -290,21 +296,23 @@ export const DeletingModeToggle: Story = {
   <p>Удаление элемента через переключатель. Нажмите на кнопку-переключатель, чтобы включить/отключить режим удаления.</p>
   <dx-list meList ${argsToTemplate(args)}></dx-list>
 </div>`,
-    styles: [`
+    styles: [
+      `
     .delete-mode-context-example {
       color: var(--Text-Default);
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
-  `]
-  })
+  `,
+    ],
+  }),
 };
 
 export const DeletingModeContext: Story = {
   args: {
     allowItemDeleting: true,
-    itemDeleteMode: 'context'
+    itemDeleteMode: 'context',
   },
   render: (args) => ({
     props: args,
@@ -313,36 +321,38 @@ export const DeletingModeContext: Story = {
   <p>Удаление элемента через контекстное меню. Нажмите правой кнопкой мыши на элемент, чтобы вызвать контекстное меню.</p>
   <dx-list meList ${argsToTemplate(args)}></dx-list>
 </div>`,
-    styles: [`
+    styles: [
+      `
     .delete-mode-context-example {
       color: var(--Text-Default);
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
-  `]
-  })
+  `,
+    ],
+  }),
 };
 
 export const SelectionModeSingle: Story = {
   args: {
     selectionMode: 'single',
-    showSelectionControls: true
-  }
+    showSelectionControls: true,
+  },
 };
 
 export const SelectionModeMultiple: Story = {
   args: {
     selectionMode: 'multiple',
-    showSelectionControls: true
-  }
+    showSelectionControls: true,
+  },
 };
 
 export const SelectionModeAll: Story = {
   args: {
     selectionMode: 'all',
-    showSelectionControls: true
-  }
+    showSelectionControls: true,
+  },
 };
 
 export const DividersVisibilityNone: Story = {
@@ -360,7 +370,7 @@ export const DividersVisibilityAll: Story = {
 export const DividersVisibilityByContent: Story = {
   args: {
     dividersVisibility: 'auto',
-    dataSource: meListDefaultMockDataWithDividers
+    dataSource: meListDefaultMockDataWithDividers,
   },
 };
 

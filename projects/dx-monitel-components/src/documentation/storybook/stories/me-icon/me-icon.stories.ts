@@ -58,7 +58,7 @@ export default {
       </me-icon>
     </div>
     `,
-  })
+  }),
 } satisfies Meta<MeIconComponent>;
 
 type Story = StoryObj<MeIconComponent>;
@@ -97,15 +97,15 @@ export const AllIcons: Story = {
     template: `
       <div style="display: flex; flex-wrap: wrap; color: var(--Text-Default)">
         ${iconOptions
-        .map(
-          (icon) => `
+          .map(
+            (icon) => `
           <div style="display: flex; flex-direction: column; align-items: center; margin: 10px; text-align: center; width: 100px;">
             <me-icon icon="${icon}" size="large" color="currentColor"></me-icon>
             <p style="font-size: 12px; word-wrap: break-word;">${icon}</p>
           </div>
         `
-        )
-        .join('')}
+          )
+          .join('')}
       </div>
     `,
   }),

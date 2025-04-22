@@ -12,13 +12,13 @@ import {
   Renderer2,
   SimpleChanges,
   ViewChild,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import {
   DxButtonComponent,
   DxButtonModule,
   DxDropDownButtonComponent,
-  DxDropDownButtonModule
+  DxDropDownButtonModule,
 } from 'devextreme-angular';
 import { ItemClickEvent } from 'devextreme/ui/drop_down_button';
 import { MeDropDownButtonModule } from '../../directives/me-drop-down-button/me-drop-down-button.module';
@@ -81,7 +81,7 @@ export class MePaginationComponent implements OnInit, OnChanges, AfterViewInit {
     this.focusService.addKeyUpEventHandle('Tab', (evt) => this.tabHandle(evt));
   }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
     if (!this.itemsPerPageOptions?.length) {

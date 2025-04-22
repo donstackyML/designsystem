@@ -7,7 +7,12 @@ import {
 } from '@monitel/me-icons';
 import { registry } from '../../../../../.storybook/preview';
 
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { DxTabsComponent, DxTabsModule } from 'devextreme-angular';
 import { Tab } from '../../../../lib/directives/me-tabs/me-tabs.directive';
 import { MeTabsDirective } from '../../../../public-api';
@@ -29,7 +34,8 @@ export default {
   ],
   argTypes: {
     position: {
-      description: 'Определяет расположение вкладок относительно содержимого компонента.',
+      description:
+        'Определяет расположение вкладок относительно содержимого компонента.',
       options: ['top', 'bottom'],
       control: { type: 'select' },
       table: {
@@ -257,6 +263,6 @@ export const RightToLeft: Story = {
 export const StretchTabs: Story = {
   args: {
     stretchTabs: true,
-    width: '100vw'
+    width: '100vw',
   },
 };

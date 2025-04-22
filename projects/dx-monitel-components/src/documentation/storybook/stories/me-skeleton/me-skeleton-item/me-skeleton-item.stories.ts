@@ -26,7 +26,8 @@ export default {
     },
     width: {
       control: 'text',
-      description: 'Ширина скелетона. Может задаваться как число или строка (например, "100%" или "200px").',
+      description:
+        'Ширина скелетона. Может задаваться как число или строка (например, "100%" или "200px").',
       table: {
         type: { summary: 'number | string' },
         defaultValue: { summary: '100%' },
@@ -34,7 +35,8 @@ export default {
     },
     height: {
       control: 'text',
-      description: 'Высота скелетона. Может задаваться в пикселях или процентах.',
+      description:
+        'Высота скелетона. Может задаваться в пикселях или процентах.',
       table: {
         type: { summary: 'number | string' },
         defaultValue: { summary: '8px' },
@@ -42,7 +44,8 @@ export default {
     },
     animated: {
       control: 'boolean',
-      description: 'Включает анимацию скелетона для более динамичного эффекта загрузки.',
+      description:
+        'Включает анимацию скелетона для более динамичного эффекта загрузки.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },

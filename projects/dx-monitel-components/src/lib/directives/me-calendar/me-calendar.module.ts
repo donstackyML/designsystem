@@ -7,4 +7,4 @@ import { MeCalendarDirective } from './me-calendar.directive';
   imports: [CommonModule],
   exports: [MeCalendarDirective],
 })
-export class MeCalendarModule { }
+export class MeCalendarModule {}

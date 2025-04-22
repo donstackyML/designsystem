@@ -1,4 +1,4 @@
-import type { Field, } from 'devextreme/ui/pivot_grid/data_source';
+import type { Field } from 'devextreme/ui/pivot_grid/data_source';
 
 export const mePivotGridDataSourceFields: Field[] = [
   {

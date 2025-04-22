@@ -1,4 +1,11 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { DxDropDownButtonComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeIconStoreService } from '../../service/icon-store.service';
@@ -20,7 +27,8 @@ const DEFAULT_ICON_COLOR = 'currentColor';
 })
 export class MeDropDownButtonDirective
   extends MeControlDirective
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   @Input() icon: string = '';
   @Input() iconColor: string = '';
   @Input() iconSize: string = '';
@@ -32,7 +40,6 @@ export class MeDropDownButtonDirective
   private focusService: ComponentFocusService;
 
   private removeMouseupListener?: () => void;
-
 
   constructor(
     private element: ElementRef,
@@ -46,12 +53,12 @@ export class MeDropDownButtonDirective
 
     renderer.listen(element.nativeElement, 'mousedown', (e) => {
       const button = element.nativeElement.querySelector('.dx-button');
-      renderer.addClass(button, 'dx-state-active')
+      renderer.addClass(button, 'dx-state-active');
       this.removeMouseupListener = renderer.listen(document, 'mouseup', () => {
         renderer.removeClass(button, 'dx-state-active');
         this.removeMouseupListener?.();
-      })
-    })
+      });
+    });
   }
 
   ngOnDestroy(): void {
@@ -80,9 +87,10 @@ export class MeDropDownButtonDirective
 
   private setIconColor(): void {
     if (!this.iconColor) {
-      this.iconColor = this.stylingMode !== 'contained'
-        ? `var(--button-${this.component.type}-icon-color)`
-        : DEFAULT_ICON_COLOR;
+      this.iconColor =
+        this.stylingMode !== 'contained'
+          ? `var(--button-${this.component.type}-icon-color)`
+          : DEFAULT_ICON_COLOR;
 
       if (this.disabled) {
         this.iconColor = `var(--button-${this.type}-${this.stylingMode}-icon-disabled-color)`;
@@ -117,8 +125,11 @@ export class MeDropDownButtonDirective
   }
 
   private setDropDownOptions(): void {
-    const popupWrapperClasses = `${this.wrapperAttr['class'] || ''} me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${this.showScrollbar === 'always' ? 'me-scrollbar-visible' : ''
-      }`;
+    const popupWrapperClasses = `${
+      this.wrapperAttr['class'] || ''
+    } me-scroll-view me-dropdownlist-${this.size} me-dropdownlist ${
+      this.showScrollbar === 'always' ? 'me-scrollbar-visible' : ''
+    }`;
 
     this.component.dropDownOptions = {
       wrapperAttr: {

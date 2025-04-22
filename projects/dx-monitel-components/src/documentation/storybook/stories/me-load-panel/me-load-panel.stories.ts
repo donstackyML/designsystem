@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import {
   DxButtonModule,
   DxCheckBoxModule,
@@ -124,7 +129,8 @@ export default {
     },
     animation: {
       control: 'object',
-      description: 'Настраивает анимацию показа и панели загрузки. Задает параметры для анимаций "show" и "hide".',
+      description:
+        'Настраивает анимацию показа и панели загрузки. Задает параметры для анимаций "show" и "hide".',
       table: {
         type: { summary: 'object' },
         defaultValue: { summary: '{ show: {…}, hide: {…} }' },
@@ -155,12 +161,12 @@ export default {
       meLoadPanel
      ${argsToTemplate(args)}
     ></dx-load-panel>`,
-  })
+  }),
 } satisfies Meta<DxLoadPanelModule | MeLoadPanelDirective>;
 
-type Story = StoryObj<DxLoadPanelModule | MeLoadPanelDirective>
+type Story = StoryObj<DxLoadPanelModule | MeLoadPanelDirective>;
 
-export const Default: Story = { };
+export const Default: Story = {};
 
 export const WithCustomImage: Story = {
   args: {
@@ -171,49 +177,48 @@ export const WithCustomImage: Story = {
 
 export const SizeSmall: Story = {
   args: {
-    size: 'small'
-  }
+    size: 'small',
+  },
 };
 
 export const SizeMedium: Story = {
   args: {
-    size: 'medium'
-  }
+    size: 'medium',
+  },
 };
 
 export const SizeLarge: Story = {
   args: {
-    size: 'large'
-  }
+    size: 'large',
+  },
 };
 
 export const StylingModeCircle: Story = {
   args: {
-    stylingMode: 'circle'
-  }
+    stylingMode: 'circle',
+  },
 };
 
 export const StylingModeLine: Story = {
   args: {
-    stylingMode: 'line'
-  }
+    stylingMode: 'line',
+  },
 };
-
 
 export const ColorDefault: Story = {
   args: {
-    color: 'default'
-  }
+    color: 'default',
+  },
 };
 
 export const ColorNormal: Story = {
   args: {
-    color: 'normal'
-  }
+    color: 'normal',
+  },
 };
 
 export const ColorAccent: Story = {
   args: {
-    color: 'accent'
-  }
+    color: 'accent',
+  },
 };

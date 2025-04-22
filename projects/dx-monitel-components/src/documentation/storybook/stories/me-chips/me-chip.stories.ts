@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { MeChipComponent } from '../../../../public-api';
 
 export default {
@@ -20,7 +25,8 @@ export default {
     },
     removable: {
       control: 'boolean',
-      description: 'Определяет, можно ли удалить чип. При значении `true` отображается иконка удаления.',
+      description:
+        'Определяет, можно ли удалить чип. При значении `true` отображается иконка удаления.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -28,7 +34,8 @@ export default {
     },
     disabled: {
       control: 'boolean',
-      description: 'Отключает чип, делая его неактивным и недоступным для взаимодействия.',
+      description:
+        'Отключает чип, делая его неактивным и недоступным для взаимодействия.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -37,7 +44,8 @@ export default {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'Определяет размер чипа: `small`, `medium` (по умолчанию) или `large`.',
+      description:
+        'Определяет размер чипа: `small`, `medium` (по умолчанию) или `large`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '"medium"' },
@@ -45,7 +53,8 @@ export default {
     },
     count: {
       control: 'number',
-      description: 'Числовое значение, отображаемое внутри чипа, например, количество элементов.',
+      description:
+        'Числовое значение, отображаемое внутри чипа, например, количество элементов.',
       table: {
         type: { summary: 'number | null' },
         defaultValue: { summary: 'null' },
@@ -53,7 +62,8 @@ export default {
     },
     selected: {
       control: 'boolean',
-      description: 'Определяет, находится ли чип в активном (выбранном) состоянии.',
+      description:
+        'Определяет, находится ли чип в активном (выбранном) состоянии.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -74,8 +84,8 @@ export default {
      <me-chip
         ${argsToTemplate(args)}
       >
-    `
-  })
+    `,
+  }),
 } satisfies Meta<MeChipComponent>;
 
 type Story = StoryObj<MeChipComponent>;

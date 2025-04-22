@@ -7,4 +7,4 @@ import { MeFileUploaderDirective } from './me-file-uploader.directive';
   imports: [CommonModule],
   exports: [MeFileUploaderDirective],
 })
-export class MeFileUploaderModule { }
+export class MeFileUploaderModule {}

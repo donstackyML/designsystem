@@ -9,7 +9,11 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { MeSkeletonItemComponent, type SkeletonItemProps, type SkeletonShape } from './me-skeleton-item/me-skeleton-item.component';
+import {
+  MeSkeletonItemComponent,
+  type SkeletonItemProps,
+  type SkeletonShape,
+} from './me-skeleton-item/me-skeleton-item.component';
 
 export interface SkeletonAvatar extends SkeletonItemProps {
   size?: number | 'large' | 'small' | 'default';
@@ -54,7 +58,7 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
     return this._animated;
   }
 
-  @Input() contentSettings: SkeletonContentSettings | null = null
+  @Input() contentSettings: SkeletonContentSettings | null = null;
 
   @Input() set avatar(value: SkeletonAvatar | null) {
     this._avatar = value;
@@ -97,7 +101,8 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
   }
 
   @ContentChild('customTitle', { read: ElementRef }) customTitle?: ElementRef;
-  @ContentChild('customParagraph', { read: ElementRef }) customParagraph?: ElementRef;
+  @ContentChild('customParagraph', { read: ElementRef })
+  customParagraph?: ElementRef;
 
   get hasCustomTitle(): boolean {
     return !!this.customTitle;
@@ -151,7 +156,7 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
       } else {
         this.avatarStyle = {
           width: this.avatar.width,
-          height: this.avatar.height
+          height: this.avatar.height,
         };
       }
     } else {
@@ -161,7 +166,6 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
   }
 
   private setupTitle(): void {
-
     if (this.title && typeof this.title === 'object') {
       this.titleStyle = {
         width:
@@ -182,12 +186,10 @@ export class MeSkeletonComponent implements OnInit, OnChanges {
     if (this.paragraph && typeof this.paragraph === 'object') {
       const rows = this.paragraph.rows || 3;
       if (Array.isArray(this.paragraph.width)) {
-
         this.paragraphRows = this.paragraph.width.map((width) =>
           typeof width === 'number' ? `${width}px` : width
-      );
-    } else {
-
+        );
+      } else {
         this.paragraphRows = Array(rows).fill('100%');
         if (this.paragraph.width) {
           this.paragraphRows[rows - 1] =

@@ -1,4 +1,9 @@
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import {
   DxButtonModule,
   DxFileUploaderComponent,
@@ -11,7 +16,7 @@ import {
   MeButtonModule,
   MeFileUploaderDirective,
   MeProgressBarDirective,
-  MeTextBoxDirective
+  MeTextBoxDirective,
 } from '../../../../../public-api';
 
 export default {
@@ -26,7 +31,11 @@ export default {
         DxProgressBarModule,
         MeButtonModule,
       ],
-      declarations: [MeFileUploaderDirective, MeTextBoxDirective, MeProgressBarDirective],
+      declarations: [
+        MeFileUploaderDirective,
+        MeTextBoxDirective,
+        MeProgressBarDirective,
+      ],
     }),
   ],
   argTypes: {
@@ -150,7 +159,7 @@ export default {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
-    }
+    },
   },
   args: {
     size: 'medium',
@@ -172,7 +181,7 @@ export default {
         ${argsToTemplate(args)}
       ></dx-file-uploader>
     `,
-  })
+  }),
 } satisfies Meta<DxFileUploaderComponent | MeFileUploaderDirective>;
 
 type Story = StoryObj<DxFileUploaderComponent | MeFileUploaderDirective>;
@@ -183,7 +192,7 @@ export const WithForm: Story = {
   args: {
     uploadMode: 'useForm',
     labelText: '',
-    selectButtonText: 'Select photo'
+    selectButtonText: 'Select photo',
   },
   render: (args) => ({
     props: args,
@@ -217,8 +226,8 @@ export const WithForm: Story = {
         padding: 16px;
         background: var(--Background-Content);
       }
-      `
-    ]
+      `,
+    ],
   }),
 };
 
@@ -241,9 +250,9 @@ export const AsyncUploadInstantly: Story = {
 
 export const AsyncUploadButtons: Story = {
   args: {
-    uploadMode: "useButtons",
-    uploadUrl: "https://js.devexpress.com/Demos/NetCore/FileUploader/Upload",
-    multiple: true
+    uploadMode: 'useButtons',
+    uploadUrl: 'https://js.devexpress.com/Demos/NetCore/FileUploader/Upload',
+    multiple: true,
   },
   render: (args) => ({
     props: args,
@@ -258,10 +267,10 @@ export const AsyncUploadButtons: Story = {
 
 export const ValidationExample: Story = {
   args: {
-    uploadMode: "useButtons",
-    uploadUrl: "https://js.devexpress.com/Demos/NetCore/FileUploader/Upload",
+    uploadMode: 'useButtons',
+    uploadUrl: 'https://js.devexpress.com/Demos/NetCore/FileUploader/Upload',
     maxFileSize: 4000,
-    multiple: true
+    multiple: true,
   },
   render: (args) => ({
     props: args,
@@ -286,10 +295,11 @@ export const ValidationExample: Story = {
 
 export const ChunkUpload: Story = {
   args: {
-    uploadMode: "instantly",
-    uploadUrl: "https://js.devexpress.com/Demos/WidgetsGalleryDataService/api/ChunkUpload",
+    uploadMode: 'instantly',
+    uploadUrl:
+      'https://js.devexpress.com/Demos/WidgetsGalleryDataService/api/ChunkUpload',
     multiple: true,
-    chunkSize: 200000
+    chunkSize: 200000,
   },
   render: (args) => ({
     template: `
@@ -300,14 +310,13 @@ export const ChunkUpload: Story = {
     `,
     props: args,
   }),
-
 };
 
 export const FileTypesSelection: Story = {
   args: {
-    uploadMode: "instantly",
-    uploadUrl: "https://js.devexpress.com/Demos/NetCore/FileUploader/Upload",
-    multiple: true
+    uploadMode: 'instantly',
+    uploadUrl: 'https://js.devexpress.com/Demos/NetCore/FileUploader/Upload',
+    multiple: true,
   },
   render: (args) => ({
     props: {
@@ -372,13 +381,13 @@ export const FileTypesSelection: Story = {
 
 export const StateDisabled: Story = {
   args: {
-    disabled: true
+    disabled: true,
   },
 };
 
 export const StateReadonly: Story = {
   args: {
-    readOnly: true
+    readOnly: true,
   },
 };
 

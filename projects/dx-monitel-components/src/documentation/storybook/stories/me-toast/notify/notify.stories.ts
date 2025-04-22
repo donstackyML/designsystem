@@ -4,24 +4,23 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import {
-  DxButtonModule,
-  DxToastModule
-} from 'devextreme-angular';
+import { DxButtonModule, DxToastModule } from 'devextreme-angular';
 
 import { Component, Input } from '@angular/core';
 import { AnimationConfig } from 'devextreme/animation/fx';
 import notify from 'devextreme/ui/notify';
 import { ToastType } from 'devextreme/ui/toast';
 
-import {
-  MeButtonModule,
-} from '../../../../../public-api';
+import { MeButtonModule } from '../../../../../public-api';
 @Component({
   selector: 'notify-storybook-demo',
   imports: [DxButtonModule, MeButtonModule, DxToastModule],
   standalone: true,
-  template: `<dx-button text="Показать уведомление" meButton (onClick)="showNotification()"></dx-button>`,
+  template: `<dx-button
+    text="Показать уведомление"
+    meButton
+    (onClick)="showNotification()"
+  ></dx-button>`,
 })
 class MeToastDemoStorybookComponent {
   @Input() message: string = 'This is a toast notification!';
@@ -42,14 +41,19 @@ class MeToastDemoStorybookComponent {
       type: this.type,
       position: this.position,
       width: 450,
-    })
+    });
   }
 }
 
 export default {
   decorators: [
     moduleMetadata({
-      imports: [DxToastModule, DxButtonModule, MeButtonModule, MeToastDemoStorybookComponent],
+      imports: [
+        DxToastModule,
+        DxButtonModule,
+        MeButtonModule,
+        MeToastDemoStorybookComponent,
+      ],
     }),
   ],
   title: 'Components/Toast/Notify',
@@ -90,7 +94,8 @@ export default {
       },
       width: {
         control: 'text',
-        description: 'Ширина уведомления. Может быть числом или строкой. По умолчанию: "260px".',
+        description:
+          'Ширина уведомления. Может быть числом или строкой. По умолчанию: "260px".',
         table: {
           type: { summary: 'number | string' },
           defaultValue: { summary: '260px' },
@@ -131,18 +136,20 @@ export default {
     displayTime: 4000,
     message: 'Операция выполнена успешно',
     position: 'bottom center',
-    width: '260px'
+    width: '260px',
   },
   render: (args) => ({
     props: args,
-    template: `<notify-storybook-demo ${argsToTemplate(args)}></notify-storybook-demo>`
-  })
+    template: `<notify-storybook-demo ${argsToTemplate(
+      args
+    )}></notify-storybook-demo>`,
+  }),
 } satisfies Meta<MeToastDemoStorybookComponent>;
 
 type Story = StoryObj<MeToastDemoStorybookComponent>;
 
 export const Default: Story = {
-  args: {}
+  args: {},
 };
 
 export const TypeInfo: Story = {

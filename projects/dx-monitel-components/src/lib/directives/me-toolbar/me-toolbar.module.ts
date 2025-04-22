@@ -7,4 +7,4 @@ import { MeToolbarDirective } from './me-toolbar.directive';
   imports: [CommonModule],
   exports: [MeToolbarDirective],
 })
-export class MeToolbarModule { }
+export class MeToolbarModule {}

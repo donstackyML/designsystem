@@ -1,7 +1,15 @@
-import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import {
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
 import { DxPivotGridComponent, DxPivotGridModule } from 'devextreme-angular';
 import { MePivotGridDirective } from '../../../../public-api';
-import { mePivotGridDataSourceFields, mePivotGridDataSourceSource } from './me-pivot-grid-mock-data';
+import {
+  mePivotGridDataSourceFields,
+  mePivotGridDataSourceSource,
+} from './me-pivot-grid-mock-data';
 
 export default {
   title: 'Components/PivotGrid',
@@ -82,7 +90,7 @@ export default {
     showRowGrandTotals: false,
     showRowTotals: false,
     showColumnTotals: false,
-    showTotalsPrior: 'none'
+    showTotalsPrior: 'none',
   },
   render: (args: any) => ({
     props: { ...args },
@@ -100,6 +108,6 @@ export default {
   }),
 } satisfies Meta<DxPivotGridComponent | MePivotGridDirective>;
 
-type Story = StoryObj<DxPivotGridComponent| MePivotGridDirective>;
+type Story = StoryObj<DxPivotGridComponent | MePivotGridDirective>;
 
 export const Default: Story = {};
