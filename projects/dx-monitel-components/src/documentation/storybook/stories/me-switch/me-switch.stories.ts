@@ -137,10 +137,3 @@ export const WithLabel: Story = {
     )}></dx-switch>Switch</label>`,
   }),
 };
-
-export const WithSwitchStatusText: Story = {
-  args: {
-    switchedOnText: 'On',
-    switchedOffText: 'Off',
-  },
-};
