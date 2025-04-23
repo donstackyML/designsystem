@@ -1,16 +1,41 @@
+// export const meSelectBoxData = [
+//   { name: 'Voltage Monitor VM-100' },
+//   { name: 'Voltage Monitor VM-200' },
+//   { name: 'Current Monitor CM-100' },
+//   { name: 'Current Monitor CM-200' },
+//   { name: 'Power Analyzer PA-100' },
+//   { name: 'Power Analyzer PA-200' },
+//   { name: 'Energy Meter EM-100' },
+//   { name: 'Energy Meter EM-200' },
+//   { name: 'Smart Meter SM-100' },
+//   { name: 'Smart Meter SM-200' },
+//   { name: 'Frequency Monitor FM-100' },
+//   { name: 'Frequency Monitor FM-200' },
+// ];
+
 export const meSelectBoxData = [
-  { name: 'Voltage Monitor VM-100' },
-  { name: 'Voltage Monitor VM-200' },
-  { name: 'Current Monitor CM-100' },
-  { name: 'Current Monitor CM-200' },
-  { name: 'Power Analyzer PA-100' },
-  { name: 'Power Analyzer PA-200' },
-  { name: 'Energy Meter EM-100' },
-  { name: 'Energy Meter EM-200' },
-  { name: 'Smart Meter SM-100' },
-  { name: 'Smart Meter SM-200' },
-  { name: 'Frequency Monitor FM-100' },
-  { name: 'Frequency Monitor FM-200' },
+  {
+    key: 'Group 1',
+    items: [
+      { name: 'Voltage Monitor VM-100' },
+      { name: 'Voltage Monitor VM-200' },
+      { name: 'Current Monitor CM-100' },
+    ],
+  },
+  {
+    key: 'Group 2',
+    items: [
+      { name: 'Current Monitor CM-200' },
+      { name: 'Power Analyzer PA-100' },
+      { name: 'Power Analyzer PA-200' },
+      { name: 'Energy Meter EM-100' },
+      { name: 'Energy Meter EM-200' },
+      { name: 'Smart Meter SM-100' },
+      { name: 'Smart Meter SM-200' },
+      { name: 'Frequency Monitor FM-100' },
+      { name: 'Frequency Monitor FM-200' },
+    ],
+  },
 ];
 
 export const meSelectBoxDataWithDividers = [
