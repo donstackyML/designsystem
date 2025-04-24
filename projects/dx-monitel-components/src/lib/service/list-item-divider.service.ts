@@ -40,13 +40,27 @@ export class ListItemDividerService {
     this.addDividersClass(contentElement, dividersVisibility);
 
     if (dividersVisibility !== 'none' && items.length) {
-      this.addDividersToList(
-        contentElement,
-        selector,
-        items,
-        dividersVisibility,
-        addClassOnly
+      const isGrouped = items.every(
+        (item) => 'items' in item && Array.isArray(item.items)
       );
+
+      if (isGrouped) {
+        this.addDividersToGroupedList(
+          contentElement,
+          selector,
+          items,
+          dividersVisibility,
+          addClassOnly
+        );
+      } else {
+        this.addDividersToList(
+          contentElement,
+          selector,
+          items,
+          dividersVisibility,
+          addClassOnly
+        );
+      }
     }
   }
 
@@ -70,6 +84,34 @@ export class ListItemDividerService {
       ) {
         this.addDividerToItem(itemElement, addClassOnly);
       }
+    });
+  }
+
+  private addDividersToGroupedList(
+    contentElement: HTMLElement,
+    selector: string,
+    groupedItems: { items: any[] }[],
+    dividersVisibility: Omit<DividersVisibility, 'none'>,
+    addClassOnly: boolean
+  ): void {
+    const listItems = Array.from(contentElement.querySelectorAll(selector));
+    let flatIndex = 0;
+
+    groupedItems.forEach((group) => {
+      group.items.forEach((item, index) => {
+        const itemElement = listItems[flatIndex];
+        const isLastInGroup = index === group.items.length - 1;
+
+        if (
+          ((item?.hasDivider && dividersVisibility === 'auto') ||
+            (dividersVisibility === 'all' && !isLastInGroup)) &&
+          itemElement
+        ) {
+          this.addDividerToItem(itemElement, addClassOnly);
+        }
+
+        flatIndex++;
+      });
     });
   }
 }
