@@ -83,12 +83,12 @@ export class MeSelectBoxDirective
     }
     const listElement = listInstance.element();
 
-    this.dividerService.addDividers(
-      listElement,
-      '.dx-list-item',
-      this.dividersVisibility,
-      this.component.items || this.component.dataSource || []
-    );
+    this.dividerService.addDividers({
+      contentElement: listElement,
+      selector: '.dx-list-item',
+      dividersVisibility: this.dividersVisibility,
+      items: this.component.items || this.component.dataSource || [],
+    });
   }
 
   ngAfterViewInit() {
