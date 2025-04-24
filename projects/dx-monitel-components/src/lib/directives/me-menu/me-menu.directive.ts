@@ -101,12 +101,12 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
     }
 
     if (submenuContainer && itemData?.items) {
-      this.dividerService.addDividers(
-        submenuContainer,
-        '.dx-menu-item-wrapper',
-        this.dividersVisibility,
-        itemData.items
-      );
+      this.dividerService.addDividers({
+        contentElement: submenuContainer,
+        selector: '.dx-menu-item-wrapper',
+        dividersVisibility: this.dividersVisibility,
+        items: itemData.items,
+      });
     }
   }
 

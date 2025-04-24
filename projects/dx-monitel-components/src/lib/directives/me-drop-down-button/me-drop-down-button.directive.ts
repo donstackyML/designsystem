@@ -150,11 +150,11 @@ export class MeDropDownButtonDirective
 
   private createContentTemplate(contentElement: HTMLElement): void {
     contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
-    this.dividerService.addDividers(
-      contentElement,
-      '.dx-list-item',
-      this.dividersVisibility,
-      this.component.items || this.component.dataSource || []
-    );
+    this.dividerService.addDividers({
+      contentElement: contentElement,
+      selector: '.dx-list-item',
+      dividersVisibility: this.dividersVisibility,
+      items: this.component.items || this.component.dataSource || [],
+    });
   }
 }
