@@ -5,6 +5,7 @@ export * from './me-file-uploader/me-file-uploader.component';
 export * from './me-icon/me-icon.component';
 export * from './me-menu-left/me-menu-left.component';
 export * from './me-pagination/me-pagination.component';
+export * from './me-property-grid';
 export * from './me-sidepage/me-sidepage.component';
 export * from './me-skeleton/me-skeleton.component';
 export * from './me-status-bar/me-status-bar.component';;

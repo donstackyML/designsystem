@@ -47,6 +47,8 @@ import {
   MeTreeListModule,
   MeTreeViewModule,
   MeIconsInitializerModule,
+  MePropertyGridComponent,
+  MePropertyGridCellComponent,
 } from '../../projects/dx-monitel-components/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -164,6 +166,8 @@ import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box
     MeBreadcrumbsComponent,
     MeCardComponent,
     MeIconComponent,
+    MePropertyGridComponent,
+    MePropertyGridCellComponent,
     MeToastComponent,
     MeChipComponent,
     MeChipsComponent,
