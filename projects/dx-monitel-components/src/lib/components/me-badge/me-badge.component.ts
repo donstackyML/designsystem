@@ -33,6 +33,7 @@ export class MeBadgeComponent implements OnChanges {
   style: { [key: string]: string } = {};
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log('ch', changes);
     this.updateStyles();
   }
 
