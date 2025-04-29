@@ -118,6 +118,14 @@ export default {
         defaultValue: { summary: true },
       },
     },
+    disableRadius: {
+      control: 'boolean',
+      description: 'Убрать скругление.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
     disabled: {
       control: 'boolean',
       description: 'Включить/отключить компонент.',

@@ -25,6 +25,7 @@ export class MePopupDirective extends MeOverlayDirective {
   @Input() width: string = POPUP_WIDTH_MEDIUM;
   @Input() size: Exclude<MeSize, 'small'> = 'medium';
   @Input() resizeEnabled: boolean = true;
+  @Input() disableRadius: boolean = false;
 
   constructor(
     element: ElementRef,
@@ -41,15 +42,20 @@ export class MePopupDirective extends MeOverlayDirective {
     const popup = <DxPopupComponent>this.component;
 
     popup.resizeEnabled = this.resizeEnabled;
-
     popup.maxHeight = this.maxHeight;
     popup.height = this.height;
 
     if (this.size === 'medium') {
-      // popup.minHeight = this.minHeight;
       popup.width = this.width;
     } else if (this.size === 'large') {
       popup.width = POPUP_WIDTH_LARGE;
+    }
+
+    if (this.disableRadius) {
+      this.renderer.addClass(
+        this.element.nativeElement,
+        'popup-disable-radius'
+      );
     }
   }
 
