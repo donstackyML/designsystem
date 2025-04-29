@@ -23,7 +23,7 @@ import type {
 
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeFormField } from '../me-form-item/me-form-field';
-import { MeTimeControlsComponent } from 'projects/dx-monitel-components/src/lib/components/me-time-controls/me-time-controls.component';
+import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 
 interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
   _popup: {
@@ -105,8 +105,6 @@ export class MeDateBoxDirective
     this.showTime = this.component.type === 'datetime';
     if (this.showTime) {
       this.component.instance.option('displayFormat', 'dd.MM.yyyy, HH:mm:ss');
-    } else if (this.component.type === 'time') {
-      this.component.instance.option('displayFormat', 'HH:mm:ss');
     }
 
     const dateBox = e.component as ExtendedDxDateBox;

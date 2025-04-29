@@ -14,7 +14,7 @@ import {
 import { DxDateRangeBoxComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeFormField } from '../me-form-item/me-form-field';
-import { MeTimeControlsComponent } from 'projects/dx-monitel-components/src/lib/components/me-time-controls/me-time-controls.component';
+import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import type { ValueChangedEvent } from 'devextreme/ui/date_box';
 
 @Directive({

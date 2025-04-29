@@ -20,7 +20,7 @@ import {
   FirstDayOfWeek,
   WeekNumberRule,
 } from 'devextreme/ui/calendar';
-import { MeTimeControlsComponent } from 'projects/dx-monitel-components/src/lib/components/me-time-controls/me-time-controls.component';
+import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import type DevExpress from 'devextreme';
 import type { ValueChangedEvent } from 'devextreme/ui/calendar';
 
