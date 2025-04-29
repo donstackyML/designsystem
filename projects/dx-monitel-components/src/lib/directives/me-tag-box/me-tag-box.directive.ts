@@ -87,12 +87,12 @@ export class MeTagBoxDirective
     }
     const listElement = listInstance.element();
 
-    this.dividerService.addDividers(
-      listElement,
-      '.dx-list-item',
-      this.dividersVisibility,
-      this.tagBox.items || this.tagBox.dataSource || []
-    );
+    this.dividerService.addDividers({
+      contentElement: listElement,
+      selector: '.dx-list-item',
+      dividersVisibility: this.dividersVisibility,
+      items: this.tagBox.items || this.tagBox.dataSource || [],
+    });
 
     listInstance.option('onFocusedItemChanged', (focusEvent: any) => {
       if (!this.isKeyboardNavigation && focusEvent?.element) {

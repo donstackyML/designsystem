@@ -13,6 +13,8 @@ import {
 import { MeLabelDirective, MeSelectBoxDirective } from '../../../../public-api';
 import {
   meSelectBoxData,
+  meSelectBoxDataGrouped,
+  meSelectBoxDataGroupedWithDividers,
   meSelectBoxDataWithDividers,
 } from './me-select-box-mock-data';
 
@@ -403,5 +405,22 @@ export const DividersVisibilityByContent: Story = {
     dataSource: meSelectBoxDataWithDividers,
     displayExpr: 'name',
     dividersVisibility: 'auto',
+  },
+};
+
+export const GroupedData: Story = {
+  args: {
+    dataSource: meSelectBoxDataGrouped,
+    grouped: true,
+    displayExpr: 'name',
+  },
+};
+
+export const GroupedDataWithGrouped: Story = {
+  args: {
+    dataSource: meSelectBoxDataGroupedWithDividers,
+    grouped: true,
+    displayExpr: 'name',
+    dividersVisibility: 'all',
   },
 };

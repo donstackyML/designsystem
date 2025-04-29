@@ -30,33 +30,61 @@ export class ListItemDividerService {
     contentElement.classList.add(`dividers-visibility-${dividersVisibility}`);
   }
 
-  addDividers(
-    contentElement: HTMLElement,
-    selector: string,
-    dividersVisibility: DividersVisibility,
-    items: any[] | undefined = [],
-    addClassOnly: boolean = false
-  ): void {
+  addDividers(params: {
+    contentElement: HTMLElement;
+    selector: string;
+    items: any[];
+    dividersVisibility: DividersVisibility;
+    addClassOnly?: boolean;
+  }): void {
+    const {
+      contentElement,
+      selector,
+      dividersVisibility,
+      items = [],
+      addClassOnly = false,
+    } = params;
     this.addDividersClass(contentElement, dividersVisibility);
 
     if (dividersVisibility !== 'none' && items.length) {
-      this.addDividersToList(
-        contentElement,
-        selector,
-        items,
-        dividersVisibility,
-        addClassOnly
+      const isGrouped = items.every(
+        (item) => 'items' in item && Array.isArray(item.items)
       );
+
+      if (isGrouped) {
+        this.addDividersToGroupedList({
+          contentElement,
+          selector,
+          groupedItems: items,
+          dividersVisibility,
+          addClassOnly,
+        });
+      } else {
+        this.addDividersToList({
+          contentElement,
+          selector,
+          items,
+          dividersVisibility,
+          addClassOnly,
+        });
+      }
     }
   }
 
-  private addDividersToList(
-    contentElement: HTMLElement,
-    selector: string,
-    items: any[],
-    dividersVisibility: Omit<DividersVisibility, 'none'>,
-    addClassOnly: boolean
-  ): void {
+  private addDividersToList(params: {
+    contentElement: HTMLElement;
+    selector: string;
+    items: any[];
+    dividersVisibility: Omit<DividersVisibility, 'none'>;
+    addClassOnly: boolean;
+  }): void {
+    const {
+      contentElement,
+      selector,
+      items,
+      dividersVisibility,
+      addClassOnly,
+    } = params;
     const listItems = contentElement.querySelectorAll(selector);
 
     items.forEach((item, index) => {
@@ -70,6 +98,41 @@ export class ListItemDividerService {
       ) {
         this.addDividerToItem(itemElement, addClassOnly);
       }
+    });
+  }
+
+  private addDividersToGroupedList(params: {
+    contentElement: HTMLElement;
+    selector: string;
+    groupedItems: { items: any[]; hasDivider?: boolean }[];
+    dividersVisibility: Omit<DividersVisibility, 'none'>;
+    addClassOnly: boolean;
+  }): void {
+    const {
+      contentElement,
+      selector,
+      groupedItems,
+      dividersVisibility,
+      addClassOnly,
+    } = params;
+    const listItems = Array.from(contentElement.querySelectorAll(selector));
+    let flatIndex = 0;
+
+    groupedItems.forEach((group) => {
+      group.items.forEach((item, index) => {
+        const itemElement = listItems[flatIndex];
+        const isLastInGroup = index === group.items.length - 1;
+
+        if (
+          ((item?.hasDivider && dividersVisibility === 'auto') ||
+            (dividersVisibility === 'all' && !isLastInGroup)) &&
+          itemElement
+        ) {
+          this.addDividerToItem(itemElement, addClassOnly);
+        }
+
+        flatIndex++;
+      });
     });
   }
 }
