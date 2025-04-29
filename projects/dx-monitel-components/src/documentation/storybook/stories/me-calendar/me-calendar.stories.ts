@@ -15,6 +15,15 @@ export default {
     }),
   ],
   argTypes: {
+    type: {
+      control: 'select',
+      options: ['date', 'datetime'],
+      description: 'Тип значения для отображения.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'date' },
+      },
+    },
     value: {
       control: 'date',
       description:

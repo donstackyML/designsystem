@@ -40,22 +40,6 @@ export default {
         defaultValue: { summary: 'medium' },
       },
     },
-    switchedOffText: {
-      control: 'text',
-      description: 'Текст, отображаемый при выключенном состоянии',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '""' },
-      },
-    },
-    switchedOnText: {
-      control: 'text',
-      description: 'Текст, отображаемый при включенном состоянии',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '""' },
-      },
-    },
     height: {
       control: 'text',
       description: 'Высота компонента',
@@ -77,8 +61,6 @@ export default {
     size: 'medium',
     disabled: false,
     readOnly: false,
-    switchedOnText: '',
-    switchedOffText: '',
     width: undefined,
     height: undefined,
   },
@@ -132,7 +114,7 @@ export const StateDisabledAndReadOnly: Story = {
 export const WithLabel: Story = {
   render: (args) => ({
     props: args,
-    template: `<label meLabel width="90px"><dx-switch meSwitch ${argsToTemplate(
+    template: `<label meLabel width="fit-content"><dx-switch meSwitch ${argsToTemplate(
       args
     )}></dx-switch>Switch</label>`,
   }),
