@@ -66,18 +66,11 @@ export class MeDateBoxDirective
   private showTime = false;
 
   ngOnInit(): void {
-    this.showTime = this.component.type === 'datetime';
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-date-box-overlay`,
       },
     });
-
-    if (this.showTime) {
-      this.component.instance.option('displayFormat', 'dd.MM.yyyy, HH:mm:ss');
-    } else if (this.component.type === 'time') {
-      this.component.instance.option('displayFormat', 'HH:mm:ss');
-    }
 
     this.component.instance.option('calendarOptions', {
       showWeekNumbers: true,
@@ -109,6 +102,13 @@ export class MeDateBoxDirective
 
   @HostListener('onOpened', ['$event'])
   onOpened(e: OpenedEvent) {
+    this.showTime = this.component.type === 'datetime';
+    if (this.showTime) {
+      this.component.instance.option('displayFormat', 'dd.MM.yyyy, HH:mm:ss');
+    } else if (this.component.type === 'time') {
+      this.component.instance.option('displayFormat', 'HH:mm:ss');
+    }
+
     const dateBox = e.component as ExtendedDxDateBox;
 
     const dateTimeRootElement = this.component.instance
