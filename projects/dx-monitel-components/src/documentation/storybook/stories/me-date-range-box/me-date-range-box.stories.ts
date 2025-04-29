@@ -19,6 +19,15 @@ export default {
     }),
   ],
   argTypes: {
+    type: {
+      control: 'select',
+      options: ['date', 'datetime'],
+      description: 'Тип значения для отображения.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'date' },
+      },
+    },
     startDateLabel: {
       control: 'text',
       description: 'Метка поля ввода даты начала.',
@@ -320,7 +329,8 @@ export default {
     applyValueMode: 'instantly',
     applyButtonText: 'Применить',
     cancelButtonText: 'Отмена',
-    dateSerializationFormat: 'yyyy-MM-dd',
+    // dateSerializationFormat: 'yyyy-MM-dd',
+    // dateSerializationFormat: 'yyyy-MM-dd HH:mm:ss',
     displayFormat: 'dd.MM.yyyy',
     startDate: null,
     startDateLabel: 'Начальная дата',

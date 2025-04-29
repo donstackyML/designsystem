@@ -254,7 +254,6 @@ export default {
     dateOutOfRangeMessage: '',
     dateSerializationFormat: '',
     disabledDates: undefined,
-    displayFormat: '',
     showRequiredMark: false,
     isValid: true,
     validationMessageMode: 'auto',
