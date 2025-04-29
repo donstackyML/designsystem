@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -154,6 +153,14 @@ export class MeBreadcrumbsComponent
         },
       }))
     );
+
+    this.renderer.listen(
+      this.elementRef.nativeElement,
+      'contextmenu',
+      (e: MouseEvent) => {
+        e.stopPropagation();
+      }
+    );
   }
 
   onContextMenuItemMouseDown(event: MouseEvent): void {
@@ -182,13 +189,12 @@ export class MeBreadcrumbsComponent
   }
 
   private getOriginalItem(item: any) {
-    const originalItem = this.items.find(
+    return this.items.find(
       (el) =>
         el[this.displayExpr] === item?.text &&
         el[this.urlExpr] === item?.url &&
         el[this.iconExpr] === item?.icon
     );
-    return originalItem;
   }
 
   onOverflowItemClick(e: ContextMenuItemClickEvent): void {
