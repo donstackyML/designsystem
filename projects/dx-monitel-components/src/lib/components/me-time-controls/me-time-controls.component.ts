@@ -41,7 +41,6 @@ export class MeTimeControlsComponent {
   }
 
   constructor() {
-    this.$hours.subscribe(console.log);
     combineLatest([this.$hours, this.$minutes, this.$seconds]).subscribe(
       (parts) => {
         const ms = parts.reduce((prev, current, index) => {
