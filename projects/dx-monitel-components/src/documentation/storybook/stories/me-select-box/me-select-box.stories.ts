@@ -17,6 +17,7 @@ import {
   meSelectBoxDataGroupedWithDividers,
   meSelectBoxDataWithDividers,
 } from './me-select-box-mock-data';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Fields/SelectBox',
@@ -85,6 +86,14 @@ export default {
     showClearButton: {
       control: 'boolean',
       description: 'Показывает кнопку для очистки поля.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    multiSelect: {
+      control: 'boolean',
+      description: 'Включает множественный выбор.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -423,4 +432,25 @@ export const GroupedDataWithGrouped: Story = {
     displayExpr: 'name',
     dividersVisibility: 'all',
   },
+};
+
+export const MultiSelect: Story = {
+  args: {
+    multiSelect: true,
+    dataSource: meSelectBoxData,
+    displayExpr: 'name',
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      onSelectedItemsChange: action('selectedItemsChange'),
+    },
+    template: `
+    <dx-select-box
+      meSelectBox
+      ${argsToTemplate(args)}
+      (selectedItemsChange)="onSelectedItemsChange($event)"
+    ></dx-select-box>
+    `,
+  }),
 };
