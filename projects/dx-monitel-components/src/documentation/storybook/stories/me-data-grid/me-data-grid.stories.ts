@@ -419,7 +419,6 @@ export const WithNumberAlign: Story = {
 
         <dxi-column
           dataField="ID"
-          alignment="left"
           [cellTemplate]="'idCellTemplate'"
         ></dxi-column>
 
