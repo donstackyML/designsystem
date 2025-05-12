@@ -3,8 +3,10 @@ import {
   Directive,
   ElementRef,
   Input,
+  OnChanges,
   OnDestroy,
   Renderer2,
+  SimpleChanges,
 } from '@angular/core';
 
 import { MeSize } from '../../types/types';
@@ -20,14 +22,18 @@ import { DxDataGridComponent } from 'devextreme-angular';
     '[class.me-data-grid-large]': 'isSizeLarge',
   },
 })
-export class MeDataGridDirective implements AfterViewInit, OnDestroy {
+export class MeDataGridDirective
+  implements AfterViewInit, OnDestroy, OnChanges
+{
   @Input() size: MeSize = 'medium';
+  @Input() columnHeaderStyles: { [key: string]: string } = {};
 
   private focusService: ComponentFocusService;
+
   constructor(
     private element: ElementRef,
     private component: DxDataGridComponent,
-    renderer: Renderer2
+    private renderer: Renderer2
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
@@ -55,6 +61,42 @@ export class MeDataGridDirective implements AfterViewInit, OnDestroy {
         widgets.forEach((elm) => elm.setAttribute('tabindex', '1'));
       }
     }
+
+    this.applyColumnHeaderStyles();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['columnHeaderStyles']) {
+      this.applyColumnHeaderStyles();
+    }
+  }
+
+  private applyColumnHeaderStyles(): void {
+    if (!this.columnHeaderStyles) return;
+
+    const headerCells = this.element.nativeElement.querySelectorAll(
+      'td[role="columnheader"]'
+    );
+
+    if (!headerCells || headerCells.length === 0) {
+      setTimeout(() => this.applyColumnHeaderStyles(), 100);
+      return;
+    }
+
+    headerCells.forEach((cell: Element) => {
+      const ariaLabel = cell.getAttribute('aria-label');
+      if (!ariaLabel) return;
+
+      const match = ariaLabel.match(/Столбец\s+(.+)/);
+      if (!match || !match[1]) return;
+
+      const columnName = match[1].trim();
+      const alignment = this.columnHeaderStyles[columnName];
+
+      if (alignment) {
+        this.renderer.addClass(cell, `grid-header-${alignment}`);
+      }
+    });
   }
 
   ngOnDestroy(): void {
