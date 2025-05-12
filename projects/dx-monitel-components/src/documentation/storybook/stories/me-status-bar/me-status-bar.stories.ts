@@ -268,3 +268,42 @@ export const Readonly: Story = {
     ],
   },
 };
+
+export const IconsStatusWithDefault: Story = {
+  args: {
+    leftItems: [
+      {
+        text: 'Информация',
+        showStatusIcon: true,
+      },
+      {
+        text: 'Текстовая информация',
+        type: 'info',
+        showStatusIcon: true,
+      },
+      {
+        text: 'Предупреждение',
+        type: 'warning',
+        showStatusIcon: true,
+      },
+      {
+        text: 'Ошибка',
+        type: 'error',
+        fill: true,
+        showStatusIcon: true,
+      },
+      {
+        text: 'Выполнено',
+        type: 'success',
+        showStatusIcon: true,
+      },
+    ],
+    rightItems: [
+      {
+        type: 'info',
+        fill: true,
+        showStatusIcon: true,
+      },
+    ],
+  },
+};

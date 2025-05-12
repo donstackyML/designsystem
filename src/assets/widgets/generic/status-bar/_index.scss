@@ -25,6 +25,21 @@
     }
   }
 
+  &__button {
+    border-radius: 2.5rem;
+
+    &--no-text {
+      border-radius: 100%;
+    }
+  }
+
+  &--small,
+  &--large {
+    .me-status-bar__button.me-status-bar__button--no-text > .dx-button-content > .dx-icon {
+      margin-right: 0;
+    }
+  }
+
   // Размеры
   &--small {
     .me-status-bar__section:not(:last-of-type) {
@@ -36,18 +51,21 @@
     }
 
     .me-status-bar__divider {
-      height: 24px;
+      height: 20px;
       margin-left: 4px;
     }
 
+    .me-status-bar__button.me-status-bar__button--no-text > .dx-button-content {
+      padding: 0 2px;
+    }
+
     .me-status-bar__button {
-      height: 28px;
-      border-radius: 2px;
+      height: 24px;
 
       .me-status-bar__button-content {
-        padding: 4px 8px;
+        padding: 2px 4px;
         font-size: 14px;
-        line-height: 16px;
+        line-height: 20px;
       }
     }
   }
@@ -62,16 +80,19 @@
     }
 
     .me-status-bar__divider {
-      height: 28px;
+      height: 24px;
       margin-left: 8px;
     }
 
+    .me-status-bar__button.me-status-bar__button--no-text > .dx-button-content {
+      padding: 0 4px;
+    }
+
     .me-status-bar__button {
-      height: 40px;
-      border-radius: 2px;
+      height: 32px;
 
       .me-status-bar__button-content {
-        padding: 6px 12px;
+        padding: 4px 8px;
         font-size: 16px;
         line-height: 24px;
       }
@@ -96,19 +117,26 @@
     &--right {
       margin-left: auto;
       max-width: 100%;
+
+      .me-status-bar__button-content {
+        max-width: 100%;
+      }
     }
   }
 
   &__button {
     .dx-button-content {
       span {
-        text-overflow: inherit;
-        overflow: inherit;
-        white-space: inherit;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
 
     &.dx-button-mode-contained {
+      background-color: var(--Badge-Blue-Gray) !important;
+      color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
+
       // Стили для кнопок с заливкой при наличии type
       &.me-status-bar__button--error {
         background-color: var(--Controls-BG-Accent-Danger-BG-Default) !important;
@@ -154,6 +182,7 @@
       // Базовые стили для текстовых кнопок
       background-color: transparent !important;
       border: none !important;
+      color: var(--Controls-Informative-BG-Notification) !important;
 
       // Стили для кнопок с type но без заливки
       &.me-status-bar__button--error {
@@ -188,11 +217,11 @@
 
       &.me-status-bar__button--info {
         .dx-button-content {
-          color: var(--Controls-Informative-BG-Notification) !important;
+          color: var(--Controls-Content-In-Controls-Accent-Default) !important;
         }
 
         .dx-icon {
-          color: var(--Controls-Informative-BG-Notification) !important;
+          color: var(--Controls-Content-In-Controls-Accent-Default) !important;
         }
       }
     }
@@ -216,18 +245,6 @@
   }
 }
 
-.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content {
-  color: var(--Text-Default) !important;
-}
-
-.me-status-bar__button.dx-button-mode-text {
-  color: var(--Text-Default) !important;
-}
-
-.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-icon {
-  color: var(--Text-Default) !important;
-}
-
 .me-status-bar__button-content .dx-icon .material-icons {
   color: currentColor;
 }
@@ -246,13 +263,6 @@
 }
 
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content {
-  color: var(--Icon-Default);
-}
-
-.me-status-bar__button.dx-button-mode-text.me-status-bar__button--info
-  .dx-button-content
-  .dx-icon
-  .material-icons {
   color: var(--Icon-Default);
 }
 
