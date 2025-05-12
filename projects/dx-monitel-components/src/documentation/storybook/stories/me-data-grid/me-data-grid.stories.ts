@@ -394,3 +394,44 @@ export const WithContentGrouping: Story = {
 </dx-data-grid>`,
   }),
 };
+
+export const WithNumberAlign: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-data-grid
+        meDataGrid
+        [dataSource]="dataSource"
+        [size]="size"
+        [allowColumnReordering]="allowColumnReordering"
+        [allowColumnResizing]="allowColumnResizing"
+        [showRowLines]="showRowLines"
+        [showColumnLines]="showColumnLines"
+        [disabled]="disabled"
+        [columnAutoWidth]="columnAutoWidth"
+        [wordWrapEnabled]="wordWrapEnabled"
+        [showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
+        [selection]="selection"
+      >
+        <dxo-selection *ngIf="!selection" [mode]="mode" [allowSelectAll]="allowSelectAll" [selectAllMode]="selectAllMode" [showCheckBoxesMode]="showCheckBoxesMode"></dxo-selection>
+        <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
+
+        <dxi-column
+          dataField="ID"
+          alignment="left"
+          [cellTemplate]="'idCellTemplate'"
+        ></dxi-column>
+
+        <dxi-column dataField="CompanyName"></dxi-column>
+        <dxi-column dataField="Fax"></dxi-column>
+        <dxi-column dataField="City"></dxi-column>
+        <dxi-column dataField="Phone"></dxi-column>
+
+        <div *dxTemplate="let info of 'idCellTemplate'">
+          <p style="text-align: right; margin: 0;">{{info.data.ID}}</p>
+        </div>
+      </dx-data-grid>
+    `,
+  }),
+};
