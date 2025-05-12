@@ -52,6 +52,7 @@ export class MeSelectBoxDirective
   private leftIconComponentRef: ComponentRef<MeIconComponent> | null = null;
   private multipleListInstance!: DxList;
   private multipleListElement!: HTMLElement;
+  private searchActive?: Boolean;
 
   private focusService: ComponentFocusService;
   constructor(
@@ -72,6 +73,8 @@ export class MeSelectBoxDirective
       this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
     }`;
 
+    this.searchActive = this.component.instance.option('searchEnabled');
+
     this.dropDownOptionsService.configureDropDownOptions(
       this.component,
       this.element,
@@ -84,7 +87,9 @@ export class MeSelectBoxDirective
     this.component.wrapItemText = true;
 
     if (this.multiSelect) {
-      const dataSource = this.component.dataSource;
+      const dataSource = (
+        this.component.dataSource as Array<{ name: string }>
+      ).map((item) => item.name);
 
       this.component.dropDownOptions = {
         wrapperAttr: {
@@ -102,16 +107,10 @@ export class MeSelectBoxDirective
           this.multipleListElement = document.createElement('div');
           contentElement.appendChild(this.multipleListElement);
 
-          const displayExpr =
-            typeof this.component.displayExpr === 'function'
-              ? undefined
-              : this.component.displayExpr || 'text';
-
           this.multipleListInstance = new DxList(this.multipleListElement, {
             dataSource,
             selectionMode: 'multiple',
             showSelectionControls: true,
-            displayExpr,
             onSelectionChanged: (e: any) => {
               this.selectedItems = e.component.option('selectedItems') ?? [];
               this.selectedItemsChange.emit(this.selectedItems);
@@ -123,6 +122,13 @@ export class MeSelectBoxDirective
           });
         },
       };
+
+      this.component.instance.on('input', (e: any) => {
+        this.multipleListInstance.option(
+          'searchValue',
+          e.event.originalEvent.target.value
+        );
+      });
     }
   }
 
@@ -130,33 +136,41 @@ export class MeSelectBoxDirective
   onOpened(e: any) {
     const listInstance = e.component?._list;
 
-    if (!listInstance) {
-      return;
-    }
-
     if (!this.component.selectedItem) {
       this.multipleListInstance?.unselectAll();
     }
 
     const listElement = listInstance.element();
 
-    if (this.multiSelect) {
-      if (this.multipleListInstance.element()) {
+    const updateDividers = () => {
+      const items =
+        (this.component.dataSource as any[]) || this.component.items || [];
+
+      if (this.multiSelect && this.multipleListInstance?.element()) {
         this.dividerService.addDividers({
           contentElement: this.multipleListInstance.element(),
           selector: '.dx-list-item',
           dividersVisibility: this.dividersVisibility,
-          items:
-            (this.component.dataSource as any[]) || this.component.items || [],
+          items,
+        });
+      } else {
+        this.dividerService.addDividers({
+          contentElement: listElement,
+          selector: '.dx-list-item',
+          dividersVisibility: this.dividersVisibility,
+          items,
         });
       }
-    } else {
-      this.dividerService.addDividers({
-        contentElement: listElement,
-        selector: '.dx-list-item',
-        dividersVisibility: this.dividersVisibility,
-        items: this.component.items || this.component.dataSource || [],
-      });
+    };
+
+    updateDividers();
+    listInstance.on('contentReady', updateDividers);
+  }
+
+  @HostListener('onClosed', ['$event'])
+  onClosed(e: any) {
+    if (this.multiSelect) {
+      this.multipleListInstance.option('searchValue', undefined);
     }
   }
 
