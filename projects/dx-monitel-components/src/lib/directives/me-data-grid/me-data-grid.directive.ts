@@ -3,15 +3,12 @@ import {
   Directive,
   ElementRef,
   Input,
-  OnChanges,
   OnDestroy,
   Renderer2,
-  SimpleChanges,
 } from '@angular/core';
-
-import { MeSize } from '../../types/types';
-import { ComponentFocusService } from '../../service/component-focus.service';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meDataGrid]',
@@ -22,11 +19,8 @@ import { DxDataGridComponent } from 'devextreme-angular';
     '[class.me-data-grid-large]': 'isSizeLarge',
   },
 })
-export class MeDataGridDirective
-  implements AfterViewInit, OnDestroy, OnChanges
-{
+export class MeDataGridDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'medium';
-  @Input() columnHeaderStyles: { [key: string]: string } = {};
 
   private focusService: ComponentFocusService;
 
@@ -62,44 +56,42 @@ export class MeDataGridDirective
       }
     }
 
-    this.applyColumnHeaderStyles();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['columnHeaderStyles']) {
-      this.applyColumnHeaderStyles();
-    }
-  }
-
-  private applyColumnHeaderStyles(): void {
-    if (!this.columnHeaderStyles) return;
-
-    const headerCells = this.element.nativeElement.querySelectorAll(
-      'td[role="columnheader"]'
-    );
-
-    if (!headerCells || headerCells.length === 0) {
-      setTimeout(() => this.applyColumnHeaderStyles(), 100);
-      return;
-    }
-
-    headerCells.forEach((cell: Element) => {
-      const ariaLabel = cell.getAttribute('aria-label');
-      if (!ariaLabel) return;
-
-      const match = ariaLabel.match(/Столбец\s+(.+)/);
-      if (!match || !match[1]) return;
-
-      const columnName = match[1].trim();
-      const alignment = this.columnHeaderStyles[columnName];
-
-      if (alignment) {
-        this.renderer.addClass(cell, `grid-header-${alignment}`);
-      }
-    });
+    this.setupHeaderStyles();
   }
 
   ngOnDestroy(): void {
     this.focusService.ngOnDestroy();
+  }
+
+  private setupHeaderStyles(): void {
+    this.component.onContentReady.subscribe(() => {
+      this.updateColumnHeaders();
+    });
+  }
+
+  private updateColumnHeaders(): void {
+    const headerCells = this.element.nativeElement.querySelectorAll(
+      '.dx-header-row td[role="columnheader"]'
+    );
+
+    this.component.columns.forEach((col: any, index: number) => {
+      if (col.headerAlign && headerCells[index]) {
+        const cell = headerCells[index];
+        const contentElement = cell.querySelector('.dx-datagrid-text-content');
+
+        if (contentElement) {
+          this.clearAlignmentClasses(contentElement);
+          this.renderer.addClass(
+            contentElement,
+            `grid-header-${col.headerAlign}`
+          );
+        }
+      }
+    });
+  }
+
+  private clearAlignmentClasses(element: Element): void {
+    const classes = ['grid-header-left', 'grid-header-right'];
+    classes.forEach((cls) => this.renderer.removeClass(element, cls));
   }
 }

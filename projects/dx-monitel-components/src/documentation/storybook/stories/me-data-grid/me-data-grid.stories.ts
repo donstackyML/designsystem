@@ -413,20 +413,16 @@ export const WithNumberAlign: Story = {
         [showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [selection]="selection"
-        [columnHeaderStyles]="{ 'ID': 'left' }"
+        [columns]="[
+          { dataField: 'ID', caption: 'ID', headerAlign: 'left', alignment: 'right' },
+          { dataField: 'CompanyName', caption: 'Company'},
+          { dataField: 'City', caption: 'City'},
+          { dataField: 'Phone', caption: 'State'},
+          { dataField: 'Fax', caption: 'Zipcode'},
+        ]"
       >
         <dxo-selection *ngIf="!selection" [mode]="mode" [allowSelectAll]="allowSelectAll" [selectAllMode]="selectAllMode" [showCheckBoxesMode]="showCheckBoxesMode"></dxo-selection>
         <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
-
-        <dxi-column
-          dataField="ID"
-          alignment="right"
-        ></dxi-column>
-
-        <dxi-column dataField="CompanyName"></dxi-column>
-        <dxi-column dataField="Fax"></dxi-column>
-        <dxi-column dataField="City"></dxi-column>
-        <dxi-column dataField="Phone"></dxi-column>
       </dx-data-grid>
     `,
   }),
