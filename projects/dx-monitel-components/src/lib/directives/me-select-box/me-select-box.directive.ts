@@ -91,6 +91,10 @@ export class MeSelectBoxDirective
         this.component.dataSource as Array<{ name: string }>
       ).map((item) => item.name);
 
+      this.component.displayExpr = () => {
+        return this.selectedItems.map((i: any) => i.name ?? i).join(', ');
+      };
+
       this.component.dropDownOptions = {
         wrapperAttr: {
           ...this.wrapperAttr,
@@ -114,10 +118,9 @@ export class MeSelectBoxDirective
             onSelectionChanged: (e: any) => {
               this.selectedItems = e.component.option('selectedItems') ?? [];
               this.selectedItemsChange.emit(this.selectedItems);
-              this.component.instance.option(
-                'selectedItem.name',
-                this.selectedItems.map((i: any) => i.name ?? i).join(', ')
-              );
+              this.component.value = this.selectedItems
+                .map((i: any) => i.name ?? i)
+                .join(', ');
             },
           });
         },
@@ -136,7 +139,7 @@ export class MeSelectBoxDirective
   onOpened(e: any) {
     const listInstance = e.component?._list;
 
-    if (!this.component.selectedItem) {
+    if (!this.component.value) {
       this.multipleListInstance?.unselectAll();
     }
 
