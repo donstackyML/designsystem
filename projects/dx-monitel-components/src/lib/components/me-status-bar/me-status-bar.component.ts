@@ -2,7 +2,7 @@ export type StatusBarSize = 'small' | 'large';
 export type StatusType = 'error' | 'warning' | 'success' | 'info';
 
 export interface StatusBarItem {
-  text: string;
+  text?: string;
   textColor?: string;
   type?: StatusType;
   icon?: string;
@@ -181,6 +181,10 @@ export class MeStatusBarComponent implements AfterViewInit {
 
     if (item.type) {
       classes.push(`me-status-bar__button--${item.type}`);
+    }
+
+    if (!item.text) {
+      classes.push('me-status-bar__button--no-text');
     }
 
     return classes;
