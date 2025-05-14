@@ -143,6 +143,10 @@ export class MeSelectBoxDirective
       this.multipleListInstance?.unselectAll();
     }
 
+    if (this.multiSelect) {
+      this.renderer.addClass(this.element.nativeElement, 'selectbox-active');
+    }
+
     const listElement = listInstance.element();
 
     const updateDividers = () => {
@@ -174,6 +178,8 @@ export class MeSelectBoxDirective
   onClosed(e: any) {
     if (this.multiSelect) {
       this.multipleListInstance.option('searchValue', undefined);
+
+      this.renderer.removeClass(this.element.nativeElement, 'selectbox-active');
     }
   }
 
