@@ -52,7 +52,7 @@ export class MeTreeListDirective implements AfterViewInit {
             this.clearAlignmentClasses(contentElement);
             this.renderer.addClass(
               contentElement,
-              `grid-header-${col.headerAlign}`
+              `treelist-header-${col.headerAlign}`
             );
           }
         }
@@ -61,7 +61,7 @@ export class MeTreeListDirective implements AfterViewInit {
   }
 
   private clearAlignmentClasses(element: Element): void {
-    const classes = ['grid-header-left', 'grid-header-right'];
+    const classes = ['treelist-header-left', 'treelist-header-right'];
     classes.forEach((cls) => this.renderer.removeClass(element, cls));
   }
 }
