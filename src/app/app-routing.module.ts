@@ -35,11 +35,13 @@ import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
+import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
   { path: 'me-accordion', component: MeAccordionComponent },
   { path: 'me-autocomplete', component: MeAutocompleteComponent },
+  { path: 'me-badge', component: MeBadgeDemoComponent },
   { path: 'me-breadcrumbs', component: MeBreadcrumbsDemoComponent },
   { path: 'me-button-group', component: MeButtonGroupComponent },
   { path: 'me-buttons', component: MeButtonComponent },
