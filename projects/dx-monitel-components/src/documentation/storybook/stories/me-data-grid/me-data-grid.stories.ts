@@ -394,3 +394,36 @@ export const WithContentGrouping: Story = {
 </dx-data-grid>`,
   }),
 };
+
+export const WithNumberAlign: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-data-grid
+        meDataGrid
+        [dataSource]="dataSource"
+        [size]="size"
+        [allowColumnReordering]="allowColumnReordering"
+        [allowColumnResizing]="allowColumnResizing"
+        [showRowLines]="showRowLines"
+        [showColumnLines]="showColumnLines"
+        [disabled]="disabled"
+        [columnAutoWidth]="columnAutoWidth"
+        [wordWrapEnabled]="wordWrapEnabled"
+        [showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
+        [selection]="selection"
+        [columns]="[
+          { dataField: 'ID', caption: 'ID', headerAlign: 'left', alignment: 'right' },
+          { dataField: 'CompanyName', caption: 'Company'},
+          { dataField: 'City', caption: 'City'},
+          { dataField: 'Phone', caption: 'State'},
+          { dataField: 'Fax', caption: 'Zipcode'},
+        ]"
+      >
+        <dxo-selection *ngIf="!selection" [mode]="mode" [allowSelectAll]="allowSelectAll" [selectAllMode]="selectAllMode" [showCheckBoxesMode]="showCheckBoxesMode"></dxo-selection>
+        <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
+      </dx-data-grid>
+    `,
+  }),
+};
