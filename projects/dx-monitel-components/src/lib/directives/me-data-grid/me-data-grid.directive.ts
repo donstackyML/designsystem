@@ -6,10 +6,9 @@ import {
   OnDestroy,
   Renderer2,
 } from '@angular/core';
-
-import { MeSize } from '../../types/types';
-import { ComponentFocusService } from '../../service/component-focus.service';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meDataGrid]',
@@ -24,10 +23,11 @@ export class MeDataGridDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'medium';
 
   private focusService: ComponentFocusService;
+
   constructor(
     private element: ElementRef,
     private component: DxDataGridComponent,
-    renderer: Renderer2
+    private renderer: Renderer2
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
@@ -55,9 +55,43 @@ export class MeDataGridDirective implements AfterViewInit, OnDestroy {
         widgets.forEach((elm) => elm.setAttribute('tabindex', '1'));
       }
     }
+
+    this.setupHeaderStyles();
   }
 
   ngOnDestroy(): void {
     this.focusService.ngOnDestroy();
+  }
+
+  private setupHeaderStyles(): void {
+    this.component.onContentReady.subscribe(() => {
+      this.updateColumnHeaders();
+    });
+  }
+
+  private updateColumnHeaders(): void {
+    const headerCells = this.element.nativeElement.querySelectorAll(
+      '.dx-header-row td[role="columnheader"]'
+    );
+
+    this.component.columns.forEach((col: any, index: number) => {
+      if (col.headerAlign && headerCells[index]) {
+        const cell = headerCells[index];
+        const contentElement = cell.querySelector('.dx-datagrid-text-content');
+
+        if (contentElement) {
+          this.clearAlignmentClasses(contentElement);
+          this.renderer.addClass(
+            contentElement,
+            `grid-header-${col.headerAlign}`
+          );
+        }
+      }
+    });
+  }
+
+  private clearAlignmentClasses(element: Element): void {
+    const classes = ['grid-header-left', 'grid-header-right'];
+    classes.forEach((cls) => this.renderer.removeClass(element, cls));
   }
 }
