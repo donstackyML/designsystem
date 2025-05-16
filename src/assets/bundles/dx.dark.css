@@ -18287,11 +18287,6 @@ input.dx-hidden {
   margin: 0;
 }
 
-.dx-form-group-with-caption > .dx-form-group-content {
-  padding-top: 19px;
-  padding-bottom: 20px;
-  margin-top: 6px;
-}
 .dx-form-group-with-caption .dx-form-group.dx-form-group-with-caption {
   padding-left: 20px;
 }
@@ -18354,6 +18349,7 @@ input.dx-hidden {
   --label-line-height: 16px;
   --group-caption-font-size: 16px;
   --group-caption-line-height: 20px;
+  --form-group-gap: 12px;
   font-family: var(--font-family, Arial, sans-serif);
 }
 .me-form .dx-field-item-label-location-left {
@@ -18378,6 +18374,14 @@ input.dx-hidden {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+.me-form .dx-form-group-with-caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-group-gap);
+}
+.me-form .dx-form-group-with-caption .dx-form-group-caption {
+  font-weight: 600;
 }
 .me-form.me-form-small .me-inputs-small.me-date-box {
   height: var(--input-height);
@@ -18463,6 +18467,9 @@ input.dx-hidden {
 }
 .me-form.me-form-large.me-form-label-position-left .dx-field-item-label-content .dx-field-item-required-mark {
   position: unset;
+}
+.me-form.me-form-large .dx-form-group-with-caption {
+  --form-group-gap: 16px;
 }
 .me-form .me-textbox.me-inputs-large.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty .dx-texteditor-label .dx-label:after,
 .me-form .me-textbox.me-inputs-medium.dx-texteditor-with-floating-label.dx-texteditor.dx-texteditor-empty .dx-texteditor-label .dx-label:after,
