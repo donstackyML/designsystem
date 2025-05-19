@@ -566,14 +566,12 @@ export const ScrollableContentWithButtons: Story = {
           </dxi-toolbar-item>
 
         <div *dxTemplate="let data of 'content'">
-          <dx-scroll-view width="100%" height="100%">
             <div class="me-flex-column">
               <div>
                 ${words}
               </div>
               <dx-button meButton text="Button"></dx-button>
             </div>
-          </dx-scroll-view>
         </div>
 
         <div *dxTemplate="let data of 'overflowButton'">
