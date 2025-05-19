@@ -25963,17 +25963,36 @@ input.dx-hidden {
 .me-popup .dx-popup-content > .dx-button {
   margin: 0 10px;
 }
-.me-popup.me-popup-medium {
-  --popup-content-padding: 0 20px;
+.me-popup .dx-overlay-content > .dx-popup-content-scrollable {
+  overflow-y: auto;
+  margin: 8px 6px 8px 0;
 }
-.me-popup.me-popup-medium:has(.dx-toolbar.dx-popup-bottom) {
-  --popup-content-padding: 0 20px;
+.me-popup .dx-overlay-content > .dx-popup-content-scrollable::-webkit-scrollbar {
+  width: 4px;
+}
+.me-popup .dx-overlay-content > .dx-popup-content-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.me-popup .dx-overlay-content > .dx-popup-content-scrollable::-webkit-scrollbar-thumb {
+  background-color: var(--Controls-Scrollbar-Default);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+.me-popup .dx-overlay-content > .dx-popup-content-scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: var(--Controls-Scrollbar-Hover);
+}
+.me-popup .dx-overlay-content > .dx-popup-content-scrollable::-webkit-scrollbar-thumb:active {
+  background-color: var(--Controls-Scrollbar-Drag);
+}
+.me-popup .dx-overlay-content > .dx-popup-content-scrollable::-webkit-scrollbar-button {
+  display: none;
+}
+.me-popup.me-popup-medium {
+  --popup-content-padding: 4px 10px 0 24px;
 }
 .me-popup.me-popup-large {
-  --popup-content-padding: 0 24px;
-}
-.me-popup.me-popup-large:has(.dx-toolbar.dx-popup-bottom) {
-  --popup-content-padding: 0 24px;
+  --popup-content-padding: 8px 10px 0 24px;
 }
 .me-popup .dx-toolbar-after, .me-popup .dx-toolbar-before, .me-popup .dx-toolbar-center {
   gap: 12px;
