@@ -85,14 +85,22 @@ export class MeTagBoxDirective
     if (!listInstance) {
       return;
     }
+
     const listElement = listInstance.element();
 
-    this.dividerService.addDividers({
-      contentElement: listElement,
-      selector: '.dx-list-item',
-      dividersVisibility: this.dividersVisibility,
-      items: this.tagBox.items || this.tagBox.dataSource || [],
-    });
+    const updateDividers = () => {
+      const listElement = listInstance.element();
+      this.dividerService.addDividers({
+        contentElement: listElement,
+        selector: '.dx-list-item',
+        dividersVisibility: this.dividersVisibility,
+        items: this.tagBox.items || this.tagBox.dataSource || [],
+      });
+    };
+
+    updateDividers();
+
+    listInstance.on('contentReady', updateDividers);
 
     listInstance.option('onFocusedItemChanged', (focusEvent: any) => {
       if (!this.isKeyboardNavigation && focusEvent?.element) {
@@ -101,7 +109,6 @@ export class MeTagBoxDirective
     });
 
     const originalOnItemClick = listInstance.option('onItemClick');
-
     listInstance.option('onItemClick', (clickEvent: any) => {
       if (originalOnItemClick) {
         originalOnItemClick(clickEvent);

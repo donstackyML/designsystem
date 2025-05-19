@@ -490,3 +490,43 @@ export const WithFixedHeight: Story = {
     height: '300px',
   },
 };
+
+export const WithNumberAlign: Story = {
+  args: {
+    dataSource: [
+      { Full_Name: 'John Heart', Title: 'CEO', ID: 1 },
+      { Full_Name: 'Samantha Bright', Title: 'COO', ID: 2 },
+      { Full_Name: 'Robert Reagan', Title: 'CMO', ID: 3 },
+      { Full_Name: 'Greta Sims', Title: 'HR Manager', ID: 4 },
+    ],
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-tree-list
+        meTreeList
+        [(dataSource)]="dataSource"
+        keyExpr="ID"
+        [allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[disabled]="disabled"
+        [height]="height"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
+        [columns]="[
+          { dataField: 'ID', caption: 'ID', headerAlign: 'left', alignment: 'right' },
+          { dataField: 'Full_Name', caption: 'Company'},
+          { dataField: 'Title', caption: 'City'},
+        ]"
+      >
+      </dx-tree-list>
+    `,
+  }),
+};
