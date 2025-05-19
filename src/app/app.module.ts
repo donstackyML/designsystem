@@ -101,6 +101,7 @@ import { MeToastDirective } from './directives/toast.directive';
 import { MeBreadcrumbsDemoComponent } from './components/me-breadcrumbs-demo/me-breadcrumbs-demo.component';
 import { breadcrumbsIconSet } from './components/me-breadcrumbs-demo/breadcrumbs-icon-set';
 import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box-demo-icon-set';
+import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box
     MeSwitchDirective,
     MeTextEditorDirective,
     MeToastDirective,
+    MeBadgeDemoComponent,
   ],
   imports: [
     ReactiveFormsModule,
