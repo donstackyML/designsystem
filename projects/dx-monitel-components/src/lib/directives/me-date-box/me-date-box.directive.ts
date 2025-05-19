@@ -190,7 +190,13 @@ export class MeDateBoxDirective
       const componentRef = createComponent(MeTimeControlsComponent, {
         environmentInjector: this.appRef.injector,
       });
+
       componentRef.setInput('time', this.time);
+
+      this.isSizeLarge && componentRef.setInput('size', 'large');
+      this.isSizeMedium && componentRef.setInput('size', 'medium');
+      this.isSizeSmall && componentRef.setInput('size', 'small');
+
       componentRef.instance.onChange.subscribe((value) => {
         this.time = value;
         this.timeHasBeenChanged = true;

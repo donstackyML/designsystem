@@ -144,6 +144,11 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
       });
       // @ts-ignore
       componentRef.setInput('time', this[name]);
+
+      this.isSizeLarge && componentRef.setInput('size', 'large');
+      this.isSizeMedium && componentRef.setInput('size', 'medium');
+      this.isSizeSmall && componentRef.setInput('size', 'small');
+
       componentRef.instance.onChange.subscribe((value) => {
         // @ts-ignore
         this[name] = value;
