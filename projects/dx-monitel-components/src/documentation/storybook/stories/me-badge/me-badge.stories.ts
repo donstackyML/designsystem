@@ -17,11 +17,11 @@ export default {
   argTypes: {
     size: {
       control: 'select',
-      options: ['16', '20'],
+      options: ['small', 'large'],
       description: 'Размер бейджа',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '16' },
+        defaultValue: { summary: 'small' },
       },
     },
     color: {
@@ -57,7 +57,7 @@ type Story = StoryObj<MeBadgeComponent>;
 export const Default: Story = {
   args: {
     value: 1,
-    size: '16',
+    size: 'small',
     color: 'default',
   },
   render: (args) => ({
@@ -86,8 +86,8 @@ export const Sizes: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 16px; align-items: center;">
-        <me-badge [value]="8" size="16" color="default"></me-badge>
-        <me-badge [value]="8" size="20" color="default"></me-badge>
+        <me-badge [value]="8" size="small" color="default"></me-badge>
+        <me-badge [value]="8" size="large" color="default"></me-badge>
       </div>
     `,
   }),
@@ -112,31 +112,31 @@ export const AllVariants: Story = {
   render: () => ({
     template: `
       <div style="display: flex; flex-direction: column; gap: 24px;">
-        <!-- Size 20 -->
+        <!-- Size small -->
         <div>
-          <h4 class="badge-title" style="margin-bottom: 12px;">Size: 16px</h4>
+          <h4 class="badge-title" style="margin-bottom: 12px;">Size: small</h4>
           <div style="display: flex; gap: 16px; align-items: center;">
-            <me-badge [value]="5" size="16" color="default"></me-badge>
-            <me-badge [value]="5" size="16" color="secondary"></me-badge>
-            <me-badge [value]="5" size="16" color="success"></me-badge>
-            <me-badge [value]="5" size="16" color="success-light"></me-badge>
-            <me-badge [value]="5" size="16" color="attention"></me-badge>
-            <me-badge [value]="5" size="16" color="attention-light"></me-badge>
-            <me-badge [value]="5" size="16" color="error"></me-badge>
+            <me-badge [value]="5" size="small" color="default"></me-badge>
+            <me-badge [value]="5" size="small" color="secondary"></me-badge>
+            <me-badge [value]="5" size="small" color="success"></me-badge>
+            <me-badge [value]="5" size="small" color="success-light"></me-badge>
+            <me-badge [value]="5" size="small" color="attention"></me-badge>
+            <me-badge [value]="5" size="small" color="attention-light"></me-badge>
+            <me-badge [value]="5" size="small" color="error"></me-badge>
           </div>
         </div>
 
-        <!-- Size 24 -->
+        <!-- Size large -->
         <div>
-          <h4 class="badge-title" style="margin-bottom: 12px;">Size: 20px</h4>
+          <h4 class="badge-title" style="margin-bottom: 12px;">Size: large</h4>
           <div style="display: flex; gap: 16px; align-items: center;">
-            <me-badge [value]="5" size="20" color="default"></me-badge>
-            <me-badge [value]="5" size="20" color="secondary"></me-badge>
-            <me-badge [value]="5" size="20" color="success"></me-badge>
-            <me-badge [value]="5" size="20" color="success-light"></me-badge>
-            <me-badge [value]="5" size="20" color="attention"></me-badge>
-            <me-badge [value]="5" size="20" color="attention-light"></me-badge>
-            <me-badge [value]="5" size="20" color="error"></me-badge>
+            <me-badge [value]="5" size="large" color="default"></me-badge>
+            <me-badge [value]="5" size="large" color="secondary"></me-badge>
+            <me-badge [value]="5" size="large" color="success"></me-badge>
+            <me-badge [value]="5" size="large" color="success-light"></me-badge>
+            <me-badge [value]="5" size="large" color="attention"></me-badge>
+            <me-badge [value]="5" size="large" color="attention-light"></me-badge>
+            <me-badge [value]="5" size="large" color="error"></me-badge>
           </div>
         </div>
       </div>

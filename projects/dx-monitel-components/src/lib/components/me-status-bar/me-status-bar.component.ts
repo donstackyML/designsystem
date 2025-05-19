@@ -20,6 +20,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
   HostListener,
   Input,
   ViewChild,
@@ -59,6 +60,7 @@ export class MeStatusBarComponent implements AfterViewInit {
   @Input() size: StatusBarSize = 'small';
   @Input() showDivider: boolean = false;
   @Input() transparent: boolean = false;
+  @Input() minHeight = 24;
 
   @ViewChild('leftSection', { static: true })
   leftSectionRef!: ElementRef<HTMLElement>;
@@ -69,6 +71,10 @@ export class MeStatusBarComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.adjustBlocks();
+  }
+
+  @HostBinding('style.min-height') get height() {
+    return `${this.minHeight}px`;
   }
 
   @HostListener('window:resize')
