@@ -1,6 +1,7 @@
 import {
   ApplicationRef,
   createComponent,
+  DestroyRef,
   Directive,
   ElementRef,
   EmbeddedViewRef,
@@ -16,6 +17,7 @@ import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import type { ValueChangedEvent } from 'devextreme/ui/date_box';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive({
   selector: '[meDateRangeBox]',
@@ -32,7 +34,8 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     private renderer: Renderer2,
     private appRef: ApplicationRef,
     private injector: Injector,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private destroyRef: DestroyRef
   ) {
     super(dateRangeBox);
     this.dateRangeBox.labelMode = 'outside';
@@ -145,14 +148,20 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
       // @ts-ignore
       componentRef.setInput('time', this[name]);
 
-      this.isSizeLarge && componentRef.setInput('size', 'large');
-      this.isSizeMedium && componentRef.setInput('size', 'medium');
-      this.isSizeSmall && componentRef.setInput('size', 'small');
+      if (this.isSizeLarge) {
+        componentRef.setInput('size', 'large');
+      } else if (this.isSizeMedium) {
+        componentRef.setInput('size', 'medium');
+      } else {
+        componentRef.setInput('size', 'small');
+      }
 
-      componentRef.instance.onChange.subscribe((value) => {
-        // @ts-ignore
-        this[name] = value;
-      });
+      componentRef.instance.onChange
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((value) => {
+          // @ts-ignore
+          this[name] = value;
+        });
       this.appRef.attachView(componentRef.hostView);
 
       const domElem = (componentRef.hostView as EmbeddedViewRef<any>)

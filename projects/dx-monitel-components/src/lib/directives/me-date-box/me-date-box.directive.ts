@@ -1,6 +1,7 @@
 import {
   ApplicationRef,
   createComponent,
+  DestroyRef,
   Directive,
   ElementRef,
   EmbeddedViewRef,
@@ -24,6 +25,7 @@ import type {
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
   _popup: {
@@ -49,7 +51,8 @@ export class MeDateBoxDirective
     public element: ElementRef,
     protected override component: DxDateBoxComponent,
     protected renderer: Renderer2,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    private destroyRef: DestroyRef
   ) {
     super(component);
     this.component.labelMode = 'outside';
@@ -193,14 +196,20 @@ export class MeDateBoxDirective
 
       componentRef.setInput('time', this.time);
 
-      this.isSizeLarge && componentRef.setInput('size', 'large');
-      this.isSizeMedium && componentRef.setInput('size', 'medium');
-      this.isSizeSmall && componentRef.setInput('size', 'small');
+      if (this.isSizeLarge) {
+        componentRef.setInput('size', 'large');
+      } else if (this.isSizeMedium) {
+        componentRef.setInput('size', 'medium');
+      } else {
+        componentRef.setInput('size', 'small');
+      }
 
-      componentRef.instance.onChange.subscribe((value) => {
-        this.time = value;
-        this.timeHasBeenChanged = true;
-      });
+      componentRef.instance.onChange
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((value) => {
+          this.time = value;
+          this.timeHasBeenChanged = true;
+        });
       this.appRef.attachView(componentRef.hostView);
 
       const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
