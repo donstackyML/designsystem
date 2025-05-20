@@ -88,7 +88,6 @@ export class MeLabelDirective
     if (textNode && textNode.textContent) {
       this.labelElement = this.renderer.createElement('span');
       this.renderer.addClass(this.labelElement, 'me-label-text');
-      this.renderer.setStyle(this.labelElement, 'cursor', 'pointer');
 
       const text = this.renderer.createText(textNode.textContent.trim());
       this.renderer.appendChild(this.labelElement, text);
