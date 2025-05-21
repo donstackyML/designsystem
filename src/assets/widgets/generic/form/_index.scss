@@ -539,6 +539,7 @@
 .me-form {
   &.me-form-small,
   &.me-form-medium {
+    --row-gap-between-group: 28px;
     --row-gap-between-fields: 12px;
     --column-gap-between-fields: 24px;
 
@@ -551,6 +552,7 @@
   &.me-form-large {
     --row-gap-between-fields: 16px;
     --column-gap-between-fields: 32px;
+    --row-gap-between-group: 36px;
 
     &:has(.dx-field-item-label-location-left) {
       --row-gap-between-fields: 24px;
@@ -586,7 +588,13 @@
     }
 
     .dx-box-flex.dx-box.dx-widget.dx-collection {
-      row-gap: var(--row-gap-between-fields);
+      row-gap: var(--row-gap-between-group);
+    }
+
+    .dx-form-group-content {
+      .dx-box-flex.dx-box.dx-widget.dx-collection {
+        row-gap: var(--row-gap-between-fields);
+      }
     }
 
     .dx-item-content.dx-box-flex {
