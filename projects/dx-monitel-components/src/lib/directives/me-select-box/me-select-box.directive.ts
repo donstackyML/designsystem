@@ -98,7 +98,7 @@ export class MeSelectBoxDirective
       this.component.dropDownOptions = {
         wrapperAttr: {
           ...this.wrapperAttr,
-          class: `${popupWrapperClasses} me-select-box-multi-select`,
+          class: `${popupWrapperClasses} me-select-box-multi-select me-dropdownlist-${this.size}`,
         },
         position: {
           my: 'left top',
