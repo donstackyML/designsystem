@@ -30,10 +30,15 @@ export default {
         'default',
         'secondary',
         'success',
-        'success-light',
         'attention',
-        'attention-light',
         'error',
+        'blue-gray',
+        'blue',
+        'red',
+        'green',
+        'green-light',
+        'yellow',
+        'yellow-light',
       ],
       description: 'Цветовая тема бейджа',
       table: {
@@ -73,10 +78,16 @@ export const BasicExamples: Story = {
         <me-badge [value]="5" color="default"></me-badge>
         <me-badge [value]="5" color="secondary"></me-badge>
         <me-badge [value]="5" color="success"></me-badge>
-        <me-badge [value]="5" color="success-light"></me-badge>
         <me-badge [value]="5" color="attention"></me-badge>
-        <me-badge [value]="5" color="attention-light"></me-badge>
         <me-badge [value]="5" color="error"></me-badge>
+
+        <me-badge [value]="5" color="blue-gray"></me-badge>
+        <me-badge [value]="5" color="blue"></me-badge>
+        <me-badge [value]="5" color="red"></me-badge>
+        <me-badge [value]="5" color="green"></me-badge>
+        <me-badge [value]="5" color="green-light"></me-badge>
+        <me-badge [value]="5" color="yellow"></me-badge>
+        <me-badge [value]="5" color="yellow-light"></me-badge>
       </div>
     `,
   }),
@@ -119,10 +130,16 @@ export const AllVariants: Story = {
             <me-badge [value]="5" size="small" color="default"></me-badge>
             <me-badge [value]="5" size="small" color="secondary"></me-badge>
             <me-badge [value]="5" size="small" color="success"></me-badge>
-            <me-badge [value]="5" size="small" color="success-light"></me-badge>
             <me-badge [value]="5" size="small" color="attention"></me-badge>
-            <me-badge [value]="5" size="small" color="attention-light"></me-badge>
             <me-badge [value]="5" size="small" color="error"></me-badge>
+
+            <me-badge [value]="5" size="small" color="blue-gray"></me-badge>
+            <me-badge [value]="5" size="small" color="blue"></me-badge>
+            <me-badge [value]="5" size="small" color="red"></me-badge>
+            <me-badge [value]="5" size="small" color="green"></me-badge>
+            <me-badge [value]="5" size="small" color="green-light"></me-badge>
+            <me-badge [value]="5" size="small" color="yellow"></me-badge>
+            <me-badge [value]="5" size="small" color="yellow-light"></me-badge>
           </div>
         </div>
 
@@ -133,10 +150,16 @@ export const AllVariants: Story = {
             <me-badge [value]="5" size="large" color="default"></me-badge>
             <me-badge [value]="5" size="large" color="secondary"></me-badge>
             <me-badge [value]="5" size="large" color="success"></me-badge>
-            <me-badge [value]="5" size="large" color="success-light"></me-badge>
             <me-badge [value]="5" size="large" color="attention"></me-badge>
-            <me-badge [value]="5" size="large" color="attention-light"></me-badge>
             <me-badge [value]="5" size="large" color="error"></me-badge>
+
+            <me-badge [value]="5" size="large" color="blue-gray"></me-badge>
+            <me-badge [value]="5" size="large" color="blue"></me-badge>
+            <me-badge [value]="5" size="large" color="red"></me-badge>
+            <me-badge [value]="5" size="large" color="green"></me-badge>
+            <me-badge [value]="5" size="large" color="green-light"></me-badge>
+            <me-badge [value]="5" size="large" color="yellow"></me-badge>
+            <me-badge [value]="5" size="large" color="yellow-light"></me-badge>
           </div>
         </div>
       </div>
