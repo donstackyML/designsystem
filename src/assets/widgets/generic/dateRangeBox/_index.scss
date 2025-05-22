@@ -20,6 +20,15 @@
 .dx-daterangebox {
   display: flex;
 
+  .dx-calendar.dx-widget {
+    &.dx-calendar-view-month,
+    &.dx-calendar-view-year,
+    &.dx-calendar-view-decade,
+    &.dx-calendar-view-century {
+      border: none !important;
+    }
+  }
+
   .dx-texteditor-with-label,
   .dx-texteditor-with-floating-label {
     margin-top: 0;
@@ -245,6 +254,12 @@
   overflow: visible;
   box-shadow: none;
 
+  .dx-popup-content {
+    .dx-calendar {
+      border: none;
+    }
+  }
+
   .dx-popup-content:has(.dx-calendar) {
     margin-top: 4px;
 
@@ -257,6 +272,7 @@
 
         .dx-calendar-views-wrapper {
           width: 480px;
+          min-height: 232px;
 
           .dx-widget {
             width: 240px;
