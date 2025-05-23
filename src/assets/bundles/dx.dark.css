@@ -22442,6 +22442,7 @@ input.dx-hidden {
   --label-font-size: 12px;
   --label-line-height: 16px;
   --icon-width: 20px;
+  --icon-wrapper-size: 26px;
   --icon-lock-inner-height: 17px;
   --clear-icon-inner-width: 12px;
   --dropdowneditor-icon: 16px;
@@ -22464,6 +22465,7 @@ input.dx-hidden {
   --label-font-size: 12px;
   --label-line-height: 16px;
   --icon-width: 20px;
+  --icon-wrapper-size: 30px;
   --icon-lock-inner-height: 17px;
   --clear-icon-inner-width: 12px;
   --dropdowneditor-icon: 16px;
@@ -22486,6 +22488,7 @@ input.dx-hidden {
   --label-font-size: 13px;
   --label-line-height: 16px;
   --icon-width: 24px;
+  --icon-wrapper-size: 38px;
   --icon-lock-inner-height: 21px;
   --clear-icon-inner-width: 16px;
   --dropdowneditor-icon: 18px;
@@ -22500,7 +22503,7 @@ input.dx-hidden {
   align-items: center;
   gap: 4px;
   border-radius: var(--input-border-radius);
-  padding-inline: var(--padding-inline);
+  padding-left: var(--padding-inline);
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-texteditor-input-container,
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-placeholder {
@@ -22539,10 +22542,12 @@ input.dx-hidden {
   align-items: center;
   gap: 4px;
   color: var(--Controls-Content-In-Controls-Main-Default);
-  margin-left: 4px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-texteditor-buttons-container:has(> div:empty) {
-  margin-left: 0;
+  width: var(--icon-wrapper-size);
+  height: var(--icon-wrapper-size);
+  justify-content: center;
+  flex-basis: inherit;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-texteditor-buttons-container > * {
   height: var(--icon-width);
@@ -22562,6 +22567,9 @@ input.dx-hidden {
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-texteditor-buttons-container .dx-dropdowneditor-button .dx-button-content .dx-dropdowneditor-icon::before {
   content: var(--me-icon-chevron-down);
+}
+.me-inputs.dx-texteditor.dx-widget.me-inputs.dx-datebox .dx-texteditor-container {
+  padding-right: 4px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-label {
   transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms, transform 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms, top 0.2s cubic-bezier(0, 0, 0.2, 1) 0ms;
@@ -22659,6 +22667,10 @@ input.dx-hidden {
   font-family: var(--me-icon-family);
   gap: 0;
   align-self: center;
+  width: var(--icon-wrapper-size);
+  height: var(--icon-wrapper-size);
+  justify-content: center;
+  flex-basis: inherit;
 }
 .me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container::before, .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container::before {
   content: var(--me-icon-lock);
@@ -22783,10 +22795,16 @@ input.dx-hidden {
   margin-right: 4px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box:not(.dx-texteditor-with-label) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-texteditor-label-outside .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box:not(.dx-texteditor-with-label) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-texteditor-label-outside .dx-texteditor-buttons-container {
-  margin: 0 1px 0 4px;
+  margin: 0 1px 0 0;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box:has(.dx-state-readonly, .dx-state-disabled) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-texteditor-label-outside .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box:has(.dx-state-readonly, .dx-state-disabled) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-texteditor-label-outside .dx-texteditor-buttons-container {
+  margin: 0;
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-number-box.dx-state-disabled .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-readonly .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.dx-state-disabled .dx-texteditor-buttons-container {
-  margin-right: var(--padding-inline);
+  flex-basis: inherit;
+  width: var(--icon-wrapper-size);
+  height: var(--icon-wrapper-size);
+  justify-content: center;
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-buttons-container {
   gap: 0;
@@ -22802,9 +22820,7 @@ input.dx-hidden {
   font-family: var(--me-icon-family);
   content: var(--me-icon-chevron-down);
 }
-.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs .dx-texteditor-container .dx-texteditor-input-container,
-.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs .dx-texteditor-container .dx-placeholder, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.me-inputs .dx-texteditor-container .dx-texteditor-input-container,
-.me-inputs.dx-texteditor.dx-widget.me-date-range-box.me-inputs .dx-texteditor-container .dx-placeholder {
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs .dx-texteditor-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.me-inputs .dx-texteditor-container {
   padding-left: var(--padding-inline);
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-container {

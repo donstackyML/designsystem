@@ -44,6 +44,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --label-line-height: 16px;
 
         --icon-width: 20px;
+        --icon-wrapper-size: 26px;
         --icon-lock-inner-height: 17px;
         --clear-icon-inner-width: 12px;
         --dropdowneditor-icon: 16px;
@@ -74,6 +75,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --label-line-height: 16px;
 
         --icon-width: 20px;
+        --icon-wrapper-size: 30px;
         --icon-lock-inner-height: 17px;
         --clear-icon-inner-width: 12px;
         --dropdowneditor-icon: 16px;
@@ -104,6 +106,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --label-line-height: 16px;
 
         --icon-width: 24px;
+        --icon-wrapper-size: 38px;
         --icon-lock-inner-height: 21px;
         --clear-icon-inner-width: 16px;
         --dropdowneditor-icon: 18px;
@@ -124,7 +127,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
       gap: 4px;
       border-radius: var(--input-border-radius);
-      padding-inline: var(--padding-inline);
+      padding-left: var(--padding-inline);
 
       .dx-texteditor-input-container,
       .dx-placeholder {
@@ -172,10 +175,12 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         align-items: center;
         gap: 4px;
         color: var(--Controls-Content-In-Controls-Main-Default);
-        margin-left: 4px;
 
         &:has(> div:empty) {
-          margin-left: 0;
+          width: var(--icon-wrapper-size);
+          height: var(--icon-wrapper-size);
+          justify-content: center;
+          flex-basis: inherit;
         }
 
         & > * {
@@ -207,6 +212,12 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
             }
           }
         }
+      }
+    }
+
+    &.dx-datebox {
+      .dx-texteditor-container {
+        padding-right: 4px;
       }
     }
 
@@ -360,6 +371,11 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
           font-family: var(--me-icon-family);
           gap: 0;
           align-self: center;
+
+          width: var(--icon-wrapper-size);
+          height: var(--icon-wrapper-size);
+          justify-content: center;
+          flex-basis: inherit;
 
           &::before {
             content: var(--me-icon-lock);
@@ -564,14 +580,24 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     &:not(.dx-texteditor-with-label),
     &.dx-texteditor-label-outside {
       .dx-texteditor-buttons-container {
-        margin: 0 1px 0 4px;
+        margin: 0 1px 0 0;
+      }
+    }
+
+    &:has(.dx-state-readonly, .dx-state-disabled),
+    &.dx-texteditor-label-outside {
+      .dx-texteditor-buttons-container {
+        margin: 0;
       }
     }
 
     &.dx-state-readonly,
     &.dx-state-disabled {
       .dx-texteditor-buttons-container {
-        margin-right: var(--padding-inline);
+        flex-basis: inherit;
+        width: var(--icon-wrapper-size);
+        height: var(--icon-wrapper-size);
+        justify-content: center;
       }
     }
 
@@ -595,10 +621,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &.me-inputs {
       .dx-texteditor-container {
-        .dx-texteditor-input-container,
-        .dx-placeholder {
-          padding-left: var(--padding-inline);
-        }
+        padding-left: var(--padding-inline);
       }
     }
 
