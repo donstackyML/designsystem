@@ -144,7 +144,7 @@ export default {
   args: {
     icon: '',
     text: 'Button',
-    displayExpr: 'name',
+    displayExpr: 'text',
     dataSource: meDropDownButtonMockData,
     size: 'medium',
     type: 'normal',

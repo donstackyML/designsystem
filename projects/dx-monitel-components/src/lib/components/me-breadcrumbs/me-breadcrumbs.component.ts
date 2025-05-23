@@ -18,7 +18,8 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { MeIconsModule } from '@monitel/me-icons-registry';
+import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
+import { moreHorizX20 } from '@monitel/me-icons';
 import {
   DxButtonComponent,
   DxButtonModule,
@@ -106,7 +107,8 @@ export class MeBreadcrumbsComponent
     private zone: NgZone,
     private cdr: ChangeDetectorRef,
     private elementRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private meIconRegistry: MeIconsRegistry
   ) {
     this.focusService = new ComponentFocusService(elementRef, renderer);
     this.focusService.addKeyUpEventHandle('Tab', (evt) => this.tabHandle(evt));
@@ -116,6 +118,8 @@ export class MeBreadcrumbsComponent
     this.focusService.addKeyUpEventHandle('ArrowRight', (evt) =>
       this.rightHandle(evt)
     );
+
+    meIconRegistry.registerIcons([moreHorizX20]);
   }
 
   ngOnInit() {
@@ -446,4 +450,6 @@ export class MeBreadcrumbsComponent
     evt.preventDefault();
     this.focusService.holdKeyboardFocus();
   }
+
+  protected readonly moreHorizX20 = moreHorizX20;
 }

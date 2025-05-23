@@ -19,6 +19,7 @@ import { FocusInEvent } from 'devextreme/ui/number_box';
 })
 export class MeTimeControlsComponent {
   @Input() time?: number;
+  @Input() size: 'small' | 'medium' | 'large' = 'small';
 
   protected $hours = new BehaviorSubject(0);
   protected $minutes = new BehaviorSubject(0);
