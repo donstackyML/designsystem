@@ -25,7 +25,16 @@ export default {
       },
     },
     color: {
-      control: 'select',
+      control: {
+        type: 'select',
+        labels: {
+          default: 'default (deprecated)',
+          secondary: 'secondary (deprecated)',
+          success: 'success (deprecated)',
+          attention: 'attention (deprecated)',
+          error: 'error (deprecated)',
+        },
+      },
       options: [
         'default',
         'secondary',
