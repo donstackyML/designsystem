@@ -541,6 +541,7 @@
   &.me-form-medium {
     --row-gap-between-fields: 12px;
     --column-gap-between-fields: 24px;
+    --margin-bottom-form-item-group: 16px;
 
     &:has(.dx-field-item-label-location-left) {
       --row-gap-between-fields: 20px;
@@ -551,6 +552,7 @@
   &.me-form-large {
     --row-gap-between-fields: 16px;
     --column-gap-between-fields: 32px;
+    --margin-bottom-form-item-group: 20px;
 
     &:has(.dx-field-item-label-location-left) {
       --row-gap-between-fields: 24px;
@@ -589,8 +591,22 @@
       row-gap: var(--row-gap-between-fields);
     }
 
+    .dx-form-group-content {
+      .dx-box-flex.dx-box.dx-widget.dx-collection {
+        row-gap: var(--row-gap-between-fields);
+      }
+    }
+
     .dx-item-content.dx-box-flex {
       column-gap: var(--column-gap-between-fields);
+    }
+
+    .dx-item:has(> .dx-item-content > .dx-field-item-has-group) {
+      margin-bottom: var(--margin-bottom-form-item-group);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }
