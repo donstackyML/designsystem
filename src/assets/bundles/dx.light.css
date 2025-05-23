@@ -5215,6 +5215,27 @@ me-badge .badge.color-attention-light {
 me-badge .badge.color-error {
   background-color: var(--Badge-Red);
 }
+me-badge .badge.color-blue-gray {
+  background-color: var(--Badge-Blue-Gray);
+}
+me-badge .badge.color-blue {
+  background-color: var(--Badge-Blue);
+}
+me-badge .badge.color-red {
+  background-color: var(--Badge-Red);
+}
+me-badge .badge.color-green {
+  background-color: var(--Badge-Green);
+}
+me-badge .badge.color-green-light {
+  background-color: var(--Badge-Green-Light);
+}
+me-badge .badge.color-yellow {
+  background-color: var(--Badge-Yellow);
+}
+me-badge .badge.color-yellow-light {
+  background-color: var(--Badge-Yellow-Light);
+}
 
 .badge-title {
   color: var(--Text-Default);
@@ -6749,7 +6770,7 @@ me-badge .badge.color-error {
 .dx-calendar {
   width: 282px;
   min-width: 282px;
-  height: 268.6px;
+  height: fit-content;
   min-height: 268.6px;
   background-color: #ffffff;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -14938,6 +14959,9 @@ input.dx-hidden {
 .dx-daterangebox {
   display: flex;
 }
+.dx-daterangebox .dx-calendar.dx-widget.dx-calendar-view-month, .dx-daterangebox .dx-calendar.dx-widget.dx-calendar-view-year, .dx-daterangebox .dx-calendar.dx-widget.dx-calendar-view-decade, .dx-daterangebox .dx-calendar.dx-widget.dx-calendar-view-century {
+  border: none !important;
+}
 .dx-daterangebox .dx-texteditor-with-label,
 .dx-daterangebox .dx-texteditor-with-floating-label {
   margin-top: 0;
@@ -15087,6 +15111,9 @@ input.dx-hidden {
   overflow: visible;
   box-shadow: none;
 }
+.me-date-range-box-overlay.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-calendar-multiview {
+  border: none;
+}
 .me-date-range-box-overlay.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content:has(.dx-calendar) {
   margin-top: 4px;
 }
@@ -15099,6 +15126,7 @@ input.dx-hidden {
 }
 .me-date-range-box-overlay.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content:has(.dx-calendar) .dx-calendar.dx-calendar-range.dx-calendar-multiview .dx-calendar-body .dx-calendar-views-wrapper {
   width: 480px;
+  min-height: 232px;
 }
 .me-date-range-box-overlay.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content:has(.dx-calendar) .dx-calendar.dx-calendar-range.dx-calendar-multiview .dx-calendar-body .dx-calendar-views-wrapper .dx-widget {
   width: 240px;
@@ -18715,6 +18743,7 @@ input.dx-hidden {
 .me-form.me-form-small, .me-form.me-form-medium {
   --row-gap-between-fields: 12px;
   --column-gap-between-fields: 24px;
+  --margin-bottom-form-item-group: 16px;
 }
 .me-form.me-form-small:has(.dx-field-item-label-location-left), .me-form.me-form-medium:has(.dx-field-item-label-location-left) {
   --row-gap-between-fields: 20px;
@@ -18723,6 +18752,7 @@ input.dx-hidden {
 .me-form.me-form-large {
   --row-gap-between-fields: 16px;
   --column-gap-between-fields: 32px;
+  --margin-bottom-form-item-group: 20px;
 }
 .me-form.me-form-large:has(.dx-field-item-label-location-left) {
   --row-gap-between-fields: 24px;
@@ -18749,8 +18779,17 @@ input.dx-hidden {
 .me-form .dx-layout-manager .dx-box-flex.dx-box.dx-widget.dx-collection {
   row-gap: var(--row-gap-between-fields);
 }
+.me-form .dx-layout-manager .dx-form-group-content .dx-box-flex.dx-box.dx-widget.dx-collection {
+  row-gap: var(--row-gap-between-fields);
+}
 .me-form .dx-layout-manager .dx-item-content.dx-box-flex {
   column-gap: var(--column-gap-between-fields);
+}
+.me-form .dx-layout-manager .dx-item:has(> .dx-item-content > .dx-field-item-has-group) {
+  margin-bottom: var(--margin-bottom-form-item-group);
+}
+.me-form .dx-layout-manager .dx-item:has(> .dx-item-content > .dx-field-item-has-group):last-child {
+  margin-bottom: 0;
 }
 
 /**
@@ -25986,7 +26025,7 @@ input.dx-hidden {
   padding: var(--popup-content-padding);
 }
 .me-popup .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
-  padding: 20px 0 0;
+  padding: 12px 0 0;
 }
 .me-popup .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) .dx-scrollview-content {
   padding: var(--popup-content-padding);
@@ -25994,7 +26033,11 @@ input.dx-hidden {
 .me-popup .dx-popup-content > .dx-button {
   margin: 0 10px;
 }
+.me-popup.me-popup-large .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
+  padding: 16px 0 0;
+}
 .me-popup .dx-overlay-content > .dx-popup-content-scrollable {
+  --popup-content-padding: 0 10px 0 24px;
   overflow-y: auto;
   margin: 8px 6px 8px 0;
 }
@@ -26018,12 +26061,6 @@ input.dx-hidden {
 }
 .me-popup .dx-overlay-content > .dx-popup-content-scrollable::-webkit-scrollbar-button {
   display: none;
-}
-.me-popup.me-popup-medium {
-  --popup-content-padding: 4px 10px 0 24px;
-}
-.me-popup.me-popup-large {
-  --popup-content-padding: 8px 10px 0 24px;
 }
 .me-popup .dx-toolbar-after, .me-popup .dx-toolbar-before, .me-popup .dx-toolbar-center {
   gap: 12px;
@@ -31128,6 +31165,12 @@ input.dx-hidden {
   display: none;
 }
 
+.me-select-box-multi-select .dx-list-item.dx-state-focused .dx-checkbox-icon {
+  border: 1px solid var(--Controls-BG-Accent-Accent-BG-Default);
+}
+.me-select-box-multi-select .dx-list-item.dx-state-focused .dx-checkbox-icon:active {
+  border: 1px solid var(--Controls-BG-Accent-Accent-BG-Pressed);
+}
 .me-select-box-multi-select.me-dropdownlist-small > .dx-overlay-content > .dx-popup-content .dx-list-item-before-bag {
   width: 14px;
 }
