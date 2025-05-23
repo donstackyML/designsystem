@@ -173,7 +173,7 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     padding: var(--popup-content-padding);
 
     &:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
-      padding: 20px 0 0;
+      padding: 12px 0 0;
 
       .dx-scrollview-content {
         padding: var(--popup-content-padding);
@@ -185,7 +185,15 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     }
   }
 
+  &.me-popup-large {
+    .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
+      padding: 16px 0 0;
+    }
+  }
+
   .dx-overlay-content > .dx-popup-content-scrollable {
+    --popup-content-padding: 0 10px 0 24px;
+
     overflow-y: auto;
     margin: 8px 6px 8px 0;
 
@@ -215,14 +223,6 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     &::-webkit-scrollbar-button {
       display: none;
     }
-  }
-
-  &.me-popup-medium {
-    --popup-content-padding: 4px 10px 0 24px;
-  }
-
-  &.me-popup-large {
-    --popup-content-padding: 8px 10px 0 24px;
   }
 
   & .dx-toolbar-after,
