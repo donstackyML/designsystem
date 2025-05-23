@@ -60,7 +60,7 @@ export class MeStatusBarComponent implements AfterViewInit {
   @Input() size: StatusBarSize = 'small';
   @Input() showDivider: boolean = false;
   @Input() transparent: boolean = false;
-  @Input() minHeight = 24;
+  @Input() minHeight?: number;
 
   @ViewChild('leftSection', { static: true })
   leftSectionRef!: ElementRef<HTMLElement>;
@@ -73,8 +73,16 @@ export class MeStatusBarComponent implements AfterViewInit {
     this.adjustBlocks();
   }
 
-  @HostBinding('style.min-height') get height() {
-    return `${this.minHeight}px`;
+  @HostBinding('style.--status-bar-min-height.px') get height() {
+    if (this.minHeight) {
+      return this.minHeight;
+    }
+
+    if (!this.minHeight && this.size === 'large') {
+      return 32;
+    }
+
+    return 24;
   }
 
   @HostListener('window:resize')
