@@ -58,6 +58,12 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   }
 }
 
+.popup-disable-radius + .dx-overlay-wrapper {
+  .dx-overlay-content {
+    border-radius: 0;
+  }
+}
+
 .dx-popup-title {
   position: relative;
   padding: $generic-popup-toolbartop-padding;
@@ -167,7 +173,7 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     padding: var(--popup-content-padding);
 
     &:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
-      padding: 20px 0 0;
+      padding: 12px 0 0;
 
       .dx-scrollview-content {
         padding: var(--popup-content-padding);
@@ -179,19 +185,43 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
     }
   }
 
-  &.me-popup-medium {
-    --popup-content-padding: 0 20px;
-
-    &:has(.dx-toolbar.dx-popup-bottom) {
-      --popup-content-padding: 0 20px;
+  &.me-popup-large {
+    .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
+      padding: 16px 0 0;
     }
   }
 
-  &.me-popup-large {
-    --popup-content-padding: 0 24px;
+  .dx-overlay-content > .dx-popup-content-scrollable {
+    --popup-content-padding: 0 10px 0 24px;
 
-    &:has(.dx-toolbar.dx-popup-bottom) {
-      --popup-content-padding: 0 24px;
+    overflow-y: auto;
+    margin: 8px 6px 8px 0;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--Controls-Scrollbar-Default);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.5s ease;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--Controls-Scrollbar-Hover);
+    }
+
+    &::-webkit-scrollbar-thumb:active {
+      background-color: var(--Controls-Scrollbar-Drag);
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
     }
   }
 

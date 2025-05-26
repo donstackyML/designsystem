@@ -5,9 +5,11 @@ import {
   ComponentRef,
   Directive,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
   OnInit,
+  Output,
   Renderer2,
   SimpleChanges,
   ViewContainerRef,
@@ -19,6 +21,8 @@ import { DropDownOptionsService } from '../../service/drop-down-options.service'
 import { ListItemDividerService } from '../../service/list-item-divider.service';
 import type { MeCommonType, MeScrollbarShowType } from '../../types/types';
 import { MeFormField } from '../me-form-item/me-form-field';
+
+import DxList from 'devextreme/ui/list';
 
 @Directive({
   selector: '[meSelectBox]',
@@ -40,8 +44,15 @@ export class MeSelectBoxDirective
   @Input() dropDownListMaxHeight?: string | number;
   @Input() leftIcon?: string = '';
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
+  @Input() multiSelect?: boolean = false;
+  @Input() selectedItems: any[] = [];
+
+  @Output() selectedItemsChange = new EventEmitter<any[]>();
 
   private leftIconComponentRef: ComponentRef<MeIconComponent> | null = null;
+  private multipleListInstance!: DxList;
+  private multipleListElement!: HTMLElement;
+  private searchActive?: Boolean;
 
   private focusService: ComponentFocusService;
   constructor(
@@ -62,6 +73,8 @@ export class MeSelectBoxDirective
       this.showScrollbar === 'always' ? `me-scrollbar-visible` : ``
     }`;
 
+    this.searchActive = this.component.instance.option('searchEnabled');
+
     this.dropDownOptionsService.configureDropDownOptions(
       this.component,
       this.element,
@@ -72,23 +85,102 @@ export class MeSelectBoxDirective
     );
 
     this.component.wrapItemText = true;
+
+    if (this.multiSelect) {
+      const dataSource = (
+        this.component.dataSource as Array<{ name: string }>
+      ).map((item) => item.name);
+
+      this.component.displayExpr = () => {
+        return this.selectedItems.map((i: any) => i.name ?? i).join(', ');
+      };
+
+      this.component.dropDownOptions = {
+        wrapperAttr: {
+          ...this.wrapperAttr,
+          class: `${popupWrapperClasses} me-select-box-multi-select me-dropdownlist-${this.size}`,
+        },
+        position: {
+          my: 'left top',
+          at: 'left bottom',
+          offset: { y: 4 },
+          collision: 'fit flip',
+          of: this.element.nativeElement,
+        },
+        contentTemplate: (contentElement: any) => {
+          this.multipleListElement = document.createElement('div');
+          contentElement.appendChild(this.multipleListElement);
+
+          this.multipleListInstance = new DxList(this.multipleListElement, {
+            dataSource,
+            selectionMode: 'multiple',
+            showSelectionControls: true,
+            onSelectionChanged: (e: any) => {
+              this.selectedItems = e.component.option('selectedItems') ?? [];
+              this.selectedItemsChange.emit(this.selectedItems);
+              this.component.value = this.selectedItems
+                .map((i: any) => i.name ?? i)
+                .join(', ');
+            },
+          });
+        },
+      };
+
+      this.component.instance.on('input', (e: any) => {
+        this.multipleListInstance.option(
+          'searchValue',
+          e.event.originalEvent.target.value
+        );
+      });
+    }
   }
 
   @HostListener('onOpened', ['$event'])
   onOpened(e: any) {
     const listInstance = e.component?._list;
 
-    if (!listInstance) {
-      return;
+    if (!this.component.value) {
+      this.multipleListInstance?.unselectAll();
     }
+
+    if (this.multiSelect) {
+      this.renderer.addClass(this.element.nativeElement, 'selectbox-active');
+    }
+
     const listElement = listInstance.element();
 
-    this.dividerService.addDividers({
-      contentElement: listElement,
-      selector: '.dx-list-item',
-      dividersVisibility: this.dividersVisibility,
-      items: this.component.items || this.component.dataSource || [],
-    });
+    const updateDividers = () => {
+      const items =
+        (this.component.dataSource as any[]) || this.component.items || [];
+
+      if (this.multiSelect && this.multipleListInstance?.element()) {
+        this.dividerService.addDividers({
+          contentElement: this.multipleListInstance.element(),
+          selector: '.dx-list-item',
+          dividersVisibility: this.dividersVisibility,
+          items,
+        });
+      } else {
+        this.dividerService.addDividers({
+          contentElement: listElement,
+          selector: '.dx-list-item',
+          dividersVisibility: this.dividersVisibility,
+          items,
+        });
+      }
+    };
+
+    updateDividers();
+    listInstance.on('contentReady', updateDividers);
+  }
+
+  @HostListener('onClosed', ['$event'])
+  onClosed(e: any) {
+    if (this.multiSelect) {
+      this.multipleListInstance.option('searchValue', undefined);
+
+      this.renderer.removeClass(this.element.nativeElement, 'selectbox-active');
+    }
   }
 
   ngAfterViewInit() {

@@ -134,28 +134,78 @@ export const SelectedItems: Story = {
   args: {
     dataSource: meContextMenuMockDataWithSelectedItems,
   },
+  render: (args) => ({
+    props: args,
+    template: `
+    <dx-button meButton text="Открыть контекстное меню (правая кнопка мыши)" id="contextMenuSelectedItemsId"></dx-button>
+    <dx-context-menu
+        meContextMenu
+        target="#contextMenuSelectedItemsId"
+        ${argsToTemplate(args)}>
+    </dx-context-menu>`,
+  }),
 };
 
 export const WithSubMenuMaxHeight: Story = {
   args: {
     subMenuMaxHeight: '200px',
   },
+  render: (args) => ({
+    props: args,
+    template: `
+    <dx-button meButton text="Открыть контекстное меню (правая кнопка мыши)" id="contextMenuWithSubMenuId"></dx-button>
+    <dx-context-menu
+        meContextMenu
+        target="#contextMenuWithSubMenuId"
+        ${argsToTemplate(args)}>
+    </dx-context-menu>`,
+  }),
 };
 
 export const DividersVisibilityNone: Story = {
   args: {
     dividersVisibility: 'none',
   },
+  render: (args) => ({
+    props: args,
+    template: `
+    <dx-button meButton text="Открыть контекстное меню (правая кнопка мыши)" id="contextMenuDividersVisibilityNoneId"></dx-button>
+    <dx-context-menu
+        meContextMenu
+        target="#contextMenuDividersVisibilityNoneId"
+        ${argsToTemplate(args)}>
+    </dx-context-menu>`,
+  }),
 };
 
 export const DividersVisibilityAll: Story = {
   args: {
     dividersVisibility: 'all',
   },
+  render: (args) => ({
+    props: args,
+    template: `
+    <dx-button meButton text="Открыть контекстное меню (правая кнопка мыши)" id="contextMenuDividersVisibilityAllId"></dx-button>
+    <dx-context-menu
+        meContextMenu
+        target="#contextMenuDividersVisibilityAllId"
+        ${argsToTemplate(args)}>
+    </dx-context-menu>`,
+  }),
 };
 
 export const DividersVisibilityByContent: Story = {
   args: {
     dataSource: meContextMenuMockDataWithDividers,
   },
+  render: (args) => ({
+    props: args,
+    template: `
+    <dx-button meButton text="Открыть контекстное меню (правая кнопка мыши)" id="contextMenuDividersVisibilityContentId"></dx-button>
+    <dx-context-menu
+        meContextMenu
+        target="#contextMenuDividersVisibilityContentId"
+        ${argsToTemplate(args)}>
+    </dx-context-menu>`,
+  }),
 };

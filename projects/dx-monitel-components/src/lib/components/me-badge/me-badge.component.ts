@@ -14,15 +14,20 @@ import { CommonModule } from '@angular/common';
   `,
 })
 export class MeBadgeComponent implements OnChanges {
-  @Input() size: '20' | '16' = '16';
+  @Input() size: 'small' | 'large' = 'small';
   @Input() color:
     | 'default'
     | 'secondary'
     | 'success'
-    | 'success-light'
     | 'attention'
-    | 'attention-light'
-    | 'error' = 'default';
+    | 'error'
+    | 'blue-gray'
+    | 'blue'
+    | 'red'
+    | 'green'
+    | 'green-light'
+    | 'yellow'
+    | 'yellow-light' = 'default';
   @Input() value: string | number | null = null;
   @Input() leftValue?: string | number = '';
   @Input() rightValue?: string | number = '';

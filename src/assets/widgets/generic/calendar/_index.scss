@@ -19,7 +19,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
 .dx-calendar {
   width: $generic-calendar-width;
   min-width: $generic-calendar-width;
-  height: $generic-calendar-height + 20px;
+  height: fit-content;
   min-height: $generic-calendar-height + 20px;
   background-color: $calendar-bg;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -313,6 +313,10 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
     min-height: 292px;
     width: 288px;
     box-shadow: var(--select-box-box-shadow);
+
+    &.me-calendar-with-time-controls {
+      min-height: calc(292px + 32px);
+    }
 
     .dx-calendar-today-button {
       .dx-button-content {

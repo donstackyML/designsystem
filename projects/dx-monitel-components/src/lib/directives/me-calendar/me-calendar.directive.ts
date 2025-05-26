@@ -1,8 +1,13 @@
 import { DxCalendarComponent } from 'devextreme-angular';
 import { Subscription } from 'rxjs';
 import {
+  AfterViewInit,
+  ApplicationRef,
+  createComponent,
   Directive,
+  EmbeddedViewRef,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   OnDestroy,
@@ -15,6 +20,13 @@ import {
   FirstDayOfWeek,
   WeekNumberRule,
 } from 'devextreme/ui/calendar';
+import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
+import type DevExpress from 'devextreme';
+import type { ValueChangedEvent } from 'devextreme/ui/calendar';
+
+interface ExtendedDxCalendarComponent extends DevExpress.ui.dxCalendar {
+  _$element: HTMLElement[];
+}
 
 @Directive({
   selector: '[meCalendar]',
@@ -23,9 +35,12 @@ import {
     '[class.me-calendar-show-weeks-numbers]': 'showWeekNumbers',
   },
 })
-export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
+export class MeCalendarDirective
+  implements OnInit, AfterViewInit, OnChanges, OnDestroy
+{
   @Input() showWeekNumbers: boolean = true;
   @Input() firstDayOfWeek: FirstDayOfWeek = 1;
+  @Input() type: 'date' | 'datetime' = 'date';
 
   @Output() onDateValueChanged = new EventEmitter<any>();
   @Output() showWeekNumbersChange = new EventEmitter<boolean>();
@@ -35,11 +50,49 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private dxCalendarComponent: DxCalendarComponent) {}
+  constructor(
+    private dxCalendarComponent: DxCalendarComponent,
+    private appRef: ApplicationRef
+  ) {}
 
   ngOnInit() {
     this.updateCalendarOptions();
     this.setupEventListeners();
+  }
+
+  ngAfterViewInit() {
+    if (
+      this.type === 'datetime' &&
+      this.dxCalendarComponent.selectionMode === 'single'
+    ) {
+      const calendarElement = (
+        this.dxCalendarComponent.instance as ExtendedDxCalendarComponent
+      )._$element[0];
+      this.insertTimeControls(calendarElement);
+    }
+  }
+
+  @HostListener('onValueChanged', ['$event'])
+  onValueChanged(e: ValueChangedEvent) {
+    const MS_IN_DAY = 1000 * 60 * 60 * 24;
+    const dateChanged = e.previousValue
+      ? Math.abs(
+          new Date(e.value).getTime() - new Date(e.previousValue).getTime()
+        ) > MS_IN_DAY
+      : true;
+    if (this.type === 'datetime' && dateChanged) {
+      setTimeout(() => {
+        this.addTimeToDateValue(new Date(e.value));
+      }, 1);
+    }
+  }
+
+  private addTimeToDateValue(value: Date) {
+    const newDate = new Date(value);
+    newDate.setHours(0);
+    newDate.setMinutes(0);
+    newDate.setSeconds(0);
+    this.dxCalendarComponent.value = new Date(newDate.getTime() + this.time);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -86,5 +139,51 @@ export class MeCalendarDirective implements OnInit, OnChanges, OnDestroy {
         this.weekNumberRuleChange.emit(e.value);
         break;
     }
+  }
+
+  private time = 0;
+  private insertTimeControls(root: Element) {
+    const targetNode = root;
+
+    const hasBeenInserted = !!targetNode.querySelector('me-time-controls');
+    if (hasBeenInserted) return;
+
+    const calendarGridElement = root.querySelector(
+      '.dx-calendar-views-wrapper table'
+    );
+    const calendarWidth =
+      calendarGridElement?.getBoundingClientRect().width ?? 0;
+
+    const insert = () => {
+      const componentRef = createComponent(MeTimeControlsComponent, {
+        environmentInjector: this.appRef.injector,
+      });
+      componentRef.setInput('time', this.time);
+      componentRef.instance.onChange.subscribe((value) => {
+        this.time = value;
+        if (this.dxCalendarComponent.value) {
+          this.addTimeToDateValue(
+            new Date(this.dxCalendarComponent.value as string | number | Date)
+          );
+        }
+      });
+      this.appRef.attachView(componentRef.hostView);
+
+      const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
+        .rootNodes[0] as HTMLElement;
+      domElem.style.width = `${calendarWidth}px`;
+      domElem.style.marginInline = 'auto';
+
+      domElem.addEventListener('mousedown', (e) => {
+        if ((e.target as HTMLElement)['tagName'] === 'INPUT') {
+          e.stopPropagation();
+        }
+      });
+
+      targetNode.appendChild(domElem);
+    };
+
+    targetNode.classList.add('me-calendar-with-time-controls');
+    insert();
   }
 }

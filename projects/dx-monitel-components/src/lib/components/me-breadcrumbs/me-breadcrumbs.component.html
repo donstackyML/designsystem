@@ -1,6 +1,6 @@
 <nav #breadcrumbsContainer class="breadcrumbs" [ngClass]="'breadcrumbs-' + size" aria-label="Breadcrumbs">
   <dx-button #leftBtn class="breadcrumbs__left-btn" *ngIf="overflowLeft" stylingMode="text" (onClick)="showOverflowMenu('left', $event)">
-    <me-icon name="more_horiz_x20"></me-icon>
+    <me-icon [name]="moreHorizX20.name"></me-icon>
   </dx-button>
 
   <ng-container *ngFor="let item of normalizedItems">
@@ -27,7 +27,7 @@
     </div>
   </ng-container>
   <dx-button #rightBtn *ngIf="overflowRight" class="breadcrumbs__right-btn" stylingMode="text" (onClick)="showOverflowMenu('right', $event)">
-    <me-icon name="more_horiz_x20"></me-icon>
+    <me-icon [name]="moreHorizX20.name"></me-icon>
   </dx-button>
 </nav>
 <dx-context-menu
@@ -38,6 +38,7 @@
   [activeStateEnabled]="true"
   (onPositioning)="onContextMenuPositioning($event)"
   (onItemClick)="onOverflowItemClick($event)"
+  [showEvent]="''"
 >
   <div
     *dxTemplate="let data of 'item'"

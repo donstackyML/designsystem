@@ -118,6 +118,14 @@ export default {
         defaultValue: { summary: true },
       },
     },
+    disableRadius: {
+      control: 'boolean',
+      description: 'Убрать скругление.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
     disabled: {
       control: 'boolean',
       description: 'Включить/отключить компонент.',
@@ -558,14 +566,12 @@ export const ScrollableContentWithButtons: Story = {
           </dxi-toolbar-item>
 
         <div *dxTemplate="let data of 'content'">
-          <dx-scroll-view width="100%" height="100%">
             <div class="me-flex-column">
               <div>
                 ${words}
               </div>
               <dx-button meButton text="Button"></dx-button>
             </div>
-          </dx-scroll-view>
         </div>
 
         <div *dxTemplate="let data of 'overflowButton'">

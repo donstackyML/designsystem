@@ -59,6 +59,15 @@ export class MeDropDownButtonDirective
         this.removeMouseupListener?.();
       });
     });
+
+    renderer.listen(element.nativeElement, 'click', (e) => {
+      const button = element.nativeElement.querySelector('.dx-button');
+      renderer.addClass(button, 'dx-state-active');
+      this.removeMouseupListener = renderer.listen(document, 'mouseup', () => {
+        renderer.removeClass(button, 'dx-state-active');
+        this.removeMouseupListener?.();
+      });
+    });
   }
 
   ngOnDestroy(): void {
