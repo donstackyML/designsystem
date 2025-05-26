@@ -1,6 +1,7 @@
 import {
   Directive,
   ElementRef,
+  HostBinding,
   Input,
   Renderer2,
   ViewChild,
@@ -37,6 +38,11 @@ export class MePopupDirective extends MeOverlayDirective {
 
   @ViewChild(DxPopupComponent) popup?: DxPopupComponent;
 
+  @HostBinding('class.popup-disable-radius')
+  get radiusClass() {
+    return this.disableRadius;
+  }
+
   ngOnInit(): void {
     this.initMeModal(this.size);
     const popup = <DxPopupComponent>this.component;
@@ -49,13 +55,6 @@ export class MePopupDirective extends MeOverlayDirective {
       popup.width = this.width;
     } else if (this.size === 'large') {
       popup.width = POPUP_WIDTH_LARGE;
-    }
-
-    if (this.disableRadius) {
-      this.renderer.addClass(
-        this.element.nativeElement,
-        'popup-disable-radius'
-      );
     }
   }
 
