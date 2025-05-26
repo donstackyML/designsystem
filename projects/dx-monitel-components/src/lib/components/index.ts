@@ -8,5 +8,5 @@ export * from './me-pagination/me-pagination.component';
 export * from './me-property-grid';
 export * from './me-sidepage/me-sidepage.component';
 export * from './me-skeleton/me-skeleton.component';
-export * from './me-status-bar/me-status-bar.component';;
+export * from './me-status-bar/me-status-bar.component';
 export * from './me-toast/me-toast.component';

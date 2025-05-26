@@ -1,6 +1,17 @@
-import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Renderer2,
+  AfterViewInit,
+  Input,
+} from '@angular/core';
 import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { Column } from 'devextreme/ui/tree_list';
+
+type CustomTreeListColumn = {
+  headerAlign?: 'left' | 'center' | 'right';
+} & Column;
 
 @Directive({
   selector: '[meTreeList]',
