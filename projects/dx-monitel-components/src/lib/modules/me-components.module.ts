@@ -12,9 +12,13 @@ import { MeFileUploaderComponent } from '../components/me-file-uploader/me-file-
 import { MeIconComponent } from '../components/me-icon/me-icon.component';
 import { MeMenuLeftComponent } from '../components/me-menu-left/me-menu-left.component';
 import { MePaginationComponent } from '../components/me-pagination/me-pagination.component';
+import {
+  MePropertyGridCellComponent,
+  MePropertyGridComponent,
+} from '../components/me-property-grid';
 import { MeSidePageComponent } from '../components/me-sidepage/me-sidepage.component';
-import { MeSkeletonComponent } from '../components/me-skeleton/me-skeleton.component';
 import { MeSkeletonItemComponent } from '../components/me-skeleton/me-skeleton-item/me-skeleton-item.component';
+import { MeSkeletonComponent } from '../components/me-skeleton/me-skeleton.component';
 import { MeStatusBarComponent } from '../components/me-status-bar/me-status-bar.component';
 import { MeToastComponent } from '../components/me-toast/me-toast.component';
 
@@ -126,6 +130,8 @@ import { MeIconsInitializerModule } from './me-icons-initializer.module';
     MeSkeletonItemComponent,
     MeStatusBarComponent,
     MeToastComponent,
+    MePropertyGridComponent,
+    MePropertyGridCellComponent,
   ],
   exports: [
     MeAccordionModule,
