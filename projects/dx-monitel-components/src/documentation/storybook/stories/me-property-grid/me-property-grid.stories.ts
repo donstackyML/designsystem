@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
@@ -8,9 +13,24 @@ import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
 import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
 
 import { MeIconsModule } from '@monitel/me-icons-registry';
-import { DxColorBoxModule, DxDateBoxModule, DxNumberBoxModule, DxSelectBoxModule } from 'devextreme-angular';
-import { MePropertyGridCellComponent, MePropertyGridComponent } from '../../../../lib/components';
-import { MeCheckBoxModule, MeDateBoxModule, MeNumberBoxModule, MeSelectBoxModule, MeTagBoxModule, MeTextBoxModule } from '../../../../lib/directives';
+import {
+  DxColorBoxModule,
+  DxDateBoxModule,
+  DxNumberBoxModule,
+  DxSelectBoxModule,
+} from 'devextreme-angular';
+import {
+  MePropertyGridCellComponent,
+  MePropertyGridComponent,
+} from '../../../../lib/components';
+import {
+  MeCheckBoxModule,
+  MeDateBoxModule,
+  MeNumberBoxModule,
+  MeSelectBoxModule,
+  MeTagBoxModule,
+  MeTextBoxModule,
+} from '../../../../lib/directives';
 
 export default {
   title: 'Components/Property Grid/Property Grid',
@@ -52,7 +72,8 @@ export default {
     closeMode: {
       control: 'select',
       options: ['hide', 'remove'],
-      description: 'Определяет, как скрывается грид: "hide" — скрыть, "remove" — удалить из DOM.',
+      description:
+        'Определяет, как скрывается грид: "hide" — скрыть, "remove" — удалить из DOM.',
       table: {
         type: { summary: "'hide' | 'remove'" },
         defaultValue: { summary: 'hide' },
@@ -100,7 +121,8 @@ export default {
     },
     dataSource: {
       control: false,
-      description: 'Массив данных для генерации строк (альтернатива content projection).',
+      description:
+        'Массив данных для генерации строк (альтернатива content projection).',
       table: {
         type: { summary: 'Array<PropertyGridCell>' },
         defaultValue: { summary: '[]' },
@@ -119,12 +141,9 @@ export default {
   },
 } satisfies Meta<MePropertyGridComponent>;
 
-
 type Story = StoryObj<MePropertyGridComponent>;
 
-
 export const Default: Story = {
-
   render: (args) => ({
     props: {
       ...args,
@@ -270,11 +289,10 @@ export const Default: Story = {
         width: 100%;
         gap: 20px;
       }
-      `
-    ]
+      `,
+    ],
   }),
 };
-
 
 export const WithHeaderActions: Story = {
   args: {
@@ -302,8 +320,6 @@ export const WithHeaderActions: Story = {
   }),
 };
 
-
-
 const sampleDataSource = [
   { name: 'ID', value: 101, readOnly: true, showRequiredMark: true },
   { name: 'Статус', value: 'Активен' },
@@ -325,7 +341,7 @@ export const WithDataSource: Story = {
 };
 
 export const WithVariousInputs: Story = {
-  name: "With Various Inputs",
+  name: 'With Various Inputs',
   args: {
     gridTitle: 'Разные типы полей',
   },
@@ -337,7 +353,7 @@ export const WithVariousInputs: Story = {
       statusOptions: ['Новый', 'В работе', 'Завершен'],
       selectedStatus: 'В работе',
       dateValue: new Date(),
-      colorValue: '#FF5733'
+      colorValue: '#FF5733',
     },
     template: `
       <me-property-grid ${argsToTemplate(args)}>
@@ -401,14 +417,18 @@ export const WithFixedHeightAndScroll: Story = {
     props: args,
     template: `
       <me-property-grid ${argsToTemplate(args)}>
-        ${Array.from({ length: 15 }, (_, i) => `
-          <me-property-grid-cell name="Свойство ${i + 1}" value="Значение ${i + 1}"></me-property-grid-cell>
-        `).join('')}
+        ${Array.from(
+          { length: 15 },
+          (_, i) => `
+          <me-property-grid-cell name="Свойство ${i + 1}" value="Значение ${
+            i + 1
+          }"></me-property-grid-cell>
+        `
+        ).join('')}
       </me-property-grid>
     `,
   }),
 };
-
 
 export const InitiallyClosed: Story = {
   args: {

@@ -1,8 +1,26 @@
 import { MeIconsModule } from '@monitel/me-icons-registry';
-import { Meta, StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
-import { DxButtonModule, DxCheckBoxModule, DxNumberBoxModule, DxTextBoxModule } from 'devextreme-angular';
-import { MePropertyGridCellComponent, MePropertyGridComponent } from '../../../../lib/components';
-import { MeButtonModule, MeCheckBoxModule, MeNumberBoxModule, MeTextBoxModule } from '../../../../lib/directives';
+import {
+  Meta,
+  StoryObj,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
+import {
+  DxButtonModule,
+  DxCheckBoxModule,
+  DxNumberBoxModule,
+  DxTextBoxModule,
+} from 'devextreme-angular';
+import {
+  MePropertyGridCellComponent,
+  MePropertyGridComponent,
+} from '../../../../lib/components';
+import {
+  MeButtonModule,
+  MeCheckBoxModule,
+  MeNumberBoxModule,
+  MeTextBoxModule,
+} from '../../../../lib/directives';
 
 export default {
   title: 'Components/Property Grid/Property Grid Cell',
@@ -20,10 +38,9 @@ export default {
         MeCheckBoxModule,
         DxButtonModule,
         MeButtonModule,
-        MeIconsModule
+        MeIconsModule,
       ],
     }),
-
   ],
   argTypes: {
     name: {
@@ -52,7 +69,8 @@ export default {
     },
     readOnly: {
       control: 'boolean',
-      description: 'Делает значение только для чтения и добавляет кнопку копирования.',
+      description:
+        'Делает значение только для чтения и добавляет кнопку копирования.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -77,26 +95,24 @@ export default {
   },
   args: {
     name: 'Cell name',
-    value: 'Cell value'
-  }
+    value: 'Cell value',
+  },
 } satisfies Meta<MePropertyGridCellComponent>;
 
 type Story = StoryObj<MePropertyGridCellComponent>;
 
-export const Default: Story = {
-
-};
+export const Default: Story = {};
 
 export const StateReadOnly: Story = {
   args: {
-    readOnly: true
-  }
+    readOnly: true,
+  },
 };
 
 export const WithRequiredMark: Story = {
   args: {
-    showRequiredMark: true
-  }
+    showRequiredMark: true,
+  },
 };
 
 export const WithRightCustomContent: Story = {
@@ -138,8 +154,8 @@ export const WithRightCustomContent: Story = {
           ></dx-text-box>
         </div>
       </ng-container>
-    </me-property-grid-cell>`
-  })
+    </me-property-grid-cell>`,
+  }),
 };
 
 export const WithLeftCellCustomContent: Story = {
@@ -162,8 +178,8 @@ export const WithLeftCellCustomContent: Story = {
           ></dx-text-box>
         </div>
       </ng-container>
-    </me-property-grid-cell>`
-  })
+    </me-property-grid-cell>`,
+  }),
 };
 
 export const WithAdditionalProperties: Story = {
@@ -209,8 +225,8 @@ export const WithAdditionalProperties: Story = {
               ></dx-number-box>
             </div>
           </ng-container>
-        </me-property-grid-cell>`
-  })
+        </me-property-grid-cell>`,
+  }),
 };
 
 export const WithRightCellActions: Story = {
@@ -245,6 +261,6 @@ export const WithRightCellActions: Story = {
         </button>
       </ng-container>
     </me-property-grid-cell>
-    `
-  })
+    `,
+  }),
 };

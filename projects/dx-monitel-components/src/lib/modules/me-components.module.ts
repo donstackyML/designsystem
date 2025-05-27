@@ -12,7 +12,10 @@ import { MeFileUploaderComponent } from '../components/me-file-uploader/me-file-
 import { MeIconComponent } from '../components/me-icon/me-icon.component';
 import { MeMenuLeftComponent } from '../components/me-menu-left/me-menu-left.component';
 import { MePaginationComponent } from '../components/me-pagination/me-pagination.component';
-import { MePropertyGridCellComponent, MePropertyGridComponent } from '../components/me-property-grid';
+import {
+  MePropertyGridCellComponent,
+  MePropertyGridComponent,
+} from '../components/me-property-grid';
 import { MeSidePageComponent } from '../components/me-sidepage/me-sidepage.component';
 import { MeSkeletonItemComponent } from '../components/me-skeleton/me-skeleton-item/me-skeleton-item.component';
 import { MeSkeletonComponent } from '../components/me-skeleton/me-skeleton.component';
@@ -189,6 +192,6 @@ import { MeIconsInitializerModule } from './me-icons-initializer.module';
     MeSkeletonItemComponent,
     MeStatusBarComponent,
     MeToastComponent,
-  ]
+  ],
 })
 export class MeComponentsModule {}
