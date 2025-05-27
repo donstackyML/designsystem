@@ -134,9 +134,15 @@
 }
 
 :root {
-  --Inside-Elements: 3px;
+  --outside: 4px;
+  --inside-elements: 3px;
+  --inner: 2;
   --modal-shadow-color: rgba(0, 0, 0, 0.22);
   --modal-shadow: 0px 4px 10px 0px var(--modal-shadow-color);
+  --drop-down-shadow-color: rgba(0, 0, 0, 0.14);
+  --drop-down-shadow: 0px 2px 6px 0px var(--drop-down-shadow-color);
+  --vertical-dividers: 1px;
+  --horizontal-dividers: 1px;
 }
 
 /**
@@ -292,6 +298,7 @@
   --Controls-BG-Accent-Accent-BG-Disabled: #27376e;
   --Controls-BG-Accent-Accent-BG-Hover: #4a7cff;
   --Controls-BG-Accent-Accent-BG-Pressed: #264fb8;
+  --Controls-BG-Accent-Accent-BG-Selected: #264fb8;
   --Controls-BG-Accent-Accent-BG-Ripple: #4373f0;
   --Controls-BG-Accent-Attention-BG-Default: #d95b00;
   --Controls-BG-Accent-Attention-BG-Disabled: #714220;
@@ -477,6 +484,7 @@
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
   --Controls-BG-Accent-Accent-BG-Pressed: #2544b3;
+  --Controls-BG-Accent-Accent-BG-Selected: #2544b3;
   --Controls-BG-Accent-Accent-BG-Ripple: #4167ed;
   --Controls-BG-Accent-Attention-BG-Default: #fea500;
   --Controls-BG-Accent-Attention-BG-Disabled: #f6ae6b;
@@ -662,6 +670,7 @@
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
   --Controls-BG-Accent-Accent-BG-Pressed: #2544b3;
+  --Controls-BG-Accent-Accent-BG-Selected: #2544b3;
   --Controls-BG-Accent-Accent-BG-Ripple: #4167ed;
   --Controls-BG-Accent-Attention-BG-Default: #fea500;
   --Controls-BG-Accent-Attention-BG-Disabled: #f6ae6b;
@@ -847,6 +856,7 @@
   --Controls-BG-Accent-Accent-BG-Disabled: #27376e;
   --Controls-BG-Accent-Accent-BG-Hover: #4a7cff;
   --Controls-BG-Accent-Accent-BG-Pressed: #264fb8;
+  --Controls-BG-Accent-Accent-BG-Selected: #264fb8;
   --Controls-BG-Accent-Accent-BG-Ripple: #4373f0;
   --Controls-BG-Accent-Attention-BG-Default: #d95b00;
   --Controls-BG-Accent-Attention-BG-Disabled: #714220;
@@ -6423,7 +6433,7 @@ me-badge .badge.color-yellow-light {
   height: 20px;
   align-content: center;
 }
-.me-button.dx-button.me-button-medium.dx-button-mode-outlined .dx-button-content {
+.me-button.dx-button.me-button-medium.dx-button-mode-outlined .dx-button-content, .me-button.dx-button.me-button-medium.dx-button-mode-outlined.me-button-icon .dx-button-content {
   padding: 5px 12px;
 }
 .me-button.dx-button.me-button-large .dx-button-content {
@@ -8407,7 +8417,7 @@ me-badge .badge.color-yellow-light {
   cursor: default;
 }
 .me-context-menu.dx-menu-base.dx-context-menu .dx-submenu {
-  border-radius: var(--Inside-Elements);
+  border-radius: var(--inside-elements);
   font-size: 0;
   min-width: 120px;
   width: max-content;
@@ -8470,7 +8480,7 @@ me-badge .badge.color-yellow-light {
 }
 .dx-context-menu .dx-submenu {
   background-color: #2e2e2f;
-  border-radius: var(--Inside-Elements);
+  border-radius: var(--inside-elements);
   border: none;
   max-height: calc(100% - 2px);
   box-shadow: inset 0 0 0 1px var(--Dividers-Borders-Long), 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
@@ -20359,7 +20369,7 @@ input.dx-hidden {
   --label-font-size: 12px;
   --label-line-heigh: 16px;
 }
-.me-label.me-label-direction-column:has(.me-inputs-large) {
+.me-label.me-label-direction-column:has(.me-inputs-large, .me-editor-large) {
   --label-font-size: 14px;
   --label-line-heigh: 20px;
 }
@@ -20370,17 +20380,17 @@ input.dx-hidden {
 .me-label.me-label-direction-row {
   gap: var(--field-gap, 8px);
 }
-.me-label.me-label-direction-row:has(.me-inputs-small) {
+.me-label.me-label-direction-row:has(.me-inputs-small, .me-editor-small) {
   --label-font-size: 13px;
   --label-line-height: 16px;
   --field-gap: 8px;
 }
-.me-label.me-label-direction-row:has(.me-inputs-medium) {
+.me-label.me-label-direction-row:has(.me-inputs-medium, .me-editor-medium) {
   --label-font-size: 14px;
   --label-line-height: 20px;
   --field-gap: 8px;
 }
-.me-label.me-label-direction-row:has(.me-inputs-large) {
+.me-label.me-label-direction-row:has(.me-inputs-large, .me-editor-large) {
   --label-font-size: 16px;
   --label-line-height: 20px;
   --field-gap: 10px;
@@ -23591,7 +23601,7 @@ input.dx-hidden {
 
 .me-menu-submenu {
   border: 1px solid #3f4044;
-  border-radius: var(--Inside-Elements);
+  border-radius: var(--inside-elements);
 }
 .me-menu-submenu .dx-menu-item:not(.dx-state-disabled).dx-state-focused {
   box-shadow: inset 0px 0px 0px 2px var(--Dividers-Borders-Focus);
@@ -25423,6 +25433,7 @@ input.dx-hidden {
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
   --Controls-BG-Accent-Accent-BG-Pressed: #2544b3;
+  --Controls-BG-Accent-Accent-BG-Selected: #2544b3;
   --Controls-BG-Accent-Accent-BG-Ripple: #4167ed;
   --Controls-BG-Accent-Attention-BG-Default: #fea500;
   --Controls-BG-Accent-Attention-BG-Disabled: #f6ae6b;
@@ -26438,6 +26449,35 @@ input.dx-hidden {
 }
 .me-progress-bar.me-progress-bar-medium .dx-trackbar-container.dx-progressbar-container {
   height: 8px;
+}
+
+.me-grid-cell-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.cell-action-button {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  color: var(--Controls-Content-In-Controls-Accent-Default);
+  background: transparent;
+}
+.cell-action-button:hover {
+  color: var(--Controls-BG-Accent-Accent-BG-Hover);
+}
+.cell-action-button:active {
+  color: var(--Controls-BG-Accent-Accent-BG-Pressed);
+}
+.cell-action-button--selected {
+  color: var(--Controls-BG-Accent-Accent-BG-Selected);
+}
+.cell-action-button:focus-visible {
+  border-radius: 0.125rem;
+  outline: 0.125rem solid var(--Dividers-Borders-Focus);
+  outline-offset: 0.125rem;
 }
 
 /**
@@ -31210,8 +31250,15 @@ input.dx-hidden {
   height: 24px;
 }
 
-.selectbox-active.dx-editor-outlined {
-  outline: 1px solid #3257dc;
+.me-selectbox .dx-texteditor-container {
+  border: 1px solid transparent;
+}
+.me-selectbox.selectbox-active.dx-editor-outlined .dx-texteditor-container {
+  border: 1px solid #3257dc;
+}
+.me-selectbox.me-inputs.dx-texteditor.dx-widget.dx-state-focused > .dx-selectbox-container .dx-texteditor-container {
+  box-shadow: none;
+  border: 1px solid #3257dc;
 }
 
 /**
@@ -31978,8 +32025,8 @@ input.dx-hidden {
   width: 100%;
   padding: 4px;
   background: var(--Background-Content);
-  box-shadow: inset 0 0 0 1px var(--Dividers-Borders-Long);
-  min-height: var(--status-bar-min-height);
+  border-top: 1px solid var(--Dividers-Borders-Long);
+  min-height: inherit;
   overflow: hidden;
 }
 .me-status-bar--transparent {
@@ -32108,7 +32155,7 @@ input.dx-hidden {
 .me-status-bar__button.dx-button-mode-text {
   background-color: transparent !important;
   border: none !important;
-  color: var(--Controls-Informative-BG-Notification) !important;
+  color: var(--Controls-Informative-BG-Notification);
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--error .dx-button-content {
   color: var(--Controls-Content-In-Controls-Danger-Default) !important;
@@ -32129,10 +32176,10 @@ input.dx-hidden {
   color: var(--Controls-Content-In-Controls-Success-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content {
-  color: var(--Controls-Content-In-Controls-Accent-Default) !important;
+  color: var(--Badge-Blue-Gray) !important;
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-icon {
-  color: var(--Controls-Content-In-Controls-Accent-Default) !important;
+  color: var(--Badge-Blue-Gray) !important;
 }
 .me-status-bar__button-content {
   display: flex;
@@ -32145,7 +32192,7 @@ input.dx-hidden {
 .me-status-bar__divider {
   width: 1px;
   height: 16px;
-  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+  background-color: var(--Dividers-Borders-Short);
   margin: 0 4px;
 }
 
@@ -34425,6 +34472,7 @@ input.dx-hidden {
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
   --Controls-BG-Accent-Accent-BG-Pressed: #2544b3;
+  --Controls-BG-Accent-Accent-BG-Selected: #2544b3;
   --Controls-BG-Accent-Accent-BG-Ripple: #4167ed;
   --Controls-BG-Accent-Attention-BG-Default: #fea500;
   --Controls-BG-Accent-Attention-BG-Disabled: #f6ae6b;
@@ -35649,6 +35697,7 @@ input.dx-hidden {
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
   --Controls-BG-Accent-Accent-BG-Pressed: #2544b3;
+  --Controls-BG-Accent-Accent-BG-Selected: #2544b3;
   --Controls-BG-Accent-Accent-BG-Ripple: #4167ed;
   --Controls-BG-Accent-Attention-BG-Default: #fea500;
   --Controls-BG-Accent-Attention-BG-Disabled: #f6ae6b;
