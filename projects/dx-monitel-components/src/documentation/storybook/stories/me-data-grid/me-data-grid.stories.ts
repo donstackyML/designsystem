@@ -413,7 +413,7 @@ export const WithNumberAlign: Story = {
         [showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [selection]="selection"
-        [columns]="[
+        [alignedColumns]="[
           { dataField: 'ID', caption: 'ID', headerAlign: 'left', alignment: 'right' },
           { dataField: 'CompanyName', caption: 'Company'},
           { dataField: 'City', caption: 'City'},

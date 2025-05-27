@@ -9,8 +9,8 @@ import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { Column } from 'devextreme/ui/tree_list';
 
-type CustomTreeListColumn = {
-  headerAlign?: 'left' | 'center' | 'right';
+type AlignedTreeListColumn = {
+  headerAlign?: 'left' | 'right';
 } & Column;
 
 @Directive({
@@ -21,6 +21,9 @@ type CustomTreeListColumn = {
 })
 export class MeTreeListDirective implements AfterViewInit {
   private focusService: ComponentFocusService;
+
+  @Input() alignedColumns: AlignedTreeListColumn[] = [];
+
   constructor(
     private element: ElementRef,
     private component: DxTreeListComponent,
@@ -43,10 +46,15 @@ export class MeTreeListDirective implements AfterViewInit {
       }
     }
 
+    if (!!this.alignedColumns.length) {
+      this.component.instance.option('columns', this.alignedColumns);
+    }
+
     this.setupHeaderStyles();
   }
 
   private setupHeaderStyles(): void {
+    console.log(this.component.onContentReady.subscribe())
     this.component.onContentReady.subscribe(() => {
       const headerCells = this.element.nativeElement.querySelectorAll(
         '.dx-header-row td[role="columnheader"]'
@@ -72,7 +80,7 @@ export class MeTreeListDirective implements AfterViewInit {
   }
 
   private clearAlignmentClasses(element: Element): void {
-    const classes = ['treelist-header-left', 'treelist-header-right'];
-    classes.forEach((cls) => this.renderer.removeClass(element, cls));
+    const alignmentClasses = ['treelist-header-left', 'treelist-header-right'];
+    alignmentClasses.forEach(cls => this.renderer.removeClass(element, cls));
   }
 }

@@ -9,6 +9,11 @@ import {
 import { DxDataGridComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeSize } from '../../types/types';
+import { Column } from 'devextreme/ui/data_grid';
+
+type AlignedDataGridColumn = {
+  headerAlign?: 'left' | 'right';
+} & Column;
 
 @Directive({
   selector: '[meDataGrid]',
@@ -21,6 +26,7 @@ import { MeSize } from '../../types/types';
 })
 export class MeDataGridDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'medium';
+  @Input() alignedColumns: AlignedDataGridColumn[] = [];
 
   private focusService: ComponentFocusService;
 
@@ -54,6 +60,10 @@ export class MeDataGridDirective implements AfterViewInit, OnDestroy {
       if (widgets) {
         widgets.forEach((elm) => elm.setAttribute('tabindex', '1'));
       }
+    }
+
+    if (!!this.alignedColumns.length) {
+      this.component.instance.option('columns', this.alignedColumns)
     }
 
     this.setupHeaderStyles();

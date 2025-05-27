@@ -12,11 +12,6 @@
     [activeStateEnabled]="activeStateEnabled"
     [allowColumnReordering]="allowColumnReordering"
     [allowColumnResizing]="allowColumnResizing"
-    [columns]="[
-      { dataField: 'HEAD_ID', caption: 'ID', alignment: 'right', headerAlign: 'right' },
-      { dataField: 'Full_Name', caption: 'Company' },
-      { dataField: 'Title', caption: 'City' }
-    ]"
   >
     <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
     </dxo-editing>
@@ -43,5 +38,38 @@
 
       <dxi-button name="undelete" icon="undelete"></dxi-button>
     </dxi-column>
+  </dx-tree-list>
+</div>
+
+
+<div class="wrapper">
+  <h1 class="wrapper__main-title dx-widget">Tree List</h1>
+  <dx-tree-list
+    meTreeList
+    [dataSource]="dataSource"
+    keyExpr="ID"
+    parentIdExpr="Head_ID"
+    [showRowLines]="showRowLines"
+    [showColumnLines]="showColumnLines"
+    [showBorders]="showBorders"
+    [activeStateEnabled]="activeStateEnabled"
+    [allowColumnReordering]="allowColumnReordering"
+    [allowColumnResizing]="allowColumnResizing"
+    dataStructure="tree"
+    [alignedColumns]="[
+      { dataField: 'ID', caption: 'ID', alignment: 'right', headerAlign: 'left' },
+      { dataField: 'Head_ID', caption: 'HEAD', alignment: 'right', headerAlign: 'left'},
+      { dataField: 'Full_Name', caption: 'Company' },
+      { dataField: 'Prefix', caption: 'Prefix' },
+      { dataField: 'Title', caption: 'Title' },
+      { dataField: 'City', caption: 'City' },
+      { dataField: 'State', caption: 'State' },
+      { dataField: 'Email', caption: 'Email' },
+      { dataField: 'Skype', caption: 'Skype' },
+      { dataField: 'Mobile_Phone', caption: 'Mobile_Phone' },
+      { dataField: 'Birth_Date', caption: 'Birth_Date' },
+      { dataField: 'Hire_Date', caption: 'Hire_Date' }
+    ]"
+  >
   </dx-tree-list>
 </div>
