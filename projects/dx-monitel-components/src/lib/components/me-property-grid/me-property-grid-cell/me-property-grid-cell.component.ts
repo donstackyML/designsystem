@@ -21,7 +21,13 @@ import { WrapComponentsDirective } from './wrap-components.directive';
 @Component({
   selector: 'me-property-grid-cell',
   standalone: true,
-  imports: [CommonModule, FormsModule, DxSplitterModule, MeIconsModule, WrapComponentsDirective],
+  imports: [
+    CommonModule,
+    FormsModule,
+    DxSplitterModule,
+    MeIconsModule,
+    WrapComponentsDirective,
+  ],
   templateUrl: './me-property-grid-cell.component.html',
   styleUrls: ['./me-property-grid-cell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,7 +59,8 @@ export class MePropertyGridCellComponent implements AfterContentInit {
 
   @ContentChild('fullCell', { static: false }) fullCell!: ElementRef;
 
-  @ContentChild('additionalProperties', { static: false }) additionalProperties!: ElementRef;
+  @ContentChild('additionalProperties', { static: false })
+  additionalProperties!: ElementRef;
 
   hasFullCellContent = false;
 
