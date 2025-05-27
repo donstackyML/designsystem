@@ -78,11 +78,7 @@ export class MeStatusBarComponent implements AfterViewInit {
       return this.minHeight;
     }
 
-    if (!this.minHeight && this.size === 'large') {
-      return 32;
-    }
-
-    return 24;
+    return this.size === 'large' ? 32 : 24;
   }
 
   @HostListener('window:resize')
