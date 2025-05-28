@@ -1,4 +1,10 @@
-import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Renderer2,
+  AfterViewInit,
+  Input,
+} from '@angular/core';
 import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
@@ -10,6 +16,9 @@ import { ComponentFocusService } from '../../service/component-focus.service';
 })
 export class MeTreeListDirective implements AfterViewInit {
   private focusService: ComponentFocusService;
+
+  @Input() headerAlign: { [colKey: string]: 'left' | 'right' } = {};
+
   constructor(
     private element: ElementRef,
     private component: DxTreeListComponent,
@@ -41,27 +50,35 @@ export class MeTreeListDirective implements AfterViewInit {
         '.dx-header-row td[role="columnheader"]'
       );
 
-      this.component.columns.forEach((col: any, index: number) => {
-        if (col.headerAlign && headerCells[index]) {
-          const cell = headerCells[index];
-          const contentElement = cell.querySelector(
-            '.dx-treelist-text-content'
-          );
+      headerCells.forEach((cell: Element) => {
+        const ariaLabel = cell.getAttribute('aria-label');
+        if (!ariaLabel) return;
 
-          if (contentElement) {
-            this.clearAlignmentClasses(contentElement);
-            this.renderer.addClass(
-              contentElement,
-              `treelist-header-${col.headerAlign}`
-            );
-          }
+        const columnName = this.extractColumnName(ariaLabel);
+
+        if (!columnName || !this.headerAlign[columnName]) return;
+
+        const alignment = this.headerAlign[columnName];
+        const contentElement = cell.querySelector('.dx-treelist-text-content');
+
+        if (contentElement) {
+          this.clearAlignmentClasses(contentElement);
+          this.renderer.addClass(
+            contentElement,
+            `treelist-header-${alignment}`
+          );
         }
       });
     });
   }
 
+  private extractColumnName(ariaLabel: string): string | null {
+    const match = ariaLabel.match(/^Столбец\s+(.+)$/);
+    return match ? match[1].trim() : null;
+  }
+
   private clearAlignmentClasses(element: Element): void {
-    const classes = ['treelist-header-left', 'treelist-header-right'];
-    classes.forEach((cls) => this.renderer.removeClass(element, cls));
+    const alignmentClasses = ['treelist-header-left', 'treelist-header-right'];
+    alignmentClasses.forEach((cls) => this.renderer.removeClass(element, cls));
   }
 }

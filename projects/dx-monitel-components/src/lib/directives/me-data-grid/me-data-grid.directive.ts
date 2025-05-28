@@ -21,6 +21,7 @@ import { MeSize } from '../../types/types';
 })
 export class MeDataGridDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'medium';
+  @Input() headerAlign: { [colKey: string]: 'left' | 'right' } = {};
 
   private focusService: ComponentFocusService;
 
@@ -74,20 +75,27 @@ export class MeDataGridDirective implements AfterViewInit, OnDestroy {
       '.dx-header-row td[role="columnheader"]'
     );
 
-    this.component.columns.forEach((col: any, index: number) => {
-      if (col.headerAlign && headerCells[index]) {
-        const cell = headerCells[index];
-        const contentElement = cell.querySelector('.dx-datagrid-text-content');
+    headerCells.forEach((cell: Element) => {
+      const ariaLabel = cell.getAttribute('aria-label');
+      if (!ariaLabel) return;
 
-        if (contentElement) {
-          this.clearAlignmentClasses(contentElement);
-          this.renderer.addClass(
-            contentElement,
-            `grid-header-${col.headerAlign}`
-          );
-        }
+      const columnName = this.extractColumnName(ariaLabel);
+
+      if (!columnName || !this.headerAlign[columnName]) return;
+
+      const alignment = this.headerAlign[columnName];
+      const contentElement = cell.querySelector('.dx-datagrid-text-content');
+
+      if (contentElement) {
+        this.clearAlignmentClasses(contentElement);
+        this.renderer.addClass(contentElement, `grid-header-${alignment}`);
       }
     });
+  }
+
+  private extractColumnName(ariaLabel: string): string | null {
+    const match = ariaLabel.match(/^Столбец\s+(.+)$/);
+    return match ? match[1].trim() : null;
   }
 
   private clearAlignmentClasses(element: Element): void {
