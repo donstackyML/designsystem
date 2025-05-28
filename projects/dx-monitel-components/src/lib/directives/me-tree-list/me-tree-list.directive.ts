@@ -7,11 +7,6 @@ import {
 } from '@angular/core';
 import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { Column } from 'devextreme/ui/tree_list';
-
-type AlignedTreeListColumn = {
-  headerAlign?: 'left' | 'right';
-} & Column;
 
 @Directive({
   selector: '[meTreeList]',
@@ -22,7 +17,7 @@ type AlignedTreeListColumn = {
 export class MeTreeListDirective implements AfterViewInit {
   private focusService: ComponentFocusService;
 
-  @Input() alignedColumns: AlignedTreeListColumn[] = [];
+  @Input() headerAlign: { [colKey: string]: 'left' | 'right' } = {};
 
   constructor(
     private element: ElementRef,
@@ -46,41 +41,44 @@ export class MeTreeListDirective implements AfterViewInit {
       }
     }
 
-    if (!!this.alignedColumns.length) {
-      this.component.instance.option('columns', this.alignedColumns);
-    }
-
     this.setupHeaderStyles();
   }
 
   private setupHeaderStyles(): void {
-    console.log(this.component.onContentReady.subscribe())
     this.component.onContentReady.subscribe(() => {
       const headerCells = this.element.nativeElement.querySelectorAll(
         '.dx-header-row td[role="columnheader"]'
       );
 
-      this.component.columns.forEach((col: any, index: number) => {
-        if (col.headerAlign && headerCells[index]) {
-          const cell = headerCells[index];
-          const contentElement = cell.querySelector(
-            '.dx-treelist-text-content'
-          );
+      headerCells.forEach((cell: Element) => {
+        const ariaLabel = cell.getAttribute('aria-label');
+        if (!ariaLabel) return;
 
-          if (contentElement) {
-            this.clearAlignmentClasses(contentElement);
-            this.renderer.addClass(
-              contentElement,
-              `treelist-header-${col.headerAlign}`
-            );
-          }
+        const columnName = this.extractColumnName(ariaLabel);
+
+        if (!columnName || !this.headerAlign[columnName]) return;
+
+        const alignment = this.headerAlign[columnName];
+        const contentElement = cell.querySelector('.dx-treelist-text-content');
+
+        if (contentElement) {
+          this.clearAlignmentClasses(contentElement);
+          this.renderer.addClass(
+            contentElement,
+            `treelist-header-${alignment}`
+          );
         }
       });
     });
   }
 
+  private extractColumnName(ariaLabel: string): string | null {
+    const match = ariaLabel.match(/^Столбец\s+(.+)$/);
+    return match ? match[1].trim() : null;
+  }
+
   private clearAlignmentClasses(element: Element): void {
     const alignmentClasses = ['treelist-header-left', 'treelist-header-right'];
-    alignmentClasses.forEach(cls => this.renderer.removeClass(element, cls));
+    alignmentClasses.forEach((cls) => this.renderer.removeClass(element, cls));
   }
 }

@@ -520,11 +520,7 @@ export const WithNumberAlign: Story = {
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
-        [alignedColumns]="[
-          { dataField: 'ID', caption: 'ID', headerAlign: 'left', alignment: 'right' },
-          { dataField: 'Full_Name', caption: 'Company'},
-          { dataField: 'Title', caption: 'City'},
-        ]"
+        [headerAlign]="{ 'ID': 'left', 'Full Name': 'right' }"
       >
       </dx-tree-list>
     `,
