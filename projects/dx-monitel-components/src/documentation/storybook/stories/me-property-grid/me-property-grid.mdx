@@ -1,0 +1,118 @@
+import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
+import * as gridStories from "./me-property-grid.stories";
+import * as cellStories from "./me-property-grid-cell.stories";
+
+<Meta name="Property Grid Documentation" title="Components/Property Grid" />
+
+# Property Grid
+
+## Компонент (`me-property-grid`)
+
+Компонент `me-property-grid` предназначен для отображения и редактирования набора свойств объекта в виде таблицы из двух колонок: название свойства и его значение/редактор. Он поддерживает изменение ширины колонок, сворачивание/разворачивание и различные способы предоставления данных.
+
+<Controls of={gridStories.Default} />
+
+## Компонент (`me-property-grid-cell`)
+
+Компонент `me-property-grid-cell` представляет собой элемент в `me-property-grid`. Он отвечает за отображение названия свойства и его значения или редактора.
+
+<Controls of={cellStories.Default} />
+
+## Примеры использования `me-property-grid`
+
+### Стандартное использование (Content Projection)
+
+Наиболее распространенный способ использования - передача `me-property-grid-cell` компонентов внутрь `me-property-grid`.
+
+<Canvas of={gridStories.Default} />
+<Source of={gridStories.Default} dark />
+
+### С действиями в заголовке
+
+Можно добавить кастомные элементы (иконки, кнопки) слева и справа в заголовке грида с помощью слотов `property-grid-header-left-actions` и `property-grid-header-right-actions`.
+
+<Canvas of={gridStories.WithHeaderActions} />
+<Source of={gridStories.WithHeaderActions} dark />
+
+### Использование `dataSource`
+
+Альтернативный способ заполнения грида - через входное свойство `dataSource`.
+
+<Canvas of={gridStories.WithDataSource} />
+<Source of={gridStories.WithDataSource} dark />
+
+### С различными типами полей ввода
+
+Демонстрация интеграции различных DevExtreme контролов в ячейки грида.
+
+<Canvas of={gridStories.WithVariousInputs} />
+<Source of={gridStories.WithVariousInputs} dark />
+
+### С фиксированной высотой и прокруткой
+
+Если количество свойств велико, можно ограничить высоту грида с помощью свойства `height`, что приведет к появлению вертикальной прокрутки.
+
+<Canvas of={gridStories.WithFixedHeightAndScroll} />
+<Source of={gridStories.WithFixedHeightAndScroll} dark />
+
+### Изначально свернутый
+
+Грид можно инициализировать в свернутом состоянии, установив `isOpen` в `false`.
+
+<Canvas of={gridStories.InitiallyClosed} />
+<Source of={gridStories.InitiallyClosed} dark />
+
+---
+
+## Примеры использования `me-property-grid-cell`
+
+### Стандартная ячейка
+
+Простое отображение названия и значения.
+
+<Canvas of={cellStories.Default} />
+<Source of={cellStories.Default} dark />
+
+### Состояние "Только для чтения" (`readOnly`)
+
+Отображает значение без возможности редактирования и добавляет кнопку копирования.
+
+<Canvas of={cellStories.StateReadOnly} />
+<Source of={cellStories.StateReadOnly} dark />
+
+### С отметкой обязательного поля (`showRequiredMark`)
+
+<Canvas of={cellStories.WithRequiredMark} />
+<Source of={cellStories.WithRequiredMark} dark />
+
+### С кастомным контентом в правой ячейке (`#rightCell`)
+
+Вы можете поместить любой HTML-контент или Angular компоненты в правую ячейку, используя шаблонную переменную `#rightCell`.
+
+<Canvas of={cellStories.WithRightCustomContent} />
+<Source of={cellStories.WithRightCustomContent} dark />
+
+### С кастомным контентом в левой ячейке (`#leftCell`)
+
+Аналогично правой ячейке, можно кастомизировать левую ячейку с помощью `#leftCell`. Это переопределит отображение свойства `name`.
+
+<Canvas of={cellStories.WithLeftCellCustomContent} />
+<Source of={cellStories.WithLeftCellCustomContent} dark />
+
+### С дополнительными свойствами (`additionalProperties`)
+
+Позволяет отображать/скрывать дополнительный блок контента под основной строкой. Используется в связке со свойством `showAdditionalProperties` и слотом `additionalProperties`.
+
+<Canvas of={cellStories.WithAdditionalProperties} />
+<Source of={cellStories.WithAdditionalProperties} dark />
+
+### С действиями в правой ячейке (`rightCellStartActions`, `rightCellEndActions`)
+
+Добавление кнопок или иконок в начало и конец правой ячейки.
+
+<Canvas of={cellStories.WithRightCellActions} />
+<Source of={cellStories.WithRightCellActions} dark />
+
+### Ячейка, занимающая всю ширину (`#fullCell`)
+
+Используйте шаблонную переменную `#fullCell`, чтобы контент ячейки занимал обе колонки.

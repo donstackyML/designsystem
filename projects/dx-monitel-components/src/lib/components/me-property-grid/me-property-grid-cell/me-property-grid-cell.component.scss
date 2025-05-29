@@ -1,0 +1,171 @@
+:host {
+  --default-right-cell-width: 60%;
+
+  position: relative;
+  display: block;
+  border: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
+  background-color: var(--Background-Accent-in-the-content);
+
+  ::ng-deep {
+    .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-small {
+      --padding-inline: 0.5rem 0.25rem;
+    }
+
+    .me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs
+      .dx-texteditor-container
+      .dx-texteditor-input-container {
+      padding-left: 0.5rem;
+    }
+  }
+
+  &:has(.full-cell) {
+    z-index: 2;
+  }
+
+  &:has(.property-grid-cell-additional-properties) {
+    .property-grid-cell {
+      border-bottom: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
+    }
+  }
+}
+
+:host-context(me-property-grid) {
+  border: none;
+
+  &:not(:last-of-type) {
+    border-bottom: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
+  }
+}
+
+.property-grid-row {
+  display: flex;
+  flex-direction: column;
+
+  .property-grid-cell-part {
+    display: flex;
+    min-height: 2.25rem;
+
+    &-left {
+      position: relative;
+      overflow: hidden;
+      width: calc(
+        100% - var(--current-right-cell-width, var(--default-right-cell-width))
+      );
+      min-height: 1.875rem;
+    }
+
+    &-right {
+      width: var(--current-right-cell-width, var(--default-right-cell-width));
+    }
+  }
+
+  .full-cell {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    width: 100%;
+    padding: 0.75rem;
+
+    ::ng-deep > * {
+      flex: 1 1 auto;
+      width: 100%;
+    }
+  }
+
+  .cell-text {
+    display: flex;
+    flex: 1 0 0;
+    align-items: flex-start;
+    padding: var(--2, 0.125rem) var(--4, 0.25rem) 0 var(--4, 0.25rem);
+  }
+
+  .required-mark {
+    color: var(--Text-Error);
+  }
+
+  .property-grid-cell {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .property-grid-cell-part-right {
+    .property-grid-cell-part-content {
+      &.property-grid-custom-value-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--4, 0.25rem);
+        justify-content: center;
+      }
+    }
+  }
+
+  .property-grid-cell-part-content {
+    display: flex;
+    gap: var(--4, 0.25rem);
+    align-items: center;
+
+    width: 100%;
+    padding: var(--8, 0.5rem);
+
+    &.property-grid-custom-value-content {
+      gap: var(--8, 0.5rem);
+      padding: var(--4, 0.25rem);
+
+      ::ng-deep .dx-texteditor,
+      ::ng-deep .me-label {
+        width: 100%;
+      }
+
+      ::ng-deep .me-label:first-of-type {
+        span {
+          padding-left: var(--8, 0.5rem);
+        }
+      }
+
+      .property-grid-value {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.icon {
+  display: flex;
+}
+
+.cell-actions {
+  display: flex;
+  gap: var(--4, 0.25rem);
+  align-items: flex-start;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.property-grid-cell-additional-properties {
+  display: flex;
+  flex-direction: column;
+  gap: var(--12, 0.75rem);
+  align-items: flex-start;
+  align-self: stretch;
+
+  min-height: 1.875rem;
+  padding: 0.75rem;
+}
+
+.property-grid-cell-additional-properties,
+.full-cell {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  background-color: var(--Background-Accent-in-the-content);
+}
+
+.divider {
+  align-self: stretch;
+  width: var(--property-grid-resizer-width, 1px);
+  background-color: var(--Dividers-Borders-Short);
+}

@@ -9,15 +9,9 @@
   margin-top: 0 !important;
 }
 
-.me-inputs.me-selectbox {
-  background-color: transparent !important;
-
+.me-inputs.me-selectbox.dx-selectbox {
   .dx-dropdowneditor-input-wrapper {
     background: transparent;
-
-    .dx-texteditor-container {
-      background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
-    }
   }
 
   &.dx-state-disabled {
@@ -28,10 +22,12 @@
     }
   }
 
-  &.dx-state-readonly {
-    .dx-dropdowneditor-input-wrapper {
+  &.dx-state-readonly:has(> .dx-selectbox-container) {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+
+    .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
       .dx-texteditor-container {
-        background-color: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+        border: 1px solid transparent;
       }
     }
   }
@@ -299,32 +295,37 @@
 
   &.me-dropdownlist-small > .dx-overlay-content > .dx-popup-content {
     .dx-list-item-before-bag {
-      width: 14px;
+      width: 16px;
     }
 
     .dx-checkbox-icon {
-      width: 12px;
-      height: 12px;
+      width: 16px;
+      height: 16px;
+    }
+
+    .dx-item-content {
+      padding: 6px 16px 6px 8px;
     }
 
     .dx-checkbox-checked .dx-checkbox-icon {
-      font-size: 10px;
-      line-height: 10px;
+      font-size: 12px;
+      line-height: 12px;
 
       &::before {
-        width: 10px;
-        margin-top: -5px;
-        margin-left: -5px;
+        width: 12px;
+        margin-top: -6px;
+        margin-left: -6px;
       }
     }
   }
 
   &.me-dropdownlist-medium > .dx-overlay-content > .dx-popup-content {
     .dx-list-item-before-bag {
-      width: 22px;
+      width: 20px;
     }
 
     .dx-item-content {
+      padding: 4px 16px 4px 8px;
       font-size: 14px;
       line-height: 20px;
     }
@@ -332,26 +333,59 @@
     .dx-checkbox-icon {
       width: 20px;
       height: 20px;
+
+      &::before {
+        width: 12px;
+        margin-top: -8px;
+        margin-left: -8px;
+      }
     }
   }
 
   &.me-dropdownlist-large > .dx-overlay-content > .dx-popup-content {
     .dx-list-item-before-bag {
-      width: 30px;
+      width: 24px;
     }
 
     .dx-item-content {
+      padding: 8px 20px 8px 12px;
       font-size: 16px;
       line-height: 20px;
+      height: 40px;
     }
 
     .dx-checkbox-icon {
       width: 24px;
       height: 24px;
+
+      &::before {
+        width: 20px;
+        margin-top: -8px;
+        margin-left: -10px;
+      }
     }
   }
 }
 
-.selectbox-active.dx-editor-outlined {
-  outline: 1px solid #3257dc;
+.me-selectbox {
+  .dx-texteditor-container {
+    border: 1px solid transparent;
+  }
+
+  &.selectbox-active.dx-editor-outlined {
+    .dx-texteditor-container {
+      border: 1px solid #3257dc;
+    }
+  }
+
+  &.selectbox-active.dx-selectbox {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+  }
+
+  &.me-inputs.dx-texteditor.dx-widget.dx-state-focused > .dx-selectbox-container {
+    .dx-texteditor-container {
+      box-shadow: none;
+      border: 1px solid #3257dc;
+    }
+  }
 }
