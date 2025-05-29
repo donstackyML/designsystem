@@ -60,7 +60,6 @@ export class MePopupDirective extends MeOverlayDirective {
       const popup = popupContentElement.parentElement;
 
       this.renderer.addClass(popup, 'popup-disable-radius');
-      console.log(popupContentElement.parentElement);
     }
   }
 
