@@ -430,9 +430,46 @@
       </div>
     </dx-popup>
   </div>
-  <h2 class="wrapper__title dx-widget">Popup fullscreen</h2>
+  <h2 class="wrapper__title dx-widget">Popup fullscreen with disable radius</h2>
   <div>
     <dx-button text="Open popup" (onClick)="showPopup(17)"> </dx-button>
+    <dx-popup
+      mePopup
+      [showTitle]="true"
+      title="Заголовок"
+      width="35vw"
+      height="80vh"
+      [disableRadius]="true"
+      [fullScreen]="true"
+    >
+      <dxi-toolbar-item template="overflowButton" toolbar="top" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="confirmButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after">
+      </dxi-toolbar-item>
+      <dxi-toolbar-item template="addButton" toolbar="bottom" location="before"> </dxi-toolbar-item>
+      <div *dxTemplate="let data of 'content'">
+        {{ lorem500 }}
+      </div>
+      <div *dxTemplate="let data of 'overflowButton'">
+        <dx-button meButton iconOnly="overflow" stylingMode="text"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'confirmButton'">
+        <dx-button meButton text="Принять" type="default"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'cancelButton'">
+        <dx-button meButton text="Отмена" (onClick)="hidePopup(17)"></dx-button>
+      </div>
+      <div *dxTemplate="let data of 'addButton'">
+        <dx-button meButton text="Добавить"></dx-button>
+      </div>
+    </dx-popup>
+  </div>
+
+  <h2 class="wrapper__title dx-widget">Popup with disable radius</h2>
+  <div>
+    <dx-button text="Open popup" (onClick)="showPopup(18)"> </dx-button>
     <dx-popup
       mePopup
       [showTitle]="true"
@@ -458,7 +495,7 @@
         <dx-button meButton text="Принять" type="default"></dx-button>
       </div>
       <div *dxTemplate="let data of 'cancelButton'">
-        <dx-button meButton text="Отмена" (onClick)="hidePopup(17)"></dx-button>
+        <dx-button meButton text="Отмена" (onClick)="hidePopup(18)"></dx-button>
       </div>
       <div *dxTemplate="let data of 'addButton'">
         <dx-button meButton text="Добавить"></dx-button>
