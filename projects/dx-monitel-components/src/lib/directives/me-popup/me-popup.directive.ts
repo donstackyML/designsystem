@@ -1,6 +1,7 @@
 import {
   Directive,
   ElementRef,
+  HostListener,
   Input,
   Renderer2,
   ViewChild,
@@ -50,12 +51,15 @@ export class MePopupDirective extends MeOverlayDirective {
     } else if (this.size === 'large') {
       popup.width = POPUP_WIDTH_LARGE;
     }
+  }
 
+  @HostListener('onShowing')
+  onShowing() {
     if (this.disableRadius) {
-      this.renderer.addClass(
-        this.element.nativeElement,
-        'popup-disable-radius'
-      );
+      const popupContentElement = this.component.instance.content();
+      const popup = popupContentElement.parentElement;
+
+      this.renderer.addClass(popup, 'popup-disable-radius');
     }
   }
 
