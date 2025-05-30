@@ -34,7 +34,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --input-fields-gap: 4px;
 
         --input-height: 36px;
-        --padding-inline: 8px;
+        --padding-inline-left: 8px;
+        --padding-inline-right: 8px;
         --padding-block: 2px;
 
         --input-top-offset: 17px;
@@ -65,7 +66,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --input-line-height: 20px;
         --input-fields-gap: 4px;
 
-        --padding-inline: 8px;
+        --padding-inline-left: 8px;
+        --padding-inline-right: 8px;
         --padding-block: 2px;
 
         --input-top-offset: 17px;
@@ -96,7 +98,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --input-line-height: 20px;
         --input-fields-gap: 4px;
 
-        --padding-inline: 12px;
+        --padding-inline-left: 12px;
+        --padding-inline-right: 12px;
         --padding-block: 5.5px;
 
         --input-top-offset: 22px;
@@ -119,6 +122,16 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
           --label-line-height: 20px;
         }
       }
+
+      &-small,
+      &-medium,
+      &-large {
+        &.dx-show-clear-button,
+        &.dx-state-readonly,
+        &.dx-state-disabled {
+          --padding-inline-right: 0;
+        }
+      }
     }
 
     .dx-texteditor-container {
@@ -127,7 +140,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
       gap: 4px;
       border-radius: var(--input-border-radius);
-      padding-left: var(--padding-inline);
+      padding-left: var(--padding-inline-left);
+      padding-right: var(--padding-inline-right);
 
       .dx-texteditor-input-container,
       .dx-placeholder {
@@ -570,6 +584,22 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 }
 
 .me-inputs.dx-texteditor.dx-widget {
+  .dx-texteditor-container {
+    .dx-texteditor-buttons-container {
+      display: none;
+    }
+  }
+
+  &.dx-show-clear-button,
+  &.dx-state-readonly,
+  &.dx-state-disabled {
+    .dx-texteditor-container {
+      .dx-texteditor-buttons-container {
+        display: flex;
+      }
+    }
+  }
+
   &.me-number-box,
   &.me-date-range-box {
     &:not(.dx-texteditor-label-outside) {
@@ -621,7 +651,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &.me-inputs {
       .dx-texteditor-container {
-        padding-left: var(--padding-inline);
+        padding-left: var(--padding-inline-left);
+        padding-right: var(--padding-inline-right);
       }
     }
 

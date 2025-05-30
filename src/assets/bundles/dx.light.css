@@ -22524,7 +22524,8 @@ input.dx-hidden {
   --input-line-height: 16px;
   --input-fields-gap: 4px;
   --input-height: 36px;
-  --padding-inline: 8px;
+  --padding-inline-left: 8px;
+  --padding-inline-right: 8px;
   --padding-block: 2px;
   --input-top-offset: 17px;
   --input-bottom-offset: 3px;
@@ -22547,7 +22548,8 @@ input.dx-hidden {
   --input-font-size: 14px;
   --input-line-height: 20px;
   --input-fields-gap: 4px;
-  --padding-inline: 8px;
+  --padding-inline-left: 8px;
+  --padding-inline-right: 8px;
   --padding-block: 2px;
   --input-top-offset: 17px;
   --input-bottom-offset: 3px;
@@ -22570,7 +22572,8 @@ input.dx-hidden {
   --input-font-size: 16px;
   --input-line-height: 20px;
   --input-fields-gap: 4px;
-  --padding-inline: 12px;
+  --padding-inline-left: 12px;
+  --padding-inline-right: 12px;
   --padding-block: 5.5px;
   --input-top-offset: 22px;
   --input-bottom-offset: 6px;
@@ -22587,12 +22590,16 @@ input.dx-hidden {
   --label-font-size: 14px;
   --label-line-height: 20px;
 }
+.me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-small.dx-show-clear-button, .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-small.dx-state-readonly, .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-small.dx-state-disabled, .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-medium.dx-show-clear-button, .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-medium.dx-state-readonly, .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-medium.dx-state-disabled, .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-large.dx-show-clear-button, .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-large.dx-state-readonly, .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-large.dx-state-disabled {
+  --padding-inline-right: 0;
+}
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container {
   width: 100%;
   align-items: center;
   gap: 4px;
   border-radius: var(--input-border-radius);
-  padding-left: var(--padding-inline);
+  padding-left: var(--padding-inline-left);
+  padding-right: var(--padding-inline-right);
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-texteditor-input-container,
 .me-inputs.dx-texteditor.dx-widget.me-inputs .dx-texteditor-container .dx-placeholder {
@@ -22880,6 +22887,12 @@ input.dx-hidden {
   color: var(--Controls-Content-In-Controls-Main-Default);
 }
 
+.me-inputs.dx-texteditor.dx-widget .dx-texteditor-container .dx-texteditor-buttons-container {
+  display: none;
+}
+.me-inputs.dx-texteditor.dx-widget.dx-show-clear-button .dx-texteditor-container .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.dx-state-readonly .dx-texteditor-container .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.dx-state-disabled .dx-texteditor-container .dx-texteditor-buttons-container {
+  display: flex;
+}
 .me-inputs.dx-texteditor.dx-widget.me-number-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box:not(.dx-texteditor-label-outside) .dx-texteditor-buttons-container {
   margin-right: 4px;
 }
@@ -22910,7 +22923,8 @@ input.dx-hidden {
   content: var(--me-icon-chevron-down);
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs .dx-texteditor-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box.me-inputs .dx-texteditor-container {
-  padding-left: var(--padding-inline);
+  padding-left: var(--padding-inline-left);
+  padding-right: var(--padding-inline-right);
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-container, .me-inputs.dx-texteditor.dx-widget.me-date-range-box .dx-texteditor-container {
   align-items: center;
@@ -33701,7 +33715,6 @@ input.dx-hidden {
   height: 100%;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container {
-  padding: 0;
   height: auto;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container > input:first-child {
