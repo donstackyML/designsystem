@@ -148,6 +148,9 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
 }
 
 .me-popup {
+  --popup-scroll-view-content-padding: 4px 22px 0 0;
+  --popup-content-padding: 4px 14px 0 0;
+
   .me-popup-header {
     display: flex;
     justify-content: flex-start;
@@ -168,12 +171,17 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   }
 
   .dx-popup-content {
-    padding: var(--popup-content-padding);
+    padding: 0;
 
     &:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
-      padding: 12px 0 0;
-
       .dx-scrollview-content {
+        padding: var(--popup-scroll-view-content-padding);
+      }
+    }
+
+    &:has(> .dx-template-wrapper:first-child > .me-flex-column) {
+      margin-right: 6px;
+      .me-flex-column {
         padding: var(--popup-content-padding);
       }
     }
@@ -184,16 +192,13 @@ $generic-popup-toolbar-label-font-size: $generic-m-font-size;
   }
 
   &.me-popup-large {
-    .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
-      padding: 16px 0 0;
-    }
+    --popup-scroll-view-content-padding: 8px 22px 0 0;
+    --popup-content-padding: 8px 14px 0 0;
   }
 
   .dx-overlay-content > .dx-popup-content-scrollable {
-    --popup-content-padding: 0 10px 0 24px;
-
     overflow-y: auto;
-    margin: 8px 6px 8px 0;
+    margin: 8px 0 0 24px;
 
     &::-webkit-scrollbar {
       width: 4px;

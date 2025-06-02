@@ -26038,6 +26038,10 @@ input.dx-hidden {
   padding: 0;
 }
 
+.me-popup {
+  --popup-scroll-view-content-padding: 4px 22px 0 0;
+  --popup-content-padding: 4px 14px 0 0;
+}
 .me-popup .me-popup-header {
   display: flex;
   justify-content: flex-start;
@@ -26055,24 +26059,27 @@ input.dx-hidden {
   gap: 4px;
 }
 .me-popup .dx-popup-content {
-  padding: var(--popup-content-padding);
-}
-.me-popup .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
-  padding: 12px 0 0;
+  padding: 0;
 }
 .me-popup .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) .dx-scrollview-content {
+  padding: var(--popup-scroll-view-content-padding);
+}
+.me-popup .dx-popup-content:has(> .dx-template-wrapper:first-child > .me-flex-column) {
+  margin-right: 6px;
+}
+.me-popup .dx-popup-content:has(> .dx-template-wrapper:first-child > .me-flex-column) .me-flex-column {
   padding: var(--popup-content-padding);
 }
 .me-popup .dx-popup-content > .dx-button {
   margin: 0 10px;
 }
-.me-popup.me-popup-large .dx-popup-content:has(> .dx-template-wrapper:first-child > .dx-scrollable.dx-scrollview) {
-  padding: 16px 0 0;
+.me-popup.me-popup-large {
+  --popup-scroll-view-content-padding: 8px 22px 0 0;
+  --popup-content-padding: 8px 14px 0 0;
 }
 .me-popup .dx-overlay-content > .dx-popup-content-scrollable {
-  --popup-content-padding: 0 10px 0 24px;
   overflow-y: auto;
-  margin: 8px 6px 8px 0;
+  margin: 8px 0 0 24px;
 }
 .me-popup .dx-overlay-content > .dx-popup-content-scrollable::-webkit-scrollbar {
   width: 4px;
