@@ -48,7 +48,11 @@ export class ListItemDividerService {
 
     if (dividersVisibility !== 'none' && items.length) {
       const isGrouped = items.every(
-        (item) => 'items' in item && Array.isArray(item.items)
+        (item) =>
+          item &&
+          typeof item === 'object' &&
+          'items' in item &&
+          Array.isArray(item.items)
       );
 
       if (isGrouped) {
