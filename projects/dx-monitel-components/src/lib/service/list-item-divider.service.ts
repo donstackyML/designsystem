@@ -47,11 +47,12 @@ export class ListItemDividerService {
     this.addDividersClass(contentElement, dividersVisibility);
 
     if (dividersVisibility !== 'none' && items.length) {
-      const isGrouped = items.every(item =>
-        item &&
-        typeof item === 'object' &&
-        'items' in item &&
-        Array.isArray(item.items)
+      const isGrouped = items.every(
+        (item) =>
+          item &&
+          typeof item === 'object' &&
+          'items' in item &&
+          Array.isArray(item.items)
       );
 
       if (isGrouped) {
