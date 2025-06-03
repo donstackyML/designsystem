@@ -1,0 +1,115 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as shiftPropertiesStories from "./me-shift-properties.stories";
+
+<Meta name="ShiftProperties Documentation" of={shiftPropertiesStories} />
+
+# MeShiftProperties
+
+Компонент `me-shift-properties` используется для настройки свойств временного сдвига в компоненте `me-time-range`. Позволяет настраивать сдвиг по различным единицам времени (месяцы, недели, дни, часы, минуты, секунды).
+
+<Controls of={shiftPropertiesStories.Default} />
+
+## Примеры использования
+
+- [Полный вариант](#полный-вариант)
+- [Минимальный вариант](#минимальный-вариант)
+- [С пользовательскими свойствами](#с-пользовательскими-свойствами)
+- [В состоянии disabled](#в-состоянии-disabled)
+- [В состоянии readOnly](#в-состоянии-readonly)
+
+### Полный вариант
+
+<Story of={shiftPropertiesStories.FullVariant} />
+
+<Source
+  code={`
+// Template
+<me-shift-properties
+  title="Настройка сдвига"
+  [variant]="'full'"
+  [properties]="defaultProperties"
+></me-shift-properties>
+  `}
+  language="typescript"
+  dark
+/>
+
+### Минимальный вариант
+
+<Story of={shiftPropertiesStories.MinimalVariant} />
+
+<Source
+  code={`
+// Template
+<me-shift-properties
+  title="Настройка сдвига"
+  [variant]="'minimal'"
+></me-shift-properties>
+  `}
+  language="typescript"
+  dark
+/>
+
+### С пользовательскими свойствами
+
+<Story of={shiftPropertiesStories.WithCustomProperties} />
+
+<Source
+  code={`
+// Template
+<me-shift-properties
+  [title]="'Пользовательские настройки'"
+  [properties]="customProperties"
+  (shiftPropertiesChange)="onShiftPropertiesChange($event)"
+></me-shift-properties>
+
+// Component
+const customProperties = [
+  { text: 'Секунды', key: 'seconds', enabled: true, value: 30 },
+  { text: 'Минуты', key: 'minutes', enabled: true, value: 15 },
+  { text: 'Часы', key: 'hours', enabled: false, value: 0 },
+  { text: 'Дни', key: 'days', enabled: false, value: 0 },
+];
+
+onShiftPropertiesChange(properties: TimeShiftProperty[]) {
+  // Обработка изменений свойств
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### В состоянии disabled
+
+<Story of={shiftPropertiesStories.DisabledState} />
+
+<Source
+  code={`
+// Template
+<me-shift-properties
+  [title]="'Настройка сдвига'"
+  [state]="'disabled'"
+  [properties]="properties"
+></me-shift-properties>
+  `}
+  language="typescript"
+  dark
+/>
+
+### В состоянии readOnly
+
+<Story of={shiftPropertiesStories.ReadOnlyState} />
+
+<Source
+  code={`
+// Template
+<me-shift-properties
+  [title]="'Настройка сдвига'"
+  [state]="'readOnly'"
+  [properties]="properties"
+></me-shift-properties>
+  `}
+  language="typescript"
+  dark
+/>
