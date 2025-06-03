@@ -1,0 +1,49 @@
+.shift-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--12, 0.75rem);
+  }
+
+  &.shift-details--disabled {
+    .me-title-subheader1 {
+      color: var(--Text-Disabled);
+    }
+  }
+
+  &.shift-details--read-only {
+    .shift-details__property-checkbox {
+      color: var(--Controls-Content-In-Controls-Main-Disabled);
+    }
+  }
+
+  &__property {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+
+    &-checkbox {
+      min-width: 5.5rem;
+
+      &.me-label {
+        justify-content: start;
+      }
+    }
+
+    .dx-numberbox {
+      flex-grow: 1;
+    }
+  }
+
+  &__minimal {
+    display: grid;
+    grid-template-columns: minmax(4.375rem, 0.2fr) 1fr;
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,80 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as quickFiltersStories from "./me-quick-filters.stories";
+
+<Meta name="QuickFilters Documentation" of={quickFiltersStories} />
+
+# MeQuickFilters
+
+Компонент `me-quick-filters` используется для быстрого выбора предустановленных временных диапазонов в компоненте `me-time-range`.
+
+<Controls of={quickFiltersStories.Default} />
+
+## Примеры использования
+
+- [Режим кнопок](#режим-кнопок)
+- [Режим выпадающего списка](#режим-выпадающего-списка)
+- [С пользовательскими фильтрами](#с-пользовательскими-фильтрами)
+
+### Режим кнопок
+
+<Story of={quickFiltersStories.Default} />
+
+<Source
+  code={`
+// Template
+<me-quick-filters
+  type="buttons"
+></me-quick-filters>
+  `}
+  language="typescript"
+  dark
+/>
+
+### Режим выпадающего списка
+
+<Story of={quickFiltersStories.SelectBoxMode} />
+
+<Source
+  code={`
+// Template
+<me-quick-filters
+  type="select-box"
+></me-quick-filters>
+  `}
+  language="typescript"
+  dark
+/>
+
+### С пользовательскими фильтрами
+
+<Story of={quickFiltersStories.WithCustomFilters} />
+
+<Source
+  code={`
+// Template
+<me-quick-filters
+  [title]="'Пользовательские фильтры'"
+  [filters]="customFilters"
+  [selectedFilterId]="selectedFilterId"
+  (filterSelected)="onFilterSelected($event)"
+></me-quick-filters>
+
+// Component
+const customFilters = [
+  { id: 'today', text: 'Сегодня' },
+  { id: 'yesterday', text: 'Вчера' },
+  { id: 'this-week', text: 'Эта неделя' },
+  { id: 'last-week', text: 'Прошлая неделя' },
+  { id: 'this-month', text: 'Этот месяц' },
+];
+
+selectedFilterId = 'today';
+
+onFilterSelected(filterId: string) {
+  this.selectedFilterId = filterId;
+}
+  `}
+  language="typescript"
+  dark
+/>

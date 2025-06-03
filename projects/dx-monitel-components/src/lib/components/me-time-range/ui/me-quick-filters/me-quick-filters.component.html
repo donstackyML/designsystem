@@ -1,0 +1,32 @@
+<div class="quick-filters-container">
+  <div *ngIf="title.length" class="me-title-subheader1">{{ title }}</div>
+  <ng-container *ngIf="mode === 'buttons'; else selectBoxTemplate">
+    <dx-button-group
+      meButtonGroup
+      size="small"
+      [items]="_filters"
+      keyExpr="id"
+      valueExpr="id"
+      stylingMode="contained"
+      selectionMode="single"
+      [selectedItemKeys]="[selectedFilterId || _defaultFilterId]"
+      (onSelectionChanged)="onSelectionChanged($event)"
+      width="100%"
+    >
+    </dx-button-group>
+  </ng-container>
+
+  <ng-template #selectBoxTemplate>
+    <dx-select-box
+      meSelectBox
+      size="small"
+      [dataSource]="_filters"
+      displayExpr="text"
+      valueExpr="id"
+      [value]="selectedFilterId || _defaultFilterId"
+      (onValueChanged)="onSelectBoxValueChanged($event)"
+      width="100%"
+    >
+    </dx-select-box>
+  </ng-template>
+</div>
