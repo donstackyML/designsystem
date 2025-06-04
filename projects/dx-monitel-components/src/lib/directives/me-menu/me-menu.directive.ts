@@ -101,6 +101,11 @@ export class MeMenuDirective implements OnInit, OnDestroy, AfterViewInit {
     }
 
     if (submenuContainer && itemData?.items) {
+      const currentHeight = parseFloat(submenuContainer.style.height);
+      if (!isNaN(currentHeight)) {
+        submenuContainer.style.height = `${currentHeight + 8}px`;
+      }
+
       this.dividerService.addDividers({
         contentElement: submenuContainer,
         selector: '.dx-menu-item-wrapper',

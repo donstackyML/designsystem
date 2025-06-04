@@ -1,0 +1,105 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as timeRangeResultStories from "./me-time-range-result.stories";
+
+<Meta name="TimeRangeResult Documentation" of={timeRangeResultStories} />
+
+# MeTimeRangeResult
+
+# Компонент MeTimeRangeResult
+
+Компонент для отображения результата выбора временного диапазона. Позволяет показать начальную и конечную даты с возможностью подсветки отдельных частей даты.
+
+<Controls of={timeRangeResultStories.Default} />
+
+## Примеры использования
+
+- [Стандартное использование](#стандартное-использование)
+- [С подсветкой частей даты](#с-подсветкой-частей-даты)
+- [С пользовательским форматом](#с-пользовательским-форматом)
+
+### Стандартное использование
+
+<Story of={timeRangeResultStories.Default} />
+
+<Source
+  code={`
+// Template
+<me-time-range-result
+  [startDate]="startDate"
+  [endDate]="endDate"
+></me-time-range-result>
+
+// Component
+startDate = new Date('2024-03-20T10:00:00');
+endDate = new Date('2024-03-20T18:00:00');
+  `}
+  language="typescript"
+  dark
+/>
+
+### С подсветкой частей даты
+
+<Story of={timeRangeResultStories.WithHighlight} />
+
+<Source
+  code={`
+// Template
+<me-time-range-result
+  [startDate]="startDate"
+  [endDate]="endDate"
+  [startDateHighlightInfo]="{ day: true, month: true }"
+  [endDateHighlightInfo]="{ day: true, month: true }"
+></me-time-range-result>
+
+// Component
+startDate = new Date('2024-03-20T10:00:00');
+endDate = new Date('2024-03-20T18:00:00');
+  `}
+  language="typescript"
+  dark
+/>
+
+### С пользовательским форматом
+
+<Story of={timeRangeResultStories.CustomFormat} />
+
+<Source
+  code={`
+// Template
+<me-time-range-result
+  [startDate]="startDate"
+  [endDate]="endDate"
+  timeFormat="HH:mm"
+  startText="C"
+  endText="До"
+></me-time-range-result>
+
+// Component
+startDate = new Date('2024-03-20T10:00:00');
+endDate = new Date('2024-03-20T18:00:00');
+  `}
+  language="typescript"
+  dark
+/>
+
+<Source
+  code={`
+// Template
+<me-time-range-result
+  [startDate]="startDate"
+  [endDate]="endDate"
+  timeFormat="dd.MM.yyyy HH:mm:ss"
+  [startText]="'Начало'"
+  [endText]="'Конец'"
+  [startDateHighlightInfo]="{ day: true, month: true }"
+  [endDateHighlightInfo]="{ day: true, month: true }"
+></me-time-range-result>
+
+// Component
+startDate = new Date('2024-03-20T10:00:00');
+endDate = new Date('2024-03-20T18:00:00');
+  `}
+  language="typescript"
+  dark
+/>

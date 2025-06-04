@@ -1,0 +1,541 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as timeRangeStories from "./me-time-range.stories";
+
+<Meta name="TimeRange Documentation" of={timeRangeStories} />
+
+# MeTimeRange
+
+Компонент `me-time-range` предназначен для выбора временного диапазона с возможностью настройки начала и конца периода, шага и интервала обновления. Компонент поддерживает абсолютный и относительный режимы выбора времени.
+
+<Controls of={timeRangeStories.Default} />
+
+
+## Дизайн
+
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=17601-15312&t=Yod3QHGoBy79ELFH-4"
+/>
+
+## Примеры использования
+
+- [Базовое использование](#базовое-использование)
+- [В режиме попапа](#в-режиме-попапа)
+- [Только с абсолютным временем](#только-с-абсолютным-временем)
+- [С настройками сдвига, шагом и результатом](#с-настройками-сдвига-шагом-и-результатом)
+- [С быстрыми фильтрами, типом сдвига, настройками сдвига, шагом и результатом](#с-быстрыми-фильтрами-типом-сдвига-настройками-сдвига-шагом-и-результатом)
+- [С типом сдвига и отображением без попапа](#с-типом-сдвига-и-отображением-без-попапа)
+- [Только с быстрыми фильтрами и результатом](#только-с-быстрыми-фильтрами-и-результатом)
+- [Только с настройками сдвига](#только-с-настройками-сдвига)
+
+
+### Базовое использование
+
+<Story of={timeRangeStories.Default} />
+
+<Source
+  code={`
+<me-time-range
+  [settings]="timeRangeSettings"
+  [defaultSettings]="timeRangeSettings"
+  [settingsBlocks]="['quickFilter', 'shiftSettings', 'steps', 'result']"
+  [changesApplyMode]="'onApply'"
+  [showTitle]="true"
+  [title]="'Настройка временного диапазона'"
+  (timeRangeApplied)="onTimeRangeApplied($event)"
+></me-time-range>
+
+const timeRangeSettings: Partial<TimeRangeConfig> = {
+  absoluteDate: {
+    start: new Date(),
+    end: new Date(),
+  },
+  startShift: {
+    type: 'mixed',
+    switchIsActive: true,
+    switchEnabled: true,
+    properties: [
+      { text: 'Месяцы', key: 'months', enabled: false, value: 0 },
+      { text: 'Недели', key: 'weeks', enabled: false, value: 0 },
+      { text: 'Дни', key: 'days', enabled: false, value: 0 },
+      { text: 'Часы', key: 'hours', enabled: false, value: 0 },
+      { text: 'Минуты', key: 'minutes', enabled: false, value: 0 },
+      { text: 'Секунды', key: 'seconds', enabled: true, value: -20 }
+    ]
+  },
+  endShift: {
+    type: 'mixed',
+    switchIsActive: true,
+    switchEnabled: true,
+    properties: [
+      { text: 'Месяцы', key: 'months', enabled: false, value: 0 },
+      { text: 'Недели', key: 'weeks', enabled: false, value: 0 },
+      { text: 'Дни', key: 'days', enabled: false, value: 0 },
+      { text: 'Часы', key: 'hours', enabled: false, value: 0 },
+      { text: 'Минуты', key: 'minutes', enabled: false, value: 0 },
+      { text: 'Секунды', key: 'seconds', enabled: false, value: 0 },
+    ],
+  },
+  step: {
+    items: [ /* Array of TimeStep, e.g., { text: '1 минута', id: 'minutes', numberValue: 1 } ... */ ],
+    selectedUnitValue: 'minutes',
+    unitDisplayExpr: 'text',
+    unitValueExpr: 'id',
+    numberValue: 5,
+  },
+  quickFilterId: 'last_1h',
+  update: {
+    items: [ /* Array of TimeStep, e.g., { text: 'Каждую минуту', id: 'minutes', numberValue: 1 } ... */ ],
+    selectedUnitValue: 'seconds',
+    unitDisplayExpr: 'text',
+    unitValueExpr: 'id',
+    numberValue: 30,
+  },
+};
+
+onTimeRangeApplied(settings: TimeRangeConfig) {
+
+  console.log('Time range applied:', settings);
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### В режиме попапа
+
+<Story of={timeRangeStories.PopupWithButton} />
+
+<Source
+  code={`
+<dx-button
+  id="buttonId"
+  meButton
+  (click)="togglePopup()"
+  text="Открыть настройки времени"
+>
+</dx-button>
+<me-time-range
+  [isPopup]="true"
+  [popupIsVisible]="popupVisible"
+  [popupPosition]="popupPosition"
+  [popupWidth]="'600px'"
+  [popupHeight]="'auto'"
+  [title]="'Настройка интервала'"
+  [showTitle]="true"
+  [hasHeaderCloseButton]="true"
+  [hasFooterCancelButton]="false"
+  [settingsBlocks]="['quickFilter', 'shiftSettings', 'steps', 'result']"
+  [defaultSettings]="defaultSettings"
+  [settings]="settings"
+  (closed)="onClosed()"
+  (popupOnHidden)="onPopupHidden()"
+  (timeRangeApplied)="onTimeRangeApplied($event)"
+></me-time-range>
+
+import { Component } from '@angular/core';
+import { TimeRangeConfig } from 'path-to-time-range-models';
+
+@Component({
+  selector: 'me-time-range-popup-demo',
+
+})
+class TimeRangePopupDemoComponent {
+  popupVisible = false;
+  popupPosition = {
+    at: 'left bottom',
+    my: 'left top',
+    of: '#buttonId',
+    offset: { y: 6 },
+  };
+
+  defaultSettings: Partial<TimeRangeConfig> = { /* ... */ };
+  settings: Partial<TimeRangeConfig> = { /* ... */ };
+
+  constructor() {
+
+    const config: Partial<TimeRangeConfig> = {
+      absoluteDate: { start: new Date(), end: new Date() },
+      startShift: { type: 'mixed', switchIsActive: true, switchEnabled: true, properties: [ { text: 'Секунды', key: 'seconds', enabled: true, value: -20 } /* ... more properties ... */ ] },
+      endShift: { type: 'mixed', switchIsActive: true, switchEnabled: true, properties: [ { text: 'Секунды', key: 'seconds', enabled: false, value: 0 } /* ... more properties ... */ ] },
+      step: { items: [], selectedUnitValue: 'minutes', unitDisplayExpr: 'text', unitValueExpr: 'id', numberValue: 5 },
+      quickFilterId: 'last_1h',
+      update: { items: [], selectedUnitValue: 'seconds', unitDisplayExpr: 'text', unitValueExpr: 'id', numberValue: 30 },
+    };
+    this.defaultSettings = config;
+    this.settings = JSON.parse(JSON.stringify(config));
+  }
+
+  togglePopup(): void {
+    this.popupVisible = !this.popupVisible;
+  }
+
+  onClosed(): void {
+    this.popupVisible = false;
+  }
+
+  onPopupHidden(): void {
+
+    this.popupVisible = false;
+  }
+
+  onTimeRangeApplied(appliedSettings: TimeRangeConfig) {
+    console.log('Popup time range applied:', appliedSettings);
+    this.settings = appliedSettings;
+    this.popupVisible = false;
+  }
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### Только с абсолютным временем
+
+<Story of={timeRangeStories.WithOnlyAbsoluteTime} />
+
+<Source
+  code={`
+<me-time-range
+  [settingsBlocks]="['shiftSettings']"
+  [settings]="settings"
+  [isPopup]="true"
+  [popupIsVisible]="true"
+  [showTitle]="true"
+  [title]="'Интервал'"
+  [hasHeaderCloseButton]="true"
+  [hasFooterCancelButton]="true"
+  [changesApplyMode]="'onChange'"
+  (timeRangeApplied)="onTimeRangeApplied($event)"
+></me-time-range>
+
+const settings: Partial<TimeRangeConfig> = {
+  absoluteDate: {
+    start: new Date(new Date().setDate(new Date().getDate() - 7)),
+    end: new Date(),
+  },
+  startShift: null,
+  endShift: null,
+
+  step: null,
+  update: null,
+};
+
+onTimeRangeApplied(appliedSettings: TimeRangeConfig) {
+  console.log('Absolute time range applied:', appliedSettings);
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### С настройками сдвига, шагом и результатом
+
+<Story of={timeRangeStories.WithShiftSettingsStepsAndResult} />
+
+<Source
+  code={`
+<me-time-range
+  [settingsBlocks]="['shiftSettings', 'steps', 'result']"
+  [settings]="settings"
+  [isPopup]="true"
+  [popupIsVisible]="true"
+  [showTitle]="true"
+  [title]="'Фильтрация по времени'"
+  [hasHeaderCloseButton]="true"
+  [hasFooterCancelButton]="true"
+  [changesApplyMode]="'onApply'"
+  (timeRangeApplied)="onTimeRangeApplied($event)"
+></me-time-range>
+
+const defaultTimeStepsExample = [
+  { text: '15 секунд', id: 'seconds', numberValue: 15 },
+  { text: '1 минута', id: 'minutes', numberValue: 1 },
+
+];
+
+const settings: Partial<TimeRangeConfig> = {
+  absoluteDate: {
+    start: new Date(),
+    end: new Date(),
+  },
+  startShift: {
+    type: 'current',
+    switchIsActive: true,
+    switchEnabled: true,
+    properties: {
+      value: -1,
+      selectedUnit: 'hours',
+      displayExpr: 'text',
+      valueExpr: 'id',
+      units: defaultTimeStepsExample
+    }
+  },
+  endShift: {
+    type: 'current',
+    switchIsActive: true,
+    switchEnabled: true,
+    properties: {
+      value: 0,
+      selectedUnit: 'hours',
+      displayExpr: 'text',
+      valueExpr: 'id',
+      units: defaultTimeStepsExample
+    }
+  },
+  step: {
+    items: defaultTimeStepsExample,
+    selectedUnitValue: 'minutes',
+    unitDisplayExpr: 'text',
+    unitValueExpr: 'id',
+    numberValue: 15,
+  },
+  update: null
+};
+
+onTimeRangeApplied(appliedSettings: TimeRangeConfig) {
+  console.log('Shift, steps, result applied:', appliedSettings);
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### С быстрыми фильтрами, типом сдвига, настройками сдвига, шагом и результатом
+
+<Story of={timeRangeStories.WithQuickFilterShiftTypeShiftSettingsStepsAndResult} />
+
+<Source
+  code={`
+<me-time-range
+  [settingsBlocks]="['quickFilter', 'shiftType', 'shiftSettings', 'steps', 'result']"
+  [settings]="settings"
+  [isPopup]="true"
+  [popupIsVisible]="true"
+  [showTitle]="true"
+  [title]="'Фильтрация по времени (полная)'"
+  [hasHeaderCloseButton]="true"
+  [hasFooterCancelButton]="true"
+  [changesApplyMode]="'onApply'"
+  (timeRangeApplied)="onTimeRangeApplied($event)"
+></me-time-range>
+
+const defaultTimeStepsExample = [
+  { text: '1 час', id: 'hours', numberValue: 1 }, /* ... */
+];
+
+const settings: Partial<TimeRangeConfig & { shiftType?: string }> = {
+  absoluteDate: {
+    start: new Date(),
+    end: new Date(),
+  },
+  startShift: {
+    properties: { value: -2, selectedUnit: 'hours', units: defaultTimeStepsExample }
+  },
+  endShift: {
+    properties: { value: 0, selectedUnit: 'hours', units: defaultTimeStepsExample }
+  },
+  step: {
+    items: defaultTimeStepsExample,
+    selectedUnitValue: 'minutes',
+    unitDisplayExpr: 'text',
+    unitValueExpr: 'id',
+    numberValue: 30,
+  },
+
+
+  shiftType: 'current',
+  quickFilterId: 'last_2h',
+  update: null
+};
+
+onTimeRangeApplied(appliedSettings: TimeRangeConfig) {
+  console.log('Full filter applied:', appliedSettings);
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### С типом сдвига и отображением без попапа
+
+<Story of={timeRangeStories.WithShiftTypeAndDataBox} />
+
+<Source
+  code={`
+<me-time-range
+  [settingsBlocks]="['shiftType', 'shiftSettings']"
+  [defaultSettings]="defaultSettings"
+  [settings]="settings"
+  [isPopup]="false"
+  [showTitle]="true"
+  [title]="'Настройка временного диапазона (без попапа)'"
+  [changesApplyMode]="'onChange'"
+  (timeRangeApplied)="onTimeRangeApplied($event)"
+></me-time-range>
+
+const smallTimeRangeConfigExample: Partial<TimeRangeConfig> = {
+  absoluteDate: { start: new Date(), end: new Date() },
+  startShift: { properties: null, switchEnabled: false, type: 'mixed' },
+  endShift: { properties: null, switchEnabled: false, type: 'mixed' },
+  step: {
+    items: [ { text: '15 секунд', id: 'seconds', numberValue: 15 } /* ... */ ],
+    selectedUnitValue: 'seconds',
+    unitDisplayExpr: 'text',
+    unitValueExpr: 'id',
+    numberValue: 15,
+  },
+  quickFilterId: 'last_1h',
+  update: {
+    items: [ { text: '30 секунд', id: 'seconds', numberValue: 30 } /* ... */ ],
+    selectedUnitValue: 'seconds',
+    unitDisplayExpr: 'text',
+    unitValueExpr: 'id',
+    numberValue: 30,
+  },
+};
+
+const defaultSettings = smallTimeRangeConfigExample;
+const settings = {
+  ...smallTimeRangeConfigExample,
+
+  shiftType: 'current'
+};
+
+onTimeRangeApplied(appliedSettings: TimeRangeConfig) {
+  console.log('Shift type and databox applied:', appliedSettings);
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### Только с быстрыми фильтрами и результатом
+
+<Story of={timeRangeStories.WithQuickFiltersAndResult} />
+
+<Source
+  code={`
+<me-time-range
+  [settingsBlocks]="['quickFilter', 'result']"
+  [settings]="timeRangeSettings"
+  [defaultSettings]="timeRangeSettings"
+  [changesApplyMode]="'onApply'"
+  (timeRangeApplied)="onTimeRangeApplied($event)"
+></me-time-range>
+
+const timeRangeSettings: Partial<TimeRangeConfig> = {
+  absoluteDate: { start: new Date(), end: new Date() },
+  startShift: { type: 'mixed', switchIsActive: true, properties: [/* ... */] },
+  endShift: { type: 'mixed', switchIsActive: true, properties: [/* ... */] },
+  step: { items: [], selectedUnitValue: 'minutes', numberValue: 5, unitDisplayExpr:'text', unitValueExpr:'id' },
+  quickFilterId: 'last_1d',
+  update: { items: [], selectedUnitValue: 'none', numberValue: 0, unitDisplayExpr:'text', unitValueExpr:'id' },
+
+};
+
+onTimeRangeApplied(settings: TimeRangeConfig) {
+  console.log('Quick filters and result applied:', settings);
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### Только с настройками сдвига
+
+<Story of={timeRangeStories.WithOnlyFilters} />
+
+<Source
+  code={`
+<me-time-range
+  [settings]="timeRangeSettings"
+  [defaultSettings]="timeRangeSettings"
+  [settingsBlocks]="['shiftSettings']"
+  [changesApplyMode]="'onApply'"
+  (timeRangeApplied)="onTimeRangeApplied($event)"
+></me-time-range>
+
+const timeRangeSettings: Partial<TimeRangeConfig> = {
+  absoluteDate: { start: new Date(), end: new Date() },
+  startShift: {
+    type: 'mixed',
+    switchIsActive: true,
+    switchEnabled: true,
+    properties: [ { text: 'Часы', key: 'hours', enabled: true, value: -1 } /* ... */]
+  },
+  endShift: {
+    type: 'mixed',
+    switchIsActive: true,
+    switchEnabled: true,
+    properties: [ { text: 'Часы', key: 'hours', enabled: false, value: 0 } /* ... */]
+  },
+
+  step: null,
+  update: null,
+  quickFilterId: null,
+};
+
+onTimeRangeApplied(settings: TimeRangeConfig) {
+  console.log('Only shift settings applied:', settings);
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+## API
+
+### Входные параметры (Inputs)
+
+#### Конфигурация
+
+| Имя | Тип | По умолчанию | Описание |
+|-----|-----|-------------|----------|
+| `settings` | `Partial<TimeRangeConfig>` | `{}` | Настройки временного диапазона |
+| `defaultSettings` | `Partial<TimeRangeConfig>` | `{}` | Настройки по умолчанию |
+| `settingsBlocks` | `Array<'quickFilter' \| 'shiftType' \| 'shiftSettings' \| 'steps' \| 'result'>` | `['quickFilter', 'shiftSettings', 'steps', 'result']` | Блоки настроек для отображения. `'shiftType'` - новый возможный блок. |
+| `changesApplyMode` | `'onChange' \| 'onApply'` | `'onChange'` | Режим применения изменений |
+
+#### Режим попапа
+
+| Имя | Тип | По умолчанию | Описание |
+|-----|-----|-------------|----------|
+| `isPopup` | `boolean` | `false` | Использовать компонент в режиме попапа |
+| `popupIsVisible` | `boolean` | `false` | Видимость попапа |
+| `popupWidth` | `string` | `'auto'` | Ширина попапа (в storybook примерах часто '600px' или '400px') |
+| `popupHeight` | `string` | `'auto'` | Высота попапа |
+| `popupPosition` | `PositionAlignment \| PositionConfig` | `{ my: 'left top', at: 'left bottom' }` | Позиция попапа |
+| `popupAnimation` | `{ hide?: AnimationConfig; show?: AnimationConfig }` | `{}` | Анимация попапа |
+
+#### Заголовок и кнопки
+
+| Имя | Тип | По умолчанию | Описание |
+|-----|-----|-------------|----------|
+| `showTitle` | `boolean` | `false` | Показывать заголовок |
+| `title` | `string` | `''` | Текст заголовка |
+| `hasHeaderCloseButton` | `boolean` | `false` | Показывать кнопку закрытия в заголовке |
+| `hasFooterCancelButton` | `boolean` | `false` | Показывать кнопку отмены в футере |
+| `disableApplyButton` | `boolean \| null` | `null` | Отключить кнопку применения |
+| `disableResetButton` | `boolean \| null` | `null` | Отключить кнопку сброса |
+
+#### Интервал обновления
+
+| Имя | Тип | По умолчанию | Описание |
+|-----|-----|-------------|----------|
+| `intervalTime` | `number \| null` | `null` | Интервал обновления в миллисекундах |
+
+### Выходные события (Outputs)
+
+| Имя | Тип | Описание |
+|-----|-----|----------|
+| `timeRangeApplied` | `EventEmitter<TimeRangeConfig>` | Применение временного диапазона |
+| `settingsChanged` | `EventEmitter<TimeRangeConfig>` | Изменение настроек |
+| `timeRangeReset` | `EventEmitter<TimeRangeConfig>` | Сброс временного диапазона |
+| `timeShiftChanged` | `EventEmitter<TimeShiftChangedOutput>` | Изменение сдвига времени |
+| `closed` | `EventEmitter<void>` | Закрытие компонента |
+| `popupOnHidden` | `EventEmitter<void>` | Скрытие попапа |

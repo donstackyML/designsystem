@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+::ng-deep {
+  .dx-popup-content {
+    padding: 0;
+  }
+}
+
+.me-time-range__popup-content {
+  padding: 1rem;
+}
+
+.me-time-range {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: var(--Background-Accent-in-the-content);
+
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .me-title-header2 {
+      --close-button-width: 1.75rem;
+      --header-gap: 1rem;
+
+      width: 100%;
+      padding-right: calc(var(--close-button-width) + var(--header-gap));
+    }
+
+    &__close-button {
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__result {
+    overflow: hidden;
+    display: flex;
+    gap: 1.5rem;
+
+    padding: 0.75rem;
+    border: 1px solid var(--Dividers-Borders-Long);
+    border-radius: 0.25rem;
+
+    &__date-block {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 0.25rem;
+
+      &__title {
+        color: var(--Text-Secondary);
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+
+    &__buttons-right {
+      display: flex;
+      gap: 0.75rem;
+    }
+  }
+}
+
+.section-with-divider {
+  &--small {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &--medium {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.me-time-range-panel {
+  border: 1px solid var(--Dividers-Borders-Long);
+  border-radius: var(--outside);
+  box-shadow: var(--drop-down-shadow);
+}
+
+.divider {
+  display: flex;
+  flex-grow: 1;
+
+  height: 1px;
+  margin: 0.25rem 0.75rem;
+
+  background: var(--Dividers-Borders-Short);
+}
+
+.section-with-divider--medium + .divider {
+  display: none;
+}
+
+.time-range-property-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.time-range-step-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(4.375rem, 0.2fr);
+  width: 100%;
+}
+
+.time-range-description {
+  color: var(--Text-Secondary);
+}

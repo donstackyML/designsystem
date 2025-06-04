@@ -1,0 +1,51 @@
+<div class="shift-settings">
+  <div
+    class="shift-settings__start-time"
+    [class.shift-settings__start-time--mixed]="shiftType === 'mixed'"
+    [class.shift-settings__start-time--relative]="shiftType === 'current'"
+    [class.shift-settings__start-time--absolute]="shiftType === 'absolute'"
+  >
+    <div class="me-title-subheader1">{{ title }}</div>
+
+    <div
+      *ngIf="switchEnabled && _switchTitle && shiftType !== 'unknown' && shiftType !== 'absolute'"
+      meLabel
+      width="fit-content"
+    >
+      <dx-switch
+        size="small"
+        meSwitch
+        [value]="switchIsActive"
+        (onValueChanged)="onSwitchChange($event)"
+        [disabled]="propertiesState === 'disabled'"
+        [readOnly]="propertiesState === 'readOnly'"
+      >
+      </dx-switch>
+      <span class="me-action-reg3">{{ _switchTitle }}</span>
+    </div>
+  </div>
+
+  <!-- Поле абсолютного времени -->
+  <dx-date-box
+    #baseDateBox
+    meDateBox
+    [(value)]="absoluteDate"
+    (onValueChanged)="handleAbsoluteDateChange($event)"
+    type="datetime"
+    [showClearButton]="true"
+    [readOnly]="_isDateBoxReadOnly"
+    [disabled]="propertiesState === 'disabled'"
+    width="100%"
+  >
+  </dx-date-box>
+
+  <me-shift-properties
+    *ngIf="hasProperties"
+    [title]="propertiesTitle"
+    [properties]="properties"
+    [variant]="effectiveChildVariant"
+    [state]="propertiesState"
+    (shiftPropertiesChange)="handleShiftPropertiesChange($event)"
+  >
+  </me-shift-properties>
+</div>

@@ -1,0 +1,212 @@
+
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as shiftSettingsStories from "./me-shift-settings.stories";
+
+<Meta name="ShiftSettings Documentation" of={shiftSettingsStories} />
+
+# MeShiftSettings
+
+Компонент `me-shift-settings` используется для настройки сдвига времени в компоненте `me-time-range`. Позволяет выбирать между абсолютным и относительным режимами, а также настраивать параметры сдвига времени.
+
+<Controls of={shiftSettingsStories.Default} />
+
+## Примеры использования
+
+- [Смешанный режим](#смешанный-режим)
+- [Относительный режим](#относительный-режим)
+- [Абсолютный режим](#абсолютный-режим)
+- [С пользовательскими настройками](#с-пользовательскими-настройками)
+
+### Смешанный режим
+
+<Story of={shiftSettingsStories.Default} />
+
+<Source
+  code={`
+// Template
+<me-shift-settings
+  [title]="'Начало периода'"
+  [shiftType]="'mixed'"
+  [currentShiftIsActive]="true"
+  [absoluteDate]="startDate"
+  [properties]="startShiftProperties"
+  [propertiesVariant]="'full'"
+  [switchTitle]="'Относительно текущего времени'"
+  [switchEnabled]="true"
+  (settingsChange)="onStartShiftSettingsChange($event)"
+></me-shift-settings>
+
+// Component
+const startShiftProperties = [
+  { text: 'Месяцы', key: 'months', enabled: false, value: 0 },
+  { text: 'Недели', key: 'weeks', enabled: false, value: 0 },
+  { text: 'Дни', key: 'days', enabled: false, value: 0 },
+  { text: 'Часы', key: 'hours', enabled: true, value: -1 },
+  { text: 'Минуты', key: 'minutes', enabled: false, value: 0 },
+  { text: 'Секунды', key: 'seconds', enabled: false, value: 0 },
+];
+
+startDate = new Date();
+
+onStartShiftSettingsChange(settings: ShiftSettingsOutput) {
+  // Обработка изменений настроек
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### Относительный режим
+
+<Story of={shiftSettingsStories.CurrentMode} />
+
+<Source
+  code={`
+// Template
+<me-shift-settings
+  [title]="'Начало периода'"
+  [shiftType]="'current'"
+  [currentShiftIsActive]="true"
+  [properties]="startShiftProperties"
+  [propertiesVariant]="'full'"
+  (settingsChange)="onStartShiftSettingsChange($event)"
+></me-shift-settings>
+
+// Component
+const startShiftProperties = [
+  { text: 'Часы', key: 'hours', enabled: true, value: -1 },
+  { text: 'Минуты', key: 'minutes', enabled: false, value: 0 },
+  { text: 'Секунды', key: 'seconds', enabled: false, value: 0 },
+];
+
+onStartShiftSettingsChange(settings: ShiftSettingsOutput) {
+  // Обработка изменений настроек
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### Абсолютный режим
+
+<Story of={shiftSettingsStories.AbsoluteMode} />
+
+<Source
+  code={`
+// Template
+<me-shift-settings
+  [title]="'Начало периода'"
+  [shiftType]="'absolute'"
+  [currentShiftIsActive]="false"
+  [absoluteDate]="startDate"
+  (settingsChange)="onStartShiftSettingsChange($event)"
+></me-shift-settings>
+
+// Component
+startDate = new Date();
+
+onStartShiftSettingsChange(settings: ShiftSettingsOutput) {
+  // Обработка изменений настроек
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+{/* ### С пользовательскими настройками
+
+<Story of={shiftSettingsStories.WithCustomSettings} />
+
+<Source
+  code={`
+// Template
+<me-shift-settings
+  [title]="'Пользовательские настройки'"
+  [shiftType]="'mixed'"
+  [currentShiftIsActive]="true"
+  [absoluteDate]="startDate"
+  [properties]="customProperties"
+  [propertiesVariant]="'minimal'"
+  [switchTitle]="'Пользовательский переключатель'"
+  [switchEnabled]="true"
+  (settingsChange)="onStartShiftSettingsChange($event)"
+></me-shift-settings>
+
+// Component
+const customProperties = {
+  value: 5,
+  selectedUnit: 'hours',
+  units: [
+    { text: 'Часы', value: 'hours' },
+    { text: 'Минуты', value: 'minutes' },
+    { text: 'Секунды', value: 'seconds' },
+  ],
+};
+
+startDate = new Date();
+
+onStartShiftSettingsChange(settings: ShiftSettingsOutput) {
+  // Обработка изменений настроек
+}
+  `}
+  language="typescript"
+  dark
+/> */}
+
+### ShiftSettingsOutput
+
+```typescript
+export interface ShiftSettingsOutput {
+  properties: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null;
+  absoluteDate: Date | string | number | null;
+  isRelativeModeActive: boolean;
+  shiftType: ShiftType;
+}
+```
+
+### ShiftType
+
+```typescript
+export type ShiftType = 'relative' | 'absolute' | 'mixed';
+```
+
+### TimeShiftProperty
+
+```typescript
+export interface TimeShiftProperty {
+  text: string;
+  key: string;
+  enabled: boolean;
+  value: number;
+}
+```
+
+### MinimalTimeShiftProperty
+
+```typescript
+export interface MinimalTimeShiftProperty {
+  value: number;
+  selectedUnit: string;
+  displayExpr?: string;
+  valueExpr?: string;
+  units?: Array<{
+    text?: string;
+    value: string;
+  }>;
+  [key: string]: any;
+}
+```
+
+## Пример данных
+
+```typescript
+const shiftProperties: TimeShiftProperty[] = [
+  { text: 'Месяцы', key: 'months', enabled: false, value: 0 },
+  { text: 'Недели', key: 'weeks', enabled: false, value: 0 },
+  { text: 'Дни', key: 'days', enabled: false, value: 0 },
+  { text: 'Часы', key: 'hours', enabled: true, value: -1 },
+  { text: 'Минуты', key: 'minutes', enabled: false, value: 0 },
+  { text: 'Секунды', key: 'seconds', enabled: false, value: 0 },
+];
+```
