@@ -1,0 +1,219 @@
+<dx-popup
+  *ngIf="isPopup"
+  [showTitle]="false"
+  [visible]="popupIsVisible"
+  [width]="popupWidth"
+  [height]="popupHeight"
+  [hideOnOutsideClick]="popupHideOnOutsideClick"
+  [position]="popupPosition"
+  (onHidden)="handleClosePopup()"
+  class="me-time-range__popup"
+>
+  <div *dxTemplate="let data of 'content'">
+    <dx-scroll-view meScrollView width="100%" height="100%">
+      <div class="me-time-range me-time-range__popup-content">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+      </div>
+    </dx-scroll-view>
+  </div>
+</dx-popup>
+
+<div *ngIf="!isPopup" class="me-time-range">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</div>
+
+<ng-template #content>
+  <div *ngIf="title" class="me-time-range__header">
+    <span *ngIf="showTitle" class="me-title-header2">{{ title }}</span>
+    <dx-button
+      *ngIf="hasHeaderCloseButton"
+      meButton
+      stylingMode="text"
+      size="small"
+      iconOnly
+      [leftIcon]="closeIcon"
+      (onClick)="handleClose()"
+      class="me-time-range__header__close-button"
+    >
+    </dx-button>
+  </div>
+
+  <div class="me-time-range__content">
+    <div *ngIf="settingsBlocks.includes('quickFilter')" class="section-with-divider--medium">
+      <me-quick-filters
+        class="time-range-settings__block"
+        [selectedFilterId]="selectedQuickFilterId"
+        (filtersSelected)="onQuickFilterSelected($event)"
+        [title]="quickFiltersTitle"
+        [disabled]="quickFiltersDisabled"
+      ></me-quick-filters>
+      <div class="divider"></div>
+    </div>
+
+    <div *ngIf="settingsBlocks.includes('shiftType')" class="section-with-divider--medium">
+      <me-shift-type
+        (valueChange)="onShiftTypeChanged($event)"
+        [currentShiftType]="internalSettings.shiftType"
+      ></me-shift-type>
+      <div class="divider"></div>
+    </div>
+
+    <me-time-range-columns-grid *ngIf="settingsBlocks.includes('shiftSettings')">
+      <me-shift-settings
+        *ngIf="internalSettings.startShift || internalSettings.absoluteDate.start"
+        title="Начало"
+        propertiesTitle="Настройка сдвига"
+        [absoluteDate]="internalSettings.absoluteDate.start"
+        [switchIsActive]="internalSettings.startShift?.switchIsActive ?? false"
+        [properties]="internalSettings.startShift?.properties ?? null"
+        [shiftType]="internalSettings.startShift?.type ?? 'mixed'"
+        [hasProperties]="internalSettings.startShift?.properties !== null"
+        [switchEnabled]="internalSettings.startShift?.switchEnabled ?? false"
+        (settingsChange)="handleShiftSettingsChange($event, 'startShift')"
+      >
+      </me-shift-settings>
+
+      <span
+        *ngIf="!internalSettings.startShift && !internalSettings.absoluteDate.start"
+        class="me-text-description2 time-range-description"
+      >
+        Настройка параметров начала недоступна.
+      </span>
+
+      <me-shift-settings
+        *ngIf="internalSettings.endShift || internalSettings.absoluteDate.end"
+        title="Конец"
+        propertiesTitle="Настройка сдвига"
+        [absoluteDate]="internalSettings.absoluteDate.end"
+        [switchIsActive]="internalSettings.endShift?.switchIsActive ?? false"
+        [properties]="internalSettings.endShift?.properties ?? null"
+        [shiftType]="internalSettings.endShift?.type ?? 'mixed'"
+        [hasProperties]="internalSettings.endShift?.properties !== null"
+        [switchEnabled]="internalSettings.endShift?.switchEnabled ?? false"
+        (settingsChange)="handleShiftSettingsChange($event, 'endShift')"
+      >
+      </me-shift-settings>
+
+      <span
+        *ngIf="!internalSettings.endShift && !internalSettings.absoluteDate.end"
+        class="me-text-description2 time-range-description"
+      >
+        Настройка параметров конца недоступна.
+      </span>
+    </me-time-range-columns-grid>
+
+    <ng-container *ngIf="settingsBlocks.includes('steps')">
+      <div class="divider"></div>
+      <me-time-range-columns-grid>
+        <me-time-range-settings-section *ngIf="internalSettings.step" title="Шаг">
+          <div class="time-range-property-row time-range-step-row">
+            <dx-select-box
+              width="100%"
+              meSelectBox
+              size="medium"
+              [items]="internalSettings.step.items"
+              [value]="internalSettings.step.selectedUnitValue"
+              [displayExpr]="internalSettings.step.unitDisplayExpr || 'text'"
+              [valueExpr]="internalSettings.step.unitValueExpr || 'id'"
+              (onValueChanged)="
+                handleStepChange({
+                  numberValue: internalSettings.step.numberValue,
+                  selectedUnitValue: $event.value,
+                })
+              "
+            ></dx-select-box>
+            <dx-number-box
+              meNumberBox
+              size="medium"
+              [showSpinButtons]="true"
+              [value]="internalSettings.step.numberValue"
+              [min]="1"
+              (onValueChanged)="
+                handleStepChange({
+                  numberValue: $event.value,
+                  selectedUnitValue: internalSettings.step.selectedUnitValue,
+                })
+              "
+            ></dx-number-box>
+          </div>
+        </me-time-range-settings-section>
+        <me-time-range-settings-section *ngIf="internalSettings.update" title="Обновление">
+          <div class="time-range-property-row time-range-step-row">
+            <dx-select-box
+              width="100%"
+              meSelectBox
+              size="medium"
+              [items]="internalSettings.update.items"
+              [value]="internalSettings.update.selectedUnitValue"
+              [displayExpr]="internalSettings.update.unitDisplayExpr || 'text'"
+              [valueExpr]="internalSettings.update.unitValueExpr || 'value'"
+              (onValueChanged)="
+                handleUpdateChange({
+                  numberValue: internalSettings.update.numberValue,
+                  selectedUnitValue: $event.value,
+                })
+              "
+            ></dx-select-box>
+            <dx-number-box
+              meNumberBox
+              size="medium"
+              [showSpinButtons]="true"
+              [value]="internalSettings.update.numberValue"
+              (onValueChanged)="
+                handleUpdateChange({
+                  numberValue: $event.value,
+                  selectedUnitValue: internalSettings.update.selectedUnitValue,
+                })
+              "
+            ></dx-number-box>
+          </div>
+        </me-time-range-settings-section>
+      </me-time-range-columns-grid>
+    </ng-container>
+
+    <ng-container *ngIf="settingsBlocks.includes('result')">
+      <div class="divider"></div>
+      <me-time-range-result
+        [startDate]="effectiveStartDate"
+        [startDateHighlightInfo]="startHighlightInfo"
+        [endDate]="effectiveEndDate"
+        [endDateHighlightInfo]="endHighlightInfo"
+      />
+    </ng-container>
+  </div>
+
+  <div class="me-time-range__footer">
+    <dx-button
+      meButton
+      size="small"
+      text="Сбросить фильтр"
+      type="default"
+      stylingMode="text"
+      (onClick)="resetFilters()"
+      [disabled]="isResetDisabled"
+    >
+    </dx-button>
+    <div class="me-time-range__footer__buttons-right">
+      <dx-button
+        meButton
+        size="small"
+        text="Применить"
+        type="default"
+        stylingMode="contained"
+        (onClick)="applyFilters()"
+        [disabled]="isApplyButtonDisabled"
+      >
+      </dx-button>
+      <dx-button
+        *ngIf="hasFooterCancelButton"
+        meButton
+        size="small"
+        text="Отмена"
+        type="default"
+        stylingMode="text"
+        (onClick)="handleClose()"
+      >
+      </dx-button>
+    </div>
+  </div>
+</ng-template>

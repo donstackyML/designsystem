@@ -23083,6 +23083,7 @@ input.dx-hidden {
   font-size: 14px;
 }
 .me-menu-left .resize-handle {
+  box-sizing: border-box;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -23783,7 +23784,7 @@ input.dx-hidden {
 
 .me-context-menu.dx-context-menu .dx-submenu {
   border: none;
-  max-height: calc(100% - 2px);
+  max-height: calc(100% + 8px);
   box-shadow: inset 0 0 0 1px #dfe0ed, 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
 }
 .me-context-menu.dx-context-menu .dx-submenu .dx-menu-items-container {
@@ -31370,6 +31371,9 @@ input.dx-hidden {
   flex-direction: column;
   gap: 4px;
 }
+.me-sidepage-header svg {
+  color: var(--Controls-Content-In-Controls-Main-Default);
+}
 
 .me-sidepage.dx-popup .dx-popup-title.dx-toolbar {
   padding: 12px 20px;
@@ -32066,12 +32070,13 @@ input.dx-hidden {
 }
 
 .me-status-bar {
+  box-sizing: border-box;
   display: flex;
-  width: 100%;
-  padding: 4px;
+  padding: 0 16px;
   background: var(--Background-Content);
   border-top: 1px solid var(--Dividers-Borders-Long);
   min-height: var(--status-bar-min-height);
+  align-items: center;
   overflow: hidden;
 }
 .me-status-bar--transparent {
@@ -32163,35 +32168,35 @@ input.dx-hidden {
   white-space: nowrap;
 }
 .me-status-bar__button.dx-button-mode-contained {
-  background-color: var(--Badge-Blue-Gray) !important;
+  background-color: var(--Badge-Blue) !important;
   color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--error {
-  background-color: var(--Controls-BG-Accent-Danger-BG-Default) !important;
-  border-color: var(--Controls-BG-Accent-Danger-BG-Default) !important;
+  background-color: var(--Badge-Red) !important;
+  border-color: var(--Badge-Red) !important;
   color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--error .dx-icon {
   color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--warning {
-  background-color: var(--Controls-BG-Accent-Attention-BG-Default) !important;
-  border-color: var(--Controls-BG-Accent-Attention-BG-Default) !important;
+  background-color: var(--Badge-Yellow) !important;
+  border-color: var(--Badge-Yellow) !important;
   color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--warning .dx-icon {
   color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--success {
-  background-color: var(--Controls-BG-Accent-Success-BG-Default) !important;
-  border-color: var(--Controls-BG-Accent-Success-BG-Default) !important;
+  background-color: var(--Badge-Green) !important;
+  border-color: var(--Badge-Green) !important;
   color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--success .dx-icon {
   color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--info {
-  background-color: var(--Controls-BG-Accent-Accent-BG-Default) !important;
+  background-color: var(--Badge-Blue-Gray) !important;
   color: var(--Controls-Content-In-Controls-On-BG-Default) !important;
 }
 .me-status-bar__button.dx-button-mode-contained.me-status-bar__button--info .dx-icon {
@@ -32200,25 +32205,25 @@ input.dx-hidden {
 .me-status-bar__button.dx-button-mode-text {
   background-color: transparent !important;
   border: none !important;
-  color: var(--Controls-Informative-BG-Notification);
+  color: var(--Badge-Blue);
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--error .dx-button-content {
-  color: var(--Controls-Content-In-Controls-Danger-Default) !important;
+  color: var(--Badge-Red) !important;
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--error .dx-icon {
-  color: var(--Controls-Content-In-Controls-Danger-Default) !important;
+  color: var(--Badge-Red) !important;
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--warning .dx-button-content {
-  color: var(--Controls-Content-In-Controls-Attention-Default) !important;
+  color: var(--Badge-Yellow) !important;
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--warning .dx-icon {
-  color: var(--Controls-Content-In-Controls-Attention-Default) !important;
+  color: var(--Badge-Yellow) !important;
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--success .dx-button-content {
-  color: var(--Controls-Content-In-Controls-Success-Default) !important;
+  color: var(--Badge-Green) !important;
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--success .dx-icon {
-  color: var(--Controls-Content-In-Controls-Success-Default) !important;
+  color: var(--Badge-Green) !important;
 }
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content {
   color: var(--Badge-Blue-Gray) !important;
@@ -32260,10 +32265,6 @@ input.dx-hidden {
 
 .me-status-bar__button.dx-button-mode-text.me-status-bar__button--info .dx-button-content {
   color: var(--Icon-Default);
-}
-
-.me-status-bar__button.dx-button-mode-text.me-status-bar__button--error .dx-button-content .dx-icon .material-icons {
-  color: var(--Controls-Content-In-Controls-Danger-Default);
 }
 
 .me-status-bar__button-content .dx-icon {

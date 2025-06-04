@@ -1,0 +1,134 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as shiftTypeStories from "./me-shift-type.stories";
+
+<Meta name="ShiftType Documentation" of={shiftTypeStories} />
+
+# MeShiftType
+
+Компонент `me-shift-type` используется для выбора типа сдвига времени в компоненте `me-time-range`. Позволяет переключаться между различными типами сдвига времени.
+
+<Controls of={shiftTypeStories.Default} />
+
+## Примеры использования
+
+- [С несколькими опциями](#с-несколькими-опциями)
+- [С выбранным абсолютным режимом](#с-выбранным-абсолютным-режимом)
+- [С пользовательским отображением](#с-пользовательским-отображением)
+
+### С несколькими опциями
+
+<Story of={shiftTypeStories.WithMultipleOptions} />
+
+<Source
+  code={`
+// Template
+<me-shift-type
+  [shiftTypes]="defaultShiftTypes"
+  [currentShiftType]="currentShiftType"
+  (valueChange)="onShiftTypeChange($event)"
+></me-shift-type>
+
+// Component
+const defaultShiftTypes = [
+  { id: 'current', text: 'Относительно текущего времени' },
+  { id: 'absolute', text: 'Абсолютное время' },
+  { id: 'mixed', text: 'Смешанный режим' },
+];
+
+currentShiftType = 'current';
+
+onShiftTypeChange(shiftType: string) {
+  this.currentShiftType = shiftType;
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### С выбранным абсолютным режимом
+
+<Story of={shiftTypeStories.AbsoluteSelected} />
+
+<Source
+  code={`
+// Template
+<me-shift-type
+  [shiftTypes]="defaultShiftTypes"
+  [currentShiftType]="'absolute'"
+  (valueChange)="onShiftTypeChange($event)"
+></me-shift-type>
+
+// Component
+const defaultShiftTypes = [
+  { id: 'current', text: 'Относительно текущего времени' },
+  { id: 'absolute', text: 'Абсолютное время' },
+  { id: 'mixed', text: 'Смешанный режим' },
+];
+
+onShiftTypeChange(shiftType: string) {
+  this.currentShiftType = shiftType;
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+### С пользовательским отображением
+
+<Story of={shiftTypeStories.CustomDisplayExpr} />
+
+<Source
+  code={`
+// Template
+<me-shift-type
+  [shiftTypes]="customShiftTypes"
+  [displayExpr]="'name'"
+  [currentShiftType]="currentShiftType"
+  (valueChange)="onShiftTypeChange($event)"
+></me-shift-type>
+
+// Component
+const customShiftTypes = [
+  { id: 'current', name: 'Текущее время' },
+  { id: 'absolute', name: 'Абсолютное время' },
+  { id: 'mixed', name: 'Смешанный режим' },
+];
+
+currentShiftType = 'current';
+
+onShiftTypeChange(shiftType: string) {
+  this.currentShiftType = shiftType;
+}
+  `}
+  language="typescript"
+  dark
+/>
+
+## API
+
+### Входные параметры (Inputs)
+
+| Имя | Тип | По умолчанию | Описание |
+|-----|-----|-------------|----------|
+| `valueExpr` | `string` | `'id'` | Свойство для определения значения |
+| `displayExpr` | `string` | `'text'` | Свойство для отображения текста |
+| `shiftTypes` | `Array<{ id: string; text: string }>` | `[{ id: 'current', text: 'Относительно текущего времени' }]` | Массив типов сдвига |
+| `currentShiftType` | `string` | `'filters[0]?.id'` | Текущее выбранное значение |
+
+### Выходные события (Outputs)
+
+| Имя | Тип | Описание |
+|-----|-----|----------|
+| `valueChange` | `EventEmitter<string>` | Событие изменения выбранного значения |
+
+## Модели и интерфейсы
+
+### ShiftType
+
+```typescript
+export interface ShiftType {
+  id: string;
+  text: string;
+}
+```
