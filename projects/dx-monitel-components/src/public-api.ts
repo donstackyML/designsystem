@@ -10,7 +10,8 @@ export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MeMenuLeftComponent } from './lib/components/me-menu-left/me-menu-left.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 export {
-  MePropertyGridCellComponent, MePropertyGridComponent
+  MePropertyGridCellComponent,
+  MePropertyGridComponent,
 } from './lib/components/me-property-grid';
 export { MeSidePageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonItemComponent } from './lib/components/me-skeleton/me-skeleton-item/me-skeleton-item.component';
@@ -41,6 +42,7 @@ export { MeListDirective } from './lib/directives/me-list/me-list.directive';
 export { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
 export { MeRadioGroupDirective } from './lib/directives/me-radio-group/me-radio-group.directive';
 export { MeSelectBoxDirective } from './lib/directives/me-select-box/me-select-box.directive';
+export { MeDropDownBoxDirective } from './lib/directives/me-drop-down-box/me-drop-down-box.directive';
 export { MeSliderDirective } from './lib/directives/me-slider/me-slider.directive';
 export { MeSwitchDirective } from './lib/directives/me-switch/me-switch.directive';
 export { MeTagBoxDirective } from './lib/directives/me-tag-box/me-tag-box.directive';
@@ -133,7 +135,7 @@ export { ThemesService } from './lib/service/themes.service';
 export { MeComponentsModule } from './lib/modules/me-components.module';
 export {
   MeIconsInitializerModule,
-  initializeIconsFactory
+  initializeIconsFactory,
 } from './lib/modules/me-icons-initializer.module';
 
 // Types

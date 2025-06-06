@@ -19,7 +19,11 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { DxCheckBoxModule, DxNumberBoxModule, DxSelectBoxModule } from 'devextreme-angular';
+import {
+  DxCheckBoxModule,
+  DxNumberBoxModule,
+  DxSelectBoxModule,
+} from 'devextreme-angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -27,7 +31,10 @@ import {
   defaultFullTimeShiftUnits,
   defaultMinimalTimeShiftUnits,
 } from './default-shift-properties';
-import { MinimalTimeShiftProperty, TimeShiftProperty } from './me-shift-properties.model';
+import {
+  MinimalTimeShiftProperty,
+  TimeShiftProperty,
+} from './me-shift-properties.model';
 import {
   MeCheckBoxModule,
   MeLabelModule,
@@ -61,8 +68,13 @@ export type PropertiesVariant = 'full' | 'minimal';
   styleUrls: ['./me-shift-properties.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy {
-  private _properties: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null = null;
+export class MeShiftPropertiesComponent
+  implements OnInit, OnChanges, OnDestroy
+{
+  private _properties:
+    | Array<TimeShiftProperty>
+    | MinimalTimeShiftProperty
+    | null = null;
 
   private fb = inject(FormBuilder);
 
@@ -120,7 +132,9 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   @Input()
-  set properties(value: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null) {
+  set properties(
+    value: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null
+  ) {
     this._properties = value;
   }
 
@@ -146,7 +160,9 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
       ).map((p) => ({ ...p }));
 
       this.shiftForm = this.fb.group({
-        items: this.fb.array(props.map((prop) => this.createFullTimeShiftGroup(prop))),
+        items: this.fb.array(
+          props.map((prop) => this.createFullTimeShiftGroup(prop))
+        ),
       });
     } else {
       let initialMinimalProps: MinimalTimeShiftProperty;
@@ -164,7 +180,9 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
           ...defaultMinimal,
           ...inputProps,
 
-          units: inputProps.units ? inputProps.units.map((u) => ({ ...u })) : defaultMinimal.units,
+          units: inputProps.units
+            ? inputProps.units.map((u) => ({ ...u }))
+            : defaultMinimal.units,
         };
       } else {
         initialMinimalProps = defaultMinimal;
@@ -187,7 +205,12 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
       key: [prop.key],
       text: [prop.text],
       enabled: [prop.enabled],
-      value: [{ value: prop.value ?? 0, disabled: this.state === 'disabled' || !prop.enabled }],
+      value: [
+        {
+          value: prop.value ?? 0,
+          disabled: this.state === 'disabled' || !prop.enabled,
+        },
+      ],
     });
 
     group
@@ -208,7 +231,7 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   private updateFormValues(
-    newProperties: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null,
+    newProperties: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null
   ): void {
     if (!this.shiftForm) return;
 
@@ -222,7 +245,7 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
         ).map((p) => ({ ...p }));
 
         const newFormArray = this.fb.array(
-          newPropsData.map((prop) => this.createFullTimeShiftGroup(prop)),
+          newPropsData.map((prop) => this.createFullTimeShiftGroup(prop))
         );
         this.shiftForm.setControl('items', newFormArray, { emitEvent: false });
 
@@ -234,7 +257,7 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
             value: minimalProps.value ?? 0,
             selectedUnit: minimalProps.selectedUnit,
           },
-          { emitEvent: false },
+          { emitEvent: false }
         );
         this.minimalUnitsDataSource = minimalProps.units
           ? minimalProps.units.map((u) => ({ ...u }))
@@ -254,7 +277,7 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
             value: defaultMinimal.value,
             selectedUnit: defaultMinimal.selectedUnit,
           },
-          { emitEvent: false },
+          { emitEvent: false }
         );
         this.minimalUnitsDataSource = defaultMinimal.units!;
         this.minimalDisplayExpr = defaultMinimal.displayExpr!;
@@ -269,38 +292,41 @@ export class MeShiftPropertiesComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   private listenToFormChanges(): void {
-    this.shiftForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((formValue) => {
-      if (this.isUpdatingFromInput) {
-        return;
-      }
-      if (!this.shiftForm.valid) {
-        return;
-      }
+    this.shiftForm.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((formValue) => {
+        if (this.isUpdatingFromInput) {
+          return;
+        }
+        if (!this.shiftForm.valid) {
+          return;
+        }
 
-      if (this.variant === 'full') {
-        const itemsArray = this.shiftForm.get('items') as FormArray;
+        if (this.variant === 'full') {
+          const itemsArray = this.shiftForm.get('items') as FormArray;
 
-        const outputProperties: Array<TimeShiftProperty> = itemsArray.controls.map((control) => {
-          const rawValue = (control as FormGroup).getRawValue();
-          return {
-            key: rawValue.key,
-            text: rawValue.text,
-            enabled: rawValue.enabled,
-            value: rawValue.value ?? 0,
+          const outputProperties: Array<TimeShiftProperty> =
+            itemsArray.controls.map((control) => {
+              const rawValue = (control as FormGroup).getRawValue();
+              return {
+                key: rawValue.key,
+                text: rawValue.text,
+                enabled: rawValue.enabled,
+                value: rawValue.value ?? 0,
+              };
+            });
+          this.shiftPropertiesChange.emit(outputProperties);
+        } else {
+          const outputMinimal: MinimalTimeShiftProperty = {
+            value: formValue.value ?? 0,
+            selectedUnit: formValue.selectedUnit,
+            units: this.minimalUnitsDataSource.map((u) => ({ ...u })),
+            displayExpr: this.minimalDisplayExpr,
+            valueExpr: this.minimalValueExpr,
           };
-        });
-        this.shiftPropertiesChange.emit(outputProperties);
-      } else {
-        const outputMinimal: MinimalTimeShiftProperty = {
-          value: formValue.value ?? 0,
-          selectedUnit: formValue.selectedUnit,
-          units: this.minimalUnitsDataSource.map((u) => ({ ...u })),
-          displayExpr: this.minimalDisplayExpr,
-          valueExpr: this.minimalValueExpr,
-        };
-        this.shiftPropertiesChange.emit(outputMinimal);
-      }
-    });
+          this.shiftPropertiesChange.emit(outputMinimal);
+        }
+      });
   }
 
   private updateFormState(): void {

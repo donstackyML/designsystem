@@ -2,7 +2,11 @@ import {
   defaultFullTimeShiftProperties,
   defaultTimeSteps,
 } from '../model/me-time-range-base-settings';
-import { StepSettings, TimeRangeConfig, TimeShiftSettings } from '../model/types';
+import {
+  StepSettings,
+  TimeRangeConfig,
+  TimeShiftSettings,
+} from '../model/types';
 import { ShiftType } from '../ui/me-shift-settings';
 
 export const stepDefaultSettings = {
@@ -23,20 +27,21 @@ export const updateDefaultSettings = {
 
 export const buildShiftSettings = (
   shiftSettings?: TimeShiftSettings | null,
-  shiftType?: ShiftType,
+  shiftType?: ShiftType
 ): TimeShiftSettings | null => {
   if (shiftSettings === null) return null;
 
   return {
     type: shiftType ?? 'current',
-    properties: shiftSettings?.type === 'mixed' ? defaultFullTimeShiftProperties : null,
+    properties:
+      shiftSettings?.type === 'mixed' ? defaultFullTimeShiftProperties : null,
     switchIsActive: shiftSettings?.type === 'current' ? true : false,
     ...(shiftSettings as object),
   };
 };
 
 export const buildStepSettings = (
-  stepSettings?: Partial<StepSettings> | null,
+  stepSettings?: Partial<StepSettings> | null
 ): StepSettings | null => {
   if (stepSettings === null) return null;
 
@@ -50,7 +55,9 @@ export const buildStepSettings = (
   };
 };
 
-export const buildTimeRangeSettings = (config: Partial<TimeRangeConfig> = {}): TimeRangeConfig => {
+export const buildTimeRangeSettings = (
+  config: Partial<TimeRangeConfig> = {}
+): TimeRangeConfig => {
   const now = new Date();
 
   return {
