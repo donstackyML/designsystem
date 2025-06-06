@@ -1,6 +1,8 @@
 import { isValid, parseISO } from 'date-fns';
 
-export const parseDateInput = (dateInput: Date | string | number | undefined | null): Date => {
+export const parseDateInput = (
+  dateInput: Date | string | number | undefined | null
+): Date => {
   if (dateInput instanceof Date && isValid(dateInput)) {
     return dateInput;
   }

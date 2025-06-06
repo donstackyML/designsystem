@@ -75,7 +75,9 @@ export default {
       description: 'Свойства сдвига',
       table: {
         category: 'Данные',
-        type: { summary: 'Array<TimeShiftProperty> | MinimalTimeShiftProperty | null' },
+        type: {
+          summary: 'Array<TimeShiftProperty> | MinimalTimeShiftProperty | null',
+        },
         defaultValue: { summary: 'null' },
       },
     },
@@ -147,7 +149,10 @@ export default {
       description: 'Изменение свойств сдвига',
       table: {
         category: 'События',
-        type: { summary: 'EventEmitter<Array<TimeShiftProperty> | MinimalTimeShiftProperty>' },
+        type: {
+          summary:
+            'EventEmitter<Array<TimeShiftProperty> | MinimalTimeShiftProperty>',
+        },
       },
     },
     switchValueChanged: {
@@ -239,6 +244,6 @@ export const WithOnlyDates: Story = {
   args: {
     hasProperties: false,
     switchEnabled: false,
-    title: null
+    title: null,
   },
 };

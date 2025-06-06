@@ -34,7 +34,10 @@ import {
   MeScrollViewModule,
   MeSelectBoxModule,
 } from '../../../../directives';
-import { buildTimeRangeSettings, calculateTimeRangeResultDates } from '../../helpers';
+import {
+  buildTimeRangeSettings,
+  calculateTimeRangeResultDates,
+} from '../../helpers';
 import { parseDateInput } from '../../helpers/parse-date-input';
 import {
   DateHighlightInfo,
@@ -43,7 +46,10 @@ import {
   TimeShiftChangedOutput,
 } from '../../model/types';
 import { MeQuickFiltersComponent } from '../me-quick-filters/me-quick-filters.component';
-import { MinimalTimeShiftProperty, TimeShiftProperty } from '../me-shift-properties';
+import {
+  MinimalTimeShiftProperty,
+  TimeShiftProperty,
+} from '../me-shift-properties';
 import { defaultFullTimeShiftUnits } from '../me-shift-properties/default-shift-properties';
 import { ShiftSettingsOutput, ShiftType } from '../me-shift-settings';
 import { MeShiftSettingsComponent } from '../me-shift-settings/me-shift-settings.component';
@@ -53,7 +59,12 @@ import { MeTimeRangeResultComponent } from '../me-time-range-result';
 import { MeTimeRangeSettingSectionComponent } from '../me-time-range-settings-section';
 
 type ResultEmitType = 'onChange' | 'onApply';
-type SettingsBlock = 'quickFilter' | 'shiftType' | 'shiftSettings' | 'steps' | 'result';
+type SettingsBlock =
+  | 'quickFilter'
+  | 'shiftType'
+  | 'shiftSettings'
+  | 'steps'
+  | 'result';
 
 @Component({
   selector: 'me-time-range',
@@ -129,10 +140,11 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
     of: window,
   };
 
-  @Input() popupAnimation: { hide?: AnimationConfig; show?: AnimationConfig } = {
-    show: { type: 'fade', duration: 300 },
-    hide: { type: 'fade', duration: 300 },
-  };
+  @Input() popupAnimation: { hide?: AnimationConfig; show?: AnimationConfig } =
+    {
+      show: { type: 'fade', duration: 300 },
+      hide: { type: 'fade', duration: 300 },
+    };
 
   @Input() showTitle = true;
 
@@ -189,16 +201,18 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
       this.intervalSubscription?.unsubscribe();
 
       if (this.intervalTime) {
-        this.intervalSubscription = interval(this.intervalTime).subscribe(() => {
-          if (
-            this.internalSettings.startShift?.switchIsActive ||
-            this.internalSettings.endShift?.switchIsActive
-          ) {
-            this.updateResultPreviewDates(false);
-          }
+        this.intervalSubscription = interval(this.intervalTime).subscribe(
+          () => {
+            if (
+              this.internalSettings.startShift?.switchIsActive ||
+              this.internalSettings.endShift?.switchIsActive
+            ) {
+              this.updateResultPreviewDates(false);
+            }
 
-          this.cdr.markForCheck();
-        });
+            this.cdr.markForCheck();
+          }
+        );
       }
     }
     if (changes['settings']) {
@@ -220,7 +234,7 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
       this.applyQuickFilterProperties(
         this.internalSettings.quickFilterId,
         this.internalSettings,
-        false,
+        false
       );
     }
     this.selectedQuickFilterId = this.internalSettings.quickFilterId;
@@ -260,9 +274,15 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   onQuickFilterSelected(filterId: string) {
     console.log('onQuickFilterSelected');
 
-    const newSettings = structuredClone(this.internalSettings) as TimeRangeConfig;
+    const newSettings = structuredClone(
+      this.internalSettings
+    ) as TimeRangeConfig;
 
-    this.applyQuickFilterProperties(filterId, newSettings, !this.quickFilterChangedFromShift);
+    this.applyQuickFilterProperties(
+      filterId,
+      newSettings,
+      !this.quickFilterChangedFromShift
+    );
 
     this.quickFilterChangedFromShift = false;
     newSettings.quickFilterId = filterId;
@@ -275,7 +295,9 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onShiftTypeChanged(shiftType: ShiftType) {
-    const newSettings = structuredClone(this.internalSettings) as TimeRangeConfig;
+    const newSettings = structuredClone(
+      this.internalSettings
+    ) as TimeRangeConfig;
 
     if (newSettings.startShift) {
       newSettings.startShift.type = shiftType;
@@ -293,22 +315,28 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
 
   handleShiftSettingsChange(
     shiftSettings: ShiftSettingsOutput,
-    type: 'startShift' | 'endShift',
+    type: 'startShift' | 'endShift'
   ): void {
     const shiftToUpdate = this.internalSettings[type];
     if (!shiftToUpdate) return;
 
-    const newSettings = structuredClone(this.internalSettings) as TimeRangeConfig;
+    const newSettings = structuredClone(
+      this.internalSettings
+    ) as TimeRangeConfig;
 
     newSettings[type] = {
       ...shiftToUpdate,
-      properties: shiftSettings.properties ? structuredClone(shiftSettings.properties) : null,
+      properties: shiftSettings.properties
+        ? structuredClone(shiftSettings.properties)
+        : null,
       switchIsActive: shiftSettings.isRelativeModeActive,
       type: shiftSettings.shiftType,
     };
 
     if (type === 'startShift') {
-      newSettings.absoluteDate.start = parseDateInput(shiftSettings.absoluteDate);
+      newSettings.absoluteDate.start = parseDateInput(
+        shiftSettings.absoluteDate
+      );
 
       if (newSettings.quickFilterId !== this.OFF_QUICK_FILTER_ID) {
         this.quickFilterChangedFromShift = true;
@@ -325,7 +353,10 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
     this.handleSettingsChange();
   }
 
-  handleStepChange(value: { numberValue: number; selectedUnitValue: TimeGranularity }): void {
+  handleStepChange(value: {
+    numberValue: number;
+    selectedUnitValue: TimeGranularity;
+  }): void {
     if (!this.internalSettings.step) return;
 
     const newSettings = {
@@ -341,7 +372,10 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
     this.handleSettingsChange();
   }
 
-  handleUpdateChange(value: { numberValue: number; selectedUnitValue: TimeGranularity }): void {
+  handleUpdateChange(value: {
+    numberValue: number;
+    selectedUnitValue: TimeGranularity;
+  }): void {
     if (!this.internalSettings.update) return;
     const newSettings = {
       ...this.internalSettings,
@@ -402,7 +436,7 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   private applyQuickFilterProperties(
     filterId: string,
     settingsToModify: TimeRangeConfig,
-    isUserSelection: boolean,
+    isUserSelection: boolean
   ): boolean {
     let modified = false;
 
@@ -465,10 +499,14 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
             return false;
         }
 
-        let newProperties: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null = null;
+        let newProperties:
+          | Array<TimeShiftProperty>
+          | MinimalTimeShiftProperty
+          | null = null;
 
         if (expectedPropertiesType === 'minimal') {
-          const currentMinimalProps = startShift.properties as MinimalTimeShiftProperty | null;
+          const currentMinimalProps =
+            startShift.properties as MinimalTimeShiftProperty | null;
           newProperties = {
             value: value,
             selectedUnit: targetUnitKey,
@@ -490,7 +528,10 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
           }));
         }
 
-        if (!isEqual(startShift.properties, newProperties) || !startShift.switchIsActive) {
+        if (
+          !isEqual(startShift.properties, newProperties) ||
+          !startShift.switchIsActive
+        ) {
           startShift.properties = newProperties;
           startShift.switchIsActive = true;
           modified = true;
@@ -499,7 +540,9 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
     } else if (filterId === this.OFF_QUICK_FILTER_ID && isUserSelection) {
       if (this._initialSettings.startShift) {
         if (!isEqual(startShift, this._initialSettings.startShift)) {
-          settingsToModify.startShift = structuredClone(this._initialSettings.startShift);
+          settingsToModify.startShift = structuredClone(
+            this._initialSettings.startShift
+          );
           modified = true;
         }
       }
@@ -523,15 +566,21 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private updateResultPreviewDates(emitEvent = true): void {
-    const { resultStartDate, resultStartHighlightInfo, resultEndDate, resultEndHighlightInfo } =
-      calculateTimeRangeResultDates({
-        absoluteDate: this.internalSettings.absoluteDate.start,
-        startShiftProperties: this.internalSettings.startShift?.properties,
-        startShiftRelativeModeIsActive: this.internalSettings.startShift?.switchIsActive,
-        endDate: this.internalSettings.absoluteDate.end,
-        endShiftProperties: this.internalSettings.endShift?.properties,
-        endShiftRelativeModeIsActive: this.internalSettings.endShift?.switchIsActive,
-      });
+    const {
+      resultStartDate,
+      resultStartHighlightInfo,
+      resultEndDate,
+      resultEndHighlightInfo,
+    } = calculateTimeRangeResultDates({
+      absoluteDate: this.internalSettings.absoluteDate.start,
+      startShiftProperties: this.internalSettings.startShift?.properties,
+      startShiftRelativeModeIsActive:
+        this.internalSettings.startShift?.switchIsActive,
+      endDate: this.internalSettings.absoluteDate.end,
+      endShiftProperties: this.internalSettings.endShift?.properties,
+      endShiftRelativeModeIsActive:
+        this.internalSettings.endShift?.switchIsActive,
+    });
 
     this.effectiveStartDate = resultStartDate;
     this.startHighlightInfo = resultStartHighlightInfo;

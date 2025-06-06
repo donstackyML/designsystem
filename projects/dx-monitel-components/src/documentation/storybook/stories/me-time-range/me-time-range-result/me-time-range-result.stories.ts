@@ -5,7 +5,6 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 
-
 import { MeTimeRangeResultComponent } from '../../../../../lib/components/me-time-range/ui/me-time-range-result';
 import { type DateHighlightInfo } from '../../../../../lib/components/me-time-range';
 
@@ -78,7 +77,7 @@ export default {
         type: { summary: 'DateHighlightInfo' },
         defaultValue: { summary: '{}' },
       },
-    }
+    },
   },
   args: {
     startDate: new Date('2024-03-20T10:00:00'),
@@ -89,7 +88,9 @@ export default {
   },
   render: (args) => ({
     props: args,
-    template: `<me-time-range-result ${argsToTemplate(args)}></me-time-range-result>`,
+    template: `<me-time-range-result ${argsToTemplate(
+      args
+    )}></me-time-range-result>`,
   }),
 } satisfies Meta<MeTimeRangeResultComponent>;
 

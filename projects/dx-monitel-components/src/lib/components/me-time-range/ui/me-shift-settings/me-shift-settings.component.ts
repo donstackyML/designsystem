@@ -72,7 +72,10 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
 
   @Input() absoluteDate: Date | string | number = '';
 
-  @Input() properties: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null = null;
+  @Input() properties:
+    | Array<TimeShiftProperty>
+    | MinimalTimeShiftProperty
+    | null = null;
 
   @Input() propertiesTitle = 'Настройка сдвига';
 
@@ -142,7 +145,7 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
   }
 
   handleShiftPropertiesChange(
-    newProperties: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null,
+    newProperties: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null
   ): void {
     this.properties = newProperties;
     this.shiftPropertiesChanged.emit(newProperties);
@@ -169,7 +172,9 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
     } else {
       switch (this.shiftType) {
         case 'mixed':
-          this._switchTitle = this.switchIsActive ? 'Относительно тек.' : 'Абсолютное время';
+          this._switchTitle = this.switchIsActive
+            ? 'Относительно тек.'
+            : 'Абсолютное время';
           break;
         case 'current':
           this._switchTitle = 'Относительно текущего';
@@ -192,7 +197,9 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
         this._isDateBoxReadOnly = this.switchIsActive;
         break;
       case 'current':
-        this._isDateBoxReadOnly = this.switchEnabled ? this.switchIsActive : true;
+        this._isDateBoxReadOnly = this.switchEnabled
+          ? this.switchIsActive
+          : true;
         break;
       case 'absolute':
         this._isDateBoxReadOnly = false;
@@ -215,7 +222,10 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
     let dateToEmit: Date | null = null;
     if (this.absoluteDate instanceof Date) {
       dateToEmit = this.absoluteDate;
-    } else if (typeof this.absoluteDate === 'string' || typeof this.absoluteDate === 'number') {
+    } else if (
+      typeof this.absoluteDate === 'string' ||
+      typeof this.absoluteDate === 'number'
+    ) {
       const parsedDate = new Date(this.absoluteDate);
       if (!isNaN(parsedDate.getTime())) {
         dateToEmit = parsedDate;

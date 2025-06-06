@@ -1,43 +1,22 @@
-<div
-  class="shift-properties"
-  [class.shift-properties--disabled]="state === 'disabled'"
-  [class.shift-properties--read-only]="state === 'readOnly'"
->
+<div class="shift-properties" [class.shift-properties--disabled]="state === 'disabled'" [class.shift-properties--read-only]="state === 'readOnly'">
   <div class="me-title-subheader1">{{ title }}</div>
 
   <div class="shift-properties__container" [formGroup]="shiftForm" *ngIf="shiftForm">
     <!-- Режим "full" -->
     <ng-container *ngIf="variant === 'full' && fullShiftItems" formArrayName="items">
-      <div
-        *ngFor="let unitGroup of fullShiftItems.controls; let i = index; trackBy: trackByUnitKey"
-        [formGroupName]="i"
-        class="shift-properties__property"
-      >
+      <div *ngFor="let unitGroup of fullShiftItems.controls; let i = index; trackBy: trackByUnitKey" [formGroupName]="i" class="shift-properties__property">
         <div meLabel class="shift-properties__property-checkbox">
-          <dx-check-box *ngIf="state !== 'readOnly'" meCheckbox formControlName="enabled">
-          </dx-check-box>
-          <span>{{ unitGroup.get('text')?.value }}</span>
+          <dx-check-box *ngIf="state !== 'readOnly'" meCheckbox formControlName="enabled"> </dx-check-box>
+          <span>{{ unitGroup.get("text")?.value }}</span>
         </div>
-        <dx-number-box
-          meNumberBox
-          formControlName="value"
-          [showSpinButtons]="true"
-          [readOnly]="state === 'readOnly'"
-        >
-        </dx-number-box>
+        <dx-number-box meNumberBox formControlName="value" [showSpinButtons]="true" [readOnly]="state === 'readOnly'"> </dx-number-box>
       </div>
     </ng-container>
 
     <!-- Режим "minimal" (форма для minimal варианта - это сам shiftForm) -->
     <ng-container *ngIf="variant === 'minimal'">
       <div class="shift-properties__minimal">
-        <dx-number-box
-          meNumberBox
-          formControlName="value"
-          [showSpinButtons]="true"
-          [readOnly]="state === 'readOnly'"
-        >
-        </dx-number-box>
+        <dx-number-box meNumberBox formControlName="value" [showSpinButtons]="true" [readOnly]="state === 'readOnly'"> </dx-number-box>
         <dx-select-box
           meSelectBox
           displayExpr="text"
