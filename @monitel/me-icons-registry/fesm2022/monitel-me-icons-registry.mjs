@@ -1,5 +1,6 @@
 import * as i0 from '@angular/core';
 import { Injectable, Component, ChangeDetectionStrategy, Optional, Inject, Input, NgModule } from '@angular/core';
+import { meIconSet } from '@monitel/me-icons';
 import { DOCUMENT, CommonModule } from '@angular/common';
 
 const REG_EXP_FOR_ICON_PATH = new RegExp("^(/?([^/\0]+/)*[^/\0]+.(svg|jpeg|png|ico))$");
@@ -9,21 +10,74 @@ class MeIconsRegistry {
         this.registry = new Map();
         this.parser = new DOMParser();
         this.serializer = new XMLSerializer();
+        this.meIconNameSet = meIconSet.map((item) => item.name);
     }
     registerIcons(icons) {
         icons.forEach((icon) => this.registry.set(icon.name, icon.data));
     }
-    getIconFromString(iconName, color) {
-        if (!this.registry.has(iconName)) {
-            console.warn(`Иконка с именем ${iconName} не зарегистрирована!`);
-            return this.parseIcon(iconName);
+    getIconFromString(iconName, color, selector) {
+        if (!this.registry.has(iconName) && this.meIconNameSet.includes(iconName)) {
+            console.error(`Иконка с именем ${iconName} не зарегистрирована!`);
+            return undefined;
         }
-        else if (color) {
-            return this.registry.get(iconName)?.replaceAll('currentColor', color);
+        else if (!this.registry.has(iconName)) {
+            return this.colorIcon(this.parseIcon(iconName), color, selector);
         }
         else {
-            return this.registry.get(iconName);
+            const icon = this.registry.get(iconName);
+            return this.colorIcon(icon, color, selector);
         }
+    }
+    colorIcon(iconComponent, color, selector) {
+        let result;
+        if (this.isSvgString(iconComponent)) {
+            result = iconComponent;
+        }
+        else {
+            if (!this.registry.has(iconComponent) && this.meIconNameSet.includes(iconComponent)) {
+                console.error(`Иконка с именем ${iconComponent} не зарегистрирована!`);
+                return undefined;
+            }
+            else if (!this.registry.has(iconComponent)) {
+                return this.parseIcon(iconComponent);
+            }
+            else {
+                result = this.registry.get(iconComponent);
+            }
+        }
+        if (!color) {
+            return result;
+        }
+        if (!selector && typeof color === 'string') {
+            return result.replaceAll('currentColor', color);
+        }
+        if (selector && typeof color === 'string') {
+            const svgDoc = this.parser.parseFromString(result, 'image/svg+xml');
+            const selectors = svgDoc.querySelectorAll(selector);
+            selectors.forEach((sel) => {
+                sel.setAttribute('fill', color);
+            });
+            return this.serializer.serializeToString(svgDoc.documentElement);
+        }
+        if ((Array.isArray(color)) || (Array.isArray(color))) {
+            const svgDoc = this.parser.parseFromString(result, 'image/svg+xml');
+            color.forEach((obj) => {
+                const selectors = svgDoc.querySelectorAll(obj.selector);
+                selectors.forEach((sel) => {
+                    sel.setAttribute('fill', obj.color);
+                });
+            });
+            return this.serializer.serializeToString(svgDoc.documentElement);
+        }
+        return undefined;
+    }
+    isSvgString(str) {
+        if (!str) {
+            return false;
+        }
+        const trimmed = str.trim();
+        const svgRegex = /^<svg[\s\S]*<\/svg>$/i;
+        return svgRegex.test(trimmed);
     }
     getIcon(iconComponent, color) {
         if (!iconComponent.data) {
@@ -42,17 +96,12 @@ class MeIconsRegistry {
             if (DX_ICONS.includes(icon))
                 return ('<i class="dx-icon dx-icon-' + icon + '"></i>');
             if (icon.startsWith('<svg')) {
-                const INSERT_CLASS_INDEX = 4;
-                const before = icon.slice(0, INSERT_CLASS_INDEX);
-                const after = icon.slice(INSERT_CLASS_INDEX);
-                const substr = ' class="dx-icon"';
-                const svgIcon = before + substr + after;
-                return (svgIcon);
+                return (icon);
             }
             if (icon.startsWith("data:image") || icon.startsWith("http"))
-                return ('<img class="dx-icon" src="' + icon + '" />');
+                return (`<img src="${icon}"/>`);
             if (REG_EXP_FOR_ICON_PATH.test(icon))
-                return ('<img class="dx-icon" src="' + icon + '" />');
+                return (`<img src="${icon}"/>`);
         }
         return icon;
     }
@@ -69,18 +118,16 @@ class MeIconsRegistry {
                     path = nextIcon.getElementsByTagName('circle')[0];
                 }
                 path.setAttribute('fill', 'red');
-                console.log(item.data);
-                console.log(path);
                 acc.append(path);
             }
             return acc;
         }, []);
         return this.serializer.serializeToString(newsvg);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MeIconsRegistry, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MeIconsRegistry, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: MeIconsRegistry, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: MeIconsRegistry, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MeIconsRegistry, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: MeIconsRegistry, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -88,6 +135,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
         }] });
 
 class MeIconComponent {
+    ngOnInit() {
+        this.setIconSize();
+    }
     ngOnChanges(changes) {
         //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
         //Add '${implements OnChanges}' to the class.
@@ -95,6 +145,7 @@ class MeIconComponent {
             this.callInitFn();
         }
         if ('size' in changes) {
+            this.callInitFn();
             this.setIconSize();
         }
     }
@@ -103,28 +154,31 @@ class MeIconComponent {
             this.element.nativeElement.removeChild(this.svgIcon);
         }
         if (this.name) {
-            this.svgData = this.meIcon.getIconFromString(this.name, this.color);
+            this.svgData = this.meIcon.getIconFromString(this.name, this.color, this.selector);
         }
         if (this.svgData) {
             this.element.nativeElement.innerHTML = this.svgData;
         }
     }
     setIconSize() {
-        const icon = this.element.nativeElement.getElementsByClassName('dx-icon')[0];
-        icon.setAttribute('width', this.size);
-        icon.setAttribute('height', this.size);
+        const icon = this.element.nativeElement.getElementsByTagName('svg')[0] ?? this.element.nativeElement.getElementsByTagName('img')[0] ?? this.element.nativeElement.getElementsByTagName('i')[0];
+        if (icon) {
+            icon.setAttribute('width', this.size);
+            icon.setAttribute('height', this.size);
+        }
     }
     constructor(element, meIcon, document) {
         this.element = element;
         this.meIcon = meIcon;
         this.document = document;
+        this.size = '20px';
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MeIconComponent, deps: [{ token: i0.ElementRef }, { token: MeIconsRegistry }, { token: DOCUMENT, optional: true }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: MeIconComponent, selector: "me-icon", inputs: { color: "color", name: "name", size: ["size", "size", validateSizeValue], containerSize: ["containerSize", "containerSize", validateSizeValue] }, host: { properties: { "style.height": "containerSize", "style.width": "containerSize" } }, usesOnChanges: true, ngImport: i0, template: ` <ng-content></ng-content> `, isInline: true, styles: [":host{display:flex;justify-content:center;align-items:center;flex-shrink:0}:host .dx-icon{font-size:18px}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: MeIconComponent, deps: [{ token: i0.ElementRef }, { token: MeIconsRegistry }, { token: DOCUMENT, optional: true }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.5", type: MeIconComponent, selector: "me-icon", inputs: { color: "color", selector: "selector", name: "name", size: ["size", "size", validateSizeValue], containerSize: ["containerSize", "containerSize", validateSizeValue] }, host: { properties: { "style.height": "containerSize", "style.width": "containerSize" } }, usesOnChanges: true, ngImport: i0, template: ` <ng-content></ng-content> `, isInline: true, styles: [":host{display:flex;justify-content:center;align-items:center;flex-shrink:0}:host .dx-icon{font-size:18px}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MeIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: MeIconComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'me-icon', template: ` <ng-content></ng-content> `, changeDetection: ChangeDetectionStrategy.OnPush, host: {
+            args: [{ selector: 'me-icon', standalone: false, template: ` <ng-content></ng-content> `, changeDetection: ChangeDetectionStrategy.OnPush, host: {
                         '[style.height]': 'containerSize',
                         '[style.width]': 'containerSize'
                     }, styles: [":host{display:flex;justify-content:center;align-items:center;flex-shrink:0}:host .dx-icon{font-size:18px}\n"] }]
@@ -134,6 +188,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     type: Inject,
                     args: [DOCUMENT]
                 }] }]; }, propDecorators: { color: [{
+                type: Input
+            }], selector: [{
                 type: Input
             }], name: [{
                 type: Input
@@ -154,16 +210,16 @@ function validateSizeValue(value) {
 }
 
 class MeIconsModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MeIconsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: MeIconsModule, declarations: [MeIconComponent], imports: [CommonModule], exports: [MeIconComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MeIconsModule, imports: [CommonModule] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: MeIconsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.5", ngImport: i0, type: MeIconsModule, declarations: [MeIconComponent], imports: [CommonModule], exports: [MeIconComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: MeIconsModule, imports: [CommonModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MeIconsModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: MeIconsModule, decorators: [{
             type: NgModule,
             args: [{
+                    imports: [CommonModule],
                     declarations: [MeIconComponent],
                     exports: [MeIconComponent],
-                    imports: [CommonModule],
                 }]
         }] });
 
