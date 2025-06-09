@@ -4,7 +4,7 @@ import { DateHighlightInfo } from '../model/types';
 
 export const createHighlightRanges = (
   elementRef: ElementRef<HTMLDivElement> | undefined,
-  highlightInfo?: DateHighlightInfo,
+  highlightInfo?: DateHighlightInfo
 ): Array<Range> => {
   if (
     !elementRef?.nativeElement?.firstChild ||
@@ -28,7 +28,9 @@ export const createHighlightRanges = (
 
   const matchStartIndex = match.index || 0;
 
-  const getGroupPosition = (groupIndex: number): { start: number; length: number } | null => {
+  const getGroupPosition = (
+    groupIndex: number
+  ): { start: number; length: number } | null => {
     if (!match || !match[groupIndex]) return null;
     let startIndex = matchStartIndex;
     for (let i = 1; i < groupIndex; i++) {
@@ -47,15 +49,21 @@ export const createHighlightRanges = (
         range.setEnd(textNode, start + length);
         return range;
       } catch (e) {
-        console.error(`Highlight: Error creating range`, e, { start, length, textContent });
+        console.error(`Highlight: Error creating range`, e, {
+          start,
+          length,
+          textContent,
+        });
         return null;
       }
     }
     return null;
   };
 
-  const dateBlockChanged = highlightInfo.days && highlightInfo.months && highlightInfo.years;
-  const timeBlockChanged = highlightInfo.hours && highlightInfo.minutes && highlightInfo.seconds;
+  const dateBlockChanged =
+    highlightInfo.days && highlightInfo.months && highlightInfo.years;
+  const timeBlockChanged =
+    highlightInfo.hours && highlightInfo.minutes && highlightInfo.seconds;
 
   const pos = {
     day: getGroupPosition(1),

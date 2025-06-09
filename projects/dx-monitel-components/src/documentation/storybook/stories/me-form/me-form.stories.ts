@@ -678,13 +678,13 @@ export const WithGrouping: Story = {
     <dxi-item meFormItem dataField="firstName">
       <dxo-label text="First Name"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox вшы></dx-text-box>
+        <dx-text-box meTextBox вшы [size]="size"></dx-text-box>
       </div>
     </dxi-item>
     <dxi-item meFormItem dataField="lastName">
       <dxo-label text="Last Name"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox></dx-text-box>
+        <dx-text-box meTextBox [size]="size"></dx-text-box>
       </div>
     </dxi-item>
   </dxi-item>
@@ -692,13 +692,13 @@ export const WithGrouping: Story = {
     <dxi-item meFormItem dataField="phone">
       <dxo-label text="Phone"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox></dx-text-box>
+        <dx-text-box meTextBox [size]="size"></dx-text-box>
       </div>
     </dxi-item>
     <dxi-item meFormItem dataField="email">
       <dxo-label text="Email"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox></dx-text-box>
+        <dx-text-box meTextBox [size]="size"></dx-text-box>
       </div>
     </dxi-item>
   </dxi-item>

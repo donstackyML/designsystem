@@ -8,8 +8,6 @@ import {
 import { defaultShiftTypes } from '../../../../../lib/components/me-time-range/ui/me-shift-type/me-shift-type.options';
 import { MeShiftTypeComponent } from '../../../../../public-api';
 
-
-
 export default {
   title: 'Components/TimeRange/TimeRangeParts/ShiftType',
   decorators: [
@@ -42,7 +40,9 @@ export default {
       table: {
         category: 'Данные',
         type: { summary: 'Array<{ id: string; text: string }>' },
-        defaultValue: { summary: '[{ id: "current", text: "Относительно текущего времени" }]' },
+        defaultValue: {
+          summary: '[{ id: "current", text: "Относительно текущего времени" }]',
+        },
       },
     },
     currentShiftType: {

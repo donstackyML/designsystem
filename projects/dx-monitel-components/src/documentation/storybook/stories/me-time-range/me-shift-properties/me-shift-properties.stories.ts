@@ -6,9 +6,14 @@ import {
 } from '@storybook/angular';
 
 import { MeShiftPropertiesComponent } from '../../../../../public-api';
-import { defaultFullTimeShiftUnits, defaultMinimalTimeShiftUnits } from '../../../../../lib/components/me-time-range/ui/me-shift-properties/default-shift-properties';
-import { TimeShiftProperty, MinimalTimeShiftProperty } from '../../../../../lib/components/me-time-range/ui/me-shift-properties/me-shift-properties.model';
-
+import {
+  defaultFullTimeShiftUnits,
+  defaultMinimalTimeShiftUnits,
+} from '../../../../../lib/components/me-time-range/ui/me-shift-properties/default-shift-properties';
+import {
+  TimeShiftProperty,
+  MinimalTimeShiftProperty,
+} from '../../../../../lib/components/me-time-range/ui/me-shift-properties/me-shift-properties.model';
 
 const customFullTimeProperties: TimeShiftProperty[] = [
   { text: 'Секунды', key: 'seconds', enabled: true, value: 30 },
@@ -65,7 +70,9 @@ export default {
       description: 'Свойства временного сдвига',
       table: {
         category: 'Данные',
-        type: { summary: 'Array<TimeShiftProperty> | MinimalTimeShiftProperty | null' },
+        type: {
+          summary: 'Array<TimeShiftProperty> | MinimalTimeShiftProperty | null',
+        },
         defaultValue: { summary: 'null' },
       },
     },
@@ -74,7 +81,10 @@ export default {
       description: 'Событие изменения свойств сдвига',
       table: {
         category: 'События',
-        type: { summary: 'EventEmitter<Array<TimeShiftProperty> | MinimalTimeShiftProperty>' },
+        type: {
+          summary:
+            'EventEmitter<Array<TimeShiftProperty> | MinimalTimeShiftProperty>',
+        },
       },
     },
   },

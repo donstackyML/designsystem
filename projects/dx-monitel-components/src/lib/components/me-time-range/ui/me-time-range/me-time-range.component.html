@@ -51,10 +51,7 @@
     </div>
 
     <div *ngIf="settingsBlocks.includes('shiftType')" class="section-with-divider--medium">
-      <me-shift-type
-        (valueChange)="onShiftTypeChanged($event)"
-        [currentShiftType]="internalSettings.shiftType"
-      ></me-shift-type>
+      <me-shift-type (valueChange)="onShiftTypeChanged($event)" [currentShiftType]="internalSettings.shiftType"></me-shift-type>
       <div class="divider"></div>
     </div>
 
@@ -73,10 +70,7 @@
       >
       </me-shift-settings>
 
-      <span
-        *ngIf="!internalSettings.startShift && !internalSettings.absoluteDate.start"
-        class="me-text-description2 time-range-description"
-      >
+      <span *ngIf="!internalSettings.startShift && !internalSettings.absoluteDate.start" class="me-text-description2 time-range-description">
         Настройка параметров начала недоступна.
       </span>
 
@@ -94,10 +88,7 @@
       >
       </me-shift-settings>
 
-      <span
-        *ngIf="!internalSettings.endShift && !internalSettings.absoluteDate.end"
-        class="me-text-description2 time-range-description"
-      >
+      <span *ngIf="!internalSettings.endShift && !internalSettings.absoluteDate.end" class="me-text-description2 time-range-description">
         Настройка параметров конца недоступна.
       </span>
     </me-time-range-columns-grid>
@@ -183,37 +174,11 @@
   </div>
 
   <div class="me-time-range__footer">
-    <dx-button
-      meButton
-      size="small"
-      text="Сбросить фильтр"
-      type="default"
-      stylingMode="text"
-      (onClick)="resetFilters()"
-      [disabled]="isResetDisabled"
-    >
-    </dx-button>
+    <dx-button meButton size="small" text="Сбросить фильтр" type="default" stylingMode="text" (onClick)="resetFilters()" [disabled]="isResetDisabled"> </dx-button>
     <div class="me-time-range__footer__buttons-right">
-      <dx-button
-        meButton
-        size="small"
-        text="Применить"
-        type="default"
-        stylingMode="contained"
-        (onClick)="applyFilters()"
-        [disabled]="isApplyButtonDisabled"
-      >
+      <dx-button meButton size="small" text="Применить" type="default" stylingMode="contained" (onClick)="applyFilters()" [disabled]="isApplyButtonDisabled">
       </dx-button>
-      <dx-button
-        *ngIf="hasFooterCancelButton"
-        meButton
-        size="small"
-        text="Отмена"
-        type="default"
-        stylingMode="text"
-        (onClick)="handleClose()"
-      >
-      </dx-button>
+      <dx-button *ngIf="hasFooterCancelButton" meButton size="small" text="Отмена" type="default" stylingMode="text" (onClick)="handleClose()"> </dx-button>
     </div>
   </div>
 </ng-template>
