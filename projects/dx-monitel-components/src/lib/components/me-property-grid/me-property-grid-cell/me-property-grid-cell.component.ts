@@ -12,7 +12,7 @@ import {
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { contentCopyX20, panZoomX20 } from '@monitel/me-icons';
+import { contentCopyX20, panZoomOutMeX20, panZoomX20 } from '@monitel/me-icons';
 import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 import { DxSplitterModule } from 'devextreme-angular';
 
@@ -47,6 +47,12 @@ export class MePropertyGridCellComponent implements AfterContentInit {
 
   @Input() showAdditionalProperties = false;
 
+  @Input() justifyRightCell: 'left' | 'center' | 'right' = 'left';
+
+  @Input() justifyLeftCell: 'left' | 'center' | 'right' = 'left';
+
+  @Input() alignAdditionalPropertiesCell: 'left' | 'center' | 'right' = 'left';
+
   @Output() valueChange = new EventEmitter<any>();
 
   @Output() openMoreProperties: EventEmitter<void> = new EventEmitter<void>();
@@ -71,10 +77,7 @@ export class MePropertyGridCellComponent implements AfterContentInit {
   hasAdditionalProperties = false;
 
   constructor() {
-    this.meIconRegistry.registerIcons([contentCopyX20, panZoomX20]);
-
-    // Закомментировано так как в библиотеке иконок сейчас нет иконки panZoomOut20
-    // meIconRegistry.registerIcons([panZoomOut20]);
+    this.meIconRegistry.registerIcons([contentCopyX20, panZoomX20, panZoomOutMeX20]);
   }
 
   ngAfterContentInit(): void {

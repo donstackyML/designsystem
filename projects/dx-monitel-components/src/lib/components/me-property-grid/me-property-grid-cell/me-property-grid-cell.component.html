@@ -8,7 +8,7 @@
   <ng-template #customContent>
     <div class="property-grid-cell">
       <div class="property-grid-cell-part property-grid-cell-part-left">
-        <div class="property-grid-cell-part-content">
+        <div class="property-grid-cell-part-content" [ngClass]="'justify-cell-' + justifyLeftCell">
           <ng-container *ngIf="hasProjectedLeftCell; else defaultLeftTemplate">
             <ng-content select="[leftCell]"></ng-content>
           </ng-container>
@@ -17,15 +17,15 @@
               <span *ngIf="name">{{ name }}</span>
               <span *ngIf="showRequiredMark" class="required-mark">&nbsp;*</span>
             </div>
-            <div class="cell-actions cell-actions-left">
+            <div class="cell-actions cell-actions-right">
               <button
                 *ngIf="showAdditionalProperties"
                 type="button"
-                class="cell-action-button"
+                class="cell-action-button show-additional-property-button"
                 [class.cell-action-button--selected]="additionalPropertiesOpened"
                 (click)="onClickOpenMoreProperties()"
               >
-                <me-icon class="icon" [name]="additionalPropertiesOpened ? 'pan_zoom_x20' : 'pan_zoom_x20'"></me-icon>
+                <me-icon class="icon" [name]="additionalPropertiesOpened ? 'pan_zoom_out_me_x20' : 'pan_zoom_x20'"></me-icon>
               </button>
             </div>
           </ng-template>
@@ -35,23 +35,23 @@
       <div class="property-grid-cell-part property-grid-cell-part-right">
         <div
           class="property-grid-cell-part-content"
-          [ngClass]="{
-            'property-grid-custom-value-content': hasProjectedRightCell,
-          }"
+          [ngClass]="[hasProjectedRightCell ? 'property-grid-custom-value-content' : '', 'justify-cell-' + justifyRightCell]"
         >
           <ng-container *ngIf="hasProjectedRightCell; else defaultRightTemplate">
             <ng-content></ng-content>
           </ng-container>
           <ng-template #defaultRightTemplate>
             <ng-container>
-              <div class="cell-actions" ecbWrapComponents>
+              <div class="cell-actions cell-actions-left" ecbWrapComponents>
                 <ng-content select="[rightCellStartActions]"></ng-content>
               </div>
               <div class="cell-text me-tables-row-text">
-                <ng-content *ngIf="!value" select="[cellValue]"></ng-content>
-                {{ value }}
+                <ng-content *ngIf="!value; else cellValueContent" select="[cellValue]"></ng-content>
+                <ng-template #cellValueContent>
+                  {{ value }}
+                </ng-template>
               </div>
-              <div class="cell-actions" ecbWrapComponents>
+              <div class="cell-actions cell-actions-right" ecbWrapComponents>
                 <ng-content select="[rightCellEndActions]"> </ng-content>
                 <button *ngIf="readOnly" type="button" class="cell-action-button" (click)="copyValue(value)">
                   <me-icon class="icon" name="content_copy_x20"></me-icon>
@@ -65,7 +65,10 @@
   </ng-template>
 
   <ng-container *ngIf="hasAdditionalProperties && additionalPropertiesOpened">
-    <div class="property-grid-cell-additional-properties">
+    <div
+      class="property-grid-cell-additional-properties"
+      [ngClass]="'align-cell-' + alignAdditionalPropertiesCell"
+    >
       <ng-content select="[additionalProperties]"></ng-content>
     </div>
   </ng-container>
