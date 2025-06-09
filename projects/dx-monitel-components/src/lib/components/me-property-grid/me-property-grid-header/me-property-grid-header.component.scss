@@ -2,10 +2,20 @@
   position: sticky;
   z-index: 3;
   top: 0;
+
+  ::ng-deep {
+    .cell-actions--right-actions,
+    .cell-actions--left-actions {
+      button {
+        color: inherit;
+      }
+    }
+  }
 }
 
 .property-grid-header {
   cursor: pointer;
+  box-sizing: border-box;
 
   display: flex;
   gap: 0.25rem;
@@ -21,6 +31,7 @@
   background: var(--Background-Content);
 
   .me-property-grid-header-title {
+    color: var(--Text-Default);
     display: flex;
     flex: 1 0 0;
     gap: 0.25rem;
@@ -46,6 +57,7 @@
   }
 
   .drop-down-icon {
+    color: var(--Icon-Default);
     display: flex;
     transition: transform 0.2s;
   }
@@ -66,5 +78,15 @@
 
   &:empty {
     display: none;
+  }
+
+  &--left-actions,
+  &--right-actions {
+    display: flex;
+    color: var(--Icon-Default);
+    
+    &:empty {
+      display: none;
+    }
   }
 }
