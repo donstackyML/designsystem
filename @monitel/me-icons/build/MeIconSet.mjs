@@ -868,7 +868,7 @@ import { txtMeX24 } from './-txt_me_x24.icon';
 import { undoX20 } from './-undo_x20.icon';
 import { undoX24 } from './-undo_x24.icon';
 import { ungroupMeX20 } from './-ungroup_me_x20.icon';
-import { ungroupMeX24 } from './-Ungroup_me_x24.icon';
+import { ungroupMeX24 } from './-ungroup_me_x24.icon';
 import { unlockX20 } from './-unlock_x20.icon';
 import { unlockX24 } from './-unlock_x24.icon';
 import { unsubscribeX20 } from './-unsubscribe_x20.icon';

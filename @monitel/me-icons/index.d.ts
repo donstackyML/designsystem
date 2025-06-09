@@ -870,7 +870,7 @@ export * from './build/-txt_me_x24.icon';
 export * from './build/-undo_x20.icon';
 export * from './build/-undo_x24.icon';
 export * from './build/-ungroup_me_x20.icon';
-export * from './build/-Ungroup_me_x24.icon';
+export * from './build/-ungroup_me_x24.icon';
 export * from './build/-unlock_x20.icon';
 export * from './build/-unlock_x24.icon';
 export * from './build/-unsubscribe_x20.icon';
