@@ -455,6 +455,53 @@ export const WithFixedHeightAndScroll: Story = {
   }),
 };
 
+export const WithFixedHeightForContainer: Story = {
+  args: {
+    gridTitle: 'Много свойств',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <div class="some-class">
+      <me-property-grid ${argsToTemplate(args)}>
+        ${Array.from(
+          { length: 5 },
+          (_, i) => `
+          <me-property-grid-cell name="Свойство ${i + 1}" value="Значение ${i + 1}"></me-property-grid-cell>
+          `
+        ).join('')}
+
+        <me-property-grid-cell
+        name="Точки на графике"
+        [showAdditionalProperties]="true"
+        [additionalPropertiesOpened]="true"
+        >
+        <ng-container #additionalProperties additionalProperties>
+          <div style="background: #eee; height: 100px;">
+          Дополнительные свойства (перекроют скроллбар)
+          </div>
+        </ng-container>
+        </me-property-grid-cell>
+        ${Array.from(
+          { length: 5 },
+          (_, i) => `
+          <me-property-grid-cell name="Свойство ${i + 1}" value="Значение ${i + 1}"></me-property-grid-cell>
+          `
+        ).join('')}
+      </me-property-grid>
+    </div>
+    `,
+    styles: [
+      `
+      .some-class {
+        display: flex;
+        height: 200px;
+      }
+      `
+    ]
+  }),
+};
+
 export const InitiallyClosed: Story = {
   args: {
     gridTitle: 'Скрытые параметры',

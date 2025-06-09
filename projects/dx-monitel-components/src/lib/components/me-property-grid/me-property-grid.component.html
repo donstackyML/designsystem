@@ -9,7 +9,12 @@
 
 <ng-container *ngIf="isOpen || closeMode === 'hide'">
   <ul #propertyGridContent class="property-grid-content" [class.is-hidden]="closeMode === 'hide' && !isOpen" [class.is-visible]="closeMode === 'hide' && isOpen">
-    <dx-scroll-view meScrollView width="100%" height="100%">
+    <dx-scroll-view
+      meScrollView
+      width="100%"
+      height="100%"
+      class="property-grid-scroll-view"
+    >
       <div
         *ngIf="resizable"
         class="resize-handler"
