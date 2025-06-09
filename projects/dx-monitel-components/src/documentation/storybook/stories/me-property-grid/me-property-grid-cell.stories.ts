@@ -92,10 +92,40 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    justifyLeftCell: {
+      control: { type: 'select' },
+      options: ['left', 'center', 'right'],
+      description: 'Выравнивание содержимого в левой части ячейки.',
+      table: {
+        type: { summary: '"left" | "center" | "right"' },
+        defaultValue: { summary: 'left' },
+      },
+    },
+    justifyRightCell: {
+      control: { type: 'select' },
+      options: ['left', 'center', 'right'],
+      description: 'Выравнивание содержимого в правой части ячейки.',
+      table: {
+        type: { summary: '"left" | "center" | "right"' },
+        defaultValue: { summary: 'left' },
+      },
+    },
+    alignAdditionalPropertiesCell: {
+      control: { type: 'select' },
+      options: ['left', 'center', 'right'],
+      description: 'Выравнивание содержимого секции дополнительных свойств.',
+      table: {
+        type: { summary: '"left" | "center" | "right"' },
+        defaultValue: { summary: 'left' },
+      },
+    },
   },
   args: {
     name: 'Cell name',
     value: 'Cell value',
+    justifyLeftCell: 'left',
+    justifyRightCell: 'left',
+    alignAdditionalPropertiesCell: 'left'
   },
 } satisfies Meta<MePropertyGridCellComponent>;
 
@@ -229,15 +259,109 @@ export const WithAdditionalProperties: Story = {
   }),
 };
 
-export const WithRightCellActions: Story = {
+export const WithRightCellCenterJustifying: Story = {
   args: {
-    name: 'With additional properties',
-    showAdditionalProperties: true,
+    value: undefined,
+    justifyRightCell: 'center',
   },
   render: (args) => ({
     props: args,
     template: `
-    <me-property-grid-cell [name]="'Автошкала'" value="Some value">
+    <me-property-grid-cell ${argsToTemplate(args)}>
+      <ng-container #rightCell rightCell>
+        <button
+          type="button"
+          class="cell-action-button"
+        >
+          <me-icon class="icon" name="docx_me_x20"></me-icon>
+        </button>
+      </ng-container>
+    </me-property-grid-cell>
+    `,
+  }),
+};
+
+export const WithAdditionalPropertiesCenterJustifying: Story = {
+  args: {
+    name: 'With additional properties',
+    showAdditionalProperties: true,
+    additionalPropertiesOpened: true,
+    alignAdditionalPropertiesCell: 'center'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <me-property-grid-cell ${argsToTemplate(args)}>
+          <ng-container rightCellStartActions>
+            <dx-check-box meCheckBox></dx-check-box>
+          </ng-container>
+          <ng-container #additionalProperties additionalProperties>
+            <div>
+              <dx-text-box
+                meTextBox
+                label="Field 1"
+                labelMode="outside"
+                size="small"
+              ></dx-text-box>
+            </div>
+          </ng-container>
+        </me-property-grid-cell>`,
+  }),
+};
+
+export const WithRightCellStartActions: Story = {
+  args: {
+    value: undefined,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <me-property-grid-cell ${argsToTemplate(args)}>
+      <ng-container rightCellStartActions>
+        <button
+          type="button"
+          class="cell-action-button"
+        >
+          <me-icon class="icon" name="docx_me_x20"></me-icon>
+        </button>
+      </ng-container>
+    </me-property-grid-cell>
+    `,
+  }),
+};
+
+export const WithRightCellEndActions: Story = {
+  args: {
+    value: undefined,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <me-property-grid-cell ${argsToTemplate(args)}>
+      <ng-container rightCellEndActions>
+        <button
+          type="button"
+          class="cell-action-button"
+        >
+          <me-icon class="icon" name="delete_x20"></me-icon>
+        </button>
+        <button
+          type="button"
+          class="cell-action-button"
+        >
+          <me-icon class="icon" name="upload_x20"></me-icon>
+        </button>
+      </ng-container>
+    </me-property-grid-cell>
+    `,
+  }),
+};
+
+export const WithRightCellStartAndEndActions: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+    <me-property-grid-cell ${argsToTemplate(args)}>
       <ng-container rightCellStartActions>
         <button
           type="button"

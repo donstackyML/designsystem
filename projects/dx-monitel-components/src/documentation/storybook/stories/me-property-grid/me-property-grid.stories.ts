@@ -30,6 +30,7 @@ import {
   MeSelectBoxModule,
   MeTagBoxModule,
   MeTextBoxModule,
+  MeTooltipModule,
 } from '../../../../lib/directives';
 
 export default {
@@ -57,6 +58,7 @@ export default {
         MeTagBoxModule,
         MeNumberBoxModule,
         MeDateBoxModule,
+        MeTooltipModule
       ],
     }),
   ],
@@ -219,8 +221,10 @@ export const Default: Story = {
 
         <me-property-grid-cell name="Точки на графике" [showAdditionalProperties]="true" [additionalPropertiesOpened]="true">
           <ng-container rightCellStartActions>
-            <dx-check-box meCheckBox></dx-check-box>
+
+            <div>dasdsd</div>
           </ng-container>
+
           <ng-container #additionalProperties additionalProperties>
             <div class="me-grid-cell-row">
               <dx-select-box
@@ -303,7 +307,7 @@ export const WithHeaderActions: Story = {
     template: `
        <me-property-grid ${argsToTemplate(args)}>
          <ng-container property-grid-header-left-actions>
-            <me-icon name="settings_x20" style="color: var(--Icon-Secondary); margin-left: 5px;" dxTooltip="Дополнительные настройки"></me-icon>
+            <me-icon name="settings_x20"  meTooltip="Дополнительные настройки" tooltipSize="small" tooltipPosition="bottom"></me-icon>
          </ng-container>
          <ng-container property-grid-header-right-actions>
             <button type="button" style="background:none; border:none; cursor:pointer; padding: 0 5px;" dxTooltip="Удалить">

@@ -47,6 +47,12 @@ export class MePropertyGridCellComponent implements AfterContentInit {
 
   @Input() showAdditionalProperties = false;
 
+  @Input() justifyRightCell: 'left' | 'center' | 'right' = 'left';
+
+  @Input() justifyLeftCell: 'left' | 'center' | 'right' = 'left';
+
+  @Input() alignAdditionalPropertiesCell: 'left' | 'center' | 'right' = 'left';
+
   @Output() valueChange = new EventEmitter<any>();
 
   @Output() openMoreProperties: EventEmitter<void> = new EventEmitter<void>();
