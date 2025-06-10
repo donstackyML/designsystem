@@ -16204,9 +16204,6 @@ input.dx-hidden {
 .me-drop-down-box .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   display: none;
 }
-.me-drop-down-box .dx-popup-content {
-  overflow: hidden;
-}
 .me-drop-down-box .dx-texteditor-buttons-container .dx-button-content .dx-dropdowneditor-icon::before {
   content: "\f016";
 }
@@ -16216,10 +16213,14 @@ input.dx-hidden {
 }
 
 .me-drop-down-box-wrapper-popup .dx-overlay-content {
-  overflow: auto;
-  padding: 4px;
+  padding: 16px;
 }
-
+.me-drop-down-box-wrapper-popup .dx-overlay-content .dx-popup-content:has(> .me-tree-view) {
+  padding: 0 !important;
+}
+.me-drop-down-box-wrapper-popup .dx-overlay-content .dx-popup-content:has(> .me-tree-view) .me-tree-view {
+  padding: 0;
+}
 .dx-dropdownbutton {
   display: inline-block;
 }

@@ -20,10 +20,6 @@
     }
   }
 
-  .dx-popup-content {
-    overflow: hidden;
-  }
-
   .dx-texteditor-buttons-container {
     .dx-button-content {
       .dx-dropdowneditor-icon::before {
@@ -40,7 +36,19 @@
 
 .me-drop-down-box-wrapper-popup {
   .dx-overlay-content {
-    overflow: auto;
-    padding: 4px;
+    padding: 16px;
+
+    .dx-popup-content:has(> .me-tree-view) {
+      padding: 0 !important;
+
+      .me-tree-view {
+        padding: 0;
+      }
+    }
+
+    .dx-popup-content:has(> .me-data-grid) {
+      .me-data-grid.dx-widget {
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import {
   DxDataGridModule,
+  DxDropDownBoxComponent,
   DxDropDownBoxModule,
   DxTextBoxModule,
   DxTreeViewModule,
@@ -8,22 +9,9 @@ import {
 import {
   MeDataGridDirective,
   MeDropDownBoxDirective,
-  MeSize,
   MeTreeViewDirective,
 } from '../../../../public-api';
 import { mockData } from './me-drop-down-box-mock-data';
-
-type StoryProps = {
-  dataSource?: any[];
-  size: MeSize;
-  value?: any;
-  placeholder?: string;
-  disabled?: boolean;
-  acceptCustomValue?: boolean;
-  showClearButton?: boolean;
-  width?: number | string;
-  height?: number | string;
-};
 
 export default {
   title: 'Components/DropDownBox',
@@ -47,12 +35,13 @@ export default {
       control: 'object',
       description: 'Список возможных значений для выбора.',
       table: {
+        type: { summary: '[]' },
         defaultValue: { summary: '[]' },
       },
     },
     size: {
       control: 'select',
-      options: ['small', 'large'],
+      options: ['small', 'medium', 'large'],
       description: 'Принимает размер `Drop Down Box` и его элементов.',
       table: {
         type: { summary: 'string' },
@@ -85,6 +74,24 @@ export default {
       description: 'Отображает кнопку очистки поля ввода.',
       table: {
         defaultValue: { summary: 'true' },
+      },
+    },
+    showScrollbar: {
+      control: 'select',
+      options: ['always', 'onHover'],
+      description:
+        'Определяет отображение скролла - при наведении или постоянно. По умолчанию скролл отображается при переполнении контента постоянно.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'always' },
+      },
+    },
+    leftIcon: {
+      control: 'text',
+      description: 'Иконка слева.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
   },
@@ -154,8 +161,8 @@ export default {
       </div>
     `,
   }),
-} satisfies Meta<StoryProps>;
+} satisfies Meta<MeDropDownBoxDirective | DxDropDownBoxComponent>;
 
-type Story = StoryObj<StoryProps>;
+type Story = StoryObj<MeDropDownBoxDirective | DxDropDownBoxComponent>;
 
 export const Default: Story = {};
