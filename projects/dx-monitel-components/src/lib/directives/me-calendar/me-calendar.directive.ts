@@ -49,6 +49,7 @@ export class MeCalendarDirective
   @Output() weekNumberRuleChange = new EventEmitter<WeekNumberRule>();
 
   private subscriptions: Subscription[] = [];
+  private time = 0;
 
   constructor(
     private dxCalendarComponent: DxCalendarComponent,
@@ -56,6 +57,8 @@ export class MeCalendarDirective
   ) {}
 
   ngOnInit() {
+    this.time = this.getCurrentTimeInMs();
+
     this.updateCalendarOptions();
     this.setupEventListeners();
   }
@@ -141,7 +144,6 @@ export class MeCalendarDirective
     }
   }
 
-  private time = 0;
   private insertTimeControls(root: Element) {
     const targetNode = root;
 
@@ -185,5 +187,11 @@ export class MeCalendarDirective
 
     targetNode.classList.add('me-calendar-with-time-controls');
     insert();
+  }
+
+  private getCurrentTimeInMs(): number {
+    const now = new Date();
+    now.setSeconds(0, 0);
+    return (now.getHours() * 3600 + now.getMinutes() * 60) * 1000;
   }
 }

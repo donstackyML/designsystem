@@ -54,6 +54,10 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
 
   @Input() type?: 'date' | 'datetime' = 'date';
 
+  private time = 0;
+  private startTime = 0;
+  private endTime = 0;
+
   @HostListener('onValueChanged', ['$event'])
   onValueChanged(e: ValueChangedEvent) {
     if (this.type === 'datetime') {
@@ -116,10 +120,6 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     this.dateRangeBox.instance.open();
   }
 
-  private time = 0;
-  private startTime = 0;
-  private endTime = 0;
-
   private getTime(valueIndex: 0 | 1) {
     if (!this.dateRangeBox.multiView) {
       return this.time;
@@ -129,6 +129,10 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
   }
   private insertTimeControls(root: Element) {
     const targetNode = root;
+
+    this.time = this.getCurrentTimeInMs();
+    this.startTime = this.getCurrentTimeInMs();
+    this.endTime = this.getCurrentTimeInMs();
 
     this.dateRangeBox.displayFormat = 'dd.MM.yyyy, HH:mm:ss';
 
@@ -188,5 +192,11 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     } else {
       insert();
     }
+  }
+
+  private getCurrentTimeInMs(): number {
+    const now = new Date();
+    now.setSeconds(0, 0);
+    return (now.getHours() * 3600 + now.getMinutes() * 60) * 1000;
   }
 }
