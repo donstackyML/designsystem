@@ -94,6 +94,14 @@ export default {
         defaultValue: { summary: '' },
       },
     },
+    dropDownListMaxHeight: {
+      control: 'text',
+      description: 'Максимальная высота выпадающего списка.',
+      table: {
+        type: { summary: 'string | number' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
   },
   args: {
     dataSource: mockData,
@@ -101,20 +109,25 @@ export default {
     placeholder: 'Выберите значение...',
     disabled: false,
     showClearButton: true,
+    showScrollbar: 'always',
+    dropDownListMaxHeight: 300,
   },
   render: (args) => ({
     props: args,
     template: `
       <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; width: 100%">
         <dx-drop-down-box
-        meDropDownBox
-        [dataSource]="dataSource"
-        displayExpr="name"
-        valueExpr="id"
-        [showClearButton]="showClearButton"
-        [placeholder]="placeholder"
-        [size]="size"
-        [disabled]="disabled"
+          meDropDownBox
+          [dataSource]="dataSource"
+          displayExpr="name"
+          valueExpr="id"
+          [showClearButton]="showClearButton"
+          [placeholder]="placeholder"
+          [size]="size"
+          [disabled]="disabled"
+          [dropDownListMaxHeight]="dropDownListMaxHeight"
+          [showScrollbar]="showScrollbar"
+          [leftIcon]="leftIcon"
         >
           <dx-tree-view
             meTreeView
@@ -127,21 +140,22 @@ export default {
             [selectNodesRecursive]="false"
             displayExpr="name"
             [selectByClick]="true"
-            [size]="size"
             [disabled]="disabled"
           >
           </dx-tree-view>
         </dx-drop-down-box>
 
         <dx-drop-down-box
-        meDropDownBox
-        [dataSource]="dataSource"
-        displayExpr="name"
-        valueExpr="id"
-        [showClearButton]="showClearButton"
-        [placeholder]="placeholder"
-        [size]="size"
-        [disabled]="disabled"
+          meDropDownBox
+          [dataSource]="dataSource"
+          displayExpr="name"
+          valueExpr="id"
+          [showClearButton]="showClearButton"
+          [placeholder]="placeholder"
+          [size]="size"
+          [disabled]="disabled"
+          [showScrollbar]="showScrollbar"
+          [leftIcon]="leftIcon"
         >
           <dx-data-grid
             meDataGrid
@@ -149,12 +163,9 @@ export default {
             [columns]="['id', 'name']"
             [selection]="{ mode: 'multiple' }"
             [hoverStateEnabled]="true"
-            [paging]="{ enabled: true, pageSize: 10 }"
             [filterRow]="{ visible: true }"
-            [scrolling]="{ mode: 'virtual' }"
-            [(selectedRowKeys)]="gridBoxValue"
-            [size]="size"
             [disabled]="disabled"
+            [height]="300"
           >
           </dx-data-grid>
         </dx-drop-down-box>
@@ -166,3 +177,108 @@ export default {
 type Story = StoryObj<MeDropDownBoxDirective | DxDropDownBoxComponent>;
 
 export const Default: Story = {};
+
+export const SizeSmall: Story = {
+  args: {
+    size: 'small',
+  },
+};
+
+export const SizeMedium: Story = {
+  args: {
+    size: 'medium',
+  },
+};
+
+export const SizeLarge: Story = {
+  args: {
+    size: 'large',
+  },
+};
+
+export const WithTreeView: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-drop-down-box
+        meDropDownBox
+        [dataSource]="dataSource"
+        displayExpr="name"
+        valueExpr="id"
+        [placeholder]="placeholder"
+        [size]="size"
+      >
+        <dx-tree-view
+          meTreeView
+          [dataSource]="dataSource"
+          dataStructure="plain"
+          keyExpr="id"
+          parentIdExpr="categoryId"
+          selectionMode="multiple"
+          showCheckBoxesMode="normal"
+          [selectNodesRecursive]="false"
+          displayExpr="name"
+          [selectByClick]="true"
+        >
+        </dx-tree-view>
+      </dx-drop-down-box>
+    `,
+  }),
+};
+
+export const WithDataGrid: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-drop-down-box
+        meDropDownBox
+        [dataSource]="dataSource"
+        displayExpr="name"
+        valueExpr="id"
+        [placeholder]="placeholder"
+        [size]="size"
+      >
+        <dx-data-grid
+          meDataGrid
+          [dataSource]="dataSource"
+          [columns]="['id', 'name']"
+          [selection]="{ mode: 'multiple' }"
+          [hoverStateEnabled]="true"
+          [filterRow]="{ visible: true }"
+          [height]="300"
+        >
+        </dx-data-grid>
+      </dx-drop-down-box>
+    `,
+  }),
+};
+
+export const WithLeftIcon: Story = {
+  args: {
+    leftIcon: 'account_circle_x20',
+  },
+};
+
+export const ScrollbarAlways: Story = {
+  args: {
+    showScrollbar: 'always',
+  },
+};
+
+export const ScrollbarOnHover: Story = {
+  args: {
+    showScrollbar: 'onHover',
+  },
+};
+
+export const StateDisabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
+export const CustomMaxHeight: Story = {
+  args: {
+    dropDownListMaxHeight: 150,
+  },
+};

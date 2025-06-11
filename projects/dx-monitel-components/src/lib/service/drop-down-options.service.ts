@@ -25,6 +25,8 @@ export class DropDownOptionsService {
       renderer.setAttribute(hostElement.nativeElement, 'id', uniqueId);
     }
 
+    console.log(dropDownListMaxHeight);
+
     const popupWrapperClasses = `me-scroll-view me-dropdownlist me-dropdownlist-${size} ${additionalClass}`;
 
     component.dropDownOptions = {

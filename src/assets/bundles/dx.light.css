@@ -16196,13 +16196,20 @@ input.dx-hidden {
 }
 
 .me-drop-down-box {
+  --input-height: 28px;
   width: 100%;
+  box-sizing: border-box;
+  height: var(--input-height);
 }
 .me-drop-down-box .dx-texteditor-container {
   width: 100%;
+  align-items: center;
 }
 .me-drop-down-box .dx-texteditor-container .dx-texteditor-input-container .dx-placeholder {
   display: none;
+}
+.me-drop-down-box .dx-texteditor-buttons-container .dx-button-content {
+  display: flex;
 }
 .me-drop-down-box .dx-texteditor-buttons-container .dx-button-content .dx-dropdowneditor-icon::before {
   content: "\f016";
@@ -16210,6 +16217,45 @@ input.dx-hidden {
 .me-drop-down-box .dx-texteditor-buttons-container .dx-clear-button-area {
   align-content: center;
   text-align: center;
+}
+.me-drop-down-box-small .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  padding: 4px 0 4px 8px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.me-drop-down-box-small .dx-texteditor-container .dx-texteditor-buttons-container .dx-dropdowneditor-button {
+  padding: 4px;
+}
+.me-drop-down-box-small .dx-texteditor-container .me-selectbox-left-icon {
+  margin: 0 4px 0 8px;
+}
+.me-drop-down-box-medium {
+  --input-height: 32px;
+}
+.me-drop-down-box-medium .dx-texteditor-input-container .dx-texteditor-input {
+  padding: 6px 0 6px 8px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.me-drop-down-box-medium .dx-texteditor-buttons-container .dx-dropdowneditor-button {
+  padding: 6px 4px;
+}
+.me-drop-down-box-medium .me-selectbox-left-icon {
+  margin: 0 4px 0 8px;
+}
+.me-drop-down-box-large {
+  --input-height: 40px;
+}
+.me-drop-down-box-large .dx-texteditor-input-container .dx-texteditor-input {
+  padding: 8px 0 8px 12px;
+  font-size: 16px;
+  line-height: 20px;
+}
+.me-drop-down-box-large .dx-texteditor-buttons-container .dx-dropdowneditor-button {
+  padding: 8px 4px;
+}
+.me-drop-down-box-large .me-selectbox-left-icon {
+  margin: 0 8px 0 12px;
 }
 
 .me-drop-down-box-wrapper-popup .dx-overlay-content {
@@ -16220,6 +16266,7 @@ input.dx-hidden {
 }
 .me-drop-down-box-wrapper-popup .dx-overlay-content .dx-popup-content:has(> .me-tree-view) .me-tree-view {
   padding: 0;
+  height: 100%;
 }
 .dx-dropdownbutton {
   display: inline-block;

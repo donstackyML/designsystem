@@ -7,7 +7,6 @@ import {
   EventEmitter,
   HostListener,
   Input,
-  OnInit,
   Output,
   Renderer2,
   ViewContainerRef,
@@ -102,6 +101,8 @@ export class MeDropDownBoxDirective implements AfterViewInit {
         },
       },
     };
+
+    this.setLeftIcon();
   }
 
   @HostListener('onOpened', ['$event'])

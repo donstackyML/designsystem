@@ -8,10 +8,15 @@
 @use '../dropDownEditor';
 
 .me-drop-down-box {
+  --input-height: 28px;
+
   width: 100%;
+  box-sizing: border-box;
+  height: var(--input-height);
 
   .dx-texteditor-container {
     width: 100%;
+    align-items: center;
 
     .dx-texteditor-input-container {
       .dx-placeholder {
@@ -22,6 +27,7 @@
 
   .dx-texteditor-buttons-container {
     .dx-button-content {
+      display: flex;
       .dx-dropdowneditor-icon::before {
         content: '\f016';
       }
@@ -30,6 +36,72 @@
     .dx-clear-button-area {
       align-content: center;
       text-align: center;
+    }
+  }
+
+  &-small {
+    .dx-texteditor-container {
+      .dx-texteditor-input-container {
+        .dx-texteditor-input {
+          padding: 4px 0 4px 8px;
+          font-size: 13px;
+          line-height: 16px;
+        }
+      }
+
+      .dx-texteditor-buttons-container {
+        .dx-dropdowneditor-button {
+          padding: 4px;
+        }
+      }
+
+      .me-selectbox-left-icon {
+        margin: 0 4px 0 8px;
+      }
+    }
+  }
+
+  &-medium {
+    --input-height: 32px;
+
+    .dx-texteditor-input-container {
+      .dx-texteditor-input {
+        padding: 6px 0 6px 8px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+
+    .dx-texteditor-buttons-container {
+      .dx-dropdowneditor-button {
+        padding: 6px 4px;
+      }
+    }
+
+    .me-selectbox-left-icon {
+      margin: 0 4px 0 8px;
+    }
+  }
+
+  &-large {
+    --input-height: 40px;
+
+    .dx-texteditor-input-container {
+      .dx-texteditor-input {
+        padding: 8px 0 8px 12px;
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+
+    .dx-texteditor-buttons-container {
+      .dx-dropdowneditor-button {
+        padding: 8px 4px;
+      }
+    }
+
+    .me-selectbox-left-icon {
+      margin: 0 8px 0 12px;
     }
   }
 }
@@ -43,11 +115,13 @@
 
       .me-tree-view {
         padding: 0;
+        height: 100%;
       }
     }
 
     .dx-popup-content:has(> .me-data-grid) {
-      .me-data-grid.dx-widget {
+      .me-data-grid {
+        //height: 100%;
       }
     }
   }
