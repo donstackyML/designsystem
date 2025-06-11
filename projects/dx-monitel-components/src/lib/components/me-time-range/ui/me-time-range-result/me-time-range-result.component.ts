@@ -21,7 +21,9 @@ import { DateHighlightInfo } from '../me-time-range';
   styleUrls: ['./me-time-range-result.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MeTimeRangeResultComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class MeTimeRangeResultComponent
+  implements AfterViewInit, OnChanges, OnDestroy
+{
   private static instanceCounter = 0;
 
   private readonly instanceId: number;
@@ -36,7 +38,8 @@ export class MeTimeRangeResultComponent implements AfterViewInit, OnChanges, OnD
 
   @Input() endText = 'Конец';
 
-  @ViewChild('startTimeResult') startTimeElementRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('startTimeResult')
+  startTimeElementRef!: ElementRef<HTMLDivElement>;
 
   @ViewChild('endTimeResult') endTimeElementRef!: ElementRef<HTMLDivElement>;
 
@@ -76,10 +79,13 @@ export class MeTimeRangeResultComponent implements AfterViewInit, OnChanges, OnD
 
         const startRanges = createHighlightRanges(
           this.startTimeElementRef,
-          this.startDateHighlightInfo,
+          this.startDateHighlightInfo
         );
 
-        const endRanges = createHighlightRanges(this.endTimeElementRef, this.endDateHighlightInfo);
+        const endRanges = createHighlightRanges(
+          this.endTimeElementRef,
+          this.endDateHighlightInfo
+        );
 
         if (startRanges.length > 0 || endRanges.length > 0) {
           // @ts-ignore

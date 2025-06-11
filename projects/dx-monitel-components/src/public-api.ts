@@ -10,7 +10,8 @@ export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MeMenuLeftComponent } from './lib/components/me-menu-left/me-menu-left.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
 export {
-  MePropertyGridCellComponent, MePropertyGridComponent
+  MePropertyGridCellComponent,
+  MePropertyGridComponent,
 } from './lib/components/me-property-grid';
 export { MeSidePageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonItemComponent } from './lib/components/me-skeleton/me-skeleton-item/me-skeleton-item.component';
@@ -133,7 +134,7 @@ export { ThemesService } from './lib/service/themes.service';
 export { MeComponentsModule } from './lib/modules/me-components.module';
 export {
   MeIconsInitializerModule,
-  initializeIconsFactory
+  initializeIconsFactory,
 } from './lib/modules/me-icons-initializer.module';
 
 // Types

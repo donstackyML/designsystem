@@ -90,7 +90,8 @@ export default {
     },
     filtersIsEnabled: {
       action: 'filtersIsEnabled',
-      description: 'Событие изменения состояния активности фильтров (true - активно, false - выключено)',
+      description:
+        'Событие изменения состояния активности фильтров (true - активно, false - выключено)',
       table: {
         category: 'События',
         type: { summary: 'EventEmitter<boolean>' },
@@ -99,7 +100,7 @@ export default {
   },
   args: {
     title: '',
-    
+
     mode: 'buttons',
 
     offFilterPosition: 'left',

@@ -1,4 +1,7 @@
-import { MinimalTimeShiftProperty, TimeShiftProperty } from '../me-shift-properties';
+import {
+  MinimalTimeShiftProperty,
+  TimeShiftProperty,
+} from '../me-shift-properties';
 
 export type ShiftType = 'current' | 'absolute' | 'mixed' | 'unknown';
 

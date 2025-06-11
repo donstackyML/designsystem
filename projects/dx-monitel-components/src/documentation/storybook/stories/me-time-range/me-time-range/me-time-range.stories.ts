@@ -2,36 +2,46 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular';
-import { MeTimeRangeComponent, defaultMinimalTimeShiftProperty, defaultStepSettings, defaultTimeSteps, type TimeRangeConfig, type TimeShiftChangedOutput } from '../../../../../lib/components';
+import {
+  MeTimeRangeComponent,
+  defaultMinimalTimeShiftProperty,
+  defaultStepSettings,
+  defaultTimeSteps,
+  type TimeRangeConfig,
+  type TimeShiftChangedOutput,
+} from '../../../../../lib/components';
 import { MeButtonModule } from '../../../../../lib/directives';
-import { defaultTimeRangeConfig, smallTimeRangeConfig } from './me-time-range-mock-data';
+import {
+  defaultTimeRangeConfig,
+  smallTimeRangeConfig,
+} from './me-time-range-mock-data';
 
 @Component({
   selector: 'me-time-range-popup-demo',
   template: `
-      <dx-button
-        id="buttonId"
-        meButton
-        (click)="togglePopup()"
-        text="Открыть настройки времени"
-      >
-      </dx-button>
-      <me-time-range
-        [isPopup]="true"
-        [popupIsVisible]="popupVisible"
-        [popupPosition]="popupPosition"
-        [popupWidth]="'600px'"
-        [popupHeight]="'auto'"
-        [title]="'Настройка интервала'"
-        [showTitle]="true"
-        [hasHeaderCloseButton]="true"
-        [hasFooterCancelButton]="false"
-        [settingsBlocks]="['quickFilter', 'shiftSettings', 'steps', 'result']"
-        [defaultSettings]="defaultSettings"
-        [settings]="settings"
-        (closed)="onClosed()"
-        (popupOnHidden)="onPopupHidden()"
-      ></me-time-range>
+    <dx-button
+      id="buttonId"
+      meButton
+      (click)="togglePopup()"
+      text="Открыть настройки времени"
+    >
+    </dx-button>
+    <me-time-range
+      [isPopup]="true"
+      [popupIsVisible]="popupVisible"
+      [popupPosition]="popupPosition"
+      [popupWidth]="'600px'"
+      [popupHeight]="'auto'"
+      [title]="'Настройка интервала'"
+      [showTitle]="true"
+      [hasHeaderCloseButton]="true"
+      [hasFooterCancelButton]="false"
+      [settingsBlocks]="['quickFilter', 'shiftSettings', 'steps', 'result']"
+      [defaultSettings]="defaultSettings"
+      [settings]="settings"
+      (closed)="onClosed()"
+      (popupOnHidden)="onPopupHidden()"
+    ></me-time-range>
   `,
 })
 class TimeRangePopupDemoComponent {
@@ -72,7 +82,8 @@ const meta = {
   argTypes: {
     settingsBlocks: {
       control: 'object',
-      description: 'Блоки настроек для отображения в компоненте. Возможные значения: "quickFilter", "shiftSettings", "steps", "result".',
+      description:
+        'Блоки настроек для отображения в компоненте. Возможные значения: "quickFilter", "shiftSettings", "steps", "result".',
       table: {
         category: 'Конфигурация',
         type: { summary: 'string[]' },
@@ -81,7 +92,8 @@ const meta = {
     },
     defaultSettings: {
       control: 'object',
-      description: 'Настройки по умолчанию для временного диапазона. Используются при сбросе настроек.',
+      description:
+        'Настройки по умолчанию для временного диапазона. Используются при сбросе настроек.',
       table: {
         category: 'Конфигурация',
         type: { summary: 'TimeRangeConfig' },
@@ -108,7 +120,8 @@ const meta = {
     },
     popupIsVisible: {
       control: 'boolean',
-      description: 'Видимость всплывающего окна. Работает только при isPopup=true.',
+      description:
+        'Видимость всплывающего окна. Работает только при isPopup=true.',
       table: {
         category: 'Отображение',
         type: { summary: 'boolean' },
@@ -117,7 +130,8 @@ const meta = {
     },
     popupWidth: {
       control: 'text',
-      description: 'Ширина всплывающего окна. Может быть числом или строкой с единицами измерения.',
+      description:
+        'Ширина всплывающего окна. Может быть числом или строкой с единицами измерения.',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'number | string' },
@@ -126,7 +140,8 @@ const meta = {
     },
     popupHeight: {
       control: 'text',
-      description: 'Высота всплывающего окна. Может быть числом или строкой с единицами измерения.',
+      description:
+        'Высота всплывающего окна. Может быть числом или строкой с единицами измерения.',
       table: {
         category: 'Внешний вид и размеры',
         type: { summary: 'number | string' },
@@ -171,7 +186,8 @@ const meta = {
     },
     changesApplyMode: {
       control: { type: 'select', options: ['onChange', 'onApply'] },
-      description: 'Режим применения изменений: "onChange" - при каждом изменении, "onApply" - только при нажатии кнопки "Применить".',
+      description:
+        'Режим применения изменений: "onChange" - при каждом изменении, "onApply" - только при нажатии кнопки "Применить".',
       table: {
         category: 'Поведение',
         type: { summary: 'string' },
@@ -215,7 +231,8 @@ const meta = {
     },
     settingsChanged: {
       action: 'settingsChanged',
-      description: 'Событие, возникающее при изменении настроек временного диапазона.',
+      description:
+        'Событие, возникающее при изменении настроек временного диапазона.',
       table: {
         category: 'События',
         type: { summary: 'EventEmitter<TimeRangeConfig>' },
@@ -300,7 +317,7 @@ export const WithOnlyAbsoluteTime: Story = {
         end: new Date(),
       },
       startShift: null,
-      endShift: null
+      endShift: null,
     },
     showTitle: true,
     title: 'Интервал',
@@ -309,7 +326,6 @@ export const WithOnlyAbsoluteTime: Story = {
     changesApplyMode: 'onChange',
   },
 };
-
 
 export const WithShiftSettingsStepsAndResult: Story = {
   args: {
@@ -323,16 +339,16 @@ export const WithShiftSettingsStepsAndResult: Story = {
         type: 'current',
         switchIsActive: true,
         switchEnabled: true,
-        properties: defaultMinimalTimeShiftProperty
+        properties: defaultMinimalTimeShiftProperty,
       },
       endShift: {
         type: 'current',
         switchIsActive: true,
         switchEnabled: true,
-        properties: defaultMinimalTimeShiftProperty
+        properties: defaultMinimalTimeShiftProperty,
       },
       step: defaultStepSettings,
-      update: null
+      update: null,
     },
     showTitle: true,
     title: 'Фильтрация по времени',
@@ -344,21 +360,27 @@ export const WithShiftSettingsStepsAndResult: Story = {
 
 export const WithQuickFilterShiftTypeShiftSettingsStepsAndResult: Story = {
   args: {
-    settingsBlocks: ['quickFilter', 'shiftType', 'shiftSettings', 'steps', 'result'],
+    settingsBlocks: [
+      'quickFilter',
+      'shiftType',
+      'shiftSettings',
+      'steps',
+      'result',
+    ],
     settings: {
       absoluteDate: {
         start: new Date(),
         end: new Date(),
       },
       startShift: {
-        properties: defaultMinimalTimeShiftProperty
+        properties: defaultMinimalTimeShiftProperty,
       },
       endShift: {
-        properties: defaultMinimalTimeShiftProperty
+        properties: defaultMinimalTimeShiftProperty,
       },
       step: defaultStepSettings,
       shiftType: 'current',
-      update: null
+      update: null,
     },
     showTitle: true,
     title: 'Фильтрация по времени по времени',
@@ -372,7 +394,7 @@ export const WithShiftTypeAndDataBox: Story = {
   args: {
     settingsBlocks: ['shiftType', 'shiftSettings'],
     defaultSettings: smallTimeRangeConfig,
-    settings: { ...smallTimeRangeConfig, shiftType: 'current'},
+    settings: { ...smallTimeRangeConfig, shiftType: 'current' },
     isPopup: false,
     showTitle: true,
     title: 'Настройка временного диапазона',
