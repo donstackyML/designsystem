@@ -61,6 +61,14 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
   @HostListener('onValueChanged', ['$event'])
   onValueChanged(e: ValueChangedEvent) {
     if (this.type === 'datetime') {
+      if (
+        Array.isArray(e.value) &&
+        e.value[0] === null &&
+        e.value[1] === null
+      ) {
+        this.dateRangeBox.value = [0, 0];
+      }
+
       const values = [...e.value];
       const changedValueIndex = e.value
         .map((val: unknown, i: number) => val !== e.previousValue[i])
@@ -71,7 +79,6 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
           this.getTime(changedValueIndex)
       );
 
-      this.dateRangeBox.value = values;
       this.dateRangeBox.instance.repaint();
 
       this.time = 0;
