@@ -8,10 +8,13 @@
   --horizontal-dividers: 1px;
   --property-grid-resizer-width: 1px;
 
+  position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   width: 100%;
+  
+  z-index: 0;
 
   &.resize-handler-hovered {
     .resize-handler {
@@ -21,20 +24,11 @@
   }
 }
 
-@keyframes fade-out {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    opacity: 0.6;
-  }
-
-  100% {
-    transform: translateY(-100%);
-    height: 0;
-    opacity: 0;
-  }
+.property-grid-content-container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .property-grid-content {
@@ -56,23 +50,8 @@
 
   background-color: var(--Background-Accent-in-the-content);
 
-  @supports (transition-behavior: allow-discrete) {
-    &.is-hidden {
-      animation: 0.15s forwards;
-      animation-name: fade-out;
-
-      transition-behavior: allow-discrete;
-
-      @starting-style {
-        display: none;
-      }
-    }
-  }
-
-  @supports not (transition-behavior: allow-discrete) {
-    &.is-hidden {
-      display: none;
-    }
+  &.is-hidden {
+    display: none;
   }
 }
 
@@ -103,8 +82,4 @@
   background: var(--Dividers-Borders-Long);
 
   transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out;
-}
-
-.property-grid-scroll-view {
-  z-index: 3;
 }
