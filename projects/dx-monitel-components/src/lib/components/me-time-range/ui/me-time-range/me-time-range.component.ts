@@ -24,6 +24,7 @@ import {
   DxScrollViewModule,
   DxSelectBoxModule,
 } from 'devextreme-angular';
+// @ts-ignore
 import { isEqual } from 'lodash-es';
 import { Subscription, interval } from 'rxjs';
 
@@ -272,8 +273,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onQuickFilterSelected(filterId: string) {
-    console.log('onQuickFilterSelected');
-
     const newSettings = structuredClone(
       this.internalSettings
     ) as TimeRangeConfig;
@@ -307,8 +306,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
       newSettings.endShift.type = shiftType;
       newSettings.endShift.switchEnabled = false;
     }
-
-    console.log(newSettings, '');
 
     this.internalSettings = newSettings;
   }
