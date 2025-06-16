@@ -13,6 +13,7 @@ import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
 import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
 
 import { MeIconsModule } from '@monitel/me-icons-registry';
+import { action } from '@storybook/addon-actions';
 import {
   DxColorBoxModule,
   DxDateBoxModule,
@@ -30,6 +31,7 @@ import {
   MeSelectBoxModule,
   MeTagBoxModule,
   MeTextBoxModule,
+  MeTooltipModule,
 } from '../../../../lib/directives';
 
 export default {
@@ -57,6 +59,7 @@ export default {
         MeTagBoxModule,
         MeNumberBoxModule,
         MeDateBoxModule,
+        MeTooltipModule,
       ],
     }),
   ],
@@ -221,6 +224,7 @@ export const Default: Story = {
           <ng-container rightCellStartActions>
             <dx-check-box meCheckBox></dx-check-box>
           </ng-container>
+
           <ng-container #additionalProperties additionalProperties>
             <div class="me-grid-cell-row">
               <dx-select-box
@@ -260,7 +264,7 @@ export const Default: Story = {
           </ng-container>
         </me-property-grid-cell>
 
-                <me-property-grid-cell name="Температура">
+        <me-property-grid-cell name="Температура">
           <dx-number-box meNumberBox #rightCell [value]="22" [min]="-50" [max]="50" [step]="0.1" stylingMode="filled" width="100%" placeholder="Введите температуру"></dx-number-box>
         </me-property-grid-cell>
 
@@ -299,20 +303,41 @@ export const WithHeaderActions: Story = {
     gridTitle: 'Настройки с действиями',
   },
   render: (args) => ({
-    props: args,
+    props: {
+      ...args,
+      onLeftClick: action('Left icon clicked'),
+      onDeleteClick: action('Delete button clicked'),
+      onRefreshClick: action('Refresh button clicked'),
+    },
     template: `
        <me-property-grid ${argsToTemplate(args)}>
          <ng-container property-grid-header-left-actions>
-            <me-icon name="settings_x20" style="color: var(--Icon-Secondary); margin-left: 5px;" dxTooltip="Дополнительные настройки"></me-icon>
+          <me-icon
+            name="settings_x20"
+            meTooltip="Дополнительные настройки"
+            tooltipSize="small"
+            tooltipPosition="bottom"
+            (click)="onLeftClick()"
+          ></me-icon>
          </ng-container>
+
          <ng-container property-grid-header-right-actions>
-            <button type="button" style="background:none; border:none; cursor:pointer; padding: 0 5px;" dxTooltip="Удалить">
+          <button
+            type="button"
+            style="background:none; border:none; cursor:pointer; padding: 0 5px;"
+            (click)="onDeleteClick()"
+          >
               <me-icon name="delete_x20" style="color: var(--Icon-Secondary);"></me-icon>
             </button>
-             <button type="button" style="background:none; border:none; cursor:pointer; padding: 0 5px;" dxTooltip="Обновить">
+          <button
+            type="button"
+            style="background:none; border:none; cursor:pointer; padding: 0 5px;"
+            (click)="onRefreshClick()"
+          >
               <me-icon name="collapse_x20" style="color: var(--Icon-Secondary);"></me-icon>
             </button>
          </ng-container>
+
         <me-property-grid-cell name="Параметр 1" value="Значение 1"></me-property-grid-cell>
         <me-property-grid-cell name="Параметр 2" value="Значение 2"></me-property-grid-cell>
       </me-property-grid>
@@ -427,6 +452,57 @@ export const WithFixedHeightAndScroll: Story = {
         ).join('')}
       </me-property-grid>
     `,
+  }),
+};
+
+export const WithFixedHeightForContainer: Story = {
+  args: {
+    gridTitle: 'Много свойств',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <div class="some-class">
+      <me-property-grid ${argsToTemplate(args)}>
+        ${Array.from(
+          { length: 5 },
+          (_, i) => `
+          <me-property-grid-cell name="Свойство ${i + 1}" value="Значение ${
+            i + 1
+          }"></me-property-grid-cell>
+          `
+        ).join('')}
+
+        <me-property-grid-cell
+        name="Точки на графике"
+        [showAdditionalProperties]="true"
+        [additionalPropertiesOpened]="true"
+        >
+        <ng-container #additionalProperties additionalProperties>
+          <div style="background: #eee; height: 100px;">
+          Дополнительные свойства (перекроют скроллбар)
+          </div>
+        </ng-container>
+        </me-property-grid-cell>
+        ${Array.from(
+          { length: 5 },
+          (_, i) => `
+          <me-property-grid-cell name="Свойство ${i + 1}" value="Значение ${
+            i + 1
+          }"></me-property-grid-cell>
+          `
+        ).join('')}
+      </me-property-grid>
+    </div>
+    `,
+    styles: [
+      `
+      .some-class {
+        display: flex;
+        height: 200px;
+      }
+      `,
+    ],
   }),
 };
 
