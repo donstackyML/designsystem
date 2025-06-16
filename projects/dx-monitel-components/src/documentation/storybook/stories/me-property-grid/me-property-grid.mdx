@@ -1,6 +1,7 @@
 import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
 import * as gridStories from "./me-property-grid.stories";
 import * as cellStories from "./me-property-grid-cell.stories";
+import * as gridGroupStories from "./me-property-grid-group.stories";
 
 <Meta name="Property Grid Documentation" title="Components/Property Grid" />
 
@@ -17,6 +18,12 @@ import * as cellStories from "./me-property-grid-cell.stories";
 Компонент `me-property-grid-cell` представляет собой элемент в `me-property-grid`. Он отвечает за отображение названия свойства и его значения или редактора.
 
 <Controls of={cellStories.Default} />
+
+## Компонент (`me-property-grid-group`)
+
+Компонент `me-property-grid-group` служит оберткой для нескольких экземпляров `me-property-grid`. Он создает единую прокручиваемую область для всех вложенных гридов и позволяет управлять общими параметрами отображения, такими как высота и отступы между гридами.
+
+<Controls of={gridGroupStories.Default} />
 
 ## Примеры использования `me-property-grid`
 
@@ -48,13 +55,6 @@ import * as cellStories from "./me-property-grid-cell.stories";
 <Canvas of={gridStories.WithVariousInputs} />
 <Source of={gridStories.WithVariousInputs} dark />
 
-### С фиксированной высотой и прокруткой
-
-Если количество свойств велико, можно ограничить высоту грида с помощью свойства `height`, что приведет к появлению вертикальной прокрутки.
-
-<Canvas of={gridStories.WithFixedHeightAndScroll} />
-<Source of={gridStories.WithFixedHeightAndScroll} dark />
-
 ### Изначально свернутый
 
 Грид можно инициализировать в свернутом состоянии, установив `isOpen` в `false`.
@@ -62,7 +62,19 @@ import * as cellStories from "./me-property-grid-cell.stories";
 <Canvas of={gridStories.InitiallyClosed} />
 <Source of={gridStories.InitiallyClosed} dark />
 
----
+### С фиксированной высотой и прокруткой
+
+Если количество свойств велико, можно ограничить высоту грида с помощью свойства `height`, что приведет к появлению вертикальной прокрутки.
+
+<Canvas of={gridStories.WithFixedHeightAndScroll} />
+<Source of={gridStories.WithFixedHeightAndScroll} dark />
+
+### Группировка и прокрутка в группе с помощью `me-property-grid-group`
+
+Для объединения нескольких гридов свойств в единый блок с общей прокруткой используется компонент-обертка `me-property-grid-group`.
+
+<Canvas of={gridGroupStories.Default} />
+<Source of={gridGroupStories.Default} dark />
 
 ## Примеры использования `me-property-grid-cell`
 

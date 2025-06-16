@@ -151,7 +151,6 @@ export class MeShiftPropertiesComponent
   }
 
   private initializeForm(): void {
-    console.log(this.variant, 'this.variant');
     if (this.variant === 'full') {
       const props = (
         (this._properties && Array.isArray(this._properties)
