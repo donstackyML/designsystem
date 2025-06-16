@@ -24,6 +24,7 @@ import {
   DxScrollViewModule,
   DxSelectBoxModule,
 } from 'devextreme-angular';
+// @ts-ignore
 import { isEqual } from 'lodash-es';
 import { Subscription, interval } from 'rxjs';
 
