@@ -77,7 +77,11 @@ export class MePropertyGridCellComponent implements AfterContentInit {
   hasAdditionalProperties = false;
 
   constructor() {
-    this.meIconRegistry.registerIcons([contentCopyX20, panZoomX20, panZoomOutMeX20]);
+    this.meIconRegistry.registerIcons([
+      contentCopyX20,
+      panZoomX20,
+      panZoomOutMeX20,
+    ]);
   }
 
   ngAfterContentInit(): void {

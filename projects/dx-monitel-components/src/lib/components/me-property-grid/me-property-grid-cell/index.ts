@@ -1,1 +1,1 @@
-export { MePropertyGridCellComponent } from './me-property-grid-cell.component'
+export { MePropertyGridCellComponent } from './me-property-grid-cell.component';

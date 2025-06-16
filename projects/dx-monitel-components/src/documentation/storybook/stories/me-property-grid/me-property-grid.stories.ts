@@ -37,7 +37,7 @@ import {
 
 const getDefaultPropertyGridCells = (
   colorsSetting: any[],
-  dotsSetting: any[],
+  dotsSetting: any[]
 ) => `
   <me-property-grid-cell [name]="'Имя объекта'">
     <dx-text-box #rightCell meTextBox size="small" value="Сервер #1" stylingMode="filled" width="100%" placeholder="Введите имя"></dx-text-box>
@@ -481,7 +481,6 @@ export const InitiallyClosed: Story = {
   }),
 };
 
-
 export const WithFixedHeightAndScroll: Story = {
   args: {
     gridTitle: 'Много свойств',
@@ -505,8 +504,8 @@ export const WithFixedHeightAndScroll: Story = {
 };
 
 type WithGroupProps = {
-  'groupHeight': string | number;
-  'groupGap': string | number;
+  groupHeight: string | number;
+  groupGap: string | number;
 };
 
 export const WithGroup: StoryObj<MePropertyGridComponent & WithGroupProps> = {
@@ -528,7 +527,7 @@ export const WithGroup: StoryObj<MePropertyGridComponent & WithGroupProps> = {
   },
   args: {
     groupHeight: undefined,
-    groupGap: '8px'
+    groupGap: '8px',
   },
   render: (args) => {
     const colorsSetting = [
@@ -554,18 +553,23 @@ export const WithGroup: StoryObj<MePropertyGridComponent & WithGroupProps> = {
       },
       template: `
       <me-property-grid-group [height]="groupHeight" [gap]="groupGap" >
-        <me-property-grid ${argsToTemplate(args, { exclude: ['gridTitle', 'groupHeight'] })} gridTitle="Параметры объекта 1">
+        <me-property-grid ${argsToTemplate(args, {
+          exclude: ['gridTitle', 'groupHeight'],
+        })} gridTitle="Параметры объекта 1">
         ${getDefaultPropertyGridCells(colorsSetting, dotsSetting)}
         </me-property-grid>
-        <me-property-grid ${argsToTemplate(args, { exclude: ['gridTitle', 'groupHeight'] })} gridTitle="Параметры объекта 2">
+        <me-property-grid ${argsToTemplate(args, {
+          exclude: ['gridTitle', 'groupHeight'],
+        })} gridTitle="Параметры объекта 2">
         ${getDefaultPropertyGridCells(colorsSetting, dotsSetting)}
         </me-property-grid>
-        <me-property-grid ${argsToTemplate(args, { exclude: ['gridTitle', 'groupHeight'] })} gridTitle="Параметры объекта 3">
+        <me-property-grid ${argsToTemplate(args, {
+          exclude: ['gridTitle', 'groupHeight'],
+        })} gridTitle="Параметры объекта 3">
         ${getDefaultPropertyGridCells(colorsSetting, dotsSetting)}
         </me-property-grid>
       </me-property-grid-group>
       `,
     };
-
   },
 };

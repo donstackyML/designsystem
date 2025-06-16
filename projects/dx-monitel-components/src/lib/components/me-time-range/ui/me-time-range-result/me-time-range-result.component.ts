@@ -38,7 +38,8 @@ export class MeTimeRangeResultComponent
 
   @Input() endText = 'Конец';
 
-  @ViewChild('startTimeResult') startTimeElementRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('startTimeResult')
+  startTimeElementRef!: ElementRef<HTMLDivElement>;
 
   @ViewChild('endTimeResult') endTimeElementRef!: ElementRef<HTMLDivElement>;
 

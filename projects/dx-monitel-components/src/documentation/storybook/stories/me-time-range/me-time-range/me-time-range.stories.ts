@@ -6,7 +6,7 @@ import {
   MeTimeRangeComponent,
   defaultMinimalTimeShiftProperty,
   defaultStepSettings,
-  type TimeRangeConfig
+  type TimeRangeConfig,
 } from '../../../../../lib/components';
 import { MeButtonModule } from '../../../../../lib/directives';
 import {

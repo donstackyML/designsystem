@@ -273,7 +273,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onQuickFilterSelected(filterId: string) {
-
     const newSettings = structuredClone(
       this.internalSettings
     ) as TimeRangeConfig;

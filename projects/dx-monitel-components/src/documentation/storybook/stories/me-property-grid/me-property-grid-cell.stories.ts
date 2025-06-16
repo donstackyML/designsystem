@@ -125,7 +125,7 @@ export default {
     value: 'Cell value',
     justifyLeftCell: 'left',
     justifyRightCell: 'left',
-    alignAdditionalPropertiesCell: 'left'
+    alignAdditionalPropertiesCell: 'left',
   },
 } satisfies Meta<MePropertyGridCellComponent>;
 
@@ -286,7 +286,7 @@ export const WithAdditionalPropertiesCenterJustifying: Story = {
     name: 'With additional properties',
     showAdditionalProperties: true,
     additionalPropertiesOpened: true,
-    alignAdditionalPropertiesCell: 'center'
+    alignAdditionalPropertiesCell: 'center',
   },
   render: (args) => ({
     props: args,

@@ -84,7 +84,8 @@ export default {
   argTypes: {
     height: {
       control: 'text',
-      description: 'Высота контейнера группы. При переполнении появляется скролл. Например: "400px", "50vh".',
+      description:
+        'Высота контейнера группы. При переполнении появляется скролл. Например: "400px", "50vh".',
       table: {
         type: { summary: 'string | number' },
         defaultValue: { summary: 'undefined' },

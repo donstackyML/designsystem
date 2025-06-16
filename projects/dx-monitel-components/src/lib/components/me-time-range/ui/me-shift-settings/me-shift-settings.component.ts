@@ -190,7 +190,6 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
   }
 
   private updatePropertiesVariantAndDateBoxState(): void {
-
     switch (this.shiftType) {
       case 'mixed':
         this._isDateBoxReadOnly = this.switchIsActive;
