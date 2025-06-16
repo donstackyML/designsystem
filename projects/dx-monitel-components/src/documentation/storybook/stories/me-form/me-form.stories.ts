@@ -678,7 +678,7 @@ export const WithGrouping: Story = {
     <dxi-item meFormItem dataField="firstName">
       <dxo-label text="First Name"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox вшы [size]="size"></dx-text-box>
+        <dx-text-box meTextBox [size]="size"></dx-text-box>
       </div>
     </dxi-item>
     <dxi-item meFormItem dataField="lastName">
