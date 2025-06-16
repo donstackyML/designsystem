@@ -9,16 +9,20 @@ import {
 } from 'date-fns';
 
 import { DateHighlightInfo } from '../model/types';
-import { MinimalTimeShiftProperty, TimeShiftProperty } from '../ui/me-shift-properties';
+import {
+  MinimalTimeShiftProperty,
+  TimeShiftProperty,
+} from '../ui/me-shift-properties';
 
 export const getHighlightInfo = (
   baseDate: Date,
   shiftedDate: Date,
-  shiftProperties?: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null,
+  shiftProperties?: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null
 ): DateHighlightInfo => {
   const info: DateHighlightInfo = {};
 
-  if (!shiftProperties || !isValid(baseDate) || !isValid(shiftedDate)) return info;
+  if (!shiftProperties || !isValid(baseDate) || !isValid(shiftedDate))
+    return info;
 
   const hasAnyShift = Array.isArray(shiftProperties)
     ? shiftProperties.some((s) => s.enabled && s.value !== 0)

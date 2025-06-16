@@ -9,7 +9,12 @@ import { defaultShiftTypes } from './me-shift-type.options';
 @Component({
   selector: 'me-shift-type',
   standalone: true,
-  imports: [DxSelectBoxModule, MeSelectBoxModule, DxDateBoxModule, MeDateBoxModule],
+  imports: [
+    DxSelectBoxModule,
+    MeSelectBoxModule,
+    DxDateBoxModule,
+    MeDateBoxModule,
+  ],
   templateUrl: './me-shift-type.component.html',
   styleUrls: ['./me-shift-type.component.scss'],
 })

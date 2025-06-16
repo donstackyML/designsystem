@@ -4,16 +4,27 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { DxButtonModule, DxTextBoxComponent } from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxTextBoxComponent,
+  DxTextBoxModule,
+} from 'devextreme-angular';
 
-import { MeLabelDirective, MeTextBoxDirective } from '../../../../public-api';
+import {
+  MeIconComponent,
+  MeIconModule,
+  MeLabelDirective,
+  MeTextBoxDirective,
+} from '../../../../public-api';
+import { MeIconsModule } from '@monitel/me-icons-registry';
+import { NgStyle } from '@angular/common';
 
 export default {
   title: 'Components/Fields/TextBox',
   decorators: [
     moduleMetadata({
-      imports: [DxButtonModule],
-      declarations: [MeTextBoxDirective, DxTextBoxComponent, MeLabelDirective],
+      imports: [DxButtonModule, DxTextBoxModule],
+      declarations: [MeTextBoxDirective, MeLabelDirective],
     }),
   ],
   argTypes: {
@@ -269,7 +280,19 @@ export const WithLabelColumn: Story = {
 		  labelDirection="column"
 		>
       <span>Label</span>
-      <dx-text-box meTextBox ${argsToTemplate(args)}></dx-text-box>
+      <dx-text-box meTextBox ${argsToTemplate(args)}>
+       <dxi-button
+          name="X"
+          location="before"
+          options="[{
+            text: 'X',
+            stylingMode: 'text',
+            width: '24px',
+            height: '24px',
+          }]"
+          style="{color: black}"
+        ></dxi-button>
+      </dx-text-box>
 		</div>`,
   }),
 };
@@ -333,4 +356,33 @@ export const ModeSearch: Story = {
     mode: 'search',
     placeholder: 'Введите запрос для поиска',
   },
+};
+
+export const WithCustomButtons = {
+  args: {
+    customButton: {
+      width: '24px',
+      height: '24px',
+      icon: 'home',
+    },
+    labelMode: 'outside',
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <dx-text-box meTextBox ${argsToTemplate(args)}>
+       <dxi-button
+          name="before"
+          location="before"
+          [options]="customButton"
+          style="{color: black}"
+        ><me-icon icon="customButton.icon" size="large" color="currentColor"></me-icon></dxi-button>
+        <dxi-button
+          name="after"
+          location="after"
+          [options]="customButton"
+          style="{color: black}"
+        ><me-icon icon="customButton.icon" size="large" color="currentColor"></me-icon></dxi-button>
+      </dx-text-box>`,
+  }),
 };
