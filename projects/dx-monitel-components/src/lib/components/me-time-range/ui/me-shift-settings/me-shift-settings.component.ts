@@ -190,7 +190,6 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
   }
 
   private updatePropertiesVariantAndDateBoxState(): void {
-    console.log(this.switchEnabled, 'this.switchEnabled');
 
     switch (this.shiftType) {
       case 'mixed':

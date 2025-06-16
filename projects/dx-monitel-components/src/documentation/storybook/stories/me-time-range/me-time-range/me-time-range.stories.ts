@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular';
@@ -6,9 +6,7 @@ import {
   MeTimeRangeComponent,
   defaultMinimalTimeShiftProperty,
   defaultStepSettings,
-  defaultTimeSteps,
-  type TimeRangeConfig,
-  type TimeShiftChangedOutput,
+  type TimeRangeConfig
 } from '../../../../../lib/components';
 import { MeButtonModule } from '../../../../../lib/directives';
 import {

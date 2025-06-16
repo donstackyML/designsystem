@@ -273,7 +273,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onQuickFilterSelected(filterId: string) {
-    console.log('onQuickFilterSelected');
 
     const newSettings = structuredClone(
       this.internalSettings
@@ -308,8 +307,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
       newSettings.endShift.type = shiftType;
       newSettings.endShift.switchEnabled = false;
     }
-
-    console.log(newSettings, '');
 
     this.internalSettings = newSettings;
   }

@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -16,7 +16,7 @@ import { DateHighlightInfo } from '../me-time-range';
 @Component({
   selector: 'me-time-range-result',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, NgIf],
   templateUrl: './me-time-range-result.component.html',
   styleUrls: ['./me-time-range-result.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,8 +38,7 @@ export class MeTimeRangeResultComponent
 
   @Input() endText = 'Конец';
 
-  @ViewChild('startTimeResult')
-  startTimeElementRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('startTimeResult') startTimeElementRef!: ElementRef<HTMLDivElement>;
 
   @ViewChild('endTimeResult') endTimeElementRef!: ElementRef<HTMLDivElement>;
 
