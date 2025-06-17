@@ -18,6 +18,7 @@ import { MeFormField } from '../me-form-item/me-form-field';
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import type { ValueChangedEvent } from 'devextreme/ui/date_box';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DateTimeService } from '../../service/get-current-time-in-ms.service';
 
 @Directive({
   selector: '[meDateRangeBox]',
@@ -35,7 +36,8 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     private appRef: ApplicationRef,
     private injector: Injector,
     private ngZone: NgZone,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private dateTimeService: DateTimeService
   ) {
     super(dateRangeBox);
     this.dateRangeBox.labelMode = 'outside';
@@ -137,9 +139,9 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
   private insertTimeControls(root: Element) {
     const targetNode = root;
 
-    this.time = this.getCurrentTimeInMs();
-    this.startTime = this.getCurrentTimeInMs();
-    this.endTime = this.getCurrentTimeInMs();
+    this.time = this.dateTimeService.getCurrentTimeInMs();
+    this.startTime = this.dateTimeService.getCurrentTimeInMs();
+    this.endTime = this.dateTimeService.getCurrentTimeInMs();
 
     this.dateRangeBox.displayFormat = 'dd.MM.yyyy, HH:mm:ss';
 
@@ -199,11 +201,5 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     } else {
       insert();
     }
-  }
-
-  private getCurrentTimeInMs(): number {
-    const now = new Date();
-    now.setSeconds(0, 0);
-    return (now.getHours() * 3600 + now.getMinutes() * 60) * 1000;
   }
 }

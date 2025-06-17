@@ -23,6 +23,7 @@ import {
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import type DevExpress from 'devextreme';
 import type { ValueChangedEvent } from 'devextreme/ui/calendar';
+import { DateTimeService } from '../../service/get-current-time-in-ms.service';
 
 interface ExtendedDxCalendarComponent extends DevExpress.ui.dxCalendar {
   _$element: HTMLElement[];
@@ -53,11 +54,12 @@ export class MeCalendarDirective
 
   constructor(
     private dxCalendarComponent: DxCalendarComponent,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    private dateTimeService: DateTimeService
   ) {}
 
   ngOnInit() {
-    this.time = this.getCurrentTimeInMs();
+    this.time = this.dateTimeService.getCurrentTimeInMs();
 
     this.updateCalendarOptions();
     this.setupEventListeners();
@@ -187,11 +189,5 @@ export class MeCalendarDirective
 
     targetNode.classList.add('me-calendar-with-time-controls');
     insert();
-  }
-
-  private getCurrentTimeInMs(): number {
-    const now = new Date();
-    now.setSeconds(0, 0);
-    return (now.getHours() * 3600 + now.getMinutes() * 60) * 1000;
   }
 }

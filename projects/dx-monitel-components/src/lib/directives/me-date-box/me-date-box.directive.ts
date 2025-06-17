@@ -21,6 +21,7 @@ import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DateTimeService } from '../../service/get-current-time-in-ms.service';
 
 interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
   _popup: {
@@ -53,7 +54,8 @@ export class MeDateBoxDirective
     protected override component: DxDateBoxComponent,
     protected renderer: Renderer2,
     private appRef: ApplicationRef,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private dateTimeService: DateTimeService
   ) {
     super(component);
     this.component.labelMode = 'outside';
@@ -215,12 +217,6 @@ export class MeDateBoxDirective
     targetNode.appendChild(domElem);
   }
 
-  private getCurrentTimeInMs(): number {
-    const now = new Date();
-    now.setSeconds(0, 0);
-    return (now.getHours() * 3600 + now.getMinutes() * 60) * 1000;
-  }
-
   private updateTimeControls(time: number) {
     if (this.timeControlsRef) {
       this.timeControlsRef.setInput('time', time);
@@ -232,14 +228,14 @@ export class MeDateBoxDirective
       const date = new Date(this.component.value);
       this.time = (date.getHours() * 3600 + date.getMinutes() * 60) * 1000;
     } else {
-      this.time = this.getCurrentTimeInMs();
+      this.time = this.dateTimeService.getCurrentTimeInMs();
     }
     this.timeHasBeenChanged = false;
     this.updateTimeControls(this.time);
   }
 
   private handleTodayClick() {
-    const timeInMs = this.getCurrentTimeInMs();
+    const timeInMs = this.dateTimeService.getCurrentTimeInMs();
     this.time = timeInMs;
     this.timeHasBeenChanged = false;
 
