@@ -1,11 +1,23 @@
 :host {
   position: sticky;
-  z-index: 3;
-  top: 0;
+  z-index: 4;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+
+  ::ng-deep {
+    .cell-actions--right-actions,
+    .cell-actions--left-actions {
+      button {
+        color: inherit;
+      }
+    }
+  }
 }
 
 .property-grid-header {
   cursor: pointer;
+  box-sizing: border-box;
 
   display: flex;
   gap: 0.25rem;
@@ -21,6 +33,9 @@
   background: var(--Background-Content);
 
   .me-property-grid-header-title {
+    user-select: none;
+
+    color: var(--Text-Default);
     display: flex;
     flex: 1 0 0;
     gap: 0.25rem;
@@ -39,15 +54,15 @@
   }
 
   &.open {
-    border-bottom: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background-color: var(--Background-Canvas);
   }
 
   .drop-down-icon {
+    color: var(--Icon-Default);
     display: flex;
-    transition: transform 0.2s;
+    transition: transform 0.15s ease-in-out;
   }
 
   .drop-down-icon-up {
@@ -66,5 +81,15 @@
 
   &:empty {
     display: none;
+  }
+
+  &--left-actions,
+  &--right-actions {
+    display: flex;
+    color: var(--Icon-Default);
+
+    &:empty {
+      display: none;
+    }
   }
 }

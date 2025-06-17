@@ -5,18 +5,7 @@
   display: block;
   border: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
   background-color: var(--Background-Accent-in-the-content);
-
-  ::ng-deep {
-    .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-small {
-      --padding-inline: 0.5rem 0.25rem;
-    }
-
-    .me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs
-      .dx-texteditor-container
-      .dx-texteditor-input-container {
-      padding-left: 0.5rem;
-    }
-  }
+  width: 100%;
 
   &:has(.full-cell) {
     z-index: 2;
@@ -75,9 +64,19 @@
 
   .cell-text {
     display: flex;
-    flex: 1 0 0;
+
     align-items: flex-start;
     padding: var(--2, 0.125rem) var(--4, 0.25rem) 0 var(--4, 0.25rem);
+
+    &:empty {
+      display: none;
+    }
+
+    &__value {
+      &:empty {
+        display: none;
+      }
+    }
   }
 
   .required-mark {
@@ -97,6 +96,13 @@
         flex-direction: column;
         gap: var(--4, 0.25rem);
         justify-content: center;
+
+        &.justify-cell-right {
+          align-items: flex-end;
+        }
+        &.justify-cell-left {
+          align-items: flex-start;
+        }
       }
     }
   }
@@ -108,6 +114,14 @@
 
     width: 100%;
     padding: var(--8, 0.5rem);
+
+    &.justify-cell {
+      &-left {
+        .cell-text {
+          flex: 1 0 0;
+        }
+      }
+    }
 
     &.property-grid-custom-value-content {
       gap: var(--8, 0.5rem);
@@ -143,6 +157,10 @@
   &:empty {
     display: none;
   }
+
+  &-right {
+    margin-left: auto;
+  }
 }
 
 .property-grid-cell-additional-properties {
@@ -168,4 +186,38 @@
   align-self: stretch;
   width: var(--property-grid-resizer-width, 1px);
   background-color: var(--Dividers-Borders-Short);
+}
+
+.cell-text {
+  &:empty {
+    display: none;
+  }
+}
+
+.align-cell {
+  &-left {
+    align-items: flex-start;
+  }
+
+  &-center {
+    align-items: center;
+  }
+
+  &-right {
+    align-items: flex-end;
+  }
+}
+
+.justify-cell {
+  &-left {
+    justify-content: flex-start;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+
+  &-right {
+    justify-content: flex-end;
+  }
 }

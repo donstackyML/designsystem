@@ -1,22 +1,23 @@
 import {
-  Meta,
-  StoryObj,
   argsToTemplate,
+  Meta,
   moduleMetadata,
+  StoryObj,
 } from '@storybook/angular';
-import { DxNumberBoxComponent, DxValidatorModule } from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxNumberBoxComponent,
+  DxNumberBoxModule,
+  DxValidatorModule,
+} from 'devextreme-angular';
 import { MeLabelDirective, MeNumberBoxDirective } from '../../../../public-api';
 
 export default {
   title: 'Components/Fields/NumberBox',
   decorators: [
     moduleMetadata({
-      imports: [DxValidatorModule],
-      declarations: [
-        DxNumberBoxComponent,
-        MeNumberBoxDirective,
-        MeLabelDirective,
-      ],
+      imports: [DxValidatorModule, DxButtonModule, DxNumberBoxModule],
+      declarations: [MeNumberBoxDirective, MeLabelDirective],
     }),
   ],
   argTypes: {

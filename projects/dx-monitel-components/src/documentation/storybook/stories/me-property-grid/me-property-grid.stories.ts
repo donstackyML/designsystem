@@ -13,6 +13,7 @@ import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
 import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
 
 import { MeIconsModule } from '@monitel/me-icons-registry';
+import { action } from '@storybook/addon-actions';
 import {
   DxColorBoxModule,
   DxDateBoxModule,
@@ -22,6 +23,7 @@ import {
 import {
   MePropertyGridCellComponent,
   MePropertyGridComponent,
+  MePropertyGridGroupComponent,
 } from '../../../../lib/components';
 import {
   MeCheckBoxModule,
@@ -30,7 +32,135 @@ import {
   MeSelectBoxModule,
   MeTagBoxModule,
   MeTextBoxModule,
+  MeTooltipModule,
 } from '../../../../lib/directives';
+
+const getDefaultPropertyGridCells = (
+  colorsSetting: any[],
+  dotsSetting: any[]
+) => `
+  <me-property-grid-cell [name]="'Имя объекта'">
+    <dx-text-box #rightCell meTextBox size="small" value="Сервер #1" stylingMode="filled" width="100%" placeholder="Введите имя"></dx-text-box>
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Статус">
+    <dx-select-box
+      #rightCell
+      meSelectBox
+      size="small"
+      [items]="['В сети', 'Не в сети', 'Обслуживание']"
+      value="В сети"
+      stylingMode="filled"
+      width="100%"
+      placeholder="Выберите статус"
+     ></dx-select-box>
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Количество ядер">
+     <dx-number-box meNumberBox size="small" #rightCell [value]="8" [min]="1" [max]="64" [showSpinButtons]="true" stylingMode="filled" width="100%"></dx-number-box>
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Активен">
+     <div #rightCell style="display: flex; align-items: center; width: 100%;">
+       <dx-check-box meCheckBox [value]="true" style="margin-right: auto;"></dx-check-box>
+     </div>
+  </me-property-grid-cell>
+
+   <me-property-grid-cell name="Дата установки">
+     <dx-date-box #rightCell meDateBox [value]="'2023-10-26'" stylingMode="filled" width="100%" placeholder="Выберите дату"></dx-date-box>
+  </me-property-grid-cell>
+
+   <me-property-grid-cell name="Только чтение" [value]="'Нельзя изменить'" [readOnly]="true">
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Описание">
+    <dx-text-box #rightCell meTextBox size="small" value="Описание объекта" stylingMode="filled" width="100%" placeholder="Введите описание"></dx-text-box>
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Полное содержимое">
+    <div #fullCell fullCell style="display: flex; flex-direction: column; gap: 10px;">
+      <span>Это пример использования <strong>fullCell</strong>.</span>
+      <dx-select-box
+        meSelectBox
+        size="small"
+        [items]="colorsSetting"
+        displayExpr="name"
+        valueExpr="id"
+        value="1"
+        stylingMode="filled"
+        width="100%"
+        placeholder="Выберите цвет"
+      ></dx-select-box>
+    </div>
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Точки на графике" [showAdditionalProperties]="true" [additionalPropertiesOpened]="true">
+    <ng-container rightCellStartActions>
+      <dx-check-box meCheckBox></dx-check-box>
+    </ng-container>
+
+    <ng-container #additionalProperties additionalProperties>
+      <div class="me-grid-cell-row">
+        <dx-select-box
+          meSelectBox
+          size="small"
+          label="Цвет точки"
+          labelMode="outside"
+          size="small"
+          displayExpr="name"
+          valueExpr="id"
+          [dataSource]="colorsSetting"
+          width="100%"
+        ></dx-select-box>
+
+        <dx-select-box
+          meSelectBox
+          size="small"
+          label="Вид точки"
+          labelMode="outside"
+          displayExpr="name"
+          valueExpr="id"
+          [dataSource]="dotsSetting"
+          width="100%"
+        ></dx-select-box>
+
+        <dx-number-box
+          size="small"
+          meNumberBox
+          label="Размер точки"
+          labelMode="outside"
+          [showSpinButtons]="true"
+          stylingMode="filled"
+          width="100%"
+          [min]="1"
+          [step]="1"
+        ></dx-number-box>
+      </div>
+    </ng-container>
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Температура">
+    <dx-number-box meNumberBox size="small" #rightCell [value]="22" [min]="-50" [max]="50" [step]="0.1" stylingMode="filled" width="100%" placeholder="Введите температуру"></dx-number-box>
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Выбор времени">
+    <dx-date-box #rightCell meDateBox [type]="'time'" stylingMode="filled" width="100%" placeholder="Выберите время"></dx-date-box>
+  </me-property-grid-cell>
+
+  <me-property-grid-cell name="Теги">
+    <dx-tag-box
+      #rightCell
+      meTagBox
+      size="small"
+      [items]="['Тег1', 'Тег2', 'Тег3']"
+      [value]="['Тег1']"
+      stylingMode="filled"
+      width="100%"
+      [showClearButton]="true"
+      [searchEnabled]="true"
+    ></dx-tag-box>
+  </me-property-grid-cell>
+`;
 
 export default {
   title: 'Components/Property Grid/Property Grid',
@@ -42,6 +172,7 @@ export default {
         FormsModule,
         MePropertyGridComponent,
         MePropertyGridCellComponent,
+        MePropertyGridGroupComponent,
         MeIconsModule,
         DxTextBoxModule,
         DxCheckBoxModule,
@@ -57,6 +188,7 @@ export default {
         MeTagBoxModule,
         MeNumberBoxModule,
         MeDateBoxModule,
+        MeTooltipModule,
       ],
     }),
   ],
@@ -144,180 +276,104 @@ export default {
 type Story = StoryObj<MePropertyGridComponent>;
 
 export const Default: Story = {
-  render: (args) => ({
-    props: {
-      ...args,
-      colorsSetting: [
-        { id: 1, name: 'Красный' },
-        { id: 2, name: 'Зеленый' },
-        { id: 3, name: 'Синий' },
-        { id: 4, name: 'Желтый' },
-        { id: 5, name: 'Черный' },
-      ],
-      dotsSetting: [
-        { id: 1, name: 'Круг' },
-        { id: 2, name: 'Квадрат' },
-        { id: 3, name: 'Треугольник' },
-        { id: 4, name: 'Звезда' },
-        { id: 5, name: 'Ромб' },
-      ],
-    },
-    template: `
-      <me-property-grid ${argsToTemplate(args)}>
-        <me-property-grid-cell name="Имя объекта">
-          <dx-text-box #rightCell meTextBox value="Сервер #1" stylingMode="filled" width="100%" placeholder="Введите имя"></dx-text-box>
-        </me-property-grid-cell>
+  render: (args) => {
+    const colorsSetting = [
+      { id: 1, name: 'Красный' },
+      { id: 2, name: 'Зеленый' },
+      { id: 3, name: 'Синий' },
+      { id: 4, name: 'Желтый' },
+      { id: 5, name: 'Черный' },
+    ];
+    const dotsSetting = [
+      { id: 1, name: 'Круг' },
+      { id: 2, name: 'Квадрат' },
+      { id: 3, name: 'Треугольник' },
+      { id: 4, name: 'Звезда' },
+      { id: 5, name: 'Ромб' },
+    ];
 
-        <me-property-grid-cell name="Статус">
-          <dx-select-box
-            #rightCell
-            meSelectBox
-            [items]="['В сети', 'Не в сети', 'Обслуживание']"
-            value="В сети"
-            stylingMode="filled"
-            width="100%"
-            placeholder="Выберите статус"
-           ></dx-select-box>
-        </me-property-grid-cell>
-
-        <me-property-grid-cell name="Количество ядер">
-           <dx-number-box meNumberBox #rightCell [value]="8" [min]="1" [max]="64" [showSpinButtons]="true" stylingMode="filled" width="100%"></dx-number-box>
-        </me-property-grid-cell>
-
-        <me-property-grid-cell name="Активен">
-           <div #rightCell style="display: flex; align-items: center; width: 100%;">
-             <dx-check-box meCheckBox [value]="true" style="margin-right: auto;"></dx-check-box>
-           </div>
-        </me-property-grid-cell>
-
-         <me-property-grid-cell name="Дата установки">
-           <dx-date-box #rightCell meDateBox [value]="'2023-10-26'" stylingMode="filled" width="100%" placeholder="Выберите дату"></dx-date-box>
-        </me-property-grid-cell>
-
-         <me-property-grid-cell name="Только чтение" [value]="'Нельзя изменить'" [readOnly]="true">
-        </me-property-grid-cell>
-
-        <me-property-grid-cell name="Описание">
-          <dx-text-box #rightCell meTextBox value="Описание объекта" stylingMode="filled" width="100%" placeholder="Введите описание"></dx-text-box>
-        </me-property-grid-cell>
-
-        <me-property-grid-cell name="Полное содержимое">
-          <div #fullCell fullCell style="display: flex; flex-direction: column; gap: 10px;">
-            <span>Это пример использования <strong>fullCell</strong>.</span>
-            <dx-select-box
-              meSelectBox
-              [items]="colorsSetting"
-              displayExpr="name"
-              valueExpr="id"
-              value="1"
-              stylingMode="filled"
-              width="100%"
-              placeholder="Выберите цвет"
-            ></dx-select-box>
-          </div>
-        </me-property-grid-cell>
-
-        <me-property-grid-cell name="Точки на графике" [showAdditionalProperties]="true" [additionalPropertiesOpened]="true">
-          <ng-container rightCellStartActions>
-            <dx-check-box meCheckBox></dx-check-box>
-          </ng-container>
-          <ng-container #additionalProperties additionalProperties>
-            <div class="me-grid-cell-row">
-              <dx-select-box
-                meSelectBox
-                label="Цвет точки"
-                labelMode="outside"
-                size="small"
-                displayExpr="name"
-                valueExpr="id"
-                [dataSource]="colorsSetting"
-                width="100%"
-              ></dx-select-box>
-
-              <dx-select-box
-                meSelectBox
-                label="Вид точки"
-                labelMode="outside"
-                size="small"
-                displayExpr="name"
-                valueExpr="id"
-                [dataSource]="dotsSetting"
-                width="100%"
-              ></dx-select-box>
-
-              <dx-number-box
-                meNumberBox
-                label="Размер точки"
-                labelMode="outside"
-                size="small"
-                [showSpinButtons]="true"
-                stylingMode="filled"
-                width="100%"
-                [min]="1"
-                [step]="1"
-              ></dx-number-box>
-            </div>
-          </ng-container>
-        </me-property-grid-cell>
-
-                <me-property-grid-cell name="Температура">
-          <dx-number-box meNumberBox #rightCell [value]="22" [min]="-50" [max]="50" [step]="0.1" stylingMode="filled" width="100%" placeholder="Введите температуру"></dx-number-box>
-        </me-property-grid-cell>
-
-        <me-property-grid-cell name="Выбор времени">
-          <dx-date-box #rightCell meDateBox [type]="'time'" stylingMode="filled" width="100%" placeholder="Выберите время"></dx-date-box>
-        </me-property-grid-cell>
-
-        <me-property-grid-cell name="Теги">
-          <dx-tag-box
-            #rightCell
-            meTagBox
-            [items]="['Тег1', 'Тег2', 'Тег3']"
-            [value]="['Тег1']"
-            stylingMode="filled"
-            width="100%"
-            [showClearButton]="true"
-            [searchEnabled]="true"
-          ></dx-tag-box>
-        </me-property-grid-cell>
-      </me-property-grid>
-    `,
-    styles: [
-      `
-      .additional-property-list {
-        display: flex;
-        width: 100%;
-        gap: 20px;
-      }
+    return {
+      props: {
+        ...args,
+        colorsSetting,
+        dotsSetting,
+      },
+      template: `
+        <me-property-grid ${argsToTemplate(args)}>
+          ${getDefaultPropertyGridCells(colorsSetting, dotsSetting)}
+        </me-property-grid>
       `,
-    ],
-  }),
+      styles: [
+        `
+        .additional-property-list {
+          display: flex;
+          width: 100%;
+          gap: 20px;
+        }
+        `,
+      ],
+    };
+  },
 };
 
 export const WithHeaderActions: Story = {
   args: {
     gridTitle: 'Настройки с действиями',
   },
-  render: (args) => ({
-    props: args,
-    template: `
-       <me-property-grid ${argsToTemplate(args)}>
-         <ng-container property-grid-header-left-actions>
-            <me-icon name="settings_x20" style="color: var(--Icon-Secondary); margin-left: 5px;" dxTooltip="Дополнительные настройки"></me-icon>
-         </ng-container>
-         <ng-container property-grid-header-right-actions>
-            <button type="button" style="background:none; border:none; cursor:pointer; padding: 0 5px;" dxTooltip="Удалить">
-              <me-icon name="delete_x20" style="color: var(--Icon-Secondary);"></me-icon>
-            </button>
-             <button type="button" style="background:none; border:none; cursor:pointer; padding: 0 5px;" dxTooltip="Обновить">
-              <me-icon name="collapse_x20" style="color: var(--Icon-Secondary);"></me-icon>
-            </button>
-         </ng-container>
-        <me-property-grid-cell name="Параметр 1" value="Значение 1"></me-property-grid-cell>
-        <me-property-grid-cell name="Параметр 2" value="Значение 2"></me-property-grid-cell>
-      </me-property-grid>
-    `,
-  }),
+  render: (args) => {
+    // Если "дефолтные" ячейки используют colorsSetting и dotsSetting, их также нужно определить здесь
+    const colorsSetting = [
+      { id: 1, name: 'Красный' },
+      { id: 2, name: 'Зеленый' },
+      { id: 3, name: 'Синий' },
+    ];
+    const dotsSetting = [
+      { id: 1, name: 'Круг' },
+      { id: 2, name: 'Квадрат' },
+    ];
+
+    return {
+      props: {
+        ...args,
+        colorsSetting,
+        dotsSetting,
+        onLeftClick: action('Left icon clicked'),
+        onDeleteClick: action('Delete button clicked'),
+        onRefreshClick: action('Refresh button clicked'),
+      },
+      template: `
+         <me-property-grid ${argsToTemplate(args)}>
+           <ng-container property-grid-header-left-actions>
+            <me-icon
+              name="settings_x20"
+              meTooltip="Дополнительные настройки"
+              tooltipSize="small"
+              tooltipPosition="bottom"
+              (click)="onLeftClick()"
+            ></me-icon>
+           </ng-container>
+
+           <ng-container property-grid-header-right-actions>
+            <button
+              type="button"
+              style="background:none; border:none; cursor:pointer; padding: 0 5px;"
+              (click)="onDeleteClick()"
+            >
+                <me-icon name="delete_x20" style="color: var(--Icon-Secondary);"></me-icon>
+              </button>
+            <button
+              type="button"
+              style="background:none; border:none; cursor:pointer; padding: 0 5px;"
+              (click)="onRefreshClick()"
+            >
+                <me-icon name="collapse_me_x20" style="color: var(--Icon-Secondary);"></me-icon>
+              </button>
+           </ng-container>
+          ${getDefaultPropertyGridCells(colorsSetting, dotsSetting)}
+        </me-property-grid>
+      `,
+    };
+  },
 };
 
 const sampleDataSource = [
@@ -358,17 +414,18 @@ export const WithVariousInputs: Story = {
     template: `
       <me-property-grid ${argsToTemplate(args)}>
         <me-property-grid-cell name="Текстовое поле">
-          <dx-text-box #rightCell meTextBox value="Пример текста" stylingMode="filled" width="100%"></dx-text-box>
+          <dx-text-box #rightCell meTextBox size="small" value="Пример текста" stylingMode="filled" width="100%"></dx-text-box>
         </me-property-grid-cell>
 
         <me-property-grid-cell name="Числовое поле">
-           <dx-number-box #rightCell meNumberBox [value]="42" format="#0.0" [step]="0.5" stylingMode="filled" width="100%"></dx-number-box>
+           <dx-number-box #rightCell meNumberBox size="small" [value]="42" format="#0.0" [step]="0.5" stylingMode="filled" width="100%"></dx-number-box>
         </me-property-grid-cell>
 
         <me-property-grid-cell name="Выпадающий список">
           <dx-select-box
-          #rightCell
+            #rightCell
             meSelectBox
+            size="small"
             [items]="statusOptions"
             [value]="selectedStatus"
             stylingMode="filled"
@@ -388,8 +445,9 @@ export const WithVariousInputs: Story = {
 
         <me-property-grid-cell name="Выбор тегов">
           <dx-tag-box
-          #rightCell
+            #rightCell
             meTagBox
+            size="small"
             [items]="tags"
             [value]="selectedTags"
             stylingMode="filled"
@@ -402,7 +460,22 @@ export const WithVariousInputs: Story = {
         <me-property-grid-cell name="Выбор цвета">
            <dx-color-box #rightCell [value]="colorValue" stylingMode="filled" width="100%"></dx-color-box>
         </me-property-grid-cell>
+      </me-property-grid>
+    `,
+  }),
+};
 
+export const InitiallyClosed: Story = {
+  args: {
+    gridTitle: 'Скрытые параметры',
+    isOpen: false,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <me-property-grid ${argsToTemplate(args)}>
+        <me-property-grid-cell name="Секретный ключ" value="********"></me-property-grid-cell>
+        <me-property-grid-cell name="Режим отладки" value="Выключен"></me-property-grid-cell>
       </me-property-grid>
     `,
   }),
@@ -430,18 +503,73 @@ export const WithFixedHeightAndScroll: Story = {
   }),
 };
 
-export const InitiallyClosed: Story = {
-  args: {
-    gridTitle: 'Скрытые параметры',
-    isOpen: false,
+type WithGroupProps = {
+  groupHeight: string | number;
+  groupGap: string | number;
+};
+
+export const WithGroup: StoryObj<MePropertyGridComponent & WithGroupProps> = {
+  argTypes: {
+    groupHeight: {
+      control: 'text',
+      table: {
+        type: { summary: 'string | number | undefined' },
+        defaultValue: { summary: undefined },
+      },
+    },
+    groupGap: {
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '8px' },
+      },
+    },
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <me-property-grid ${argsToTemplate(args)}>
-        <me-property-grid-cell name="Секретный ключ" value="********"></me-property-grid-cell>
-        <me-property-grid-cell name="Режим отладки" value="Выключен"></me-property-grid-cell>
-      </me-property-grid>
-    `,
-  }),
+  args: {
+    groupHeight: undefined,
+    groupGap: '8px',
+  },
+  render: (args) => {
+    const colorsSetting = [
+      { id: 1, name: 'Красный' },
+      { id: 2, name: 'Зеленый' },
+      { id: 3, name: 'Синий' },
+      { id: 4, name: 'Желтый' },
+      { id: 5, name: 'Черный' },
+    ];
+    const dotsSetting = [
+      { id: 1, name: 'Круг' },
+      { id: 2, name: 'Квадрат' },
+      { id: 3, name: 'Треугольник' },
+      { id: 4, name: 'Звезда' },
+      { id: 5, name: 'Ромб' },
+    ];
+
+    return {
+      props: {
+        ...args,
+        colorsSetting,
+        dotsSetting,
+      },
+      template: `
+      <me-property-grid-group [height]="groupHeight" [gap]="groupGap" >
+        <me-property-grid ${argsToTemplate(args, {
+          exclude: ['gridTitle', 'groupHeight'],
+        })} gridTitle="Параметры объекта 1">
+        ${getDefaultPropertyGridCells(colorsSetting, dotsSetting)}
+        </me-property-grid>
+        <me-property-grid ${argsToTemplate(args, {
+          exclude: ['gridTitle', 'groupHeight'],
+        })} gridTitle="Параметры объекта 2">
+        ${getDefaultPropertyGridCells(colorsSetting, dotsSetting)}
+        </me-property-grid>
+        <me-property-grid ${argsToTemplate(args, {
+          exclude: ['gridTitle', 'groupHeight'],
+        })} gridTitle="Параметры объекта 3">
+        ${getDefaultPropertyGridCells(colorsSetting, dotsSetting)}
+        </me-property-grid>
+      </me-property-grid-group>
+      `,
+    };
+  },
 };
