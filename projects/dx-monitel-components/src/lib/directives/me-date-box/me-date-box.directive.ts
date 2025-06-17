@@ -223,10 +223,18 @@ export class MeDateBoxDirective
     }
   }
 
+  private readonly MS_IN_HOUR = 3600000;
+  private readonly MS_IN_MINUTE = 60000;
+  private readonly SECONDS_IN_HOUR = 3600;
+  private readonly SECONDS_IN_MINUTE = 60;
+
   private initTime() {
     if (this.component.value) {
       const date = new Date(this.component.value);
-      this.time = (date.getHours() * 3600 + date.getMinutes() * 60) * 1000;
+      this.time =
+        (date.getHours() * this.SECONDS_IN_HOUR +
+          date.getMinutes() * this.SECONDS_IN_MINUTE) *
+        1000;
     } else {
       this.time = this.dateTimeService.getCurrentTimeInMs();
     }
@@ -241,8 +249,8 @@ export class MeDateBoxDirective
 
     const today = new Date();
     today.setHours(
-      Math.floor(timeInMs / 3600000),
-      (timeInMs % 3600000) / 60000,
+      Math.floor(timeInMs / this.MS_IN_HOUR),
+      (timeInMs % this.MS_IN_HOUR) / this.MS_IN_MINUTE,
       0,
       0
     );
