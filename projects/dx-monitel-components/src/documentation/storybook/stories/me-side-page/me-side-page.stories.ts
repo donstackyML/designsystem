@@ -189,8 +189,8 @@ class MeSidePageDemoComponent {
   @Input() isSidePageOpen: boolean = false;
   @Input() position: MePosition = 'left';
   @Input() shading: boolean = true;
-  @Input() zIndex: string = '1505';
-  @Input() zIndexOverlay: string = '1504';
+  @Input() zIndex: string = '1500';
+  @Input() zIndexOverlay: string = '1499';
   @Input() width: string = '27vw';
   @Input() minWidth: string = '250px';
   @Input() maxWidth: string = '80vw';
@@ -316,7 +316,7 @@ export default {
       description: 'Определяет z-index side page.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '1505' },
+        defaultValue: { summary: '1500' },
       },
     },
     zIndexOverlay: {
@@ -324,7 +324,7 @@ export default {
       description: 'Определяет z-index overlay.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '1504' },
+        defaultValue: { summary: '1499' },
       },
     },
     isSidePageOpenChange: {
@@ -346,8 +346,8 @@ export default {
     position: 'left',
     shading: true,
     hideOnOutsideClick: false,
-    zIndex: '1505',
-    zIndexOverlay: '1504',
+    zIndex: '1500',
+    zIndexOverlay: '1499',
     isSidePageOpen: false,
     width: '27vw',
     minWidth: '250px',

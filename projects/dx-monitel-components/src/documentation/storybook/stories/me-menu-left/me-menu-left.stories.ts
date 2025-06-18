@@ -101,11 +101,11 @@ export default {
     },
     toggleIcon: {
       control: 'select',
-      options: ['', 'drag', 'arrowback'],
+      options: ['chevron_left', 'chevron_right', 'bookmark'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'drag' },
+        defaultValue: { summary: 'chevron_right' },
       },
     },
     expandedIcon: {
@@ -163,7 +163,7 @@ export default {
     withHeader: true,
     resizeHandleVisible: true,
     size: 'medium',
-    toggleIcon: 'chevron_left',
+    toggleIcon: 'chevron_right',
     expandedIcon: 'expand_less',
     collapsedIcon: 'expand_more',
     collapsedWidth: 86,
