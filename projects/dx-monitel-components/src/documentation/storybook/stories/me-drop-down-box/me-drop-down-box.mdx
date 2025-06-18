@@ -1,0 +1,211 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as dropDownBoxStories from "./me-drop-down-box.stories";
+
+<Meta name="DropDownBox Documentation" of={dropDownBoxStories} />
+
+# DropDownBox
+
+## Директива `meDropDownBox`
+
+Директива `meDropDownBox` применяется к компоненту `dx-drop-down-box` для кастомизации его внешнего вида и поведения в соответствии с дизайн-системой. Она добавляет поддержку размеров (small, medium, large), настраивает отображение скролла, добавляет возможность вставки иконки слева и обеспечивает правильную работу с TreeView и DataGrid внутри.
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+  href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxDropDownBox/"
+  target="_blank"
+  >
+  API
+  </a>
+
+- <a
+  href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/DropDownBox/Overview/Angular/Light/"
+  target="_blank"
+  >
+  Демо
+  </a>
+
+<Canvas of={dropDownBoxStories.Default} />
+<Controls of={dropDownBoxStories.Default} />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=21246-364894"
+/>
+
+## Примеры использования
+
+- [Размеры компонента](#размеры-компонента)
+- [Компонент небольшого размера](#компонент-небольшого-размера)
+- [Компонент среднего размера](#компонент-среднего-размера)
+- [Компонент большого размера](#компонент-большого-размера)
+- [С TreeView внутри](#с-treeview-внутри)
+- [С DataGrid внутри](#с-datagrid-внутри)
+- [С иконкой слева](#с-иконкой-слева)
+- [Настройка скролла](#настройка-скролла)
+- [Скролл всегда видим](#скролл-всегда-видим)
+- [Скролл при наведении](#скролл-при-наведении)
+- [Состояния disabled](#состояния-disabled)
+
+### Размеры компонента
+
+Компонент поддерживает три размера, которые можно задать через свойство `size`:
+- small – компактный размер
+- medium – стандартный размер (по умолчанию)
+- large – увеличенный размер
+
+#### Компонент небольшого размера
+
+<Canvas name="Компонент небольшого размера" of={dropDownBoxStories.SizeSmall} />
+
+<Source
+  code={`<dx-drop-down-box meDropDownBox size="small"></dx-drop-down-box>`}
+  language="html"
+  dark
+/>
+
+#### Компонент среднего размера
+
+<Canvas name="Компонент среднего размера (по умолчанию)" of={dropDownBoxStories.SizeMedium} />
+
+<Source
+  code={`<dx-drop-down-box meDropDownBox size="medium"></dx-drop-down-box>`}
+  language="html"
+  dark
+/>
+
+#### Компонент большого размера
+
+<Canvas name="Компонент большого размера" of={dropDownBoxStories.SizeLarge} />
+
+<Source
+  code={`<dx-drop-down-box meDropDownBox size="large"></dx-drop-down-box>`}
+  language="html"
+  dark
+/>
+
+### С TreeView внутри
+
+Компонент может содержать TreeView для выбора элементов в иерархическом виде.
+
+<Canvas name="С TreeView внутри" of={dropDownBoxStories.WithTreeView} />
+
+<Source
+  code={`<dx-drop-down-box
+  meDropDownBox
+  [dataSource]="dataSource"
+  displayExpr="name"
+  valueExpr="id"
+>
+  <dx-tree-view
+    meTreeView
+    [dataSource]="dataSource"
+    dataStructure="plain"
+    keyExpr="id"
+    parentIdExpr="categoryId"
+    selectionMode="multiple"
+    showCheckBoxesMode="normal"
+    [selectNodesRecursive]="false"
+    displayExpr="name"
+    [selectByClick]="true"
+  >
+  </dx-tree-view>
+</dx-drop-down-box>`}
+  language="html"
+  dark
+/>
+
+### С DataGrid внутри
+
+Для выбора элементов из таблицы можно использовать DataGrid внутри DropDownBox.
+
+<Canvas name="С DataGrid внутри" of={dropDownBoxStories.WithDataGrid} />
+
+<Source
+  code={`<dx-drop-down-box
+  meDropDownBox
+  [dataSource]="dataSource"
+  displayExpr="name"
+  valueExpr="id"
+>
+  <dx-data-grid
+    meDataGrid
+    [dataSource]="dataSource"
+    [columns]="['id', 'name']"
+    [selection]="{ mode: 'multiple' }"
+    [hoverStateEnabled]="true"
+    [filterRow]="{ visible: true }"
+    [height]="300"
+  >
+  </dx-data-grid>
+</dx-drop-down-box>`}
+  language="html"
+  dark
+/>
+
+### С иконкой слева
+
+Для добавления иконки слева используйте свойство `leftIcon`.
+
+<Canvas name="С иконкой слева" of={dropDownBoxStories.WithLeftIcon} />
+
+<Source
+  code={`<dx-drop-down-box
+  meDropDownBox
+  leftIcon="account_circle_x20"
+></dx-drop-down-box>`}
+  language="html"
+  dark
+/>
+
+### Настройка скролла
+
+Свойство `showScrollbar` определяет поведение скролла в выпадающем списке:
+- `always` - скролл отображается всегда
+- `onHover` - скролл отображается только при наведении
+
+#### Скролл всегда видим
+
+<Canvas name="Скролл всегда видим" of={dropDownBoxStories.ScrollbarAlways} />
+
+<Source
+  code={`<dx-drop-down-box
+  meDropDownBox
+  showScrollbar="always"
+></dx-drop-down-box>`}
+  language="html"
+  dark
+/>
+
+#### Скролл при наведении
+
+<Canvas name="Скролл при наведении" of={dropDownBoxStories.ScrollbarOnHover} />
+
+<Source
+  code={`<dx-drop-down-box
+  meDropDownBox
+  showScrollbar="onHover"
+></dx-drop-down-box>`}
+  language="html"
+  dark
+/>
+
+### Состояния disabled
+
+Компонент можно отключить с помощью свойства `disabled`.
+
+<Canvas name="Состояние disabled" of={dropDownBoxStories.StateDisabled} />
+
+<Source
+  code={`<dx-drop-down-box
+  meDropDownBox
+  disabled="true"
+></dx-drop-down-box>`}
+  language="html"
+  dark
+/>
