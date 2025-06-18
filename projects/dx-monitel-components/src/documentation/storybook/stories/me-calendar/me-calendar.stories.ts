@@ -78,7 +78,7 @@ export default {
     },
     selectionMode: {
       control: { type: 'select' },
-      options: ['range', 'single', 'none'],
+      options: ['range', 'multiple', 'single', 'none'],
       description: 'Определяет режим выбора даты в календаре.',
       table: {
         type: { summary: 'string' },

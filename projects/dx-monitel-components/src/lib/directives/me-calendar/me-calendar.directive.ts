@@ -23,6 +23,7 @@ import {
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import type DevExpress from 'devextreme';
 import type { ValueChangedEvent } from 'devextreme/ui/calendar';
+import { DateTimeService } from '../../service/get-current-time-in-ms.service';
 
 interface ExtendedDxCalendarComponent extends DevExpress.ui.dxCalendar {
   _$element: HTMLElement[];
@@ -49,13 +50,17 @@ export class MeCalendarDirective
   @Output() weekNumberRuleChange = new EventEmitter<WeekNumberRule>();
 
   private subscriptions: Subscription[] = [];
+  private time = 0;
 
   constructor(
     private dxCalendarComponent: DxCalendarComponent,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    private dateTimeService: DateTimeService
   ) {}
 
   ngOnInit() {
+    this.time = this.dateTimeService.getCurrentTimeInMs();
+
     this.updateCalendarOptions();
     this.setupEventListeners();
   }
@@ -141,7 +146,6 @@ export class MeCalendarDirective
     }
   }
 
-  private time = 0;
   private insertTimeControls(root: Element) {
     const targetNode = root;
 
