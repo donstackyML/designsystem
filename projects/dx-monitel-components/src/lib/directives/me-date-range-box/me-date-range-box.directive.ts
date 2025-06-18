@@ -18,6 +18,7 @@ import { MeFormField } from '../me-form-item/me-form-field';
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import type { ValueChangedEvent } from 'devextreme/ui/date_box';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DateTimeService } from '../../service/get-current-time-in-ms.service';
 
 @Directive({
   selector: '[meDateRangeBox]',
@@ -35,7 +36,8 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     private appRef: ApplicationRef,
     private injector: Injector,
     private ngZone: NgZone,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private dateTimeService: DateTimeService
   ) {
     super(dateRangeBox);
     this.dateRangeBox.labelMode = 'outside';
@@ -54,9 +56,21 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
 
   @Input() type?: 'date' | 'datetime' = 'date';
 
+  private time = 0;
+  private startTime = 0;
+  private endTime = 0;
+
   @HostListener('onValueChanged', ['$event'])
   onValueChanged(e: ValueChangedEvent) {
     if (this.type === 'datetime') {
+      if (
+        Array.isArray(e.value) &&
+        e.value[0] === null &&
+        e.value[1] === null
+      ) {
+        this.dateRangeBox.value = [0, 0];
+      }
+
       const values = [...e.value];
       const changedValueIndex = e.value
         .map((val: unknown, i: number) => val !== e.previousValue[i])
@@ -67,7 +81,6 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
           this.getTime(changedValueIndex)
       );
 
-      this.dateRangeBox.value = values;
       this.dateRangeBox.instance.repaint();
 
       this.time = 0;
@@ -116,10 +129,6 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     this.dateRangeBox.instance.open();
   }
 
-  private time = 0;
-  private startTime = 0;
-  private endTime = 0;
-
   private getTime(valueIndex: 0 | 1) {
     if (!this.dateRangeBox.multiView) {
       return this.time;
@@ -129,6 +138,10 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
   }
   private insertTimeControls(root: Element) {
     const targetNode = root;
+
+    this.time = this.dateTimeService.getCurrentTimeInMs();
+    this.startTime = this.dateTimeService.getCurrentTimeInMs();
+    this.endTime = this.dateTimeService.getCurrentTimeInMs();
 
     this.dateRangeBox.displayFormat = 'dd.MM.yyyy, HH:mm:ss';
 

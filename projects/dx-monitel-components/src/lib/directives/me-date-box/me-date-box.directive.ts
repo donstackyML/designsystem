@@ -1,6 +1,7 @@
 import {
   ApplicationRef,
   createComponent,
+  ComponentRef,
   DestroyRef,
   Directive,
   ElementRef,
@@ -10,22 +11,17 @@ import {
   OnDestroy,
   OnInit,
   Renderer2,
-  SimpleChange,
-  SimpleChanges,
 } from '@angular/core';
 
 import type DevExpress from 'devextreme';
 import { DxDateBoxComponent } from 'devextreme-angular';
-import type {
-  ClosedEvent,
-  OpenedEvent,
-  ValueChangedEvent,
-} from 'devextreme/ui/date_box';
+import type { ClosedEvent, OpenedEvent } from 'devextreme/ui/date_box';
 
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeFormField } from '../me-form-item/me-form-field';
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DateTimeService } from '../../service/get-current-time-in-ms.service';
 
 interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
   _popup: {
@@ -47,12 +43,19 @@ export class MeDateBoxDirective
   implements OnInit, OnDestroy
 {
   private focusService: ComponentFocusService;
+  private timeControlsRef: ComponentRef<MeTimeControlsComponent> | null = null;
+  private showTime = false;
+  private isUpdating = false;
+  private timeHasBeenChanged = false;
+  private time = 0;
+
   constructor(
     public element: ElementRef,
     protected override component: DxDateBoxComponent,
     protected renderer: Renderer2,
     private appRef: ApplicationRef,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private dateTimeService: DateTimeService
   ) {
     super(component);
     this.component.labelMode = 'outside';
@@ -61,12 +64,6 @@ export class MeDateBoxDirective
       this.keyEnterHandle(evt)
     );
   }
-
-  ngOnDestroy(): void {
-    this.focusService.ngOnDestroy();
-  }
-
-  private showTime = false;
 
   ngOnInit(): void {
     this.component.instance.option('dropDownOptions', {
@@ -84,15 +81,14 @@ export class MeDateBoxDirective
     });
   }
 
-  isUpdating = false;
-  timeHasBeenChanged = false;
+  ngOnDestroy(): void {
+    this.focusService.ngOnDestroy();
+  }
 
   private addTimeToDateValue(value: Date) {
     this.isUpdating = true;
     const newDate = new Date(value);
-    newDate.setHours(0);
-    newDate.setMinutes(0);
-    newDate.setSeconds(0);
+    newDate.setHours(0, 0, 0, 0);
     this.component.value = new Date(newDate.getTime() + this.time);
     this.isUpdating = false;
   }
@@ -111,20 +107,17 @@ export class MeDateBoxDirective
     }
 
     const dateBox = e.component as ExtendedDxDateBox;
-
     const dateTimeRootElement = this.component.instance
       .content()
       .parentElement?.querySelector('.dx-datebox-datetime-time-side');
 
     if (dateTimeRootElement && this.showTime) {
+      this.initTime();
       this.insertTimeControls(dateTimeRootElement);
     }
 
     const bottomContainer = dateBox._popup?._$bottom?.[0];
-
-    if (!bottomContainer) {
-      return;
-    }
+    if (!bottomContainer) return;
 
     const submitButton = bottomContainer.querySelector(
       '.dx-button.dx-popup-done'
@@ -142,9 +135,7 @@ export class MeDateBoxDirective
       this.renderer.addClass(submitButton, 'dx-button-default');
 
       if (this.showTime) {
-        submitButton.addEventListener('click', () => {
-          this.onSubmit();
-        });
+        submitButton.addEventListener('click', () => this.onSubmit());
       }
     }
 
@@ -160,6 +151,8 @@ export class MeDateBoxDirective
       this.renderer.addClass(todayButton, 'me-button-medium');
       this.renderer.addClass(todayButton, 'dx-button-mode-text');
       this.renderer.addClass(todayButton, 'dx-button-default');
+
+      todayButton.addEventListener('click', () => this.handleTodayClick());
     }
   }
 
@@ -169,15 +162,11 @@ export class MeDateBoxDirective
     }
   }
 
-  private time = 0;
   private insertTimeControls(root: Element) {
     const targetNode = root;
-
-    const hasBeenInserted = !!targetNode.querySelector('me-time-controls');
-    if (hasBeenInserted) return;
+    if (!!targetNode.querySelector('me-time-controls')) return;
 
     const content = this.component.instance.content();
-
     const defaultTimeFields = content.querySelector(
       '.dx-timeview-field'
     ) as HTMLElement;
@@ -185,49 +174,91 @@ export class MeDateBoxDirective
 
     const clockElement = content.querySelector('.dx-timeview-clock');
     const calendar = content.querySelector('.dx-calendar-views-wrapper table');
-
     const targetWidth =
       (clockElement ?? calendar)?.getBoundingClientRect().width ?? 0;
 
-    const insert = () => {
-      const componentRef = createComponent(MeTimeControlsComponent, {
-        environmentInjector: this.appRef.injector,
+    const componentRef = createComponent(MeTimeControlsComponent, {
+      environmentInjector: this.appRef.injector,
+    });
+
+    this.timeControlsRef = componentRef;
+    componentRef.setInput('time', this.time);
+
+    if (this.isSizeLarge) {
+      componentRef.setInput('size', 'large');
+    } else if (this.isSizeMedium) {
+      componentRef.setInput('size', 'medium');
+    } else {
+      componentRef.setInput('size', 'small');
+    }
+
+    componentRef.instance.onChange
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        this.time = value;
+        this.timeHasBeenChanged = true;
       });
 
-      componentRef.setInput('time', this.time);
+    this.appRef.attachView(componentRef.hostView);
 
-      if (this.isSizeLarge) {
-        componentRef.setInput('size', 'large');
-      } else if (this.isSizeMedium) {
-        componentRef.setInput('size', 'medium');
-      } else {
-        componentRef.setInput('size', 'small');
+    const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
+      .rootNodes[0] as HTMLElement;
+    domElem.style.display = `block`;
+    domElem.style.width = `${targetWidth}px`;
+    domElem.style.paddingBottom = `2px`;
+    domElem.style.marginInline = 'auto';
+
+    domElem.addEventListener('mousedown', (e) => {
+      if ((e.target as HTMLElement)['tagName'] === 'INPUT') {
+        e.stopPropagation();
       }
+    });
 
-      componentRef.instance.onChange
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((value) => {
-          this.time = value;
-          this.timeHasBeenChanged = true;
-        });
-      this.appRef.attachView(componentRef.hostView);
+    targetNode.appendChild(domElem);
+  }
 
-      const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
-        .rootNodes[0] as HTMLElement;
-      domElem.style.display = `block`;
-      domElem.style.width = `${targetWidth}px`;
-      domElem.style.paddingBottom = `2px`;
-      domElem.style.marginInline = 'auto';
+  private updateTimeControls(time: number) {
+    if (this.timeControlsRef) {
+      this.timeControlsRef.setInput('time', time);
+    }
+  }
 
-      domElem.addEventListener('mousedown', (e) => {
-        if ((e.target as HTMLElement)['tagName'] === 'INPUT') {
-          e.stopPropagation();
-        }
-      });
+  private readonly MS_IN_HOUR = 3600000;
+  private readonly MS_IN_MINUTE = 60000;
+  private readonly SECONDS_IN_HOUR = 3600;
+  private readonly SECONDS_IN_MINUTE = 60;
 
-      targetNode.appendChild(domElem);
-    };
+  private initTime() {
+    if (this.component.value) {
+      const date = new Date(this.component.value);
+      this.time =
+        (date.getHours() * this.SECONDS_IN_HOUR +
+          date.getMinutes() * this.SECONDS_IN_MINUTE) *
+        1000;
+    } else {
+      this.time = this.dateTimeService.getCurrentTimeInMs();
+    }
+    this.timeHasBeenChanged = false;
+    this.updateTimeControls(this.time);
+  }
 
-    insert();
+  private handleTodayClick() {
+    const timeInMs = this.dateTimeService.getCurrentTimeInMs();
+    this.time = timeInMs;
+    this.timeHasBeenChanged = false;
+
+    const today = new Date();
+    today.setHours(
+      Math.floor(timeInMs / this.MS_IN_HOUR),
+      (timeInMs % this.MS_IN_HOUR) / this.MS_IN_MINUTE,
+      0,
+      0
+    );
+
+    this.isUpdating = true;
+    this.component.value = today;
+    this.isUpdating = false;
+
+    this.updateTimeControls(this.time);
   }
 }
