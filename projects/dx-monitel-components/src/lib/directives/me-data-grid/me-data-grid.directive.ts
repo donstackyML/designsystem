@@ -17,10 +17,13 @@ import { MeSize } from '../../types/types';
     '[class.me-data-grid-small]': 'isSizeSmall',
     '[class.me-data-grid-medium]': 'isSizeMedium',
     '[class.me-data-grid-large]': 'isSizeLarge',
+    '[class.me-data-grid-cell-small]': 'isCellSizeSmall',
+    '[class.me-data-grid-cell-medium]': 'isCellSizeMedium',
   },
 })
 export class MeDataGridDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'medium';
+  @Input() cellSize: MeSize = 'medium';
   @Input() headerAlign: { [colKey: string]: 'left' | 'right' } = {};
 
   private focusService: ComponentFocusService;
@@ -43,6 +46,14 @@ export class MeDataGridDirective implements AfterViewInit, OnDestroy {
 
   get isSizeLarge() {
     return this.size === 'large';
+  }
+
+  get isCellSizeSmall(): boolean {
+    return this.cellSize === 'small';
+  }
+
+  get isCellSizeMedium(): boolean {
+    return this.cellSize === 'medium';
   }
 
   ngAfterViewInit(): void {

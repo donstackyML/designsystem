@@ -45,6 +45,15 @@ export default {
         defaultValue: { summary: 'medium' },
       },
     },
+    cellSize: {
+      control: 'select',
+      options: ['small', 'medium'],
+      description: 'Размер ячейки',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
     showRowLines: {
       control: 'boolean',
       description: 'Определяет, отображаются ли границы строк.',
@@ -229,6 +238,7 @@ export default {
   args: {
     dataSource: dataGridMockSourceData,
     size: 'medium',
+    cellSize: 'medium',
     allowColumnReordering: false,
     allowColumnResizing: false,
     showRowLines: false,
@@ -258,6 +268,7 @@ export default {
 				id="gridContainer"
         [(dataSource)]="dataSource"
 				[size]="size"
+				[cellSize]="cellSize"
 				[allowColumnReordering]="allowColumnReordering"
 				[allowColumnResizing]="allowColumnResizing"
 				[showRowLines]="showRowLines"
