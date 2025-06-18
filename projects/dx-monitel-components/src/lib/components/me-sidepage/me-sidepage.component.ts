@@ -28,8 +28,8 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   @Input() position: MePosition = 'left';
   @Input() shading: boolean = true;
   @Input() width: string = '27vw';
-  @Input() zIndex: string = '1505';
-  @Input() zIndexOverlay: string = '1504';
+  @Input() zIndex: string = '1500';
+  @Input() zIndexOverlay: string = '1499';
   @Input() minWidth: string = '250px';
   @Input() maxWidth: string = '80vw';
 

@@ -30,9 +30,9 @@ export class MeTimeRangeResultComponent
 
   @Input() timeFormat = 'dd.MM.yyyy HH:mm:ss';
 
-  @Input({ required: true }) startDate?: string | Date;
+  @Input() startDate?: string | Date;
 
-  @Input({ required: true }) endDate?: string | Date;
+  @Input() endDate?: string | Date;
 
   @Input() startText = 'Начало';
 
