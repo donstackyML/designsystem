@@ -219,6 +219,7 @@ export const WithTreeView: Story = {
           [selectNodesRecursive]="false"
           displayExpr="name"
           [selectByClick]="true"
+          [searchEnabled]="true"
         >
         </dx-tree-view>
       </dx-drop-down-box>

@@ -44,10 +44,10 @@ export class MeDropDownBoxDirective implements AfterViewInit {
   ) {}
 
   @ContentChild(DxTreeViewComponent, { static: false })
-  treeView!: DxTreeViewComponent;
+  treeView?: DxTreeViewComponent;
 
   @ContentChild(DxDataGridComponent, { static: false })
-  dataGrid!: DxDataGridComponent;
+  dataGrid?: DxDataGridComponent;
 
   @Output() valueChange: EventEmitter<any[]> = new EventEmitter();
 
@@ -60,7 +60,7 @@ export class MeDropDownBoxDirective implements AfterViewInit {
 
     if (this.treeView) {
       this.treeView.onItemSelectionChanged.subscribe(() => {
-        const selectedItems = this.treeView.instance
+        const selectedItems = this.treeView?.instance
           .getSelectedNodes()
           .map((node: any) => node.key);
 
@@ -71,7 +71,7 @@ export class MeDropDownBoxDirective implements AfterViewInit {
 
     if (this.dataGrid) {
       this.dataGrid.onSelectionChanged.subscribe(() => {
-        const selectedItems = this.dataGrid.instance
+        const selectedItems = this.dataGrid?.instance
           .getSelectedRowsData()
           .map((item: any) => item.id);
 
