@@ -7,17 +7,21 @@ import {
 } from '@angular/core';
 import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meTreeList]',
   host: {
     '[class.me-tree-list]': 'true',
+    '[class.me-tree-list-cell-small]': 'isCellSizeSmall',
+    '[class.me-tree-list-cell-medium]': 'isCellSizeMedium',
   },
 })
 export class MeTreeListDirective implements AfterViewInit {
   private focusService: ComponentFocusService;
 
   @Input() headerAlign: { [colKey: string]: 'left' | 'right' } = {};
+  @Input() cellSize: MeSize = 'medium';
 
   constructor(
     private element: ElementRef,
@@ -80,5 +84,13 @@ export class MeTreeListDirective implements AfterViewInit {
   private clearAlignmentClasses(element: Element): void {
     const alignmentClasses = ['treelist-header-left', 'treelist-header-right'];
     alignmentClasses.forEach((cls) => this.renderer.removeClass(element, cls));
+  }
+
+  get isCellSizeSmall(): boolean {
+    return this.cellSize === 'small';
+  }
+
+  get isCellSizeMedium(): boolean {
+    return this.cellSize === 'medium';
   }
 }

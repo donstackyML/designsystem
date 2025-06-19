@@ -36,6 +36,15 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    cellSize: {
+      control: 'select',
+      options: ['small', 'medium'],
+      description: 'Размер ячейки',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
     showRowLines: {
       control: 'boolean',
       description: 'Определяет, отображаются ли границы строк.',
@@ -142,6 +151,7 @@ export default {
     dataSource: meTreeListMockData,
     allowColumnReordering: false,
     allowColumnResizing: false,
+    cellSize: 'medium',
     showRowLines: true,
     showColumnLines: true,
     showBorders: true,
@@ -166,6 +176,7 @@ export default {
 				parentIdExpr="Head_ID"
 				[allowColumnReordering]="allowColumnReordering"
 				[allowColumnResizing]="allowColumnResizing"
+				[cellSize]="cellSize"
 				[showBorders]="showBorders"
 				[showRowLines]="showRowLines"
 				[showColumnLines]="showColumnLines"

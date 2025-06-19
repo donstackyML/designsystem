@@ -6,3 +6,232 @@
 
 // adduse
 @use '../dropDownEditor';
+
+.me-drop-down-box {
+  --input-height: 28px;
+
+  width: 100%;
+  box-sizing: border-box;
+  height: var(--input-height);
+
+  .dx-texteditor-container {
+    width: 100%;
+    align-items: center;
+
+    .dx-texteditor-input-container {
+      .dx-placeholder {
+        display: none;
+      }
+    }
+  }
+
+  .dx-texteditor-buttons-container {
+    .dx-button-content {
+      display: flex;
+      .dx-dropdowneditor-icon::before {
+        content: '\f016';
+      }
+    }
+
+    .dx-clear-button-area {
+      align-content: center;
+      text-align: center;
+    }
+  }
+
+  &-small {
+    .dx-texteditor-container {
+      .dx-texteditor-input-container {
+        .dx-texteditor-input {
+          padding: 4px 0 4px 8px;
+          font-size: 13px;
+          line-height: 16px;
+        }
+      }
+
+      .dx-texteditor-buttons-container {
+        .dx-dropdowneditor-button {
+          padding: 4px;
+        }
+      }
+
+      .me-selectbox-left-icon {
+        margin: 0 4px 0 8px;
+      }
+    }
+  }
+
+  &-medium {
+    --input-height: 32px;
+
+    .dx-texteditor-input-container {
+      .dx-texteditor-input {
+        padding: 6px 0 6px 8px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+
+    .dx-texteditor-buttons-container {
+      .dx-dropdowneditor-button {
+        padding: 6px 4px;
+      }
+    }
+
+    .me-selectbox-left-icon {
+      margin: 0 4px 0 8px;
+    }
+  }
+
+  &-large {
+    --input-height: 40px;
+
+    .dx-texteditor-input-container {
+      .dx-texteditor-input {
+        padding: 8px 0 8px 12px;
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+
+    .dx-texteditor-buttons-container {
+      .dx-dropdowneditor-button {
+        padding: 8px 4px;
+      }
+    }
+
+    .me-selectbox-left-icon {
+      margin: 0 8px 0 12px;
+    }
+  }
+}
+
+.me-drop-down-box-wrapper-popup {
+  .dx-overlay-content {
+    padding: 16px;
+
+    .dx-popup-content:has(> .me-tree-view) {
+      padding: 0 !important;
+
+      .me-tree-view {
+        padding: 0;
+        height: 100%;
+
+        .dx-treeview-search {
+          background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+        }
+
+        .dx-scrollable-scroll {
+          padding: 4px 0 4px 4px;
+        }
+
+        .dx-treeview-item {
+          margin-right: 15px;
+        }
+      }
+    }
+
+    .dx-popup-content:has(> .me-data-grid) {
+      padding: 0 !important;
+
+      .me-data-grid {
+        .dx-scrollable-scroll {
+          padding: 4px 0 4px 4px;
+        }
+
+        .dx-datagrid {
+          .dx-datagrid-focus-overlay {
+            display: none;
+          }
+
+          table {
+            tbody {
+              .dx-datagrid-filter-row {
+                td {
+                  background: var(--Background-Accent-in-the-content);
+
+                  .dx-texteditor-container {
+                    background: var(--Background-Accent-in-the-content);
+
+                    input {
+                      background: var(--Controls-BG-Secondary-Elements-BG-Default);
+                      margin: 2px 4px 2px 36px;
+                      padding: 4px;
+                      height: 28px;
+                      box-sizing: border-box;
+                      border-radius: 3px;
+                      min-height: 0;
+                    }
+                  }
+
+                  .dx-editor-with-menu {
+                    .dx-menu {
+                      border-radius: 3px;
+                      background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+                      margin: 0;
+                      height: fit-content;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      left: 4px;
+
+                      .dx-menu-item-content {
+                        padding: 0;
+                        width: 28px;
+                        height: 28px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      }
+
+                      .dx-context-menu-container-border {
+                        display: none;
+                      }
+
+                      .dx-menu-item-expanded {
+                        background-color: var(--Controls-BG-Secondary-Elements-BG-Selected);
+                        border-top-right-radius: 3px;
+                        border-top-left-radius: 3px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-large {
+    .dx-popup-content:has(> .me-data-grid-medium) {
+      .me-data-grid.me-data-grid-medium {
+        .dx-datagrid {
+          table {
+            tbody {
+              .dx-datagrid-filter-row {
+                td {
+                  .dx-texteditor-container {
+                    input {
+                      margin: 4px 8px 4px 40px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dx-overlay-wrapper {
+  .dx-overlay-content.dx-datagrid {
+    .dx-submenu {
+      border-top-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+}

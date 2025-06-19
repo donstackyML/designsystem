@@ -42,6 +42,7 @@ export { MeListDirective } from './lib/directives/me-list/me-list.directive';
 export { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
 export { MeRadioGroupDirective } from './lib/directives/me-radio-group/me-radio-group.directive';
 export { MeSelectBoxDirective } from './lib/directives/me-select-box/me-select-box.directive';
+export { MeDropDownBoxDirective } from './lib/directives/me-drop-down-box/me-drop-down-box.directive';
 export { MeSliderDirective } from './lib/directives/me-slider/me-slider.directive';
 export { MeSwitchDirective } from './lib/directives/me-switch/me-switch.directive';
 export { MeTagBoxDirective } from './lib/directives/me-tag-box/me-tag-box.directive';
