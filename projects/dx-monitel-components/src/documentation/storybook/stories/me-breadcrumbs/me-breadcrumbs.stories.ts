@@ -49,12 +49,22 @@ export default {
     },
     size: {
       control: 'select',
-      options: ['small', 'large'],
+      options: ['small', 'medium', 'large'],
       description:
         'Изменяет размер компонента элементов, которыми управляет компонент `me-breadcrumbs`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'small' },
+      },
+    },
+    dropdownPosition: {
+      control: 'select',
+      options: ['top', 'bottom'],
+      description:
+        'Определяет положение выпадающего меню.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'bottom' },
       },
     },
     truncateFrom: {
@@ -128,6 +138,7 @@ export default {
     iconExpr: 'icon',
     itemsExpr: 'items',
     urlExpr: 'url',
+    dropdownPosition: 'bottom',
   },
   render: (args) => ({
     props: args,
@@ -368,4 +379,28 @@ export const WithCustomFields: Story = {
     iconExpr: 'iconData',
     urlExpr: 'link',
   },
+};
+
+export const WithDropdownTop: Story = {
+  args: {
+    items: meBreadcrumbsMockDataWithNestedItemsAndIcons,
+    dropdownPosition: 'top',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="container">
+        <me-breadcrumbs ${argsToTemplate(args)}></me-breadcrumbs>
+      </div>
+    `,
+    styles: [
+      `
+      .container {
+        display: flex;
+        height: 80%;
+        align-items: flex-end;
+      }
+      `,
+    ],
+  }),
 };

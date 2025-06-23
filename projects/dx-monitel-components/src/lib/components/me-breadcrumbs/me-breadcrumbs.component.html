@@ -4,34 +4,39 @@
   </dx-button>
 
   <ng-container *ngFor="let item of normalizedItems">
-    <div #breadcrumbItem class="breadcrumb" [ngClass]="{ 'breadcrumb-with-divider': showDivider }">
-      <dx-menu
-        meMenu
-        [dataSource]="[item]"
-        [showFirstSubmenuMode]="{ name: 'onClick', delay: { show: 0, hide: 300 } }"
-        orientation="horizontal"
-        [hideSubmenuOnMouseLeave]="false"
-        (onItemClick)="onItemClick($event)"
-        class="breadcrumb-menu"
-        [ngClass]="'menu-item-' + size"
-        (onSubmenuShowing)="onSubmenuShowing($event)"
-        (onSubmenuHiding)="onSubmenuHiding($event)"
+    <div #breadcrumbItem class="menu-item" [ngClass]="'menu-item-' + size">
+      <dx-button
+        meButton
+        text="{{item.text}}"
+        stylingMode="text"
+        (onClick)="onItemClick(item)"
+        icon="{{item.icon}}"
         [size]="size"
-      >
-        <div *dxTemplate="let data of 'item'" class="menu-item" [ngClass]="'menu-item-' + size">
-          <me-icon *ngIf="data.icon" [name]="data.icon" [containerSize]="setIconSize()"></me-icon>
-          <span *ngIf="data.text" class="dx-menu-item-text">{{ data.text }}</span>
-          <i *ngIf="data.items?.length" class="dx-icon-spindown"></i>
-        </div>
-      </dx-menu>
+      ></dx-button>
+
+      <dx-drop-down-button
+        meDropDownButton
+        #dropDownButton
+        icon="chevronright"
+        displayExpr="text"
+        [dataSource]="item.items || []"
+        stylingMode="text"
+        keyExpr="id"
+        [showArrowIcon]="false"
+        (onItemClick)="onSubmenuItemClick($event)"
+        [disabled]="!item.items?.length"
+        [size]="size"
+      ></dx-drop-down-button>
     </div>
   </ng-container>
+
   <dx-button #rightBtn *ngIf="overflowRight" class="breadcrumbs__right-btn" stylingMode="text" (onClick)="showOverflowMenu('right', $event)">
     <me-icon [name]="moreHorizX20.name"></me-icon>
   </dx-button>
 </nav>
 <dx-context-menu
   #overflowMenu
+  meContextMenu
   class="context-menu"
   [dataSource]="overflowItems"
   [position]="contextMenuPosition"
@@ -39,6 +44,8 @@
   (onPositioning)="onContextMenuPositioning($event)"
   (onItemClick)="onOverflowItemClick($event)"
   [showEvent]="''"
+  [subMenuMaxHeight]="maxHeight"
+  [size]="size"
 >
   <div
     *dxTemplate="let data of 'item'"
