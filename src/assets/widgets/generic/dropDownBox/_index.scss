@@ -186,6 +186,36 @@
           padding: 4px 0 4px 4px;
         }
 
+        &.me-data-grid-cell-small {
+          table {
+            tbody {
+              .dx-header-row, .dx-data-row {
+                .dx-command-select {
+                  padding: 0 4px !important;
+
+                  .dx-checkbox {
+                    width: 16px;
+
+                    .dx-checkbox-container .dx-checkbox-icon {
+                      width: 16px;
+                      height: 16px;
+
+                      &::before {
+                        width: 10px;
+                        margin-left: -5px;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .dx-header-row, .dx-data-row .dx-command-select .dx-checkbox .dx-checkbox-container .dx-checkbox-icon::before {
+                margin-left: -6px;
+              }
+            }
+          }
+        }
+
         .dx-datagrid {
           .dx-datagrid-focus-overlay {
             display: none;
@@ -193,6 +223,12 @@
 
           table {
             tbody {
+              .dx-header-row, .dx-data-row {
+                .dx-command-select {
+                  padding: 0 8px !important;
+                }
+              }
+
               .dx-datagrid-filter-row {
                 td {
                   background: var(--Background-Accent-in-the-content);

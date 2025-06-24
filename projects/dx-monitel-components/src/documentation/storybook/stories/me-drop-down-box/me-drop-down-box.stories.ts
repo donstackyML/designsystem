@@ -257,6 +257,7 @@ export const WithDataGrid: Story = {
           [hoverStateEnabled]="true"
           [filterRow]="{ visible: true }"
           [height]="300"
+          cellSize="small"
         >
         </dx-data-grid>
       </dx-drop-down-box>
