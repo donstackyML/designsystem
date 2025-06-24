@@ -113,6 +113,8 @@ export class MeBreadcrumbsComponent
 
   private overflowMenuOptions = {};
 
+  private readonly offsetY = 4;
+
   constructor(
     private zone: NgZone,
     private cdr: ChangeDetectorRef,
@@ -194,7 +196,7 @@ export class MeBreadcrumbsComponent
           position: {
             my: 'bottom left',
             at: 'top left',
-            offset: { y: -4 },
+            offset: { y: -this.offsetY },
             collision: 'flip fit',
             of: el.element.nativeElement,
           },
@@ -286,35 +288,22 @@ export class MeBreadcrumbsComponent
   showOverflowMenu(position: 'left' | 'right', event: any) {
     this.overflowMenuTarget = event.element as HTMLElement;
     if (this.overflowMenuTarget) {
-      const myPosition = () => {
-        if (position === 'left' && this.dropdownPosition === 'top') {
-          return 'bottom right';
-        } else if (position === 'right' && this.dropdownPosition === 'top') {
-          return 'bottom left';
-        } else if (position === 'right' && this.dropdownPosition === 'bottom') {
-          return 'top left';
-        }
+      const invertSides = {
+        left: 'right',
+        right: 'left',
+        top: 'bottom',
+        bottom: 'top',
+      };
 
-        return 'top right'
-      }
+      const myPosition = `${invertSides[this.dropdownPosition]} ${invertSides[position]}`;
 
-      const atPosition = () => {
-        if (position === 'left' && this.dropdownPosition === 'top') {
-          return 'top right';
-        } else if (position === 'right' && this.dropdownPosition === 'top') {
-          return 'top left';
-        } else if (position === 'right' && this.dropdownPosition === 'bottom') {
-          return 'bottom left';
-        }
+      const atPosition = `${this.dropdownPosition} ${invertSides[position]}`;
 
-        return 'bottom right';
-      }
-
-      const offsetY = this.dropdownPosition === 'top' ? -4 : 4
+      const offsetY = this.dropdownPosition === 'top' ? -this.offsetY : this.offsetY
 
       this.contextMenuPosition = {
-        my: myPosition(),
-        at: atPosition(),
+        my: myPosition,
+        at: atPosition,
         of: this.overflowMenuTarget,
         offset: { x: 0, y: offsetY },
       };
@@ -429,37 +418,35 @@ export class MeBreadcrumbsComponent
     this.overflowLeft = false;
     this.overflowRight = false;
 
-    const visibleItems = Array.from(this.breadcrumbItems.toArray());
+    const visibleItems = this.breadcrumbItems.toArray();
 
-    let totalWidth = 0;
-    visibleItems.forEach(item => {
-      totalWidth += item.nativeElement.offsetWidth;
-    });
+    const totalWidth = visibleItems.reduce((sum, item) => sum + item.nativeElement.offsetWidth, 0);
 
     if (totalWidth <= containerWidth) {
       this.cdr.markForCheck();
       return;
     }
 
-    let visibleCount = 0;
-    let accumulatedWidth = 0;
-
     const buttonsWidth = this.getOverflowButtonsWidth();
     const availableWidth = containerWidth - buttonsWidth;
 
-    for (let i = 0; i < visibleItems.length; i++) {
-      const itemWidth = visibleItems[i].nativeElement.offsetWidth;
-      if (accumulatedWidth + itemWidth <= availableWidth) {
-        accumulatedWidth += itemWidth;
-        visibleCount++;
-      } else {
-        break;
-      }
-    }
-
-    if (visibleCount === 0) {
-      visibleCount = 1;
-    }
+    const { visibleCount, accumulatedWidth } = visibleItems.reduce(
+      (result, item) => {
+        if (result.shouldContinue) {
+          const itemWidth = item.nativeElement.offsetWidth;
+          if (result.accumulatedWidth + itemWidth <= availableWidth) {
+            return {
+              visibleCount: result.visibleCount + 1,
+              accumulatedWidth: result.accumulatedWidth + itemWidth,
+              shouldContinue: true
+            };
+          }
+          return { ...result, shouldContinue: false };
+        }
+        return result;
+      },
+      { visibleCount: 0, accumulatedWidth: 0, shouldContinue: true }
+    );
 
     if (this.truncateFrom === 'right') {
       for (let i = visibleCount; i < visibleItems.length; i++) {
