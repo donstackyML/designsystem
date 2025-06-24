@@ -184,7 +184,12 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 //meTreeList
 .me-tree-list.dx-treelist.dx-widget {
   .dx-row > td {
-    padding: 8px;
+    padding: 0 12px;
+    height: 30px;
+
+    &[role="columnheader"] {
+      height: 36px;
+    }
   }
 
   &:has(.dx-treelist-nodata) {
@@ -519,11 +524,16 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 
   &.me-tree-list-cell-small {
     .dx-treelist-container.dx-gridbase-container {
-      .dx-treelist-rowsview {
+      .dx-treelist-content{
         .dx-treelist-table {
-          .dx-row.dx-data-row {
+          .dx-row {
             td {
-              padding: 2px 4px;
+              padding: 0 8px;
+              height: 24px;
+
+              &[role="columnheader"] {
+                height: 32px;
+              }
             }
           }
         }
