@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import {MeSize} from "../../types/types";
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meTreeList]',
