@@ -69,6 +69,13 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    readOnly: {
+      control: 'boolean',
+      description: 'Делает компонент доступным только для чтения.',
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+    },
     showClearButton: {
       control: 'boolean',
       description: 'Отображает кнопку очистки поля ввода.',
@@ -111,6 +118,7 @@ export default {
     showClearButton: true,
     showScrollbar: 'always',
     dropDownListMaxHeight: 300,
+    readOnly: false,
   },
   render: (args) => ({
     props: args,
@@ -128,6 +136,7 @@ export default {
           [dropDownListMaxHeight]="dropDownListMaxHeight"
           [showScrollbar]="showScrollbar"
           [leftIcon]="leftIcon"
+          [readOnly]="readOnly"
         >
           <dx-tree-view
             meTreeView
@@ -156,6 +165,7 @@ export default {
           [disabled]="disabled"
           [showScrollbar]="showScrollbar"
           [leftIcon]="leftIcon"
+          [readOnly]="readOnly"
         >
           <dx-data-grid
             meDataGrid
@@ -247,6 +257,7 @@ export const WithDataGrid: Story = {
           [hoverStateEnabled]="true"
           [filterRow]="{ visible: true }"
           [height]="300"
+          cellSize="small"
         >
         </dx-data-grid>
       </dx-drop-down-box>
