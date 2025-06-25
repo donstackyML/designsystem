@@ -319,8 +319,6 @@ export class MeBreadcrumbsComponent
             if (currentMaxHeight) {
               const currentValue = parseInt(currentMaxHeight);
               if (!isNaN(currentValue)) {
-                console.log(currentValue);
-
                 popup.style.maxHeight = `${currentValue + 8}px`;
               }
             }
