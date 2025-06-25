@@ -310,6 +310,20 @@ export class MeBreadcrumbsComponent
 
       this.overflowMenu.instance.option({
         position: this.contextMenuPosition,
+        onShown: () => {
+          const popup = document.querySelector('.me-breadcrumbs-overflow-menu-popup') as HTMLElement;
+
+          if (popup && !popup.dataset['heightAdjusted']) {
+            const currentMaxHeight = popup.style.maxHeight;
+
+            if (currentMaxHeight) {
+              const currentValue = parseInt(currentMaxHeight);
+              if (!isNaN(currentValue)) {
+                popup.style.maxHeight = `${currentValue + 8}px`;
+              }
+            }
+          }
+        },
         ...this.overflowMenuOptions,
       });
 
@@ -326,6 +340,7 @@ export class MeBreadcrumbsComponent
     }
 
     const viewportHeight = document.documentElement.clientHeight;
+
     if (menuRect.bottom > viewportHeight) {
       e.position.my = e.position.my.replace('top', 'bottom');
       e.position.at = e.position.at.replace('bottom', 'top');
@@ -430,7 +445,7 @@ export class MeBreadcrumbsComponent
     const buttonsWidth = this.getOverflowButtonsWidth();
     const availableWidth = containerWidth - buttonsWidth;
 
-    const { visibleCount, accumulatedWidth } = visibleItems.reduce(
+    const { visibleCount } = visibleItems.reduce(
       (result, item) => {
         if (result.shouldContinue) {
           const itemWidth = item.nativeElement.offsetWidth;
