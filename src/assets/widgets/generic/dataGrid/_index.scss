@@ -457,7 +457,8 @@
 
   .dx-row.dx-column-lines.dx-header-row {
     & > td {
-      padding: 8px;
+      padding: 0 12px;
+      height: 30px;
       gap: 4px;
       vertical-align: middle;
 
@@ -466,6 +467,10 @@
         font-size: 13px;
         line-height: 16px;
         color: $base-text-color;
+      }
+
+      &[role="columnheader"] {
+        height: 36px;
       }
     }
   }
@@ -541,7 +546,8 @@
       }
 
       & > td {
-        padding: 5px 8px;
+        height: 30px;
+        padding: 0 12px;
         vertical-align: middle;
       }
     }
@@ -1025,7 +1031,12 @@
     .dx-datagrid-content {
       .dx-row {
         & > td {
-          padding: 2px 4px;
+          padding: 0 8px;
+          height: 24px;
+
+          &[role="columnheader"] {
+            height: 32px;
+          }
         }
       }
     }

@@ -5285,7 +5285,6 @@ me-badge .badge.color-yellow-light {
 .breadcrumbs .me-context-menu.dx-menu-base .dx-menu-item .menu-item.dx-template-wrapper.dx-item-content.dx-menu-item-content {
   display: flex;
   align-items: center;
-  padding: var(--menu-item-padding) !important;
   min-width: auto !important;
   gap: var(--menu-item-gap);
 }
@@ -5304,10 +5303,22 @@ me-badge .badge.color-yellow-light {
 .breadcrumbs .me-context-menu.dx-menu-base .dx-menu-item .menu-item.dx-template-wrapper.dx-item-content.dx-menu-item-content svg::before {
   display: flex;
 }
-.breadcrumbs .me-context-menu.dx-menu-base .dx-menu-item .menu-item.dx-template-wrapper.dx-item-content.dx-menu-item-content .dx-menu-item-text {
-  font-size: var(--text-font-size);
-  line-height: var(--text-line-height);
-  padding: 0 !important;
+.breadcrumbs .menu-item .me-button .dx-button-content {
+  min-height: var(--breadcrumb-min-height);
+  gap: 4px;
+}
+.breadcrumbs .menu-item .me-dropdownbutton {
+  height: var(--dropdown-size);
+  width: var(--dropdown-size);
+}
+.breadcrumbs .menu-item .me-dropdownbutton .dx-button {
+  align-items: center;
+}
+.breadcrumbs .menu-item .me-dropdownbutton .dx-button .dx-icon {
+  transition: transform 0.2s;
+}
+.breadcrumbs .menu-item .me-dropdownbutton .dx-button.dx-state-active .dx-icon {
+  transform: rotate(90deg);
 }
 .breadcrumbs .dx-menu-base .menu-item {
   padding: 0;
@@ -5336,6 +5347,21 @@ me-badge .badge.color-yellow-light {
   --text-line-height: 16px;
   --icon-width: 20px;
   --breadcrumb-min-height: 28px;
+  --breadcrumb-gap: 6px;
+  --menu-item-padding: 4px 12px;
+  --menu-item-min-height: 28px;
+  --menu-item-gap: 4px;
+  --more-button-width: 28px;
+  --more-button-offset: 4px;
+  --divider-height: 20px;
+}
+.breadcrumbs-medium {
+  --text-font-size: 13px;
+  --text-line-height: 16px;
+  --icon-width: 20px;
+  --breadcrumb-min-height: 32px;
+  --breadcrumb-gap: 4px;
+  --dropdown-size: 32px;
   --menu-item-padding: 4px 12px;
   --menu-item-min-height: 28px;
   --menu-item-gap: 4px;
@@ -5347,7 +5373,9 @@ me-badge .badge.color-yellow-light {
   --text-font-size: 14px;
   --text-line-height: 20px;
   --icon-width: 24px;
-  --breadcrumb-min-height: 32px;
+  --breadcrumb-min-height: 40px;
+  --breadcrumb-gap: 8px;
+  --dropdown-size: 40px;
   --menu-item-padding: 4px 12px;
   --menu-item-min-height: 32px;
   --menu-item-gap: 8px;
@@ -5367,16 +5395,6 @@ me-badge .badge.color-yellow-light {
 .breadcrumb-menu.dx-menu-base {
   line-height: var(--text-line-height);
 }
-.breadcrumb-menu.dx-menu-base .dx-menu-item.dx-state-hover {
-  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
-}
-.breadcrumb-menu.dx-menu-base .dx-menu-item.dx-state-active {
-  background: var(--Controls-BG-Secondary-Elements-BG-Selected);
-}
-.breadcrumb-menu.dx-menu-base .dx-menu-item.dx-state-disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
 .breadcrumb-menu .dx-menu-item-wrapper {
   display: flex;
 }
@@ -5393,19 +5411,12 @@ me-badge .badge.color-yellow-light {
 .breadcrumb-menu .dx-menu-item.dx-menu-item-expanded {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
-.breadcrumb-menu .dx-icon-spindown {
-  transform: rotate(180deg);
-}
-.breadcrumb-menu .dx-icon-spindown::before {
-  font-family: var(--me-icon-family);
-  content: "keyboard_arrow_up";
-}
 
 .context-menu-item,
 .menu-item {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: var(--breadcrumb-gap);
   padding: 5px 10px;
 }
 .context-menu-item .dx-icon-spindown,
@@ -5428,6 +5439,22 @@ me-badge .badge.color-yellow-light {
   --text-line-height: 16px;
   --icon-width: 20px;
   --breadcrumb-min-height: 28px;
+  --breadcrumb-gap: 6px;
+  --menu-item-padding: 4px 12px;
+  --menu-item-min-height: 28px;
+  --menu-item-gap: 4px;
+  --more-button-width: 28px;
+  --more-button-offset: 4px;
+  --divider-height: 20px;
+}
+.context-menu-item-medium,
+.menu-item-medium {
+  --text-font-size: 13px;
+  --text-line-height: 16px;
+  --icon-width: 20px;
+  --breadcrumb-min-height: 32px;
+  --breadcrumb-gap: 4px;
+  --dropdown-size: 32px;
   --menu-item-padding: 4px 12px;
   --menu-item-min-height: 28px;
   --menu-item-gap: 4px;
@@ -5440,7 +5467,9 @@ me-badge .badge.color-yellow-light {
   --text-font-size: 14px;
   --text-line-height: 20px;
   --icon-width: 24px;
-  --breadcrumb-min-height: 32px;
+  --breadcrumb-min-height: 40px;
+  --breadcrumb-gap: 8px;
+  --dropdown-size: 40px;
   --menu-item-padding: 4px 12px;
   --menu-item-min-height: 32px;
   --menu-item-gap: 8px;
@@ -5551,6 +5580,81 @@ me-badge .badge.color-yellow-light {
   width: 1px;
   height: var(--divider-height);
   background: var(--Dividers-Borders-Short);
+}
+
+.breadcrumbs .menu-item {
+  padding: 0;
+}
+.breadcrumbs .menu-item.hide-chevron .me-dropdownbutton {
+  display: none;
+}
+.breadcrumbs .menu-item .me-button.dx-button .dx-button-content {
+  width: fit-content;
+}
+.breadcrumbs .menu-item .me-button.dx-button .dx-button-content .dx-button-text {
+  font-weight: var(--me-regular-font-weight);
+}
+.breadcrumbs .menu-item:last-child .me-dropdownbutton.dx-state-disabled {
+  display: none;
+}
+
+.me-breadcrumbs-overflow-menu-popup {
+  --me-breadcrumbs-overflow-menu-popup-padding: 2px 8px;
+  --me-breadcrumbs-overflow-popup-items-line-height: 16px;
+  --me-breadcrumbs-overflow-popup-items-font-size: 13px;
+}
+.me-breadcrumbs-overflow-menu-popup .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-menu-items-container .dx-menu-item-wrapper .dx-menu-item {
+  padding: var(--me-breadcrumbs-overflow-menu-popup-padding);
+}
+.me-breadcrumbs-overflow-menu-popup .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-menu-items-container .dx-menu-item-wrapper .dx-menu-item span {
+  font-size: var(--me-breadcrumbs-overflow-popup-items-font-size);
+}
+.me-breadcrumbs-overflow-menu-popup-medium {
+  --me-breadcrumbs-overflow-menu-popup-padding: 4px 8px;
+  --me-breadcrumbs-overflow-popup-items-line-height: 20px;
+  --me-breadcrumbs-overflow-popup-items-font-size: 14px;
+}
+.me-breadcrumbs-overflow-menu-popup-large {
+  --me-breadcrumbs-overflow-menu-popup-padding: 8px 12px;
+  --me-breadcrumbs-overflow-popup-items-line-height: 20px;
+  --me-breadcrumbs-overflow-popup-items-font-size: 16px;
+}
+
+.me-breadcrumbs-popup {
+  --me-breadcrumbs-popup-items-height: 28px;
+  --me-breadcrumbs-popup-items-padding: 0 8px;
+  --me-breadcrumbs-popup-items-line-height: 16px;
+  --me-breadcrumbs-popup-items-font-size: 13px;
+}
+.me-breadcrumbs-popup .dx-popup-normal {
+  min-width: 120px;
+  max-width: 360px;
+  width: fit-content !important;
+}
+.me-breadcrumbs-popup .dx-popup-normal .dx-popup-content .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-scrollview-content .dx-list-items .dx-list-item {
+  width: max-content;
+  min-width: 100%;
+}
+.me-breadcrumbs-popup .dx-popup-normal .dx-popup-content .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-scrollview-content .dx-list-items .dx-list-item .dx-list-item-content {
+  min-height: var(--me-breadcrumbs-popup-items-height);
+  padding: var(--me-breadcrumbs-popup-items-padding);
+  line-height: var(--me-breadcrumbs-popup-items-line-height);
+  font-size: var(--me-breadcrumbs-popup-items-font-size);
+}
+.me-breadcrumbs-popup .dx-popup-normal .dx-popup-content .dx-scrollable-wrapper .dx-scrollable-container .dx-scrollable-content .dx-scrollview-content .dx-list-items .dx-list-item .dx-list-item-content::before {
+  display: none;
+}
+.me-breadcrumbs-popup-medium {
+  --me-breadcrumbs-popup-items-height: 32px;
+  --me-breadcrumbs-popup-items-padding: 0 8px;
+  --me-breadcrumbs-popup-items-line-height: 20px;
+  --me-breadcrumbs-popup-items-font-size: 14px;
+}
+.me-breadcrumbs-popup-large {
+  --me-breadcrumbs-popup-items-height: 40px;
+  --me-breadcrumbs-popup-items-padding: 0 12px;
+  --me-breadcrumbs-popup-items-line-height: 20px;
+  --me-breadcrumbs-popup-items-font-size: 16px;
 }
 
 /**
@@ -13781,7 +13885,8 @@ input.dx-hidden {
   align-content: center;
 }
 .me-data-grid .dx-row.dx-column-lines.dx-header-row > td {
-  padding: 8px;
+  padding: 0 12px;
+  height: 30px;
   gap: 4px;
   vertical-align: middle;
 }
@@ -13790,6 +13895,9 @@ input.dx-hidden {
   font-size: 13px;
   line-height: 16px;
   color: #ffffff;
+}
+.me-data-grid .dx-row.dx-column-lines.dx-header-row > td[role=columnheader] {
+  height: 36px;
 }
 .me-data-grid .dx-datagrid-headers .dx-datagrid-action.dx-datagrid-drag-action {
   background: var(--Background-Canvas);
@@ -13845,7 +13953,8 @@ input.dx-hidden {
   content: var(--me-icon-group-closed);
 }
 .me-data-grid .dx-datagrid-content .dx-row > td {
-  padding: 5px 8px;
+  height: 30px;
+  padding: 0 12px;
   vertical-align: middle;
 }
 .me-data-grid td .dx-column-indicators {
@@ -14168,7 +14277,11 @@ input.dx-hidden {
   height: 40px;
 }
 .me-data-grid.me-data-grid-cell-small .dx-datagrid-content .dx-row > td {
-  padding: 2px 4px;
+  padding: 0 8px;
+  height: 24px;
+}
+.me-data-grid.me-data-grid-cell-small .dx-datagrid-content .dx-row > td[role=columnheader] {
+  height: 32px;
 }
 
 .dx-datagrid-drag-header.dx-datagrid-text-content.dx-widget.dx-datagrid-drag-action {
@@ -38377,7 +38490,11 @@ input.dx-hidden {
 }
 
 .me-tree-list.dx-treelist.dx-widget .dx-row > td {
-  padding: 8px;
+  padding: 0 12px;
+  height: 30px;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-row > td[role=columnheader] {
+  height: 36px;
 }
 .me-tree-list.dx-treelist.dx-widget:has(.dx-treelist-nodata) .dx-row > td:empty {
   display: none;
@@ -38595,8 +38712,12 @@ input.dx-hidden {
 .me-tree-list.dx-treelist.dx-widget .dx-gridbase-a11y-status-container {
   display: none;
 }
-.me-tree-list.dx-treelist.dx-widget.me-tree-list-cell-small .dx-treelist-container.dx-gridbase-container .dx-treelist-rowsview .dx-treelist-table .dx-row.dx-data-row td {
-  padding: 2px 4px;
+.me-tree-list.dx-treelist.dx-widget.me-tree-list-cell-small .dx-treelist-container.dx-gridbase-container .dx-treelist-content .dx-treelist-table .dx-row td {
+  padding: 0 8px;
+  height: 24px;
+}
+.me-tree-list.dx-treelist.dx-widget.me-tree-list-cell-small .dx-treelist-container.dx-gridbase-container .dx-treelist-content .dx-treelist-table .dx-row td[role=columnheader] {
+  height: 32px;
 }
 
 .dx-datebox-wrapper-calendar .dx-calendar {
