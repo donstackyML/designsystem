@@ -135,6 +135,8 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() popupHeight = 'auto';
 
+  @Input() popupZIndex: number | null = null;
+
   @Input() popupPosition: PositionAlignment | PositionConfig = {
     my: 'center',
     at: 'center',
@@ -163,6 +165,10 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() intervalTime: number | null = null;
 
+  @Input() quickFiltersDisabled = false;
+
+  @Input() quickFiltersTitle = 'Интервал за последние:';
+
   @Output() timeRangeApplied = new EventEmitter<TimeRangeConfig>();
 
   @Output() settingsChanged = new EventEmitter<TimeRangeConfig>();
@@ -189,9 +195,22 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
 
   closeIcon = '';
 
-  @Input() quickFiltersDisabled = false;
 
-  @Input() quickFiltersTitle = 'Интервал за последние:';
+  get popupWrapperAttr(): { [key: string]: string } {
+    const baseClass = 'me-time-range-popup-wrapper';
+
+    if (this.popupZIndex != null) {
+      return {
+        class: `${baseClass} has-custom-z-index`,
+        style: `--me-custom-z-index: ${this.popupZIndex}`,
+      };
+    } else {
+      return {
+        class: baseClass,
+      };
+    }
+  }
+
 
   constructor() {
     this.closeIcon = this.meIconsRegistry.getIcon(closeX20);
