@@ -311,18 +311,15 @@ export class MeBreadcrumbsComponent
       this.overflowMenu.instance.option({
         position: this.contextMenuPosition,
         onShown: () => {
-          const popup = document.querySelector('.me-breadcrumbs-overflow-menu-popup') as HTMLElement;
+          queueMicrotask(() => {
+            const popup = document.querySelector('.me-breadcrumbs-overflow-menu-popup') as HTMLElement;
 
-          if (popup && !popup.dataset['heightAdjusted']) {
-            const currentMaxHeight = popup.style.maxHeight;
-
-            if (currentMaxHeight) {
+            if (popup) {
+              const currentMaxHeight = popup.style.maxHeight;
               const currentValue = parseInt(currentMaxHeight);
-              if (!isNaN(currentValue)) {
-                popup.style.maxHeight = `${currentValue + 8}px`;
-              }
+              popup.style.maxHeight = `${currentValue + 6}px`;
             }
-          }
+          });
         },
         ...this.overflowMenuOptions,
       });
