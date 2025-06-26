@@ -25,9 +25,14 @@ export class ListItemDividerService {
 
   addDividersClass(
     contentElement: Element,
-    dividersVisibility: DividersVisibility
+    dividersVisibility: DividersVisibility,
+    showLastDivider: boolean = false
   ) {
     contentElement.classList.add(`dividers-visibility-${dividersVisibility}`);
+
+    if (showLastDivider && dividersVisibility !== 'none') {
+      contentElement.lastElementChild?.classList.add('me-list-item-with-bottom-divider');
+    }
   }
 
   addDividers(params: {
