@@ -6,6 +6,7 @@ import {
   MeAccordionModule,
   MeAutocompleteModule,
   MeBadgeComponent,
+  MeTimeRangeComponent,
   MeBreadcrumbsComponent,
   MeButtonGroupModule,
   MeButtonModule,
@@ -22,6 +23,7 @@ import {
   MeFormItemModule,
   MeFormModule,
   MeIconComponent,
+  MeIconsInitializerModule,
   MeListModule,
   MeLoadIndicatorModule,
   MeLoadPanelModule,
@@ -31,6 +33,8 @@ import {
   MePivotGridModule,
   MePopupModule,
   MeProgressBarModule,
+  MePropertyGridCellComponent,
+  MePropertyGridComponent,
   MeRadioGroupModule,
   MeScrollViewModule,
   MeSelectBoxModule,
@@ -45,10 +49,7 @@ import {
   MeToolbarModule,
   MeTooltipModule,
   MeTreeListModule,
-  MeTreeViewModule,
-  MeIconsInitializerModule,
-  MePropertyGridComponent,
-  MePropertyGridCellComponent,
+  MeTreeViewModule
 } from '../../projects/dx-monitel-components/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -91,6 +92,10 @@ import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.comp
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
 
+import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.component';
+import { breadcrumbsIconSet } from './components/me-breadcrumbs-demo/breadcrumbs-icon-set';
+import { MeBreadcrumbsDemoComponent } from './components/me-breadcrumbs-demo/me-breadcrumbs-demo.component';
+import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box-demo-icon-set';
 import { MeControlDirective } from './directives/control.directive';
 import { MeEditorDirective } from './directives/editor.directive';
 import { MeIconDirective } from './directives/icon.directive';
@@ -100,10 +105,7 @@ import { MePopoverDirective } from './directives/popover.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
-import { MeBreadcrumbsDemoComponent } from './components/me-breadcrumbs-demo/me-breadcrumbs-demo.component';
-import { breadcrumbsIconSet } from './components/me-breadcrumbs-demo/breadcrumbs-icon-set';
-import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box-demo-icon-set';
-import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.component';
+import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-time-range-demo.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +157,7 @@ import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.c
     MeTextEditorDirective,
     MeToastDirective,
     MeBadgeDemoComponent,
+    MeTimeRangeDemoComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -165,6 +168,7 @@ import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.c
     DxDateBoxModule,
     DxPivotGridModule,
     MeBadgeComponent,
+    MeTimeRangeComponent,
     MeBreadcrumbsComponent,
     MeCardComponent,
     MeIconComponent,
@@ -215,4 +219,4 @@ import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.c
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

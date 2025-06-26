@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MeAccordionComponent } from './components/me-accordion/me-accordion.component';
 import { MeAutocompleteComponent } from './components/me-autocomplete/me-autocomplete.component';
+import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.component';
 import { MeBreadcrumbsDemoComponent } from './components/me-breadcrumbs-demo/me-breadcrumbs-demo.component';
 import { MeButtonComponent } from './components/me-button/me-button.component';
 import { MeButtonGroupComponent } from './components/me-button-group/me-button-group.component';
@@ -29,18 +30,19 @@ import { MeTabsComponent } from './components/me-tabs/me-tabs.component';
 import { MeTagBoxComponent } from './components/me-tag-box/me-tag-box.component';
 import { MeTextAreaComponent } from './components/me-text-area/me-text-area.component';
 import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
+import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-time-range-demo.component';
 import { MeToastDemoComponent } from './components/me-toast-demo/me-toast-demo.component';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
-import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
   { path: 'me-accordion', component: MeAccordionComponent },
   { path: 'me-autocomplete', component: MeAutocompleteComponent },
+  { path: 'me-badge', component: MeBadgeDemoComponent },
   { path: 'me-badge', component: MeBadgeDemoComponent },
   { path: 'me-breadcrumbs', component: MeBreadcrumbsDemoComponent },
   { path: 'me-button-group', component: MeButtonGroupComponent },
@@ -69,6 +71,7 @@ const routes: Routes = [
   { path: 'me-tag-box', component: MeTagBoxComponent },
   { path: 'me-text-area', component: MeTextAreaComponent },
   { path: 'me-text-box', component: MeTextBoxComponent },
+  { path: 'me-time-range', component: MeTimeRangeDemoComponent },
   { path: 'me-toast', component: MeToastDemoComponent },
   { path: 'me-toolbar', component: MeToolbarComponent },
   { path: 'me-tooltip', component: MeTooltipComponent },
