@@ -19,6 +19,7 @@ import {
 import { type MeScrollbarShowType, MeSize } from '../../types/types';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
 import { MeIconComponent } from '@monitel/me-icons-registry';
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meDropDownBox]',
@@ -35,13 +36,17 @@ export class MeDropDownBoxDirective implements AfterViewInit {
   @Input() leftIcon?: string = '';
   @Input() showScrollbar: MeScrollbarShowType = 'always';
 
+  private focusService: ComponentFocusService;
+
   constructor(
     private element: ElementRef,
     private component: DxDropDownBoxComponent,
     private dropDownOptionsService: DropDownOptionsService,
     private viewContainerRef: ViewContainerRef,
     private renderer: Renderer2
-  ) {}
+  ) {
+    this.focusService = new ComponentFocusService(element, renderer);
+  }
 
   @ContentChild(DxTreeViewComponent, { static: false })
   treeView?: DxTreeViewComponent;

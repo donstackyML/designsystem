@@ -75,7 +75,7 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
   }
 
   protected setTemplate() {
-    if (this.template === 'content') {
+    if (this.template === 'content' && !this.component.icon) {
       this.component.template = `
         <div class="me-button-inner">
           ${this.iconStore.getIcon({

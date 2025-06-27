@@ -25,13 +25,18 @@ import {
   DxButtonModule,
   DxContextMenuComponent,
   DxContextMenuModule,
+  DxDropDownBoxModule,
+  DxDropDownButtonModule,
   DxMenuComponent,
   DxMenuModule,
 } from 'devextreme-angular';
 import type { ItemClickEvent as ContextMenuItemClickEvent } from 'devextreme/ui/context_menu';
-import type { ItemClickEvent as MenuItemClickEvent } from 'devextreme/ui/menu';
-import { MeMenuModule } from '../../directives/me-menu/me-menu.module';
+import { MeContextMenuModule, MeMenuModule } from '../../directives';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeButtonModule, MeDropDownButtonModule } from '../../directives';
+import { MeDropDownBoxModule } from '../../directives/me-drop-down-box/me-drop-down-box.module';
+import { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
+import { MeSize } from '../../types/types';
 
 export interface BreadcrumbItem {
   text?: string;
@@ -51,6 +56,12 @@ export interface BreadcrumbItem {
     MeMenuModule,
     DxButtonModule,
     DxContextMenuModule,
+    MeButtonModule,
+    DxDropDownBoxModule,
+    MeDropDownBoxModule,
+    MeDropDownButtonModule,
+    DxDropDownButtonModule,
+    MeContextMenuModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -63,8 +74,9 @@ export class MeBreadcrumbsComponent
   @Input() itemsExpr: string = 'items';
   @Input() urlExpr: string = 'url';
   @Input() truncateFrom: 'left' | 'right' = 'right';
-  @Input() size: 'small' | 'large' = 'small';
+  @Input() size: MeSize = 'small';
   @Input() showDivider: boolean = true;
+  @Input() dropdownPosition: 'top' | 'bottom' = 'bottom';
 
   @Output() itemClick = new EventEmitter<BreadcrumbItem>();
 
@@ -75,10 +87,14 @@ export class MeBreadcrumbsComponent
   @ViewChildren(DxMenuComponent) menuItems!: QueryList<DxMenuComponent>;
   @ViewChild('leftBtn', { static: true }) leftBtn?: DxButtonComponent;
   @ViewChild('rightBtn', { static: true }) rightBtn?: DxButtonComponent;
-  @ViewChildren('breadcrumbItem') breadcrumbItems!: QueryList<ElementRef>;
+  @ViewChildren('breadcrumbItem', { read: ElementRef })
+  breadcrumbItems!: QueryList<ElementRef>;
+  @ViewChildren('dropDownButton')
+  dropDownButtonElements?: QueryList<ElementRef>;
 
   normalizedItems: BreadcrumbItem[] = [];
   overflowItems: BreadcrumbItem[] = [];
+  maxHeight = '290px';
   overflowLeft = false;
   overflowRight = false;
   overflowMenuTarget: HTMLElement | null = null;
@@ -97,11 +113,9 @@ export class MeBreadcrumbsComponent
   private previousItemsLength = 0;
   private updateVisibleItemsScheduled = false;
 
-  private overflowMenuOptions = {
-    wrapperAttr: {
-      class: 'me-overflow-menu-popup',
-    },
-  };
+  private overflowMenuOptions = {};
+
+  private readonly offsetY = 4;
 
   constructor(
     private zone: NgZone,
@@ -124,6 +138,12 @@ export class MeBreadcrumbsComponent
 
   ngOnInit() {
     this.renderer.addClass(this.elementRef.nativeElement, 'me-breadcrumbs');
+
+    this.overflowMenuOptions = {
+      cssClass: `me-breadcrumbs-overflow-menu-popup me-breadcrumbs-overflow-menu-popup-${this.size}`,
+    };
+
+    this.maxHeight = this.getSubmenuMaxHeight();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -165,6 +185,35 @@ export class MeBreadcrumbsComponent
         e.stopPropagation();
       }
     );
+
+    this.dropDownButtonElements?.forEach((el: any) => {
+      const instance = el.instance;
+
+      if (instance && this.dropdownPosition === 'top') {
+        el.dropDownOptions = {
+          wrapperAttr: {
+            ...el.dropDownOptions.wrapperAttr,
+            class: `me-breadcrumbs-popup me-breadcrumbs-popup-${this.size}`,
+          },
+          position: {
+            my: 'bottom left',
+            at: 'top left',
+            offset: { y: -this.offsetY },
+            collision: 'flip fit',
+            of: el.element.nativeElement,
+          },
+          maxHeight: this.maxHeight,
+        };
+      } else {
+        el.dropDownOptions = {
+          wrapperAttr: {
+            ...el.dropDownOptions.wrapperAttr,
+            class: `me-breadcrumbs-popup me-breadcrumbs-popup-${this.size}`,
+          },
+          maxHeight: this.maxHeight,
+        };
+      }
+    });
   }
 
   onContextMenuItemMouseDown(event: MouseEvent): void {
@@ -187,18 +236,41 @@ export class MeBreadcrumbsComponent
     this.focusService.ngOnDestroy();
   }
 
-  onItemClick(e: MenuItemClickEvent): void {
-    const clickedItem = e.itemData;
-    this.itemClick.emit(this.getOriginalItem(clickedItem));
+  onItemClick(item: BreadcrumbItem): void {
+    this.itemClick.emit(this.getOriginalItem(item));
+  }
+
+  onSubmenuItemClick(e: DxDropDownButtonTypes.ItemClickEvent): void {
+    this.itemClick.emit(this.getOriginalSubmenuItem({ ...e.itemData }));
   }
 
   private getOriginalItem(item: any) {
-    return this.items.find(
-      (el) =>
-        el[this.displayExpr] === item?.text &&
-        el[this.urlExpr] === item?.url &&
-        el[this.iconExpr] === item?.icon
-    );
+    return this.findItemInHierarchy(this.items, item);
+  }
+
+  private getOriginalSubmenuItem(item: any) {
+    return this.findItemInHierarchy(this.items, item);
+  }
+
+  private findItemInHierarchy(items: any[], searchItem: any): any {
+    for (const item of items) {
+      if (
+        item[this.displayExpr] === searchItem?.text &&
+        item[this.urlExpr] === searchItem?.url &&
+        item[this.iconExpr] === searchItem?.icon
+      ) {
+        return item;
+      }
+
+      if (item[this.itemsExpr]) {
+        const foundInChildren = this.findItemInHierarchy(
+          item[this.itemsExpr],
+          searchItem
+        );
+        if (foundInChildren) return foundInChildren;
+      }
+    }
+    return null;
   }
 
   onOverflowItemClick(e: ContextMenuItemClickEvent): void {
@@ -221,15 +293,44 @@ export class MeBreadcrumbsComponent
   showOverflowMenu(position: 'left' | 'right', event: any) {
     this.overflowMenuTarget = event.element as HTMLElement;
     if (this.overflowMenuTarget) {
+      const invertSides = {
+        left: 'right',
+        right: 'left',
+        top: 'bottom',
+        bottom: 'top',
+      };
+
+      const myPosition = `${invertSides[this.dropdownPosition]} ${
+        invertSides[position]
+      }`;
+
+      const atPosition = `${this.dropdownPosition} ${invertSides[position]}`;
+
+      const offsetY =
+        this.dropdownPosition === 'top' ? -this.offsetY : this.offsetY;
+
       this.contextMenuPosition = {
-        my: position === 'left' ? 'top left' : 'top right',
-        at: position === 'left' ? 'bottom left' : 'bottom right',
+        my: myPosition,
+        at: atPosition,
         of: this.overflowMenuTarget,
-        offset: { x: 0, y: 5 },
+        offset: { x: 0, y: offsetY },
       };
 
       this.overflowMenu.instance.option({
         position: this.contextMenuPosition,
+        onShown: () => {
+          queueMicrotask(() => {
+            const popup = document.querySelector(
+              '.me-breadcrumbs-overflow-menu-popup'
+            ) as HTMLElement;
+
+            if (popup) {
+              const currentMaxHeight = popup.style.maxHeight;
+              const currentValue = parseInt(currentMaxHeight);
+              popup.style.maxHeight = `${currentValue + 6}px`;
+            }
+          });
+        },
         ...this.overflowMenuOptions,
       });
 
@@ -246,6 +347,7 @@ export class MeBreadcrumbsComponent
     }
 
     const viewportHeight = document.documentElement.clientHeight;
+
     if (menuRect.bottom > viewportHeight) {
       e.position.my = e.position.my.replace('top', 'bottom');
       e.position.at = e.position.at.replace('bottom', 'top');
@@ -327,52 +429,113 @@ export class MeBreadcrumbsComponent
 
   private updateVisibleItems(): void {
     const containerEl = this.breadcrumbsContainer.nativeElement as HTMLElement;
+    const containerWidth = containerEl.clientWidth;
+
     this.breadcrumbItems.forEach((itemRef) => {
       this.renderer.removeClass(itemRef.nativeElement, 'hidden-breadcrumb');
+      this.renderer.removeClass(itemRef.nativeElement, 'hide-chevron');
     });
 
     this.overflowItems = [];
     this.overflowLeft = false;
     this.overflowRight = false;
 
-    const isOverflown = (element: HTMLElement): boolean =>
-      element.scrollWidth > element.clientWidth;
+    const visibleItems = this.breadcrumbItems.toArray();
 
-    if (isOverflown(containerEl)) {
-      if (this.truncateFrom === 'right') {
-        const itemsArr = this.breadcrumbItems.toArray();
-        while (isOverflown(containerEl) && itemsArr.length > 1) {
-          const removedEl = itemsArr.pop();
-          if (removedEl) {
-            this.renderer.addClass(
-              removedEl.nativeElement,
-              'hidden-breadcrumb'
-            );
-            const index = itemsArr.length;
-            if (this.normalizedItems[index]) {
-              this.overflowItems.unshift(this.normalizedItems[index]);
-            }
+    const totalWidth = visibleItems.reduce(
+      (sum, item) => sum + item.nativeElement.offsetWidth,
+      0
+    );
+
+    if (totalWidth <= containerWidth) {
+      this.cdr.markForCheck();
+      return;
+    }
+
+    const buttonsWidth = this.getOverflowButtonsWidth();
+    const availableWidth = containerWidth - buttonsWidth;
+
+    const { visibleCount } = visibleItems.reduce(
+      (result, item) => {
+        if (result.shouldContinue) {
+          const itemWidth = item.nativeElement.offsetWidth;
+          if (result.accumulatedWidth + itemWidth <= availableWidth) {
+            return {
+              visibleCount: result.visibleCount + 1,
+              accumulatedWidth: result.accumulatedWidth + itemWidth,
+              shouldContinue: true,
+            };
           }
+          return { ...result, shouldContinue: false };
         }
-        this.overflowRight = this.overflowItems.length > 0;
-      } else {
-        const itemsArr = this.breadcrumbItems.toArray();
-        while (isOverflown(containerEl) && itemsArr.length > 1) {
-          const removedEl = itemsArr.shift();
-          if (removedEl) {
-            this.renderer.addClass(
-              removedEl.nativeElement,
-              'hidden-breadcrumb'
-            );
-            if (this.normalizedItems.length > 0) {
-              this.overflowItems.push(this.normalizedItems[0]);
-            }
-          }
+        return result;
+      },
+      { visibleCount: 0, accumulatedWidth: 0, shouldContinue: true }
+    );
+
+    if (this.truncateFrom === 'right') {
+      for (let i = visibleCount; i < visibleItems.length; i++) {
+        this.renderer.addClass(
+          visibleItems[i].nativeElement,
+          'hidden-breadcrumb'
+        );
+        if (this.normalizedItems[i]) {
+          this.overflowItems.push(this.normalizedItems[i]);
         }
-        this.overflowLeft = this.overflowItems.length > 0;
+      }
+      this.overflowRight = this.overflowItems.length > 0;
+    } else {
+      const startIndex = visibleItems.length - visibleCount;
+      for (let i = 0; i < startIndex; i++) {
+        this.renderer.addClass(
+          visibleItems[i].nativeElement,
+          'hidden-breadcrumb'
+        );
+        if (this.normalizedItems[i]) {
+          this.overflowItems.push(this.normalizedItems[i]);
+        }
+      }
+      this.overflowLeft = this.overflowItems.length > 0;
+    }
+
+    if (visibleCount > 0) {
+      const lastVisibleIndex =
+        this.truncateFrom === 'right' ? visibleCount - 1 : visibleCount;
+
+      const lastVisibleItem =
+        this.breadcrumbItems.get(lastVisibleIndex)?.nativeElement;
+      const lastVisibleData = this.normalizedItems[lastVisibleIndex];
+
+      if (
+        lastVisibleItem &&
+        lastVisibleData &&
+        !lastVisibleData.items?.length
+      ) {
+        this.renderer.addClass(lastVisibleItem, 'hide-chevron');
       }
     }
+
     this.cdr.markForCheck();
+  }
+
+  private getOverflowButtonsWidth(): number {
+    let width = 0;
+
+    if (this.leftBtn?.instance) {
+      const leftBtnElement = this.leftBtn.instance.element();
+      if (leftBtnElement) {
+        width += leftBtnElement.offsetWidth;
+      }
+    }
+
+    if (this.rightBtn?.instance) {
+      const rightBtnElement = this.rightBtn.instance.element();
+      if (rightBtnElement) {
+        width += rightBtnElement.offsetWidth;
+      }
+    }
+
+    return width;
   }
 
   private tabHandle(evt: KeyboardEvent) {
@@ -449,6 +612,21 @@ export class MeBreadcrumbsComponent
     elm.focus();
     evt.preventDefault();
     this.focusService.holdKeyboardFocus();
+  }
+
+  private getSubmenuMaxHeight() {
+    const largeMaxItemsHeight = 400;
+    const mediumMaxItemsHeight = 320;
+    const smallMaxItemsHeight = 280;
+    const padding = 4;
+
+    if (this.size === 'large') {
+      return `${largeMaxItemsHeight + padding * 2}px`;
+    } else if (this.size === 'medium') {
+      return `${mediumMaxItemsHeight + padding * 2}px`;
+    }
+
+    return `${smallMaxItemsHeight + padding * 2}px`;
   }
 
   protected readonly moreHorizX20 = moreHorizX20;

@@ -57,6 +57,14 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    showLastDivider: {
+      description: 'Отображает последний разделитель.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     itemDeleteMode: {
       description: 'Режим удаления элементов',
       control: 'select',
@@ -175,6 +183,7 @@ export default {
     dividersVisibility: 'all',
     searchExpr: 'text',
     keyExpr: 'key',
+    showLastDivider: false,
   },
   render: (args) => ({
     props: args,
