@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 // Components
 
 import { MeBadgeComponent } from '../components/me-badge/me-badge.component';
+import { MeTimeRangeComponent } from '../components/me-time-range';
 import { MeBreadcrumbsComponent } from '../components/me-breadcrumbs/me-breadcrumbs.component';
 import { MeCardComponent } from '../components/me-card/me-card.component';
 import { MeChipComponent } from '../components/me-chip/me-chip.component';
@@ -125,13 +126,14 @@ import { MeIconsInitializerModule } from './me-icons-initializer.module';
     MeIconComponent,
     MeMenuLeftComponent,
     MePaginationComponent,
+    MePropertyGridCellComponent,
+    MePropertyGridComponent,
     MeSidePageComponent,
     MeSkeletonComponent,
     MeSkeletonItemComponent,
     MeStatusBarComponent,
+    MeTimeRangeComponent,
     MeToastComponent,
-    MePropertyGridComponent,
-    MePropertyGridCellComponent,
   ],
   exports: [
     MeAccordionModule,
@@ -191,6 +193,7 @@ import { MeIconsInitializerModule } from './me-icons-initializer.module';
     MeSkeletonComponent,
     MeSkeletonItemComponent,
     MeStatusBarComponent,
+    MeTimeRangeComponent,
     MeToastComponent,
   ],
 })

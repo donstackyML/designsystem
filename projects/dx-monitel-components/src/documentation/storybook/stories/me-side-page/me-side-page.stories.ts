@@ -361,7 +361,11 @@ export default {
 
 type Story = StoryObj<MeSidePageComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    shading: false,
+  },
+};
 
 export const PositionLeft: Story = {
   args: {
@@ -369,9 +373,23 @@ export const PositionLeft: Story = {
   },
 };
 
+export const PositionLeftWitoutShading: Story = {
+  args: {
+    position: 'left',
+    shading: false,
+  },
+};
+
 export const PositionRight: Story = {
   args: {
     position: 'right',
+  },
+};
+
+export const PositionRightWithoutShading: Story = {
+  args: {
+    position: 'right',
+    shading: false,
   },
 };
 
