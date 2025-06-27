@@ -26,7 +26,7 @@ import {
   DxScrollViewModule,
   DxTreeViewModule,
 } from 'devextreme-angular';
-import { DxContextMenuComponent } from 'devextreme-angular/ui/context-menu';
+import {DxContextMenuComponent, DxContextMenuTypes} from 'devextreme-angular/ui/context-menu';
 import PositionConfig = DevExpress.PositionConfig;
 
 import { MeContextMenuModule } from '../../directives/me-context-menu/me-context-menu.module';
@@ -456,8 +456,10 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     node.active = false;
   }
 
-  selectSubmenuItem(event: Event): void {
-    console.log('select by submenu', event);
+  selectSubmenuItem({ itemData }: DxContextMenuTypes.ItemClickEvent) {
+    if (itemData && !itemData.items) {
+      this.itemSelect(itemData as MeMenuLeftItem);
+    }
   }
 
   getHeaderMaxWidth(): string {

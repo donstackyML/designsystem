@@ -8,6 +8,7 @@ import {
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
 import { MeSize } from '../../types/types';
+import {MeIconStoreService} from "../../service/icon-store.service";
 
 @Directive({
   selector: '[meContextMenu]',
@@ -24,7 +25,8 @@ export class MeContextMenuDirective {
   constructor(
     private element: ElementRef,
     private renderer: Renderer2,
-    private dividerService: ListItemDividerService
+    private dividerService: ListItemDividerService,
+    private iconStore: MeIconStoreService
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
@@ -56,6 +58,12 @@ export class MeContextMenuDirective {
     ) {
       this.renderer.addClass(closestMenuItemElement, 'me-menu-item-title');
     }
+
+    closestMenuItemElement.querySelector('.dx-icon')?.remove()
+
+    const itemContent = closestMenuItemElement.querySelector('.dx-item-content');
+
+    console.log(itemContent)
 
     this.dividerService.addDividersClass(
       contextListElement,
