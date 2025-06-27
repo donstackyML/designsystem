@@ -157,33 +157,91 @@ export const meBreadcrumbsMockDataWithNestedItemsAndIcons = [
   },
   {
     text: 'Products',
-    icon: 'public_x20',
+    icon: 'cart',
     items: [
       {
         text: 'Laptops',
         url: '/products/laptops',
-        icon: 'computer_x20',
+        icon: 'cart',
       },
       {
         text: 'Tablets',
         url: '/products/tablets',
-        icon: 'speaker_notes_x20',
+        icon: 'cart',
       },
       {
         text: 'Accessories',
         url: '/products/accessories',
-        icon: 'speaker_notes_x20',
+        icon: 'cart',
       },
     ],
   },
   {
     text: 'Laptops',
     url: '/products/laptops',
-    icon: 'computer_x20',
+    icon: 'cart',
   },
   {
     text: 'Gaming Laptops',
     url: '/products/laptops/gaming',
-    icon: 'computer_x20',
+    icon: 'cart',
+  },
+  {
+    text: 'Categories',
+    items: [
+      {
+        text: 'Electronics',
+        url: '/categories/electronics',
+      },
+      {
+        text: 'Clothing',
+        url: '/categories/clothing',
+      },
+      {
+        text: 'Home',
+        url: '/categories/home',
+      },
+      {
+        text: 'Sports',
+        url: '/categories/sports',
+      },
+      {
+        text: 'Toys',
+        url: '/categories/toys',
+      },
+      {
+        text: 'Books',
+        url: '/categories/books',
+      },
+      {
+        text: 'Automotive',
+        url: '/categories/automotive',
+      },
+      {
+        text: 'Health',
+        url: '/categories/health',
+      },
+      {
+        text: 'Beauty',
+        url: '/categories/beauty',
+      },
+      {
+        text: 'Garden',
+        url: '/categories/garden',
+      },
+      {
+        text: 'Music',
+        url: '/categories/music',
+      },
+      {
+        text: 'Movies',
+        url: '/categories/movies',
+      },
+    ],
+  },
+  {
+    text: 'Support',
+    url: '/support',
+    icon: 'cart',
   },
 ];

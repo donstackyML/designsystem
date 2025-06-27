@@ -25,6 +25,36 @@
     }
   }
 
+  &.dx-dropdownbox {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+
+    &.dx-state-hover {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+      border: 1px solid transparent;
+    }
+
+    &.dx-dropdowneditor-active {
+      border: 1px solid var(--Controls-BG-Accent-Accent-BG-Default);
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+    }
+
+    &.me-keyboard-focused {
+      border: 1px solid var(--Controls-BG-Accent-Accent-BG-Default);
+      background: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+      outline: 2px solid var(--Dividers-Borders-Focus);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+
+    &.dx-state-readonly {
+      background: var(--Controls-BG-Secondary-Elements-BG-Default);
+    }
+
+    &.dx-state-disabled {
+      background: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+    }
+  }
+
   .dx-texteditor-buttons-container {
     .dx-button-content {
       display: flex;
@@ -107,11 +137,11 @@
 }
 
 .me-drop-down-box-wrapper-popup {
-  .dx-overlay-content {
+  &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
     padding: 16px;
 
     .dx-popup-content:has(> .me-tree-view) {
-      padding: 0 !important;
+      padding: 0;
 
       .me-tree-view {
         padding: 0;
@@ -119,6 +149,25 @@
 
         .dx-treeview-search {
           background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+          margin-bottom: 4px;
+
+          &.dx-state-hover {
+            background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+            border: 1px solid transparent;
+          }
+
+          &.dx-state-focused {
+            border: 1px solid var(--Controls-BG-Accent-Accent-BG-Default);
+            background: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+          }
+
+          &.dx-state-readonly {
+            background: var(--Controls-BG-Secondary-Elements-BG-Default);
+          }
+
+          &.dx-state-disabled {
+            background: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+          }
         }
 
         .dx-scrollable-scroll {
@@ -132,11 +181,47 @@
     }
 
     .dx-popup-content:has(> .me-data-grid) {
-      padding: 0 !important;
+      padding: 0;
 
       .me-data-grid {
         .dx-scrollable-scroll {
           padding: 4px 0 4px 4px;
+        }
+
+        &.me-data-grid-cell-small {
+          table {
+            tbody {
+              .dx-header-row,
+              .dx-data-row {
+                .dx-command-select {
+                  padding: 0 4px;
+
+                  .dx-checkbox {
+                    width: 16px;
+
+                    .dx-checkbox-container .dx-checkbox-icon {
+                      width: 16px;
+                      height: 16px;
+
+                      &::before {
+                        width: 10px;
+                        margin-left: -5px;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .dx-header-row,
+              .dx-data-row
+                .dx-command-select
+                .dx-checkbox
+                .dx-checkbox-container
+                .dx-checkbox-icon::before {
+                margin-left: -6px;
+              }
+            }
+          }
         }
 
         .dx-datagrid {
@@ -146,6 +231,13 @@
 
           table {
             tbody {
+              .dx-header-row,
+              .dx-data-row {
+                .dx-command-select {
+                  padding: 0 8px;
+                }
+              }
+
               .dx-datagrid-filter-row {
                 td {
                   background: var(--Background-Accent-in-the-content);
@@ -181,6 +273,10 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
+                        .dx-icon {
+                          color: var(--Icon-Default);
+                        }
                       }
 
                       .dx-context-menu-container-border {
