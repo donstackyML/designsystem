@@ -23,6 +23,7 @@ import { MeSize } from '../../types/types';
 export class MeListDirective implements AfterViewInit {
   @Input() size: MeSize = 'medium';
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'all';
+  @Input() showLastDivider: boolean = false;
 
   private focusService: ComponentFocusService;
   private removeListeners: (() => void)[] = [];
@@ -63,7 +64,8 @@ export class MeListDirective implements AfterViewInit {
 
     this.dividerService.addDividersClass(
       contentElement,
-      this.dividersVisibility
+      this.dividersVisibility,
+      this.showLastDivider
     );
   }
 

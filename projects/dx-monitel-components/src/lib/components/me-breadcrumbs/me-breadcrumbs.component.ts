@@ -18,8 +18,8 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 import { moreHorizX20 } from '@monitel/me-icons';
+import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 import {
   DxButtonComponent,
   DxButtonModule,
@@ -30,12 +30,16 @@ import {
   DxMenuComponent,
   DxMenuModule,
 } from 'devextreme-angular';
-import type { ItemClickEvent as ContextMenuItemClickEvent } from 'devextreme/ui/context_menu';
-import { MeContextMenuModule, MeMenuModule } from '../../directives';
-import { ComponentFocusService } from '../../service/component-focus.service';
-import { MeButtonModule, MeDropDownButtonModule } from '../../directives';
-import { MeDropDownBoxModule } from '../../directives/me-drop-down-box/me-drop-down-box.module';
 import { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
+import type { ItemClickEvent as ContextMenuItemClickEvent } from 'devextreme/ui/context_menu';
+import {
+  MeButtonModule,
+  MeContextMenuModule,
+  MeDropDownButtonModule,
+  MeMenuModule,
+} from '../../directives';
+import { MeDropDownBoxModule } from '../../directives/me-drop-down-box/me-drop-down-box.module';
+import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeSize } from '../../types/types';
 
 export interface BreadcrumbItem {
