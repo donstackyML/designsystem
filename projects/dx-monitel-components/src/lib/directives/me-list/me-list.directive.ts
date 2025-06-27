@@ -25,6 +25,8 @@ export class MeListDirective implements AfterViewInit {
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'all';
 
   private focusService: ComponentFocusService;
+  private removeListeners: (() => void)[] = [];
+
   constructor(
     private element: ElementRef,
     private component: DxListComponent,
@@ -38,10 +40,26 @@ export class MeListDirective implements AfterViewInit {
     this.focusService.addKeyUpEventHandle('Tab', (evt) => this.tabHandle(evt));
   }
 
+  ngOnDestroy() {
+    this.removeListeners.forEach((remove) => remove());
+  }
+
   ngAfterViewInit(): void {
-    const contentElement =
-      this.element.nativeElement.querySelector('.dx-list-items');
+    const contentElement = this.element.nativeElement.querySelector(
+      '.dx-list-items'
+    ) as HTMLElement;
+
     if (!contentElement) return;
+
+    contentElement.querySelectorAll('.dx-list-item').forEach((item) => {
+      const listener = this.renderer.listen(item, 'mouseup', () => {
+        if (item.classList.contains('dx-state-focused')) {
+          item.classList.remove('dx-state-focused');
+        }
+      });
+
+      this.removeListeners.push(listener);
+    });
 
     this.dividerService.addDividersClass(
       contentElement,

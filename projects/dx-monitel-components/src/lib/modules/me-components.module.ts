@@ -197,4 +197,4 @@ import { MeIconsInitializerModule } from './me-icons-initializer.module';
     MeToastComponent,
   ],
 })
-export class MeComponentsModule { }
+export class MeComponentsModule {}
