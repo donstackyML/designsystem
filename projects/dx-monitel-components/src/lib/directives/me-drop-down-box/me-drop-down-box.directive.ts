@@ -19,7 +19,7 @@ import {
 import { type MeScrollbarShowType, MeSize } from '../../types/types';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
 import { MeIconComponent } from '@monitel/me-icons-registry';
-import {ComponentFocusService} from "../../service/component-focus.service";
+import { ComponentFocusService } from '../../service/component-focus.service';
 
 @Directive({
   selector: '[meDropDownBox]',

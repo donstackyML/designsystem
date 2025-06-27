@@ -31,7 +31,9 @@ export class ListItemDividerService {
     contentElement.classList.add(`dividers-visibility-${dividersVisibility}`);
 
     if (showLastDivider && dividersVisibility !== 'none') {
-      contentElement.lastElementChild?.classList.add('me-list-item-with-bottom-divider');
+      contentElement.lastElementChild?.classList.add(
+        'me-list-item-with-bottom-divider'
+      );
     }
   }
 

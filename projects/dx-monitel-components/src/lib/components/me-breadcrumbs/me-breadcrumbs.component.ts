@@ -1,4 +1,4 @@
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -18,8 +18,8 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import {MeIconsModule, MeIconsRegistry} from '@monitel/me-icons-registry';
-import {moreHorizX20} from '@monitel/me-icons';
+import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
+import { moreHorizX20 } from '@monitel/me-icons';
 import {
   DxButtonComponent,
   DxButtonModule,
@@ -30,13 +30,13 @@ import {
   DxMenuComponent,
   DxMenuModule,
 } from 'devextreme-angular';
-import type {ItemClickEvent as ContextMenuItemClickEvent} from 'devextreme/ui/context_menu';
-import {MeContextMenuModule, MeMenuModule} from '../../directives';
-import {ComponentFocusService} from '../../service/component-focus.service';
-import {MeButtonModule, MeDropDownButtonModule} from "../../directives";
-import {MeDropDownBoxModule} from "../../directives/me-drop-down-box/me-drop-down-box.module";
-import {DxDropDownButtonTypes} from "devextreme-angular/ui/drop-down-button";
-import {MeSize} from "../../types/types";
+import type { ItemClickEvent as ContextMenuItemClickEvent } from 'devextreme/ui/context_menu';
+import { MeContextMenuModule, MeMenuModule } from '../../directives';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeButtonModule, MeDropDownButtonModule } from '../../directives';
+import { MeDropDownBoxModule } from '../../directives/me-drop-down-box/me-drop-down-box.module';
+import { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
+import { MeSize } from '../../types/types';
 
 export interface BreadcrumbItem {
   text?: string;
@@ -76,7 +76,7 @@ export class MeBreadcrumbsComponent
   @Input() truncateFrom: 'left' | 'right' = 'right';
   @Input() size: MeSize = 'small';
   @Input() showDivider: boolean = true;
-  @Input() dropdownPosition: 'top' | 'bottom' = "bottom";
+  @Input() dropdownPosition: 'top' | 'bottom' = 'bottom';
 
   @Output() itemClick = new EventEmitter<BreadcrumbItem>();
 
@@ -87,8 +87,10 @@ export class MeBreadcrumbsComponent
   @ViewChildren(DxMenuComponent) menuItems!: QueryList<DxMenuComponent>;
   @ViewChild('leftBtn', { static: true }) leftBtn?: DxButtonComponent;
   @ViewChild('rightBtn', { static: true }) rightBtn?: DxButtonComponent;
-  @ViewChildren('breadcrumbItem', { read: ElementRef }) breadcrumbItems!: QueryList<ElementRef>;
-  @ViewChildren('dropDownButton') dropDownButtonElements?: QueryList<ElementRef>;
+  @ViewChildren('breadcrumbItem', { read: ElementRef })
+  breadcrumbItems!: QueryList<ElementRef>;
+  @ViewChildren('dropDownButton')
+  dropDownButtonElements?: QueryList<ElementRef>;
 
   normalizedItems: BreadcrumbItem[] = [];
   overflowItems: BreadcrumbItem[] = [];
@@ -209,7 +211,7 @@ export class MeBreadcrumbsComponent
             class: `me-breadcrumbs-popup me-breadcrumbs-popup-${this.size}`,
           },
           maxHeight: this.maxHeight,
-        }
+        };
       }
     });
   }
@@ -239,7 +241,7 @@ export class MeBreadcrumbsComponent
   }
 
   onSubmenuItemClick(e: DxDropDownButtonTypes.ItemClickEvent): void {
-    this.itemClick.emit(this.getOriginalSubmenuItem({...e.itemData}));
+    this.itemClick.emit(this.getOriginalSubmenuItem({ ...e.itemData }));
   }
 
   private getOriginalItem(item: any) {
@@ -261,7 +263,10 @@ export class MeBreadcrumbsComponent
       }
 
       if (item[this.itemsExpr]) {
-        const foundInChildren = this.findItemInHierarchy(item[this.itemsExpr], searchItem);
+        const foundInChildren = this.findItemInHierarchy(
+          item[this.itemsExpr],
+          searchItem
+        );
         if (foundInChildren) return foundInChildren;
       }
     }
@@ -295,11 +300,14 @@ export class MeBreadcrumbsComponent
         bottom: 'top',
       };
 
-      const myPosition = `${invertSides[this.dropdownPosition]} ${invertSides[position]}`;
+      const myPosition = `${invertSides[this.dropdownPosition]} ${
+        invertSides[position]
+      }`;
 
       const atPosition = `${this.dropdownPosition} ${invertSides[position]}`;
 
-      const offsetY = this.dropdownPosition === 'top' ? -this.offsetY : this.offsetY
+      const offsetY =
+        this.dropdownPosition === 'top' ? -this.offsetY : this.offsetY;
 
       this.contextMenuPosition = {
         my: myPosition,
@@ -312,7 +320,9 @@ export class MeBreadcrumbsComponent
         position: this.contextMenuPosition,
         onShown: () => {
           queueMicrotask(() => {
-            const popup = document.querySelector('.me-breadcrumbs-overflow-menu-popup') as HTMLElement;
+            const popup = document.querySelector(
+              '.me-breadcrumbs-overflow-menu-popup'
+            ) as HTMLElement;
 
             if (popup) {
               const currentMaxHeight = popup.style.maxHeight;
@@ -432,7 +442,10 @@ export class MeBreadcrumbsComponent
 
     const visibleItems = this.breadcrumbItems.toArray();
 
-    const totalWidth = visibleItems.reduce((sum, item) => sum + item.nativeElement.offsetWidth, 0);
+    const totalWidth = visibleItems.reduce(
+      (sum, item) => sum + item.nativeElement.offsetWidth,
+      0
+    );
 
     if (totalWidth <= containerWidth) {
       this.cdr.markForCheck();
@@ -450,7 +463,7 @@ export class MeBreadcrumbsComponent
             return {
               visibleCount: result.visibleCount + 1,
               accumulatedWidth: result.accumulatedWidth + itemWidth,
-              shouldContinue: true
+              shouldContinue: true,
             };
           }
           return { ...result, shouldContinue: false };
@@ -462,7 +475,10 @@ export class MeBreadcrumbsComponent
 
     if (this.truncateFrom === 'right') {
       for (let i = visibleCount; i < visibleItems.length; i++) {
-        this.renderer.addClass(visibleItems[i].nativeElement, 'hidden-breadcrumb');
+        this.renderer.addClass(
+          visibleItems[i].nativeElement,
+          'hidden-breadcrumb'
+        );
         if (this.normalizedItems[i]) {
           this.overflowItems.push(this.normalizedItems[i]);
         }
@@ -471,7 +487,10 @@ export class MeBreadcrumbsComponent
     } else {
       const startIndex = visibleItems.length - visibleCount;
       for (let i = 0; i < startIndex; i++) {
-        this.renderer.addClass(visibleItems[i].nativeElement, 'hidden-breadcrumb');
+        this.renderer.addClass(
+          visibleItems[i].nativeElement,
+          'hidden-breadcrumb'
+        );
         if (this.normalizedItems[i]) {
           this.overflowItems.push(this.normalizedItems[i]);
         }
@@ -480,14 +499,18 @@ export class MeBreadcrumbsComponent
     }
 
     if (visibleCount > 0) {
-      const lastVisibleIndex = this.truncateFrom === 'right'
-        ? visibleCount - 1
-        : visibleCount;
+      const lastVisibleIndex =
+        this.truncateFrom === 'right' ? visibleCount - 1 : visibleCount;
 
-      const lastVisibleItem = this.breadcrumbItems.get(lastVisibleIndex)?.nativeElement;
+      const lastVisibleItem =
+        this.breadcrumbItems.get(lastVisibleIndex)?.nativeElement;
       const lastVisibleData = this.normalizedItems[lastVisibleIndex];
 
-      if (lastVisibleItem && lastVisibleData && !lastVisibleData.items?.length) {
+      if (
+        lastVisibleItem &&
+        lastVisibleData &&
+        !lastVisibleData.items?.length
+      ) {
         this.renderer.addClass(lastVisibleItem, 'hide-chevron');
       }
     }

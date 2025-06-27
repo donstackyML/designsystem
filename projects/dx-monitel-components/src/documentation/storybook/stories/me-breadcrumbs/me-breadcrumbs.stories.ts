@@ -60,8 +60,7 @@ export default {
     dropdownPosition: {
       control: 'select',
       options: ['top', 'bottom'],
-      description:
-        'Определяет положение выпадающего меню.',
+      description: 'Определяет положение выпадающего меню.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'bottom' },
@@ -215,67 +214,83 @@ export const TruncateFromRight: Story = {
 
 export const WithManyItems: Story = {
   args: {
-    items: [{
-      "text": "Home",
-      "url": "/",
-      "icon": "home"
-    }, {
-      "text": "Category 1",
-      "url": "/cat1",
-      "icon": "repeat"
-    }, {
-      "text": "Category 2",
-      "url": "/cat1/cat2",
-      "icon": "repeat"
-    }, {
-      "text": "Category 3",
-      "url": "/cat1/cat2/cat3",
-      "icon": "repeat"
-    }, {
-      "text": "Category 4",
-      "url": "/cat1/cat2/cat3/cat4",
-      "icon": "repeat"
-    }, {
-      "text": "Category 5",
-      "url": "/cat1/cat2/cat3/cat4/cat5",
-      "icon": "repeat"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }, {
-      "text": "Product",
-      "url": "/cat1/cat2/cat3/cat4/cat5/product",
-      "icon": "like"
-    }],
+    items: [
+      {
+        text: 'Home',
+        url: '/',
+        icon: 'home',
+      },
+      {
+        text: 'Category 1',
+        url: '/cat1',
+        icon: 'repeat',
+      },
+      {
+        text: 'Category 2',
+        url: '/cat1/cat2',
+        icon: 'repeat',
+      },
+      {
+        text: 'Category 3',
+        url: '/cat1/cat2/cat3',
+        icon: 'repeat',
+      },
+      {
+        text: 'Category 4',
+        url: '/cat1/cat2/cat3/cat4',
+        icon: 'repeat',
+      },
+      {
+        text: 'Category 5',
+        url: '/cat1/cat2/cat3/cat4/cat5',
+        icon: 'repeat',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+    ],
   },
 };
 
