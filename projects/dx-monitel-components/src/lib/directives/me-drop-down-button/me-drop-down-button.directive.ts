@@ -40,6 +40,7 @@ export class MeDropDownButtonDirective
   private focusService: ComponentFocusService;
 
   private removeMouseupListener?: () => void;
+  private observers: MutationObserver[] = [];
 
   constructor(
     private element: ElementRef,
@@ -72,6 +73,7 @@ export class MeDropDownButtonDirective
 
   ngOnDestroy(): void {
     this.focusService.ngOnDestroy();
+    this.observers.forEach((o) => o.disconnect());
   }
 
   get isSizeSmall() {
@@ -159,6 +161,26 @@ export class MeDropDownButtonDirective
 
   private createContentTemplate(contentElement: HTMLElement): void {
     contentElement.classList.add(`me-dropdownbutton-list-${this.size}`);
+
+    contentElement.querySelectorAll('.dx-list-item').forEach((item) => {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (
+            mutation.attributeName === 'class' &&
+            item.classList.contains('dx-state-focused') &&
+            (item.classList.contains('dx-state-hover') ||
+              item.classList.contains('dx-state-active') ||
+              item.classList.contains('dx-state-disabled'))
+          ) {
+            item.classList.remove('dx-state-focused');
+          }
+        });
+      });
+
+      observer.observe(item, { attributes: true, attributeFilter: ['class'] });
+      this.observers.push(observer);
+    });
+
     this.dividerService.addDividers({
       contentElement: contentElement,
       selector: '.dx-list-item',

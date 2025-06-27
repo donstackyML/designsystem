@@ -148,7 +148,8 @@ const meta = {
     },
     popupZIndex: {
       control: { type: 'number' },
-      description: 'Z-index для popup окна. Позволяет управлять порядком наложения всплывающего окна относительно других элементов на странице.',
+      description:
+        'Z-index для popup окна. Позволяет управлять порядком наложения всплывающего окна относительно других элементов на странице.',
       table: {
         type: { summary: 'number | null' },
         defaultValue: { summary: 'null' },
