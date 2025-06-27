@@ -27,7 +27,7 @@ function createMeListDefaultMockDataWithDividers() {
 
   return items.map((item, index) => ({
     ...item,
-    hasDivider: index % 3 === 0,
+    hasDivider: index % 2 === 0,
   }));
 }
 
