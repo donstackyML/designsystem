@@ -151,7 +151,7 @@ export default {
     },
   },
   args: {
-    type: 'normal',
+    buttonType: 'normal',
     text: 'Button',
     size: 'medium',
     stylingMode: 'contained',
@@ -191,31 +191,31 @@ export const SizeLarge: Story = {
 
 export const TypeNormal: Story = {
   args: {
-    type: 'normal',
+    buttonType: 'normal',
   },
 };
 
 export const TypeDefault: Story = {
   args: {
-    type: 'default',
+    buttonType: 'default',
   },
 };
 
 export const TypeSuccess: Story = {
   args: {
-    type: 'success',
+    buttonType: 'success',
   },
 };
 
 export const TypeWarning: Story = {
   args: {
-    type: 'warning',
+    buttonType: 'warning',
   },
 };
 
 export const TypeDanger: Story = {
   args: {
-    type: 'danger',
+    buttonType: 'danger',
   },
 };
 
