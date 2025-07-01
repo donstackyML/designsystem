@@ -31,6 +31,8 @@
   font-family: var(--font-family, 'Roboto', sans-serif);
   height: 100%;
 
+  --badge-padding-x: 44px;
+
   .me-menu-left__divider {
     height: 1px;
     background: $menu-left_menu_divider_color;
@@ -256,7 +258,7 @@
       padding: 0 16px;
 
       &:has(> .me-menu-left_item-badge):not(:has(:nth-child(2))) {
-        padding-right: 44px;
+        padding-right: var(--badge-padding-x);
       }
     }
 
@@ -279,7 +281,7 @@
         right: initial;
 
         &:has(> .me-menu-left_item-badge):not(:has(:nth-child(2))) {
-          padding-right: 0;
+          --badge-padding-x: 0;
         }
 
         .me-menu-left_item-badge {
