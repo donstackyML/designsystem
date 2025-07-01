@@ -388,6 +388,9 @@
 }
 
 .breadcrumbs {
+  --only-icon-padding-breadcrumb: 4px;
+  --only-icon-size: 20px;
+
   .menu-item {
     padding: 0;
 
@@ -404,6 +407,17 @@
         .dx-button-text {
           font-weight: var(--me-regular-font-weight);
         }
+
+        &:not(:has(.dx-button-text)) {
+          padding: var(--only-icon-padding-breadcrumb);
+          gap: 0;
+
+          .dx-icon {
+            width: var(--only-icon-size);
+            height: var(--only-icon-size);
+            line-height: normal;
+          }
+        }
       }
     }
 
@@ -412,6 +426,15 @@
         display: none;
       }
     }
+  }
+
+  &-medium {
+    --only-icon-padding-breadcrumb: 6px;
+  }
+
+  &-large {
+    --only-icon-padding-breadcrumb: 8px;
+    --only-icon-size: 24px;
   }
 }
 
@@ -428,6 +451,12 @@
 
         span {
           font-size: var(--me-breadcrumbs-overflow-popup-items-font-size);
+        }
+
+        &-content {
+          .dx-icon-spindown {
+            margin-left: auto;
+          }
         }
       }
     }
@@ -496,6 +525,10 @@
 
         &::before {
           display: none;
+        }
+
+        .dx-list-item-icon-container {
+          width: auto;
         }
       }
     }
