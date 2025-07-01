@@ -33,11 +33,11 @@ import { MeContextMenuModule } from '../../directives/me-context-menu/me-context
 import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-view.module';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { MeSize } from '../../types/types';
-import { MeIconComponent } from '../me-icon/me-icon.component';
 import {
   MeMenuLeftItem,
   MeMenuLeftItemComponent,
 } from './me-menu-left-item.component';
+import {MeIconsModule} from "@monitel/me-icons-registry";
 
 interface TreeNode {
   parent?: TreeNode;
@@ -53,13 +53,13 @@ interface TreeNode {
     CommonModule,
     DxTreeViewModule,
     DxButtonModule,
-    MeIconComponent,
     CdkDrag,
     MeMenuLeftItemComponent,
     DxContextMenuModule,
     MeContextMenuModule,
     DxScrollViewModule,
     MeScrollViewModule,
+    MeIconsModule
   ],
   templateUrl: './me-menu-left.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -77,11 +77,14 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   @Input() resizeHandleVisible: boolean = true;
   @Input() withHeader: boolean = true;
   @Input() size: MeSize = 'medium';
-  @Input() toggleIcon: string = 'drag';
-  @Input() expandedIcon: string = 'expand_less';
-  @Input() collapsedIcon: string = 'expand_more';
+  @Input() toggleIcon: string = 'drag_x20';
+  @Input() expandedIcon: string = 'expand_less_x20';
+  @Input() collapsedIcon: string = 'keyboard_arrow_down_x20';
   @Input() collapsedWidth: number = 86;
   @Input() expandedWidth: number = 336;
+  @Input() maxWidth?: number;
+
+  actualMaxWidth: number = window.innerWidth;
 
   private _items: MeMenuLeftItem[] = [];
   @Input()
@@ -164,8 +167,12 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     this.stateUpdate();
   }
 
+  ngOnInit(): void {
+    this.actualMaxWidth = this.maxWidth ? this.maxWidth : window.innerWidth;
+  }
+
   private stateUpdate(): void {
-    this.toggleIcon = this.collapsed ? 'chevron_right' : 'chevron_left';
+    this.toggleIcon = this.collapsed ? 'chevron_right_x20' : 'chevron_left_x20';
     if (this.collapsed) {
       this.width = this.collapsedWidth;
       this.updateItemExpanded(this._items, false);
@@ -258,9 +265,17 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   resize(target: HTMLElement): void {
     const dragRect = this.dragHandleRightElement.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
-    const newWidth = dragRect.left - (targetRect.left - dragRect.width / 2);
+
+    let newWidth = dragRect.left - (targetRect.left - dragRect.width / 2);
+
+    console.log(this.actualMaxWidth)
+
     if (newWidth <= this.collapsedWidth) {
       this.toggleMenuLeft();
+    } else if (this.actualMaxWidth && newWidth > this.actualMaxWidth) {
+      this.width = this.actualMaxWidth;
+
+      this.setAllHandleTransform();
     } else {
       this.width = newWidth;
     }

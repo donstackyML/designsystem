@@ -23628,17 +23628,32 @@ input.dx-hidden {
   flex-shrink: 0;
   padding: 0 16px;
 }
+.me-menu-left .me-menu-left_item-right:has(> .me-menu-left_item-badge):not(:has(:nth-child(2))) {
+  padding-right: 44px;
+}
 .me-menu-left .me-menu-left_item-badge {
-  background: #6e86c3;
+  background: var(--Badge-Red);
   color: #ffffff;
   border-radius: 12px;
-  padding: 0;
+  padding: 0 4px;
   min-width: 20px;
   height: 20px;
   font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.me-menu-left .me-menu-left_item-collapsed .me-menu-left_item-right {
+  left: 20px;
+  right: initial;
+}
+.me-menu-left .me-menu-left_item-collapsed .me-menu-left_item-right:has(> .me-menu-left_item-badge):not(:has(:nth-child(2))) {
+  padding-right: 0;
+}
+.me-menu-left .me-menu-left_item-collapsed .me-menu-left_item-right .me-menu-left_item-badge {
+  padding: 0;
+  min-width: 8px;
+  height: 8px;
 }
 .me-menu-left .me-menu-left_item-expand {
   width: 20px;

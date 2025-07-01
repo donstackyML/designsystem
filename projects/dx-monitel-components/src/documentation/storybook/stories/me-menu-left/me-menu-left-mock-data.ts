@@ -4,20 +4,20 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'tasks',
     text: 'Задачи',
-    icon: 'task',
+    icon: 'account_circle_x20',
     badge: 3,
     expanded: true,
     items: [
       {
         id: 'inbox',
         text: 'Входящие',
-        icon: 'folder',
+        icon: 'account_circle_x20',
         badge: 2,
       },
       {
         id: 'inprogress',
         text: 'В работе',
-        icon: 'folder',
+        icon: 'account_circle_x20',
         badge: 1,
       },
     ],
@@ -62,7 +62,7 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'settings',
     text: 'Настройки',
-    icon: 'settings',
+    icon: 'settings_x20',
   },
 ];
 
@@ -76,6 +76,6 @@ export const meMenuLeftBottomItems: MeMenuLeftItem[] = [
   {
     id: 'settings',
     text: 'Настройки',
-    icon: 'settings',
+    icon: 'settings_x20',
   },
 ];

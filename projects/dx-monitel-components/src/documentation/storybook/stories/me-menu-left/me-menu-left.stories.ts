@@ -101,29 +101,29 @@ export default {
     },
     toggleIcon: {
       control: 'select',
-      options: ['chevron_left', 'chevron_right', 'bookmark'],
+      options: ['chevron_left_x20', 'chevron_right_x20', 'arrow_back_x20', 'arrow_forward_x20'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'chevron_right' },
+        defaultValue: { summary: 'chevron_right_x20' },
       },
     },
     expandedIcon: {
       control: 'select',
-      options: ['', 'expand_less', 'expand_more'],
+      options: ['', 'expand_less_x20', 'expand_more_x20'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'expand_less' },
+        defaultValue: { summary: 'expand_less_x20' },
       },
     },
     collapsedIcon: {
       control: 'select',
-      options: ['', 'expand_more', 'expand_less'],
+      options: ['', 'expand_less_x20', 'keyboard_arrow_down_x20'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'expand_more' },
+        defaultValue: { summary: 'keyboard_arrow_down_x20' },
       },
     },
     collapsedWidth: {
@@ -150,6 +150,14 @@ export default {
         defaultValue: { summary: '336' },
       },
     },
+    maxWidth: {
+      control: 'number',
+      description: 'Максимальная ширина меню.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '600' },
+      },
+    },
   },
   parameters: {
     layout: 'fullscreen',
@@ -163,12 +171,13 @@ export default {
     withHeader: true,
     resizeHandleVisible: true,
     size: 'medium',
-    toggleIcon: 'chevron_right',
-    expandedIcon: 'expand_less',
-    collapsedIcon: 'expand_more',
+    toggleIcon: 'chevron_right_x20',
+    expandedIcon: 'expand_less_x20',
+    collapsedIcon: 'keyboard_arrow_down_x20',
     collapsedWidth: 86,
     expandedWidth: 336,
     width: 336,
+    maxWidth: 600
   },
   render: (args) => ({
     props: {
@@ -194,7 +203,8 @@ export default {
           [expandedWidth]="expandedWidth"
           [width]="width"
           (itemSelected)="onItemSelected($event)"
-          (collapsedChange)="onCollapsedChange($event)">
+          (collapsedChange)="onCollapsedChange($event)"
+          [maxWidth]="maxWidth">
            <div meMenuLeftHeader>
             <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
           </div>
@@ -244,7 +254,8 @@ export const WithCustomHeaderAndSearchBar: Story = {
           [expandedWidth]="expandedWidth"
           [width]="width"
           (itemSelected)="onItemSelected($event)"
-          (collapsedChange)="onCollapsedChange($event)">
+          (collapsedChange)="onCollapsedChange($event)"
+          [maxWidth]="maxWidth">
           <div meMenuLeftHeader class="me-menu-left-custom-header" [class.me-menu-left--collapsed]="collapsed" >
             <div class="me-menu-left-custom-header-title me-title-header1">{{ customTitle }}</div>
             <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
