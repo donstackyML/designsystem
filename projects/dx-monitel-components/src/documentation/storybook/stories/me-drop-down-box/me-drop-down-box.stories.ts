@@ -253,6 +253,7 @@ export const WithDataGrid: Story = {
           meDataGrid
           [dataSource]="dataSource"
           [columns]="['id', 'name']"
+          [selection]="{ mode: 'multiple' }"
           [hoverStateEnabled]="true"
           [filterRow]="{ visible: true }"
           [height]="300"
