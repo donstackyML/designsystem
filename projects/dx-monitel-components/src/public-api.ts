@@ -6,6 +6,7 @@ export { MeCardComponent } from './lib/components/me-card/me-card.component';
 export { MeChipComponent } from './lib/components/me-chip/me-chip.component';
 export { MeChipsComponent } from './lib/components/me-chips/me-chips.component';
 export { MeFileUploaderComponent } from './lib/components/me-file-uploader/me-file-uploader.component';
+export { MeHeaderComponent } from './lib/components/me-header';
 export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MeMenuLeftComponent } from './lib/components/me-menu-left/me-menu-left.component';
 export { MePaginationComponent } from './lib/components/me-pagination/me-pagination.component';
@@ -31,6 +32,7 @@ export { MeCheckBoxDirective } from './lib/directives/me-check-box/me-check-box.
 export { MeControlDirective } from './lib/directives/me-control/me-control.directive';
 export { MeDateBoxDirective } from './lib/directives/me-date-box/me-date-box.directive';
 export { MeDateRangeBoxDirective } from './lib/directives/me-date-range-box/me-date-range-box.directive';
+export { MeDropDownBoxDirective } from './lib/directives/me-drop-down-box/me-drop-down-box.directive';
 export { MeEditorDirective } from './lib/directives/me-editor/me-editor.directive';
 export { MeFileUploaderDirective } from './lib/directives/me-file-uploader/me-file-uploader.directive';
 export { MeFocusableDirective } from './lib/directives/me-focusable/me-focusable.directive';
@@ -42,7 +44,6 @@ export { MeListDirective } from './lib/directives/me-list/me-list.directive';
 export { MeNumberBoxDirective } from './lib/directives/me-number-box/me-number-box.directive';
 export { MeRadioGroupDirective } from './lib/directives/me-radio-group/me-radio-group.directive';
 export { MeSelectBoxDirective } from './lib/directives/me-select-box/me-select-box.directive';
-export { MeDropDownBoxDirective } from './lib/directives/me-drop-down-box/me-drop-down-box.directive';
 export { MeSliderDirective } from './lib/directives/me-slider/me-slider.directive';
 export { MeSwitchDirective } from './lib/directives/me-switch/me-switch.directive';
 export { MeTagBoxDirective } from './lib/directives/me-tag-box/me-tag-box.directive';
@@ -134,8 +135,8 @@ export { ThemesService } from './lib/service/themes.service';
 // Modules
 export { MeComponentsModule } from './lib/modules/me-components.module';
 export {
-  MeIconsInitializerModule,
   initializeIconsFactory,
+  MeIconsInitializerModule,
 } from './lib/modules/me-icons-initializer.module';
 
 // Types

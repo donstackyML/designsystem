@@ -49,7 +49,7 @@ import {
   MeToolbarModule,
   MeTooltipModule,
   MeTreeListModule,
-  MeTreeViewModule
+  MeTreeViewModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -157,7 +157,7 @@ import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-tim
     MeTextEditorDirective,
     MeToastDirective,
     MeBadgeDemoComponent,
-    MeTimeRangeDemoComponent
+    MeTimeRangeDemoComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -219,4 +219,4 @@ import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-tim
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -195,7 +195,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
 
   closeIcon = '';
 
-
   get popupWrapperAttr(): { [key: string]: string } {
     const baseClass = 'me-time-range-popup-wrapper';
 
@@ -210,7 +209,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
       };
     }
   }
-
 
   constructor() {
     this.closeIcon = this.meIconsRegistry.getIcon(closeX20);

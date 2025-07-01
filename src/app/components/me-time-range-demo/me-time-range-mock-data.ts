@@ -1,4 +1,8 @@
-import { defaultStepSettings, defaultTimeSteps, type TimeRangeConfig } from '../../../../projects/dx-monitel-components/me-components';
+import {
+  defaultStepSettings,
+  defaultTimeSteps,
+  type TimeRangeConfig,
+} from '../../../../projects/dx-monitel-components/me-components';
 
 export const defaultTimeRangeConfig: Partial<TimeRangeConfig> = {
   absoluteDate: {
@@ -15,7 +19,8 @@ export const defaultTimeRangeConfig: Partial<TimeRangeConfig> = {
       { text: 'Дни', key: 'days', enabled: false, value: 0 },
       { text: 'Часы', key: 'hours', enabled: false, value: 0 },
       { text: 'Минуты', key: 'minutes', enabled: false, value: 0 },
-      { text: 'Секунды', key: 'seconds', enabled: true, value: -20 }]
+      { text: 'Секунды', key: 'seconds', enabled: true, value: -20 },
+    ],
   },
   endShift: {
     type: 'mixed',
@@ -48,11 +53,11 @@ export const smallTimeRangeConfig: Partial<TimeRangeConfig> = {
   },
   startShift: {
     properties: null,
-    switchEnabled: false
+    switchEnabled: false,
   },
   endShift: {
     properties: null,
-    switchEnabled: false
+    switchEnabled: false,
   },
   step: {
     items: defaultTimeSteps,
