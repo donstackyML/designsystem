@@ -296,6 +296,7 @@ export class MeBreadcrumbsComponent
 
   showOverflowMenu(position: 'left' | 'right', event: any) {
     this.overflowMenuTarget = event.element as HTMLElement;
+
     if (this.overflowMenuTarget) {
       const invertSides = {
         left: 'right',
@@ -311,7 +312,7 @@ export class MeBreadcrumbsComponent
       const atPosition = `${this.dropdownPosition} ${invertSides[position]}`;
 
       const offsetY =
-        this.dropdownPosition === 'top' ? -this.offsetY : this.offsetY;
+        this.dropdownPosition === 'top' ? -10 : this.offsetY;
 
       this.contextMenuPosition = {
         my: myPosition,
