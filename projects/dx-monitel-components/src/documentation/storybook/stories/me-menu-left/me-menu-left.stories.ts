@@ -90,40 +90,31 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Размер меню.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'medium' },
-      },
-    },
     toggleIcon: {
       control: 'select',
-      options: ['chevron_left', 'chevron_right', 'bookmark'],
+      options: ['chevron_left_x20', 'chevron_right_x20', 'arrow_back_x20', 'arrow_forward_x20'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'chevron_right' },
+        defaultValue: { summary: 'chevron_right_x20' },
       },
     },
     expandedIcon: {
       control: 'select',
-      options: ['', 'expand_less', 'expand_more'],
+      options: ['', 'expand_less_x20', 'expand_more_x20'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'expand_less' },
+        defaultValue: { summary: 'expand_less_x20' },
       },
     },
     collapsedIcon: {
       control: 'select',
-      options: ['', 'expand_more', 'expand_less'],
+      options: ['', 'expand_less_x20', 'keyboard_arrow_down_x20'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'expand_more' },
+        defaultValue: { summary: 'keyboard_arrow_down_x20' },
       },
     },
     collapsedWidth: {
@@ -150,6 +141,14 @@ export default {
         defaultValue: { summary: '336' },
       },
     },
+    maxWidth: {
+      control: 'number',
+      description: 'Максимальная ширина меню.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '600' },
+      },
+    },
   },
   parameters: {
     layout: 'fullscreen',
@@ -162,13 +161,13 @@ export default {
     floatMode: false,
     withHeader: true,
     resizeHandleVisible: true,
-    size: 'medium',
-    toggleIcon: 'chevron_right',
-    expandedIcon: 'expand_less',
-    collapsedIcon: 'expand_more',
+    toggleIcon: 'chevron_right_x20',
+    expandedIcon: 'expand_less_x20',
+    collapsedIcon: 'keyboard_arrow_down_x20',
     collapsedWidth: 86,
     expandedWidth: 336,
     width: 336,
+    maxWidth: 600
   },
   render: (args) => ({
     props: {
@@ -186,7 +185,6 @@ export default {
           [floatMode]="floatMode"
           [withHeader]="withHeader"
           [resizeHandleVisible]="resizeHandleVisible"
-          [size]="size"
           [toggleIcon]="toggleIcon"
           [expandedIcon]="expandedIcon"
           [collapsedIcon]="collapsedIcon"
@@ -194,7 +192,8 @@ export default {
           [expandedWidth]="expandedWidth"
           [width]="width"
           (itemSelected)="onItemSelected($event)"
-          (collapsedChange)="onCollapsedChange($event)">
+          (collapsedChange)="onCollapsedChange($event)"
+          [maxWidth]="maxWidth">
            <div meMenuLeftHeader>
             <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
           </div>
@@ -235,7 +234,6 @@ export const WithCustomHeaderAndSearchBar: Story = {
           [floatMode]="floatMode"
           [withHeader]="withHeader"
           [resizeHandleVisible]="resizeHandleVisible"
-          [size]="size"
           [title]="title"
           [toggleIcon]="toggleIcon"
           [expandedIcon]="expandedIcon"
@@ -244,7 +242,8 @@ export const WithCustomHeaderAndSearchBar: Story = {
           [expandedWidth]="expandedWidth"
           [width]="width"
           (itemSelected)="onItemSelected($event)"
-          (collapsedChange)="onCollapsedChange($event)">
+          (collapsedChange)="onCollapsedChange($event)"
+          [maxWidth]="maxWidth">
           <div meMenuLeftHeader class="me-menu-left-custom-header" [class.me-menu-left--collapsed]="collapsed" >
             <div class="me-menu-left-custom-header-title me-title-header1">{{ customTitle }}</div>
             <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
@@ -313,23 +312,6 @@ export const FloatMode = {
   },
 };
 
-export const SmallSize = {
-  args: {
-    size: 'small',
-  },
-};
-
-export const MediumSize = {
-  args: {
-    size: 'medium',
-  },
-};
-
-export const LargeSize = {
-  args: {
-    size: 'large',
-  },
-};
 export const WithoutResizeHandle = {
   args: {
     resizeHandleVisible: false,
