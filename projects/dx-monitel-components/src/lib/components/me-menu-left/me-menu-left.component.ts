@@ -266,9 +266,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     const dragRect = this.dragHandleRightElement.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
 
-    let newWidth = dragRect.left - (targetRect.left - dragRect.width / 2);
-
-    console.log(this.actualMaxWidth)
+    const newWidth = dragRect.left - (targetRect.left - dragRect.width / 2);
 
     if (newWidth <= this.collapsedWidth) {
       this.toggleMenuLeft();
