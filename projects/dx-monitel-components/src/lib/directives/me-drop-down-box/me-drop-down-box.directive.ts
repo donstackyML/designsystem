@@ -28,6 +28,10 @@ import { ComponentFocusService } from '../../service/component-focus.service';
     '[class.me-drop-down-box-small]': 'isSizeSmall',
     '[class.me-drop-down-box-medium]': 'isSizeMedium',
     '[class.me-drop-down-box-large]': 'isSizeLarge',
+    '[class.me-drop-down-box-label-mode-hidden]': 'isHidden',
+    '[class.me-drop-down-box-label-mode-floating]': 'isFloating',
+    '[class.me-drop-down-box-label-mode-outside]': 'isOutside',
+    '[class.me-drop-down-box-label-mode-static]': 'isStatic',
   },
 })
 export class MeDropDownBoxDirective implements AfterViewInit {
@@ -157,5 +161,25 @@ export class MeDropDownBoxDirective implements AfterViewInit {
 
   get isSizeLarge() {
     return this.size === 'large';
+  }
+
+  get isFloating() {
+    let optionLabelMode = this.component.instance.option('labelMode');
+    return !optionLabelMode || optionLabelMode == 'floating';
+  }
+
+  get isOutside() {
+    let optionLabelMode = this.component.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'outside';
+  }
+
+  get isStatic() {
+    let optionLabelMode = this.component.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'static';
+  }
+
+  get isHidden() {
+    let optionLabelMode = this.component.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'hidden';
   }
 }
