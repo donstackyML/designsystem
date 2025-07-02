@@ -1,6 +1,5 @@
 import { NgIf, NgStyle } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MeSize } from '../../types/types';
 import {MeIconsModule} from "@monitel/me-icons-registry";
 
 export interface MeMenuLeftItem {
@@ -26,7 +25,6 @@ export class MeMenuLeftItemComponent implements OnInit, OnDestroy {
   @Input() collapsed: boolean = false;
   @Input() expandedIcon = 'expand_less_x20';
   @Input() collapsedIcon = 'keyboard_arrow_down_x20';
-  @Input() size: MeSize = 'medium';
   @Input() offset: number = 0;
 
   @Input() pressed = false;

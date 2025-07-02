@@ -90,15 +90,6 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-      description: 'Размер меню.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'medium' },
-      },
-    },
     toggleIcon: {
       control: 'select',
       options: ['chevron_left_x20', 'chevron_right_x20', 'arrow_back_x20', 'arrow_forward_x20'],
@@ -170,7 +161,6 @@ export default {
     floatMode: false,
     withHeader: true,
     resizeHandleVisible: true,
-    size: 'medium',
     toggleIcon: 'chevron_right_x20',
     expandedIcon: 'expand_less_x20',
     collapsedIcon: 'keyboard_arrow_down_x20',
@@ -195,7 +185,6 @@ export default {
           [floatMode]="floatMode"
           [withHeader]="withHeader"
           [resizeHandleVisible]="resizeHandleVisible"
-          [size]="size"
           [toggleIcon]="toggleIcon"
           [expandedIcon]="expandedIcon"
           [collapsedIcon]="collapsedIcon"
@@ -245,7 +234,6 @@ export const WithCustomHeaderAndSearchBar: Story = {
           [floatMode]="floatMode"
           [withHeader]="withHeader"
           [resizeHandleVisible]="resizeHandleVisible"
-          [size]="size"
           [title]="title"
           [toggleIcon]="toggleIcon"
           [expandedIcon]="expandedIcon"
@@ -324,23 +312,6 @@ export const FloatMode = {
   },
 };
 
-export const SmallSize = {
-  args: {
-    size: 'small',
-  },
-};
-
-export const MediumSize = {
-  args: {
-    size: 'medium',
-  },
-};
-
-export const LargeSize = {
-  args: {
-    size: 'large',
-  },
-};
 export const WithoutResizeHandle = {
   args: {
     resizeHandleVisible: false,

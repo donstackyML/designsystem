@@ -32,7 +32,7 @@ import PositionConfig = DevExpress.PositionConfig;
 import { MeContextMenuModule } from '../../directives/me-context-menu/me-context-menu.module';
 import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-view.module';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { MeSize } from '../../types/types';
+
 import {
   MeMenuLeftItem,
   MeMenuLeftItemComponent,
@@ -76,7 +76,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   @Input() floatMode: boolean = false;
   @Input() resizeHandleVisible: boolean = true;
   @Input() withHeader: boolean = true;
-  @Input() size: MeSize = 'medium';
   @Input() toggleIcon: string = 'drag_x20';
   @Input() expandedIcon: string = 'expand_less_x20';
   @Input() collapsedIcon: string = 'keyboard_arrow_down_x20';
