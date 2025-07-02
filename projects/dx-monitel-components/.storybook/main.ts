@@ -25,12 +25,6 @@ const config: StorybookConfig = {
     name: '@storybook/angular',
     options: {},
   },
-  build: {
-    test: {
-      disableAutoDocs: true,
-      disableDocgen: true,
-    },
-  },
   webpackFinal: async (config) => {
     if (config.optimization) {
       config.optimization.minimize = false;
