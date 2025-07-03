@@ -23,7 +23,7 @@ export default {
         defaultValue: { summary: '' },
       },
     },
-    type: {
+    buttonType: {
       control: 'select',
       options: ['default', 'normal', 'success', 'warning', 'danger'],
       description: `Определяет тип кнопки. В рамках дизайн-системы добавлен тип "warning".`,
