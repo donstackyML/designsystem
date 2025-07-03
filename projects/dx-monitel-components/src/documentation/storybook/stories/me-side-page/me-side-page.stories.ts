@@ -163,7 +163,7 @@ import {
       }
 
       .main-content {
-        height: calc(100dvh + 300px);
+        height: 100dvh;
 
         display: flex;
         flex-direction: column;

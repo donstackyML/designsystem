@@ -32,8 +32,6 @@ const config: StorybookConfig = {
       disableBlocks: false,
       disabledAddons: [],
       disableMDXEntries: false,
-      // disableAutoDocs: boolean;
-      // disableDocgen?: boolean;
       disableSourcemaps: false,
       disableTreeShaking: false,
     },

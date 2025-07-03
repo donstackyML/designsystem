@@ -16,7 +16,7 @@
         <ng-content select="[meMenuLeftHeader]"></ng-content>
       </div>
       <me-icon
-        [icon]="toggleIcon"
+        [name]="toggleIcon"
         size="medium"
         class="me-menu-left__toggle"
         [class.me-menu-left__toggle-active]="toggleBtnPressed"
@@ -46,7 +46,6 @@
           [collapsed]="collapsed"
           [expandedIcon]="expandedIcon"
           [collapsedIcon]="collapsedIcon"
-          [size]="size"
           [item]="node.item"
           [offset]="getMargin(node)"
           [pressed]="node.active"
@@ -88,6 +87,6 @@
       <path d="M7 5L5 5L5 3L7 3L7 5Z" fill="#808084" />
     </svg>
   </div>
-  <dx-context-menu #subMenu *ngIf="collapsed" meContextMenu [size]="size" [dataSource]="menuDatasource" (select)="selectSubmenuItem($event)" cssClass="me-menu-left">
+  <dx-context-menu #subMenu *ngIf="collapsed" meContextMenu [dataSource]="menuDatasource" (onItemClick)="selectSubmenuItem($event)" cssClass="me-menu-left">
   </dx-context-menu>
 </div>

@@ -9,13 +9,13 @@
   *ngIf="item"
 >
   <div class="me-menu-left_item-content" [ngStyle]="{ 'margin-left.px': offset }">
-    <me-icon *ngIf="item.icon" [icon]="item.icon" [size]="'medium'" class="me-menu-left_item-icon"></me-icon>
+    <me-icon *ngIf="item.icon" [name]="item.icon" [size]="20" class="me-menu-left_item-icon"></me-icon>
     <span *ngIf="!collapsed" class="me-menu-left_item-text">{{ item.text }}</span>
   </div>
   <div class="me-menu-left_item-right">
     <div *ngIf="item.badge" class="me-menu-left_item-badge">
-      {{ item.badge }}
+      <span *ngIf="!collapsed">{{ item.badge }}</span>
     </div>
-    <me-icon [icon]="item.expanded ? expandedIcon : collapsedIcon" [size]="size" *ngIf="item.items?.length && !collapsed"></me-icon>
+    <me-icon [name]="item.expanded ? expandedIcon : collapsedIcon" [size]="20" *ngIf="item.items?.length && !collapsed"></me-icon>
   </div>
 </div>
