@@ -189,6 +189,7 @@ export const WithTitleAndTooltip: Story = {
       uiVersion: '1.0.313',
       host: 'dev-opera-app1.oikdev.local',
     },
+    size: 'large',
   },
   render: (args) => ({
     props: args,
@@ -205,8 +206,8 @@ export const WithTitleAndTooltip: Story = {
     styles: [
       `
       .icon {
-        width: 28px;
-        height: 28px;
+        width: 40px;
+        height: 40px;
       }
     `,
     ],
@@ -223,6 +224,7 @@ export const WithTooltipOnly: Story = {
       uiVersion: '1.0.313',
       host: 'dev-opera-app1.oikdev.local',
     },
+    size: 'large',
   },
   render: (args) => ({
     props: args,
@@ -239,8 +241,8 @@ export const WithTooltipOnly: Story = {
     styles: [
       `
       .icon {
-        width: 28px;
-        height: 28px;
+        width: 40px;
+        height: 40px;
       }
     `,
     ],

@@ -29,11 +29,11 @@
       >
 
       <div *ngIf="appInfo && !withAppInfoTooltip" class="me-text-caption header__app-info">
-        <span *ngIf="appInfo.appVersion">{{ appInfo.appVersion }}</span>
+        <span class="header__app-info-item" *ngIf="appInfo.appVersion">{{ appInfo.appVersion }}</span>
         <div *ngIf="appInfo.appVersion" class="header__app-info-divider">|</div>
         <span *ngIf="appInfo.uiVersion">{{ appInfo.uiVersion }}</span>
         <div *ngIf="appInfo.uiVersion" class="header__app-info-divider">|</div>
-        <span *ngIf="appInfo.host">{{ appInfo.host }}</span>
+        <span class="header__app-info-item" *ngIf="appInfo.host">{{ appInfo.host }}</span>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
     </ng-container>
 
     <dx-button class="header__tooltip-btn" *ngIf="withAppInfoTooltip" id="tooltip-target" stylingMode="text" [hoverStateEnabled]="false">
-      <me-icon icon="info"></me-icon>
+      <me-icon [size]="size" icon="info"></me-icon>
     </dx-button>
   </div>
 
