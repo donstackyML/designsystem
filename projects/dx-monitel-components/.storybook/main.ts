@@ -29,6 +29,13 @@ const config: StorybookConfig = {
     test: {
       disableAutoDocs: true,
       disableDocgen: true,
+      disableBlocks: false,
+      disabledAddons: [],
+      disableMDXEntries: false,
+      // disableAutoDocs: boolean;
+      // disableDocgen?: boolean;
+      disableSourcemaps: false,
+      disableTreeShaking: false,
     },
   },
   webpackFinal: async (config) => {
