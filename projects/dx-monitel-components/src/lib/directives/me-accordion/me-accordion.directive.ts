@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
-import { MeSize } from '../../types/types';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meAccordion]',
@@ -8,12 +8,14 @@ import { ComponentFocusService } from '../../service/component-focus.service';
     '[class.me-accordion-small]': 'isSizeSmall',
     '[class.me-accordion-medium]': 'isSizeMedium',
     '[class.me-accordion-large]': 'isSizeLarge',
+    '[class.me-accordion-without-borders]': '!withBorders',
     '[class.customClass]': 'customClass',
   },
 })
 export class MeAccordionDirective {
   @Input() size: MeSize = 'medium';
   @Input() customClass: string = '';
+  @Input() withBorders = true;
 
   private focusService: ComponentFocusService;
   constructor(elementRef: ElementRef, renderer: Renderer2) {
