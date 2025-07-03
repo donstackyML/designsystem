@@ -1,23 +1,27 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-
+import {
+  Meta,
+  StoryObj,
+  moduleMetadata,
+  argsToTemplate,
+} from '@storybook/angular';
 import { NgStyle } from '@angular/common';
-import { MeIconComponent } from '../../../../public-api';
-import { iconOptions } from './me-icon-mock-data';
+import { iconOptions, meIcons } from './me-icon-mock-data';
+import { MeIconComponent, MeIconsModule } from '@monitel/me-icons-registry';
 
 export default {
   title: 'Components/Icon',
   component: MeIconComponent,
   decorators: [
     moduleMetadata({
-      imports: [MeIconComponent, NgStyle],
+      imports: [MeIconsModule, NgStyle],
     }),
   ],
   argTypes: {
-    icon: {
+    name: {
       control: {
         type: 'select',
       },
-      options: iconOptions,
+      options: meIcons,
       description: 'Имя иконки из Material Symbols',
       table: {
         type: { summary: 'string' },
@@ -43,7 +47,7 @@ export default {
     },
   },
   args: {
-    icon: 'home',
+    name: 'home',
     size: 'medium',
     color: 'currentColor',
   },
@@ -52,9 +56,7 @@ export default {
     template: `
     <div style="color: var(--Text-Default)">
       <me-icon
-        [icon]="icon"
-        [size]="size"
-        [color]="color">
+        ${argsToTemplate(args)}>
       </me-icon>
     </div>
     `,
@@ -87,7 +89,7 @@ export const SizeLarge: Story = {
 
 export const StarIconWithOrangeColor: Story = {
   args: {
-    icon: 'star',
+    name: 'star',
     color: '#ff5722',
   },
 };
@@ -96,11 +98,11 @@ export const AllIcons: Story = {
   render: () => ({
     template: `
       <div style="display: flex; flex-wrap: wrap; color: var(--Text-Default)">
-        ${iconOptions
+        ${meIcons
           .map(
             (icon) => `
           <div style="display: flex; flex-direction: column; align-items: center; margin: 10px; text-align: center; width: 100px;">
-            <me-icon icon="${icon}" size="large" color="currentColor"></me-icon>
+            <me-icon name="${icon}" size="large" color="currentColor"></me-icon>
             <p style="font-size: 12px; word-wrap: break-word;">${icon}</p>
           </div>
         `
