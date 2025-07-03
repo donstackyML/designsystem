@@ -154,18 +154,6 @@ export class MeDropDownBoxDirective extends MeFormField implements AfterViewInit
     }
   }
 
-  // get isSizeSmall() {
-  //   return this.size === 'small';
-  // }
-  //
-  // get isSizeMedium() {
-  //   return this.size === 'medium';
-  // }
-  //
-  // get isSizeLarge() {
-  //   return this.size === 'large';
-  // }
-
   get isFloating() {
     let optionLabelMode = this.component.instance.option('labelMode');
     return !optionLabelMode || optionLabelMode == 'floating';
