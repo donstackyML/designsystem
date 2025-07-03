@@ -1,6 +1,6 @@
 import { NgIf, NgStyle } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import {MeIconsModule} from "@monitel/me-icons-registry";
+import { MeIconsModule } from '@monitel/me-icons-registry';
 
 export interface MeMenuLeftItem {
   id: string;

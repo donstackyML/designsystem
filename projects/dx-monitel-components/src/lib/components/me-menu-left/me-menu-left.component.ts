@@ -26,7 +26,10 @@ import {
   DxScrollViewModule,
   DxTreeViewModule,
 } from 'devextreme-angular';
-import {DxContextMenuComponent, DxContextMenuTypes} from 'devextreme-angular/ui/context-menu';
+import {
+  DxContextMenuComponent,
+  DxContextMenuTypes,
+} from 'devextreme-angular/ui/context-menu';
 import PositionConfig = DevExpress.PositionConfig;
 
 import { MeContextMenuModule } from '../../directives/me-context-menu/me-context-menu.module';
@@ -37,7 +40,7 @@ import {
   MeMenuLeftItem,
   MeMenuLeftItemComponent,
 } from './me-menu-left-item.component';
-import {MeIconsModule} from "@monitel/me-icons-registry";
+import { MeIconsModule } from '@monitel/me-icons-registry';
 
 interface TreeNode {
   parent?: TreeNode;
@@ -59,7 +62,7 @@ interface TreeNode {
     MeContextMenuModule,
     DxScrollViewModule,
     MeScrollViewModule,
-    MeIconsModule
+    MeIconsModule,
   ],
   templateUrl: './me-menu-left.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

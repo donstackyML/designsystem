@@ -1057,5 +1057,5 @@ export const meIcons = [
   'сopied_analog_value_me_x20',
   'сopied_analog_value_me_x24',
   'сustomer_me_x20',
-  'сustomer_me_x24'
+  'сustomer_me_x24',
 ];

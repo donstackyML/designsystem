@@ -1,7 +1,12 @@
-import { Meta, StoryObj, moduleMetadata, argsToTemplate } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  moduleMetadata,
+  argsToTemplate,
+} from '@storybook/angular';
 import { NgStyle } from '@angular/common';
 import { iconOptions, meIcons } from './me-icon-mock-data';
-import { MeIconComponent, MeIconsModule } from "@monitel/me-icons-registry";
+import { MeIconComponent, MeIconsModule } from '@monitel/me-icons-registry';
 
 export default {
   title: 'Components/Icon',

@@ -4,7 +4,8 @@ import {
   ElementRef,
   HostListener,
   Input,
-  Renderer2, ViewContainerRef,
+  Renderer2,
+  ViewContainerRef,
 } from '@angular/core';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
@@ -27,7 +28,7 @@ export class MeContextMenuDirective {
     private element: ElementRef,
     private renderer: Renderer2,
     private dividerService: ListItemDividerService,
-    private viewContainerRef: ViewContainerRef,
+    private viewContainerRef: ViewContainerRef
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
@@ -64,17 +65,19 @@ export class MeContextMenuDirective {
 
     closestMenuItemElement.querySelector('.dx-icon')?.remove();
 
-    const itemContent = closestMenuItemElement.querySelector('.dx-item-content');
+    const itemContent =
+      closestMenuItemElement.querySelector('.dx-item-content');
 
     if (event.itemData?.icon) {
-      this.iconComponentRef = this.viewContainerRef.createComponent(MeIconComponent);
+      this.iconComponentRef =
+        this.viewContainerRef.createComponent(MeIconComponent);
 
-      this.iconComponentRef.setInput('name', event.itemData.icon)
+      this.iconComponentRef.setInput('name', event.itemData.icon);
 
       itemContent?.insertBefore(
         this.iconComponentRef.location.nativeElement,
-        itemContent?.firstChild,
-      )
+        itemContent?.firstChild
+      );
     }
 
     this.iconComponentRef?.changeDetectorRef.detectChanges();

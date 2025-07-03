@@ -311,8 +311,7 @@ export class MeBreadcrumbsComponent
 
       const atPosition = `${this.dropdownPosition} ${invertSides[position]}`;
 
-      const offsetY =
-        this.dropdownPosition === 'top' ? -10 : this.offsetY;
+      const offsetY = this.dropdownPosition === 'top' ? -10 : this.offsetY;
 
       this.contextMenuPosition = {
         my: myPosition,

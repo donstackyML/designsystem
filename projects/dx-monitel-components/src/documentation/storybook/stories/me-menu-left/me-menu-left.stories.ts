@@ -92,7 +92,12 @@ export default {
     },
     toggleIcon: {
       control: 'select',
-      options: ['chevron_left_x20', 'chevron_right_x20', 'arrow_back_x20', 'arrow_forward_x20'],
+      options: [
+        'chevron_left_x20',
+        'chevron_right_x20',
+        'arrow_back_x20',
+        'arrow_forward_x20',
+      ],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
@@ -167,7 +172,7 @@ export default {
     collapsedWidth: 86,
     expandedWidth: 336,
     width: 336,
-    maxWidth: 600
+    maxWidth: 600,
   },
   render: (args) => ({
     props: {
