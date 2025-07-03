@@ -17,12 +17,6 @@
   .dx-texteditor-container {
     width: 100%;
     align-items: center;
-
-    .dx-texteditor-input-container {
-      .dx-placeholder {
-        display: none;
-      }
-    }
   }
 
   &.dx-dropdownbox {
@@ -137,6 +131,34 @@
 }
 
 .me-drop-down-box-wrapper-popup {
+  --search-icon-size: 20px;
+  --search-icon-line-height: 18px;
+  --search-input-inline-padding: 0 8px;
+  --search-input-height: 28px;
+  --clear-icon-size: 12px;
+  --texteditor-input-padding: 0 4px 0 32px;
+
+  &-medium {
+    &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
+      .dx-popup-content:has(> .me-tree-view) {
+        --search-input-height: 32px;
+      }
+    }
+  }
+
+  &-large {
+    &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
+      .dx-popup-content:has(> .me-tree-view-large) {
+        --search-icon-size: 24px;
+        --search-icon-line-height: 24px;
+        --search-input-inline-padding: 0 12px;
+        --search-input-height: 40px;
+        --clear-icon-size: 16px;
+        --texteditor-input-padding: 0 4px 0 40px;
+      }
+    }
+  }
+
   &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
     padding: 16px;
 
@@ -167,6 +189,46 @@
 
           &.dx-state-disabled {
             background: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+          }
+
+          .dx-texteditor-container {
+            padding: var(--search-input-inline-padding);
+            height: var(--search-input-height);
+
+            .dx-texteditor-input-container {
+              .dx-placeholder::before {
+                padding: var(--texteditor-input-padding);
+              }
+
+              .dx-icon-search {
+                width: auto;
+                height: auto;
+                font-size: var(--search-icon-size);
+                line-height: var(--search-icon-line-height);
+                margin-top: 0;
+                padding: 0;
+                transform: translateY(-50%);
+              }
+            }
+
+            .dx-texteditor-input {
+              padding: var(--texteditor-input-padding);
+            }
+
+            .dx-placeholder::before {
+              padding-block: 0;
+            }
+
+            .dx-texteditor-buttons-container {
+              .dx-clear-button-area {
+                width: auto;
+                min-width: auto;
+
+                .dx-icon-clear {
+                  font-size: var(--clear-icon-size);
+                }
+              }
+            }
           }
         }
 

@@ -20,6 +20,7 @@ import { type MeScrollbarShowType, MeSize } from '../../types/types';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
 import { MeIconComponent } from '@monitel/me-icons-registry';
 import { ComponentFocusService } from '../../service/component-focus.service';
+import {MeFormField} from "../me-form-item/me-form-field";
 
 @Directive({
   selector: '[meDropDownBox]',
@@ -33,9 +34,10 @@ import { ComponentFocusService } from '../../service/component-focus.service';
     '[class.me-drop-down-box-label-mode-outside]': 'isOutside',
     '[class.me-drop-down-box-label-mode-static]': 'isStatic',
   },
+  providers: [{ provide: MeFormField, useExisting: MeDropDownBoxDirective }],
 })
-export class MeDropDownBoxDirective implements AfterViewInit {
-  @Input() size: MeSize = 'small';
+export class MeDropDownBoxDirective extends MeFormField implements AfterViewInit {
+  @Input() override size: MeSize = 'small';
   @Input() dropDownListMaxHeight?: string | number;
   @Input() leftIcon?: string = '';
   @Input() showScrollbar: MeScrollbarShowType = 'always';
@@ -43,12 +45,13 @@ export class MeDropDownBoxDirective implements AfterViewInit {
   private focusService: ComponentFocusService;
 
   constructor(
-    private element: ElementRef,
-    private component: DxDropDownBoxComponent,
+    public element: ElementRef,
+    protected override component: DxDropDownBoxComponent,
     private dropDownOptionsService: DropDownOptionsService,
     private viewContainerRef: ViewContainerRef,
     private renderer: Renderer2
   ) {
+    super(component);
     this.focusService = new ComponentFocusService(element, renderer);
   }
 
@@ -151,17 +154,17 @@ export class MeDropDownBoxDirective implements AfterViewInit {
     }
   }
 
-  get isSizeSmall() {
-    return this.size === 'small';
-  }
-
-  get isSizeMedium() {
-    return this.size === 'medium';
-  }
-
-  get isSizeLarge() {
-    return this.size === 'large';
-  }
+  // get isSizeSmall() {
+  //   return this.size === 'small';
+  // }
+  //
+  // get isSizeMedium() {
+  //   return this.size === 'medium';
+  // }
+  //
+  // get isSizeLarge() {
+  //   return this.size === 'large';
+  // }
 
   get isFloating() {
     let optionLabelMode = this.component.instance.option('labelMode');

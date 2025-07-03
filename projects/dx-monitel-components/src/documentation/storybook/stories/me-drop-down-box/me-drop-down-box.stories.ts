@@ -240,6 +240,7 @@ export const WithTreeView: Story = {
         valueExpr="id"
         [placeholder]="placeholder"
         [size]="size"
+        [showClearButton]="showClearButton"
       >
         <dx-tree-view
           meTreeView
@@ -253,6 +254,7 @@ export const WithTreeView: Story = {
           displayExpr="name"
           [selectByClick]="true"
           [searchEnabled]="true"
+          size="large"
         >
         </dx-tree-view>
       </dx-drop-down-box>
