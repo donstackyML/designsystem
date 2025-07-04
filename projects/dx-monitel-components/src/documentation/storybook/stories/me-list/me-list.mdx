@@ -192,6 +192,35 @@ public itemsWithIcons: Item[] = [
   language="js"
 />
 
+### Работа с двумя иконками
+
+В этом примере показано, как использовать две иконки в элементах списка. Сначала необходимо подключить сервис иконок (например, через `iconStore.getIcon`), а затем передать полученные иконки в свойства `icon` и `icon2`. Можно также задать цвет иконок с помощью свойства `color` в объекте опций.
+
+<Canvas name="Работа с иконками" of={listStories.ContentWithTwoIcons} />
+
+<Source
+  code={`
+/ Пример использования двух иконок в данных списка /
+public itemsWithIcons: Item[] = [
+  {
+    name: 'Apples',
+    icon: iconStore.getIcon({ icon: 'check', size: '24', color: '#4caf50' }),
+    icon2: iconStore.getIcon({ icon: 'add', size: '24', color: '#4caf50' }),
+  },
+  // другие элементы...
+];
+
+// В шаблоне:
+<dx-list
+  meList
+  [dataSource]="itemsWithIcons"
+  displayExpr="name">
+</dx-list>
+  `}
+  dark
+  language="js"
+/>
+
 ### Видимость разделителей
 
 Свойство `dividersVisibility` определяет видимость разделителей у элементов списка в выпадающем меню:

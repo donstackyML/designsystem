@@ -14,6 +14,7 @@ import {
   meListMockDataWithHeaders,
   meListMockDataWithIcons,
   meListMockDataWithImageAndDescription,
+  meListMockDataWithTwoIcons,
 } from './me-list-mock-data';
 
 export default {
@@ -386,6 +387,12 @@ export const DividersVisibilityByContent: Story = {
 export const ContentWithIcons: Story = {
   args: {
     dataSource: meListMockDataWithIcons,
+  },
+};
+
+export const ContentWithTwoIcons: Story = {
+  args: {
+    dataSource: meListMockDataWithTwoIcons,
   },
 };
 

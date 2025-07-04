@@ -24,6 +24,7 @@ import { MeSize } from '../../types/types';
 export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'large';
   @Input() textTruncateBehavior: 'truncate' | 'wrap' = 'wrap';
+  @Input() dataSource: unknown[] = [];
 
   private tooltipRefs: Map<HTMLElement, any> = new Map();
   private focusService: ComponentFocusService;
@@ -48,6 +49,26 @@ export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
     this.component.onItemCollapsed.subscribe(() =>
       setTimeout(() => this.updateTooltips(), 0)
     );
+
+    (this.element.nativeElement as HTMLElement)
+      .querySelectorAll('.dx-treeview-item')
+      .forEach((item, index) => {
+        const dataItem = this.dataSource[index] as { icon2?: string };
+        const firstIcon = item.querySelector('.dx-svg-icon');
+
+        if (dataItem.icon2 && firstIcon) {
+          const secondIcon = this.renderer.createElement('i');
+          this.renderer.addClass(secondIcon, 'dx-icon');
+          this.renderer.addClass(secondIcon, 'dx-svg-icon');
+          secondIcon.innerHTML = dataItem.icon2;
+
+          this.renderer.insertBefore(
+            firstIcon.parentNode,
+            secondIcon,
+            firstIcon.nextSibling
+          );
+        }
+      });
   }
 
   @HostListener('window:resize')
