@@ -43,6 +43,7 @@ export default {
     size: 'medium',
     collapsible: false,
     multiple: false,
+    withBorders: true,
   },
   render: (args) => ({
     props: args,
@@ -53,6 +54,7 @@ export default {
         [collapsible]="collapsible"
         [multiple]="multiple"
         [dataSource]="dataSource"
+        [withBorders]="withBorders"
       >
         <div *dxTemplate="let item of 'title'">
           <div class="custom-header-container">
@@ -106,6 +108,12 @@ export const Collapsible: Story = {
 export const Multiple: Story = {
   args: {
     multiple: true,
+  },
+};
+
+export const WithoutBorders: Story = {
+  args: {
+    withBorders: false,
   },
 };
 

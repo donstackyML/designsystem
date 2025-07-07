@@ -7,6 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { DxButtonComponent } from 'devextreme-angular';
+import { MeButtonType } from 'src/app/types/types';
 import { MeIconStoreService } from '../../service/icon-store.service';
 import { MeControlDirective } from '../me-control/me-control.directive';
 
@@ -19,7 +20,11 @@ const DEFAULT_ICON_COLOR = '#ffffff';
     '[class.me-button-small]': 'size === "small"',
     '[class.me-button-medium]': 'size === "medium"',
     '[class.me-button-large]': 'size === "large"',
-    '[class.me-button-warning]': 'type === "warning"',
+    '[class.dx-button-default]': 'buttonType === "default"',
+    '[class.dx-button-normal]': 'buttonType === "normal"',
+    '[class.dx-button-success]': 'buttonType === "success"',
+    '[class.me-button-warning]': 'buttonType === "warning"',
+    '[class.dx-button-danger]': 'buttonType === "danger"',
     '[class.me-button-icon-only]': '!!iconOnly',
     '[class.me-button-icon]': 'leftIcon || rightIcon',
     '[class.me-state-selected]': 'isSelected',
@@ -38,6 +43,7 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
   @Input() selectionStateEnable: boolean = false;
   @Input() isSelected: boolean = false;
   @Input() template: string | Function | HTMLElement = 'content';
+  @Input() buttonType: MeButtonType = 'normal';
 
   constructor(
     private element: ElementRef,
@@ -54,6 +60,8 @@ export class MeButtonDirective extends MeControlDirective implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.type = this.buttonType;
+
     if (!this.iconColor) {
       if (this.stylingMode !== 'contained' || this.type === 'normal') {
         this.iconColor = `var(--button-${this.type}-icon-color)`;
