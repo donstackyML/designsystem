@@ -119,7 +119,7 @@ import {
           meButton
           text="Сохранить"
           stylingMode="contained"
-          type="default"
+          buttonType="default"
         ></dx-button>
         <dx-button
           meButton
@@ -163,7 +163,7 @@ import {
       }
 
       .main-content {
-        height: calc(100dvh + 300px);
+        height: 100dvh;
 
         display: flex;
         flex-direction: column;
