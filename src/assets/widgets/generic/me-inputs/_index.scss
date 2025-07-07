@@ -35,7 +35,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
         --input-height: 36px;
         --padding-inline-left: 8px;
-        --padding-inline-right: 8px;
+        --padding-inline-right: 4px;
         --padding-block: 2px;
 
         --input-top-offset: 17px;
@@ -45,7 +45,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --label-line-height: 16px;
 
         --icon-width: 20px;
-        --icon-wrapper-size: 26px;
+        --icon-wrapper-size: 20px;
         --icon-lock-inner-height: 17px;
         --clear-icon-inner-width: 12px;
         --dropdowneditor-icon: 16px;
@@ -67,7 +67,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --input-fields-gap: 4px;
 
         --padding-inline-left: 8px;
-        --padding-inline-right: 8px;
+        --padding-inline-right: 4px;
         --padding-block: 2px;
 
         --input-top-offset: 17px;
@@ -77,7 +77,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --label-line-height: 16px;
 
         --icon-width: 20px;
-        --icon-wrapper-size: 30px;
+        --icon-wrapper-size: 20px;
         --icon-lock-inner-height: 17px;
         --clear-icon-inner-width: 12px;
         --dropdowneditor-icon: 16px;
@@ -99,7 +99,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --input-fields-gap: 4px;
 
         --padding-inline-left: 12px;
-        --padding-inline-right: 12px;
+        --padding-inline-right: 8px;
         --padding-block: 5.5px;
 
         --input-top-offset: 22px;
@@ -109,7 +109,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --label-line-height: 16px;
 
         --icon-width: 24px;
-        --icon-wrapper-size: 38px;
+        --icon-wrapper-size: 24px;
         --icon-lock-inner-height: 21px;
         --clear-icon-inner-width: 16px;
         --dropdowneditor-icon: 18px;
@@ -200,6 +200,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         color: var(--Controls-Content-In-Controls-Main-Default);
 
         &:has(> div:empty) {
+          position: relative;
           width: var(--icon-wrapper-size);
           height: var(--icon-wrapper-size);
           justify-content: center;
@@ -240,7 +241,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &.dx-datebox {
       .dx-texteditor-container {
-        padding-right: 4px;
+        padding-right: var(--padding-inline-right);
       }
     }
 
@@ -708,6 +709,11 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     .dx-texteditor-buttons-container .dx-numberbox-spin-container {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+
       .dx-numberbox-spin-up,
       .dx-numberbox-spin-down {
         width: var(--number-box-spin-button-width);
