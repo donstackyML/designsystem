@@ -4313,52 +4313,47 @@
 }
 
 .dx-accordion-item {
-  border-radius: 3px 3px 0 0;
-  border-inline: 1px solid transparent;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
 }
 .dx-accordion-item:last-child {
   border-bottom: 1px solid #dfe0ed;
 }
+.dx-accordion-item.dx-item-selected > .dx-accordion-item-title {
+  background: rgba(60, 113, 248, 0.2);
+}
 .dx-accordion-item.dx-state-active:not(.dx-accordion-item-opened) .dx-icon {
   color: #18181a;
 }
 .dx-accordion-item.dx-state-active:not(.dx-accordion-item-opened) > .dx-accordion-item-title {
   color: #18181a;
-  background-color: rgba(60, 101, 248, 0.2);
   border-color: rgba(60, 101, 248, 0.1215686275);
 }
-.dx-accordion-item.dx-state-hover > .dx-accordion-item-title {
+.dx-accordion-item.dx-state-hover > .dx-accordion-item-title:hover {
   background-color: rgba(60, 101, 248, 0.1215686275);
 }
 .dx-accordion-item.dx-state-hover:not(.dx-accordion-item-opened) {
-  border-radius: 3px;
   border-color: rgba(60, 101, 248, 0.1215686275);
 }
 .dx-accordion-item.dx-state-hover:not(:last-child):not(.dx-accordion-item-opened):not(.dx-state-focused) {
-  border-bottom-color: rgba(60, 101, 248, 0.1215686275);
+  border-bottom-color: #dfe0ed;
 }
 .dx-accordion-item.dx-state-active > .dx-accordion-item-title {
-  background-color: rgba(60, 101, 248, 0.2);
+  background-color: rgba(60, 113, 248, 0.2);
 }
 .dx-accordion-item.dx-state-active:not(.dx-accordion-item-opened) {
-  border-radius: 3px;
-  border-color: rgba(60, 101, 248, 0.2);
+  border-color: rgba(60, 113, 248, 0.2);
 }
 .dx-accordion-item.dx-state-active:not(:last-child):not(.dx-accordion-item-opened):not(.dx-state-focused) {
-  border-bottom-color: rgba(60, 101, 248, 0.2);
+  border-bottom-color: rgba(60, 113, 248, 0.2);
 }
 
 .dx-accordion-item-opened {
-  border-radius: 3px;
-  border: 1px solid #dfe0ed;
-}
-.dx-accordion-item-opened.dx-state-hover > .dx-accordion-item-title {
-  background-color: transparent;
+  border-bottom-color: #dfe0ed;
+  border-top-color: #dfe0ed;
 }
 .dx-accordion-item-opened.dx-state-active > .dx-accordion-item-title {
-  background-color: transparent;
+  background-color: rgba(60, 113, 248, 0.2);
 }
 .dx-accordion-item-opened > .dx-accordion-item-title {
   background-color: transparent;
@@ -4462,6 +4457,11 @@
 .dx-accordion-item-title .custom-header-description {
   font-family: var(--accordion-font-family);
   color: var(--accordion-description-color);
+}
+
+.me-accordion-without-borders .dx-accordion-item {
+  border-top: none;
+  border-bottom: none;
 }
 
 .me-accordion-small {
