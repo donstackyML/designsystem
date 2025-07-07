@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule, DxDropDownButtonModule } from 'devextreme-angular';
 import {
   MeButtonModule,
@@ -209,7 +209,7 @@ export const ComplexCard: Story = {
             text="Принять"
             [stylingMode]="'normal'"
             [size]="size"
-            type="default"
+            buttonType="default"
           ></dx-button>
           <dx-button
             meButton
@@ -331,7 +331,7 @@ export const LimitedAndScrollableContent: Story = {
             text="Принять"
             [stylingMode]="'normal'"
             [size]="size"
-            type="default"
+            buttonType="default"
           ></dx-button>
           <dx-button
             meButton
@@ -456,7 +456,7 @@ export const UnlimitedContent: Story = {
             text="Принять"
             [size]="size"
             [stylingMode]="'normal'"
-            type="default"
+            buttonType="default"
           ></dx-button>
           <dx-button
             meButton

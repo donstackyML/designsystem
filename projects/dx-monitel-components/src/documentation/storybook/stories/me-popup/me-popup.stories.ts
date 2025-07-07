@@ -332,7 +332,7 @@ export const Button: Story = {
     <dx-popup mePopup ${argsToTemplate(args)}>
      <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'addButton'">
-        <dx-button meButton text="Добавить" type="default" width="100%"></dx-button>
+        <dx-button meButton text="Добавить" buttonType="default" width="100%"></dx-button>
       </div>
     </dx-popup></div>`,
   }),
@@ -363,7 +363,7 @@ export const Buttons: Story = {
      <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"></dxi-toolbar-item>
      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"></dxi-toolbar-item>
       <div *dxTemplate="let data of 'addButton'">
-        <dx-button meButton type="default" text="Добавить"></dx-button>
+        <dx-button meButton buttonType="default" text="Добавить"></dx-button>
       </div>
       <div *dxTemplate="let data of 'cancelButton'">
           <dx-button meButton text="Отмена"></dx-button>
@@ -424,7 +424,7 @@ export const DialogMedium: Story = {
           meButton
           size="medium"
           text="Принять"
-          type="default"
+          buttonType="default"
         ></dx-button>
       </div>
       <div *dxTemplate="let data of 'cancelButton'">
@@ -479,7 +479,7 @@ export const DialogLarge: Story = {
           meButton
           size="large"
           text="Принять"
-          type="default"
+          buttonType="default"
         ></dx-button>
       </div>
       <div *dxTemplate="let data of 'cancelButton'">
@@ -579,7 +579,7 @@ export const ScrollableContentWithButtons: Story = {
           </dx-button>
         </div>
         <div *dxTemplate="let data of 'confirmButton'">
-          <dx-button meButton text="Принять" type="default"></dx-button>
+          <dx-button meButton text="Принять" buttonType="default"></dx-button>
         </div>
         <div *dxTemplate="let data of 'cancelButton'">
           <dx-button meButton text="Отмена"></dx-button>
@@ -655,7 +655,7 @@ export const SizeMedium: Story = {
             </dx-button>
         </div>
         <div *dxTemplate="let data of 'confirmButton'">
-          <dx-button meButton text="Принять" type="default" size="medium"></dx-button>
+          <dx-button meButton text="Принять" buttonType="default" size="medium"></dx-button>
         </div>
         <div *dxTemplate="let data of 'cancelButton'">
           <dx-button meButton text="Отмена" size="medium"></dx-button>
@@ -716,7 +716,7 @@ export const SizeLarge: Story = {
             </dx-button>
         </div>
         <div *dxTemplate="let data of 'confirmButton'">
-          <dx-button meButton text="Принять" type="default" size="large"></dx-button>
+          <dx-button meButton text="Принять" buttonType="default" size="large"></dx-button>
         </div>
         <div *dxTemplate="let data of 'cancelButton'">
           <dx-button meButton text="Отмена" size="large"></dx-button>

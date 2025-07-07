@@ -215,7 +215,7 @@ export const WithForm: Story = {
           </dx-file-uploader>
         </div>
         <div class='form-btn-box'>
-          <dx-button meButton type='default' size="small" text='Update profile'></dx-button>
+          <dx-button meButton buttonType='default' size="small" text='Update profile'></dx-button>
         </div>
       </form>
     `,
