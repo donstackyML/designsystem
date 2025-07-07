@@ -7,7 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -17,12 +17,12 @@ import {
   Output,
   Renderer2,
   SimpleChanges,
-  ViewChild,
+  ViewChild, ViewContainerRef,
 } from '@angular/core';
 import DevExpress from 'devextreme';
 import {
   DxButtonModule,
-  DxContextMenuModule,
+  DxContextMenuModule, DxDropDownBoxComponent,
   DxScrollViewModule,
   DxTreeViewModule,
 } from 'devextreme-angular';
@@ -79,7 +79,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   @Input() floatMode: boolean = false;
   @Input() resizeHandleVisible: boolean = true;
   @Input() withHeader: boolean = true;
-  @Input() toggleIcon: string = 'drag_x20';
+  @Input() toggleIcon: string = 'chevron_left_x24';
   @Input() expandedIcon: string = 'expand_less_x20';
   @Input() collapsedIcon: string = 'keyboard_arrow_down_x20';
   @Input() collapsedWidth: number = 86;
@@ -137,6 +137,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   private _withStarted = 0;
   private _transition = '';
   private focusService: ComponentFocusService;
+  private overlay?: HTMLDivElement;
 
   constructor(
     private element: ElementRef,
@@ -171,10 +172,15 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   ngOnInit(): void {
     this.actualMaxWidth = this.maxWidth ? this.maxWidth : window.innerWidth;
+
+    if (this.floatMode) {
+      this.createShading();
+    }
   }
 
   private stateUpdate(): void {
-    this.toggleIcon = this.collapsed ? 'chevron_right_x20' : 'chevron_left_x20';
+    this.toggleIcon = this.collapsed ? 'chevron_right_x24' : 'chevron_left_x24';
+
     if (this.collapsed) {
       this.width = this.collapsedWidth;
       this.updateItemExpanded(this._items, false);
@@ -186,19 +192,13 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   updateDragHandler(): void {
     if (!this.collapsed) {
-      const targetRect = this.resizeBoxElement.getBoundingClientRect();
-      const translateX = targetRect.width;
-
       this.renderer.setStyle(
         this.dragHandleRight.nativeElement,
         'opacity',
         `1`
       );
-      this.renderer.setStyle(
-        this.dragHandleRight.nativeElement,
-        'transform',
-        `translateX(${translateX}px)`
-      );
+
+      this.setAllHandleTransform()
     }
   }
 
@@ -216,7 +216,8 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   setHandleTransform(dragHandle: HTMLElement, targetRect: DOMRect): void {
     const dragRect = dragHandle.getBoundingClientRect();
-    const translateX = targetRect.width - dragRect.width;
+    const translateX = targetRect.width - (dragRect.width / 2);
+
     this.renderer.setStyle(
       dragHandle,
       'transform',
@@ -301,11 +302,27 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   showPopup(target: Element, item: MeMenuLeftItem): void {
     const position: PositionConfig = { at: 'right top' };
-    this.subMenuComponent.cssClass = 'me-menu-left-popup';
-    this.subMenuComponent.target = target;
-    this.subMenuComponent.position = position;
-    this.subMenuComponent.dataSource = item.items || [];
-    this.subMenuComponent.visible = true;
+    this.subMenuComponent.instance.option({
+      cssClass: 'me-menu-left-popup',
+      target: target,
+      position,
+      dataSource: item.items || [],
+      visible: true,
+      onShown: () => {
+        queueMicrotask(() => {
+          const popup = document.querySelector(
+            '.me-menu-left-popup'
+          ) as HTMLElement;
+
+          if (popup) {
+            const currentMaxHeight = popup.style.maxHeight;
+            const currentValue = parseInt(currentMaxHeight);
+            popup.style.maxHeight = `${currentValue + 8}px`;
+          }
+        });
+      }
+      }
+    )
   }
 
   private itemSelect(item: MeMenuLeftItem): void {
@@ -487,5 +504,14 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   togglePressedUp(): void {
     this.toggleBtnPressed = false;
+  }
+
+  createShading(): void {
+    this.overlay = this.renderer.createElement('div');
+    this.renderer.addClass(this.overlay, 'me-overlay');
+    this.renderer.setStyle(this.overlay, 'z-index', 99);
+    this.renderer.setStyle(this.overlay, 'position', 'fixed');
+    this.renderer.setStyle(this.overlay, 'display', 'block');
+    this.renderer.appendChild(document.body, this.overlay);
   }
 }

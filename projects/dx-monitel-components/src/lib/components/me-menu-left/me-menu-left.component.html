@@ -7,6 +7,15 @@
   [class.float-mode]="floatMode"
   [style.width]="getCurrentWidth() + 'px'"
 >
+  <me-icon
+    [name]="toggleIcon"
+    size="24"
+    class="me-menu-left__toggle"
+    [class.me-menu-left__toggle-active]="toggleBtnPressed"
+    (click)="toggleMenuLeft()"
+    (pressup)="togglePressedUp()"
+    (press)="togglePressed()"
+  ></me-icon>
   <div class="me-menu-left__content">
     <div #menuLeftHeader class="me-menu-left__header" [class.me-menu-left__header-hidden]="!withHeader">
       <div class="me-menu-left__header-content">
@@ -15,16 +24,6 @@
         </span>
         <ng-content select="[meMenuLeftHeader]"></ng-content>
       </div>
-      <me-icon
-        [name]="toggleIcon"
-        size="medium"
-        class="me-menu-left__toggle"
-        [class.me-menu-left__toggle-active]="toggleBtnPressed"
-        (click)="toggleMenuLeft()"
-        (pressup)="togglePressedUp()"
-        (press)="togglePressed()"
-      >
-      </me-icon>
     </div>
     <div class="me-menu-left__divider" *ngIf="withHeader"></div>
     <ng-content select="[meMenuLeftSearch]"></ng-content>
