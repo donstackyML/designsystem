@@ -155,22 +155,22 @@ export class MeDropDownBoxDirective extends MeFormField implements AfterViewInit
   }
 
   get isFloating() {
-    let optionLabelMode = this.component.instance.option('labelMode');
-    return !optionLabelMode || optionLabelMode == 'floating';
+    const optionLabelMode = this.component.instance.option('labelMode');
+    return optionLabelMode && optionLabelMode == 'floating';
   }
 
   get isOutside() {
-    let optionLabelMode = this.component.instance.option('labelMode');
+    const optionLabelMode = this.component.instance.option('labelMode');
     return optionLabelMode && optionLabelMode == 'outside';
   }
 
   get isStatic() {
-    let optionLabelMode = this.component.instance.option('labelMode');
+    const optionLabelMode = this.component.instance.option('labelMode');
     return optionLabelMode && optionLabelMode == 'static';
   }
 
   get isHidden() {
-    let optionLabelMode = this.component.instance.option('labelMode');
+    const optionLabelMode = this.component.instance.option('labelMode');
     return optionLabelMode && optionLabelMode == 'hidden';
   }
 }
