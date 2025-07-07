@@ -5,7 +5,7 @@ const iconStore = new MeIconStoreService();
 export const meContextMenuMockData = [
   {
     text: 'Заголовок группы уровень 1',
-    icon: 'bookmark',
+    icon: 'account_circle_x20',
     disabled: true,
     beginGroup: true,
   },

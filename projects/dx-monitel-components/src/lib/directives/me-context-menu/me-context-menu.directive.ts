@@ -1,13 +1,16 @@
 import {
+  ComponentRef,
   Directive,
   ElementRef,
   HostListener,
   Input,
   Renderer2,
+  ViewContainerRef,
 } from '@angular/core';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
 import { MeSize } from '../../types/types';
+import { MeIconComponent } from '@monitel/me-icons-registry';
 
 @Directive({
   selector: '[meContextMenu]',
@@ -24,10 +27,13 @@ export class MeContextMenuDirective {
   constructor(
     private element: ElementRef,
     private renderer: Renderer2,
-    private dividerService: ListItemDividerService
+    private dividerService: ListItemDividerService,
+    private viewContainerRef: ViewContainerRef
   ) {
     this.focusService = new ComponentFocusService(element, renderer);
   }
+
+  private iconComponentRef: ComponentRef<MeIconComponent> | null = null;
 
   @HostListener('onItemRendered', ['$event'])
   onItemRendered(event: any) {
@@ -56,6 +62,25 @@ export class MeContextMenuDirective {
     ) {
       this.renderer.addClass(closestMenuItemElement, 'me-menu-item-title');
     }
+
+    closestMenuItemElement.querySelector('.dx-icon')?.remove();
+
+    const itemContent =
+      closestMenuItemElement.querySelector('.dx-item-content');
+
+    if (event.itemData?.icon) {
+      this.iconComponentRef =
+        this.viewContainerRef.createComponent(MeIconComponent);
+
+      this.iconComponentRef.setInput('name', event.itemData.icon);
+
+      itemContent?.insertBefore(
+        this.iconComponentRef.location.nativeElement,
+        itemContent?.firstChild
+      );
+    }
+
+    this.iconComponentRef?.changeDetectorRef.detectChanges();
 
     this.dividerService.addDividersClass(
       contextListElement,
