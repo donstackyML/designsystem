@@ -1,32 +1,12 @@
-<header
-  class="header"
-  [ngClass]="{
-    'header--large': size === 'large',
-    'header--small': size === 'small'
-  }"
->
+<header class="header" [class.header--large]="size === 'large'" [class.header--small]="size === 'small'">
   <div class="header__left">
     <ng-content select="[slot=left]"></ng-content>
 
     <div *ngIf="title || description || (appInfo && !withAppInfoTooltip)" class="header__info">
-      <span
-        *ngIf="title"
-        class="header__title"
-        [ngClass]="{
-          'me-title-header1': size === 'large',
-          'me-title-header2': size === 'small'
-        }"
-        >{{ title }}</span
-      >
-      <span
-        *ngIf="!title && description"
-        class="header__title"
-        [ngClass]="{
-          'me-text-body1': size === 'large',
-          'me-text-body2': size === 'small'
-        }"
-        >{{ description }}</span
-      >
+      <span *ngIf="title" class="header__title" [class.me-title-header1]="size === 'large'" [class.me-title-header2]="size === 'small'">{{ title }}</span>
+      <span *ngIf="!title && description" class="header__title" [class.me-text-body1]="size === 'large'" [class.me-text-body2]="size === 'small'" ,>{{
+        description
+      }}</span>
 
       <div *ngIf="appInfo && !withAppInfoTooltip" class="me-text-caption header__app-info">
         <span class="header__app-info-item" *ngIf="appInfo.appVersion">{{ appInfo.appVersion }}</span>
@@ -39,14 +19,7 @@
 
     <ng-container *ngIf="title && description">
       <div class="header__divider"></div>
-      <span
-        *ngIf="description"
-        [ngClass]="{
-          'me-text-body1': size === 'large',
-          'me-text-body2': size === 'small'
-        }"
-        >{{ description }}</span
-      >
+      <span *ngIf="description" [class.me-text-body1]="size === 'large'" [class.me-text-body2]="size === 'small'">{{ description }}</span>
     </ng-container>
 
     <dx-button class="header__tooltip-btn" *ngIf="withAppInfoTooltip" id="tooltip-target" stylingMode="text" [hoverStateEnabled]="false">

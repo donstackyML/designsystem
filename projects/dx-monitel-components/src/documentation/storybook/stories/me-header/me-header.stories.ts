@@ -104,10 +104,7 @@ export default {
     template: `
      <me-header ${argsToTemplate(args)}>
         <img
-          [ngClass]="{
-            'icon-large': size === 'large',
-            'icon-small': size === 'small'
-          }"
+          [class.icon-large]="size === 'large'" [class.icon-small]="size === 'small'"
           slot="left"
           src="./assets/icons/favicon.svg"
           alt="Логотип"
@@ -115,10 +112,7 @@ export default {
 
         <div class="right" slot="right">
           <span
-            [ngClass]="{
-              'me-text-body1': size === 'large',
-              'me-text-body2': size === 'small'
-            }"
+            [class.me-text-body1]="size === 'large'" [class.me-text-body2]="size === 'small'"
           >
             Домен подключения
           </span>
@@ -196,10 +190,7 @@ export const WithTitleAndTooltip: Story = {
     template: `
       <me-header ${argsToTemplate(args)}>
         <img
-          [ngClass]="{
-            'icon-large': size === 'large',
-            'icon-small': size === 'small'
-          }"
+          [class.icon-large]="size === 'large'" [class.icon-small]="size === 'small'"
           slot="left"
           src="./assets/icons/favicon.svg"
           alt="Логотип"
@@ -244,10 +235,7 @@ export const WithTooltipOnly: Story = {
     template: `
       <me-header ${argsToTemplate(args)}>
         <img
-          [ngClass]="{
-            'icon-large': size === 'large',
-            'icon-small': size === 'small'
-          }"
+          [class.icon-large]="size === 'large'" [class.icon-small]="size === 'small'"
           slot="left"
           src="./assets/icons/favicon.svg"
           alt="Логотип"
