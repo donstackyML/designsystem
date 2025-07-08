@@ -7,7 +7,8 @@ import {
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -17,12 +18,14 @@ import {
   Output,
   Renderer2,
   SimpleChanges,
-  ViewChild, ViewContainerRef,
+  ViewChild,
+  ViewContainerRef,
 } from '@angular/core';
 import DevExpress from 'devextreme';
 import {
   DxButtonModule,
-  DxContextMenuModule, DxDropDownBoxComponent,
+  DxContextMenuModule,
+  DxDropDownBoxComponent,
   DxScrollViewModule,
   DxTreeViewModule,
 } from 'devextreme-angular';
@@ -144,20 +147,21 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     private ngZone: NgZone,
     private renderer: Renderer2
   ) {
+    console.log('this.element', this.element);
     this.focusService = new ComponentFocusService(this.element, this.renderer);
-    this.focusService.addKeyUpEventHandle('Tab', (evt) =>
-      this.keyTabHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('ArrowDown', (evt) =>
-      this.keyDownHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('ArrowUp', (evt) =>
-      this.keyUpHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('Enter', (evt) =>
-      this.keyEnterHandle(evt)
-    );
-    this.focusService.addFocusOutHandle((evt) => this.focusOutHandle(evt));
+    // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
+    //   this.keyTabHandle(evt)
+    // );
+    // this.focusService.addKeyUpEventHandle('ArrowDown', (evt) =>
+    //   this.keyDownHandle(evt)
+    // );
+    // this.focusService.addKeyUpEventHandle('ArrowUp', (evt) =>
+    //   this.keyUpHandle(evt)
+    // );
+    // this.focusService.addKeyUpEventHandle('Enter', (evt) =>
+    //   this.keyEnterHandle(evt)
+    // );
+    // this.focusService.addFocusOutHandle((evt) => this.focusOutHandle(evt));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -198,7 +202,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
         `1`
       );
 
-      this.setAllHandleTransform()
+      this.setAllHandleTransform();
     }
   }
 
@@ -216,7 +220,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   setHandleTransform(dragHandle: HTMLElement, targetRect: DOMRect): void {
     const dragRect = dragHandle.getBoundingClientRect();
-    const translateX = targetRect.width - (dragRect.width / 2);
+    const translateX = targetRect.width - dragRect.width / 2;
 
     this.renderer.setStyle(
       dragHandle,
@@ -320,9 +324,8 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
             popup.style.maxHeight = `${currentValue + 8}px`;
           }
         });
-      }
-      }
-    )
+      },
+    });
   }
 
   private itemSelect(item: MeMenuLeftItem): void {
@@ -416,6 +419,8 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   private keyTabHandle(evt: KeyboardEvent): void {
+    console.log('keyTabHandle', evt);
+    evt.preventDefault();
     this.updateFlatList();
     this.activeIndex = 0;
     if (this.nodeFlatList.length) {
