@@ -62,6 +62,23 @@ export default {
         defaultValue: { summary: "''" },
       },
     },
+    label: {
+      control: 'text',
+      description: 'Текст, отображаемый в качестве лейбла.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    labelMode: {
+      control: 'select',
+      options: ['outside', 'static', 'floating', 'hidden'],
+      description: 'Указывает, где будет размещаться лейбл.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'outside' },
+      },
+    },
     disabled: {
       control: 'boolean',
       description: 'Блокирует возможность взаимодействия с элементом.',
@@ -111,6 +128,7 @@ export default {
     },
   },
   args: {
+    label: 'Label',
     dataSource: mockData,
     size: 'small',
     placeholder: 'Выберите значение...',
@@ -119,6 +137,7 @@ export default {
     showScrollbar: 'always',
     dropDownListMaxHeight: 300,
     readOnly: false,
+    labelMode: 'static',
   },
   render: (args) => ({
     props: args,
@@ -137,6 +156,8 @@ export default {
           [showScrollbar]="showScrollbar"
           [leftIcon]="leftIcon"
           [readOnly]="readOnly"
+          [labelMode]="labelMode"
+          [label]="label"
         >
           <dx-tree-view
             meTreeView
@@ -166,6 +187,8 @@ export default {
           [showScrollbar]="showScrollbar"
           [leftIcon]="leftIcon"
           [readOnly]="readOnly"
+          [labelMode]="labelMode"
+          [label]="label"
         >
           <dx-data-grid
             meDataGrid
@@ -217,6 +240,7 @@ export const WithTreeView: Story = {
         valueExpr="id"
         [placeholder]="placeholder"
         [size]="size"
+        [showClearButton]="showClearButton"
       >
         <dx-tree-view
           meTreeView
@@ -230,6 +254,7 @@ export const WithTreeView: Story = {
           displayExpr="name"
           [selectByClick]="true"
           [searchEnabled]="true"
+          size="large"
         >
         </dx-tree-view>
       </dx-drop-down-box>
