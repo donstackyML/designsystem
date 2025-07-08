@@ -20,7 +20,7 @@ import { type MeScrollbarShowType, MeSize } from '../../types/types';
 import { DropDownOptionsService } from '../../service/drop-down-options.service';
 import { MeIconComponent } from '@monitel/me-icons-registry';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import {MeFormField} from "../me-form-item/me-form-field";
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meDropDownBox]',
@@ -36,7 +36,10 @@ import {MeFormField} from "../me-form-item/me-form-field";
   },
   providers: [{ provide: MeFormField, useExisting: MeDropDownBoxDirective }],
 })
-export class MeDropDownBoxDirective extends MeFormField implements AfterViewInit {
+export class MeDropDownBoxDirective
+  extends MeFormField
+  implements AfterViewInit
+{
   @Input() override size: MeSize = 'small';
   @Input() dropDownListMaxHeight?: string | number;
   @Input() leftIcon?: string = '';
@@ -127,12 +130,18 @@ export class MeDropDownBoxDirective extends MeFormField implements AfterViewInit
       this.dataGrid.instance.deselectAll();
     }
 
-    this.renderer.addClass(this.component.instance.element(), 'dx-state-focused')
+    this.renderer.addClass(
+      this.component.instance.element(),
+      'dx-state-focused'
+    );
   }
 
   @HostListener('onClosed', ['$event'])
   onClosed() {
-    this.renderer.removeClass(this.component.instance.element(), 'dx-state-focused')
+    this.renderer.removeClass(
+      this.component.instance.element(),
+      'dx-state-focused'
+    );
   }
 
   private setLeftIcon() {
