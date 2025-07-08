@@ -126,6 +126,13 @@ export class MeDropDownBoxDirective extends MeFormField implements AfterViewInit
     if (this.dataGrid && !this.component.value) {
       this.dataGrid.instance.deselectAll();
     }
+
+    this.renderer.addClass(this.component.instance.element(), 'dx-state-focused')
+  }
+
+  @HostListener('onClosed', ['$event'])
+  onClosed() {
+    this.renderer.removeClass(this.component.instance.element(), 'dx-state-focused')
   }
 
   private setLeftIcon() {

@@ -8,11 +8,16 @@
 @use '../dropDownEditor';
 
 .me-drop-down-box {
-  --Input-height: 28px;
+  --Input-Height: 28px;
+  --Input-Outlined-Height: 36px;
 
   width: 100%;
   box-sizing: border-box;
-  height: var(--Input-height);
+  height: var(--Input-Height);
+
+  &-label-mode-static, &-label-mode-floating {
+    height: var(--Input-Outlined-Height);
+  }
 
   .dx-texteditor-container {
     width: 100%;
@@ -86,7 +91,8 @@
   }
 
   &-medium {
-    --Input-height: 32px;
+    --Input-Height: 32px;
+    --Input-Outlined-Height: 40px;
 
     .dx-texteditor-input-container {
       .dx-texteditor-input {
@@ -108,7 +114,8 @@
   }
 
   &-large {
-    --Input-height: 40px;
+    --Input-Height: 40px;
+    --Input-Outlined-Height: 48px;
 
     .dx-texteditor-input-container {
       .dx-texteditor-input {
@@ -131,17 +138,17 @@
 }
 
 .me-drop-down-box-wrapper-popup {
-  --Search-icon-size: 20px;
-  --Search-icon-line-height: 18px;
-  --Search-input-inline-padding: 0 8px;
-  --Search-input-height: 28px;
-  --Clear-icon-size: 12px;
-  --Texteditor-input-padding: 0 4px 0 32px;
+  --Search-Icon-Size: 20px;
+  --Search-Icon-Line-Height: 18px;
+  --Search-Input-Inline-Padding: 0 8px;
+  --Search-Input-Height: 28px;
+  --Clear-Icon-Size: 12px;
+  --Texteditor-Input-Padding: 0 4px 0 32px;
 
   &-medium {
     &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
       .dx-popup-content:has(> .me-tree-view) {
-        --Search-input-height: 32px;
+        --Search-Input-Height: 32px;
       }
     }
   }
@@ -149,12 +156,12 @@
   &-large {
     &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
       .dx-popup-content:has(> .me-tree-view-large) {
-        --Search-icon-size: 24px;
-        --Search-icon-line-height: 24px;
-        --Search-input-inline-padding: 0 12px;
-        --Search-input-height: 40px;
-        --Clear-icon-size: 16px;
-        --Texteditor-input-padding: 0 4px 0 40px;
+        --Search-Icon-Size: 24px;
+        --Search-Icon-Line-Height: 24px;
+        --Search-Input-Inline-Padding: 0 12px;
+        --Search-Input-Height: 40px;
+        --Clear-Icon-Size: 16px;
+        --Texteditor-Input-Padding: 0 4px 0 40px;
       }
     }
   }
@@ -192,19 +199,19 @@
           }
 
           .dx-texteditor-container {
-            padding: var(--Search-input-inline-padding);
-            height: var(--Search-input-height);
+            padding: var(--Search-Input-Inline-Padding);
+            height: var(--Search-Input-Height);
 
             .dx-texteditor-input-container {
               .dx-placeholder::before {
-                padding: var(--Texteditor-input-padding);
+                padding: var(--Texteditor-Input-Padding);
               }
 
               .dx-icon-search {
                 width: auto;
                 height: auto;
-                font-size: var(--Search-icon-size);
-                line-height: var(--Search-icon-line-height);
+                font-size: var(--Search-Icon-Size);
+                line-height: var(--Search-Icon-Line-Height);
                 margin-top: 0;
                 padding: 0;
                 transform: translateY(-50%);
@@ -212,7 +219,7 @@
             }
 
             .dx-texteditor-input {
-              padding: var(--Texteditor-input-padding);
+              padding: var(--Texteditor-Input-Padding);
             }
 
             .dx-placeholder::before {
@@ -225,7 +232,7 @@
                 min-width: auto;
 
                 .dx-icon-clear {
-                  font-size: var(--Clear-icon-size);
+                  font-size: var(--Clear-Icon-Size);
                 }
               }
             }
