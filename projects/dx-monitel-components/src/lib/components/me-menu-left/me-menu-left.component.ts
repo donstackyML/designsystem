@@ -147,7 +147,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     private ngZone: NgZone,
     private renderer: Renderer2
   ) {
-    console.log('this.element', this.element);
     this.focusService = new ComponentFocusService(this.element, this.renderer);
     // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
     //   this.keyTabHandle(evt)
