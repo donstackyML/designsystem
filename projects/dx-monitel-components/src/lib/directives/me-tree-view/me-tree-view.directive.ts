@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { DxTooltipComponent, DxTreeViewComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { MeSize } from '../../types/types';
+import { MeSize, TreeViewData } from '../../types/types';
 
 @Directive({
   selector: '[meTreeView]',
@@ -24,7 +24,8 @@ import { MeSize } from '../../types/types';
 export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'large';
   @Input() textTruncateBehavior: 'truncate' | 'wrap' = 'wrap';
-  @Input() dataSource: unknown[] = [];
+  //
+  @Input() dataSource: TreeViewData[] = [];
 
   private tooltipRefs: Map<HTMLElement, any> = new Map();
   private focusService: ComponentFocusService;
@@ -53,7 +54,7 @@ export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
     (this.element.nativeElement as HTMLElement)
       .querySelectorAll('.dx-treeview-item')
       .forEach((item, index) => {
-        const dataItem = this.dataSource[index] as { icon2?: string };
+        const dataItem = this.dataSource[index];
         const firstIcon = item.querySelector('.dx-svg-icon');
 
         if (dataItem.icon2 && firstIcon) {

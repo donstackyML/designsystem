@@ -9,7 +9,7 @@ import {
 import { DxListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
-import { MeSize } from '../../types/types';
+import { ListData, MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meList]',
@@ -24,7 +24,7 @@ export class MeListDirective implements AfterViewInit {
   @Input() size: MeSize = 'medium';
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'all';
   @Input() showLastDivider: boolean = false;
-  @Input() dataSource: unknown[] = [];
+  @Input() dataSource: ListData[] = [];
 
   private focusService: ComponentFocusService;
   private removeListeners: (() => void)[] = [];
@@ -56,7 +56,7 @@ export class MeListDirective implements AfterViewInit {
     contentElement.querySelectorAll('.dx-list-item').forEach((item, index) => {
       const iconContainer = item.querySelector('.dx-list-item-icon-container');
 
-      const dataItem = this.dataSource[index] as { icon2?: string };
+      const dataItem = this.dataSource[index];
 
       if (dataItem.icon2 && iconContainer) {
         const container = this.renderer.createElement('div');
