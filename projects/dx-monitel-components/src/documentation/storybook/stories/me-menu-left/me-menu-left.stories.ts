@@ -148,7 +148,7 @@ export default {
     },
     maxWidth: {
       control: 'text',
-      description: 'Максимальная ширина меню.',
+      description: 'Максимальная ширина меню. Допустимые единицы измерения - vw, px, %, inherit.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '600px' },
