@@ -104,10 +104,7 @@ export default {
     template: `
      <me-header ${argsToTemplate(args)}>
         <img
-          [ngClass]="{
-            'icon-large': size === 'large',
-            'icon-small': size === 'small'
-          }"
+          [class.icon-large]="size === 'large'" [class.icon-small]="size === 'small'"
           slot="left"
           src="./assets/icons/favicon.svg"
           alt="Логотип"
@@ -115,10 +112,7 @@ export default {
 
         <div class="right" slot="right">
           <span
-            [ngClass]="{
-              'me-text-body1': size === 'large',
-              'me-text-body2': size === 'small'
-            }"
+            [class.me-text-body1]="size === 'large'" [class.me-text-body2]="size === 'small'"
           >
             Домен подключения
           </span>
@@ -195,7 +189,12 @@ export const WithTitleAndTooltip: Story = {
     props: args,
     template: `
       <me-header ${argsToTemplate(args)}>
-        <img class="icon" slot="left" src="./assets/icons/favicon.svg" alt="Логотип"/>
+        <img
+          [class.icon-large]="size === 'large'" [class.icon-small]="size === 'small'"
+          slot="left"
+          src="./assets/icons/favicon.svg"
+          alt="Логотип"
+        />
         
         <div class="right" slot="right">
           <dx-button meButton [size]="size" iconOnly="more_vert">
@@ -205,9 +204,14 @@ export const WithTitleAndTooltip: Story = {
               `,
     styles: [
       `
-      .icon {
+      .icon-large {
         width: 40px;
         height: 40px;
+      }
+
+      .icon-small {
+        width: 28px;
+        height: 28px;
       }
     `,
     ],
@@ -230,7 +234,12 @@ export const WithTooltipOnly: Story = {
     props: args,
     template: `
       <me-header ${argsToTemplate(args)}>
-        <img class="icon" slot="left" src="./assets/icons/favicon.svg" alt="Логотип"/>
+        <img
+          [class.icon-large]="size === 'large'" [class.icon-small]="size === 'small'"
+          slot="left"
+          src="./assets/icons/favicon.svg"
+          alt="Логотип"
+        />
         
         <div class="right" slot="right">
           <dx-button meButton [size]="size" iconOnly="more_vert">
@@ -240,9 +249,14 @@ export const WithTooltipOnly: Story = {
               `,
     styles: [
       `
-      .icon {
+      .icon-large {
         width: 40px;
         height: 40px;
+      }
+
+      .icon-small {
+        width: 28px;
+        height: 28px;
       }
     `,
     ],
