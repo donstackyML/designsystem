@@ -1,7 +1,6 @@
 import {
   CdkDrag,
   CdkDragEnd,
-  CdkDragMove,
   CdkDragStart,
 } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
@@ -19,13 +18,11 @@ import {
   Renderer2,
   SimpleChanges,
   ViewChild,
-  ViewContainerRef,
 } from '@angular/core';
 import DevExpress from 'devextreme';
 import {
   DxButtonModule,
   DxContextMenuModule,
-  DxDropDownBoxComponent,
   DxScrollViewModule,
   DxTreeViewModule,
 } from 'devextreme-angular';
@@ -87,11 +84,12 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   @Input() collapsedIcon: string = 'keyboard_arrow_down_x20';
   @Input() collapsedWidth: number = 86;
   @Input() expandedWidth: number = 336;
-  @Input() maxWidth?: number;
+  @Input() maxWidth?: string;
 
-  actualMaxWidth: number = window.innerWidth;
+  actualMaxWidth: number | 'inherit' = window.innerWidth;
 
   private _items: MeMenuLeftItem[] = [];
+
   @Input()
   get items(): MeMenuLeftItem[] {
     return this._items;
@@ -141,12 +139,14 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   private _transition = '';
   private focusService: ComponentFocusService;
   private overlay?: HTMLDivElement;
+  private resizeObserver: ResizeObserver | undefined;
 
   constructor(
     private element: ElementRef,
     private ngZone: NgZone,
-    private renderer: Renderer2
-  ) {
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef,
+) {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
     // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
     //   this.keyTabHandle(evt)
@@ -171,10 +171,15 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   ngAfterViewInit(): void {
     this.stateUpdate();
+
+    if (typeof window !== 'undefined') {
+      this.resizeObserver = new ResizeObserver(() => this.handleWindowResize());
+      this.resizeObserver.observe(document.body);
+    }
   }
 
   ngOnInit(): void {
-    this.actualMaxWidth = this.maxWidth ? this.maxWidth : window.innerWidth;
+    this.actualMaxWidth = this.calculateMaxWidth();
 
     if (this.floatMode) {
       this.createShading();
@@ -182,8 +187,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   private stateUpdate(): void {
-    this.toggleIcon = this.collapsed ? 'chevron_right_x24' : 'chevron_left_x24';
-
     if (this.collapsed) {
       this.width = this.collapsedWidth;
       this.updateItemExpanded(this._items, false);
@@ -245,6 +248,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   started(event: CdkDragStart): void {
     this._withStarted = this._width;
     this._transition = this.containerElement.style.transition;
+
     this.renderer.setStyle(this.containerElement, 'transition', 'none');
   }
 
@@ -257,32 +261,40 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     );
   }
 
-  dragMove(event: CdkDragMove<any>): void {
+  dragMove(event: any): void {
     this.ngZone.runOutsideAngular(() => {
-      this.resize(this.resizeBoxElement);
+      const dragRect = this.dragHandleRightElement.getBoundingClientRect();
+      const targetRect = this.resizeBoxElement.getBoundingClientRect();
+
+      const newWidth = () => {
+        if (this.floatMode) {
+          return event.event.clientX - (targetRect.left - dragRect.width / 2);
+        }
+
+        return dragRect.left - (targetRect.left - dragRect.width / 2);
+      }
+
+      if (newWidth() <= this.collapsedWidth) {
+        this.toggleMenuLeft();
+      } else if (
+        typeof this.actualMaxWidth === 'number' &&
+        newWidth() > this.actualMaxWidth
+      ) {
+        this.width = this.actualMaxWidth;
+      } else if (this.actualMaxWidth === 'inherit') {
+        this.width = newWidth();
+      } else {
+        this.width = newWidth();
+      }
+
+      this.setAllHandleTransform();
     });
   }
 
   setAllHandleTransform(): void {
     const rect = this.resizeBoxElement.getBoundingClientRect();
+
     this.setHandleTransform(this.dragHandleRightElement, rect);
-  }
-
-  resize(target: HTMLElement): void {
-    const dragRect = this.dragHandleRightElement.getBoundingClientRect();
-    const targetRect = target.getBoundingClientRect();
-
-    const newWidth = dragRect.left - (targetRect.left - dragRect.width / 2);
-
-    if (newWidth <= this.collapsedWidth) {
-      this.toggleMenuLeft();
-    } else if (this.actualMaxWidth && newWidth > this.actualMaxWidth) {
-      this.width = this.actualMaxWidth;
-
-      this.setAllHandleTransform();
-    } else {
-      this.width = newWidth;
-    }
   }
 
   selectItem(event: MouseEvent, node: TreeNode): void {
@@ -418,7 +430,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   private keyTabHandle(evt: KeyboardEvent): void {
-    console.log('keyTabHandle', evt);
     evt.preventDefault();
     this.updateFlatList();
     this.activeIndex = 0;
@@ -481,6 +492,41 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     }
     this.nodeFlatList = [];
     this.activeIndex = 0;
+  }
+
+  private calculateMaxWidth(): number | 'inherit' {
+    if (!this.maxWidth) return window.innerWidth;
+
+    const value = this.maxWidth.trim().toLowerCase();
+
+    if (value === 'inherit') return 'inherit';
+
+    if (value.endsWith('%')) {
+      const percent = parseFloat(value) / 100;
+      return window.innerWidth * percent;
+    }
+
+    if (value.endsWith('vw')) {
+      const vw = parseFloat(value);
+      return (window.innerWidth * vw) / 100;
+    }
+
+    if (value.endsWith('px')) {
+      return parseFloat(value);
+    }
+
+    if (!isNaN(parseFloat(value))) {
+      return parseFloat(value);
+    }
+
+    return window.innerWidth;
+  }
+
+  private handleWindowResize() {
+    if (typeof this.actualMaxWidth === 'number') {
+      this.actualMaxWidth = this.calculateMaxWidth();
+    }
+    this.cdr.markForCheck();
   }
 
   pressedNode($event: MouseEvent, node: TreeNode) {

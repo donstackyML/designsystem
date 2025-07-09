@@ -147,11 +147,11 @@ export default {
       },
     },
     maxWidth: {
-      control: 'number',
+      control: 'text',
       description: 'Максимальная ширина меню.',
       table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: '600' },
+        type: { summary: 'string' },
+        defaultValue: { summary: '600px' },
       },
     },
   },
@@ -172,7 +172,7 @@ export default {
     collapsedWidth: 68,
     expandedWidth: 336,
     width: 336,
-    maxWidth: 600,
+    maxWidth: '600px',
   },
   render: (args) => ({
     props: {

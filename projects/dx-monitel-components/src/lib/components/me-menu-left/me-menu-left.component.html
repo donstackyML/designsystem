@@ -64,27 +64,27 @@
         <ng-container *ngFor="let node of bottomNodes" [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ $implicit: node }"> </ng-container>
       </ul>
     </div>
-  </div>
-  <div
-    #dragHandleRight
-    class="resize-handle"
-    cdkDrag
-    (cdkDragStarted)="started($event)"
-    (cdkDragEnded)="ended($event)"
-    (cdkDragMoved)="dragMove($event)"
-    [cdkDragLockAxis]="'x'"
-    *ngIf="!collapsed"
-  >
-    <svg width="8" height="20" viewBox="0 0 8 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3 17L1 17L1 15L3 15L3 17Z" fill="#808084" />
-      <path d="M3 13L1 13L1 11L3 11L3 13Z" fill="#808084" />
-      <path d="M3 9L1 9L1 7L3 7L3 9Z" fill="#808084" />
-      <path d="M3 5L1 5L1 3L3 3L3 5Z" fill="#808084" />
-      <path d="M7 17L5 17L5 15L7 15L7 17Z" fill="#808084" />
-      <path d="M7 13L5 13L5 11L7 11L7 13Z" fill="#808084" />
-      <path d="M7 9L5 9L5 7L7 7L7 9Z" fill="#808084" />
-      <path d="M7 5L5 5L5 3L7 3L7 5Z" fill="#808084" />
-    </svg>
+    <div
+      #dragHandleRight
+      class="resize-handle"
+      cdkDrag
+      (cdkDragStarted)="started($event)"
+      (cdkDragEnded)="ended($event)"
+      (cdkDragMoved)="dragMove($event)"
+      [cdkDragLockAxis]="'x'"
+      *ngIf="!collapsed"
+    >
+      <svg width="8" height="20" viewBox="0 0 8 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 17L1 17L1 15L3 15L3 17Z" fill="#808084" />
+        <path d="M3 13L1 13L1 11L3 11L3 13Z" fill="#808084" />
+        <path d="M3 9L1 9L1 7L3 7L3 9Z" fill="#808084" />
+        <path d="M3 5L1 5L1 3L3 3L3 5Z" fill="#808084" />
+        <path d="M7 17L5 17L5 15L7 15L7 17Z" fill="#808084" />
+        <path d="M7 13L5 13L5 11L7 11L7 13Z" fill="#808084" />
+        <path d="M7 9L5 9L5 7L7 7L7 9Z" fill="#808084" />
+        <path d="M7 5L5 5L5 3L7 3L7 5Z" fill="#808084" />
+      </svg>
+    </div>
   </div>
   <dx-context-menu #subMenu *ngIf="collapsed" meContextMenu [dataSource]="menuDatasource" (onItemClick)="selectSubmenuItem($event)" cssClass="me-menu-left">
   </dx-context-menu>

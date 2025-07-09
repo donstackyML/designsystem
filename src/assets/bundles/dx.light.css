@@ -10803,7 +10803,7 @@ me-badge .badge.color-yellow-light {
   padding: 0;
 }
 .dx-scrollable-native.dx-scrollable-native-generic {
-  overflow: hidden;
+  overflow: initial;
 }
 .dx-scrollable-native.dx-scrollable-native-generic .dx-scrollable-content {
   height: auto;
@@ -23561,6 +23561,7 @@ input.dx-hidden {
   flex-direction: column;
   gap: 0;
   height: 100%;
+  position: relative;
 }
 .me-menu-left .me-menu-left__content .dx-scrollable {
   flex-grow: 1;
@@ -23629,6 +23630,7 @@ input.dx-hidden {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   color: var(--Controls-Content-In-Controls-Main-Default);
+  transition: transform 0.2s ease;
 }
 .me-menu-left__toggle:hover {
   background: #d8daea;
@@ -23647,6 +23649,9 @@ input.dx-hidden {
   justify-content: center;
   margin-right: 0;
 }
+.me-menu-left--collapsed .me-menu-left__toggle svg {
+  transform: rotate(180deg);
+}
 .me-menu-left--collapsed .me-menu-left_item-right {
   position: absolute;
   top: 2px;
@@ -23657,7 +23662,13 @@ input.dx-hidden {
 }
 .me-menu-left--expanded.float-mode {
   position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
   z-index: 1000;
+}
+.me-menu-left--expanded.float-mode .resize-handle {
+  right: -6px;
 }
 .me-menu-left .me-menu-left_item {
   position: relative;

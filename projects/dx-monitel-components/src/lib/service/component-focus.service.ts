@@ -74,7 +74,6 @@ export class ComponentFocusService implements OnDestroy {
   }
 
   private keyUpEventHandle(event: KeyboardEvent) {
-    console.log('KeyboardEvent', this.container);
     if (event.key == 'Tab') {
       this.renderer.addClass(this.container, KEYBOARD_FOCUSABLE_CLASS);
     }
@@ -94,12 +93,10 @@ export class ComponentFocusService implements OnDestroy {
   }
 
   private focusInEventHandle(event: FocusEvent) {
-    console.log('focusInEvent', this.container);
     this.focusInHandles.forEach((fn: FocusInEventHandle) => fn(event));
   }
 
   private focusOutEventHandle(event: FocusEvent) {
-    console.log('focusOutEvent', this.container);
     this.renderer.removeClass(this.container, KEYBOARD_FOCUSABLE_CLASS);
     this.keyboardNavigation = false;
     this.focusOutHandles.forEach((fn: FocusOutEventHandle) => fn(event));
