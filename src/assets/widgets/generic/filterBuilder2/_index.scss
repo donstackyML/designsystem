@@ -3,15 +3,122 @@
 
 .dx-filterbuilder {
   .dx-filterbuilder-group {
+    .dx-filterbuilder-group-item,
+    .dx-filterbuilder-group-content {
+      .dx-filterbuilder-text {
+        &.dx-filterbuilder-group-operation,
+        &.dx-filterbuilder-item-field,
+        &.dx-filterbuilder-item-operation {
+          margin: 0;
+          padding: 6px 12px;
+        }
+
+        &.dx-filterbuilder-item-value {
+          .dx-filterbuilder-item-value-text {
+            padding: 6px 12px;
+          }
+        }
+      }
+    }
+
     .dx-filterbuilder-text {
+      color: $filterbuilder-text-color;
+      font-size: 12px;
+
       &.dx-filterbuilder-group-operation {
-        color: $filterbuilder-text-color;
         background-color: $filterbuilder-group-operation-color;
+
+        &:hover {
+          background-color: $filterbuilder-group-operation-hover-color;
+        }
+
+        &:focus {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-group-operation-focus-color;
+        }
+
+        &.dx-state-active {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-group-operation-active-color;
+        }
       }
 
       &.dx-filterbuilder-item-field {
         color: $filterbuilder-text-color;
-        background-color: lightblue;
+        background-color: $filterbuilder-item-field-color;
+
+        &:hover {
+          background-color: $filterbuilder-item-field-hover-color;
+        }
+
+        &:focus {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-item-field-focus-color;
+        }
+
+        &.dx-state-active {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-item-field-active-color;
+        }
+      }
+
+      &.dx-filterbuilder-item-operation {
+        color: $filterbuilder-text-color;
+        background-color: $filterbuilder-item-operator-color;
+
+        &:hover {
+          background-color: $filterbuilder-item-operator-hover-color;
+        }
+
+        &:focus {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-item-operator-focus-color;
+        }
+
+        &.dx-state-active {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-item-operator-active-color;
+        }
+      }
+
+      &.dx-filterbuilder-item-value {
+        .dx-filterbuilder-item-value-text {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-item-value-color;
+
+          &:hover {
+            background-color: $filterbuilder-item-value-hover-color;
+          }
+
+          &:focus {
+            color: $filterbuilder-text-color;
+            background-color: $filterbuilder-item-value-focus-color;
+          }
+
+          &.dx-state-active {
+            color: $filterbuilder-text-color;
+            background-color: $filterbuilder-item-value-active-color;
+          }
+        }
+      }
+    }
+
+    // Иконки
+    .dx-filterbuilder-group-item {
+      display: flex;
+      align-items: center;
+
+      .dx-filterbuilder-action.dx-filterbuilder-action-icon {
+        padding: 0;
+        margin: 0;
+
+        &.dx-icon-plus {
+          color: $filterbuilder-plus-icon-color;
+        }
+
+        &.dx-icon-remove {
+          color: $filterbuilder-remove-icon-color;
+        }
       }
     }
   }
