@@ -155,3 +155,24 @@ export const meListMockDataWithIcons = [
     icon: iconStore.getIcon({ icon: 'check', size: '24' }),
   },
 ];
+
+export const meListMockDataWithTwoIcons = [
+  {
+    text: 'Apples',
+    count: 10,
+    icon: iconStore.getIcon({ icon: 'check', size: '24' }),
+    icon2: iconStore.getIcon({ icon: 'add', size: '24' }),
+  },
+  {
+    text: 'Oranges',
+    count: 10,
+    icon: iconStore.getIcon({ icon: 'check', size: '24' }),
+    icon2: iconStore.getIcon({ icon: 'add', size: '24' }),
+  },
+  {
+    text: 'Lemons',
+    count: 10,
+    icon: iconStore.getIcon({ icon: 'check', size: '24' }),
+    icon2: iconStore.getIcon({ icon: 'add', size: '24' }),
+  },
+];

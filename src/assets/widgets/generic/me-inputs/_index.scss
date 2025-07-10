@@ -122,15 +122,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
           --label-line-height: 20px;
         }
       }
-
-      &-small,
-      &-medium,
-      &-large {
-        &.dx-state-readonly,
-        &.dx-state-disabled {
-          --padding-inline-right: 0;
-        }
-      }
     }
 
     &.dx-texteditor-label-outside > .dx-datebox > .dx-texteditor-label > .dx-label {
@@ -139,6 +130,10 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &.dx-texteditor-label-outside > .dx-texteditor-label > .dx-label {
       padding: 0 !important;
+    }
+
+    &.dx-state-hover:not(.dx-texteditor-label-outside) > .dx-texteditor-label > .dx-label {
+      padding-left: var(--padding-inline-left);
     }
 
     .dx-texteditor-container {
@@ -256,6 +251,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       align-items: center;
 
       .dx-label {
+        padding-left: var(--padding-inline-left);
         height: var(--label-line-height) !important;
 
         span {
@@ -617,18 +613,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
   &.me-number-box,
   &.me-date-range-box {
-    &:not(.dx-texteditor-label-outside) {
-      .dx-texteditor-buttons-container {
-        margin-right: 4px;
-      }
-    }
-    &:not(.dx-texteditor-with-label),
-    &.dx-texteditor-label-outside {
-      .dx-texteditor-buttons-container {
-        margin: 0 1px 0 0;
-      }
-    }
-
     &:has(.dx-state-readonly, .dx-state-disabled),
     &.dx-texteditor-label-outside {
       .dx-texteditor-buttons-container {

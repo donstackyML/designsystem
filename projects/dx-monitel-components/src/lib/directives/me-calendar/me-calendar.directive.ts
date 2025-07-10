@@ -1,5 +1,3 @@
-import { DxCalendarComponent } from 'devextreme-angular';
-import { Subscription } from 'rxjs';
 import {
   AfterViewInit,
   ApplicationRef,
@@ -15,14 +13,16 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import type DevExpress from 'devextreme';
+import { DxCalendarComponent } from 'devextreme-angular';
+import type { ValueChangedEvent } from 'devextreme/ui/calendar';
 import {
   CalendarZoomLevel,
   FirstDayOfWeek,
   WeekNumberRule,
 } from 'devextreme/ui/calendar';
+import { Subscription } from 'rxjs';
 import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
-import type DevExpress from 'devextreme';
-import type { ValueChangedEvent } from 'devextreme/ui/calendar';
 import { DateTimeService } from '../../service/get-current-time-in-ms.service';
 
 interface ExtendedDxCalendarComponent extends DevExpress.ui.dxCalendar {
@@ -34,6 +34,9 @@ interface ExtendedDxCalendarComponent extends DevExpress.ui.dxCalendar {
   host: {
     '[class.me-calendar]': 'true',
     '[class.me-calendar-show-weeks-numbers]': 'showWeekNumbers',
+    '[class.me-calendar--small]': 'size === "small"',
+    '[class.me-calendar--medium]': 'size === "medium"',
+    '[class.me-calendar--large]': 'size === "large"',
   },
 })
 export class MeCalendarDirective
@@ -42,6 +45,7 @@ export class MeCalendarDirective
   @Input() showWeekNumbers: boolean = true;
   @Input() firstDayOfWeek: FirstDayOfWeek = 1;
   @Input() type: 'date' | 'datetime' = 'date';
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
 
   @Output() onDateValueChanged = new EventEmitter<any>();
   @Output() showWeekNumbersChange = new EventEmitter<boolean>();
