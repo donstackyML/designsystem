@@ -25,6 +25,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
   &.me-inputs {
     // Size: small | medium | large
+    box-sizing: border-box;
 
     &.me-inputs {
       &-small {
@@ -37,6 +38,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --padding-inline-left: 8px;
         --padding-inline-right: 4px;
         --padding-block: 2px;
+        --Label-Padding-Inline-With-Icon: 32px;
+        --Icon-Right-Margin: 0;
 
         --input-top-offset: 17px;
         --input-bottom-offset: 3px;
@@ -69,6 +72,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --padding-inline-left: 8px;
         --padding-inline-right: 4px;
         --padding-block: 2px;
+        --Label-Padding-Inline-With-Icon: 32px;
+        --Icon-Right-Margin: 0;
 
         --input-top-offset: 17px;
         --input-bottom-offset: 3px;
@@ -101,6 +106,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --padding-inline-left: 12px;
         --padding-inline-right: 8px;
         --padding-block: 5.5px;
+        --Label-Padding-Inline-With-Icon: 44px;
+        --Icon-Right-Margin: 0 4px 0 0;
 
         --input-top-offset: 22px;
         --input-bottom-offset: 6px;
@@ -281,9 +288,15 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         padding-block: var(--input-top-offset) var(--input-bottom-offset);
       }
 
-      :has(.me-selectbox-left-icon) {
+      &:has(.dx-texteditor-container .me-selectbox-left-icon) {
         .me-selectbox-left-icon {
-          margin: 0;
+          margin: var(--Icon-Right-Margin);
+        }
+
+        .dx-texteditor-label {
+          .dx-label {
+            padding-left: var(--Label-Padding-Inline-With-Icon);
+          }
         }
       }
     }

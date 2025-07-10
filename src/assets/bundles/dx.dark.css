@@ -23251,6 +23251,9 @@ input.dx-hidden {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
 }
+.me-inputs.dx-texteditor.dx-widget.me-inputs {
+  box-sizing: border-box;
+}
 .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-small {
   --input-border-radius: 3px;
   --input-font-size: 13px;
@@ -23260,6 +23263,8 @@ input.dx-hidden {
   --padding-inline-left: 8px;
   --padding-inline-right: 4px;
   --padding-block: 2px;
+  --Label-Padding-Inline-With-Icon: 32px;
+  --Icon-Right-Margin: 0;
   --input-top-offset: 17px;
   --input-bottom-offset: 3px;
   --label-font-size: 12px;
@@ -23284,6 +23289,8 @@ input.dx-hidden {
   --padding-inline-left: 8px;
   --padding-inline-right: 4px;
   --padding-block: 2px;
+  --Label-Padding-Inline-With-Icon: 32px;
+  --Icon-Right-Margin: 0;
   --input-top-offset: 17px;
   --input-bottom-offset: 3px;
   --label-font-size: 12px;
@@ -23308,6 +23315,8 @@ input.dx-hidden {
   --padding-inline-left: 12px;
   --padding-inline-right: 8px;
   --padding-block: 5.5px;
+  --Label-Padding-Inline-With-Icon: 44px;
+  --Icon-Right-Margin: 0 4px 0 0;
   --input-top-offset: 22px;
   --input-bottom-offset: 6px;
   --label-font-size: 13px;
@@ -23440,8 +23449,11 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label .dx-placeholder {
   padding-block: var(--input-top-offset) var(--input-bottom-offset);
 }
-.me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-label:not(.dx-texteditor-label-outside) :has(.me-selectbox-left-icon) .me-selectbox-left-icon, .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label :has(.me-selectbox-left-icon) .me-selectbox-left-icon {
-  margin: 0;
+.me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-label:not(.dx-texteditor-label-outside):has(.dx-texteditor-container .me-selectbox-left-icon) .me-selectbox-left-icon, .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label:has(.dx-texteditor-container .me-selectbox-left-icon) .me-selectbox-left-icon {
+  margin: var(--Icon-Right-Margin);
+}
+.me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-label:not(.dx-texteditor-label-outside):has(.dx-texteditor-container .me-selectbox-left-icon) .dx-texteditor-label .dx-label, .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label:has(.dx-texteditor-container .me-selectbox-left-icon) .dx-texteditor-label .dx-label {
+  padding-left: var(--Label-Padding-Inline-With-Icon);
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label.dx-texteditor-empty:not(.dx-state-focused), .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label.dx-state-readonly.dx-texteditor-empty:not(.dx-state-focused), .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label.dx-state-readonly.dx-texteditor-empty.dx-state-focused {
   --label-top-offset: 50%;
