@@ -9,7 +9,7 @@ import {
 import { DxListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
-import { MeSize } from '../../types/types';
+import { ListData, MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meList]',
@@ -24,6 +24,7 @@ export class MeListDirective implements AfterViewInit {
   @Input() size: MeSize = 'medium';
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'all';
   @Input() showLastDivider: boolean = false;
+  @Input() dataSource: ListData[] = [];
 
   private focusService: ComponentFocusService;
   private removeListeners: (() => void)[] = [];
@@ -51,6 +52,30 @@ export class MeListDirective implements AfterViewInit {
     ) as HTMLElement;
 
     if (!contentElement) return;
+
+    contentElement.querySelectorAll('.dx-list-item').forEach((item, index) => {
+      const iconContainer = item.querySelector('.dx-list-item-icon-container');
+
+      const dataItem = this.dataSource[index];
+
+      if (dataItem.icon2 && iconContainer) {
+        const container = this.renderer.createElement('div');
+        this.renderer.addClass(container, 'dx-list-item-icon-container');
+
+        const icon = this.renderer.createElement('i');
+        this.renderer.addClass(icon, 'dx-icon');
+        this.renderer.addClass(icon, 'dx-svg-icon');
+        this.renderer.addClass(icon, 'dx-list-item-icon');
+        icon.innerHTML = dataItem.icon2;
+
+        this.renderer.appendChild(container, icon);
+        this.renderer.insertBefore(
+          iconContainer.parentNode,
+          container,
+          iconContainer.nextSibling
+        );
+      }
+    });
 
     contentElement.querySelectorAll('.dx-list-item').forEach((item) => {
       const listener = this.renderer.listen(item, 'mouseup', () => {
