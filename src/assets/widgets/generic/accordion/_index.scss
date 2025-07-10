@@ -19,13 +19,17 @@ $generic-accordion-disabled-opacity: 0.5;
 }
 
 .dx-accordion-item {
-  border-radius: 3px 3px 0 0;
-  border-inline: 1px solid transparent;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
 
   &:last-child {
     border-bottom: 1px solid $accordion-item-border-color;
+  }
+
+  &.dx-item-selected {
+    & > .dx-accordion-item-title {
+      background: $accordion-title-active-bg;
+    }
   }
 
   &.dx-state-active:not(.dx-accordion-item-opened) {
@@ -35,23 +39,21 @@ $generic-accordion-disabled-opacity: 0.5;
 
     & > .dx-accordion-item-title {
       color: $accordion-title-active-color;
-      background-color: $accordion-title-active-bg;
       border-color: $accordion-item-hover-bg;
     }
   }
 
   &.dx-state-hover {
-    & > .dx-accordion-item-title {
+    & > .dx-accordion-item-title:hover {
       background-color: $accordion-item-hover-bg;
     }
 
     &:not(.dx-accordion-item-opened) {
-      border-radius: 3px;
       border-color: $accordion-item-hover-bg;
     }
 
     &:not(:last-child):not(.dx-accordion-item-opened):not(.dx-state-focused) {
-      border-bottom-color: $accordion-item-hover-bg;
+      border-bottom-color: $accordion-item-border-color;
     }
   }
   &.dx-state-active {
@@ -60,7 +62,6 @@ $generic-accordion-disabled-opacity: 0.5;
     }
 
     &:not(.dx-accordion-item-opened) {
-      border-radius: 3px;
       border-color: $accordion-title-active-bg;
     }
 
@@ -71,18 +72,12 @@ $generic-accordion-disabled-opacity: 0.5;
 }
 
 .dx-accordion-item-opened {
-  border-radius: 3px;
-  border: 1px solid $accordion-item-border-color;
-
-  &.dx-state-hover {
-    & > .dx-accordion-item-title {
-      background-color: $accordion-item-title-opened-bg;
-    }
-  }
+  border-bottom-color: $accordion-item-border-color;
+  border-top-color: $accordion-item-border-color;
 
   &.dx-state-active {
     & > .dx-accordion-item-title {
-      background-color: transparent;
+      background-color: $accordion-title-active-bg;
     }
   }
 
@@ -179,6 +174,13 @@ $generic-accordion-disabled-opacity: 0.5;
 .dx-accordion-item-title .custom-header-description {
   font-family: var(--accordion-font-family);
   color: var(--accordion-description-color);
+}
+
+.me-accordion-without-borders {
+  .dx-accordion-item {
+    border-top: none;
+    border-bottom: none;
+  }
 }
 
 .me-accordion-small {

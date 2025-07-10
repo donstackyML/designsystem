@@ -119,7 +119,7 @@ import {
           meButton
           text="Сохранить"
           stylingMode="contained"
-          type="default"
+          buttonType="default"
         ></dx-button>
         <dx-button
           meButton
