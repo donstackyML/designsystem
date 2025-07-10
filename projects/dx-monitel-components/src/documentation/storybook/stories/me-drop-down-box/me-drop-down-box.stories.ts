@@ -9,6 +9,7 @@ import {
 import {
   MeDataGridDirective,
   MeDropDownBoxDirective,
+  MeLabelDirective,
   MeTreeViewDirective,
 } from '../../../../public-api';
 import { mockData } from './me-drop-down-box-mock-data';
@@ -27,6 +28,7 @@ export default {
         MeDropDownBoxDirective,
         MeTreeViewDirective,
         MeDataGridDirective,
+        MeLabelDirective,
       ],
     }),
   ],
@@ -137,7 +139,7 @@ export default {
     showScrollbar: 'always',
     dropDownListMaxHeight: 300,
     readOnly: false,
-    labelMode: 'static',
+    labelMode: 'outside',
   },
   render: (args) => ({
     props: args,
@@ -241,6 +243,8 @@ export const WithTreeView: Story = {
         [placeholder]="placeholder"
         [size]="size"
         [showClearButton]="showClearButton"
+        [label]="label"
+        [labelMode]="labelMode"
       >
         <dx-tree-view
           meTreeView
@@ -273,6 +277,8 @@ export const WithDataGrid: Story = {
         valueExpr="id"
         [placeholder]="placeholder"
         [size]="size"
+        [label]="label"
+        [labelMode]="labelMode"
       >
         <dx-data-grid
           meDataGrid
@@ -318,4 +324,35 @@ export const CustomMaxHeight: Story = {
   args: {
     dropDownListMaxHeight: 150,
   },
+};
+
+export const LabelLeft: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <label meLabel labelDirection="row" width="400px">
+        Label
+        <dx-drop-down-box
+            meDropDownBox
+            [dataSource]="dataSource"
+            displayExpr="name"
+            valueExpr="id"
+            [placeholder]="placeholder"
+            [size]="size"
+          >
+            <dx-data-grid
+              meDataGrid
+              [dataSource]="dataSource"
+              [columns]="['id', 'name']"
+              [selection]="{ mode: 'multiple' }"
+              [hoverStateEnabled]="true"
+              [filterRow]="{ visible: true }"
+              [height]="300"
+              cellSize="small"
+            >
+            </dx-data-grid>
+        </dx-drop-down-box>
+      </label>
+    `,
+  }),
 };

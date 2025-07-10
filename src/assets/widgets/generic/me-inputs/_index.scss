@@ -25,6 +25,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
   &.me-inputs {
     // Size: small | medium | large
+    box-sizing: border-box;
 
     &.me-inputs {
       &-small {
@@ -37,6 +38,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --padding-inline-left: 8px;
         --padding-inline-right: 4px;
         --padding-block: 2px;
+        --Label-Padding-Inline-With-Icon: 32px;
+        --Icon-Right-Margin: 0;
 
         --input-top-offset: 17px;
         --input-bottom-offset: 3px;
@@ -69,6 +72,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --padding-inline-left: 8px;
         --padding-inline-right: 4px;
         --padding-block: 2px;
+        --Label-Padding-Inline-With-Icon: 32px;
+        --Icon-Right-Margin: 0;
 
         --input-top-offset: 17px;
         --input-bottom-offset: 3px;
@@ -101,6 +106,8 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
         --padding-inline-left: 12px;
         --padding-inline-right: 8px;
         --padding-block: 5.5px;
+        --Label-Padding-Inline-With-Icon: 44px;
+        --Icon-Right-Margin: 0 4px 0 0;
 
         --input-top-offset: 22px;
         --input-bottom-offset: 6px;
@@ -122,15 +129,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
           --label-line-height: 20px;
         }
       }
-
-      &-small,
-      &-medium,
-      &-large {
-        &.dx-state-readonly,
-        &.dx-state-disabled {
-          --padding-inline-right: 0;
-        }
-      }
     }
 
     &.dx-texteditor-label-outside > .dx-datebox > .dx-texteditor-label > .dx-label {
@@ -139,6 +137,10 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
     &.dx-texteditor-label-outside > .dx-texteditor-label > .dx-label {
       padding: 0 !important;
+    }
+
+    &.dx-state-hover:not(.dx-texteditor-label-outside) > .dx-texteditor-label > .dx-label {
+      padding-left: var(--padding-inline-left);
     }
 
     .dx-texteditor-container {
@@ -256,6 +258,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       align-items: center;
 
       .dx-label {
+        padding-left: var(--padding-inline-left);
         height: var(--label-line-height) !important;
 
         span {
@@ -272,6 +275,12 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       }
     }
 
+    &:has(.dx-texteditor-container .me-selectbox-left-icon) {
+      .me-selectbox-left-icon {
+        margin: var(--Icon-Right-Margin);
+      }
+    }
+
     // labelMode: static | hidden
 
     &.dx-texteditor-with-label:not(.dx-texteditor-label-outside),
@@ -283,6 +292,14 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       .dx-texteditor-input-container,
       .dx-placeholder {
         padding-block: var(--input-top-offset) var(--input-bottom-offset);
+      }
+
+      &:has(.dx-texteditor-container .me-selectbox-left-icon) {
+        .dx-texteditor-label {
+          .dx-label {
+            padding-left: var(--Label-Padding-Inline-With-Icon);
+          }
+        }
       }
     }
 
@@ -611,18 +628,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
   &.me-number-box,
   &.me-date-range-box {
-    &:not(.dx-texteditor-label-outside) {
-      .dx-texteditor-buttons-container {
-        margin-right: 4px;
-      }
-    }
-    &:not(.dx-texteditor-with-label),
-    &.dx-texteditor-label-outside {
-      .dx-texteditor-buttons-container {
-        margin: 0 1px 0 0;
-      }
-    }
-
     &:has(.dx-state-readonly, .dx-state-disabled),
     &.dx-texteditor-label-outside {
       .dx-texteditor-buttons-container {

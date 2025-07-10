@@ -61,6 +61,21 @@ export interface MeButtonGroupItem extends Partial<dxButtonGroupItem> {
   rightIconSize?: string;
   warningType?: boolean;
 }
+
+export interface ListData {
+  text: string;
+  count: number;
+  icon: string;
+  icon2: string;
+}
+
+export interface TreeViewData {
+  text: string;
+  count: number;
+  icon: string;
+  icon2: string;
+}
+
 export type MeOrientation = 'horizontal' | 'vertical';
 
 export const KEYBOARD_FOCUSABLE_CLASS = 'me-keyboard-focused';
