@@ -16727,7 +16727,7 @@ input.dx-hidden {
 .me-drop-down-box-wrapper-popup {
   --Search-Icon-Size: 20px;
   --Search-Icon-Line-Height: 18px;
-  --Search-Input-Inline-Padding: 0 8px;
+  --Search-Input-Inline-Padding: 0 4px 0 8px;
   --Search-Input-Height: 28px;
   --Clear-Icon-Size: 12px;
   --Texteditor-Input-Padding: 0 4px 0 32px;
@@ -16738,7 +16738,7 @@ input.dx-hidden {
 .me-drop-down-box-wrapper-popup-large.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content .dx-popup-content:has(> .me-tree-view-large) {
   --Search-Icon-Size: 24px;
   --Search-Icon-Line-Height: 24px;
-  --Search-Input-Inline-Padding: 0 12px;
+  --Search-Input-Inline-Padding: 0 8px 0 12px;
   --Search-Input-Height: 40px;
   --Clear-Icon-Size: 16px;
   --Texteditor-Input-Padding: 0 4px 0 40px;
@@ -23251,6 +23251,9 @@ input.dx-hidden {
   outline: 2px solid var(--Dividers-Borders-Focus);
   outline-offset: 2px;
 }
+.me-inputs.dx-texteditor.dx-widget.me-inputs {
+  box-sizing: border-box;
+}
 .me-inputs.dx-texteditor.dx-widget.me-inputs.me-inputs-small {
   --input-border-radius: 3px;
   --input-font-size: 13px;
@@ -23260,6 +23263,8 @@ input.dx-hidden {
   --padding-inline-left: 8px;
   --padding-inline-right: 4px;
   --padding-block: 2px;
+  --Label-Padding-Inline-With-Icon: 32px;
+  --Icon-Right-Margin: 0;
   --input-top-offset: 17px;
   --input-bottom-offset: 3px;
   --label-font-size: 12px;
@@ -23284,6 +23289,8 @@ input.dx-hidden {
   --padding-inline-left: 8px;
   --padding-inline-right: 4px;
   --padding-block: 2px;
+  --Label-Padding-Inline-With-Icon: 32px;
+  --Icon-Right-Margin: 0;
   --input-top-offset: 17px;
   --input-bottom-offset: 3px;
   --label-font-size: 12px;
@@ -23308,6 +23315,8 @@ input.dx-hidden {
   --padding-inline-left: 12px;
   --padding-inline-right: 8px;
   --padding-block: 5.5px;
+  --Label-Padding-Inline-With-Icon: 44px;
+  --Icon-Right-Margin: 0 4px 0 0;
   --input-top-offset: 22px;
   --input-bottom-offset: 6px;
   --label-font-size: 13px;
@@ -23432,6 +23441,9 @@ input.dx-hidden {
   line-height: var(--label-line-height) !important;
   text-align: left;
 }
+.me-inputs.dx-texteditor.dx-widget.me-inputs:has(.dx-texteditor-container .me-selectbox-left-icon) .me-selectbox-left-icon {
+  margin: var(--Icon-Right-Margin);
+}
 .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-label-before, .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label .dx-label-before {
   min-width: var(--padding-inline);
 }
@@ -23439,6 +23451,9 @@ input.dx-hidden {
 .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-label:not(.dx-texteditor-label-outside) .dx-placeholder, .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label .dx-texteditor-input-container,
 .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label .dx-placeholder {
   padding-block: var(--input-top-offset) var(--input-bottom-offset);
+}
+.me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-label:not(.dx-texteditor-label-outside):has(.dx-texteditor-container .me-selectbox-left-icon) .dx-texteditor-label .dx-label, .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label:has(.dx-texteditor-container .me-selectbox-left-icon) .dx-texteditor-label .dx-label {
+  padding-left: var(--Label-Padding-Inline-With-Icon);
 }
 .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label.dx-texteditor-empty:not(.dx-state-focused), .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label.dx-state-readonly.dx-texteditor-empty:not(.dx-state-focused), .me-inputs.dx-texteditor.dx-widget.me-inputs.dx-texteditor-with-floating-label.dx-state-readonly.dx-texteditor-empty.dx-state-focused {
   --label-top-offset: 50%;
