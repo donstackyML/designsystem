@@ -3,18 +3,19 @@ import {
   CdkDragEnd,
   CdkDragStart,
 } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, Inject,
+  Injectable,
   Input,
   NgZone,
   OnChanges,
-  Output,
+  Output, PLATFORM_ID,
   Renderer2,
   SimpleChanges,
   ViewChild,
@@ -139,13 +140,14 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   private _transition = '';
   private focusService: ComponentFocusService;
   private overlay?: HTMLDivElement;
-  private resizeObserver: ResizeObserver | undefined;
+  private resizeObserver?: ResizeObserver;
 
   constructor(
     private element: ElementRef,
     private ngZone: NgZone,
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
 ) {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
     // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
@@ -172,7 +174,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit(): void {
     this.stateUpdate();
 
-    if (typeof window !== 'undefined') {
+    if (isPlatformBrowser(this.platformId)) {
       this.resizeObserver = new ResizeObserver(() => this.handleWindowResize());
       this.resizeObserver.observe(document.body);
     }
@@ -266,13 +268,10 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       const dragRect = this.dragHandleRightElement.getBoundingClientRect();
       const targetRect = this.resizeBoxElement.getBoundingClientRect();
 
-      const newWidth = () => {
-        if (this.floatMode) {
-          return event.event.clientX - (targetRect.left - dragRect.width / 2);
-        }
-
-        return dragRect.left - (targetRect.left - dragRect.width / 2);
-      }
+      const newWidth = () =>
+        this.floatMode
+          ? event.event.clientX - (targetRect.left - dragRect.width / 2)
+          : dragRect.left - (targetRect.left - dragRect.width / 2);
 
       if (newWidth() <= this.collapsedWidth) {
         this.toggleMenuLeft();
@@ -326,8 +325,8 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       onShown: () => {
         queueMicrotask(() => {
           const popup = document.querySelector(
-            '.me-menu-left-popup'
-          ) as HTMLElement;
+            '.dx-overlay-content.me-menu-left-popup'
+          ) as HTMLElement | null;
 
           if (popup) {
             const currentMaxHeight = popup.style.maxHeight;
