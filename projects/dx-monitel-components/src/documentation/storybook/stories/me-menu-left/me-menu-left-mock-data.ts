@@ -4,20 +4,20 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'tasks',
     text: 'Задачи',
-    icon: 'account_circle_x20',
+    icon: 'description_x20',
     badge: 3,
     expanded: true,
     items: [
       {
         id: 'inbox',
         text: 'Входящие',
-        icon: 'account_circle_x20',
+        icon: 'mail_x20',
         badge: 2,
       },
       {
         id: 'inprogress',
         text: 'В работе',
-        icon: 'account_circle_x20',
+        icon: 'draft_x20',
         badge: 1,
       },
     ],
@@ -25,18 +25,18 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'path',
     text: '/',
-    icon: 'folder',
+    icon: 'folder_open_x20',
     expanded: true,
     items: [
       {
         id: 'monitel',
         text: 'Monitel',
-        icon: 'folder',
+        icon: 'folder_open_x20',
         items: [
           {
             id: 'atp',
             text: 'АТП',
-            icon: 'folder',
+            icon: 'folder_open_x20',
             items: [
               {
                 id: 'active',
@@ -56,7 +56,7 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'downloads',
     text: 'Загрузки',
-    icon: 'download',
+    icon: 'download_x20',
     badge: 5,
   },
   {
@@ -70,7 +70,7 @@ export const meMenuLeftBottomItems: MeMenuLeftItem[] = [
   {
     id: 'downloads',
     text: 'Загрузки',
-    icon: 'download',
+    icon: 'download_x20',
     badge: 4,
   },
   {

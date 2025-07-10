@@ -7,7 +7,6 @@ import {
 } from 'devextreme-angular';
 
 import {
-  MeIconComponent,
   MeMenuLeftComponent,
   MeTextBoxDirective,
   MeTreeViewModule,
@@ -16,6 +15,7 @@ import {
   meMenuLeftBottomItems,
   meMenuLeftDefaultItems,
 } from './me-menu-left-mock-data';
+import {MeIconsModule} from "@monitel/me-icons-registry";
 
 export default {
   title: 'Components/MenuLeft',
@@ -26,7 +26,7 @@ export default {
       imports: [
         DxTreeViewModule,
         DxButtonModule,
-        MeIconComponent,
+        MeIconsModule,
         DxTextBoxModule,
         MeTreeViewModule,
       ],
@@ -127,7 +127,7 @@ export default {
       description: 'Ширина меню в свернутом состоянии.',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: '86' },
+        defaultValue: { summary: '68' },
       },
     },
     expandedWidth: {
@@ -147,11 +147,11 @@ export default {
       },
     },
     maxWidth: {
-      control: 'number',
-      description: 'Максимальная ширина меню.',
+      control: 'text',
+      description: 'Максимальная ширина меню. Допустимые единицы измерения - vw, px, %, inherit.',
       table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: '600' },
+        type: { summary: 'string' },
+        defaultValue: { summary: '600px' },
       },
     },
   },
@@ -169,10 +169,10 @@ export default {
     toggleIcon: 'chevron_right_x20',
     expandedIcon: 'expand_less_x20',
     collapsedIcon: 'keyboard_arrow_down_x20',
-    collapsedWidth: 86,
+    collapsedWidth: 68,
     expandedWidth: 336,
     width: 336,
-    maxWidth: 600,
+    maxWidth: '600px',
   },
   render: (args) => ({
     props: {
@@ -200,7 +200,7 @@ export default {
           (collapsedChange)="onCollapsedChange($event)"
           [maxWidth]="maxWidth">
            <div meMenuLeftHeader>
-            <me-icon icon="notifications" size="medium" class="notify_icon"></me-icon>
+            <me-icon name="notifications_unread_x20" size="24" class="notify_icon"></me-icon>
           </div>
         </me-menu-left>
         <div style="padding: 36px; color: var(--Text-Default)">
