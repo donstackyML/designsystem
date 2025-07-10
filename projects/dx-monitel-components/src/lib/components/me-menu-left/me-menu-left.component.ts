@@ -268,22 +268,22 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       const dragRect = this.dragHandleRightElement.getBoundingClientRect();
       const targetRect = this.resizeBoxElement.getBoundingClientRect();
 
-      const newWidth = () =>
+      const newWidth =
         this.floatMode
           ? event.event.clientX - (targetRect.left - dragRect.width / 2)
           : dragRect.left - (targetRect.left - dragRect.width / 2);
 
-      if (newWidth() <= this.collapsedWidth) {
+      if (newWidth <= this.collapsedWidth) {
         this.toggleMenuLeft();
       } else if (
         typeof this.actualMaxWidth === 'number' &&
-        newWidth() > this.actualMaxWidth
+        newWidth > this.actualMaxWidth
       ) {
         this.width = this.actualMaxWidth;
       } else if (this.actualMaxWidth === 'inherit') {
-        this.width = newWidth();
+        this.width = newWidth;
       } else {
-        this.width = newWidth();
+        this.width = newWidth;
       }
 
       this.setAllHandleTransform();
