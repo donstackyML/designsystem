@@ -24,6 +24,15 @@ export default {
         defaultValue: { summary: 'date' },
       },
     },
+    size: {
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
+      description: 'Размер календаря',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'medium' },
+      },
+    },
     value: {
       control: 'date',
       description:
@@ -103,6 +112,7 @@ export default {
     weekNumberRule: 'auto',
     zoomLevel: 'month',
     showTodayButton: false,
+    size: 'medium',
   },
   render: (args) => ({
     props: {
@@ -121,6 +131,18 @@ type Story = StoryObj<MeCalendarDirective | DxCalendarComponent>;
 
 export const Default: Story = {
   args: {},
+};
+
+export const SmallSize: Story = {
+  args: { size: 'small', showWeekNumbers: false },
+};
+
+export const MediumSize: Story = {
+  args: { size: 'medium', showWeekNumbers: false },
+};
+
+export const LargeSize: Story = {
+  args: { size: 'large', showWeekNumbers: false },
 };
 
 export const WithoutWeekNumbers: Story = {
