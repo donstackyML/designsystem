@@ -324,12 +324,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       visible: true,
       onShown: () => {
         queueMicrotask(() => {
-          const popup = document.querySelector(
-            '.dx-overlay-content.me-menu-left-popup'
-          ) as HTMLElement | null;
+          const popup = document.querySelector('.me-menu-left-popup') as HTMLElement | null;
 
           if (popup) {
-            const currentMaxHeight = popup.style.maxHeight;
+            const style = window.getComputedStyle(popup);
+            const currentMaxHeight = style.maxHeight;
             const currentValue = parseInt(currentMaxHeight);
             popup.style.maxHeight = `${currentValue + 8}px`;
           }
