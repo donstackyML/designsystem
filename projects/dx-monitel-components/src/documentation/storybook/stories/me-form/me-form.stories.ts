@@ -226,6 +226,9 @@ export const WithFormData: Story = {
       <div *dxTemplate>
         <dx-text-box
           meTextBox
+          [size]="size"
+          [readOnly]="readOnly"
+          [disabled]="disabled"
           [(value)]="formData.firstName">
         </dx-text-box>
       </div>
@@ -235,6 +238,9 @@ export const WithFormData: Story = {
       <div *dxTemplate>
         <dx-text-box
           meTextBox
+          [size]="size"
+          [readOnly]="readOnly"
+          [disabled]="disabled"
           [(value)]="formData.email">
         </dx-text-box>
       </div>
@@ -618,6 +624,7 @@ export const StateReadOnly: Story = {
       <div *dxTemplate>
         <dx-text-box
           meTextBox
+          [size]="size"
           [(value)]="formData.firstName"
           [disabled]="disabled"
           [readOnly]="readOnly"
@@ -630,6 +637,7 @@ export const StateReadOnly: Story = {
       <div *dxTemplate>
         <dx-text-box
           meTextBox
+          [size]="size"
           [(value)]="formData.email"
           [disabled]="disabled"
           [readOnly]="readOnly"
@@ -678,13 +686,21 @@ export const WithGrouping: Story = {
     <dxi-item meFormItem dataField="firstName">
       <dxo-label text="First Name"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox [size]="size"></dx-text-box>
+        <dx-text-box meTextBox 
+          [readOnly]="readOnly" 
+          [disabled]="disabled" 
+          [size]="size"
+        ></dx-text-box>
       </div>
     </dxi-item>
     <dxi-item meFormItem dataField="lastName">
       <dxo-label text="Last Name"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox [size]="size"></dx-text-box>
+        <dx-text-box meTextBox 
+          [readOnly]="readOnly" 
+          [disabled]="disabled" 
+          [size]="size"
+        ></dx-text-box>
       </div>
     </dxi-item>
   </dxi-item>
@@ -692,13 +708,21 @@ export const WithGrouping: Story = {
     <dxi-item meFormItem dataField="phone">
       <dxo-label text="Phone"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox [size]="size"></dx-text-box>
+        <dx-text-box meTextBox 
+          [readOnly]="readOnly" 
+          [disabled]="disabled" 
+          [size]="size"
+        ></dx-text-box>
       </div>
     </dxi-item>
     <dxi-item meFormItem dataField="email">
       <dxo-label text="Email"></dxo-label>
       <div *dxTemplate>
-        <dx-text-box meTextBox [size]="size"></dx-text-box>
+        <dx-text-box meTextBox 
+          [readOnly]="readOnly" 
+          [disabled]="disabled" 
+          [size]="size"
+        ></dx-text-box>
       </div>
     </dxi-item>
   </dxi-item>
@@ -721,7 +745,7 @@ export const WithValidation: Story = {
       message="Invalid email format">
     </dxi-validation-rule>
     <div *dxTemplate>
-      <dx-text-box meTextBox></dx-text-box>
+      <dx-text-box meTextBox [size]="size" [disabled]="disabled"></dx-text-box>
     </div>
   </dxi-item>
 </dx-form>
