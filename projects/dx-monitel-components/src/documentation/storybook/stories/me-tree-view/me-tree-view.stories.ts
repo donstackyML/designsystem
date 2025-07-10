@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import {
   argsToTemplate,
   moduleMetadata,
@@ -5,11 +6,13 @@ import {
   type StoryObj,
 } from '@storybook/angular';
 import { DxTreeViewComponent } from 'devextreme-angular';
-import { MeTreeViewDirective } from '../../../../public-api';
-import { meTreeViewMockData } from './me-tree-view-mock-data';
-import { Component } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
 import ODataStore from 'devextreme/data/odata/store';
+import { MeTreeViewDirective } from '../../../../public-api';
+import {
+  meTreeViewMockData,
+  meTreeViewMockDataWithTwoIcons,
+} from './me-tree-view-mock-data';
 
 export default {
   title: 'Components/TreeView',
@@ -120,6 +123,12 @@ export const SizeSmall: Story = {
 export const SizeLarge: Story = {
   args: {
     size: 'large',
+  },
+};
+
+export const WithTwoIcons: Story = {
+  args: {
+    dataSource: meTreeViewMockDataWithTwoIcons,
   },
 };
 
