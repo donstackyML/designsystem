@@ -12,6 +12,7 @@
   --group-caption-line-height: 20px;
 
   --form-group-gap: 12px;
+  --padding-inline-left: 8px;
 
   font-family: var(--font-family, Arial, sans-serif);
 
@@ -136,6 +137,7 @@
   &.me-form-large {
     --group-caption-font-size: 20px;
     --group-caption-line-height: 24px;
+    --padding-inline-left: 12px;
 
     .me-inputs-large.me-date-box {
       height: var(--input-height);
@@ -245,26 +247,8 @@
     }
   }
 
-  .me-textbox.me-inputs-large.dx-texteditor-with-label {
-    .dx-texteditor-label {
-      left: 12px;
-    }
-  }
-
   .dx-layout-manager .dx-label-h-align.dx-flex-layout:not(.dx-field-item-label-align) {
     align-items: center;
-  }
-
-  .dx-texteditor-with-floating-label {
-    .dx-texteditor-label {
-      left: 8px;
-    }
-
-    &.me-inputs-large {
-      .dx-texteditor-label {
-        left: 12px;
-      }
-    }
   }
 
   .dx-field-item-required {
@@ -362,9 +346,9 @@
     // Стили для кнопок внутри SelectBox
     .dx-dropdowneditor-button {
       position: absolute;
-      right: 9px;
+      left: 50%;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translate(-50%, -50%);
       width: 16px;
       height: 16px;
 
@@ -403,14 +387,14 @@
           .me-inputs {
             .dx-texteditor-label {
               .dx-label {
-                padding-left: 0;
+                padding-left: var(--padding-inline-left);
               }
             }
 
             &.dx-state-hover {
               .dx-texteditor-label {
                 .dx-label {
-                  padding-left: 0;
+                  padding-left: var(--padding-inline-left);
                 }
               }
             }
@@ -430,7 +414,7 @@
     &.dx-texteditor-with-label {
       .dx-texteditor-label .dx-label {
         font-size: var(--field-item-label-font-size);
-        padding: 0 4px;
+        padding: 0px;
         transition: none;
       }
 
@@ -447,21 +431,6 @@
         /* Начальная позиция */
         left: var(--label-left-position);
       }
-    }
-  }
-
-  .me-inputs-large {
-    &.dx-texteditor-with-label {
-      .dx-texteditor-label {
-        left: 12px;
-      }
-    }
-  }
-
-  .dx-texteditor-with-label {
-    .dx-texteditor-label {
-      top: -2px;
-      left: 8px;
     }
   }
 

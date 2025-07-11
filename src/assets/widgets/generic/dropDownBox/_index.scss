@@ -8,20 +8,50 @@
 @use '../dropDownEditor';
 
 .me-drop-down-box {
-  --input-height: 28px;
+  --Input-Height: 28px;
+  --Input-Outlined-Height: 36px;
 
   width: 100%;
   box-sizing: border-box;
-  height: var(--input-height);
+  height: var(--Input-Height);
+
+  &-label-mode-static,
+  &-label-mode-floating {
+    height: var(--Input-Outlined-Height);
+  }
 
   .dx-texteditor-container {
     width: 100%;
     align-items: center;
+  }
 
-    .dx-texteditor-input-container {
-      .dx-placeholder {
-        display: none;
-      }
+  &.dx-dropdownbox {
+    background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+
+    &.dx-state-hover {
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+      border: 1px solid transparent;
+    }
+
+    &.dx-dropdowneditor-active {
+      border: 1px solid var(--Controls-BG-Accent-Accent-BG-Default);
+      background-color: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+    }
+
+    &.me-keyboard-focused {
+      border: 1px solid var(--Controls-BG-Accent-Accent-BG-Default);
+      background: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+      outline: 2px solid var(--Dividers-Borders-Focus);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+
+    &.dx-state-readonly {
+      background: var(--Controls-BG-Secondary-Elements-BG-Default);
+    }
+
+    &.dx-state-disabled {
+      background: var(--Controls-BG-Secondary-Elements-BG-Disabled);
     }
   }
 
@@ -62,7 +92,8 @@
   }
 
   &-medium {
-    --input-height: 32px;
+    --Input-Height: 32px;
+    --Input-Outlined-Height: 40px;
 
     .dx-texteditor-input-container {
       .dx-texteditor-input {
@@ -84,7 +115,8 @@
   }
 
   &-large {
-    --input-height: 40px;
+    --Input-Height: 40px;
+    --Input-Outlined-Height: 48px;
 
     .dx-texteditor-input-container {
       .dx-texteditor-input {
@@ -107,11 +139,39 @@
 }
 
 .me-drop-down-box-wrapper-popup {
-  .dx-overlay-content {
+  --Search-Icon-Size: 20px;
+  --Search-Icon-Line-Height: 18px;
+  --Search-Input-Inline-Padding: 0 4px 0 8px;
+  --Search-Input-Height: 28px;
+  --Clear-Icon-Size: 12px;
+  --Texteditor-Input-Padding: 0 4px 0 32px;
+
+  &-medium {
+    &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
+      .dx-popup-content:has(> .me-tree-view) {
+        --Search-Input-Height: 32px;
+      }
+    }
+  }
+
+  &-large {
+    &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
+      .dx-popup-content:has(> .me-tree-view-large) {
+        --Search-Icon-Size: 24px;
+        --Search-Icon-Line-Height: 24px;
+        --Search-Input-Inline-Padding: 0 8px 0 12px;
+        --Search-Input-Height: 40px;
+        --Clear-Icon-Size: 16px;
+        --Texteditor-Input-Padding: 0 4px 0 40px;
+      }
+    }
+  }
+
+  &.dx-overlay-wrapper.dx-popup-wrapper .dx-overlay-content {
     padding: 16px;
 
     .dx-popup-content:has(> .me-tree-view) {
-      padding: 0 !important;
+      padding: 0;
 
       .me-tree-view {
         padding: 0;
@@ -119,6 +179,65 @@
 
         .dx-treeview-search {
           background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+          margin-bottom: 4px;
+
+          &.dx-state-hover {
+            background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+            border: 1px solid transparent;
+          }
+
+          &.dx-state-focused {
+            border: 1px solid var(--Controls-BG-Accent-Accent-BG-Default);
+            background: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+          }
+
+          &.dx-state-readonly {
+            background: var(--Controls-BG-Secondary-Elements-BG-Default);
+          }
+
+          &.dx-state-disabled {
+            background: var(--Controls-BG-Secondary-Elements-BG-Disabled);
+          }
+
+          .dx-texteditor-container {
+            padding: var(--Search-Input-Inline-Padding);
+            height: var(--Search-Input-Height);
+
+            .dx-texteditor-input-container {
+              .dx-placeholder::before {
+                padding: var(--Texteditor-Input-Padding);
+              }
+
+              .dx-icon-search {
+                width: auto;
+                height: auto;
+                font-size: var(--Search-Icon-Size);
+                line-height: var(--Search-Icon-Line-Height);
+                margin-top: 0;
+                padding: 0;
+                transform: translateY(-50%);
+              }
+            }
+
+            .dx-texteditor-input {
+              padding: var(--Texteditor-Input-Padding);
+            }
+
+            .dx-placeholder::before {
+              padding-block: 0;
+            }
+
+            .dx-texteditor-buttons-container {
+              .dx-clear-button-area {
+                width: auto;
+                min-width: auto;
+
+                .dx-icon-clear {
+                  font-size: var(--Clear-Icon-Size);
+                }
+              }
+            }
+          }
         }
 
         .dx-scrollable-scroll {
@@ -132,11 +251,47 @@
     }
 
     .dx-popup-content:has(> .me-data-grid) {
-      padding: 0 !important;
+      padding: 0;
 
       .me-data-grid {
         .dx-scrollable-scroll {
           padding: 4px 0 4px 4px;
+        }
+
+        &.me-data-grid-cell-small {
+          table {
+            tbody {
+              .dx-header-row,
+              .dx-data-row {
+                .dx-command-select {
+                  padding: 0 4px;
+
+                  .dx-checkbox {
+                    width: 16px;
+
+                    .dx-checkbox-container .dx-checkbox-icon {
+                      width: 16px;
+                      height: 16px;
+
+                      &::before {
+                        width: 10px;
+                        margin-left: -5px;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .dx-header-row,
+              .dx-data-row
+                .dx-command-select
+                .dx-checkbox
+                .dx-checkbox-container
+                .dx-checkbox-icon::before {
+                margin-left: -6px;
+              }
+            }
+          }
         }
 
         .dx-datagrid {
@@ -146,6 +301,13 @@
 
           table {
             tbody {
+              .dx-header-row,
+              .dx-data-row {
+                .dx-command-select {
+                  padding: 0 8px;
+                }
+              }
+
               .dx-datagrid-filter-row {
                 td {
                   background: var(--Background-Accent-in-the-content);
@@ -181,6 +343,10 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
+                        .dx-icon {
+                          color: var(--Icon-Default);
+                        }
                       }
 
                       .dx-context-menu-container-border {

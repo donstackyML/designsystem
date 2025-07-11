@@ -9,6 +9,7 @@ import {
 import {
   MeDataGridDirective,
   MeDropDownBoxDirective,
+  MeLabelDirective,
   MeTreeViewDirective,
 } from '../../../../public-api';
 import { mockData } from './me-drop-down-box-mock-data';
@@ -27,6 +28,7 @@ export default {
         MeDropDownBoxDirective,
         MeTreeViewDirective,
         MeDataGridDirective,
+        MeLabelDirective,
       ],
     }),
   ],
@@ -62,9 +64,33 @@ export default {
         defaultValue: { summary: "''" },
       },
     },
+    label: {
+      control: 'text',
+      description: 'Текст, отображаемый в качестве лейбла.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    labelMode: {
+      control: 'select',
+      options: ['outside', 'static', 'floating', 'hidden'],
+      description: 'Указывает, где будет размещаться лейбл.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'outside' },
+      },
+    },
     disabled: {
       control: 'boolean',
       description: 'Блокирует возможность взаимодействия с элементом.',
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+    },
+    readOnly: {
+      control: 'boolean',
+      description: 'Делает компонент доступным только для чтения.',
       table: {
         defaultValue: { summary: 'false' },
       },
@@ -104,6 +130,7 @@ export default {
     },
   },
   args: {
+    label: 'Label',
     dataSource: mockData,
     size: 'small',
     placeholder: 'Выберите значение...',
@@ -111,6 +138,8 @@ export default {
     showClearButton: true,
     showScrollbar: 'always',
     dropDownListMaxHeight: 300,
+    readOnly: false,
+    labelMode: 'outside',
   },
   render: (args) => ({
     props: args,
@@ -128,6 +157,9 @@ export default {
           [dropDownListMaxHeight]="dropDownListMaxHeight"
           [showScrollbar]="showScrollbar"
           [leftIcon]="leftIcon"
+          [readOnly]="readOnly"
+          [labelMode]="labelMode"
+          [label]="label"
         >
           <dx-tree-view
             meTreeView
@@ -156,6 +188,9 @@ export default {
           [disabled]="disabled"
           [showScrollbar]="showScrollbar"
           [leftIcon]="leftIcon"
+          [readOnly]="readOnly"
+          [labelMode]="labelMode"
+          [label]="label"
         >
           <dx-data-grid
             meDataGrid
@@ -207,6 +242,9 @@ export const WithTreeView: Story = {
         valueExpr="id"
         [placeholder]="placeholder"
         [size]="size"
+        [showClearButton]="showClearButton"
+        [label]="label"
+        [labelMode]="labelMode"
       >
         <dx-tree-view
           meTreeView
@@ -220,6 +258,7 @@ export const WithTreeView: Story = {
           displayExpr="name"
           [selectByClick]="true"
           [searchEnabled]="true"
+          size="large"
         >
         </dx-tree-view>
       </dx-drop-down-box>
@@ -238,6 +277,8 @@ export const WithDataGrid: Story = {
         valueExpr="id"
         [placeholder]="placeholder"
         [size]="size"
+        [label]="label"
+        [labelMode]="labelMode"
       >
         <dx-data-grid
           meDataGrid
@@ -247,6 +288,7 @@ export const WithDataGrid: Story = {
           [hoverStateEnabled]="true"
           [filterRow]="{ visible: true }"
           [height]="300"
+          cellSize="small"
         >
         </dx-data-grid>
       </dx-drop-down-box>
@@ -282,4 +324,35 @@ export const CustomMaxHeight: Story = {
   args: {
     dropDownListMaxHeight: 150,
   },
+};
+
+export const LabelLeft: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <label meLabel labelDirection="row" width="400px">
+        Label
+        <dx-drop-down-box
+            meDropDownBox
+            [dataSource]="dataSource"
+            displayExpr="name"
+            valueExpr="id"
+            [placeholder]="placeholder"
+            [size]="size"
+          >
+            <dx-data-grid
+              meDataGrid
+              [dataSource]="dataSource"
+              [columns]="['id', 'name']"
+              [selection]="{ mode: 'multiple' }"
+              [hoverStateEnabled]="true"
+              [filterRow]="{ visible: true }"
+              [height]="300"
+              cellSize="small"
+            >
+            </dx-data-grid>
+        </dx-drop-down-box>
+      </label>
+    `,
+  }),
 };

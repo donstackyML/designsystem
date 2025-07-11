@@ -1,0 +1,43 @@
+<header class="header" [class.header--large]="size === 'large'" [class.header--small]="size === 'small'">
+  <div class="header__left">
+    <ng-content select="[slot=left]"></ng-content>
+
+    <div *ngIf="title || description || (appInfo && !withAppInfoTooltip)" class="header__info">
+      <span *ngIf="title" class="header__title" [class.me-title-header1]="size === 'large'" [class.me-title-header2]="size === 'small'">{{ title }}</span>
+      <span *ngIf="!title && description" class="header__title" [class.me-text-body1]="size === 'large'" [class.me-text-body2]="size === 'small'" ,>{{
+        description
+      }}</span>
+
+      <div *ngIf="appInfo && !withAppInfoTooltip" class="me-text-caption header__app-info">
+        <span class="header__app-info-item" *ngIf="appInfo.appVersion">{{ appInfo.appVersion }}</span>
+        <div *ngIf="appInfo.appVersion" class="header__app-info-divider">|</div>
+        <span *ngIf="appInfo.uiVersion">{{ appInfo.uiVersion }}</span>
+        <div *ngIf="appInfo.uiVersion" class="header__app-info-divider">|</div>
+        <span class="header__app-info-item" *ngIf="appInfo.host">{{ appInfo.host }}</span>
+      </div>
+    </div>
+
+    <ng-container *ngIf="title && description">
+      <div class="header__divider"></div>
+      <span *ngIf="description" [class.me-text-body1]="size === 'large'" [class.me-text-body2]="size === 'small'">{{ description }}</span>
+    </ng-container>
+
+    <dx-button class="header__tooltip-btn" *ngIf="withAppInfoTooltip" id="tooltip-target" stylingMode="text" [hoverStateEnabled]="false">
+      <me-icon [size]="size" icon="info"></me-icon>
+    </dx-button>
+  </div>
+
+  <div class="header__right">
+    <ng-content select="[slot=right]"></ng-content>
+  </div>
+</header>
+
+<dx-tooltip *ngIf="withAppInfoTooltip" target="#tooltip-target" showEvent="mouseenter" hideEvent="mouseleave">
+  <div *ngIf="appInfo" class="header__app-info--tooltip me-text-caption">
+    <span *ngIf="appInfo.appVersion">{{ appInfo.appVersion }}</span>
+    <span *ngIf="appInfo.appVersion">|</span>
+    <span *ngIf="appInfo.uiVersion">{{ appInfo.uiVersion }}</span>
+    <span *ngIf="appInfo.uiVersion">|</span>
+    <span *ngIf="appInfo.host">{{ appInfo.host }}</span>
+  </div>
+</dx-tooltip>

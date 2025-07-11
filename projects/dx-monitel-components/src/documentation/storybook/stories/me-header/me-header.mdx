@@ -1,0 +1,188 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as headerStories from "./me-header.stories.ts";
+
+<Meta name="Header Documentation" of={headerStories} />
+
+# Header
+
+Компонент `me-header` задаёт верхнюю часть интерфейса, в которой отображается информация о приложении, описание текущего раздела, а также вспомогательная информация — версия, хост, доступ к действиям и пользовательскому меню.
+
+<Canvas of={headerStories.Default} />
+<Controls of={headerStories.Default} />
+<Source of={headerStories.Default} dark />
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=1581-1814&m=dev"
+/>
+
+## Примеры использования
+
+- [Размеры компонента](#размеры-компонента)
+- [Компонент стандартного размера](#компонент-стандартного-размера)
+- [Компонент увеличенного размера](#компонент-увеличенного-размера)
+- [Компонент с описанием](#компонент-с-описанием)
+- [Компонент без заголовка и описания](#компонент-без-заголовка-и-описания)
+- [Компонент с заголовком и тултипом](#компонент-с-заголовком-и-тултипом)
+- [Компонент без версии](#компонент-без-версии)
+
+
+### Размеры компонента
+
+Компонент поддерживает три размера, которые можно задать через свойство `size`:
+- small – стандартный размер
+- large – увеличенный размер
+
+#### Компонент стандартного размера
+
+<Canvas name="Компонент небольшого размера" of={headerStories.Small} />
+
+<Source
+  code={`
+<me-header size="small">
+  <img
+    style="width: 28px; height: 28px;"
+    slot="left"
+    src="./assets/icons/favicon.svg"
+    alt="Логотип"
+  />
+  <div class="right" slot="right">
+    <span class="me-text-body2">
+      Домен подключения
+    </span>
+    <dx-drop-down-button meDropDownButton size="small" text="Личный кабинет" icon="account_circle" stylingMode="contained"></dx-drop-down-button>
+    <dx-button meButton size="small" iconOnly="more_vert"> </dx-button>
+  </div>
+</me-me-header>
+  `}
+  dark
+  language="html"
+/>
+
+#### Компонент увеличенного размера
+
+<Canvas name="Компонент увеличенного размера" of={headerStories.Large} />
+
+<Source
+  code={`
+<me-header size="large">
+  <img
+    style="width: 40px; height: 40px;"
+    slot="left"
+    src="./assets/icons/favicon.svg"
+    alt="Логотип"
+  />
+  <div class="right" slot="right">
+    <span class="me-text-body2">
+      Домен подключения
+    </span>
+    <dx-drop-down-button meDropDownButton size="large" text="Личный кабинет" icon="account_circle" stylingMode="contained"></dx-drop-down-button>
+    <dx-button meButton size="large" iconOnly="more_vert"> </dx-button>
+  </div>
+</me-me-header>
+  `}
+  dark
+  language="html"
+/>
+
+#### Компонент с описанием
+
+<Canvas name="Компонент с описанием" of={headerStories.WithDescription} />
+
+<Source
+  code={`
+<me-header description="Название контента">
+  <img
+    style="width: 28px; height: 28px;"
+    slot="left"
+    src="./assets/icons/favicon.svg"
+    alt="Логотип"
+  />
+  <div class="right" slot="right">
+    <span class="me-text-body2">
+      Домен подключения
+    </span>
+    <dx-drop-down-button meDropDownButton size="small" text="Личный кабинет" icon="account_circle" stylingMode="contained"></dx-drop-down-button>
+    <dx-button meButton size="small" iconOnly="more_vert"> </dx-button>
+  </div>
+</me-me-header>
+  `}
+  dark
+  language="html"
+/>
+
+#### Компонент без заголовка и описания
+
+<Canvas name="Компонент без заголовка и описания" of={headerStories.WithoutTitleAndDescription} />
+
+<Source
+  code={`
+<me-header title="" description="">
+  <img
+    style="width: 28px; height: 28px;"
+    slot="left"
+    src="./assets/icons/favicon.svg"
+    alt="Логотип"
+  />
+  <div class="right" slot="right">
+    <span class="me-text-body2">
+      Домен подключения
+    </span>
+    <dx-drop-down-button meDropDownButton size="small" text="Личный кабинет" icon="account_circle" stylingMode="contained"></dx-drop-down-button>
+    <dx-button meButton size="small" iconOnly="more_vert"> </dx-button>
+  </div>
+</me-me-header>
+  `}
+  dark
+  language="html"
+/>
+
+#### Компонент с заголовком и тултипом
+
+<Canvas name="Компонент с заголовком и тултипом" of={headerStories.WithTitleAndTooltip} />
+
+<Source
+  code={`
+<me-header description="" withAppInfoTooltip=true>
+  <img class="icon" slot="left" src="./assets/icons/favicon.svg" alt="Логотип"/>
+  
+  <div class="right" slot="right">
+    <dx-button meButton [size]="size" iconOnly="more_vert">
+    </dx-button>
+  </div>
+</me-header>
+  `}
+  dark
+  language="html"
+/>
+
+#### Компонент без версии
+
+<Canvas name="Компонент без версии" of={headerStories.WithoutVersion} />
+
+<Source
+  code={`
+<me-header appInfo=undefined>
+  <img
+    style="width: 28px; height: 28px;"
+    slot="left"
+    src="./assets/icons/favicon.svg"
+    alt="Логотип"
+  />
+  <div class="right" slot="right">
+    <span class="me-text-body2">
+      Домен подключения
+    </span>
+    <dx-drop-down-button meDropDownButton size="small" text="Личный кабинет" icon="account_circle" stylingMode="contained"></dx-drop-down-button>
+    <dx-button meButton size="small" iconOnly="more_vert"> </dx-button>
+  </div>
+</me-me-header>
+  `}
+  dark
+  language="html"
+/>

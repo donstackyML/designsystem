@@ -3,9 +3,9 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxButtonModule } from 'devextreme-angular';
 import { DxPopoverModule } from 'devextreme-angular/ui/popover';
 import { AnimationConfig } from 'devextreme/animation/fx';
-import { MeButtonDirective, MePopoverDirective } from '../../../../public-api';
-import { Position } from 'devextreme/common';
 import { PositionConfig } from 'devextreme/animation/position';
+import { Position } from 'devextreme/common';
+import { MeButtonDirective, MePopoverDirective } from '../../../../public-api';
 
 @Component({
   selector: 'me-popover-demo',
@@ -49,7 +49,7 @@ import { PositionConfig } from 'devextreme/animation/position';
                   meButton
                   [size]="size"
                   stylingMode="text"
-                  type="normal"
+                  buttonType="normal"
                   iconOnly="close"
                 ></dx-button>
               </div>
@@ -66,7 +66,7 @@ import { PositionConfig } from 'devextreme/animation/position';
               [text]="acceptButton.text"
               [size]="size"
               stylingMode="filled"
-              type="default"
+              buttonType="default"
               (click)="acceptButton.onClick()"
             >
             </dx-button>
@@ -77,7 +77,7 @@ import { PositionConfig } from 'devextreme/animation/position';
               [text]="cancelButton.text"
               [size]="size"
               stylingMode="filled"
-              type="normal"
+              buttonType="normal"
               (click)="cancelButton.onClick()"
             >
             </dx-button>

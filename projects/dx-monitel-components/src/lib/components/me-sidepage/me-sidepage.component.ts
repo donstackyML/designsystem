@@ -40,7 +40,7 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   element!: ElementRef<HTMLDivElement>;
 
   private overlay?: HTMLDivElement;
-  private startPosition: string = '-100%';
+  private startPosition: string = '-125%';
   private endPosition: string = '0';
   private isResizing: boolean = false;
   private startX: number = 0;

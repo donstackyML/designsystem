@@ -49,12 +49,21 @@ export default {
     },
     size: {
       control: 'select',
-      options: ['small', 'large'],
+      options: ['small', 'medium', 'large'],
       description:
         'Изменяет размер компонента элементов, которыми управляет компонент `me-breadcrumbs`.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'small' },
+      },
+    },
+    dropdownPosition: {
+      control: 'select',
+      options: ['top', 'bottom'],
+      description: 'Определяет положение выпадающего меню.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'bottom' },
       },
     },
     truncateFrom: {
@@ -128,6 +137,7 @@ export default {
     iconExpr: 'icon',
     itemsExpr: 'items',
     urlExpr: 'url',
+    dropdownPosition: 'bottom',
   },
   render: (args) => ({
     props: args,
@@ -204,7 +214,83 @@ export const TruncateFromRight: Story = {
 
 export const WithManyItems: Story = {
   args: {
-    items: meBreadcrumbsMockDataWithManyItems,
+    items: [
+      {
+        text: 'Home',
+        url: '/',
+        icon: 'home',
+      },
+      {
+        text: 'Category 1',
+        url: '/cat1',
+        icon: 'repeat',
+      },
+      {
+        text: 'Category 2',
+        url: '/cat1/cat2',
+        icon: 'repeat',
+      },
+      {
+        text: 'Category 3',
+        url: '/cat1/cat2/cat3',
+        icon: 'repeat',
+      },
+      {
+        text: 'Category 4',
+        url: '/cat1/cat2/cat3/cat4',
+        icon: 'repeat',
+      },
+      {
+        text: 'Category 5',
+        url: '/cat1/cat2/cat3/cat4/cat5',
+        icon: 'repeat',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+      {
+        text: 'Product',
+        url: '/cat1/cat2/cat3/cat4/cat5/product',
+        icon: 'like',
+      },
+    ],
   },
 };
 
@@ -368,4 +454,28 @@ export const WithCustomFields: Story = {
     iconExpr: 'iconData',
     urlExpr: 'link',
   },
+};
+
+export const WithDropdownTop: Story = {
+  args: {
+    items: meBreadcrumbsMockDataWithNestedItemsAndIcons,
+    dropdownPosition: 'top',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="container">
+        <me-breadcrumbs ${argsToTemplate(args)}></me-breadcrumbs>
+      </div>
+    `,
+    styles: [
+      `
+      .container {
+        display: flex;
+        height: 80%;
+        align-items: flex-end;
+      }
+      `,
+    ],
+  }),
 };

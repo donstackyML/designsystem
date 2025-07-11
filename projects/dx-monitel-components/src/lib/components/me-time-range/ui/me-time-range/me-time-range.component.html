@@ -7,6 +7,7 @@
   [hideOnOutsideClick]="popupHideOnOutsideClick"
   [position]="popupPosition"
   (onHidden)="handleClosePopup()"
+  [wrapperAttr]="popupWrapperAttr"
   class="me-time-range__popup"
 >
   <div *dxTemplate="let data of 'content'">
@@ -174,11 +175,12 @@
   </div>
 
   <div class="me-time-range__footer">
-    <dx-button meButton size="small" text="Сбросить фильтр" type="default" stylingMode="text" (onClick)="resetFilters()" [disabled]="isResetDisabled"> </dx-button>
+    <dx-button meButton size="small" text="Сбросить фильтр" buttonType="default" stylingMode="text" (onClick)="resetFilters()" [disabled]="isResetDisabled">
+    </dx-button>
     <div class="me-time-range__footer__buttons-right">
-      <dx-button meButton size="small" text="Применить" type="default" stylingMode="contained" (onClick)="applyFilters()" [disabled]="isApplyButtonDisabled">
+      <dx-button meButton size="small" text="Применить" buttonType="default" stylingMode="contained" (onClick)="applyFilters()" [disabled]="isApplyButtonDisabled">
       </dx-button>
-      <dx-button *ngIf="hasFooterCancelButton" meButton size="small" text="Отмена" type="default" stylingMode="text" (onClick)="handleClose()"> </dx-button>
+      <dx-button *ngIf="hasFooterCancelButton" meButton size="small" text="Отмена" buttonType="default" stylingMode="text" (onClick)="handleClose()"> </dx-button>
     </div>
   </div>
 </ng-template>

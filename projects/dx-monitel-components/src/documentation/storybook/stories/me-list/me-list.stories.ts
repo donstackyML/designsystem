@@ -14,6 +14,7 @@ import {
   meListMockDataWithHeaders,
   meListMockDataWithIcons,
   meListMockDataWithImageAndDescription,
+  meListMockDataWithTwoIcons,
 } from './me-list-mock-data';
 
 export default {
@@ -51,6 +52,14 @@ export default {
     },
     allowItemDeleting: {
       description: 'Разрешить удаление элементов',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    showLastDivider: {
+      description: 'Отображает последний разделитель.',
       control: 'boolean',
       table: {
         type: { summary: 'boolean' },
@@ -175,6 +184,7 @@ export default {
     dividersVisibility: 'all',
     searchExpr: 'text',
     keyExpr: 'key',
+    showLastDivider: false,
   },
   render: (args) => ({
     props: args,
@@ -377,6 +387,12 @@ export const DividersVisibilityByContent: Story = {
 export const ContentWithIcons: Story = {
   args: {
     dataSource: meListMockDataWithIcons,
+  },
+};
+
+export const ContentWithTwoIcons: Story = {
+  args: {
+    dataSource: meListMockDataWithTwoIcons,
   },
 };
 

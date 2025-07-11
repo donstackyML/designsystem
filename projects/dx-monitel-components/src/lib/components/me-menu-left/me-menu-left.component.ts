@@ -1,20 +1,21 @@
 import {
   CdkDrag,
   CdkDragEnd,
-  CdkDragMove,
   CdkDragStart,
 } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, Inject,
+  Injectable,
   Input,
   NgZone,
   OnChanges,
-  Output,
+  Output, PLATFORM_ID,
   Renderer2,
   SimpleChanges,
   ViewChild,
@@ -26,18 +27,21 @@ import {
   DxScrollViewModule,
   DxTreeViewModule,
 } from 'devextreme-angular';
-import { DxContextMenuComponent } from 'devextreme-angular/ui/context-menu';
+import {
+  DxContextMenuComponent,
+  DxContextMenuTypes,
+} from 'devextreme-angular/ui/context-menu';
 import PositionConfig = DevExpress.PositionConfig;
 
 import { MeContextMenuModule } from '../../directives/me-context-menu/me-context-menu.module';
 import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-view.module';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { MeSize } from '../../types/types';
-import { MeIconComponent } from '../me-icon/me-icon.component';
+
 import {
   MeMenuLeftItem,
   MeMenuLeftItemComponent,
 } from './me-menu-left-item.component';
+import { MeIconsModule } from '@monitel/me-icons-registry';
 
 interface TreeNode {
   parent?: TreeNode;
@@ -53,13 +57,13 @@ interface TreeNode {
     CommonModule,
     DxTreeViewModule,
     DxButtonModule,
-    MeIconComponent,
     CdkDrag,
     MeMenuLeftItemComponent,
     DxContextMenuModule,
     MeContextMenuModule,
     DxScrollViewModule,
     MeScrollViewModule,
+    MeIconsModule,
   ],
   templateUrl: './me-menu-left.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,14 +80,17 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   @Input() floatMode: boolean = false;
   @Input() resizeHandleVisible: boolean = true;
   @Input() withHeader: boolean = true;
-  @Input() size: MeSize = 'medium';
-  @Input() toggleIcon: string = 'drag';
-  @Input() expandedIcon: string = 'expand_less';
-  @Input() collapsedIcon: string = 'expand_more';
+  @Input() toggleIcon: string = 'chevron_left_x24';
+  @Input() expandedIcon: string = 'expand_less_x20';
+  @Input() collapsedIcon: string = 'keyboard_arrow_down_x20';
   @Input() collapsedWidth: number = 86;
   @Input() expandedWidth: number = 336;
+  @Input() maxWidth?: string;
+
+  actualMaxWidth: number | 'inherit' = window.innerWidth;
 
   private _items: MeMenuLeftItem[] = [];
+
   @Input()
   get items(): MeMenuLeftItem[] {
     return this._items;
@@ -132,26 +139,30 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   private _withStarted = 0;
   private _transition = '';
   private focusService: ComponentFocusService;
+  private overlay?: HTMLDivElement;
+  private resizeObserver?: ResizeObserver;
 
   constructor(
     private element: ElementRef,
     private ngZone: NgZone,
-    private renderer: Renderer2
-  ) {
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+) {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
-    this.focusService.addKeyUpEventHandle('Tab', (evt) =>
-      this.keyTabHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('ArrowDown', (evt) =>
-      this.keyDownHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('ArrowUp', (evt) =>
-      this.keyUpHandle(evt)
-    );
-    this.focusService.addKeyUpEventHandle('Enter', (evt) =>
-      this.keyEnterHandle(evt)
-    );
-    this.focusService.addFocusOutHandle((evt) => this.focusOutHandle(evt));
+    // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
+    //   this.keyTabHandle(evt)
+    // );
+    // this.focusService.addKeyUpEventHandle('ArrowDown', (evt) =>
+    //   this.keyDownHandle(evt)
+    // );
+    // this.focusService.addKeyUpEventHandle('ArrowUp', (evt) =>
+    //   this.keyUpHandle(evt)
+    // );
+    // this.focusService.addKeyUpEventHandle('Enter', (evt) =>
+    //   this.keyEnterHandle(evt)
+    // );
+    // this.focusService.addFocusOutHandle((evt) => this.focusOutHandle(evt));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -162,10 +173,22 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   ngAfterViewInit(): void {
     this.stateUpdate();
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.resizeObserver = new ResizeObserver(() => this.handleWindowResize());
+      this.resizeObserver.observe(document.body);
+    }
+  }
+
+  ngOnInit(): void {
+    this.actualMaxWidth = this.calculateMaxWidth();
+
+    if (this.floatMode) {
+      this.createShading();
+    }
   }
 
   private stateUpdate(): void {
-    this.toggleIcon = this.collapsed ? 'chevron_right' : 'chevron_left';
     if (this.collapsed) {
       this.width = this.collapsedWidth;
       this.updateItemExpanded(this._items, false);
@@ -177,19 +200,13 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   updateDragHandler(): void {
     if (!this.collapsed) {
-      const targetRect = this.resizeBoxElement.getBoundingClientRect();
-      const translateX = targetRect.width;
-
       this.renderer.setStyle(
         this.dragHandleRight.nativeElement,
         'opacity',
         `1`
       );
-      this.renderer.setStyle(
-        this.dragHandleRight.nativeElement,
-        'transform',
-        `translateX(${translateX}px)`
-      );
+
+      this.setAllHandleTransform();
     }
   }
 
@@ -207,7 +224,8 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   setHandleTransform(dragHandle: HTMLElement, targetRect: DOMRect): void {
     const dragRect = dragHandle.getBoundingClientRect();
-    const translateX = targetRect.width - dragRect.width;
+    const translateX = targetRect.width - dragRect.width / 2;
+
     this.renderer.setStyle(
       dragHandle,
       'transform',
@@ -232,6 +250,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   started(event: CdkDragStart): void {
     this._withStarted = this._width;
     this._transition = this.containerElement.style.transition;
+
     this.renderer.setStyle(this.containerElement, 'transition', 'none');
   }
 
@@ -244,26 +263,37 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     );
   }
 
-  dragMove(event: CdkDragMove<any>): void {
+  dragMove(event: any): void {
     this.ngZone.runOutsideAngular(() => {
-      this.resize(this.resizeBoxElement);
+      const dragRect = this.dragHandleRightElement.getBoundingClientRect();
+      const targetRect = this.resizeBoxElement.getBoundingClientRect();
+
+      const newWidth =
+        this.floatMode
+          ? event.event.clientX - (targetRect.left - dragRect.width / 2)
+          : dragRect.left - (targetRect.left - dragRect.width / 2);
+
+      if (newWidth <= this.collapsedWidth) {
+        this.toggleMenuLeft();
+      } else if (
+        typeof this.actualMaxWidth === 'number' &&
+        newWidth > this.actualMaxWidth
+      ) {
+        this.width = this.actualMaxWidth;
+      } else if (this.actualMaxWidth === 'inherit') {
+        this.width = newWidth;
+      } else {
+        this.width = newWidth;
+      }
+
+      this.setAllHandleTransform();
     });
   }
 
   setAllHandleTransform(): void {
     const rect = this.resizeBoxElement.getBoundingClientRect();
-    this.setHandleTransform(this.dragHandleRightElement, rect);
-  }
 
-  resize(target: HTMLElement): void {
-    const dragRect = this.dragHandleRightElement.getBoundingClientRect();
-    const targetRect = target.getBoundingClientRect();
-    const newWidth = dragRect.left - (targetRect.left - dragRect.width / 2);
-    if (newWidth <= this.collapsedWidth) {
-      this.toggleMenuLeft();
-    } else {
-      this.width = newWidth;
-    }
+    this.setHandleTransform(this.dragHandleRightElement, rect);
   }
 
   selectItem(event: MouseEvent, node: TreeNode): void {
@@ -286,11 +316,25 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   showPopup(target: Element, item: MeMenuLeftItem): void {
     const position: PositionConfig = { at: 'right top' };
-    this.subMenuComponent.cssClass = 'me-menu-left-popup';
-    this.subMenuComponent.target = target;
-    this.subMenuComponent.position = position;
-    this.subMenuComponent.dataSource = item.items || [];
-    this.subMenuComponent.visible = true;
+    this.subMenuComponent.instance.option({
+      cssClass: 'me-menu-left-popup',
+      target: target,
+      position,
+      dataSource: item.items || [],
+      visible: true,
+      onShown: () => {
+        queueMicrotask(() => {
+          const popup = document.querySelector('.me-menu-left-popup') as HTMLElement | null;
+
+          if (popup) {
+            const style = window.getComputedStyle(popup);
+            const currentMaxHeight = style.maxHeight;
+            const currentValue = parseInt(currentMaxHeight);
+            popup.style.maxHeight = `${currentValue + 8}px`;
+          }
+        });
+      },
+    });
   }
 
   private itemSelect(item: MeMenuLeftItem): void {
@@ -384,6 +428,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   private keyTabHandle(evt: KeyboardEvent): void {
+    evt.preventDefault();
     this.updateFlatList();
     this.activeIndex = 0;
     if (this.nodeFlatList.length) {
@@ -447,6 +492,41 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     this.activeIndex = 0;
   }
 
+  private calculateMaxWidth(): number | 'inherit' {
+    if (!this.maxWidth) return window.innerWidth;
+
+    const value = this.maxWidth.trim().toLowerCase();
+
+    if (value === 'inherit') return 'inherit';
+
+    if (value.endsWith('%')) {
+      const percent = parseFloat(value) / 100;
+      return window.innerWidth * percent;
+    }
+
+    if (value.endsWith('vw')) {
+      const vw = parseFloat(value);
+      return (window.innerWidth * vw) / 100;
+    }
+
+    if (value.endsWith('px')) {
+      return parseFloat(value);
+    }
+
+    if (!isNaN(parseFloat(value))) {
+      return parseFloat(value);
+    }
+
+    return window.innerWidth;
+  }
+
+  private handleWindowResize() {
+    if (typeof this.actualMaxWidth === 'number') {
+      this.actualMaxWidth = this.calculateMaxWidth();
+    }
+    this.cdr.markForCheck();
+  }
+
   pressedNode($event: MouseEvent, node: TreeNode) {
     this.focusService.clearKeyboardFocus();
     node.active = true;
@@ -456,8 +536,10 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     node.active = false;
   }
 
-  selectSubmenuItem(event: Event): void {
-    console.log('select by submenu', event);
+  selectSubmenuItem({ itemData }: DxContextMenuTypes.ItemClickEvent) {
+    if (itemData && !itemData.items) {
+      this.itemSelect(itemData as MeMenuLeftItem);
+    }
   }
 
   getHeaderMaxWidth(): string {
@@ -470,5 +552,14 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   togglePressedUp(): void {
     this.toggleBtnPressed = false;
+  }
+
+  createShading(): void {
+    this.overlay = this.renderer.createElement('div');
+    this.renderer.addClass(this.overlay, 'me-overlay');
+    this.renderer.setStyle(this.overlay, 'z-index', 99);
+    this.renderer.setStyle(this.overlay, 'position', 'fixed');
+    this.renderer.setStyle(this.overlay, 'display', 'block');
+    this.renderer.appendChild(document.body, this.overlay);
   }
 }

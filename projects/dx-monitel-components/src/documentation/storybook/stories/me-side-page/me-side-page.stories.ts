@@ -119,7 +119,7 @@ import {
           meButton
           text="Сохранить"
           stylingMode="contained"
-          type="default"
+          buttonType="default"
         ></dx-button>
         <dx-button
           meButton
@@ -163,7 +163,7 @@ import {
       }
 
       .main-content {
-        height: calc(100dvh + 300px);
+        height: 100dvh;
 
         display: flex;
         flex-direction: column;
@@ -361,7 +361,11 @@ export default {
 
 type Story = StoryObj<MeSidePageComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    shading: false,
+  },
+};
 
 export const PositionLeft: Story = {
   args: {
@@ -369,9 +373,23 @@ export const PositionLeft: Story = {
   },
 };
 
+export const PositionLeftWitoutShading: Story = {
+  args: {
+    position: 'left',
+    shading: false,
+  },
+};
+
 export const PositionRight: Story = {
   args: {
     position: 'right',
+  },
+};
+
+export const PositionRightWithoutShading: Story = {
+  args: {
+    position: 'right',
+    shading: false,
   },
 };
 

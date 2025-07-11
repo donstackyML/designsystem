@@ -3,21 +3,21 @@ import { MeMenuLeftItem } from '../../../../lib/components/me-menu-left/me-menu-
 export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'tasks',
-    text: 'Задачи',
-    icon: 'task',
+    text: 'ЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачи',
+    icon: 'description_x20',
     badge: 3,
     expanded: true,
     items: [
       {
         id: 'inbox',
         text: 'Входящие',
-        icon: 'folder',
+        icon: 'mail_x20',
         badge: 2,
       },
       {
         id: 'inprogress',
         text: 'В работе',
-        icon: 'folder',
+        icon: 'draft_x20',
         badge: 1,
       },
     ],
@@ -25,18 +25,18 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'path',
     text: '/',
-    icon: 'folder',
+    icon: 'folder_open_x20',
     expanded: true,
     items: [
       {
         id: 'monitel',
         text: 'Monitel',
-        icon: 'folder',
+        icon: 'folder_open_x20',
         items: [
           {
             id: 'atp',
             text: 'АТП',
-            icon: 'folder',
+            icon: 'folder_open_x20',
             items: [
               {
                 id: 'active',
@@ -56,13 +56,13 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'downloads',
     text: 'Загрузки',
-    icon: 'download',
+    icon: 'download_x20',
     badge: 5,
   },
   {
     id: 'settings',
     text: 'Настройки',
-    icon: 'settings',
+    icon: 'settings_x20',
   },
 ];
 
@@ -70,12 +70,12 @@ export const meMenuLeftBottomItems: MeMenuLeftItem[] = [
   {
     id: 'downloads',
     text: 'Загрузки',
-    icon: 'download',
+    icon: 'download_x20',
     badge: 4,
   },
   {
     id: 'settings',
     text: 'Настройки',
-    icon: 'settings',
+    icon: 'settings_x20',
   },
 ];
