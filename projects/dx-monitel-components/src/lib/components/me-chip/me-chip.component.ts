@@ -62,15 +62,15 @@ export class MeChipComponent {
     const classes = [this.size, 'chip-keyboard-navigable'];
 
     if (this.disabled) {
-      classes.push('chip-disabled');
+      classes.push('me-chip-disabled');
     }
 
     if (this.selected) {
-      classes.push('chip-selected');
+      classes.push('me-chip-selected');
     }
 
     if (this.isFocused) {
-      classes.push('chip-focused');
+      classes.push('me-chip-focused');
     }
 
     return classes.join(' ');
