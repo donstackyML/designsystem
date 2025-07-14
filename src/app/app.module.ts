@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { DevExtremeModule, DxDateBoxModule, DxPivotGridModule } from 'devextreme-angular';
+import {
+  DevExtremeModule,
+  DxColorBoxModule,
+  DxDateBoxModule,
+  DxPivotGridModule,
+} from 'devextreme-angular';
 import {
   MeAccordionModule,
   MeAutocompleteModule,
   MeBadgeComponent,
-  MeTimeRangeComponent,
   MeBreadcrumbsComponent,
   MeButtonGroupModule,
   MeButtonModule,
@@ -35,6 +39,7 @@ import {
   MeProgressBarModule,
   MePropertyGridCellComponent,
   MePropertyGridComponent,
+  MePropertyGridGroupComponent,
   MeRadioGroupModule,
   MeScrollViewModule,
   MeSelectBoxModule,
@@ -45,6 +50,7 @@ import {
   MeTagBoxModule,
   MeTextAreaModule,
   MeTextBoxModule,
+  MeTimeRangeComponent,
   MeToastComponent,
   MeToolbarModule,
   MeTooltipModule,
@@ -95,7 +101,9 @@ import { TypographyComponent } from './components/typography/typography.componen
 import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.component';
 import { breadcrumbsIconSet } from './components/me-breadcrumbs-demo/breadcrumbs-icon-set';
 import { MeBreadcrumbsDemoComponent } from './components/me-breadcrumbs-demo/me-breadcrumbs-demo.component';
+import { MePropertyGridDemoComponent } from './components/me-property-grid-demo/me-property-grid-demo.component';
 import { meSelectBoxDemoIconSet } from './components/me-select-box/me-select-box-demo-icon-set';
+import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-time-range-demo.component';
 import { MeControlDirective } from './directives/control.directive';
 import { MeEditorDirective } from './directives/editor.directive';
 import { MeIconDirective } from './directives/icon.directive';
@@ -105,7 +113,6 @@ import { MePopoverDirective } from './directives/popover.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
-import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-time-range-demo.component';
 
 @NgModule({
   declarations: [
@@ -158,6 +165,7 @@ import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-tim
     MeToastDirective,
     MeBadgeDemoComponent,
     MeTimeRangeDemoComponent,
+    MePropertyGridDemoComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -167,6 +175,7 @@ import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-tim
     DevExtremeModule,
     DxDateBoxModule,
     DxPivotGridModule,
+    DxColorBoxModule,
     MeBadgeComponent,
     MeTimeRangeComponent,
     MeBreadcrumbsComponent,
@@ -174,6 +183,7 @@ import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-tim
     MeIconComponent,
     MePropertyGridComponent,
     MePropertyGridCellComponent,
+    MePropertyGridGroupComponent,
     MeToastComponent,
     MeChipComponent,
     MeChipsComponent,
@@ -215,8 +225,12 @@ import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-tim
     MeTextAreaModule,
     MeTagBoxModule,
     MeFormItemModule,
-    MeIconsInitializerModule.forRoot([...breadcrumbsIconSet, ...meSelectBoxDemoIconSet]),
+    MeIconsInitializerModule.forRoot([
+      ...breadcrumbsIconSet,
+      ...meSelectBoxDemoIconSet,
+      // ...mePropertyGridDemoIconSet,
+    ]),
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

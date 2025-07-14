@@ -1,0 +1,374 @@
+<div class="wrapper">
+  <h1 class="wrapper__main-title dx-widget">Property Grid (RedCollar)</h1>
+
+  <div class="property-grid-demo">
+    <div class="controls">
+      <dx-select-box
+        [(value)]="selectedDemo"
+        [items]="demoOptions"
+        displayExpr="text"
+        valueExpr="value"
+        placeholder="Select demo"
+        (onValueChanged)="onDemoChange($event)"
+      ></dx-select-box>
+    </div>
+
+    <div class="demo-container">
+      <!-- Basic Property Grid -->
+      <div *ngIf="selectedDemo === 'basic'" class="demo-section">
+        <h3>Basic Property Grid</h3>
+        <me-property-grid gridTitle="Server Properties" [isOpen]="true" [resizable]="true">
+          <me-property-grid-cell
+            name="Server Name"
+            value="Production Server #1"
+          ></me-property-grid-cell>
+          <me-property-grid-cell name="Status" value="Online"></me-property-grid-cell>
+          <me-property-grid-cell
+            name="IP Address"
+            value="192.168.1.100"
+            [readOnly]="true"
+          ></me-property-grid-cell>
+          <me-property-grid-cell name="Port" value="8080"></me-property-grid-cell>
+          <me-property-grid-cell
+            name="Required Field"
+            value="Important Value"
+            [showRequiredMark]="true"
+          ></me-property-grid-cell>
+        </me-property-grid>
+      </div>
+
+      <!-- Property Grid with Custom Content -->
+      <div *ngIf="selectedDemo === 'custom'" class="demo-section">
+        <h3>Property Grid with Custom Content</h3>
+        <me-property-grid gridTitle="User Settings" [isOpen]="true" [resizable]="true">
+          <me-property-grid-cell name="Username">
+            <dx-text-box
+              #rightCell
+              meTextBox
+              size="small"
+              stylingMode="filled"
+              width="100%"
+              [(value)]="username"
+            ></dx-text-box>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Email">
+            <dx-text-box
+              #rightCell
+              meTextBox
+              size="small"
+              stylingMode="filled"
+              width="100%"
+              [(value)]="email"
+            ></dx-text-box>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Role">
+            <dx-select-box
+              #rightCell
+              meSelectBox
+              size="small"
+              [items]="roles"
+              [(value)]="selectedRole"
+              stylingMode="filled"
+              width="100%"
+            ></dx-select-box>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Active">
+            <div #rightCell style="display: flex; align-items: center; width: 100%">
+              <dx-check-box
+                meCheckBox
+                [value]="isActive"
+                (onValueChanged)="isActive = $event.value"
+              ></dx-check-box>
+            </div>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Birth Date">
+            <dx-date-box
+              #rightCell
+              meDateBox
+              size="small"
+              stylingMode="filled"
+              width="100%"
+              [value]="birthDate"
+              (onValueChanged)="birthDate = $event.value"
+            ></dx-date-box>
+          </me-property-grid-cell>
+        </me-property-grid>
+      </div>
+
+      <!-- Property Grid with Additional Properties -->
+      <div *ngIf="selectedDemo === 'additional'" class="demo-section">
+        <h3>Property Grid with Additional Properties</h3>
+        <me-property-grid gridTitle="Advanced Settings" [isOpen]="true" [resizable]="true">
+          <me-property-grid-cell
+            name="Main Setting"
+            [showAdditionalProperties]="true"
+            [additionalPropertiesOpened]="additionalPropsOpened"
+          >
+            <dx-check-box
+              #rightCell
+              meCheckBox
+              [value]="mainSetting"
+              (onValueChanged)="mainSetting = $event.value"
+            ></dx-check-box>
+
+            <ng-container #additionalProperties additionalProperties>
+              <div class="me-grid-cell-row">
+                <dx-text-box
+                  meTextBox
+                  label="Sub Setting 1"
+                  labelMode="outside"
+                  size="small"
+                  width="100%"
+                  [(value)]="subSetting1"
+                ></dx-text-box>
+
+                <dx-text-box
+                  meTextBox
+                  label="Sub Setting 2"
+                  labelMode="outside"
+                  size="small"
+                  width="100%"
+                  [(value)]="subSetting2"
+                ></dx-text-box>
+              </div>
+
+              <div class="me-grid-cell-row">
+                <dx-number-box
+                  meNumberBox
+                  label="Timeout (sec)"
+                  labelMode="outside"
+                  size="small"
+                  [showSpinButtons]="true"
+                  stylingMode="filled"
+                  width="100%"
+                  [min]="1"
+                  [step]="1"
+                  [(value)]="timeout"
+                ></dx-number-box>
+              </div>
+            </ng-container>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Color Theme">
+            <dx-color-box
+              #rightCell
+              size="small"
+              stylingMode="filled"
+              width="100%"
+              [(value)]="colorTheme"
+            ></dx-color-box>
+          </me-property-grid-cell>
+        </me-property-grid>
+      </div>
+
+      <!-- Property Grid with Actions -->
+      <div *ngIf="selectedDemo === 'actions'" class="demo-section">
+        <h3>Property Grid with Actions</h3>
+        <me-property-grid gridTitle="Files Management" [isOpen]="true" [resizable]="true">
+          <me-property-grid-cell name="File 1">
+            <ng-container rightCellStartActions>
+              <button type="button" class="cell-action-button" (click)="viewFile('file1')">
+                <me-icon class="icon" name="docx_me_x20"></me-icon>
+              </button>
+            </ng-container>
+
+            <ng-container rightCellEndActions>
+              <button type="button" class="cell-action-button" (click)="downloadFile('file1')">
+                <me-icon class="icon" name="upload_x20"></me-icon>
+              </button>
+              <button type="button" class="cell-action-button" (click)="deleteFile('file1')">
+                <me-icon class="icon" name="delete_x20"></me-icon>
+              </button>
+            </ng-container>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="File 2" justifyRightCell="center">
+            <ng-container #rightCell rightCell>
+              <button type="button" class="cell-action-button" (click)="viewFile('file2')">
+                <me-icon class="icon" name="docx_me_x20"></me-icon>
+              </button>
+            </ng-container>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Folder Actions">
+            <ng-container rightCellStartActions>
+              <button type="button" class="cell-action-button" (click)="openFolder()">
+                <me-icon class="icon" name="folder_x20"></me-icon>
+              </button>
+            </ng-container>
+
+            <ng-container rightCellEndActions>
+              <button type="button" class="cell-action-button" (click)="addToFolder()">
+                <me-icon class="icon" name="add_x20"></me-icon>
+              </button>
+            </ng-container>
+          </me-property-grid-cell>
+        </me-property-grid>
+      </div>
+
+      <!-- Property Grid Group -->
+      <div *ngIf="selectedDemo === 'group'" class="demo-section">
+        <h3>Property Grid Group</h3>
+        <me-property-grid-group [height]="'300px'" [gap]="'12px'">
+          <me-property-grid gridTitle="Server Configuration" [isOpen]="true" [resizable]="true">
+            <me-property-grid-cell name="Server Name">
+              <dx-text-box
+                #rightCell
+                meTextBox
+                size="small"
+                [(value)]="serverName"
+                stylingMode="filled"
+                width="100%"
+              ></dx-text-box>
+            </me-property-grid-cell>
+            <me-property-grid-cell name="Status">
+              <dx-select-box
+                #rightCell
+                meSelectBox
+                size="small"
+                [items]="serverStatuses"
+                [(value)]="serverStatus"
+                stylingMode="filled"
+                width="100%"
+              ></dx-select-box>
+            </me-property-grid-cell>
+            <me-property-grid-cell name="Active">
+              <div #rightCell style="display: flex; align-items: center; width: 100%">
+                <dx-check-box
+                  meCheckBox
+                  [value]="serverActive"
+                  (onValueChanged)="serverActive = $event.value"
+                ></dx-check-box>
+              </div>
+            </me-property-grid-cell>
+          </me-property-grid>
+
+          <me-property-grid gridTitle="Database Settings" [isOpen]="true" [resizable]="true">
+            <me-property-grid-cell name="Database Name">
+              <dx-text-box
+                #rightCell
+                meTextBox
+                size="small"
+                [(value)]="dbName"
+                stylingMode="filled"
+                width="100%"
+              ></dx-text-box>
+            </me-property-grid-cell>
+            <me-property-grid-cell
+              name="Connection String"
+              [readOnly]="true"
+              [value]="connectionString"
+            ></me-property-grid-cell>
+            <me-property-grid-cell name="Max Connections">
+              <dx-number-box
+                #rightCell
+                meNumberBox
+                size="small"
+                [showSpinButtons]="true"
+                stylingMode="filled"
+                width="100%"
+                [min]="1"
+                [max]="1000"
+                [(value)]="maxConnections"
+              ></dx-number-box>
+            </me-property-grid-cell>
+          </me-property-grid>
+
+          <me-property-grid gridTitle="Monitoring" [isOpen]="false" [resizable]="true">
+            <me-property-grid-cell name="Enable Monitoring">
+              <div #rightCell style="display: flex; align-items: center; width: 100%">
+                <dx-check-box
+                  meCheckBox
+                  [value]="monitoringEnabled"
+                  (onValueChanged)="monitoringEnabled = $event.value"
+                ></dx-check-box>
+              </div>
+            </me-property-grid-cell>
+            <me-property-grid-cell name="Log Level">
+              <dx-select-box
+                #rightCell
+                meSelectBox
+                size="small"
+                [items]="logLevels"
+                [(value)]="logLevel"
+                stylingMode="filled"
+                width="100%"
+              ></dx-select-box>
+            </me-property-grid-cell>
+          </me-property-grid>
+        </me-property-grid-group>
+      </div>
+
+      <!-- Mixed Content -->
+      <div *ngIf="selectedDemo === 'mixed'" class="demo-section">
+        <h3>Mixed Content Example</h3>
+        <me-property-grid gridTitle="Form Configuration" [isOpen]="true" [resizable]="true">
+          <me-property-grid-cell name="Form Title" [showRequiredMark]="true">
+            <dx-text-box
+              #rightCell
+              meTextBox
+              size="small"
+              [(value)]="formTitle"
+              stylingMode="filled"
+              width="100%"
+            ></dx-text-box>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Tags">
+            <dx-tag-box
+              #rightCell
+              meTagBox
+              size="small"
+              [items]="availableTags"
+              [(value)]="selectedTags"
+              stylingMode="filled"
+              width="100%"
+            ></dx-tag-box>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Multiple Fields">
+            <ng-container #rightCell>
+              <div class="me-grid-cell-row">
+                <dx-text-box
+                  meTextBox
+                  label="Field 1"
+                  labelMode="outside"
+                  size="small"
+                  width="100%"
+                  [(value)]="multiField1"
+                ></dx-text-box>
+                <dx-text-box
+                  meTextBox
+                  label="Field 2"
+                  labelMode="outside"
+                  size="small"
+                  width="100%"
+                  [(value)]="multiField2"
+                ></dx-text-box>
+              </div>
+            </ng-container>
+          </me-property-grid-cell>
+
+          <me-property-grid-cell name="Custom Left Content">
+            <ng-container #leftCell leftCell>
+              <div class="me-grid-cell-row">
+                <dx-text-box
+                  meTextBox
+                  label="Custom Label Field"
+                  labelMode="outside"
+                  size="small"
+                  width="100%"
+                  [(value)]="customLeftContent"
+                ></dx-text-box>
+              </div>
+            </ng-container>
+          </me-property-grid-cell>
+        </me-property-grid>
+      </div>
+    </div>
+  </div>
+</div>

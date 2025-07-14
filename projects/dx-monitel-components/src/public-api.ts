@@ -13,6 +13,7 @@ export { MePaginationComponent } from './lib/components/me-pagination/me-paginat
 export {
   MePropertyGridCellComponent,
   MePropertyGridComponent,
+  MePropertyGridGroupComponent
 } from './lib/components/me-property-grid';
 export { MeSidePageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonItemComponent } from './lib/components/me-skeleton/me-skeleton-item/me-skeleton-item.component';
