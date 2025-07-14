@@ -339,6 +339,12 @@ export const LabelLeft: Story = {
             valueExpr="id"
             [placeholder]="placeholder"
             [size]="size"
+            [showClearButton]="showClearButton"
+            [disabled]="disabled"
+            [dropDownListMaxHeight]="dropDownListMaxHeight"
+            [showScrollbar]="showScrollbar"
+            [leftIcon]="leftIcon"
+            [readOnly]="readOnly"
           >
             <dx-data-grid
               meDataGrid
