@@ -219,6 +219,19 @@
               }
             }
 
+            .dx-texteditor-buttons-container {
+              min-width: var(--Search-Icon-Size);
+              justify-content: center;
+
+              &:has(> .dx-clear-button-area) {
+                .dx-clear-button-area:has(> .dx-icon-clear) {
+                  .dx-icon-clear {
+                    font-size: var(--Clear-Icon-Size);
+                  }
+                }
+              }
+            }
+
             .dx-texteditor-input {
               padding: var(--Texteditor-Input-Padding);
             }
@@ -232,7 +245,7 @@
                 width: auto;
                 min-width: auto;
 
-                .dx-icon-clear {
+                .dx-icon.dx-icon-clear {
                   font-size: var(--Clear-Icon-Size);
                 }
               }
@@ -311,6 +324,27 @@
               .dx-datagrid-filter-row {
                 td {
                   background: var(--Background-Accent-in-the-content);
+
+                  .dx-editor-container {
+                    .dx-textbox.dx-texteditor {
+                      &.dx-state-hover {
+                        .dx-texteditor-container {
+                          input {
+                            background: var(--Controls-BG-Secondary-Elements-BG-Hover);
+                          }
+                        }
+                      }
+
+                      &.dx-state-focused {
+                        .dx-texteditor-container {
+                          input {
+                            background: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+                            border: 1px solid var(--Controls-Content-In-Controls-Accent-Default);
+                          }
+                        }
+                      }
+                    }
+                  }
 
                   .dx-texteditor-container {
                     background: var(--Background-Accent-in-the-content);

@@ -3,7 +3,7 @@ import { MeMenuLeftItem } from '../../../../lib/components/me-menu-left/me-menu-
 export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
   {
     id: 'tasks',
-    text: 'Задачи',
+    text: 'ЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачиЗадачи',
     icon: 'description_x20',
     badge: 3,
     expanded: true,
