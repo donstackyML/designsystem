@@ -1,0 +1,35 @@
+import {Canvas, Meta, Source} from "@storybook/addon-docs";
+import * as filterBuilderStories from "./me-filter-builder.stories";
+
+<Meta name="FilterBuilderOld Documentation" of={filterBuilderStories} />
+
+# FilterBuilder
+
+Чтобы использовать собственные компоненты ввода (например, TagBox или DateBox), необходимо применять директиву *dxTemplate внутри dx-filter-builder:
+
+<Source
+  code={`
+<dx-date-box
+  *dxTemplate="let condition of 'dateTemplate'"
+  meDateBox
+  [value]="condition.value"
+  [type]="condition.field.dataType"
+  (onValueChanged)="condition.setValue($event.value)">
+</dx-date-box>`
+  }
+  dark
+  language="html"
+/>
+
+При этом в поле fields у dx-filter-builder передается массив конфигураций полей, который включает тип, имя, шаблон редактора и т.д.
+
+<Source code={
+`const filterFields: Field[] = [
+  { dataField: 'id', dataType: 'number' },
+  { dataField: 'name', dataType: 'string' },
+  { dataField: 'age', dataType: 'number' },
+  { dataField: 'birthdate', dataType: 'datetime', editorTemplate: 'dateTemplate' }
+]`
+}/>
+
+<Canvas name="Default" of={filterBuilderStories.Default} />

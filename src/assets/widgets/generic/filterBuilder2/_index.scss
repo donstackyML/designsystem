@@ -1,125 +1,311 @@
 @use 'sass:color';
 @use 'colors' as *;
+@use '../typography/mixins' as *;
 
-.dx-filterbuilder {
-  .dx-filterbuilder-group {
-    .dx-filterbuilder-group-item,
-    .dx-filterbuilder-group-content {
-      .dx-filterbuilder-text {
-        &.dx-filterbuilder-group-operation,
-        &.dx-filterbuilder-item-field,
-        &.dx-filterbuilder-item-operation {
-          margin: 0;
-          padding: 6px 12px;
+@mixin nested-margin-left($start, $step, $max) {
+  $selector: '.dx-filterbuilder-group-content';
+
+  @for $i from 1 through $max {
+    @if $i >= $start {
+      #{$selector} {
+        margin-left: 28px;
+        padding-left: 8px;
+      }
+    } @else {
+      #{$selector} {
+        margin-left: 0;
+        padding-left: 8px;
+      }
+    }
+
+    $selector: '#{$selector} .dx-filterbuilder-group-content';
+  }
+}
+
+.me-filterbuilder {
+  padding: 10px;
+  background-color: var(--Background-Content);
+  display: flex;
+  flex-direction: column;
+
+  &.me-filterbuilder-small {
+    .dx-filterbuilder {
+      @include me-action-med3;
+
+      .dx-filterbuilder-group-item,
+      .dx-filterbuilder-group-content {
+        margin-bottom: 8px;
+
+        .dx-filterbuilder-text {
+          &.dx-filterbuilder-group-operation,
+          &.dx-filterbuilder-item-field,
+          &.dx-filterbuilder-item-operation {
+            margin: 0;
+            padding: 6px 12px;
+          }
+
+          &.dx-filterbuilder-item-value {
+            .dx-filterbuilder-item-value-text {
+              padding: 6px 12px;
+            }
+
+            .dx-selectbox,
+            .dx-textbox,
+            .dx-numberbox {
+              margin: 0;
+            }
+          }
         }
 
-        &.dx-filterbuilder-item-value {
-          .dx-filterbuilder-item-value-text {
-            padding: 6px 12px;
+        .dx-filterbuilder-action.dx-filterbuilder-action-icon {
+          &.dx-icon-plus,
+          &.dx-icon-remove {
+            font: 10px / 1 DXIcons;
           }
         }
       }
     }
 
-    .dx-filterbuilder-text {
-      color: $filterbuilder-text-color;
-      font-size: 12px;
+    .me-filterbuilder__accept-button {
+      margin-top: 8px;
+    }
+  }
 
-      &.dx-filterbuilder-group-operation {
-        background-color: $filterbuilder-group-operation-color;
+  &.me-filterbuilder-medium {
+    .dx-filterbuilder {
+      @include me-action-med2;
 
-        &:hover {
-          background-color: $filterbuilder-group-operation-hover-color;
+      .dx-filterbuilder-group-item,
+      .dx-filterbuilder-group-content {
+        margin-bottom: 8px;
+
+        .dx-filterbuilder-text {
+          &.dx-filterbuilder-group-operation,
+          &.dx-filterbuilder-item-field,
+          &.dx-filterbuilder-item-operation {
+            margin: 0;
+            padding: 6px 12px;
+          }
+
+          &.dx-filterbuilder-item-value {
+            .dx-filterbuilder-item-value-text {
+              padding: 6px 12px;
+            }
+
+            .dx-selectbox,
+            .dx-textbox,
+            .dx-numberbox {
+              margin: 0;
+            }
+          }
         }
 
-        &:focus {
-          color: $filterbuilder-text-color;
-          background-color: $filterbuilder-group-operation-focus-color;
-        }
-
-        &.dx-state-active {
-          color: $filterbuilder-text-color;
-          background-color: $filterbuilder-group-operation-active-color;
+        .dx-filterbuilder-action.dx-filterbuilder-action-icon {
+          &.dx-icon-plus,
+          &.dx-icon-remove {
+            font: 10px / 1 DXIcons;
+          }
         }
       }
+    }
 
-      &.dx-filterbuilder-item-field {
+    .me-filterbuilder__accept-button {
+      margin-top: 8px;
+    }
+  }
+
+  &.me-filterbuilder-large {
+    .dx-filterbuilder {
+      @include me-action-med1;
+
+      .dx-filterbuilder-group-item,
+      .dx-filterbuilder-group-content {
+        margin-bottom: 12px;
+
+        .dx-filterbuilder-text {
+          &.dx-filterbuilder-group-operation,
+          &.dx-filterbuilder-item-field,
+          &.dx-filterbuilder-item-operation {
+            margin: 0;
+            padding: 10px 16px;
+          }
+
+          &.dx-filterbuilder-item-value {
+            .dx-filterbuilder-item-value-text {
+              padding: 10px 16px;
+            }
+
+            .dx-selectbox,
+            .dx-textbox,
+            .dx-numberbox {
+              margin: 0;
+            }
+          }
+        }
+
+        .dx-filterbuilder-action.dx-filterbuilder-action-icon {
+          &.dx-icon-plus,
+          &.dx-icon-remove {
+            font: 14px / 1 DXIcons;
+          }
+        }
+      }
+    }
+
+    .me-filterbuilder__accept-button {
+      margin-top: 12px;
+    }
+  }
+
+  .me-filterbuilder__accept-button {
+    align-self: flex-end;
+  }
+
+  .dx-filterbuilder {
+    .dx-filterbuilder-group {
+      @include nested-margin-left(2, 8px, 10);
+
+      .dx-filterbuilder-group-content {
+        border-left: 1px solid $filterbuilder-divider-border-color;
+      }
+
+      .dx-filterbuilder-text {
         color: $filterbuilder-text-color;
-        background-color: $filterbuilder-item-field-color;
 
-        &:hover {
-          background-color: $filterbuilder-item-field-hover-color;
-        }
-
-        &:focus {
-          color: $filterbuilder-text-color;
-          background-color: $filterbuilder-item-field-focus-color;
-        }
-
-        &.dx-state-active {
-          color: $filterbuilder-text-color;
-          background-color: $filterbuilder-item-field-active-color;
-        }
-      }
-
-      &.dx-filterbuilder-item-operation {
-        color: $filterbuilder-text-color;
-        background-color: $filterbuilder-item-operator-color;
-
-        &:hover {
-          background-color: $filterbuilder-item-operator-hover-color;
-        }
-
-        &:focus {
-          color: $filterbuilder-text-color;
-          background-color: $filterbuilder-item-operator-focus-color;
-        }
-
-        &.dx-state-active {
-          color: $filterbuilder-text-color;
-          background-color: $filterbuilder-item-operator-active-color;
-        }
-      }
-
-      &.dx-filterbuilder-item-value {
-        .dx-filterbuilder-item-value-text {
-          color: $filterbuilder-text-color;
-          background-color: $filterbuilder-item-value-color;
+        &.dx-filterbuilder-group-operation {
+          background-color: $filterbuilder-group-operation-color;
 
           &:hover {
-            background-color: $filterbuilder-item-value-hover-color;
+            background-color: $filterbuilder-group-operation-hover-color;
           }
 
           &:focus {
             color: $filterbuilder-text-color;
-            background-color: $filterbuilder-item-value-focus-color;
+            background-color: $filterbuilder-group-operation-focus-color;
           }
 
           &.dx-state-active {
             color: $filterbuilder-text-color;
-            background-color: $filterbuilder-item-value-active-color;
+            background-color: $filterbuilder-group-operation-active-color;
+          }
+        }
+
+        &.dx-filterbuilder-item-field {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-item-field-color;
+
+          &:hover {
+            background-color: $filterbuilder-item-field-hover-color;
+          }
+
+          &:focus {
+            color: $filterbuilder-text-color;
+            background-color: $filterbuilder-item-field-focus-color;
+          }
+
+          &.dx-state-active {
+            color: $filterbuilder-text-color;
+            background-color: $filterbuilder-item-field-active-color;
+          }
+        }
+
+        &.dx-filterbuilder-item-operation {
+          color: $filterbuilder-text-color;
+          background-color: $filterbuilder-item-operator-color;
+
+          &:hover {
+            background-color: $filterbuilder-item-operator-hover-color;
+          }
+
+          &:focus {
+            color: $filterbuilder-text-color;
+            background-color: $filterbuilder-item-operator-focus-color;
+          }
+
+          &.dx-state-active {
+            color: $filterbuilder-text-color;
+            background-color: $filterbuilder-item-operator-active-color;
+          }
+        }
+
+        &.dx-filterbuilder-item-value {
+          .dx-filterbuilder-item-value-text {
+            color: $filterbuilder-text-color;
+            background-color: $filterbuilder-item-value-color;
+
+            &:hover {
+              background-color: $filterbuilder-item-value-hover-color;
+            }
+
+            &:focus {
+              color: $filterbuilder-text-color;
+              background-color: $filterbuilder-item-value-focus-color;
+            }
+
+            &.dx-state-active {
+              color: $filterbuilder-text-color;
+              background-color: $filterbuilder-item-value-active-color;
+            }
+          }
+        }
+      }
+
+      .dx-filterbuilder-group-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .dx-filterbuilder-action.dx-filterbuilder-action-icon {
+          padding: 0;
+          margin: 0;
+          display: flex;
+          width: 28px;
+          height: 28px;
+          align-items: center;
+          justify-content: center;
+
+          &.dx-icon-plus {
+            color: $filterbuilder-plus-icon-color;
+          }
+
+          &.dx-icon-remove {
+            color: $filterbuilder-remove-icon-color;
+
+            &::before {
+              content: '\f074';
+            }
           }
         }
       }
     }
+  }
+}
 
-    // Иконки
-    .dx-filterbuilder-group-item {
-      display: flex;
-      align-items: center;
-
-      .dx-filterbuilder-action.dx-filterbuilder-action-icon {
-        padding: 0;
-        margin: 0;
-
-        &.dx-icon-plus {
-          color: $filterbuilder-plus-icon-color;
-        }
-
-        &.dx-icon-remove {
-          color: $filterbuilder-remove-icon-color;
-        }
-      }
+.dx-filterbuilder-overlay {
+  &.me-filterbuilder-small {
+    .dx-treeview-item {
+      @include me-action-reg3;
+      min-height: 28px;
+      padding-inline: 8px 16px;
     }
+  }
+  &.me-filterbuilder-medium {
+    .dx-treeview-item {
+      @include me-action-reg2;
+      min-height: 30px;
+      padding-inline: 8px 16px;
+    }
+  }
+  &.me-filterbuilder-large {
+    .dx-treeview-item {
+      @include me-action-reg1;
+      min-height: 32px;
+      padding-inline: 10px 18px;
+    }
+  }
+
+  .dx-treeview-item {
+    display: flex;
+    align-items: center;
   }
 }

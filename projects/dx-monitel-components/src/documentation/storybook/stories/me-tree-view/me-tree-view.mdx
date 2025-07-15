@@ -81,6 +81,31 @@ import * as treeViewStories from "./me-tree-view.stories";
   language="html"
 />
 
+#### Компонент с двумя иконками
+
+*Свойство icon2 позволяет задать вторую иконку для элемента дерева.*
+
+<Canvas name="Компонент большого размера" of={treeViewStories.WithTwoIcons} />
+
+<Source
+  code={`
+  export const meTreeViewMockDataWithTwoIcons = [
+  {
+    id: '1',
+    text: 'Label',
+    icon: iconStore.getIcon({ icon: 'folder', size: '24' }),
+    icon2: iconStore.getIcon({ icon: 'check', size: '24' }),
+    items: [
+      ...
+    ],
+  },
+  ...
+];
+`}
+  dark
+  language="html"
+/>
+
 ### Настройка структуры данных
 
 *TreeView ожидает иерархическую структуру данных, где каждый элемент должен иметь уникальный идентификатор, текст и, при наличии подпунктов, массив `items`. Это позволяет создавать сложные и многоуровневые деревья.*
