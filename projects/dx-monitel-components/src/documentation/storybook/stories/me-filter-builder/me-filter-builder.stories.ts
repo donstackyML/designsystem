@@ -131,6 +131,8 @@ export const WithDataGrid: Story = {
 export const WithList: Story = {
   args: {
     fields: fieldsList,
+    dataSource: employeesDataList,
+    selectBoxSources: undefined,
   },
   render: (args) => {
     const listDataSource = new DataSource({
