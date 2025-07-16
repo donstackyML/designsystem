@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {Component, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -32,6 +32,11 @@ export class MeBadgeComponent implements OnChanges {
   @Input() leftValue?: string | number = '';
   @Input() rightValue?: string | number = '';
   @Input() customStyle: { [key: string]: string } = {};
+  @Input() width?: string;
+
+  @HostBinding('style.--badge-width') get badgeWidth() {
+    return this.width ? this.width : '';
+  }
 
   displayValue: string = '';
   badgeClasses: string = '';

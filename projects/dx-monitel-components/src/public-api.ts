@@ -6,6 +6,7 @@ export { MeCardComponent } from './lib/components/me-card/me-card.component';
 export { MeChipComponent } from './lib/components/me-chip/me-chip.component';
 export { MeChipsComponent } from './lib/components/me-chips/me-chips.component';
 export { MeFileUploaderComponent } from './lib/components/me-file-uploader/me-file-uploader.component';
+export { MeFilterBuilderComponent } from './lib/components/me-filter-builder';
 export { MeHeaderComponent } from './lib/components/me-header';
 export { MeIconComponent } from './lib/components/me-icon/me-icon.component';
 export { MeMenuLeftComponent } from './lib/components/me-menu-left/me-menu-left.component';
@@ -13,7 +14,7 @@ export { MePaginationComponent } from './lib/components/me-pagination/me-paginat
 export {
   MePropertyGridCellComponent,
   MePropertyGridComponent,
-  MePropertyGridGroupComponent
+  MePropertyGridGroupComponent,
 } from './lib/components/me-property-grid';
 export { MeSidePageComponent } from './lib/components/me-sidepage/me-sidepage.component';
 export { MeSkeletonItemComponent } from './lib/components/me-skeleton/me-skeleton-item/me-skeleton-item.component';

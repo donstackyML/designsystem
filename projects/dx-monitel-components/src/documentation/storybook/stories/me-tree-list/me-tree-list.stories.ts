@@ -258,6 +258,7 @@ export const WithColumns: Story = {
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
+        [cellSize]="cellSize"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
@@ -295,6 +296,7 @@ export const WithEditingButtons: Story = {
         [wordWrapEnabled]="wordWrapEnabled"
         [showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
+        [cellSize]="cellSize"
       >
         <dxo-editing
           mode="row"
@@ -344,6 +346,7 @@ export const WithValidation: Story = {
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
+        [cellSize]="cellSize"
       >
         <dxo-editing
           mode="row"
@@ -398,6 +401,7 @@ export const WithHierarchy: Story = {
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
+        [cellSize]="cellSize"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
@@ -438,6 +442,7 @@ export const WithSortingAndFiltering: Story = {
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
+        [cellSize]="cellSize"
       >
         <dxi-column dataField="Full_Name" caption="Name" [allowSorting]="true"></dxi-column>
         <dxi-column dataField="Title" caption="Position" [allowSorting]="true"></dxi-column>
@@ -475,6 +480,7 @@ export const WithCustomCells: Story = {
 				[wordWrapEnabled]="wordWrapEnabled"
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
+        [cellSize]="cellSize"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
@@ -532,6 +538,7 @@ export const WithNumberAlign: Story = {
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [headerAlign]="{ 'ID': 'left', 'Full Name': 'right' }"
+        [cellSize]="cellSize"
       >
       </dx-tree-list>
     `,
