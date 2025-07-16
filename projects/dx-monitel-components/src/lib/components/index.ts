@@ -2,6 +2,7 @@ export * from './me-badge/me-badge.component';
 export * from './me-chip/me-chip.component';
 export * from './me-chips/me-chips.component';
 export * from './me-file-uploader/me-file-uploader.component';
+export * from './me-filter-builder';
 export * from './me-header';
 export * from './me-icon/me-icon.component';
 export * from './me-menu-left/me-menu-left.component';
