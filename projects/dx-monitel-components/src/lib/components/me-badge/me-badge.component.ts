@@ -32,10 +32,10 @@ export class MeBadgeComponent implements OnChanges {
   @Input() leftValue?: string | number = '';
   @Input() rightValue?: string | number = '';
   @Input() customStyle: { [key: string]: string } = {};
-  @Input() badgeWidth?: string;
+  @Input() width?: string;
 
-  @HostBinding('style.--badge-width') get width() {
-    return this.badgeWidth ? this.badgeWidth : '';
+  @HostBinding('style.--badge-width') get badgeWidth() {
+    return this.width ? this.width : '';
   }
 
   displayValue: string = '';

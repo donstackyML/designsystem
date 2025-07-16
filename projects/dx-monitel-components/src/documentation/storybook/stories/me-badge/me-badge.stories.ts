@@ -63,7 +63,7 @@ export default {
         defaultValue: { summary: 'null' },
       },
     },
-    badgeWidth: {
+    width: {
       control: 'text',
       description: 'Задает ширину бейджа.',
       table: {
