@@ -306,6 +306,7 @@ export const WithCounter: Story = {
     meDataGrid
     [(dataSource)]="dataSource"
     [size]="size"
+    [cellSize]="cellSize"
     [allowColumnReordering]="allowColumnReordering"
     [allowColumnResizing]="allowColumnResizing"
     [showRowLines]="showRowLines"
@@ -379,6 +380,7 @@ export const WithContentGrouping: Story = {
   meDataGrid
   [(dataSource)]="dataSource"
   [size]="size"
+  [cellSize]="cellSize"
   [allowColumnReordering]="allowColumnReordering"
   [allowColumnResizing]="allowColumnResizing"
   [showRowLines]="showRowLines"
@@ -414,6 +416,7 @@ export const WithNumberAlign: Story = {
         meDataGrid
         [dataSource]="dataSource"
         [size]="size"
+        [cellSize]="cellSize"
         [allowColumnReordering]="allowColumnReordering"
         [allowColumnResizing]="allowColumnResizing"
         [showRowLines]="showRowLines"

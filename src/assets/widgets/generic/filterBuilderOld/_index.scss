@@ -1,0 +1,115 @@
+@use 'sass:color';
+@use 'colors' as *;
+@use '../colors' as *;
+@use 'sizes' as *;
+@use '../sizes' as *;
+@use '../../base/filterBuilder' as * with (
+  $filterbuilder-bg: $filterbuilder-bg,
+  $filterbuilder-text-color: $filterbuilder-text-color,
+  $filterbuilder-text-focus-color: $filterbuilder-text-focus-color,
+  $filterbuilder-group-operation-color: $filterbuilder-group-operation-color,
+  $filterbuilder-group-operation-hover-color: $filterbuilder-group-operation-hover-color,
+  $filterbuilder-group-operation-focus-color: $filterbuilder-group-operation-focus-color,
+  $filterbuilder-item-operator-color: $filterbuilder-item-operator-color,
+  $filterbuilder-item-operator-hover-color: $filterbuilder-item-operator-hover-color,
+  $filterbuilder-item-operator-focus-color: $filterbuilder-item-operator-focus-color,
+  $filterbuilder-item-field-color: $filterbuilder-item-field-color,
+  $filterbuilder-item-field-hover-color: $filterbuilder-item-field-hover-color,
+  $filterbuilder-item-field-focus-color: $filterbuilder-item-field-focus-color,
+  $filterbuilder-item-value-color: $filterbuilder-item-value-color,
+  $filterbuilder-item-value-hover-color: $filterbuilder-item-value-hover-color,
+  $filterbuilder-item-value-focus-color: $filterbuilder-item-value-focus-color,
+  $filterbuilder-plus-icon-color: $filterbuilder-plus-icon-color,
+  $filterbuilder-plus-icon-hover-color: $filterbuilder-plus-icon-hover-color,
+  $filterbuilder-plus-icon-focus-color: $filterbuilder-plus-icon-focus-color,
+  $filterbuilder-remove-icon-color: $filterbuilder-remove-icon-color,
+  $filterbuilder-remove-icon-hover-color: $filterbuilder-remove-icon-hover-color,
+  $filterbuilder-remove-icon-focus-color: $filterbuilder-remove-icon-focus-color,
+  $filterbuilder-menu-icon-color: $filterbuilder-menu-icon-color
+);
+@use '../textEditor/colors' as *;
+
+// adduse
+.dx-filterbuilder {
+  .dx-filterbuilder-action-icon {
+    margin-bottom: $filterbuilder-item-margin-bottom;
+  }
+
+  .dx-filterbuilder-text,
+  .dx-filterbuilder-item-value-text {
+    border-radius: 5px;
+  }
+
+  .dx-filterbuilder-range-separator {
+    color: $texteditor-color;
+  }
+}
+
+.dx-filterbuilder-overlay {
+  .dx-treeview-item {
+    padding: $filterbuilder-treeview-item-padding;
+  }
+
+  .dx-rtl {
+    .dx-treeview-item {
+      padding-left: $filterbuilder-treeview-item-horizontal-padding;
+    }
+  }
+}
+
+.me-filter-builder {
+  .dx-filterbuilder-group-item {
+    display: flex !important; // Потом надо убрать !important;
+    align-items: center;
+  }
+
+  .dx-filterbuilder-item-value-text {
+    height: 100%;
+    display: flex !important; // Потом надо убрать !important
+    align-items: center;
+    gap: 4px;
+
+    padding: var(--padding-block) var(--padding-inline) !important;
+    .dx-filterbuilder-text-separator-empty {
+      display: none;
+    }
+
+    .dx-filterbuilder-text-part {
+      background-color: var(--Background-Content);
+      color: var(--Text-Default);
+      height: 24px;
+      border-radius: 2px;
+      align-items: center;
+      display: flex;
+
+      padding: 8px 4px;
+    }
+  }
+
+  .dx-filterbuilder-text {
+    font-weight: var(--me-medium-font-weight);
+    line-height: 20px;
+    font-size: 14px;
+  }
+
+  .dx-filterbuilder-item-value,
+  .dx-filterbuilder-item-operation,
+  .dx-filterbuilder-item-field {
+    --padding-block: 4px;
+    --padding-inline: 4px;
+
+    display: flex !important; // Потом надо убрать !important
+    align-items: center;
+    height: 32px;
+    border-radius: 3px;
+  }
+
+  .dx-filterbuilder-item-operation,
+  .dx-filterbuilder-item-field {
+    padding: var(--padding-block) var(--padding-inline) !important;
+  }
+
+  .dx-filterbuilder-text .dx-texteditor {
+    margin: 0 !important;
+  }
+}
