@@ -60,7 +60,7 @@ export class MeFilterBuilderComponent {
     this.overlayObserver = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         mutation.addedNodes.forEach((node) => {
-          if (node.nodeType === 1 && node instanceof HTMLElement) {
+          if (node.nodeType === 1) {
             const element = node as HTMLElement;
 
             if (element.classList.contains('dx-filterbuilder-overlay')) {
