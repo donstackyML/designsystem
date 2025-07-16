@@ -5158,6 +5158,7 @@
 
 me-badge {
   display: inline-flex;
+  width: var(--badge-width);
 }
 me-badge .badge {
   font-family: "Roboto Mono";
@@ -5173,15 +5174,18 @@ me-badge .badge {
   padding: 0 4px;
   box-sizing: border-box;
   transition: all 0.2s ease;
+  width: 100%;
 }
 me-badge .badge-content {
   font-family: "Roboto Mono";
-  display: flex;
+  display: inline-block;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 me-badge .badge.size-small {
   --badge-size: 16px;

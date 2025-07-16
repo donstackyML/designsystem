@@ -63,6 +63,14 @@ export default {
         defaultValue: { summary: 'null' },
       },
     },
+    badgeWidth: {
+      control: 'text',
+      description: 'Задает ширину бейджа.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
   },
 } satisfies Meta<MeBadgeComponent>;
 
@@ -100,6 +108,13 @@ export const BasicExamples: Story = {
       </div>
     `,
   }),
+};
+
+export const CustomWidth: Story = {
+  args: {
+    badgeWidth: '100px',
+    value: '111111111111111'
+  }
 };
 
 export const Sizes: Story = {

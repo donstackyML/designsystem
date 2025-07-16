@@ -27,6 +27,7 @@ $badge-error-bg: null !default;
 // Базовые стили бейджа
 me-badge {
   display: inline-flex;
+  width: var(--badge-width);
 
   .badge {
     font-family: 'Roboto Mono';
@@ -42,15 +43,18 @@ me-badge {
     padding: 0 4px;
     box-sizing: border-box;
     transition: all 0.2s ease;
+    width: 100%;
 
     &-content {
       font-family: 'Roboto Mono';
-      display: flex;
+      display: inline-block;
       align-items: center;
-      justify-content: center;
       width: 100%;
       height: 100%;
       text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     // Размеры
@@ -130,6 +134,8 @@ me-badge {
       background-color: var(--Badge-Yellow-Light);
     }
   }
+
+
 }
 
 .badge-title {
