@@ -32,6 +32,7 @@ import { MeTextAreaComponent } from './components/me-text-area/me-text-area.comp
 import { MeTextBoxComponent } from './components/me-text-box/me-text-box.component';
 import { MeTimeRangeDemoComponent } from './components/me-time-range-demo/me-time-range-demo.component';
 import { MeToastDemoComponent } from './components/me-toast-demo/me-toast-demo.component';
+import { MePropertyGridDemoComponent } from './components/me-property-grid-demo/me-property-grid-demo.component';
 import { MeToolbarComponent } from './components/me-toolbar/me-toolbar.component';
 import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component';
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'me-pivot-grid', component: MePivotGridComponent },
   { path: 'me-popover', component: MePopoverComponent },
   { path: 'me-popup', component: MePopupComponent },
+  { path: 'me-property-grid', component: MePropertyGridDemoComponent },
   { path: 'me-radio-group', component: MeRadioGroupComponent },
   { path: 'me-select-box', component: MeSelectBoxComponent },
   { path: 'me-sidepage', component: MeSidepageDemo },
