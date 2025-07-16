@@ -71,8 +71,9 @@
 }
 
 .me-color-box-wrapper-popup {
-  --Colorview-Hue-Scale-Size: 8px;
-  --Handle-Size: 8px;
+  --Colorview-Hue-Scale-Size: 12px;
+  --Handle-Size: 12px;
+  --Preview-Size: 96px;
 
   .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height {
     .dx-popup-content {
@@ -80,33 +81,47 @@
 
       .dx-show-invalid-badge.dx-colorview {
         .dx-colorview-container {
+          width: fit-content;
+
+          .dx-colorview-hue-scale-wrapper {
+            margin: 0;
+            padding: 0;
+          }
 
           .dx-colorview-container-row {
+            .dx-colorview-container-cell {
+              .dx-colorview-controls-container {
+                margin-left: 20px;
+                width: fit-content;
 
-            .dx-colorview-container-cell .dx-colorview-controls-container {
-              .dx-colorview-color-preview-container {
-                background-color: inherit;
-                box-shadow: none;
+                .dx-colorview-color-preview-container {
+                  background-color: inherit;
+                  box-shadow: none;
+                  width: var(--Preview-Size);
+                  height: var(--Preview-Size);
+                  padding: 0;
+                  margin: 0 0 16px 0;
 
-                .dx-colorview-color-preview-container-inner {
-                  border-radius: 5px;
-                  display: flex;
-                  flex-direction: column-reverse;
+                  .dx-colorview-color-preview-container-inner {
+                    border-radius: 5px;
 
-                  .dx-colorview-color-preview.dx-colorview-color-preview-color-current {
-                    border-bottom-left-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                  }
+                    .dx-colorview-color-preview.dx-colorview-color-preview-color-current {
+                      border-top-left-radius: 5px;
+                      border-top-right-radius: 5px;
+                      height: calc(var(--Preview-Size) / 2)
+                    }
 
-                  .dx-colorview-color-preview.dx-colorview-color-preview-color-new {
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
+                    .dx-colorview-color-preview.dx-colorview-color-preview-color-new {
+                      border-bottom-left-radius: 5px;
+                      border-bottom-right-radius: 5px;
+                      height: calc(var(--Preview-Size) / 2)
+                    }
                   }
                 }
-              }
 
-              .dx-colorview-label-hex {
-                margin: 0;
+                .dx-colorview-label-hex {
+                  margin: 0;
+                }
               }
             }
 
@@ -125,6 +140,8 @@
             }
 
             .dx-colorview-hue-scale-cell {
+              margin-left: 12px;
+
               .dx-colorview-hue-scale-wrapper {
                 box-shadow: none;
                 height: var(--Pallete-Size);
@@ -146,31 +163,42 @@
               }
             }
 
-            .dx-colorview-alpha-channel-cell {
-              width: var(--Pallete-Size);
+            &.dx-colorview-alpha-channel-row {
+              margin-top: 12px;
 
-              .dx-colorview-alpha-channel-border {
-                background-color: inherit;
-                box-shadow: none;
-
-
-                .dx-colorview-alpha-channel-wrapper {
-                  background: none;
-                  .dx-colorview-alpha-channel-scale {
-                    height: var(--Colorview-Hue-Scale-Size);
-                    border-radius: 50px;
-                  }
+              .dx-colorview-container-cell {
+                .dx-colorview-alpha-channel-label {
+                  margin-left: 25px;
                 }
               }
 
-              .dx-colorview-alpha-channel-handle.dx-draggable {
-                width: var(--Handle-Size);
-                height: var(--Handle-Size);
-                background: radial-gradient(transparent -5px, rgba(0, 0, 0, 0.2) 2px, #fff 3px, #fff 11px, rgba(0, 0, 0, 0.2) 13px);
-                top: 5%;
-                border: none;
-                box-shadow: none;
-                border-radius: 50px;
+              .dx-colorview-alpha-channel-cell {
+                width: var(--Pallete-Size);
+
+                .dx-colorview-alpha-channel-border {
+                  background-color: inherit;
+                  box-shadow: none;
+
+
+                  .dx-colorview-alpha-channel-wrapper {
+                    background: none;
+
+                    .dx-colorview-alpha-channel-scale {
+                      height: var(--Colorview-Hue-Scale-Size);
+                      border-radius: 50px;
+                    }
+                  }
+                }
+
+                .dx-colorview-alpha-channel-handle.dx-draggable {
+                  width: var(--Handle-Size);
+                  height: var(--Handle-Size);
+                  background: radial-gradient(transparent -5px, rgba(0, 0, 0, 0.2) 2px, #fff 3px, #fff 11px, rgba(0, 0, 0, 0.2) 13px);
+                  top: 5%;
+                  border: none;
+                  box-shadow: none;
+                  border-radius: 50px;
+                }
               }
             }
 
@@ -180,6 +208,8 @@
     }
 
     .dx-toolbar.dx-colorview-button-cell {
+      margin-top: 16px;
+
       .dx-toolbar-items-container.dx-colorview-buttons-container {
         .dx-toolbar-after {
           .dx-item.dx-toolbar-item.dx-toolbar-button {
