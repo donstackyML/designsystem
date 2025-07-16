@@ -1,0 +1,168 @@
+import { Figma } from "@storybook/addon-designs/blocks";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
+import * as colorBoxStories from "./me-color-box.stories";
+
+<Meta name="ColorBox Documentation" of={colorBoxStories} />
+
+# ColorBox
+
+## Директива `meColorBox`
+
+Директива `meColorBox` применяется к компоненту `dx-color-box` для кастомизации его внешнего вида и поведения в соответствии с дизайн-системой. Она добавляет поддержку размеров (small, medium, large), настраивает отображение элементов управления и обеспечивает единообразный стиль для всех цветовых палитр.
+
+Документация на сайте разработчика DevExtreme:
+
+- <a
+  href="https://js.devexpress.com/Angular/Documentation/ApiReference/UI_Components/dxColorBox/"
+  target="_blank"
+  >
+  API
+  </a>
+
+- <a
+  href="https://js.devexpress.com/Angular/Demos/WidgetsGallery/Demo/ColorBox/Overview/Angular/Light/"
+  target="_blank"
+  >
+  Демо
+  </a>
+
+## Дизайн
+
+<Figma
+  height="50%"
+  collapsable
+  defaultCollapsed
+  url="https://www.figma.com/design/S2KXryEyWLA9cplaicYrVn/Components?node-id=21246-364894"
+/>
+
+## Примеры использования
+
+- [Базовое использование](#базовое-использование)
+- [С альфа-каналом](#с-альфа-каналом)
+- [Разные размеры](#разные-размеры)
+- [Состояния disabled](#состояния-disabled)
+- [Режим только для чтения](#режим-только-для-чтения)
+
+### Базовое использование
+
+Стандартное использование компонента с выбором цвета.
+
+<Canvas name="Базовое использование" of={colorBoxStories.Default} />
+
+<Source
+  code={`<dx-color-box
+  meColorBox
+  value="#473819"
+  label="Цвет фона"
+></dx-color-box>`}
+  language="html"
+  dark
+/>
+
+### С альфа-каналом
+
+Компонент с поддержкой прозрачности (альфа-канала).
+
+<Canvas name="С альфа-каналом" of={colorBoxStories.WithEditAlphaChannel} />
+
+<Source
+  code={`<dx-color-box
+  meColorBox
+  value="#47381980"
+  editAlphaChannel="true"
+></dx-color-box>`}
+  language="html"
+  dark
+/>
+
+### Разные размеры
+
+Компонент поддерживает три размера, которые можно задать через свойство `size`:
+- small – компактный размер (по умолчанию)
+- medium – стандартный размер
+- large – увеличенный размер
+
+#### Компонент небольшого размера
+
+<Canvas name="Компонент небольшого размера" of={colorBoxStories.SizeSmall} />
+
+<Source
+  code={`<dx-color-box
+  meColorBox
+  size="small"
+></dx-color-box>`}
+  language="html"
+  dark
+/>
+
+#### Компонент среднего размера
+
+<Canvas name="Компонент среднего размера" of={colorBoxStories.SizeMedium} />
+
+<Source
+  code={`<dx-color-box
+  meColorBox
+  size="medium"
+></dx-color-box>`}
+  language="html"
+  dark
+/>
+
+#### Компонент большого размера
+
+<Canvas name="Компонент большого размера" of={colorBoxStories.SizeLarge} />
+
+<Source
+  code={`<dx-color-box
+  meColorBox
+  size="large"
+></dx-color-box>`}
+  language="html"
+  dark
+/>
+
+### Состояния disabled
+
+Компонент можно отключить с помощью свойства `disabled`.
+
+<Canvas name="Состояние disabled" of={colorBoxStories.StateDisabled} />
+
+<Source
+  code={`<dx-color-box
+  meColorBox
+  disabled="true"
+></dx-color-box>`}
+  language="html"
+  dark
+/>
+
+### Режим только для чтения
+
+Компонент можно перевести в режим только для чтения с помощью свойства `readOnly`.
+
+<Canvas name="Режим только для чтения" of={colorBoxStories.StateReadOnly} />
+
+<Source
+  code={`<dx-color-box
+  meColorBox
+  readOnly="true"
+></dx-color-box>`}
+  language="html"
+  dark
+/>
+
+### Настройка текста кнопок
+
+Вы можете изменить текст кнопок подтверждения и отмены.
+
+<Canvas name="Настройка текста кнопок" of={colorBoxStories.CustomButtonsText} />
+
+<Source
+  code={`<dx-color-box
+  meColorBox
+  applyButtonText="ОК"
+  cancelButtonText="Закрыть"
+></dx-color-box>`}
+  language="html"
+  dark
+/>

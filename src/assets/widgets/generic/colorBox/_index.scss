@@ -68,6 +68,20 @@
       }
     }
   }
+
+  &.me-inputs-medium {
+    --Color-Box-Preview-Size: 20px;
+    --Label-Padding-Left-Static: 32px;
+    --Placeholder-Padding-Left-Static: 24px;
+    --Input-Gap: 4px;
+  }
+
+  &.me-inputs-large {
+    --Color-Box-Preview-Size: 24px;
+    --Label-Padding-Left-Static: 44px;
+    --Placeholder-Padding-Left-Static: 32px;
+    --Input-Gap: 8px;
+  }
 }
 
 .me-color-box-wrapper-popup {
@@ -132,9 +146,22 @@
                 border-radius: 5px;
 
                 .dx-colorview-palette-handle.dx-draggable {
-                  width: var(--Handle-Size);
-                  height: var(--Handle-Size);
-                  background: radial-gradient(transparent -5px, rgba(0, 0, 0, 0.2) 2px, #fff 3px, #fff 11px, rgba(0, 0, 0, 0.2) 13px);
+                  background: none;
+                  box-shadow: none;
+
+                  &::after {
+                    content: "";
+                    background: radial-gradient(transparent -5px, rgba(0, 0, 0, 0.2) 2px, #fff 3px, #fff 11px, rgba(0, 0, 0, 0.2) 13px);
+                    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+                    display: block;
+                    position: absolute;
+                    width: var(--Handle-Size);
+                    height: var(--Handle-Size);
+                    border-radius: 100%;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                  }
                 }
               }
             }
@@ -165,15 +192,20 @@
 
             &.dx-colorview-alpha-channel-row {
               margin-top: 12px;
+              display: flex;
 
               .dx-colorview-container-cell {
                 .dx-colorview-alpha-channel-label {
-                  margin-left: 25px;
+                  margin-left: 13px;
+
+                  .dx-numberbox.dx-texteditor {
+                    margin: 0;
+                  }
                 }
               }
 
               .dx-colorview-alpha-channel-cell {
-                width: var(--Pallete-Size);
+                margin: auto 0;
 
                 .dx-colorview-alpha-channel-border {
                   background-color: inherit;
@@ -181,7 +213,9 @@
 
 
                   .dx-colorview-alpha-channel-wrapper {
-                    background: none;
+                    border-radius: 50px;
+                    background-position: 3px 2px, 25px 8px;
+                    background-size: 4px 4px;
 
                     .dx-colorview-alpha-channel-scale {
                       height: var(--Colorview-Hue-Scale-Size);
@@ -194,7 +228,7 @@
                   width: var(--Handle-Size);
                   height: var(--Handle-Size);
                   background: radial-gradient(transparent -5px, rgba(0, 0, 0, 0.2) 2px, #fff 3px, #fff 11px, rgba(0, 0, 0, 0.2) 13px);
-                  top: 5%;
+                  top: 7%;
                   border: none;
                   box-shadow: none;
                   border-radius: 50px;

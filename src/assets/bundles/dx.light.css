@@ -8520,6 +8520,18 @@ me-badge .badge.color-yellow-light {
 .me-color-box.me-inputs.dx-dropdowneditor > .dx-colorbox-input-container.dx-colorbox-color-is-not-defined .dx-dropdowneditor-input-wrapper .dx-texteditor-container .dx-texteditor-input-container .dx-colorbox-color-result-preview {
   background-color: var(--Icon-Default);
 }
+.me-color-box.me-inputs.dx-dropdowneditor.me-inputs-medium {
+  --Color-Box-Preview-Size: 20px;
+  --Label-Padding-Left-Static: 32px;
+  --Placeholder-Padding-Left-Static: 24px;
+  --Input-Gap: 4px;
+}
+.me-color-box.me-inputs.dx-dropdowneditor.me-inputs-large {
+  --Color-Box-Preview-Size: 24px;
+  --Label-Padding-Left-Static: 44px;
+  --Placeholder-Padding-Left-Static: 32px;
+  --Input-Gap: 8px;
+}
 
 .me-color-box-wrapper-popup {
   --Colorview-Hue-Scale-Size: 12px;
@@ -8571,9 +8583,21 @@ me-badge .badge.color-yellow-light {
   border-radius: 5px;
 }
 .me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row .dx-colorview-palette-cell .dx-colorview-palette .dx-colorview-palette-handle.dx-draggable {
+  background: none;
+  box-shadow: none;
+}
+.me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row .dx-colorview-palette-cell .dx-colorview-palette .dx-colorview-palette-handle.dx-draggable::after {
+  content: "";
+  background: radial-gradient(transparent -5px, rgba(0, 0, 0, 0.2) 2px, #fff 3px, #fff 11px, rgba(0, 0, 0, 0.2) 13px);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  display: block;
+  position: absolute;
   width: var(--Handle-Size);
   height: var(--Handle-Size);
-  background: radial-gradient(transparent -5px, rgba(0, 0, 0, 0.2) 2px, #fff 3px, #fff 11px, rgba(0, 0, 0, 0.2) 13px);
+  border-radius: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row .dx-colorview-hue-scale-cell {
   margin-left: 12px;
@@ -8597,19 +8621,25 @@ me-badge .badge.color-yellow-light {
 }
 .me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row.dx-colorview-alpha-channel-row {
   margin-top: 12px;
+  display: flex;
 }
 .me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row.dx-colorview-alpha-channel-row .dx-colorview-container-cell .dx-colorview-alpha-channel-label {
-  margin-left: 25px;
+  margin-left: 13px;
+}
+.me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row.dx-colorview-alpha-channel-row .dx-colorview-container-cell .dx-colorview-alpha-channel-label .dx-numberbox.dx-texteditor {
+  margin: 0;
 }
 .me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row.dx-colorview-alpha-channel-row .dx-colorview-alpha-channel-cell {
-  width: var(--Pallete-Size);
+  margin: auto 0;
 }
 .me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row.dx-colorview-alpha-channel-row .dx-colorview-alpha-channel-cell .dx-colorview-alpha-channel-border {
   background-color: inherit;
   box-shadow: none;
 }
 .me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row.dx-colorview-alpha-channel-row .dx-colorview-alpha-channel-cell .dx-colorview-alpha-channel-border .dx-colorview-alpha-channel-wrapper {
-  background: none;
+  border-radius: 50px;
+  background-position: 3px 2px, 25px 8px;
+  background-size: 4px 4px;
 }
 .me-color-box-wrapper-popup .dx-overlay-content.dx-popup-normal.dx-resizable.dx-colorbox-overlay.dx-popup-inherit-height .dx-popup-content .dx-show-invalid-badge.dx-colorview .dx-colorview-container .dx-colorview-container-row.dx-colorview-alpha-channel-row .dx-colorview-alpha-channel-cell .dx-colorview-alpha-channel-border .dx-colorview-alpha-channel-wrapper .dx-colorview-alpha-channel-scale {
   height: var(--Colorview-Hue-Scale-Size);
@@ -8619,7 +8649,7 @@ me-badge .badge.color-yellow-light {
   width: var(--Handle-Size);
   height: var(--Handle-Size);
   background: radial-gradient(transparent -5px, rgba(0, 0, 0, 0.2) 2px, #fff 3px, #fff 11px, rgba(0, 0, 0, 0.2) 13px);
-  top: 5%;
+  top: 7%;
   border: none;
   box-shadow: none;
   border-radius: 50px;
