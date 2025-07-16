@@ -56,10 +56,10 @@ export default {
       },
     },
     value: {
-      control: 'number',
+      control: 'text',
       description: 'Числовое значение бейджа',
       table: {
-        type: { summary: 'number | null' },
+        type: { summary: 'number | string | null' },
         defaultValue: { summary: 'null' },
       },
     },
@@ -113,7 +113,7 @@ export const BasicExamples: Story = {
 export const CustomWidth: Story = {
   args: {
     badgeWidth: '100px',
-    value: '111111111111111'
+    value: 'Long text for long test'
   }
 };
 
