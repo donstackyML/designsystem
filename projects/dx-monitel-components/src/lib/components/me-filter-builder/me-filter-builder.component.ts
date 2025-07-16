@@ -45,14 +45,16 @@ export class MeFilterBuilderComponent {
   @Input() fields: Record<string, unknown>[] = [];
   @Input() dataSource: unknown[] = [];
   @Input() selectBoxSources?: Record<string, string[]>;
+  @Input() acceptFiltersButtonText: string = 'Применить';
 
   @Output() filteredValueChange = new EventEmitter<(string | string[])[]>();
 
-  private overlayObserver?: MutationObserver;
+  filter: (string | string[])[] = [];
 
+  private overlayObserver?: MutationObserver;
   private currentSizeClass = '';
 
-  private startObserving(): void {
+  private startObserving() {
     this.currentSizeClass = `me-filterbuilder-${this.size}`;
 
     this.overlayObserver = new MutationObserver((mutations) => {
@@ -61,7 +63,7 @@ export class MeFilterBuilderComponent {
           if (
             node.nodeType === 1 &&
             node instanceof HTMLElement &&
-            node.classList.contains('dx-overlay-wrapper')
+            node.classList.contains('dx-filterbuilder-overlay')
           ) {
             node.classList.remove(
               'me-filterbuilder-small',
@@ -76,7 +78,7 @@ export class MeFilterBuilderComponent {
 
     this.overlayObserver.observe(document.body, {
       childList: true,
-      subtree: true,
+      subtree: false,
     });
   }
 
@@ -101,6 +103,4 @@ export class MeFilterBuilderComponent {
   handleAcceptFiltersClick() {
     this.filteredValueChange.emit(this.filter);
   }
-
-  filter: (string | string[])[] = [];
 }
