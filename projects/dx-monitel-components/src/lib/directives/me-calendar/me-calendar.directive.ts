@@ -179,7 +179,6 @@ export class MeCalendarDirective
 
       const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
         .rootNodes[0] as HTMLElement;
-      // domElem.style.width = `${calendarWidth}px`;
       domElem.style.marginInline = 'auto';
 
       domElem.addEventListener('mousedown', (e) => {
