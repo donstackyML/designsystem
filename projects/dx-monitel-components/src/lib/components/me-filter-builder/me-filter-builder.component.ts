@@ -60,17 +60,17 @@ export class MeFilterBuilderComponent {
     this.overlayObserver = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         mutation.addedNodes.forEach((node) => {
-          if (
-            node.nodeType === 1 &&
-            node instanceof HTMLElement &&
-            node.classList.contains('dx-filterbuilder-overlay')
-          ) {
-            node.classList.remove(
-              'me-filterbuilder-small',
-              'me-filterbuilder-medium',
-              'me-filterbuilder-large'
-            );
-            node.classList.add(this.currentSizeClass);
+          if (node.nodeType === 1 && node instanceof HTMLElement) {
+            const element = node as HTMLElement;
+
+            if (element.classList.contains('dx-filterbuilder-overlay')) {
+              element.classList.remove(
+                'me-filterbuilder-small',
+                'me-filterbuilder-medium',
+                'me-filterbuilder-large'
+              );
+              element.classList.add(this.currentSizeClass);
+            }
           }
         });
       }
