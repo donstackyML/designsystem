@@ -1,4 +1,10 @@
-import {Component, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
