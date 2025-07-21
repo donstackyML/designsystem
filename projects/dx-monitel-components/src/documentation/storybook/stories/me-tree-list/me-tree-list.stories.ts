@@ -200,13 +200,13 @@ export default {
 
 		<dxo-selection [mode]="mode"></dxo-selection>
 
-    <dxi-column dataField="Full_Name" [width]="120">
+    <dxi-column dataField="Full_Name">
       <dxi-validation-rule type="required"></dxi-validation-rule>
     </dxi-column>
-    <dxi-column dataField="Head_ID" caption="Head" [width]="120">
+    <dxi-column dataField="Head_ID" caption="Head">
       <dxi-validation-rule type="required" message="Head is very very very very very very very very very very very required"></dxi-validation-rule>
     </dxi-column>
-    <dxi-column dataField="Title" caption="Position" [width]="120">
+    <dxi-column dataField="Title" caption="Position">
       <dxi-validation-rule type="required"></dxi-validation-rule>
     </dxi-column>
     <dxi-column dataField="Hire_Date" dataType="date" [width]="120">
