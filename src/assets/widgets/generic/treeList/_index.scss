@@ -183,39 +183,6 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
 
 //meTreeList
 .me-tree-list.dx-treelist.dx-widget {
-  // max-height: 300px;
-  // max-width: 400px;
-
-  // :has(.dx-scrollbar-vertical) {
-  //   .dx-treelist-headers {
-  //     padding-right: 12px !important;
-  //   }
-  // }
-  // // Scroll
-
-  // .dx-scrollable-container {
-  //   padding-right: 12px;
-
-  //   // Vertical
-  //   .dx-scrollbar-vertical {
-  //     border-left: 1px solid var(--Dividers-Borders-Long);
-  //     border-radius: 0;
-  //     padding: 0;
-  //     width: 12px;
-  //     transition: none;
-
-  //     .dx-scrollable-scroll {
-  //       padding: 5px 3.75px;
-
-  //       .dx-scrollable-scroll-content {
-  //         width: 4px;
-  //         background: var(--Scrollable-Scroll-Bg);
-  //       }
-  //     }
-  //   }
-
-  //
-
   .dx-scrollable-wrapper {
     .dx-scrollable-container {
       .dx-scrollable-content {
@@ -224,40 +191,58 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
     }
   }
 
-  // Vertical
+  // Vertical Scroll
   .dx-scrollbar-vertical {
     width: 14px;
-    // border-left: 1px solid var(--Dividers-Borders-Long);
     border-radius: 0;
     transition: none;
-    // background: var(--Background-Accent-in-the-content);
+
+    &.dx-state-hover,
+    &.dx-scrollable-scrollbar-active {
+      .dx-scrollable-scroll {
+        padding: 5px 4.5px 19px;
+
+        .dx-scrollable-scroll-content {
+          width: 4px;
+        }
+      }
+    }
 
     .dx-scrollable-scroll {
-      padding: 5px 4.5px;
-      padding-bottom: 19px;
+      padding: 5px 4.5px 19px;
 
       .dx-scrollable-scroll-content {
-        background: var(--Scrollable-Scroll-Bg);
         width: 4px;
       }
     }
   }
 
-  // Horizontal
+  // Horizontal Scroll
   .dx-scrollbar-horizontal {
-    display: block !important;
     border-top: 1px solid var(--Dividers-Borders-Long);
+
     border-radius: 0;
     transition: none;
     height: 14px;
     background: var(--Background-Accent-in-the-content);
 
+    &.dx-state-hover,
+    &.dx-scrollable-scrollbar-active {
+      background: var(--Background-Accent-in-the-content);
+
+      .dx-scrollable-scroll {
+        padding: 5px 4px;
+
+        .dx-scrollable-scroll-content {
+          height: 4px;
+        }
+      }
+    }
+
     .dx-scrollable-scroll {
       padding: 5px 4px;
-      // padding-right: 19px;
 
       .dx-scrollable-scroll-content {
-        background: var(--Scrollable-Scroll-Bg);
         height: 4px;
       }
     }

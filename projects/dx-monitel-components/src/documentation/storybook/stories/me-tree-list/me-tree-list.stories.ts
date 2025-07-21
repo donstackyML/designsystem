@@ -220,7 +220,6 @@ export default {
 
       <dxi-button name="undelete" icon="undelete"></dxi-button>
     </dxi-column>
-    <dxi-column [width]="800" [allowResizing]="false" cellTemplate="empty"></dxi-column>
   </dx-tree-list>
 		`,
   }),
