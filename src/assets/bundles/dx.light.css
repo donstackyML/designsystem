@@ -5158,6 +5158,7 @@
 
 me-badge {
   display: inline-flex;
+  width: var(--badge-width);
 }
 me-badge .badge {
   font-family: "Roboto Mono";
@@ -5173,15 +5174,18 @@ me-badge .badge {
   padding: 0 4px;
   box-sizing: border-box;
   transition: all 0.2s ease;
+  width: 100%;
 }
 me-badge .badge-content {
   font-family: "Roboto Mono";
-  display: flex;
+  display: inline-block;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 me-badge .badge.size-small {
   --badge-size: 16px;
@@ -24174,7 +24178,7 @@ input.dx-hidden {
 .me-menu-left__header {
   position: relative;
   padding: 0 16px;
-  height: 56px;
+  min-height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24200,7 +24204,7 @@ input.dx-hidden {
   text-overflow: ellipsis;
 }
 .me-menu-left .me-menu-left__list.me-menu-left__list-root {
-  padding: 0 16px;
+  padding: 0 8px;
   margin-top: 16px;
 }
 .me-menu-left .me-menu-left__content {
@@ -24262,7 +24266,7 @@ input.dx-hidden {
 .me-menu-left__toggle {
   position: absolute;
   width: 28px;
-  top: 66px;
+  top: 58px;
   right: -14px;
   height: 28px;
   min-width: 28px;
@@ -24341,7 +24345,7 @@ input.dx-hidden {
 .me-menu-left .me-menu-left_item-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
   flex-grow: 1;
   min-width: 0;
   overflow: hidden;
@@ -40205,6 +40209,10 @@ input.dx-hidden {
   margin-left: var(--default-margin-left);
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content .dx-icon {
+  width: var(--item-icon-width);
+  height: var(--item-icon-width);
+}
+.me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content .dx-icon svg {
   width: var(--item-icon-width);
   height: var(--item-icon-width);
 }
