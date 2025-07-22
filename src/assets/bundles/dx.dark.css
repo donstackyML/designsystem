@@ -7185,19 +7185,12 @@ me-badge .badge.color-yellow-light {
 .dx-calendar.dx-widget.dx-calendar-view-year,
 .dx-calendar.dx-widget.dx-calendar-view-decade,
 .dx-calendar.dx-widget.dx-calendar-view-century {
-  padding: 2px 8px 8px 8px;
+  padding: 4px 8px 8px 8px;
   border: 1px solid #3f4044;
   border-radius: 4px;
   min-height: 292px;
   width: 288px;
   box-shadow: var(--select-box-box-shadow);
-}
-.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month.me-calendar-with-time-controls, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year.me-calendar-with-time-controls, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade.me-calendar-with-time-controls, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century.me-calendar-with-time-controls,
-.dx-calendar.dx-widget.dx-calendar-view-month.me-calendar-with-time-controls,
-.dx-calendar.dx-widget.dx-calendar-view-year.me-calendar-with-time-controls,
-.dx-calendar.dx-widget.dx-calendar-view-decade.me-calendar-with-time-controls,
-.dx-calendar.dx-widget.dx-calendar-view-century.me-calendar-with-time-controls {
-  min-height: 324px;
 }
 .me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-today-button .dx-button-content, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-today-button .dx-button-content, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-today-button .dx-button-content, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-today-button .dx-button-content,
 .dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-today-button .dx-button-content,
@@ -7302,13 +7295,6 @@ me-badge .badge.color-yellow-light {
 .dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body {
   padding: 4px;
   top: 45px;
-}
-.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body table, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body table, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body table, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body table,
-.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body table,
-.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body table,
-.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body table,
-.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body table {
-  padding-right: 8px;
 }
 .me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-calendar-body .dx-calendar-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-calendar-body .dx-calendar-cell, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-calendar-body .dx-calendar-cell,
 .dx-calendar.dx-widget.dx-calendar-view-month .dx-calendar-body .dx-calendar-cell,
@@ -7498,7 +7484,7 @@ me-badge .badge.color-yellow-light {
   width: 248px;
   min-width: 248px;
   min-height: 248px;
-  max-height: 304px;
+  max-height: 248px;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-navigator {
   width: 204px;
@@ -7521,10 +7507,14 @@ me-badge .badge.color-yellow-light {
   max-height: 28px;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-body {
+  width: 232px;
+  max-height: 200px;
   padding: 0;
   padding-bottom: 4px;
-  max-height: 200px;
-  margin-bottom: auto;
+}
+.me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-body .dx-widget {
+  width: 100%;
+  right: 0;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-body thead th {
   font-family: "RobotoFallback", "Roboto", sans-serif;
@@ -7550,29 +7540,48 @@ me-badge .badge.color-yellow-light {
   text-align: left;
   text-align: center;
 }
-.me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body {
-  max-height: 174px;
-  margin-bottom: auto;
-  padding: 3px;
+.me-calendar.me-calendar--small.dx-calendar.dx-calendar .time-controls {
+  margin-top: 4px;
+}
+.me-calendar.me-calendar--small.dx-calendar.dx-calendar .time-controls .me-inputs .dx-texteditor-container .dx-texteditor-input-container {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body tbody .dx-calendar-cell span {
   line-height: 10px;
 }
-.me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-year:not(.me-calendar-show-weeks-numbers) .dx-calendar-body, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-decade:not(.me-calendar-show-weeks-numbers) .dx-calendar-body, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-century:not(.me-calendar-show-weeks-numbers) .dx-calendar-body {
-  max-height: 150px;
+
+.me-calendar.me-calendar--small.dx-calendar:has(.time-controls) {
+  min-height: 280px;
+  max-height: 280px;
 }
 
 .me-calendar.me-calendar--small.dx-calendar:not(.me-calendar-show-weeks-numbers) {
   width: 220px;
   min-width: 220px;
 }
+.me-calendar.me-calendar--small.dx-calendar:not(.me-calendar-show-weeks-numbers) .dx-calendar-body {
+  width: 204px;
+  max-height: 200px;
+}
 
-.me-calendar.me-calendar--medium.dx-calendar {
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar {
   min-width: 288px;
   min-height: 292px;
-  max-height: 356px;
+  max-height: 292px;
 }
-.me-calendar.me-calendar--medium.dx-calendar .dx-calendar-navigator {
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-body {
+  padding: 0;
+  padding-bottom: 4px;
+}
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-body .dx-widget {
+  width: 100%;
+  right: 0;
+}
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-navigator {
   width: 240px;
   height: 48px;
   margin-left: auto;
@@ -7580,34 +7589,42 @@ me-badge .badge.color-yellow-light {
   padding-block: 0;
   gap: 8px;
 }
-.me-calendar.me-calendar--medium.dx-calendar .dx-calendar-navigator .dx-button-text {
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-navigator .dx-button-text {
   font-family: "RobotoFallback", "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   text-align: left;
 }
-.me-calendar.me-calendar--medium.dx-calendar .dx-calendar-navigator .dx-calendar-navigator-previous-month,
-.me-calendar.me-calendar--medium.dx-calendar .dx-calendar-navigator .dx-calendar-navigator-next-month {
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-navigator .dx-calendar-navigator-previous-month,
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-navigator .dx-calendar-navigator-next-month {
   max-width: 32px;
   max-height: 32px;
 }
-.me-calendar.me-calendar--medium.dx-calendar .dx-calendar-body {
-  max-height: 224px;
-  margin-bottom: auto;
-}
-.me-calendar.me-calendar--medium.dx-calendar .dx-calendar-footer {
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-footer {
   height: 30px;
 }
-.me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-year .dx-calendar-body, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-decade .dx-calendar-body, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-century .dx-calendar-body {
-  max-height: 202px;
-  margin-bottom: auto;
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .time-controls {
+  margin-top: 8px;
 }
-.me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-year .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-decade .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-century .dx-calendar-body tbody .dx-calendar-cell span {
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .time-controls .me-inputs .dx-texteditor-container .dx-texteditor-input-container {
+  height: 32px;
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+}
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body {
+  padding-inline: 0;
+}
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body tbody .dx-calendar-cell span {
   line-height: 10px;
 }
-.me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-year:not(.me-calendar-show-weeks-numbers) .dx-calendar-body, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-decade:not(.me-calendar-show-weeks-numbers) .dx-calendar-body, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar-view-century:not(.me-calendar-show-weeks-numbers) .dx-calendar-body {
-  max-height: 178px;
+
+.me-calendar.me-calendar--medium.dx-calendar:has(.time-controls) {
+  min-height: 332px;
+  max-height: 332px;
 }
 
 .me-calendar.me-calendar--medium.dx-calendar:not(.me-calendar-show-weeks-numbers) {
@@ -7646,9 +7663,12 @@ me-badge .badge.color-yellow-light {
   max-height: 40px;
 }
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-body {
-  padding: 6px;
-  margin-bottom: auto;
-  min-height: 280px;
+  padding: 0;
+  padding-bottom: 4px;
+}
+.me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-body .dx-widget {
+  width: 100%;
+  right: 0;
 }
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-body thead th {
   font-family: "RobotoFallback", "Roboto", sans-serif;
@@ -7674,10 +7694,20 @@ me-badge .badge.color-yellow-light {
   text-align: left;
   text-align: center;
 }
+.me-calendar.me-calendar--large.dx-calendar.dx-calendar .time-controls {
+  margin-top: 8px;
+}
+.me-calendar.me-calendar--large.dx-calendar.dx-calendar .time-controls .me-inputs .dx-texteditor-container .dx-texteditor-input-container {
+  height: 40px;
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+}
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body {
-  max-height: 260px;
   margin-bottom: auto;
-  padding: 8px;
+  padding: 0;
   min-height: 260px;
 }
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body table, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body table, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body table {
@@ -7689,9 +7719,10 @@ me-badge .badge.color-yellow-light {
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body table tbody .dx-calendar-cell span, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body table tbody .dx-calendar-cell span, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body table tbody .dx-calendar-cell span {
   line-height: 12px;
 }
-.me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-year:not(.me-calendar-show-weeks-numbers) .dx-calendar-body, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-decade:not(.me-calendar-show-weeks-numbers) .dx-calendar-body, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-century:not(.me-calendar-show-weeks-numbers) .dx-calendar-body {
-  max-height: 230px;
-  min-height: 230px;
+
+.me-calendar.me-calendar--large.dx-calendar:has(.time-controls) {
+  min-height: 396px;
+  max-height: 396px;
 }
 
 .me-calendar.me-calendar--large.dx-calendar:not(.me-calendar-show-weeks-numbers) {
@@ -14002,13 +14033,6 @@ input.dx-hidden {
 .me-data-grid .dx-datagrid .dx-datagrid-headers .dx-datagrid-content .dx-datagrid-table tbody .dx-header-row .dx-command-select {
   padding: 0 8px;
 }
-.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-datagrid-content .dx-datagrid-table tbody .dx-header-row .dx-command-select .dx-checkbox.dx-select-checkbox {
-  width: 16px;
-}
-.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-datagrid-content .dx-datagrid-table tbody .dx-header-row .dx-command-select .dx-checkbox.dx-select-checkbox .dx-checkbox-container .dx-checkbox-icon {
-  width: 16px;
-  height: 16px;
-}
 .me-data-grid .dx-datagrid .dx-datagrid-headers .dx-column-indicators .dx-sort::before {
   font-family: var(--me-symbols-family);
   height: 15px;
@@ -14578,12 +14602,39 @@ input.dx-hidden {
 .me-data-grid.me-data-grid-large .dx-datagrid .dx-datagrid-pager.dx-pager.dx-light-mode .dx-pages .dx-page-indexes .dx-info {
   height: 40px;
 }
+.me-data-grid.me-data-grid-cell-small .dx-row .dx-command-select .dx-select-checkbox {
+  width: 16px;
+}
+.me-data-grid.me-data-grid-cell-small .dx-row .dx-command-select .dx-select-checkbox .dx-checkbox-container .dx-checkbox-icon {
+  width: 16px;
+  height: 16px;
+}
 .me-data-grid.me-data-grid-cell-small .dx-datagrid-content .dx-row > td {
   padding: 0 8px;
   height: 24px;
 }
 .me-data-grid.me-data-grid-cell-small .dx-datagrid-content .dx-row > td[role=columnheader] {
   height: 32px;
+}
+.me-data-grid.me-data-grid-cell-small .dx-datagrid-content .dx-datagrid-table tbody .dx-row.dx-data-row .dx-command-select .dx-checkbox.dx-select-checkbox {
+  width: 16px;
+}
+.me-data-grid.me-data-grid-cell-small .dx-datagrid-content .dx-datagrid-table tbody .dx-row.dx-data-row .dx-command-select .dx-checkbox.dx-select-checkbox .dx-checkbox-container .dx-checkbox-icon {
+  width: 16px;
+  height: 16px;
+}
+.me-data-grid.me-data-grid-cell-medium .dx-row .dx-command-select .dx-select-checkbox .dx-checkbox-container .dx-checkbox-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+}
+.me-data-grid.me-data-grid-cell-medium .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table tbody .dx-row.dx-data-row .dx-command-select .dx-checkbox.dx-select-checkbox {
+  width: 20px;
+}
+.me-data-grid.me-data-grid-cell-medium .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table tbody .dx-row.dx-data-row .dx-command-select .dx-checkbox.dx-select-checkbox .dx-checkbox-container .dx-checkbox-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
 }
 
 .dx-datagrid-drag-header.dx-datagrid-text-content.dx-widget.dx-datagrid-drag-action {
@@ -40190,6 +40241,10 @@ input.dx-hidden {
   margin-left: var(--default-margin-left);
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content .dx-icon {
+  width: var(--item-icon-width);
+  height: var(--item-icon-width);
+}
+.me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content .dx-icon svg {
   width: var(--item-icon-width);
   height: var(--item-icon-width);
 }
