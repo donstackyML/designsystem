@@ -113,8 +113,8 @@ export const BasicExamples: Story = {
 export const CustomWidth: Story = {
   args: {
     badgeWidth: '100px',
-    value: 'Long text for long test'
-  }
+    value: 'Long text for long test',
+  },
 };
 
 export const Sizes: Story = {
