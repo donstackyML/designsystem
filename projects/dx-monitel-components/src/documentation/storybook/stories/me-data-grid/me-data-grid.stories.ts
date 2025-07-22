@@ -436,3 +436,47 @@ export const WithNumberAlign: Story = {
     `,
   }),
 };
+
+export const WithMultipleSortingAndHeaderFilterIcon: Story = {
+  args: {
+    headerFilter: { visible: true },
+    headerAlign: {},
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+			<dx-data-grid
+				meDataGrid
+				id="gridContainer"
+        [(dataSource)]="dataSource"
+				[size]="size"
+				[cellSize]="cellSize"
+				[allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[disabled]="disabled"
+				[columnAutoWidth]="columnAutoWidth"
+				[wordWrapEnabled]="wordWrapEnabled"
+				[showBorders]="showBorders"
+        [showColumnHeaders]="showColumnHeaders"
+        [selection]="selection"
+        [headerFilter]="{ visible: true }"
+        [headerAlign]="{ 'ID': 'right' }"
+			>
+        <dxo-sorting
+          mode="multiple"
+        ></dxo-sorting>
+				<dxo-search-panel [visible]="true"></dxo-search-panel>
+				<dxo-paging [(pageSize)]="pageSize"></dxo-paging>
+				<dxo-pager
+					[showPageSizeSelector]="showPageSizeSelector"
+					[displayMode]="displayMode"
+					[showInfo]="showInfo"
+					[infoText]="infoText"
+					[showNavigationButtons]="showNavigationButtons"
+					></dxo-pager>
+				<dxo-group-panel [visible]="true"></dxo-group-panel>
+			</dx-data-grid>`,
+  }),
+};

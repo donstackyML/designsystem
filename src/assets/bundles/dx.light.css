@@ -323,6 +323,7 @@
   --Controls-BG-Flat-Button-Danger-BG-Ripple: #ff406e33;
   --Controls-BG-Flat-Button-Main-BG-Hover: #3c65f81f;
   --Controls-BG-Flat-Button-Main-BG-Pressed: #3c71f833;
+  --Controls-BG-Flat-Button-Main-BG-Selected: #3c71f833;
   --Controls-BG-Flat-Button-Main-BG-Ripple: #5182ff33;
   --Controls-BG-Flat-Button-Success-BG-Hover: #00993d1f;
   --Controls-BG-Flat-Button-Success-BG-Pressed: #00752f33;
@@ -509,6 +510,7 @@
   --Controls-BG-Flat-Button-Danger-BG-Ripple: #ff46734d;
   --Controls-BG-Flat-Button-Main-BG-Hover: #3c65f840;
   --Controls-BG-Flat-Button-Main-BG-Pressed: #3c65f866;
+  --Controls-BG-Flat-Button-Main-BG-Selected: #3c65f866;
   --Controls-BG-Flat-Button-Main-BG-Ripple: #5278ff66;
   --Controls-BG-Flat-Button-Success-BG-Hover: #00b95533;
   --Controls-BG-Flat-Button-Success-BG-Pressed: #008b404d;
@@ -695,6 +697,7 @@
   --Controls-BG-Flat-Button-Danger-BG-Ripple: #ff406e33;
   --Controls-BG-Flat-Button-Main-BG-Hover: #3c65f81f;
   --Controls-BG-Flat-Button-Main-BG-Pressed: #3c71f833;
+  --Controls-BG-Flat-Button-Main-BG-Selected: #3c71f833;
   --Controls-BG-Flat-Button-Main-BG-Ripple: #5182ff33;
   --Controls-BG-Flat-Button-Success-BG-Hover: #00993d1f;
   --Controls-BG-Flat-Button-Success-BG-Pressed: #00752f33;
@@ -881,6 +884,7 @@
   --Controls-BG-Flat-Button-Danger-BG-Ripple: #ff46734d;
   --Controls-BG-Flat-Button-Main-BG-Hover: #3c65f840;
   --Controls-BG-Flat-Button-Main-BG-Pressed: #3c65f866;
+  --Controls-BG-Flat-Button-Main-BG-Selected: #3c65f866;
   --Controls-BG-Flat-Button-Main-BG-Ripple: #5278ff66;
   --Controls-BG-Flat-Button-Success-BG-Hover: #00b95533;
   --Controls-BG-Flat-Button-Success-BG-Pressed: #008b404d;
@@ -13997,7 +14001,8 @@ input.dx-hidden {
   width: 16px;
   height: 16px;
 }
-.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-column-indicators .dx-sort::before {
+.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-column-indicators .dx-sort::before,
+.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-column-indicators .dx-header-filter::before {
   font-family: var(--me-symbols-family);
   height: 15px;
   display: flex;
@@ -14010,6 +14015,9 @@ input.dx-hidden {
 .me-data-grid .dx-datagrid .dx-datagrid-headers .dx-column-indicators .dx-sort-down::before {
   content: var(--me-icon-sort-up);
   transform: rotate(180deg);
+}
+.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-column-indicators .dx-header-filter::before {
+  content: var(--me-icon-filter-alt);
 }
 .me-data-grid .dx-datagrid .dx-datagrid-rowsview.dx-empty {
   border-bottom: 1px solid #dfe0ed;
@@ -14175,7 +14183,7 @@ input.dx-hidden {
   align-content: center;
 }
 .me-data-grid .dx-row.dx-column-lines.dx-header-row > td {
-  padding: 0 12px;
+  padding: 0 8px 0 12px;
   height: 30px;
   gap: 4px;
   vertical-align: middle;
@@ -14185,6 +14193,7 @@ input.dx-hidden {
   font-size: 13px;
   line-height: 16px;
   color: #18181a;
+  padding-right: 4px;
 }
 .me-data-grid .dx-row.dx-column-lines.dx-header-row > td[role=columnheader] {
   height: 36px;
@@ -14602,6 +14611,140 @@ input.dx-hidden {
 }
 .dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay .dx-overlay-content.dx-popup-normal .dx-popup-content .dx-list-item:hover:not(.dx-state-active) {
   background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+}
+
+.dx-header-filter-menu .dx-popup-content {
+  padding: 16px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-select-all {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  padding-block: 4px;
+  margin-bottom: 4px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-select-all.dx-state-focused .dx-checkbox .dx-checkbox-container .dx-checkbox-icon {
+  border-color: var(--Controls-BG-Accent-Accent-BG-Default);
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-select-all .dx-list-select-all-checkbox {
+  margin-top: -2px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-select-all .dx-list-select-all-checkbox.dx-checkbox-indeterminate .dx-checkbox-icon::before {
+  margin-top: -1px;
+  border-radius: 0;
+  width: 10px;
+  height: 2px;
+  margin-left: -5px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-select-all .dx-list-select-all-checkbox .dx-checkbox-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  border-color: var(--Controls-BG-Accent-Accent-BG-Default);
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-select-all .dx-list-select-all-checkbox .dx-checkbox-icon::before {
+  margin-top: -9px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-select-all .dx-list-select-all-label {
+  padding: 0;
+  margin: 0;
+  padding-left: 8px;
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item {
+  display: flex;
+  align-items: center;
+  padding-block: 4px;
+  border-radius: 3px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item.dx-list-item-selected {
+  background: var(--Controls-BG-Flat-Button-Main-BG-Selected);
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item.dx-state-hover {
+  background: var(--Controls-BG-Flat-Button-Main-BG-Hover);
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item.dx-state-active {
+  background: var(--Controls-BG-Flat-Button-Main-BG-Pressed);
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item.dx-state-focused .dx-checkbox-icon {
+  border-color: var(--Controls-BG-Accent-Accent-BG-Default);
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item.dx-state-focused:not(.dx-list-item-selected) {
+  background: none;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item .dx-list-item-content {
+  gap: 0;
+  padding: 0;
+  padding-left: 8px;
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item .dx-list-item-before-bag {
+  width: auto;
+  height: 16px;
+  display: flex;
+  align-items: center;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item .dx-list-item-before-bag .dx-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-top: -2px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item .dx-list-item-before-bag .dx-checkbox .dx-checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item .dx-list-item-before-bag .dx-checkbox .dx-checkbox-container .dx-checkbox-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+}
+.dx-header-filter-menu .dx-scrollview-content .dx-list-items .dx-list-item .dx-list-item-before-bag .dx-checkbox .dx-checkbox-container .dx-checkbox-icon::before {
+  margin-top: -9px;
+}
+.dx-header-filter-menu .dx-popup-bottom .dx-toolbar-after {
+  padding-right: 16px;
+  top: -4px;
+  display: flex;
+  gap: 12px;
+  padding-left: 0;
+}
+.dx-header-filter-menu .dx-popup-bottom .dx-toolbar-after .dx-toolbar-button:first-child .dx-button {
+  background-color: var(--Controls-BG-Accent-Accent-BG-Default);
+  color: var(--Controls-Content-In-Controls-On-BG-Default);
+}
+.dx-header-filter-menu .dx-popup-bottom .dx-toolbar-after .dx-toolbar-button:first-child .dx-button.dx-state-hover {
+  background-color: var(--Controls-BG-Accent-Accent-BG-Hover);
+}
+.dx-header-filter-menu .dx-popup-bottom .dx-toolbar-after .dx-toolbar-button:first-child .dx-button.dx-state-active {
+  background-color: var(--Controls-BG-Accent-Accent-BG-Selected);
+}
+.dx-header-filter-menu .dx-popup-bottom .dx-toolbar-after .dx-toolbar-button .dx-button {
+  min-width: auto;
+}
+.dx-header-filter-menu .dx-popup-bottom .dx-toolbar-after .dx-toolbar-button .dx-button-content {
+  padding: 6px 12px;
+  padding-block: 6px;
+}
+.dx-header-filter-menu .dx-popup-bottom .dx-toolbar-after .dx-toolbar-button .dx-toolbar-item-content .dx-button-text {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
 }
 
 .grid-header-left {
@@ -26624,6 +26767,7 @@ input.dx-hidden {
   --Controls-BG-Flat-Button-Danger-BG-Ripple: #ff406e33;
   --Controls-BG-Flat-Button-Main-BG-Hover: #3c65f81f;
   --Controls-BG-Flat-Button-Main-BG-Pressed: #3c71f833;
+  --Controls-BG-Flat-Button-Main-BG-Selected: #3c71f833;
   --Controls-BG-Flat-Button-Main-BG-Ripple: #5182ff33;
   --Controls-BG-Flat-Button-Success-BG-Hover: #00993d1f;
   --Controls-BG-Flat-Button-Success-BG-Pressed: #00752f33;
@@ -35689,6 +35833,7 @@ input.dx-hidden {
   --Controls-BG-Flat-Button-Danger-BG-Ripple: #ff46734d;
   --Controls-BG-Flat-Button-Main-BG-Hover: #3c65f840;
   --Controls-BG-Flat-Button-Main-BG-Pressed: #3c65f866;
+  --Controls-BG-Flat-Button-Main-BG-Selected: #3c65f866;
   --Controls-BG-Flat-Button-Main-BG-Ripple: #5278ff66;
   --Controls-BG-Flat-Button-Success-BG-Hover: #00b95533;
   --Controls-BG-Flat-Button-Success-BG-Pressed: #008b404d;
@@ -36914,6 +37059,7 @@ input.dx-hidden {
   --Controls-BG-Flat-Button-Danger-BG-Ripple: #ff46734d;
   --Controls-BG-Flat-Button-Main-BG-Hover: #3c65f840;
   --Controls-BG-Flat-Button-Main-BG-Pressed: #3c65f866;
+  --Controls-BG-Flat-Button-Main-BG-Selected: #3c65f866;
   --Controls-BG-Flat-Button-Main-BG-Ripple: #5278ff66;
   --Controls-BG-Flat-Button-Success-BG-Hover: #00b95533;
   --Controls-BG-Flat-Button-Success-BG-Pressed: #008b404d;
