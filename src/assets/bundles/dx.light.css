@@ -5158,6 +5158,7 @@
 
 me-badge {
   display: inline-flex;
+  width: var(--badge-width);
 }
 me-badge .badge {
   font-family: "Roboto Mono";
@@ -5173,15 +5174,18 @@ me-badge .badge {
   padding: 0 4px;
   box-sizing: border-box;
   transition: all 0.2s ease;
+  width: 100%;
 }
 me-badge .badge-content {
   font-family: "Roboto Mono";
-  display: flex;
+  display: inline-block;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 me-badge .badge.size-small {
   --badge-size: 16px;
@@ -13983,6 +13987,16 @@ input.dx-hidden {
 .me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-block-separator {
   padding: 0;
 }
+.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-datagrid-content .dx-datagrid-table tbody .dx-header-row .dx-command-select {
+  padding: 0 8px;
+}
+.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-datagrid-content .dx-datagrid-table tbody .dx-header-row .dx-command-select .dx-checkbox.dx-select-checkbox {
+  width: 16px;
+}
+.me-data-grid .dx-datagrid .dx-datagrid-headers .dx-datagrid-content .dx-datagrid-table tbody .dx-header-row .dx-command-select .dx-checkbox.dx-select-checkbox .dx-checkbox-container .dx-checkbox-icon {
+  width: 16px;
+  height: 16px;
+}
 .me-data-grid .dx-datagrid .dx-datagrid-headers .dx-column-indicators .dx-sort::before {
   font-family: var(--me-symbols-family);
   height: 15px;
@@ -13999,6 +14013,16 @@ input.dx-hidden {
 }
 .me-data-grid .dx-datagrid .dx-datagrid-rowsview.dx-empty {
   border-bottom: 1px solid #dfe0ed;
+}
+.me-data-grid .dx-datagrid .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table tbody .dx-row.dx-data-row .dx-command-select {
+  padding: 0;
+}
+.me-data-grid .dx-datagrid .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table tbody .dx-row.dx-data-row .dx-command-select .dx-checkbox.dx-select-checkbox {
+  width: 16px;
+}
+.me-data-grid .dx-datagrid .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table tbody .dx-row.dx-data-row .dx-command-select .dx-checkbox.dx-select-checkbox .dx-checkbox-container .dx-checkbox-icon {
+  width: 16px;
+  height: 16px;
 }
 .me-data-grid .dx-datagrid .dx-datagrid-pager.dx-pager {
   min-height: 28px;
@@ -18682,6 +18706,318 @@ input.dx-hidden {
 }
 .me-file-uploader .dx-button.dx-widget.dx-fileuploader-cancel-button.dx-state-active {
   background-color: var(--Controls-BG-Flat-Button-Danger-BG-Pressed);
+}
+
+/**
+* $name 20. Group operation button color
+* $type color
+*/
+/**
+* $name 30. Data field button color
+* $type color
+*/
+/**
+* $name 40. Operation button color
+* $type color
+*/
+/**
+* $name 50. Value button color
+* $type color
+*/
+/**
+* $name 60. Plus icon color
+* $type color
+*/
+/**
+* $name 70. Remove icon color
+* $type color
+*/
+/**
+* $name 80. Divider border color
+* $type color
+*/
+.me-filterbuilder {
+  padding: 10px;
+  background-color: var(--Background-Content);
+  display: flex;
+  flex-direction: column;
+}
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
+}
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content {
+  margin-bottom: 8px;
+}
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-group-operation, .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-field, .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-operation,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-group-operation,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-field,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-operation {
+  margin: 0;
+  padding: 6px 12px;
+}
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text {
+  padding: 6px 12px;
+}
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-selectbox,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-textbox,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-numberbox,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-selectbox,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-textbox,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-numberbox {
+  margin: 0;
+}
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus, .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove {
+  font: 10px/1 DXIcons;
+}
+.me-filterbuilder.me-filterbuilder-small .me-filterbuilder__accept-button {
+  margin-top: 8px;
+}
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+}
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content {
+  margin-bottom: 8px;
+}
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-group-operation, .me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-field, .me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-operation,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-group-operation,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-field,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-operation {
+  margin: 0;
+  padding: 6px 12px;
+}
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text {
+  padding: 6px 12px;
+}
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-selectbox,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-textbox,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-numberbox,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-selectbox,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-textbox,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-numberbox {
+  margin: 0;
+}
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus, .me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus,
+.me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove {
+  font: 10px/1 DXIcons;
+}
+.me-filterbuilder.me-filterbuilder-medium .me-filterbuilder__accept-button {
+  margin-top: 8px;
+}
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+}
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content {
+  margin-bottom: 12px;
+}
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-group-operation, .me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-field, .me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-operation,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-group-operation,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-field,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-operation {
+  margin: 0;
+  padding: 10px 16px;
+}
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text {
+  padding: 10px 16px;
+}
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-selectbox,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-textbox,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-numberbox,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-selectbox,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-textbox,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-numberbox {
+  margin: 0;
+}
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus, .me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus,
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove {
+  font: 14px/1 DXIcons;
+}
+.me-filterbuilder.me-filterbuilder-large .me-filterbuilder__accept-button {
+  margin-top: 12px;
+}
+.me-filterbuilder .me-filterbuilder__accept-button {
+  align-self: flex-end;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content {
+  margin-left: 0;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content .dx-filterbuilder-group-content {
+  margin-left: 28px;
+  padding-left: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-content {
+  border-left: 1px solid #dfe0ed;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text {
+  color: #18181a;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-group-operation {
+  background-color: rgba(213, 15, 64, 0.0784313725);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-group-operation:hover {
+  background-color: rgba(213, 15, 63, 0.1215686275);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-group-operation:focus {
+  color: #18181a;
+  background-color: rgba(192, 0, 47, 0.2);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-group-operation.dx-state-active {
+  color: #18181a;
+  background-color: rgba(192, 0, 47, 0.2);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-field {
+  color: #18181a;
+  background-color: rgba(60, 101, 248, 0.0784313725);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-field:hover {
+  background-color: rgba(60, 101, 248, 0.1215686275);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-field:focus {
+  color: #18181a;
+  background-color: rgba(60, 113, 248, 0.2);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-field.dx-state-active {
+  color: #18181a;
+  background-color: rgba(60, 113, 248, 0.2);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-operation {
+  color: #18181a;
+  background-color: rgba(0, 153, 61, 0.0784313725);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-operation:hover {
+  background-color: rgba(0, 153, 61, 0.1215686275);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-operation:focus {
+  color: #18181a;
+  background-color: rgba(0, 117, 47, 0.2);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-operation.dx-state-active {
+  color: #18181a;
+  background-color: rgba(0, 117, 47, 0.2);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text {
+  color: #18181a;
+  background-color: rgba(216, 218, 234, 0.4);
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text:hover {
+  background-color: #d8daea;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text:focus {
+  color: #18181a;
+  background-color: #bfc1d0;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-item-value .dx-filterbuilder-item-value-text.dx-state-active {
+  color: #18181a;
+  background-color: #bfc1d0;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus {
+  color: #00993d;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove {
+  color: #d50f3f;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove::before {
+  content: "\f074";
+}
+
+.dx-filterbuilder-overlay.me-filterbuilder-small .dx-treeview-item {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  min-height: 28px;
+  padding-inline: 12px;
+}
+.dx-filterbuilder-overlay.me-filterbuilder-medium .dx-treeview-item {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  min-height: 32px;
+  padding-inline: 12px;
+}
+.dx-filterbuilder-overlay.me-filterbuilder-large .dx-treeview-item {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  min-height: 40px;
+  padding-inline: 16px;
+}
+.dx-filterbuilder-overlay .dx-treeview-item {
+  display: flex;
+  align-items: center;
 }
 
 /**
@@ -23782,7 +24118,7 @@ input.dx-hidden {
 
 .me-menu-left_item:focus-visible {
   border-radius: 3px;
-  box-shadow: 0px 0px 0px 2px #7EB9FF;
+  box-shadow: 0px 0px 0px 2px var(--Dividers-Borders-Focus);
 }
 
 .me-menu-left-popup .dx-menu-item-text {
@@ -23811,7 +24147,7 @@ input.dx-hidden {
 .me-menu-left__header {
   position: relative;
   padding: 0 16px;
-  height: 56px;
+  min-height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23837,7 +24173,7 @@ input.dx-hidden {
   text-overflow: ellipsis;
 }
 .me-menu-left .me-menu-left__list.me-menu-left__list-root {
-  padding: 0 16px;
+  padding: 0 8px;
   margin-top: 16px;
 }
 .me-menu-left .me-menu-left__content {
@@ -23899,7 +24235,7 @@ input.dx-hidden {
 .me-menu-left__toggle {
   position: absolute;
   width: 28px;
-  top: 66px;
+  top: 58px;
   right: -14px;
   height: 28px;
   min-width: 28px;
@@ -23978,7 +24314,7 @@ input.dx-hidden {
 .me-menu-left .me-menu-left_item-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
   flex-grow: 1;
   min-width: 0;
   overflow: hidden;
@@ -39021,6 +39357,60 @@ input.dx-hidden {
 .me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content {
   border-radius: 3px 3px 0 0;
 }
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-focus-overlay {
+  display: none;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell {
+  border-bottom: none;
+  padding: 0 8px;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-menu {
+  border-radius: 3px;
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+  margin: 0;
+  height: fit-content;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 4px;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-menu .dx-menu-item-content {
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-menu .dx-menu-item-content .dx-icon {
+  color: var(--Icon-Default);
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-menu .dx-context-menu-container-border {
+  display: none;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-menu .dx-menu-item-expanded {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Selected);
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-editor-container .dx-textbox.dx-texteditor .dx-texteditor-container {
+  background: var(--Background-Accent-in-the-content);
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-editor-container .dx-textbox.dx-texteditor .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  min-height: inherit;
+  background: var(--Controls-BG-Secondary-Elements-BG-Default);
+  margin: 2px 4px 2px 36px;
+  padding: 0 4px;
+  height: 28px;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-editor-container .dx-textbox.dx-texteditor.dx-state-hover .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  background: var(--Controls-BG-Secondary-Elements-BG-Hover);
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-treelist-filter-row .dx-editor-cell .dx-editor-with-menu .dx-editor-container .dx-textbox.dx-texteditor.dx-state-focused .dx-texteditor-container .dx-texteditor-input-container .dx-texteditor-input {
+  background: var(--Controls-BG-Secondary-Elements-BG-Input-In-Focus);
+  border: 1px solid var(--Controls-Content-In-Controls-Accent-Default);
+}
 .me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-header-row {
   min-height: 36px;
 }
@@ -39029,6 +39419,9 @@ input.dx-hidden {
 }
 .me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-header-row td.dx-treelist-select-all {
   padding-left: 44px;
+}
+.me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-header-row td.dx-command-edit {
+  padding: 0 8px;
 }
 .me-tree-list.dx-treelist.dx-widget .dx-treelist-container.dx-gridbase-container .dx-treelist-headers .dx-treelist-content .dx-treelist-table .dx-row.dx-header-row td .dx-treelist-text-content {
   font-size: 13px;
@@ -39202,6 +39595,18 @@ input.dx-hidden {
 }
 .me-tree-list.dx-treelist.dx-widget.me-tree-list-cell-small .dx-treelist-container.dx-gridbase-container .dx-treelist-content .dx-treelist-table .dx-row td[role=columnheader] {
   height: 32px;
+}
+.me-tree-list.dx-treelist.dx-widget.me-tree-list-cell-small .dx-treelist-container.dx-gridbase-container .dx-treelist-content .dx-treelist-table .dx-row td.dx-command-edit {
+  padding: 0 8px;
+}
+.me-tree-list.dx-treelist.dx-widget.me-tree-list-cell-small .dx-treelist-container.dx-gridbase-container .dx-treelist-content .dx-treelist-table .dx-row td.dx-command-edit .dx-link::before {
+  line-height: 22px;
+}
+.me-tree-list.dx-treelist.dx-widget.me-tree-list-cell-medium .dx-treelist-container.dx-gridbase-container .dx-treelist-content .dx-treelist-table .dx-row td.dx-command-edit {
+  padding: 0 8px;
+}
+.me-tree-list.dx-treelist.dx-widget.me-tree-list-cell-medium .dx-treelist-container.dx-gridbase-container .dx-treelist-content .dx-treelist-table .dx-row td.dx-command-edit .dx-link::before {
+  line-height: 26px;
 }
 
 .dx-datebox-wrapper-calendar .dx-calendar {
