@@ -451,6 +451,8 @@ export const MultiSelect: Story = {
     multiSelect: true,
     dataSource: meSelectBoxData,
     displayExpr: 'name',
+    valueExpr: 'name',
+    value: ['Voltage Monitor VM-100'],
   },
   render: (args) => ({
     props: {
