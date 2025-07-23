@@ -447,6 +447,16 @@ export const GroupedDataWithGrouped: Story = {
 };
 
 export const MultiSelect: Story = {
+  argTypes: {
+    value: {
+      control: 'object',
+      description: 'Значение поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+  },
   args: {
     multiSelect: true,
     dataSource: meSelectBoxData,

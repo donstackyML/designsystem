@@ -18,9 +18,5 @@ export class MeSelectBoxComponent {
     this.dataSource9 = this.service.getSource9();
     this.dataSource18 = this.service.getSource18();
     this.dataSource27 = this.service.getSource27();
-
-    setTimeout(() => {
-      this.dataSource9 = this.service.getSource27();
-    }, 3000);
   }
 }
