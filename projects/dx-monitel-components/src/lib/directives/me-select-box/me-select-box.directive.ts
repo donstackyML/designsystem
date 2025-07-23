@@ -46,6 +46,7 @@ export class MeSelectBoxDirective
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
   @Input() multiSelect?: boolean = false;
   @Input() selectedItems: any[] = [];
+  // @Input() dataSource: any[] = [];
 
   @Output() selectedItemsChange = new EventEmitter<any[]>();
 
@@ -188,6 +189,13 @@ export class MeSelectBoxDirective
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    // if (changes['dataSource'] && this.component?.instance) {
+    //   this.component.instance.option(
+    //     'dataSource',
+    //     changes['dataSource'].currentValue
+    //   );
+    // }
+
     if (this.leftIconComponentRef && (changes['leftIcon'] || changes['size'])) {
       if (this.leftIcon) {
         this.leftIconComponentRef.setInput('name', this.leftIcon);
