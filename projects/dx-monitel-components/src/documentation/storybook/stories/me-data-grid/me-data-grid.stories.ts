@@ -440,7 +440,6 @@ export const WithNumberAlign: Story = {
 export const WithMultipleSortingAndHeaderFilterIcon: Story = {
   args: {
     headerFilter: { visible: true },
-    headerAlign: {},
   },
   render: (args) => ({
     props: args,
@@ -462,7 +461,6 @@ export const WithMultipleSortingAndHeaderFilterIcon: Story = {
         [showColumnHeaders]="showColumnHeaders"
         [selection]="selection"
         [headerFilter]="{ visible: true }"
-        [headerAlign]="{ 'ID': 'right' }"
 			>
         <dxo-sorting
           mode="multiple"
