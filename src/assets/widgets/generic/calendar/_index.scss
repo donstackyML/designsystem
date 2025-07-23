@@ -307,16 +307,12 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
   &.dx-calendar-view-year,
   &.dx-calendar-view-decade,
   &.dx-calendar-view-century {
-    padding: 2px 8px 8px 8px;
+    padding: 4px 8px 8px 8px;
     border: 1px solid $calendar-border-color;
     border-radius: 4px;
     min-height: 292px;
     width: 288px;
     box-shadow: var(--select-box-box-shadow);
-
-    &.me-calendar-with-time-controls {
-      min-height: calc(292px + 32px);
-    }
 
     .dx-calendar-today-button {
       .dx-button-content {
@@ -377,10 +373,6 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
     .dx-calendar-body {
       padding: 4px;
       top: 45px;
-
-      table {
-        padding-right: 8px;
-      }
 
       .dx-calendar-cell {
         height: 24px;
@@ -544,7 +536,7 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
   width: 248px;
   min-width: 248px;
   min-height: 248px;
-  max-height: 304px;
+  max-height: 248px;
 
   .dx-calendar-navigator {
     width: 204px;
@@ -566,10 +558,15 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
   }
 
   .dx-calendar-body {
+    width: 232px;
+    max-height: 200px;
     padding: 0;
     padding-bottom: 4px;
-    max-height: 200px;
-    margin-bottom: auto;
+
+    .dx-widget {
+      width: 100%;
+      right: 0;
+    }
 
     thead {
       th {
@@ -595,14 +592,22 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
     }
   }
 
+  .time-controls {
+    margin-top: 4px;
+
+    .me-inputs {
+      .dx-texteditor-container {
+        .dx-texteditor-input-container {
+          @include me-action-reg3;
+        }
+      }
+    }
+  }
+
   &.dx-calendar-view-year,
   &.dx-calendar-view-decade,
   &.dx-calendar-view-century {
     .dx-calendar-body {
-      max-height: 174px;
-      margin-bottom: auto;
-      padding: 3px;
-
       tbody {
         .dx-calendar-cell {
           span {
@@ -611,25 +616,39 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
         }
       }
     }
-
-    &:not(.me-calendar-show-weeks-numbers) {
-      .dx-calendar-body {
-        max-height: 150px;
-      }
-    }
   }
+}
+
+.me-calendar.me-calendar--small.dx-calendar:has(.time-controls) {
+  min-height: 280px;
+  max-height: 280px;
 }
 
 .me-calendar.me-calendar--small.dx-calendar:not(.me-calendar-show-weeks-numbers) {
   width: 220px;
   min-width: 220px;
+
+  .dx-calendar-body {
+    width: 204px;
+    max-height: 200px;
+  }
 }
 
 // Medium
-.me-calendar.me-calendar--medium.dx-calendar {
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar {
   min-width: 288px;
   min-height: 292px;
-  max-height: 356px;
+  max-height: 292px;
+
+  .dx-calendar-body {
+    padding: 0;
+    padding-bottom: 4px;
+
+    .dx-widget {
+      width: 100%;
+      right: 0;
+    }
+  }
 
   .dx-calendar-navigator {
     width: 240px;
@@ -650,21 +669,29 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
     }
   }
 
-  .dx-calendar-body {
-    max-height: 224px;
-    margin-bottom: auto;
-  }
-
   .dx-calendar-footer {
     height: 30px;
+  }
+
+  .time-controls {
+    margin-top: 8px;
+
+    .me-inputs {
+      .dx-texteditor-container {
+        .dx-texteditor-input-container {
+          height: 32px;
+
+          @include me-action-reg2;
+        }
+      }
+    }
   }
 
   &.dx-calendar-view-year,
   &.dx-calendar-view-decade,
   &.dx-calendar-view-century {
     .dx-calendar-body {
-      max-height: 202px;
-      margin-bottom: auto;
+      padding-inline: 0;
 
       tbody {
         .dx-calendar-cell {
@@ -674,13 +701,12 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
         }
       }
     }
-
-    &:not(.me-calendar-show-weeks-numbers) {
-      .dx-calendar-body {
-        max-height: 178px;
-      }
-    }
   }
+}
+
+.me-calendar.me-calendar--medium.dx-calendar:has(.time-controls) {
+  min-height: 332px;
+  max-height: 332px;
 }
 
 .me-calendar.me-calendar--medium.dx-calendar:not(.me-calendar-show-weeks-numbers) {
@@ -720,9 +746,13 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
   }
 
   .dx-calendar-body {
-    padding: 6px;
-    margin-bottom: auto;
-    min-height: 280px;
+    padding: 0;
+    padding-bottom: 4px;
+
+    .dx-widget {
+      width: 100%;
+      right: 0;
+    }
 
     thead {
       th {
@@ -748,13 +778,26 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
     }
   }
 
+  .time-controls {
+    margin-top: 8px;
+
+    .me-inputs {
+      .dx-texteditor-container {
+        .dx-texteditor-input-container {
+          height: 40px;
+
+          @include me-action-reg1;
+        }
+      }
+    }
+  }
+
   &.dx-calendar-view-year,
   &.dx-calendar-view-decade,
   &.dx-calendar-view-century {
     .dx-calendar-body {
-      max-height: 260px;
       margin-bottom: auto;
-      padding: 8px;
+      padding: 0;
       min-height: 260px;
 
       table {
@@ -771,14 +814,12 @@ $generic-calendar-height: $generic-calendar-body-height + $generic-calendar-navi
         }
       }
     }
-
-    &:not(.me-calendar-show-weeks-numbers) {
-      .dx-calendar-body {
-        max-height: 230px;
-        min-height: 230px;
-      }
-    }
   }
+}
+
+.me-calendar.me-calendar--large.dx-calendar:has(.time-controls) {
+  min-height: 396px;
+  max-height: 396px;
 }
 
 .me-calendar.me-calendar--large.dx-calendar:not(.me-calendar-show-weeks-numbers) {
