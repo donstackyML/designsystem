@@ -250,10 +250,9 @@ export default {
     valueExpr: 'name',
     height: undefined,
   },
-  render: (args) => {
-    return {
-      props: args,
-      template: `
+  render: (args) => ({
+    props: args,
+    template: `
       <dx-select-box meSelectBox ${argsToTemplate(args)}>
         <dx-validator>
           <dxi-validation-rule
@@ -262,8 +261,7 @@ export default {
           </dxi-validation-rule>
         </dx-validator>
       </dx-select-box>`,
-    };
-  },
+  }),
 } satisfies Meta<MeSelectBoxDirective | DxSelectBoxComponent>;
 
 type Story = StoryObj<MeSelectBoxDirective | DxSelectBoxComponent>;
