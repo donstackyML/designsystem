@@ -188,6 +188,7 @@ export default {
         [showColumnHeaders]="showColumnHeaders"
 				[disabled]="disabled"
         [height]="height"
+        [headerFilter]="{ visible: true }"
   		>
     <dxo-editing
       *ngIf="editingIsEnabled"
