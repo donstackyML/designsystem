@@ -114,7 +114,6 @@ export class MeSelectBoxDirective
             this.selectedItems = newDataSource.filter((item) =>
               this.component.value.includes(item.name)
             );
-            console.log(this.selectedItems);
 
             this.multipleListInstance.option(
               'selectedItems',

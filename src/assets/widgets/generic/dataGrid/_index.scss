@@ -21,6 +21,7 @@
   $base-focus-color: $base-focus-color,
   $datagrid-text-stub-background-image-path: $datagrid-text-stub-background-image-path
 );
+@use '../typography/mixins' as *;
 
 // adduse
 
@@ -134,6 +135,72 @@
 }
 
 .me-data-grid {
+  .dx-scrollable-wrapper {
+    .dx-scrollable-container {
+      .dx-scrollable-content {
+        padding-bottom: 14px;
+      }
+    }
+  }
+
+  .dx-scrollable-scrollbar {
+    // Vertical Scroll
+    &.dx-scrollbar-vertical {
+      width: 14px;
+      border-radius: 0;
+      transition: none;
+
+      &.dx-state-hover,
+      &.dx-scrollable-scrollbar-active {
+        .dx-scrollable-scroll {
+          padding: 5px 4px 19px;
+
+          .dx-scrollable-scroll-content {
+            width: 4px;
+          }
+        }
+      }
+
+      .dx-scrollable-scroll {
+        padding: 5px 4px 19px;
+
+        .dx-scrollable-scroll-content {
+          width: 4px;
+        }
+      }
+    }
+
+    // Horizontal Scroll
+    &.dx-scrollbar-horizontal {
+      border-bottom: 1px solid var(--Dividers-Borders-Long);
+      border-radius: 0;
+      transition: none;
+      height: 14px;
+      background: var(--Background-Accent-in-the-content);
+
+      &.dx-state-hover,
+      &.dx-scrollable-scrollbar-active {
+        background: var(--Background-Accent-in-the-content);
+
+        .dx-scrollable-scroll {
+          padding: 5px 4px;
+
+          .dx-scrollable-scroll-content {
+            height: 4px;
+          }
+        }
+      }
+
+      .dx-scrollable-scroll {
+        padding: 5px 4px;
+
+        .dx-scrollable-scroll-content {
+          height: 4px;
+        }
+      }
+    }
+  }
+
   &:has(.dx-datagrid-headers:not(.dx-hidden)) {
     .dx-datagrid-borders .dx-datagrid-rowsview,
     .dx-datagrid-headers + .dx-datagrid-rowsview {
@@ -258,7 +325,8 @@
       }
 
       .dx-column-indicators {
-        .dx-sort {
+        .dx-sort,
+        .dx-header-filter {
           &::before {
             font-family: var(--me-symbols-family);
             height: 15px;
@@ -278,6 +346,12 @@
           &::before {
             content: var(--me-icon-sort-up);
             transform: rotate(180deg);
+          }
+        }
+
+        .dx-header-filter {
+          &::before {
+            content: var(--me-icon-filter-alt);
           }
         }
       }
@@ -510,7 +584,7 @@
 
   .dx-row.dx-column-lines.dx-header-row {
     & > td {
-      padding: 0 12px;
+      padding: 0 8px 0 12px;
       height: 30px;
       gap: 4px;
       vertical-align: middle;
@@ -520,6 +594,7 @@
         font-size: 13px;
         line-height: 16px;
         color: $base-text-color;
+        padding-right: 4px;
       }
 
       &[role='columnheader'] {
@@ -1203,6 +1278,180 @@
 
         &:hover:not(.dx-state-active) {
           background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+        }
+      }
+    }
+  }
+}
+
+.dx-header-filter-menu {
+  .dx-popup-content {
+    padding: 16px;
+  }
+
+  .dx-scrollview-content {
+    .dx-list-select-all {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      padding-block: 4px;
+      margin-bottom: 4px;
+
+      &.dx-state-focused {
+        .dx-checkbox {
+          .dx-checkbox-container {
+            .dx-checkbox-icon {
+              border-color: var(--Controls-BG-Accent-Accent-BG-Default);
+            }
+          }
+        }
+      }
+
+      .dx-list-select-all-checkbox {
+        margin-top: -2px;
+
+        &.dx-checkbox-indeterminate {
+          .dx-checkbox-icon {
+            &::before {
+              margin-top: -1px;
+              border-radius: 0;
+              width: 10px;
+              height: 2px;
+              margin-left: -5px;
+            }
+          }
+        }
+
+        .dx-checkbox-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 12px;
+          border-color: var(--Controls-BG-Accent-Accent-BG-Default);
+
+          &::before {
+            margin-top: -9px;
+          }
+        }
+      }
+
+      .dx-list-select-all-label {
+        padding: 0;
+        margin: 0;
+        padding-left: 8px;
+
+        @include me-text-body2;
+      }
+    }
+
+    .dx-list-items {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .dx-list-item {
+        display: flex;
+        align-items: center;
+        padding-block: 4px;
+        border-radius: 3px;
+
+        &.dx-list-item-selected {
+          background: var(--Controls-BG-Flat-Button-Main-BG-Selected);
+        }
+
+        &.dx-state-hover {
+          background: var(--Controls-BG-Flat-Button-Main-BG-Hover);
+        }
+
+        &.dx-state-active {
+          background: var(--Controls-BG-Flat-Button-Main-BG-Pressed);
+        }
+
+        &.dx-state-focused {
+          .dx-checkbox-icon {
+            border-color: var(--Controls-BG-Accent-Accent-BG-Default);
+          }
+        }
+
+        &.dx-state-focused:not(.dx-list-item-selected) {
+          background: none;
+        }
+
+        .dx-list-item-content {
+          gap: 0;
+          padding: 0;
+          padding-left: 8px;
+          @include me-text-body2;
+        }
+
+        .dx-list-item-before-bag {
+          width: auto;
+          height: 16px;
+          display: flex;
+          align-items: center;
+
+          .dx-checkbox {
+            width: 16px;
+            height: 16px;
+            margin-top: -2px;
+
+            .dx-checkbox-container {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .dx-checkbox-icon {
+                width: 16px;
+                height: 16px;
+                font-size: 12px;
+
+                &::before {
+                  margin-top: -9px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .dx-popup-bottom {
+    .dx-toolbar-after {
+      padding-right: 16px;
+      top: -4px;
+      display: flex;
+      gap: 12px;
+      padding-left: 0;
+
+      .dx-toolbar-button:first-child {
+        .dx-button {
+          background-color: var(--Controls-BG-Accent-Accent-BG-Default);
+          color: var(--Controls-Content-In-Controls-On-BG-Default);
+
+          &.dx-state-hover {
+            background-color: var(--Controls-BG-Accent-Accent-BG-Hover);
+          }
+
+          &.dx-state-active {
+            background-color: var(--Controls-BG-Accent-Accent-BG-Selected);
+          }
+        }
+      }
+
+      .dx-toolbar-button {
+        .dx-button {
+          min-width: auto;
+        }
+
+        .dx-button-content {
+          padding: 6px 12px;
+          padding-block: 6px;
+        }
+
+        .dx-toolbar-item-content {
+          .dx-button-text {
+            @include me-action-med3;
+          }
         }
       }
     }
