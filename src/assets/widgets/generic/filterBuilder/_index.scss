@@ -29,6 +29,8 @@
   flex-direction: column;
 
   &.me-filterbuilder-small {
+    min-width: 352px;
+
     .dx-filterbuilder {
       @include me-action-med3;
 
@@ -37,6 +39,8 @@
         margin-bottom: 8px;
 
         .dx-filterbuilder-text {
+          margin-right: 0;
+
           &.dx-filterbuilder-group-operation,
           &.dx-filterbuilder-item-field,
           &.dx-filterbuilder-item-operation {
@@ -72,6 +76,8 @@
   }
 
   &.me-filterbuilder-medium {
+    min-width: 370px;
+
     .dx-filterbuilder {
       @include me-action-med2;
 
@@ -115,8 +121,16 @@
   }
 
   &.me-filterbuilder-large {
+    min-width: 440px;
+
     .dx-filterbuilder {
       @include me-action-med1;
+
+      .dx-filterbuilder-group {
+        .dx-filterbuilder-group-item {
+          gap: 12px;
+        }
+      }
 
       .dx-filterbuilder-group-item,
       .dx-filterbuilder-group-content {
@@ -170,6 +184,7 @@
       }
 
       .dx-filterbuilder-text {
+        margin-right: 0;
         color: $filterbuilder-text-color;
 
         &.dx-filterbuilder-group-operation {
@@ -319,27 +334,30 @@
     .dx-treeview-item {
       @include me-action-reg3;
       min-height: 28px;
-      padding-inline: 12px;
+      padding: 4px 16px 4px 8px;
     }
   }
   &.me-filterbuilder-medium {
     .dx-treeview-item {
       @include me-action-reg2;
-      min-height: 32px;
-      padding-inline: 12px;
+      min-height: 28px;
+      padding: 4px 16px 4px 8px;
     }
   }
   &.me-filterbuilder-large {
     .dx-treeview-item {
       @include me-action-reg1;
       min-height: 40px;
-      padding-inline: 16px;
+      padding: 8px 20px 8px 12px;
     }
   }
 
   .dx-treeview-node {
     &.dx-state-selected {
-      :has(.dx-state-hover) {
+      .dx-treeview-item {
+        &.dx-state-hover {
+          background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+        }
       }
 
       .dx-treeview-item {
