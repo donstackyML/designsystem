@@ -46,6 +46,7 @@ export class MeSelectBoxDirective
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'auto';
   @Input() multiSelect?: boolean = false;
   @Input() selectedItems: any[] = [];
+  @Input() dataSource: any[] = [];
 
   @Output() selectedItemsChange = new EventEmitter<any[]>();
 
@@ -85,53 +86,55 @@ export class MeSelectBoxDirective
     );
 
     this.component.wrapItemText = true;
+  }
 
-    if (this.multiSelect) {
-      const dataSource = (
-        this.component.dataSource as Array<{ name: string }>
-      ).map((item) => item.name);
+  ngAfterViewInit() {
+    this.setLeftIcon();
 
-      this.component.displayExpr = () => {
-        return this.selectedItems.map((i: any) => i.name ?? i).join(', ');
-      };
+    if (this.multiSelect && this.dataSource.length) {
+      this.initMultiSelectList(this.dataSource);
+    }
+  }
 
-      this.component.dropDownOptions = {
-        wrapperAttr: {
-          ...this.wrapperAttr,
-          class: `${popupWrapperClasses} me-select-box-multi-select me-dropdownlist-${this.size}`,
-        },
-        position: {
-          my: 'left top',
-          at: 'left bottom',
-          offset: { y: 4 },
-          collision: 'fit flip',
-          of: this.element.nativeElement,
-        },
-        contentTemplate: (contentElement: any) => {
-          this.multipleListElement = document.createElement('div');
-          contentElement.appendChild(this.multipleListElement);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataSource'] && this.component?.instance) {
+      const newDataSource = changes['dataSource'].currentValue as Array<{
+        name: string;
+      }>;
 
-          this.multipleListInstance = new DxList(this.multipleListElement, {
-            dataSource,
-            selectionMode: 'multiple',
-            showSelectionControls: true,
-            onSelectionChanged: (e: any) => {
-              this.selectedItems = e.component.option('selectedItems') ?? [];
-              this.selectedItemsChange.emit(this.selectedItems);
-              this.component.value = this.selectedItems
-                .map((i: any) => i.name ?? i)
-                .join(', ');
-            },
-          });
-        },
-      };
+      this.component.instance.option('dataSource', newDataSource);
 
-      this.component.instance.on('input', (e: any) => {
-        this.multipleListInstance.option(
-          'searchValue',
-          e.event.originalEvent.target.value
+      if (this.multiSelect) {
+        const plainNames = newDataSource.map((item) => item.name);
+
+        if (this.multipleListInstance) {
+          this.multipleListInstance.option('dataSource', plainNames);
+
+          if (Array.isArray(this.component.value)) {
+            this.selectedItems = newDataSource.filter((item) =>
+              this.component.value.includes(item.name)
+            );
+
+            this.multipleListInstance.option(
+              'selectedItems',
+              this.selectedItems
+            );
+          }
+        } else {
+          this.initMultiSelectList(newDataSource);
+        }
+      }
+    }
+
+    if (this.leftIconComponentRef && (changes['leftIcon'] || changes['size'])) {
+      if (this.leftIcon) {
+        this.leftIconComponentRef.setInput('name', this.leftIcon);
+        this.leftIconComponentRef.setInput(
+          'containerSize',
+          this.size === 'large' ? 24 : 20
         );
-      });
+        this.leftIconComponentRef.changeDetectorRef.detectChanges();
+      }
     }
   }
 
@@ -183,21 +186,60 @@ export class MeSelectBoxDirective
     }
   }
 
-  ngAfterViewInit() {
-    this.setLeftIcon();
-  }
+  private initMultiSelectList(dataSource: any[]) {
+    const plainNames = dataSource.map((item) => item.name);
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.leftIconComponentRef && (changes['leftIcon'] || changes['size'])) {
-      if (this.leftIcon) {
-        this.leftIconComponentRef.setInput('name', this.leftIcon);
-        this.leftIconComponentRef.setInput(
-          'containerSize',
-          this.size === 'large' ? 24 : 20
-        );
-        this.leftIconComponentRef.changeDetectorRef.detectChanges();
-      }
-    }
+    const valueArray = Array.isArray(this.component.value)
+      ? this.component.value
+      : [];
+
+    this.selectedItems = dataSource.filter((item) =>
+      valueArray.includes(item.name)
+    );
+
+    this.component.displayExpr = () =>
+      this.selectedItems.map((i: any) => i.name ?? i).join(', ');
+
+    this.component.instance.option('dropDownOptions', {
+      wrapperAttr: {
+        ...this.wrapperAttr,
+        class: `me-select-box-multi-select me-dropdownlist-${this.size} ${
+          this.showScrollbar === 'always' ? 'me-scrollbar-visible' : ''
+        }`,
+      },
+      position: {
+        my: 'left top',
+        at: 'left bottom',
+        offset: { y: 4 },
+        collision: 'fit flip',
+        of: this.element.nativeElement,
+      },
+      contentTemplate: (contentElement: any) => {
+        this.multipleListElement = document.createElement('div');
+        contentElement.appendChild(this.multipleListElement);
+
+        this.multipleListInstance = new DxList(this.multipleListElement, {
+          dataSource: plainNames,
+          selectionMode: 'multiple',
+          showSelectionControls: true,
+          selectedItems: valueArray,
+          onSelectionChanged: (e: any) => {
+            this.selectedItems = e.component.option('selectedItems') ?? [];
+            this.selectedItemsChange.emit(this.selectedItems);
+            this.component.value = this.selectedItems
+              .map((i: any) => i.name ?? i)
+              .join(', ');
+          },
+        });
+      },
+    });
+
+    this.component.instance.on('input', (e: any) => {
+      this.multipleListInstance.option(
+        'searchValue',
+        e.event.originalEvent.target.value
+      );
+    });
   }
 
   private setLeftIcon() {
