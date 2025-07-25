@@ -10,6 +10,7 @@ import {
   DxValidatorModule,
 } from 'devextreme-angular';
 
+import { action } from '@storybook/addon-actions';
 import { MeLabelDirective, MeSelectBoxDirective } from '../../../../public-api';
 import {
   meSelectBoxData,
@@ -17,7 +18,6 @@ import {
   meSelectBoxDataGroupedWithDividers,
   meSelectBoxDataWithDividers,
 } from './me-select-box-mock-data';
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Fields/SelectBox',
@@ -55,6 +55,15 @@ export default {
       table: {
         type: { summary: 'string[]' },
         defaultValue: { summary: '[]' },
+      },
+    },
+    valueExpr: {
+      control: 'text',
+      description:
+        'Поле объекта данных, значение которого используется как value.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
     value: {
@@ -238,19 +247,20 @@ export default {
     validationError: null,
     validationMessagePosition: 'auto',
     width: undefined,
+    valueExpr: 'name',
     height: undefined,
   },
   render: (args) => ({
     props: args,
     template: `
-		<dx-select-box meSelectBox ${argsToTemplate(args)}>
-			<dx-validator>
-        <dxi-validation-rule
-          type="required"
-          message="Required">
-        </dxi-validation-rule>
-    	</dx-validator>
-    </dx-select-box>`,
+      <dx-select-box meSelectBox ${argsToTemplate(args)}>
+        <dx-validator>
+          <dxi-validation-rule
+            type="required"
+            message="Required">
+          </dxi-validation-rule>
+        </dx-validator>
+      </dx-select-box>`,
   }),
 } satisfies Meta<MeSelectBoxDirective | DxSelectBoxComponent>;
 
@@ -435,10 +445,22 @@ export const GroupedDataWithGrouped: Story = {
 };
 
 export const MultiSelect: Story = {
+  argTypes: {
+    value: {
+      control: 'object',
+      description: 'Значение поля.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+  },
   args: {
     multiSelect: true,
     dataSource: meSelectBoxData,
     displayExpr: 'name',
+    valueExpr: 'name',
+    value: ['Voltage Monitor VM-100'],
   },
   render: (args) => ({
     props: {

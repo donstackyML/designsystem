@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { DxTooltipComponent, DxTreeViewComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
-import { MeSize, TreeViewData } from '../../types/types';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meTreeView]',
@@ -25,7 +25,7 @@ export class MeTreeViewDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'large';
   @Input() textTruncateBehavior: 'truncate' | 'wrap' = 'wrap';
   //
-  @Input() dataSource: TreeViewData[] = [];
+  @Input() dataSource: any[] = [];
 
   private tooltipRefs: Map<HTMLElement, any> = new Map();
   private focusService: ComponentFocusService;

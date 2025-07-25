@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SelectBoxDataService } from 'src/app/service/select-box-data.service';
-import { MeCommonType } from 'src/app/types/types';
 
 @Component({
   selector: 'me-select-box',
