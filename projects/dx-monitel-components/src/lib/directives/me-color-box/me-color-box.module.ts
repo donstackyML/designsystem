@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MeColorBoxDirective} from "./me-color-box.directive";
+import { MeColorBoxDirective } from './me-color-box.directive';
 
 @NgModule({
   declarations: [MeColorBoxDirective],

@@ -1,9 +1,16 @@
-import {AfterViewInit, Directive, ElementRef, Input, Renderer2, ViewContainerRef} from "@angular/core";
-import {DxColorBoxComponent} from "devextreme-angular";
-import {MeFormField} from "../me-form-item/me-form-field";
-import {ComponentFocusService} from "../../service/component-focus.service";
-import {MeSize} from "../../types/types";
-import {DropDownOptionsService} from "../../service/drop-down-options.service";
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  Input,
+  Renderer2,
+  ViewContainerRef,
+} from '@angular/core';
+import { DxColorBoxComponent } from 'devextreme-angular';
+import { ComponentFocusService } from '../../service/component-focus.service';
+import { DropDownOptionsService } from '../../service/drop-down-options.service';
+import { MeSize } from '../../types/types';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meColorBox]',
@@ -33,7 +40,7 @@ export class MeColorBoxDirective extends MeFormField implements AfterViewInit {
       this.component,
       this.element,
       this.renderer,
-      this.size,
+      this.size
     );
 
     this.component.dropDownOptions = {

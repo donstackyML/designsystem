@@ -1,6 +1,11 @@
-import {argsToTemplate, Meta, moduleMetadata, StoryObj} from "@storybook/angular";
-import {DxColorBoxComponent, DxColorBoxModule} from "devextreme-angular";
-import {MeColorBoxDirective} from "../../../../lib/directives/me-color-box/me-color-box.directive";
+import {
+  argsToTemplate,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
+import { DxColorBoxComponent, DxColorBoxModule } from 'devextreme-angular';
+import { MeColorBoxDirective } from '../../../../lib/directives/me-color-box/me-color-box.directive';
 
 export default {
   title: 'Components/ColorBox',
@@ -8,7 +13,7 @@ export default {
     moduleMetadata({
       imports: [DxColorBoxModule],
       declarations: [MeColorBoxDirective],
-    })
+    }),
   ],
   argTypes: {
     disabled: {
@@ -81,7 +86,8 @@ export default {
     },
     editAlphaChannel: {
       control: 'boolean',
-      description: 'Определяет, включает ли выбранное значение компонент прозрачности (альфа-канал).',
+      description:
+        'Определяет, включает ли выбранное значение компонент прозрачности (альфа-канал).',
       table: {
         defaultValue: { summary: 'false' },
       },
@@ -89,11 +95,12 @@ export default {
     applyValueMode: {
       control: 'select',
       options: ['useButtons', 'instantly'],
-      description: 'Определяет способ применения выбранного значения: с помощью кнопок или мгновенно.',
+      description:
+        'Определяет способ применения выбранного значения: с помощью кнопок или мгновенно.',
       table: {
-        type: {summary: 'string'},
-        defaultValue: {summary: 'useButtons'},
-      }
+        type: { summary: 'string' },
+        defaultValue: { summary: 'useButtons' },
+      },
     },
     size: {
       control: 'select',
@@ -111,8 +118,8 @@ export default {
     label: 'Label',
     labelMode: 'outside',
     editAlphaChannel: false,
-    applyButtonText: "Применить",
-    cancelButtonText: "Отменить",
+    applyButtonText: 'Применить',
+    cancelButtonText: 'Отменить',
     applyValueMode: 'useButtons',
     placeholder: 'Выберите значение...',
     showClearButton: true,
@@ -124,53 +131,53 @@ export default {
     template: `
     <dx-color-box
     meColorBox
-    ${argsToTemplate(args)}></dx-color-box>`
-  })
+    ${argsToTemplate(args)}></dx-color-box>`,
+  }),
 } satisfies Meta<MeColorBoxDirective | DxColorBoxComponent>;
 
-type Story = StoryObj<MeColorBoxDirective | DxColorBoxComponent>
+type Story = StoryObj<MeColorBoxDirective | DxColorBoxComponent>;
 
 export const Default: Story = {};
 
 export const WithEditAlphaChannel: Story = {
   args: {
     editAlphaChannel: true,
-  }
-}
+  },
+};
 
 export const SizeSmall: Story = {
   args: {
     size: 'small',
-  }
-}
+  },
+};
 
 export const SizeMedium: Story = {
   args: {
     size: 'medium',
-  }
-}
+  },
+};
 
 export const SizeLarge: Story = {
   args: {
     size: 'large',
-  }
-}
+  },
+};
 
 export const StateDisabled: Story = {
   args: {
     disabled: true,
-  }
-}
+  },
+};
 
 export const StateReadOnly: Story = {
   args: {
     readOnly: true,
-  }
-}
+  },
+};
 
 export const CustomButtonsText: Story = {
   args: {
-    applyButtonText: "ОК",
-    cancelButtonText: "Закрыть",
-  }
-}
+    applyButtonText: 'ОК',
+    cancelButtonText: 'Закрыть',
+  },
+};
