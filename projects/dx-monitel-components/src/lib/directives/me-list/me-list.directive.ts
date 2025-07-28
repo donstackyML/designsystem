@@ -9,7 +9,7 @@ import {
 import { DxListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
-import { ListData, MeSize } from '../../types/types';
+import { MeSize } from '../../types/types';
 
 @Directive({
   selector: '[meList]',
@@ -24,7 +24,7 @@ export class MeListDirective implements AfterViewInit {
   @Input() size: MeSize = 'medium';
   @Input() dividersVisibility: 'none' | 'all' | 'auto' = 'all';
   @Input() showLastDivider: boolean = false;
-  @Input() dataSource: ListData[] = [];
+  @Input() dataSource: any[] = [];
 
   private focusService: ComponentFocusService;
   private removeListeners: (() => void)[] = [];

@@ -56,11 +56,19 @@ export default {
       },
     },
     value: {
-      control: 'number',
+      control: 'text',
       description: 'Числовое значение бейджа',
       table: {
-        type: { summary: 'number | null' },
+        type: { summary: 'number | string | null' },
         defaultValue: { summary: 'null' },
+      },
+    },
+    width: {
+      control: 'text',
+      description: 'Задает ширину бейджа.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
   },
@@ -100,6 +108,13 @@ export const BasicExamples: Story = {
       </div>
     `,
   }),
+};
+
+export const CustomWidth: Story = {
+  args: {
+    badgeWidth: '100px',
+    value: 'Long text for long test',
+  },
 };
 
 export const Sizes: Story = {

@@ -1,0 +1,47 @@
+<div
+  class="me-filterbuilder"
+  [class.me-filterbuilder-small]="size === 'small'"
+  [class.me-filterbuilder-medium]="size === 'medium'"
+  [class.me-filterbuilder-large]="size === 'large'"
+>
+  <dx-filter-builder [(value)]="filter" [fields]="fields">
+    <dx-text-box meTextBox [size]="size" *dxTemplate="let condition of 'textTemplate'" [value]="condition.value" (onValueChanged)="condition.setValue($event.value)">
+    </dx-text-box>
+    <dx-date-box
+      *dxTemplate="let condition of 'dateTemplate'"
+      meDateBox
+      [size]="size"
+      [value]="condition.value"
+      [type]="condition.field.dataType"
+      (onValueChanged)="condition.setValue($event.value)"
+    >
+    </dx-date-box>
+    <dx-number-box
+      *dxTemplate="let condition of 'numberTemplate'"
+      meNumberBox
+      [size]="size"
+      [showSpinButtons]="true"
+      [value]="condition.value"
+      (onValueChanged)="condition.setValue($event.value)"
+    >
+    </dx-number-box>
+    <dx-select-box
+      *dxTemplate="let condition of 'selectTemplate'"
+      meSelectBox
+      [size]="size"
+      [dataSource]="selectBoxSources?.[condition.field.dataField] || []"
+      [value]="condition.value"
+      (onValueChanged)="condition.setValue($event.value)"
+    >
+    </dx-select-box>
+  </dx-filter-builder>
+
+  <dx-button
+    meButton
+    class="me-filterbuilder__accept-button"
+    (onClick)="handleAcceptFiltersClick()"
+    [text]="acceptFiltersButtonText"
+    [size]="size"
+    buttonType="default"
+  ></dx-button>
+</div>

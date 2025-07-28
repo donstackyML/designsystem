@@ -1,35 +1,212 @@
-import {Canvas, Meta, Source} from "@storybook/addon-docs";
-import * as filterBuilderStories from "./me-filter-builder.stories";
+import * as filterBuilderStories from "./me-filter-builder.stories.ts";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
 
 <Meta name="FilterBuilder Documentation" of={filterBuilderStories} />
 
-# FilterBuilder
+# Filter Builder
 
-Чтобы использовать собственные компоненты ввода (например, TagBox или DateBox), необходимо применять директиву *dxTemplate внутри dx-filter-builder:
+Компонент `me-filter-builder` предназначен для построения фильтров по множеству полей с возможностью применения их к связанным компонентам отображения данных, таким как dx-data-grid и dx-list.
+
+<Canvas of={filterBuilderStories.Default} />
+<Controls of={filterBuilderStories.Default} />
+<Source of={filterBuilderStories.Default} dark />
+
+## Примеры использования
+
+- [Источники данных](#источники-данных)
+- [Использование с компонентом Data Grid](#использование-с-компонентом-data-grid)
+- [Использование с компонентом List](#использование-с-компонентом-list)
+- [Использование с предзаданными фильтрами](#использование-с-предзаданными-фильтрами)
+- [Размеры компонента](#размеры-компонента)
+- [Компонент малого размера](#компонент-малого-размера)
+- [Компонент среднего размера](#компонент-среднего-размера)
+- [Компонент большого размера](#компонент-большого-размера)
+
+---
+
+### Источники данных
+
+#### Шаблоны редакторов (editorTemplate)
+
+Каждое поле может использовать свой шаблон редактора для ввода значения:
+
+- `textTemplate` — обычное текстовое поле
+- `numberTemplate` — числовое поле
+- `dateTemplate` — выбор даты
+- `selectTemplate` — выпадающий список (нужен `selectBoxSources`)
+
+Пример:
+
+```ts
+{
+  dataField: 'HireDate',
+  dataType: 'datetime',
+  editorTemplate: 'dateTemplate',
+}
+```
+
+#### Событие filteredValueChange
+
+Для полей с шаблоном `selectTemplate` необходимо явно указать список возможных значений через объект `selectBoxSources`. Без этого список не будет отображаться.
+
+Пример:
+
+```ts
+fields = [
+  {
+    dataField: 'Department',
+    dataType: 'string',
+    editorTemplate: 'selectTemplate',
+  },
+];
+selectBoxSources = {
+  Department: ['HR', 'Finance', 'Engineering', 'Marketing'],
+};
+```
+
+#### Формат filteredValue
+
+Значение `filteredValue` — это структура фильтра в формате DevExtreme.
+
+Пример:
+
+```ts
+[
+  ['Department', '=', 'Engineering'],
+  'and',
+  ['Salary', '>', 100000],
+]
+```
+
+---
+
+### Использование с компонентом Data Grid
+
+Компонент `me-filter-builder` можно связать с DevExtreme `dx-data-grid`, чтобы применять построенный фильтр к таблице данных с помощью свойства `filterValue`.
+
+<Canvas name="С фильтрацией таблицы (DataGrid)" of={filterBuilderStories.WithDataGrid} />
 
 <Source
-  code={`
-<dx-date-box
-  *dxTemplate="let condition of 'dateTemplate'"
-  meDateBox
-  [value]="condition.value"
-  [type]="condition.field.dataType"
-  (onValueChanged)="condition.setValue($event.value)">
-</dx-date-box>`
-  }
   dark
   language="html"
+  code={`
+<me-filter-builder
+  [fields]="fields"
+  [(filteredValue)]="filteredValue"
+></me-filter-builder>
+
+<dx-data-grid 
+  style="margin-top: 20px;"
+  [dataSource]="dataSource" 
+  [filterValue]="filteredValue" 
+  [showBorders]="true" 
+  [columns]="fields"
+></dx-data-grid>
+`}
+  
 />
 
-При этом в поле fields у dx-filter-builder передается массив конфигураций полей, который включает тип, имя, шаблон редактора и т.д.
+---
 
-<Source code={
-`const filterFields: Field[] = [
-  { dataField: 'id', dataType: 'number' },
-  { dataField: 'name', dataType: 'string' },
-  { dataField: 'age', dataType: 'number' },
-  { dataField: 'birthdate', dataType: 'datetime', editorTemplate: 'dateTemplate' }
-]`
-}/>
+### Использование с компонентом List
 
-<Canvas name="Default" of={filterBuilderStories.Default} />
+Для `dx-list` фильтрация происходит вручную через `DataSource`.
+
+Особенности фильтрации в dx-list
+В отличие от dx-data-grid, компонент dx-list не применяет фильтр автоматически. Он не поддерживает свойство filterValue, поэтому мы используем DataSource вручную:
+
+```ts
+const listDataSource = new DataSource({
+store: {
+  type: 'array',
+  data: employeesDataList,
+},
+
+filteredValueChange: (val) => {
+  listDataSource.filter(val);
+  listDataSource.load();
+}
+});
+```
+
+<Canvas name="Фильтрация в List" of={filterBuilderStories.WithList} />
+
+<Source
+  dark
+  language="html"
+  code={`\
+<me-filter-builder 
+  [(filteredValue)]="filteredValue"
+  (filteredValueChange)="filteredValueChange($event)"
+></me-filter-builder>
+
+<dx-list 
+  style="margin-top: 20px;"
+  meList 
+  [dataSource]="listDataSource"
+  [filter]="filteredValue"
+  displayExpr="Name"
+></dx-list>
+`}
+/>
+
+---
+
+### Использование с предзаданными фильтрами
+
+<Canvas name="Фильтрация в List" of={filterBuilderStories.WithPredefinedFilters} />
+
+<Source
+  dark
+  language="html"
+  code={`
+<me-filter-builder filteredValue="filtersForGrid"></me-filter-builder>
+  `}
+/>
+
+Компонент поддерживает три размера, которые можно задать через свойство `size`:
+- small – малый размер
+- medium – средний размер
+- large – увеличенный размер
+
+### Компонент малого размера
+
+<Canvas name="Компонент малого размера" of={filterBuilderStories.SmallSize} />
+
+
+<Source
+  dark
+  language="html"
+  code={`
+<me-filter-builder size="small"></me-filter-builder>
+  `}
+/>
+
+---
+
+#### Компонент среднего размера
+
+<Canvas name="Компонент среднего размера" of={filterBuilderStories.MediumSize} />
+
+<Source
+  dark
+  language="html"
+  code={`
+<me-filter-builder size="medium"></me-filter-builder>
+  `}
+/>
+
+
+---
+
+### Компонент большого размера
+
+<Canvas name="Компонент среднего размера" of={filterBuilderStories.LargeSize} />
+
+<Source
+  dark
+  language="html"
+  code={`
+<me-filter-builder size="large"></me-filter-builder>
+  `}
+/>
