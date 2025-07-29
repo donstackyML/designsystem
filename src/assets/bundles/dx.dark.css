@@ -294,6 +294,10 @@
   --Controls-Additional-Additional-Disabled-Switch: #28292d;
   --Controls-Additional-Additional-Hover-Switch: #73737a;
   --Controls-Additional-Additional-Pressed-Switch: #2e2f35;
+  --Controls-Additional-Additional-Danger-BG-Flat-Default: #d50f3f1f;
+  --Controls-Additional-Additional-Main-BG-Flat-Default: #3c65f81f;
+  --Controls-Additional-Additional-Success-BG-Flat-Default: #00993d1f;
+  --Controls-Additional-Additional-Default-BG-Flat-Default: #56566566;
   --Controls-BG-Accent-Accent-BG-Default: #3565e2;
   --Controls-BG-Accent-Accent-BG-Disabled: #27376e;
   --Controls-BG-Accent-Accent-BG-Hover: #4a7cff;
@@ -481,6 +485,10 @@
   --Controls-Additional-Additional-Disabled-Switch: #e6e7f0;
   --Controls-Additional-Additional-Hover-Switch: #b4b6ba;
   --Controls-Additional-Additional-Pressed-Switch: #bfc1d0;
+  --Controls-Additional-Additional-Danger-BG-Flat-Default: #d50f3f14;
+  --Controls-Additional-Additional-Main-BG-Flat-Default: #3c65f814;
+  --Controls-Additional-Additional-Success-BG-Flat-Default: #00993d14;
+  --Controls-Additional-Additional-Default-BG-Flat-Default: #d8daea66;
   --Controls-BG-Accent-Accent-BG-Default: #3257dc;
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
@@ -668,6 +676,10 @@
   --Controls-Additional-Additional-Disabled-Switch: #e6e7f0;
   --Controls-Additional-Additional-Hover-Switch: #b4b6ba;
   --Controls-Additional-Additional-Pressed-Switch: #bfc1d0;
+  --Controls-Additional-Additional-Danger-BG-Flat-Default: #d50f3f14;
+  --Controls-Additional-Additional-Main-BG-Flat-Default: #3c65f814;
+  --Controls-Additional-Additional-Success-BG-Flat-Default: #00993d14;
+  --Controls-Additional-Additional-Default-BG-Flat-Default: #d8daea66;
   --Controls-BG-Accent-Accent-BG-Default: #3257dc;
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
@@ -855,6 +867,10 @@
   --Controls-Additional-Additional-Disabled-Switch: #28292d;
   --Controls-Additional-Additional-Hover-Switch: #73737a;
   --Controls-Additional-Additional-Pressed-Switch: #2e2f35;
+  --Controls-Additional-Additional-Danger-BG-Flat-Default: #d50f3f1f;
+  --Controls-Additional-Additional-Main-BG-Flat-Default: #3c65f81f;
+  --Controls-Additional-Additional-Success-BG-Flat-Default: #00993d1f;
+  --Controls-Additional-Additional-Default-BG-Flat-Default: #56566566;
   --Controls-BG-Accent-Accent-BG-Default: #3565e2;
   --Controls-BG-Accent-Accent-BG-Disabled: #27376e;
   --Controls-BG-Accent-Accent-BG-Hover: #4a7cff;
@@ -4317,8 +4333,7 @@
 }
 
 .dx-accordion-item {
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
+  border: 1px solid transparent;
 }
 .dx-accordion-item:last-child {
   border-bottom: 1px solid #3f4044;
@@ -4355,6 +4370,9 @@
 .dx-accordion-item-opened {
   border-bottom-color: #3f4044;
   border-top-color: #3f4044;
+}
+.dx-accordion-item-opened:first-child {
+  border-top-color: transparent;
 }
 .dx-accordion-item-opened.dx-state-active > .dx-accordion-item-title {
   background-color: rgba(60, 101, 248, 0.2);
@@ -4451,6 +4469,9 @@
 .dx-accordion-item-title .custom-header-icon {
   color: var(--accordion-icon-color);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dx-accordion-item-title .custom-header-title {
@@ -4477,14 +4498,11 @@
 .me-accordion-small .custom-header-container .custom-header-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 .me-accordion-small .custom-header-container .custom-header-icon {
   height: 20px;
   width: 20px;
-}
-.me-accordion-small .custom-header-container .custom-header-icon span {
-  font-size: 18px;
 }
 .me-accordion-small .custom-header-container .custom-header-title {
   font-size: var(--accordion-title-font-size-small);
@@ -4506,7 +4524,7 @@
   line-height: 20px;
 }
 .me-accordion-small .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
-  padding: 0 12px 12px 12px;
+  padding: 4px 12px 12px 12px;
 }
 .me-accordion-small .dx-accordion-item-title > * {
   font-family: var(--accordion-font-family);
@@ -4539,6 +4557,7 @@
 }
 .me-accordion-medium .custom-header-container .custom-header-icon {
   width: 24px;
+  height: 24px;
 }
 .me-accordion-medium .custom-header-container .custom-header-icon span {
   font-size: 24px;
@@ -4562,7 +4581,7 @@
   line-height: 24px;
 }
 .me-accordion-medium .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
-  padding: 0 12px 16px 12px;
+  padding: 4px 12px 12px 12px;
 }
 .me-accordion-medium .dx-accordion-item-title > * {
   font-family: var(--accordion-font-family);
@@ -4593,12 +4612,6 @@
   flex-direction: column;
   gap: 4px;
 }
-.me-accordion-large .custom-header-container .custom-header-icon {
-  width: 24px;
-}
-.me-accordion-large .custom-header-container .custom-header-icon span {
-  font-size: 24px;
-}
 .me-accordion-large .custom-header-container .custom-header-title {
   font-size: var(--accordion-title-font-size-large);
   line-height: var(--accordion-title-line-height-large);
@@ -4609,7 +4622,7 @@
   line-height: var(--accordion-description-line-height-large);
 }
 .me-accordion-large .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-title {
-  padding: 16px 16px;
+  padding: 8px 16px;
   align-items: center;
 }
 .me-accordion-large .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-title::before {
@@ -4619,7 +4632,7 @@
   line-height: 24px;
 }
 .me-accordion-large .dx-item.dx-accordion-item .dx-template-wrapper.dx-item-content.dx-accordion-item-body {
-  padding: 0 16px 16px 16px;
+  padding: 4px 16px 16px 16px;
 }
 .me-accordion-large .dx-accordion-item-title > * {
   font-family: var(--accordion-font-family);
@@ -19005,6 +19018,9 @@ input.dx-hidden {
   display: flex;
   flex-direction: column;
 }
+.me-filterbuilder.me-filterbuilder-small {
+  min-width: 352px;
+}
 .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder {
   font-family: "RobotoFallback", "Roboto", sans-serif;
   font-size: 13px;
@@ -19015,6 +19031,10 @@ input.dx-hidden {
 .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item,
 .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content {
   margin-bottom: 8px;
+}
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text,
+.me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text {
+  margin-right: 0;
 }
 .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-group-operation, .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-field, .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-item .dx-filterbuilder-text.dx-filterbuilder-item-operation,
 .me-filterbuilder.me-filterbuilder-small .dx-filterbuilder .dx-filterbuilder-group-content .dx-filterbuilder-text.dx-filterbuilder-group-operation,
@@ -19042,6 +19062,9 @@ input.dx-hidden {
 }
 .me-filterbuilder.me-filterbuilder-small .me-filterbuilder__accept-button {
   margin-top: 8px;
+}
+.me-filterbuilder.me-filterbuilder-medium {
+  min-width: 370px;
 }
 .me-filterbuilder.me-filterbuilder-medium .dx-filterbuilder {
   font-family: "RobotoFallback", "Roboto", sans-serif;
@@ -19081,12 +19104,18 @@ input.dx-hidden {
 .me-filterbuilder.me-filterbuilder-medium .me-filterbuilder__accept-button {
   margin-top: 8px;
 }
+.me-filterbuilder.me-filterbuilder-large {
+  min-width: 440px;
+}
 .me-filterbuilder.me-filterbuilder-large .dx-filterbuilder {
   font-family: "RobotoFallback", "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
   text-align: left;
+}
+.me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item {
+  gap: 12px;
 }
 .me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-item,
 .me-filterbuilder.me-filterbuilder-large .dx-filterbuilder .dx-filterbuilder-group-content {
@@ -19166,10 +19195,11 @@ input.dx-hidden {
   border-left: 1px solid #3f4044;
 }
 .me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text {
+  margin-right: 0;
   color: #ffffff;
 }
 .me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-group-operation {
-  background-color: rgba(215, 15, 65, 0.1215686275);
+  background-color: rgba(213, 15, 63, 0.1215686275);
 }
 .me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-text.dx-filterbuilder-group-operation:hover {
   background-color: rgba(213, 15, 63, 0.2);
@@ -19244,43 +19274,78 @@ input.dx-hidden {
 .me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus {
   color: #00b955;
 }
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus:hover {
+  color: #0cba52;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus:active {
+  color: #006f2d;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-plus.dx-state-active {
+  color: #006f2d;
+}
 .me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove {
   color: #fa6488;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove:hover {
+  color: #ce274f;
+}
+.me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove:active {
+  color: #990025;
 }
 .me-filterbuilder .dx-filterbuilder .dx-filterbuilder-group .dx-filterbuilder-group-item .dx-filterbuilder-action.dx-filterbuilder-action-icon.dx-icon-remove::before {
   content: "\f074";
 }
 
-.dx-filterbuilder-overlay.me-filterbuilder-small .dx-treeview-item {
+.dx-filterbuilder-overlay.dx-overlay-wrapper .dx-overlay-content.dx-popup-normal {
+  border-radius: 3px;
+  border: 1px solid var(--Dividers-Borders-Long);
+}
+.dx-filterbuilder-overlay.dx-overlay-wrapper .dx-overlay-content.dx-popup-normal .dx-popup-content {
+  margin-block: 4px;
+}
+.dx-filterbuilder-overlay.dx-overlay-wrapper.me-filterbuilder-small .dx-treeview-item {
   font-family: "RobotoFallback", "Roboto", sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
   text-align: left;
   min-height: 28px;
-  padding-inline: 12px;
+  padding: 4px 16px 4px 8px;
 }
-.dx-filterbuilder-overlay.me-filterbuilder-medium .dx-treeview-item {
+.dx-filterbuilder-overlay.dx-overlay-wrapper.me-filterbuilder-medium .dx-treeview-item {
   font-family: "RobotoFallback", "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   text-align: left;
-  min-height: 32px;
-  padding-inline: 12px;
+  min-height: 28px;
+  padding: 4px 16px 4px 8px;
 }
-.dx-filterbuilder-overlay.me-filterbuilder-large .dx-treeview-item {
+.dx-filterbuilder-overlay.dx-overlay-wrapper.me-filterbuilder-large .dx-treeview-item {
   font-family: "RobotoFallback", "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
   text-align: left;
   min-height: 40px;
-  padding-inline: 16px;
+  padding: 8px 20px 8px 12px;
 }
-.dx-filterbuilder-overlay .dx-treeview-item {
+.dx-filterbuilder-overlay.dx-overlay-wrapper .dx-treeview-node.dx-state-selected .dx-treeview-item.dx-state-hover {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+}
+.dx-filterbuilder-overlay.dx-overlay-wrapper .dx-treeview-node.dx-state-selected .dx-treeview-item {
+  background-color: var(--Controls-Informative-BG-Selected-Element);
+}
+.dx-filterbuilder-overlay.dx-overlay-wrapper .dx-treeview-node:active .dx-treeview-item {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Selected);
+}
+.dx-filterbuilder-overlay.dx-overlay-wrapper .dx-treeview-item {
   display: flex;
   align-items: center;
+  border-radius: 0;
+}
+.dx-filterbuilder-overlay.dx-overlay-wrapper .dx-treeview-item.dx-state-hover {
+  background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
 }
 
 /**
@@ -26861,6 +26926,10 @@ input.dx-hidden {
   --Controls-Additional-Additional-Disabled-Switch: #e6e7f0;
   --Controls-Additional-Additional-Hover-Switch: #b4b6ba;
   --Controls-Additional-Additional-Pressed-Switch: #bfc1d0;
+  --Controls-Additional-Additional-Danger-BG-Flat-Default: #d50f3f14;
+  --Controls-Additional-Additional-Main-BG-Flat-Default: #3c65f814;
+  --Controls-Additional-Additional-Success-BG-Flat-Default: #00993d14;
+  --Controls-Additional-Additional-Default-BG-Flat-Default: #d8daea66;
   --Controls-BG-Accent-Accent-BG-Default: #3257dc;
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
@@ -35927,6 +35996,10 @@ input.dx-hidden {
   --Controls-Additional-Additional-Disabled-Switch: #e6e7f0;
   --Controls-Additional-Additional-Hover-Switch: #b4b6ba;
   --Controls-Additional-Additional-Pressed-Switch: #bfc1d0;
+  --Controls-Additional-Additional-Danger-BG-Flat-Default: #d50f3f14;
+  --Controls-Additional-Additional-Main-BG-Flat-Default: #3c65f814;
+  --Controls-Additional-Additional-Success-BG-Flat-Default: #00993d14;
+  --Controls-Additional-Additional-Default-BG-Flat-Default: #d8daea66;
   --Controls-BG-Accent-Accent-BG-Default: #3257dc;
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
@@ -37153,6 +37226,10 @@ input.dx-hidden {
   --Controls-Additional-Additional-Disabled-Switch: #e6e7f0;
   --Controls-Additional-Additional-Hover-Switch: #b4b6ba;
   --Controls-Additional-Additional-Pressed-Switch: #bfc1d0;
+  --Controls-Additional-Additional-Danger-BG-Flat-Default: #d50f3f14;
+  --Controls-Additional-Additional-Main-BG-Flat-Default: #3c65f814;
+  --Controls-Additional-Additional-Success-BG-Flat-Default: #00993d14;
+  --Controls-Additional-Additional-Default-BG-Flat-Default: #d8daea66;
   --Controls-BG-Accent-Accent-BG-Default: #3257dc;
   --Controls-BG-Accent-Accent-BG-Disabled: #91aaea;
   --Controls-BG-Accent-Accent-BG-Hover: #4970ff;
