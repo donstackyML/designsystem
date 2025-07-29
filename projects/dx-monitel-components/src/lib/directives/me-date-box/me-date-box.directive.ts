@@ -1,13 +1,12 @@
 import {
   ApplicationRef,
-  createComponent,
   ComponentRef,
+  createComponent,
   DestroyRef,
   Directive,
   ElementRef,
   EmbeddedViewRef,
   HostListener,
-  Injector,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -15,13 +14,13 @@ import {
 
 import type DevExpress from 'devextreme';
 import { DxDateBoxComponent } from 'devextreme-angular';
-import type { ClosedEvent, OpenedEvent } from 'devextreme/ui/date_box';
+import type { OpenedEvent } from 'devextreme/ui/date_box';
 
-import { ComponentFocusService } from '../../service/component-focus.service';
-import { MeFormField } from '../me-form-item/me-form-field';
-import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
+import { ComponentFocusService } from '../../service/component-focus.service';
 import { DateTimeService } from '../../service/get-current-time-in-ms.service';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 interface ExtendedDxDateBox extends DevExpress.ui.dxDateBox {
   _popup: {
@@ -68,7 +67,7 @@ export class MeDateBoxDirective
   ngOnInit(): void {
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
-        class: `me-date-box-overlay`,
+        class: `me-date-box-overlay me-date-box-overlay-${this.size}`,
       },
     });
 
@@ -204,7 +203,6 @@ export class MeDateBoxDirective
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
       .rootNodes[0] as HTMLElement;
     domElem.style.display = `block`;
-    domElem.style.width = `${targetWidth}px`;
     domElem.style.paddingBottom = `2px`;
     domElem.style.marginInline = 'auto';
 
