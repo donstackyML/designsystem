@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'me-icon',
@@ -8,7 +7,10 @@ import { NgStyle } from '@angular/common';
     <span
       class="material-icons"
       [class.icon_active]="pressed"
-      [ngStyle]="{ fontSize: getSize(), color: color }"
+      [style.color]="color"
+      [class.small]="size === 'small'"
+      [class.medium]="size === 'medium'"
+      [class.large]="size === 'large'"
     >
       {{ icon }}
     </span>
@@ -19,12 +21,24 @@ import { NgStyle } from '@angular/common';
         display: flex;
         font-family: var(--me-symbols-family);
       }
+
+      .material-icons.small {
+        font-size: 20px;
+      }
+
+      .material-icons.medium {
+        font-size: 20px;
+      }
+
+      .material-icons.large {
+        font-size: 24px;
+      }
+
       .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
       }
     `,
   ],
-  imports: [NgStyle],
 })
 export class MeIconComponent {
   @Input() icon: string = 'home';
@@ -32,19 +46,6 @@ export class MeIconComponent {
   @Input() color?: string;
 
   pressed = false;
-
-  getSize(): string {
-    switch (this.size) {
-      case 'small':
-        return '20px';
-      case 'medium':
-        return '20px';
-      case 'large':
-        return '24px';
-      default:
-        return '20px';
-    }
-  }
 
   press() {
     this.pressed = true;

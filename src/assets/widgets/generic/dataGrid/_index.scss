@@ -138,7 +138,23 @@
   .dx-scrollable-wrapper {
     .dx-scrollable-container {
       .dx-scrollable-content {
-        padding-bottom: 14px;
+        padding-bottom: 13px;
+
+        .dx-datagrid-content {
+          border-bottom: 1px solid var(--Dividers-Borders-Long);
+        }
+      }
+    }
+  }
+
+  &.me-data-grid-show-row-lines:not(&.me-data-grid-show-borders) {
+    .dx-scrollable-wrapper {
+      .dx-scrollable-container {
+        .dx-scrollable-content {
+          .dx-datagrid-content {
+            border-bottom: none;
+          }
+        }
       }
     }
   }
@@ -172,7 +188,7 @@
 
     // Horizontal Scroll
     &.dx-scrollbar-horizontal {
-      border-bottom: 1px solid var(--Dividers-Borders-Long);
+      border-top: 1px solid var(--Dividers-Borders-Long);
       border-radius: 0;
       transition: none;
       height: 14px;
@@ -247,6 +263,29 @@
 
       .dx-toolbar {
         margin: 0;
+
+        .dx-toolbar-before {
+          .dx-group-panel-item {
+            display: inline-flex;
+            align-items: center;
+
+            .dx-column-indicators {
+              min-width: fit-content;
+              display: grid;
+              grid-template-columns: 20px 20px;
+              display: flex;
+              align-items: center;
+
+              .dx-header-filter {
+                &::before {
+                  font-family: var(--me-symbols-family);
+                  font-size: 20px;
+                  content: var(--me-icon-filter-alt);
+                }
+              }
+            }
+          }
+        }
 
         .dx-toolbar-items-container {
           height: 28px;

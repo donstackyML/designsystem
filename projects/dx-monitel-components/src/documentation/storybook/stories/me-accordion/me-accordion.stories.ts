@@ -43,7 +43,6 @@ export default {
     size: 'medium',
     collapsible: false,
     multiple: false,
-    withBorders: true,
   },
   render: (args) => ({
     props: args,
@@ -108,12 +107,6 @@ export const Collapsible: Story = {
 export const Multiple: Story = {
   args: {
     multiple: true,
-  },
-};
-
-export const WithoutBorders: Story = {
-  args: {
-    withBorders: false,
   },
 };
 
