@@ -6,6 +6,7 @@ import {
   DxTreeViewModule,
 } from 'devextreme-angular';
 
+import { MeIconsModule } from '@monitel/me-icons-registry';
 import {
   MeMenuLeftComponent,
   MeTextBoxDirective,
@@ -15,7 +16,6 @@ import {
   meMenuLeftBottomItems,
   meMenuLeftDefaultItems,
 } from './me-menu-left-mock-data';
-import { MeIconsModule } from '@monitel/me-icons-registry';
 
 export default {
   title: 'Components/MenuLeft',
