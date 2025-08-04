@@ -7,8 +7,8 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  inject,
   Inject,
-  Injectable,
   Input,
   NgZone,
   OnChanges,
@@ -35,11 +35,12 @@ import { MeContextMenuModule } from '../../directives/me-context-menu/me-context
 import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-view.module';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
+import { meIconSet } from '@monitel/me-icons';
+import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 import {
   MeMenuLeftItem,
   MeMenuLeftItemComponent,
 } from './me-menu-left-item.component';
-import { MeIconsModule } from '@monitel/me-icons-registry';
 
 interface TreeNode {
   parent?: TreeNode;
@@ -67,6 +68,8 @@ interface TreeNode {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
+  private meIconRegistry = inject(MeIconsRegistry);
+
   @ViewChild('menuLeftHeader') menuLeftHeaderElement!: ElementRef;
   @ViewChild('menuLeftBottom') menuLeftBottomElement!: ElementRef;
   @ViewChild('dragHandleRight') dragHandleRight!: ElementRef;
@@ -148,6 +151,8 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
+
+    this.meIconRegistry.registerIcons(meIconSet);
     // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
     //   this.keyTabHandle(evt)
     // );
