@@ -84,7 +84,7 @@ export const Default: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<me-badge ${argsToTemplate(args)}></me-badge>`,
+    template: `<me-badge [width]="width" ${argsToTemplate(args)}></me-badge>`,
   }),
 };
 
@@ -112,7 +112,7 @@ export const BasicExamples: Story = {
 
 export const CustomWidth: Story = {
   args: {
-    badgeWidth: '100px',
+    width: '100px',
     value: 'Long text for long test',
   },
 };
