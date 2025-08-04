@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use '../colors' as *;
+@use '../typography/mixins' as *;
 
 $pagination-bg: null !default;
 $pagination-text-color: null !default;
@@ -107,7 +108,6 @@ $pagination-focus-border: null !default;
       .dx-selectbox {
         height: 28px;
         width: 28px;
-        font-size: 12px;
       }
     }
 
@@ -136,60 +136,110 @@ $pagination-focus-border: null !default;
     justify-content: center;
     margin-right: 8px;
 
-    &.small .dx-button {
-      height: 28px;
-      width: 28px;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &.small {
+      .dx-button {
+        height: 28px;
+        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 4px;
 
-      .dx-icon {
-        font-size: 12px;
-        line-height: 12px;
+        .dx-icon {
+          font-size: 12px;
+          line-height: 12px;
+        }
+
+        .dx-button-content > .dx-button-text {
+          @include me-action-med3;
+        }
+      }
+
+      .me-pagination__ellipsis {
+        @include me-action-med4;
+        margin-right: 4px;
+        width: 32px;
+        height: 28px;
+      }
+
+      .me-pagination__info {
+        @include me-text-caption;
       }
     }
 
-    &.medium .dx-button {
-      height: 32px;
-      width: 32px;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &.medium {
+      .dx-button {
+        height: 32px;
+        width: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 4px;
 
-      .dx-icon {
-        font-size: 14px;
-        line-height: 18px;
+        .dx-icon {
+          font-size: 14px;
+          line-height: 18px;
+        }
+
+        .dx-button-content > .dx-button-text {
+          @include me-action-med2;
+        }
+      }
+
+      .me-pagination__ellipsis {
+        @include me-action-med2;
+        margin-right: 4px;
+        height: 32px;
+        width: 36px;
+      }
+
+      .me-pagination__info {
+        @include me-text-caption;
       }
     }
 
-    &.large .dx-button {
-      height: 40px;
-      width: 40px;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &.large {
+      .dx-button {
+        height: 40px;
+        width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
 
-      .dx-icon {
-        font-size: 16px;
-        line-height: 24px;
+        .dx-icon {
+          font-size: 16px;
+          line-height: 24px;
+        }
+
+        .dx-button-content > .dx-button-text {
+          @include me-action-med1;
+        }
+      }
+
+      .me-pagination__ellipsis {
+        @include me-action-med1;
+        margin-right: 8px;
+        height: 40px;
+        width: 44px;
+      }
+
+      .me-pagination__info {
+        @include me-text-body2;
       }
     }
   }
 
   &__info {
-    font-size: 14px;
     color: $pagination-text-color;
-    margin: 0 16px;
-    font-family: 'Roboto', sans-serif;
+    margin: 0 12px;
   }
 
   &__ellipsis {
-    font-size: 14px;
     color: $pagination-text-color;
-    padding: 0 8px 0 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
   }
 
   &__per-page {
