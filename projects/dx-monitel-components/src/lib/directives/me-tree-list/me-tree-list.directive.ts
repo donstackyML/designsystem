@@ -1,9 +1,9 @@
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
-  Renderer2,
-  AfterViewInit,
   Input,
+  Renderer2,
 } from '@angular/core';
 import { DxTreeListComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
@@ -13,6 +13,8 @@ import { MeSize } from '../../types/types';
   selector: '[meTreeList]',
   host: {
     '[class.me-tree-list]': 'true',
+    '[class.me-tree-list-show-borders]': 'showBorders',
+    '[class.me-tree-list-show-row-lines]': 'showRowLines',
     '[class.me-tree-list-cell-small]': 'isCellSizeSmall',
     '[class.me-tree-list-cell-medium]': 'isCellSizeMedium',
   },
@@ -22,6 +24,8 @@ export class MeTreeListDirective implements AfterViewInit {
 
   @Input() headerAlign: { [colKey: string]: 'left' | 'right' } = {};
   @Input() cellSize: MeSize = 'medium';
+  @Input() showRowLines = true;
+  @Input() showBorders = true;
 
   constructor(
     private element: ElementRef,
