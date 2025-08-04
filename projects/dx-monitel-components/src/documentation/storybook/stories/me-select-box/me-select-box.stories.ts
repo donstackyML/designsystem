@@ -286,6 +286,12 @@ export const SizeLarge: Story = {
   },
 };
 
+export const WithOneItem: Story = {
+  args: {
+    dataSource: meSelectBoxData.slice(0, 1),
+  },
+};
+
 export const LabelModeFloating: Story = {
   args: {
     labelMode: 'floating',

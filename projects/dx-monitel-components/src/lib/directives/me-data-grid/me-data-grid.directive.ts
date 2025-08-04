@@ -14,6 +14,8 @@ import { MeSize } from '../../types/types';
   selector: '[meDataGrid]',
   host: {
     '[class.me-data-grid]': 'true',
+    '[class.me-data-grid-show-borders]': 'showBorders',
+    '[class.me-data-grid-show-row-lines]': 'showRowLines',
     '[class.me-data-grid-small]': 'isSizeSmall',
     '[class.me-data-grid-medium]': 'isSizeMedium',
     '[class.me-data-grid-large]': 'isSizeLarge',
@@ -25,6 +27,8 @@ export class MeDataGridDirective implements AfterViewInit, OnDestroy {
   @Input() size: MeSize = 'medium';
   @Input() cellSize: MeSize = 'medium';
   @Input() headerAlign: { [colKey: string]: 'left' | 'right' } = {};
+  @Input() showRowLines = true;
+  @Input() showBorders = true;
 
   private focusService: ComponentFocusService;
 

@@ -262,6 +262,87 @@
 
 ///Overlay
 .me-date-box-overlay {
+  // Analog Clock Small
+  &.me-date-box-overlay-small {
+    .dx-box {
+      gap: 16px 0;
+
+      .dx-box-item {
+        .dx-box-item-content.dx-datebox-datetime-time-side {
+          max-width: 262px;
+          margin-left: 16px;
+
+          .dx-timeview {
+            .dx-box-item:first-child {
+              width: 180px;
+              height: 180px;
+
+              .dx-timeview-clock {
+                min-width: 180px;
+                min-height: 180px;
+                background-size: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Analog Clock Medium
+  &.me-date-box-overlay-medium {
+    .dx-box {
+      gap: 24px 0;
+
+      .dx-box-item {
+        .dx-box-item-content.dx-datebox-datetime-time-side {
+          max-width: 266px;
+          margin-left: 16px;
+
+          .dx-timeview {
+            .dx-box-item:first-child {
+              width: 200px;
+              height: 200px;
+
+              .dx-timeview-clock {
+                min-width: 200px;
+                min-height: 200px;
+                background-size: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Analog Clock Large
+  &.me-date-box-overlay-large {
+    .dx-box {
+      gap: 24px 0;
+
+      .dx-box-item {
+        .dx-box-item-content.dx-datebox-datetime-time-side {
+          max-width: 316px;
+          margin-left: 16px;
+
+          .dx-timeview {
+            .dx-box-item:first-child {
+              width: 240px;
+              height: 240px;
+
+              .dx-timeview-clock {
+                min-width: 240px;
+                min-height: 240px;
+                background-size: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   &.dx-overlay-wrapper.dx-datebox-wrapper {
     ///Calendar showWeeks
     .dx-overlay-content {
@@ -274,7 +355,7 @@
         margin: 4px 0;
 
         .dx-box .dx-item .dx-item-content .dx-texteditor-container {
-          padding-right: 0;
+          padding-right: 8px;
         }
 
         .dx-calendar.dx-calendar-view-month {
@@ -331,10 +412,6 @@
           border-radius: 4px;
           border: 1px solid var(--Dividers-Borders-Long);
           box-shadow: 0px 2px 6px 0px #00000024;
-
-          .dx-box-flex.dx-box.dx-widget.dx-collection:has(.dx-timeview-clock) {
-            gap: 16px;
-          }
 
           ///Digital Clock
           .dx-item-content:has(.dx-timeview-field) {
@@ -423,21 +500,15 @@
 
                     .dx-item.dx-box-item {
                       ///Analog Clock
-                      &:has(.dx-timeview-clock) {
-                        width: 200px;
-                        height: 200px;
-                      }
 
                       .dx-item-content.dx-timeview-clock {
                         margin: 0;
-                        background: $me-watch;
+                        background-image: $me-watch;
 
                         &:before {
                           content: '';
                           height: 12px;
                           width: 12px;
-                          left: 94px;
-                          top: 94px;
                           position: absolute;
                           background: var(--Controls-Content-In-Controls-Accent-Default);
                           border-radius: 50%;
@@ -447,11 +518,16 @@
                           content: '';
                           height: 4px;
                           width: 4px;
-                          left: 98px;
-                          top: 98px;
                           position: absolute;
                           background: var(--Background-Accent-in-the-content);
                           border-radius: 50%;
+                        }
+
+                        &::before,
+                        &::after {
+                          transform: translate(-50%, -50%);
+                          left: 50%;
+                          top: 50%;
                         }
 
                         .dx-timeview-hourarrow,
@@ -472,7 +548,7 @@
                         .dx-timeview-hourarrow {
                           &:before {
                             content: '';
-                            height: 59px;
+                            height: 51px;
                             width: 6px;
                           }
                         }
@@ -480,7 +556,7 @@
                         .dx-timeview-minutearrow {
                           &:before {
                             content: '';
-                            height: 63px;
+                            height: 58px;
                             width: 4px;
                           }
                         }

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   HostBinding,
@@ -5,7 +6,6 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'me-badge',
