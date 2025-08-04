@@ -1,5 +1,5 @@
 import {
-  ApplicationRef,
+  ApplicationRef, ChangeDetectorRef,
   createComponent,
   DestroyRef,
   Directive,
@@ -37,7 +37,8 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     private injector: Injector,
     private ngZone: NgZone,
     private destroyRef: DestroyRef,
-    private dateTimeService: DateTimeService
+    private dateTimeService: DateTimeService,
+    private cdr: ChangeDetectorRef,
   ) {
     super(dateRangeBox);
     this.dateRangeBox.labelMode = 'outside';
@@ -47,9 +48,19 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     );
   }
   ngOnInit(): void {
+    const calendarSize = () => {
+      if (this.isSizeLarge) {
+        return 'me-date-range-box-overlay-large'
+      } else if (this.isSizeMedium) {
+        return 'me-date-range-box-overlay-medium'
+      } else {
+        return 'me-date-range-box-overlay-small'
+      }
+    }
+
     this.dateRangeBox.instance.option('dropDownOptions', {
       wrapperAttr: {
-        class: `me-date-range-box-overlay`,
+        class: `me-date-range-box-overlay ${calendarSize()}`,
       },
     });
   }
@@ -68,7 +79,8 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
         e.value[0] === null &&
         e.value[1] === null
       ) {
-        this.dateRangeBox.value = [0, 0];
+        this.dateRangeBox.value = [null as any, null];
+        return;
       }
 
       const values = [...e.value];
@@ -81,6 +93,7 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
           this.getTime(changedValueIndex)
       );
 
+      this.dateRangeBox.value = [...values];
       this.dateRangeBox.instance.repaint();
 
       this.time = 0;
