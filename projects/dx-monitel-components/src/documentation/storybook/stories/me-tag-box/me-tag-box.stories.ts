@@ -316,6 +316,12 @@ export const SizeLarge: Story = {
   },
 };
 
+export const WithOneItem: Story = {
+  args: {
+    dataSource: defaultItems.slice(0, 1),
+  },
+};
+
 export const LabelModeFloating: Story = {
   args: {
     labelMode: 'floating',
