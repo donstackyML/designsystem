@@ -1,0 +1,114 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs';
+import * as dxTooltipStories from './dx-tooltip.stories';
+
+<Meta name="Tooltip Component Documentation" of={dxTooltipStories} />
+
+# DxTooltipComponent
+
+Компонент `DxTooltipComponent` от DevExtreme позволяет создавать кастомные всплывающие подсказки с широкими возможностями настройки внешнего вида, анимации, позиционирования и поведения. Он идеально подходит для информативных UI-подсказок, обогащая пользовательский опыт.
+
+<Controls of={dxTooltipStories.Default} />
+
+## Основные возможности
+
+- **Позиционирование:** можно указать направление появления (`top`, `bottom`, `left`, `right`) или использовать объект конфигурации `PositionConfig`.
+- **Размеры:** кастомная ширина, высота, а также ограничения по максимальной ширине и высоте.
+- **События показа/скрытия:** настройка триггеров (`mouseenter`, `click`, `focus` и т.д.).
+- **Анимация:** полная настройка анимации для появления и исчезновения.
+- **tooltipId**: `string`. уникальный идентификатор, к которому будет привязан тултип.
+- **Контент:** можно передавать любой HTML, включая текст, изображения и кастомные шаблоны.
+
+## Примеры использования
+
+### Позиционирование тултипа
+
+<Canvas name="Позиция сверху" of={dxTooltipStories.PositionTop} />  
+
+<Source
+  code={`
+<dx-button id="tooltipId">Наведите, чтобы показался тултип</dx-button>
+<dx-tooltip
+  target="#tooltipId"
+  position="top"
+>
+  <div *dxTemplate="let data = data; of: 'content'">Tooltip Content</div>
+</dx-tooltip>
+`}
+  dark
+  language="html"
+/>
+
+### Анимация тултипа
+
+<Canvas name="Анимация тултипа" of={dxTooltipStories.WithAnimation} />
+
+<Source
+  code={`
+<dx-button id="tooltipIdWithAnimation">Наведите, чтобы показался тултип</dx-button>
+<dx-tooltip
+  target="#tooltipIdWithAnimation"
+  [animation]="{
+    show: { type: 'pop', from: { scale: 0.5, opacity: 0 }, to: { scale: 1, opacity: 1 }, duration: 300 },
+    hide: { type: 'fade', from: { opacity: 1 }, to: { opacity: 0 }, duration: 300 }
+  }"
+>
+  <div *dxTemplate="let data = data; of: 'content'">Tooltip Content</div>
+</dx-tooltip>
+`}
+  dark
+  language="html"
+/>
+
+### Тултип с изображением и кастомным контентом
+
+<Canvas name="Тултип с изображением" of={dxTooltipStories.WithImageContent} />
+
+<Source
+  code={`
+<dx-button id="tooltipIdWithCustomImage">Наведите, чтобы показался тултип</dx-button>
+<dx-tooltip
+  target="#tooltipIdWithCustomImage"
+  [position]="'right'"
+  [width]="390"
+  [tooltipClass]="'me-custom-tooltip-wrapper'"
+>
+  <div *dxTemplate="let data = data; of: 'content'">
+    <div class="me-tooltip-custom">
+      <div class="me-tooltip-image">
+        <img src="/assets/images/sample.jpg" width="390" height="140" />
+      </div>
+      <div class="me-tooltip-content">
+        <h1 class="me-tooltip-title">Заголовок</h1>
+        <p class="me-tooltip-text">
+          Трансформатор — это устройство, способное изменять напряжение переменного тока.
+        </p>
+      </div>
+    </div>
+  </div>
+</dx-tooltip>
+`}
+  dark
+  language="html"
+/>
+
+### Ограничение максимальных размеров
+
+<Canvas name="С ограничением размеров" of={dxTooltipStories.WithMaxDimensions} />
+
+<Source
+  code={`
+<dx-button id="tooltipIdWithMaxDimensions">Наведите, чтобы показался тултип</dx-button>
+<dx-tooltip
+  target="#tooltipIdWithMaxDimensions"
+  [position]="'top'"
+  [maxWidth]="200"
+  [maxHeight]="150"
+>
+  <div *dxTemplate="let data = data; of: 'content'">
+    Длинное название пункта, которое занимает несколько строк
+  </div>
+</dx-tooltip>
+`}
+  dark
+  language="html"
+/>
