@@ -53,6 +53,14 @@ export default {
         defaultValue: { summary: 'true' },
       },
     },
+    showScrollRow: {
+      control: 'boolean',
+      description: 'Определяет, отображается ли строка для скролла.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     showColumnLines: {
       control: 'boolean',
       description:
@@ -156,6 +164,7 @@ export default {
     showColumnLines: true,
     showBorders: true,
     showColumnHeaders: true,
+    showScrollRow: false,
     wordWrapEnabled: false,
     dataStructure: 'plain',
     columnAutoWidth: false,
@@ -188,6 +197,7 @@ export default {
         [showColumnHeaders]="showColumnHeaders"
 				[disabled]="disabled"
         [height]="height"
+        [showScrollRow]="showScrollRow"
   		>
     <dxo-editing
       *ngIf="editingIsEnabled"
@@ -259,6 +269,7 @@ export const WithColumns: Story = {
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [cellSize]="cellSize"
+        [showScrollRow]="showScrollRow"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
@@ -297,6 +308,7 @@ export const WithEditingButtons: Story = {
         [showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [cellSize]="cellSize"
+        [showScrollRow]="showScrollRow"
       >
         <dxo-editing
           mode="row"
@@ -347,6 +359,7 @@ export const WithValidation: Story = {
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [cellSize]="cellSize"
+        [showScrollRow]="showScrollRow"
       >
         <dxo-editing
           mode="row"
@@ -402,6 +415,7 @@ export const WithHierarchy: Story = {
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [cellSize]="cellSize"
+        [showScrollRow]="showScrollRow"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
@@ -443,6 +457,7 @@ export const WithSortingAndFiltering: Story = {
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [cellSize]="cellSize"
+        [showScrollRow]="showScrollRow"
       >
         <dxi-column dataField="Full_Name" caption="Name" [allowSorting]="true"></dxi-column>
         <dxi-column dataField="Title" caption="Position" [allowSorting]="true"></dxi-column>
@@ -481,6 +496,7 @@ export const WithCustomCells: Story = {
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [cellSize]="cellSize"
+        [showScrollRow]="showScrollRow"
       >
         <dxi-column dataField="Full_Name" caption="Name"></dxi-column>
         <dxi-column dataField="Title" caption="Position"></dxi-column>
@@ -539,6 +555,7 @@ export const WithNumberAlign: Story = {
         [showColumnHeaders]="showColumnHeaders"
         [headerAlign]="{ 'ID': 'left', 'Full Name': 'right' }"
         [cellSize]="cellSize"
+        [showScrollRow]="showScrollRow"
       >
       </dx-tree-list>
     `,
