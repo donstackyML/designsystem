@@ -68,8 +68,8 @@ export class MeDateBoxDirective
   }
 
   ngOnInit(): void {
-    const showAnalogClock = this.component.instance.option('showAnalogClock') && 'me-date-range-box-show-analog-clock';
-    const showWeekNumbers = this.showWeekNumbers && 'me-date-box-show-week-numbers'
+    const showAnalogClock = this.component.instance.option('showAnalogClock') ? 'me-date-range-box-show-analog-clock' : '';
+    const showWeekNumbers = this.showWeekNumbers ? 'me-date-box-show-week-numbers' : '';
 
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
