@@ -15,7 +15,6 @@ export default {
       declarations: [
         MeDateBoxDirective,
         DxDateBoxComponent,
-        ,
         MeLabelDirective,
       ],
     }),
@@ -170,6 +169,14 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    showWeekNumbers: {
+      control: 'boolean',
+      description: 'Показывает номер недели.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     showRequiredMark: {
       control: 'boolean',
       description: 'Определяет, является ли поле обязательным для заполнения.',
@@ -262,6 +269,7 @@ export default {
     validationMessagePosition: 'auto',
     width: undefined,
     height: undefined,
+    showWeekNumbers: false,
   },
   render: (args) => ({
     props: args,
