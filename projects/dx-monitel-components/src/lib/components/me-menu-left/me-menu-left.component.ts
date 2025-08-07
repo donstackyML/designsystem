@@ -142,6 +142,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   private focusService: ComponentFocusService;
   private overlay?: HTMLDivElement;
   private resizeObserver?: ResizeObserver;
+  private contextMenuListener: (() => void) | null = null;
 
   constructor(
     private element: ElementRef,
@@ -189,9 +190,13 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       this.resizeObserver.observe(document.body);
     }
 
-    this.element.nativeElement.addEventListener('contextmenu', (e: any) => {
-      e.preventDefault();
-    });
+    this.contextMenuListener = this.renderer.listen(
+      this.element.nativeElement,
+      'contextmenu',
+      (event: Event) => {
+        event.preventDefault();
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -199,9 +204,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
     if (this.floatMode) {
       this.createShading();
-
-      this.cdr.detectChanges();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.contextMenuListener?.()
   }
 
   private stateUpdate(): void {
