@@ -17,6 +17,7 @@ import { MeSize } from '../../types/types';
     '[class.me-tree-list-show-row-lines]': 'showRowLines',
     '[class.me-tree-list-cell-small]': 'isCellSizeSmall',
     '[class.me-tree-list-cell-medium]': 'isCellSizeMedium',
+    '[class.me-tree-list-show-scroll-row]': 'showScrollRow',
   },
 })
 export class MeTreeListDirective implements AfterViewInit {
@@ -26,6 +27,7 @@ export class MeTreeListDirective implements AfterViewInit {
   @Input() cellSize: MeSize = 'medium';
   @Input() showRowLines = true;
   @Input() showBorders = true;
+  @Input() showScrollRow = false;
 
   constructor(
     private element: ElementRef,
