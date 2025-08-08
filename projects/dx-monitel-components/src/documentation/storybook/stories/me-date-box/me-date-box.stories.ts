@@ -12,12 +12,7 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [DxValidatorModule],
-      declarations: [
-        MeDateBoxDirective,
-        DxDateBoxComponent,
-        ,
-        MeLabelDirective,
-      ],
+      declarations: [MeDateBoxDirective, DxDateBoxComponent, MeLabelDirective],
     }),
   ],
   argTypes: {
@@ -170,6 +165,14 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    showWeekNumbers: {
+      control: 'boolean',
+      description: 'Показывает номер недели.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     showRequiredMark: {
       control: 'boolean',
       description: 'Определяет, является ли поле обязательным для заполнения.',
@@ -262,6 +265,7 @@ export default {
     validationMessagePosition: 'auto',
     width: undefined,
     height: undefined,
+    showWeekNumbers: false,
   },
   render: (args) => ({
     props: args,
