@@ -1,5 +1,6 @@
 import { NgIf } from '@angular/common';
 import {
+  AfterViewChecked,
   Component,
   ElementRef,
   EventEmitter,
@@ -22,7 +23,9 @@ import { MePosition } from '../../types/types';
   templateUrl: './me-sidepage.component.html',
   styleUrls: ['./me-sidepage.component.css'],
 })
-export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
+export class MeSidePageComponent
+  implements OnInit, OnChanges, OnDestroy, AfterViewChecked
+{
   @Input() hideOnOutsideClick: boolean = false;
   @Input() isSidePageOpen: boolean = false;
   @Input() position: MePosition = 'left';
@@ -33,6 +36,11 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   @Input() minWidth: string = '250px';
   @Input() maxWidth: string = '80vw';
 
+  @Input() height?: string;
+  @Input() minHeight?: string;
+  @Input() maxHeight: string = '80vh';
+
+  @Output() heightChange = new EventEmitter<string>();
   @Output() isSidePageOpenChange = new EventEmitter<boolean>();
   @Output() widthChange = new EventEmitter<string>();
 
@@ -43,10 +51,27 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   private startPosition: string = '-125%';
   private endPosition: string = '0';
   private isResizing: boolean = false;
+
   private startX: number = 0;
   private startWidth: number = 0;
+  private startY: number = 0;
+  private startHeight: number = 0;
+
+  private hasMeasuredMinHeight = false;
+
+  get isHorizontal() {
+    return this.position === 'top' || this.position === 'bottom';
+  }
 
   constructor(private renderer: Renderer2) {}
+
+  ngAfterViewChecked(): void {
+    if (!this.hasMeasuredMinHeight && this.element && !this.minHeight) {
+      const contentHeight = this.element.nativeElement.offsetHeight;
+      this.minHeight = `${contentHeight}px`;
+      this.hasMeasuredMinHeight = true;
+    }
+  }
 
   ngOnInit(): void {
     this.renderer.addClass(
@@ -57,17 +82,24 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
       this.createShading();
     }
 
-    this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
+    if (!this.isHorizontal) {
+      this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
+    }
 
     if (this.position === 'right') {
       this.startPosition = 'calc(100dvw)';
       this.endPosition = 'calc(100dvw - 100%)';
     }
 
+    if (this.position === 'bottom') {
+      this.startPosition = '125%';
+    }
+
+    const transformDirection = this.isHorizontal ? 'Y' : 'X';
     this.renderer.setStyle(
       this.element.nativeElement,
       'transform',
-      `translateX(${this.startPosition})`
+      `translate${transformDirection}(${this.startPosition})`
     );
 
     document.addEventListener('mousemove', this.onResizeMove.bind(this));
@@ -87,6 +119,7 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy(): void {
     document.removeEventListener('mousemove', this.onResizeMove.bind(this));
     document.removeEventListener('mouseup', this.onResizeEnd.bind(this));
+
     if (this.overlay) {
       document.body.removeChild(this.overlay);
     }
@@ -97,6 +130,9 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
     this.isResizing = true;
     this.startX = event.clientX;
     this.startWidth = this.element.nativeElement.offsetWidth;
+
+    this.startY = event.clientY;
+    this.startHeight = this.element.nativeElement.offsetHeight;
     event.preventDefault();
 
     document.body.classList.add('resize-active');
@@ -105,22 +141,39 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
   onResizeMove(event: MouseEvent): void {
     if (!this.isResizing) return;
 
-    let newWidth: number;
-    const minWidthPx = parseInt(this.minWidth);
-    const maxWidthPx = window.innerWidth * 0.8; // 80vw
+    if (this.isHorizontal && this.minHeight) {
+      let newHeight: number;
+      const minHeightPx = parseInt(this.minHeight);
+      const maxHeightPx = window.innerHeight * 0.8;
 
-    if (this.position === 'left') {
-      newWidth = this.startWidth + (event.clientX - this.startX);
+      if (this.position === 'bottom') {
+        newHeight = this.startHeight - (event.clientY - this.startY);
+      } else {
+        newHeight = this.startHeight + (event.clientY - this.startY);
+      }
+
+      newHeight = Math.max(minHeightPx, Math.min(newHeight, maxHeightPx));
+
+      this.height = `${newHeight}px`;
+      this.heightChange.emit(this.height);
+      this.renderer.setStyle(this.element.nativeElement, 'height', this.height);
     } else {
-      newWidth = this.startWidth - (event.clientX - this.startX);
+      let newWidth: number;
+      const minWidthPx = parseInt(this.minWidth);
+      const maxWidthPx = window.innerWidth * 0.8; // 80vw
+
+      newWidth =
+        this.position === 'left'
+          ? this.startWidth + (event.clientX - this.startX)
+          : this.startWidth - (event.clientX - this.startX);
+
+      newWidth = Math.max(minWidthPx, Math.min(newWidth, maxWidthPx));
+
+      this.width = `${newWidth}px`;
+      this.widthChange.emit(this.width);
+
+      this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
     }
-
-    newWidth = Math.max(minWidthPx, Math.min(newWidth, maxWidthPx));
-
-    this.width = `${newWidth}px`;
-    this.widthChange.emit(this.width);
-
-    this.renderer.setStyle(this.element.nativeElement, 'width', this.width);
   }
 
   onResizeEnd(): void {
@@ -159,52 +212,61 @@ export class MeSidePageComponent implements OnInit, OnChanges, OnDestroy {
 
   toggleSidePage(): void {
     if (this.isSidePageOpen) {
-      if (this.shading) {
-        this.disableBodyScroll();
-      }
-
-      const scrollbarWidth = this.getScrollbarWidth();
-
-      if (this.position === 'right') {
-        this.renderer.setStyle(
-          this.element.nativeElement,
-          'transform',
-          `translateX(calc(${this.endPosition} - ${scrollbarWidth}px))`
-        );
-      }
-
-      if (this.position === 'left') {
-        this.renderer.setStyle(
-          this.element.nativeElement,
-          'transform',
-          `translateX(${this.endPosition})`
-        );
-      }
-
-      this.renderer.addClass(this.element.nativeElement, 'me-sidepage-open');
-
-      if (this.shading)
-        this.renderer.setStyle(this.overlay, 'display', 'block');
-
-      if (this.hideOnOutsideClick) {
-        window.addEventListener('click', this.windowClick.bind(this), true);
-      }
+      this.openSidePage();
     } else {
-      this.enableBodyScroll();
+      this.closeSidePage();
+    }
+  }
 
+  private openSidePage(): void {
+    if (this.shading) {
+      this.disableBodyScroll();
+    }
+
+    const scrollbarWidth = this.getScrollbarWidth();
+
+    if (this.isHorizontal) {
       this.renderer.setStyle(
         this.element.nativeElement,
         'transform',
-        `translateX(${this.startPosition})`
+        `translateY(${this.endPosition})`
       );
+    } else {
+      this.renderer.setStyle(
+        this.element.nativeElement,
+        'transform',
+        this.position === 'left'
+          ? `translateY(${this.endPosition})`
+          : `translateX(calc(${this.endPosition} - ${scrollbarWidth}px))`
+      );
+    }
 
-      this.renderer.removeClass(this.element.nativeElement, 'me-sidepage-open');
+    if (this.shading) {
+      this.renderer.setStyle(this.overlay, 'display', 'block');
+    }
 
-      if (this.shading) this.renderer.removeStyle(this.overlay, 'display');
+    if (this.hideOnOutsideClick) {
+      window.addEventListener('click', this.windowClick.bind(this), true);
+    }
+  }
 
-      if (this.hideOnOutsideClick) {
-        window.removeEventListener('click', this.windowClick.bind(this));
-      }
+  private closeSidePage(): void {
+    this.enableBodyScroll();
+
+    const transform =
+      this.position === 'left' || this.position === 'right'
+        ? `translateX(${this.startPosition})`
+        : `translateY(${this.startPosition})`;
+
+    this.renderer.setStyle(this.element.nativeElement, 'transform', transform);
+    this.renderer.removeClass(this.element.nativeElement, 'me-sidepage-open');
+
+    if (this.shading) {
+      this.renderer.removeStyle(this.overlay, 'display');
+    }
+
+    if (this.hideOnOutsideClick) {
+      window.removeEventListener('click', this.windowClick.bind(this));
     }
   }
 

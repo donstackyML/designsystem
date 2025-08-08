@@ -1,4 +1,19 @@
 <div #sidepage class="me-sidepage me-scrollbar-visible me-scroll-view" [style.z-index]="zIndex">
+  <div
+    *ngIf="isSidePageOpen && (position === 'top' || position === 'bottom')"
+    class="resize-handle-horizontal"
+    [class.resize-handle-horizontal-top]="position === 'top'"
+    [class.resize-handle-horizontal-bottom]="position === 'bottom'"
+    (mousedown)="onResizeStart($event)"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none">
+      <path
+        d="M17 7L17 9L15 9L15 7L17 7ZM17 3L17 5L15 5L15 3L17 3ZM13 7L13 9L11 9L11 7L13 7ZM13 3L13 5L11 5L11 3L13 3ZM9 7L9 9L7 9L7 7L9 7ZM9 3L9 5L7 5L7 3L9 3ZM5 7L5 9L3 9L3 7L5 7ZM5 3L5 5L3 5L3 3L5 3Z"
+        fill="#18181A"
+      />
+    </svg>
+  </div>
+
   <ng-content select="[sidepage-header]"></ng-content>
   <div class="me-sidepage-content">
     <dx-scroll-view>
@@ -7,7 +22,7 @@
   </div>
   <ng-content select="[sidepage-footer]"></ng-content>
   <div
-    *ngIf="isSidePageOpen"
+    *ngIf="isSidePageOpen && (position === 'right' || position === 'left')"
     class="resize-handle"
     [class.resize-handle-right]="position === 'right'"
     [class.resize-handle-left]="position === 'left'"
