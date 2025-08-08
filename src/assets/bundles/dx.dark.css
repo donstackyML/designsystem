@@ -6846,6 +6846,14 @@ me-badge .badge.color-yellow-light {
 * $type color
 */
 /**
+* $name 90. Disabled cell background color
+* $type color
+*/
+/**
+* $name 100. Disabled cell text color
+* $type color
+*/
+/**
 * Custom
 */
 .dx-calendar {
@@ -7146,6 +7154,7 @@ me-badge .badge.color-yellow-light {
   border: 1px double transparent;
   width: 39px;
   border-radius: 4px;
+  border: none;
 }
 .dx-calendar-cell.dx-calendar-today {
   box-shadow: inset 0 0 0 2px #3565e2;
@@ -7205,7 +7214,6 @@ me-badge .badge.color-yellow-light {
   padding: 4px 8px 8px 8px;
   border: 1px solid #3f4044;
   border-radius: 4px;
-  min-height: 292px;
   width: 288px;
   box-shadow: var(--select-box-box-shadow);
 }
@@ -7424,8 +7432,14 @@ me-badge .badge.color-yellow-light {
 .dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date,
 .dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date,
 .dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date {
-  box-shadow: none;
-  color: #ffffff;
+  box-shadow: inset 0 0 0 1000px #27376e;
+}
+.me-calendar.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date span, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date span,
+.dx-calendar.dx-widget.dx-calendar-view-month .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date span,
+.dx-calendar.dx-widget.dx-calendar-view-year .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date span,
+.dx-calendar.dx-widget.dx-calendar-view-decade .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date span,
+.dx-calendar.dx-widget.dx-calendar-view-century .dx-state-disabled .dx-calendar-cell.dx-calendar-selected-date span {
+  color: rgba(255, 255, 255, 0.3019607843);
 }
 .me-calendar.dx-calendar.dx-widget.dx-calendar-view-month.dx-state-disabled .dx-button-content .dx-icon,
 .me-calendar.dx-calendar.dx-widget.dx-calendar-view-month.dx-state-disabled .dx-button-content .dx-button-text, .me-calendar.dx-calendar.dx-widget.dx-calendar-view-year.dx-state-disabled .dx-button-content .dx-icon,
@@ -7497,11 +7511,20 @@ me-badge .badge.color-yellow-light {
   box-shadow: inset 0 0 0 2px var(--Controls-BG-Accent-Accent-BG-Default);
 }
 
+.me-calendar.dx-calendar.dx-calendar {
+  display: flex;
+  justify-content: flex-start;
+  max-height: fit-content;
+  height: 100%;
+  min-height: auto;
+}
+.me-calendar.dx-calendar.dx-calendar .dx-calendar-body {
+  height: 100%;
+}
+
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar {
   width: 248px;
   min-width: 248px;
-  min-height: 248px;
-  max-height: 248px;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-navigator {
   width: 204px;
@@ -7524,9 +7547,10 @@ me-badge .badge.color-yellow-light {
   max-height: 28px;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-body {
-  width: 232px;
-  max-height: 200px;
+  width: 224px;
+  max-height: 196px;
   padding: 0;
+  margin-inline: auto;
   padding-bottom: 4px;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-body .dx-widget {
@@ -7558,7 +7582,8 @@ me-badge .badge.color-yellow-light {
   text-align: center;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar .time-controls {
-  margin-top: 4px;
+  margin-inline: 3px;
+  padding-top: 4px;
 }
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar .time-controls .me-inputs .dx-texteditor-container .dx-texteditor-input-container {
   font-family: "RobotoFallback", "Roboto", sans-serif;
@@ -7567,13 +7592,29 @@ me-badge .badge.color-yellow-light {
   line-height: 16px;
   text-align: left;
 }
+.me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-year .dx-widget, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-widget, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-century .dx-widget {
+  max-height: 144px;
+}
+.me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body {
+  width: 192px;
+  margin-inline: auto;
+}
 .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--small.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body tbody .dx-calendar-cell span {
   line-height: 10px;
 }
-
-.me-calendar.me-calendar--small.dx-calendar:has(.time-controls) {
-  min-height: 280px;
-  max-height: 280px;
+.me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-footer {
+  height: auto;
+  margin-top: 16px;
+}
+.me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-footer .dx-calendar-today-button > .dx-button-content {
+  padding: 6px 12px;
+}
+.me-calendar.me-calendar--small.dx-calendar.dx-calendar .dx-calendar-footer .dx-calendar-today-button > .dx-button-content .dx-button-text {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
 }
 
 .me-calendar.me-calendar--small.dx-calendar:not(.me-calendar-show-weeks-numbers) {
@@ -7581,18 +7622,21 @@ me-badge .badge.color-yellow-light {
   min-width: 220px;
 }
 .me-calendar.me-calendar--small.dx-calendar:not(.me-calendar-show-weeks-numbers) .dx-calendar-body {
-  width: 204px;
-  max-height: 200px;
+  width: 196px;
+  max-height: 192px;
+  margin-inline: auto;
+  padding-bottom: 0px;
 }
 
 .me-calendar.me-calendar--medium.dx-calendar.dx-calendar {
   min-width: 288px;
-  min-height: 292px;
-  max-height: 292px;
 }
 .me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-body {
   padding: 0;
   padding-bottom: 4px;
+  margin-inline: auto;
+  max-height: 220px;
+  width: 256px;
 }
 .me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-body .dx-widget {
   width: 100%;
@@ -7618,11 +7662,9 @@ me-badge .badge.color-yellow-light {
   max-width: 32px;
   max-height: 32px;
 }
-.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-footer {
-  height: 30px;
-}
 .me-calendar.me-calendar--medium.dx-calendar.dx-calendar .time-controls {
-  margin-top: 8px;
+  padding-top: 8px;
+  margin-inline: 7px;
 }
 .me-calendar.me-calendar--medium.dx-calendar.dx-calendar .time-controls .me-inputs .dx-texteditor-container .dx-texteditor-input-container {
   height: 32px;
@@ -7632,28 +7674,40 @@ me-badge .badge.color-yellow-light {
   line-height: 20px;
   text-align: left;
 }
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-year .dx-widget, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-widget, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-century .dx-widget {
+  max-height: 168px;
+}
 .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body {
-  padding-inline: 0;
+  width: 224px;
 }
 .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body tbody .dx-calendar-cell span, .me-calendar.me-calendar--medium.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body tbody .dx-calendar-cell span {
   line-height: 10px;
 }
-
-.me-calendar.me-calendar--medium.dx-calendar:has(.time-controls) {
-  min-height: 332px;
-  max-height: 332px;
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-footer {
+  height: auto;
+  margin-top: 20px;
+}
+.me-calendar.me-calendar--medium.dx-calendar.dx-calendar .dx-calendar-footer .dx-calendar-today-button > .dx-button-content > .dx-button-text {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
 }
 
 .me-calendar.me-calendar--medium.dx-calendar:not(.me-calendar-show-weeks-numbers) {
   min-width: 256px;
   width: 256px;
 }
+.me-calendar.me-calendar--medium.dx-calendar:not(.me-calendar-show-weeks-numbers) .dx-calendar-body {
+  width: 224px;
+  max-height: 216px;
+  padding-bottom: 0px;
+}
 
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar {
   min-width: 351px;
   min-height: 348px;
-  max-height: 424px;
-  height: fit-content;
 }
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-navigator {
   width: 296px;
@@ -7682,6 +7736,9 @@ me-badge .badge.color-yellow-light {
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-body {
   padding: 0;
   padding-bottom: 4px;
+  max-height: 268px;
+  width: 320px;
+  margin-inline: auto;
 }
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-body .dx-widget {
   width: 100%;
@@ -7712,7 +7769,8 @@ me-badge .badge.color-yellow-light {
   text-align: center;
 }
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar .time-controls {
-  margin-top: 8px;
+  margin-inline: 7px;
+  padding-top: 8px;
 }
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar .time-controls .me-inputs .dx-texteditor-container .dx-texteditor-input-container {
   height: 40px;
@@ -7722,10 +7780,13 @@ me-badge .badge.color-yellow-light {
   line-height: 20px;
   text-align: left;
 }
+.me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-year .dx-widget, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-widget, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-century .dx-widget {
+  max-height: 210px;
+}
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body {
   margin-bottom: auto;
   padding: 0;
-  min-height: 260px;
+  width: 280px;
 }
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body table, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body table, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body table {
   padding-right: 0;
@@ -7736,15 +7797,31 @@ me-badge .badge.color-yellow-light {
 .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-year .dx-calendar-body table tbody .dx-calendar-cell span, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-decade .dx-calendar-body table tbody .dx-calendar-cell span, .me-calendar.me-calendar--large.dx-calendar.dx-calendar.dx-calendar-view-century .dx-calendar-body table tbody .dx-calendar-cell span {
   line-height: 12px;
 }
-
-.me-calendar.me-calendar--large.dx-calendar:has(.time-controls) {
-  min-height: 396px;
-  max-height: 396px;
+.me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-footer {
+  height: auto;
+  margin-top: 24px;
+}
+.me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-footer .dx-calendar-today-button > .dx-button-content {
+  padding: 10px 16px;
+  max-height: 40px;
+}
+.me-calendar.me-calendar--large.dx-calendar.dx-calendar .dx-calendar-footer .dx-calendar-today-button > .dx-button-content .dx-button-text {
+  font-family: "RobotoFallback", "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
 }
 
 .me-calendar.me-calendar--large.dx-calendar:not(.me-calendar-show-weeks-numbers) {
   min-width: 312px;
   width: 312px;
+}
+.me-calendar.me-calendar--large.dx-calendar:not(.me-calendar-show-weeks-numbers) .dx-calendar-body {
+  width: 280px;
+  max-height: 264px;
+  margin-inline: auto;
+  padding-bottom: 0px;
 }
 
 .me-calendar.dx-calendar .dx-calendar-body {
@@ -24683,13 +24760,31 @@ input.dx-hidden {
   --number-box-spin-button-height: 13px;
   --number-box-spin-button-width: 26px;
 }
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-small .dx-texteditor-container {
+  padding-right: 0;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-small .dx-texteditor-container .dx-texteditor-buttons-container {
+  min-width: 26px;
+}
 .me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-medium {
   --number-box-spin-button-height: 15px;
   --number-box-spin-button-width: 30px;
 }
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-medium .dx-texteditor-container {
+  padding-right: 0;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-medium .dx-texteditor-container .dx-texteditor-buttons-container {
+  min-width: 30px;
+}
 .me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-large {
   --number-box-spin-button-height: 19px;
   --number-box-spin-button-width: 38px;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-large .dx-texteditor-container {
+  padding-right: 0;
+}
+.me-inputs.dx-texteditor.dx-widget.me-number-box.me-inputs-large .dx-texteditor-container .dx-texteditor-buttons-container {
+  min-width: 38px;
 }
 .me-inputs.dx-texteditor.dx-widget.me-number-box .dx-texteditor-buttons-container .dx-numberbox-spin-container {
   position: absolute;
