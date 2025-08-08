@@ -706,8 +706,19 @@
       .dx-scrollview-content {
         .dx-list-select-all {
           margin: 0;
-          margin-bottom: 4px;
           border: none;
+
+          &:hover {
+            background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+          }
+
+          &:active {
+            background-color: var(--Controls-Informative-BG-Selected-Element);
+          }
+
+          &:has(.dx-checkbox-checked) {
+            background-color: var(--Controls-Informative-BG-Selected-Element);
+          }
         }
 
         .dx-item.dx-list-item:has(.dx-list-select-checkbox-container) {
