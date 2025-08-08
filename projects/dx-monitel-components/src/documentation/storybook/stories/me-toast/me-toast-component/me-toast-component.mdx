@@ -13,6 +13,41 @@ import * as toastComponentStories from "./me-toast-component.stories";
 
 Компонент `me-toast` расширяет функциональность базового уведомления, предоставляемого директивой `meToast`, которая адаптирует компонент `dx-toast` под требования дизайн-системы. Он позволяет задавать заголовок через свойство `title` и использовать интерактивные кнопки с событиями `onAccept`, `onCancel` и `onClose`. При этом поддерживаются все свойства базового компонента, такие как `message`, `visible`, `type`, `size`, `showIcon`, `position` и `displayTime`. Используйте этот компонент, когда необходимо не только информировать пользователя, но и предоставлять ему возможность взаимодействия с уведомлением.
 
+## Подключение
+
+**Важно:** Компонент `me-toast` является **standalone-компонентом**, и **не входит** в `MeToastModule`.
+
+Несмотря на наличие модуля `MeToastModule`, он относится только к директиве `meToast`, предназначенной для использования с компонентом `dx-toast`. Подключение `MeToastModule` **не даёт доступа к `me-toast`**.
+
+### Подключение в Angular-модуле:
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MeToastComponent } from '../../';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    MeToastComponent
+  ],
+})
+export class YourModule {}
+```
+
+### Подключение в standalone-компоненте:
+```ts
+import { Component } from '@angular/core';
+import { MeToastComponent } from '../../';
+
+@Component({
+  standalone: true,
+  selector: 'your-component',
+  templateUrl: './your-component.html',
+  imports: [MeToastComponent],
+})
+export class YourComponent {}
+```
+
 Документация на сайте разработчика DevExtreme:
 
 - <a

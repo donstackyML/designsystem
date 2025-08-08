@@ -142,6 +142,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   private focusService: ComponentFocusService;
   private overlay?: HTMLDivElement;
   private resizeObserver?: ResizeObserver;
+  private contextMenuListener: (() => void) | null = null;
 
   constructor(
     private element: ElementRef,
@@ -172,6 +173,13 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     if (changes['collapsed']) {
       this.stateUpdate();
     }
+
+    if (changes['floatMode'] && this.dragHandleRight) {
+      queueMicrotask(() => this.setAllHandleTransform());
+    }
+    if (changes['collapsed']) {
+      this.stateUpdate();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -181,6 +189,14 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       this.resizeObserver = new ResizeObserver(() => this.handleWindowResize());
       this.resizeObserver.observe(document.body);
     }
+
+    this.contextMenuListener = this.renderer.listen(
+      this.element.nativeElement,
+      'contextmenu',
+      (event: Event) => {
+        event.preventDefault();
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -189,6 +205,10 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     if (this.floatMode) {
       this.createShading();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.contextMenuListener?.();
   }
 
   private stateUpdate(): void {
