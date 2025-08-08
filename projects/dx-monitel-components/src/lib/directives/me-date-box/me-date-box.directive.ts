@@ -7,6 +7,7 @@ import {
   ElementRef,
   EmbeddedViewRef,
   HostListener,
+  Input,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -48,6 +49,8 @@ export class MeDateBoxDirective
   private timeHasBeenChanged = false;
   private time = 0;
 
+  @Input() showWeekNumbers = false;
+
   constructor(
     public element: ElementRef,
     protected override component: DxDateBoxComponent,
@@ -65,14 +68,21 @@ export class MeDateBoxDirective
   }
 
   ngOnInit(): void {
+    const showAnalogClock = this.component.instance.option('showAnalogClock')
+      ? 'me-date-range-box-show-analog-clock'
+      : '';
+    const showWeekNumbers = this.showWeekNumbers
+      ? 'me-date-box-show-week-numbers'
+      : '';
+
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
-        class: `me-date-box-overlay me-date-box-overlay-${this.size}`,
+        class: `me-date-box-overlay me-date-box-overlay-${this.size} ${showWeekNumbers} ${showAnalogClock}`,
       },
     });
 
     this.component.instance.option('calendarOptions', {
-      showWeekNumbers: true,
+      showWeekNumbers: this.showWeekNumbers,
       firstDayOfWeek: 1,
       bindingOptions: {
         class: 'me-calendar-show-weeks-numbers',

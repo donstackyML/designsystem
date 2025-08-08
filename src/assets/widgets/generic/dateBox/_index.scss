@@ -260,395 +260,829 @@
   }
 }
 
-///Overlay
-.me-date-box-overlay {
-  // Analog Clock Small
-  &.me-date-box-overlay-small {
-    .dx-box {
-      gap: 16px 0;
+//Overlay
+//date
+//dx-overlay-wrapper dx-popup-wrapper dx-dropdowneditor-overlay me-date-box-overlay me-date-box-overlay-small false dx-popup-cancel-visible dx-popup-done-visible dx-datebox-wrapper dx-datebox-wrapper-date dx-datebox-wrapper-calendar
+//datetime
+//dx-overlay-wrapper dx-popup-wrapper dx-dropdowneditor-overlay me-date-box-overlay me-date-box-overlay-small false dx-popup-cancel-visible dx-popup-done-visible dx-datebox-wrapper dx-datebox-wrapper-datetime dx-datebox-wrapper-calendar
+//showweek
+//dx-overlay-wrapper dx-popup-wrapper dx-dropdowneditor-overlay me-date-box-overlay me-date-box-overlay-small me-date-box-show-week-numbers dx-popup-cancel-visible dx-popup-done-visible dx-datebox-wrapper dx-datebox-wrapper-datetime dx-datebox-wrapper-calendar
+//analog clock
+//dx-overlay-wrapper dx-popup-wrapper dx-dropdowneditor-overlay me-date-box-overlay me-date-box-overlay-small me-date-box-show-week-numbers dx-popup-cancel-visible dx-popup-done-visible dx-datebox-wrapper dx-datebox-wrapper-datetime dx-datebox-wrapper-calendar
 
-      .dx-box-item {
-        .dx-box-item-content.dx-datebox-datetime-time-side {
-          max-width: 262px;
-          margin-left: 16px;
+//.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay.dx-datebox-wrapper.dx-datebox-wrapper-calendar {
+//  &.me-date-box-overlay {
+//    &.dx-datebox-wrapper-date {
+//      .dx-overlay-content.dx-popup-normal {
+//        .dx-popup-content {
+//          width: var(--Calendar-Wrapper-Width);
+//          height: var(--Calendar-Wrapper-Height);
+//        }
+//      }
+//    }
+//  }
+//}
 
-          .dx-timeview {
-            .dx-box-item:first-child {
-              width: 180px;
-              height: 180px;
+.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay.dx-datebox-wrapper.dx-datebox-wrapper-calendar {
+  &.me-date-box-overlay {
+    --Font-Size: 13px;
+    --Line-Height: 16px;
+    --Icon-Size: 20px;
+    --Calendar-Header-Font-Size: 12px;
+    --Calendar-Header-Line-Height: 16px;
+    --Toolbar-Height: 28px;
+    --Toolbar-Button-Height: 28px;
+    --Calendar-Wrapper-Width: 220px;
+    --Calendar-Wrapper-Width-With-Analog-Clock: 530px;
+    --Calendar-Wrapper-Height-With-Analog-Clock: 324px;
+    --Calendar-Wrapper-Height: 248px;
+    --Navigator-Wrapper-Height: 32px;
+    --Navigator-Wrapper-Padding: 4px;
+    --Week-Width: 28px;
+    --Navigator-Button-Size: 28px;
+    --Navigator-Button-Arrow-Width: 28px;
+    --Time-Inputs-Padding: -4px 12px 8px 12px;
+    --Number-Box-Spin-Wrapper-Size: 20px;
+    --Number-Box-Spin-Icon-Size: 20px;
+    --Toolbar-Padding-Size: 4px;
+    --Analog-Clock-Wrapper-Width: 262px;
+    --Toolbar-Button-Padding: 0 12px;
 
-              .dx-timeview-clock {
-                min-width: 180px;
-                min-height: 180px;
-                background-size: cover;
-              }
-            }
-          }
-        }
-      }
+    &-medium {
+      --Font-Size: 14px;
+      --Line-Height: 20px;
+      --Icon-Size: 20px;
+      --Calendar-Header-Font-Size: 12px;
+      --Calendar-Header-Line-Height: 16px;
+      --Toolbar-Height: 32px;
+      --Toolbar-Button-Height: 32px;
+      --Calendar-Wrapper-Width: 256px;
+      --Calendar-Wrapper-Width-With-Analog-Clock: 570px;
+      --Calendar-Wrapper-Height-With-Analog-Clock: 376px;
+      --Calendar-Wrapper-Height: 292px;
+      --Navigator-Wrapper-Height: 48px;
+      --Navigator-Wrapper-Padding: 8px;
+      --Week-Width: 32px;
+      --Navigator-Button-Size: 32px;
+      --Navigator-Button-Arrow-Width: 32px;
+      --Time-Inputs-Padding: 0 16px 8px 16px;
+      --Number-Box-Spin-Wrapper-Size: 30px;
+      --Number-Box-Spin-Icon-Size: 20px;
+      --Toolbar-Padding-Size: 8px;
+      --Analog-Clock-Wrapper-Width: 266px;
+      --Toolbar-Button-Padding: 0 12px;
     }
-  }
 
-  // Analog Clock Medium
-  &.me-date-box-overlay-medium {
-    .dx-box {
-      gap: 24px 0;
-
-      .dx-box-item {
-        .dx-box-item-content.dx-datebox-datetime-time-side {
-          max-width: 266px;
-          margin-left: 16px;
-
-          .dx-timeview {
-            .dx-box-item:first-child {
-              width: 200px;
-              height: 200px;
-
-              .dx-timeview-clock {
-                min-width: 200px;
-                min-height: 200px;
-                background-size: cover;
-              }
-            }
-          }
-        }
-      }
+    &-large {
+      --Font-Size: 16px;
+      --Line-Height: 20px;
+      --Icon-Size: 24px;
+      --Calendar-Header-Font-Size: 14px;
+      --Calendar-Header-Line-Height: 20px;
+      --Toolbar-Height: 40px;
+      --Toolbar-Button-Height: 40px;
+      --Calendar-Wrapper-Width: 312px;
+      --Calendar-Wrapper-Width-With-Analog-Clock: 676px;
+      --Calendar-Wrapper-Height-With-Analog-Clock: 444px;
+      --Calendar-Wrapper-Height: 348px;
+      --Navigator-Wrapper-Height: 56px;
+      --Navigator-Wrapper-Padding: 8px;
+      --Week-Width: 40px;
+      --Navigator-Button-Size: 40px;
+      --Navigator-Button-Arrow-Width: 40px;
+      --Time-Inputs-Padding: 0 16px 8px 16px;
+      --Number-Box-Spin-Wrapper-Size: 38px;
+      --Number-Box-Spin-Icon-Size: 24px;
+      --Toolbar-Padding-Size: 8px;
+      --Analog-Clock-Wrapper-Width: 316px;
+      --Toolbar-Button-Padding: 0 16px;
     }
-  }
 
-  // Analog Clock Large
-  &.me-date-box-overlay-large {
-    .dx-box {
-      gap: 24px 0;
-
-      .dx-box-item {
-        .dx-box-item-content.dx-datebox-datetime-time-side {
-          max-width: 316px;
-          margin-left: 16px;
-
-          .dx-timeview {
-            .dx-box-item:first-child {
-              width: 240px;
-              height: 240px;
-
-              .dx-timeview-clock {
-                min-width: 240px;
-                min-height: 240px;
-                background-size: cover;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &.dx-overlay-wrapper.dx-datebox-wrapper {
-    ///Calendar showWeeks
-    .dx-overlay-content {
-      background: none;
-      border: none;
-      box-shadow: none;
-      overflow: visible;
-
+    .dx-overlay-content.dx-popup-normal {
       .dx-popup-content {
-        margin: 4px 0;
-
-        .dx-box .dx-item .dx-item-content .dx-texteditor-container {
-          padding-right: 8px;
-        }
+        box-sizing: border-box;
 
         .dx-calendar.dx-calendar-view-month {
           .dx-calendar-navigator {
-            margin-left: 28px;
-            width: 240px;
+            height: var(--Navigator-Wrapper-Height);
+            padding-block: var(--Navigator-Wrapper-Padding);
+
+            .dx-button-has-icon {
+              width: var(--Navigator-Button-Size);
+              height: var(--Navigator-Button-Size);
+
+              .dx-button-content {
+                .dx-icon {
+                  width: var(--Icon-Size);
+                  height: var(--Icon-Size);
+
+                  &:before {
+                    font-size: var(--Icon-Size);
+                    line-height: var(--Icon-Size);
+                  }
+                }
+              }
+            }
+
+            .dx-button-has-text {
+              height: var(--Navigator-Button-Size);
+
+              .dx-button-content {
+                .dx-button-text {
+                  font-size: var(--Font-Size);
+                  line-height: var(--Line-Height);
+                }
+              }
+            }
+          }
+
+          .dx-calendar-body {
+            padding: 0;
+
+            .dx-calendar-views-wrapper {
+              .dx-widget {
+                width: initial;
+                right: initial;
+
+                table {
+                  thead tr th {
+                    font-size: var(--Calendar-Header-Font-Size);
+                    line-height: var(--Calendar-Header-Line-Height);
+                  }
+
+                  tbody tr td span {
+                    font-size: var(--Font-Size);
+                    line-height: var(--Line-Height);
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
 
-    ///Calendar only
-    &.dx-datebox-wrapper-date.dx-datebox-wrapper-calendar {
-      .dx-overlay-content {
+    // type 'Date'
+    &.dx-datebox-wrapper-date {
+      .dx-overlay-content.dx-popup-normal {
         .dx-popup-content {
+          width: var(--Calendar-Wrapper-Width);
+          height: var(--Calendar-Wrapper-Height) !important;
           padding: 0;
-          overflow: visible;
+          margin-top: 4px;
+
+          .dx-calendar.dx-calendar-view-month,
+          .dx-calendar-view-year,
+          .dx-calendar-view-decade,
+          .dx-calendar-view-century {
+            width: 100%;
+            min-width: 100%;
+            min-height: 100%;
+          }
+        }
+      }
+
+      &:has(.dx-toolbar) {
+        .dx-toolbar {
+          display: none;
+        }
+      }
+
+      &.me-date-box-show-week-numbers {
+        .dx-overlay-content.dx-popup-normal {
+          .dx-popup-content {
+            width: calc(var(--Calendar-Wrapper-Width) + var(--Week-Width));
+
+            .dx-calendar-view-month {
+              .dx-calendar-navigator {
+                margin-left: var(--Week-Width);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // type 'DateTime'
+    &.dx-datebox-wrapper-datetime:not(:has(.me-date-range-box-show-analog-clock)) {
+      .dx-overlay-content.dx-popup-normal {
+        .dx-popup-content {
+          width: var(--Calendar-Wrapper-Width);
+          height: calc(var(--Calendar-Wrapper-Height) + var(--Toolbar-Height) + 16px) !important;
+          padding: 0;
+          margin-top: 4px;
+
+          .dx-box-flex.dx-box.dx-widget {
+            height: 100%;
+
+            .dx-item.dx-box-item {
+              width: 100%;
+
+              .dx-item-content.dx-box-item-content {
+                & > div:has(.dx-timeview) {
+                  height: 100%;
+                  border: 1px solid var(--Dividers-Borders-Long);
+                  border-radius: 4px;
+                  box-shadow: var(--select-box-box-shadow);
+                  background-color: var(--Background-Accent-in-the-content);
+
+                  .dx-calendar.dx-calendar-view-month,
+                  .dx-calendar-view-year,
+                  .dx-calendar-view-decade,
+                  .dx-calendar-view-century {
+                    width: 100%;
+                    min-width: 100%;
+                    min-height: calc(100% - var(--Toolbar-Height) - var(--Toolbar-Padding-Size));
+                    border: none;
+                    box-shadow: none;
+                    margin-bottom: 0;
+                  }
+
+                  .dx-timeview.dx-widget.dx-datebox-datetime-time-side {
+                    margin: var(--Time-Inputs-Padding);
+
+                    .time-controls {
+                      display: flex;
+                      gap: 4px;
+                      align-items: center;
+
+                      .me-inputs {
+                        .dx-texteditor-container {
+                          display: flex;
+                          padding-right: 0;
+
+                          .dx-texteditor-input-container {
+                            width: 100%;
+                          }
+
+                          .dx-texteditor-buttons-container {
+                            width: auto;
+                            height: auto;
+
+                            .dx-numberbox-spin-container {
+                              position: initial;
+                              transform: none;
+
+                              .dx-numberbox-spin-button {
+                                width: var(--Number-Box-Spin-Wrapper-Size);
+
+                                .dx-numberbox-spin-up-icon::before,
+                                .dx-numberbox-spin-down-icon::before {
+                                  font-size: var(--Number-Box-Spin-Icon-Size);
+                                  width: var(--Number-Box-Spin-Icon-Size);
+
+                                  margin-left: initial;
+                                  transform: translateX(-50%);
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &:has(.dx-toolbar) {
+        .dx-toolbar {
+          display: none;
+        }
+      }
+
+      &.me-date-box-show-week-numbers {
+        .dx-overlay-content.dx-popup-normal {
+          .dx-popup-content {
+            width: calc(var(--Calendar-Wrapper-Width) + var(--Week-Width));
+
+            .dx-calendar-view-month {
+              .dx-calendar-navigator {
+                margin-left: var(--Week-Width);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // type 'DateTime' with Analog Clock
+    &.me-date-range-box-show-analog-clock.dx-datebox-wrapper-datetime {
+      .dx-overlay-content.dx-popup-normal {
+        .dx-popup-content {
+          width: var(--Calendar-Wrapper-Width-With-Analog-Clock);
+          height: calc(
+            var(--Calendar-Wrapper-Height-With-Analog-Clock) - var(--Toolbar-Height) - 16px
+          ) !important;
+
+          .dx-box-flex.dx-box.dx-widget {
+            .dx-item.dx-box-item {
+              width: fit-content;
+
+              .dx-item-content.dx-box-item-content {
+                .dx-calendar.dx-calendar-view-month.dx-widget,
+                .dx-calendar-view-year,
+                .dx-calendar-view-decade {
+                  width: var(--Calendar-Wrapper-Width);
+                  min-width: var(--Calendar-Wrapper-Width);
+                  height: var(--Calendar-Wrapper-Height);
+                  min-height: var(--Calendar-Wrapper-Height);
+                  margin-bottom: 0 !important;
+                }
+              }
+
+              &:has(.dx-datebox-datetime-time-side) {
+                height: fit-content;
+
+                .dx-datebox-datetime-time-side {
+                  margin: var(--Time-Inputs-Padding);
+                  margin-left: 16px;
+
+                  .time-controls {
+                    display: flex;
+                    gap: 4px;
+                    align-items: center;
+
+                    .me-inputs {
+                      .dx-texteditor-container {
+                        display: flex;
+                        padding-right: 0;
+
+                        .dx-texteditor-input-container {
+                          width: 100%;
+                        }
+
+                        .dx-texteditor-buttons-container {
+                          width: auto;
+                          height: auto;
+
+                          .dx-numberbox-spin-container {
+                            position: initial;
+                            transform: none;
+
+                            .dx-numberbox-spin-button {
+                              width: var(--Number-Box-Spin-Wrapper-Size);
+
+                              .dx-numberbox-spin-up-icon::before,
+                              .dx-numberbox-spin-down-icon::before {
+                                font-size: var(--Number-Box-Spin-Icon-Size);
+                                width: var(--Number-Box-Spin-Icon-Size);
+
+                                margin-left: initial;
+                                transform: translateX(-50%);
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              .dx-item-content.dx-box-item-content.dx-datebox-datetime-time-side {
+                width: var(--Analog-Clock-Wrapper-Width) !important;
+                margin-left: 16px;
+
+                & > div:has(.dx-timeview) {
+                  border: none;
+                  box-shadow: none;
+                }
+              }
+            }
+          }
         }
 
-        &:has(
-            .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done
-          ) {
-          .dx-popup-content {
-            padding: 16px;
-            background-color: var(--Background-Accent-in-the-content);
-            margin: 4px 0 0 0;
-            clip-path: inset(-10px -10px 1px -10px);
-            border-radius: 4px 4px 0 0;
+        &:has(.dx-toolbar) {
+          .dx-toolbar {
+            display: block;
+            padding-top: 2px !important;
+            border-top: 1px solid transparent !important;
 
-            .dx-calendar {
-              box-shadow: none;
+            .dx-toolbar-items-container {
+              height: var(--Toolbar-Height);
+
+              .dx-toolbar-button {
+                .dx-button {
+                  height: var(--Toolbar-Height);
+
+                  .dx-button-content {
+                    padding: var(--Toolbar-Button-Padding);
+                    align-items: center;
+
+                    .dx-button-text {
+                      font-size: var(--Font-Size);
+                      line-height: var(--Line-Height);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dx-overlay-wrapper.dx-popup-wrapper.dx-datebox-wrapper.dx-dropdowneditor-overlay.dx-datebox-wrapper-calendar:has(
+    .dx-overlay-content.dx-popup-normal
+  ) {
+  &.me-date-box-overlay {
+    &.me-date-range-box-show-analog-clock.dx-datebox-wrapper-datetime:has(
+        .dx-overlay-content.dx-popup-normal
+      ) {
+      // Analog Clock Small
+      &.me-date-box-overlay-small {
+        .dx-box {
+          gap: 16px 0;
+
+          .dx-box-item {
+            .dx-box-item-content.dx-datebox-datetime-time-side {
+              max-width: 262px;
+              margin-left: 16px;
+
+              .dx-timeview {
+                .dx-box-item:first-child {
+                  width: 180px;
+                  height: 180px;
+
+                  .dx-timeview-clock {
+                    min-width: 180px;
+                    min-height: 180px;
+                    background-size: cover;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Analog Clock Medium
+      &.me-date-box-overlay-medium {
+        .dx-box {
+          gap: 24px 0;
+
+          .dx-box-item {
+            .dx-box-item-content.dx-datebox-datetime-time-side {
+              max-width: 266px;
+              margin-left: 16px;
+
+              .dx-timeview {
+                .dx-box-item:first-child {
+                  width: 200px;
+                  height: 200px;
+
+                  .dx-timeview-clock {
+                    min-width: 200px;
+                    min-height: 200px;
+                    background-size: cover;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Analog Clock Large
+      &.me-date-box-overlay-large {
+        .dx-box {
+          gap: 24px 0;
+
+          .dx-box-item {
+            .dx-box-item-content.dx-datebox-datetime-time-side {
+              max-width: 316px;
+              margin-left: 16px;
+
+              .dx-timeview {
+                .dx-box-item:first-child {
+                  width: 240px;
+                  height: 240px;
+
+                  .dx-timeview-clock {
+                    min-width: 240px;
+                    min-height: 240px;
+                    background-size: cover;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      //
+      //    &.dx-overlay-wrapper.dx-datebox-wrapper {
+      //      ///Calendar showWeeks
+      //      .dx-overlay-content {
+      //        background: none;
+      //        border: none;
+      //        box-shadow: none;
+      //        overflow: visible;
+      //
+      //        .dx-popup-content {
+      //          margin: 4px 0;
+      //
+      //          .dx-box .dx-item .dx-item-content .dx-texteditor-container {
+      //            padding-right: 8px;
+      //          }
+      //
+      //          .dx-calendar.dx-calendar-view-month {
+      //            .dx-calendar-navigator {
+      //              margin-left: 28px;
+      //              width: 240px;
+      //            }
+      //          }
+      //        }
+      //      }
+      //
+      //      ///Calendar only
+      //      &.dx-datebox-wrapper-date.dx-datebox-wrapper-calendar {
+      //        .dx-overlay-content {
+      //          .dx-popup-content {
+      //            padding: 0;
+      //            overflow: visible;
+      //          }
+      //
+      //          &:has(
+      //            .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done
+      //          ) {
+      //            .dx-popup-content {
+      //              //padding: 16px;
+      //              background-color: var(--Background-Accent-in-the-content);
+      //              margin: 4px 0 0 0;
+      //              clip-path: inset(-10px -10px 1px -10px);
+      //              border-radius: 4px 4px 0 0;
+      //
+      //              .dx-calendar {
+      //                box-shadow: none;
+      //              }
+      //            }
+      //
+      //            .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done {
+      //              background-color: var(--Background-Accent-in-the-content);
+      //              margin-top: -4px;
+      //              padding: 4px 16px 16px 16px;
+      //              clip-path: inset(1px -10px -10px -10px);
+      //              box-shadow: 0px 2px 6px 0px #00000024;
+      //              border-radius: 0 0 4px 4px;
+      //            }
+      //          }
+      //        }
+      //      }
+      //
+      ///Calendar and Analog Clock
+      &.dx-datebox-wrapper-datetime.dx-datebox-wrapper-calendar {
+        .dx-overlay-content {
+          .dx-popup-content,
+          .dx-toolbar.dx-collection.dx-popup-bottom {
+            padding: 16px 16px 0 16px;
+            background-color: var(--Background-Accent-in-the-content);
+            border-radius: 4px;
+            border: 1px solid var(--Dividers-Borders-Long);
+            box-shadow: 0px 2px 6px 0px #00000024;
+
+            ///Digital Clock
+            .dx-item-content:has(.dx-timeview-field) {
+              .dx-timeview-field.dx-box-flex.dx-box.dx-collection {
+                justify-content: space-between !important;
+
+                .dx-timeview-time-separator {
+                  margin: 0 4.3px;
+                }
+
+                .dx-timeview-format12 {
+                  margin-left: 12px;
+                }
+
+                .dx-item .dx-item-content {
+                  .dx-texteditor {
+                    background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
+                    height: 32px;
+                    border: none;
+                    border-radius: 3px;
+
+                    &:focus-within {
+                      outline: 2px solid var(--Dividers-Borders-Focus);
+                    }
+
+                    .dx-texteditor-input {
+                      padding: 8px;
+                      font-size: 14px;
+                      line-height: 20px;
+                      font-weight: var(--me-regular-font-weight);
+                    }
+
+                    .dx-texteditor-buttons-container {
+                      width: 30px;
+                    }
+
+                    .dx-texteditor-buttons-container {
+                      .dx-numberbox-spin-down-icon,
+                      .dx-numberbox-spin-up-icon,
+                      .dx-dropdowneditor-icon {
+                        font-family: var(--me-icon-family);
+                      }
+
+                      .dx-numberbox-spin-down-icon,
+                      .dx-dropdowneditor-icon {
+                        &::before {
+                          content: var(--me-icon-chevron-down);
+                        }
+                      }
+
+                      .dx-numberbox-spin-down-icon {
+                        &::before {
+                          margin-top: -10px;
+                        }
+                      }
+
+                      .dx-numberbox-spin-up-icon {
+                        &::before {
+                          content: var(--me-icon-chevron-up);
+                          margin-top: -7px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .dx-box-flex.dx-box.dx-widget.dx-collection {
+              .dx-item.dx-box-item {
+                ///Calendar
+                .dx-item-content.dx-box-item-content {
+                  .dx-calendar {
+                    box-shadow: none;
+                    margin-bottom: 24px;
+                  }
+                }
+
+                ///Analog Clock
+                .dx-item-content.dx-box-item-content.dx-datebox-datetime-time-side {
+                  .dx-timeview {
+                    margin: 0;
+
+                    .dx-box-flex.dx-box.dx-widget.dx-collection {
+                      align-items: center !important;
+
+                      .dx-item.dx-box-item {
+                        ///Analog Clock
+
+                        .dx-item-content.dx-timeview-clock {
+                          margin: 0;
+                          background-image: $me-watch;
+
+                          &:before {
+                            content: '';
+                            height: 12px;
+                            width: 12px;
+                            position: absolute;
+                            background: var(--Controls-Content-In-Controls-Accent-Default);
+                            border-radius: 50%;
+                          }
+
+                          &:after {
+                            content: '';
+                            height: 4px;
+                            width: 4px;
+                            position: absolute;
+                            background: var(--Background-Accent-in-the-content);
+                            border-radius: 50%;
+                          }
+
+                          &::before,
+                          &::after {
+                            transform: translate(-50%, -50%);
+                            left: 50%;
+                            top: 50%;
+                          }
+
+                          .dx-timeview-hourarrow,
+                          .dx-timeview-minutearrow {
+                            background-image: none;
+                            align-content: end;
+                            text-align: center;
+                            text-align: -webkit-center;
+                            margin-left: -15px;
+
+                            &:before {
+                              background: var(--Controls-Content-In-Controls-Accent-Default);
+                              display: flex;
+                              border-radius: 8px;
+                            }
+                          }
+
+                          .dx-timeview-hourarrow {
+                            &:before {
+                              content: '';
+                              height: 51px;
+                              width: 6px;
+                            }
+                          }
+
+                          .dx-timeview-minutearrow {
+                            &:before {
+                              content: '';
+                              height: 58px;
+                              width: 4px;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
 
+          ///with buttons
+          &:has(
+              .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done
+            ) {
+            .dx-popup-content {
+              margin: 4px 0 0 0;
+              clip-path: inset(-10px -10px 1px -10px);
+              border-radius: 4px 4px 0 0;
+            }
+
+            .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done {
+              margin-top: -4px;
+              padding: 4px 16px 16px 16px;
+              clip-path: inset(1px -10px -10px -10px);
+              border-radius: 0 0 4px 4px;
+            }
+          }
+        }
+      }
+
+      ///Time only
+      &.dx-datebox-wrapper-time {
+        .dx-overlay-content:has(
+            .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done
+          ) {
+          .dx-popup-content {
+            margin: 4px 0 0 0;
+            clip-path: inset(-10px -10px 1px -10px);
+            border-radius: 3px 3px 0 0;
+          }
+
           .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done {
-            background-color: var(--Background-Accent-in-the-content);
-            margin-top: -4px;
-            padding: 4px 16px 16px 16px;
+            margin-top: -2px;
+            padding: 16px;
             clip-path: inset(1px -10px -10px -10px);
             box-shadow: 0px 2px 6px 0px #00000024;
-            border-radius: 0 0 4px 4px;
-          }
-        }
-      }
-    }
-
-    ///Calendar and Analog Clock
-    &.dx-datebox-wrapper-datetime.dx-datebox-wrapper-calendar {
-      .dx-overlay-content {
-        .dx-popup-content,
-        .dx-toolbar.dx-collection.dx-popup-bottom {
-          padding: 16px 16px 0 16px;
-          background-color: var(--Background-Accent-in-the-content);
-          border-radius: 4px;
-          border: 1px solid var(--Dividers-Borders-Long);
-          box-shadow: 0px 2px 6px 0px #00000024;
-
-          ///Digital Clock
-          .dx-item-content:has(.dx-timeview-field) {
-            .dx-timeview-field.dx-box-flex.dx-box.dx-collection {
-              justify-content: space-between !important;
-
-              .dx-timeview-time-separator {
-                margin: 0 4.3px;
-              }
-
-              .dx-timeview-format12 {
-                margin-left: 12px;
-              }
-
-              .dx-item .dx-item-content {
-                .dx-texteditor {
-                  background-color: var(--Controls-BG-Secondary-Elements-BG-Default);
-                  height: 32px;
-                  border: none;
-                  border-radius: 3px;
-
-                  &:focus-within {
-                    outline: 2px solid var(--Dividers-Borders-Focus);
-                  }
-
-                  .dx-texteditor-input {
-                    padding: 8px;
-                    font-size: 14px;
-                    line-height: 20px;
-                    font-weight: var(--me-regular-font-weight);
-                  }
-
-                  .dx-texteditor-buttons-container {
-                    width: 30px;
-                  }
-
-                  .dx-texteditor-buttons-container {
-                    .dx-numberbox-spin-down-icon,
-                    .dx-numberbox-spin-up-icon,
-                    .dx-dropdowneditor-icon {
-                      font-family: var(--me-icon-family);
-                    }
-
-                    .dx-numberbox-spin-down-icon,
-                    .dx-dropdowneditor-icon {
-                      &::before {
-                        content: var(--me-icon-chevron-down);
-                      }
-                    }
-
-                    .dx-numberbox-spin-down-icon {
-                      &::before {
-                        margin-top: -10px;
-                      }
-                    }
-
-                    .dx-numberbox-spin-up-icon {
-                      &::before {
-                        content: var(--me-icon-chevron-up);
-                        margin-top: -7px;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          .dx-box-flex.dx-box.dx-widget.dx-collection {
-            .dx-item.dx-box-item {
-              ///Calendar
-              .dx-item-content.dx-box-item-content {
-                .dx-calendar {
-                  box-shadow: none;
-                  margin-bottom: 24px;
-                }
-              }
-
-              ///Analog Clock
-              .dx-item-content.dx-box-item-content.dx-datebox-datetime-time-side {
-                .dx-timeview {
-                  margin: 0;
-
-                  .dx-box-flex.dx-box.dx-widget.dx-collection {
-                    align-items: center !important;
-
-                    .dx-item.dx-box-item {
-                      ///Analog Clock
-
-                      .dx-item-content.dx-timeview-clock {
-                        margin: 0;
-                        background-image: $me-watch;
-
-                        &:before {
-                          content: '';
-                          height: 12px;
-                          width: 12px;
-                          position: absolute;
-                          background: var(--Controls-Content-In-Controls-Accent-Default);
-                          border-radius: 50%;
-                        }
-
-                        &:after {
-                          content: '';
-                          height: 4px;
-                          width: 4px;
-                          position: absolute;
-                          background: var(--Background-Accent-in-the-content);
-                          border-radius: 50%;
-                        }
-
-                        &::before,
-                        &::after {
-                          transform: translate(-50%, -50%);
-                          left: 50%;
-                          top: 50%;
-                        }
-
-                        .dx-timeview-hourarrow,
-                        .dx-timeview-minutearrow {
-                          background-image: none;
-                          align-content: end;
-                          text-align: center;
-                          text-align: -webkit-center;
-                          margin-left: -15px;
-
-                          &:before {
-                            background: var(--Controls-Content-In-Controls-Accent-Default);
-                            display: flex;
-                            border-radius: 8px;
-                          }
-                        }
-
-                        .dx-timeview-hourarrow {
-                          &:before {
-                            content: '';
-                            height: 51px;
-                            width: 6px;
-                          }
-                        }
-
-                        .dx-timeview-minutearrow {
-                          &:before {
-                            content: '';
-                            height: 58px;
-                            width: 4px;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
+            border-radius: 0 0 3px 3px;
+            border: 1px solid var(--Dividers-Borders-Long);
+            border-top: none;
           }
         }
 
-        ///with buttons
-        &:has(
-            .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done
-          ) {
-          .dx-popup-content {
-            margin: 4px 0 0 0;
-            clip-path: inset(-10px -10px 1px -10px);
-            border-radius: 4px 4px 0 0;
-          }
-
-          .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done {
-            margin-top: -4px;
-            padding: 4px 16px 16px 16px;
-            clip-path: inset(1px -10px -10px -10px);
-            border-radius: 0 0 4px 4px;
-          }
-        }
-      }
-    }
-
-    ///Time only
-    &.dx-datebox-wrapper-time {
-      .dx-overlay-content:has(
-          .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done
-        ) {
         .dx-popup-content {
-          margin: 4px 0 0 0;
-          clip-path: inset(-10px -10px 1px -10px);
-          border-radius: 3px 3px 0 0;
-        }
-
-        .dx-toolbar.dx-widget.dx-visibility-change-handler.dx-collection.dx-popup-bottom.dx-popup-cancel.dx-popup-done {
-          margin-top: -2px;
-          padding: 16px;
-          clip-path: inset(1px -10px -10px -10px);
+          background-color: var(--Background-Accent-in-the-content);
           box-shadow: 0px 2px 6px 0px #00000024;
-          border-radius: 0 0 3px 3px;
+          border-radius: 3px;
           border: 1px solid var(--Dividers-Borders-Long);
-          border-top: none;
-        }
-      }
 
-      .dx-popup-content {
-        background-color: var(--Background-Accent-in-the-content);
-        box-shadow: 0px 2px 6px 0px #00000024;
-        border-radius: 3px;
-        border: 1px solid var(--Dividers-Borders-Long);
+          .dx-list-items {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-block: 4px;
 
-        .dx-list-items {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          padding-block: 4px;
-
-          .dx-item-content {
-            font-size: 13px;
-            gap: 0;
-            line-height: 16px;
-            font-weight: var(--me-regular-font-weight);
+            .dx-item-content {
+              font-size: 13px;
+              gap: 0;
+              line-height: 16px;
+              font-weight: var(--me-regular-font-weight);
+            }
           }
         }
       }
     }
-  }
 
-  &.dx-datebox-wrapper-calendar.dx-datebox-wrapper-datetime .dx-timeview {
-    margin: 0;
-
-    .dx-timeview-time-separator {
+    &.dx-datebox-wrapper-calendar.dx-datebox-wrapper-datetime .dx-timeview {
       margin: 0;
+
+      .dx-timeview-time-separator {
+        margin: 0;
+      }
     }
-  }
 
-  .dx-dropdownlist-popup-wrapper.dx-popup-wrapper .dx-overlay-content {
-    border-radius: 4px;
-  }
+    .dx-dropdownlist-popup-wrapper.dx-popup-wrapper .dx-overlay-content {
+      border-radius: 4px;
+    }
 
-  &.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay
-    .dx-overlay-content.dx-popup-normal {
-    box-shadow: none;
+    &.dx-overlay-wrapper.dx-popup-wrapper.dx-dropdowneditor-overlay
+      .dx-overlay-content.dx-popup-normal {
+      box-shadow: none;
+    }
   }
 }
 
