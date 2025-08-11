@@ -8,14 +8,12 @@ import { MeSize } from '../../types/types';
     '[class.me-accordion-small]': 'isSizeSmall',
     '[class.me-accordion-medium]': 'isSizeMedium',
     '[class.me-accordion-large]': 'isSizeLarge',
-    '[class.me-accordion-without-borders]': '!withBorders',
     '[class.customClass]': 'customClass',
   },
 })
 export class MeAccordionDirective {
   @Input() size: MeSize = 'medium';
   @Input() customClass: string = '';
-  @Input() withBorders = true;
 
   private focusService: ComponentFocusService;
   constructor(elementRef: ElementRef, renderer: Renderer2) {

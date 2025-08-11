@@ -19,11 +19,7 @@ $generic-accordion-disabled-opacity: 0.5;
 }
 
 .dx-accordion-item {
-  border: 1px solid transparent;
-
-  &:last-child {
-    border-bottom: 1px solid $accordion-item-border-color;
-  }
+  border-bottom: 1px solid $accordion-item-border-color;
 
   &.dx-item-selected {
     & > .dx-accordion-item-title {
@@ -74,10 +70,6 @@ $generic-accordion-disabled-opacity: 0.5;
   border-bottom-color: $accordion-item-border-color;
   border-top-color: $accordion-item-border-color;
 
-  &:first-child {
-    border-top-color: transparent;
-  }
-
   &.dx-state-active {
     & > .dx-accordion-item-title {
       background-color: $accordion-title-active-bg;
@@ -91,13 +83,6 @@ $generic-accordion-disabled-opacity: 0.5;
       content: '\f014';
     }
   }
-}
-
-.dx-accordion-item-closed:has(+ .dx-accordion-item-opened) {
-  border-bottom-color: transparent;
-}
-.dx-accordion-item-closed {
-  border-bottom: 1px solid $accordion-item-border-color;
 }
 
 .dx-accordion-item-title {
@@ -180,13 +165,6 @@ $generic-accordion-disabled-opacity: 0.5;
 .dx-accordion-item-title .custom-header-description {
   font-family: var(--accordion-font-family);
   color: var(--accordion-description-color);
-}
-
-.me-accordion-without-borders {
-  .dx-accordion-item {
-    border-top: none;
-    border-bottom: none;
-  }
 }
 
 .me-accordion-small {
@@ -384,7 +362,6 @@ $generic-accordion-disabled-opacity: 0.5;
 
 .me-keyboard-focused .dx-state-focused {
   &.dx-accordion-item {
-    border: 1px solid $accordion-item-focused-border-color;
     border-radius: 3px;
     box-shadow: 0 0 0 1px $accordion-item-focused-border-color;
   }
