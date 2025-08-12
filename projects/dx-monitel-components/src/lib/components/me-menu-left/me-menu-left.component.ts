@@ -208,7 +208,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnDestroy(): void {
-    this.contextMenuListener?.()
+    this.contextMenuListener?.();
   }
 
   private stateUpdate(): void {

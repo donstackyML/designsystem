@@ -7,10 +7,10 @@ import {
   Renderer2,
   ViewContainerRef,
 } from '@angular/core';
+import { MeIconComponent } from '@monitel/me-icons-registry';
 import { ComponentFocusService } from '../../service/component-focus.service';
 import { ListItemDividerService } from '../../service/list-item-divider.service';
 import { MeSize } from '../../types/types';
-import { MeIconComponent } from '@monitel/me-icons-registry';
 
 @Directive({
   selector: '[meContextMenu]',
@@ -103,15 +103,14 @@ export class MeContextMenuDirective {
         '.me-list-item-divider'
       );
 
-      separators.forEach((separator: Element) => {
-        const nextSibling = separator.nextElementSibling;
-        if (
-          nextSibling &&
-          nextSibling.classList.contains('dx-menu-separator')
-        ) {
-          separator.parentElement?.removeChild(separator);
-        }
-      });
+      const separatorAbove =
+        closestMenuItemWrapperElement?.previousElementSibling;
+      if (
+        separatorAbove &&
+        separatorAbove.classList.contains('dx-menu-separator')
+      ) {
+        separatorAbove.remove();
+      }
     }
   }
 }

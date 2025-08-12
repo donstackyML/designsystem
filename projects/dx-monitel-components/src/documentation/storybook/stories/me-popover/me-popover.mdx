@@ -93,9 +93,13 @@ import * as popoverStories from "./me-popover.stories";
 
 #### Простой текст контента
 
-Если не требуется сложная разметка, можно просто передать текст через свойство `content`.
+Если не требуется сложная разметка, можно просто передать текст через шаблон с именем 'content':
 
-<Source code={`<dx-popover mePopover content="Содержимое поповера"></dx-popover>`} language="html" dark/>
+<Source code={`
+<dx-popover mePopover>
+  <div *dxTemplate="let data of 'content'">Содержимое поповера</div>
+</dx-popover>
+`} language="html" dark/>
 
 #### Кастомизация заголовка с использованием шаблона
 
