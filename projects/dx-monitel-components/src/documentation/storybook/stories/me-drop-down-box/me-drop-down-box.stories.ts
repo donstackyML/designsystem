@@ -169,7 +169,7 @@ export default {
             dataStructure="plain"
             keyExpr="id"
             parentIdExpr="categoryId"
-            selectionMode="single"
+            selectionMode="multiple"
             showCheckBoxesMode="normal"
             [selectNodesRecursive]="false"
             displayExpr="name"
@@ -199,7 +199,7 @@ export default {
             meDataGrid
             [dataSource]="dataSource"
             [columns]="['id', 'name']"
-            [selection]="{ mode: 'single' }"
+            [selection]="{ mode: 'multiple' }"
             [hoverStateEnabled]="true"
             [filterRow]="{ visible: true }"
             [disabled]="disabled"
