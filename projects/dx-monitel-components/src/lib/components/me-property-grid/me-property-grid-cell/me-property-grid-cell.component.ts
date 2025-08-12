@@ -9,6 +9,7 @@ import {
   HostBinding,
   Input,
   Output,
+  TemplateRef,
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -47,6 +48,10 @@ export class MePropertyGridCellComponent implements AfterContentInit {
 
   @Input() showAdditionalProperties = false;
 
+  @Input() displayMode: 'default' | 'additionalOnly' = 'default';
+
+  @Input() isOpen?: boolean;
+
   @Input() justifyRightCell: 'left' | 'center' | 'right' = 'left';
 
   @Input() justifyLeftCell: 'left' | 'center' | 'right' = 'left';
@@ -57,6 +62,8 @@ export class MePropertyGridCellComponent implements AfterContentInit {
 
   @Output() openMoreProperties: EventEmitter<void> = new EventEmitter<void>();
 
+  @Output() toggleExpanded = new EventEmitter<void>();
+
   @HostBinding('class.property-grid-cell-host') hostClass = true;
 
   @ContentChild('leftCell', { static: false }) projectedLeftCell!: ElementRef;
@@ -65,16 +72,11 @@ export class MePropertyGridCellComponent implements AfterContentInit {
 
   @ContentChild('fullCell', { static: false }) fullCell!: ElementRef;
 
-  @ContentChild('additionalProperties', { static: false })
-  additionalProperties!: ElementRef;
-
   hasFullCellContent = false;
 
   hasProjectedLeftCell = false;
 
   hasProjectedRightCell = false;
-
-  hasAdditionalProperties = false;
 
   constructor() {
     this.meIconRegistry.registerIcons([
@@ -88,7 +90,11 @@ export class MePropertyGridCellComponent implements AfterContentInit {
     this.hasFullCellContent = !!this.fullCell;
     this.hasProjectedLeftCell = !!this.projectedLeftCell;
     this.hasProjectedRightCell = !!this.projectedRightCell;
-    this.hasAdditionalProperties = !!this.additionalProperties;
+  }
+
+  @HostBinding('class.display-additional-only')
+  get isAdditionalOnlyMode(): boolean {
+    return this.displayMode === 'additionalOnly';
   }
 
   copyValue(value: string | number | boolean | null) {
@@ -100,8 +106,16 @@ export class MePropertyGridCellComponent implements AfterContentInit {
   onClickOpenMoreProperties() {
     this.openMoreProperties?.emit();
 
-    if (this.hasAdditionalProperties) {
+    if (this.isOpen !== undefined) {
+      this.toggleExpanded.emit();
+    } else {
       this.additionalPropertiesOpened = !this.additionalPropertiesOpened;
     }
+  }
+
+  get isExpanded(): boolean {
+    return this.isOpen !== undefined
+      ? this.isOpen
+      : this.additionalPropertiesOpened;
   }
 }
