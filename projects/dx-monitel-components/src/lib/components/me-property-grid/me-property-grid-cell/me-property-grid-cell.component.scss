@@ -2,18 +2,43 @@
   --default-right-cell-width: 60%;
 
   position: relative;
+
   display: block;
-  border: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
-  background-color: var(--Background-Accent-in-the-content);
+
   width: 100%;
+  border: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
+
+  background-color: var(--Background-Accent-in-the-content);
 
   &:has(.full-cell) {
     z-index: 2;
   }
+}
 
-  &:has(.property-grid-cell-additional-properties) {
-    .property-grid-cell {
-      border-bottom: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
+:host(.display-additional-only) {
+  background-color: transparent;
+
+  .property-grid-cell-additional-properties {
+    position: relative;
+
+    padding: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1.45rem;
+    border-bottom: none !important;
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      left: -0.0625rem;
+
+      width: calc(1.5rem);
+      height: calc(1rem + 0.0625rem + calc(2.375rem / 2));
+      border-bottom: 1px solid var(--Dividers-Borders-Long);
+      border-left: 1px solid var(--Dividers-Borders-Long);
+      border-bottom-left-radius: 0.5rem;
     }
   }
 }
@@ -37,9 +62,7 @@
     &-left {
       position: relative;
       overflow: hidden;
-      width: calc(
-        100% - var(--current-right-cell-width, var(--default-right-cell-width))
-      );
+      width: calc(100% - var(--current-right-cell-width, var(--default-right-cell-width)));
       min-height: 1.875rem;
     }
 
@@ -56,7 +79,7 @@
     width: 100%;
     padding: 0.75rem;
 
-    ::ng-deep > * {
+    ::ng-deep>* {
       flex: 1 1 auto;
       width: 100%;
     }
@@ -100,9 +123,16 @@
         &.justify-cell-right {
           align-items: flex-end;
         }
+
         &.justify-cell-left {
           align-items: flex-start;
         }
+      }
+    }
+
+    .property-grid-cell-part-content:not(.property-grid-custom-value-content) {
+      &:has(.cell-actions):not(:has(.cell-text:not(:empty))) {
+        padding: var(--4, 0.25rem);
       }
     }
   }
@@ -141,6 +171,12 @@
       .property-grid-value {
         width: 100%;
       }
+    }
+  }
+
+  &:has(> .property-grid-cell-additional-properties) {
+    >.property-grid-cell {
+      border-bottom: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
     }
   }
 }
@@ -188,10 +224,8 @@
   background-color: var(--Dividers-Borders-Short);
 }
 
-.cell-text {
-  &:empty {
-    display: none;
-  }
+.hidden {
+  display: none;
 }
 
 .align-cell {

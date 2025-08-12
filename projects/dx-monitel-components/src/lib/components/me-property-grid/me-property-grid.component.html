@@ -7,21 +7,22 @@
   </ng-container>
 </me-property-grid-header>
 
-<ng-container *ngIf="isOpen || closeMode === 'hide'">
-  <ul #propertyGridContent class="property-grid-content" [class.is-hidden]="closeMode === 'hide' && !isOpen" [class.is-visible]="closeMode === 'hide' && isOpen">
-    <dx-scroll-view meScrollView width="100%" height="100%" class="property-grid-scroll-view">
-      <div
-        *ngIf="resizable"
-        class="resize-handler"
-        [style.left]="'calc(100% - ' + rightCellWidth + ')'"
-        (mousedown)="onResizeHandlerMouseDown($event)"
-        (mouseenter)="onResizeHandlerMouseEnter()"
-        (mouseleave)="onResizeHandlerMouseLeave()"
-      ></div>
-      <ng-container *ngFor="let item of dataSource; trackBy: trackRow">
-        <me-property-grid-cell [name]="item.name" [value]="item.value" [showRequiredMark]="item.showRequiredMark" [readOnly]="item.readOnly"></me-property-grid-cell>
-      </ng-container>
-      <ng-content> </ng-content>
-    </dx-scroll-view>
-  </ul>
-</ng-container>
+<ul
+  #propertyGridContent
+  class="property-grid-content"
+  [class.is-hidden]="closeMode === 'hide' && !isOpen"
+  [class.is-visible]="closeMode === 'hide' && isOpen"
+>
+  <!-- <dx-scroll-view meScrollView width="100%" height="100%" class="property-grid-scroll-view"> -->
+  <div #resizeHandler class="resize-handler"></div>
+  <ng-container *ngFor="let item of dataSource; trackBy: trackRow">
+    <me-property-grid-cell
+      [name]="item.name"
+      [value]="item.value"
+      [showRequiredMark]="item.showRequiredMark"
+      [readOnly]="item.readOnly"
+    ></me-property-grid-cell>
+  </ng-container>
+  <ng-content> </ng-content>
+  <!-- </dx-scroll-view> -->
+</ul>
