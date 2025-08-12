@@ -44,7 +44,7 @@ export type MeEditorComponents =
   | DxTextBoxComponent;
 export type MeTextEditorComponents = DxTextBoxComponent | DxSelectBoxComponent;
 export type MeOverlayComponents = DxPopoverComponent | DxPopupComponent;
-export type MePosition = 'left' | 'right';
+export type MePosition = 'top' | 'right' | 'bottom' | 'left';
 export interface MeTextBoxComponent {
   size: MeSize;
 }

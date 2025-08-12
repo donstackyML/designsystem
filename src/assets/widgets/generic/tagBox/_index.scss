@@ -197,7 +197,6 @@
       }
 
       .dx-texteditor-input-container.dx-tag-container {
-        padding-inline: var(--padding-inline);
         align-content: center;
         gap: 4px;
 
@@ -342,7 +341,11 @@
 
     .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
       .dx-texteditor-container {
+        padding-inline: 3px;
+
         .dx-texteditor-input-container.dx-tag-container {
+          padding-right: 0;
+
           .dx-tag {
             .dx-tag-content {
               padding: 8px 4px;
@@ -395,6 +398,14 @@
         padding: 2px 8px;
       }
     }
+
+    &.dx-show-clear-button {
+      .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
+        .dx-texteditor-container {
+          padding-inline: 3px 23px;
+        }
+      }
+    }
   }
 
   //medium
@@ -423,7 +434,11 @@
 
     .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
       .dx-texteditor-container {
+        padding-inline: 4px;
+
         .dx-texteditor-input-container.dx-tag-container {
+          padding-right: 0;
+
           .dx-tag {
             .dx-tag-content {
               padding: 8px 4px;
@@ -476,6 +491,14 @@
         padding: 4px 8px;
       }
     }
+
+    &.dx-show-clear-button {
+      .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
+        .dx-texteditor-container {
+          padding-inline: 4px 24px;
+        }
+      }
+    }
   }
 
   //large
@@ -504,7 +527,11 @@
 
     .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
       .dx-texteditor-container {
+        padding-inline: 4px;
+
         .dx-texteditor-input-container.dx-tag-container {
+          padding-right: 0;
+
           .dx-tag {
             .dx-tag-content {
               padding: 8px 8px;
@@ -558,6 +585,14 @@
         font-size: 14px;
         line-height: 20px;
         border-radius: 4px;
+      }
+    }
+
+    &.dx-show-clear-button {
+      .dx-dropdowneditor-input-wrapper.dx-selectbox-container {
+        .dx-texteditor-container {
+          padding-inline: 4px 28px;
+        }
       }
     }
   }
@@ -706,8 +741,19 @@
       .dx-scrollview-content {
         .dx-list-select-all {
           margin: 0;
-          margin-bottom: 4px;
           border: none;
+
+          &:hover {
+            background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+          }
+
+          &:active {
+            background-color: var(--Controls-Informative-BG-Selected-Element);
+          }
+
+          &:has(.dx-checkbox-checked) {
+            background-color: var(--Controls-Informative-BG-Selected-Element);
+          }
         }
 
         .dx-item.dx-list-item:has(.dx-list-select-checkbox-container) {

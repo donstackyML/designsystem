@@ -36,9 +36,7 @@ import { MeButtonDirective, MePopoverDirective } from '../../../../public-api';
         [enableBodyScroll]="enableBodyScroll"
         [animation]="animation"
       >
-        <div *dxTemplate="let data of 'content'">
-          {{ content }}
-        </div>
+        <div *dxTemplate="let data of 'content'">Содержимое поповера</div>
 
         <ng-container *ngIf="titleTemplate">
           <div *dxTemplate="let data of 'title'">
@@ -152,7 +150,6 @@ class PopoverDemoComponent {
   @Input() titleTemplate?: string;
   @Input() shading: boolean = false;
   @Input() shadingColor: string = '';
-  @Input() content: string = 'Содержимое поповера';
   @Input() showCloseButton: boolean = false;
   @Input() hideOnOutsideClick: boolean = true;
   @Input() enableBodyScroll: boolean = true;
@@ -379,7 +376,6 @@ export default {
     },
   },
   args: {
-    content: 'Содержимое поповера',
     title: '',
     size: 'medium',
     colorMode: 'dark',
@@ -470,7 +466,5 @@ export const WithCustomTitleContentAndToolbarItems: Story = {
     showEvent: 'click',
     hideEvent: 'click',
     showCloseButton: true,
-    content:
-      'Трансформатор - это устройство, способное изменять напряжение переменного тока.',
   },
 };
