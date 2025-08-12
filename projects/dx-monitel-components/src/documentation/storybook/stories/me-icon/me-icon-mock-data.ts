@@ -1,8 +1,9 @@
 import * as icons from '@monitel/me-icons';
 
-const allIcons = Object.values(icons)
-  .filter(icon => typeof icon === 'object' && 'name' in icon && 'data' in icon) as Array<{data:string, name: string}>;
-export const meIcons = allIcons.map(icon => icon.name) as Array<any>;
+const allIcons = Object.values(icons).filter(
+  (icon) => typeof icon === 'object' && 'name' in icon && 'data' in icon
+) as Array<{ data: string; name: string }>;
+export const meIcons = allIcons.map((icon) => icon.name) as Array<any>;
 
 export const iconOptions = [
   'home',

@@ -102,6 +102,15 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    tooltipId: {
+      control: 'text',
+      description:
+        'Уникальный ID элемента, к которому будет привязан тултип (атрибут target)',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'tooltipId' },
+      },
+    },
   },
   args: {
     position: { my: 'top center', at: 'bottom center', collision: 'fit flip' },
@@ -121,6 +130,7 @@ export default {
         to: 0,
       },
     },
+    tooltipId: 'tooltipId',
     shading: false,
     showEvent: 'mouseenter',
     hideEvent: 'mouseleave',
@@ -132,12 +142,12 @@ export default {
     template: `
       <div class="container">
         <dx-button
-          id="tooltipId"
+          [id]="tooltipId"
         >
-          Наведи, чтобы показался тултип
+          Наведите, чтобы показался тултип
         </dx-button>
         <dx-tooltip
-          target="#tooltipId"
+          [target]="'#' + tooltipId"
           ${argsToTemplate(args)}
         >
           <div *dxTemplate="let data = data; of: 'content'">{{ demoTemplateText }}</div>
@@ -150,8 +160,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100dvh;
-        width: 100dvw;
+        height: 100%;
         padding: 20px;
       }
       `,
@@ -212,6 +221,7 @@ export const WithAnimation: Story = {
         duration: 300,
       },
     },
+    tooltipId: 'tooltipIdWithAnimation',
   },
 };
 
@@ -221,18 +231,19 @@ export const WithImageContent: Story = {
     width: undefined,
     maxWidth: 390,
     tooltipClass: 'me-custom-tooltip-wrapper',
+    tooltipId: 'tooltipIdWithCustomImage',
   },
   render: (args) => ({
     props: args,
     template: `
       <div class="container">
         <dx-button
-          id="tooltipId"
+          [id]="tooltipId"
         >
-          Наведи, чтобы показался тултип
+          Наведите, чтобы показался тултип
         </dx-button>
         <dx-tooltip
-          target="#tooltipId"
+          [target]="'#' + tooltipId"
           ${argsToTemplate(args)}
         >
           <div *dxTemplate="let data = data; of: 'content'">
@@ -267,8 +278,7 @@ export const WithImageContent: Story = {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100dvh;
-        width: 100dvw;
+        height: 100%;
         padding: 20px;
       }
       `,
@@ -285,5 +295,6 @@ export const WithMaxDimensions: Story = {
     maxHeight: 150,
     demoTemplateText:
       'Длинное название пункта, которое занимает несколько строк',
+    tooltipId: 'tooltipIdWithMaxDimensions',
   },
 };

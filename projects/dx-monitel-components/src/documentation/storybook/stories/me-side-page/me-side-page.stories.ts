@@ -236,6 +236,110 @@ class MeSidePageDemoComponent {
   }
 }
 
+@Component({
+  selector: 'me-side-page-horizontal-demo',
+  template: `
+    <me-sidepage
+      #meSidePage
+      [(isSidePageOpen)]="isSidePageOpen"
+      [position]="position"
+      [width]="width"
+      [hideOnOutsideClick]="hideOnOutsideClick"
+      [shading]="shading"
+      [zIndex]="zIndex"
+      [zIndexOverlay]="zIndexOverlay"
+      [minWidth]="minWidth"
+      [maxWidth]="maxWidth"
+      (isSidePageOpenChange)="isSidePageOpenChange.emit($event)"
+      (widthChange)="widthChange.emit($event)"
+    >
+      <div sidepage-header class="me-sidepage-header">
+        <me-icon name="public_x24"></me-icon>
+        <div class="me-sidepage-title">
+          <span class="me-title-header1">Заголовок</span>
+          <span class="me-text-body2">Описание</span>
+        </div>
+        <dx-button
+          meButton
+          stylingMode="text"
+          iconOnly="close"
+          (onClick)="toggleSidePage()"
+        ></dx-button>
+      </div>
+
+      <div sidepage-footer class="me-sidepage-footer">
+        <dx-button
+          meButton
+          text="Принять"
+          stylingMode="contained"
+          buttonType="default"
+        ></dx-button>
+        <dx-button
+          meButton
+          text="Отменить"
+          stylingMode="contained"
+          (onClick)="toggleSidePage()"
+        ></dx-button>
+      </div>
+    </me-sidepage>
+
+    <main class="main-content">
+      <dx-button
+        meButton
+        text="Открыть настройки"
+        stylingMode="contained"
+        (onClick)="toggleSidePage()"
+      ></dx-button>
+      <div class="big-content">Какой-то контент на странице</div>
+    </main>
+  `,
+  styles: [
+    `
+      .me-sidepage-footer {
+        justify-content: flex-end;
+      }
+
+      .main-content {
+        height: 100dvh;
+
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .dx-widget.me-button {
+          align-self: flex-start;
+        }
+      }
+    `,
+  ],
+})
+class MeSidePageHorizontalDemoComponent {
+  @ViewChild('meSidePage', { static: false }) meSidePage!: MeSidePageComponent;
+
+  @Input() hideOnOutsideClick: boolean = false;
+  @Input() isSidePageOpen: boolean = false;
+  @Input() position: MePosition = 'left';
+  @Input() shading: boolean = true;
+  @Input() zIndex: string = '1500';
+  @Input() zIndexOverlay: string = '1499';
+  @Input() width: string = '27vw';
+  @Input() minWidth: string = '250px';
+  @Input() maxWidth: string = '80vw';
+
+  @Output() isSidePageOpenChange = new EventEmitter<boolean>();
+  @Output() widthChange = new EventEmitter<string>();
+
+  settings = {
+    showHeaders: true,
+    enableFilters: false,
+    autoRefresh: true,
+  };
+
+  toggleSidePage() {
+    this.isSidePageOpen = !this.isSidePageOpen;
+  }
+}
+
 export default {
   title: 'Components/SidePage',
   decorators: [
@@ -244,6 +348,7 @@ export default {
         DxButtonComponent,
         MeButtonDirective,
         MeSidePageDemoComponent,
+        MeSidePageHorizontalDemoComponent,
         DxCheckBoxComponent,
         MeCheckBoxDirective,
         MeLabelDirective,
@@ -367,6 +472,46 @@ export const Default: Story = {
   },
 };
 
+export const PositionTop: Story = {
+  args: {
+    position: 'top',
+    shading: false,
+    hideOnOutsideClick: false,
+    zIndex: '1500',
+    zIndexOverlay: '1499',
+    isSidePageOpen: false,
+  },
+  render: (args) => ({
+    props: args,
+    template: `<me-side-page-horizontal-demo ${argsToTemplate(
+      args
+    )}></me-side-page-horizontal-demo>`,
+  }),
+};
+
+export const PositionRight: Story = {
+  args: {
+    position: 'right',
+  },
+};
+
+export const PositionBottom: Story = {
+  args: {
+    position: 'bottom',
+    shading: false,
+    hideOnOutsideClick: false,
+    zIndex: '1500',
+    zIndexOverlay: '1499',
+    isSidePageOpen: false,
+  },
+  render: (args) => ({
+    props: args,
+    template: `<me-side-page-horizontal-demo ${argsToTemplate(
+      args
+    )}></me-side-page-horizontal-demo>`,
+  }),
+};
+
 export const PositionLeft: Story = {
   args: {
     position: 'left',
@@ -377,12 +522,6 @@ export const PositionLeftWitoutShading: Story = {
   args: {
     position: 'left',
     shading: false,
-  },
-};
-
-export const PositionRight: Story = {
-  args: {
-    position: 'right',
   },
 };
 

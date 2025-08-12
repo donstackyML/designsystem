@@ -12,11 +12,7 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [DxValidatorModule],
-      declarations: [
-        MeDateBoxDirective,
-        DxDateBoxComponent,
-        MeLabelDirective,
-      ],
+      declarations: [MeDateBoxDirective, DxDateBoxComponent, MeLabelDirective],
     }),
   ],
   argTypes: {
