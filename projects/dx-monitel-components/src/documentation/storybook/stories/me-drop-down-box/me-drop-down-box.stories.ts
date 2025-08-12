@@ -128,13 +128,6 @@ export default {
         defaultValue: { summary: 'undefined' },
       },
     },
-    onValueChanged: {
-      action: 'valueChanged',
-      description: 'Event emitted when the value changes',
-      table: {
-        category: 'Events',
-      },
-    },
   },
   args: {
     label: 'Label',
