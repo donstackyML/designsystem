@@ -128,6 +128,13 @@ export default {
         defaultValue: { summary: 'undefined' },
       },
     },
+    onValueChanged: {
+      action: 'valueChanged',
+      description: 'Event emitted when the value changes',
+      table: {
+        category: 'Events',
+      },
+    },
   },
   args: {
     label: 'Label',
@@ -140,6 +147,7 @@ export default {
     dropDownListMaxHeight: 300,
     readOnly: false,
     labelMode: 'outside',
+    value: '1_1',
   },
   render: (args) => ({
     props: args,
@@ -150,6 +158,7 @@ export default {
           [dataSource]="dataSource"
           displayExpr="name"
           valueExpr="id"
+          [(value)]="value"
           [showClearButton]="showClearButton"
           [placeholder]="placeholder"
           [size]="size"
@@ -167,7 +176,7 @@ export default {
             dataStructure="plain"
             keyExpr="id"
             parentIdExpr="categoryId"
-            selectionMode="multiple"
+            selectionMode="single"
             showCheckBoxesMode="normal"
             [selectNodesRecursive]="false"
             displayExpr="name"
@@ -182,6 +191,7 @@ export default {
           [dataSource]="dataSource"
           displayExpr="name"
           valueExpr="id"
+          [(value)]="value"
           [showClearButton]="showClearButton"
           [placeholder]="placeholder"
           [size]="size"
@@ -196,7 +206,7 @@ export default {
             meDataGrid
             [dataSource]="dataSource"
             [columns]="['id', 'name']"
-            [selection]="{ mode: 'multiple' }"
+            [selection]="{ mode: 'single' }"
             [hoverStateEnabled]="true"
             [filterRow]="{ visible: true }"
             [disabled]="disabled"
@@ -240,6 +250,7 @@ export const WithTreeView: Story = {
         [dataSource]="dataSource"
         displayExpr="name"
         valueExpr="id"
+        [(value)]="value"
         [placeholder]="placeholder"
         [size]="size"
         [showClearButton]="showClearButton"
@@ -275,6 +286,7 @@ export const WithDataGrid: Story = {
         [dataSource]="dataSource"
         displayExpr="name"
         valueExpr="id"
+        [(value)]="value"
         [placeholder]="placeholder"
         [size]="size"
         [label]="label"
@@ -337,6 +349,7 @@ export const LabelLeft: Story = {
             [dataSource]="dataSource"
             displayExpr="name"
             valueExpr="id"
+            [(value)]="value"
             [placeholder]="placeholder"
             [size]="size"
             [showClearButton]="showClearButton"

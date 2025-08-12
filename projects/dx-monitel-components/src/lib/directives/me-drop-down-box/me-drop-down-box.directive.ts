@@ -64,7 +64,7 @@ export class MeDropDownBoxDirective
   @ContentChild(DxDataGridComponent, { static: false })
   dataGrid?: DxDataGridComponent;
 
-  @Output() valueChange: EventEmitter<any[]> = new EventEmitter();
+  @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
   private leftIconComponentRef: ComponentRef<MeIconComponent> | null = null;
 
@@ -142,6 +142,17 @@ export class MeDropDownBoxDirective
       this.component.instance.element(),
       'dx-state-focused'
     );
+  }
+
+  private arraysEqual(a?: any[], b?: any[]) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+
+    for (let i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
   }
 
   private setLeftIcon() {
