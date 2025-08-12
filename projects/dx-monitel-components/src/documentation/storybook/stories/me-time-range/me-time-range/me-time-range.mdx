@@ -130,7 +130,7 @@ onTimeRangeApplied(settings: TimeRangeConfig) {
 </dx-button>
 <me-time-range
   [isPopup]="true"
-  [popupIsVisible]="popupVisible"
+  [(popupIsVisible)]="popupVisible"
   [popupPosition]="popupPosition"
   [popupWidth]="'600px'"
   [popupHeight]="'auto'"
@@ -166,7 +166,6 @@ class TimeRangePopupDemoComponent {
   settings: Partial<TimeRangeConfig> = { /* ... */ };
 
   constructor() {
-
     const config: Partial<TimeRangeConfig> = {
       absoluteDate: { start: new Date(), end: new Date() },
       startShift: { type: 'mixed', switchIsActive: true, switchEnabled: true, properties: [ { text: 'Секунды', key: 'seconds', enabled: true, value: -20 } /* ... more properties ... */ ] },
@@ -183,19 +182,9 @@ class TimeRangePopupDemoComponent {
     this.popupVisible = !this.popupVisible;
   }
 
-  onClosed(): void {
-    this.popupVisible = false;
-  }
-
-  onPopupHidden(): void {
-
-    this.popupVisible = false;
-  }
-
   onTimeRangeApplied(appliedSettings: TimeRangeConfig) {
     console.log('Popup time range applied:', appliedSettings);
     this.settings = appliedSettings;
-    this.popupVisible = false;
   }
 }
   `}
