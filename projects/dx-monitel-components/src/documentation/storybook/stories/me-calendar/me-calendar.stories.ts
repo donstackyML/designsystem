@@ -119,11 +119,22 @@ export default {
       ...args,
       onDateValueChanged: (e: any) => console.log('Date changed:', e.value),
     },
-    template: `<dx-calendar
-      meCalendar
-      ${argsToTemplate(args)}
-      (onValueChanged)="onDateValueChanged($event)"
-    ></dx-calendar>`,
+    template: `
+      <div class="container">
+        <dx-calendar
+          meCalendar
+          ${argsToTemplate(args)}
+          (onValueChanged)="onDateValueChanged($event)"
+        ></dx-calendar>
+      </div>
+    `,
+    styles: [
+      `
+        .container {
+          height: 50vh;
+        }
+      `,
+    ],
   }),
 } satisfies Meta<MeCalendarDirective | DxCalendarComponent>;
 

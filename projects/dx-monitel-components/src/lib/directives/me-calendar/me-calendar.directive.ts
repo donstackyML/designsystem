@@ -167,6 +167,7 @@ export class MeCalendarDirective
         environmentInjector: this.appRef.injector,
       });
       componentRef.setInput('time', this.time);
+      componentRef.setInput('size', this.size);
       componentRef.instance.onChange.subscribe((value) => {
         this.time = value;
         if (this.dxCalendarComponent.value) {
