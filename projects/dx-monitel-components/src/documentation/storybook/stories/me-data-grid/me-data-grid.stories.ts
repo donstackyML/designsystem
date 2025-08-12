@@ -234,6 +234,14 @@ export default {
         defaultValue: { summary: 'always' },
       },
     },
+    showScrollRow: {
+      control: 'boolean',
+      description: 'Определяет, отображается ли строка для скролла.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     dataSource: dataGridMockSourceData,
@@ -259,6 +267,7 @@ export default {
     showNavigationButtons: true,
     showPageSizeSelector: true,
     pageSize: 10,
+    showScrollRow: false,
   },
   render: (args) => ({
     props: args,
@@ -279,6 +288,7 @@ export default {
 				[showBorders]="showBorders"
         [showColumnHeaders]="showColumnHeaders"
         [selection]="selection"
+        [showScrollRow]="showScrollRow"
 			>
         <dxo-selection *ngIf="!selection" [mode]="mode" [allowSelectAll]="allowSelectAll" [selectAllMode]="selectAllMode" [showCheckBoxesMode]="showCheckBoxesMode"></dxo-selection>
 				<dxo-search-panel [visible]="true"></dxo-search-panel>
@@ -317,6 +327,7 @@ export const WithCounter: Story = {
     [showBorders]="showBorders"
     [showColumnHeaders]="showColumnHeaders"
     [selection]="selection"
+    [showScrollRow]="showScrollRow"
 >
   <dxo-selection *ngIf="!selection" [mode]="mode" [allowSelectAll]="allowSelectAll" [selectAllMode]="selectAllMode" [showCheckBoxesMode]="showCheckBoxesMode"></dxo-selection>
   <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
@@ -392,6 +403,7 @@ export const WithContentGrouping: Story = {
   [showColumnHeaders]="showColumnHeaders"
   [selection]="selection"
   [keyExpr]="'ID'"
+  [showScrollRow]="showScrollRow"
 >
   <dxi-column dataField="CompanyName"></dxi-column>
   <dxi-column dataField="Phone"></dxi-column>
@@ -429,6 +441,7 @@ export const WithNumberAlign: Story = {
         [selection]="selection"
         [headerAlign]="{ 'ID': 'left', 'Company Name': 'right' }"
         [columns]="[{ dataField: 'ID', alignment: 'right' }, { dataField: 'CompanyName' }, { dataField: 'Phone' }, { dataField: 'Fax' }, { dataField: 'State' }, { dataField: 'City' }]"
+        [showScrollRow]="showScrollRow"
       >
         <dxo-selection *ngIf="!selection" [mode]="mode" [allowSelectAll]="allowSelectAll" [selectAllMode]="selectAllMode" [showCheckBoxesMode]="showCheckBoxesMode"></dxo-selection>
         <dxo-paging [(pageSize)]="pageSize"></dxo-paging>
@@ -461,6 +474,7 @@ export const WithMultipleSortingAndHeaderFilterIcon: Story = {
         [showColumnHeaders]="showColumnHeaders"
         [selection]="selection"
         [headerFilter]="{ visible: true }"
+        [showScrollRow]="showScrollRow"
 			>
         <dxo-sorting
           mode="multiple"
