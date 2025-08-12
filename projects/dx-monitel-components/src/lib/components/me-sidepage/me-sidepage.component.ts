@@ -142,19 +142,20 @@ export class MeSidePageComponent
     if (!this.isResizing) return;
 
     if (this.isHorizontal && this.minHeight) {
-      let newHeight: number;
       const minHeightPx = parseInt(this.minHeight);
       const maxHeightPx = window.innerHeight * 0.8;
 
-      if (this.position === 'bottom') {
-        newHeight = this.startHeight - (event.clientY - this.startY);
-      } else {
-        newHeight = this.startHeight + (event.clientY - this.startY);
-      }
+      const newHeight =
+        this.position === 'bottom'
+          ? this.startHeight - (event.clientY - this.startY)
+          : this.startHeight + (event.clientY - this.startY);
 
-      newHeight = Math.max(minHeightPx, Math.min(newHeight, maxHeightPx));
+      const clampedHeight = Math.max(
+        minHeightPx,
+        Math.min(newHeight, maxHeightPx)
+      );
 
-      this.height = `${newHeight}px`;
+      this.height = `${clampedHeight}px`;
       this.heightChange.emit(this.height);
       this.renderer.setStyle(this.element.nativeElement, 'height', this.height);
     } else {
