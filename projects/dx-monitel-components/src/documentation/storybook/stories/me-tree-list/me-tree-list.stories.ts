@@ -2,8 +2,12 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTreeListComponent, DxTreeListModule } from 'devextreme-angular';
 import { DxoSelectionComponent } from 'devextreme-angular/ui/nested';
 
-import { MeIconComponent, MeTreeListDirective } from '../../../../public-api';
-import { meTreeListMockData } from './me-tree-list-mock-data';
+import { MeIconsModule } from '@monitel/me-icons-registry';
+import { MeBadgeComponent, MeTreeListDirective } from '../../../../public-api';
+import {
+  meTreeListMockData,
+  meTreeListMockDataWithHierarchyAndIcons,
+} from './me-tree-list-mock-data';
 
 type StoryProps =
   | MeTreeListDirective
@@ -15,7 +19,7 @@ export default {
   title: 'Components/TreeList',
   decorators: [
     moduleMetadata({
-      imports: [DxTreeListModule, MeIconComponent],
+      imports: [DxTreeListModule, MeIconsModule, MeBadgeComponent],
       declarations: [MeTreeListDirective],
     }),
   ],
@@ -557,6 +561,164 @@ export const WithNumberAlign: Story = {
         [cellSize]="cellSize"
         [showScrollRow]="showScrollRow"
       >
+      </dx-tree-list>
+    `,
+  }),
+};
+
+export const WithHierarchyAndIcons: Story = {
+  args: {
+    dataSource: meTreeListMockDataWithHierarchyAndIcons,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-tree-list
+        meTreeList
+				[(dataSource)]="dataSource"
+				keyExpr="ID"
+				parentIdExpr="ParentID"
+				[allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[cellSize]="cellSize"
+				[showBorders]="showBorders"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+        [showColumnHeaders]="showColumnHeaders"
+				[disabled]="disabled"
+        [height]="height"
+        [showScrollRow]="showScrollRow"
+      >
+        <dxi-column
+          [width]="397"
+          caption="Оборудование"
+          cellTemplate="equipmentCell"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="292"
+          caption="Принадлежит/подключено"
+          dataField="Owner"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="230"
+          caption="ТЭ"
+          dataField="TE"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="121"
+          caption="Класс U"
+          dataField="ClassU"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="107"
+          caption="Ифакт"
+          dataField="IFact"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="84"
+          caption="%"
+          dataField="Percent"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="213"
+          caption="Статус"
+          dataField="Status"
+          cellTemplate="statusCell"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="61"
+          caption="ДДТН"
+          dataField="DDTN"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="60"
+          caption="АДТН"
+          dataField="ADTN"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="60"
+          caption="ТНВ"
+          dataField="TNV"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="60"
+          caption="Iном"
+          dataField="Inom"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="51"
+          caption="РПН"
+          dataField="RPN"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="76"
+          caption="Ифакт кр"
+          dataField="IFactKr"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="62"
+          caption="ТНВ"
+          dataField="TNV2"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="78"
+          caption="АДТН кр"
+          dataField="ADTNKr"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="62"
+          caption="РЗА"
+          dataField="RZA"
+        ></dxi-column>
+
+        <dxi-column
+          [width]="98"
+          caption="РЗАмакс"
+          dataField="RZAMax"
+        ></dxi-column>
+
+        <!-- Шаблон для иконки + текста -->
+        <div
+          *dxTemplate="let cell of 'equipmentCell'"
+          style="display: flex; align-items: center; gap: 6px;"
+        >
+          <me-icon
+            class="icon"
+            [name]="cell.data.Icon"
+          ></me-icon>
+          <span>{{ cell.data.Equipment }}</span>
+        </div>
+
+        <div 
+          *dxTemplate="let cell of 'statusCell'" 
+          style="display: flex; align-items: center;"
+        >
+          <me-badge
+            [size]="'small'"
+            [color]="'success'"
+            [value]="cell.data.Status"
+          ></me-badge>
+        </div>
       </dx-tree-list>
     `,
   }),
