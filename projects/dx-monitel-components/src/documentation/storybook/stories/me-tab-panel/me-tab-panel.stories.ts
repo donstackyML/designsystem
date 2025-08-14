@@ -162,6 +162,22 @@ export default {
         defaultValue: { summary: '0' },
       },
     },
+    roundedBorders: {
+      description: 'Указывает, скруглены ли рамки у табов.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      }
+    },
+    showContentBorder: {
+      description: 'Указывает, отображается ли рамка у контента.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      }
+    }
   },
   args: {
     dataSource: defaultTabPanelData,
@@ -174,6 +190,8 @@ export default {
     width: undefined,
     selectedIndex: 0,
     swipeEnabled: false,
+    roundedBorders: true,
+    showContentBorder: true,
   },
   render: (args) => ({
     props: args,

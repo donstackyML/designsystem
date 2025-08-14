@@ -1,8 +1,13 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { DxTabPanelComponent } from 'devextreme-angular';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
-// Определяем тип для стилей
 export type MeTabPanelStylingMode = 'inside' | 'outside';
 
 @Directive({
@@ -13,12 +18,15 @@ export type MeTabPanelStylingMode = 'inside' | 'outside';
     '[class.me-tabs-medium]': 'size === "medium"',
     '[class.me-tabs-large]': 'size === "large"',
     '[class.dx-tabs-styling-mode-primary]': 'internalStylingMode === "primary"',
-    '[class.dx-tabs-styling-mode-secondary]':
-      'internalStylingMode === "secondary"',
+    '[class.dx-tabs-styling-mode-secondary]': 'internalStylingMode === "secondary"',
+    '[class.me-tabs-panel-rounded-borders]': 'roundedBorders',
+    '[class.me-tabs-panel-content-border]': 'showContentBorder',
   },
 })
 export class MeTabPanelDirective implements OnInit {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() roundedBorders?: boolean = true;
+  @Input() showContentBorder: boolean = true;
 
   @Input() set styling(value: MeTabPanelStylingMode) {
     this._stylingMode = value;
