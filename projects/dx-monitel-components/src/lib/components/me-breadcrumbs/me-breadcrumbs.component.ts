@@ -98,7 +98,7 @@ export class MeBreadcrumbsComponent
 
   normalizedItems: BreadcrumbItem[] = [];
   overflowItems: BreadcrumbItem[] = [];
-  maxHeight = '290px';
+  maxHeight = '';
   overflowLeft = false;
   overflowRight = false;
   overflowMenuTarget: HTMLElement | null = null;
@@ -147,7 +147,11 @@ export class MeBreadcrumbsComponent
       cssClass: `me-breadcrumbs-overflow-menu-popup me-breadcrumbs-overflow-menu-popup-${this.size}`,
     };
 
-    this.maxHeight = this.getSubmenuMaxHeight();
+    console.log(this.overflowItems.length > 10);
+
+    if (this.overflowItems.length > 10) {
+      this.maxHeight = this.getSubmenuMaxHeight();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
