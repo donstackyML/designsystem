@@ -146,12 +146,6 @@ export class MeBreadcrumbsComponent
     this.overflowMenuOptions = {
       cssClass: `me-breadcrumbs-overflow-menu-popup me-breadcrumbs-overflow-menu-popup-${this.size}`,
     };
-
-    console.log(this.overflowItems.length > 10);
-
-    if (this.overflowItems.length > 10) {
-      this.maxHeight = this.getSubmenuMaxHeight();
-    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -491,6 +485,10 @@ export class MeBreadcrumbsComponent
         }
       }
       this.overflowLeft = this.overflowItems.length > 0;
+    }
+
+    if (this.overflowItems.length > 10) {
+      this.maxHeight = this.getSubmenuMaxHeight();
     }
 
     if (visibleCount > 0) {
