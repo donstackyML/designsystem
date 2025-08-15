@@ -1,7 +1,6 @@
 $base-font-family: "RobotoFallback", "Roboto", sans-serif;
 
 :host {
-  --Outside: 0.25rem;
   --Inside-Elements: 0.1875rem;
   --Inner: 2;
   --modal-shadow-color: rgb(0 0 0 / 22%);
@@ -11,14 +10,15 @@ $base-font-family: "RobotoFallback", "Roboto", sans-serif;
   --property-grid-resizer-width: 1px;
 
   position: relative;
-  font-family: $base-font-family;
+  z-index: 0;
+
   overflow: hidden;
   display: flex;
   flex-direction: column;
 
   width: 100%;
 
-  z-index: 0;
+  font-family: $base-font-family;
 
   &.resize-handler-hovered {
     .resize-handler {
@@ -49,8 +49,8 @@ $base-font-family: "RobotoFallback", "Roboto", sans-serif;
   border-right: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
   border-bottom: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
   border-left: var(--vertical-dividers) solid var(--Dividers-Borders-Long);
-  border-bottom-right-radius: var(--Outside);
-  border-bottom-left-radius: var(--Outside);
+  border-bottom-right-radius: var(--outside);
+  border-bottom-left-radius: var(--outside);
 
   background-color: var(--Background-Accent-in-the-content);
 
@@ -79,6 +79,7 @@ $base-font-family: "RobotoFallback", "Roboto", sans-serif;
   z-index: 2;
   top: 0;
   bottom: 0;
+  left: calc(100% - var(--current-right-cell-width));
   transform: translateX(-50%);
 
   width: var(--property-grid-resizer-width);

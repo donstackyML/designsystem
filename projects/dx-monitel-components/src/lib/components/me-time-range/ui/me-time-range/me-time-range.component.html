@@ -1,7 +1,7 @@
 <dx-popup
   *ngIf="isPopup"
   [showTitle]="false"
-  [visible]="popupIsVisible"
+  [(visible)]="popupIsVisible"
   [width]="popupWidth"
   [height]="popupHeight"
   [hideOnOutsideClick]="popupHideOnOutsideClick"
@@ -12,16 +12,16 @@
 >
   <div *dxTemplate="let data of 'content'">
     <dx-scroll-view meScrollView width="100%" height="100%">
-      <div class="me-time-range me-time-range__popup-content">
+      <form class="me-time-range me-time-range__popup-content" (ngSubmit)="applyFilters()">
         <ng-container *ngTemplateOutlet="content"></ng-container>
-      </div>
+      </form>
     </dx-scroll-view>
   </div>
 </dx-popup>
 
-<div *ngIf="!isPopup" class="me-time-range">
+<form *ngIf="!isPopup" class="me-time-range" (ngSubmit)="applyFilters()">
   <ng-container *ngTemplateOutlet="content"></ng-container>
-</div>
+</form>
 
 <ng-template #content>
   <div *ngIf="title" class="me-time-range__header">
@@ -98,11 +98,19 @@
       <div class="divider"></div>
       <me-time-range-columns-grid>
         <me-time-range-settings-section *ngIf="internalSettings.step" title="Шаг">
-          <div class="time-range-property-row time-range-step-row">
+          <div
+            class="time-range-property-row time-range-step-row"
+            [ngStyle]="{
+              'grid-template-columns':
+                internalSettings.step.selectedUnitValue !== 'onChange'
+                  ? '1fr minmax(4.375rem, 0.2fr)'
+                  : '1fr',
+            }"
+          >
             <dx-select-box
               width="100%"
               meSelectBox
-              size="medium"
+              size="small"
               [items]="internalSettings.step.items"
               [value]="internalSettings.step.selectedUnitValue"
               [displayExpr]="internalSettings.step.unitDisplayExpr || 'text'"
@@ -115,8 +123,9 @@
               "
             ></dx-select-box>
             <dx-number-box
+              *ngIf="internalSettings.step.selectedUnitValue !== 'onChange'"
               meNumberBox
-              size="medium"
+              size="small"
               [showSpinButtons]="true"
               [value]="internalSettings.step.numberValue"
               [min]="1"
@@ -134,7 +143,7 @@
             <dx-select-box
               width="100%"
               meSelectBox
-              size="medium"
+              size="small"
               [items]="internalSettings.update.items"
               [value]="internalSettings.update.selectedUnitValue"
               [displayExpr]="internalSettings.update.unitDisplayExpr || 'text'"
@@ -148,7 +157,7 @@
             ></dx-select-box>
             <dx-number-box
               meNumberBox
-              size="medium"
+              size="small"
               [showSpinButtons]="true"
               [value]="internalSettings.update.numberValue"
               (onValueChanged)="
@@ -175,12 +184,11 @@
   </div>
 
   <div class="me-time-range__footer">
-    <dx-button meButton size="small" text="Сбросить фильтр" buttonType="default" stylingMode="text" (onClick)="resetFilters()" [disabled]="isResetDisabled">
-    </dx-button>
+    <dx-button meButton size="small" text="Сбросить фильтр" type="default" stylingMode="text" (onClick)="resetFilters()" [disabled]="isResetDisabled"> </dx-button>
     <div class="me-time-range__footer__buttons-right">
-      <dx-button meButton size="small" text="Применить" buttonType="default" stylingMode="contained" (onClick)="applyFilters()" [disabled]="isApplyButtonDisabled">
+      <dx-button meButton size="small" text="Применить" type="default" stylingMode="contained" [disabled]="isApplyButtonDisabled" [useSubmitBehavior]="true">
       </dx-button>
-      <dx-button *ngIf="hasFooterCancelButton" meButton size="small" text="Отмена" buttonType="default" stylingMode="text" (onClick)="handleClose()"> </dx-button>
+      <dx-button *ngIf="hasFooterCancelButton" meButton size="small" text="Отмена" type="default" stylingMode="text" (onClick)="handleClose()"> </dx-button>
     </div>
   </div>
 </ng-template>
