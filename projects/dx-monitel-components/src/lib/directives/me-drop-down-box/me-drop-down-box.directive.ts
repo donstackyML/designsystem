@@ -64,7 +64,7 @@ export class MeDropDownBoxDirective
   @ContentChild(DxDataGridComponent, { static: false })
   dataGrid?: DxDataGridComponent;
 
-  @Output() valueChange: EventEmitter<any[]> = new EventEmitter();
+  @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
   private leftIconComponentRef: ComponentRef<MeIconComponent> | null = null;
 

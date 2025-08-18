@@ -26,7 +26,7 @@ import {
     </dx-button>
     <me-time-range
       [isPopup]="true"
-      [popupIsVisible]="popupVisible"
+      [(popupIsVisible)]="popupVisible"
       [popupPosition]="popupPosition"
       [popupWidth]="'600px'"
       [popupHeight]="'auto'"
@@ -59,13 +59,13 @@ class TimeRangePopupDemoComponent {
     this.popupVisible = !this.popupVisible;
   }
 
-  onClosed(): void {
-    this.popupVisible = false;
-  }
+  // onClosed(): void {
+  //   this.popupVisible = false;
+  // }
 
-  onPopupHidden(): void {
-    this.popupVisible = false;
-  }
+  // onPopupHidden(): void {
+  //   this.popupVisible = false;
+  // }
 }
 
 const meta = {
