@@ -1,4 +1,4 @@
-import { NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgIf, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -12,11 +12,10 @@ import {
   SimpleChanges,
   inject,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { closeX20 } from '@monitel/me-icons';
 import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
-import { AnimationConfig } from 'devextreme/animation/fx';
-import { PositionConfig } from 'devextreme/animation/position';
-import { PositionAlignment } from 'devextreme/common';
 import {
   DxButtonModule,
   DxNumberBoxModule,
@@ -24,20 +23,24 @@ import {
   DxScrollViewModule,
   DxSelectBoxModule,
 } from 'devextreme-angular';
+import { AnimationConfig } from 'devextreme/animation/fx';
+import { PositionConfig } from 'devextreme/animation/position';
+import { PositionAlignment } from 'devextreme/common';
 // @ts-ignore
-import { isEqual } from 'lodash-es';
+import { isEqual, omit } from 'lodash-es';
 import { Subscription, interval } from 'rxjs';
 
 import {
   MeButtonModule,
   MeNumberBoxModule,
-  MePopupModule,
   MeScrollViewModule,
   MeSelectBoxModule,
 } from '../../../../directives';
 import {
   buildTimeRangeSettings,
   calculateTimeRangeResultDates,
+  getHighlightInfo,
+  parseOptionalDateInput,
 } from '../../helpers';
 import { parseDateInput } from '../../helpers/parse-date-input';
 import {
@@ -72,6 +75,8 @@ type SettingsBlock =
   standalone: true,
   imports: [
     NgIf,
+    FormsModule,
+    NgStyle,
     NgTemplateOutlet,
     MeTimeRangeColumnsGridComponent,
     MeTimeRangeSettingSectionComponent,
@@ -84,7 +89,6 @@ type SettingsBlock =
     DxNumberBoxModule,
     MeNumberBoxModule,
     DxPopupModule,
-    MePopupModule,
     DxScrollViewModule,
     MeScrollViewModule,
     MeIconsModule,
@@ -128,6 +132,7 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   @Input() isPopup = false;
 
   @Input() popupIsVisible = false;
+  @Output() popupIsVisibleChange = new EventEmitter<boolean>();
 
   @Input() popupHideOnOutsideClick = true;
 
@@ -195,21 +200,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
 
   closeIcon = '';
 
-  get popupWrapperAttr(): { [key: string]: string } {
-    const baseClass = 'me-time-range-popup-wrapper';
-
-    if (this.popupZIndex != null) {
-      return {
-        class: `${baseClass} has-custom-z-index`,
-        style: `--me-custom-z-index: ${this.popupZIndex}`,
-      };
-    } else {
-      return {
-        class: baseClass,
-      };
-    }
-  }
-
   constructor() {
     this.closeIcon = this.meIconsRegistry.getIcon(closeX20);
   }
@@ -233,8 +223,20 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
         );
       }
     }
+
     if (changes['settings']) {
-      this._initialSettings = buildTimeRangeSettings(this.settings);
+      const newSettings = buildTimeRangeSettings(this.settings);
+
+      if (!isEqual(this.internalSettings, newSettings)) {
+        this._initialSettings = structuredClone(newSettings);
+        this.internalSettings = newSettings;
+
+        this.selectedQuickFilterId = this.internalSettings.quickFilterId;
+        this.updateQuickFiltersDisabledState();
+        this.updateResultPreviewDates(false);
+
+        this.cdr.markForCheck();
+      }
     }
   }
 
@@ -273,12 +275,31 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
     this.intervalSubscription?.unsubscribe();
   }
 
+  get popupWrapperAttr(): { [key: string]: string } {
+    const baseClass = 'me-time-range-popup-wrapper';
+
+    if (this.popupZIndex != null) {
+      return {
+        class: `${baseClass} has-custom-z-index`,
+        style: `--me-custom-z-index: ${this.popupZIndex}`,
+      };
+    } else {
+      return {
+        class: baseClass,
+      };
+    }
+  }
+
   get isApplyButtonDisabled(): boolean {
     if (this.disableApplyButton !== null) {
       return this.disableApplyButton;
     }
 
-    return isEqual(this._initialSettings, this.internalSettings);
+    const hasChanges = !isEqual(
+      this._lastAppliedSettings,
+      this.internalSettings
+    );
+    return !hasChanges;
   }
 
   get isResetDisabled(): boolean {
@@ -286,7 +307,16 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
       return this.disableResetButton;
     }
 
-    return isEqual(this.settings, this.defaultSettings);
+    const defaultSettingsForCompare = omit(
+      this.defaultSettings,
+      'absoluteDate'
+    );
+    const internalSettingsForCompare = omit(
+      this.internalSettings,
+      'absoluteDate'
+    );
+
+    return isEqual(internalSettingsForCompare, defaultSettingsForCompare);
   }
 
   onQuickFilterSelected(filterId: string) {
@@ -348,17 +378,24 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
     };
 
     if (type === 'startShift') {
-      newSettings.absoluteDate.start = parseDateInput(
-        shiftSettings.absoluteDate
-      );
+      newSettings.absoluteDate.start =
+        shiftSettings.absoluteDate === null
+          ? null
+          : parseOptionalDateInput(shiftSettings.absoluteDate);
 
-      if (newSettings.quickFilterId !== this.OFF_QUICK_FILTER_ID) {
+      if (
+        newSettings.quickFilterId !== this.OFF_QUICK_FILTER_ID &&
+        this.settingsBlocks.includes('quickFilter')
+      ) {
         this.quickFilterChangedFromShift = true;
         newSettings.quickFilterId = this.OFF_QUICK_FILTER_ID;
         this.selectedQuickFilterId = this.OFF_QUICK_FILTER_ID;
       }
     } else {
-      newSettings.absoluteDate.end = parseDateInput(shiftSettings.absoluteDate);
+      newSettings.absoluteDate.end =
+        shiftSettings.absoluteDate === null
+          ? null
+          : parseOptionalDateInput(shiftSettings.absoluteDate);
     }
 
     this.internalSettings = newSettings;
@@ -404,6 +441,13 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   applyFilters() {
+    if (
+      document.activeElement &&
+      (document.activeElement as HTMLElement).blur
+    ) {
+      (document.activeElement as HTMLElement).blur();
+    }
+
     const rawSettingsToSave = { ...this.internalSettings };
 
     this._lastAppliedSettings = rawSettingsToSave;
@@ -419,7 +463,9 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
 
     this.timeRangeApplied.emit(configToEmit);
 
-    if (this.isPopup) this.handleClose();
+    if (this.isPopup) {
+      this.handleClose();
+    }
     this.cdr.markForCheck();
   }
 
@@ -428,23 +474,31 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
       return;
     }
 
-    const sd = buildTimeRangeSettings(this._initialSettings);
+    const defaultSettings = buildTimeRangeSettings(this.defaultSettings);
 
-    this.internalSettings = sd;
+    this.internalSettings = defaultSettings;
     this.selectedQuickFilterId = null;
 
-    this.timeRangeReset.emit(sd);
+    this.timeRangeReset.emit(defaultSettings);
 
     this.handleSettingsChange(false);
   }
 
   handleClose() {
+    this.popupIsVisible = false;
+    this.popupIsVisibleChange.emit(false);
     this.closed.emit();
   }
 
   handleClosePopup() {
+    this.popupIsVisible = false;
+    this.popupIsVisibleChange.emit(false);
     this.closed.emit();
     this.popupOnHidden.emit();
+  }
+
+  onSubmit(): void {
+    this.applyFilters();
   }
 
   private applyQuickFilterProperties(
@@ -525,8 +579,6 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
             value: value,
             selectedUnit: targetUnitKey,
             units: currentMinimalProps?.units,
-            displayExpr: currentMinimalProps?.displayExpr || 'text',
-            valueExpr: currentMinimalProps?.valueExpr || 'value',
           };
         } else {
           let baseFullProps: Array<TimeShiftProperty>;
@@ -596,11 +648,40 @@ export class MeTimeRangeComponent implements OnInit, OnDestroy, OnChanges {
         this.internalSettings.endShift?.switchIsActive,
     });
 
-    this.effectiveStartDate = resultStartDate;
-    this.startHighlightInfo = resultStartHighlightInfo;
+    const startSwitchIsActive =
+      this.internalSettings.startShift?.switchIsActive;
+    const endSwitchIsActive = this.internalSettings.endShift?.switchIsActive;
 
-    this.effectiveEndDate = resultEndDate;
-    this.endHighlightInfo = resultEndHighlightInfo;
+    this.effectiveStartDate = startSwitchIsActive
+      ? resultStartDate
+      : parseDateInput(this.internalSettings.absoluteDate.start);
+
+    if (startSwitchIsActive) {
+      this.startHighlightInfo = resultStartHighlightInfo;
+    } else {
+      const currentTime = new Date();
+      const absoluteStartDate = parseDateInput(
+        this.internalSettings.absoluteDate.start
+      );
+      this.startHighlightInfo = getHighlightInfo(
+        currentTime,
+        absoluteStartDate
+      );
+    }
+
+    this.effectiveEndDate = endSwitchIsActive
+      ? resultEndDate
+      : parseDateInput(this.internalSettings.absoluteDate.end);
+
+    if (endSwitchIsActive) {
+      this.endHighlightInfo = resultEndHighlightInfo;
+    } else {
+      const currentTime = new Date();
+      const absoluteEndDate = parseDateInput(
+        this.internalSettings.absoluteDate.end
+      );
+      this.endHighlightInfo = getHighlightInfo(currentTime, absoluteEndDate);
+    }
 
     if (emitEvent) {
       this.timeShiftChanged.emit({
