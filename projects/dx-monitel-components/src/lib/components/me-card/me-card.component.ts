@@ -8,7 +8,7 @@ import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-vi
   standalone: true,
   imports: [CommonModule, DxScrollViewModule, MeScrollViewModule],
   template: `
-    <div class="me-card" [ngClass]="size">
+    <div class="me-card" [ngClass]="size" [style.width]="width">
       <div *ngIf="showHeader" class="me-card-header">
         <div class="me-card-header-left">
           <ng-content select="[card-header-left]"></ng-content>
@@ -35,4 +35,5 @@ export class MeCardComponent {
   @Input() showHeader: boolean = true;
   @Input() showFooter: boolean = false;
   @Input() contentHeight: string = 'auto';
+  @Input() width?: string;
 }
