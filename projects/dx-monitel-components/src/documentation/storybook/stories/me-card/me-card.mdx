@@ -204,6 +204,36 @@ dark
 language="html"
 />
 
+## Карточка с изменённой шириной
+
+Эта вариация демонстрирует управление шириной карточки через свойство `width` (любые допустимые CSS-значения: `px`, `%`, `rem`, и т.д.).
+
+<Story of={cardStories.CustomWidthCard} />
+<Source
+  code={`
+<me-card
+  [size]="'medium'"
+  [showHeader]="true"
+  [showFooter]="true"
+  [width]="'400px'"
+>
+  <ng-container card-header-left>
+    <span>Простой заголовок</span>
+  </ng-container>
+
+  <p>
+    Это пример простого содержимого карточки, демонстрирующий базовую архитектуру слотов. Здесь можно разместить любой текст или другой контент.
+  </p>
+
+  <ng-container card-footer>
+    <dx-button meButton text="Действие" [stylingMode]="'normal'"></dx-button>
+  </ng-container>
+</me-card>
+`}
+  dark
+  language="html"
+/>
+
 ### Карточка без ограничения высоты
 
 Карточка без ограничения высоты контента. Размер карточки адаптируется под содержимое.

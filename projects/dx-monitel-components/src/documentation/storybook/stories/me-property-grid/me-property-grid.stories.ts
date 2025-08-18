@@ -99,7 +99,7 @@ const getDefaultPropertyGridCells = (
       <dx-check-box meCheckBox></dx-check-box>
     </ng-container>
 
-    <ng-container #additionalProperties additionalProperties>
+    <ng-container additionalProperties>
       <div class="me-grid-cell-row">
         <dx-select-box
           meSelectBox
@@ -434,6 +434,12 @@ export const WithVariousInputs: Story = {
         </me-property-grid-cell>
 
         <me-property-grid-cell name="Чекбокс" value="Включить опцию">
+           <div rightCellStartActions style="display: flex; align-items: center; width: 100%;">
+             <dx-check-box meCheckBox [value]="false" style="margin-right: auto;"></dx-check-box>
+           </div>
+        </me-property-grid-cell>
+        
+        <me-property-grid-cell name="Только rightCellStartActions">
            <div rightCellStartActions style="display: flex; align-items: center; width: 100%;">
              <dx-check-box meCheckBox [value]="false" style="margin-right: auto;"></dx-check-box>
            </div>
