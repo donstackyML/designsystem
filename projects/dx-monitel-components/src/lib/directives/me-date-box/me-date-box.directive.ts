@@ -71,13 +71,10 @@ export class MeDateBoxDirective
     const showAnalogClock = this.component.instance.option('showAnalogClock')
       ? 'me-date-range-box-show-analog-clock'
       : '';
-    const showWeekNumbers = this.showWeekNumbers
-      ? 'me-date-box-show-week-numbers'
-      : '';
 
     this.component.instance.option('dropDownOptions', {
       wrapperAttr: {
-        class: `me-date-box-overlay me-date-box-overlay-${this.size} ${showWeekNumbers} ${showAnalogClock}`,
+        class: `me-date-box-overlay me-date-box-overlay-${this.size} ${showAnalogClock}`,
       },
     });
 

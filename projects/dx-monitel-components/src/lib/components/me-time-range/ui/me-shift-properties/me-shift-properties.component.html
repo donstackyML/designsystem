@@ -6,19 +6,20 @@
     <ng-container *ngIf="variant === 'full' && fullShiftItems" formArrayName="items">
       <div *ngFor="let unitGroup of fullShiftItems.controls; let i = index; trackBy: trackByUnitKey" [formGroupName]="i" class="shift-properties__property">
         <div meLabel class="shift-properties__property-checkbox">
-          <dx-check-box *ngIf="state !== 'readOnly'" meCheckbox formControlName="enabled"> </dx-check-box>
+          <dx-check-box meCheckBox size="small" *ngIf="state !== 'readOnly'" formControlName="enabled"> </dx-check-box>
           <span>{{ unitGroup.get("text")?.value }}</span>
         </div>
-        <dx-number-box meNumberBox formControlName="value" [showSpinButtons]="true" [readOnly]="state === 'readOnly'"> </dx-number-box>
+        <dx-number-box meNumberBox size="small" formControlName="value" [showSpinButtons]="true" [readOnly]="state === 'readOnly'"> </dx-number-box>
       </div>
     </ng-container>
 
     <!-- Режим "minimal" (форма для minimal варианта - это сам shiftForm) -->
     <ng-container *ngIf="variant === 'minimal'">
       <div class="shift-properties__minimal">
-        <dx-number-box meNumberBox formControlName="value" [showSpinButtons]="true" [readOnly]="state === 'readOnly'"> </dx-number-box>
+        <dx-number-box meNumberBox size="small" formControlName="value" [showSpinButtons]="true" [readOnly]="state === 'readOnly'"> </dx-number-box>
         <dx-select-box
           meSelectBox
+          size="small"
           displayExpr="text"
           valueExpr="value"
           formControlName="selectedUnit"
