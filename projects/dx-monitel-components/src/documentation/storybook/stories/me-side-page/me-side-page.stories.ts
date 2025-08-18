@@ -44,7 +44,7 @@ import {
       (widthChange)="widthChange.emit($event)"
     >
       <div sidepage-header class="me-sidepage-header">
-        <me-icon name="public_x24"></me-icon>
+        <me-icon name="public_x24" size="24"></me-icon>
         <div class="me-sidepage-title">
           <span class="me-title-header1">Настройки</span>
           <span class="me-text-body2">Выберите параметры отображения</span>
@@ -254,7 +254,7 @@ class MeSidePageDemoComponent {
       (widthChange)="widthChange.emit($event)"
     >
       <div sidepage-header class="me-sidepage-header">
-        <me-icon name="public_x24"></me-icon>
+        <me-icon name="public_x24" size="24"></me-icon>
         <div class="me-sidepage-title">
           <span class="me-title-header1">Заголовок</span>
           <span class="me-text-body2">Описание</span>

@@ -1,7 +1,7 @@
-import { Meta, Story, Controls, Source, Canvas } from "@storybook/addon-docs";
-import * as gridStories from "./me-property-grid.stories";
+import { Canvas, Controls, Meta, Source, Story } from "@storybook/addon-docs";
 import * as cellStories from "./me-property-grid-cell.stories";
 import * as gridGroupStories from "./me-property-grid-group.stories";
+import * as gridStories from "./me-property-grid.stories";
 
 <Meta name="Property Grid Documentation" title="Components/Property Grid" />
 
@@ -76,6 +76,13 @@ import * as gridGroupStories from "./me-property-grid-group.stories";
 <Canvas of={gridGroupStories.Default} />
 <Source of={gridGroupStories.Default} dark />
 
+### Синхронизация ширины столбцов в группе (`synchronizeColumnWidths`)
+
+Установка свойства `synchronizeColumnWidths="true"` на компоненте `me-property-grid-group` позволяет синхронизировать ширину столбцов всех вложенных `me-property-grid`. При изменении ширины столбцов одного грида все остальные гриды в группе автоматически обновят свои столбцы до той же ширины.
+
+<Canvas of={gridGroupStories.WithSynchronizedColumnWidths} />
+<Source of={gridGroupStories.WithSynchronizedColumnWidths} dark />
+
 ## Примеры использования `me-property-grid-cell`
 
 ### Стандартная ячейка
@@ -104,9 +111,9 @@ import * as gridGroupStories from "./me-property-grid-group.stories";
 <Canvas of={cellStories.WithRightCustomContent} />
 <Source of={cellStories.WithRightCustomContent} dark />
 
-### С кастомным контентом в левой ячейке (`#leftCell`)
+### С кастомным контентом в левой ячейке (`#leftCell, leftCell`)
 
-Аналогично правой ячейке, можно кастомизировать левую ячейку с помощью `#leftCell`. Это переопределит отображение свойства `name`.
+Аналогично правой ячейке, можно кастомизировать левую ячейку с помощью `#leftCell leftCell`. Это переопределит отображение свойства `name`.
 
 <Canvas of={cellStories.WithLeftCellCustomContent} />
 <Source of={cellStories.WithLeftCellCustomContent} dark />
@@ -124,6 +131,13 @@ import * as gridGroupStories from "./me-property-grid-group.stories";
 
 <Canvas of={cellStories.WithRightCellStartAndEndActions} />
 <Source of={cellStories.WithRightCellStartAndEndActions} dark />
+
+### Режим отображения только дополнительных свойств (`displayMode="additionalOnly"`)
+
+Установка `displayMode="additionalOnly"` позволяет отображать только содержимое слота `additionalProperties`, игнорируя основное содержимое ячейки (левую и правую части). Это полезно для отображения исключительно дополнительных свойств без основной строки.
+
+<Canvas of={cellStories.AdditionalOnlyMode} />
+<Source of={cellStories.AdditionalOnlyMode} dark />
 
 ### Ячейка, занимающая всю ширину (`#fullCell`)
 

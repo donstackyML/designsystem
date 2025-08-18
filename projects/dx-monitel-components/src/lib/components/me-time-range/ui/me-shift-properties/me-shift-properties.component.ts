@@ -320,8 +320,6 @@ export class MeShiftPropertiesComponent
             value: formValue.value ?? 0,
             selectedUnit: formValue.selectedUnit,
             units: this.minimalUnitsDataSource.map((u) => ({ ...u })),
-            displayExpr: this.minimalDisplayExpr,
-            valueExpr: this.minimalValueExpr,
           };
           this.shiftPropertiesChange.emit(outputMinimal);
         }

@@ -140,6 +140,7 @@ export default {
     dropDownListMaxHeight: 300,
     readOnly: false,
     labelMode: 'outside',
+    value: '1_1',
   },
   render: (args) => ({
     props: args,
@@ -150,6 +151,7 @@ export default {
           [dataSource]="dataSource"
           displayExpr="name"
           valueExpr="id"
+          [(value)]="value"
           [showClearButton]="showClearButton"
           [placeholder]="placeholder"
           [size]="size"
@@ -182,6 +184,7 @@ export default {
           [dataSource]="dataSource"
           displayExpr="name"
           valueExpr="id"
+          [(value)]="value"
           [showClearButton]="showClearButton"
           [placeholder]="placeholder"
           [size]="size"
@@ -240,6 +243,7 @@ export const WithTreeView: Story = {
         [dataSource]="dataSource"
         displayExpr="name"
         valueExpr="id"
+        [(value)]="value"
         [placeholder]="placeholder"
         [size]="size"
         [showClearButton]="showClearButton"
@@ -275,6 +279,7 @@ export const WithDataGrid: Story = {
         [dataSource]="dataSource"
         displayExpr="name"
         valueExpr="id"
+        [(value)]="value"
         [placeholder]="placeholder"
         [size]="size"
         [label]="label"
@@ -337,6 +342,7 @@ export const LabelLeft: Story = {
             [dataSource]="dataSource"
             displayExpr="name"
             valueExpr="id"
+            [(value)]="value"
             [placeholder]="placeholder"
             [size]="size"
             [showClearButton]="showClearButton"

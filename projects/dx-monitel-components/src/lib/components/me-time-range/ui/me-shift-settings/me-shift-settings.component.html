@@ -23,11 +23,13 @@
 
   <!-- Поле абсолютного времени -->
   <dx-date-box
+    size="small"
     #baseDateBox
     meDateBox
-    [(value)]="absoluteDate"
+    [value]="absoluteDate ?? ''"
     (onValueChanged)="handleAbsoluteDateChange($event)"
     type="datetime"
+    displayFormat="dd.MM.yyyy, HH:mm:ss"
     [showClearButton]="true"
     [readOnly]="_isDateBoxReadOnly"
     [disabled]="propertiesState === 'disabled'"
@@ -40,7 +42,7 @@
     [title]="propertiesTitle"
     [properties]="properties"
     [variant]="effectiveChildVariant"
-    [state]="propertiesState"
+    [state]="effectivePropertiesState"
     (shiftPropertiesChange)="handleShiftPropertiesChange($event)"
   >
   </me-shift-properties>

@@ -14,22 +14,36 @@ import {
   TimeShiftProperty,
 } from '../ui/me-shift-properties';
 
-export const getHighlightInfo = (
+export function getHighlightInfo(
   baseDate: Date,
   shiftedDate: Date,
   shiftProperties?: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null
-): DateHighlightInfo => {
+): DateHighlightInfo;
+export function getHighlightInfo(
+  baseDate: Date,
+  shiftedDate: Date
+): DateHighlightInfo;
+export function getHighlightInfo(
+  baseDate: Date,
+  shiftedDate: Date,
+  shiftProperties?: Array<TimeShiftProperty> | MinimalTimeShiftProperty | null
+): DateHighlightInfo {
   const info: DateHighlightInfo = {};
 
-  if (!shiftProperties || !isValid(baseDate) || !isValid(shiftedDate))
-    return info;
+  if (!isValid(baseDate) || !isValid(shiftedDate)) return info;
 
-  const hasAnyShift = Array.isArray(shiftProperties)
-    ? shiftProperties.some((s) => s.enabled && s.value !== 0)
-    : shiftProperties.value !== 0;
-
-  if (!hasAnyShift || baseDate.getTime() === shiftedDate.getTime()) {
+  if (baseDate.getTime() === shiftedDate.getTime()) {
     return info;
+  }
+
+  if (shiftProperties) {
+    const hasAnyShift = Array.isArray(shiftProperties)
+      ? shiftProperties.some((s) => s.enabled && s.value !== 0)
+      : shiftProperties.value !== 0;
+
+    if (!hasAnyShift) {
+      return info;
+    }
   }
 
   info.years = !isSameYear(baseDate, shiftedDate);
@@ -40,4 +54,4 @@ export const getHighlightInfo = (
   info.seconds = !isSameSecond(baseDate, shiftedDate);
 
   return info;
-};
+}

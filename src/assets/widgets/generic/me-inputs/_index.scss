@@ -197,9 +197,11 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
 
       .dx-texteditor-buttons-container {
         font-family: var(--me-icon-family);
-        align-items: center;
         gap: 4px;
         color: var(--Controls-Content-In-Controls-Main-Default);
+        position: relative;
+        display: flex;
+        align-items: center;
 
         &:has(> div:empty) {
           position: relative;
@@ -231,6 +233,7 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
               font-size: 18px;
               width: inherit;
               height: inherit;
+              color: var(--Controls-Content-In-Controls-Main-Default);
 
               &::before {
                 content: var(--me-icon-chevron-down);
@@ -358,10 +361,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
       .dx-texteditor-container {
         box-shadow: inset 0 0 0 1px var(--Controls-Content-In-Controls-Accent-Default);
       }
-
-      .dx-texteditor-label {
-        color: var(--Controls-Content-In-Controls-Accent-Default);
-      }
     }
 
     // disabled: true
@@ -466,7 +465,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
   // showClearButton: true
 
   .dx-clear-button-area {
-    visibility: hidden;
     display: flex;
     position: relative;
     align-items: center;
@@ -739,11 +737,6 @@ $generic-texteditor-label-transition: font-size 0.2s cubic-bezier(0, 0, 0.2, 1) 
     }
 
     .dx-texteditor-buttons-container .dx-numberbox-spin-container {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      top: 50%;
-      left: 50%;
-
       .dx-numberbox-spin-up,
       .dx-numberbox-spin-down {
         width: var(--number-box-spin-button-width);

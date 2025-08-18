@@ -1,22 +1,27 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
+  EventEmitter,
   Input,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
   TemplateRef,
   ViewChild,
   inject,
 } from '@angular/core';
-
 import { DxScrollViewModule, DxTemplateModule } from 'devextreme-angular';
 
 import { MeScrollViewModule } from '../../directives';
-import { MePropertyGridCellComponent } from './me-property-grid-cell/me-property-grid-cell.component';
-import { PropertyGridCell } from './me-property-grid-cell/me-property-grid-item.model';
-import { MePropertyGridHeaderComponent } from './me-property-grid-header/me-property-grid-header.component';
+import {
+  MePropertyGridCellComponent,
+  type PropertyGridCell,
+} from './me-property-grid-cell';
+import { MePropertyGridHeaderComponent } from './me-property-grid-header';
 
 @Component({
   selector: 'me-property-grid',
@@ -35,26 +40,36 @@ import { MePropertyGridHeaderComponent } from './me-property-grid-header/me-prop
   host: {
     '[style.height]': 'height',
     '[style.overflowY]': 'visible',
-    '[style.--current-right-cell-width]': 'rightCellWidth',
-    '[class.resize-handler-hovered]': 'isResizeHandlerHovered',
   },
 })
-export class MePropertyGridComponent {
-  private cdr = inject(ChangeDetectorRef);
+export class MePropertyGridComponent implements OnInit, OnDestroy {
+  private _isResizeHandlerHovered = false;
 
-  private isResizeHandlerHovered = false;
+  private _rightCellWidth = '60%';
 
-  private isDragging = false;
+  private ngZone = inject(NgZone);
+
+  private renderer = inject(Renderer2);
+
+  private elementRef = inject(ElementRef<HTMLElement>);
 
   private startX = 0;
 
   private startWidthPx = 0;
 
+  private listeners: Array<() => void> = [];
+
+  private documentMouseMoveListener: (() => void) | null = null;
+
+  private documentMouseUpListener: (() => void) | null = null;
+
+  isDragging = false;
+
   @Input() dataSource: Array<PropertyGridCell> = [];
 
-  @Input() gridTitle = 'Свойства';
+  @Input() gridTitle?: string | number | null = 'Свойства';
 
-  @Input() height: number | string = '';
+  @Input() height: number | string = 'auto';
 
   @Input() closeMode: 'remove' | 'hide' = 'hide';
 
@@ -68,77 +83,201 @@ export class MePropertyGridComponent {
 
   @Input() minRightWidthPx = 50;
 
-  @Input() rightCellWidth = '60%';
+  @Input()
+  set rightCellWidth(value: string) {
+    if (this._rightCellWidth !== value) {
+      this._rightCellWidth = value;
+      this.renderer.setProperty(
+        this.elementRef.nativeElement,
+        'style',
+        `--current-right-cell-width: ${value}`
+      );
+    }
+  }
 
-  @ViewChild('propertyGridContent', { static: false })
+  get rightCellWidth(): string {
+    return this._rightCellWidth;
+  }
+
+  @Input()
+  set isResizeHandlerHovered(value: boolean) {
+    if (this._isResizeHandlerHovered !== value) {
+      this._isResizeHandlerHovered = value;
+      this.updateResizeHandlerHoverClass();
+    }
+  }
+
+  get isResizeHandlerHovered(): boolean {
+    return this._isResizeHandlerHovered;
+  }
+
+  @Output() rightCellWidthChange = new EventEmitter<string>();
+
+  @Output() isResizeHandlerHoveredChange = new EventEmitter<boolean>();
+
+  @Output() toggleOpenEvent = new EventEmitter<void>();
+
+  @ViewChild('propertyGridContent', { static: true })
   propertyGridContentRef!: ElementRef<HTMLUListElement>;
+
+  @ViewChild('resizeHandler', { static: true })
+  resizeHandlerRef!: ElementRef<HTMLDivElement>;
 
   readonly propertyCellTemplateName = 'propertyCellTemplate';
 
+  ngOnInit() {
+    this.renderer.setProperty(
+      this.elementRef.nativeElement,
+      'style',
+      `--current-right-cell-width: ${this._rightCellWidth}`
+    );
+    this.updateResizeHandlerHoverClass();
+
+    if (this.resizable) {
+      this.ngZone.runOutsideAngular(() => {
+        this.listeners.push(
+          this.renderer.listen(
+            this.resizeHandlerRef.nativeElement,
+            'mousedown',
+            this.onResizeHandlerMouseDown.bind(this)
+          )
+        );
+        this.listeners.push(
+          this.renderer.listen(
+            this.resizeHandlerRef.nativeElement,
+            'mouseenter',
+            () => {
+              this._isResizeHandlerHovered = true;
+              this.updateResizeHandlerHoverClass();
+              this.isResizeHandlerHoveredChange.emit(true);
+            }
+          )
+        );
+        this.listeners.push(
+          this.renderer.listen(
+            this.resizeHandlerRef.nativeElement,
+            'mouseleave',
+            () => {
+              if (!this.isDragging) {
+                this._isResizeHandlerHovered = false;
+                this.updateResizeHandlerHoverClass();
+                this.isResizeHandlerHoveredChange.emit(false);
+              }
+            }
+          )
+        );
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    this.listeners.forEach((unlisten) => unlisten());
+    this.listeners = [];
+    this.removeDocumentListeners();
+  }
+
+  private updateResizeHandlerHoverClass() {
+    if (this._isResizeHandlerHovered) {
+      this.renderer.addClass(
+        this.elementRef.nativeElement,
+        'resize-handler-hovered'
+      );
+    } else {
+      this.renderer.removeClass(
+        this.elementRef.nativeElement,
+        'resize-handler-hovered'
+      );
+    }
+  }
+
   toggleOpen(): void {
     this.isOpen = !this.isOpen;
-    this.cdr.markForCheck();
-  }
-
-  onResizeHandlerMouseDown(event: MouseEvent): void {
-    event.preventDefault();
-    if (!this.propertyGridContentRef?.nativeElement) {
-      return;
-    }
-    const gridWidth = this.propertyGridContentRef.nativeElement.offsetWidth;
-    if (gridWidth <= 0) {
-      return;
-    }
-    this.isDragging = true;
-    this.startX = event.clientX;
-    this.startWidthPx = (parseFloat(this.rightCellWidth) / 100) * gridWidth;
-  }
-
-  @HostListener('document:mousemove', ['$event'])
-  onResizeHandlerMouseMove(event: MouseEvent): void {
-    if (!this.isDragging || !this.propertyGridContentRef?.nativeElement) return;
-    const currentX = event.clientX;
-    const deltaX = currentX - this.startX;
-    const gridWidth = this.propertyGridContentRef.nativeElement.offsetWidth;
-    if (gridWidth <= 0) return;
-    let newRightWidthPx = this.startWidthPx - deltaX;
-    const maxRightWidthPx = gridWidth - this.minLeftWidthPx;
-    newRightWidthPx = Math.max(this.minRightWidthPx, newRightWidthPx);
-    newRightWidthPx = Math.min(maxRightWidthPx, newRightWidthPx);
-    const newRightWidthPercent = (newRightWidthPx / gridWidth) * 100;
-    this.setRightCellWidth(`${newRightWidthPercent}%`);
-  }
-
-  @HostListener('document:mouseup', ['$event'])
-  onResizeHandlerMouseUp(): void {
-    if (this.isDragging) {
-      this.isDragging = false;
-    }
-  }
-
-  onResizeHandlerMouseEnter(): void {
-    this.setResizeHandlerHover(true);
-  }
-
-  onResizeHandlerMouseLeave(): void {
-    if (!this.isDragging) {
-      this.setResizeHandlerHover(false);
-    }
+    this.toggleOpenEvent.emit();
   }
 
   trackRow(_: number, item: PropertyGridCell): string {
     return item.name;
   }
 
-  private setRightCellWidth(newWidth: string): void {
-    if (this.rightCellWidth !== newWidth) {
-      this.rightCellWidth = newWidth;
-    }
+  private onResizeHandlerMouseDown(event: MouseEvent): void {
+    if (event.button !== 0) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!this.propertyGridContentRef?.nativeElement) return;
+    const gridWidth = this.propertyGridContentRef.nativeElement.offsetWidth;
+    if (gridWidth <= 0) return;
+
+    this.isDragging = true;
+    this.startX = event.clientX;
+    this.startWidthPx = (parseFloat(this._rightCellWidth) / 100) * gridWidth;
+
+    this._isResizeHandlerHovered = true;
+    this.updateResizeHandlerHoverClass();
+    this.isResizeHandlerHoveredChange.emit(true);
+
+    this.documentMouseMoveListener = this.renderer.listen(
+      document,
+      'mousemove',
+      this.onDocumentMouseMove.bind(this)
+    );
+    this.documentMouseUpListener = this.renderer.listen(
+      document,
+      'mouseup',
+      this.onDocumentMouseUp.bind(this)
+    );
   }
 
-  private setResizeHandlerHover(hovered: boolean): void {
-    if (this.isResizeHandlerHovered !== hovered) {
-      this.isResizeHandlerHovered = hovered;
+  private onDocumentMouseMove(event: MouseEvent): void {
+    if (!this.isDragging || !this.propertyGridContentRef?.nativeElement) return;
+    event.preventDefault();
+
+    const currentX = event.clientX;
+    const deltaX = currentX - this.startX;
+    const gridWidth = this.propertyGridContentRef.nativeElement.offsetWidth;
+    if (gridWidth <= 0) return;
+
+    let newRightWidthPx = this.startWidthPx - deltaX;
+    const maxRightWidthPx = gridWidth - this.minLeftWidthPx;
+    newRightWidthPx = Math.max(this.minRightWidthPx, newRightWidthPx);
+    newRightWidthPx = Math.min(maxRightWidthPx, newRightWidthPx);
+
+    const newRightWidthPercent = (newRightWidthPx / gridWidth) * 100;
+    const newWidth = `${newRightWidthPercent}%`;
+
+    this.rightCellWidth = newWidth;
+    this.rightCellWidthChange.emit(newWidth);
+  }
+
+  private onDocumentMouseUp(event: MouseEvent): void {
+    if (!this.isDragging) return;
+    if (event.button !== 0) return;
+
+    this.isDragging = false;
+    this.removeDocumentListeners();
+
+    const handlerRect =
+      this.resizeHandlerRef.nativeElement.getBoundingClientRect();
+    const mouseOverHandler =
+      event.clientX >= handlerRect.left &&
+      event.clientX <= handlerRect.right &&
+      event.clientY >= handlerRect.top &&
+      event.clientY <= handlerRect.bottom;
+
+    this._isResizeHandlerHovered = mouseOverHandler;
+    this.updateResizeHandlerHoverClass();
+    this.isResizeHandlerHoveredChange.emit(mouseOverHandler);
+  }
+
+  private removeDocumentListeners(): void {
+    if (this.documentMouseMoveListener) {
+      this.documentMouseMoveListener();
+      this.documentMouseMoveListener = null;
+    }
+    if (this.documentMouseUpListener) {
+      this.documentMouseUpListener();
+      this.documentMouseUpListener = null;
     }
   }
 }

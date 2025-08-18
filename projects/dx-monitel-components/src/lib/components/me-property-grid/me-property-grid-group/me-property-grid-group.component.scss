@@ -1,22 +1,24 @@
 :host {
+  height: 100%;
+
   ::ng-deep {
     .me-scroll-view {
-      border-radius: var(--outside) var(--outside) 0 0;
       overflow: hidden;
+      border-radius: var(--outside) var(--outside) 0 0;
     }
 
     .dx-scrollable-scroll {
       z-index: 8;
     }
 
-    me-property-grid {
+    .dx-scrollview-content > * {
       display: inline;
 
       &:not(:first-child) {
         &::before {
+          content: "";
           display: block;
           height: var(--gap);
-          content: "";
         }
       }
     }
