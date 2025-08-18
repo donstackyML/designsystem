@@ -18,3 +18,25 @@ export const parseDateInput = (
   }
   return new Date();
 };
+
+export const parseOptionalDateInput = (
+  dateInput: Date | string | number | undefined | null
+): Date | null => {
+  if (dateInput === null || dateInput === undefined) {
+    return null;
+  }
+  if (dateInput instanceof Date && isValid(dateInput)) {
+    return dateInput;
+  }
+  if (typeof dateInput === 'number') {
+    const date = new Date(dateInput);
+    return isValid(date) ? date : new Date();
+  }
+  if (typeof dateInput === 'string') {
+    const parsed = parseISO(dateInput);
+    if (isValid(parsed)) return parsed;
+    const fallbackParsed = new Date(dateInput);
+    if (isValid(fallbackParsed)) return fallbackParsed;
+  }
+  return new Date();
+};

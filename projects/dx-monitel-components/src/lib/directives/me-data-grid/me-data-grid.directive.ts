@@ -21,6 +21,7 @@ import { MeSize } from '../../types/types';
     '[class.me-data-grid-large]': 'isSizeLarge',
     '[class.me-data-grid-cell-small]': 'isCellSizeSmall',
     '[class.me-data-grid-cell-medium]': 'isCellSizeMedium',
+    '[class.me-data-grid-show-scroll-row]': 'showScrollRow',
   },
 })
 export class MeDataGridDirective implements AfterViewInit, OnDestroy {
@@ -29,6 +30,7 @@ export class MeDataGridDirective implements AfterViewInit, OnDestroy {
   @Input() headerAlign: { [colKey: string]: 'left' | 'right' } = {};
   @Input() showRowLines = true;
   @Input() showBorders = true;
+  @Input() showScrollRow = false;
 
   private focusService: ComponentFocusService;
 

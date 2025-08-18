@@ -2,6 +2,8 @@ import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DxButtonGroupModule, DxSelectBoxModule } from 'devextreme-angular';
 
+import { MeButtonGroupModule, MeSelectBoxModule } from '../../../../directives';
+
 import {
   QuickFilter,
   QuickFilterMode,
@@ -11,7 +13,6 @@ import {
   defaultOffQuickFilter,
   defaultQuickFilters,
 } from './me-quick-filters.options';
-import { MeButtonGroupModule, MeSelectBoxModule } from '../../../../directives';
 
 @Component({
   selector: 'me-quick-filters',

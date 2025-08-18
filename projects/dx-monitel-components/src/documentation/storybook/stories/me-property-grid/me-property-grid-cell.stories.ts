@@ -92,6 +92,16 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    displayMode: {
+      control: { type: 'select' },
+      options: ['default', 'additionalOnly'],
+      description:
+        'Режим отображения ячейки: "default" — отображает левую и правую части ячейки; "additionalOnly" — отображает только дополнительные свойства, игнорируя основное содержимое.',
+      table: {
+        type: { summary: '"default" | "additionalOnly"' },
+        defaultValue: { summary: 'default' },
+      },
+    },
     justifyLeftCell: {
       control: { type: 'select' },
       options: ['left', 'center', 'right'],
@@ -212,50 +222,91 @@ export const WithLeftCellCustomContent: Story = {
   }),
 };
 
-export const WithAdditionalProperties: Story = {
+export const WithLeftAndRightCellCustomContent: Story = {
   args: {
-    name: 'With additional properties',
+    name: undefined,
     showAdditionalProperties: true,
   },
   render: (args) => ({
     props: args,
     template: `
     <me-property-grid-cell ${argsToTemplate(args)}>
-          <ng-container rightCellStartActions>
-            <dx-check-box meCheckBox></dx-check-box>
-          </ng-container>
-          <ng-container #additionalProperties additionalProperties>
-            <div class="me-grid-cell-row">
-              <dx-text-box
-                meTextBox
-                label="Field 1"
-                labelMode="outside"
-                size="small"
-                width="100%"
-              ></dx-text-box>
+      <ng-container #leftCell leftCell>
+        <div class="me-grid-cell-row">
+          <dx-text-box
+            meTextBox
+            label="Кастомный контент в левой ячейке"
+            labelMode="outside"
+            size="small"
+            width="100%"
+          ></dx-text-box>
+        </div>
+      </ng-container>
+      <ng-container #rightCell>
+        <div class="me-grid-cell-row">
+          <dx-text-box
+            meTextBox
+            label="Кастомный контент в левой ячейке"
+            labelMode="outside"
+            size="small"
+            width="100%"
+          ></dx-text-box>
+        </div>
+      </ng-container>
+    </me-property-grid-cell>`,
+  }),
+};
 
-              <dx-text-box
-                meTextBox
-                label="Field 2"
-                labelMode="outside"
-                size="small"
-                width="100%"
-              ></dx-text-box>
-
-              <dx-number-box
-                meNumberBox
-                label="Размер точки"
-                labelMode="outside"
-                size="small"
-                [showSpinButtons]="true"
-                stylingMode="filled"
-                width="100%"
-                [min]="1"
-                [step]="1"
-              ></dx-number-box>
-            </div>
-          </ng-container>
-        </me-property-grid-cell>`,
+export const WithAdditionalProperties: Story = {
+  args: {
+    name: 'With additional properties',
+    showAdditionalProperties: true,
+    value: undefined,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <me-property-grid-cell ${argsToTemplate(args)}>
+       <ng-container #rightCell>
+         <dx-text-box
+            meTextBox
+            label="Field 1"
+            labelMode="hidden"
+            size="small"
+            width="100%"
+          ></dx-text-box>
+      </ng-container>
+      <ng-container additionalProperties>
+        <div class="me-grid-cell-row">
+          <dx-text-box
+            meTextBox
+            label="Field 1"
+            labelMode="hidden"
+            size="small"
+            width="100%"
+          ></dx-text-box>
+          <dx-text-box
+            meTextBox
+            label="Field 2"
+            labelMode="hidden"
+            size="small"
+            width="100%"
+          ></dx-text-box>
+          <dx-number-box
+            meNumberBox
+            label="Размер точки"
+            labelMode="hidden"
+            size="small"
+            [showSpinButtons]="true"
+            stylingMode="filled"
+            width="100%"
+            [min]="1"
+            [step]="1"
+          ></dx-number-box>
+        </div>
+      </ng-container>
+    </me-property-grid-cell>
+    `,
   }),
 };
 
@@ -268,7 +319,7 @@ export const WithRightCellCenterJustifying: Story = {
     props: args,
     template: `
     <me-property-grid-cell ${argsToTemplate(args)}>
-      <ng-container #rightCell rightCell>
+      <ng-container #rightCell>
         <button
           type="button"
           class="cell-action-button"
@@ -295,7 +346,7 @@ export const WithAdditionalPropertiesCenterJustifying: Story = {
           <ng-container rightCellStartActions>
             <dx-check-box meCheckBox></dx-check-box>
           </ng-container>
-          <ng-container #additionalProperties additionalProperties>
+          <ng-container additionalProperties>
             <div>
               <dx-text-box
                 meTextBox
@@ -386,5 +437,30 @@ export const WithRightCellStartAndEndActions: Story = {
       </ng-container>
     </me-property-grid-cell>
     `,
+  }),
+};
+
+export const AdditionalOnlyMode: Story = {
+  args: {
+    displayMode: 'additionalOnly',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <me-property-grid-cell ${argsToTemplate(args)}>
+      <ng-container additionalProperties>
+        <me-property-grid-cell name="Cell name">
+          <ng-container #rightCell>
+            <dx-text-box
+            meTextBox
+            label="Field"
+            labelMode="hidden"
+            size="small"
+            width="100%"
+          ></dx-text-box>
+          </ng-container>
+        </me-property-grid-cell>
+      </ng-container>
+    </me-property-grid-cell>`,
   }),
 };
