@@ -60,7 +60,7 @@ import {
       <div sidepage-content class="me-sidepage-content">
         <!-- Checkboxes Section -->
         <div class="settings-section">
-          <h3 class="me-title-header2">Основны е параметры</h3>
+          <h3 class="me-title-header2">Основные параметры</h3>
           <div class="checkbox-group">
             <label meLabel labelDirection="row" class="checkbox-item">
               <dx-check-box
