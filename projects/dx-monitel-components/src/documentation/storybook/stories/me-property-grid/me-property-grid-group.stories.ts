@@ -99,10 +99,20 @@ export default {
         defaultValue: { summary: '8px' },
       },
     },
+    synchronizeColumnWidths: {
+      control: 'boolean',
+      description:
+        'Синхронизирует ширину столбцов всех me-property-grid внутри группы. Если включено, изменение ширины столбцов одного грида применится ко всем гридам в группе.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     height: undefined,
     gap: '8px',
+    synchronizeColumnWidths: false,
   },
 } satisfies Meta<MePropertyGridGroupComponent>;
 
@@ -120,6 +130,29 @@ export const Default: Story = {
           ${getDefaultPropertyGridCells()}
         </me-property-grid>
         <me-property-grid gridTitle="Скрытые параметры" [isOpen]="false" [resizable]="true">
+          ${getDefaultPropertyGridCells()}
+        </me-property-grid>
+        <me-property-grid gridTitle="Дополнительные параметры" [isOpen]="true" [resizable]="true">
+          <me-property-grid-cell name="Версия ПО" value="1.2.3"></me-property-grid-cell>
+          <me-property-grid-cell name="IP Адрес" value="192.168.1.1" [readOnly]="true"></me-property-grid-cell>
+        </me-property-grid>
+      </me-property-grid-group>
+    `,
+  }),
+};
+
+export const WithSynchronizedColumnWidths: Story = {
+  args: {
+    synchronizeColumnWidths: true,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <me-property-grid-group ${argsToTemplate(args)}>
+        <me-property-grid gridTitle="Параметры объекта 1" [isOpen]="true" [resizable]="true">
+          ${getDefaultPropertyGridCells()}
+        </me-property-grid>
+        <me-property-grid gridTitle="Параметры объекта 2" [isOpen]="true" [resizable]="true">
           ${getDefaultPropertyGridCells()}
         </me-property-grid>
         <me-property-grid gridTitle="Дополнительные параметры" [isOpen]="true" [resizable]="true">

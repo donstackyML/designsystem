@@ -61,19 +61,19 @@ export class MeTimeRangeResultComponent
 
   ngOnDestroy(): void {
     if (typeof CSS !== 'undefined' && 'highlights' in CSS) {
-      // @ts-ignore
+      // @ts-expect-error CSS Highlighting API is not yet in the standard TS DOM library.
       CSS.highlights.delete(this.highlightName);
     }
   }
 
   updateHighlight(): void {
     setTimeout(() => {
-      // @ts-ignore
+      // @ts-expect-error CSS Highlighting API is not yet in the standard TS DOM library.
       if (typeof CSS !== 'undefined' && CSS.highlights) {
-        // @ts-ignore
+        // @ts-expect-error CSS Highlighting API is not yet in the standard TS DOM library.
         const existingHighlight = CSS.highlights.get(this.highlightName);
         if (existingHighlight) {
-          // @ts-ignore
+          // @ts-expect-error CSS Highlighting API is not yet in the standard TS DOM library.
           CSS.highlights.delete(this.highlightName);
         }
 
@@ -88,10 +88,10 @@ export class MeTimeRangeResultComponent
         );
 
         if (startRanges.length > 0 || endRanges.length > 0) {
-          // @ts-ignore
+          // @ts-expect-error CSS Highlighting API is not yet in the standard TS DOM library.
           const highlight = new Highlight(...startRanges, ...endRanges);
 
-          // @ts-ignore
+          // @ts-expect-error CSS Highlighting API is not yet in the standard TS DOM library.
           CSS.highlights.set(this.highlightName, highlight);
         }
       }
