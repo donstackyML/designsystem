@@ -2,17 +2,18 @@ import {
   AfterContentInit,
   Directive,
   ElementRef,
+  inject,
   Renderer2,
 } from '@angular/core';
 
 @Directive({
-  selector: '[ecbWrapComponents]',
+  selector: '[meWrapComponents]',
   standalone: true,
 })
 export class WrapComponentsDirective implements AfterContentInit {
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
   private allowedTags = ['me-icon', 'i'];
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   ngAfterContentInit() {
     const childNodes = Array.from(

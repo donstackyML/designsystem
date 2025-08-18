@@ -1,6 +1,6 @@
 import { applyShift } from './apply-shift';
 import { getHighlightInfo } from './get-highlight-info';
-import { parseDateInput } from './parse-date-input';
+import { parseOptionalDateInput } from './parse-date-input';
 import {
   MinimalTimeShiftProperty,
   TimeShiftProperty,
@@ -14,13 +14,13 @@ export const calculateTimeRangeResultDates = ({
   endShiftProperties,
   endShiftRelativeModeIsActive,
 }: {
-  absoluteDate?: Date | string;
+  absoluteDate?: Date | string | null;
   startShiftProperties?:
     | Array<TimeShiftProperty>
     | MinimalTimeShiftProperty
     | null;
   startShiftRelativeModeIsActive?: boolean;
-  endDate?: Date | string;
+  endDate?: Date | string | null;
   endShiftProperties?:
     | Array<TimeShiftProperty>
     | MinimalTimeShiftProperty
@@ -29,7 +29,7 @@ export const calculateTimeRangeResultDates = ({
 }) => {
   const baseStartDate = startShiftRelativeModeIsActive
     ? new Date()
-    : parseDateInput(absoluteDate);
+    : parseOptionalDateInput(absoluteDate) || new Date();
 
   const resultStartDate = applyShift(
     baseStartDate,
@@ -44,7 +44,7 @@ export const calculateTimeRangeResultDates = ({
 
   const baseEndDate = endShiftRelativeModeIsActive
     ? new Date()
-    : parseDateInput(endDate);
+    : parseOptionalDateInput(endDate) || new Date();
 
   const resultEndDate = applyShift(baseEndDate, endShiftProperties) as Date;
   const resultEndHighlightInfo = getHighlightInfo(

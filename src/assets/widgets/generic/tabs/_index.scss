@@ -6,8 +6,7 @@ $tabs-hover-bg: rgba(60, 101, 248, 0.12);
 $tabs-active-bg: rgba(60, 113, 248, 0.2);
 .me-tabs.me-keyboard-focused {
   .dx-state-focused {
-    outline: 2px solid var(--Dividers-Borders-Focus);
-    outline-offset: -2px;
+    border: 1px solid var(--Dividers-Borders-Focus) !important;
   }
   .dx-state-focused.dx-tab::after {
     height: 0 !important;
@@ -128,17 +127,8 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
     .dx-tab-selected {
       &::after,
       &.dx-state-focused::after {
-        background-color: $tabs-hover-border-color;
+        background-color: var(--Controls-Content-In-Controls-Accent-Default);
         height: 2px;
-      }
-
-      &.dx-state-hover::after,
-      &.dx-state-active::after {
-        background-color: $tabs-hover-border-color;
-      }
-
-      &.dx-state-disabled::after {
-        background-color: $tabs-hover-border-color;
       }
     }
   }
@@ -435,6 +425,14 @@ $tabs-active-bg: rgba(60, 113, 248, 0.2);
   .dx-button-content {
     display: flex;
     align-items: center;
+  }
+}
+
+.dx-tabs-nav-button {
+  transition: opacity 0.2s linear;
+
+  &.dx-state-disabled {
+    opacity: 0;
   }
 }
 

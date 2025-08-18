@@ -36,6 +36,7 @@ export interface TimeShiftSettings {
   propertiesState?: PropertiesState;
   switchIsActive?: boolean;
   switchEnabled?: boolean;
+  isRelativeModeActive?: boolean;
 }
 
 export interface StepSettings {
@@ -48,8 +49,8 @@ export interface StepSettings {
 
 export interface TimeRangeConfig {
   absoluteDate: {
-    start: Date | string;
-    end: Date | string;
+    start: Date | string | null;
+    end: Date | string | null;
   };
   shiftType?: ShiftType;
   startShift: TimeShiftSettings | null;
@@ -69,8 +70,6 @@ export interface DateHighlightInfo {
   minutes?: boolean;
   seconds?: boolean;
 }
-
-// Типы для подсветки перенесены в ./ui/me-time-range-result/me-time-range-result.types.ts
 
 export interface RoundingSetting {
   years: boolean;
