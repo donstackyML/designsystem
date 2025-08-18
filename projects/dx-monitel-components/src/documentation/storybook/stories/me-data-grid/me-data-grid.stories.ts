@@ -475,6 +475,7 @@ export const WithMultipleSortingAndHeaderFilterIcon: Story = {
         [selection]="selection"
         [headerFilter]="{ visible: true }"
         [showScrollRow]="showScrollRow"
+        [headerAlign]="{ 'Company Name': 'right' }"
 			>
         <dxo-sorting
           mode="multiple"
