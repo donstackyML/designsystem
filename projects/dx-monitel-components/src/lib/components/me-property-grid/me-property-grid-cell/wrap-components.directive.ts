@@ -1,4 +1,10 @@
-import { AfterContentInit, Directive, ElementRef, inject, Renderer2 } from '@angular/core';
+import {
+  AfterContentInit,
+  Directive,
+  ElementRef,
+  inject,
+  Renderer2,
+} from '@angular/core';
 
 @Directive({
   selector: '[meWrapComponents]',
@@ -10,14 +16,18 @@ export class WrapComponentsDirective implements AfterContentInit {
   private allowedTags = ['me-icon', 'i'];
 
   ngAfterContentInit() {
-    const childNodes = Array.from(this.el.nativeElement.childNodes) as Array<Node>;
+    const childNodes = Array.from(
+      this.el.nativeElement.childNodes
+    ) as Array<Node>;
 
     childNodes.forEach((child: Node) => {
       if (child.nodeType === Node.ELEMENT_NODE) {
         const element = child as HTMLElement;
 
         if (this.allowedTags.includes(element.nodeName.toLowerCase())) {
-          const buttonEl = this.renderer.createElement('button') as HTMLButtonElement;
+          const buttonEl = this.renderer.createElement(
+            'button'
+          ) as HTMLButtonElement;
           buttonEl.type = 'button';
           this.renderer.addClass(buttonEl, 'cell-action-button');
 
