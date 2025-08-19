@@ -78,7 +78,7 @@ export default {
       description: 'Указывает, где будет размещаться лейбл.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'outside' },
+        defaultValue: { summary: 'static' },
       },
     },
     disabled: {
@@ -132,14 +132,14 @@ export default {
   args: {
     label: 'Label',
     dataSource: mockData,
-    size: 'small',
+    size: 'medium',
     placeholder: 'Выберите значение...',
     disabled: false,
     showClearButton: true,
     showScrollbar: 'always',
     dropDownListMaxHeight: 300,
     readOnly: false,
-    labelMode: 'outside',
+    labelMode: 'static',
     value: '1_1',
   },
   render: (args) => ({
