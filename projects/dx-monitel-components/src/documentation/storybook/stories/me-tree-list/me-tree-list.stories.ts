@@ -569,6 +569,30 @@ export const WithNumberAlign: Story = {
 export const WithHierarchyAndIcons: Story = {
   args: {
     dataSource: meTreeListMockDataWithHierarchyAndIcons,
+    columns: [
+      { width: 397, caption: 'Оборудование', cellTemplate: 'equipmentCell' },
+      { width: 292, caption: 'Принадлежит/подключено', dataField: 'Owner' },
+      { width: 230, caption: 'ТЭ', dataField: 'TE' },
+      { width: 121, caption: 'Класс U', dataField: 'ClassU' },
+      { width: 107, caption: 'Ифакт', dataField: 'IFact' },
+      { width: 84, caption: '%', dataField: 'Percent' },
+      {
+        width: 213,
+        caption: 'Статус',
+        dataField: 'Status',
+        cellTemplate: 'statusCell',
+      },
+      { width: 61, caption: 'ДДТН', dataField: 'DDTN' },
+      { width: 60, caption: 'АДТН', dataField: 'ADTN' },
+      { width: 60, caption: 'ТНВ', dataField: 'TNV' },
+      { width: 60, caption: 'Iном', dataField: 'Inom' },
+      { width: 51, caption: 'РПН', dataField: 'RPN' },
+      { width: 76, caption: 'Ифакт кр', dataField: 'IFactKr' },
+      { width: 62, caption: 'ТНВ', dataField: 'TNV2' },
+      { width: 78, caption: 'АДТН кр', dataField: 'ADTNKr' },
+      { width: 62, caption: 'РЗА', dataField: 'RZA' },
+      { width: 98, caption: 'РЗАмакс', dataField: 'RZAMax' },
+    ],
   },
   render: (args) => ({
     props: args,
@@ -595,109 +619,13 @@ export const WithHierarchyAndIcons: Story = {
         [showScrollRow]="showScrollRow"
       >
         <dxi-column
-          [width]="397"
-          caption="Оборудование"
-          cellTemplate="equipmentCell"
+          *ngFor="let col of columns"
+          [width]="col.width"
+          [caption]="col.caption"
+          [dataField]="col.dataField"
+          [cellTemplate]="col.cellTemplate"
         ></dxi-column>
 
-        <dxi-column
-          [width]="292"
-          caption="Принадлежит/подключено"
-          dataField="Owner"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="230"
-          caption="ТЭ"
-          dataField="TE"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="121"
-          caption="Класс U"
-          dataField="ClassU"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="107"
-          caption="Ифакт"
-          dataField="IFact"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="84"
-          caption="%"
-          dataField="Percent"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="213"
-          caption="Статус"
-          dataField="Status"
-          cellTemplate="statusCell"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="61"
-          caption="ДДТН"
-          dataField="DDTN"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="60"
-          caption="АДТН"
-          dataField="ADTN"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="60"
-          caption="ТНВ"
-          dataField="TNV"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="60"
-          caption="Iном"
-          dataField="Inom"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="51"
-          caption="РПН"
-          dataField="RPN"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="76"
-          caption="Ифакт кр"
-          dataField="IFactKr"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="62"
-          caption="ТНВ"
-          dataField="TNV2"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="78"
-          caption="АДТН кр"
-          dataField="ADTNKr"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="62"
-          caption="РЗА"
-          dataField="RZA"
-        ></dxi-column>
-
-        <dxi-column
-          [width]="98"
-          caption="РЗАмакс"
-          dataField="RZAMax"
-        ></dxi-column>
-
-        <!-- Шаблон для иконки + текста -->
         <div
           *dxTemplate="let cell of 'equipmentCell'"
           style="display: flex; align-items: center; gap: 6px;"
