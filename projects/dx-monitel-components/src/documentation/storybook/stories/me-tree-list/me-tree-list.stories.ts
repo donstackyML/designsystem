@@ -570,7 +570,12 @@ export const WithHierarchyAndIcons: Story = {
   args: {
     dataSource: meTreeListMockDataWithHierarchyAndIcons,
     columns: [
-      { width: 397, caption: 'Оборудование', cellTemplate: 'equipmentCell' },
+      {
+        width: 397,
+        caption: 'Оборудование',
+        cellTemplate: 'equipmentCell',
+        dataField: 'Equipment',
+      },
       { width: 292, caption: 'Принадлежит/подключено', dataField: 'Owner' },
       { width: 230, caption: 'ТЭ', dataField: 'TE' },
       { width: 121, caption: 'Класс U', dataField: 'ClassU' },
