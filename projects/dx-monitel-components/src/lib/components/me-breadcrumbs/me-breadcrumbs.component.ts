@@ -47,6 +47,7 @@ export interface BreadcrumbItem {
   url?: string;
   icon?: string;
   items?: BreadcrumbItem[];
+  disabled?: boolean;
 }
 
 @Component({
@@ -423,6 +424,7 @@ export class MeBreadcrumbsComponent
         text: item[this.displayExpr],
         url: item[this.urlExpr],
         icon: item[this.iconExpr],
+        disabled: item.disabled,
       };
       if (item[this.itemsExpr] && Array.isArray(item[this.itemsExpr])) {
         normalized.items = this.normalizeItems(item[this.itemsExpr]);
