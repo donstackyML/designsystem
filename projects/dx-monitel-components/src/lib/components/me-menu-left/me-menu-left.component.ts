@@ -344,20 +344,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       position,
       dataSource: item.items || [],
       visible: true,
-      onShown: () => {
-        queueMicrotask(() => {
-          const popup = document.querySelector(
-            '.me-menu-left-popup'
-          ) as HTMLElement | null;
-
-          if (popup) {
-            const style = window.getComputedStyle(popup);
-            const currentMaxHeight = style.maxHeight;
-            const currentValue = parseInt(currentMaxHeight);
-            popup.style.maxHeight = `${currentValue + 8}px`;
-          }
-        });
-      },
     });
   }
 

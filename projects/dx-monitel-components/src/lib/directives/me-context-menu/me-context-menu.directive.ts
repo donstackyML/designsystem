@@ -44,6 +44,16 @@ export class MeContextMenuDirective {
 
     this.renderer.addClass(contextMenuElement, 'me-context-menu-submenu');
 
+    if (contextMenuElement) {
+      queueMicrotask(() => {
+        const parent = contextMenuElement.parentElement as HTMLElement;
+
+        if (parent.classList.contains('dx-context-menu')) {
+          this.renderer.addClass(contextMenuElement, 'first-context-menu');
+        }
+      })
+    }
+
     if (this.subMenuMaxHeight) {
       contextMenuElement.style.maxHeight = this.subMenuMaxHeight;
     }
@@ -98,10 +108,6 @@ export class MeContextMenuDirective {
           this.dividerService.addDividerToItem(closestMenuItemWrapperElement);
         }
       }
-
-      const separators = contextListElement.querySelectorAll(
-        '.me-list-item-divider'
-      );
 
       const separatorAbove =
         closestMenuItemWrapperElement?.previousElementSibling;
