@@ -77,12 +77,21 @@ export default {
         defaultValue: { summary: 'auto' },
       },
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает компонент и его элементы.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     dataSource: meContextMenuMockData,
     selectByClick: false,
     selectionMode: 'none',
     dividersVisibility: 'auto',
+    disabled: false,
   },
   render: (args) => ({
     props: args,
