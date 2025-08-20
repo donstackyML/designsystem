@@ -187,9 +187,16 @@
     .dx-texteditor-container {
       height: auto;
 
-      .dx-texteditor-input-container.dx-tag-container > input:first-child {
-        min-width: 100px;
-        max-width: 200px;
+      .dx-texteditor-input-container.dx-tag-container {
+        input:first-child {
+          min-width: 100px;
+          max-width: 200px;
+          padding-left: 4px;
+        }
+
+        .dx-placeholder {
+          padding-left: 4px;
+        }
       }
 
       .dx-texteditor-input-container.dx-tag-container .dx-placeholder {
@@ -739,16 +746,26 @@
   .dx-overlay-content {
     .dx-popup-content {
       .dx-scrollview-content {
+        .dx-list-item.dx-item {
+          &.dx-state-hover {
+            background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
+          }
+
+          &.dx-state-active {
+            background-color: var(--Controls-BG-Secondary-Elements-BG-Selected);
+          }
+        }
+
         .dx-list-select-all {
           margin: 0;
           border: none;
 
-          &:hover {
+          &.dx-state-hover:has(.dx-list-select-all-checkbox) {
             background-color: var(--Controls-BG-Secondary-Elements-BG-Hover);
           }
 
-          &:active {
-            background-color: var(--Controls-Informative-BG-Selected-Element);
+          &.dx-state-active:has(.dx-list-select-all-checkbox) {
+            background-color: var(--Controls-BG-Secondary-Elements-BG-Selected);
           }
 
           &:has(.dx-checkbox-checked) {

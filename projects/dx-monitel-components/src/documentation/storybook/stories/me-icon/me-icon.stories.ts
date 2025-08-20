@@ -1,12 +1,12 @@
+import { NgStyle } from '@angular/common';
+import { MeIconComponent, MeIconsModule } from '@monitel/me-icons-registry';
 import {
   Meta,
   StoryObj,
-  moduleMetadata,
   argsToTemplate,
+  moduleMetadata,
 } from '@storybook/angular';
-import { NgStyle } from '@angular/common';
-import { iconOptions, meIcons } from './me-icon-mock-data';
-import { MeIconComponent, MeIconsModule } from '@monitel/me-icons-registry';
+import { meIcons } from './me-icon-mock-data';
 
 export default {
   title: 'Components/Icon',
