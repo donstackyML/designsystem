@@ -272,7 +272,7 @@ export default {
     validationError: '',
     validationMessageMode: 'auto',
     validationMessagePosition: 'top',
-    width: '400px',
+    width: 'auto',
     height: '',
   },
   render: (args) => ({

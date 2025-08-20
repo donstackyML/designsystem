@@ -71,19 +71,34 @@ export default {
         defaultValue: { summary: 'auto' },
       },
     },
+    width: {
+      control: 'text',
+      description:
+        'Устанавливает ширину карточки в любых допустимых для CSS значениях, например: "500px", "50%".',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '—' },
+      },
+    },
   },
   args: {
     size: 'medium',
     showHeader: true,
     showFooter: true,
     contentHeight: 'auto',
+    width: '500px',
   },
 } satisfies Meta<MeCardComponent>;
 
 type Story = StoryObj<MeCardComponent>;
 
 const simpleCardTemplate = `
-<me-card [size]="size" [showHeader]="true" [showFooter]="true">
+<me-card [size]="size" 
+  [showHeader]="true" 
+  [showFooter]="true" 
+  [contentHeight]="contentHeight" 
+  [width]="width"
+>
   <!-- Заголовок -->
   <ng-container card-header-left>
     <span (click)="onHeaderClick()">Простой заголовок</span>
@@ -144,6 +159,7 @@ export const ComplexCard: Story = {
         [size]="size"
         [showHeader]="showHeader"
         [showFooter]="showFooter"
+        [contentHeight]="contentHeight"
       >
         <!-- Header -->
         <ng-container card-header-left>
@@ -516,6 +532,18 @@ export const CardSizeLarge: Story = {
       ...args,
       onHeaderClick: action('Заголовок нажат'),
       onFooterClick: action('Кнопка подвала нажата'),
+    },
+    template: simpleCardTemplate,
+  }),
+};
+
+export const CustomWidthCard: Story = {
+  args: {
+    width: '400px',
+  },
+  render: (args) => ({
+    props: {
+      ...args,
     },
     template: simpleCardTemplate,
   }),
