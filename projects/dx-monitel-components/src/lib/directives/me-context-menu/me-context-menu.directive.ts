@@ -51,7 +51,7 @@ export class MeContextMenuDirective {
         if (parent.classList.contains('dx-context-menu')) {
           this.renderer.addClass(contextMenuElement, 'first-context-menu');
         }
-      })
+      });
     }
 
     if (this.subMenuMaxHeight) {
