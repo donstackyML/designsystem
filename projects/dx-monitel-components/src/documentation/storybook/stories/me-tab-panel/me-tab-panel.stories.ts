@@ -168,7 +168,7 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
-      }
+      },
     },
     showContentBorder: {
       description: 'Указывает, отображается ли рамка у контента.',
@@ -176,8 +176,8 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
-      }
-    }
+      },
+    },
   },
   args: {
     dataSource: defaultTabPanelData,
