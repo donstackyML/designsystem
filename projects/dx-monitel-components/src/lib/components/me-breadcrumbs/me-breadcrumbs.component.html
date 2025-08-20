@@ -17,7 +17,7 @@
         keyExpr="id"
         [showArrowIcon]="false"
         (onItemClick)="onSubmenuItemClick($event)"
-        [disabled]="!item.items?.length"
+        [disabled]="!!item.disabled || !item.items?.length"
         [size]="size"
       ></dx-drop-down-button>
     </div>

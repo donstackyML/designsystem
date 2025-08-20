@@ -12,7 +12,7 @@ import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 })
 export class MePropertyGridHeaderComponent {
   private meIconsRegistry = inject(MeIconsRegistry);
-  
+
   @Input() title?: string | number | null = 'Элемент';
 
   @Input() isOpen = false;
