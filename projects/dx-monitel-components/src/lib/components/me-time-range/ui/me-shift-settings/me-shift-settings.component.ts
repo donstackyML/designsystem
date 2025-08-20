@@ -11,14 +11,14 @@ import {
   SimpleChanges,
   inject,
 } from '@angular/core';
-import { ValueChangedEvent as DateBoxValueChangedEvent } from 'devextreme/ui/date_box';
-import { ValueChangedEvent as SwitchValueChangedEvent } from 'devextreme/ui/switch';
 import {
   DxCheckBoxModule,
   DxDateBoxModule,
   DxNumberBoxModule,
   DxSwitchModule,
 } from 'devextreme-angular';
+import { type ValueChangedEvent as DateBoxValueChangedEvent } from 'devextreme/ui/date_box';
+import { type ValueChangedEvent as SwitchValueChangedEvent } from 'devextreme/ui/switch';
 
 import {
   MeCheckBoxModule,
@@ -32,8 +32,8 @@ import {
   MinimalTimeShiftProperty,
   TimeShiftProperty,
 } from '../me-shift-properties';
-import { ShiftSettingsOutput, ShiftType } from './me-shift-settings.model';
 import { PropertiesState } from '../me-shift-properties/me-shift-properties.component';
+import { ShiftSettingsOutput, ShiftType } from './me-shift-settings.model';
 
 @Component({
   selector: 'me-shift-settings',
@@ -66,11 +66,11 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
 
   @Input() title: string | null = 'Сдвиг';
 
-  @Input() shiftType: ShiftType = 'mixed';
+  @Input() shiftType: ShiftType = 'current';
 
   @Input() switchIsActive = true;
 
-  @Input() absoluteDate: Date | string | number = '';
+  @Input() absoluteDate: Date | string | number | null = null;
 
   @Input() properties:
     | Array<TimeShiftProperty>
@@ -135,7 +135,7 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
   }
 
   handleAbsoluteDateChange(event: DateBoxValueChangedEvent): void {
-    const newAbsoluteDate = event.value as Date;
+    const newAbsoluteDate = event.value as Date | null;
 
     if (this.absoluteDate !== newAbsoluteDate) {
       this.absoluteDate = newAbsoluteDate;
@@ -154,6 +154,18 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
 
   get effectiveChildVariant(): MeShiftPropertiesComponent['variant'] {
     return this.propertiesVariant || this._propertiesVariant;
+  }
+
+  get effectivePropertiesState(): PropertiesState {
+    if (this.propertiesState === 'disabled') {
+      return 'disabled';
+    }
+
+    if (!this.switchIsActive) {
+      return 'disabled';
+    }
+
+    return this.propertiesState;
   }
 
   private updateComponentState(): void {
@@ -218,7 +230,9 @@ export class MeShiftSettingsComponent implements OnInit, OnChanges {
 
   private emitSettings(): void {
     let dateToEmit: Date | null = null;
-    if (this.absoluteDate instanceof Date) {
+    if (this.absoluteDate === null) {
+      dateToEmit = null;
+    } else if (this.absoluteDate instanceof Date) {
       dateToEmit = this.absoluteDate;
     } else if (
       typeof this.absoluteDate === 'string' ||

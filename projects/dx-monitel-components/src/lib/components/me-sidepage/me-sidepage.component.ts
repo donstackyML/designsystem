@@ -87,8 +87,7 @@ export class MeSidePageComponent
     }
 
     if (this.position === 'right') {
-      this.startPosition = 'calc(100dvw)';
-      this.endPosition = 'calc(100dvw - 100%)';
+      this.startPosition = '125%';
     }
 
     if (this.position === 'bottom') {
@@ -236,9 +235,7 @@ export class MeSidePageComponent
       this.renderer.setStyle(
         this.element.nativeElement,
         'transform',
-        this.position === 'left'
-          ? `translateY(${this.endPosition})`
-          : `translateX(calc(${this.endPosition} - ${scrollbarWidth}px))`
+        this.position === 'left' ? `translateY(${this.endPosition})` : `none`
       );
     }
 

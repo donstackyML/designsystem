@@ -6,13 +6,14 @@ import {
 } from '@storybook/angular';
 import { DxColorBoxComponent, DxColorBoxModule } from 'devextreme-angular';
 import { MeColorBoxDirective } from '../../../../lib/directives/me-color-box/me-color-box.directive';
+import { MeLabelDirective } from '../../../../public-api';
 
 export default {
   title: 'Components/ColorBox',
   decorators: [
     moduleMetadata({
       imports: [DxColorBoxModule],
-      declarations: [MeColorBoxDirective],
+      declarations: [MeColorBoxDirective, MeLabelDirective],
     }),
   ],
   argTypes: {
@@ -111,6 +112,14 @@ export default {
         defaultValue: { summary: 'small' },
       },
     },
+    showRequiredMark: {
+      control: 'boolean',
+      description: 'Определяет, является ли поле обязательным для заполнения.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     value: '#473819',
@@ -125,6 +134,7 @@ export default {
     showClearButton: true,
     readOnly: false,
     size: 'small',
+    showRequiredMark: false,
   },
   render: (args) => ({
     props: args,
@@ -161,6 +171,27 @@ export const SizeLarge: Story = {
   args: {
     size: 'large',
   },
+};
+
+export const WithLabelRow: Story = {
+  args: {
+    labelMode: 'hidden',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <div
+      meLabel
+      labelDirection="row"
+    >
+      <span>Label</span>
+      <dx-color-box
+        meColorBox
+        ${argsToTemplate(args)}>
+      </dx-color-box>
+    </div>
+    `,
+  }),
 };
 
 export const StateDisabled: Story = {
