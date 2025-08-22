@@ -174,8 +174,16 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       this.stateUpdate();
     }
 
-    if (changes['floatMode'] && this.dragHandleRight) {
-      queueMicrotask(() => this.setAllHandleTransform());
+    if (changes['floatMode']) {
+      if (this.floatMode) {
+        this.createShading();
+      } else {
+        this.destroyShading();
+      }
+
+      if (this.dragHandleRight) {
+        queueMicrotask(() => this.setAllHandleTransform());
+      }
     }
     if (changes['collapsed']) {
       this.stateUpdate();
@@ -209,6 +217,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   ngOnDestroy(): void {
     this.contextMenuListener?.();
+    this.destroyShading();
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = undefined;
+    }
   }
 
   private stateUpdate(): void {
@@ -565,11 +578,19 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   createShading(): void {
+    this.destroyShading();
+
     this.overlay = this.renderer.createElement('div');
     this.renderer.addClass(this.overlay, 'me-overlay');
     this.renderer.setStyle(this.overlay, 'z-index', 99);
     this.renderer.setStyle(this.overlay, 'position', 'fixed');
     this.renderer.setStyle(this.overlay, 'display', 'block');
     this.renderer.appendChild(document.body, this.overlay);
+  }
+
+  private destroyShading(): void {
+    if (this.overlay && this.overlay.parentNode) {
+      this.renderer.removeChild(document.body, this.overlay);
+    }
   }
 }
