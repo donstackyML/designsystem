@@ -182,60 +182,69 @@ export default {
   render: (args) => ({
     props: args,
     template: `
-			<dx-tree-list
-				meTreeList
-				[(dataSource)]="dataSource"
-				keyExpr="ID"
-				parentIdExpr="Head_ID"
-				[allowColumnReordering]="allowColumnReordering"
-				[allowColumnResizing]="allowColumnResizing"
-				[cellSize]="cellSize"
-				[showBorders]="showBorders"
-				[showRowLines]="showRowLines"
-				[showColumnLines]="showColumnLines"
-				[dataStructure]="dataStructure"
-				[columnAutoWidth]="columnAutoWidth"
-				[autoExpandAll]="autoExpandAll"
-				[expandedRowKeys]="expandedRowKeys"
-				[wordWrapEnabled]="wordWrapEnabled"
-        [showColumnHeaders]="showColumnHeaders"
-				[disabled]="disabled"
-        [height]="height"
-        [showScrollRow]="showScrollRow"
-  		>
-    <dxo-editing
-      *ngIf="editingIsEnabled"
-      mode="row"
-      [allowUpdating]="true"
-      [allowDeleting]="true"
-      [allowAdding]="true"
+    <dx-tree-list
+      meTreeList
+      [dataSource]="dataSource"
+      keyExpr="ID"
+      parentIdExpr="Head_ID"
+      [allowColumnReordering]="allowColumnReordering"
+      [allowColumnResizing]="allowColumnResizing"
+      [cellSize]="cellSize"
+      [showBorders]="showBorders"
+      [showRowLines]="showRowLines"
+      [showColumnLines]="showColumnLines"
+      [dataStructure]="dataStructure"
+      [columnAutoWidth]="columnAutoWidth"
+      [autoExpandAll]="autoExpandAll"
+      [expandedRowKeys]="expandedRowKeys"
+      [wordWrapEnabled]="wordWrapEnabled"
+      [showColumnHeaders]="showColumnHeaders"
+      [disabled]="disabled"
+      [height]="height"
+      [showScrollRow]="showScrollRow"
     >
-    </dxo-editing>
+      <!-- пагинация -->
+      <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
+      <dxo-pager
+        [visible]="true"
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showNavigationButtons]="true"
+        [showInfo]="true">
+      </dxo-pager>
 
-		<dxo-selection [mode]="mode"></dxo-selection>
+      <dxo-editing
+        *ngIf="editingIsEnabled"
+        mode="row"
+        [allowUpdating]="true"
+        [allowDeleting]="true"
+        [allowAdding]="true"
+      >
+      </dxo-editing>
 
-    <dxi-column dataField="Full_Name">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
-    </dxi-column>
-    <dxi-column dataField="Head_ID" caption="Head">
-      <dxi-validation-rule type="required" message="Head is very very very very very very very very very very very required"></dxi-validation-rule>
-    </dxi-column>
-    <dxi-column dataField="Title" caption="Position">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
-    </dxi-column>
-    <dxi-column dataField="Hire_Date" dataType="date" [width]="120">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
-    </dxi-column>
-    <dxi-column *ngIf="editingIsEnabled" type="buttons">
-      <dxi-button name="edit" icon="edit"></dxi-button>
-      <dxi-button name="delete" icon="trash"></dxi-button>
-      <dxi-button name="save" icon="save"></dxi-button>
-      <dxi-button name="cancel" icon="undo"></dxi-button>
+      <dxo-selection [mode]="mode"></dxo-selection>
 
-      <dxi-button name="undelete" icon="undelete"></dxi-button>
-    </dxi-column>
-  </dx-tree-list>
-		`,
+      <dxi-column dataField="Full_Name">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="Head_ID" caption="Head">
+        <dxi-validation-rule type="required" message="Head is very very very very very very very very very very very required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="Title" caption="Position">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="Hire_Date" dataType="date" [width]="120">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column *ngIf="editingIsEnabled" type="buttons">
+        <dxi-button name="edit" icon="edit"></dxi-button>
+        <dxi-button name="delete" icon="trash"></dxi-button>
+        <dxi-button name="save" icon="save"></dxi-button>
+        <dxi-button name="cancel" icon="undo"></dxi-button>
+        <dxi-button name="undelete" icon="undelete"></dxi-button>
+      </dxi-column>
+    </dx-tree-list>
+  `,
   }),
 } satisfies Meta<StoryProps>;
 
