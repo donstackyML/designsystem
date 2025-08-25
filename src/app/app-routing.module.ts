@@ -38,6 +38,7 @@ import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
+import {MeInputsComponent} from "./components/me-inputs/me-inputs.component";
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
@@ -80,6 +81,7 @@ const routes: Routes = [
   { path: 'me-tree-list', component: MeTreeListComponent },
   { path: 'me-tree-view', component: MeTreeViewComponent },
   { path: 'typography', component: TypographyComponent },
+  { path: 'me-inputs', component: MeInputsComponent },
   { path: '**', component: TypographyComponent },
 ];
 
