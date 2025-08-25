@@ -27,6 +27,7 @@ export class MePopupDirective extends MeOverlayDirective {
   @Input() size: Exclude<MeSize, 'small'> = 'medium';
   @Input() resizeEnabled: boolean = true;
   @Input() disableRadius: boolean = false;
+  @Input() isDialog: boolean = false;
 
   constructor(
     element: ElementRef,
@@ -55,11 +56,15 @@ export class MePopupDirective extends MeOverlayDirective {
 
   @HostListener('onShowing')
   onShowing() {
-    if (this.disableRadius) {
-      const popupContentElement = this.component.instance.content();
-      const popup = popupContentElement.parentElement;
+    const popupContentElement = this.component.instance.content();
+    const popup = popupContentElement.parentElement;
 
+    if (this.disableRadius) {
       this.renderer.addClass(popup, 'popup-disable-radius');
+    }
+
+    if (this.isDialog) {
+      this.renderer.addClass(popup, 'popup-dialog');
     }
   }
 
