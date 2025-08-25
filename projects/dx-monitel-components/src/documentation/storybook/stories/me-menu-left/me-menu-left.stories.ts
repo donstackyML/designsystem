@@ -106,16 +106,16 @@ export default {
     },
     expandedIcon: {
       control: 'select',
-      options: ['', 'expand_less_x20', 'expand_more_x20'],
+      options: ['keyboard_arrow_down_x20', 'keyboard_arrow_up_x20'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'expand_less_x20' },
+        defaultValue: { summary: 'keyboard_arrow_down_x20' },
       },
     },
     collapsedIcon: {
       control: 'select',
-      options: ['', 'expand_less_x20', 'keyboard_arrow_down_x20'],
+      options: ['keyboard_arrow_up_x20', 'keyboard_arrow_down_x20'],
       description: 'Принимает иконку для кнопки только с иконкой, без текста.',
       table: {
         type: { summary: 'string' },

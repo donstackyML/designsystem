@@ -29,6 +29,7 @@ export type MeTabsStylingMode = 'inside' | 'outside';
     '[class.me-tabs-icon-start]': 'iconPosition === "start"',
     '[class.me-tabs-icon-end]': 'iconPosition === "end"',
     '[class.me-tabs-icon-bottom]': 'iconPosition === "bottom"',
+    '[class.me-tabs-rounded-borders]': 'roundedBorders',
   },
 })
 export class MeTabsDirective implements OnInit {
@@ -37,6 +38,7 @@ export class MeTabsDirective implements OnInit {
   @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
   @Input() iconPosition: 'top' | 'start' | 'end' | 'bottom' = 'start';
   @Input() stretchTabs: boolean = false;
+  @Input() roundedBorders?: boolean = true;
 
   @Input() width: string | number = 'auto';
 
