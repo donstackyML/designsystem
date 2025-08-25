@@ -142,6 +142,14 @@ export default {
         defaultValue: { summary: 'undefined' },
       },
     },
+    roundedBorders: {
+      description: 'Указывает, скруглены ли рамки у табов.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
   },
   args: {
     position: 'top',
@@ -158,6 +166,7 @@ export default {
     rtlEnabled: false,
     disabled: false,
     stretchTabs: false,
+    roundedBorders: true,
   },
   render: (args) => ({
     props: args,
