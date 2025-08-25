@@ -161,53 +161,54 @@
     }
   }
 
+  // Vertical Scroll
   .dx-scrollable-scrollbar {
-    // Vertical Scroll
     &.dx-scrollbar-vertical {
       width: 14px;
       border-radius: 0;
       transition: none;
 
+      .dx-scrollable-scroll {
+        padding: 5px 4px;
+
+        .dx-scrollable-scroll-content {
+          width: 4px;
+        }
+      }
+
       &.dx-state-hover,
       &.dx-scrollable-scrollbar-active {
         .dx-scrollable-scroll {
-          padding: 5px 4px 19px;
+          padding: 5px 4px;
 
           .dx-scrollable-scroll-content {
             width: 4px;
           }
         }
       }
-
-      .dx-scrollable-scroll {
-        padding: 5px 4px 19px;
-
-        .dx-scrollable-scroll-content {
-          width: 4px;
-        }
-      }
     }
+  }
 
-    // Horizontal Scroll
-    &.dx-scrollbar-horizontal {
-      border-top: 1px solid var(--Dividers-Borders-Long);
-      border-radius: 0;
-      transition: none;
-      height: 14px;
-      background: var(--Background-Accent-in-the-content);
+  &.me-data-grid-show-scroll-row {
+    .dx-scrollable-scrollbar.dx-scrollbar-vertical {
+      .dx-scrollable-scroll {
+        padding: 5px 4.5px 19px;
+      }
 
       &.dx-state-hover,
       &.dx-scrollable-scrollbar-active {
-        background: var(--Background-Accent-in-the-content);
-
         .dx-scrollable-scroll {
-          padding: 5px 4px;
-
-          .dx-scrollable-scroll-content {
-            height: 4px;
-          }
+          padding: 5px 4.5px 19px;
         }
       }
+    }
+  }
+  // Horizontal Scroll
+  .dx-scrollable-scrollbar {
+    &.dx-scrollbar-horizontal {
+      border-radius: 0;
+      transition: none;
+      height: 14px;
 
       .dx-scrollable-scroll {
         padding: 5px 4px;
@@ -216,6 +217,27 @@
           height: 4px;
         }
       }
+
+      &.dx-state-hover,
+      &.dx-scrollable-scrollbar-active {
+        .dx-scrollable-scroll {
+          padding: 5px 4px;
+
+          .dx-scrollable-scroll-content {
+            height: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  &.me-data-grid-show-scroll-row .dx-scrollbar-horizontal {
+    background: var(--Background-Accent-in-the-content);
+    border-top: 1px solid var(--Dividers-Borders-Long);
+
+    &.dx-state-hover,
+    &.dx-scrollable-scrollbar-active {
+      background: var(--Background-Accent-in-the-content);
     }
   }
 
