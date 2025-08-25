@@ -41,7 +41,11 @@ import {
   MeMenuLeftItemComponent,
 } from './me-menu-left-item.component';
 
-import { chevronLeftX24, expandLessX20, keyboardArrowDownX20 } from '@monitel/me-icons';
+import {
+  chevronLeftX24,
+  expandLessX20,
+  keyboardArrowDownX20,
+} from '@monitel/me-icons';
 
 interface TreeNode {
   parent?: TreeNode;
@@ -154,7 +158,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   ) {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
 
-    this.meIconRegistry.registerIcons([chevronLeftX24, expandLessX20, keyboardArrowDownX20]);
+    this.meIconRegistry.registerIcons([
+      chevronLeftX24,
+      expandLessX20,
+      keyboardArrowDownX20,
+    ]);
     // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
     //   this.keyTabHandle(evt)
     // );
