@@ -175,6 +175,14 @@ export default {
         defaultValue: { summary: true },
       },
     },
+    isDialog: {
+      control: 'boolean',
+      description: 'Задать специальные стили для диалогового окна',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
     position: {
       control: 'object',
       description:
@@ -218,6 +226,7 @@ export default {
     hideOnOutsideClick: false,
     showCloseButton: true,
     showTitle: true,
+    isDialog: false,
   },
   render: (args) => ({
     props: args,
@@ -363,10 +372,10 @@ export const Buttons: Story = {
      <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"></dxi-toolbar-item>
      <dxi-toolbar-item template="cancelButton" toolbar="bottom" location="after"></dxi-toolbar-item>
       <div *dxTemplate="let data of 'addButton'">
-        <dx-button meButton buttonType="default" text="Добавить"></dx-button>
+        <dx-button meButton [size]="size" buttonType="default" text="Добавить"></dx-button>
       </div>
       <div *dxTemplate="let data of 'cancelButton'">
-          <dx-button meButton text="Отмена"></dx-button>
+          <dx-button meButton [size]="size" text="Отмена"></dx-button>
         </div>
     </dx-popup></div>`,
   }),
@@ -388,6 +397,7 @@ export const DialogMedium: Story = {
     },
     container: '#myWrapperDialog',
     title: 'Заголовок',
+    isDialog: true,
   },
   decorators: [
     moduleMetadata({
@@ -448,6 +458,7 @@ export const DialogLarge: Story = {
     },
     container: '#myWrapperDialogLarge',
     title: 'Заголовок',
+    isDialog: true,
   },
   decorators: [
     moduleMetadata({
@@ -566,12 +577,12 @@ export const ScrollableContentWithButtons: Story = {
           </dxi-toolbar-item>
 
         <div *dxTemplate="let data of 'content'">
-            <div class="me-flex-column">
-              <div>
-                ${words}
-              </div>
-              <dx-button meButton text="Button"></dx-button>
+          <dx-scroll-view width="100%" height="100%">
+            <div>
+              ${words}
             </div>
+            <dx-button meButton text="Button"></dx-button>
+          </dx-scroll-view>
         </div>
 
         <div *dxTemplate="let data of 'overflowButton'">
