@@ -142,7 +142,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   private _transition = '';
   private focusService: ComponentFocusService;
   private overlay?: HTMLDivElement;
-  private resizeObserver?: ResizeObserver;
+  private resizeObserver?: ResizeObserver | null;
   private contextMenuListener: (() => void) | null = null;
 
   constructor(
@@ -221,7 +221,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     this.destroyShading();
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
-      this.resizeObserver = undefined;
+      this.resizeObserver = null;
     }
   }
 
@@ -369,8 +369,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     if (item.action) {
       item.action();
     }
-
-    console.log(this.itemSelected);
   }
 
   private initNodes(
