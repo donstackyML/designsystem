@@ -42,6 +42,7 @@ import {
       [maxWidth]="maxWidth"
       (isSidePageOpenChange)="isSidePageOpenChange.emit($event)"
       (widthChange)="widthChange.emit($event)"
+      [isResizable]="isResizable"
     >
       <div sidepage-header class="me-sidepage-header">
         <me-icon name="public_x24" size="24"></me-icon>
@@ -194,6 +195,7 @@ class MeSidePageDemoComponent {
   @Input() width: string = '27vw';
   @Input() minWidth: string = '250px';
   @Input() maxWidth: string = '80vw';
+  @Input() isResizable = true;
 
   @Output() isSidePageOpenChange = new EventEmitter<boolean>();
   @Output() widthChange = new EventEmitter<string>();
@@ -252,6 +254,7 @@ class MeSidePageDemoComponent {
       [maxWidth]="maxWidth"
       (isSidePageOpenChange)="isSidePageOpenChange.emit($event)"
       (widthChange)="widthChange.emit($event)"
+      [isResizable]="isResizable"
     >
       <div sidepage-header class="me-sidepage-header">
         <me-icon name="public_x24" size="24"></me-icon>
@@ -325,6 +328,7 @@ class MeSidePageHorizontalDemoComponent {
   @Input() width: string = '27vw';
   @Input() minWidth: string = '250px';
   @Input() maxWidth: string = '80vw';
+  @Input() isResizable = true;
 
   @Output() isSidePageOpenChange = new EventEmitter<boolean>();
   @Output() widthChange = new EventEmitter<string>();
@@ -360,10 +364,10 @@ export default {
   argTypes: {
     position: {
       control: 'inline-radio',
-      options: ['left', 'right'],
-      description: 'Определяет сторону с которой выезжает side page.',
+      options: ['left', 'right', 'top', 'bottom'],
+      description: 'Определяет с какого направления появляется компонент.',
       table: {
-        type: { summary: '"left" | "right"' },
+        type: { summary: '"left" | "right" | "top" | "bottom"' },
         defaultValue: { summary: 'left' },
       },
     },
@@ -446,6 +450,15 @@ export default {
         type: { summary: '(width: string) => void' },
       },
     },
+    isResizable: {
+      control: 'boolean',
+      description:
+        'Определяет, можно ли изменять размер SidePage (гориз./верт.).',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
   },
   args: {
     position: 'left',
@@ -457,6 +470,7 @@ export default {
     width: '27vw',
     minWidth: '250px',
     maxWidth: '80vw',
+    isResizable: true,
   },
   render: (args) => ({
     props: args,
