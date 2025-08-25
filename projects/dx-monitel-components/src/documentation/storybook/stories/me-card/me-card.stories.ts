@@ -160,6 +160,7 @@ export const ComplexCard: Story = {
         [showHeader]="showHeader"
         [showFooter]="showFooter"
         [contentHeight]="contentHeight"
+        [width]="width"
       >
         <!-- Header -->
         <ng-container card-header-left>
@@ -273,6 +274,7 @@ export const LimitedAndScrollableContent: Story = {
         [showHeader]="showHeader"
         [showFooter]="showFooter"
         [contentHeight]="contentHeight"
+        [width]="width"
       >
         <!-- Header -->
         <ng-container card-header-left>
@@ -395,6 +397,7 @@ export const UnlimitedContent: Story = {
         [size]="size"
         [showHeader]="showHeader"
         [showFooter]="showFooter"
+        [width]="width"
       >
         <!-- Header -->
         <ng-container card-header-left>

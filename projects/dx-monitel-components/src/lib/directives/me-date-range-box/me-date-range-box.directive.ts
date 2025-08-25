@@ -13,13 +13,13 @@ import {
   OnInit,
   Renderer2,
 } from '@angular/core';
-import { DxDateRangeBoxComponent } from 'devextreme-angular';
-import { ComponentFocusService } from '../../service/component-focus.service';
-import { MeFormField } from '../me-form-item/me-form-field';
-import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
-import type { ValueChangedEvent } from 'devextreme/ui/date_box';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DxDateRangeBoxComponent } from 'devextreme-angular';
+import type { ValueChangedEvent } from 'devextreme/ui/date_box';
+import { MeTimeControlsComponent } from '../../components/me-time-controls/me-time-controls.component';
+import { ComponentFocusService } from '../../service/component-focus.service';
 import { DateTimeService } from '../../service/get-current-time-in-ms.service';
+import { MeFormField } from '../me-form-item/me-form-field';
 
 @Directive({
   selector: '[meDateRangeBox]',
@@ -101,6 +101,43 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     }
   }
 
+  @HostListener('onClosed', ['$event'])
+  onClosed(_: any) {
+    if (this.type !== 'datetime') {
+      return;
+    }
+
+    const val = this.dateRangeBox.value as [Date | null, Date | null];
+
+    const setTime = (date: Date | null, ms: number) => {
+      if (!date) {
+        return date;
+      }
+
+      const base = new Date(date);
+      base.setHours(0, 0, 0, 0);
+
+      return new Date(base.getTime() + ms);
+    };
+
+    let next: [Date | null, Date | null];
+
+    if (this.dateRangeBox.multiView) {
+      next = [
+        setTime(val?.[0] ?? null, this.startTime),
+        setTime(val?.[1] ?? null, this.endTime),
+      ];
+    } else {
+      next = [
+        setTime(val?.[0] ?? null, this.time),
+        setTime(val?.[1] ?? null, this.time),
+      ];
+    }
+
+    this.dateRangeBox.instance.option('value', next as any);
+    this.dateRangeBox.instance.repaint();
+  }
+
   @HostListener('onOpened', ['$event']) onOpened(e: any) {
     const calendarElement = this.dateRangeBox.instance
       .content()
@@ -147,15 +184,11 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     if (!this.dateRangeBox.multiView) {
       return this.time;
     }
-
     return valueIndex === 0 ? this.startTime : this.endTime;
   }
+
   private insertTimeControls(root: Element) {
     const targetNode = root;
-
-    this.time = this.dateTimeService.getCurrentTimeInMs();
-    this.startTime = this.dateTimeService.getCurrentTimeInMs();
-    this.endTime = this.dateTimeService.getCurrentTimeInMs();
 
     this.dateRangeBox.displayFormat = 'dd.MM.yyyy, HH:mm:ss';
 
