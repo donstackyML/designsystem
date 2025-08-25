@@ -35,12 +35,13 @@ import { MeContextMenuModule } from '../../directives/me-context-menu/me-context
 import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-view.module';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
-import { meIconSet } from '@monitel/me-icons';
 import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 import {
   MeMenuLeftItem,
   MeMenuLeftItemComponent,
 } from './me-menu-left-item.component';
+
+import { chevronLeftX24, expandLessX20, keyboardArrowDownX20 } from '@monitel/me-icons';
 
 interface TreeNode {
   parent?: TreeNode;
@@ -153,7 +154,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   ) {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
 
-    this.meIconRegistry.registerIcons(meIconSet);
+    this.meIconRegistry.registerIcons([chevronLeftX24, expandLessX20, keyboardArrowDownX20]);
     // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
     //   this.keyTabHandle(evt)
     // );
@@ -368,6 +369,8 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     if (item.action) {
       item.action();
     }
+
+    console.log(this.itemSelected);
   }
 
   private initNodes(
@@ -548,15 +551,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       this.actualMaxWidth = this.calculateMaxWidth();
     }
     this.cdr.markForCheck();
-  }
-
-  pressedNode($event: MouseEvent, node: TreeNode) {
-    this.focusService.clearKeyboardFocus();
-    node.active = true;
-  }
-
-  pressedEndNode(event: MouseEvent, node: TreeNode): void {
-    node.active = false;
   }
 
   selectSubmenuItem({ itemData }: DxContextMenuTypes.ItemClickEvent) {
