@@ -39,6 +39,7 @@ export class MeSidePageComponent
   @Input() height?: string;
   @Input() minHeight?: string;
   @Input() maxHeight: string = '80vh';
+  @Input() isResizable: boolean = true;
 
   @Output() heightChange = new EventEmitter<string>();
   @Output() isSidePageOpenChange = new EventEmitter<boolean>();
