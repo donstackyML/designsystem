@@ -188,6 +188,7 @@ export const meBreadcrumbsMockDataWithNestedItemsAndIcons = [
   },
   {
     text: 'Categories',
+    disabled: true,
     items: [
       {
         text: 'Electronics',

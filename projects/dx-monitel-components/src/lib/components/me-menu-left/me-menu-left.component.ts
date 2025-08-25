@@ -35,12 +35,17 @@ import { MeContextMenuModule } from '../../directives/me-context-menu/me-context
 import { MeScrollViewModule } from '../../directives/me-scroll-view/me-scroll-view.module';
 import { ComponentFocusService } from '../../service/component-focus.service';
 
-import { meIconSet } from '@monitel/me-icons';
 import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 import {
   MeMenuLeftItem,
   MeMenuLeftItemComponent,
 } from './me-menu-left-item.component';
+
+import {
+  chevronLeftX24,
+  expandLessX20,
+  keyboardArrowDownX20,
+} from '@monitel/me-icons';
 
 interface TreeNode {
   parent?: TreeNode;
@@ -141,7 +146,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   private _transition = '';
   private focusService: ComponentFocusService;
   private overlay?: HTMLDivElement;
-  private resizeObserver?: ResizeObserver;
+  private resizeObserver?: ResizeObserver | null;
   private contextMenuListener: (() => void) | null = null;
 
   constructor(
@@ -153,7 +158,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   ) {
     this.focusService = new ComponentFocusService(this.element, this.renderer);
 
-    this.meIconRegistry.registerIcons(meIconSet);
+    this.meIconRegistry.registerIcons([
+      chevronLeftX24,
+      expandLessX20,
+      keyboardArrowDownX20,
+    ]);
     // this.focusService.addKeyUpEventHandle('Tab', (evt) =>
     //   this.keyTabHandle(evt)
     // );
@@ -174,8 +183,16 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       this.stateUpdate();
     }
 
-    if (changes['floatMode'] && this.dragHandleRight) {
-      queueMicrotask(() => this.setAllHandleTransform());
+    if (changes['floatMode']) {
+      if (this.floatMode) {
+        this.createShading();
+      } else {
+        this.destroyShading();
+      }
+
+      if (this.dragHandleRight) {
+        queueMicrotask(() => this.setAllHandleTransform());
+      }
     }
     if (changes['collapsed']) {
       this.stateUpdate();
@@ -209,6 +226,11 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   ngOnDestroy(): void {
     this.contextMenuListener?.();
+    this.destroyShading();
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
   }
 
   private stateUpdate(): void {
@@ -344,20 +366,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       position,
       dataSource: item.items || [],
       visible: true,
-      onShown: () => {
-        queueMicrotask(() => {
-          const popup = document.querySelector(
-            '.me-menu-left-popup'
-          ) as HTMLElement | null;
-
-          if (popup) {
-            const style = window.getComputedStyle(popup);
-            const currentMaxHeight = style.maxHeight;
-            const currentValue = parseInt(currentMaxHeight);
-            popup.style.maxHeight = `${currentValue + 8}px`;
-          }
-        });
-      },
     });
   }
 
@@ -551,15 +559,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     this.cdr.markForCheck();
   }
 
-  pressedNode($event: MouseEvent, node: TreeNode) {
-    this.focusService.clearKeyboardFocus();
-    node.active = true;
-  }
-
-  pressedEndNode(event: MouseEvent, node: TreeNode): void {
-    node.active = false;
-  }
-
   selectSubmenuItem({ itemData }: DxContextMenuTypes.ItemClickEvent) {
     if (itemData && !itemData.items) {
       this.itemSelect(itemData as MeMenuLeftItem);
@@ -579,11 +578,19 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   createShading(): void {
+    this.destroyShading();
+
     this.overlay = this.renderer.createElement('div');
     this.renderer.addClass(this.overlay, 'me-overlay');
     this.renderer.setStyle(this.overlay, 'z-index', 99);
     this.renderer.setStyle(this.overlay, 'position', 'fixed');
     this.renderer.setStyle(this.overlay, 'display', 'block');
     this.renderer.appendChild(document.body, this.overlay);
+  }
+
+  private destroyShading(): void {
+    if (this.overlay && this.overlay.parentNode) {
+      this.renderer.removeChild(document.body, this.overlay);
+    }
   }
 }

@@ -59,6 +59,8 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
 }
 
 .me-tabs-panel {
+  --Outside-Padding: 3px 8px;
+
   .dx-tabs-wrapper {
     width: auto;
   }
@@ -66,6 +68,24 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
   &.dx-tabpanel.dx-widget {
     .dx-tab {
       margin: 0;
+    }
+  }
+
+  .dx-tabpanel-tabs {
+    .dx-tabs {
+      height: 100%;
+
+      .dx-item.dx-tab.dx-tab-selected {
+        .dx-tab-text-span {
+          font-weight: var(--me-medium-font-weight);
+        }
+      }
+    }
+  }
+
+  &.dx-tabs-styling-mode-secondary {
+    .dx-scrollable-content .dx-tabs-wrapper .dx-item.dx-tab {
+      padding: var(--Outside-Padding);
     }
   }
 
@@ -350,7 +370,8 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
 }
 
 .me-tabs-panel {
-  --Nav-Icon-Size: 20px;
+  --Nav-Icon-Size: 10px;
+  --Nav-Icon-Size-Wrapper: 20px;
   --Nav-Button-Padding: 4px;
 
   &.me-tabs-medium {
@@ -358,34 +379,29 @@ $tabpanel-tabs-disabled-color: #18181a66 !default;
   }
 
   &.me-tabs-large {
-    --Nav-Icon-Size: 24px;
+    --Nav-Icon-Size: 12px;
+    --Nav-Icon-Size-Wrapper: 24px;
     --Nav-Button-Padding: 8px;
   }
 
   .dx-tabpanel-tabs {
     .dx-tabs.dx-widget.dx-tabs-nav-buttons {
       .dx-widget.dx-button.dx-tabs-nav-button {
-        transition: opacity 0.2s linear;
-
         .dx-button-content {
           padding: var(--Nav-Button-Padding);
           padding-top: var(--Nav-Button-Padding);
 
           .dx-icon {
-            width: var(--Nav-Icon-Size);
-            height: var(--Nav-Icon-Size);
-            font-size: var(--Nav-Icon-Size);
-            line-height: var(--Nav-Icon-Size);
+            width: var(--Nav-Icon-Size-Wrapper);
+            height: var(--Nav-Icon-Size-Wrapper);
+            font-size: var(--Nav-Icon-Size-Wrapper);
+            line-height: var(--Nav-Icon-Size-Wrapper);
 
             &::before {
               font-size: var(--Nav-Icon-Size);
               line-height: var(--Nav-Icon-Size);
             }
           }
-        }
-
-        &.dx-state-disabled {
-          opacity: 0;
         }
       }
     }

@@ -2,8 +2,12 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DxTreeListComponent, DxTreeListModule } from 'devextreme-angular';
 import { DxoSelectionComponent } from 'devextreme-angular/ui/nested';
 
-import { MeIconComponent, MeTreeListDirective } from '../../../../public-api';
-import { meTreeListMockData } from './me-tree-list-mock-data';
+import { MeIconsModule } from '@monitel/me-icons-registry';
+import { MeBadgeComponent, MeTreeListDirective } from '../../../../public-api';
+import {
+  meTreeListMockData,
+  meTreeListMockDataWithHierarchyAndIcons,
+} from './me-tree-list-mock-data';
 
 type StoryProps =
   | MeTreeListDirective
@@ -15,7 +19,7 @@ export default {
   title: 'Components/TreeList',
   decorators: [
     moduleMetadata({
-      imports: [DxTreeListModule, MeIconComponent],
+      imports: [DxTreeListModule, MeIconsModule, MeBadgeComponent],
       declarations: [MeTreeListDirective],
     }),
   ],
@@ -557,6 +561,97 @@ export const WithNumberAlign: Story = {
         [cellSize]="cellSize"
         [showScrollRow]="showScrollRow"
       >
+      </dx-tree-list>
+    `,
+  }),
+};
+
+export const WithHierarchyAndIcons: Story = {
+  args: {
+    dataSource: meTreeListMockDataWithHierarchyAndIcons,
+    columns: [
+      {
+        width: 397,
+        caption: 'Оборудование',
+        cellTemplate: 'equipmentCell',
+        dataField: 'Equipment',
+      },
+      { width: 292, caption: 'Принадлежит/подключено', dataField: 'Owner' },
+      { width: 230, caption: 'ТЭ', dataField: 'TE' },
+      { width: 121, caption: 'Класс U', dataField: 'ClassU' },
+      { width: 107, caption: 'Ифакт', dataField: 'IFact' },
+      { width: 84, caption: '%', dataField: 'Percent' },
+      {
+        width: 213,
+        caption: 'Статус',
+        dataField: 'Status',
+        cellTemplate: 'statusCell',
+      },
+      { width: 61, caption: 'ДДТН', dataField: 'DDTN' },
+      { width: 60, caption: 'АДТН', dataField: 'ADTN' },
+      { width: 60, caption: 'ТНВ', dataField: 'TNV' },
+      { width: 60, caption: 'Iном', dataField: 'Inom' },
+      { width: 51, caption: 'РПН', dataField: 'RPN' },
+      { width: 76, caption: 'Ифакт кр', dataField: 'IFactKr' },
+      { width: 62, caption: 'ТНВ', dataField: 'TNV2' },
+      { width: 78, caption: 'АДТН кр', dataField: 'ADTNKr' },
+      { width: 62, caption: 'РЗА', dataField: 'RZA' },
+      { width: 98, caption: 'РЗАмакс', dataField: 'RZAMax' },
+    ],
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-tree-list
+        meTreeList
+				[(dataSource)]="dataSource"
+				keyExpr="ID"
+				parentIdExpr="ParentID"
+				[allowColumnReordering]="allowColumnReordering"
+				[allowColumnResizing]="allowColumnResizing"
+				[cellSize]="cellSize"
+				[showBorders]="showBorders"
+				[showRowLines]="showRowLines"
+				[showColumnLines]="showColumnLines"
+				[dataStructure]="dataStructure"
+				[columnAutoWidth]="columnAutoWidth"
+				[autoExpandAll]="autoExpandAll"
+				[expandedRowKeys]="expandedRowKeys"
+				[wordWrapEnabled]="wordWrapEnabled"
+        [showColumnHeaders]="showColumnHeaders"
+				[disabled]="disabled"
+        [height]="height"
+        [showScrollRow]="showScrollRow"
+      >
+        <dxi-column
+          *ngFor="let col of columns"
+          [width]="col.width"
+          [caption]="col.caption"
+          [dataField]="col.dataField"
+          [cellTemplate]="col.cellTemplate"
+        ></dxi-column>
+
+        <div
+          *dxTemplate="let cell of 'equipmentCell'"
+          style="display: flex; align-items: center; gap: 6px;"
+        >
+          <me-icon
+            class="icon"
+            [name]="cell.data.Icon"
+          ></me-icon>
+          <span>{{ cell.data.Equipment }}</span>
+        </div>
+
+        <div 
+          *dxTemplate="let cell of 'statusCell'" 
+          style="display: flex; align-items: center;"
+        >
+          <me-badge
+            [size]="'small'"
+            [color]="'success'"
+            [value]="cell.data.Status"
+          ></me-badge>
+        </div>
       </dx-tree-list>
     `,
   }),

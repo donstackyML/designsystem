@@ -47,6 +47,7 @@ export interface BreadcrumbItem {
   url?: string;
   icon?: string;
   items?: BreadcrumbItem[];
+  disabled?: boolean;
 }
 
 @Component({
@@ -98,7 +99,7 @@ export class MeBreadcrumbsComponent
 
   normalizedItems: BreadcrumbItem[] = [];
   overflowItems: BreadcrumbItem[] = [];
-  maxHeight = '290px';
+  maxHeight = '';
   overflowLeft = false;
   overflowRight = false;
   overflowMenuTarget: HTMLElement | null = null;
@@ -146,8 +147,6 @@ export class MeBreadcrumbsComponent
     this.overflowMenuOptions = {
       cssClass: `me-breadcrumbs-overflow-menu-popup me-breadcrumbs-overflow-menu-popup-${this.size}`,
     };
-
-    this.maxHeight = this.getSubmenuMaxHeight();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -322,19 +321,6 @@ export class MeBreadcrumbsComponent
 
       this.overflowMenu.instance.option({
         position: this.contextMenuPosition,
-        onShown: () => {
-          queueMicrotask(() => {
-            const popup = document.querySelector(
-              '.me-breadcrumbs-overflow-menu-popup'
-            ) as HTMLElement;
-
-            if (popup) {
-              const currentMaxHeight = popup.style.maxHeight;
-              const currentValue = parseInt(currentMaxHeight);
-              popup.style.maxHeight = `${currentValue + 6}px`;
-            }
-          });
-        },
         ...this.overflowMenuOptions,
       });
 
@@ -423,6 +409,7 @@ export class MeBreadcrumbsComponent
         text: item[this.displayExpr],
         url: item[this.urlExpr],
         icon: item[this.iconExpr],
+        disabled: item.disabled,
       };
       if (item[this.itemsExpr] && Array.isArray(item[this.itemsExpr])) {
         normalized.items = this.normalizeItems(item[this.itemsExpr]);
@@ -500,6 +487,10 @@ export class MeBreadcrumbsComponent
         }
       }
       this.overflowLeft = this.overflowItems.length > 0;
+    }
+
+    if (this.overflowItems.length > 10) {
+      this.maxHeight = this.getSubmenuMaxHeight();
     }
 
     if (visibleCount > 0) {
