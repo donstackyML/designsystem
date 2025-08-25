@@ -184,7 +184,7 @@ export default {
     template: `
     <dx-tree-list
       meTreeList
-      [dataSource]="dataSource"
+      [(dataSource)]="dataSource"
       keyExpr="ID"
       parentIdExpr="Head_ID"
       [allowColumnReordering]="allowColumnReordering"
