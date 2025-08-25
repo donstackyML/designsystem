@@ -240,28 +240,38 @@ $treelist-icon-container-padding-right: $generic-grid-base-checkbox-icon-size +
   }
 
   &.me-tree-list-show-scroll-row {
-    .dx-scrollbar-vertical.dx-scrollable-scrollbar-active .dx-scrollable-scroll {
-      padding: 5px 4.5px 19px;
-    }
+    .dx-scrollbar-vertical {
+      .dx-scrollable-scroll {
+        padding: 5px 4.5px 19px;
+      }
 
-    .dx-scrollable-scroll {
-      padding: 5px 4.5px 19px;
+      &.dx-state-hover,
+      &.dx-scrollable-scrollbar-active {
+        .dx-scrollable-scroll {
+          padding: 5px 4.5px 19px;
+        }
+      }
     }
   }
 
   // Horizontal Scroll
-  .dx-scrollbar-horizontal {
-    border-top: 1px solid var(--Dividers-Borders-Long);
-
-    border-radius: 0;
-    transition: none;
-    height: 14px;
+  &.me-tree-list-show-scroll-row .dx-scrollbar-horizontal {
     background: var(--Background-Accent-in-the-content);
+    border-top: 1px solid var(--Dividers-Borders-Long);
 
     &.dx-state-hover,
     &.dx-scrollable-scrollbar-active {
       background: var(--Background-Accent-in-the-content);
+    }
+  }
 
+  .dx-scrollbar-horizontal {
+    border-radius: 0;
+    transition: none;
+    height: 14px;
+
+    &.dx-state-hover,
+    &.dx-scrollable-scrollbar-active {
       .dx-scrollable-scroll {
         padding: 5px 4px;
 

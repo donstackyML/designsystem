@@ -203,16 +203,6 @@ export default {
       [height]="height"
       [showScrollRow]="showScrollRow"
     >
-      <!-- пагинация -->
-      <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
-      <dxo-pager
-        [visible]="true"
-        [showPageSizeSelector]="true"
-        [allowedPageSizes]="[5, 10, 20]"
-        [showNavigationButtons]="true"
-        [showInfo]="true">
-      </dxo-pager>
-
       <dxo-editing
         *ngIf="editingIsEnabled"
         mode="row"
