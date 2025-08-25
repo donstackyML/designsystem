@@ -199,11 +199,13 @@ import * as popupStories from "./me-popup.stories";
 
 ## Попап в формате диалогового окна (средний размер)
 
+Для корректного отображения отступов установите свойство [isDialog]="true"
+
 <Canvas of={popupStories.DialogMedium} />
 
 <Source
   code={`
-<dx-popup mePopup titleTemplate="title" [showTitle]="false"
+<dx-popup mePopup titleTemplate="title" [showTitle]="false" [isDialoge]="true"
       <dxi-toolbar-item template="confirmButton" toolbar="bottom"> </dxi-toolbar-item>
       <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'content'">
@@ -234,11 +236,13 @@ import * as popupStories from "./me-popup.stories";
 
 ## Попап в формате диалогового окна (большой размер)
 
+Для корректного отображения отступов установите свойство [isDialog]="true"
+
 <Canvas of={popupStories.DialogLarge} />
 
 <Source
   code={`
-<dx-popup mePopup titleTemplate="title" [showTitle]="true"
+<dx-popup mePopup titleTemplate="title" [showTitle]="true" [isDialog]="true"
       <dxi-toolbar-item template="confirmButton" toolbar="bottom"> </dxi-toolbar-item>
       <dxi-toolbar-item template="cancelButton" toolbar="bottom"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'content'">
