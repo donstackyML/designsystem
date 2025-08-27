@@ -56,6 +56,9 @@ import {
   MeTooltipModule,
   MeTreeListModule,
   MeTreeViewModule,
+  MeDateRangeBoxDirective,
+  MeDateRangeBoxModule,
+  MeNumberBoxModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -97,6 +100,7 @@ import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
+import { MeInputsComponent } from './components/me-inputs/me-inputs.component';
 
 import { MeBadgeDemoComponent } from './components/me-badge-demo/me-badge-demo.component';
 import { breadcrumbsIconSet } from './components/me-breadcrumbs-demo/breadcrumbs-icon-set';
@@ -113,6 +117,7 @@ import { MePopoverDirective } from './directives/popover.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
+import { MeDropDownBoxModule } from '../../projects/dx-monitel-components/src/lib/directives/me-drop-down-box/me-drop-down-box.module';
 
 @NgModule({
   declarations: [
@@ -166,6 +171,7 @@ import { MeToastDirective } from './directives/toast.directive';
     MeBadgeDemoComponent,
     MeTimeRangeDemoComponent,
     MePropertyGridDemoComponent,
+    MeInputsComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -210,6 +216,9 @@ import { MeToastDirective } from './directives/toast.directive';
     MeTextBoxModule,
     MeSelectBoxModule,
     MeDateBoxModule,
+    MeDateRangeBoxModule,
+    MeNumberBoxModule,
+    MeDropDownBoxModule,
     MeCheckBoxModule,
     MeToolbarModule,
     MeTreeViewModule,

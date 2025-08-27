@@ -193,9 +193,13 @@ export class MeSelectBoxDirective
       ? this.component.value
       : [];
 
-    this.selectedItems = dataSource.filter((item) =>
-      valueArray.includes(item.name)
-    );
+    this.selectedItems = dataSource.reduce((p, c) => {
+      if (valueArray.includes(c.name)) {
+        return [...p, c.name];
+      }
+
+      return p;
+    }, []);
 
     this.component.displayExpr = () =>
       this.selectedItems.map((i: any) => i.name ?? i).join(', ');
@@ -224,7 +228,12 @@ export class MeSelectBoxDirective
           showSelectionControls: true,
           selectedItems: valueArray,
           onSelectionChanged: (e: any) => {
-            this.selectedItems = e.component.option('selectedItems') ?? [];
+            this.selectedItems = [
+              ...this.selectedItems.filter(
+                (item) => !e.removedItems.includes(item)
+              ),
+              ...e.addedItems,
+            ];
             this.selectedItemsChange.emit(this.selectedItems);
             this.component.value = this.selectedItems
               .map((i: any) => i.name ?? i)
