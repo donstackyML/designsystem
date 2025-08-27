@@ -6,6 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./me-inputs.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MeInputsComponent {
-
-}
+export class MeInputsComponent {}
