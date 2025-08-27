@@ -39,6 +39,7 @@ const componentsRoute: string[] = [
   'me-tooltip',
   'me-tree-list',
   'me-tree-view',
+  'me-inputs',
 ];
 
 const componentsName: string[] = [
@@ -80,6 +81,7 @@ const componentsName: string[] = [
   'meTooltip',
   'meTreeList',
   'meTreeView',
+  'meInputs',
 ];
 
 @Injectable({

@@ -134,14 +134,6 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    grouped: {
-      control: 'boolean',
-      description: 'Определяет, использовать ли группировку элементов.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
     searchEnabled: {
       control: 'boolean',
       description: 'Разрешает поиск.',
@@ -237,7 +229,6 @@ export default {
     displayExpr: 'name',
     disabled: false,
     readOnly: false,
-    grouped: false,
     searchEnabled: false,
     searchMode: 'contains',
     minSearchLength: 0,
@@ -436,18 +427,40 @@ export const DividersVisibilityByContent: Story = {
 export const GroupedData: Story = {
   args: {
     dataSource: meSelectBoxDataGrouped,
-    grouped: true,
     displayExpr: 'name',
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-select-box meSelectBox ${argsToTemplate(args)} [grouped]="true">
+        <dx-validator>
+          <dxi-validation-rule
+            type="required"
+            message="Required">
+          </dxi-validation-rule>
+        </dx-validator>
+      </dx-select-box>`,
+  }),
 };
 
-export const GroupedDataWithGrouped: Story = {
+export const GroupedDataWithDividers: Story = {
   args: {
     dataSource: meSelectBoxDataGroupedWithDividers,
-    grouped: true,
     displayExpr: 'name',
     dividersVisibility: 'all',
   },
+  render: (args) => ({
+    props: args,
+    template: `
+      <dx-select-box meSelectBox ${argsToTemplate(args)} [grouped]="true">
+        <dx-validator>
+          <dxi-validation-rule
+            type="required"
+            message="Required">
+          </dxi-validation-rule>
+        </dx-validator>
+      </dx-select-box>`,
+  }),
 };
 
 export const MultiSelect: Story = {

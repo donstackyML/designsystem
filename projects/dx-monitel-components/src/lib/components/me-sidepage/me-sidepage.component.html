@@ -1,6 +1,6 @@
 <div #sidepage class="me-sidepage me-scrollbar-visible me-scroll-view" [style.z-index]="zIndex">
   <div
-    *ngIf="isSidePageOpen && isHorizontal"
+    *ngIf="isResizable && isSidePageOpen && isHorizontal"
     class="resize-handle-horizontal"
     [class.resize-handle-horizontal-top]="position === 'top'"
     [class.resize-handle-horizontal-bottom]="position === 'bottom'"
@@ -22,7 +22,7 @@
   </div>
   <ng-content select="[sidepage-footer]"></ng-content>
   <div
-    *ngIf="isSidePageOpen && (position === 'right' || position === 'left')"
+    *ngIf="isResizable && isSidePageOpen && (position === 'right' || position === 'left')"
     class="resize-handle"
     [class.resize-handle-right]="position === 'right'"
     [class.resize-handle-left]="position === 'left'"

@@ -65,6 +65,7 @@ import * as selectBoxStories from "./me-select-box.stories";
 ### Размеры компонента
 
 Изменение размера текстового поля влияет на отступы, размер шрифта и общую компоновку. Свойство `size` принимает три значения:
+
 - small – уменьшенный размер, подходит для компактных интерфейсов;
 - medium – стандартный размер (используется по умолчанию);
 - large – увеличенный размер, удобен для форм с более крупным текстом.
@@ -81,7 +82,10 @@ import * as selectBoxStories from "./me-select-box.stories";
 
 #### Компонент среднего размера
 
-<Canvas name="Компонент среднего размера (по умолчанию)" of={selectBoxStories.SizeMedium} />
+<Canvas
+  name="Компонент среднего размера (по умолчанию)"
+  of={selectBoxStories.SizeMedium}
+/>
 
 <Source
   code={`<dx-select-box meSelectBox size="medium"></dx-select-box>`}
@@ -238,7 +242,10 @@ import * as selectBoxStories from "./me-select-box.stories";
 
 #### Состояние readOnly и disabled
 
-<Canvas name="Состояние readOnly и disabled" of={selectBoxStories.StateDisabledAndReadOnly} />
+<Canvas
+  name="Состояние readOnly и disabled"
+  of={selectBoxStories.StateDisabledAndReadOnly}
+/>
 
 <Source
   code={`
@@ -263,7 +270,10 @@ import * as selectBoxStories from "./me-select-box.stories";
 
 #### Без разделителей
 
-<Canvas name="DividersVisibilityNone" of={selectBoxStories.DividersVisibilityNone} />
+<Canvas
+  name="DividersVisibilityNone"
+  of={selectBoxStories.DividersVisibilityNone}
+/>
 <Source
   code={`<dx-select-box
   meSelectBox
@@ -276,7 +286,10 @@ import * as selectBoxStories from "./me-select-box.stories";
 
 #### Все разделители
 
-<Canvas name="DividersVisibilityAll" of={selectBoxStories.DividersVisibilityAll} />
+<Canvas
+  name="DividersVisibilityAll"
+  of={selectBoxStories.DividersVisibilityAll}
+/>
 <Source
   code={`<dx-select-box
   meSelectBox
@@ -302,29 +315,30 @@ import * as selectBoxStories from "./me-select-box.stories";
 </dx-select-box>
 
 const dataSource = [
-  { name: 'Voltage Monitor VM-100', hasDivider: true },
-  { name: 'Voltage Monitor VM-200', hasDivider: false },
-  { name: 'Current Monitor CM-100', hasDivider: true },
-  { name: 'Current Monitor CM-200', hasDivider: false },
-  { name: 'Power Analyzer PA-100', hasDivider: true },
-  { name: 'Power Analyzer PA-200', hasDivider: false },
-  { name: 'Energy Meter EM-100', hasDivider: true },
-  { name: 'Energy Meter EM-200', hasDivider: false },
-  { name: 'Smart Meter SM-100', hasDivider: true },
-  { name: 'Smart Meter SM-200', hasDivider: false },
-  { name: 'Frequency Monitor FM-100', hasDivider: true },
-  { name: 'Frequency Monitor FM-200', hasDivider: false },
+{ name: 'Voltage Monitor VM-100', hasDivider: true },
+{ name: 'Voltage Monitor VM-200', hasDivider: false },
+{ name: 'Current Monitor CM-100', hasDivider: true },
+{ name: 'Current Monitor CM-200', hasDivider: false },
+{ name: 'Power Analyzer PA-100', hasDivider: true },
+{ name: 'Power Analyzer PA-200', hasDivider: false },
+{ name: 'Energy Meter EM-100', hasDivider: true },
+{ name: 'Energy Meter EM-200', hasDivider: false },
+{ name: 'Smart Meter SM-100', hasDivider: true },
+{ name: 'Smart Meter SM-200', hasDivider: false },
+{ name: 'Frequency Monitor FM-100', hasDivider: true },
+{ name: 'Frequency Monitor FM-200', hasDivider: false },
 ];
 `}
-  dark
-  language="html"
+dark
+language="html"
 />
 
 ### Кастомные данные
 
 Для использования кастомных данных используйте `dxTemplate` внутри тэга основного компонента.
 
-<Source code={`
+<Source
+  code={`
 <dx-select-box
   [dataSource]="products">
   <div dxTemplate="let data of 'field'">
@@ -334,7 +348,10 @@ const dataSource = [
     </div>
   </div>
 </dx-select-box>
-`} dark language="html" />
+`}
+  dark
+  language="html"
+/>
 
 #### Множественный выбор
 
@@ -360,6 +377,98 @@ const dataSource = [
   { name: 'Frequency Monitor FM-200' },
 ]">
 </dx-select-box>`}
+  dark
+  language="html"
+/>
+
+#### Групировка
+
+Опции могут быть сгрупированы при помощи установлено параметра `[grouped]` со значением `true`
+
+<Canvas of={selectBoxStories.GroupedData} />
+
+<Source
+  code={`<dx-select-box meSelectBox displayExpr="name" [dataSource]="meSelectBoxDataGrouped" [grouped]="true">
+  <dx-validator>
+    <dxi-validation-rule
+      type="required"
+      message="Required">
+    </dxi-validation-rule>
+  </dx-validator>
+</dx-select-box>
+export const meSelectBoxDataGrouped = [
+  {
+    key: 'Group 1',
+    items: [
+      { name: 'Voltage Monitor VM-100' },
+      { name: 'Voltage Monitor VM-200' },
+      { name: 'Current Monitor CM-100' },
+    ],
+  },
+  {
+    key: 'Group 2',
+    items: [
+      { name: 'Current Monitor CM-200' },
+      { name: 'Power Analyzer PA-100' },
+      { name: 'Power Analyzer PA-200' },
+      { name: 'Energy Meter EM-100' },
+      { name: 'Energy Meter EM-200' },
+      { name: 'Smart Meter SM-100' },
+      { name: 'Smart Meter SM-200' },
+      { name: 'Frequency Monitor FM-100' },
+      { name: 'Frequency Monitor FM-200' },
+    ],
+  },
+];
+`}
+  dark
+  language="html"
+/>
+
+<Canvas of={selectBoxStories.GroupedDataWithDividers} />
+
+<Source
+  code={`<dx-select-box
+  meSelectBox
+  displayExpr="name"
+  dividersVisibility="all"
+  [dataSource]="meSelectBoxDataGroupedWithDividers"
+  [grouped]="true"
+>
+  <dx-validator>
+    <dxi-validation-rule
+      type="required"
+      message="Required">
+    </dxi-validation-rule>
+  </dx-validator>
+</dx-select-box>
+export const meSelectBoxDataGroupedWithDividers = [
+  {
+    key: 'Group 1',
+    items: [
+      { name: 'Voltage Monitor VM-100', hasDivider: true },
+      { name: 'Voltage Monitor VM-200', hasDivider: true },
+      { name: 'Current Monitor CM-100', hasDivider: false },
+    ],
+    hasDivider: true,
+  },
+  {
+    key: 'Group 2',
+    items: [
+      { name: 'Current Monitor CM-200', hasDivider: false },
+      { name: 'Power Analyzer PA-100', hasDivider: true },
+      { name: 'Power Analyzer PA-200', hasDivider: true },
+      { name: 'Energy Meter EM-100', hasDivider: true },
+      { name: 'Energy Meter EM-200', hasDivider: true },
+      { name: 'Smart Meter SM-100', hasDivider: true },
+      { name: 'Smart Meter SM-200', hasDivider: true },
+      { name: 'Frequency Monitor FM-100', hasDivider: true },
+      { name: 'Frequency Monitor FM-200', hasDivider: false },
+    ],
+    hasDivider: true,
+  },
+];
+`}
   dark
   language="html"
 />
