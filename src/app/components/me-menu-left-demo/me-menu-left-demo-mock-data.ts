@@ -27,6 +27,7 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
     text: 'Текст',
     badge: 3,
     expanded: true,
+    divider: true,
   },
   {
     id: 'path',

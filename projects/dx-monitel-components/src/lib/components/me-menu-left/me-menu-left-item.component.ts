@@ -12,6 +12,7 @@ export interface MeMenuLeftItem {
   action?: () => {};
   selected?: boolean;
   pressed?: boolean;
+  divider?: boolean;
 }
 
 @Component({
