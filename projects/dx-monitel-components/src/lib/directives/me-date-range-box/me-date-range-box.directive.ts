@@ -30,6 +30,9 @@ import { MeFormField } from '../me-form-item/me-form-field';
 })
 export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
   private focusService: ComponentFocusService;
+
+  @Input() multiView = false;
+
   constructor(
     public element: ElementRef,
     private dateRangeBox: DxDateRangeBoxComponent,
@@ -62,6 +65,13 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     this.dateRangeBox.instance.option('dropDownOptions', {
       wrapperAttr: {
         class: `me-date-range-box-overlay ${calendarSize()}`,
+      },
+    });
+
+    this.component.instance.option('calendarOptions', {
+      firstDayOfWeek: 1,
+      elementAttr: {
+        class: `me-calendar--${this.size}`,
       },
     });
   }
