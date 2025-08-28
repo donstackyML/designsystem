@@ -9712,9 +9712,6 @@ me-badge .badge.color-yellow-light {
   background: rgba(50, 87, 220, 0.1215686275);
   border-color: #d50f3f;
 }
-.dx-texteditor.dx-state-focused.dx-invalid .dx-texteditor-label, .dx-texteditor.dx-state-focused.dx-state-hover.dx-invalid .dx-texteditor-label {
-  color: #d50f3f;
-}
 .dx-texteditor.dx-state-focused:not(.dx-state-readonly).dx-editor-filled, .dx-texteditor.dx-state-focused:not(.dx-state-readonly).dx-editor-underlined, .dx-texteditor.dx-state-focused:not(.dx-state-readonly).dx-editor-outlined, .dx-texteditor.dx-state-active:not(.dx-state-readonly).dx-editor-filled, .dx-texteditor.dx-state-active:not(.dx-state-readonly).dx-editor-underlined, .dx-texteditor.dx-state-active:not(.dx-state-readonly).dx-editor-outlined {
   border-color: #3257dc;
 }
@@ -9913,9 +9910,6 @@ me-badge .badge.color-yellow-light {
   max-width: 100%;
   overflow: hidden;
   display: block;
-}
-.dx-invalid .dx-texteditor-label {
-  color: #d50f3f;
 }
 .dx-rtl .dx-texteditor-label {
   left: auto;
@@ -15191,6 +15185,7 @@ input.dx-hidden {
 }
 .dx-header-filter-menu .dx-scrollview-content .dx-list-select-all {
   cursor: pointer;
+  border-radius: 3px;
 }
 .dx-header-filter-menu .dx-scrollview-content .dx-list-select-all:has(.dx-checkbox-checked) {
   background: var(--Controls-BG-Flat-Button-Main-BG-Selected);
@@ -25521,15 +25516,15 @@ input.dx-hidden {
   transition: background-color 0.2s ease;
   color: #18181a;
 }
+.me-menu-left .me-menu-left_item:active {
+  background-color: #bfc1d0 !important;
+}
 .me-menu-left .me-menu-left_item_list {
   margin-top: 2px;
 }
 .me-menu-left .me-menu-left_item-selected {
   background-color: #c4d8ff;
   border-radius: 3px;
-}
-.me-menu-left .me-menu-left_item-pressed {
-  background-color: #bfc1d0 !important;
 }
 .me-menu-left .me-menu-left_item-content {
   display: flex;
@@ -36371,6 +36366,9 @@ input.dx-hidden {
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-small {
   --search-box-min-height: 28px;
 }
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-small:not(.dx-texteditor-empty, .dx-texteditor-label-outside).dx-texteditor-with-floating-label .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container, .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-small:not(.dx-texteditor-empty, .dx-texteditor-label-outside).dx-texteditor-with-label .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container {
+  padding-inline: 8px;
+}
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-small:has(.dx-tag) .dx-texteditor-input-container.dx-tag-container {
   --input-top-offset: 20px;
 }
@@ -36383,7 +36381,7 @@ input.dx-hidden {
   --padding-inline: 3px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-small .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container {
-  padding-inline: 3px;
+  padding-inline: 4px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-small .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container {
   padding-right: 0;
@@ -36421,6 +36419,9 @@ input.dx-hidden {
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-medium {
   --search-box-min-height: 32px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-medium:not(.dx-texteditor-empty, .dx-texteditor-label-outside).dx-texteditor-with-floating-label .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container, .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-medium:not(.dx-texteditor-empty, .dx-texteditor-label-outside).dx-texteditor-with-label .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container {
+  padding-inline: 8px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-medium:has(.dx-tag) .dx-texteditor-input-container.dx-tag-container {
   --input-top-offset: 20px;
@@ -36473,6 +36474,9 @@ input.dx-hidden {
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-large {
   --search-box-min-height: 40px;
 }
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-large:not(.dx-texteditor-empty, .dx-texteditor-label-outside).dx-texteditor-with-floating-label .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container, .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-large:not(.dx-texteditor-empty, .dx-texteditor-label-outside).dx-texteditor-with-label .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container {
+  padding-inline: 12px;
+}
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-large:has(.dx-tag) .dx-texteditor-input-container.dx-tag-container {
   --input-top-offset: 23px;
 }
@@ -36489,6 +36493,12 @@ input.dx-hidden {
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container {
   padding-right: 0;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container input:first-child {
+  padding-left: 8px;
+}
+.me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-placeholder {
+  padding-left: 8px;
 }
 .me-tag-box.me-inputs.dx-widget.dx-texteditor.me-inputs-large .dx-dropdowneditor-input-wrapper.dx-selectbox-container .dx-texteditor-container .dx-texteditor-input-container.dx-tag-container .dx-tag .dx-tag-content {
   padding: 8px 8px;
@@ -38244,17 +38254,19 @@ input.dx-hidden {
   background-color: var(--Background-Accent-in-the-content);
 }
 
-.me-tooltip.me-tooltip-small {
+.me-tooltip-small {
   --tooltip-content-padding: 12px;
   --tooltip-content-font-size: 12px;
   --tooltip-content-line-heigh: 16px;
 }
-.me-tooltip.me-tooltip-medium {
+
+.me-tooltip-medium {
   --tooltip-content-padding: 16px;
   --tooltip-content-font-size: 16px;
   --tooltip-content-line-heigh: 20px;
 }
-.me-tooltip.me-tooltip-large {
+
+.me-tooltip-large {
   --tooltip-content-padding: 20px;
   --tooltip-content-font-size: 16px;
   --tooltip-content-line-heigh: 24px;
