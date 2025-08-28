@@ -158,6 +158,14 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
+    isMtn: {
+      control: 'boolean',
+      description: 'Добавляет специальные стили для таблицы в стиле МТН.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     dataSource: meTreeListMockData,
@@ -597,6 +605,7 @@ export const WithHierarchyAndIcons: Story = {
       { width: 62, caption: 'РЗА', dataField: 'RZA' },
       { width: 98, caption: 'РЗАмакс', dataField: 'RZAMax' },
     ],
+    isMtn: true,
   },
   render: (args) => ({
     props: args,
@@ -621,6 +630,7 @@ export const WithHierarchyAndIcons: Story = {
 				[disabled]="disabled"
         [height]="height"
         [showScrollRow]="showScrollRow"
+        [isMtn]="isMtn"
       >
         <dxi-column
           *ngFor="let col of columns"
@@ -632,7 +642,7 @@ export const WithHierarchyAndIcons: Story = {
 
         <div
           *dxTemplate="let cell of 'equipmentCell'"
-          style="display: flex; align-items: center; gap: 6px;"
+          style="display: flex; align-items: center; gap: 8px;"
         >
           <me-icon
             class="icon"

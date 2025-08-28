@@ -56,7 +56,9 @@ import {
   MeTooltipModule,
   MeTreeListModule,
   MeTreeViewModule,
-  MeDateRangeBoxDirective, MeDateRangeBoxModule, MeNumberBoxModule,
+  MeDateRangeBoxDirective,
+  MeDateRangeBoxModule,
+  MeNumberBoxModule,
 } from '../../projects/dx-monitel-components/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -115,9 +117,7 @@ import { MePopoverDirective } from './directives/popover.directive';
 import { MeSwitchDirective } from './directives/switch.directive';
 import { MeTextEditorDirective } from './directives/text-editor.directive';
 import { MeToastDirective } from './directives/toast.directive';
-import {
-  MeDropDownBoxModule
-} from "../../projects/dx-monitel-components/src/lib/directives/me-drop-down-box/me-drop-down-box.module";
+import { MeDropDownBoxModule } from '../../projects/dx-monitel-components/src/lib/directives/me-drop-down-box/me-drop-down-box.module';
 
 @NgModule({
   declarations: [
