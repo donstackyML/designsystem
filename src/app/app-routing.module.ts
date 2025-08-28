@@ -38,7 +38,7 @@ import { MeTooltipComponent } from './components/me-tooltip/me-tooltip.component
 import { MeTreeListComponent } from './components/me-tree-list/me-tree-list.component';
 import { MeTreeViewComponent } from './components/me-tree-view/me-tree-view.component';
 import { TypographyComponent } from './components/typography/typography.component';
-import {MeInputsComponent} from "./components/me-inputs/me-inputs.component";
+import { MeInputsComponent } from './components/me-inputs/me-inputs.component';
 
 const routes: Routes = [
   { path: '', component: TypographyComponent },
