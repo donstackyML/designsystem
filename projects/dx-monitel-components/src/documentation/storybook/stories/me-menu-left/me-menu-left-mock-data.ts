@@ -27,6 +27,7 @@ export const meMenuLeftDefaultItems: MeMenuLeftItem[] = [
     text: '/',
     icon: 'folder_open_x20',
     expanded: true,
+    divider: true,
     items: [
       {
         id: 'monitel',
