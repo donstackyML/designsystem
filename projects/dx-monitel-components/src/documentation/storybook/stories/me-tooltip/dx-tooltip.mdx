@@ -38,6 +38,68 @@ import * as dxTooltipStories from './dx-tooltip.stories';
   language="html"
 />
 
+### Размеры тултипа
+
+У компонента `DxTooltipComponent` **нет встроенного свойства `size`**.  
+Для управления размерами используется механизм `wrapperAttr`, в который можно передать собственный CSS-класс. 
+
+В Storybook параметр `size` (`small`, `medium`, `large`) служит удобной абстракцией: он автоматически формирует значение для `wrapperAttr` и подставляет соответствующий класс (`me-tooltip-small`, `me-tooltip-medium`, `me-tooltip-large`).  
+В реальном проекте эти классы нужно добавить вручную или использовать директиву.
+
+#### Доступные размеры
+
+- **`me-tooltip-small`**   
+<Canvas name="Анимация тултипа" of={dxTooltipStories.Small} />
+
+<Source
+  code={`
+<dx-button id="tooltipSmall">Наведите, чтобы показался тултип</dx-button>
+<dx-tooltip
+  target="#tooltipSmall"
+  [wrapperAttr]="{ class: 'me-tooltip-small'}"
+>
+  <div *dxTemplate="let data = data; of: 'content'">Tooltip Content</div>
+</dx-tooltip>
+`}
+  dark
+  language="html"
+/>
+
+- **`me-tooltip-medium`** 
+<Canvas name="Анимация тултипа" of={dxTooltipStories.Medium} />
+
+<Source
+  code={`
+<dx-button id="tooltipMedium">Наведите, чтобы показался тултип</dx-button>
+<dx-tooltip
+  target="#tooltipMedium"
+  [wrapperAttr]="{ class: 'me-tooltip-medium'}"
+>
+  <div *dxTemplate="let data = data; of: 'content'">Tooltip Content</div>
+</dx-tooltip>
+`}
+  dark
+  language="html"
+/>
+
+- **`me-tooltip-large`** 
+<Canvas name="Анимация тултипа" of={dxTooltipStories.Large} />
+
+<Source
+  code={`
+<dx-button id="tooltipLarge">Наведите, чтобы показался тултип</dx-button>
+<dx-tooltip
+  target="#tooltipLarge"
+  [wrapperAttr]="{ class: 'me-tooltip-large'}"
+>
+  <div *dxTemplate="let data = data; of: 'content'">Tooltip Content</div>
+</dx-tooltip>
+`}
+  dark
+  language="html"
+/>
+
+
 ### Анимация тултипа
 
 <Canvas name="Анимация тултипа" of={dxTooltipStories.WithAnimation} />

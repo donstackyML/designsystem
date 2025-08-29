@@ -341,7 +341,7 @@ export const Button: Story = {
     <dx-popup mePopup ${argsToTemplate(args)}>
      <dxi-toolbar-item template="addButton" toolbar="bottom" location="after"> </dxi-toolbar-item>
       <div *dxTemplate="let data of 'addButton'">
-        <dx-button meButton text="Добавить" buttonType="default" width="100%"></dx-button>
+        <dx-button meButton text="Добавить" buttonType="default" width="100%" [size]="size"></dx-button>
       </div>
     </dx-popup></div>`,
   }),
