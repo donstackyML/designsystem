@@ -1,6 +1,6 @@
 import { NgIf, NgStyle } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MeIconsModule } from '@monitel/me-icons-registry';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { MeIconsModule, MeIconsRegistry } from '@monitel/me-icons-registry';
 
 export interface MeMenuLeftItem {
   id: string;
@@ -12,6 +12,7 @@ export interface MeMenuLeftItem {
   action?: () => {};
   selected?: boolean;
   pressed?: boolean;
+  divider?: boolean;
 }
 
 @Component({
@@ -21,6 +22,8 @@ export interface MeMenuLeftItem {
   templateUrl: 'me-menu-left-item.component.html',
 })
 export class MeMenuLeftItemComponent implements OnInit, OnDestroy {
+  private meIconRegistry = inject(MeIconsRegistry);
+
   @Input() item?: MeMenuLeftItem;
   @Input() collapsed: boolean = false;
   @Input() expandedIcon = 'expand_less_x20';
@@ -29,7 +32,9 @@ export class MeMenuLeftItemComponent implements OnInit, OnDestroy {
 
   @Input() pressed = false;
 
-  constructor() {}
+  get icon(): string {
+    return this.item?.icon || 'stat_0_x20';
+  }
 
   ngOnInit(): void {}
 
