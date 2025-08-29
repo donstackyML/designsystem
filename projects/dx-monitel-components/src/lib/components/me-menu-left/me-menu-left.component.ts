@@ -344,29 +344,32 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
 
   selectItem(event: MouseEvent, node: TreeNode): void {
     const item = node.item;
-    if (item.items && item.items.length > 0) {
+    const hasChildren = !!(item.items && item.items.length > 0);
+
+    if (this.collapsed) {
+      const targetEl = (event.target as HTMLElement).closest('.me-menu-left_item');
+      if (targetEl) {
+        const items = hasChildren ? (item.items as MeMenuLeftItem[]) : [item];
+        this.showPopup(targetEl, items);
+      }
+      return;
+    }
+
+    if (hasChildren) {
       item.expanded = !item.expanded;
       this.updateFlatList();
-    }
-    if (this.collapsed && item.items && item.items.length > 0) {
-      const targetEl = (event.target as HTMLElement).closest(
-        '.me-menu-left_item'
-      );
-      if (targetEl) {
-        this.showPopup(targetEl, item);
-      }
-    } else if (!item.items || item.items.length === 0) {
+    } else {
       this.itemSelect(item);
     }
   }
 
-  showPopup(target: Element, item: MeMenuLeftItem): void {
+  showPopup(target: Element, data: MeMenuLeftItem[]): void {
     const position: PositionConfig = { at: 'right top' };
     this.subMenuComponent.instance.option({
       cssClass: 'me-menu-left-popup',
       target: target,
       position,
-      dataSource: item.items || [],
+      dataSource: data,
       visible: true,
     });
   }
@@ -501,7 +504,10 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
           '.me-menu-left_item-active'
         );
         if (activeElement) {
-          this.showPopup(activeElement, node.item);
+          const items = node.item.items && node.item.items.length
+            ? (node.item.items as MeMenuLeftItem[])
+            : [node.item];
+          this.showPopup(activeElement as Element, items);
         }
       } else {
         if (node.item.items) {
