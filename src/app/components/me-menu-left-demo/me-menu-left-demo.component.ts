@@ -2,8 +2,16 @@ import { Component, inject } from '@angular/core';
 import { meMenuLeftBottomItems, meMenuLeftDefaultItems } from './me-menu-left-demo-mock-data';
 
 import { MeSize } from 'src/app/types/types';
-import { MeIconsRegistry} from "@monitel/me-icons-registry";
-import { chevronLeftX24, folderOpenX24, keyboardArrowDownX20, keyboardArrowUpX20, downloadX24, settingsX24, assignmentX24 } from "../../../../@monitel/me-icons";
+import { MeIconsRegistry } from '@monitel/me-icons-registry';
+import {
+  chevronLeftX24,
+  folderOpenX24,
+  keyboardArrowDownX20,
+  keyboardArrowUpX20,
+  downloadX24,
+  settingsX24,
+  assignmentX24,
+} from '../../../../@monitel/me-icons';
 
 @Component({
   selector: 'me-menu-left-demo',
@@ -34,7 +42,7 @@ export class MeMenuLeftDemoComponent {
       folderOpenX24,
       downloadX24,
       settingsX24,
-      assignmentX24
+      assignmentX24,
     ]);
   }
 
