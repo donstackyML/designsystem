@@ -70,6 +70,15 @@ export default {
         defaultValue: { summary: 'auto' },
       },
     },
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description: 'Размер тултипа',
+      table: {
+        type: { summary: "'sm' | 'md' | 'lg'" },
+        defaultValue: { summary: 'md' },
+      },
+    },
     shading: {
       description: 'Затемнение экрана',
       control: 'boolean',
@@ -134,6 +143,7 @@ export default {
     shading: false,
     showEvent: 'mouseenter',
     hideEvent: 'mouseleave',
+    size: 'medium',
     hideOnOutsideClick: false,
     demoTemplateText: 'Tooltip Content',
   },
@@ -147,6 +157,7 @@ export default {
           Наведите, чтобы показался тултип
         </dx-button>
         <dx-tooltip
+          [wrapperAttr]="{ class: 'me-tooltip-' + size}"
           [target]="'#' + tooltipId"
           ${argsToTemplate(args)}
         >
@@ -196,6 +207,27 @@ export const PositionRight: Story = {
   },
 };
 
+export const Small: Story = {
+  args: {
+    size: 'small',
+    tooltipId: 'tooltipIdSmall',
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    size: 'medium',
+    tooltipId: 'tooltipIdMedium',
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: 'large',
+    tooltipId: 'tooltipIdLarge',
+  },
+};
+
 export const WithAnimation: Story = {
   args: {
     position: 'top',
@@ -232,6 +264,7 @@ export const WithImageContent: Story = {
     maxWidth: 390,
     tooltipClass: 'me-custom-tooltip-wrapper',
     tooltipId: 'tooltipIdWithCustomImage',
+    size: 'medium',
   },
   render: (args) => ({
     props: args,
@@ -239,11 +272,12 @@ export const WithImageContent: Story = {
       <div class="container">
         <dx-button
           [id]="tooltipId"
-        >
+          >
           Наведите, чтобы показался тултип
-        </dx-button>
-        <dx-tooltip
+          </dx-button>
+          <dx-tooltip
           [target]="'#' + tooltipId"
+          [wrapperAttr]="{ class: 'me-tooltip-' + size}"
           ${argsToTemplate(args)}
         >
           <div *dxTemplate="let data = data; of: 'content'">
