@@ -18,7 +18,8 @@ import { MeSize } from '../../types/types';
     '[class.me-tree-list-cell-small]': 'isCellSizeSmall',
     '[class.me-tree-list-cell-medium]': 'isCellSizeMedium',
     '[class.me-tree-list-show-scroll-row]': 'showScrollRow',
-    '[class.me-tree-list-mtn]': 'isMtn',
+    '[class.me-tree-list-has-extra-padding-for-first-cell]':
+      'hasExtraPaddingForFirstCell',
   },
 })
 export class MeTreeListDirective implements AfterViewInit {
@@ -29,7 +30,7 @@ export class MeTreeListDirective implements AfterViewInit {
   @Input() showRowLines = true;
   @Input() showBorders = true;
   @Input() showScrollRow = false;
-  @Input() isMtn = false;
+  @Input() hasExtraPaddingForFirstCell = false;
 
   constructor(
     private element: ElementRef,

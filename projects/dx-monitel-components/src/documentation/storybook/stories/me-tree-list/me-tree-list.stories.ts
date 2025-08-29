@@ -158,9 +158,9 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    isMtn: {
+    hasExtraPaddingForFirstCell: {
       control: 'boolean',
-      description: 'Добавляет специальные стили для таблицы в стиле МТН.',
+      description: 'Добавляет увеличенный отступ слева для первых ячеек.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -605,7 +605,7 @@ export const WithHierarchyAndIcons: Story = {
       { width: 62, caption: 'РЗА', dataField: 'RZA' },
       { width: 98, caption: 'РЗАмакс', dataField: 'RZAMax' },
     ],
-    isMtn: true,
+    hasExtraPaddingForFirstCell: true,
   },
   render: (args) => ({
     props: args,
@@ -630,7 +630,7 @@ export const WithHierarchyAndIcons: Story = {
 				[disabled]="disabled"
         [height]="height"
         [showScrollRow]="showScrollRow"
-        [isMtn]="isMtn"
+        [hasExtraPaddingForFirstCell]="hasExtraPaddingForFirstCell"
       >
         <dxi-column
           *ngFor="let col of columns"
