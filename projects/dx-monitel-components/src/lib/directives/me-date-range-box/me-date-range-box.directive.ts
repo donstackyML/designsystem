@@ -71,7 +71,7 @@ export class MeDateRangeBoxDirective extends MeFormField implements OnInit {
     this.component.instance.option('calendarOptions', {
       firstDayOfWeek: 1,
       elementAttr: {
-        class: `me-calendar--${this.size}`,
+        class: `me-calendar me-calendar--${this.size}`,
       },
     });
   }
