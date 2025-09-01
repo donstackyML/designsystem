@@ -52,34 +52,31 @@ export class MeDropDownButtonDirective
     super();
     this.focusService = new ComponentFocusService(element, renderer);
 
-    renderer.listen(element.nativeElement, 'mousedown', (e) => {
-      const button = element.nativeElement.querySelector('.dx-button');
+    const addActiveToClicked = (evt: Event) => {
+      const actionButton = element.nativeElement.querySelector('.dx-dropdownbutton-action');
       const toggleButton = element.nativeElement.querySelector('.dx-dropdownbutton-toggle');
 
-      renderer.addClass(button, 'dx-state-active');
-      renderer.addClass(toggleButton, 'dx-state-active');
+      if (this.component.opened && toggleButton) {
+        this.renderer.addClass(toggleButton, 'dx-state-active');
+      }
 
-      this.removeMouseupListener = renderer.listen(document, 'mouseup', () => {
-        renderer.removeClass(button, 'dx-state-active');
-        renderer.removeClass(toggleButton, 'dx-state-active');
+      if (this.component.opened && !toggleButton) {
+        this.renderer.addClass(actionButton, 'dx-state-active');
+      }
+
+      this.removeMouseupListener = this.renderer.listen(document, 'mouseup', () => {
+        if (toggleButton) {
+          this.renderer.removeClass(toggleButton, 'dx-state-active')
+        } else {
+          this.renderer.removeClass(actionButton, 'dx-state-active');
+        }
+
         this.removeMouseupListener?.();
       });
-    });
+    };
 
-    renderer.listen(element.nativeElement, 'click', (e) => {
-      const button = element.nativeElement.querySelector('.dx-button');
-      const toggleButton = element.nativeElement.querySelector('.dx-dropdownbutton-toggle');
-
-
-      renderer.addClass(button, 'dx-state-active');
-      renderer.addClass(toggleButton, 'dx-state-active')
-
-      this.removeMouseupListener = renderer.listen(document, 'mouseup', () => {
-        renderer.removeClass(button, 'dx-state-active');
-        renderer.removeClass(toggleButton, 'dx-state-active');
-        this.removeMouseupListener?.();
-      });
-    });
+    this.renderer.listen(element.nativeElement, 'mousedown', addActiveToClicked);
+    this.renderer.listen(element.nativeElement, 'click', addActiveToClicked);
   }
 
   ngOnDestroy(): void {
