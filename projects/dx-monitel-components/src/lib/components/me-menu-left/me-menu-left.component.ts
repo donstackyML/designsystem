@@ -347,7 +347,9 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     const hasChildren = !!(item.items && item.items.length > 0);
 
     if (this.collapsed) {
-      const targetEl = (event.target as HTMLElement).closest('.me-menu-left_item');
+      const targetEl = (event.target as HTMLElement).closest(
+        '.me-menu-left_item'
+      );
       if (targetEl) {
         const items = hasChildren ? (item.items as MeMenuLeftItem[]) : [item];
         this.showPopup(targetEl, items);
@@ -504,9 +506,10 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
           '.me-menu-left_item-active'
         );
         if (activeElement) {
-          const items = node.item.items && node.item.items.length
-            ? (node.item.items as MeMenuLeftItem[])
-            : [node.item];
+          const items =
+            node.item.items && node.item.items.length
+              ? (node.item.items as MeMenuLeftItem[])
+              : [node.item];
           this.showPopup(activeElement as Element, items);
         }
       } else {
