@@ -47,7 +47,7 @@ export default {
       description: 'Принимает размер `Drop Down Box` и его элементов.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'small' },
+        defaultValue: { summary: 'medium' },
       },
     },
     value: {
