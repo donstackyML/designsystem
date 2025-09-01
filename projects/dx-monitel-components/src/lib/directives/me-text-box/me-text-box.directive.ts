@@ -40,9 +40,13 @@ export class MeTextBoxDirective
   }
 
   ngAfterViewInit(): void {
+    this.renderer.setAttribute(this.element.nativeElement, 'autocomplete', 'off');
+
     if (this.isPasswordInput) {
       this.createPasswordToggle();
       this.updatePasswordToggleVisibility();
+
+      this.renderer.setAttribute(this.element.nativeElement, 'autocomplete', 'new-password');
 
       this.textBox.instance.on('valueChanged', () => {
         this.updatePasswordToggleVisibility();
