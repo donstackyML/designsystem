@@ -91,7 +91,7 @@ export default {
     },
     type: {
       control: 'select',
-      options: ['default', 'normal', 'success', 'danger'],
+      options: ['default', 'normal', 'success', 'danger', 'warning'],
       description: 'Определяет тип кнопки.',
       table: {
         category: 'Внешний вид и размеры',
