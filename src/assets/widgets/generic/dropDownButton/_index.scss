@@ -128,6 +128,8 @@
 }
 
 .me-dropdownbutton {
+  --split-button-first-el-bg: var(--Controls-BG-Secondary-Elements-BG-Default);
+
   .dx-buttongroup {
     .dx-button-content {
       font-weight: var(--me-medium-font-weight);
@@ -149,7 +151,35 @@
         content: var(--me-icon-arrow-drop-down);
       }
     }
+
+    .dx-buttongroup-wrapper {
+      .dx-buttongroup-first-item:not(.dx-buttongroup-last-item) {
+        &.dx-state-hover, &.dx-state-active {
+          background-color: var(--split-button-first-el-bg);
+        }
+      }
+    }
+
+    &.dx-buttongroup-mode-outlined {
+      --split-button-first-el-bg: initial;
+    }
+
+    &.dx-buttongroup-mode-contained {
+      &:has(.dx-buttongroup-wrapper .dx-button-default) {
+        --split-button-first-el-bg: var(--Controls-BG-Accent-Accent-BG-Default);
+      }
+
+      &:has(.dx-buttongroup-wrapper .dx-button-success) {
+        --split-button-first-el-bg: var(--Controls-BG-Accent-Success-BG-Default);
+      }
+
+      &:has(.dx-buttongroup-wrapper .dx-button-danger) {
+        --split-button-first-el-bg: var(--Controls-BG-Accent-Danger-BG-Default);
+      }
+    }
   }
+
+
 
   &.me-keyboard-focused {
     .dx-button.dx-state-focused {
