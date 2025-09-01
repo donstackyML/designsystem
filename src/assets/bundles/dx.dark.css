@@ -14486,18 +14486,25 @@ input.dx-hidden {
 .me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar {
   margin: 0;
 }
-.me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar .dx-toolbar-before .dx-group-panel-item {
+.me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar .dx-toolbar-before {
+  width: 100%;
+}
+.me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar .dx-toolbar-before .dx-datagrid-group-panel {
+  display: flex;
+  gap: 10px;
+}
+.me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar .dx-toolbar-before .dx-toolbar-item .dx-item-content.dx-toolbar-item-content .dx-datagrid-group-panel .dx-group-panel-item {
   display: inline-flex;
   align-items: center;
+  margin: inherit;
 }
-.me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar .dx-toolbar-before .dx-group-panel-item .dx-column-indicators {
+.me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar .dx-toolbar-before .dx-toolbar-item .dx-item-content.dx-toolbar-item-content .dx-datagrid-group-panel .dx-group-panel-item .dx-column-indicators {
   min-width: fit-content;
   display: grid;
   grid-template-columns: 20px 20px;
-  display: flex;
   align-items: center;
 }
-.me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar .dx-toolbar-before .dx-group-panel-item .dx-column-indicators .dx-header-filter::before {
+.me-data-grid .dx-datagrid .dx-datagrid-header-panel .dx-toolbar .dx-toolbar-before .dx-toolbar-item .dx-item-content.dx-toolbar-item-content .dx-datagrid-group-panel .dx-group-panel-item .dx-column-indicators .dx-header-filter::before {
   font-family: var(--me-symbols-family);
   font-size: 20px;
   content: var(--me-icon-filter-alt);
@@ -41791,7 +41798,7 @@ input.dx-hidden {
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 8px;
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content .dx-icon {
@@ -41849,8 +41856,7 @@ input.dx-hidden {
   padding: var(--treeview-item-padding);
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-treeview-toggle-item-visibility {
-  top: 50%;
-  transform: translateY(-50%);
+  top: 8px;
   height: var(--item-visibility-width);
   width: var(--item-visibility-width);
   font-size: var(--item-visibility-width);
@@ -41863,7 +41869,7 @@ input.dx-hidden {
   margin: 0;
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-treeview-toggle-item-visibility.dx-treeview-toggle-item-visibility-opened {
-  transform: translateY(-50%) rotate(90deg);
+  transform: rotate(90deg);
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node .dx-item.dx-treeview-item .dx-item-content.dx-treeview-item-content {
   margin-left: var(--default-margin-left);
@@ -41877,8 +41883,7 @@ input.dx-hidden {
   height: var(--item-icon-width);
 }
 .me-tree-view .dx-scrollable li.dx-treeview-node.dx-treeview-item-with-checkbox .dx-checkbox {
-  top: 50%;
-  transform: translateY(-50%);
+  top: 10px;
   height: var(--checkbox-width);
   width: var(--checkbox-width);
   left: auto;
