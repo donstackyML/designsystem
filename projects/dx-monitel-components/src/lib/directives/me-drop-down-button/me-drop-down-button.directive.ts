@@ -54,18 +54,29 @@ export class MeDropDownButtonDirective
 
     renderer.listen(element.nativeElement, 'mousedown', (e) => {
       const button = element.nativeElement.querySelector('.dx-button');
+      const toggleButton = element.nativeElement.querySelector('.dx-dropdownbutton-toggle');
+
       renderer.addClass(button, 'dx-state-active');
+      renderer.addClass(toggleButton, 'dx-state-active');
+
       this.removeMouseupListener = renderer.listen(document, 'mouseup', () => {
         renderer.removeClass(button, 'dx-state-active');
+        renderer.removeClass(toggleButton, 'dx-state-active');
         this.removeMouseupListener?.();
       });
     });
 
     renderer.listen(element.nativeElement, 'click', (e) => {
       const button = element.nativeElement.querySelector('.dx-button');
+      const toggleButton = element.nativeElement.querySelector('.dx-dropdownbutton-toggle');
+
+
       renderer.addClass(button, 'dx-state-active');
+      renderer.addClass(toggleButton, 'dx-state-active')
+
       this.removeMouseupListener = renderer.listen(document, 'mouseup', () => {
         renderer.removeClass(button, 'dx-state-active');
+        renderer.removeClass(toggleButton, 'dx-state-active');
         this.removeMouseupListener?.();
       });
     });

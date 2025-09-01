@@ -81,8 +81,8 @@ export class MeDateBoxDirective
     this.component.instance.option('calendarOptions', {
       showWeekNumbers: this.showWeekNumbers,
       firstDayOfWeek: 1,
-      bindingOptions: {
-        class: 'me-calendar-show-weeks-numbers',
+      elementAttr: {
+        class: `me-calendar me-calendar--${this.size}`,
       },
     });
   }
