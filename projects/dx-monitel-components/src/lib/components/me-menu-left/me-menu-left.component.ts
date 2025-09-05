@@ -183,10 +183,18 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['collapsed']) {
       this.stateUpdate();
+
+      if (this.floatMode) {
+        if (!this.collapsed) {
+          this.createShading();
+        } else {
+          this.destroyShading();
+        }
+      }
     }
 
     if (changes['floatMode']) {
-      if (this.floatMode) {
+      if (this.floatMode && !this.collapsed) {
         this.createShading();
       } else {
         this.destroyShading();
@@ -195,9 +203,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
       if (this.dragHandleRight) {
         queueMicrotask(() => this.setAllHandleTransform());
       }
-    }
-    if (changes['collapsed']) {
-      this.stateUpdate();
     }
   }
 
@@ -221,7 +226,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   ngOnInit(): void {
     this.actualMaxWidth = this.calculateMaxWidth();
 
-    if (this.floatMode) {
+    if (this.floatMode && !this.collapsed) {
       this.createShading();
     }
   }
@@ -239,8 +244,16 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     if (this.collapsed) {
       this.width = this.collapsedWidth;
       this.updateItemExpanded(this._items, false);
+
+      if (this.floatMode) {
+        this.destroyShading();
+      }
     } else {
       this.width = this.expandedWidth;
+
+      if (this.floatMode) {
+        this.createShading();
+      }
     }
     setTimeout(() => this.updateDragHandler(), 250);
   }
@@ -284,6 +297,14 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     this.collapsed = !this.collapsed;
     this.stateUpdate();
     this.collapsedChange.emit(this.collapsed);
+
+    if (this.floatMode) {
+      if (!this.collapsed) {
+        this.createShading();
+      } else {
+        this.destroyShading();
+      }
+    }
   }
 
   getHeight(): string {
