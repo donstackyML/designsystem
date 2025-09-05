@@ -2,6 +2,24 @@
 @use './colors' as *;
 @use './sizes' as *;
 
+.me-menu-left-wrapper {
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.me-menu-left-wrapper.float-mode .me-menu-left.me-menu-left--expanded {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+}
+
+.me-menu-left-wrapper.float-mode .me-menu-left.me-menu-left--expanded .resize-handle {
+  right: -6px;
+}
+
 .me-keyboard-focused {
   .me-menu-left {
     .me-menu-left_item-active {
