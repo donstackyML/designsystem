@@ -271,7 +271,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
   }
 
   get resizeBoxElement(): HTMLElement {
-    return this.element.nativeElement;
+    return this.containerElement;
   }
 
   get containerElement(): HTMLElement {
@@ -353,13 +353,19 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
         this.width = newWidth;
       }
 
+      if (this.floatMode) {
+        this.renderer.setStyle(this.dragHandleRightElement, 'transform', 'none');
+      }
       this.setAllHandleTransform();
     });
   }
 
   setAllHandleTransform(): void {
+    if (this.floatMode) {
+      this.renderer.setStyle(this.dragHandleRightElement, 'transform', 'none');
+      return;
+    }
     const rect = this.resizeBoxElement.getBoundingClientRect();
-
     this.setHandleTransform(this.dragHandleRightElement, rect);
   }
 
@@ -616,6 +622,7 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     this.renderer.addClass(this.overlay, 'me-overlay');
     this.renderer.setStyle(this.overlay, 'z-index', 99);
     this.renderer.setStyle(this.overlay, 'position', 'fixed');
+    this.renderer.setStyle(this.overlay, 'inset', '0');
     this.renderer.setStyle(this.overlay, 'display', 'block');
     this.renderer.appendChild(document.body, this.overlay);
   }
@@ -624,5 +631,6 @@ export class MeMenuLeftComponent implements AfterViewInit, OnChanges {
     if (this.overlay && this.overlay.parentNode) {
       this.renderer.removeChild(document.body, this.overlay);
     }
+    this.overlay = undefined;
   }
 }
